@@ -18,7 +18,6 @@ function getVariantClasses(componentProps, variants) {
  *
  * This is the runtime `styled` function that finally renders the component
  * after transpilation through linaria. It makes sure to add the base classes, variant classes if they satisfy the prop value and also adds dynamic css variables at runtime, if any.
- *
  * @param {Object} options
  * @param {string} options.displayName Set by linaria. Mostly is same as the variable name. For this code, ```const Comp = styled(...)(...)```, `displayName` will be `Comp`.
  * @param {string[]} options.classes List of class names that reference the inline css object styles.
@@ -54,7 +53,7 @@ export default function styled(tag, options = {}) {
 
   const StyledComponent = React.forwardRef(function StyledComponent(
     // eslint-disable-next-line react/prop-types
-    { as, className, sx: __sx, style, ...props },
+    { as, className, sx, style, ...props },
     ref,
   ) {
     // eslint-disable-next-line react/prop-types
@@ -72,6 +71,22 @@ export default function styled(tag, options = {}) {
       },
       {},
     );
+    // eslint-disable-next-line react/prop-types
+    const sxClass = typeof sx === 'string' ? sx : sx?.className;
+    // eslint-disable-next-line react/prop-types
+    const sxVars = sx && typeof sx !== 'string' ? sx.vars : undefined;
+
+    if (sxVars) {
+      Object.entries(sxVars).forEach(([cssVariable, [value, isUnitLess]]) => {
+        if (typeof value === 'string' || isUnitLess) {
+          varStyles[`--${cssVariable}`] = value;
+        } else {
+          varStyles[`--${cssVariable}`] = `${value}px`;
+        }
+      });
+    }
+
+    const finalClassName = clsx(classes, sxClass, className, getVariantClasses(props, variants));
 
     // eslint-disable-next-line no-underscore-dangle
     if (!Component.__isStyled) {
@@ -79,7 +94,7 @@ export default function styled(tag, options = {}) {
         <Component
           {...restProps}
           ref={ref}
-          className={clsx(classes, className, getVariantClasses(props, variants))}
+          className={finalClassName}
           style={{
             ...style,
             ...varStyles,
@@ -93,7 +108,7 @@ export default function styled(tag, options = {}) {
         {...restProps}
         ownerState={ownerState}
         ref={ref}
-        className={clsx(classes, className, getVariantClasses(props, variants))}
+        className={finalClassName}
         style={{
           ...style,
           ...varStyles,

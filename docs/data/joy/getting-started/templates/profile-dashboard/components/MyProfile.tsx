@@ -158,9 +158,7 @@ export default function MyProfile() {
               <Input placeholder="last name" defaultValue="K." />
             </FormControl>
           </Box>
-
           <Divider role="presentation" />
-
           <FormControl sx={{ display: { sm: 'contents' } }}>
             <FormLabel>Email</FormLabel>
             <Input
@@ -170,13 +168,11 @@ export default function MyProfile() {
               defaultValue="siriwatk@test.com"
             />
           </FormControl>
-
           <Divider role="presentation" />
-
-          <Box>
+          <div>
             <FormLabel>Your photo</FormLabel>
             <FormHelperText>This will be displayed on your profile.</FormHelperText>
-          </Box>
+          </div>
           <Box
             sx={{
               display: 'flex',
@@ -192,20 +188,14 @@ export default function MyProfile() {
             />
             <DropZone />
           </Box>
-
           <Divider role="presentation" />
-
           <FormControl sx={{ display: { sm: 'contents' } }}>
             <FormLabel>Role</FormLabel>
             <Input defaultValue="UI Developer" />
           </FormControl>
-
           <Divider role="presentation" />
-
           <CountrySelector />
-
           <Divider role="presentation" />
-
           <FormControl sx={{ display: { sm: 'contents' } }}>
             <FormLabel>Timezone</FormLabel>
             <Select startDecorator={<i data-feather="clock" />} defaultValue="1">
@@ -223,14 +213,12 @@ export default function MyProfile() {
               </Option>
             </Select>
           </FormControl>
-
           <Divider role="presentation" />
-
-          <Box>
+          <div>
             <FormLabel>Bio</FormLabel>
             <FormHelperText>Write a short introduction.</FormHelperText>
-          </Box>
-          <Box>
+          </div>
+          <div>
             <EditorToolbar />
             <Textarea
               minRows={4}
@@ -240,30 +228,25 @@ export default function MyProfile() {
             <FormHelperText sx={{ mt: 0.75, fontSize: 'xs' }}>
               275 characters left
             </FormHelperText>
-          </Box>
-
+          </div>
           <Divider role="presentation" />
-
-          <Box>
+          <div>
             <FormLabel>Portfolio projects</FormLabel>
             <FormHelperText>Share a few snippets of your work.</FormHelperText>
-          </Box>
+          </div>
           <Stack useFlexGap spacing={1.5}>
             <DropZone />
-
             <FileUpload
               fileName="Tech design requirements.pdf"
               fileSize="200 KB"
               progress={100}
             />
-
             <FileUpload
               icon={<i data-feather="film" />}
               fileName="Dashboard prototype recording.mp4"
               fileSize="16 MB"
               progress={40}
             />
-
             <FileUpload
               icon={<i data-feather="upload-cloud" />}
               fileName="Dashboard prototype FINAL.fig"
@@ -271,9 +254,7 @@ export default function MyProfile() {
               progress={80}
             />
           </Stack>
-
           <Divider role="presentation" />
-
           <Box
             sx={{
               gridColumn: '1/-1',

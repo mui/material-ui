@@ -141,7 +141,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
             </Box>
           </Box>
         </Tooltip>
-        <Box mx="auto" height={15} />
+        <Box sx={{ mx: 'auto', height: 15 }} />
         <Box sx={{ mt: -0.5, mr: -0.5 }}>
           {props.github && (
             <IconButton

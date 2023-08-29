@@ -260,6 +260,7 @@ export default function AppNavDrawerItem(props) {
     legacy,
     newFeature,
     planned,
+    unstable,
     linkProps,
     onClick,
     initiallyExpanded = false,
@@ -328,9 +329,10 @@ export default function AppNavDrawerItem(props) {
         {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
         {newFeature && <Chip label="New" sx={sxChip('success')} />}
         {planned && <Chip label="Planned" sx={sxChip('grey')} />}
+        {unstable && <Chip label="Preview" sx={sxChip('primary')} />}
       </Item>
       {expandable ? (
-        <Collapse in={open} timeout={250} unmountOnExit>
+        <Collapse in={open} timeout="auto" unmountOnExit>
           {children}
         </Collapse>
       ) : (
@@ -356,4 +358,5 @@ AppNavDrawerItem.propTypes = {
   subheader: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   topLevel: PropTypes.bool,
+  unstable: PropTypes.bool,
 };

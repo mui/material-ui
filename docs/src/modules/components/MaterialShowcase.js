@@ -529,7 +529,7 @@ export default function Showcase() {
                   }),
                 })}
               >
-                <Box component="a" href={app.link} rel="noopener nofollow" target="_blank">
+                <a href={app.link} rel="noopener nofollow noreferrer" target="_blank">
                   <CardMedia
                     component="img"
                     loading="lazy"
@@ -550,7 +550,7 @@ export default function Showcase() {
                       }),
                     })}
                   />
-                </Box>
+                </a>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                   <Typography
                     component="h2"
