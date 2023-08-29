@@ -162,19 +162,18 @@ The List Item Button and the secondary action render as siblings so that the ren
     <button>            {/* IconButton */}
 ```
 
-### Selected
-
-Use the `selected` prop to signal whether a List Item Button is selected or not.
-It applies `color="primary"` and a few extra styles (e.g. font weight) to visually communicate the selected state.
-
-:::info
-A selected List Item Button does not apply `:hover` and `:active` global variant styles.
 :::
+
+### Selected
 
 The `selected` prop in the List Item Button component can be used to indicate whether an item is currently selected or not.
 When the item is selected, it applies `color="primary"` and a few extra styles, such as font weight, to visually communicate the selected state.
 
 {{"demo": "SelectedList.js"}}
+
+:::info
+A selected List Item Button does not apply `:hover` and `:active` global variant styles.
+:::
 
 ## CSS variables playground
 
@@ -211,14 +210,6 @@ This example uses a combination of horizontal and vertical lists to form the nav
 It also supports keyboard navigation, inspired by the [Roving UX](https://github.com/argyleink/roving-ux) technique.
 
 {{"demo": "ExampleNavigationMenu.js"}}
-
-## CSS variables
-
-Play around with all the CSS variables available in the list component to see how the design changes.
-
-You can use these to customize the component with both the `sx` prop and the theme.
-
-{{"demo": "ListVariables.js", "hideToolbar": true}}
 
 ## Accessibility
 
