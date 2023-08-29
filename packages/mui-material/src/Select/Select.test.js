@@ -835,6 +835,24 @@ describe('<Select />', () => {
 
       expect(getByTestId('paper').style).to.have.property('minWidth', '12px');
     });
+
+    // https://github.com/mui/material-ui/issues/38700
+    it('should merge `slotProps.paper` with the default Paper props', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getByTestId, getByRole } = render(
+        <Select MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }} open value="10">
+          <MenuItem value="10">Ten</MenuItem>
+        </Select>,
+      );
+
+      const paper = getByTestId('paper');
+      const selectButton = getByRole('button', { hidden: true });
+
+      expect(paper.style).to.have.property('minWidth', `${selectButton.clientWidth}px`);
+    });
   });
 
   describe('prop: SelectDisplayProps', () => {
