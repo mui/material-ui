@@ -35,12 +35,12 @@ function TestOnChangeValueType() {
       />
       <Slider
         value={val}
-        // @ts-expect-error
+        // @ts-expect-error mismatch in value type
         onChange={handleMultipleChange}
       />
       <Slider
         value={multipleVal}
-        // @ts-expect-error
+        // @ts-expect-error mismatch in value type
         onChange={handleChange}
       />
       <Slider

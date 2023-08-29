@@ -20,6 +20,8 @@ export interface SliderOwnerState extends SliderProps {
   focusedThumbIndex: number;
 }
 
+// https://github.com/millsp/ts-toolbelt/blob/master/sources/Function/NoInfer.ts
+// Explain to TS which function parameter has priority for generic inference
 type NoInfer<T> = [T][T extends any ? 0 : never];
 
 export interface SliderTypeMap<
