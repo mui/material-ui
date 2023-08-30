@@ -7,14 +7,13 @@ import Tab from '@mui/material/Tab';
 import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
-  margin: '14px auto 4px',
   padding: 2,
   maxWidth: 170,
   minHeight: 0,
   overflow: 'visible',
   borderRadius: 20,
   border: '1px solid',
-  borderColor: (theme.vars || theme).palette.grey[200],
+  borderColor: (theme.vars || theme).palette.grey[100],
   backgroundColor: (theme.vars || theme).palette.grey[50],
   '&:has(.Mui-focusVisible)': {
     outline: `2px solid ${(theme.vars || theme).palette.primary.main}`,
@@ -27,9 +26,9 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
     zIndex: 1,
   },
   '& .MuiTab-root': {
-    padding: '2px 10px',
-    fontSize: theme.typography.pxToRem(14),
-    fontWeight: 500,
+    padding: '4px 8px',
+    fontSize: theme.typography.pxToRem(13),
+    fontWeight: theme.typography.fontWeightSemiBold,
     minWidth: 0,
     minHeight: 0,
     color: (theme.vars || theme).palette.grey[700],
@@ -39,22 +38,24 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
     },
     '&.Mui-selected': {
       color: (theme.vars || theme).palette.grey[900],
-      fontWeight: 600,
+      fontWeight: theme.typography.fontWeightSemiBold,
     },
   },
   '& .MuiTabs-indicator': {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF',
+    border: '1px solid',
+    borderColor: (theme.vars || theme).palette.grey[200],
     height: '100%',
     borderRadius: 20,
     zIndex: 0,
-    boxShadow: '0px 4px 20px rgba(45, 56, 67, 0.1)',
   },
   ...theme.applyDarkStyles({
-    borderColor: (theme.vars || theme).palette.grey[800],
-    backgroundColor: (theme.vars || theme).palette.grey[900],
+    borderColor: (theme.vars || theme).palette.primaryDark[700],
+    backgroundColor: (theme.vars || theme).palette.primaryDark[900],
     color: (theme.vars || theme).palette.grey[400],
     '& .MuiTabs-indicator': {
-      backgroundColor: (theme.vars || theme).palette.grey[700],
+      backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+      borderColor: (theme.vars || theme).palette.primaryDark[500],
       height: '100%',
       borderRadius: 20,
     },
