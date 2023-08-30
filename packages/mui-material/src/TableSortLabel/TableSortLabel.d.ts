@@ -5,45 +5,49 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { TableSortLabelClasses } from './tableSortLabelClasses';
 
+export interface TableSortLabelOwnProps {
+  /**
+   * If `true`, the label will have the active styling (should be true for the sorted column).
+   * @default false
+   */
+  active?: boolean;
+  /**
+   * Label contents, the arrow will be appended automatically.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<TableSortLabelClasses>;
+  /**
+   * The current sort direction.
+   * @default 'asc'
+   */
+  direction?: 'asc' | 'desc';
+  /**
+   * Hide sort icon when active is false.
+   * @default false
+   */
+  hideSortIcon?: boolean;
+  /**
+   * Sort icon to use.
+   * @default ArrowDownwardIcon
+   */
+  IconComponent?: React.JSXElementConstructor<{
+    className: string;
+  }>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export type TableSortLabelTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'span',
+  RootComponent extends React.ElementType = 'span',
 > = ExtendButtonBaseTypeMap<{
-  props: AdditionalProps & {
-    /**
-     * If `true`, the label will have the active styling (should be true for the sorted column).
-     * @default false
-     */
-    active?: boolean;
-    /**
-     * Label contents, the arrow will be appended automatically.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<TableSortLabelClasses>;
-    /**
-     * The current sort direction.
-     * @default 'asc'
-     */
-    direction?: 'asc' | 'desc';
-    /**
-     * Hide sort icon when active is false.
-     * @default false
-     */
-    hideSortIcon?: boolean;
-    /**
-     * Sort icon to use.
-     * @default ArrowDownwardIcon
-     */
-    IconComponent?: React.JSXElementConstructor<{ className: string }>;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
-  defaultComponent: DefaultComponent;
+  props: AdditionalProps & TableSortLabelOwnProps;
+  defaultComponent: RootComponent;
 }>;
 
 /**
