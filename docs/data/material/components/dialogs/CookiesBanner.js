@@ -72,22 +72,17 @@ function CookiesBanner(props) {
         container={container}
         open={open}
         fullWidth
-        maxWidth={false}
         sx={{
           '& .MuiDialog-container': {
             maxWidth: '100%',
             width: '100%',
-            alignItems: 'stretch',
-            justifyContent: 'stretch',
-            position: 'relative',
           },
           '& .MuiDialog-paper': {
-            boxShadow: 10,
-            position: 'absolute',
+            position: 'fixed',
+            bottom: 0,
             maxWidth: '100%',
             width: '100%',
             m: 0,
-            bottom: 0,
             p: 1,
             borderRadius: 0,
             border: 1,
