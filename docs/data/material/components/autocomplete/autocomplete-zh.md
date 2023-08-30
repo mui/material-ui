@@ -70,7 +70,7 @@ const options = ['The Godfather', 'Pulp Fiction'];
 2. “input value” 状态（state) 则包含了 `inputValue`/`onInputChange` 两种属性的组合。 这个状态展示了在文本框中显示的值。
 
 :::warning
-⚠️ These two states are isolated, they should be controlled independently.
+These two states are isolated, they should be controlled independently.
 :::
 
 {{"demo": "ControllableStates.js"}}
@@ -86,7 +86,7 @@ The prop is designed to cover the primary use case of a **search input** with su
 {{"demo": "FreeSolo.js"}}
 
 :::warning
-⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
+Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
 
 The value created by typing into the textbox is always a string, regardless of the type of the options.
 :::
@@ -170,7 +170,7 @@ A customized UI for Google Maps Places Autocomplete. For this demo, we need to l
 {{"demo": "GoogleMaps.js"}}
 
 :::warning
-⚠️ Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
 :::
 
 ## 多个输入值

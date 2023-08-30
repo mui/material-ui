@@ -13,7 +13,7 @@ githubLabel: 'component: Grid'
 The Grid component, based on a 12-column grid layout, creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 
 :::warning
-⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to the [`DataGrid`](/x/react-data-grid/) component.
+The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to the [`DataGrid`](/x/react-data-grid/) component.
 :::
 
 ## Basics
@@ -71,7 +71,7 @@ Responsive values is supported by:
 - all the [other props](#system-props) of the system
 
 :::warning
-⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
+When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
 For instance, this is not working. The grid item misses the value for `md`:
 
 ```jsx

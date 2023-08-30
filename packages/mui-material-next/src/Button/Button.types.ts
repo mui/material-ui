@@ -5,7 +5,6 @@ import {
   OverridableComponent,
   OverridableTypeMap,
 } from '@mui/types';
-import { TouchRippleProps } from './TouchRipple.types';
 import { SxProps } from '../styles/Theme.types';
 import { ButtonClasses } from './buttonClasses';
 
@@ -25,36 +24,6 @@ export type ButtonTypeMap<
 > = {
   props: AdditionalProps & {
     /**
-     * A ref for imperative actions.
-     * It currently only supports `focusVisible()` action.
-     */
-    action?: React.Ref<ButtonActions>;
-    /**
-     * If `true`, the ripples are centered.
-     * They won't start at the cursor interaction position.
-     * @default false
-     */
-    centerRipple?: boolean;
-    /**
-     * This prop can help identify which element has keyboard focus.
-     * The class name will be applied when the element gains the focus through keyboard interaction.
-     * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
-     * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).
-     * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
-     * if needed.
-     */
-    focusVisibleClassName?: string;
-    /**
-     * The component used to render a link when the `href` prop is provided.
-     * @default 'a'
-     */
-    LinkComponent?: React.ElementType;
-    /*
-     * Callback fired when the component is focused with a keyboard.
-     * We trigger a `onFocus` callback too.
-     */
-    onFocusVisible?: React.FocusEventHandler<any>;
-    /**
      * The content of the component.
      */
     children?: React.ReactNode;
@@ -69,11 +38,6 @@ export type ButtonTypeMap<
      * @default 'primary'
      */
     color?: OverridableStringUnion<'primary' | 'secondary' | 'tertiary', ButtonPropsColorOverrides>;
-    /**
-     * If `true`, the component is disabled.
-     * @default false
-     */
-    disabled?: boolean;
     /**
      * If `true`, no elevation is used.
      * @default false
@@ -99,11 +63,6 @@ export type ButtonTypeMap<
      */
     fullWidth?: boolean;
     /**
-     * The URL to link to when the button is clicked.
-     * If defined, an `a` element will be used as the root node.
-     */
-    href?: string;
-    /**
      * The size of the component.
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
@@ -122,10 +81,6 @@ export type ButtonTypeMap<
      */
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
-     * Props applied to the `TouchRipple` element.
-     */
-    TouchRippleProps?: Partial<TouchRippleProps>;
-    /**
      * The variant to use.
      * @default 'text'
      */
@@ -137,16 +92,7 @@ export type ButtonTypeMap<
   defaultComponent: DefaultComponent;
 };
 
-export interface ButtonOwnerState extends ButtonProps {
-  /**
-   * If `true`, the button's focus is visible.
-   */
-  focusVisible?: boolean;
-  /**
-   * If `true`, the button is active.
-   */
-  active?: boolean;
-}
+export interface ButtonOwnerState extends ButtonProps {}
 
 /**
  * A utility to create component types that inherit props from the Button.

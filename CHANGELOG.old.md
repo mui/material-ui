@@ -5602,7 +5602,7 @@ Here are some highlights ✨:
 - [docs] Link tags HTML vs JSX (#13775) @benbowler
 - [docs] Missing text in docs (#13798) @Skn0tt
 - [docs] Add virtualized table demo (#13786) @joshwooding
-- [docs] Add OpenCollective gold sponsors manually (#13806) @mbrookes
+- [docs] Add Open Collective gold sponsors manually (#13806) @mbrookes
 - [docs] Add example of globally disabling animations (#13805) @joshwooding
 - [docs] Fix KeyboardIcon import name (#13822) @bryantabaird
 - [docs] Force common hoist-non-react-statics version (#13818) @eps1lon
@@ -6156,7 +6156,7 @@ A big thanks to the 18 contributors who made this release possible!
 Here are some highlights ✨:
 
 - 💅 Update the Typography implementation to better follow the specification (#12916) @eps1lon.
-- 📝 Enable [translating the documentation into Chinese](https://translate.mui.com) @mbrookes.
+- 📝 Enable [translating the documentation into Chinese](https://crowdin.com/project/material-ui-docs) @mbrookes.
 - 📝 Fix many SEO issues of the docs.
 - And many more bug fixes 🐛 and documentation improvements.
 
@@ -9377,7 +9377,7 @@ Here are some highlights ✨:
   - We have reduced the size of the bundle by ~8 kB gzipped.
   - The propTypes runtime checks are back. You might experience new warnings.
 - We have introduced 4 breaking changes.
-- You can support me on [Patreon](https://www.patreon.com/oliviertassinari) and the community on [OpenCollective](https://opencollective.com/mui) (#9460).
+- You can support me on [Patreon](https://www.patreon.com/oliviertassinari) and the community on [Open Collective](https://opencollective.com/mui) (#9460).
   Blog posts are coming.
 - And many more bug fixes and documentation improvements.
 

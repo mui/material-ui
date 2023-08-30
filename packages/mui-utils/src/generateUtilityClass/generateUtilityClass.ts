@@ -1,15 +1,18 @@
 import ClassNameGenerator from '../ClassNameGenerator';
 
+// If GlobalStateSlot is changed, GLOBAL_STATE_CLASSES in
+// \packages\api-docs-builder\utils\parseSlotsAndClasses.ts must be updated accordingly.
 export type GlobalStateSlot =
   | 'active'
   | 'checked'
   | 'completed'
   | 'disabled'
-  | 'readOnly'
   | 'error'
   | 'expanded'
   | 'focused'
   | 'focusVisible'
+  | 'open'
+  | 'readOnly'
   | 'required'
   | 'selected';
 
@@ -18,11 +21,12 @@ const globalStateClassesMapping: Record<GlobalStateSlot, string> = {
   checked: 'checked',
   completed: 'completed',
   disabled: 'disabled',
-  readOnly: 'readOnly',
   error: 'error',
   expanded: 'expanded',
   focused: 'focused',
   focusVisible: 'focusVisible',
+  open: 'open',
+  readOnly: 'readOnly',
   required: 'required',
   selected: 'selected',
 };

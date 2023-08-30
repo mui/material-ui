@@ -251,14 +251,18 @@ Copy and paste the code below into the file:
 
 ```tsx
 import * as React from 'react';
-import { Slider, SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
+import {
+  Slider as BaseSlider,
+  SliderThumbSlotProps,
+  SliderProps,
+} from '@mui/base/Slider';
 
 const Slider = React.forwardRef(function Slider(
   props: SliderProps,
   ref: React.ForwardedRef<HTMLSpanElement>,
 ) {
   return (
-    <Slider
+    <BaseSlider
       {...props}
       ref={ref}
       slotProps={{
@@ -334,7 +338,7 @@ To do this, it's not enough to just use classes for the thumb—we need also to 
 +++ b/src/Slider.tsx
 @@ -1,6 +1,17 @@
  import * as React from 'react';
- import { Slider, SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
+ import { Slider as BaseSlider, SliderThumbSlotProps, SliderProps } from '@mui/base/Slider';
 
 +const Thumb = React.forwardRef(function Thumb(
 +  props: SliderThumbSlotProps,
@@ -351,11 +355,11 @@ To do this, it's not enough to just use classes for the thumb—we need also to 
    props: SliderProps,
    ref: React.ForwardedRef<HTMLSpanElement>,
 @@ -8,9 +19,11 @@ const Slider = React.forwardRef(function Slider(
-   return (<Slider
+   return (<BaseSlider
      {...props}
      ref={ref}
 +    slots={{
-+      thumb,
++      thumb: Thumb,
 +    }}
      slotProps={{
        root: { className: 'w-full relative inline-block h-2 cursor-pointer' },
@@ -397,14 +401,18 @@ Create a `Button.tsx` file and copy the following code:
 
 ```tsx
 import * as React from 'react';
-import { Button, ButtonOwnerState, ButtonProps } from '@mui/base/Button';
+import {
+  Button as BaseButton,
+  ButtonOwnerState,
+  ButtonProps,
+} from '@mui/base/Button';
 
 const Button = React.forwardRef(function Button(
   props: ButtonProps,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
   return (
-    <Button
+    <BaseButton
       {...props}
       slotProps={{
         root: (state: ButtonOwnerState) => ({

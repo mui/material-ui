@@ -158,17 +158,17 @@ Learn more about this and other best practices for accessible cards in the [Incl
 
 {{"demo": "InteractiveCard.js"}}
 
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Card component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.
+
+{{"demo": "CardVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::success
 If you need to adjust a Card's padding or border radius, it's preferable to do so using these variables rather than plain CSS properties.
 This is because the variables are also used to calculate a proper radius for the Card's children, to prevent a mismatch between their relative proportions.
 :::
-
-{{"demo": "CardVariables.js" , "hideToolbar": true}}
 
 ## Common examples
 

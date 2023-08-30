@@ -5,7 +5,7 @@ import { alpha, styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import { shouldHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
+import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
 import Link from 'docs/src/modules/components/Link';
 import standardNavIcons from './AppNavIcons';
 
@@ -260,6 +260,7 @@ export default function AppNavDrawerItem(props) {
     legacy,
     newFeature,
     planned,
+    unstable,
     linkProps,
     onClick,
     initiallyExpanded = false,
@@ -273,7 +274,7 @@ export default function AppNavDrawerItem(props) {
   const [open, setOpen] = React.useState(initiallyExpanded);
   const handleClick = (event) => {
     // Ignore the action if opening the link in a new tab
-    if (shouldHandleLinkClick(event)) {
+    if (samePageLinkNavigation(event)) {
       return;
     }
 
@@ -328,9 +329,10 @@ export default function AppNavDrawerItem(props) {
         {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
         {newFeature && <Chip label="New" sx={sxChip('success')} />}
         {planned && <Chip label="Planned" sx={sxChip('grey')} />}
+        {unstable && <Chip label="Preview" sx={sxChip('primary')} />}
       </Item>
       {expandable ? (
-        <Collapse in={open} timeout={250} unmountOnExit>
+        <Collapse in={open} timeout="auto" unmountOnExit>
           {children}
         </Collapse>
       ) : (
@@ -356,4 +358,5 @@ AppNavDrawerItem.propTypes = {
   subheader: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   topLevel: PropTypes.bool,
+  unstable: PropTypes.bool,
 };

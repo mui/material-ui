@@ -34,7 +34,7 @@ As a CSS utility component, `Typography` supports every [`system`](/system/prope
 ```
 
 :::info
-💡 **Tip:** The `color` prop is an exception, though! It actually refers to the palette being used and not specifically the text color. To override that instead, use the `textColor` prop.
+**Tip:** The `color` prop is an exception, though! It actually refers to the palette being used and not specifically the text color. To override that instead, use the `textColor` prop.
 :::
 
 ### Changing the semantic element
