@@ -1,36 +1,28 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import Fab from '@mui/material/Fab';
-import TextField from '@mui/material/TextField';
+
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import Dialog from '@mui/material/Dialog';
 import Typography from '@mui/material/Typography';
-import CloseIcon from '@mui/icons-material/Close';
-import EditIcon from '@mui/icons-material/Edit';
 
-interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window?: () => Window;
-}
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
   backgroundColor: theme.palette.background.default,
 }));
 
-export default function NonModalDialog(props: Props) {
+function CookiesBanner(props) {
   const { window } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
-  const toggleDialog = (newOpen: boolean) => {
+  const toggleDialog = (newOpen) => {
     setOpen(newOpen);
   };
 
@@ -76,68 +68,79 @@ export default function NonModalDialog(props: Props) {
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Box>
-      <Fab
-        sx={{ position: 'fixed', bottom: 16, right: 16 }}
-        onClick={() => toggleDialog(true)}
-        color="primary"
-        aria-label="edit"
-      >
-        <EditIcon />
-      </Fab>
       <Dialog
         hideBackdrop
         disableScrollLock
         container={container}
         open={open}
-        onClose={() => toggleDialog(false)}
+        fullWidth
+        maxWidth={false}
         sx={{
+          '& .MuiDialog-container': {
+            maxWidth: '100%',
+            width: '100%',
+            alignItems: 'stretch',
+            justifyContent: 'stretch',
+            position: 'relative',
+          },
           '& .MuiDialog-paper': {
-            position: 'fixed',
+            boxShadow: 10,
+            position: 'absolute',
+            maxWidth: '100%',
+            width: '100%',
+            m: 0,
             bottom: 0,
-            right: 0,
-            margin: 1,
+            p: 1,
+            borderRadius: 0,
+            border: 1,
+            borderColor: 'divider',
           },
         }}
       >
-        <div>
-          <IconButton
-            size="small"
-            onClick={() => toggleDialog(false)}
-            sx={{ float: 'right', mt: 0.5, mr: 1 }}
-          >
-            <CloseIcon />
-          </IconButton>
-        </div>
-        <Box
-          sx={{
-            m: 2,
-            mt: 1,
-            minWidth: 240,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 1,
-          }}
-        >
-          <TextField id="to" label="To" size="small" />
-          <TextField id="subject" label="Subject" size="small" />
-          <TextField
-            id="feedback"
-            label="Your feedback"
-            multiline
-            minRows={5}
-            size="small"
-          />
-          <div>
+        <Typography variant="h5" gutterBottom>
+          This website uses cookies
+        </Typography>
+        <Stack direction="row">
+          <Typography>
+            example.com relies on cookies to improve your experience. Cookies are
+            used to show you relevant content and to analyze our website traffic.
+          </Typography>
+          <Stack direction="column" gap={0.5} sx={{ width: '350px' }}>
             <Button
+              size="small"
               onClick={() => toggleDialog(false)}
               variant="contained"
-              size="small"
             >
-              Send
+              Allow all
             </Button>
-          </div>
-        </Box>
+            <Button
+              size="small"
+              onClick={() => toggleDialog(false)}
+              variant="outlined"
+              endIcon={<ChevronRightIcon />}
+            >
+              Customize
+            </Button>
+            <Button
+              size="small"
+              onClick={() => toggleDialog(false)}
+              variant="outlined"
+            >
+              Use necessary only
+            </Button>
+          </Stack>
+        </Stack>
       </Dialog>
     </Root>
   );
 }
+
+CookiesBanner.propTypes = {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window: PropTypes.func,
+};
+
+export default CookiesBanner;

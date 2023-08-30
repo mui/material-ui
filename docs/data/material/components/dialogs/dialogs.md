@@ -15,17 +15,6 @@ A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in 
 
 Dialogs are purposefully interruptive, so they should be used sparingly.
 
-:::info
-The dialogs can be presented as non-modal too. The non-modal dialogs are usually used in the following scenarios:
-
-- presenting a nonessential information
-- presenting an information that is not relevant to the current user flow
-- can't interrupt high stake process of the system
-- complex decision making that may require additional information, which would be hidden using a modal dialog
-
-If you are in need in some of the above mentioned scenarios, check the [non-modal Dialog](#non-modal-dialog) section.
-:::
-
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic dialog
@@ -146,16 +135,26 @@ Follow the [Modal performance section](/material-ui/react-modal/#performance).
 
 Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
 
+## Non-modal dialog
+
+The dialogs can be presented as non-modal too. The non-modal dialogs are usually used in the following scenarios:
+
+- presenting a nonessential information
+- presenting an information that is not relevant to the current user flow
+- scenarios where the dialog shouldn't interrupt high stake process of the system
+- complex decision making that may require additional information, which would be hidden using a modal dialog
+
+Some common use-cases of non-modal dialogs include the chat bots/compose email windows and the cookies banner.
+
+{{"demo": "NewEmailWindow.js", "iframe": true}}
+
+{{"demo": "CookiesBanner.js", "iframe": true}}
+
+This [article](https://www.nngroup.com/articles/modal-nonmodal-dialog/) from the Nielsen Normal Group is a great resource for most common use-cases of the modal vs. non-modal dialogs.
+
 ## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:
-
-## Non-modal dialog
-
-The mon-modal dialogs are used in scenarios where the user-flow should not be interrupted, or the dialog contains a nonessential information that is not relevant with the current user-flow.
-Another typical use-case is complex decision making that may require additional information, which would be hidden using a modal dialog.
-
-{{"demo": "NonModalDialog.js", "iframe": true}}
 
 ### material-ui-confirm
 
