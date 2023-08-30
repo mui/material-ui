@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
@@ -31,13 +31,13 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
     fontWeight: theme.typography.fontWeightSemiBold,
     minWidth: 0,
     minHeight: 0,
-    color: (theme.vars || theme).palette.grey[700],
+    color: (theme.vars || theme).palette.grey[600],
     borderRadius: 20,
     '&:hover': {
       color: (theme.vars || theme).palette.grey[800],
     },
     '&.Mui-selected': {
-      color: (theme.vars || theme).palette.grey[900],
+      color: (theme.vars || theme).palette.primary[500],
       fontWeight: theme.typography.fontWeightSemiBold,
     },
   },
@@ -54,7 +54,7 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
     backgroundColor: (theme.vars || theme).palette.primaryDark[900],
     color: (theme.vars || theme).palette.grey[400],
     '& .MuiTabs-indicator': {
-      backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+      backgroundColor: alpha(theme.palette.primaryDark[600], 0.5),
       borderColor: (theme.vars || theme).palette.primaryDark[500],
       height: '100%',
       borderRadius: 20,
@@ -65,7 +65,7 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
         color: (theme.vars || theme).palette.grey[300],
       },
       '&.Mui-selected': {
-        color: '#fff',
+        color: (theme.vars || theme).palette.primary[200],
       },
     },
   }),
