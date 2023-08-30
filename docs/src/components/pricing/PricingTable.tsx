@@ -126,6 +126,9 @@ export function PlanPrice(props: PlanPriceProps) {
 
     return (
       <React.Fragment>
+        <Box sx={{ display: { xs: 'flex', sm: 'none' }, justifyContent: 'center', py: 2 }}>
+          <LicensingModelSwitch />
+        </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
           <Typography variant="h3" component="div" fontWeight="bold" color="primary.main">
             {formatCurrency(mainDisplayValue)}
@@ -141,7 +144,7 @@ export function PlanPrice(props: PlanPriceProps) {
               {priceExplanation}
             </Typography>
           )}
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }} textAlign="center">
+          <Typography variant="body2" color="text.secondary" textAlign="center" sx={{ mb: 3 }}>
             {'No additional fee beyond 10 devs.'}
           </Typography>
         </Box>
@@ -164,6 +167,9 @@ export function PlanPrice(props: PlanPriceProps) {
 
   return (
     <React.Fragment>
+      <Box sx={{ display: { xs: 'flex', sm: 'none' }, justifyContent: 'center', py: 2 }}>
+        <LicensingModelSwitch />
+      </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
         <Typography
           variant="caption"
