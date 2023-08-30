@@ -2,12 +2,13 @@ import {
   NumberInputActionContext,
   NumberInputReducerAction,
   NumberInputState,
+  StepDirection,
 } from './useNumberInput.types';
 import { NumberInputActionTypes } from './numberInputAction.types';
-import { clamp } from './utils';
+import { clamp, isNumber } from './utils';
 
 // extracted from handleValueChange
-function getNewValue(oldValue: number | undefined, context: NumberInputActionContext) {
+function getClampedValues(oldValue: number | undefined, context: NumberInputActionContext) {
   const { min, max, step } = context;
 
   const newValue = oldValue === undefined ? undefined : clamp(oldValue, min, max, step);
@@ -18,6 +19,37 @@ function getNewValue(oldValue: number | undefined, context: NumberInputActionCon
     value: newValue,
     inputValue: newInputValue,
   };
+}
+
+function getMultiplier(context: NumberInputActionContext, event: React.SyntheticEvent) {
+  const { shiftMultiplier } = context;
+  return (event as React.PointerEvent).shiftKey ||
+    (event as React.KeyboardEvent).key === 'PageUp' ||
+    (event as React.KeyboardEvent).key === 'PageDown'
+    ? shiftMultiplier
+    : 1;
+}
+
+function stepValue(
+  state: NumberInputState,
+  context: NumberInputActionContext,
+  direction: StepDirection,
+  multiplier: number,
+) {
+  const { value } = state;
+  const { step = 1, min, max } = context;
+
+  if (isNumber(value)) {
+    return {
+      up: value + (step ?? 1) * multiplier,
+      down: value - (step ?? 1) * multiplier,
+    }[direction];
+  }
+
+  return {
+    up: min ?? 0,
+    down: max ?? 0,
+  }[direction];
 }
 
 function handleBlur<State extends NumberInputState>(
@@ -32,11 +64,27 @@ function handleBlur<State extends NumberInputState>(
   const intermediateValue =
     parsedValue === '' || parsedValue === '-' ? undefined : parseInt(parsedValue, 10);
 
-  const newValues = getNewValue(intermediateValue, context);
+  const clampedValues = getClampedValues(intermediateValue, context);
 
   return {
     ...state,
-    ...newValues,
+    ...clampedValues,
+  };
+}
+
+function handleStep<State extends NumberInputState>(
+  state: State,
+  context: NumberInputActionContext,
+  direction: StepDirection,
+  multiplier: number,
+) {
+  const newValue = stepValue(state, context, direction, multiplier);
+
+  const clampedValues = getClampedValues(newValue, context);
+
+  return {
+    ...state,
+    ...clampedValues,
   };
 }
 
@@ -46,9 +94,15 @@ export function numberInputReducer(
 ): NumberInputState {
   const { type, context, event } = action;
 
+  const multiplier = getMultiplier(context, event);
+
   switch (type) {
     case NumberInputActionTypes.blur:
       return handleBlur(state, context, event);
+    case NumberInputActionTypes.increment:
+      return handleStep(state, context, 'up', multiplier);
+    case NumberInputActionTypes.decrement:
+      return handleStep(state, context, 'down', multiplier);
     default:
       return state;
   }

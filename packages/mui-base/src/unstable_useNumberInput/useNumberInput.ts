@@ -14,11 +14,10 @@ import {
   UseNumberInputIncrementButtonSlotProps,
   UseNumberInputDecrementButtonSlotProps,
   UseNumberInputReturnValue,
+  StepDirection,
 } from './useNumberInput.types';
 import { clamp, isNumber } from './utils';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
-
-type StepDirection = 'up' | 'down';
 
 const STEP_KEYS = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown'];
 

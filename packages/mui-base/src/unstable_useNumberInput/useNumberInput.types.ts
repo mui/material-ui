@@ -3,6 +3,8 @@ import { FormControlState } from '../FormControl';
 import { NumberInputAction } from './numberInputAction.types';
 import { ActionWithContext } from '../utils/useControllableReducer.types';
 
+export type StepDirection = 'up' | 'down';
+
 /**
  * The internal state of the NumberInput.
  * Modify via the reducer only.
