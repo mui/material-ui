@@ -67,19 +67,25 @@ export const borderLeftColor = style({
   themeKey: 'palette',
 });
 
-// false positive
-// eslint-disable-next-line react/function-component-definition
-export const borderRadius = (props) => {
-  if (props.borderRadius !== undefined && props.borderRadius !== null) {
-    const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
-    const styleFromPropValue = (propValue) => ({
-      borderRadius: getValue(transformer, propValue),
-    });
-    return handleBreakpoints(props, props.borderRadius, styleFromPropValue);
-  }
+/**
+ *
+ * @param {'borderRadius' | 'borderTopLeftRadius' | 'borderTopRightRadius' | 'borderBottomLeftRadius' | 'borderBottomRightRadius'} cssKey
+ */
+export const createBorderRadiusStyle = (cssKey) => {
+  return (props) => {
+    if (props[cssKey] !== undefined && props[cssKey] !== null) {
+      const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, cssKey);
+      const styleFromPropValue = (propValue) => ({
+        [cssKey]: getValue(transformer, propValue),
+      });
+      return handleBreakpoints(props, props[cssKey], styleFromPropValue);
+    }
 
-  return null;
+    return null;
+  };
 };
+
+export const borderRadius = createBorderRadiusStyle('borderRadius');
 
 borderRadius.propTypes =
   process.env.NODE_ENV !== 'production' ? { borderRadius: responsivePropType } : {};

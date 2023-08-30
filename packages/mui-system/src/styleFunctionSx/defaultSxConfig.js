@@ -1,5 +1,5 @@
 import { padding, margin } from '../spacing';
-import { borderRadius, borderTransform } from '../borders';
+import { borderRadius, borderTransform, createBorderRadiusStyle } from '../borders';
 import { gap, rowGap, columnGap } from '../cssGrid';
 import { paletteTransform } from '../palette';
 import { maxWidth, sizingTransform } from '../sizing';
@@ -54,6 +54,26 @@ const defaultSxConfig = {
   borderRadius: {
     themeKey: 'shape.borderRadius',
     style: borderRadius,
+  },
+
+  borderTopLeftRadius: {
+    themeKey: 'shape.borderRadius',
+    style: createBorderRadiusStyle('borderTopLeftRadius'),
+  },
+
+  borderTopRightRadius: {
+    themeKey: 'shape.borderRadius',
+    style: createBorderRadiusStyle('borderTopRightRadius'),
+  },
+
+  borderBottomLeftRadius: {
+    themeKey: 'shape.borderRadius',
+    style: createBorderRadiusStyle('borderBottomLeftRadius'),
+  },
+
+  borderBottomRightRadius: {
+    themeKey: 'shape.borderRadius',
+    style: createBorderRadiusStyle('borderBottomRightRadius'),
   },
 
   // palette
