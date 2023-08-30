@@ -108,6 +108,15 @@ Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action
 
 {{"demo": "ConfirmationDialog.js"}}
 
+## Non-modal dialog
+
+Dialogs can also be non-modal, meaning they don't interrupt user interaction behind it.
+Visit [the Nielsen Norman Group article](https://www.nngroup.com/articles/modal-nonmodal-dialog/) for more in-depth guidance about modal vs. non-modal dialog usage.
+
+The demo below shows a persistent cookie banner, a common non-modal dialog use case.
+
+{{"demo": "CookiesBanner.js", "iframe": true}}
+
 ## Draggable dialog
 
 You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable).
@@ -134,23 +143,6 @@ Follow the [Modal performance section](/material-ui/react-modal/#performance).
 ## Limitations
 
 Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
-
-## Non-modal dialog
-
-The dialogs can be presented as non-modal too. The non-modal dialogs are usually used in the following scenarios:
-
-- presenting a nonessential information
-- presenting an information that is not relevant to the current user flow
-- scenarios where the dialog shouldn't interrupt high stake process of the system
-- complex decision making that may require additional information, which would be hidden using a modal dialog
-
-Some common use-cases of non-modal dialogs include the chat bots/compose email windows and the cookies banner.
-
-{{"demo": "NewEmailWindow.js", "iframe": true}}
-
-{{"demo": "CookiesBanner.js", "iframe": true}}
-
-This [article](https://www.nngroup.com/articles/modal-nonmodal-dialog/) from the Nielsen Normal Group is a great resource for most common use-cases of the modal vs. non-modal dialogs.
 
 ## Complementary projects
 
