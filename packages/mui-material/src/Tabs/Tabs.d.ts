@@ -3,7 +3,6 @@ import { SxProps } from '@mui/system';
 import { SlotComponentProps } from '@mui/base';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
-import ButtonBase from '../ButtonBase';
 import { TabScrollButtonProps } from '../TabScrollButton';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TabsClasses } from './tabsClasses';
@@ -26,7 +25,7 @@ export interface TabsOwnerState extends TabsProps {
 
 export interface TabsTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = typeof ButtonBase,
+  DefaultComponent extends React.ElementType = 'div',
 > {
   props: AdditionalProps & {
     /**
