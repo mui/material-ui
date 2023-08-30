@@ -68,17 +68,19 @@ function CookiesBanner(props) {
           },
         }}
       >
-        <Stack direction="row" alignItems="center" gap={2}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          gap={2}
+        >
           <div>
-            <Typography variant="h6" gutterBottom>
-              This website uses cookies
-            </Typography>
+            <Typography>This website uses cookies</Typography>
             <Typography variant="body2">
-              example.com relies on cookies to improve your experience. Cookies are
-              used to show you relevant content and to analyze our website traffic.
+              example.com relies on cookies to improve your experience.
             </Typography>
           </div>
-          <Stack direction="column" gap={0.5} sx={{ width: '300px' }}>
+          <Stack direction="row" gap={1}>
             <Button
               size="small"
               onClick={() => toggleDialog(false)}
@@ -86,12 +88,8 @@ function CookiesBanner(props) {
             >
               Allow all
             </Button>
-            <Button
-              size="small"
-              onClick={() => toggleDialog(false)}
-              variant="outlined"
-            >
-              Use necessary only
+            <Button size="small" onClick={() => toggleDialog(false)} variant="text">
+              Reject all
             </Button>
           </Stack>
         </Stack>
