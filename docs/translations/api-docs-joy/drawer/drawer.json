@@ -2,7 +2,6 @@
   "componentDescription": "The navigation drawers (or \"sidebars\") provide ergonomic access to destinations in a site or app functionality such as switching accounts.",
   "propDescriptions": {
     "anchor": { "description": "Side from which the drawer will appear." },
-    "children": { "description": "A single child content element." },
     "color": {
       "description": "The color of the component. It supports those theme colors that make sense for this component."
     },

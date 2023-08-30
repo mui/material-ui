@@ -1,6 +1,5 @@
 {
   "props": {
-    "children": { "type": { "name": "element" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true },
     "anchor": {
       "type": {
