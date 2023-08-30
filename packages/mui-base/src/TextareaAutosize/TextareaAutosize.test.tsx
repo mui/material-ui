@@ -4,6 +4,8 @@ import sinon, { spy, stub } from 'sinon';
 import {
   describeConformanceUnstyled,
   act,
+  screen,
+  waitFor,
   createMount,
   createRenderer,
   fireEvent,
@@ -13,6 +15,12 @@ import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 
 function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;
+}
+
+function sleep(time: number): Promise<void> {
+  return new Promise<void>((res) => {
+    setTimeout(res, time);
+  });
 }
 
 describe('<TextareaAutosize />', () => {
@@ -35,6 +43,65 @@ describe('<TextareaAutosize />', () => {
       'slotsProp',
     ],
   }));
+
+  // For https://github.com/mui/material-ui/pull/33238
+  it('should not crash when unmounting with Suspense', async () => {
+    const LazyRoute = React.lazy(() => {
+      // Force react to show fallback suspense
+      return new Promise<any>((resolve) => {
+        setTimeout(() => {
+          resolve({
+            default: () => <div>LazyRoute</div>,
+          });
+        }, 0);
+      });
+    });
+
+    function App() {
+      const [toggle, setToggle] = React.useState(false);
+
+      return (
+        <React.Suspense fallback={null}>
+          <button onClick={() => setToggle((r) => !r)}>Toggle</button>
+          {toggle ? <LazyRoute /> : <TextareaAutosize />}
+        </React.Suspense>
+      );
+    }
+
+    render(<App />);
+    const button = screen.getByRole('button');
+    fireEvent.click(button);
+    await waitFor(() => {
+      expect(screen.queryByText('LazyRoute')).not.to.equal(null);
+    });
+  });
+
+  // For https://github.com/mui/material-ui/pull/33253
+  it('should update height without an infinite rendering loop', async () => {
+    function App() {
+      const [value, setValue] = React.useState('Controlled');
+
+      const handleChange = (event: React.ChangeEvent<any>) => {
+        setValue(event.target.value);
+      };
+
+      return <TextareaAutosize value={value} onChange={handleChange} />;
+    }
+    const { container } = render(<App />);
+    const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
+    act(() => {
+      input.focus();
+    });
+    const activeElement = document.activeElement!;
+    // set the value of the input to be 1 larger than its content width
+    fireEvent.change(activeElement, {
+      target: { value: 'Controlled\n' },
+    });
+    await sleep(0);
+    fireEvent.change(activeElement, {
+      target: { value: 'Controlled\n\n' },
+    });
+  });
 
   describe('layout', () => {
     const getComputedStyleStub = new Map<Element, Partial<CSSStyleDeclaration>>();
