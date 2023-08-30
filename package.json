@@ -113,7 +113,6 @@
     "@types/react-test-renderer": "^18.0.0",
     "@types/sinon": "^10.0.16",
     "@types/stylis": "^4.2.0",
-    "@types/webpack": "^5.28.1",
     "@types/yargs": "^17.0.24",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
