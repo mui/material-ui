@@ -27,7 +27,7 @@ The component's animations rely primarily on CSS to ensure that it functions eve
 ## Basics
 
 ```jsx
-import CircularProgress from '@mui/joy/CircularProgress'
+import CircularProgress from '@mui/joy/CircularProgress';
 ```
 
 The Circular Progress component provides users with updates on the status of ongoing processes such as loading an app, submitting a form, or saving updates.
@@ -108,14 +108,14 @@ This attribute will display the value as a percentage.
 
 Here are a few tips to make sure you have an accessible circular progress component:
 
--   When creating your circular progress component, ensure sufficient color contrast between it and the background, using a minimum of [WCAG 2.0's color contrast ratio](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) of 4.5:1.
--   To define a human-readable text alternative to `aria-valuenow`, the `aria-valuetext` will show the current value in a more user-friendly way.
-    For example, downloading files might be conveyed as `aria-valuetext="8% (34 minutes) remaining`.
--   The `aria-valuemin` and `aria-valuemax` attributes are commonly used to indicate the minimum and maximum values of a range.
-    By default, these attributes are set to 0 and 100, respectively.
-    If you need to set a different minimum or maximum value for your range, you can use the these attributes to do so.
--   Use the `aria-label` or `aria-labelledby` attribute to provide an accessible name for your progress component.
-    These define the string value or identifies the element(s) that label the progress component.
+- When creating your circular progress component, ensure sufficient color contrast between it and the background, using a minimum of [WCAG 2.0's color contrast ratio](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) of 4.5:1.
+- To define a human-readable text alternative to `aria-valuenow`, the `aria-valuetext` will show the current value in a more user-friendly way.
+  For example, downloading files might be conveyed as `aria-valuetext="8% (34 minutes) remaining`.
+- The `aria-valuemin` and `aria-valuemax` attributes are commonly used to indicate the minimum and maximum values of a range.
+  By default, these attributes are set to 0 and 100, respectively.
+  If you need to set a different minimum or maximum value for your range, you can use the these attributes to do so.
+- Use the `aria-label` or `aria-labelledby` attribute to provide an accessible name for your progress component.
+  These define the string value or identifies the element(s) that label the progress component.
 
 ## Anatomy
 
@@ -123,10 +123,10 @@ The Circular Progress component is composed of a single root `<span>` with an `<
 
 ```html
 <span role="progressbar" class="MuiCircularProgress-root">
-    <svg class="MuiCircularProgress-svg">
-        <circle class="MuiCircularProgress-track"></circle>
-        <circle class="MuiCircularProgress-progress"></circle>
-    </svg>
-    <!-- children are nested here when present -->
+  <svg class="MuiCircularProgress-svg">
+    <circle class="MuiCircularProgress-track"></circle>
+    <circle class="MuiCircularProgress-progress"></circle>
+  </svg>
+  <!-- children are nested here when present -->
 </span>
 ```
