@@ -281,7 +281,7 @@ const Root = styled('div')(
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
       '& .MuiCallout-content': {
-        minWidth: 0,
+        minWidth: 0, // Allows content to shrink. Useful when callout contains code block
         display: 'flex',
         flexDirection: 'column',
         gap: 6,
