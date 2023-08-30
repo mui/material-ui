@@ -13,8 +13,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@mui/utils": "^5.14.8",
-    "@mui/material": "^5.14.8",
+    "@mui/utils": "^5.14.9",
+    "@mui/material": "^5.14.9",
     "@mui/zero-vite-plugin": "file:../../packages/zero-vite-plugin/build",
     "@vitejs/plugin-react": "^4.0.4",
     "vite": "4.4.9"
