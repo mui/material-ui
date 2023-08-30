@@ -5,12 +5,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import Dialog from '@mui/material/Dialog';
 import Typography from '@mui/material/Typography';
-
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 const Root = styled('div')(({ theme }) => ({
