@@ -68,6 +68,27 @@ The `determinate` prop lets you indicate a specified wait time.
 
 {{"demo": "CircularProgressDeterminate.js"}}
 
+### Determinate Count Up
+
+This method uses an external `use-count-up` package, to animate counting up by providing `start, end and duration` values.
+
+<codeblock storageKey="package-manager">
+```bash npm
+npm install use-count-up
+```
+
+```bash yarn
+yarn add use-count-up
+```
+
+```bash pnpm
+pnpm add use-count-up
+```
+
+</codeblock>
+
+{{"demo": "CircularProgressCountUp.js"}}
+
 ### Children
 
 By default, any children nested inside the Circular Progress will be centered.
