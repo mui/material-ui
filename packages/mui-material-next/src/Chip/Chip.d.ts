@@ -12,7 +12,7 @@ export interface ChipPropsColorOverrides {}
 
 export interface ChipTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
 > {
   props: AdditionalProps & {
     /**
@@ -94,7 +94,7 @@ export interface ChipTypeMap<
      */
     variant?: OverridableStringUnion<'filled' | 'outlined', ChipPropsVariantOverrides>;
   };
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 /**
