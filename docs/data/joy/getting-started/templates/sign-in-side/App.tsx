@@ -93,7 +93,7 @@ export default function JoySignInSideTemplate() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            minHeight: '100dvh',
+            height: 'min(100dvh, 100%)',
             width:
               'clamp(var(--Form-maxWidth), (var(--Collapsed-breakpoint) - 100vw) * 999, 100%)',
             maxWidth: '100%',
@@ -136,7 +136,6 @@ export default function JoySignInSideTemplate() {
             sx={{
               my: 'auto',
               py: 2,
-              pb: 5,
               display: 'flex',
               flexDirection: 'column',
               gap: 2,

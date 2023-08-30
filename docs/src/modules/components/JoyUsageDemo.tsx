@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Check from '@mui/icons-material/Check';
-import CheckRounded from '@mui/icons-material/CheckRounded';
-import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import Box from '@mui/joy/Box';
 import Divider from '@mui/joy/Divider';
 import Chip from '@mui/joy/Chip';
@@ -16,6 +14,7 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Select from '@mui/joy/Select';
 import Sheet from '@mui/joy/Sheet';
 import Switch from '@mui/joy/Switch';
+import SvgIcon from '@mui/joy/SvgIcon';
 import Typography from '@mui/joy/Typography';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -249,7 +248,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
           background: `rgba(${theme.vars.palette.primary.mainChannel} / 0.02)`,
           backdropFilter: 'blur(8px)',
-          minWidth: '280px',
+          minWidth: 'max(280px, 36%)',
         })}
       >
         <Box
@@ -280,7 +279,22 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
               '--IconButton-size': '30px',
             }}
           >
-            <ReplayRoundedIcon />
+            <SvgIcon>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                <path d="M3 3v5h5" />
+              </svg>
+            </SvgIcon>
           </IconButton>
         </Box>
         <Divider sx={{ opacity: 0.5 }} />
@@ -551,7 +565,21 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                           }}
                         >
                           <ListItemDecorator sx={{ opacity: 0 }}>
-                            <CheckRounded />
+                            <SvgIcon>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                            </SvgIcon>
                           </ListItemDecorator>
                           {value}
                         </Option>

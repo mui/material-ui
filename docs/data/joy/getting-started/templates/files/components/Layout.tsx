@@ -11,7 +11,7 @@ function Root(props: BoxProps) {
           display: 'grid',
           gridTemplateColumns: {
             xs: '1fr',
-            sm: 'minmax(64px, 200px) minmax(450px, 1fr)',
+            sm: 'minmax(192px, 240px) minmax(450px, 1fr)',
             md: 'minmax(160px, 300px) minmax(300px, 500px) minmax(500px, 1fr)',
           },
           gridTemplateRows: '64px 1fr',
@@ -114,7 +114,14 @@ function SideDrawer({
     <Box
       {...props}
       sx={[
-        { position: 'fixed', zIndex: 1200, width: '100%', height: '100%' },
+        {
+          position: 'fixed',
+          zIndex: 1200,
+          width: '100%',
+          height: '100%',
+          top: 0,
+          left: 0,
+        },
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
     >

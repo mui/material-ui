@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { CssVarsProvider, extendTheme, THEME_ID } from '@mui/joy/styles';
+import GlobalStyles from '@mui/joy/GlobalStyles';
 import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
@@ -37,11 +38,11 @@ export default function Core() {
           <JoyUIHero />
           <JoyUISummary />
           <Divider />
+          <JoyUITemplates />
+          <Divider />
           <JoyUIComponents />
           <Divider />
           <JoyUIFeatures />
-          <Divider />
-          <JoyUITemplates />
           <Divider />
           <JoyUITestimonial />
           <Divider />

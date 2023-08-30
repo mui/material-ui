@@ -460,7 +460,7 @@ export default function FilesExample() {
                   borderColor: 'neutral.outlinedBorder',
                 }}
               >
-                <AspectRatio ratio="16/9" color="primary">
+                <AspectRatio ratio="16/9" color="primary" maxHeight={160}>
                   <Typography
                     sx={{
                       display: 'flex',
@@ -537,7 +537,7 @@ export default function FilesExample() {
                   borderColor: 'neutral.outlinedBorder',
                 }}
               >
-                <AspectRatio ratio="16/9" color="primary">
+                <AspectRatio ratio="16/9" color="primary" maxHeight={160}>
                   <Typography
                     sx={{
                       display: 'flex',
@@ -566,7 +566,7 @@ export default function FilesExample() {
         </Layout.Main>
         <Sheet
           sx={{
-            display: { xs: 'none', sm: 'initial' },
+            display: { xs: 'none', md: 'initial' },
             borderLeft: '1px solid',
             borderColor: 'neutral.outlinedBorder',
           }}

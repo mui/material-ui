@@ -496,7 +496,7 @@ function AutomaticAdjustment() {
             },
           }}
         >
-          <Box>
+          <div>
             <JoyTypography level="title-sm" sx={{ mb: 0.5 }}>
               Track
             </JoyTypography>
@@ -543,7 +543,7 @@ function AutomaticAdjustment() {
                 }}
               />
             </JoyFormControl>
-          </Box>
+          </div>
 
           <Box>
             <JoyTypography level="title-sm" sx={{ mb: 0.5 }}>
@@ -638,7 +638,7 @@ export default function JoyUIFeatures() {
     };
   }
   return (
-    <Section>
+    <Section bg="gradient">
       <Grid container spacing={2}>
         <Grid md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
