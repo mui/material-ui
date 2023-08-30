@@ -246,9 +246,9 @@ Drawer.propTypes /* remove-proptypes */ = {
    */
   anchor: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
   /**
-   * A single child content element.
+   * @ignore
    */
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'

@@ -69,9 +69,7 @@ export default function DrawerFilters() {
         >
           <Typography level="h4">Filters</Typography>
           <ModalClose sx={{ borderRadius: 40 }} />
-
           <Divider />
-
           <FormControl>
             <FormLabel sx={{ typography: 'title-lg' }}>Property Type</FormLabel>
             <RadioGroup
@@ -192,6 +190,7 @@ export default function DrawerFilters() {
                           if (!event.target.checked) {
                             set.delete(index);
                           }
+
                           return [...set];
                         })
                       }
@@ -230,7 +229,6 @@ export default function DrawerFilters() {
           </FormControl>
 
           <Divider />
-
           <FormControl orientation="horizontal">
             <Box sx={{ flex: 1 }}>
               <FormLabel sx={{ typography: 'title-md' }}>Self Check-in</FormLabel>
@@ -242,7 +240,6 @@ export default function DrawerFilters() {
           </FormControl>
 
           <Divider />
-
           <FormControl orientation="horizontal">
             <Box sx={{ flex: 1 }}>
               <FormLabel sx={{ typography: 'title-md' }}>Superhost</FormLabel>
@@ -252,7 +249,6 @@ export default function DrawerFilters() {
           </FormControl>
 
           <Divider sx={{ mt: 'auto' }} />
-
           <Box
             sx={{
               display: 'flex',
@@ -264,7 +260,7 @@ export default function DrawerFilters() {
               variant="outlined"
               color="neutral"
               onClick={() => {
-                setType(undefined);
+                setType('');
                 setAmenities([]);
               }}
             >
