@@ -58,7 +58,7 @@ const Player = React.forwardRef(function Player(
       <div className="bg-white border-slate-100 dark:bg-slate-800 dark:border-slate-500 border-b rounded-t-xl p-4 pb-6 sm:p-10 sm:pb-8 lg:p-6 xl:p-10 xl:pb-8 space-y-6 sm:space-y-8 lg:space-y-6 xl:space-y-8">
         <div className="flex items-center space-x-4">
           <img
-            src="https://tailwindcss.com/_next/static/media/full-stack-radio.485d0b2c6e3aa1cacc6b50e462cd3675.png"
+            src="https://mui.com/static/base-ui/with-tailwind-css/full-stack-radio.png"
             alt=""
             width="88"
             height="88"
