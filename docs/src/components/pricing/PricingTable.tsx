@@ -960,8 +960,11 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
         }),
         (theme) =>
           theme.applyDarkStyles({
-            '&:hover': {
-              bgcolor: alpha(theme.palette.primaryDark[900], 0.3),
+            '&:hover > div': {
+              bgcolor: alpha(theme.palette.primaryDark[900], 0.6),
+              '@media (hover: none)': {
+                bgcolor: 'initial',
+              },
             },
           }),
       ]}
