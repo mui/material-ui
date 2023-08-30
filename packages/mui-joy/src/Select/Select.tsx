@@ -239,6 +239,10 @@ const SelectListbox = styled(StyledList, {
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
     }),
+    // This is done for an increased color contrast of the select list item while hovering
+    '& li:not(.Mui-selected):hover': {
+      backgroundColor: theme.palette.mode === 'light' ? '#eaeef0' : undefined ,
+    },
   };
 });
 
