@@ -438,7 +438,7 @@ function AboutContent() {
         <Grid container alignItems="center" spacing={4}>
           <Grid item xs={12} md={6}>
             <Typography variant="h2" sx={{ my: 1 }}>
-              Our <GradientText>ultimate</GradientText> goal
+              Our <GradientText>mission</GradientText>
             </Typography>
             <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
               We aim high trying to design the most effective and efficient tool for building UIs,
