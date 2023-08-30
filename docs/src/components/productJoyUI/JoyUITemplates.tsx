@@ -40,7 +40,7 @@ export default function JoyUITemplates() {
               p: 0,
               transform: 'scale(0.9)',
               transformOrigin: 'center center',
-              overflow: 'auto',
+              overflow: 'auto hidden',
             },
           }}
         >
@@ -63,7 +63,20 @@ export default function JoyUITemplates() {
           <TabPanel value={3}>
             <DashboardApp />
           </TabPanel>
-          <TabPanel value={4}>
+          <TabPanel
+            value={4}
+            sx={{
+              '--Cover-width': '40%',
+              '--Form-maxWidth': '768px',
+              '& > div:first-of-type': {
+                width:
+                  'clamp(100% - var(--Cover-width), (var(--Collapsed-breakpoint) - 100%) * 999, 100%)',
+              },
+              '& > div:last-of-type': {
+                left: 'clamp(0px, (100% - var(--Collapsed-breakpoint)) * 999, 100% - var(--Cover-width))',
+              },
+            }}
+          >
             <SignInApp />
           </TabPanel>
         </Tabs>

@@ -81,11 +81,6 @@ export default function FilesExample() {
       )}
       <Layout.Root
         sx={{
-          gridTemplateColumns: {
-            xs: '1fr',
-            sm: 'minmax(64px, 200px) minmax(450px, 1fr)',
-            md: 'minmax(160px, 300px) minmax(600px, 1fr) minmax(300px, 420px)',
-          },
           ...(drawerOpen && {
             height: '100vh',
             overflow: 'hidden',
@@ -205,7 +200,7 @@ export default function FilesExample() {
           >
             <Sheet
               variant="outlined"
-              sx={{ borderRadius: 'sm', gridColumn: '1/-1' }}
+              sx={{ borderRadius: 'sm', gridColumn: '1/-1', overflow: 'auto' }}
             >
               <Table
                 sx={{
