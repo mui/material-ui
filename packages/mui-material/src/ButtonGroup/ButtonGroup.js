@@ -245,8 +245,8 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   );
 
   const buttonGroupPositionContext = (index, childrenParam) => ({
-    firstButton: index === 0,
-    lastButton: index === React.Children.count(childrenParam) - 1,
+    isFirstButton: index === 0,
+    isLastButton: index === React.Children.count(childrenParam) - 1,
   });
 
   return (

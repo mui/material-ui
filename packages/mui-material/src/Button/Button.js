@@ -297,13 +297,13 @@ const ButtonEndIcon = styled('span', {
 }));
 
 const addPositionDataAttributes = (buttonGroupButtonContext) => {
-  if (buttonGroupButtonContext.firstButton && buttonGroupButtonContext.lastButton) {
+  if (buttonGroupButtonContext.isFirstButton && buttonGroupButtonContext.isLastButton) {
     return {};
   }
-  if (buttonGroupButtonContext.firstButton) {
+  if (buttonGroupButtonContext.isFirstButton) {
     return { 'data-first-child': '' };
   }
-  if (buttonGroupButtonContext.lastButton) {
+  if (buttonGroupButtonContext.isLastButton) {
     return { 'data-last-child': '' };
   }
   return { 'data-middle-child': '' };
