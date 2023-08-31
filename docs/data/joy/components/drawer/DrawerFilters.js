@@ -13,17 +13,17 @@ import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
-import Link from '@mui/joy/Link';
+
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Sheet from '@mui/joy/Sheet';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
 import TuneIcon from '@mui/icons-material/TuneRounded';
-import HouseIcon from '@mui/icons-material/House';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import BungalowIcon from '@mui/icons-material/Bungalow';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import ApartmentRoundedIcon from '@mui/icons-material/ApartmentRounded';
+import MeetingRoomRoundedIcon from '@mui/icons-material/MeetingRoomRounded';
+import HotelRoundedIcon from '@mui/icons-material/HotelRounded';
 import Done from '@mui/icons-material/Done';
 
 export default function DrawerFilters() {
@@ -42,10 +42,9 @@ export default function DrawerFilters() {
         Change filters
       </Button>
       <Drawer
-        size="lg"
+        size="md"
         open={open}
         onClose={() => setOpen(false)}
-        anchor="right"
         slotProps={{
           content: {
             sx: {
@@ -58,20 +57,19 @@ export default function DrawerFilters() {
       >
         <Sheet
           sx={{
-            borderRadius: 'xl',
+            borderRadius: 'md',
             p: 2,
             display: 'flex',
             flexDirection: 'column',
-            gap: 1.5,
+            gap: 2,
             height: '100%',
             overflow: 'auto',
           }}
         >
           <Typography level="h4">Filters</Typography>
-          <ModalClose sx={{ borderRadius: 40 }} />
-          <Divider />
+          <ModalClose />
           <FormControl>
-            <FormLabel sx={{ typography: 'title-lg' }}>Property Type</FormLabel>
+            <FormLabel sx={{ typography: 'title-md' }}>Property Type</FormLabel>
             <RadioGroup
               value={type || ''}
               onChange={(event) => {
@@ -88,27 +86,25 @@ export default function DrawerFilters() {
                 {[
                   {
                     name: 'House',
-                    icon: <HouseIcon />,
+                    icon: <HomeRoundedIcon />,
                   },
                   {
                     name: 'Apartment',
-                    icon: <ApartmentIcon />,
+                    icon: <ApartmentRoundedIcon />,
                   },
                   {
                     name: 'Guesthouse',
-                    icon: <BungalowIcon />,
+                    icon: <MeetingRoomRoundedIcon />,
                   },
                   {
                     name: 'Hotel',
-                    icon: <LocationCityIcon />,
+                    icon: <HotelRoundedIcon />,
                   },
                 ].map((item) => (
                   <Card
                     key={item.name}
-                    variant="outlined"
                     sx={{
                       boxShadow: 'none',
-                      borderRadius: 'xl',
                       '&:hover': { bgcolor: 'background.level1' },
                     }}
                   >
@@ -129,7 +125,8 @@ export default function DrawerFilters() {
                           sx: {
                             ...(type === item.name && {
                               borderWidth: 2,
-                              borderColor: 'text.primary',
+                              borderColor:
+                                'var(--joy-palette-primary-outlinedBorder)',
                             }),
                             '&:hover': {
                               bgcolor: 'transparent',
@@ -144,15 +141,15 @@ export default function DrawerFilters() {
             </RadioGroup>
           </FormControl>
 
-          <Typography level="title-lg">Amenities</Typography>
+          <Typography level="title-md">Amenities</Typography>
           <div role="group" aria-labelledby="rank">
             <List
               orientation="horizontal"
+              size="sm"
               wrap
               sx={{
-                '--List-gap': '8px',
+                '--List-gap': '12px',
                 '--ListItem-radius': '20px',
-                '--ListItem-minHeight': '32px',
               }}
             >
               {[
@@ -163,14 +160,13 @@ export default function DrawerFilters() {
                 'Dryer',
                 'Heating',
                 'Dedicated Workspace',
-                'TV',
-                'Icon',
               ].map((item, index) => {
                 const selected = amenities.includes(index);
                 return (
                   <ListItem key={item}>
                     <AspectRatio
                       variant={selected ? 'solid' : 'outlined'}
+                      color={selected ? 'primary' : 'neutral'}
                       ratio={1}
                       sx={{ width: 20, borderRadius: 20, ml: -0.5, mr: 0.75 }}
                     >
@@ -211,41 +207,38 @@ export default function DrawerFilters() {
           </div>
 
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <Link level="title-sm" component="button" underline="none">
-            Show more…
-          </Link>
 
-          <Typography level="title-lg" sx={{ mt: 1 }}>
+          <Typography level="title-md" sx={{ mt: 1 }}>
             Booking Options
           </Typography>
           <FormControl orientation="horizontal">
             <Box sx={{ flex: 1 }}>
-              <FormLabel sx={{ typography: 'title-md' }}>Instant Book</FormLabel>
-              <FormHelperText>
+              <FormLabel sx={{ typography: 'title-sm' }}>Instant Book</FormLabel>
+              <FormHelperText sx={{ typography: 'body-sm' }}>
                 Listings you can book without waiting for host approval
               </FormHelperText>
             </Box>
-            <Switch size="lg" sx={{ '--Switch-trackWidth': '52px' }} />
+            <Switch />
           </FormControl>
 
-          <Divider />
           <FormControl orientation="horizontal">
-            <Box sx={{ flex: 1 }}>
-              <FormLabel sx={{ typography: 'title-md' }}>Self Check-in</FormLabel>
-              <FormHelperText>
+            <Box sx={{ flex: 1, mt: 1 }}>
+              <FormLabel sx={{ typography: 'title-sm' }}>Self Check-in</FormLabel>
+              <FormHelperText sx={{ typography: 'body-sm' }}>
                 Easy access to the property when you arrive
               </FormHelperText>
             </Box>
-            <Switch size="lg" sx={{ '--Switch-trackWidth': '52px' }} />
+            <Switch />
           </FormControl>
 
-          <Divider />
           <FormControl orientation="horizontal">
-            <Box sx={{ flex: 1 }}>
-              <FormLabel sx={{ typography: 'title-md' }}>Superhost</FormLabel>
-              <FormHelperText>Stay with top tier recognized hosts</FormHelperText>
+            <Box sx={{ flex: 1, mt: 1 }}>
+              <FormLabel sx={{ typography: 'title-sm' }}>Superhost</FormLabel>
+              <FormHelperText sx={{ typography: 'body-sm' }}>
+                Stay with top tier recognized hosts
+              </FormHelperText>
             </Box>
-            <Switch size="lg" sx={{ '--Switch-trackWidth': '52px' }} />
+            <Switch />
           </FormControl>
 
           <Divider sx={{ mt: 'auto' }} />
@@ -253,7 +246,6 @@ export default function DrawerFilters() {
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
-              '& button': { borderRadius: 'lg' },
             }}
           >
             <Button
