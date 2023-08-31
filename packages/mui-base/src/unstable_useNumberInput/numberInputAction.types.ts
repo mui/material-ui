@@ -2,6 +2,7 @@ export const NumberInputActionTypes = {
   blur: 'numberInput:blur',
   focus: 'numberInput:focus',
   inputChange: 'numberInput:inputChange',
+  keyDown: 'numberInput:keyDown',
   click: 'numberInput:click',
   increment: 'numberInput:increment',
   decrement: 'numberInput:decrement',
@@ -20,6 +21,11 @@ interface NumberInputFocusAction {
 interface NumberInputInputChangeAction {
   type: typeof NumberInputActionTypes.inputChange;
   event: React.ChangeEvent;
+}
+
+interface NumberInputKeyDownAction {
+  type: typeof NumberInputActionTypes.keyDown;
+  event: React.KeyboardEvent;
 }
 
 interface NumberInputClickAction {
@@ -41,6 +47,7 @@ export type NumberInputAction =
   | NumberInputBlurAction
   | NumberInputFocusAction
   | NumberInputInputChangeAction
+  | NumberInputKeyDownAction
   | NumberInputClickAction
   | NumberInputIncrementAction
   | NumberInputDecrementAction;

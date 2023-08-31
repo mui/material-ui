@@ -170,4 +170,303 @@ describe('numberInputReducer', () => {
       expect(result.inputValue).to.equal('10');
     });
   });
+
+  describe('action: keyDown', () => {
+    describe('key: ArrowUp', () => {
+      it('increments', () => {
+        const state: NumberInputState = {
+          value: 10,
+          inputValue: '10',
+        };
+
+        const action: NumberInputReducerAction = {
+          type: NumberInputActionTypes.keyDown,
+          event: {
+            key: 'ArrowUp',
+          } as React.KeyboardEvent,
+          context: {
+            getInputValueAsString: defaultGetInputValueAsString,
+            shiftMultiplier: 10,
+          },
+        };
+
+        const result = numberInputReducer(state, action);
+
+        expect(result.value).to.equal(11);
+        expect(result.inputValue).to.equal('11');
+      });
+
+      it('increments based on a custom step', () => {
+        const state: NumberInputState = {
+          value: 10,
+          inputValue: '10',
+        };
+
+        const action: NumberInputReducerAction = {
+          type: NumberInputActionTypes.keyDown,
+          event: {
+            key: 'ArrowUp',
+          } as React.KeyboardEvent,
+          context: {
+            getInputValueAsString: defaultGetInputValueAsString,
+            shiftMultiplier: 10,
+            step: 5,
+          },
+        };
+
+        const result = numberInputReducer(state, action);
+
+        expect(result.value).to.equal(15);
+        expect(result.inputValue).to.equal('15');
+      });
+
+      it('increments and applies shiftMultiplier when Shift is held', () => {
+        const state: NumberInputState = {
+          value: 10,
+          inputValue: '10',
+        };
+
+        const action: NumberInputReducerAction = {
+          type: NumberInputActionTypes.keyDown,
+          event: {
+            key: 'ArrowUp',
+            shiftKey: true,
+          } as React.KeyboardEvent,
+          context: {
+            getInputValueAsString: defaultGetInputValueAsString,
+            shiftMultiplier: 10,
+          },
+        };
+
+        const result = numberInputReducer(state, action);
+
+        expect(result.value).to.equal(20);
+        expect(result.inputValue).to.equal('20');
+      });
+
+      it('sets value to min when there is no value', () => {
+        const state: NumberInputState = {
+          value: '',
+          inputValue: '',
+        };
+
+        const action: NumberInputReducerAction = {
+          type: NumberInputActionTypes.keyDown,
+          event: {
+            key: 'ArrowUp',
+          } as React.KeyboardEvent,
+          context: {
+            getInputValueAsString: defaultGetInputValueAsString,
+            shiftMultiplier: 10,
+            min: -20,
+          },
+        };
+
+        const result = numberInputReducer(state, action);
+
+        expect(result.value).to.equal(-20);
+        expect(result.inputValue).to.equal('-20');
+      });
+    });
+
+    describe('key: ArrowDown', () => {
+      it('decrements', () => {
+        const state: NumberInputState = {
+          value: 10,
+          inputValue: '10',
+        };
+
+        const action: NumberInputReducerAction = {
+          type: NumberInputActionTypes.keyDown,
+          event: {
+            key: 'ArrowDown',
+          } as React.KeyboardEvent,
+          context: {
+            getInputValueAsString: defaultGetInputValueAsString,
+            shiftMultiplier: 10,
+          },
+        };
+
+        const result = numberInputReducer(state, action);
+
+        expect(result.value).to.equal(9);
+        expect(result.inputValue).to.equal('9');
+      });
+
+      it('decrements based on a custom step', () => {
+        const state: NumberInputState = {
+          value: 12,
+          inputValue: '12',
+        };
+
+        const action: NumberInputReducerAction = {
+          type: NumberInputActionTypes.keyDown,
+          event: {
+            key: 'ArrowDown',
+          } as React.KeyboardEvent,
+          context: {
+            getInputValueAsString: defaultGetInputValueAsString,
+            shiftMultiplier: 10,
+            step: 4,
+          },
+        };
+
+        const result = numberInputReducer(state, action);
+
+        expect(result.value).to.equal(8);
+        expect(result.inputValue).to.equal('8');
+      });
+
+      it('decrements and applies shiftMultiplier when Shift is held', () => {
+        const state: NumberInputState = {
+          value: 35,
+          inputValue: '35',
+        };
+
+        const action: NumberInputReducerAction = {
+          type: NumberInputActionTypes.keyDown,
+          event: {
+            key: 'ArrowDown',
+            shiftKey: true,
+          } as React.KeyboardEvent,
+          context: {
+            getInputValueAsString: defaultGetInputValueAsString,
+            shiftMultiplier: 10,
+          },
+        };
+
+        const result = numberInputReducer(state, action);
+
+        expect(result.value).to.equal(25);
+        expect(result.inputValue).to.equal('25');
+      });
+
+      it('sets value to max when there is no value', () => {
+        const state: NumberInputState = {
+          value: '',
+          inputValue: '',
+        };
+
+        const action: NumberInputReducerAction = {
+          type: NumberInputActionTypes.keyDown,
+          event: {
+            key: 'ArrowDown',
+            shiftKey: true,
+          } as React.KeyboardEvent,
+          context: {
+            getInputValueAsString: defaultGetInputValueAsString,
+            shiftMultiplier: 10,
+            max: 99,
+          },
+        };
+
+        const result = numberInputReducer(state, action);
+
+        expect(result.value).to.equal(99);
+        expect(result.inputValue).to.equal('99');
+      });
+    });
+
+    describe('key: PageUp', () => {
+      it('increments and applies shiftMultiplier', () => {
+        const state: NumberInputState = {
+          value: 10,
+          inputValue: '10',
+        };
+
+        const action: NumberInputReducerAction = {
+          type: NumberInputActionTypes.keyDown,
+          event: {
+            key: 'PageUp',
+          } as React.KeyboardEvent,
+          context: {
+            getInputValueAsString: defaultGetInputValueAsString,
+            shiftMultiplier: 10,
+          },
+        };
+
+        const result = numberInputReducer(state, action);
+
+        expect(result.value).to.equal(20);
+        expect(result.inputValue).to.equal('20');
+      });
+    });
+
+    describe('key: PageDown', () => {
+      it('decrements and applies shiftMultiplier', () => {
+        const state: NumberInputState = {
+          value: 44,
+          inputValue: '44',
+        };
+
+        const action: NumberInputReducerAction = {
+          type: NumberInputActionTypes.keyDown,
+          event: {
+            key: 'PageDown',
+          } as React.KeyboardEvent,
+          context: {
+            getInputValueAsString: defaultGetInputValueAsString,
+            shiftMultiplier: 10,
+          },
+        };
+
+        const result = numberInputReducer(state, action);
+
+        expect(result.value).to.equal(34);
+        expect(result.inputValue).to.equal('34');
+      });
+    });
+
+    describe('key: Home', () => {
+      it('increments to max if max is set', () => {
+        const state: NumberInputState = {
+          value: 44,
+          inputValue: '44',
+        };
+
+        const action: NumberInputReducerAction = {
+          type: NumberInputActionTypes.keyDown,
+          event: {
+            key: 'Home',
+          } as React.KeyboardEvent,
+          context: {
+            getInputValueAsString: defaultGetInputValueAsString,
+            shiftMultiplier: 10,
+            max: 99,
+          },
+        };
+
+        const result = numberInputReducer(state, action);
+
+        expect(result.value).to.equal(99);
+        expect(result.inputValue).to.equal('99');
+      });
+    });
+
+    describe('key: End', () => {
+      it('decrements to min if min is set', () => {
+        const state: NumberInputState = {
+          value: 44,
+          inputValue: '44',
+        };
+
+        const action: NumberInputReducerAction = {
+          type: NumberInputActionTypes.keyDown,
+          event: {
+            key: 'End',
+          } as React.KeyboardEvent,
+          context: {
+            getInputValueAsString: defaultGetInputValueAsString,
+            shiftMultiplier: 10,
+            min: 1,
+          },
+        };
+
+        const result = numberInputReducer(state, action);
+
+        expect(result.value).to.equal(1);
+        expect(result.inputValue).to.equal('1');
+      });
+    });
+  });
 });

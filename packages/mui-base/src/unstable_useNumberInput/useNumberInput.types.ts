@@ -13,11 +13,11 @@ export interface NumberInputState {
   /**
    * The clamped `value` of the `input` element.
    */
-  value: number | undefined;
+  value?: number | '';
   /**
    * The dirty `value` of the `input` element when it is in focus.
    */
-  inputValue: string | undefined;
+  inputValue?: string;
 }
 
 /**

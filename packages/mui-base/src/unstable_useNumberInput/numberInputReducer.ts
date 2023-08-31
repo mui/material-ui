@@ -88,6 +88,19 @@ function handleStep<State extends NumberInputState>(
   };
 }
 
+function handleKeyDown<State extends NumberInputState>(
+  state: State,
+  context: NumberInputActionContext,
+  event: React.KeyboardEvent,
+) {
+  switch (event.key) {
+    default:
+      break;
+  }
+
+  return state;
+}
+
 export function numberInputReducer(
   state: NumberInputState,
   action: NumberInputReducerAction,
@@ -103,6 +116,8 @@ export function numberInputReducer(
       return handleStep(state, context, 'up', multiplier);
     case NumberInputActionTypes.decrement:
       return handleStep(state, context, 'down', multiplier);
+    case NumberInputActionTypes.keyDown:
+      return handleKeyDown(state, context, event);
     default:
       return state;
   }
