@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" }, "required": true },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "cols": { "type": { "name": "custom", "description": "integer" }, "default": "2" },
     "component": { "type": { "name": "elementType" } },
     "gap": { "type": { "name": "number" }, "default": "4" },
@@ -14,7 +14,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -25,6 +25,10 @@
     }
   },
   "name": "ImageList",
+  "imports": [
+    "import ImageList from '@mui/material/ImageList';",
+    "import { ImageList } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "masonry", "quilted", "standard", "woven"],
     "globalClasses": {},

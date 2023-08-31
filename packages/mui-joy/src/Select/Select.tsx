@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverrideProps, DefaultComponentProps } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import Popper, { PopperProps } from '@mui/base/Popper';
-import useSelect, { SelectProvider } from '@mui/base/useSelect';
+import { Popper, PopperProps } from '@mui/base/Popper';
+import { useSelect, SelectProvider } from '@mui/base/useSelect';
 import { SelectOption } from '@mui/base/useOption';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
@@ -24,18 +24,6 @@ import { VariantColorProvider } from '../styles/variantColorInheritance';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
   return selectedOption?.label ?? '';
-}
-
-function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> | null) {
-  if (selectedOption?.value == null) {
-    return '';
-  }
-
-  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
-    return selectedOption.value;
-  }
-
-  return JSON.stringify(selectedOption.value);
 }
 
 const defaultModifiers: PopperProps['modifiers'] = [
@@ -176,7 +164,7 @@ const SelectRoot = styled('div', {
       [`&.${selectClasses.disabled}`]: {
         '--Select-indicatorColor': 'inherit',
       },
-    },
+    } as const,
     {
       '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
       [`&.${selectClasses.disabled}`]:
@@ -336,7 +324,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledExternalProp,
-    getSerializedValue = defaultFormValueProvider,
+    getSerializedValue,
     placeholder,
     listboxId,
     listboxOpen: listboxOpenProp,
@@ -344,6 +332,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     onListboxOpenChange,
     onClose,
     renderValue: renderValueProp,
+    required = false,
     value: valueProp,
     size: sizeProp = 'md',
     variant = 'outlined',
@@ -437,6 +426,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     disabled,
     getButtonProps,
     getListboxProps,
+    getHiddenInputProps,
     getOptionMetadata,
     open: listboxOpen,
     value,
@@ -445,8 +435,11 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     defaultOpen: defaultListboxOpen,
     defaultValue,
     disabled: disabledProp,
+    getSerializedValue,
     listboxId,
     multiple: false,
+    name,
+    required,
     onChange,
     onOpenChange: handleOpenChange,
     open: listboxOpenProp,
@@ -488,6 +481,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       'aria-describedby': ariaDescribedby ?? formControl?.['aria-describedby'],
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby ?? formControl?.labelId,
+      'aria-required': required ? 'true' : undefined,
       id: id ?? formControl?.htmlFor,
       name,
     },
@@ -599,10 +593,9 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
 
         {indicator && <SlotIndicator {...indicatorProps}>{indicator}</SlotIndicator>}
+        <input {...getHiddenInputProps()} />
       </SlotRoot>
       {result}
-
-      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
     </React.Fragment>
   );
 }) as SelectComponent;
@@ -730,6 +723,11 @@ Select.propTypes /* remove-proptypes */ = {
    * Function that customizes the rendering of the selected value.
    */
   renderValue: PropTypes.func,
+  /**
+   * If `true`, the Select cannot be empty when submitting form.
+   * @default false
+   */
+  required: PropTypes.bool,
   /**
    * The size of the component.
    */

@@ -7,7 +7,7 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -87,6 +87,7 @@ const TypographyRoot = styled('span', {
         }
       : {
           display: 'block', // don't rely on user agent, always `block`.
+          position: 'relative',
         }),
     ...((ownerState.startDecorator || ownerState.endDecorator) && {
       display: 'flex',

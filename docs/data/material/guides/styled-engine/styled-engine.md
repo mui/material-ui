@@ -104,8 +104,8 @@ You can use these `styled-component` examples as a reference:
 
 <!-- #default-branch-switch -->
 
-- [create-react-app](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components)
-- [create-react-app with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts)
+- [create-react-app](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
+- [create-react-app with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
 - [and many others](https://github.com/mui/material-ui/tree/master/examples)
 
 :::warning
@@ -151,7 +151,11 @@ Render Material UI's theme provider below Theme UI's provider and assign the mat
 
 ```js
 import { ThemeUIProvider } from 'theme-ui';
-import { createTheme as materialCreateTheme, THEME_ID } from '@mui/material/styles';
+import {
+  ThemeProvider as MaterialThemeProvider,
+  createTheme as materialCreateTheme,
+  THEME_ID,
+} from '@mui/material/styles';
 
 const themeUITheme = {
   fonts: {
@@ -187,12 +191,12 @@ Render Material UI's theme provider below Chakra UI's provider and assign the ma
 import { ChakraProvider, extendTheme as chakraExtendTheme } from '@chakra-ui/react';
 import {
   ThemeProvider as MaterialThemeProvider,
-  createTheme as muiCreateTheme,
+  createTheme as materialCreateTheme,
   THEME_ID,
 } from '@mui/material/styles';
 
 const chakraTheme = chakraExtendTheme();
-const materialTheme = muiCreateTheme();
+const materialTheme = materialCreateTheme();
 
 function App() {
   return (

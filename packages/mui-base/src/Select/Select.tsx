@@ -10,15 +10,15 @@ import {
   SelectRootSlotProps,
   SelectType,
 } from './Select.types';
-import useSelect, { SelectValue } from '../useSelect';
+import { useSelect, SelectValue } from '../useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import Popper from '../Popper';
-import composeClasses from '../composeClasses';
+import { Popper } from '../Popper';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSelectUtilityClass } from './selectClasses';
-import defaultOptionStringifier from '../useSelect/defaultOptionStringifier';
+import { defaultOptionStringifier } from '../useSelect/defaultOptionStringifier';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { SelectOption } from '../useOption';
-import SelectProvider from '../useSelect/SelectProvider';
+import { SelectProvider } from '../useSelect/SelectProvider';
 
 function defaultRenderValue<OptionValue>(
   selectedOptions: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
@@ -28,39 +28,6 @@ function defaultRenderValue<OptionValue>(
   }
 
   return selectedOptions?.label ?? '';
-}
-
-function defaultFormValueProvider<OptionValue>(
-  selectedOption: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
-) {
-  if (Array.isArray(selectedOption)) {
-    if (selectedOption.length === 0) {
-      return '';
-    }
-
-    if (
-      selectedOption.every(
-        (o) =>
-          typeof o.value === 'string' ||
-          typeof o.value === 'number' ||
-          typeof o.value === 'boolean',
-      )
-    ) {
-      return selectedOption.map((o) => String(o.value));
-    }
-
-    return JSON.stringify(selectedOption.map((o) => o.value));
-  }
-
-  if (selectedOption?.value == null) {
-    return '';
-  }
-
-  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
-    return selectedOption.value;
-  }
-
-  return JSON.stringify(selectedOption.value);
 }
 
 function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
@@ -109,11 +76,12 @@ const Select = React.forwardRef(function Select<
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
-    getSerializedValue = defaultFormValueProvider,
+    getSerializedValue,
     listboxId,
     listboxOpen: listboxOpenProp,
     multiple = false as Multiple,
     name,
+    required = false,
     onChange,
     onListboxOpenChange,
     getOptionAsString = defaultOptionStringifier,
@@ -154,10 +122,14 @@ const Select = React.forwardRef(function Select<
     disabled,
     getButtonProps,
     getListboxProps,
+    getHiddenInputProps,
     getOptionMetadata,
     value,
     open,
   } = useSelect({
+    name,
+    required,
+    getSerializedValue,
     areOptionsEqual,
     buttonRef: handleButtonRef,
     defaultOpen: defaultListboxOpen,
@@ -246,9 +218,7 @@ const Select = React.forwardRef(function Select<
         </PopperComponent>
       )}
 
-      {name && (
-        <input type="hidden" name={name} value={getSerializedValue(selectedOptionsMetadata)} />
-      )}
+      <input {...getHiddenInputProps()} />
     </React.Fragment>
   );
 }) as SelectType;
@@ -275,6 +245,10 @@ Select.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * If `true`, the select will be initially open.
    * @default false
@@ -338,6 +312,11 @@ Select.propTypes /* remove-proptypes */ = {
    */
   renderValue: PropTypes.func,
   /**
+   * If `true`, the Select cannot be empty when submitting form.
+   * @default false
+   */
+  required: PropTypes.bool,
+  /**
    * The props used for each slot inside the Input.
    * @default {}
    */
@@ -363,4 +342,4 @@ Select.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export default Select;
+export { Select };

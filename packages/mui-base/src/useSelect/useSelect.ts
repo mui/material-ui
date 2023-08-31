@@ -5,7 +5,7 @@ import {
   unstable_useId as useId,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
-import useButton from '../useButton';
+import { useButton } from '../useButton';
 import {
   ButtonClickAction,
   SelectAction,
@@ -13,19 +13,58 @@ import {
   SelectInternalState,
   SelectValue,
   UseSelectButtonSlotProps,
+  UseSelectHiddenInputSlotProps,
   UseSelectListboxSlotProps,
   UseSelectParameters,
   UseSelectReturnValue,
 } from './useSelect.types';
-import useList, { UseListParameters } from '../useList';
+import { useList, UseListParameters } from '../useList';
 import { EventHandlers } from '../utils/types';
-import defaultOptionStringifier from './defaultOptionStringifier';
+import { defaultOptionStringifier } from './defaultOptionStringifier';
 import { SelectProviderValue } from './SelectProvider';
 import { useCompoundParent } from '../utils/useCompound';
 import { SelectOption } from '../useOption/useOption.types';
-import selectReducer from './selectReducer';
-import combineHooksSlotProps from '../utils/combineHooksSlotProps';
-import MuiCancellableEvent from '../utils/muiCancellableEvent';
+import { selectReducer } from './selectReducer';
+import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+
+// visually hidden style based on https://webaim.org/techniques/css/invisiblecontent/
+const visuallyHiddenStyle: React.CSSProperties = {
+  clip: 'rect(1px, 1px, 1px, 1px)',
+  clipPath: 'inset(50%)',
+  height: '1px',
+  width: '1px',
+  margin: '-1px',
+  overflow: 'hidden',
+  padding: 0,
+  position: 'absolute',
+  left: '50%',
+  bottom: 0, // to display the native browser validation error at the bottom of the Select.
+};
+
+const noop = () => {};
+
+function defaultFormValueProvider<OptionValue>(
+  selectedOption: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
+) {
+  if (Array.isArray(selectedOption)) {
+    if (selectedOption.length === 0) {
+      return '';
+    }
+
+    return JSON.stringify(selectedOption.map((o) => o.value));
+  }
+
+  if (selectedOption?.value == null) {
+    return '';
+  }
+
+  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
+    return selectedOption.value;
+  }
+
+  return JSON.stringify(selectedOption.value);
+}
 
 function preventDefault(event: React.SyntheticEvent) {
   event.preventDefault();
@@ -53,12 +92,15 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     listboxId: listboxIdProp,
     listboxRef: listboxRefProp,
     multiple = false as Multiple,
+    name,
+    required,
     onChange,
     onHighlightChange,
     onOpenChange,
     open: openProp,
     options: optionsParam,
     getOptionAsString = defaultOptionStringifier,
+    getSerializedValue = defaultFormValueProvider,
     value: valueProp,
   } = props;
 
@@ -256,10 +298,10 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     rootRef: mergedListRootRef,
   } = useList(useListParameters);
 
-  const createHandleButtonClick =
+  const createHandleButtonMouseDown =
     (otherHandlers?: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent & MuiCancellableEvent) => {
-      otherHandlers?.onClick?.(event);
+      otherHandlers?.onMouseDown?.(event);
       if (!event.defaultMuiPrevented) {
         const action: ButtonClickAction = {
           type: SelectActionTypes.buttonClick,
@@ -299,7 +341,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   ) => {
     return {
       ...otherHandlers,
-      onClick: createHandleButtonClick(otherHandlers),
+      onMouseDown: createHandleButtonMouseDown(otherHandlers),
       ref: mergedListRootRef,
       role: 'combobox' as const,
       'aria-expanded': open,
@@ -352,6 +394,29 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     >;
   }
 
+  let selectedOptionsMetadata: SelectValue<SelectOption<OptionValue>, Multiple>;
+  if (multiple) {
+    selectedOptionsMetadata = (selectValue as OptionValue[])
+      .map((v) => getOptionMetadata(v))
+      .filter((o) => o !== undefined) as SelectValue<SelectOption<OptionValue>, Multiple>;
+  } else {
+    selectedOptionsMetadata = (getOptionMetadata(selectValue as OptionValue) ??
+      null) as SelectValue<SelectOption<OptionValue>, Multiple>;
+  }
+
+  const getHiddenInputProps = <TOther extends EventHandlers>(
+    otherHandlers: TOther = {} as TOther,
+  ): UseSelectHiddenInputSlotProps<TOther> => ({
+    name,
+    tabIndex: -1,
+    'aria-hidden': true,
+    required: required ? true : undefined,
+    value: getSerializedValue(selectedOptionsMetadata),
+    onChange: noop,
+    style: visuallyHiddenStyle,
+    ...otherHandlers,
+  });
+
   return {
     buttonActive,
     buttonFocusVisible,
@@ -360,6 +425,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     disabled,
     dispatch,
     getButtonProps,
+    getHiddenInputProps,
     getListboxProps,
     getOptionMetadata,
     listboxRef: mergedListRootRef,
@@ -370,4 +436,4 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   };
 }
 
-export default useSelect;
+export { useSelect };

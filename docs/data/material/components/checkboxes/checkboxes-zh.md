@@ -54,7 +54,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 {{"demo": "IndeterminateCheckbox.js"}}
 
 :::warning
-⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
+When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
 :::
 
 ## 表单组

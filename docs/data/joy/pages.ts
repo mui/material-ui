@@ -80,7 +80,7 @@ const pages: readonly MuiPage[] = [
         pathname: '/joy-ui/components/surfaces',
         subheader: 'surfaces',
         children: [
-          { pathname: '/joy-ui/react-accordion', planned: true },
+          { pathname: '/joy-ui/react-accordion', newFeature: true },
           { pathname: '/joy-ui/react-card' },
           { pathname: '/joy-ui/react-sheet' },
         ],
@@ -117,8 +117,6 @@ const pages: readonly MuiPage[] = [
     pathname: '/joy-ui/customization',
     children: [
       { pathname: '/joy-ui/customization/approaches' },
-      { pathname: '/joy-ui/customization/dark-mode' },
-      { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
       {
         pathname: '/joy-ui/customization/theme',
         subheader: 'Theme',
@@ -127,6 +125,22 @@ const pages: readonly MuiPage[] = [
           { pathname: '/joy-ui/customization/theme-shadow', title: 'Shadow' },
           { pathname: '/joy-ui/customization/theme-typography', title: 'Typography' },
           { pathname: '/joy-ui/customization/themed-components', title: 'Components' },
+        ],
+      },
+      {
+        pathname: '/joy-ui/customization/guides',
+        subheader: 'Guides',
+        children: [
+          { pathname: '/joy-ui/customization/dark-mode' },
+          { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
+          {
+            pathname: '/joy-ui/customization/creating-themed-components',
+            title: 'Creating themed components',
+          },
+          {
+            pathname: '/joy-ui/customization/overriding-component-structure',
+            title: 'Overriding the component structure',
+          },
         ],
       },
       {
@@ -140,24 +154,20 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
-    pathname: '/joy-ui/guides',
-    title: 'How-to guides',
+    pathname: '/joy-ui/integrations',
+    title: 'Integrations',
     children: [
       {
-        pathname: '/joy-ui/guides/overriding-component-structure',
-        title: 'Overriding component structure',
-      },
-      {
-        pathname: '/joy-ui/guides/using-joy-ui-and-material-ui-together',
-        title: 'Joy UI and Material UI together',
-      },
-      {
-        pathname: '/joy-ui/guides/using-icon-libraries',
-        title: 'Using icon libraries',
-      },
-      {
-        pathname: '/joy-ui/guides/next-js-app-router',
+        pathname: '/joy-ui/integrations/next-js-app-router',
         title: 'Next.js App Router',
+      },
+      {
+        pathname: '/joy-ui/integrations/material-ui',
+        title: 'Usage with Material UI',
+      },
+      {
+        pathname: '/joy-ui/integrations/icon-libraries',
+        title: 'Using other icon libraries',
       },
     ],
   },

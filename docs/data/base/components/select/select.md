@@ -22,7 +22,7 @@ A select is a UI element that gives users a list of options to choose from.
 Base UI offers components to replace the native HTML `<select>` tag: Select.
 It also includes Option for creating the options on the list, and Option Group for grouping those options.
 
-{{"demo": "UnstyledSelectIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledSelectIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ### Features
 
@@ -37,8 +37,8 @@ It also includes Option for creating the options on the list, and Option Group f
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
-import Select from '@mui/base/Select';
-import Option from '@mui/base/Option';
+import { Select } from '@mui/base/Select';
+import { Option } from '@mui/base/Option';
 
 export default function MyApp() {
   return (
@@ -207,7 +207,7 @@ The same applies for props specific to custom primitive elements:
 ## Hooks
 
 ```js
-import useSelect from '@mui/base/useSelect';
+import { useSelect } from '@mui/base/useSelect';
 ```
 
 The `useSelect` hook lets you apply the functionality of a select to a fully custom component.

@@ -90,7 +90,7 @@ If both `componentsProps.root` and additional props have the same keys but diffe
 Base UI includes two kinds of building blocks: **components** and **hooks**.
 
 :::info
-💡 Hooks encapsulate _logic_; components provide _structure_.
+Hooks encapsulate _logic_; components provide _structure_.
 :::
 
 Many Base components are implemented with the help of hooks. (Visit the [React documentation on hooks](https://legacy.reactjs.org/docs/hooks-intro.html) to get up to speed on this concept.)

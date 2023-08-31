@@ -4,35 +4,37 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ImageListItemClasses } from './imageListItemClasses';
 
+export interface ImageListItemOwnProps {
+  /**
+   * The content of the component, normally an `<img>`.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<ImageListItemClasses>;
+  /**
+   * Width of the item in number of grid columns.
+   * @default 1
+   */
+  cols?: number;
+  /**
+   * Height of the item in number of grid rows.
+   * @default 1
+   */
+  rows?: number;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export interface ImageListItemTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'li',
+  RootComponent extends React.ElementType = 'li',
 > {
-  props: AdditionalProps & {
-    /**
-     * The content of the component, normally an `<img>`.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ImageListItemClasses>;
-    /**
-     * Width of the item in number of grid columns.
-     * @default 1
-     */
-    cols?: number;
-    /**
-     * Height of the item in number of grid rows.
-     * @default 1
-     */
-    rows?: number;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
-  defaultComponent: DefaultComponent;
+  props: AdditionalProps & ImageListItemOwnProps;
+  defaultComponent: RootComponent;
 }
 /**
  *

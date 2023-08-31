@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import useTabsList, { TabsListProvider } from '@mui/base/useTabsList';
+import { useTabsList, TabsListProvider } from '@mui/base/useTabsList';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -117,6 +117,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     size: sizeProp,
     disableUnderline = false,
     underlinePlacement = orientation === 'horizontal' ? 'bottom' : 'right',
+    tabFlex,
     sticky,
     slots = {},
     slotProps = {},
@@ -135,6 +136,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     color,
     size,
     sticky,
+    tabFlex,
     nesting: false,
     disableUnderline,
     underlinePlacement,

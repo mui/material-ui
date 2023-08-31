@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": "error",
+    "import/prefer-default-export": "off"
+  }
+}

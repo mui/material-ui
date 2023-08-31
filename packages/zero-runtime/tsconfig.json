@@ -1,0 +1,7 @@
+{
+  "extends": "../../tsconfig",
+  "include": ["src/**/*", "test/**/*"],
+  "compilerOptions": {
+    "types": ["mocha", "node", "chai", "react"]
+  }
+}

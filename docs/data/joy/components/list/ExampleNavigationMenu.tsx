@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Popper from '@mui/base/Popper';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { Popper } from '@mui/base/Popper';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import Chip from '@mui/joy/Chip';
@@ -130,7 +130,7 @@ const AboutMenu = React.forwardRef(
     const id = open ? 'about-popper' : undefined;
     return (
       <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-        <Box onMouseLeave={() => setAnchorEl(null)}>
+        <div onMouseLeave={() => setAnchorEl(null)}>
           <ListItemButton
             aria-haspopup
             aria-expanded={open ? 'true' : 'false'}
@@ -200,7 +200,7 @@ const AboutMenu = React.forwardRef(
               </ListItem>
             </List>
           </Popper>
-        </Box>
+        </div>
       </ClickAwayListener>
     );
   },
@@ -247,7 +247,7 @@ const AdmissionsMenu = React.forwardRef(
     const id = open ? 'admissions-popper' : undefined;
     return (
       <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-        <Box onMouseLeave={() => setAnchorEl(null)}>
+        <div onMouseLeave={() => setAnchorEl(null)}>
           <ListItemButton
             aria-haspopup
             aria-expanded={open ? 'true' : 'false'}
@@ -319,7 +319,7 @@ const AdmissionsMenu = React.forwardRef(
               </ListItem>
             </List>
           </Popper>
-        </Box>
+        </div>
       </ClickAwayListener>
     );
   },
