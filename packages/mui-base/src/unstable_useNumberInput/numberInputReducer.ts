@@ -21,15 +21,6 @@ function getClampedValues(oldValue: number | undefined, context: NumberInputActi
   };
 }
 
-function getMultiplier(context: NumberInputActionContext, event: React.SyntheticEvent) {
-  const { shiftMultiplier } = context;
-  return (event as React.PointerEvent).shiftKey ||
-    (event as React.KeyboardEvent).key === 'PageUp' ||
-    (event as React.KeyboardEvent).key === 'PageDown'
-    ? shiftMultiplier
-    : 1;
-}
-
 function stepValue(
   state: NumberInputState,
   context: NumberInputActionContext,
@@ -50,6 +41,17 @@ function stepValue(
     up: min ?? 0,
     down: max ?? 0,
   }[direction];
+}
+
+function getDirection(key: string) {
+  return {
+    ArrowUp: 'up',
+    ArrowDown: 'down',
+    PageUp: 'up',
+    PageDown: 'down',
+    Home: 'up',
+    End: 'down',
+  }[key] as StepDirection;
 }
 
 function handleBlur<State extends NumberInputState>(
@@ -75,9 +77,11 @@ function handleBlur<State extends NumberInputState>(
 function handleStep<State extends NumberInputState>(
   state: State,
   context: NumberInputActionContext,
+  event: React.PointerEvent,
   direction: StepDirection,
-  multiplier: number,
 ) {
+  const multiplier = event.shiftKey ? context.shiftMultiplier : 1;
+
   const newValue = stepValue(state, context, direction, multiplier);
 
   const clampedValues = getClampedValues(newValue, context);
@@ -92,8 +96,52 @@ function handleKeyDown<State extends NumberInputState>(
   state: State,
   context: NumberInputActionContext,
   event: React.KeyboardEvent,
+  key: string,
 ) {
-  switch (event.key) {
+  const { min, max, shiftMultiplier } = context;
+
+  const multiplier = event.shiftKey || key === 'PageUp' || key === 'PageDown' ? shiftMultiplier : 1;
+
+  switch (key) {
+    case 'ArrowUp':
+    case 'ArrowDown':
+    case 'PageUp':
+    case 'PageDown': {
+      const direction = getDirection(key);
+
+      const newValue = stepValue(state, context, direction, multiplier);
+
+      const clampedValues = getClampedValues(newValue, context);
+
+      return {
+        ...state,
+        ...clampedValues,
+      };
+    }
+
+    case 'Home': {
+      if (!isNumber(max)) {
+        break;
+      }
+
+      return {
+        ...state,
+        value: max,
+        inputValue: String(max),
+      };
+    }
+
+    case 'End': {
+      if (!isNumber(min)) {
+        break;
+      }
+      return {
+        ...state,
+        value: min,
+        inputValue: String(min),
+      };
+    }
+
     default:
       break;
   }
@@ -107,17 +155,15 @@ export function numberInputReducer(
 ): NumberInputState {
   const { type, context, event } = action;
 
-  const multiplier = getMultiplier(context, event);
-
   switch (type) {
     case NumberInputActionTypes.blur:
       return handleBlur(state, context, event);
     case NumberInputActionTypes.increment:
-      return handleStep(state, context, 'up', multiplier);
+      return handleStep(state, context, event, 'up');
     case NumberInputActionTypes.decrement:
-      return handleStep(state, context, 'down', multiplier);
+      return handleStep(state, context, event, 'down');
     case NumberInputActionTypes.keyDown:
-      return handleKeyDown(state, context, event);
+      return handleKeyDown(state, context, event, action.key);
     default:
       return state;
   }
