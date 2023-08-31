@@ -15,16 +15,17 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
+import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
+import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
+import PhishingRoundedIcon from '@mui/icons-material/PhishingRounded';
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
-import IconImage from 'docs/src/components/icon/IconImage';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
@@ -109,28 +110,35 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
                 width: 70,
                 height: 70,
                 borderRadius: 1,
+                border: '1px solid',
+                borderColor: 'primary.200',
                 backgroundColor: 'primary.100',
                 ...theme.applyDarkStyles({
                   backgroundColor: 'primary.900',
+                  borderColor: 'primaryDark.500',
                 }),
               })}
             />
             <Box
-              sx={{
+              sx={(theme) => ({
+                width: 24,
+                height: 24,
+                display: 'flex',
+                justifyContent: 'center',
                 position: 'absolute',
                 bottom: 0,
                 right: 0,
-                transform: 'translateX(50%)',
-                boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
-                width: 24,
-                height: 24,
-                border: '2px solid #fff',
-                backgroundColor: '#fff',
+                backgroundColor: '#FFF',
                 borderRadius: 40,
+                border: '2px solid',
+                borderColor: 'primary.50',
+                boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
+                transform: 'translateX(50%)',
                 overflow: 'hidden',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
+                ...theme.applyDarkStyles({
+                  borderColor: 'primary.200',
+                }),
+              })}
             >
               <img
                 loading="lazy"
@@ -141,8 +149,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
             </Box>
           </Box>
         </Tooltip>
-        <Box sx={{ mx: 'auto', height: 15 }} />
-        <Box sx={{ mt: -0.5, mr: -0.5 }}>
+        <Box sx={{ mt: -0.5, mr: -0.5, ml: 'auto' }}>
           {props.github && (
             <IconButton
               aria-label={`${props.name} github`}
@@ -173,19 +180,9 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
       <Typography variant="body2" color="text.secondary">
         {props.title}
       </Typography>
+      {props.about && <Divider sx={{ my: 1.5 }} />}
       {props.about && (
-        <Divider
-          sx={(theme) => ({
-            my: 1,
-            borderColor: 'grey.100',
-            ...theme.applyDarkStyles({
-              borderColor: 'primaryDark.400',
-            }),
-          })}
-        />
-      )}
-      {props.about && (
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="grey.600">
           {props.about}
         </Typography>
       )}
@@ -394,30 +391,60 @@ const emeriti = [
   },
 ];
 
-function AboutContent() {
+const values = [
+  {
+    icon: <StyleRoundedIcon color="primary" />,
+    title: 'Put community first 💙',
+    description: 'We never lose sight of who we’re serving and why.',
+    link: '/base-ui/getting-started/',
+  },
+  {
+    icon: <PhishingRoundedIcon color="primary" />,
+    title: 'Avoid bureaucracy 🚫',
+    description: 'We’re so not corporate — and we like it that way.',
+    link: '/base-ui/getting-started/usage/#components-vs-hooks',
+  },
+  {
+    icon: <AccessibilityNewRounded color="primary" />,
+    title: 'Chase “better” 🌱',
+    description: 'We’re driven by an unending desire to improve.',
+    link: '/base-ui/getting-started/quickstart/#components-and-hooks',
+  },
+  {
+    icon: <AccessibilityNewRounded color="primary" />,
+    title: 'Trust and deliver together 🚀',
+    description: 'We choose to cultivate unity as the core of achievement.',
+    link: '/base-ui/getting-started/quickstart/#components-and-hooks',
+  },
+];
+
+export default function About() {
   return (
-    <React.Fragment>
-      <Container>
+    <BrandingCssVarsProvider>
+      <Head
+        title="About us - MUI"
+        description="MUI is a 100% remote globally distributed team, supported by a community of thousands
+        of developers all across the world."
+      />
+      <AppHeaderBanner />
+      <AppHeader />
+      <main id="main-content">
         <Box
           sx={{
-            pt: 12,
-
-            minHeight: 200,
+            p: 2,
+            height: '34vh',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            maxWidth: 600,
-            mx: 'auto',
-            textAlign: 'center',
           }}
         >
           <Typography variant="body2" color="primary.600" fontWeight="bold">
             About us
           </Typography>
-          <Typography component="h1" variant="h2" sx={{ my: 1 }}>
-            We&apos;re on a mission to make <br /> building UIs more{' '}
-            <GradientText>accessible</GradientText>
+          <Typography component="h1" variant="h2" sx={{ my: 1, textAlign: 'center' }}>
+            We&apos;re on a mission to make <br />{' '}
+            <GradientText> building better UIs easier</GradientText>
           </Typography>
           <Typography
             color="text.secondary"
@@ -427,56 +454,42 @@ function AboutContent() {
               minHeight: 48, // a hack to reduce CLS (layout shift)
             }}
           >
-            Our mission is to empower anyone to build UIs, faster. We&apos;re reducing the entry
-            barrier, making design skills accessible.
+            MUI is a 100% remote globally distributed team, supported by a community of thousands of
+            developers all across the world.
           </Typography>
         </Box>
-        <References companies={CORE_CUSTOMERS} />
-      </Container>
-      <Divider />
-      <Section bg="gradient" cozy>
-        <Grid container alignItems="center" spacing={4}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h2" sx={{ my: 1 }}>
-              Our <GradientText>mission</GradientText>
-            </Typography>
-            <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
-              We aim high trying to design the most effective and efficient tool for building UIs,
-              for developers and designers. MUI started back in 2014, to unify React and Material
-              Design. Since then, we&apos;ve become a community of over 2M developers from every
-              corner of the world.
-            </Typography>
-            <Typography color="text.secondary" sx={{ mb: 2 }}>
-              We plan on doing all that cultivating our values:
-            </Typography>
-            {[
-              'Customer obsessed. We put our customers front & center.',
-              'Transparency. Most of our work is public.',
-              'Freedom. We work from anywhere in the world.',
-              'Autonomy. We want to create a safe, high-trust team.',
-              "Excellence. We're aiming high, and we know it.",
-            ].map((text) => (
-              <Box key={text} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-                <IconImage name="yes" />
-                <Typography variant="body2" color="text.primary" fontWeight={600} sx={{ ml: 1.5 }}>
-                  {text}
-                </Typography>
-              </Box>
-            ))}
+        <Divider />
+        {/* Our mission */}
+        <Section bg="gradient" cozy>
+          <Grid container alignItems="center" spacing={4}>
+            <Grid item xs={12} md={6}>
+              <Typography variant="h2" sx={{ my: 1 }}>
+                Our <GradientText>mission</GradientText>
+              </Typography>
+              <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
+                We aim high at enabling developers & designers to bring stunning UIs to life with
+                unrivalled speed and ease. MUI started back in 2014, to unify React and Material
+                Design. Since then, we&apos;ve become a community of over 2M developers from every
+                corner of the world, with multiple product offerings, and hundreds of customers.
+              </Typography>
+            </Grid>
+            <MuiStatistics />
           </Grid>
-          <MuiStatistics />
-        </Grid>
-      </Section>
-      <Divider />
-      <Container sx={{ py: { xs: 4, md: 8 } }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <Typography variant="h2" sx={{ my: 1 }}>
-              Team
+        </Section>
+        <Divider />
+        {/* Our values */}
+        <Section cozy>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Typography variant="h2" mb={1}>
+              Our <GradientText>values</GradientText>
             </Typography>
-            <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
-              MUI is maintained by a group of invaluable core contributors, with the massive support
-              and involvement of the community.
+            <Typography color="text.secondary" mb={2}>
+              Dig deeper into our core values and behaviours through our open-source handbook
             </Typography>
             <Button
               component={Link}
@@ -484,233 +497,277 @@ function AboutContent() {
               href={ROUTES.careers}
               endIcon={<KeyboardArrowRightRounded fontSize="small" />}
               variant="contained"
-              size="large"
-              sx={{ width: { xs: '100%', sm: 'auto' } }}
+              size="medium"
+              sx={{ width: { xs: '100%', sm: 'fit-content' } }}
+            >
+              View the handbook
+            </Button>
+          </Box>
+          <Grid container spacing={3} sx={{ mt: { xs: 1, sm: 2 } }}>
+            {values.map(({ icon, title, description, link }) => (
+              <Grid key={title} item xs={12} md={3}>
+                <Paper
+                  component={Link}
+                  href={link}
+                  noLinkStyle
+                  variant="outlined"
+                  sx={(theme) => ({
+                    p: 4,
+                    height: '100%',
+                    background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+                    ...theme.applyDarkStyles({
+                      bgcolor: 'primaryDark.900',
+                      background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+                      borderColor: 'primaryDark.700',
+                    }),
+                  })}
+                >
+                  <Box
+                    sx={(theme) => ({
+                      width: 40,
+                      height: 40,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderRadius: 1,
+                      border: '1px solid',
+                      borderColor: 'primary.200',
+                      bgcolor: 'primary.50',
+                      boxShadow:
+                        '0px 1px 6px 0px rgba(194, 224, 255, 1), 0px 2px 30px 0px rgba(234, 237, 241, 0.3) inset',
+                      ...theme.applyDarkStyles({
+                        borderColor: 'primary.400',
+                        bgcolor: 'primary.900',
+                        boxShadow:
+                          '0px 1px 6px 0px rgba(0, 89, 178, 1), 0px 2px 30px 0px rgba(0, 0, 0, 0.25) inset',
+                      }),
+                    })}
+                  >
+                    {icon}
+                  </Box>
+                  <Typography
+                    fontWeight="bold"
+                    component="h3"
+                    color="text.primary"
+                    variant="body2"
+                    mt={2}
+                    mb={0.5}
+                  >
+                    {title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {description}
+                  </Typography>
+                </Paper>
+              </Grid>
+            ))}
+          </Grid>
+        </Section>
+        <Divider />
+        {/* Team grid */}
+        <Section cozy>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Typography variant="h2" mb={1}>
+              Meet the MUIers
+            </Typography>
+            <Typography color="text.secondary" mb={2}>
+              Contributing from all corners of the world, MUI is a global team & community.
+            </Typography>
+            <Button
+              component={Link}
+              noLinkStyle
+              href={ROUTES.careers}
+              endIcon={<KeyboardArrowRightRounded fontSize="small" />}
+              variant="contained"
+              size="medium"
+              sx={{ width: { xs: '100%', sm: 'fit-content' } }}
             >
               See open roles
             </Button>
-          </div>
-        </Box>
-        <Divider sx={{ my: { xs: 2, sm: 4 } }} />
-        <Typography
-          component="h3"
-          variant="h5"
-          color="primary"
-          fontWeight="extraBold"
-          sx={{ mb: 1 }}
-          id="company"
-        >
-          Company
-        </Typography>
-        <Typography color="text.secondary" sx={{ maxWidth: { md: 450 } }}>
-          The development of the project and its ecosystem is guided by an international team.
-        </Typography>
-        <Box sx={{ pt: 2 }}>
-          <Grid container spacing={2}>
-            {(teamMembers as Array<Profile>).map((profileJson) => {
-              const profile = {
-                src: `/static/branding/about/${profileJson.name
-                  .split(' ')
-                  .map((x) => x.toLowerCase())
-                  .join('-')}.png`,
-                ...profileJson,
-              };
-              return (
-                <Grid key={profile.name} item xs={12} sm={6} md={3}>
-                  <Person {...profile} />
-                </Grid>
-              );
-            })}
-          </Grid>
-        </Box>
-      </Container>
-      <Divider />
-      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
-        <Container sx={{ py: { xs: 4, sm: 8 } }}>
-          <Typography
-            component="h3"
-            variant="h5"
-            color="primary.400"
-            fontWeight="extraBold"
-            sx={{ mb: 1 }}
-          >
-            Community contributors
-          </Typography>
-          <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
-            Some members of the community have so enriched it, that they deserve special mention.
-          </Typography>
-          <Box sx={{ pt: 2, pb: { xs: 4, sm: 8 } }}>
+          </Box>
+          <Box mt={4}>
             <Grid container spacing={2}>
+              {(teamMembers as Array<Profile>).map((profileJson) => {
+                const profile = {
+                  src: `/static/branding/about/${profileJson.name
+                    .split(' ')
+                    .map((x) => x.toLowerCase())
+                    .join('-')}.png`,
+                  ...profileJson,
+                };
+                return (
+                  <Grid key={profile.name} item xs={12} sm={6} md={3}>
+                    <Person {...profile} />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Box>
+        </Section>
+        <Divider />
+        {/* Community contributors */}
+        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
+          <Container sx={{ py: { xs: 4, sm: 8 } }}>
+            <Typography component="h3" variant="h4" color="primary.200" fontWeight="semiBold">
+              Community contributors
+            </Typography>
+            <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
+              Some members of the community have so enriched it, that they deserve special mention.
+            </Typography>
+            <Grid container spacing={2} mt={2}>
               {contributors.map((profile) => (
                 <Grid key={profile.name} item xs={12} sm={6} md={3}>
                   <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
                 </Grid>
               ))}
             </Grid>
-          </Box>
-          <Typography
-            component="h3"
-            variant="h5"
-            color="warning.500"
-            fontWeight="extraBold"
-            sx={{ mb: 1 }}
-          >
-            Community emeriti
-          </Typography>
-          <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
-            We honor some no-longer-active core team members who have made valuable contributions in
-            the past. They advise us from time to time.
-          </Typography>
-          <Box sx={{ pt: 2 }}>
-            <Grid container spacing={2}>
+            <Divider sx={{ my: { xs: 2, sm: 6 } }} />
+            <Typography component="h3" variant="h4" color="warning.300" fontWeight="semiBold">
+              Community emeriti
+            </Typography>
+            <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
+              We honor some no-longer-active core team members who have made valuable contributions
+              in the past. They advise us from time to time.
+            </Typography>
+            <Grid container spacing={2} mt={2}>
               {emeriti.map((profile) => (
                 <Grid key={profile.name} item xs={12} sm={6} md={3}>
                   <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
                 </Grid>
               ))}
             </Grid>
-          </Box>
-        </Container>
-      </Box>
-      <Divider />
-      <Container sx={{ py: { xs: 4, md: 12 } }}>
-        <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
-          How can you support us?
-        </Typography>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={4}>
-            <Widget
-              icon={<ForumRoundedIcon fontSize="small" color="primary" />}
-              title="Give feedback"
-            >
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                Tell us what and where we can improve or share your happy moments with us! You can
-                also up or downvote any page on our documentation. <br />
-                <br /> And lastly, from time to time, we send our community a survey for more
-                structured feedback, you&apos;re always invited to participate to share your
-                thoughts.
-              </Typography>
-              <Button
-                component="a"
-                // @ts-expect-error
-                variant="link"
-                size="small"
-                href="https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
-                endIcon={<KeyboardArrowRightRounded />}
-                sx={{ ml: -1 }}
+          </Container>
+        </Box>
+        <Divider />
+        {/* How to support  */}
+        <Section cozy>
+          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
+            How can you support us?
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={6} md={4}>
+              <Widget
+                icon={<ForumRoundedIcon fontSize="small" color="primary" />}
+                title="Give feedback"
               >
-                Leave your feedback{' '}
-              </Button>
-            </Widget>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                  Tell us what and where we can improve or share your happy moments with us! You can
+                  also up or downvote any page on our documentation. <br />
+                  <br /> And lastly, from time to time, we send our community a survey for more
+                  structured feedback, you&apos;re always invited to participate to share your
+                  thoughts.
+                </Typography>
+                <Button
+                  component="a"
+                  // @ts-expect-error
+                  variant="link"
+                  size="small"
+                  href="https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
+                  endIcon={<KeyboardArrowRightRounded />}
+                  sx={{ ml: -1 }}
+                >
+                  Leave your feedback{' '}
+                </Button>
+              </Widget>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <Widget
+                icon={<PeopleRoundedIcon fontSize="small" color="primary" />}
+                title="Join the community"
+              >
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                  Become a member of a huge community of developers supporting MUI. You can:
+                </Typography>
+                <Box
+                  component="ul"
+                  sx={{
+                    typography: 'body2',
+                    color: 'text.secondary',
+                    pl: 2,
+                    mb: 2,
+                  }}
+                >
+                  <li>
+                    Add new features by{' '}
+                    <Link href="https://github.com/mui/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
+                      submitting a pull request
+                    </Link>
+                    .
+                  </li>
+                  <li>
+                    Fix bugs or{' '}
+                    <Link href="https://github.com/mui/material-ui/tree/HEAD/docs">
+                      improve our documentation
+                    </Link>
+                    .
+                  </li>
+                  <li>
+                    Help others by reviewing and commenting on existing{' '}
+                    <Link href="https://github.com/mui/material-ui/pulls">PRs</Link> and{' '}
+                    <Link href="https://github.com/mui/material-ui/issues">issues</Link>.
+                  </li>
+                  <li>
+                    Help <Link href="https://crowdin.com/project/material-ui-docs">translate</Link>{' '}
+                    the documentation.
+                  </li>
+                  <li>
+                    Answer questions on{' '}
+                    <Link href="https://stackoverflow.com/questions/tagged/material-ui">
+                      Stack Overflow
+                    </Link>
+                    .
+                  </li>
+                </Box>
+                <Button
+                  component="a"
+                  // @ts-expect-error
+                  variant="link"
+                  size="small"
+                  href="https://github.com/mui/material-ui"
+                  endIcon={<KeyboardArrowRightRounded />}
+                  sx={{ ml: -1 }}
+                >
+                  See the repository
+                </Button>
+              </Widget>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <Widget
+                icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />}
+                title="Support us financially"
+              >
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                  If you use MUI in a commercial project and would like to support its continued
+                  development by becoming a Sponsor, or in a side or hobby project and would like to
+                  become a Backer, you can do so through {'Open Collective'}.
+                  <br />
+                  <br />
+                  All funds donated are managed transparently, and Sponsors receive recognition in
+                  the README and on the MUI home page.
+                </Typography>
+                <Button
+                  component="a"
+                  // @ts-expect-error
+                  variant="link"
+                  size="small"
+                  href="https://opencollective.com/mui"
+                  endIcon={<KeyboardArrowRightRounded />}
+                  sx={{ ml: -1 }}
+                >
+                  {'See Open Collective'}
+                </Button>
+              </Widget>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Widget
-              icon={<PeopleRoundedIcon fontSize="small" color="primary" />}
-              title="Join the community"
-            >
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                Become a member of a huge community of developers supporting MUI. You can:
-              </Typography>
-              <Box
-                component="ul"
-                sx={{
-                  typography: 'body2',
-                  color: 'text.secondary',
-                  pl: 2,
-                  mb: 2,
-                }}
-              >
-                <li>
-                  Add new features by{' '}
-                  <Link href="https://github.com/mui/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
-                    submitting a pull request
-                  </Link>
-                  .
-                </li>
-                <li>
-                  Fix bugs or{' '}
-                  <Link href="https://github.com/mui/material-ui/tree/HEAD/docs">
-                    improve our documentation
-                  </Link>
-                  .
-                </li>
-                <li>
-                  Help others by reviewing and commenting on existing{' '}
-                  <Link href="https://github.com/mui/material-ui/pulls">PRs</Link> and{' '}
-                  <Link href="https://github.com/mui/material-ui/issues">issues</Link>.
-                </li>
-                <li>
-                  Help <Link href="https://crowdin.com/project/material-ui-docs">translate</Link>{' '}
-                  the documentation.
-                </li>
-                <li>
-                  Answer questions on{' '}
-                  <Link href="https://stackoverflow.com/questions/tagged/material-ui">
-                    Stack Overflow
-                  </Link>
-                  .
-                </li>
-              </Box>
-              <Button
-                component="a"
-                // @ts-expect-error
-                variant="link"
-                size="small"
-                href="https://github.com/mui/material-ui"
-                endIcon={<KeyboardArrowRightRounded />}
-                sx={{ ml: -1 }}
-              >
-                See the repository
-              </Button>
-            </Widget>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Widget
-              icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />}
-              title="Support us financially"
-            >
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                If you use MUI in a commercial project and would like to support its continued
-                development by becoming a Sponsor, or in a side or hobby project and would like to
-                become a Backer, you can do so through {'Open Collective'}.
-                <br />
-                <br />
-                All funds donated are managed transparently, and Sponsors receive recognition in the
-                README and on the MUI home page.
-              </Typography>
-              <Button
-                component="a"
-                // @ts-expect-error
-                variant="link"
-                size="small"
-                href="https://opencollective.com/mui"
-                endIcon={<KeyboardArrowRightRounded />}
-                sx={{ ml: -1 }}
-              >
-                {'See Open Collective'}
-              </Button>
-            </Widget>
-          </Grid>
-        </Grid>
-      </Container>
-      <Divider />
-      <HeroEnd />
-      <Divider />
-    </React.Fragment>
-  );
-}
-
-export default function About() {
-  return (
-    <BrandingCssVarsProvider>
-      <Head
-        title="About us - MUI"
-        description="Our mission is to empower anyone to build UIs, faster. We're reducing the entry barrier, making design skills accessible."
-      />
-      <AppHeaderBanner />
-      <AppHeader />
-      <main id="main-content">
-        <AboutContent />
+        </Section>
+        <Divider />
+        <HeroEnd />
+        <Divider />
       </main>
       <AppFooter />
     </BrandingCssVarsProvider>

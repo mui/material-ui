@@ -473,6 +473,18 @@ export function getThemedComponents(): ThemeOptions {
               '& > span': { transition: '0.2s', marginLeft: 4 },
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
+            ...(ownerState.size === 'medium' && {
+              padding: theme.spacing('8px', '12px'),
+              '& > span': { transition: '0.2s', marginLeft: 4 },
+              '&:hover > span': { transform: 'translateX(2px)' },
+            }),
+            ...(ownerState.size === 'small' && {
+              padding: theme.spacing(0.5, 1),
+              fontFamily: theme.typography.fontFamily,
+              fontSize: '0.75rem',
+              fontWeight: theme.typography.fontWeightSemiBold,
+              borderRadius: '6px',
+            }),
             ...(ownerState.variant === 'outlined' &&
               ownerState.color === 'secondary' && {
                 color: (theme.vars || theme).palette.text.secondary,
@@ -522,13 +534,6 @@ export function getThemedComponents(): ThemeOptions {
                   },
                 }),
               }),
-            ...(ownerState.size === 'small' && {
-              padding: theme.spacing(0.5, 1),
-              fontFamily: theme.typography.fontFamily,
-              fontSize: '0.75rem',
-              fontWeight: theme.typography.fontWeightSemiBold,
-              borderRadius: '6px',
-            }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
                 color: '#FFF',
