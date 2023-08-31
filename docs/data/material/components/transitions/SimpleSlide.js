@@ -30,16 +30,14 @@ export default function SimpleSlide() {
 
   return (
     <Box sx={{ height: 180 }}>
-      <Box sx={{ width: `calc(100px + 16px)` }}>
+      <Box sx={{ width: `calc(100px + 16px)`, position: 'relative', zIndex: 1 }}>
         <FormControlLabel
           control={<Switch checked={checked} onChange={handleChange} />}
           label="Show"
         />
-        <Box sx={{ overflow: 'hidden' }}>
-          <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
-            {icon}
-          </Slide>
-        </Box>
+        <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
+          {icon}
+        </Slide>
       </Box>
     </Box>
   );
