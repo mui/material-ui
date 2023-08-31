@@ -97,23 +97,17 @@ export const getStyle = ({ ownerState, theme }) => {
       spacing = propValue;
     }
 
-    const baseHeight = ownerState.maxColumnHeight ?? ownerState.defaultHeight ?? undefined;
-
     return {
       margin: `calc(0px - (${spacing} / 2))`,
       '& > *': {
         margin: `calc(${spacing} / 2)`,
       },
-      ...(baseHeight && {
+      ...(ownerState.maxColumnHeight && {
         height:
           typeof spacing === 'number'
-            ? Math.ceil(baseHeight + parseToNumber(spacing))
-            : `calc(${baseHeight}px + ${spacing})`,
+            ? Math.ceil(ownerState.maxColumnHeight + parseToNumber(spacing))
+            : `calc(${ownerState.maxColumnHeight}px + ${spacing})`,
       }),
-      ...(!ownerState.maxColumnHeight &&
-        !ownerState.isSSR && {
-          opacity: 0,
-        }),
     };
   };
 
