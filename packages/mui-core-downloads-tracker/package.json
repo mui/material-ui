@@ -1,6 +1,6 @@
 {
   "name": "@mui/core-downloads-tracker",
-  "version": "5.14.5",
+  "version": "5.14.7",
   "private": false,
   "author": "MUI Team",
   "description": "Internal package to track number of downloads of our design system libraries",

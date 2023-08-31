@@ -1,8 +1,9 @@
-import { defineConfig, splitVendorChunkPlugin, type Plugin } from 'vite';
+import { defineConfig, splitVendorChunkPlugin, type PluginOption } from 'vite';
 import reactPlugin from '@vitejs/plugin-react';
 import linaria from '@linaria/vite';
 import { createTheme } from '@mui/material/styles';
 import { generateCss } from '@mui/zero-tag-processor/generateCss';
+import { transformAsync } from '@babel/core';
 
 const theme = createTheme();
 // @TODO - Make this part of the main package
@@ -17,46 +18,73 @@ theme.applyDarkStyles = function applyDarkStyles(obj) {
 
 const varPrefix = 'app';
 
-function injectMUITokensPlugin(): Plugin {
-  return {
-    name: 'vite-mui-theme-injection-plugin',
-    load(id) {
-      if (id.endsWith('@mui/zero-runtime/styles.css')) {
-        return {
-          code: generateCss(
-            {
-              cssVariablesPrefix: varPrefix,
-              themeArgs: {
-                theme,
+function muiZeroVitePlugin(): PluginOption {
+  function injectMUITokensPlugin(): PluginOption {
+    return {
+      name: 'vite-mui-theme-injection-plugin',
+      load(id) {
+        if (id.endsWith('@mui/zero-runtime/styles.css')) {
+          return {
+            code: generateCss(
+              {
+                cssVariablesPrefix: varPrefix,
+                themeArgs: {
+                  theme,
+                },
               },
-            },
-            {},
-          ),
-          map: null,
+              {},
+            ),
+            map: null,
+          };
+        }
+        return null;
+      },
+    };
+  }
+  const extensions = ['.ts', '.tsx', '.js', '.jsx', '.mts', '.mjs', '.cts', '.cjs', '.mtsx'];
+
+  function intermediateBabelPlugin(): PluginOption {
+    return {
+      name: 'vite-intermediate-plugin',
+      async transform(code, id) {
+        const [filename] = id.split('?');
+        if (
+          !filename.includes('zero-runtime-vite-app/src') ||
+          !extensions.some((ext) => filename.endsWith(ext))
+        ) {
+          return null;
+        }
+        const result = await transformAsync(code, {
+          filename,
+          babelrc: false,
+          configFile: false,
+          plugins: [['@mui/zero-tag-processor/pre-linaria-plugin']],
+        });
+        return {
+          code: result?.code ?? code,
+          map: result?.map,
         };
-      }
-      return null;
+      },
+    };
+  }
+
+  // @TODO - Expect most of these from users of the plugin.
+  const linariaPlugin = linaria({
+    displayName: false,
+    sourceMap: true,
+    // @ts-ignore
+    cssVariablesPrefix: varPrefix,
+    themeArgs: {
+      theme,
     },
-  };
+    babelOptions: {
+      plugins: ['@babel/plugin-syntax-jsx'],
+    },
+  });
+
+  return [injectMUITokensPlugin(), intermediateBabelPlugin(), linariaPlugin];
 }
 
 export default defineConfig({
-  plugins: [
-    // @TODO Wrap and expose both the plugins in a single package `@mui/zero-vite`
-    injectMUITokensPlugin(),
-    linaria({
-      displayName: true,
-      sourceMap: true,
-      // @ts-ignore
-      cssVariablesPrefix: varPrefix,
-      themeArgs: {
-        theme,
-      },
-      babelOptions: {
-        plugins: ['@babel/plugin-syntax-jsx'],
-      },
-    }),
-    reactPlugin(),
-    splitVendorChunkPlugin(),
-  ],
+  plugins: [muiZeroVitePlugin(), reactPlugin(), splitVendorChunkPlugin()],
 });

@@ -1,0 +1,13 @@
+<FormControl>
+  <FormLabel>React number format</FormLabel>
+  <Input
+    value={value}
+    onChange={(event) => setValue(event.target.value)}
+    placeholder="Placeholder"
+    slotProps={{
+      input: {
+        component: NumericFormatAdapter,
+      },
+    }}
+  />
+</FormControl>
