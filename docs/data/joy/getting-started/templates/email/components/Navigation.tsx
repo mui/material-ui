@@ -18,7 +18,7 @@ import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownR
 
 export default function EmailNav() {
   return (
-    <List size="sm" sx={{ '--ListItem-radius': 'var(--joy-radius-md)' }}>
+    <List size="sm" sx={(theme) => ({ '--ListItem-radius': theme.vars.radius.md })}>
       <ListItem nested>
         <ListSubheader>
           Browse

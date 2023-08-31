@@ -18,7 +18,10 @@ export default function Navigation() {
   return (
     <List
       size="sm"
-      sx={{ '--ListItem-radius': 'var(--joy-radius-md)', '--List-gap': '4px' }}
+      sx={(theme) => ({
+        '--ListItem-radius': theme.vars.radius.md,
+        '--List-gap': '4px',
+      })}
     >
       <ListItem nested>
         <ListSubheader>
