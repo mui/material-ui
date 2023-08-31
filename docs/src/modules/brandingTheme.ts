@@ -960,6 +960,27 @@ export function getThemedComponents(): ThemeOptions {
           },
         },
       },
+      MuiSvgIcon: {
+        styleOverrides: {
+          root: ({ ownerState }) => {
+            // Material UI default size, see `packages/mui-material/src/SvgIcon/SvgIcon.js`
+            const sizeMap = {
+              inherit: 'inherit',
+              small: 'var(--Icon-fontSize, 1.25rem)',
+              medium: 'var(--Icon-fontSize, 1.5rem)',
+              large: 'var(--Icon-fontSize, 2.1875rem)',
+            };
+            return {
+              margin: 'var(--Icon-margin)',
+              ...(!ownerState.htmlColor &&
+                ownerState.color === 'inherit' && {
+                  color: `var(--Icon-color, inherit)`,
+                }),
+              fontSize: sizeMap[ownerState.fontSize!] || sizeMap.small,
+            };
+          },
+        },
+      },
       MuiTab: {
         defaultProps: {
           disableTouchRipple: true,
