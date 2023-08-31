@@ -21,11 +21,11 @@ import TextFieldsIcon from '@mui/icons-material/TextFields';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
-import FilesApp from 'docs/data/joy/getting-started/templates/files/App';
-import TeamApp from 'docs/data/joy/getting-started/templates/team/App';
-import EmailApp from 'docs/data/joy/getting-started/templates/email/App';
-import DashboardApp from 'docs/data/joy/getting-started/templates/order-dashboard/App';
+import OrderDashboardApp from 'docs/data/joy/getting-started/templates/order-dashboard/App';
+import ProfileDashboardApp from 'docs/data/joy/getting-started/templates/profile-dashboard/App';
+import MessagesApp from 'docs/data/joy/getting-started/templates/messages/App';
 import SignInApp from 'docs/data/joy/getting-started/templates/sign-in-side/App';
+import RentalDashboardApp from 'docs/data/joy/getting-started/templates/rental-dashboard/App';
 
 const tailwindColors = {
   red: {
@@ -613,11 +613,11 @@ export default function JoyUITemplates() {
                 },
               })}
             >
-              <Tab disableIndicator>Team</Tab>
-              <Tab disableIndicator>Files</Tab>
-              <Tab disableIndicator>Email</Tab>
-              <Tab disableIndicator>Dashboard</Tab>
+              <Tab disableIndicator>Order</Tab>
+              <Tab disableIndicator>Profile</Tab>
+              <Tab disableIndicator>Messages</Tab>
               <Tab disableIndicator>Sign-in</Tab>
+              <Tab disableIndicator>Rental</Tab>
             </TabList>
             <ListDivider />
             <ListItem>
@@ -634,7 +634,7 @@ export default function JoyUITemplates() {
             }}
           >
             <TabPanel value={0}>
-              <TeamApp
+              <OrderDashboardApp
                 attribute="data-mui-color-scheme"
                 modeStorageKey="mui-mode"
                 colorSchemeStorageKey="mui-color-scheme"
@@ -642,7 +642,7 @@ export default function JoyUITemplates() {
               />
             </TabPanel>
             <TabPanel value={1}>
-              <FilesApp
+              <ProfileDashboardApp
                 attribute="data-mui-color-scheme"
                 modeStorageKey="mui-mode"
                 colorSchemeStorageKey="mui-color-scheme"
@@ -650,15 +650,7 @@ export default function JoyUITemplates() {
               />
             </TabPanel>
             <TabPanel value={2}>
-              <EmailApp
-                attribute="data-mui-color-scheme"
-                modeStorageKey="mui-mode"
-                colorSchemeStorageKey="mui-color-scheme"
-                theme={customTheme}
-              />
-            </TabPanel>
-            <TabPanel value={3}>
-              <DashboardApp
+              <MessagesApp
                 attribute="data-mui-color-scheme"
                 modeStorageKey="mui-mode"
                 colorSchemeStorageKey="mui-color-scheme"
@@ -666,7 +658,7 @@ export default function JoyUITemplates() {
               />
             </TabPanel>
             <TabPanel
-              value={4}
+              value={3}
               sx={{
                 '--Cover-width': '40%',
                 '--Form-maxWidth': '768px',
@@ -680,6 +672,14 @@ export default function JoyUITemplates() {
               }}
             >
               <SignInApp
+                attribute="data-mui-color-scheme"
+                modeStorageKey="mui-mode"
+                colorSchemeStorageKey="mui-color-scheme"
+                theme={customTheme}
+              />
+            </TabPanel>
+            <TabPanel value={4}>
+              <RentalDashboardApp
                 attribute="data-mui-color-scheme"
                 modeStorageKey="mui-mode"
                 colorSchemeStorageKey="mui-color-scheme"
