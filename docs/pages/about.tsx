@@ -22,10 +22,12 @@ import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import MuiStatistics from 'docs/src/components/home/MuiStatistics';
+import TeamPhotoMasonry from 'docs/src/components/about/TeamPhotoMasonry';
+import TeamStatistics from 'docs/src/components/about/TeamStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
@@ -111,8 +113,8 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
                 height: 70,
                 borderRadius: 1,
                 border: '1px solid',
-                borderColor: 'primary.200',
-                backgroundColor: 'primary.100',
+                borderColor: 'grey.100',
+                backgroundColor: 'primary.50',
                 ...theme.applyDarkStyles({
                   backgroundColor: 'primary.900',
                   borderColor: 'primaryDark.500',
@@ -429,52 +431,28 @@ export default function About() {
       <AppHeaderBanner />
       <AppHeader />
       <main id="main-content">
-        <Box
-          sx={{
-            p: 2,
-            height: '34vh',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Typography variant="body2" color="primary.600" fontWeight="bold">
-            About us
-          </Typography>
-          <Typography component="h1" variant="h2" sx={{ my: 1, textAlign: 'center' }}>
-            We&apos;re on a mission to make <br />{' '}
-            <GradientText> building better UIs easier</GradientText>
-          </Typography>
-          <Typography
-            color="text.secondary"
-            textAlign="center"
-            sx={{
-              maxWidth: { md: 500 },
-              minHeight: 48, // a hack to reduce CLS (layout shift)
-            }}
-          >
-            MUI is a 100% remote globally distributed team, supported by a community of thousands of
-            developers all across the world.
-          </Typography>
-        </Box>
-        <Divider />
-        {/* Our mission */}
-        <Section bg="gradient" cozy>
-          <Grid container alignItems="center" spacing={4}>
-            <Grid item xs={12} md={6}>
-              <Typography variant="h2" sx={{ my: 1 }}>
-                Our <GradientText>mission</GradientText>
-              </Typography>
-              <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
-                We aim high at enabling developers & designers to bring stunning UIs to life with
-                unrivalled speed and ease. MUI started back in 2014, to unify React and Material
-                Design. Since then, we&apos;ve become a community of over 2M developers from every
-                corner of the world, with multiple product offerings, and hundreds of customers.
-              </Typography>
-            </Grid>
-            <MuiStatistics />
-          </Grid>
+        <Section cozy bg="gradient">
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Typography variant="body2" color="primary.600" fontWeight="bold">
+              About us
+            </Typography>
+            <Typography component="h1" variant="h2" sx={{ my: 1, textAlign: 'center' }}>
+              We&apos;re on a mission to make <br />{' '}
+              <GradientText> building better UIs easier</GradientText>
+            </Typography>
+            <Typography
+              color="text.secondary"
+              textAlign="center"
+              sx={{
+                maxWidth: { md: 500 },
+              }}
+            >
+              We aim high at enabling developers & designers to bring stunning UIs to life with
+              unrivalled speed and ease.
+            </Typography>
+            <TeamPhotoMasonry />
+            <TeamStatistics />
+          </Box>
         </Section>
         <Divider />
         {/* Our values */}
@@ -485,12 +463,15 @@ export default function About() {
               flexDirection: 'column',
             }}
           >
-            <Typography variant="h2" mb={1}>
-              Our <GradientText>values</GradientText>
-            </Typography>
-            <Typography color="text.secondary" mb={2}>
-              Dig deeper into our core values and behaviours through our open-source handbook
-            </Typography>
+            <SectionHeadline
+              overline="Our values"
+              title={
+                <Typography variant="h2">
+                  The MUI <GradientText>team pact</GradientText>
+                </Typography>
+              }
+              description="They explain the behaviors and mindsets we actively encourage, discourage, and why. They serve as a guide toward better decision-making, results, and experiences at work."
+            />
             <Button
               component={Link}
               noLinkStyle
