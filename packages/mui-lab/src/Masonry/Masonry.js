@@ -47,7 +47,7 @@ export const getStyle = ({ ownerState, theme }) => {
     boxSizing: 'border-box',
     '& > *': {
       boxSizing: 'border-box',
-      flexShrink: '0 !important',
+      flexShrink: '0',
     },
   };
 
