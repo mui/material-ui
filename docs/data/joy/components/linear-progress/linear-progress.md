@@ -82,3 +82,11 @@ You can use those to customize the component on both the `sx` prop and the theme
 ### With label
 
 {{"demo": "LinearProgressWithLabel.js"}}
+
+## 3rd-party integration
+
+### use-count-up
+
+Using the [use-count-up](https://www.npmjs.com/package/use-count-up) package, you can create a counting animation by providing `start`, `end`, and `duration` values.
+
+{{"demo": "LinearProgressCountUp.js"}}
