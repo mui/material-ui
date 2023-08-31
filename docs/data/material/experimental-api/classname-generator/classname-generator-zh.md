@@ -5,7 +5,7 @@
 This API is introduced in `@mui/material` (v5.0.5) as a replacement of deprecated [`createGenerateClassName`](/system/styles/api/#creategenerateclassname-options-class-name-generator).
 
 :::warning
-⚠️ **Note**: this API is at an unstable stage which might change in the future.
+**Note**: this API is at an unstable stage which might change in the future.
 :::
 
 ## Setup

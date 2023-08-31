@@ -220,12 +220,5 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 ## Reference implementations
 
-We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui/material-ui) under the [`/examples`](https://github.com/mui/material-ui/tree/HEAD/examples) folder:
-
-- [The reference implementation of this tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-express-ssr)
-- [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-gatsby)
-- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-ts))
-
-## Troubleshooting
-
-Check out the FAQ answer: [My App doesn't render correctly on the server](/material-ui/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+Here is [the reference implementation of this tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-express-ssr).
+You can more SSR implementations in the GitHub repository under the `/examples` folder, see [the other examples](/material-ui/getting-started/example-projects/).

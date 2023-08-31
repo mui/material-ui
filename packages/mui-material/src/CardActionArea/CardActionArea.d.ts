@@ -5,22 +5,24 @@ import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '..
 import { OverrideProps } from '../OverridableComponent';
 import { CardActionAreaClasses } from './cardActionAreaClasses';
 
+export interface CardActionAreaOwnProps {
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<CardActionAreaClasses>;
+  focusVisibleClassName?: string;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export type CardActionAreaTypeMap<
   AdditionalProps,
-  DefaultComponent extends React.ElementType,
+  RootComponent extends React.ElementType,
 > = ExtendButtonBaseTypeMap<{
-  props: AdditionalProps & {
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<CardActionAreaClasses>;
-    focusVisibleClassName?: string;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
-  defaultComponent: DefaultComponent;
+  props: AdditionalProps & CardActionAreaOwnProps;
+  defaultComponent: RootComponent;
 }>;
 
 /**

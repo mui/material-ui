@@ -147,11 +147,11 @@ export interface BadgeOwnProps {
 }
 
 export interface BadgeTypeMap<
-  DefaultComponent extends React.ElementType = 'span',
+  RootComponent extends React.ElementType = 'span',
   AdditionalProps = {},
 > {
   props: AdditionalProps & BadgeOwnProps;
-  defaultComponent: DefaultComponent;
+  defaultComponent: RootComponent;
 }
 
 type BadgeRootProps = NonNullable<BadgeTypeMap['props']['slotProps']>['root'];
