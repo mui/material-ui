@@ -278,6 +278,15 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     }
   };
 
+  const initializedRef = React.useRef(false);
+
+  useEnhancedEffect(() => {
+    if (!initializedRef.current && masonryRef.current) {
+      initializedRef.current = true;
+      handleResize(masonryRef.current.childNodes);
+    }
+  }, [children]);
+
   const resizeObserverRef = React.useRef(
     typeof ResizeObserver === 'undefined' ? undefined : new ResizeObserver(handleResize),
   );
