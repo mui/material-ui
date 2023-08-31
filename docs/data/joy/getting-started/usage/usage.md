@@ -7,7 +7,7 @@
 After [installation](/joy-ui/getting-started/installation/), you can import any Joy UI component and start playing around.
 For example, try changing the `variant` on the [Button](/joy-ui/react-button/) to `soft` to see how the style changes:
 
-{{"demo": "ButtonUsage.js"}}
+{{"demo": "ButtonUsage.js", "defaultCodeOpen": true}}
 
 ### CssVarsProvider
 

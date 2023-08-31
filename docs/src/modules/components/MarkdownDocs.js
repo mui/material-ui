@@ -43,9 +43,7 @@ export default function MarkdownDocs(props) {
   } = props;
 
   const userLanguage = useUserLanguage();
-
   const localizedDoc = docs[userLanguage] || docs.en;
-  const { description, location, rendered, title, toc } = localizedDoc;
 
   const isJoy = canonicalAs.startsWith('/joy-ui/') && !disableCssVarsProvider;
   const CssVarsProvider = isJoy ? JoyCssVarsProvider : React.Fragment;
@@ -56,12 +54,12 @@ export default function MarkdownDocs(props) {
 
   return (
     <AppLayoutDocs
-      description={description}
+      description={localizedDoc.description}
       disableAd={disableAd}
       disableToc={disableToc}
-      location={location}
-      title={title}
-      toc={toc}
+      location={localizedDoc.location}
+      title={localizedDoc.title}
+      toc={localizedDoc.toc}
     >
       {disableAd ? null : (
         <BrandingProvider>
@@ -72,14 +70,13 @@ export default function MarkdownDocs(props) {
       )}
       <CssVarsProvider>
         {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
-        {rendered.map((renderedMarkdownOrDemo, index) => (
+        {localizedDoc.rendered.map((renderedMarkdownOrDemo, index) => (
           <RichMarkdownElement
             key={`demos-section-${index}`}
             demoComponents={demoComponents}
             demos={demos}
             disableAd={disableAd}
             localizedDoc={localizedDoc}
-            location={location}
             renderedMarkdownOrDemo={renderedMarkdownOrDemo}
             srcComponents={srcComponents}
             theme={theme}

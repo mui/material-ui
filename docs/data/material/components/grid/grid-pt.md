@@ -15,7 +15,7 @@ Uma [grade](https://m2.material.io/design/layout/responsive-layout-grid.html) cr
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 :::warning
-⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
+The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
 :::
 
 ## Como funciona
@@ -79,7 +79,7 @@ Responsive values is supported by:
 - todas as outras propriedades do sistema [other props](#system-props)
 
 :::warning
-⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint. For instance, this is not working. The grid item misses the value for `md`:
+When using a responsive `columns` prop, each grid item needs its corresponding breakpoint. For instance, this is not working. The grid item misses the value for `md`:
 
 ```jsx
 <Grid container columns={{ xs: 4, md: 12 }}>

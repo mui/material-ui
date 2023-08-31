@@ -14,7 +14,7 @@ export default function CardUsage() {
         {
           propName: 'variant',
           knob: 'radio',
-          defaultValue: 'plain',
+          defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {

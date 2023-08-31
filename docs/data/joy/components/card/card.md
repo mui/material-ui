@@ -36,7 +36,7 @@ The demo below shows a typical Card that groups together Typography, Aspect Rati
 
 ### Variants
 
-The Card component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain` (default), `outlined`, `soft`, and `solid`.
+The Card component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain`, `outlined` (default), `soft`, and `solid`.
 
 {{"demo": "CardVariants.js"}}
 

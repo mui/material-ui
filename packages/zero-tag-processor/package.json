@@ -1,6 +1,6 @@
 {
   "name": "@mui/zero-tag-processor",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1-alpha.1",
   "private": true,
   "author": "MUI Team",
   "description": "Linaria tag processors for custom styled implementation.",
@@ -40,17 +40,19 @@
   },
   "dependencies": {
     "@babel/core": "^7.22.10",
+    "@babel/helper-module-imports": "^7.22.5",
     "@babel/helper-plugin-utils": "^7.22.5",
     "@babel/parser": "^7.22.10",
     "@emotion/css": "^11.11.2",
     "@linaria/tags": "^4.5.4",
     "@linaria/utils": "^4.5.3",
-    "@mui/system": "^5.14.6",
+    "@mui/system": "^5.14.7",
     "lodash.get": "^4.4.2"
   },
   "devDependencies": {
-    "@mui/material": "^5.14.6",
+    "@mui/material": "^5.14.7",
     "@types/babel__core": "^7.20.1",
+    "@types/babel__helper-module-imports": "^7.18.0",
     "@types/babel__helper-plugin-utils": "^7.10.0",
     "@types/lodash.get": "^4.4.7"
   },
