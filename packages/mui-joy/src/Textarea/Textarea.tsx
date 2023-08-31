@@ -88,6 +88,9 @@ const TextareaRoot = styled('div', {
       '--Button-radius': 'var(--Textarea-decoratorChildRadius)',
       '--IconButton-radius': 'var(--Textarea-decoratorChildRadius)',
       boxSizing: 'border-box',
+      ...(ownerState.variant !== 'plain' && {
+        boxShadow: theme.shadow.xs,
+      }),
       minWidth: 0,
       minHeight: 'var(--Textarea-minHeight)',
       cursor: 'text',

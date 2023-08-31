@@ -84,6 +84,9 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--Button-radius': 'var(--Input-decoratorChildRadius)',
         '--IconButton-radius': 'var(--Input-decoratorChildRadius)',
         boxSizing: 'border-box',
+        ...(ownerState.variant !== 'plain' && {
+          boxShadow: theme.shadow.xs,
+        }),
         minWidth: 0,
         minHeight: 'var(--Input-minHeight)',
         ...(ownerState.fullWidth && {
