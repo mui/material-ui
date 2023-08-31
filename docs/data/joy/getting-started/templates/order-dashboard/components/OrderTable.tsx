@@ -406,13 +406,13 @@ export default function OrderTable() {
           aria-labelledby="tableTitle"
           stickyHeader
           hoverRow
-          sx={{
-            '--TableCell-headBackground': 'var(--joy-palette-background-level1)',
+          sx={(theme) => ({
+            '--TableCell-headBackground': theme.vars.palette.background.level1,
             '--Table-headerUnderlineThickness': '1px',
-            '--TableRow-hoverBackground': 'var(--joy-palette-background-level1)',
+            '--TableRow-hoverBackground': theme.vars.palette.background.level1,
             '--TableCell-paddingY': '4px',
             '--TableCell-paddingX': '8px',
-          }}
+          })}
         >
           <thead>
             <tr>

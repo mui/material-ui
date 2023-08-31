@@ -1,7 +1,9 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { extendTheme, THEME_ID } from '@mui/joy/styles';
+import Box from '@mui/joy/Box';
+import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
+import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -12,8 +14,10 @@ import TabList from '@mui/joy/TabList';
 import TabPanel from '@mui/joy/TabPanel';
 import Sheet from '@mui/joy/Sheet';
 import Select from '@mui/joy/Select';
+import SvgIcon from '@mui/joy/SvgIcon';
 import Option from '@mui/joy/Option';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import TextFieldsIcon from '@mui/icons-material/TextFields';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -293,9 +297,38 @@ const tailwindNeutrals = {
   },
 } as const;
 
+const radiusOptions = {
+  sharp: {
+    xs: '0px',
+    sm: '0px',
+    md: '0px',
+    lg: '0px',
+    xl: '0px',
+  },
+  smooth: {
+    xs: '3px',
+    sm: '5px',
+    md: '7px',
+    lg: '11px',
+    xl: '15px',
+  },
+  round: {
+    xs: '20px',
+    sm: '22px',
+    md: '24px',
+    lg: '26px',
+    xl: '28px',
+  },
+};
+
+const familyOptions = ['sans-serif', 'serif', 'monospace'];
+
 export default function JoyUITemplates() {
   const [primary, setPrimary] = React.useState<keyof typeof tailwindColors | null>(null);
   const [neutral, setNeutral] = React.useState<keyof typeof tailwindNeutrals | null>(null);
+  const [radius, setRadius] = React.useState<keyof typeof radiusOptions | null>(null);
+  const [family, setFamily] = React.useState<string | null>(null);
+  const [bgSwap, setBgSwap] = React.useState(false);
   const customTheme = React.useMemo(
     () => ({
       [THEME_ID]: extendTheme({
@@ -308,8 +341,11 @@ export default function JoyUITemplates() {
               }),
               ...(neutral && {
                 neutral: tailwindNeutrals[neutral],
-                common: {
-                  black: tailwindNeutrals[neutral][900],
+              }),
+              ...(bgSwap && {
+                background: {
+                  body: 'var(--template-palette-common-white)',
+                  surface: 'var(--template-palette-neutral-50)',
                 },
               }),
             },
@@ -321,16 +357,28 @@ export default function JoyUITemplates() {
               }),
               ...(neutral && {
                 neutral: tailwindNeutrals[neutral],
-                common: {
-                  black: tailwindNeutrals[neutral][900],
+              }),
+              ...(bgSwap && {
+                background: {
+                  body: 'var(--template-palette-neutral-900)',
+                  surface: 'var(--template-palette-common-black)',
                 },
               }),
             },
           },
         },
+        ...(family && {
+          fontFamily: {
+            body: family,
+            display: family,
+          },
+        }),
+        ...(radius && {
+          radius: radiusOptions[radius],
+        }),
       }),
     }),
-    [primary, neutral],
+    [primary, neutral, radius, bgSwap, family],
   );
   return (
     <Section bg="comfort">
@@ -367,18 +415,21 @@ export default function JoyUITemplates() {
           <Sheet
             variant="outlined"
             sx={{
-              backdropFilter: 'blur(4px)',
+              backdropFilter: 'blur(8px)',
               bgcolor: 'rgba(var(--joy-palette-neutral-lightChannel) / 0.12)',
               position: 'absolute',
-              left: '4rem',
+              left: '50%',
+              transform: 'translateX(-50%)',
               right: '4rem',
               bottom: '2.5rem',
               zIndex: 1,
               borderRadius: 'lg',
               boxShadow: 'md',
               p: 1,
+              px: 2,
               display: 'flex',
               gap: 2,
+              width: 'fit-content',
             }}
           >
             <Select
@@ -433,6 +484,102 @@ export default function JoyUITemplates() {
               {Object.keys(tailwindNeutrals).map((color) => (
                 <Option key={color} value={color}>
                   {color}
+                </Option>
+              ))}
+            </Select>
+
+            <ToggleButtonGroup
+              size="sm"
+              value={bgSwap ? '1' : '0'}
+              onChange={(event, newValue) => setBgSwap(Boolean(Number(newValue)))}
+              sx={{ bgcolor: 'background.surface' }}
+            >
+              <IconButton aria-label="use brighter surface" value="0">
+                <SvgIcon>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="8" y="8" width="8" height="8" rx="2" />
+                    <path d="M4 10a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2" />
+                    <path d="M14 20a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2" />
+                  </svg>
+                </SvgIcon>
+              </IconButton>
+              <IconButton aria-label="use black surface" value="1">
+                <SvgIcon>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="14" y="14" width="8" height="8" rx="2" />
+                    <rect x="2" y="2" width="8" height="8" rx="2" />
+                    <path d="M7 14v1a2 2 0 0 0 2 2h1" />
+                    <path d="M14 7h1a2 2 0 0 1 2 2v1" />
+                  </svg>
+                </SvgIcon>
+              </IconButton>
+            </ToggleButtonGroup>
+
+            <Select
+              size="sm"
+              placeholder="radius"
+              value={radius}
+              onChange={(event, newValue) => setRadius(newValue as keyof typeof radiusOptions)}
+              renderValue={(selectedOption) => (
+                <React.Fragment>
+                  <Box
+                    sx={{
+                      width: 16,
+                      height: 16,
+                      borderTop: '2px solid',
+                      borderLeft: '2px solid',
+                      borderColor: 'neutral.500',
+                      borderTopLeftRadius: radiusOptions[radius!].md,
+                      mr: 1,
+                      bgcolor: 'neutral.softBg',
+                    }}
+                  />
+                  {selectedOption?.label}
+                </React.Fragment>
+              )}
+            >
+              {Object.keys(radiusOptions).map((item) => (
+                <Option key={item} value={item}>
+                  {item}
+                </Option>
+              ))}
+            </Select>
+
+            <Select
+              size="sm"
+              placeholder="font family"
+              value={family}
+              onChange={(event, newValue) => setFamily(newValue as string)}
+              renderValue={(selectedOption) => (
+                <React.Fragment>
+                  <TextFieldsIcon sx={{ mr: 1 }} />
+                  <span style={{ fontFamily: family! }}>{selectedOption?.label}</span>
+                </React.Fragment>
+              )}
+            >
+              {familyOptions.map((item) => (
+                <Option key={item} value={item} sx={{ fontFamily: item }}>
+                  {item}
                 </Option>
               ))}
             </Select>

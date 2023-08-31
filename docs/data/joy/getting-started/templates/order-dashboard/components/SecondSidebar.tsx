@@ -69,10 +69,10 @@ export default function SecondSidebar() {
       >
         <List
           size="sm"
-          sx={{
-            '--ListItem-radius': '6px',
+          sx={(theme) => ({
+            '--ListItem-radius': theme.vars.radius.md,
             '--List-gap': '6px',
-          }}
+          })}
         >
           <ListSubheader role="presentation" sx={{ fontWeight: 'lg' }}>
             Dashboard

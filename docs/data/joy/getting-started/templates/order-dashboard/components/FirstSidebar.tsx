@@ -52,7 +52,13 @@ export default function FirstSidebar() {
         }}
       />
       <MuiLogo />
-      <List size="sm" sx={{ '--ListItem-radius': '6px', '--List-gap': '8px' }}>
+      <List
+        size="sm"
+        sx={(theme) => ({
+          '--ListItem-radius': theme.vars.radius.md,
+          '--List-gap': '8px',
+        })}
+      >
         <ListItem>
           <ListItemButton>
             <HomeRoundedIcon />
