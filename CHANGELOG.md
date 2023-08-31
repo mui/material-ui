@@ -10,35 +10,36 @@ A big thanks to the 11 contributors who made this release possible. This release
 
 ### `@mui/material@5.14.7`
 
-- &#8203;<!-- 17 -->[Autocomplete] Fix listbox opened unexpectedly when component is `disabled` (#38611) @mj12albert
-- &#8203;<!-- 03 -->[Select][material-ui] Fix select menu moving on scroll when disableScrollLock is true (#37773) @VishruthR
+- [Autocomplete] Fix listbox opened unexpectedly when component is `disabled` (#38611) @mj12albert
+- [Select][material-ui] Fix select menu moving on scroll when disableScrollLock is true (#37773) @VishruthR
 
 ### `@mui/base@5.0.0-beta.13`
 
-- &#8203;<!-- 16 -->[useButton][base-ui] Accept arbitrary props in getRootProps and forward them (#38475) @DiegoAndai
+- [useButton][base-ui] Accept arbitrary props in getRootProps and forward them (#38475) @DiegoAndai
 
 ### `@mui/zero-runtime@0.0.1-alpha.1`
 
-- &#8203;<!-- 02 -->[system][zero][tag] Add support for sx prop (#38535) @brijeshb42
+- [system][zero][tag] Add support for sx prop (#38535) @brijeshb42
 
 ### Docs
 
-- &#8203;<!-- 10 -->[docs] Number Input docs fixes (#38521) @mj12albert
-- &#8203;<!-- 09 -->[docs] Show all the code in the usage section (#38691) @oliviertassinari
-- &#8203;<!-- 06 -->[docs][joy-ui] Change the customization and how-to guides docs tree (#38396) @danilo-leal
-- &#8203;<!-- 05 -->[docs][lab][LoadingButton] Improve `loading` prop documentation (#38625) @sai6855
-- &#8203;<!-- 04 -->[docs][material-ui] Format `key` prop JSDoc description in `Snackbar` component code correctly (#38603) @jaydenseric
+- [docs] Number Input docs fixes (#38521) @mj12albert
+- [docs] Show all the code in the usage section (#38691) @oliviertassinari
+- [docs][joy-ui] Change the customization and how-to guides docs tree (#38396) @danilo-leal
+- [docs][lab][LoadingButton] Improve `loading` prop documentation (#38625) @sai6855
+- [docs][material-ui] Format `key` prop JSDoc description in `Snackbar` component code correctly (#38603) @jaydenseric
 
 ### Core
 
-- &#8203;<!-- 15 -->[core] Add use-client to custom icons (#38132) @mj12albert
-- &#8203;<!-- 14 -->[core] Remove unnecessary `@types/jsdom` (#38657) @renovate[bot]
-- &#8203;<!-- 13 -->[core] Improve sponsors GA labels (#38649) @oliviertassinari
-- &#8203;<!-- 12 -->[core] Fix ESM issues with regression tests (#37963) @Janpot
-- &#8203;<!-- 11 -->[core] Potential fix for intermittent ci crashes in e2e test (#38614) @Janpot
-- &#8203;<!-- 08 -->[docs-infra] Adjust the Material You playground demo design (#38636) @danilo-leal
-- &#8203;<!-- 07 -->[docs-infra] Hide the SkipLink button if user prefers reduced motion (#38632) @DerTimonius
-- &#8203;<!-- 01 -->[website] Add tiny fixes the homepage Sponsors section (#38635) @danilo-leal
+- [core] Add use-client to custom icons (#38132) @mj12albert
+- [core] Remove unnecessary `@types/jsdom` (#38657) @renovate[bot]
+- [core] Improve sponsors GA labels (#38649) @oliviertassinari
+- [core] Fix ESM issues with regression tests (#37963) @Janpot
+- [core] Potential fix for intermittent ci crashes in e2e test (#38614) @Janpot
+- [docs-infra] Mark unstable components with a chip in the nav drawer (#38573) @michaldudak
+- [docs-infra] Adjust the Material You playground demo design (#38636) @danilo-leal
+- [docs-infra] Hide the SkipLink button if user prefers reduced motion (#38632) @DerTimonius
+- [website] Add tiny fixes the homepage Sponsors section (#38635) @danilo-leal
 
 All contributors of this release in alphabetical order: @brijeshb42, @danilo-leal, @DerTimonius, @DiegoAndai, @Janpot, @jaydenseric, @mj12albert, @oliviertassinari, @renovate[bot], @sai6855, @VishruthR
 
