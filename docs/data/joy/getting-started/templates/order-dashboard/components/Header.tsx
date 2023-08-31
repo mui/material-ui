@@ -16,7 +16,7 @@ export default function Header() {
         justifyContent: 'space-between',
         position: 'fixed',
         top: 0,
-        width: '100vw',
+        width: '100%',
         height: 'var(--Header-height)',
         zIndex: 9995,
         p: 2,

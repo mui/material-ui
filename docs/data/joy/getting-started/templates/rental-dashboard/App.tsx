@@ -20,7 +20,7 @@ import Pagination from './components/Pagination';
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
-export default function RentalDashboard() {
+export default function RentalDashboard(props: any) {
   const status = useScript(`https://unpkg.com/feather-icons`);
 
   useEnhancedEffect(() => {
@@ -33,7 +33,7 @@ export default function RentalDashboard() {
   }, [status]);
 
   return (
-    <CssVarsProvider disableTransitionOnChange>
+    <CssVarsProvider disableTransitionOnChange {...props}>
       <GlobalStyles
         styles={(theme) => ({
           '[data-feather], .feather': {

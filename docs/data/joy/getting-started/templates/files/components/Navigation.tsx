@@ -16,7 +16,10 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 export default function Navigation() {
   return (
-    <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
+    <List
+      size="sm"
+      sx={{ '--ListItem-radius': 'var(--joy-radius-md)', '--List-gap': '4px' }}
+    >
       <ListItem nested>
         <ListSubheader>
           Browse

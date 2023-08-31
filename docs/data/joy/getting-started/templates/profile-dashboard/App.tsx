@@ -11,7 +11,7 @@ import MyProfile from './components/MyProfile';
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
-export default function JoyOrderDashboardTemplate() {
+export default function JoyOrderDashboardTemplate(props: any) {
   const status = useScript(`https://unpkg.com/feather-icons`);
 
   useEnhancedEffect(() => {
@@ -24,7 +24,7 @@ export default function JoyOrderDashboardTemplate() {
   }, [status]);
 
   return (
-    <CssVarsProvider disableTransitionOnChange>
+    <CssVarsProvider disableTransitionOnChange {...props}>
       <GlobalStyles
         styles={(theme) => ({
           '[data-feather], .feather': {

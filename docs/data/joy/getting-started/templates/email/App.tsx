@@ -51,10 +51,10 @@ function ColorSchemeToggle() {
   );
 }
 
-export default function EmailExample() {
+export default function EmailExample(props: any) {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
-    <CssVarsProvider disableTransitionOnChange>
+    <CssVarsProvider disableTransitionOnChange {...props}>
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>

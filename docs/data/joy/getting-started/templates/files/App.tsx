@@ -69,10 +69,10 @@ function ColorSchemeToggle() {
   );
 }
 
-export default function FilesExample() {
+export default function FilesExample(props: any) {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
-    <CssVarsProvider disableTransitionOnChange>
+    <CssVarsProvider disableTransitionOnChange {...props}>
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>

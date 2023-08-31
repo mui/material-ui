@@ -11,7 +11,7 @@ import MyMessages from './components/MyMessages';
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
-export default function JoyMessagesTemplate() {
+export default function JoyMessagesTemplate(props: any) {
   const status = useScript(`https://unpkg.com/feather-icons`);
 
   useEnhancedEffect(() => {
@@ -24,7 +24,7 @@ export default function JoyMessagesTemplate() {
   }, [status]);
 
   return (
-    <CssVarsProvider disableTransitionOnChange>
+    <CssVarsProvider disableTransitionOnChange {...props}>
       <GlobalStyles
         styles={(theme) => ({
           '[data-feather], .feather': {

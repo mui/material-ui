@@ -1,10 +1,16 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { extendTheme } from '@mui/joy/styles';
+import Link from '@mui/joy/Link';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
+import ListDivider from '@mui/joy/ListDivider';
 import Tabs from '@mui/joy/Tabs';
-import Tab from '@mui/joy/Tab';
+import Tab, { tabClasses } from '@mui/joy/Tab';
 import TabList from '@mui/joy/TabList';
 import TabPanel from '@mui/joy/TabPanel';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -15,6 +21,17 @@ import DashboardApp from 'docs/data/joy/getting-started/templates/order-dashboar
 import SignInApp from 'docs/data/joy/getting-started/templates/sign-in-side/App';
 
 export default function JoyUITemplates() {
+  const [customTheme, setCustomTheme] = React.useState(() =>
+    extendTheme({
+      radius: {
+        xs: '1.25rem',
+        sm: '1.25rem',
+        md: '1.25rem',
+        lg: '1.5rem',
+        xl: '2rem',
+      },
+    }),
+  );
   return (
     <Section bg="comfort">
       <Box sx={{ textAlign: 'center' }}>
@@ -33,35 +50,93 @@ export default function JoyUITemplates() {
       <Box sx={{ my: 3 }}>
         <Tabs
           sx={{
+            bgcolor: 'transparent',
             '& [role="tabpanel"]': {
-              boxShadow: '0 0 0 6px rgba(0 0 0 / 0.12)',
+              '--_scale': '0.9',
+              boxShadow: '0 0 0 6px rgba(var(--joy-palette-neutral-mainChannel) / 0.32)',
               borderRadius: 'lg',
-              maxHeight: 600,
+              height: 'clamp(500px / var(--_scale), 80vh, 600px / var(--_scale))',
               p: 0,
-              transform: 'scale(0.9)',
+              transform: 'scale(var(--_scale))',
               transformOrigin: 'center center',
               overflow: 'auto hidden',
             },
           }}
         >
-          <TabList>
-            <Tab>Team</Tab>
-            <Tab>Files</Tab>
-            <Tab>Email</Tab>
-            <Tab>Dashboard</Tab>
-            <Tab>Sign-in</Tab>
-          </TabList>
+          <List
+            variant="outlined"
+            component="div"
+            orientation="horizontal"
+            sx={{
+              borderRadius: 'xl',
+              fontWeight: 'lg',
+              px: 0,
+              mx: 'auto',
+              overflow: 'auto',
+              maxWidth: '100%',
+            }}
+          >
+            <TabList
+              variant="plain"
+              size="sm"
+              disableUnderline
+              sx={(theme) => ({
+                alignSelf: 'center',
+                p: 0.5,
+                gap: 0.5,
+                borderRadius: 'xl',
+                flex: 'none',
+                [`& .${tabClasses.root}[aria-selected="true"]`]: {
+                  ...theme.variants.solid.neutral,
+                  bgcolor: 'neutral.700',
+                },
+              })}
+            >
+              <Tab disableIndicator>Team</Tab>
+              <Tab disableIndicator>Files</Tab>
+              <Tab disableIndicator>Email</Tab>
+              <Tab disableIndicator>Dashboard</Tab>
+              <Tab disableIndicator>Sign-in</Tab>
+            </TabList>
+            <ListDivider />
+            <ListItem>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <Link href="#" level="body-sm" endDecorator={<ArrowForwardIcon />}>
+                View all
+              </Link>
+            </ListItem>
+          </List>
           <TabPanel value={0}>
-            <TeamApp />
+            <TeamApp
+              attribute="data-mui-color-scheme"
+              modeStorageKey="mui-mode"
+              colorSchemeStorageKey="mui-color-scheme"
+              theme={customTheme}
+            />
           </TabPanel>
           <TabPanel value={1}>
-            <FilesApp />
+            <FilesApp
+              attribute="data-mui-color-scheme"
+              modeStorageKey="mui-mode"
+              colorSchemeStorageKey="mui-color-scheme"
+              theme={customTheme}
+            />
           </TabPanel>
           <TabPanel value={2}>
-            <EmailApp />
+            <EmailApp
+              attribute="data-mui-color-scheme"
+              modeStorageKey="mui-mode"
+              colorSchemeStorageKey="mui-color-scheme"
+              theme={customTheme}
+            />
           </TabPanel>
           <TabPanel value={3}>
-            <DashboardApp />
+            <DashboardApp
+              attribute="data-mui-color-scheme"
+              modeStorageKey="mui-mode"
+              colorSchemeStorageKey="mui-color-scheme"
+              theme={customTheme}
+            />
           </TabPanel>
           <TabPanel
             value={4}
@@ -77,7 +152,12 @@ export default function JoyUITemplates() {
               },
             }}
           >
-            <SignInApp />
+            <SignInApp
+              attribute="data-mui-color-scheme"
+              modeStorageKey="mui-mode"
+              colorSchemeStorageKey="mui-color-scheme"
+              theme={customTheme}
+            />
           </TabPanel>
         </Tabs>
       </Box>

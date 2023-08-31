@@ -58,9 +58,9 @@ function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
 /**
  * This template uses [`Inter`](https://fonts.google.com/specimen/Inter?query=inter) font.
  */
-export default function JoySignInSideTemplate() {
+export default function JoySignInSideTemplate(props: any) {
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
+    <CssVarsProvider defaultMode="dark" disableTransitionOnChange {...props}>
       <CssBaseline />
       <GlobalStyles
         styles={{
@@ -84,6 +84,7 @@ export default function JoySignInSideTemplate() {
           justifyContent: 'flex-end',
           backdropFilter: 'blur(4px)',
           backgroundColor: 'rgba(255 255 255 / 0.6)',
+          minHeight: '100%',
           [theme.getColorSchemeSelector('dark')]: {
             backgroundColor: 'rgba(19 19 24 / 0.4)',
           },

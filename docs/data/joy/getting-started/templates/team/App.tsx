@@ -71,7 +71,10 @@ function ColorSchemeToggle() {
 
 function TeamNav() {
   return (
-    <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
+    <List
+      size="sm"
+      sx={{ '--ListItem-radius': 'var(--joy-radius-md)', '--List-gap': '4px' }}
+    >
       <ListItem nested>
         <ListSubheader>
           Browse
@@ -128,10 +131,10 @@ function TeamNav() {
   );
 }
 
-export default function TeamExample() {
+export default function TeamExample(props: any) {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
-    <CssVarsProvider disableTransitionOnChange>
+    <CssVarsProvider disableTransitionOnChange {...props}>
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
