@@ -6,7 +6,7 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { useCountUp } from 'use-count-up';
 
-export default function CircularProgressDeterminate() {
+export default function CircularProgressCountUp() {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const { value: value1 } = useCountUp({
