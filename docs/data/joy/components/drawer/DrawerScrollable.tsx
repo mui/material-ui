@@ -31,10 +31,19 @@ export default function DrawerScrollable() {
             </ListItem>
           ))}
         </List>
-        <Box sx={{ display: 'flex', gap: 1, p: 1.5, pb: 2 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 1,
+            p: 1.5,
+            pb: 2,
+            borderTop: '1px solid',
+            borderColor: 'divider',
+          }}
+        >
           <Avatar size="lg" />
           <div>
-            <Typography level="title-md">username</Typography>
+            <Typography level="title-md">Username</Typography>
             <Typography level="body-sm">joined 20 Jun 2023</Typography>
           </div>
         </Box>
