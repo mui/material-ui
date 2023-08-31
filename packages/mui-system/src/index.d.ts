@@ -1,3 +1,4 @@
+import { CSSObject } from '@emotion/react';
 import {
   ComposedStyleFunction,
   StyleFunction,
@@ -13,6 +14,7 @@ import {
   sizing,
   typography,
 } from './Box';
+import { Breakpoints } from './createTheme/createBreakpoints';
 // disable automatic export
 export {};
 
@@ -41,11 +43,11 @@ export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoin
   styleFunction: StyleFunction<Props>,
 ): StyleFunction<Partial<Record<Breakpoints, Props>> & Props>;
 
-// restructures the breakpoints in the in the correct order and merges all styles args
+// restructures the breakpoints in the correct order and merges all styles args
 export function mergeBreakpointsInOrder(
-  breakpointsInput: { keys: string[]; up: (key: string) => string },
-  ...styles: object[]
-): object;
+  breakpointsInputs: Breakpoints,
+  styles: CSSObject[],
+): CSSObject;
 
 export function compose<T extends Array<StyleFunction<any>>>(...args: T): ComposedStyleFunction<T>;
 
