@@ -373,7 +373,7 @@ Masonry.propTypes /* remove-proptypes */ = {
    */
   defaultColumns: PropTypes.number,
   /**
-   * The default height of the component in px.
+   * The default height of the component in px. This is provided for server-side rendering.
    */
   defaultHeight: PropTypes.number,
   /**
