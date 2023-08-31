@@ -15,11 +15,11 @@ import CreateNewFolder from '@mui/icons-material/CreateNewFolder';
 export default function DribbbleShot() {
   return (
     <Card
+      variant="plain"
       sx={{
         width: 300,
         bgcolor: 'initial',
-        boxShadow: 'none',
-        '--Card-padding': '0px',
+        p: 0,
       }}
     >
       <Box sx={{ position: 'relative' }}>
