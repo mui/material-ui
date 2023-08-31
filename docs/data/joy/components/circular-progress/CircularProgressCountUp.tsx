@@ -1,9 +1,9 @@
+import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import CircularProgress from '@mui/joy/CircularProgress';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import * as React from 'react';
 import { useCountUp } from 'use-count-up';
 
 export default function CircularProgressDeterminate() {

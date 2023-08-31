@@ -93,9 +93,9 @@ You can use these to customize the component with both the `sx` prop and the the
 
 {{"demo": "CircularProgressVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
-## Common examples
+## 3rd-party integration
 
-### Count up feature
+### use-count-up
 
 Using the [use-count-up](https://www.npmjs.com/package/use-count-up) package, you can create a counting animation by providing `start`, `end`, and `duration` values.
 
