@@ -29,6 +29,17 @@ Most Base UI hooks have a similar structure:
 The parameters type must be called `[HookName]Parameters`.
 There are docs generation scripts that require this pattern.
 
+```ts
+function useAwesomeControl(parameters: UseAwesomeControlParameters) {
+  const {
+    disabled,
+    readOnly
+  } = parameters;
+  
+  // the rest of the hook's logic...
+}
+```
+
 #### Event handler factory functions
 
 We don't define event handlers directly as functions because they must be able to access and call other handlers provided by developers in slot props resolvers.
