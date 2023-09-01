@@ -57,11 +57,11 @@ function getDirection(key: string) {
 function handleBlur<State extends NumberInputState>(
   state: State,
   context: NumberInputActionContext,
-  event: React.FocusEvent<HTMLInputElement>,
+  event: React.FocusEvent,
 ) {
   const { getInputValueAsString } = context;
 
-  const parsedValue = getInputValueAsString(event.currentTarget.value);
+  const parsedValue = getInputValueAsString((event.currentTarget as HTMLInputElement).value);
 
   const intermediateValue =
     parsedValue === '' || parsedValue === '-' ? undefined : parseInt(parsedValue, 10);
@@ -72,6 +72,34 @@ function handleBlur<State extends NumberInputState>(
     ...state,
     ...clampedValues,
   };
+}
+
+function handleInputChange<State extends NumberInputState>(
+  state: State,
+  context: NumberInputActionContext,
+  event: React.ChangeEvent,
+) {
+  const { getInputValueAsString } = context;
+
+  const parsedValue = getInputValueAsString((event.currentTarget as HTMLInputElement).value);
+
+  if (parsedValue === '' || parsedValue === '-') {
+    return {
+      ...state,
+      inputValue: parsedValue,
+      value: '',
+    };
+  }
+
+  if (parsedValue.match(/^-?\d+?$/)) {
+    return {
+      ...state,
+      inputValue: parsedValue,
+      value: parseInt(parsedValue, 10),
+    };
+  }
+
+  return state;
 }
 
 function handleStep<State extends NumberInputState>(
@@ -158,6 +186,8 @@ export function numberInputReducer(
   switch (type) {
     case NumberInputActionTypes.blur:
       return handleBlur(state, context, event);
+    case NumberInputActionTypes.inputChange:
+      return handleInputChange(state, context, event);
     case NumberInputActionTypes.increment:
       return handleStep(state, context, event, 'up');
     case NumberInputActionTypes.decrement:

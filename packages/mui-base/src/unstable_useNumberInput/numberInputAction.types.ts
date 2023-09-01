@@ -10,7 +10,7 @@ export const NumberInputActionTypes = {
 
 interface NumberInputBlurAction {
   type: typeof NumberInputActionTypes.blur;
-  event: React.FocusEvent<HTMLInputElement>;
+  event: React.FocusEvent;
 }
 
 interface NumberInputFocusAction {

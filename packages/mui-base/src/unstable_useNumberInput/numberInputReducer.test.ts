@@ -33,6 +33,108 @@ describe('numberInputReducer', () => {
     });
   });
 
+  describe('action: inputChange', () => {
+    it('value contains integers only', () => {
+      const state: NumberInputState = {
+        value: 0,
+        inputValue: '0',
+      };
+
+      const action: NumberInputReducerAction = {
+        type: NumberInputActionTypes.inputChange,
+        event: {
+          currentTarget: {
+            value: '1',
+          },
+        } as React.ChangeEvent<HTMLInputElement>,
+        context: {
+          getInputValueAsString: defaultGetInputValueAsString,
+          shiftMultiplier: 10,
+        },
+      };
+
+      const result = numberInputReducer(state, action);
+
+      expect(result.value).to.equal(1);
+      expect(result.inputValue).to.equal('1');
+    });
+
+    it('value contains invalid characters', () => {
+      const state: NumberInputState = {
+        value: 1,
+        inputValue: '1',
+      };
+
+      const action: NumberInputReducerAction = {
+        type: NumberInputActionTypes.inputChange,
+        event: {
+          currentTarget: {
+            value: '1a',
+          },
+        } as React.ChangeEvent<HTMLInputElement>,
+        context: {
+          getInputValueAsString: defaultGetInputValueAsString,
+          shiftMultiplier: 10,
+        },
+      };
+
+      const result = numberInputReducer(state, action);
+
+      expect(result.value).to.equal(1);
+      expect(result.inputValue).to.equal('1');
+    });
+
+    it('value is minus sign', () => {
+      const state: NumberInputState = {
+        value: -1,
+        inputValue: '-1',
+      };
+
+      const action: NumberInputReducerAction = {
+        type: NumberInputActionTypes.inputChange,
+        event: {
+          currentTarget: {
+            value: '-',
+          },
+        } as React.ChangeEvent<HTMLInputElement>,
+        context: {
+          getInputValueAsString: defaultGetInputValueAsString,
+          shiftMultiplier: 10,
+        },
+      };
+
+      const result = numberInputReducer(state, action);
+
+      expect(result.value).to.equal('');
+      expect(result.inputValue).to.equal('-');
+    });
+
+    it('empty value', () => {
+      const state: NumberInputState = {
+        value: 1,
+        inputValue: '1',
+      };
+
+      const action: NumberInputReducerAction = {
+        type: NumberInputActionTypes.inputChange,
+        event: {
+          currentTarget: {
+            value: '',
+          },
+        } as React.ChangeEvent<HTMLInputElement>,
+        context: {
+          getInputValueAsString: defaultGetInputValueAsString,
+          shiftMultiplier: 10,
+        },
+      };
+
+      const result = numberInputReducer(state, action);
+
+      expect(result.value).to.equal('');
+      expect(result.inputValue).to.equal('');
+    });
+  });
+
   describe('action: increment', () => {
     it('increments the value', () => {
       const state: NumberInputState = {
