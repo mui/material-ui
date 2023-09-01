@@ -48,7 +48,6 @@ Given the complex nature of the Treeview, it was a clear choice to group it with
 
 Moreover, new advanced features such as virtualization and drag and drop are already on the roadmap.
 
-Given the complex nature of these features, we decided that it would benefit most from the dedicated attention that they would receive from the X team.
 
 The Tree View components are now available in the `@mui/x-tree-view` package which is [MIT licensed](https://unpkg.com/browse/@mui/x-tree-view/LICENSE) and includes all the current (free forever) features.
 
