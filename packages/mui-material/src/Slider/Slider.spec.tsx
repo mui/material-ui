@@ -45,8 +45,7 @@ function TestOnChangeValueType() {
           expectType<number | number[], typeof value>(value);
         }}
       />
-      <StyledSlider value={30} />
-      <StyledSlider value={30} />
+      <StyledSlider />
       <Slider
         value={val}
         onChange={(event, value) => {
