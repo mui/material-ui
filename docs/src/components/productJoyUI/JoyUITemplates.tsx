@@ -14,7 +14,7 @@ import Tab, { tabClasses } from '@mui/joy/Tab';
 import TabList from '@mui/joy/TabList';
 import TabPanel from '@mui/joy/TabPanel';
 import Sheet from '@mui/joy/Sheet';
-import Select, { SelectStaticProps } from '@mui/joy/Select';
+import Select, { SelectStaticProps, selectClasses } from '@mui/joy/Select';
 import SvgIcon from '@mui/joy/SvgIcon';
 import Option from '@mui/joy/Option';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -645,6 +645,7 @@ export default function JoyUITemplates() {
           <Sheet
             variant="outlined"
             sx={(theme) => ({
+              maxWidth: '80vw',
               backdropFilter: 'blur(8px)',
               bgcolor: 'rgba(var(--template-palette-primary-mainChannel) / 0.12)',
               borderColor: 'rgba(var(--template-palette-primary-darkChannel) / 0.4)',
@@ -652,17 +653,21 @@ export default function JoyUITemplates() {
               left: '50%',
               transform: 'translateX(-50%)',
               right: '4rem',
-              bottom: '2.5rem',
+              bottom: 0,
               zIndex: 1,
               borderRadius: 'lg',
               boxShadow: 'md',
               p: 1,
               display: 'flex',
-              gap: 2,
-              width: 'fit-content',
+              flexWrap: 'wrap',
+              gap: '0.375rem 1rem',
+              width: 'max-content',
               [theme.getColorSchemeSelector('dark')]: {
                 bgcolor: 'rgba(var(--template-palette-primary-darkChannel) / 0.12)',
                 borderColor: 'rgba(var(--template-palette-primary-lightChannel) / 0.4)',
+              },
+              [`& .${selectClasses.root}`]: {
+                flex: 'auto',
               },
             })}
           >
@@ -725,7 +730,7 @@ export default function JoyUITemplates() {
               '--muidocs-palette-primary-main': 'var(--template-palette-primary-main)',
             }}
           >
-            <TabPanel value={0}>
+            <TabPanel value={0} sx={{ '& > div': { height: '100%' } }}>
               <OrderDashboardApp
                 attribute="data-mui-color-scheme"
                 modeStorageKey="mui-mode"

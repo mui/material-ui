@@ -31,7 +31,7 @@ export default function FirstSidebar() {
         },
         transition: 'transform 0.4s',
         zIndex: 10000,
-        height: '100dvh',
+        height: '100%',
         width: 'var(--FirstSidebar-width)',
         top: 0,
         p: 2,

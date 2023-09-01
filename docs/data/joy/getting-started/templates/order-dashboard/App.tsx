@@ -37,7 +37,7 @@ export default function JoyOrderDashboardTemplate(props: any) {
   return (
     <CssVarsProvider disableTransitionOnChange {...props}>
       <CssBaseline />
-      <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
+      <Box sx={{ display: 'flex', height: '100dvh' }}>
         <Header />
         <FirstSidebar />
         <SecondSidebar />
@@ -63,7 +63,7 @@ export default function JoyOrderDashboardTemplate(props: any) {
             display: 'flex',
             flexDirection: 'column',
             minWidth: 0,
-            height: '100dvh',
+            height: '100%',
             gap: 1,
           }}
         >
