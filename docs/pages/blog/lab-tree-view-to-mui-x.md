@@ -44,7 +44,9 @@ MUI X components are available under three licenses:
 
 Once a component is ready to leave the lab, it can either go to MUI X or MUI Core libraries.
 
-This component would greatly benefit from advanced features such as virtualization of drag and drop.
+Given the complex nature of the Treeview, it was a clear choice to group it with the other advanced components in MUI X.
+
+Moreover, new advanced features such as virtualization and drag and drop are already on the roadmap.
 
 Given the complex nature of these features, we decided that it would benefit most from the dedicated attention that they would receive from the X team.
 
