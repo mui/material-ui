@@ -93,14 +93,6 @@ You can use these to customize the component with both the `sx` prop and the the
 
 {{"demo": "CircularProgressVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
-## 3rd-party integration
-
-### use-count-up
-
-Using the [use-count-up](https://www.npmjs.com/package/use-count-up) package, you can create a counting animation by providing `start`, `end`, and `duration` values.
-
-{{"demo": "CircularProgressCountUp.js"}}
-
 ## Accessibility
 
 Out of the box, the `aria-valuenow` attribute will indicate the current value of the progress bar only when the value is not indeterminate.
@@ -116,6 +108,14 @@ Here are a few tips to make sure you have an accessible circular progress compon
   If you need to set a different minimum or maximum value for your range, you can use the these attributes to do so.
 - Use the `aria-label` or `aria-labelledby` attribute to provide an accessible name for your progress component.
   These define the string value or identifies the element(s) that label the progress component.
+
+## Common examples
+
+### 3rd-party integration
+
+Using the [use-count-up](https://www.npmjs.com/package/use-count-up) package, you can create a counting animation by providing `start`, `end`, and `duration` values.
+
+{{"demo": "CircularProgressCountUp.js"}}
 
 ## Anatomy
 
