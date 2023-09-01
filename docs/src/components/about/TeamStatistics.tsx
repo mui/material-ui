@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 const data = [
   { title: '2014', metadata: 'The starting year' },
   { title: '100%', metadata: 'Remote team' },
-  { title: '+14', metadata: 'Countries represented' },
+  { title: '+20', metadata: 'Countries represented' },
 ];
 
 export default function TeamStatistics() {
