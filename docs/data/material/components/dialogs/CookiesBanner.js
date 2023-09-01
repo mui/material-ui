@@ -53,28 +53,26 @@ function CookiesBanner(props) {
     <React.Fragment>
       <CssBaseline />
       <Root sx={{ bgcolor: 'background.default', position: 'relative' }}>
-        <Box component="main">
-          <AppBar position="fixed">
-            <Toolbar>
-              <IconButton color="inherit">
-                <MenuIcon />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-          <Box sx={{ m: 1, pt: 10 }}>
-            <Typography paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus
-              non enim praesent elementum facilisis leo vel. Risus at ultrices mi
-              tempus imperdiet.
-            </Typography>
-            <Typography paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus
-              non enim praesent elementum facilisis leo vel. Risus at ultrices mi
-              tempus imperdiet.
-            </Typography>
-          </Box>
+        <AppBar position="fixed">
+          <Toolbar>
+            <IconButton color="inherit">
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <Box sx={{ p: 1, pt: 10 }}>
+          <Typography paragraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus
+            non enim praesent elementum facilisis leo vel. Risus at ultrices mi
+            tempus imperdiet.
+          </Typography>
+          <Typography paragraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus
+            non enim praesent elementum facilisis leo vel. Risus at ultrices mi
+            tempus imperdiet.
+          </Typography>
         </Box>
         <Fade appear={false} in={bannerOpen}>
           <div>
