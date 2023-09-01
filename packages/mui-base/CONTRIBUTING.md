@@ -53,7 +53,7 @@ If we allow a developer to skip running our logic for a given handler, we check 
 ```tsx
 const createHandleKeyDown = (otherHandlers: EventHandlers) => (event: React.KeyboardEvent & MuiCancellableEvent) => {
   // Run the external handler first.
-  // It possibly can set the defaultMuiPrevented field.
+  // It can potentially set the defaultMuiPrevented field.
   otherHandlers.onKeyDown?.(event);
 
   // If the field is set, do not execute the usual handler logic.
