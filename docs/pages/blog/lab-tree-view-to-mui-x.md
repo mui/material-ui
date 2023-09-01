@@ -34,7 +34,7 @@ The component allows to select one or multiple nodes.
 
 As opposed to the MUI Core library, which leans on the open-source community for support, MUI X components require several full-time developers dedicated to engineering and ongoing maintenance.
 
-MUI X components are available under two licenses:
+MUI X components are available under three licenses:
 
 - MUI X is MIT licensed, so it's free to use.
 - MUI X Pro includes the most advanced features and is commercially licensed.
