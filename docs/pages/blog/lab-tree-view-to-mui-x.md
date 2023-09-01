@@ -36,7 +36,7 @@ As opposed to the MUI Core library, which leans on the open-source community for
 
 MUI X components are available under three licenses:
 
-- MUI X is MIT licensed, so it's free to use.
+- **MIT license**, which is free to use and includes all the current (and more to come) Treeview features.
 - **MUI X Pro**, a commercial license that offers features for handling large datasets and will include the most advanced features for Treeview, like virtualization.
 - **MUI X Premium**, which is also commercial and includes, in addition to the Pro features, tooling for data analysis.
 
