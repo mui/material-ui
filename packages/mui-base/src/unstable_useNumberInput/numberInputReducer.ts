@@ -8,15 +8,15 @@ import { NumberInputActionTypes } from './numberInputAction.types';
 import { clamp, isNumber } from './utils';
 
 // extracted from handleValueChange
-function getClampedValues(oldValue: number | undefined, context: NumberInputActionContext) {
+function getClampedValues(rawValue: number | undefined, context: NumberInputActionContext) {
   const { min, max, step } = context;
 
-  const newValue = oldValue === undefined ? undefined : clamp(oldValue, min, max, step);
+  const clampedValue = rawValue === undefined ? undefined : clamp(rawValue, min, max, step);
 
-  const newInputValue = newValue === undefined ? '' : String(newValue);
+  const newInputValue = clampedValue === undefined ? '' : String(clampedValue);
 
   return {
-    value: newValue,
+    value: clampedValue,
     inputValue: newInputValue,
   };
 }

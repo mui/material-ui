@@ -6,21 +6,20 @@ import { getInputValueAsString as defaultGetInputValueAsString } from './useNumb
 
 describe('numberInputReducer', () => {
   describe('action: blur', () => {
-    it('snaps the inputValue based on min, max, and step', () => {
+    it('clamps the inputValue', () => {
       const state: NumberInputState = {
-        value: 0,
-        inputValue: '2',
+        value: 1,
+        inputValue: '1',
       };
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.blur,
         event: {
           currentTarget: {
-            value: '2',
+            value: '1',
           },
         } as unknown as React.FocusEvent<HTMLInputElement>,
         context: {
-          step: 3,
           getInputValueAsString: defaultGetInputValueAsString,
           shiftMultiplier: 10,
         },
@@ -28,8 +27,86 @@ describe('numberInputReducer', () => {
 
       const result = numberInputReducer(state, action);
 
-      expect(result.value).to.equal(3);
-      expect(result.inputValue).to.equal('3');
+      expect(result.value).to.equal(1);
+      expect(result.inputValue).to.equal('1');
+    });
+
+    it('clamps the inputValue with a custom step', () => {
+      const state: NumberInputState = {
+        value: 0,
+        inputValue: '0',
+      };
+
+      const action: NumberInputReducerAction = {
+        type: NumberInputActionTypes.blur,
+        event: {
+          currentTarget: {
+            value: '3',
+          },
+        } as unknown as React.FocusEvent<HTMLInputElement>,
+        context: {
+          getInputValueAsString: defaultGetInputValueAsString,
+          shiftMultiplier: 10,
+          step: 4,
+        },
+      };
+
+      const result = numberInputReducer(state, action);
+
+      expect(result.value).to.equal(4);
+      expect(result.inputValue).to.equal('4');
+    });
+
+    it('clamps the inputValue within min if min is set', () => {
+      const state: NumberInputState = {
+        value: 0,
+        inputValue: '0',
+      };
+
+      const action: NumberInputReducerAction = {
+        type: NumberInputActionTypes.blur,
+        event: {
+          currentTarget: {
+            value: '0',
+          },
+        } as unknown as React.FocusEvent<HTMLInputElement>,
+        context: {
+          getInputValueAsString: defaultGetInputValueAsString,
+          shiftMultiplier: 10,
+          min: 5,
+        },
+      };
+
+      const result = numberInputReducer(state, action);
+
+      expect(result.value).to.equal(5);
+      expect(result.inputValue).to.equal('5');
+    });
+
+    it('clamps the inputValue within max if max is set', () => {
+      const state: NumberInputState = {
+        value: 10,
+        inputValue: '10',
+      };
+
+      const action: NumberInputReducerAction = {
+        type: NumberInputActionTypes.blur,
+        event: {
+          currentTarget: {
+            value: '10',
+          },
+        } as unknown as React.FocusEvent<HTMLInputElement>,
+        context: {
+          getInputValueAsString: defaultGetInputValueAsString,
+          shiftMultiplier: 10,
+          max: 9,
+        },
+      };
+
+      const result = numberInputReducer(state, action);
+
+      expect(result.value).to.equal(9);
+      expect(result.inputValue).to.equal('9');
     });
   });
 
