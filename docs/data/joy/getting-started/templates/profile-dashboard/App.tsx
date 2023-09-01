@@ -10,9 +10,9 @@ export default function JoyOrderDashboardTemplate() {
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
-      <Box sx={{ display: 'flex', minHeight: '100dvh', position: 'relative' }}>
-        <Header />
+      <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
         <Sidebar />
+        <Header />
         <Box
           component="main"
           className="MainContent"
@@ -33,6 +33,7 @@ export default function JoyOrderDashboardTemplate() {
             minWidth: 0,
             height: '100dvh',
             gap: 1,
+            overflow: 'auto',
           }}
         >
           <MyProfile />
