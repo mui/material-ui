@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useRouter } from 'next/router';
-import loadScript from 'docs/src/modules/utils/loadScript';
 import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useNoSsrCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
