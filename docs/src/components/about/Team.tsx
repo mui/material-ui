@@ -15,6 +15,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
+import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
 
 interface Profile {
@@ -314,7 +315,7 @@ export default function Team() {
           }}
         >
           <Typography variant="h2" mb={1}>
-            Meet the MUIers
+            Meet the <GradientText>MUIers</GradientText>
           </Typography>
           <Typography color="text.secondary" mb={2}>
             Contributing from all corners of the world, MUI is a global team & community.

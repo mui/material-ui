@@ -16,7 +16,7 @@ const teamPhotos = [
     title: 'Mushrooms',
   },
   {
-    img: '/static/blog/2022-tenerife-retreat/whale-watching-danail.jpeg',
+    img: '/static/about/working-table-tenerife.jpeg',
     title: 'Tower',
   },
   {
@@ -27,11 +27,23 @@ const teamPhotos = [
     img: '/static/blog/2022-tenerife-retreat/outdoor-focus-group.jpeg',
     title: 'Tower',
   },
+  {
+    img: '/static/about/working-table-portugal.jpeg',
+    title: 'Tower',
+  },
+  {
+    img: '/static/about/snow-tea.jpeg',
+    title: 'Tower',
+  },
+  {
+    img: '/static/about/portugal-sight-seeing.jpeg',
+    title: 'Tower',
+  },
 ];
 
 export default function TeamPhotoMasonry() {
   return (
-    <Masonry columns={3} spacing={2} sx={{ mt: 4, mb: 1 }}>
+    <Masonry columns={3} spacing={2} sx={{ mt: 4, mb: 1, minHeight: 780 }}>
       {teamPhotos.map((item, index) => (
         <div key={index}>
           <Box
@@ -42,9 +54,8 @@ export default function TeamPhotoMasonry() {
             loading="lazy"
             sx={{
               width: '100%',
-              objectFit: 'cover',
               borderRadius: 0.5,
-              border: '1px solid',
+              border: '2px solid',
               borderColor: 'divider',
             }}
           />
