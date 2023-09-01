@@ -13,7 +13,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
-import Link from '@mui/joy/Link';
+import Stack from '@mui/joy/Stack';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Sheet from '@mui/joy/Sheet';
@@ -244,12 +244,7 @@ export default function DrawerFilters() {
 
           <Divider sx={{ mt: 'auto' }} />
 
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
+          <Stack direction="row" justifyContent="space-between" spacing={1}>
             <Button
               variant="outlined"
               color="neutral"
@@ -258,10 +253,10 @@ export default function DrawerFilters() {
                 setAmenities([]);
               }}
             >
-              Clear all
+              Clear
             </Button>
             <Button onClick={() => setOpen(false)}>Show 165 properties</Button>
-          </Box>
+          </Stack>
         </Sheet>
       </Drawer>
     </React.Fragment>
