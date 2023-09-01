@@ -505,7 +505,6 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     'aria-label': ariaLabel,
     'aria-valuetext': ariaValuetext,
     'aria-labelledby': ariaLabelledby,
-    // eslint-disable-next-line react/prop-types
     component = 'span',
     components = {},
     componentsProps = {},
