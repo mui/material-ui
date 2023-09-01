@@ -89,7 +89,7 @@ function TestOnChangeValueType() {
         value={val}
         component="a"
         onAbort={(e) => {
-          expectType<React.SyntheticEvent<HTMLAnchorElement, Event>, typeof e>(e);
+          expectType<React.SyntheticEvent<HTMLAnchorElement>, typeof e>(e);
         }}
       />
       <Slider
@@ -102,7 +102,7 @@ function TestOnChangeValueType() {
         value={multipleVal}
         component="a"
         onAbort={(e) => {
-          expectType<React.SyntheticEvent<HTMLAnchorElement, Event>, typeof e>(e);
+          expectType<React.SyntheticEvent<HTMLAnchorElement>, typeof e>(e);
         }}
       />
       <Slider
@@ -114,7 +114,7 @@ function TestOnChangeValueType() {
         }}
         component="a"
         onAbort={(e) => {
-          expectType<React.SyntheticEvent<HTMLAnchorElement, Event>, typeof e>(e);
+          expectType<React.SyntheticEvent<HTMLAnchorElement>, typeof e>(e);
         }}
       />
       <Slider component={CustomComponent} stringProp="" numberProp={1} />
