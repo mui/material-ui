@@ -68,7 +68,7 @@ export default function OurValues() {
           size="medium"
           sx={{ width: { xs: '100%', sm: 'fit-content' } }}
         >
-          View the handbook
+          View our handbook
         </Button>
       </Box>
       <Grid container spacing={3} sx={{ mt: { xs: 1, sm: 2 } }}>

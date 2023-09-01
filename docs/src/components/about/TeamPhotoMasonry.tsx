@@ -31,7 +31,7 @@ const teamPhotos = [
 
 export default function TeamPhotoMasonry() {
   return (
-    <Masonry columns={3} spacing={2} sx={{ my: 2 }}>
+    <Masonry columns={3} spacing={2} sx={{ mt: 4, mb: 1 }}>
       {teamPhotos.map((item, index) => (
         <div key={index}>
           <Box

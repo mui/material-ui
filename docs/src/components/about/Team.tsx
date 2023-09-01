@@ -328,7 +328,7 @@ export default function Team() {
             size="medium"
             sx={{ width: { xs: '100%', sm: 'fit-content' } }}
           >
-            See open roles
+            View careers
           </Button>
         </Box>
         <Box mt={4}>
