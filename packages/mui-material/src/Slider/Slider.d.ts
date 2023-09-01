@@ -20,7 +20,7 @@ export interface SliderOwnerState extends SliderProps {
   focusedThumbIndex: number;
 }
 
-export interface SliderOwnProps {
+export interface SliderOwnProps<Value> {
   /**
    * The label of the slider.
    */
@@ -92,7 +92,7 @@ export interface SliderOwnProps {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: number | number[];
+  defaultValue?: Value;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -150,14 +150,14 @@ export interface SliderOwnProps {
    * @param {number | number[]} value The new value.
    * @param {number} activeThumb Index of the currently moved thumb.
    */
-  onChange?: (event: Event, value: number | number[], activeThumb: number) => void;
+  onChange?: (event: Event, value: Value, activeThumb: number) => void;
   /**
    * Callback function that is fired when the `mouseup` is triggered.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
    */
-  onChangeCommitted?: (event: React.SyntheticEvent | Event, value: number | number[]) => void;
+  onChangeCommitted?: (event: React.SyntheticEvent | Event, value: Value) => void;
   /**
    * The component orientation.
    * @default 'horizontal'
@@ -271,7 +271,7 @@ export interface SliderTypeMap<
   AdditionalProps = {},
   Value extends number | number[] | undefined = undefined,
 > {
-  props: AdditionalProps & SliderOwnProps;
+  props: AdditionalProps & SliderOwnProps<Value>;
   defaultComponent: RootComponent;
 }
 
