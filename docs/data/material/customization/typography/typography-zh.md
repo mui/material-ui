@@ -174,7 +174,7 @@ theme = responsiveFontSizes(theme);
 您可能想要更改 `<html>` 元素的默认字体大小。 例如，当您使用 [10px 简化](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 时。
 
 :::warning
-⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 :::
 
 The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.

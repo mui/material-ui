@@ -488,6 +488,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /base-ui/react-components/ /base-ui/all-components/ 301
 /system/getting-started/overview/ /system/getting-started/ 301
 /blog/introducing-mui-base/ /blog/introducing-base-ui/ 301
+/joy-ui/guides/next-js-app-router/ /joy-ui/integrations/next-js-app-router/ 301
+/joy-ui/guides/using-joy-ui-and-material-ui-together/ /joy-ui/integrations/material-ui/ 301
+/joy-ui/guides/using-icon-libraries/ /joy-ui/integrations/icon-libraries/ 301
 
 # Proxies
 

@@ -29,10 +29,10 @@ describe('<Card />', () => {
   describeJoyColorInversion(<Card />, { muiName: 'JoyCard', classes });
 
   describe('prop: variant', () => {
-    it('plain by default', () => {
+    it('outlined by default', () => {
       const { getByTestId } = render(<Card data-testid="root">Hello World</Card>);
 
-      expect(getByTestId('root')).to.have.class(classes.variantPlain);
+      expect(getByTestId('root')).to.have.class(classes.variantOutlined);
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
