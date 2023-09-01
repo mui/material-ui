@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import colors from '@mui/joy/colors';
 import { extendTheme, THEME_ID } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
@@ -17,6 +18,7 @@ import Sheet from '@mui/joy/Sheet';
 import Select, { SelectStaticProps, selectClasses } from '@mui/joy/Select';
 import SvgIcon from '@mui/joy/SvgIcon';
 import Option from '@mui/joy/Option';
+import Tooltip from '@mui/joy/Tooltip';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -324,6 +326,10 @@ const radiusOptions = {
 
 const familyOptions = ['Inter', 'General Sans', 'IBM Plex Sans', 'Menlo, Consolas'];
 
+function randomValue<T>(array: Array<T>) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
 function PalettePreview({ range }: { range: Record<string | number, string> }) {
   return Object.entries(range).map(([key, value]) => (
     <Box
@@ -344,6 +350,8 @@ function usePrimarySelector() {
   return {
     primary,
     setPrimary,
+    randomValue: () =>
+      setPrimary(randomValue(Object.keys(tailwindColors) as Array<keyof typeof tailwindColors>)),
     renderSelector: (props?: SelectStaticProps) => (
       <Select
         size="sm"
@@ -387,6 +395,10 @@ function useNeutralSelector() {
   return {
     neutral,
     setNeutral,
+    randomValue: () =>
+      setNeutral(
+        randomValue(Object.keys(tailwindNeutrals) as Array<keyof typeof tailwindNeutrals>),
+      ),
     renderSelector: (props?: SelectStaticProps) => (
       <Select
         size="sm"
@@ -428,6 +440,7 @@ function useBgSwap() {
   return {
     bgSwap,
     setBgSwap,
+    randomValue: () => setBgSwap(Math.random() > 0.5),
     renderSelector: ({ sx, ...props }: ToggleButtonGroupStaticProps = {}) => (
       <ToggleButtonGroup
         size="sm"
@@ -485,6 +498,8 @@ function useRadiusSelector() {
   return {
     radius,
     setRadius,
+    randomValue: () =>
+      setRadius(randomValue(Object.keys(radiusOptions) as Array<keyof typeof radiusOptions>)),
     renderSelector: (props?: SelectStaticProps) => (
       <Select
         size="sm"
@@ -525,6 +540,7 @@ function useFamilySelector() {
   return {
     family,
     setFamily,
+    randomValue: () => setFamily(randomValue(familyOptions)),
     renderSelector: (props?: SelectStaticProps) => (
       <Select
         size="sm"
@@ -550,11 +566,19 @@ function useFamilySelector() {
 }
 
 export default function JoyUITemplates() {
-  const { primary, renderSelector: renderPrimary } = usePrimarySelector();
-  const { neutral, renderSelector: renderNeutral } = useNeutralSelector();
-  const { bgSwap, renderSelector: renderBgSwap } = useBgSwap();
-  const { radius, renderSelector: renderRadius } = useRadiusSelector();
-  const { family, renderSelector: renderFamily } = useFamilySelector();
+  const {
+    primary,
+    renderSelector: renderPrimary,
+    randomValue: randomPrimary,
+  } = usePrimarySelector();
+  const {
+    neutral,
+    renderSelector: renderNeutral,
+    randomValue: randomNeutral,
+  } = useNeutralSelector();
+  const { bgSwap, renderSelector: renderBgSwap, randomValue: randomBgSwap } = useBgSwap();
+  const { radius, renderSelector: renderRadius, randomValue: randomRadius } = useRadiusSelector();
+  const { family, renderSelector: renderFamily, randomValue: randomFamily } = useFamilySelector();
   const customTheme = React.useMemo(
     () => ({
       [THEME_ID]: extendTheme({
@@ -764,7 +788,7 @@ export default function JoyUITemplates() {
             p: 1,
             display: 'flex',
             flexWrap: 'wrap',
-            gap: '0.375rem 1rem',
+            gap: '0.375rem 0.5rem',
             width: 'max-content',
             [theme.getColorSchemeSelector('dark')]: {
               bgcolor: 'rgba(var(--template-palette-primary-darkChannel) / 0.12)',
@@ -775,6 +799,43 @@ export default function JoyUITemplates() {
             },
           })}
         >
+          <Tooltip size="sm" title="Cast magic">
+            <IconButton
+              size="sm"
+              variant="plain"
+              onClick={() => {
+                randomPrimary();
+                randomNeutral();
+                randomBgSwap();
+                randomRadius();
+                randomFamily();
+              }}
+            >
+              <SvgIcon>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z" />
+                  <path d="m14 7 3 3" />
+                  <path d="M5 6v4" />
+                  <path d="M19 14v4" />
+                  <path d="M10 2v2" />
+                  <path d="M7 8H3" />
+                  <path d="M21 16h-4" />
+                  <path d="M11 3H9" />
+                </svg>
+              </SvgIcon>
+            </IconButton>
+          </Tooltip>
+
           {renderPrimary()}
 
           {renderNeutral()}
@@ -785,6 +846,16 @@ export default function JoyUITemplates() {
 
           {renderFamily()}
         </Sheet>
+        <GlobalStyles
+          styles={(theme) => ({
+            body: {
+              backgroundColor: theme.vars.palette.background.default,
+              color: theme.vars.palette.text.primary,
+              fontFamily: theme.typography.fontFamily,
+              lineHeight: 1.5,
+            },
+          })}
+        />
       </Box>
     </Section>
   );
