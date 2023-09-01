@@ -6,7 +6,7 @@ import Typography from '@mui/joy/Typography';
 
 export default function LinkCard() {
   return (
-    <Card sx={{ display: 'flex', gap: 2 }}>
+    <Card variant="outlined" sx={{ display: 'flex', gap: 2 }}>
       <Avatar size="lg" src="/static/images/avatar/1.jpg" />
       <Link
         overlay
@@ -14,7 +14,7 @@ export default function LinkCard() {
         underline="none"
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}
       >
-        <Typography>Joy UI</Typography>
+        <Typography level="body-md">Joy UI</Typography>
         <Typography level="body-sm">Components that spark joy!</Typography>
       </Link>
     </Card>
