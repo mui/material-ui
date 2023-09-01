@@ -78,7 +78,7 @@ const useUtilityClasses = (ownerState) => {
       fullWidth && 'fullWidth',
       focused && 'focused',
       formControl && 'formControl',
-      size === 'small' && 'sizeSmall',
+      size && size !== 'medium' && `size${capitalize(size)}`,
       multiline && 'multiline',
       startAdornment && 'adornedStart',
       endAdornment && 'adornedEnd',
@@ -440,7 +440,8 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     if (inputRef.current && event.currentTarget === event.target) {
       inputRef.current.focus();
     }
-    if (onClick && !fcs.disabled) {
+
+    if (onClick) {
       onClick(event);
     }
   };

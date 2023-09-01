@@ -55,4 +55,10 @@ We **strongly recommend** using Emotion for SSR projects.
 
 <!-- #react-peer-version -->
 
-[`react`](https://www.npmjs.com/package/react) >= 17.0.0 is a peer dependency.
+Please note that [react](https://www.npmjs.com/package/react) is a peer dependency too:
+
+```json
+"peerDependencies": {
+  "react": "^17.0.0 || ^18.0.0"
+},
+```

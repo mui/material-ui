@@ -33,7 +33,7 @@ type VariantDataTransformed = {
   className: string;
 };
 
-type IOptions = IBaseOptions & PluginCustomOptions;
+export type IOptions = IBaseOptions & PluginCustomOptions;
 type ComponentNames = keyof Exclude<Theme['components'], undefined>;
 
 type ComponentMeta = {
@@ -125,7 +125,6 @@ export default class StyledProcessor extends BaseProcessor {
       throw BaseProcessor.SKIP;
     }
     validateParams(params, ['callee', ['call', 'member'], ['call', 'template']], 'Invalid params');
-    // console.log(params);
     const [call, memberOrCall, styleCall] = params;
     const [callType, componentArg, componentMetaArg] = memberOrCall;
     const [, ...styleArgs] = styleCall;
@@ -295,10 +294,11 @@ export default class StyledProcessor extends BaseProcessor {
     >[] = [];
 
     if (this.baseClasses.length) {
+      const classNames = Array.from(new Set([this.className, ...this.baseClasses]));
       argProperties.push(
         t.objectProperty(
           t.identifier('classes'),
-          t.arrayExpression(this.baseClasses.map((cls) => t.stringLiteral(cls))),
+          t.arrayExpression(classNames.map((cls) => t.stringLiteral(cls))),
         ),
       );
     }

@@ -66,10 +66,10 @@ export default function EmailList() {
                     {item.date}
                   </Typography>
                 </Box>
-                <Box>
+                <div>
                   <Typography sx={{ mb: 0.5 }}>{item.title}</Typography>
                   <Typography level="body-sm">{item.body}</Typography>
-                </Box>
+                </div>
               </Box>
             </ListItemButton>
           </ListItem>

@@ -482,6 +482,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const paperProps = {
+    ...MenuProps.PaperProps,
+    ...MenuProps.slotProps?.paper,
+  };
+
   return (
     <React.Fragment>
       <SelectSelect
@@ -547,11 +552,13 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           disableListWrap: true,
           ...MenuProps.MenuListProps,
         }}
-        PaperProps={{
-          ...MenuProps.PaperProps,
-          style: {
-            minWidth: menuMinWidth,
-            ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
+        slotProps={{
+          paper: {
+            ...paperProps,
+            style: {
+              minWidth: menuMinWidth,
+              ...(paperProps != null ? paperProps.style : null),
+            },
           },
         }}
       >

@@ -30,7 +30,7 @@ export default function SimpleSlide() {
 
   return (
     <Box sx={{ height: 180 }}>
-      <Box sx={{ width: `calc(100px + 16px)` }}>
+      <Box sx={{ width: `calc(100px + 16px)`, position: 'relative', zIndex: 1 }}>
         <FormControlLabel
           control={<Switch checked={checked} onChange={handleChange} />}
           label="Show"

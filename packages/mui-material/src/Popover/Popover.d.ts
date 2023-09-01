@@ -91,9 +91,10 @@ export interface PopoverProps
   elevation?: number;
   /**
    * Specifies how close to the edge of the window the popover can appear.
+   * If null, the popover will not be constrained by the window.
    * @default 16
    */
-  marginThreshold?: number;
+  marginThreshold?: number | null;
   onClose?: ModalProps['onClose'];
   /**
    * If `true`, the component is shown.

@@ -20,8 +20,8 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.17.5",
-    "chai": "^4.3.7",
+    "@types/node": "^18.17.12",
+    "chai": "^4.3.8",
     "sinon": "^15.2.0",
     "typescript": "^5.1.6"
   }

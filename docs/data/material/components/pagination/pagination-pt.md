@@ -72,7 +72,7 @@ Para a paginação de um conjunto grande de dados tabulares, você deve usar o c
 {{"demo": "TablePaginationDemo.js"}}
 
 :::info
-⚠️ Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data.
+Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data.
 :::
 
 You can learn more about this use case in the [table section](/material-ui/react-table/#custom-pagination-options) of the documentation.

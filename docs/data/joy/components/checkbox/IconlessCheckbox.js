@@ -11,7 +11,7 @@ export default function IconlessCheckbox() {
       <Typography id="topping" level="body-sm" fontWeight="lg" mb={2}>
         Pizza toppings
       </Typography>
-      <Box role="group" aria-labelledby="topping">
+      <div role="group" aria-labelledby="topping">
         <List
           orientation="horizontal"
           wrap
@@ -39,7 +39,7 @@ export default function IconlessCheckbox() {
             </ListItem>
           ))}
         </List>
-      </Box>
+      </div>
     </Box>
   );
 }
