@@ -1,10 +1,107 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import TeamPhotoMasonry from 'docs/src/components/about/TeamPhotoMasonry';
 import TeamStatistics from 'docs/src/components/about/TeamStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Section from 'docs/src/layouts/Section';
+
+const teamPhotos = [
+  {
+    img: '/static/blog/2023-chamonix-retreat/skiers.jpeg',
+    title: 'Snacks',
+  },
+  {
+    img: '/static/blog/2022-tenerife-retreat/group-photo.jpeg',
+    title: 'Fern',
+  },
+  {
+    img: '/static/blog/2023-chamonix-retreat/team-dinner.jpeg',
+    title: 'Mushrooms',
+  },
+  {
+    img: '/static/about/working-table-tenerife.jpeg',
+    title: 'Tower',
+  },
+  {
+    img: '/static/blog/2022-tenerife-retreat/scuba-gear.jpeg',
+    title: 'Tower',
+  },
+  {
+    img: '/static/blog/2022-tenerife-retreat/outdoor-focus-group.jpeg',
+    title: 'Tower',
+  },
+  {
+    img: '/static/about/working-table-portugal.jpeg',
+    title: 'Tower',
+  },
+  {
+    img: '/static/about/snow-tea.jpeg',
+    title: 'Tower',
+  },
+  {
+    img: '/static/about/portugal-sight-seeing.jpeg',
+    title: 'Tower',
+  },
+];
+
+function PhotoGallery() {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 4,
+        my: 4,
+        animation: 'bannermove 28s linear infinite',
+        '@keyframes bannermove': {
+          '0%': {
+            transform: 'translateX(0%)',
+          },
+          '100%': {
+            transform: 'translateX(-100%)',
+          },
+        },
+        '&:hover': {
+          animationPlayState: 'paused',
+        },
+      }}
+    >
+      {teamPhotos.map((item, index) => (
+        <div key={index}>
+          <Box
+            component="img"
+            src={`${item.img}?w=162&auto=format`}
+            srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
+            alt={item.title}
+            loading="lazy"
+            sx={(theme) => ({
+              width: '100%',
+              minWidth: { xs: 200, sm: 400 },
+              minHeight: { xs: 100, sm: 200 },
+              objectFit: 'cover',
+              borderRadius: 1,
+              border: '1px solid',
+              borderColor: 'divider',
+              boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.grey[200]}`,
+              transition: 'all 150ms ease',
+              '&:hover': {
+                transform: 'scale(1.1)',
+                boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
+              },
+              ...theme.applyDarkStyles({
+                borderColor: 'primaryDark.600',
+                boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.common.black}`,
+                '&:hover': {
+                  boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.common.black}`,
+                },
+              }),
+            })}
+          />
+        </div>
+      ))}
+    </Box>
+  );
+}
 
 export default function AboutHero() {
   return (
@@ -27,7 +124,7 @@ export default function AboutHero() {
           We aim high at enabling developers & designers to bring stunning UIs to life with
           unrivalled speed and ease.
         </Typography>
-        <TeamPhotoMasonry />
+        <PhotoGallery />
         <TeamStatistics />
       </Box>
     </Section>

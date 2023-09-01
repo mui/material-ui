@@ -4,46 +4,35 @@ import Typography from '@mui/material/Typography';
 
 const data = [
   { title: '2014', metadata: 'The starting year' },
-  { title: '100%', metadata: 'Remote team' },
+  { title: '100%', metadata: 'Remote global team' },
   { title: '+20', metadata: 'Countries represented' },
 ];
 
 export default function TeamStatistics() {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
       {data.map((item) => (
-        <Box key={item.title}>
-          <Box
+        <Box
+          key={item.title}
+          sx={{ height: '100%', width: '100%', minWidth: { xs: 'auto', sm: 200 } }}
+        >
+          <Typography
+            component="p"
+            variant="h4"
+            fontWeight="bold"
             sx={(theme) => ({
-              height: '100%',
-              minWidth: 200,
-              p: 1,
-              pl: 2,
-              // borderLeft: '1px solid',
-              borderColor: 'primary.100',
+              textAlign: { xs: 'left', sm: 'center' },
+              color: 'primary.main',
               ...theme.applyDarkStyles({
-                borderColor: 'primaryDark.600',
+                color: 'primary.200',
               }),
             })}
           >
-            <Typography
-              component="div"
-              variant="h4"
-              fontWeight="bold"
-              textAlign="center"
-              sx={(theme) => ({
-                color: 'primary.main',
-                ...theme.applyDarkStyles({
-                  color: 'primary.200',
-                }),
-              })}
-            >
-              {item.title}
-            </Typography>
-            <Typography textAlign="center" color="text.secondary">
-              {item.metadata}
-            </Typography>
-          </Box>
+            {item.title}
+          </Typography>
+          <Typography color="text.secondary" sx={{ textAlign: { xs: 'left', sm: 'center' } }}>
+            {item.metadata}
+          </Typography>
         </Box>
       ))}
     </Box>
