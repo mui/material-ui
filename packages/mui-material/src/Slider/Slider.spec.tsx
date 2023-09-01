@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import Slider from '@mui/material/Slider';
+import { styled } from '@mui/system';
 
 function testOnChange() {
   function handleSliderChange(event: Event, value: unknown) {}
@@ -17,6 +18,8 @@ const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
     return <div />;
   };
 
+const StyledSlider = styled(Slider)``;
+
 function TestOnChangeValueType() {
   const [val] = React.useState(1);
   const [multipleVal] = React.useState([1, 2]);
@@ -24,6 +27,26 @@ function TestOnChangeValueType() {
   const handleChange = (event: Event, value: number) => {};
   return (
     <React.Fragment>
+      <StyledSlider
+        defaultValue={val}
+        onChange={(event, value) => {
+          expectType<number | number[], typeof value>(value);
+        }}
+        onChangeCommitted={(event, value) => {
+          expectType<number | number[], typeof value>(value);
+        }}
+      />
+      <StyledSlider
+        value={val}
+        onChange={(event, value) => {
+          expectType<number | number[], typeof value>(value);
+        }}
+        onChangeCommitted={(event, value) => {
+          expectType<number | number[], typeof value>(value);
+        }}
+      />
+      <StyledSlider value={30} />
+      <StyledSlider value={30} />
       <Slider
         value={val}
         onChange={(event, value) => {
