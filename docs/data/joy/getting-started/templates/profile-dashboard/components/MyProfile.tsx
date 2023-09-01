@@ -168,7 +168,7 @@ export default function MyProfile() {
           <Divider />
           <Stack
             direction="row"
-            spacing={4}
+            spacing={3}
             sx={{ display: { xs: 'none', md: 'flex' }, my: 1 }}
           >
             <Stack direction="column" spacing={1}>
@@ -272,8 +272,8 @@ export default function MyProfile() {
               <Stack direction="column" spacing={1}>
                 <AspectRatio
                   ratio="1"
-                  maxHeight={200}
-                  sx={{ flex: 1, minWidth: 100, borderRadius: '100%' }}
+                  maxHeight={108}
+                  sx={{ flex: 1, minWidth: 108, borderRadius: '100%' }}
                 >
                   <img
                     src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286"
@@ -293,7 +293,7 @@ export default function MyProfile() {
                     zIndex: 2,
                     borderRadius: '50%',
                     left: 85,
-                    top: 170,
+                    top: 180,
                     boxShadow: 'sm',
                   }}
                 >

@@ -2,8 +2,6 @@ import * as React from 'react';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import IconButton from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
-import MuiLogo from './MuiLogo';
-import ColorSchemeToggle from './ColorSchemeToggle';
 import { toggleSidebar } from '../utils';
 
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
@@ -45,8 +43,6 @@ export default function Header() {
       >
         <MenuRoundedIcon />
       </IconButton>
-      <MuiLogo variant="plain" sx={{ boxShadow: 'none', mr: 'auto' }} />
-      <ColorSchemeToggle id={undefined} />
     </Sheet>
   );
 }

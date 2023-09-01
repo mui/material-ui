@@ -37,6 +37,7 @@ import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import BadgeRoundedIcon from '@mui/icons-material/BadgeRounded';
 
 export default function Sidebar() {
   return (
@@ -96,8 +97,10 @@ export default function Sidebar() {
         onClick={() => closeSidebar()}
       />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-        <MuiLogo />
-        <Typography level="title-lg">MUI</Typography>
+        <IconButton variant="soft" color="primary" size="sm">
+          <BadgeRoundedIcon />
+        </IconButton>
+        <Typography level="title-lg">Profiles</Typography>
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
       </Box>
       <Input size="sm" startDecorator={<SearchRoundedIcon />} placeholder="Search" />
@@ -173,7 +176,7 @@ export default function Sidebar() {
               </ListItemContent>
             </AccordionSummary>
             <AccordionDetails>
-              <List size="sm">
+              <List size="sm" sx={{ '--ListItem-paddingLeft': '38px' }}>
                 <ListItemButton selected sx={{ borderRadius: 'sm' }}>
                   My profile
                 </ListItemButton>
