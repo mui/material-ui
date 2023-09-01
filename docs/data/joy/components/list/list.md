@@ -18,7 +18,7 @@ Joy UI Lists are implemented using a collection of related components:
 - [List](#basics) - a wrapper for list items. Renders as a `<ul>` by default.
 - [List Item](#basics) - a common list item. Renders as an `<li>` by default.
 - [List Item Button](#actionable) - an action element to be used inside a list item.
-- [List Item Decorator](#decorator) - a decorator of a list item, usually used to display an icon.
+- [List Item Decorator](#decorators) - a decorator of a list item, usually used to display an icon.
 - [List Item Content](#ellipsis-content) - a container inside a list item, used to display text content.
 - [List Divider](#divider) - a separator between list items.
 - [List Subheader](#nested-list) - a label for a nested list.
@@ -60,7 +60,7 @@ Use the List Item Decorator component to add supporting icons or elements to the
 {{"demo": "DecoratedList.js"}}
 
 :::info
-The `ListItemDecorator` comes with a minimum set width that can be adjusted using the `--list-decorator-size` CSS variable within the List component.
+The List Item Decorator comes with a minimum set width that can be adjusted using the `--list-decorator-size` CSS variable within the List component.
 :::
 
 ### Horizontal list
@@ -75,7 +75,7 @@ While nested lists will not work in a horizontal direction, you can create a cus
 
 ### Semantic elements
 
-If you would like to control which HTML tag should be rendered in a one-off situation, you can use the `component` prop.
+Use the `component` prop to control which HTML tag is rendered.
 
 ```js
 <List component="ol">
@@ -93,7 +93,7 @@ If used, it will automatically change the semantic element from the default `<li
 ### Ellipsis content
 
 When working with longer content in a List, you can use the List Item component in combination with `<Typography noWrap />` to display an ellipsis when the content exceeds the available space.
-This can help to keep the list items visually consistent and prevent text from overflowing outside of the list item's container.
+This can help to keep the List Items visually consistent and prevent text from overflowing outside of the List Item's container.
 
 {{"demo": "EllipsisList.js"}}
 
@@ -101,7 +101,7 @@ This can help to keep the list items visually consistent and prevent text from o
 
 The List Divider component comes with four `inset` patterns:
 
-- Default (no `inset` prop provided): stretches form one edge of the list to the other.
+- Default (no `inset` prop provided): stretches form one edge of the List to the other.
 - `inset="gutter"`: from the start of List Item Decorator to the end of the content.
 - `inset="startDecorator"`: from the start of List Item Decorator to the end of the edge of the container.
 - `inset="startContent"`: from the start of the content to the edge of the container.
@@ -114,7 +114,7 @@ If you're using a horizontal list, only `inset="gutter"` will work as the list d
 
 ### Sticky item
 
-To have a sticky list item, you can use List as a child of the Sheet component.
+Use the List component as a child of the Sheet component to create "sticky" items.
 On the item you wish to stick, you can then add the `sticky` prop.
 
 The Sheet component automatically adjusts the `sticky` list item to have the same background so that content does not overflow when scrolling.
@@ -144,7 +144,7 @@ Nested lists will stick to the left of the root list, by default. If you need to
 
 ### Interactive list items
 
-To make a list item interactive, you can use List Item Button _inside_ a List Item.
+To make a List Item interactive, you can use List Item Button _inside_ a List Item.
 
 {{"demo": "ActionableList.js"}}
 
@@ -166,8 +166,8 @@ The List Item Button and the secondary action render as siblings so that the ren
 
 ### Selected
 
-The `selected` prop in the List Item Button component can be used to indicate whether an item is currently selected or not.
-When the item is selected, it applies `color="primary"` and a few extra styles, such as font weight, to visually communicate the selected state.
+Use the `selected` prop on the List Item Button component to indicate whether or not an item is currently selected.
+When the item is selected, it applies `color="primary"` and a few extra styles—like font weight—to visually communicate the selected state.
 
 {{"demo": "SelectedList.js"}}
 
@@ -191,14 +191,14 @@ This example uses nested lists to split the settings into groups.
 
 ### Gmail navigation
 
-Inspired by Gmail's web sidenav.
+Inspired by Gmail's desktop navigation bar.
 
 {{"demo": "ExampleGmailList.js"}}
 
 ### Collapsible list
 
-Inspired by [Gatsby's documentation](https://www.gatsbyjs.com/docs) sidenav.
-This example uses the start action (a prop of List Item) prop to create a collapsible button.
+Inspired by the [Gatsby documentation](https://www.gatsbyjs.com/docs) navbar.
+This example uses the `startAction` prop to create a collapsible button.
 
 {{"demo": "ExampleCollapsibleList.js"}}
 
@@ -215,14 +215,14 @@ It also supports keyboard navigation, inspired by the [Roving UX](https://github
 
 To ensure that your List is accessible, here are some factors you should consider:
 
-- Use the appropriate HTML semantic element for the list (eg. `ol` or `ul`), to ensure assistive technologies can correctly interpret the list structure.
+- Use the appropriate HTML semantic element for the list (eg. `ol` or `ul`), to ensure that assistive technologies can correctly interpret the list structure.
 - Make sure to use a meaningful name that describes the content of the list in the `aria-labelledby` prop.
 - Use `role` attributes to provide additional information about the purpose of the list and its items.
   For example, use `role="list"` for the list and `role="listitem"` for each list item.
 
 ## Anatomy
 
-The List component, by default, is composed of a root `<ul>` element that contains one or more child `<li>` elements.
+The List component is composed of a root `<ul>` element that contains one or more child `<li>` elements rendered by the List Item component.
 
 ```html
 <ul class="MuiList-root">
