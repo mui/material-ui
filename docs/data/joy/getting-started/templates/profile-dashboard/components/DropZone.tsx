@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Card, { CardProps } from '@mui/joy/Card';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
