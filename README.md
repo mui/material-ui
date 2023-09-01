@@ -98,7 +98,7 @@ npm install @mui/system @emotion/react @emotion/styled
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
-Or if you want to use styled-components as a styling engine:
+Or if you want to use styled-components as the styling engine:
 
 **npm:**
 
