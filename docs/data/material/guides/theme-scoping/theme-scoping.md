@@ -24,7 +24,7 @@ function App() {
         {/* components from another library and Material UI */}
       </ThemeProvider>
     </AnotherThemeProvider>
-  )
+  );
 }
 ```
 
