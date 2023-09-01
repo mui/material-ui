@@ -60,6 +60,7 @@ function ListProvider(props: React.PropsWithChildren<ListProviderProps>) {
             ? React.cloneElement(child, {
                 // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
                 ...(index === 0 && { 'data-first-child': '' }),
+                ...(index === React.Children.count(children) - 1 && { 'data-last-child': '' }),
               })
             : child,
         )}

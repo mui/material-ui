@@ -523,7 +523,7 @@ describe('<Select />', () => {
         const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
           event.preventDefault();
           const formData = new FormData(event.currentTarget);
-          expect(formData.get('test-select')).to.equal('2,3');
+          expect(formData.get('test-select')).to.equal('[2,3]');
         };
 
         const { getByText } = render(
@@ -1058,7 +1058,7 @@ describe('<Select />', () => {
     });
 
     it('does not steal focus from other elements on page when it is open on mount', () => {
-      const { getByRole } = render(
+      const { getAllByRole } = render(
         <div>
           <input autoFocus />
           <Select defaultListboxOpen>
@@ -1068,7 +1068,7 @@ describe('<Select />', () => {
         </div>,
       );
 
-      const input = getByRole('textbox');
+      const input = getAllByRole('textbox')[0];
       expect(document.activeElement).to.equal(input);
     });
 

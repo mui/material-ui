@@ -48,7 +48,7 @@
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'outlined'",
+      "default": "'soft'",
       "additionalInfo": { "joy-variant": true }
     }
   },

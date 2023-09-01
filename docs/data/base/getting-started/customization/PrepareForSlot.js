@@ -7,7 +7,7 @@ const LinkSlot = prepareForSlot(Link);
 
 export default function PrepareForSlot() {
   return (
-    <Button href={'/'} slots={{ root: LinkSlot }}>
+    <Button href="/" slots={{ root: LinkSlot }}>
       Home
     </Button>
   );

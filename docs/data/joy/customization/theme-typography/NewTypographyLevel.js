@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
-import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 
 const customTheme = extendTheme({
@@ -19,12 +18,12 @@ const customTheme = extendTheme({
 export default function NewTypographyLevel() {
   return (
     <CssVarsProvider theme={customTheme}>
-      <Box>
+      <div>
         <Typography>
           Press <Typography level="kbd">⌘</Typography> +{' '}
           <Typography level="kbd">k</Typography> to search the documentation.
         </Typography>
-      </Box>
+      </div>
     </CssVarsProvider>
   );
 }

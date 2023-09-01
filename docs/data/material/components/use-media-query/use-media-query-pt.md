@@ -112,7 +112,7 @@ const theme = createTheme({
 ## Renderização do lado servidor
 
 :::warning
-⚠️ Server-side rendering and client-side media queries are fundamentally at odds.
+Server-side rendering and client-side media queries are fundamentally at odds.
 Be aware of the tradeoff. The support can only be partial.
 :::
 
@@ -141,7 +141,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
-  const ssrMatchMedia = query => ({
+  const ssrMatchMedia = (query) => ({
     matches: mediaQuery.match(query, {
       // O CSS estimado pelo navegador.
       width: deviceType === 'mobile' ? '0px' : '1024px',
