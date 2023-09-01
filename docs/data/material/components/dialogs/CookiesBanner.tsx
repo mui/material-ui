@@ -19,21 +19,45 @@ const Root = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
 }));
 
-export default function CookiesBanner() {
+interface Props {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window?: () => Window;
+}
+
+export default function CookiesBanner(props: Props) {
+  const { window } = props;
+  const doc = window !== undefined ? window().document : null;
+
   const [open, setOpen] = React.useState(false);
   const [bannerOpen, setBannerOpen] = React.useState(true);
+
+  const rootRef = React.useRef<HTMLDivElement | null>(null);
 
   const onClickAway = () => {
     setOpen(false);
   };
 
-  const onTrapFocusFocus = () => {
-    setOpen(true);
-  };
-
   const closeBanner = () => {
     setBannerOpen(false);
   };
+
+  React.useEffect(() => {
+    // sets the open prop of the TrapFocus to true if the active element is inside the cookie banner
+    const contain = () => {
+      if (rootRef.current && rootRef.current.contains(doc?.activeElement ?? null)) {
+        setOpen(true);
+      }
+    };
+
+    doc?.addEventListener('focusin', contain);
+
+    return () => {
+      doc?.removeEventListener('focusin', contain);
+    };
+  });
 
   return (
     <React.Fragment>
@@ -63,11 +87,12 @@ export default function CookiesBanner() {
           </Box>
         </Box>
         <Fade appear={false} in={bannerOpen}>
-          <div>
+          <div role="dialog" aria-modal="true">
             <TrapFocus open={open} disableRestoreFocus>
               <div>
                 <ClickAwayListener onClickAway={onClickAway}>
                   <Paper
+                    ref={rootRef}
                     sx={{
                       position: 'absolute',
                       bottom: 0,
@@ -87,7 +112,9 @@ export default function CookiesBanner() {
                       gap={2}
                     >
                       <div>
-                        <Typography>This website uses cookies</Typography>
+                        <Typography fontWeight="bold">
+                          This website uses cookies
+                        </Typography>
                         <Typography variant="body2">
                           example.com relies on cookies to improve your experience.
                         </Typography>
@@ -95,18 +122,12 @@ export default function CookiesBanner() {
                       <Stack direction="row" gap={1}>
                         <Button
                           size="small"
-                          onFocus={onTrapFocusFocus}
                           onClick={closeBanner}
                           variant="contained"
                         >
                           Allow all
                         </Button>
-                        <Button
-                          onFocus={onTrapFocusFocus}
-                          size="small"
-                          onClick={closeBanner}
-                          variant="text"
-                        >
+                        <Button size="small" onClick={closeBanner} variant="text">
                           Reject all
                         </Button>
                       </Stack>
