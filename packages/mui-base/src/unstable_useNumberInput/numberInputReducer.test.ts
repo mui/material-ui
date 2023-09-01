@@ -406,7 +406,6 @@ describe('numberInputReducer', () => {
         const action: NumberInputReducerAction = {
           type: NumberInputActionTypes.keyDown,
           event: {
-            key: 'ArrowUp',
             shiftKey: true,
           } as React.KeyboardEvent,
           key: 'ArrowUp',
@@ -430,9 +429,7 @@ describe('numberInputReducer', () => {
 
         const action: NumberInputReducerAction = {
           type: NumberInputActionTypes.keyDown,
-          event: {
-            key: 'ArrowUp',
-          } as React.KeyboardEvent,
+          event: {} as any,
           key: 'ArrowUp',
           context: {
             getInputValueAsString: defaultGetInputValueAsString,
@@ -457,9 +454,7 @@ describe('numberInputReducer', () => {
 
         const action: NumberInputReducerAction = {
           type: NumberInputActionTypes.keyDown,
-          event: {
-            key: 'ArrowDown',
-          } as React.KeyboardEvent,
+          event: {} as any,
           key: 'ArrowDown',
           context: {
             getInputValueAsString: defaultGetInputValueAsString,
@@ -481,9 +476,7 @@ describe('numberInputReducer', () => {
 
         const action: NumberInputReducerAction = {
           type: NumberInputActionTypes.keyDown,
-          event: {
-            key: 'ArrowDown',
-          } as React.KeyboardEvent,
+          event: {} as any,
           key: 'ArrowDown',
           context: {
             getInputValueAsString: defaultGetInputValueAsString,
@@ -507,7 +500,6 @@ describe('numberInputReducer', () => {
         const action: NumberInputReducerAction = {
           type: NumberInputActionTypes.keyDown,
           event: {
-            key: 'ArrowDown',
             shiftKey: true,
           } as React.KeyboardEvent,
           key: 'ArrowDown',
@@ -531,10 +523,7 @@ describe('numberInputReducer', () => {
 
         const action: NumberInputReducerAction = {
           type: NumberInputActionTypes.keyDown,
-          event: {
-            key: 'ArrowDown',
-            shiftKey: true,
-          } as React.KeyboardEvent,
+          event: {} as any,
           key: 'ArrowDown',
           context: {
             getInputValueAsString: defaultGetInputValueAsString,
@@ -559,9 +548,7 @@ describe('numberInputReducer', () => {
 
         const action: NumberInputReducerAction = {
           type: NumberInputActionTypes.keyDown,
-          event: {
-            key: 'PageUp',
-          } as React.KeyboardEvent,
+          event: {} as any,
           key: 'PageUp',
           context: {
             getInputValueAsString: defaultGetInputValueAsString,
@@ -585,9 +572,7 @@ describe('numberInputReducer', () => {
 
         const action: NumberInputReducerAction = {
           type: NumberInputActionTypes.keyDown,
-          event: {
-            key: 'PageDown',
-          } as React.KeyboardEvent,
+          event: {} as any,
           key: 'PageDown',
           context: {
             getInputValueAsString: defaultGetInputValueAsString,
@@ -611,9 +596,7 @@ describe('numberInputReducer', () => {
 
         const action: NumberInputReducerAction = {
           type: NumberInputActionTypes.keyDown,
-          event: {
-            key: 'Home',
-          } as React.KeyboardEvent,
+          event: {} as any,
           key: 'Home',
           context: {
             getInputValueAsString: defaultGetInputValueAsString,
@@ -636,9 +619,7 @@ describe('numberInputReducer', () => {
 
         const action: NumberInputReducerAction = {
           type: NumberInputActionTypes.keyDown,
-          event: {
-            key: 'Home',
-          } as React.KeyboardEvent,
+          event: {} as any,
           key: 'Home',
           context: {
             getInputValueAsString: defaultGetInputValueAsString,
@@ -662,9 +643,7 @@ describe('numberInputReducer', () => {
 
         const action: NumberInputReducerAction = {
           type: NumberInputActionTypes.keyDown,
-          event: {
-            key: 'End',
-          } as React.KeyboardEvent,
+          event: {} as any,
           key: 'End',
           context: {
             getInputValueAsString: defaultGetInputValueAsString,
@@ -687,9 +666,7 @@ describe('numberInputReducer', () => {
 
         const action: NumberInputReducerAction = {
           type: NumberInputActionTypes.keyDown,
-          event: {
-            key: 'End',
-          } as React.KeyboardEvent,
+          event: {} as any,
           key: 'End',
           context: {
             getInputValueAsString: defaultGetInputValueAsString,
