@@ -108,6 +108,31 @@ describe('numberInputReducer', () => {
       expect(result.value).to.equal(9);
       expect(result.inputValue).to.equal('9');
     });
+
+    it('empty value', () => {
+      const state: NumberInputState = {
+        value: '',
+        inputValue: '',
+      };
+
+      const action: NumberInputReducerAction = {
+        type: NumberInputActionTypes.blur,
+        event: {
+          currentTarget: {
+            value: '',
+          },
+        } as unknown as React.FocusEvent<HTMLInputElement>,
+        context: {
+          getInputValueAsString: defaultGetInputValueAsString,
+          shiftMultiplier: 10,
+        },
+      };
+
+      const result = numberInputReducer(state, action);
+
+      expect(result.value).to.equal('');
+      expect(result.inputValue).to.equal('');
+    });
   });
 
   describe('action: inputChange', () => {
