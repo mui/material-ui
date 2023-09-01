@@ -6,7 +6,7 @@ import glob from 'fast-glob';
 import prettier from 'prettier';
 import {
   TypeScriptProject,
-  createTypescriptProjectBuilder,
+  createTypeScriptProjectBuilder,
 } from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
 import { generatePropTypes } from '../src/generatePropTypes';
 import { injectPropTypesInFile } from '../src/injectPropTypesInFile';
@@ -39,7 +39,7 @@ describe('typescript-to-proptypes', () => {
     // Creating a TS program might take a while.
     this.timeout(20000);
 
-    const buildProject = createTypescriptProjectBuilder({
+    const buildProject = createTypeScriptProjectBuilder({
       test: {
         rootPath: path.join(__dirname, '..'),
         tsConfigPath: 'tsconfig.json',

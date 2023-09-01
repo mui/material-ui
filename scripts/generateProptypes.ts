@@ -17,7 +17,7 @@ import {
   InjectPropTypesInFileOptions,
 } from 'typescript-to-proptypes';
 import {
-  createTypescriptProjectBuilder,
+  createTypeScriptProjectBuilder,
   TypeScriptProject,
 } from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
 import {
@@ -324,7 +324,7 @@ async function run(argv: HandlerArgv) {
     console.log(`Only considering declaration files matching ${filePattern}`);
   }
 
-  const buildProject = createTypescriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
+  const buildProject = createTypeScriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
 
   // Matches files where the folder and file both start with uppercase letters
   // Example: AppBar/AppBar.d.ts

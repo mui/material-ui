@@ -19,7 +19,7 @@ import {
 } from './buildApiUtils';
 import generateComponentApi, { ReactApi } from './ApiBuilders/ComponentApiBuilder';
 import generateHookApi from './ApiBuilders/HookApiBuilder';
-import { createTypescriptProjectBuilder } from './utils/createTypeScriptProject';
+import { createTypeScriptProjectBuilder } from './utils/createTypeScriptProject';
 import { CORE_TYPESCRIPT_PROJECTS, CoreTypeScriptProjects } from './utils/coreTypeScriptProjects';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
@@ -159,7 +159,7 @@ type CommandOptions = { grep?: string };
 
 async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
-  const buildTypeScriptProject = createTypescriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
+  const buildTypeScriptProject = createTypeScriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
 
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
   await SETTINGS.reduce(async (resolvedPromise, setting) => {

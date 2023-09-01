@@ -53,7 +53,7 @@ export const createTypeScriptProject = (
     throw tsConfigFile.error;
   }
 
-  // The build config does not parse the `.d.ts` files, but we sometime need them to get the exports.
+  // The build config does not parse the `.d.ts` files, but we sometimes need them to get the exports.
   if (tsConfigFile.config.exclude) {
     tsConfigFile.config.exclude = tsConfigFile.config.exclude.filter(
       (pattern: string) => pattern !== 'src/**/*.d.ts',
@@ -100,7 +100,7 @@ export const createTypeScriptProject = (
   };
 };
 
-export const createTypescriptProjectBuilder = <P extends string>(
+export const createTypeScriptProjectBuilder = <P extends string>(
   projectsConfig: Record<P, Omit<CreateTypeScriptProjectOptions, 'name'>>,
 ) => {
   const projects = new Map<P, TypeScriptProject>();

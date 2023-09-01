@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
-    "proptypes:old": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.old.ts",
     "deduplicate": "node scripts/deduplicate.mjs",
     "benchmark:browser": "yarn workspace benchmark browser",
     "build:codesandbox": "NODE_OPTIONS=\"–max_old_space_size=4096\" lerna run --concurrency 8 --scope \"@mui/*\" build",

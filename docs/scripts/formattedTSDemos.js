@@ -17,7 +17,7 @@ const babel = require('@babel/core');
 const prettier = require('prettier');
 const { getPropTypesFromFile, injectPropTypesInFile } = require('typescript-to-proptypes');
 const {
-  createTypescriptProjectBuilder,
+  createTypeScriptProjectBuilder,
 } = require('@mui-internal/api-docs-builder/utils/createTypeScriptProject');
 const {
   CORE_TYPESCRIPT_PROJECTS,
@@ -156,7 +156,7 @@ async function main(argv) {
     ...(await getFiles(path.join(workspaceRoot, 'docs/data'))), // new structure
   ].filter((fileName) => filePattern.test(fileName));
 
-  const buildProject = createTypescriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
+  const buildProject = createTypeScriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
   const project = buildProject('docs', { files: tsxFiles });
 
   let successful = 0;
