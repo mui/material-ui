@@ -41,7 +41,7 @@ MUI X components are available under three licenses:
 
 ## Why did the Tree View move to MUI X?
 
-When the Tree View component was ready to leave the lab, we had a choice to make: live in the MUI Core library or become a part of MUI X?
+Once a component is ready to leave the lab, it can either go to MUI X or MUI Core libraries.
 
 This component would greatly benefit from advanced features such as virtualization of drag and drop.
 
