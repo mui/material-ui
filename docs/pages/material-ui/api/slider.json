@@ -11,6 +11,7 @@
       },
       "default": "'primary'"
     },
+    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
         "name": "shape",
