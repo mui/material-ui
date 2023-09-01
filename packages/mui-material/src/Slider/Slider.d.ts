@@ -244,7 +244,7 @@ export interface SliderOwnProps<Value> {
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value?: number | number[];
+  value?: Value;
   /**
    * Controls when the value label is displayed:
    *
