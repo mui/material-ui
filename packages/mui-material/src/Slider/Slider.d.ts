@@ -273,7 +273,7 @@ export interface SliderOwnProps<Value> {
 export interface SliderTypeMap<
   RootComponent extends React.ElementType = 'span',
   AdditionalProps = {},
-  Value extends number | number[] | undefined = undefined,
+  Value extends number | number[] = number | number[],
 > {
   props: AdditionalProps & SliderOwnProps<Value>;
   defaultComponent: RootComponent;
