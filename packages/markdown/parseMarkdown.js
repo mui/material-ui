@@ -341,6 +341,10 @@ function createRender(context) {
     renderer.link = (href, linkTitle, linkText) => {
       let more = '';
 
+      if (linkTitle) {
+        more += ` title="${linkTitle}"`;
+      }
+
       if (noSEOadvantage.some((domain) => href.indexOf(domain) !== -1)) {
         more = ' target="_blank" rel="noopener nofollow"';
       }

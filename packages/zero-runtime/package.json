@@ -1,6 +1,6 @@
 {
   "name": "@mui/zero-runtime",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1-alpha.1",
   "private": true,
   "author": "MUI Team",
   "description": "Linaria tag processors for custom styled implementation.",
@@ -54,7 +54,8 @@
   "linaria": {
     "tags": {
       "styled": "@mui/zero-tag-processor/styled",
-      "default": "@mui/zero-tag-processor/styled"
+      "default": "@mui/zero-tag-processor/styled",
+      "sx": "@mui/zero-tag-processor/sx"
     }
   }
 }
