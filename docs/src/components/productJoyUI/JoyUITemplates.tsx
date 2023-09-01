@@ -402,7 +402,7 @@ export default function JoyUITemplates() {
             '& [role="tabpanel"]': {
               '--_scale': '0.9',
               boxShadow: '0 0 0 6px rgba(var(--joy-palette-neutral-mainChannel) / 0.32)',
-              borderRadius: 'lg',
+              borderRadius: 'var(--template-radius-lg)',
               height: 'clamp(500px / var(--_scale), 80vh, 600px / var(--_scale))',
               p: 0,
               transform: 'scale(var(--_scale))',

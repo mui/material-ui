@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { CssVarsProvider, extendTheme, THEME_ID } from '@mui/joy/styles';
+import { useColorScheme as useMuiColorScheme } from '@mui/material/styles';
+import {
+  CssVarsProvider,
+  extendTheme,
+  THEME_ID,
+  useColorScheme as useJoyColorScheme,
+} from '@mui/joy/styles';
 import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
@@ -15,6 +21,25 @@ import JoyUIEnd from 'docs/src/components/productJoyUI/JoyUIEnd';
 import JoyUITemplates from 'docs/src/components/productJoyUI/JoyUITemplates';
 
 const theme = extendTheme();
+
+function ModeObserver() {
+  const { mode: muiMode, setMode: setMuiMode } = useMuiColorScheme();
+  const { mode: joyMode, setMode: setJoyMode } = useJoyColorScheme();
+  const modeRef = React.useRef({ muiMode, joyMode });
+  modeRef.current.joyMode = joyMode;
+  modeRef.current.muiMode = muiMode;
+  React.useEffect(() => {
+    if (modeRef.current.joyMode !== muiMode) {
+      setJoyMode(muiMode || null);
+    }
+  }, [muiMode, setJoyMode]);
+  React.useEffect(() => {
+    if (modeRef.current.muiMode !== joyMode) {
+      setMuiMode(joyMode || null);
+    }
+  }, [joyMode, setMuiMode]);
+  return null;
+}
 
 export default function Core() {
   return (
@@ -33,6 +58,7 @@ export default function Core() {
         colorSchemeStorageKey="mui-color-scheme"
         theme={{ [THEME_ID]: theme }}
       >
+        <ModeObserver />
         <main id="main-content">
           <JoyUIHero />
           <JoyUISummary />
