@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { styled } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
@@ -17,9 +16,6 @@ import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
-import MuiLogo from './MuiLogo';
-import ColorSchemeToggle from './ColorSchemeToggle';
-import { closeSidebar } from '../utils';
 import { Stack } from '@mui/system';
 import AccordionGroup from '@mui/joy/AccordionGroup';
 import Accordion from '@mui/joy/Accordion';
@@ -38,6 +34,9 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import BadgeRoundedIcon from '@mui/icons-material/BadgeRounded';
+
+import ColorSchemeToggle from './ColorSchemeToggle';
+import { closeSidebar } from '../utils';
 
 export default function Sidebar() {
   return (

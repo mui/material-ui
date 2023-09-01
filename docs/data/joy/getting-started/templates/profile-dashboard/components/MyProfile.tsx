@@ -16,10 +16,6 @@ import Typography from '@mui/joy/Typography';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab, { tabClasses } from '@mui/joy/Tab';
-import DropZone from './DropZone';
-import FileUpload from './FileUpload';
-import CountrySelector from './CountrySelector';
-import EditorToolbar from './EditorToolbar';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Link from '@mui/joy/Link';
 import Card from '@mui/joy/Card';
@@ -33,6 +29,11 @@ import AccessTimeFilledRoundedIcon from '@mui/icons-material/AccessTimeFilledRou
 import VideocamRoundedIcon from '@mui/icons-material/VideocamRounded';
 import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
+
+import DropZone from './DropZone';
+import FileUpload from './FileUpload';
+import CountrySelector from './CountrySelector';
+import EditorToolbar from './EditorToolbar';
 
 export default function MyProfile() {
   return (
@@ -144,7 +145,7 @@ export default function MyProfile() {
 
       <Stack
         spacing={4}
-        sx={(theme) => ({
+        sx={{
           display: 'flex',
           maxWidth: '800px',
           mx: 'auto',
@@ -156,7 +157,7 @@ export default function MyProfile() {
             xs: 2,
             md: 3,
           },
-        })}
+        }}
       >
         <Card>
           <div>
