@@ -11,7 +11,6 @@ import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { ClickAwayListener } from '@mui/base';
 import { CssBaseline } from '@mui/material';
 
 const Root = styled('div')(({ theme }) => ({
@@ -36,19 +35,17 @@ export default function CookiesBanner(props: Props) {
 
   const rootRef = React.useRef<HTMLDivElement | null>(null);
 
-  const onClickAway = () => {
-    setOpen(false);
-  };
-
   const closeBanner = () => {
     setBannerOpen(false);
   };
 
   React.useEffect(() => {
-    // sets the open prop of the TrapFocus to true if the active element is inside the cookie banner
     const contain = () => {
+      // sets the open prop of the TrapFocus to true if the active element is inside the cookie banner
       if (rootRef.current && rootRef.current.contains(doc?.activeElement ?? null)) {
         setOpen(true);
+      } else {
+        setOpen(false);
       }
     };
 
@@ -87,54 +84,49 @@ export default function CookiesBanner(props: Props) {
           </Box>
         </Box>
         <Fade appear={false} in={bannerOpen}>
-          <div role="dialog" aria-modal="true">
+          <div>
             <TrapFocus open={open} disableRestoreFocus>
-              <div>
-                <ClickAwayListener onClickAway={onClickAway}>
-                  <Paper
-                    ref={rootRef}
-                    sx={{
-                      position: 'absolute',
-                      bottom: 0,
-                      maxWidth: '100%',
-                      width: '100%',
-                      m: 0,
-                      p: 2,
-                      borderRadius: 0,
-                      borderTop: 1,
-                      borderColor: 'divider',
-                    }}
-                  >
-                    <Stack
-                      direction="row"
-                      alignItems="center"
-                      justifyContent="space-between"
-                      gap={2}
-                    >
-                      <div>
-                        <Typography fontWeight="bold">
-                          This website uses cookies
-                        </Typography>
-                        <Typography variant="body2">
-                          example.com relies on cookies to improve your experience.
-                        </Typography>
-                      </div>
-                      <Stack direction="row" gap={1}>
-                        <Button
-                          size="small"
-                          onClick={closeBanner}
-                          variant="contained"
-                        >
-                          Allow all
-                        </Button>
-                        <Button size="small" onClick={closeBanner} variant="text">
-                          Reject all
-                        </Button>
-                      </Stack>
-                    </Stack>
-                  </Paper>
-                </ClickAwayListener>
-              </div>
+              <Paper
+                role="dialog"
+                aria-modal="false"
+                aria-label="Cookie banner"
+                ref={rootRef}
+                sx={{
+                  position: 'absolute',
+                  bottom: 0,
+                  maxWidth: '100%',
+                  width: '100%',
+                  m: 0,
+                  p: 2,
+                  borderRadius: 0,
+                  borderTop: 1,
+                  borderColor: 'divider',
+                }}
+              >
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  gap={2}
+                >
+                  <div>
+                    <Typography fontWeight="bold">
+                      This website uses cookies
+                    </Typography>
+                    <Typography variant="body2">
+                      example.com relies on cookies to improve your experience.
+                    </Typography>
+                  </div>
+                  <Stack direction="row" gap={1}>
+                    <Button size="small" onClick={closeBanner} variant="contained">
+                      Allow all
+                    </Button>
+                    <Button size="small" onClick={closeBanner} variant="text">
+                      Reject all
+                    </Button>
+                  </Stack>
+                </Stack>
+              </Paper>
             </TrapFocus>
           </div>
         </Fade>
