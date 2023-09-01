@@ -87,7 +87,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       justifyContent: 'center',
       position: 'relative',
       [theme.focus.selector]: { '--Icon-color': 'currentColor', ...theme.focus.default },
-    },
+    } as const,
     {
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '&:hover': {
@@ -100,10 +100,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
         '--Icon-color': 'currentColor',
         ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
       },
-      '&:disabled': {
-        '--Icon-color': 'currentColor',
-        ...theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-      },
+      '&:disabled': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
     },
   ],
 );

@@ -38,11 +38,9 @@ export default function SplitButton() {
           aria-label="select merge strategy"
           aria-haspopup="menu"
           onMouseDown={() => {
-            // @ts-ignore
             actionRef.current = () => setOpen(!open);
           }}
           onKeyDown={() => {
-            // @ts-ignore
             actionRef.current = () => setOpen(!open);
           }}
           onClick={() => {

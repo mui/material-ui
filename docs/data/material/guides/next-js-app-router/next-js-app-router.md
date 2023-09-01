@@ -5,7 +5,7 @@
 :::info
 Starting fresh on a new App Router-based project?
 
-Jump right into the code with [this example: Material UI - Next.js App Router example in TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-next-app-router-ts).
+Jump right into the code with [this example: Material UI - Next.js App Router example in TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts).
 :::
 
 ## Next.js and React Server Components
@@ -203,7 +203,7 @@ export default function Page() {
 ```
 
 :::error
-🚨 This code snippet _doesn't work_, because the Button's click handler is **non-serializable**:
+This code snippet _doesn't work_, because the Button's click handler is **non-serializable**:
 
 ```tsx
 // page.tsx

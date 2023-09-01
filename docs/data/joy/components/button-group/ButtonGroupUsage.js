@@ -5,7 +5,7 @@ import IconButton from '@mui/joy/IconButton';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function ButtonUsage() {
+export default function ButtonGroupUsage() {
   return (
     <JoyUsageDemo
       componentName="ButtonGroup"

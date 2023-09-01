@@ -1,4 +1,8 @@
 import { expectType } from '@mui/types';
+import { AccordionOwnerState } from '@mui/joy/Accordion';
+import { AccordionGroupOwnerState } from '@mui/joy/AccordionGroup';
+import { AccordionSummaryOwnerState } from '@mui/joy/AccordionSummary';
+import { AccordionDetailsOwnerState } from '@mui/joy/AccordionDetails';
 import { AlertOwnerState } from '@mui/joy/Alert';
 import { AspectRatioOwnerState } from '@mui/joy/AspectRatio';
 import { AutocompleteOwnerState } from '@mui/joy/Autocomplete';
@@ -74,6 +78,78 @@ extendTheme({
     },
   }),
   components: {
+    JoyAccordion: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyAccordionGroup: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionGroupOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyAccordionSummary: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionSummaryOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        button: ({ ownerState }) => {
+          expectType<AccordionSummaryOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        indicator: ({ ownerState }) => {
+          expectType<AccordionSummaryOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyAccordionDetails: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionDetailsOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        content: ({ ownerState }) => {
+          expectType<AccordionDetailsOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
     JoyAlert: {
       defaultProps: {
         variant: 'soft',

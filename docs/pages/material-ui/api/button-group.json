@@ -42,6 +42,10 @@
     }
   },
   "name": "ButtonGroup",
+  "imports": [
+    "import ButtonGroup from '@mui/material/ButtonGroup';",
+    "import { ButtonGroup } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

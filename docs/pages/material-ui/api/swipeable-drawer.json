@@ -35,6 +35,10 @@
     }
   },
   "name": "SwipeableDrawer",
+  "imports": [
+    "import SwipeableDrawer from '@mui/material/SwipeableDrawer';",
+    "import { SwipeableDrawer } from '@mui/material';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "themeDefaultProps": false,

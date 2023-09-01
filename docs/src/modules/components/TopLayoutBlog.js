@@ -99,6 +99,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/92228082',
     github: 'prakhargupta1',
   },
+  richbustos: {
+    name: 'Rich Bustos',
+    avatar: 'https://avatars.githubusercontent.com/u/92274722',
+    github: 'richbustos',
+  },
 };
 
 const classes = {

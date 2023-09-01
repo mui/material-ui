@@ -20,7 +20,7 @@ A snackbar provides users with a brief, temporary message about app processes wi
 
 The Snackbar component is built to appear on-screen to inform users about an action that the app is taking.
 
-{{"demo": "UnstyledSnackbarIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledSnackbarIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 

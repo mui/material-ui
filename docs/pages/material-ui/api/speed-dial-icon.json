@@ -12,6 +12,10 @@
     }
   },
   "name": "SpeedDialIcon",
+  "imports": [
+    "import SpeedDialIcon from '@mui/material/SpeedDialIcon';",
+    "import { SpeedDialIcon } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "icon", "iconOpen", "iconWithOpenIconOpen", "openIcon", "openIconOpen"],
     "globalClasses": {},

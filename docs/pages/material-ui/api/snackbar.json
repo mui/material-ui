@@ -43,6 +43,10 @@
     "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
   },
   "name": "Snackbar",
+  "imports": [
+    "import Snackbar from '@mui/material/Snackbar';",
+    "import { Snackbar } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

@@ -26,16 +26,16 @@ See [this explanation of Client Components and SSR](https://github.com/reactwg/s
 Additionally, we've created guides to walk you through setting up an app using the Next.js App Router with each of the Core libraries:
 
 - [Material UI setup](https://mui.com/material-ui/guides/next-js-app-router/)
+- [Joy UI setup](https://mui.com/joy-ui/integrations/next-js-app-router/)
 - [Base UI setup](https://mui.com/base-ui/guides/next-js-app-router/)
-- [Joy UI setup](https://mui.com/joy-ui/guides/next-js-app-router/)
 
 <img alt="Screenshot of the Material UI documentation" src="/static/blog/mui-next-js-app-router/docs.png" loading="lazy" width="2400" height="1394" style="margin-bottom:24px;" />
 
 We also have example repos for each, with everything already set up for you:
 
-- [Material UI example](https://github.com/mui/material-ui/tree/master/examples/material-next-app-router-ts)
-- [Base UI with Tailwind CSS example](https://github.com/mui/material-ui/tree/master/examples/base-next-app-router-tailwind-ts)
-- [Joy UI example](https://github.com/mui/material-ui/tree/master/examples/joy-next-app-router-ts)
+- [Material UI example](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts)
+- [Base UI with Tailwind CSS example](https://github.com/mui/material-ui/tree/master/examples/base-ui-nextjs-tailwind-ts)
+- [Joy UI example](https://github.com/mui/material-ui/tree/master/examples/joy-ui-nextjs-ts)
 
 ## What comes next
 

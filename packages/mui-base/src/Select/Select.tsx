@@ -30,39 +30,6 @@ function defaultRenderValue<OptionValue>(
   return selectedOptions?.label ?? '';
 }
 
-function defaultFormValueProvider<OptionValue>(
-  selectedOption: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
-) {
-  if (Array.isArray(selectedOption)) {
-    if (selectedOption.length === 0) {
-      return '';
-    }
-
-    if (
-      selectedOption.every(
-        (o) =>
-          typeof o.value === 'string' ||
-          typeof o.value === 'number' ||
-          typeof o.value === 'boolean',
-      )
-    ) {
-      return selectedOption.map((o) => String(o.value));
-    }
-
-    return JSON.stringify(selectedOption.map((o) => o.value));
-  }
-
-  if (selectedOption?.value == null) {
-    return '';
-  }
-
-  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
-    return selectedOption.value;
-  }
-
-  return JSON.stringify(selectedOption.value);
-}
-
 function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
   ownerState: SelectOwnerState<OptionValue, Multiple>,
 ) {
@@ -109,11 +76,12 @@ const Select = React.forwardRef(function Select<
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
-    getSerializedValue = defaultFormValueProvider,
+    getSerializedValue,
     listboxId,
     listboxOpen: listboxOpenProp,
     multiple = false as Multiple,
     name,
+    required = false,
     onChange,
     onListboxOpenChange,
     getOptionAsString = defaultOptionStringifier,
@@ -154,10 +122,14 @@ const Select = React.forwardRef(function Select<
     disabled,
     getButtonProps,
     getListboxProps,
+    getHiddenInputProps,
     getOptionMetadata,
     value,
     open,
   } = useSelect({
+    name,
+    required,
+    getSerializedValue,
     areOptionsEqual,
     buttonRef: handleButtonRef,
     defaultOpen: defaultListboxOpen,
@@ -246,9 +218,7 @@ const Select = React.forwardRef(function Select<
         </PopperComponent>
       )}
 
-      {name && (
-        <input type="hidden" name={name} value={getSerializedValue(selectedOptionsMetadata)} />
-      )}
+      <input {...getHiddenInputProps()} />
     </React.Fragment>
   );
 }) as SelectType;
@@ -275,6 +245,10 @@ Select.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * If `true`, the select will be initially open.
    * @default false
@@ -337,6 +311,11 @@ Select.propTypes /* remove-proptypes */ = {
    * Function that customizes the rendering of the selected value.
    */
   renderValue: PropTypes.func,
+  /**
+   * If `true`, the Select cannot be empty when submitting form.
+   * @default false
+   */
+  required: PropTypes.bool,
   /**
    * The props used for each slot inside the Input.
    * @default {}

@@ -43,7 +43,11 @@ export const TypographyRoot = styled('span', {
   },
 })(({ theme, ownerState }) => ({
   margin: 0,
-  ...(ownerState.variant && theme.typography[ownerState.variant]),
+  ...(ownerState.variant === 'inherit' && {
+    // Some elements, like <button> on Chrome have default font that doesn't inherit, reset this.
+    font: 'inherit',
+  }),
+  ...(ownerState.variant !== 'inherit' && theme.typography[ownerState.variant]),
   ...(ownerState.align !== 'inherit' && {
     textAlign: ownerState.align,
   }),

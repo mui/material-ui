@@ -20,6 +20,10 @@
     }
   },
   "name": "Toolbar",
+  "imports": [
+    "import Toolbar from '@mui/material/Toolbar';",
+    "import { Toolbar } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "gutters", "regular", "dense"],
     "globalClasses": {},

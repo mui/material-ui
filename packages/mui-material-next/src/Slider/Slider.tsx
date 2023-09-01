@@ -931,6 +931,10 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -1063,6 +1067,14 @@ Slider.propTypes /* remove-proptypes */ = {
    * @default 1
    */
   step: PropTypes.number,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * Tab index attribute of the hidden `input` element.
    */

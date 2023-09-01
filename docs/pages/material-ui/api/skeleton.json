@@ -28,6 +28,10 @@
     "width": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
   },
   "name": "Skeleton",
+  "imports": [
+    "import Skeleton from '@mui/material/Skeleton';",
+    "import { Skeleton } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

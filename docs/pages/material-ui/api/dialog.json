@@ -57,6 +57,10 @@
     "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "Dialog",
+  "imports": [
+    "import Dialog from '@mui/material/Dialog';",
+    "import { Dialog } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

@@ -67,6 +67,7 @@ export const createVariantStyle = (
         if (variantVar.includes('Disabled')) {
           result.pointerEvents = 'none';
           result.cursor = 'default';
+          result['--Icon-color'] = 'currentColor';
         }
         if (variantVar.match(/(Hover|Active|Disabled)/)) {
           assignCss(result as any, variantVar, cssVar);
@@ -280,7 +281,7 @@ export const createSoftInversion = (
           [prefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
             `palette-${color}-darkChannel`,
           )} / 0.68)`,
-          [prefixVar('--palette-text-icon')]: getCssVar(`palette-${color}-400`),
+          [prefixVar('--palette-text-icon')]: getCssVar(`palette-${color}-500`),
           [prefixVar('--palette-divider')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.32)`,

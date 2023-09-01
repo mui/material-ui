@@ -24,6 +24,10 @@
     "title": { "type": { "name": "node" } }
   },
   "name": "ImageListItemBar",
+  "imports": [
+    "import ImageListItemBar from '@mui/material/ImageListItemBar';",
+    "import { ImageListItemBar } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

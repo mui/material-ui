@@ -89,6 +89,42 @@ describe('createStyled', () => {
     });
   });
 
+  it('default overridesResolver', () => {
+    const styled = createStyled({});
+    const Button = styled('button', {
+      name: 'MuiButton',
+      slot: 'root',
+    })({
+      display: 'flex',
+    });
+
+    const { container } = render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiButton: {
+              styleOverrides: {
+                root: {
+                  width: '300px',
+                  height: '200px',
+                },
+              },
+            },
+          },
+        })}
+      >
+        <Button color="primary" variant="contained" className="Mui-disabled">
+          Hello
+        </Button>
+      </ThemeProvider>,
+    );
+
+    expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
+      width: '300px',
+      height: '200px',
+    });
+  });
+
   describe('styles', () => {
     it('styles of pseudo classes of variants are merged', () => {
       const theme = createTheme({

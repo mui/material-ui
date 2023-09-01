@@ -1,15 +1,23 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import Chip from '@mui/joy/Chip';
+import Sheet from '@mui/joy/Sheet';
 import List from '@mui/joy/List';
 import ListSubheader from '@mui/joy/ListSubheader';
 import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
-import IconButton from '@mui/joy/IconButton';
-import Typography from '@mui/joy/Typography';
-import Sheet from '@mui/joy/Sheet';
+// icons
+import BubbleChartIcon from '@mui/icons-material/BubbleChart';
+import InsertChartIcon from '@mui/icons-material/InsertChart';
+import StarsIcon from '@mui/icons-material/Stars';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import BadgeRoundedIcon from '@mui/icons-material/BadgeRounded';
+import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
+import AnalyticsRoundedIcon from '@mui/icons-material/AnalyticsRounded';
+
 import { closeSidebar } from '../utils';
 
 export default function SecondSidebar() {
@@ -24,6 +32,7 @@ export default function SecondSidebar() {
           left: 0,
           width: '100vw',
           height: '100vh',
+          opacity: 'var(--SideNavigation-slideIn)',
           backgroundColor: 'var(--joy-palette-background-backdrop)',
           transition: 'opacity 0.4s',
           transform: {
@@ -35,6 +44,7 @@ export default function SecondSidebar() {
       />
       <Sheet
         className="SecondSidebar"
+        color="neutral"
         sx={{
           position: {
             xs: 'fixed',
@@ -44,34 +54,33 @@ export default function SecondSidebar() {
             xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1) + var(--SideNavigation-slideIn, 0) * var(--FirstSidebar-width, 0px)))',
             lg: 'none',
           },
-          borderRight: '1px solid',
-          borderColor: 'divider',
           transition: 'transform 0.4s',
           zIndex: 9999,
           height: '100dvh',
           top: 0,
           p: 2,
-          py: 3,
           flexShrink: 0,
           display: 'flex',
           flexDirection: 'column',
           gap: 2,
+          borderRight: '1px solid',
+          borderColor: 'divider',
         }}
       >
         <List
+          size="sm"
           sx={{
-            '--ListItem-radius': '8px',
-            '--ListItem-minHeight': '32px',
-            '--List-gap': '4px',
+            '--ListItem-radius': '6px',
+            '--List-gap': '6px',
           }}
         >
-          <ListSubheader role="presentation" sx={{ color: 'text.primary' }}>
+          <ListSubheader role="presentation" sx={{ fontWeight: 'lg' }}>
             Dashboard
           </ListSubheader>
           <ListItem>
             <ListItemButton onClick={() => closeSidebar()}>
               <ListItemDecorator>
-                <i data-feather="activity" />
+                <BubbleChartIcon />
               </ListItemDecorator>
               <ListItemContent>Overview</ListItemContent>
             </ListItemButton>
@@ -79,34 +88,15 @@ export default function SecondSidebar() {
           <ListItem>
             <ListItemButton onClick={() => closeSidebar()}>
               <ListItemDecorator>
-                <i data-feather="bell" />
-              </ListItemDecorator>
-              <ListItemContent>Notification</ListItemContent>
-              <Chip variant="soft" size="sm">
-                10
-              </Chip>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton onClick={() => closeSidebar()}>
-              <ListItemDecorator>
-                <i data-feather="bar-chart" />
+                <InsertChartIcon />
               </ListItemDecorator>
               <ListItemContent>Analytics</ListItemContent>
             </ListItemButton>
           </ListItem>
           <ListItem>
-            <ListItemButton onClick={() => closeSidebar()}>
-              <ListItemDecorator>
-                <i data-feather="star" />
-              </ListItemDecorator>
-              <ListItemContent>Saved reports</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
             <ListItemButton selected>
               <ListItemDecorator>
-                <i data-feather="shopping-cart" />
+                <ShoppingCartIcon />
               </ListItemDecorator>
               <ListItemContent>Orders</ListItemContent>
             </ListItemButton>
@@ -114,31 +104,55 @@ export default function SecondSidebar() {
           <ListItem>
             <ListItemButton onClick={() => closeSidebar()}>
               <ListItemDecorator>
-                <i data-feather="user" />
+                <StarsIcon />
               </ListItemDecorator>
-              <ListItemContent>User reports</ListItemContent>
+              <ListItemContent>Saved reports</ListItemContent>
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton onClick={() => closeSidebar()}>
               <ListItemDecorator>
-                <i data-feather="settings" />
+                <AccountBoxIcon />
               </ListItemDecorator>
-              <ListItemContent>Manage notifications</ListItemContent>
+              <ListItemContent>User reports</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListSubheader role="presentation" sx={{ fontWeight: 700, mt: 2 }}>
+            Workspace
+          </ListSubheader>
+          <ListItem>
+            <ListItemButton onClick={() => closeSidebar()}>
+              <ListItemDecorator>
+                <PeopleRoundedIcon />
+              </ListItemDecorator>
+              <ListItemContent>Groups</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton onClick={() => closeSidebar()}>
+              <ListItemDecorator>
+                <BadgeRoundedIcon />
+              </ListItemDecorator>
+              <ListItemContent>Authentication</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton onClick={() => closeSidebar()}>
+              <ListItemDecorator>
+                <CreditCardRoundedIcon />
+              </ListItemDecorator>
+              <ListItemContent>Billing</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton onClick={() => closeSidebar()}>
+              <ListItemDecorator>
+                <AnalyticsRoundedIcon />
+              </ListItemDecorator>
+              <ListItemContent>Analytics</ListItemContent>
             </ListItemButton>
           </ListItem>
         </List>
-        <Box sx={{ pl: 1, mt: 'auto', display: 'flex', alignItems: 'center' }}>
-          <div>
-            <Typography fontWeight="lg" level="body-sm">
-              Olivia Ryhe
-            </Typography>
-            <Typography level="body-sm">olivia@email.com</Typography>
-          </div>
-          <IconButton variant="plain" sx={{ ml: 'auto' }}>
-            <i data-feather="log-out" />
-          </IconButton>
-        </Box>
       </Sheet>
     </React.Fragment>
   );

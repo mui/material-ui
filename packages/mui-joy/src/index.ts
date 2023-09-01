@@ -4,6 +4,18 @@ export * from './styles';
 
 export { default as GlobalStyles } from './GlobalStyles';
 
+export { default as Accordion } from './Accordion';
+export * from './Accordion';
+
+export { default as AccordionDetails } from './AccordionDetails';
+export * from './AccordionDetails';
+
+export { default as AccordionGroup } from './AccordionGroup';
+export * from './AccordionGroup';
+
+export { default as AccordionSummary } from './AccordionSummary';
+export * from './AccordionSummary';
+
 export { default as Alert } from './Alert';
 export * from './Alert';
 

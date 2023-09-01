@@ -61,7 +61,8 @@
     }
   },
   "name": "Link",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import Link from '@mui/joy/Link';", "import { Link } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiLink" },
   "slots": [
     {
       "name": "root",
