@@ -76,12 +76,12 @@ export default function FirstSidebar() {
         </ListItem>
       </List>
       <List
-        sx={{
+        sx={(theme) => ({
           mt: 'auto',
           flexGrow: 0,
-          '--ListItem-radius': '8px',
+          '--ListItem-radius': theme.vars.radius.md,
           '--List-gap': '4px',
-        }}
+        })}
       >
         <ListItem>
           <ListItemButton>

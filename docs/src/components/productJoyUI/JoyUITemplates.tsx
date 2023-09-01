@@ -625,62 +625,8 @@ export default function JoyUITemplates() {
           }
         />
       </Box>
-      <Box sx={{ my: 3 }}>
-        <Tabs
-          sx={{
-            bgcolor: 'transparent',
-            '& [role="tabpanel"]': {
-              '--_scale': '0.9',
-              boxShadow: '0 0 0 6px rgba(var(--joy-palette-neutral-mainChannel) / 0.32)',
-              borderRadius: 'var(--template-radius-lg)',
-              height: 'clamp(500px / var(--_scale), 80vh, 600px / var(--_scale))',
-              p: 0,
-              transform: 'scale(var(--_scale))',
-              transformOrigin: 'center center',
-              overflow: 'auto hidden',
-              backgroundColor: 'var(--template-palette-background-body)',
-            },
-          }}
-        >
-          <Sheet
-            variant="outlined"
-            sx={(theme) => ({
-              maxWidth: '80vw',
-              backdropFilter: 'blur(8px)',
-              bgcolor: 'rgba(var(--template-palette-primary-mainChannel) / 0.12)',
-              borderColor: 'rgba(var(--template-palette-primary-darkChannel) / 0.4)',
-              position: 'absolute',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              right: '4rem',
-              bottom: 0,
-              zIndex: 1,
-              borderRadius: 'lg',
-              boxShadow: 'md',
-              p: 1,
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '0.375rem 1rem',
-              width: 'max-content',
-              [theme.getColorSchemeSelector('dark')]: {
-                bgcolor: 'rgba(var(--template-palette-primary-darkChannel) / 0.12)',
-                borderColor: 'rgba(var(--template-palette-primary-lightChannel) / 0.4)',
-              },
-              [`& .${selectClasses.root}`]: {
-                flex: 'auto',
-              },
-            })}
-          >
-            {renderPrimary()}
-
-            {renderNeutral()}
-
-            {renderBgSwap()}
-
-            {renderRadius()}
-
-            {renderFamily()}
-          </Sheet>
+      <Box sx={{ my: 3, position: 'relative' }}>
+        <Tabs sx={{ bgcolor: 'transparent' }}>
           <List
             variant="outlined"
             component="div"
@@ -728,9 +674,24 @@ export default function JoyUITemplates() {
             sx={{
               // to workaround the Material UI icon color
               '--muidocs-palette-primary-main': 'var(--template-palette-primary-main)',
+              '& [role="tabpanel"]': {
+                '--_scale': '0.9',
+                '--_preview-height': 'clamp(500px / var(--_scale), 80vh, 600px / var(--_scale))',
+                boxShadow: '0 0 0 6px rgba(var(--joy-palette-neutral-mainChannel) / 0.32)',
+                borderRadius: 'var(--template-radius-lg)',
+                height: 'var(--_preview-height)',
+                p: 0,
+                transform: 'scale(var(--_scale))',
+                transformOrigin: 'center 160px',
+                overflow: 'auto hidden',
+                backgroundColor: 'var(--template-palette-background-body)',
+                '& > div': {
+                  '--screen-height': 'var(--_preview-height)',
+                },
+              },
             }}
           >
-            <TabPanel value={0} sx={{ '& > div': { height: '100%' } }}>
+            <TabPanel value={0}>
               <OrderDashboardApp
                 attribute="data-mui-color-scheme"
                 modeStorageKey="mui-mode"
@@ -785,6 +746,45 @@ export default function JoyUITemplates() {
             </TabPanel>
           </Box>
         </Tabs>
+        <Sheet
+          variant="outlined"
+          sx={(theme) => ({
+            maxWidth: '80vw',
+            backdropFilter: 'blur(8px)',
+            bgcolor: 'rgba(var(--template-palette-primary-mainChannel) / 0.12)',
+            borderColor: 'rgba(var(--template-palette-primary-darkChannel) / 0.4)',
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            right: '4rem',
+            bottom: '1rem',
+            zIndex: 1,
+            borderRadius: 'lg',
+            boxShadow: 'xl',
+            p: 1,
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '0.375rem 1rem',
+            width: 'max-content',
+            [theme.getColorSchemeSelector('dark')]: {
+              bgcolor: 'rgba(var(--template-palette-primary-darkChannel) / 0.12)',
+              borderColor: 'rgba(var(--template-palette-primary-lightChannel) / 0.4)',
+            },
+            [`& .${selectClasses.root}`]: {
+              flex: 'auto',
+            },
+          })}
+        >
+          {renderPrimary()}
+
+          {renderNeutral()}
+
+          {renderBgSwap()}
+
+          {renderRadius()}
+
+          {renderFamily()}
+        </Sheet>
       </Box>
     </Section>
   );

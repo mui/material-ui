@@ -40,7 +40,7 @@ export default function Sidebar() {
         },
         transition: 'transform 0.4s, width 0.4s',
         zIndex: 10000,
-        height: '100dvh',
+        height: '100%',
         width: 'var(--Sidebar-width)',
         top: 0,
         p: 1.5,
@@ -71,7 +71,7 @@ export default function Sidebar() {
           top: 0,
           left: 0,
           width: '100vw',
-          height: '100vh',
+          height: '100%',
 
           opacity: 'calc(var(--SideNavigation-slideIn, 0) - 0.2)',
           transition: 'opacity 0.4s',
@@ -98,11 +98,11 @@ export default function Sidebar() {
         }}
       >
         <List
-          sx={{
-            '--ListItem-radius': '8px',
+          sx={(theme) => ({
+            '--ListItem-radius': theme.vars.radius.md,
             '--List-gap': '4px',
             '--List-nestedInsetStart': '40px',
-          }}
+          })}
         >
           <ListItem>
             <ListItemButton>
@@ -173,12 +173,12 @@ export default function Sidebar() {
           </ListItem>
         </List>
         <List
-          sx={{
+          sx={(theme) => ({
             mt: 'auto',
             flexGrow: 0,
-            '--ListItem-radius': '8px',
+            '--ListItem-radius': theme.vars.radius.md,
             '--List-gap': '8px',
-          }}
+          })}
         >
           <ListItem>
             <ListItemButton>

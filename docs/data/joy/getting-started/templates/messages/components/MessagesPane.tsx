@@ -23,7 +23,10 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
   return (
     <Sheet
       sx={{
-        height: { xs: 'calc(100dvh - var(--Header-height))', lg: '100dvh' },
+        height: {
+          xs: 'calc(var(--screen-height) - var(--Header-height))',
+          lg: 'var(--screen-height)',
+        },
         display: 'flex',
         flexDirection: 'column',
       }}

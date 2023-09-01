@@ -37,7 +37,13 @@ export default function JoyOrderDashboardTemplate(props: any) {
         })}
       />
       <CssBaseline />
-      <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
+      <Box
+        sx={{
+          '--screen-height': '100dvh',
+          display: 'flex',
+          height: 'var(--screen-height)',
+        }}
+      >
         <Header />
         <Sidebar />
         <Box
@@ -62,7 +68,7 @@ export default function JoyOrderDashboardTemplate(props: any) {
             display: 'flex',
             flexDirection: 'column',
             minWidth: 0,
-            height: '100dvh',
+            height: '100%',
             gap: 1,
             overflow: 'auto',
           })}

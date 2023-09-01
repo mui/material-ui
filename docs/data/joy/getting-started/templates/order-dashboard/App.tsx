@@ -37,7 +37,13 @@ export default function JoyOrderDashboardTemplate(props: any) {
   return (
     <CssVarsProvider disableTransitionOnChange {...props}>
       <CssBaseline />
-      <Box sx={{ display: 'flex', height: '100dvh' }}>
+      <Box
+        sx={{
+          '--screen-height': '100dvh',
+          display: 'flex',
+          height: 'var(--screen-height)',
+        }}
+      >
         <Header />
         <FirstSidebar />
         <SecondSidebar />

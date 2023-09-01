@@ -74,6 +74,7 @@ export default function JoySignInSideTemplate(props: any) {
       />
       <Box
         sx={(theme) => ({
+          '--screen-height': '100dvh',
           width:
             'clamp(100vw - var(--Cover-width), (var(--Collapsed-breakpoint) - 100vw) * 999, 100vw)',
           transition: 'width var(--Transition-duration)',
@@ -84,7 +85,7 @@ export default function JoySignInSideTemplate(props: any) {
           justifyContent: 'flex-end',
           backdropFilter: 'blur(4px)',
           backgroundColor: 'rgba(255 255 255 / 0.6)',
-          minHeight: '100%',
+          height: 'var(--screen-height)',
           [theme.getColorSchemeSelector('dark')]: {
             backgroundColor: 'rgba(19 19 24 / 0.4)',
           },
@@ -94,7 +95,7 @@ export default function JoySignInSideTemplate(props: any) {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            height: 'min(100dvh, 100%)',
+            height: '100%',
             width:
               'clamp(var(--Form-maxWidth), (var(--Collapsed-breakpoint) - 100vw) * 999, 100%)',
             maxWidth: '100%',

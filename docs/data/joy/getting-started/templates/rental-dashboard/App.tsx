@@ -46,7 +46,13 @@ export default function RentalDashboard(props: any) {
         })}
       />
       <CssBaseline />
-      <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
+      <Box
+        sx={{
+          '--screen-height': '100dvh',
+          display: 'flex',
+          minHeight: 'var(--screen-height)',
+        }}
+      >
         <Header />
         <FirstSidebar />
         <Main>
@@ -54,8 +60,7 @@ export default function RentalDashboard(props: any) {
             container
             sx={{
               width: '100%',
-              height: '100dvh',
-
+              height: 'var(--screen-height)',
               margin: 0,
             }}
           >
@@ -123,7 +128,7 @@ export default function RentalDashboard(props: any) {
                   borderLeft: '1px solid',
                   borderColor: 'divider',
                   padding: 1.5,
-                  height: '100dvh',
+                  height: '100%',
                 }}
               >
                 <Box

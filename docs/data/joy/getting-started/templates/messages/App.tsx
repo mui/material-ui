@@ -37,7 +37,13 @@ export default function JoyMessagesTemplate(props: any) {
         })}
       />
       <CssBaseline />
-      <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
+      <Box
+        sx={{
+          '--screen-height': '100dvh',
+          display: 'flex',
+          height: 'var(--screen-height)',
+        }}
+      >
         <Header />
         <Sidebar />
         <Box component="main" className="MainContent" sx={{ flex: 1 }}>

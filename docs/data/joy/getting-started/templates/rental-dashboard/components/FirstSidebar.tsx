@@ -57,7 +57,12 @@ export default function FirstSidebar() {
         <i data-feather="arrow-left" />
       </IconButton>
       <MuiLogo />
-      <List sx={{ '--ListItem-radius': '8px', '--List-gap': '12px' }}>
+      <List
+        sx={(theme) => ({
+          '--ListItem-radius': theme.vars.radius.md,
+          '--List-gap': '12px',
+        })}
+      >
         <ListItem>
           <ListItemButton>
             <i data-feather="home" />
@@ -90,12 +95,12 @@ export default function FirstSidebar() {
         </ListItem>
       </List>
       <List
-        sx={{
+        sx={(theme) => ({
           mt: 'auto',
           flexGrow: 0,
-          '--ListItem-radius': '8px',
+          '--ListItem-radius': theme.vars.radius.md,
           '--List-gap': '8px',
-        }}
+        })}
       >
         <ColorSchemeToggle sx={{ display: { xs: 'none', md: 'inline-flex' } }} />
         <ListItem>
