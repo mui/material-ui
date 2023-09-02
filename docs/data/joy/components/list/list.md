@@ -17,7 +17,7 @@ Joy UI Lists are implemented using a collection of related components:
 
 - [List](#basics) - a wrapper for list items. Renders as a `<ul>` by default.
 - [List Item](#basics) - a common list item. Renders as an `<li>` by default.
-- [List Item Button](#actionable) - an action element to be used inside a list item.
+- [List Item Button](#interactive-list-items) - an action element to be used inside a list item.
 - [List Item Decorator](#decorators) - a decorator of a list item, usually used to display an icon.
 - [List Item Content](#ellipsis-content) - a container inside a list item, used to display text content.
 - [List Divider](#divider) - a separator between list items.
@@ -55,6 +55,10 @@ Every palette included in the theme is available via the `color` prop.
 
 ### Decorators
 
+```jsx
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
+```
+
 Use the List Item Decorator component to add supporting icons or elements to the list item.
 
 {{"demo": "DecoratedList.js"}}
@@ -65,7 +69,7 @@ The List Item Decorator comes with a minimum set width that can be adjusted usin
 
 ### Horizontal list
 
-To show a list in a horizontal direction, you can use the `orientation="horizontal"` prop on the List component.
+Use the `orientation="horizontal"` prop on the List component to display the List horizontally.
 
 {{"demo": "HorizontalList.js"}}
 
@@ -92,12 +96,20 @@ If used, it will automatically change the semantic element from the default `<li
 
 ### Ellipsis content
 
-When working with longer content in a List, you can use the List Item component in combination with `<Typography noWrap />` to display an ellipsis when the content exceeds the available space.
+```jsx
+import ListItemContent from '@mui/joy/ListItemContent';
+```
+
+When working with longer content in a List, you can use the List Item Content component in combination with `<Typography noWrap />` to display an ellipsis when the content exceeds the available space.
 This can help to keep the List Items visually consistent and prevent text from overflowing outside of the List Item's container.
 
 {{"demo": "EllipsisList.js"}}
 
 ### Divider
+
+```jsx
+import ListDivider from '@mui/joy/ListDivider';
+```
 
 The List Divider component comes with four `inset` patterns:
 
@@ -127,9 +139,14 @@ By default, this works on both light and dark modes.
 
 ### Nested list
 
-Within the List Item component, you can create a nested list using the `nested` prop.
-The nested list will inherit the list `size` as well as other CSS variables like `--List-radius` and `--ListItem-radius` from the root List component to adjust the design consistently.
-The layout and spacing of the nested list will remain intact, however, as if it isn't nested.
+```jsx
+import ListSubheader from '@mui/joy/ListSubheader';
+```
+
+You can create a nested list using the `nested` prop on a List Item.
+This enables you to add a List Subheader as well as a new List component as children of the List Item.
+The nested List will inherit its `size` as well as other CSS variables like `--List-radius` and `--ListItem-radius` from the root List component to keep the design consistent.
+The layout and spacing of the nested List will remain independent.
 
 {{"demo": "NestedList.js"}}
 
@@ -144,7 +161,11 @@ Nested lists will stick to the left of the root list, by default. If you need to
 
 ### Interactive list items
 
-To make a List Item interactive, you can use List Item Button _inside_ a List Item.
+```jsx
+import ListItemButton from '@mui/joy/ListItemButton';
+```
+
+To make a List Item interactive, you can use List Item Button inside a List Item.
 
 {{"demo": "ActionableList.js"}}
 
@@ -177,7 +198,8 @@ A selected List Item Button does not apply `:hover` and `:active` global variant
 
 ## CSS variables playground
 
-Play around with all the CSS variables available in the list component to see how the design changes.
+Play around with the CSS variables available to the List components to see how the design changes.
+You can use these to customize the components with both the `sx` prop and the theme.
 
 {{"demo": "ListVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
