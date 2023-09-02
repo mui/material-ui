@@ -1,4 +1,4 @@
-<Box sx={{ width: 200 }}>
+<Box sx={{ width: 240, padding: 2 }} ref={containerRef}>
   <FormControlLabel
     control={<Switch checked={checked} onChange={handleChange} />}
     label="Show from target"
