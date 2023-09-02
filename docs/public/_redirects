@@ -491,6 +491,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /joy-ui/guides/next-js-app-router/ /joy-ui/integrations/next-js-app-router/ 301
 /joy-ui/guides/using-joy-ui-and-material-ui-together/ /joy-ui/integrations/material-ui/ 301
 /joy-ui/guides/using-icon-libraries/ /joy-ui/integrations/icon-libraries/ 301
+/joy-ui/guides/themeable-component/ /joy-ui/customization/creating-themed-components/ 301
+/joy-ui/guides/overriding-component-structure/ /joy-ui/customization/overriding-component-structure/ 301
 
 # Proxies
 
