@@ -128,7 +128,7 @@ export function sxObjectExtractor(nodePath: NodePath<ObjectExpression | ArrowFun
     const body = nodePath.get('body');
     if (!body.isObjectExpression()) {
       throw body.buildCodeFrameError(
-        "sx prop only supports arrow functions that directly return an object, eg. () => ({color: 'red'}). You can accept theme object in the params if required.",
+        "sx prop only supports arrow functions that directly return an object, e.g. () => ({color: 'red'}). You can accept theme object in the params if required.",
       );
     }
     traverseObjectExpression(body, nodePath);
