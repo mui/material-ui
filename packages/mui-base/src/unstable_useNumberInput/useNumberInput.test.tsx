@@ -270,4 +270,40 @@ describe('useNumberInput', () => {
       expect(handleChange.args[0][1]).to.equal(undefined);
     });
   });
+
+  describe('warnings', () => {
+    it('should warn when switching from uncontrolled to controlled', async () => {
+      const handleChange = spy();
+      function NumberInput({ value }: { value?: number }) {
+        const { getInputProps } = useNumberInput({
+          onChange: handleChange,
+        });
+
+        return <input {...getInputProps()} value={value} />;
+      }
+      const { setProps } = render(<NumberInput />);
+      expect(() => {
+        setProps({ value: 5 });
+      }).to.toErrorDev(
+        ['Warning: A component is changing an uncontrolled input to be controlled'].join('\n'),
+      );
+    });
+
+    it('should warn when switching from controlled to uncontrolled', async () => {
+      const handleChange = spy();
+      function NumberInput({ value }: { value?: number }) {
+        const { getInputProps } = useNumberInput({
+          onChange: handleChange,
+        });
+
+        return <input {...getInputProps()} value={value} />;
+      }
+      const { setProps } = render(<NumberInput value={5} />);
+      expect(() => {
+        setProps({ value: undefined });
+      }).to.toErrorDev(
+        ['Warning: A component is changing a controlled input to be uncontrolled'].join('\n'),
+      );
+    });
+  });
 });
