@@ -55,6 +55,18 @@ function escape(html, encode) {
 function checkUrlHealth(href, linkText, context) {
   const url = new URL(href, 'https://mui.com/');
 
+  if (/\/{2,}$/.test(url.pathname)) {
+    throw new Error(
+      [
+        'docs-infra: Duplicated trailing slashes. The following link:',
+        `[${linkText}](${href}) in ${context.location} has duplicated trailing slashes, please only add one.`,
+        '',
+        'See https://ahrefs.com/blog/trailing-slash/ for more details.',
+        '',
+      ].join('\n'),
+    );
+  }
+
   // External links to MUI, ignore
   if (url.host !== 'mui.com') {
     return;
@@ -350,7 +362,9 @@ function createRender(context) {
 
       let finalHref = href;
 
-      checkUrlHealth(href, linkText, context);
+      if (process.env.DEPLOY_ENV !== 'production') {
+        checkUrlHealth(href, linkText, context);
+      }
 
       if (userLanguage !== 'en' && href.indexOf('/') === 0 && !options.ignoreLanguagePages(href)) {
         finalHref = `/${userLanguage}${href}`;
