@@ -272,7 +272,7 @@ describe('useNumberInput', () => {
   });
 
   describe('warnings', () => {
-    it('should warn when switching from uncontrolled to controlled', async () => {
+    it('should warn when switching from uncontrolled to controlled', () => {
       const handleChange = spy();
       function NumberInput({ value }: { value?: number }) {
         const { getInputProps } = useNumberInput({
@@ -289,7 +289,7 @@ describe('useNumberInput', () => {
       );
     });
 
-    it('should warn when switching from controlled to uncontrolled', async () => {
+    it('should warn when switching from controlled to uncontrolled', () => {
       const handleChange = spy();
       function NumberInput({ value }: { value?: number }) {
         const { getInputProps } = useNumberInput({
