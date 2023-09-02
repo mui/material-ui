@@ -32,21 +32,19 @@ export default function SlideFromContainer() {
   return (
     <Box
       sx={{
-        height: 200,
-        display: 'flex',
-        borderRadius: 1,
+        width: 240,
+        borderRadius: 2,
         border: '1px solid',
         borderColor: 'divider',
         backgroundColor: 'background.default',
-        overflow: 'hidden',
       }}
     >
-      <Box sx={{ width: 240, padding: 2 }} ref={containerRef}>
+      <Box sx={{ p: 2, height: 200, overflow: 'hidden' }} ref={containerRef}>
         <FormControlLabel
           control={<Switch checked={checked} onChange={handleChange} />}
           label="Show from target"
         />
-        <Slide direction="up" in={checked} container={containerRef.current}>
+        <Slide in={checked} container={containerRef.current}>
           {icon}
         </Slide>
       </Box>
