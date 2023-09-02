@@ -146,14 +146,13 @@ const parseDocFolder = (folderPath, availableLinks = {}, usedLinks = {}) => {
   mdFiles.forEach(({ fileName, url }) => {
     const { hashes, links } = getLinksAndAnchors(fileName);
 
-    links
-      .forEach((link) => {
-        if (usedLinks[link] === undefined) {
-          usedLinks[link] = [fileName];
-        } else {
-          usedLinks[link].push(fileName);
-        }
-      });
+    links.forEach((link) => {
+      if (usedLinks[link] === undefined) {
+        usedLinks[link] = [fileName];
+      } else {
+        usedLinks[link].push(fileName);
+      }
+    });
 
     hashes.forEach((hash) => {
       availableLinks[`${url}#${hash}`] = true;
