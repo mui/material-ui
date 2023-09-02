@@ -271,7 +271,7 @@ describe('useNumberInput', () => {
     });
   });
 
-  describe('warn - uncontrol to control', () => {
+  describe('warnings', () => {
     it('should warn when switching from uncontrolled to controlled', () => {
       const handleChange = spy();
       function NumberInput({ value }: { value?: number }) {
@@ -289,22 +289,22 @@ describe('useNumberInput', () => {
         'MUI: A component is changing the uncontrolled value state of NumberInput to be controlled',
       );
     });
-  });
-  describe('warn - control to uncontrol', () => {
+
     it('should warn when switching from controlled to uncontrolled', () => {
       const handleChange = spy();
       function NumberInput({ value }: { value?: number }) {
         const { getInputProps } = useNumberInput({
           onChange: handleChange,
+          value,
         });
 
-        return <input {...getInputProps()} value={value} />;
+        return <input {...getInputProps()} />;
       }
       const { setProps } = render(<NumberInput value={5} />);
       expect(() => {
         setProps({ value: undefined });
       }).to.toErrorDev(
-        ['Warning: A component is changing a controlled input to be uncontrolled'].join('\n'),
+        'MUI: A component is changing the controlled value state of NumberInput to be uncontrolled',
       );
     });
   });
