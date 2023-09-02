@@ -271,24 +271,25 @@ describe('useNumberInput', () => {
     });
   });
 
-  describe('warnings', () => {
-    // it('should warn when switching from uncontrolled to controlled', () => {
-    //   const handleChange = spy();
-    //   function NumberInput({ value }: { value?: number }) {
-    //     const { getInputProps } = useNumberInput({
-    //       onChange: handleChange,
-    //     });
+  describe('warn - uncontrol to control', () => {
+    it('should warn when switching from uncontrolled to controlled', () => {
+      const handleChange = spy();
+      function NumberInput({ value }: { value?: number }) {
+        const { getInputProps } = useNumberInput({
+          onChange: handleChange,
+        });
 
-    //     return <input {...getInputProps()} value={value} />;
-    //   }
-    //   const { setProps } = render(<NumberInput />);
-    //   expect(() => {
-    //     setProps({ value: 5 });
-    //   }).to.toErrorDev(
-    //     ['Warning: A component is changing an uncontrolled input to be controlled'].join('\n'),
-    //   );
-    // });
-
+        return <input {...getInputProps()} value={value} />;
+      }
+      const { setProps } = render(<NumberInput />);
+      expect(() => {
+        setProps({ value: 5 });
+      }).to.toErrorDev(
+        ['Warning: A component is changing an uncontrolled input to be controlled'].join('\n'),
+      );
+    });
+  });
+  describe('warn - control to uncontrol', () => {
     it('should warn when switching from controlled to uncontrolled', () => {
       const handleChange = spy();
       function NumberInput({ value }: { value?: number }) {
