@@ -277,15 +277,16 @@ describe('useNumberInput', () => {
       function NumberInput({ value }: { value?: number }) {
         const { getInputProps } = useNumberInput({
           onChange: handleChange,
+          value,
         });
 
-        return <input {...getInputProps()} value={value} />;
+        return <input {...getInputProps()} />;
       }
       const { setProps } = render(<NumberInput />);
       expect(() => {
         setProps({ value: 5 });
       }).to.toErrorDev(
-        ['Warning: A component is changing an uncontrolled input to be controlled'].join('\n'),
+        'MUI: A component is changing the uncontrolled value state of NumberInput to be controlled',
       );
     });
   });
