@@ -131,6 +131,7 @@ export default function PersistentDrawerRight() {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
+          zIndex: !open ? -10 : null,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
           },
