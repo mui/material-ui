@@ -1247,6 +1247,7 @@ describe('<Select />', () => {
 
     const options = getAllByRole('option');
     const secondOption = options[1];
+
     // it doesn't have highlighted class as it is not selected
     expect(secondOption).not.to.have.class(optionClasses.highlighted);
 
