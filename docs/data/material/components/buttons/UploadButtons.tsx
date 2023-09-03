@@ -33,7 +33,7 @@ export default function UploadButtons() {
           variant="contained"
           color="primary"
           component="span"
-          href="#upload-buttons"
+          href="#upload-button"
         >
           Upload
         </Button>
