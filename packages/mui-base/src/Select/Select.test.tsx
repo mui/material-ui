@@ -1235,9 +1235,29 @@ describe('<Select />', () => {
     expect(renderOption4Spy.callCount).to.equal(0);
   });
 
-  it('option should have highlighted class only when it is selected', () => {
-    const { getAllByRole } = render(
-      <Select multiple defaultValue={[10]} defaultListboxOpen>
+  it('1st option should have highlighted class listbox open irrespective of option selection', () => {
+    const { getByRole } = render(
+      <Select>
+        <Option value={10}>10</Option>
+      </Select>,
+    );
+
+    const select = getByRole('combobox');
+
+    act(() => {
+      select.focus();
+    });
+
+    fireEvent.keyDown(select, { key: 'ArrowDown' });
+
+    const firstOption = getByRole('option');
+
+    expect(firstOption).to.have.class(optionClasses.highlighted);
+  });
+
+  it('except for 1st option - other options should have highlighted class only when option is selected', () => {
+    const { getAllByRole, getByRole } = render(
+      <Select multiple>
         <Option value={10}>10</Option>
         <Option value={20}>20</Option>
         <Option value={30}>30</Option>
@@ -1245,9 +1265,19 @@ describe('<Select />', () => {
       </Select>,
     );
 
+    const select = getByRole('combobox');
+
+    act(() => {
+      select.focus();
+    });
+
+    fireEvent.keyDown(select, { key: 'ArrowDown' });
+
     const options = getAllByRole('option');
+    const firstOption = options[0];
     const secondOption = options[1];
 
+    expect(firstOption).to.have.class(optionClasses.highlighted);
     // it doesn't have highlighted class as it is not selected
     expect(secondOption).not.to.have.class(optionClasses.highlighted);
 
