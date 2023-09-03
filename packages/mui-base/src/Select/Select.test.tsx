@@ -1235,7 +1235,7 @@ describe('<Select />', () => {
     expect(renderOption4Spy.callCount).to.equal(0);
   });
 
-  it('1st option should have highlighted class listbox open irrespective of option selection', () => {
+  it('1st option should have highlighted class irrespective of option selection', () => {
     const { getByRole } = render(
       <Select>
         <Option value={10}>10</Option>
@@ -1255,7 +1255,7 @@ describe('<Select />', () => {
     expect(firstOption).to.have.class(optionClasses.highlighted);
   });
 
-  it('except for 1st option - other options should have highlighted class only when option is selected', () => {
+  it('except for 1st option - other options should have highlighted class when option is selected', () => {
     const { getAllByRole, getByRole } = render(
       <Select multiple>
         <Option value={10}>10</Option>
