@@ -218,6 +218,7 @@ function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
   const newSelectedValues = toggleSelection(item, selectedValues, selectionMode, itemComparer);
 
   const highlightedValue = selectedValues.includes(items[itemIndex]) ? null : item;
+
   return {
     ...state,
     selectedValues: newSelectedValues,
