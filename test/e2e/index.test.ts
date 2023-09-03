@@ -232,7 +232,7 @@ describe('e2e', () => {
       await page.keyboard.down('ArrowDown'); // moves to 4th option
 
       const listbox = (await screen.getByRole('listbox'))!;
-      const focusedOption = (await listbox.$('.Joy-focused'))!;
+      const focusedOption = (await listbox.$('.Mui-focused'))!;
       const focusedOptionText = await focusedOption.innerHTML();
 
       expect(focusedOptionText).to.equal('four');
@@ -252,6 +252,17 @@ describe('e2e', () => {
       await page.waitForTimeout(200); // Wait for debounce to fire (166)
 
       expect(pageErrors.length).to.equal(0);
+    });
+  });
+
+  describe('<TextField />', () => {
+    it('should fire `onClick` when clicking on the focused label position', async () => {
+      await renderFixture('TextField/OutlinedTextFieldOnClick');
+
+      // execute the click on the focused label position
+      await page.getByRole('textbox').click({ position: { x: 10, y: 10 } });
+      const errorSelector = page.locator('.MuiInputBase-root.Mui-error');
+      await errorSelector.waitFor();
     });
   });
 });

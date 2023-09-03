@@ -28,7 +28,7 @@ export default function ResponsiveModal() {
             },
           })}
         >
-          <Typography id="nested-modal-title" component="h2">
+          <Typography id="nested-modal-title" level="h2">
             Are you absolutely sure?
           </Typography>
           <Typography id="nested-modal-description" textColor="text.tertiary">

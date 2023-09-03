@@ -74,7 +74,14 @@ function getDeprecatedInfo(type: PropTypeDescriptor) {
 export default function generatePropDescription(
   prop: DescribeablePropDescriptor,
   propName: string,
-): string {
+): {
+  deprecated: string;
+  jsDocText: string;
+  signature?: string;
+  signatureArgs?: { name: string; description: string }[];
+  signatureReturn?: { name: string; description: string };
+  requiresRef?: boolean;
+} {
   const { annotation } = prop;
   const type = prop.type;
   let deprecated = '';
@@ -92,8 +99,6 @@ export default function generatePropDescription(
     .replace(/(\r?\n){2}/g, '<br>')
     .replace(/\r?\n/g, ' ');
 
-  let signature = '';
-
   // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
   // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
   const parsedArgs: readonly doctrine.Tag[] = annotation.tags.filter(
@@ -101,6 +106,10 @@ export default function generatePropDescription(
   );
   let parsedReturns: { description?: string | null; type?: doctrine.Type | null } | undefined =
     annotation.tags.find((tag) => tag.title === 'returns');
+
+  let signature;
+  let signatureArgs;
+  let signatureReturn;
   if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
     parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
 
@@ -111,8 +120,15 @@ export default function generatePropDescription(
       }
     });
 
-    signature += '<br><br>**Signature:**<br>`function(';
-    signature += parsedArgs
+    const returnType = parsedReturns.type;
+    if (returnType == null) {
+      throw new TypeError(
+        `Function signature for prop '${propName}' has no return type. Try \`@returns void\`. Otherwise it might be a bug with doctrine.`,
+      );
+    }
+    const returnTypeName = resolveType(returnType);
+
+    signature = `function(${parsedArgs
       .map((tag, index) => {
         if (tag.type != null && tag.type.type === 'OptionalType') {
           return `${tag.name}?: ${(tag.type.expression as any).name}`;
@@ -125,32 +141,26 @@ export default function generatePropDescription(
         }
         return `${tag.name}: ${resolveType(tag.type!)}`;
       })
-      .join(', ');
+      .join(', ')}) => ${returnTypeName}`;
 
-    const returnType = parsedReturns.type;
-    if (returnType == null) {
-      throw new TypeError(
-        `Function signature for prop '${propName}' has no return type. Try \`@returns void\`. Otherwise it might be a bug with doctrine.`,
-      );
-    }
+    signatureArgs = parsedArgs
+      .filter((tag) => tag.description && tag.name)
+      .map((tag) => ({ name: tag.name!, description: tag.description! }));
 
-    const returnTypeName = resolveType(returnType);
-
-    signature += `) => ${returnTypeName}\`<br>`;
-    signature += parsedArgs
-      .filter((tag) => tag.description)
-      .map((tag) => `*${tag.name}:* ${tag.description}`)
-      .join('<br>');
     if (parsedReturns.description) {
-      signature += `<br> *returns* (${returnTypeName}): ${parsedReturns.description}`;
+      signatureReturn = { name: returnTypeName, description: parsedReturns.description };
     }
   }
 
-  let notes = '';
-  if (isElementAcceptingRefProp(type) || isElementTypeAcceptingRefProp(type)) {
-    notes +=
-      '<br>⚠️ [Needs to be able to hold a ref](/material-ui/guides/composition/#caveat-with-refs).';
-  }
+  const requiresRef =
+    isElementAcceptingRefProp(type) || isElementTypeAcceptingRefProp(type) || undefined;
 
-  return `${deprecated}${jsDocText}${signature}${notes}`;
+  return {
+    deprecated,
+    jsDocText,
+    signature,
+    signatureArgs,
+    signatureReturn,
+    requiresRef,
+  };
 }

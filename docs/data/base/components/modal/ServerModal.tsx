@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Modal from '@mui/base/Modal';
+import { Modal } from '@mui/base/Modal';
 import { Box, styled, Theme } from '@mui/system';
 
 export default function ServerModal() {

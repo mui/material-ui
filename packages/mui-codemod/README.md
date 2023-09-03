@@ -62,6 +62,25 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+### `base-use-named-exports`
+
+Base UI default exports were changed to named ones. Previously we had a mix of default and named ones.
+This was changed to improve consistency and avoid problems some bundlers have with default exports.
+See https://github.com/mui/material-ui/issues/21862 for more context.
+
+This codemod updates the import and re-export statements.
+
+```diff
+-  import BaseButton from '@mui/base/Button';
++  import { Button as BaseButton } from '@mui/base/Button';
+-  export { default as BaseSlider } from '@mui/base/Slider';
++  export { Slider as BaseSlider } from '@mui/base/Slider';
+```
+
+```bash
+npx @mui/codemod v5.0.0/base-use-named-exports <path>
+```
+
 ### `base-remove-unstyled-suffix`
 
 The `Unstyled` suffix has been removed from all Base UI component names, including names of types and other related identifiers.
@@ -247,10 +266,18 @@ The associated breaking change was done in [#34997](https://github.com/mui/mater
 
 #### `date-pickers-moved-to-x`
 
-Rename the imports of date and time pickers from `@mui/lab` to `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
+Rename the imports of Date and Time Pickers from `@mui/lab` to `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
 
 ```bash
 npx @mui/codemod v5.0.0/date-pickers-moved-to-x <path>
+```
+
+#### `tree-view-moved-to-x`
+
+Rename the imports of Tree View from `@mui/lab` to `@mui/x-tree-view`.
+
+```bash
+npx @mui/codemod v5.0.0/tree-view-moved-to-x <path>
 ```
 
 #### 🚀 `preset-safe`

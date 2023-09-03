@@ -1,3 +1,5 @@
+import * as React from 'react';
+import styled from 'styled-components';
 import {
   breakpoints,
   display,
@@ -7,8 +9,6 @@ import {
   style,
   styled as muiStyled,
 } from '@mui/system';
-import * as React from 'react';
-import styled from 'styled-components';
 
 function composeTest() {
   function first(props: { color: string }) {

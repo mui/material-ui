@@ -1,7 +1,7 @@
 // testing docs/src/pages/customization/typography/typography.md
+import * as React from 'react';
 import { createTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import * as React from 'react';
 
 declare module '@mui/material/styles' {
   interface TypographyVariants {

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
-import { ThemeProvider } from '@mui/system';
 import { useTheme as usePrivateTheme } from '@mui/private-theming';
 import { ThemeContext } from '@mui/styled-engine';
+import { ThemeProvider } from '@mui/system';
 
 const useEngineTheme = () => React.useContext(ThemeContext);
 

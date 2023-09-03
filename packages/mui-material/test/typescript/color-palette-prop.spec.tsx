@@ -1,4 +1,5 @@
 import * as React from 'react';
+import TimelineDot from '@mui/lab/TimelineDot';
 import {
   Badge,
   Button,
@@ -18,7 +19,6 @@ import {
   SvgIcon,
   Switch,
 } from '@mui/material';
-import TimelineDot from '@mui/lab/TimelineDot';
 
 function TestBaseColorPaletteProp() {
   const baseColorPalette = ['primary', 'secondary', 'error', 'info', 'success', 'warning'] as const;

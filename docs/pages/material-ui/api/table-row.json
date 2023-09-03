@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "hover": { "type": { "name": "bool" }, "default": "false" },
     "selected": { "type": { "name": "bool" }, "default": "false" },
@@ -9,10 +9,15 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "TableRow",
+  "imports": [
+    "import TableRow from '@mui/material/TableRow';",
+    "import { TableRow } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "selected", "hover", "head", "footer"],
     "globalClasses": { "selected": "Mui-selected" },

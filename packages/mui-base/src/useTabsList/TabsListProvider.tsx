@@ -17,7 +17,7 @@ export interface TabsListProviderProps {
  *
  * @ignore - do not document.
  */
-export default function TabsListProvider(props: TabsListProviderProps) {
+export function TabsListProvider(props: TabsListProviderProps) {
   const { value, children } = props;
   const {
     dispatch,

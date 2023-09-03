@@ -102,4 +102,4 @@ if (process.env.NODE_ENV !== 'production') {
   (Portal as any)['propTypes' + ''] = exactProp((Portal as any).propTypes);
 }
 
-export default Portal;
+export { Portal };

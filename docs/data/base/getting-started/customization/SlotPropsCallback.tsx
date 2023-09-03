@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Switch, { SwitchOwnerState } from '@mui/base/Switch';
+import { Switch, SwitchOwnerState } from '@mui/base/Switch';
 
 const css = `
   .my-switch {

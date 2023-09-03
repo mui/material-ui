@@ -13,7 +13,6 @@ import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
-import customTheme from './theme';
 import GoogleIcon from './GoogleIcon';
 
 interface FormElements extends HTMLFormControlsCollection {
@@ -61,11 +60,7 @@ function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
  */
 export default function JoySignInSideTemplate() {
   return (
-    <CssVarsProvider
-      defaultMode="dark"
-      disableTransitionOnChange
-      theme={customTheme}
-    >
+    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
       <CssBaseline />
       <GlobalStyles
         styles={{
@@ -163,7 +158,7 @@ export default function JoySignInSideTemplate() {
               <Typography component="h1" fontSize="xl2" fontWeight="lg">
                 Sign in to your account
               </Typography>
-              <Typography level="body2" sx={{ my: 1, mb: 3 }}>
+              <Typography level="body-sm" sx={{ my: 1, mb: 3 }}>
                 Welcome back
               </Typography>
             </div>
@@ -213,7 +208,7 @@ export default function JoySignInSideTemplate() {
             </Button>
           </Box>
           <Box component="footer" sx={{ py: 3 }}>
-            <Typography level="body3" textAlign="center">
+            <Typography level="body-xs" textAlign="center">
               © Your company {new Date().getFullYear()}
             </Typography>
           </Box>

@@ -1,10 +1,10 @@
 import { EventHandlers } from '../utils/types';
 import { UseButtonRootSlotProps } from '../useButton';
+import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 interface UseMenuItemRootSlotOwnProps {
   role: 'menuitem';
-  tabIndex?: number;
-  id?: string;
+  ref: React.RefCallback<Element> | null;
 }
 
 export interface MenuItemMetadata {
@@ -16,7 +16,9 @@ export interface MenuItemMetadata {
 
 export type UseMenuItemRootSlotProps<TOther = {}> = TOther &
   UseMenuItemRootSlotOwnProps &
-  UseButtonRootSlotProps<TOther>;
+  UseButtonRootSlotProps<TOther> & {
+    onClick: MuiCancellableEventHandler<React.MouseEvent>;
+  };
 
 export interface UseMenuItemParameters {
   disabled?: boolean;

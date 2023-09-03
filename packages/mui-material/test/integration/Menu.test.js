@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
+import { act, createRenderer, fireEvent, screen } from 'test/utils';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { act, createRenderer, fireEvent, screen } from 'test/utils';
 
 const options = [
   'Show some love to MUI',

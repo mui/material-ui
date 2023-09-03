@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useSwitch from '@mui/base/useSwitch';
+import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -59,22 +59,24 @@ const RadioRoot = styled('span', {
   return [
     {
       '--Icon-fontSize': 'var(--Radio-size)',
+      '--Icon-color': 'currentColor',
       ...(ownerState.size === 'sm' && {
         '--Radio-size': '1rem',
-        '--Radio-gap': '0.375rem',
-        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.375rem' },
+        '--Radio-gap': '0.5rem',
+        // --FormHelperText-margin is equal to --Radio-size + --Radio-gap but we can't use calc() with CSS variables because the FormHelperText is a sibling element
+        '& ~ *': { '--FormHelperText-margin': '0 0 0 1.5rem' },
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
         '--Radio-size': '1.25rem',
-        '--Radio-gap': '0.5rem',
-        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.75rem' },
+        '--Radio-gap': '0.625rem',
+        '& ~ *': { '--FormHelperText-margin': '0.25rem 0 0 1.875rem' },
         fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
         '--Radio-size': '1.5rem',
-        '--Radio-gap': '0.625rem',
-        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.125rem' },
+        '--Radio-gap': '0.75rem',
+        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.25rem' },
         fontSize: theme.vars.fontSize.lg,
       }),
       position: ownerState.overlay ? 'initial' : 'relative',
@@ -100,7 +102,7 @@ const RadioRoot = styled('span', {
           marginBlockStart:
             ownerState.orientation === 'horizontal' ? undefined : 'var(--RadioGroup-gap)',
         }),
-    },
+    } as const,
   ];
 });
 
@@ -112,6 +114,10 @@ const RadioRadio = styled('span', {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
       margin: 0,
       boxSizing: 'border-box',
       width: 'var(--Radio-size)',
@@ -124,7 +130,10 @@ const RadioRadio = styled('span', {
       ...(ownerState.disableIcon && {
         display: 'contents',
       }),
-    },
+      [`&.${radioClasses.checked}`]: {
+        '--Icon-color': 'currentColor',
+      },
+    } as const,
     ...(!ownerState.disableIcon
       ? [
           {
@@ -160,7 +169,7 @@ const RadioAction = styled('span', {
     right: 'calc(-1 * var(--variant-borderWidth, 0px))',
     zIndex: 1, // The action element usually cover the area of nearest positioned parent
     [theme.focus.selector]: theme.focus.default,
-  },
+  } as const,
   ...(ownerState.disableIcon
     ? [
         theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -426,7 +435,7 @@ Radio.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

@@ -6,3 +6,4 @@ export { default as styled } from './styled';
 export { default as defaultTheme } from './defaultTheme';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 export * from './CssVarsProvider';
+export { default as useThemeProps } from './useThemeProps';

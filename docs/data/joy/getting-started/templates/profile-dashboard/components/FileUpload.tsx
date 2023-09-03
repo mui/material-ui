@@ -50,7 +50,7 @@ export default function FileUpload({
       </AspectRatio>
       <CardContent>
         <Typography fontSize="sm">{fileName}</Typography>
-        <Typography level="body3">{fileSize}</Typography>
+        <Typography level="body-xs">{fileSize}</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <LinearProgress
             value={progress}

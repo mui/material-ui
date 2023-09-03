@@ -8,7 +8,7 @@ import {
 } from 'test/utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import Button, { buttonClasses } from '@mui/base/Button';
+import { Button, buttonClasses } from '@mui/base/Button';
 
 describe('<Button />', () => {
   const mount = createMount();

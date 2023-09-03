@@ -1,6 +1,4 @@
 'use client';
-export { default } from './Slider';
+export { Slider } from './Slider';
 export * from './Slider.types';
-
-export { default as sliderClasses } from './sliderClasses';
 export * from './sliderClasses';

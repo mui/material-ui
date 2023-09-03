@@ -1,6 +1,6 @@
 // File is not transpiled.
-const fse = require('fs-extra');
 const path = require('path');
+const fse = require('fs-extra');
 
 /**
  * @typedef {object} Browser

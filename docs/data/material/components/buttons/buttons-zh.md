@@ -71,7 +71,7 @@ Note that the documentation [avoids](/material-ui/guides/api/#native-properties)
 
 {{"demo": "ColorButtons.js"}}
 
-除了使用默认按钮颜色外，您可以添加自定义颜色，或者禁用任何您不需要的颜色。 See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info.
+除了使用默认按钮颜色外，您可以添加自定义颜色，或者禁用任何您不需要的颜色。 See the [Adding new colors](/material-ui/customization/palette/#custom-colors) examples for more info.
 
 ## 尺寸
 

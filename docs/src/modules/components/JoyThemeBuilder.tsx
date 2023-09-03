@@ -45,6 +45,7 @@ import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import TabPanel, { tabPanelClasses } from '@mui/joy/TabPanel';
 import Tab, { tabClasses } from '@mui/joy/Tab';
+import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
@@ -450,10 +451,7 @@ function CodeBlockResult({
               </ListItemDecorator>
               theme.js
             </Tab>
-            <Tab
-              value="ts"
-              sx={{ [`&.${tabClasses.selected}`]: { '--ListItemDecorator-color': '#007acc' } }}
-            >
+            <Tab value="ts">
               <ListItemDecorator>
                 <TypeScriptIcon />
               </ListItemDecorator>
@@ -1015,10 +1013,10 @@ function GlobalVariantForm({
   ].filter((item) => !(tokens as Array<string>).includes(item));
   return (
     <React.Fragment>
-      <Typography component="div" fontWeight="xl" level="h6">
+      <Typography component="div" fontWeight="xl" level="title-md">
         Global variant tokens
       </Typography>
-      <Typography component="div" level="body2" mb={2} mt={0.5}>
+      <Typography component="div" level="body-sm" mb={2} mt={0.5}>
         Pick the specific primitive color, now in CSS variables form already, to correspond to a
         semantic global variant token.
       </Typography>
@@ -1471,27 +1469,20 @@ export default function JoyThemeBuilder() {
             borderRadius: '8px 8px 0 0',
           }}
         >
-          <Tabs
+          <ToggleButtonGroup
             size="sm"
             value={colorMode}
             onChange={(event, newValue) => setColorMode(newValue as 'light' | 'dark')}
-            sx={{ bgcolor: 'transparent' }}
           >
-            <TabList>
-              <Tab value="light">
-                <ListItemDecorator>
-                  <LightMode />
-                </ListItemDecorator>{' '}
-                Light
-              </Tab>
-              <Tab value="dark">
-                <ListItemDecorator>
-                  <DarkMode />
-                </ListItemDecorator>{' '}
-                Dark
-              </Tab>
-            </TabList>
-          </Tabs>
+            <Button value="light">
+              <LightMode />
+              Light
+            </Button>
+            <Button value="dark">
+              <DarkMode />
+              Dark
+            </Button>
+          </ToggleButtonGroup>
           <IconButton
             size="sm"
             variant="outlined"
@@ -1526,36 +1517,34 @@ export default function JoyThemeBuilder() {
             }}
           >
             <ListSubheader sx={{ minHeight: 48 }}>Palette</ListSubheader>
-            {(['primary', 'neutral', 'danger', 'info', 'success', 'warning'] as const).map(
-              (color) => (
-                <React.Fragment key={color}>
-                  <ListItem>
-                    <ListItemButton
-                      {...(colorProp === color && {
-                        variant: 'soft',
-                        selected: true,
-                        color,
-                      })}
-                      onClick={() => setColorProp(color)}
-                    >
-                      <ListItemDecorator>
-                        <Box
-                          sx={{
-                            width: 20,
-                            height: 20,
-                            borderRadius: '50%',
-                            bgcolor: `${color}.500`,
-                          }}
-                        />
-                      </ListItemDecorator>
-                      <ListItemContent sx={{ fontSize: 'sm' }}>{color}</ListItemContent>
-                      <KeyboardArrowRight />
-                    </ListItemButton>
-                  </ListItem>
-                  <ListDivider />
-                </React.Fragment>
-              ),
-            )}
+            {(['primary', 'neutral', 'danger', 'success', 'warning'] as const).map((color) => (
+              <React.Fragment key={color}>
+                <ListItem>
+                  <ListItemButton
+                    {...(colorProp === color && {
+                      variant: 'soft',
+                      selected: true,
+                      color,
+                    })}
+                    onClick={() => setColorProp(color)}
+                  >
+                    <ListItemDecorator>
+                      <Box
+                        sx={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: '50%',
+                          bgcolor: `${color}.500`,
+                        }}
+                      />
+                    </ListItemDecorator>
+                    <ListItemContent sx={{ fontSize: 'sm' }}>{color}</ListItemContent>
+                    <KeyboardArrowRight />
+                  </ListItemButton>
+                </ListItem>
+                <ListDivider />
+              </React.Fragment>
+            ))}
             <ListItem>
               <ListItemButton
                 {...(colorProp === 'etc' && {
@@ -1660,48 +1649,19 @@ export default function JoyThemeBuilder() {
               .filter((k) => mergedValue[k] !== undefined);
             return (
               <Tabs
-                size="sm"
+                size="md"
                 defaultValue={0}
                 sx={{ flex: 1, [`& .${tabPanelClasses.root}`]: { p: 3 } }}
               >
-                <TabList
-                  variant="plain"
-                  sx={{
-                    px: 2,
-                    '--List-padding': '0px',
-                    '--ListItem-minHeight': '48px',
-                    '& > button': {
-                      bgcolor: 'transparent',
-                      boxShadow: 'none',
-                      flex: 'none',
-                      color: 'text.tertiary',
-                      fontWeight: 'md',
-                      '&:hover': { bgcolor: 'transparent' },
-                      '&[aria-selected="true"]': {
-                        color: 'text.primary',
-                        '&::before': {
-                          content: '""',
-                          display: 'block',
-                          position: 'absolute',
-                          height: 2,
-                          left: 'var(--ListItem-paddingLeft)',
-                          right: 'var(--ListItem-paddingRight)',
-                          bottom: -1,
-                          bgcolor: `${colorProp}.solidBg`,
-                        },
-                      },
-                    },
-                  }}
-                >
+                <TabList variant="plain">
                   <Tab>Primitive colors</Tab>
                   <Tab>Global variants</Tab>
                 </TabList>
-                <Divider />
                 <TabPanel value={0}>
-                  <Typography component="div" fontWeight="xl" level="h6">
+                  <Typography component="div" fontWeight="xl" level="title-md">
                     Customize primitive colors
                   </Typography>
-                  <Typography component="div" level="body2" mb={2} mt={0.5}>
+                  <Typography component="div" level="body-sm" mb={2} mt={0.5}>
                     Add your custom-tailored palette here, inserting each HEX value to the scale, or
                     choose from an available set of popular color palettes.
                   </Typography>

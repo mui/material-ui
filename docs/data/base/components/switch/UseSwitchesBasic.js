@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/system';
-import useSwitch from '@mui/base/useSwitch';
+import { useSwitch } from '@mui/base/useSwitch';
 
 export default function UseSwitchesBasic() {
   return (

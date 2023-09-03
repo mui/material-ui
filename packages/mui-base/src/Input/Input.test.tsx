@@ -8,7 +8,7 @@ import {
 } from 'test/utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import Input, { inputClasses } from '@mui/base/Input';
+import { Input, inputClasses } from '@mui/base/Input';
 
 describe('<Input />', () => {
   const mount = createMount();

@@ -1,35 +1,37 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { styled, alpha } from '@mui/material/styles';
+import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-// import Link from 'docs/src/modules/components/Link';
-
-const Root = styled('div')(({ theme }) => ({
-  margin: theme.spacing(1, 2),
-  '& img': {
-    display: 'inline-block',
-  },
-}));
+import Link from 'docs/src/modules/components/Link';
 
 export default function DiamondSponsors() {
   const t = useTranslate();
 
   return (
-    <Root>
+    <Stack
+      spacing={0.5}
+      direction="column"
+      sx={{
+        mt: 1.5,
+        pt: 1.5,
+        borderTop: '1px solid',
+        borderColor: 'divider',
+      }}
+    >
       <Button
         component="a"
-        href="/material-ui/discover-more/backers/#diamond"
+        href="/material-ui/discover-more/backers/"
         target="_blank"
         rel="noopener nofollow"
         size="small"
-        endIcon={<InfoOutlinedIcon fontSize="small" />}
+        startIcon={<DiamondOutlinedIcon fontSize="small" />}
         sx={(theme) => ({
-          mb: 1,
+          width: 'fit-content',
           fontSize: theme.typography.pxToRem(12.5),
-          fontWeight: 500,
+          fontWeight: theme.typography.fontWeightSemiBold,
           color: (theme.vars || theme).palette.primary[600],
           '& svg': {
             width: 14,
@@ -43,37 +45,40 @@ export default function DiamondSponsors() {
         {t('diamondSponsors')}
       </Button>
       <Stack
-        spacing={1.5}
+        spacing={1}
         sx={[
           (theme) => ({
             '& a': {
               width: '100%',
-              height: 52,
+              height: 45,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              border: '1px solid',
+              borderColor: 'divider',
+              borderRadius: '12px',
               boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
-              border: `1px solid`,
-              borderColor: 'grey.200',
-              fontSize: theme.typography.pxToRem(14),
-              fontWeight: 700,
-              borderRadius: 1,
               transition: theme.transitions.create(['color', 'border-color']),
+              boxShadow: `inset 0 1px 2px ${
+                (theme.vars || theme).palette.grey[50]
+              }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
               '&:hover': {
-                color: 'primary.500',
-                borderColor: 'grey.300',
                 backgroundColor: 'grey.50',
+              },
+              '& img': {
+                display: 'inline-block',
               },
             },
           }),
           (theme) =>
             theme.applyDarkStyles({
               '& a': {
-                borderColor: 'primaryDark.700',
+                boxShadow: `inset 0 1px 1px ${
+                  (theme.vars || theme).palette.primaryDark[900]
+                }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
                 '&:hover': {
-                  color: 'primary.300',
-                  borderColor: 'primaryDark.600',
-                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[800],
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
                 },
               },
             }),
@@ -81,16 +86,16 @@ export default function DiamondSponsors() {
       >
         <a
           data-ga-event-category="sponsor"
-          data-ga-event-action="drawer"
-          data-ga-event-label="octopus"
+          data-ga-event-action="docs-premium"
+          data-ga-event-label="octopus.com"
           href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
         >
           <Box
             component="img"
-            height="30px"
-            width="137px"
+            height="25px"
+            width="116px"
             src="/static/sponsors/octopus-light.svg"
             alt="octopus"
             title="Repeatable, reliable deployments"
@@ -104,16 +109,16 @@ export default function DiamondSponsors() {
         </a>
         <a
           data-ga-event-category="sponsor"
-          data-ga-event-action="drawer"
-          data-ga-event-label="doit"
+          data-ga-event-action="docs-premium"
+          data-ga-event-label="doit.com"
           href="https://www.doit.com/flexsave/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
         >
           <Box
             component="img"
-            height="26px"
-            width="62px"
+            height="28px"
+            width="68px"
             src="/static/sponsors/doit-light.svg"
             alt="doit"
             title="Management Platform for Google Cloud and AWS"
@@ -125,40 +130,17 @@ export default function DiamondSponsors() {
             }
           />
         </a>
-        <a
-          data-ga-event-category="sponsor"
-          data-ga-event-action="drawer"
-          data-ga-event-label="zesty.io"
-          href="https://www.zesty.io/integrations/mui-nextjs/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor"
-          rel="noopener noreferrer sponsored"
-          target="_blank"
-        >
-          <Box
-            component="img"
-            height="26px"
-            width="93px"
-            src="https://brand.zesty.io/zesty-io-logo-horizontal.svg"
-            alt="zesty.io"
-            title="The only Next.js CMS you need"
-            loading="lazy"
-            sx={(theme) =>
-              theme.applyDarkStyles({
-                content: `url(https://brand.zesty.io/zesty-io-logo-horizontal-light-color.svg)`,
-              })
-            }
-          />
-        </a>
-        {/*
         <Link
           aria-label={t('diamondSponsors')}
           rel="noopener noreferrer"
           href="/material-ui/discover-more/backers/#diamond"
+          fontSize={14}
+          color="text.secondary"
           // eslint-disable-next-line material-ui/no-hardcoded-labels
         >
           +1
         </Link>
-        */}
       </Stack>
-    </Root>
+    </Stack>
   );
 }

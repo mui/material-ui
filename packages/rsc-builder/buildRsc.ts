@@ -1,15 +1,19 @@
+import path from 'path';
 import * as yargs from 'yargs';
 import * as fse from 'fs-extra';
-import os from 'os';
-import path from 'path';
 import findComponents from '../api-docs-builder/utils/findComponents';
 import findHooks from '../api-docs-builder/utils/findHooks';
 
 type CommandOptions = { grep?: string };
 
-const { EOL } = os;
+type Project = {
+  name: string;
+  rootPath: string;
+  additionalPaths?: string[];
+  additionalFiles?: string[];
+};
 
-const PROJECTS = [
+const PROJECTS: Project[] = [
   {
     name: 'base',
     rootPath: path.join(process.cwd(), 'packages/mui-base'),
@@ -38,20 +42,33 @@ const PROJECTS = [
     name: 'utils',
     rootPath: path.join(process.cwd(), 'packages/mui-utils'),
   },
+  {
+    name: 'icons-material',
+    rootPath: path.join(process.cwd(), 'packages/mui-icons-material'),
+    additionalPaths: ['custom'],
+    additionalFiles: ['src/utils/createSvgIcon.js'],
+  },
 ];
 
 async function processFile(
   filename: string,
   options: {
     lineToPrepend?: string;
-    truncate?: boolean;
   } = {},
 ) {
-  const { lineToPrepend = `'use client';${EOL}`, truncate = true } = options;
+  if (!fse.statSync(filename).isFile()) {
+    return;
+  }
+
+  const { lineToPrepend = `'use client';` } = options;
   const contents = await fse.readFile(filename, 'utf8');
 
-  const truncatedContents = truncate ? contents.split(/\r?\n/).slice(1).join('\n') : contents;
-  const newContents = `${lineToPrepend}${truncatedContents}`;
+  const lines = contents.split(/\r?\n/);
+  if (lines[0] === lineToPrepend) {
+    return;
+  }
+
+  const newContents = `${lineToPrepend}\n${contents}`;
 
   await fse.writeFile(filename, newContents);
 }
@@ -71,6 +88,25 @@ function getIndexFile(directory: string) {
   };
 }
 
+async function findAll(
+  directories: string[],
+  grep: RegExp | null,
+  findFn: typeof findComponents | typeof findHooks,
+) {
+  const result = await Promise.all(
+    directories.map((dir) => {
+      return findFn(dir).filter((item) => {
+        if (grep === null) {
+          return true;
+        }
+        return grep.test(item.filename);
+      });
+    }),
+  );
+
+  return result.flat();
+}
+
 async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
 
@@ -78,6 +114,15 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
     await resolvedPromise;
 
     const projectSrc = path.join(project.rootPath, 'src');
+
+    let directories = [projectSrc];
+
+    if (Array.isArray(project?.additionalPaths)) {
+      directories = [
+        ...directories,
+        ...project.additionalPaths.map((p) => path.join(project.rootPath, p)),
+      ];
+    }
 
     const indexFile = getIndexFile(projectSrc);
 
@@ -88,12 +133,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
       throw error;
     }
 
-    const components = findComponents(projectSrc).filter((component) => {
-      if (grep === null) {
-        return true;
-      }
-      return grep.test(component.filename);
-    });
+    const components = await findAll(directories, grep, findComponents);
 
     components.forEach(async (component) => {
       try {
@@ -108,12 +148,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
       }
     });
 
-    const hooks = findHooks(projectSrc).filter((hook) => {
-      if (grep === null) {
-        return true;
-      }
-      return grep.test(hook.filename);
-    });
+    const hooks = await findAll(directories, grep, findHooks);
 
     hooks.forEach(async (hook) => {
       try {
@@ -127,6 +162,14 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
         throw error;
       }
     });
+
+    if (Array.isArray(project?.additionalFiles)) {
+      project.additionalFiles.forEach(async (file) => {
+        const fullPath = path.join(project.rootPath, file);
+        processFile(fullPath);
+      });
+    }
+
     return Promise.resolve();
   }, Promise.resolve());
 }

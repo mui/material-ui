@@ -10,7 +10,6 @@ export default function MyProfile() {
   return (
     <Sheet
       sx={{
-        bgcolor: 'background.body',
         flex: 1,
         width: '100%',
         mx: 'auto',

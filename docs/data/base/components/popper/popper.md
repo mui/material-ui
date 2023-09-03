@@ -19,6 +19,16 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 The Popper is a utility component for creating various kinds of popups.
 It relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/v2/)) for positioning.
 
+:::warning
+The Popper.js library is no longer maintained.
+It has been replaced by a new library: [Floating UI](https://floating-ui.com/).
+
+Base UI offers the [Popup](/base-ui/react-popup/) component based on this new library.
+It has features and an API similar to the Popper component, but is still in development and its API may change.
+
+Once the [Popup](/base-ui/react-popup/) is stable, we will deprecate and, later, remove our Popper component.
+:::
+
 ## Component
 
 ### Usage
@@ -26,7 +36,7 @@ It relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Popper from '@mui/base/Popper';
+import { Popper } from '@mui/base/Popper';
 
 export default function MyApp() {
   return <Popper>{/* the popper's content */}</Popper>;
@@ -44,7 +54,7 @@ You can disable this behavior with `disablePortal` prop.
 The following demo shows how to create and style a basic popper.
 Click **Toggle Popper** to see how it behaves:
 
-{{"demo": "SimplePopper.js", "defaultCodeOpen": true}}
+{{"demo": "UnstyledPopperBasic", "defaultCodeOpen": true}}
 
 :::warning
 By default, clicking outside the popper does not hide it.

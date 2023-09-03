@@ -16,7 +16,7 @@ export default function KeepMountedModal() {
           aria-labelledby="keep-mounted-modal-title"
           aria-describedby="keep-mounted-modal-description"
         >
-          <Typography id="keep-mounted-modal-title" component="h2">
+          <Typography id="keep-mounted-modal-title" level="h2">
             Keep mounted modal
           </Typography>
           <Typography id="keep-mounted-modal-description" textColor="text.tertiary">

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import Tabs, { TabsOwnProps } from '@mui/base/Tabs';
-import TabsList from '@mui/base/TabsList';
-import TabPanel from '@mui/base/TabPanel';
-import Tab from '@mui/base/Tab';
+import { Tabs, TabsOwnProps } from '@mui/base/Tabs';
+import { TabsList } from '@mui/base/TabsList';
+import { TabPanel } from '@mui/base/TabPanel';
+import { Tab } from '@mui/base/Tab';
 import HighlightedCode from './HighlightedCode';
 
 const StyledTabList = styled(TabsList)(({ theme }) => ({
@@ -35,7 +35,7 @@ const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(({ theme, ow
     p: 0.8,
     border: 'none',
     bgcolor: 'transparent',
-    color: (theme.vars || theme).palette.grey[600],
+    color: (theme.vars || theme).palette.grey[500],
     fontSize: theme.typography.pxToRem(12),
     fontWeight: theme.typography.fontWeightSemiBold,
     fontFamily: theme.typography.fontFamilyCode,
@@ -44,7 +44,7 @@ const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(({ theme, ow
     cursor: 'pointer',
     borderRadius: '8px',
     position: 'relative',
-    '&:not(:first-child)': {
+    '&:not(:first-of-type)': {
       marginLeft: 0.5,
     },
     ...(ownerState.mounted && {

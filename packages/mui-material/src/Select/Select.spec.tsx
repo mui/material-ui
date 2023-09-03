@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { createTheme } from '@mui/material/styles';
 
 function genericValueTest() {
   function handleChangeWithSameTypeAsSelect(event: SelectChangeEvent<number>) {}
@@ -44,4 +45,17 @@ function genericValueTest() {
 
   // disabledUnderline prop should be available (inherited from InputProps) and NOT throw typescript error
   <Select disableUnderline />;
+
+  // Tests presence of `root` class in SelectClasses
+  const theme = createTheme({
+    components: {
+      MuiSelect: {
+        styleOverrides: {
+          root: {
+            borderRadius: '8px',
+          },
+        },
+      },
+    },
+  });
 }

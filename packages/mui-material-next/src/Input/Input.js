@@ -11,7 +11,7 @@ import {
   appendOwnerState,
 } from '@mui/base';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { getInputUtilityClass } from './inputClasses';
 
 const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !== 'classes';

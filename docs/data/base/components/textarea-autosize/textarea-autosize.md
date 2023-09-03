@@ -28,7 +28,7 @@ The height of the Textarea Autosize component automatically adjusts as a respons
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 
 export default function MyApp() {
   return <TextareaAutosize />;
@@ -41,7 +41,7 @@ Textarea Autosize behaves similarly to the native HTML`<textarea>`.
 
 By default, an empty Textarea Autosize component renders as a single row, as shown in the following demo:
 
-{{"demo": "EmptyTextarea.js"}}
+{{"demo": "UnstyledTextarea", "defaultCodeOpen": false}}
 
 ## Customization
 

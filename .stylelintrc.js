@@ -7,6 +7,7 @@ module.exports = {
   ],
   rules: {
     'alpha-value-notation': null,
+    'custom-property-pattern': null,
     'declaration-colon-newline-after': null,
     'function-parentheses-newline-inside': null, // not compatible with prettier
     'media-feature-range-notation': null,

@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "defaultCollapseIcon": { "type": { "name": "node" } },
     "defaultEndIcon": { "type": { "name": "node" } },
     "defaultExpanded": {
@@ -19,9 +19,27 @@
     "expanded": { "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" } },
     "id": { "type": { "name": "string" } },
     "multiSelect": { "type": { "name": "bool" }, "default": "false" },
-    "onNodeFocus": { "type": { "name": "func" } },
-    "onNodeSelect": { "type": { "name": "func" } },
-    "onNodeToggle": { "type": { "name": "func" } },
+    "onNodeFocus": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, value: string) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
+    "onNodeSelect": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, nodeIds: Array<string> | string) => void",
+        "describedArgs": ["event", "nodeIds"]
+      }
+    },
+    "onNodeToggle": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, nodeIds: array) => void",
+        "describedArgs": ["event", "nodeIds"]
+      }
+    },
     "selected": {
       "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" }
     },
@@ -29,10 +47,12 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "TreeView",
+  "imports": ["import TreeView from '@mui/lab/TreeView';", "import { TreeView } from '@mui/lab';"],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTreeView" },
   "spread": true,
   "themeDefaultProps": true,

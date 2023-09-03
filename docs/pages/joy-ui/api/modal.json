@@ -12,7 +12,13 @@
     "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
     "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
     "keepMounted": { "type": { "name": "bool" }, "default": "false" },
-    "onClose": { "type": { "name": "func" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
     "slotProps": {
       "type": {
         "name": "shape",
@@ -22,17 +28,20 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ backdrop?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "Modal",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import Modal from '@mui/joy/Modal';", "import { Modal } from '@mui/joy';"],
+  "styles": { "classes": ["root", "backdrop"], "globalClasses": {}, "name": "MuiModal" },
   "slots": [
     {
       "name": "root",

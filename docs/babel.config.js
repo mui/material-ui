@@ -1,5 +1,5 @@
-const fse = require('fs-extra');
 const path = require('path');
+const fse = require('fs-extra');
 
 const errorCodesPath = path.resolve(__dirname, './public/static/error-codes.json');
 

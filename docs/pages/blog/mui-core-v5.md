@@ -55,7 +55,8 @@ This release features some major highlights:
   - [Unstyled components and hooks](#unstyled-components-and-hooks)
   - [Second design system](#second-design-system)
   - [MUI X](#mui-x)
-  - [Design kits](#design-kits-2)
+  - [Design kits](#design-kits-1)
+- [Thank you](#thank-you)
 
 ## High-level goals for v5
 
@@ -197,7 +198,7 @@ For this reason, v5 comes with the capability to extend the built-in behavior of
 This was one of the most upvoted GitHub issues: [#13875](https://github.com/mui/material-ui/issues/13875).
 In practice, this change makes the MUI Core components extendable placeholders.
 
-**First**, you can use the [existing style mapping](/material-ui/customization/palette/#adding-new-colors) of the components.
+**First**, you can use the [existing style mapping](/material-ui/customization/palette/#custom-colors) of the components.
 For example, you can add a new `neutral` color to the palette, and the Button computes the right derivative colors.
 
 ```jsx

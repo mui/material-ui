@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import Tabs from '@mui/base/Tabs';
-import TabsList from '@mui/base/TabsList';
-import TabPanel from '@mui/base/TabPanel';
+import { Tabs } from '@mui/base/Tabs';
+import { TabsList } from '@mui/base/TabsList';
+import { TabPanel } from '@mui/base/TabPanel';
 import { buttonClasses } from '@mui/base/Button';
-import Tab, { tabClasses } from '@mui/base/Tab';
+import { Tab, tabClasses } from '@mui/base/Tab';
 
 export default function UnstyledTabsIntroduction() {
   return (
