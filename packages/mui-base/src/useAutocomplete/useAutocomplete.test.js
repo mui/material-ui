@@ -184,7 +184,7 @@ describe('useAutocomplete', () => {
       expect(optionElements[3]).not.to.have.class('Mui-focused');
     });
 
-    it('Should skip first disabled option and in the end of list', () => {
+    it('Should skip disabled options in the start and in the end of the list', () => {
       const options = [
         { label: 'foo', value: 1, disabled: true },
         { label: 'bar', value: 2, disabled: false },
