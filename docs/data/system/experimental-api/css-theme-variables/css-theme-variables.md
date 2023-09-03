@@ -27,11 +27,11 @@ You can checkout the [advantages](https://mui.com/material-ui/experimental-api/c
 
 For server-side applications, there are some trade-offs to consider:
 
-|                                                      | Compare to the default method | Reason                                                                                                       |
-| :--------------------------------------------------- | :---------------------------- | :----------------------------------------------------------------------------------------------------------- |
-| HTML size                                            | Bigger                        | CSS variables are generated for both light and dark mode at build time.                                      |
-| [First Contentful Paint (FCP)](https://web.dev/fcp/) | Larger                        | Since the HTML size is generally bigger, the time to download the HTML before showing the content is longer. |
-| [Time to Interactive (TTI)](https://web.dev/tti/)    | Smaller (for dark mode)       | Stylesheets are not regenerated between light and dark mode, so it takes less time for JavaScript to run.    |
+|                                                      | Compare to the default method | Reason                                                                                                         |
+| :--------------------------------------------------- | :---------------------------- | :------------------------------------------------------------------------------------------------------------- |
+| HTML size                                            | Bigger                        | CSS variables are generated for both light and dark mode at build time.                                        |
+| [First Contentful Paint (FCP)](https://web.dev/fcp/) | Longer                        | Since the HTML size is bigger, the time to download the HTML before showing the content is bit longer.         |
+| [Time to Interactive (TTI)](https://web.dev/tti/)    | Shorter (for dark mode)       | Stylesheets are not regenerated between light and dark mode, a lot less time is spent running JavaScript code. |
 
 :::warning
 The comparison described in the table above may not be applicable to large and complex applications since there are so many factors that can impact performance metrics.
