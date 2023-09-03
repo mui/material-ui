@@ -1245,13 +1245,16 @@ describe('<Select />', () => {
       </Select>,
     );
 
-    const option = getAllByRole('option')[1];
+    const options = getAllByRole('option');
+    const secondOption = options[1];
+    // it doesn't have highlighted class as it is not selected
+    expect(secondOption).not.to.have.class(optionClasses.highlighted);
 
     // selects option
-    fireEvent.click(option);
-    expect(option).to.have.class(optionClasses.highlighted);
+    fireEvent.click(secondOption);
+    expect(secondOption).to.have.class(optionClasses.highlighted);
     // deselects option
-    fireEvent.click(option);
-    expect(option).not.to.have.class(optionClasses.highlighted);
+    fireEvent.click(secondOption);
+    expect(secondOption).not.to.have.class(optionClasses.highlighted);
   });
 });
