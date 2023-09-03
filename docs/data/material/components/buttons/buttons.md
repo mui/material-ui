@@ -112,6 +112,12 @@ Use `color` prop to apply theme color palette to component.
 
 {{"demo": "IconButtonColors.js"}}
 
+## File upload
+
+To create a file upload button, turn the button into a label using `component="label"` and then create a visually-hidden input with type `file`.
+
+{{"demo": "InputFileUpload.js"}}
+
 ## Customization
 
 Here are some examples of customizing the component.
@@ -127,12 +133,6 @@ The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons ar
 You can take advantage of this lower-level component to build custom interactions.
 
 {{"demo": "ButtonBaseDemo.js"}}
-
-## File upload
-
-To create a file upload button, turn the button into a label using `component="label"` and then create a visually-hidden input with type `file`.
-
-{{"demo": "InputFileUpload.js"}}
 
 ## Third-party routing library
 
