@@ -22,7 +22,7 @@ export default function InputFileUpload() {
       tabIndex={-1}
       variant="outlined"
       color="primary"
-      endIcon={
+      startIcon={
         <SvgIcon>
           <svg
             xmlns="http://www.w3.org/2000/svg"
