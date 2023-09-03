@@ -478,6 +478,12 @@ describe('<Select />', () => {
       expect(getByRole('listbox')).toBeVisible();
     });
 
+    it('indicates that input element has combobox role and aria-controls set to id of popup', () => {
+      const { getByRole } = render(<Select open value="" />);
+
+      expect(getByRole('combobox')).to.have.attribute('aria-controls', 'menu-');
+    });
+
     specify('the listbox is focusable', () => {
       const { getByRole } = render(<Select open value="" />);
 

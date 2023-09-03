@@ -529,6 +529,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         className={classes.nativeInput}
         autoFocus={autoFocus}
         ownerState={ownerState}
+        role="combobox"
+        aria-controls={`menu-${name || ''}`}
         {...other}
       />
       <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
