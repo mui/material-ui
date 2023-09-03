@@ -49,6 +49,209 @@ describe('useAutocomplete', () => {
     expect(barOptionAsFirst).to.equal(barOptionAsSecond);
   });
 
+  describe('Navigation via keyboard', () => {
+    function Test(props) {
+      const [value, setValue] = React.useState();
+      const { options } = props;
+      const {
+        groupedOptions,
+        getRootProps,
+        getInputLabelProps,
+        getInputProps,
+        getListboxProps,
+        getOptionProps,
+      } = useAutocomplete({
+        options,
+        open: true,
+        value,
+        onChange: (_, option) => setValue(option.value),
+        isOptionEqualToValue: (option, _value) => option.value === _value,
+        getOptionDisabled: (option) => option.disabled,
+      });
+
+      return (
+        <div>
+          <div {...getRootProps()}>
+            <label {...getInputLabelProps()}>useAutocomplete</label>
+            <input {...getInputProps()} />
+          </div>
+          {groupedOptions.length > 0 ? (
+            <ul {...getListboxProps()}>
+              {groupedOptions.map((option, index) => {
+                return <li {...getOptionProps({ option, index })}>{option.label}</li>;
+              })}
+            </ul>
+          ) : null}
+        </div>
+      );
+    }
+
+    it('Should navigate in cicle', () => {
+      const options = [
+        { label: 'foo', value: 1, disabled: false },
+        { label: 'bar', value: 2, disabled: false },
+        { label: 'baz', value: 3, disabled: false },
+      ];
+
+      const { getByRole } = render(<Test options={options} />);
+      const textbox = getByRole('combobox');
+
+      act(() => {
+        textbox.focus();
+      });
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      const optionElements = screen.getAllByRole('option');
+      expect(optionElements[0]).to.have.class('Mui-focused');
+      expect(optionElements[1]).not.to.have.class('Mui-focused');
+      expect(optionElements[2]).not.to.have.class('Mui-focused');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(optionElements[0]).not.to.have.class('Mui-focused');
+      expect(optionElements[1]).to.have.class('Mui-focused');
+      expect(optionElements[2]).not.to.have.class('Mui-focused');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(optionElements[0]).to.have.class('Mui-focused');
+      expect(optionElements[1]).not.to.have.class('Mui-focused');
+      expect(optionElements[2]).not.to.have.class('Mui-focused');
+    });
+
+    it('Should skip disabled options', () => {
+      const options = [
+        { label: 'foo', value: 1, disabled: false },
+        { label: 'bar', value: 2, disabled: true },
+        { label: 'baz', value: 3, disabled: false },
+      ];
+
+      const { getByRole } = render(<Test options={options} />);
+      const textbox = getByRole('combobox');
+
+      act(() => {
+        textbox.focus();
+      });
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      const optionElements = screen.getAllByRole('option');
+      expect(optionElements[0]).to.have.class('Mui-focused');
+      expect(optionElements[1]).not.to.have.class('Mui-focused');
+      expect(optionElements[2]).not.to.have.class('Mui-focused');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(optionElements[0]).not.to.have.class('Mui-focused');
+      expect(optionElements[1]).not.to.have.class('Mui-focused');
+      expect(optionElements[2]).to.have.class('Mui-focused');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(optionElements[0]).to.have.class('Mui-focused');
+      expect(optionElements[1]).not.to.have.class('Mui-focused');
+      expect(optionElements[2]).not.to.have.class('Mui-focused');
+    });
+
+    it('Should skip disabled options in the end of list', () => {
+      const options = [
+        { label: 'foo', value: 1, disabled: false },
+        { label: 'bar', value: 2, disabled: false },
+        { label: 'baz', value: 3, disabled: true },
+        { label: 'qux', value: 4, disabled: true },
+      ];
+
+      const { getByRole } = render(<Test options={options} />);
+      const textbox = getByRole('combobox');
+
+      act(() => {
+        textbox.focus();
+      });
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      const optionElements = screen.getAllByRole('option');
+      expect(optionElements[0]).to.have.class('Mui-focused');
+      expect(optionElements[1]).not.to.have.class('Mui-focused');
+      expect(optionElements[2]).not.to.have.class('Mui-focused');
+      expect(optionElements[3]).not.to.have.class('Mui-focused');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(optionElements[0]).not.to.have.class('Mui-focused');
+      expect(optionElements[1]).to.have.class('Mui-focused');
+      expect(optionElements[2]).not.to.have.class('Mui-focused');
+      expect(optionElements[3]).not.to.have.class('Mui-focused');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(optionElements[0]).to.have.class('Mui-focused');
+      expect(optionElements[1]).not.to.have.class('Mui-focused');
+      expect(optionElements[2]).not.to.have.class('Mui-focused');
+      expect(optionElements[3]).not.to.have.class('Mui-focused');
+    });
+
+    it('Should skip first disabled option and in the end of list', () => {
+      const options = [
+        { label: 'foo', value: 1, disabled: true },
+        { label: 'bar', value: 2, disabled: false },
+        { label: 'baz', value: 3, disabled: false },
+        { label: 'qux', value: 4, disabled: true },
+      ];
+
+      const { getByRole } = render(<Test options={options} />);
+      const textbox = getByRole('combobox');
+
+      act(() => {
+        textbox.focus();
+      });
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      const optionElements = screen.getAllByRole('option');
+      expect(optionElements[0]).not.to.have.class('Mui-focused');
+      expect(optionElements[1]).to.have.class('Mui-focused');
+      expect(optionElements[2]).not.to.have.class('Mui-focused');
+      expect(optionElements[3]).not.to.have.class('Mui-focused');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(optionElements[0]).not.to.have.class('Mui-focused');
+      expect(optionElements[1]).not.to.have.class('Mui-focused');
+      expect(optionElements[2]).to.have.class('Mui-focused');
+      expect(optionElements[3]).not.to.have.class('Mui-focused');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(optionElements[0]).not.to.have.class('Mui-focused');
+      expect(optionElements[1]).to.have.class('Mui-focused');
+      expect(optionElements[2]).not.to.have.class('Mui-focused');
+      expect(optionElements[3]).not.to.have.class('Mui-focused');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+      expect(optionElements[0]).not.to.have.class('Mui-focused');
+      expect(optionElements[1]).not.to.have.class('Mui-focused');
+      expect(optionElements[2]).to.have.class('Mui-focused');
+      expect(optionElements[3]).not.to.have.class('Mui-focused');
+    });
+
+    it('Should ignore the list with disabled options', () => {
+      const options = [
+        { label: 'foo', value: 1, disabled: true },
+        { label: 'bar', value: 2, disabled: true },
+        { label: 'baz', value: 3, disabled: true },
+      ];
+
+      const { getByRole } = render(<Test options={options} />);
+      const textbox = getByRole('combobox');
+
+      act(() => {
+        textbox.focus();
+      });
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      const optionElements = screen.getAllByRole('option');
+      expect(optionElements[0]).not.to.have.class('Mui-focused');
+      expect(optionElements[1]).not.to.have.class('Mui-focused');
+      expect(optionElements[2]).not.to.have.class('Mui-focused');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+      expect(optionElements[0]).not.to.have.class('Mui-focused');
+      expect(optionElements[1]).not.to.have.class('Mui-focused');
+      expect(optionElements[2]).not.to.have.class('Mui-focused');
+    });
+  });
+
   describe('createFilterOptions', () => {
     it('defaults to getOptionLabel for text filtering', () => {
       const filterOptions = createFilterOptions();
