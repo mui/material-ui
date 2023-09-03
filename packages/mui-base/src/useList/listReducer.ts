@@ -217,10 +217,11 @@ function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
   // if the item is already selected, remove it from the selection, otherwise add it
   const newSelectedValues = toggleSelection(item, selectedValues, selectionMode, itemComparer);
 
+  const highlightedValue = selectedValues.includes(items[itemIndex]) ? null : item;
   return {
     ...state,
     selectedValues: newSelectedValues,
-    highlightedValue: item,
+    highlightedValue,
   };
 }
 

@@ -1234,4 +1234,24 @@ describe('<Select />', () => {
     expect(renderOption3Spy.callCount).to.equal(0);
     expect(renderOption4Spy.callCount).to.equal(0);
   });
+
+  it('option should have highlighted class only when it is selected', () => {
+    const { getAllByRole } = render(
+      <Select multiple defaultValue={[10]} defaultListboxOpen>
+        <Option value={10}>10</Option>
+        <Option value={20}>20</Option>
+        <Option value={30}>30</Option>
+        <Option value={40}>40</Option>
+      </Select>,
+    );
+
+    const option = getAllByRole('option')[1];
+
+    // selects option
+    fireEvent.click(option);
+    expect(option).to.have.class(optionClasses.highlighted);
+    // deselects option
+    fireEvent.click(option);
+    expect(option).not.to.have.class(optionClasses.highlighted);
+  });
 });
