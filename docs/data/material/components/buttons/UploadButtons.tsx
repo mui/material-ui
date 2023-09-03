@@ -29,7 +29,12 @@ export default function UploadButtons() {
         type="file"
       />
       <label htmlFor="contained-button-file">
-        <Button variant="contained" color="primary" component="span">
+        <Button
+          variant="contained"
+          color="primary"
+          component="span"
+          href="#upload-buttons"
+        >
           Upload
         </Button>
       </label>
