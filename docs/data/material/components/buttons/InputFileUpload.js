@@ -20,8 +20,7 @@ export default function InputFileUpload() {
     <Button
       component="label"
       tabIndex={-1}
-      variant="outlined"
-      color="primary"
+      variant="contained"
       startIcon={
         <SvgIcon>
           <svg
