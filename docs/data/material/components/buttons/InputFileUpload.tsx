@@ -19,7 +19,6 @@ export default function InputFileUpload() {
   return (
     <Button
       component="label"
-      tabIndex={-1}
       variant="contained"
       startIcon={
         <SvgIcon>
