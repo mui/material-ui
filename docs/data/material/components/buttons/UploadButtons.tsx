@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { makeStyles } from '@mui/styles';
-
+import { Theme } from '@mui/system';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UploadButton() {
+export default function UploadButtons() {
   const classes = useStyles();
 
   return (
@@ -33,7 +33,7 @@ export default function UploadButton() {
           variant="contained"
           color="primary"
           component="span"
-          href="#upload-button"
+          href="#upload-buttons"
         >
           Upload
         </Button>
