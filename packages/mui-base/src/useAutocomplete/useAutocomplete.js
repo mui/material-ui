@@ -293,7 +293,7 @@ export function useAutocomplete(props) {
   }, [value, multiple, focusedTag, focusTag]);
 
   function validOptionIndex(index, direction) {
-    if (!listboxRef.current || index === -1) {
+    if (!listboxRef.current || index < 0 || index >= filteredOptions.length) {
       return -1;
     }
 
