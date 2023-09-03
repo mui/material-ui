@@ -128,6 +128,12 @@ You can take advantage of this lower-level component to build custom interaction
 
 {{"demo": "ButtonBaseDemo.js"}}
 
+## Upload button
+
+To create a [file upload button](https://m2.material.io/components/buttons#upload-button), wrap the button inside of a label and then create a visually-hidden input with type file.
+
+{{"demo": "UploadButtons.js"}}
+
 ## Third-party routing library
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
