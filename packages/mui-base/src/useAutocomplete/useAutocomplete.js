@@ -307,7 +307,7 @@ export function useAutocomplete(props) {
         ? false
         : !option || option.disabled || option.getAttribute('aria-disabled') === 'true';
 
-      if ((option && option.hasAttribute('tabindex')) && !nextFocusDisabled) {
+      if (option && option.hasAttribute('tabindex') && !nextFocusDisabled) {
         // The next option is available
         return nextFocus;
       }
