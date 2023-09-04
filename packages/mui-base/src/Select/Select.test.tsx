@@ -1289,7 +1289,7 @@ describe('<Select />', () => {
     expect(secondOption).not.to.have.class(optionClasses.highlighted);
   });
 
-  it('deselected option should have highlighted class when deselected by keyboard', () => {
+  it('deselected option should have highlighted class when option is deselected by keyboard', () => {
     const { getAllByRole, getByRole } = render(
       <Select multiple>
         <Option value={10}>10</Option>
