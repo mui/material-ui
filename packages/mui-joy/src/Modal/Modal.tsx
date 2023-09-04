@@ -2,30 +2,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import {
-  elementAcceptingRef,
-  HTMLElementType,
-  unstable_ownerDocument as ownerDocument,
-  unstable_useForkRef as useForkRef,
-  unstable_useEventCallback as useEventCallback,
-} from '@mui/utils';
+import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
-import { ModalManager } from '@mui/base/Modal';
+import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import { getModalUtilityClass } from './modalClasses';
 import { ModalOwnerState, ModalTypeMap } from './ModalProps';
 import CloseModalContext from './CloseModalContext';
-
-function ariaHidden(element: Element, show: boolean): void {
-  if (show) {
-    element.setAttribute('aria-hidden', 'true');
-  } else {
-    element.removeAttribute('aria-hidden');
-  }
-}
 
 const useUtilityClasses = (ownerState: ModalOwnerState) => {
   const { open } = ownerState;
@@ -37,14 +23,6 @@ const useUtilityClasses = (ownerState: ModalOwnerState) => {
 
   return composeClasses(slots, getModalUtilityClass, {});
 };
-
-function getContainer(container: ModalOwnerState['container']) {
-  return (typeof container === 'function' ? container() : container) as HTMLElement;
-}
-
-// A modal manager used to track and manage the state of open Modals.
-// Modals don't open on the server so this won't conflict with concurrent requests.
-const manager = new ModalManager();
 
 const ModalRoot = styled('div', {
   name: 'JoyModal',
@@ -94,7 +72,7 @@ const ModalBackdrop = styled('div', {
  *
  * - [Modal API](https://mui.com/joy-ui/api/modal/)
  */
-const Modal = React.forwardRef(function ModalU(inProps, ref) {
+const Modal = React.forwardRef(function Modal(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyModal',
@@ -120,81 +98,6 @@ const Modal = React.forwardRef(function ModalU(inProps, ref) {
     ...other
   } = props;
 
-  // @ts-ignore internal logic
-  const modal = React.useRef<{ modalRef: HTMLDivElement; mount: HTMLElement }>({});
-  const mountNodeRef = React.useRef<null | HTMLElement>(null);
-  const modalRef = React.useRef<null | HTMLDivElement>(null);
-  const handleRef = useForkRef(modalRef, ref);
-
-  let ariaHiddenProp = true;
-  if (
-    props['aria-hidden'] === 'false' ||
-    (typeof props['aria-hidden'] === 'boolean' && !props['aria-hidden'])
-  ) {
-    ariaHiddenProp = false;
-  }
-
-  const getDoc = () => ownerDocument(mountNodeRef.current);
-  const getModal = () => {
-    modal.current.modalRef = modalRef.current as HTMLDivElement;
-    modal.current.mount = mountNodeRef.current as HTMLElement;
-    return modal.current;
-  };
-
-  const handleMounted = () => {
-    manager.mount(getModal(), { disableScrollLock });
-
-    // Fix a bug on Chrome where the scroll isn't initially 0.
-    if (modalRef.current) {
-      modalRef.current.scrollTop = 0;
-    }
-  };
-
-  const handleOpen = useEventCallback(() => {
-    const resolvedContainer = getContainer(container) || getDoc().body;
-
-    manager.add(getModal(), resolvedContainer);
-
-    // The element was already mounted.
-    if (modalRef.current) {
-      handleMounted();
-    }
-  });
-
-  const isTopModal = () => manager.isTopModal(getModal());
-
-  const handlePortalRef = useEventCallback((node: HTMLElement) => {
-    mountNodeRef.current = node;
-
-    if (!node) {
-      return;
-    }
-
-    if (open && isTopModal()) {
-      handleMounted();
-    } else if (modalRef.current) {
-      ariaHidden(modalRef.current, ariaHiddenProp);
-    }
-  });
-
-  const handleClose = React.useCallback(() => {
-    manager.remove(getModal(), ariaHiddenProp);
-  }, [ariaHiddenProp]);
-
-  React.useEffect(() => {
-    return () => {
-      handleClose();
-    };
-  }, [handleClose]);
-
-  React.useEffect(() => {
-    if (open) {
-      handleOpen();
-    } else {
-      handleClose();
-    }
-  }, [open, handleClose, handleOpen]);
-
   const ownerState = {
     ...props,
     disableAutoFocus,
@@ -207,62 +110,28 @@ const Modal = React.forwardRef(function ModalU(inProps, ref) {
     keepMounted,
   };
 
+  const { getRootProps, getBackdropProps, rootRef, portalRef, isTopModal } = useModal({
+    ...ownerState,
+    rootRef: ref,
+  });
+
   const classes = useUtilityClasses(ownerState);
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target !== event.currentTarget) {
-      return;
-    }
-
-    if (onClose) {
-      onClose(event, 'backdropClick');
-    }
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
-
-    // The handler doesn't take event.defaultPrevented into account:
-    //
-    // event.preventDefault() is meant to stop default behaviors like
-    // clicking a checkbox to check it, hitting a button to submit a form,
-    // and hitting left arrow to move the cursor in a text input etc.
-    // Only special HTML elements have these default behaviors.
-    if (event.key !== 'Escape' || !isTopModal()) {
-      return;
-    }
-
-    if (!disableEscapeKeyDown) {
-      // Swallow the event, in case someone is listening for the escape key on the body.
-      event.stopPropagation();
-
-      if (onClose) {
-        onClose(event, 'escapeKeyDown');
-      }
-    }
-  };
-
   const [SlotRoot, rootProps] = useSlot('root', {
-    additionalProps: { role: 'presentation', onKeyDown: handleKeyDown },
-    ref: handleRef,
+    ref: rootRef,
     className: classes.root,
     elementType: ModalRoot,
     externalForwardedProps,
+    getSlotProps: getRootProps,
     ownerState,
   });
 
   const [SlotBackdrop, backdropProps] = useSlot('backdrop', {
-    additionalProps: {
-      'aria-hidden': true,
-      onClick: handleBackdropClick,
-      open,
-    },
     className: classes.backdrop,
     elementType: ModalBackdrop,
     externalForwardedProps,
+    getSlotProps: getBackdropProps,
     ownerState,
   });
 
@@ -272,7 +141,7 @@ const Modal = React.forwardRef(function ModalU(inProps, ref) {
 
   return (
     <CloseModalContext.Provider value={onClose}>
-      <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
+      <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
         {/*
          * Marking an element with the role presentation indicates to assistive technology
          * that this element should be ignored; it exists to support the web application and

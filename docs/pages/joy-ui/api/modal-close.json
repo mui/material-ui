@@ -47,7 +47,7 @@
     "import ModalClose from '@mui/joy/ModalClose';",
     "import { ModalClose } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiModalClose" },
   "slots": [
     {
       "name": "root",

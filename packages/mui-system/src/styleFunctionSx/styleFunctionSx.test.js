@@ -20,11 +20,11 @@ describe('styleFunctionSx', () => {
     breakpoints: {
       keys: ['xs', 'sm', 'md', 'lg', 'xl'],
       values: breakpointsValues,
+      unit: 'px',
       up: (key) => {
         return `@media (min-width:${breakpointsValues[key]}px)`;
       },
     },
-    unit: 'px',
     palette: {
       primary: {
         main: 'rgb(0, 0, 255)',

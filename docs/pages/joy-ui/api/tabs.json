@@ -57,7 +57,7 @@
   },
   "name": "Tabs",
   "imports": ["import Tabs from '@mui/joy/Tabs';", "import { Tabs } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTabs" },
   "slots": [
     {
       "name": "root",

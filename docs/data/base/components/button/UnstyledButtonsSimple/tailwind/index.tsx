@@ -21,7 +21,7 @@ const CustomButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Button
         ref={ref}
         className={clsx(
-          'cursor-pointer disabled:cursor-not-allowed text-sm bg-violet-500 text-white rounded-md font-semibold px-4 py-2 border-none disabled:opacity-50',
+          'cursor-pointer disabled:cursor-not-allowed text-sm font-sans bg-violet-500 text-white rounded-lg font-semibold px-4 py-2 border-none disabled:opacity-50',
           className,
         )}
         {...other}

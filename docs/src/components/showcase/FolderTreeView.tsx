@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/material/styles';
@@ -49,16 +51,18 @@ const CustomContent = React.forwardRef(function CustomContent(
   };
 
   return (
-    /* @ts-ignore -- Key event is handled by the TreeView */
-    <Box
+    <div
       className={clsx(className, classes.root, {
         [classes.expanded]: expanded,
         [classes.selected]: selected,
         [classes.focused]: focused,
         [classes.disabled]: disabled,
       })}
+      // @ts-ignore
       onClick={handleExpansionClick}
+      // @ts-ignore
       onMouseDown={handleMouseDown}
+      // @ts-ignore
       ref={ref as React.Ref<HTMLButtonElement>}
     >
       {lastNestedChild ? (
@@ -95,7 +99,7 @@ const CustomContent = React.forwardRef(function CustomContent(
         {label}
       </Typography>
       {icon}
-    </Box>
+    </div>
   );
 });
 

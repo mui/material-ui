@@ -121,7 +121,7 @@ export default function XDataGrid() {
     <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
+          <Box sx={{ maxWidth: 500 }}>
             <SectionHeadline
               overline="Data Grid"
               title={
@@ -130,7 +130,7 @@ export default function XDataGrid() {
                   been seen before
                 </Typography>
               }
-              description="The MUI Data Grid is a data table powerhouse. It is packed with exclusive features that will enrich the experience of dealing with and maintaining lots of data."
+              description="The MUI X Data Grid is a data table powerhouse. It is packed with exclusive features that will enrich the experience of dealing with and maintaining lots of data."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>

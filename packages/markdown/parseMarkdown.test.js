@@ -211,7 +211,7 @@ authors:
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 ### Unofficial 👍
 ### Warning ⚠️
-### Header with Pro plan [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+### Header with Pro plan <a title="Pro plan" href="/x/introduction/licensing/#plan-pro"><span class="plan-pro"></span></a>
 ### Header with \`code\`
 `;
 

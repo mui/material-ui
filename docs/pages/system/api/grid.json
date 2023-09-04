@@ -65,7 +65,19 @@
     "import Grid from '@mui/system/Unstable_Grid';",
     "import { Unstable_Grid as Grid } from '@mui/system';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": {
+    "classes": [
+      "root",
+      "container",
+      "direction-xs-column",
+      "direction-xs-column-reverse",
+      "direction-xs-row-reverse",
+      "wrap-xs-nowrap",
+      "wrap-xs-wrap-reverse"
+    ],
+    "globalClasses": {},
+    "name": "MuiGrid"
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiGrid",

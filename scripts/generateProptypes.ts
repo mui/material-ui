@@ -177,7 +177,7 @@ async function generateProptypes(
     return;
   }
 
-  // exclude internal slot components, eg. ButtonRoot
+  // exclude internal slot components, e.g. ButtonRoot
   proptypes.body = proptypes.body.filter((data) => {
     if (data.propsFilename?.endsWith('.tsx')) {
       // only check for .tsx

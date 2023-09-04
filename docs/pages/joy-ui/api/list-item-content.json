@@ -24,7 +24,7 @@
     "import ListItemContent from '@mui/joy/ListItemContent';",
     "import { ListItemContent } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiListItemContent" },
   "slots": [
     {
       "name": "root",

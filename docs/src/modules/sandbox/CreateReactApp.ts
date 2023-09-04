@@ -4,15 +4,18 @@ export const getHtml = ({
   title,
   language,
   codeStyling,
+  raw,
 }: {
   title: string;
   language: string;
   codeStyling?: 'Tailwind' | 'MUI System';
+  raw?: string;
 }) => {
   return `<!DOCTYPE html>
 <html lang="${language}">
   <head>
     <title>${title}</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,7 +26,9 @@ export const getHtml = ({
     <!-- Icons to support Material Design -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons${
+        raw?.includes('material-icons-two-tone') ? '+Two+Tone' : ''
+      }"
     />${
       codeStyling === 'Tailwind'
         ? `
@@ -33,6 +38,12 @@ export const getHtml = ({
       tailwind.config = {
         theme: {
           extend: {
+            animation: {
+              appear: 'in-right 200ms',
+            },
+            border: {
+              3: '3px',
+            },
             boxShadow: {
               'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
               'outline-purple-light': '0 0 0 4px rgba(245, 208, 254, 0.25)',
@@ -42,23 +53,14 @@ export const getHtml = ({
             cursor: {
               inherit: 'inherit',
             },
-            border: {
-              3: '3px',
-            },
             keyframes: {
               'in-right': {
                 from: { transform: 'translateX(100%)' },
                 to: { transform: 'translateX(0)' },
               },
             },
-            animation: {
-              appear: 'in-right 200ms',
-            },
-            minWidth: {
-              badge: '22px',
-              listbox: '200px',
-              snackbar: '300px',
-              'tabs-list': '400px',
+            lineHeight: {
+              '5.5': '1.375rem',
             },
             maxWidth: {
               snackbar: '560px',
@@ -66,11 +68,14 @@ export const getHtml = ({
             minHeight: {
               badge: '22px',
             },
-            lineHeight: {
-              '5.5': '1.375rem',
-            }
-          }
-        }
+            minWidth: {
+              badge: '22px',
+              listbox: '200px',
+              snackbar: '300px',
+              'tabs-list': '400px',
+            },
+          },
+        },
       }
     </script>`
         : ''

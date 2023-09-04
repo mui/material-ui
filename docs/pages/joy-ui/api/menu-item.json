@@ -34,7 +34,7 @@
   },
   "name": "MenuItem",
   "imports": ["import MenuItem from '@mui/joy/MenuItem';", "import { MenuItem } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiMenuItem" },
   "slots": [
     {
       "name": "root",

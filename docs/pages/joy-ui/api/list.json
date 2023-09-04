@@ -50,7 +50,7 @@
   },
   "name": "List",
   "imports": ["import List from '@mui/joy/List';", "import { List } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiList" },
   "slots": [
     {
       "name": "root",

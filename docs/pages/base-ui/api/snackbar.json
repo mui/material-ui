@@ -30,7 +30,7 @@
     "import { Snackbar } from '@mui/base/Snackbar';",
     "import { Snackbar } from '@mui/base';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
 import Input from '@mui/joy/Input';
@@ -8,7 +7,7 @@ import CountrySelector from './CountrySelector';
 
 export default function Filters() {
   return (
-    <Box>
+    <div>
       <Grid
         spacing={1.5}
         container
@@ -44,6 +43,6 @@ export default function Filters() {
           </Button>
         </Grid>
       </Grid>
-    </Box>
+    </div>
   );
 }

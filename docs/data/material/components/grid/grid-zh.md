@@ -14,7 +14,7 @@ materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-警告，不应将`Grid`与data grid相互混淆，那是一个和布局网格相同的网格 For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
+警告，不应将`Grid`与 data grid 相互混淆，那是一个和布局网格相同的网格 For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
 :::
 
 ## 工作原理
@@ -26,9 +26,9 @@ materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 - 每项的宽度是按百分比设置的，所以它们的大小总是相对于它们的父元素流动。
 - 子项目（items）使用内边距来保持和其他块（items）的间距。
 - 其中五个断点可供使用：xs，sm，md，lg 和 xl。
-- 给每个断点赋予的整型值都代表了当视图宽度可以满足断点约束时组件里占用了12个可用列里的几个
+- 给每个断点赋予的整型值都代表了当视图宽度可以满足断点约束时组件里占用了 12 个可用列里的几个
 
-如果你不熟悉flexbox，我们建议你参考 [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)篇
+如果你不熟悉 flexbox，我们建议你参考 [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)篇
 
 ## Fluid grids 流式网格
 
@@ -36,7 +36,7 @@ materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 
 ### 基本栅格
 
-列宽是一个基于1-12的整型值，他们可以用于任意断点来代表组件占用了多少列
+列宽是一个基于 1-12 的整型值，他们可以用于任意断点来代表组件占用了多少列
 
 给定断点适用于其它比它更大的断点（除非重写，你会将在本页的后面看到） 举个例子，`xs={12}`会在无论他自己大小有多大的情况下将组件的宽度调整为占据整个视图宽度
 
@@ -46,13 +46,13 @@ materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 
 组件可能有多个宽度定义，这会导致组件根据指定的断点大小来布局 大的断点的宽度值会覆盖小的断点的宽度值
 
-举个例子，`xs={12} sm={6}`会在视图宽度为 [的时候让组件占据视图一半的宽度（6列）](/material-ui/customization/breakpoints/#default-breakpoints) 对于较小的视图宽度，则会占据所有的12列
+举个例子，`xs={12} sm={6}`会在视图宽度为 [的时候让组件占据视图一半的宽度（6 列）](/material-ui/customization/breakpoints/#default-breakpoints) 对于较小的视图宽度，则会占据所有的 12 列
 
 {{"demo": "FullWidthGrid.js", "bg": true}}
 
 ## Spacing 间距
 
-控制子控件之间的间距，可以使用`spacing`属性 Spacing可以是包含小数和整型值还有字符串的任意大于0的数 属性值会使用[`theme.spacing()`](/material-ui/customization/spacing/)助手来转换成css属性
+控制子控件之间的间距，可以使用`spacing`属性 Spacing 可以是包含小数和整型值还有字符串的任意大于 0 的数 属性值会使用[`theme.spacing()`](/material-ui/customization/spacing/)助手来转换成 css 属性
 
 {{"demo": "SpacingGrid.js", "bg": true}}
 
@@ -78,7 +78,7 @@ Responsive values is supported by:
 - 系统中的所有[其它属性](#system-props)
 
 :::warning
-⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint. For instance, this is not working. The grid item misses the value for `md`:
+When using a responsive `columns` prop, each grid item needs its corresponding breakpoint. For instance, this is not working. The grid item misses the value for `md`:
 
 ```jsx
 <Grid container columns={{ xs: 4, md: 12 }}>

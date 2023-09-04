@@ -54,7 +54,7 @@
     "import ListItemButton from '@mui/joy/ListItemButton';",
     "import { ListItemButton } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiListItemButton" },
   "slots": [
     {
       "name": "root",

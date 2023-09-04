@@ -69,7 +69,7 @@
   },
   "name": "Button",
   "imports": ["import Button from '@mui/joy/Button';", "import { Button } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiButton" },
   "slots": [
     {
       "name": "root",

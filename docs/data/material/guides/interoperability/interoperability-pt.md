@@ -367,7 +367,7 @@ export default function StyledComponentsDeep2() {
 Você é encorajado a compartilhar o mesmo objeto de tema entre Material-UI e o resto de seu projeto.
 
 :::warning
-⚠️ If you are **already** using a custom theme with styled-components or emotion, it might not be compatible with MUI's theme specification. If it's not compatible, you need to render MUI's ThemeProvider <b>first</b>. This will ensure the theme structures are isolated. This is ideal for the progressive adoption of MUI's components in the codebase.
+If you are **already** using a custom theme with styled-components or emotion, it might not be compatible with MUI's theme specification. If it's not compatible, you need to render MUI's ThemeProvider <b>first</b>. This will ensure the theme structures are isolated. This is ideal for the progressive adoption of MUI's components in the codebase.
 :::
 
 You are encouraged to share the same theme object between MUI and the rest of your project.
@@ -857,7 +857,7 @@ There is [an ESLint plugin](https://docs.tss-react.dev/detecting-unused-classes)
 :::
 
 :::warning
-⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly, it's a peer dependency of `@mui/material`.
+**Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly, it's a peer dependency of `@mui/material`.
 :::
 
 :::warning

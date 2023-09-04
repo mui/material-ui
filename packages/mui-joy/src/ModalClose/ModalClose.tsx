@@ -48,6 +48,7 @@ export const ModalCloseRoot = styled(StyledIconButton, {
     '--IconButton-size': '40px',
   }),
   position: 'absolute',
+  zIndex: 1, // stay on top of the title in case it is positioned relatively
   top: `var(--ModalClose-inset, ${theme.spacing(1)})`,
   right: `var(--ModalClose-inset, ${theme.spacing(1)})`,
   borderRadius: `var(--ModalClose-radius, ${theme.vars.radius.sm})`,

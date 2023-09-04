@@ -10,6 +10,9 @@
     "component": {
       "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
+    "flex": {
+      "description": "By default, the AspectRatio will maintain the aspect ratio of its content. Set this prop to <code>true</code> when the container is a flex row and you want the AspectRatio to fill the height of its container."
+    },
     "maxHeight": {
       "description": "The maximum calculated height of the element (not the CSS height)."
     },

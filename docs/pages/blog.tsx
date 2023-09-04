@@ -472,7 +472,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               </Box>
             </Box>
           </Box>
-          <Box>
+          <div>
             <Box component="ul" sx={{ p: 0, m: 0 }}>
               {displayedPosts.map((post) => (
                 <Box
@@ -504,7 +504,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               }}
               sx={{ mt: 1, mb: 8 }}
             />
-          </Box>
+          </div>
         </Container>
       </main>
       <Divider />

@@ -8,7 +8,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref
       slotProps={{
         root: (ownerState) => ({
           className: clsx(
-            'grid grid-cols-[1fr_19px] grid-rows-2 overflow-hidden rounded-lg text-slate-900 dark:text-slate-300 border border-solid  bg-white dark:bg-slate-900  hover:border-violet-400 dark:hover:border-violet-400 focus-visible:outline-0 ',
+            'grid grid-cols-[1fr_19px] grid-rows-2 overflow-hidden font-sans rounded-lg text-slate-900 dark:text-slate-300 border border-solid  bg-white dark:bg-slate-900  hover:border-violet-400 dark:hover:border-violet-400 focus-visible:outline-0 ',
             ownerState.focused
               ? 'border-violet-400 dark:border-violet-400 shadow-lg shadow-outline-purple dark:shadow-outline-purple'
               : 'border-slate-300 dark:border-slate-600 shadow-md shadow-slate-100 dark:shadow-slate-900',
@@ -16,7 +16,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref
         }),
         input: {
           className:
-            'col-start-1 col-end-2 row-start-1 row-end-3 text-sm leading-normal text-slate-900 bg-inherit border-0 rounded-[inherit] dark:text-slate-300 px-3 py-2 outline-0 focus-visible:outline-0 focus-visible:outline-none',
+            'col-start-1 col-end-2 row-start-1 row-end-3 text-sm font-sans leading-normal text-slate-900 bg-inherit border-0 rounded-[inherit] dark:text-slate-300 px-3 py-2 outline-0 focus-visible:outline-0 focus-visible:outline-none',
         },
         incrementButton: {
           children: '▴',

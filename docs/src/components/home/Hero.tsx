@@ -34,31 +34,27 @@ const TaskCard = dynamic(() => import('../showcase/TaskCard'), {
 });
 const PlayerCard = dynamic(() => import('../showcase/PlayerCard'), {
   ssr: false,
-  loading: createLoading({ width: 360, height: 146 }),
+  loading: createLoading({ width: 400, height: 240 }),
 });
 const ThemeToggleButton = dynamic(() => import('../showcase/ThemeToggleButton'), {
   ssr: false,
   loading: createLoading({ width: 360, height: 48 }),
 });
-const ThemeSwitch = dynamic(() => import('../showcase/ThemeSwitch'), {
-  ssr: false,
-  loading: createLoading({ width: 108, height: 20 }),
-});
 const ThemeChip = dynamic(() => import('../showcase/ThemeChip'), {
   ssr: false,
-  loading: createLoading({ width: 212, height: 32 }),
+  loading: createLoading({ width: 400, height: 24 }),
 });
 const ThemeTimeline = dynamic(() => import('../showcase/ThemeTimeline'), {
   ssr: false,
-  loading: createLoading({ width: 360, height: 180 }),
+  loading: createLoading({ width: 400, height: 180 }),
 });
 const FolderTable = dynamic(() => import('../showcase/FolderTable'), {
   ssr: false,
-  loading: createLoading({ width: 360, height: 212 }),
+  loading: createLoading({ width: 360, height: 210 }),
 });
 const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), {
   ssr: false,
-  loading: createLoading({ width: { md: 360, xl: 400 }, height: 260 }),
+  loading: createLoading({ width: 360, height: 260 }),
 });
 const ThemeTabs = dynamic(() => import('../showcase/ThemeTabs'), {
   ssr: false,
@@ -66,23 +62,19 @@ const ThemeTabs = dynamic(() => import('../showcase/ThemeTabs'), {
 });
 const ThemeSlider = dynamic(() => import('../showcase/ThemeSlider'), {
   ssr: false,
-  loading: createLoading({ width: { md: 124, xl: 164 }, height: 214 }),
-});
-const ViewToggleButton = dynamic(() => import('../showcase/ViewToggleButton'), {
-  ssr: false,
-  loading: createLoading({ width: 196, height: 40 }),
+  loading: createLoading({ width: 400, height: 104 }),
 });
 const ThemeButton = dynamic(() => import('../showcase/ThemeButton'), {
   ssr: false,
-  loading: createLoading({ width: 196, height: 154 }),
+  loading: createLoading({ width: 360, height: 38 }),
 });
 const ThemeAccordion = dynamic(() => import('../showcase/ThemeAccordion'), {
   ssr: false,
-  loading: createLoading({ width: { md: 360, xl: 400 }, height: 171 }),
+  loading: createLoading({ width: { md: 360, xl: 400 }, height: 231 }),
 });
 const NotificationCard = dynamic(() => import('../showcase/NotificationCard'), {
   ssr: false,
-  loading: createLoading({ width: { md: 360, xl: 400 }, height: 146 }),
+  loading: createLoading({ width: { md: 360, xl: 400 }, height: 103 }),
 });
 
 export default function Hero() {
@@ -127,34 +119,23 @@ export default function Hero() {
       right={
         <React.Fragment>
           {isMdUp && (
-            <Stack spacing={4} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+            <Stack spacing={3} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
               <TaskCard />
-              <PlayerCard />
               <ThemeToggleButton />
-              <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                <ThemeSwitch />
-                <Box sx={{ width: 40 }} />
-                <ThemeChip />
-              </Box>
-              <ThemeTimeline />
+              <ThemeDatePicker />
+              <ThemeButton />
               <FolderTable />
             </Stack>
           )}
           {isMdUp && (
-            <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
-              <ThemeDatePicker />
-              <ThemeTabs />
-              <Box sx={{ display: 'flex' }}>
-                <Box sx={{ flexGrow: 1 }}>
-                  <ThemeSlider />
-                </Box>
-                <Stack spacing={2} sx={{ ml: 4 }}>
-                  <ViewToggleButton />
-                  <ThemeButton />
-                </Stack>
-              </Box>
-              <ThemeAccordion />
+            <Stack spacing={3} sx={{ ml: 3, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
               <NotificationCard />
+              <ThemeChip />
+              <ThemeTimeline />
+              <ThemeSlider />
+              <ThemeTabs />
+              <PlayerCard />
+              <ThemeAccordion />
             </Stack>
           )}
         </React.Fragment>

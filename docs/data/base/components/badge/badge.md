@@ -21,7 +21,7 @@ It typically sits on or near an element and indicates the status of that element
 
 The Badge component creates a badge that is applied to its child element.
 
-{{"demo": "UnstyledBadgeIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledBadgeIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 

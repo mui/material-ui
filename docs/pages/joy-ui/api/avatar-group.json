@@ -48,7 +48,7 @@
     "import AvatarGroup from '@mui/joy/AvatarGroup';",
     "import { AvatarGroup } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAvatarGroup" },
   "slots": [
     {
       "name": "root",

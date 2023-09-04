@@ -69,7 +69,7 @@ export const SheetRoot = styled('div', {
       }),
       backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
-    },
+    } as const,
     {
       ...theme.typography['body-md'],
       ...variantStyle,
