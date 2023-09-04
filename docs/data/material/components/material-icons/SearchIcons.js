@@ -132,21 +132,9 @@ const Icons = React.memo(function Icons(props) {
 
   const handleIconClick = (icon) => () => {
     if (Math.random() < 0.1) {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'material-icons',
-        eventAction: 'click',
-        eventLabel: icon.name,
-      });
       window.gtag('event', 'material-icons', {
         eventAction: 'click',
         eventLabel: icon.name,
-      });
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'material-icons-theme',
-        eventAction: 'click',
-        eventLabel: icon.theme,
       });
       window.gtag('event', 'material-icons-theme', {
         eventAction: 'click',
@@ -505,12 +493,6 @@ export default function SearchIcons() {
 
             // Keep track of the no results so we can add synonyms in the future.
             if (value.length >= 4 && results.length === 0) {
-              window.ga('send', {
-                hitType: 'event',
-                eventCategory: 'material-icons',
-                eventAction: 'no-results',
-                eventLabel: value,
-              });
               window.gtag('event', 'material-icons', {
                 eventAction: 'no-results',
                 eventLabel: value,

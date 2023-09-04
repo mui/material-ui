@@ -64,7 +64,7 @@ export const StyledListItem = styled('li')<{ ownerState: ListItemOwnerState }>(
       } as const),
     // Base styles
     {
-      // Integration with control elements, eg. Checkbox, Radio.
+      // Integration with control elements, e.g. Checkbox, Radio.
       '--unstable_actionRadius': 'calc(var(--ListItem-radius) - var(--variant-borderWidth, 0px))',
       ...(ownerState.startAction && {
         '--unstable_startActionWidth': '2rem', // to add sufficient padding-left on ListItemButton
