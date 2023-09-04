@@ -58,7 +58,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   });
 
   const { children, component, slots = {}, slotProps = {}, ...other } = props;
-  const rootRef = React.useRef<HTMLElement | null>(null);
+  const rootRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(rootRef, ref);
   const formControl = React.useContext(FormControlContext);
   const setHelperText = formControl?.setHelperText;
