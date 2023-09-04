@@ -204,6 +204,7 @@ function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
   item: ItemValue,
   state: State,
   context: ListActionContext<ItemValue>,
+  reason: 'mouse' | 'keyboard',
 ): State {
   const { itemComparer, isItemDisabled, selectionMode, items } = context;
   const { selectedValues } = state;
@@ -217,7 +218,8 @@ function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
   // if the item is already selected, remove it from the selection, otherwise add it
   const newSelectedValues = toggleSelection(item, selectedValues, selectionMode, itemComparer);
 
-  const highlightedValue = selectedValues.includes(items[itemIndex]) ? null : item;
+  const highlightedValue =
+    reason === 'mouse' && selectedValues.includes(items[itemIndex]) ? null : item;
 
   return {
     ...state,
@@ -311,7 +313,7 @@ function handleKeyDown<ItemValue, State extends ListState<ItemValue>>(
         return state;
       }
 
-      return handleItemSelection(state.highlightedValue, state, context);
+      return handleItemSelection(state.highlightedValue, state, context, 'keyboard');
 
     default:
       break;
@@ -435,7 +437,7 @@ export function listReducer<ItemValue, State extends ListState<ItemValue>>(
     case ListActionTypes.keyDown:
       return handleKeyDown(action.key, state, context);
     case ListActionTypes.itemClick:
-      return handleItemSelection(action.item, state, context);
+      return handleItemSelection(action.item, state, context, 'mouse');
     case ListActionTypes.blur:
       return handleBlur(state, context);
     case ListActionTypes.textNavigation:
