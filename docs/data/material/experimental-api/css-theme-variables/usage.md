@@ -122,7 +122,7 @@ The structure of this object is nearly identical to the theme structure, the onl
 
 Place `getInitColorSchemeScript()` before the `<Main />` tag to prevent the dark-mode SSR flickering during the hydration phase.
 
-### Next.js
+### Next.js Pages Router
 
 Add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/advanced-features/custom-document) file:
 
@@ -143,19 +143,6 @@ export default class MyDocument extends Document {
       </Html>
     );
   }
-}
-```
-
-### Gatsby
-
-Add the following code to the custom [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
-
-```jsx
-import * as React from 'react';
-import { getInitColorSchemeScript } from '@mui/material/styles';
-
-export function onRenderBody({ setPreBodyComponents }) {
-  setPreBodyComponents([getInitColorSchemeScript()]);
 }
 ```
 

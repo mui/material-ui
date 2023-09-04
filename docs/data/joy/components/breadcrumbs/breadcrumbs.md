@@ -65,6 +65,13 @@ The demo below shows how to add an icon to the Link with `startDecorator` and ch
 
 {{"demo": "BreadcrumbsWithIcon.js"}}
 
+## CSS variables playground
+
+Play around with the CSS variables available to the Breadcrumbs component to see how the design changes.
+You can use these to customize the component with both the `sx` prop and the theme.
+
+{{"demo": "BreadcrumbsVariables.js", "hideToolbar": true, "bg": "gradient"}}
+
 ## Common examples
 
 ### Condensed Breadcrumbs
@@ -83,13 +90,6 @@ import Menu from '@mui/joy/Menu';
 As an alternative to the behavior of the condensed demo above, consider adding a [Menu](/joy-ui/react-menu/) component to display the condensed links in a dropdown list:
 
 {{"demo": "BreadcrumbsWithMenu.js"}}
-
-## CSS variable playground
-
-Play around with the CSS variables available to the Breadcrumbs component to see how the design changes.
-You can use these to customize the component with both the `sx` prop and the theme.
-
-{{"demo": "BreadcrumbsVariables.js", "hideToolbar": true}}
 
 ## Accessibility
 

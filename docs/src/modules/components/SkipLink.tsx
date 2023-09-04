@@ -32,10 +32,10 @@ const StyledLink = styled(MuiLink)(({ theme }) => ({
     }),
   },
   '@media (prefers-reduced-motion: reduce)': {
-    top: theme.spacing(2),
     transition: theme.transitions.create('opacity'),
     opacity: 0,
     '&:focus': {
+      top: theme.spacing(2),
       opacity: 1,
       transition: theme.transitions.create('opacity'),
     },

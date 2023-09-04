@@ -145,6 +145,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     color: colorProp = 'neutral',
     disableIndicator = false,
     indicatorPlacement = row ? 'bottom' : 'right',
+    indicatorInset = false,
     slots = {},
     slotProps = {},
     ...other
@@ -175,6 +176,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     ...props,
     disableIndicator,
     indicatorPlacement,
+    indicatorInset,
     orientation,
     row,
     active,
@@ -250,6 +252,7 @@ Tab.propTypes /* remove-proptypes */ = {
   disableIndicator: PropTypes.bool,
   /**
    * If `true`, the indicator stay within the padding based on the `Tabs` orientation.
+   * @default false
    */
   indicatorInset: PropTypes.bool,
   /**

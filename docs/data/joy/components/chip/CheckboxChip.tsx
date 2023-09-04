@@ -10,7 +10,7 @@ export default function CheckboxChip() {
 
   return (
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-      <Box>
+      <div>
         <Typography level="title-lg" id="fav-movie" mb={2}>
           Favorite Movies
         </Typography>
@@ -59,7 +59,7 @@ export default function CheckboxChip() {
             );
           })}
         </Box>
-      </Box>
+      </div>
     </Box>
   );
 }

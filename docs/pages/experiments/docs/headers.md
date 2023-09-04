@@ -1,4 +1,4 @@
-# Header styles
+# Headers
 
 <p class="description">Headers.</p>
 
@@ -14,4 +14,6 @@ Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots 
 
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
 
-## Header with Pro plan [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+## Header with Pro plan [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+
+## Header with Premium plan [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'premium plan')

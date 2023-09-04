@@ -95,7 +95,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     name,
     onBlur,
     onChange,
-    onClick,
     onFocus,
     placeholder,
     required = false,
@@ -170,7 +169,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       onBlur={onBlur}
       onChange={onChange}
       onFocus={onFocus}
-      onClick={onClick}
       placeholder={placeholder}
       inputProps={inputProps}
       {...InputMore}
@@ -348,10 +346,6 @@ TextField.propTypes /* remove-proptypes */ = {
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
   /**
    * @ignore
    */

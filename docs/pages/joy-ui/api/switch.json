@@ -130,7 +130,8 @@
     "globalClasses": {
       "checked": "Mui-checked",
       "disabled": "Mui-disabled",
-      "focusVisible": "Mui-focusVisible"
+      "focusVisible": "Mui-focusVisible",
+      "readOnly": "Mui-readOnly"
     }
   },
   "spread": true,

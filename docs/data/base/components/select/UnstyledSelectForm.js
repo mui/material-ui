@@ -15,7 +15,7 @@ export default function UnstyledSelectForm() {
           <StyledOption value={30}>Thirty</StyledOption>
         </CustomSelect>
       </Box>
-      <Box>
+      <div>
         <Label htmlFor="named-select">
           With the <code>name</code> prop
         </Label>
@@ -24,7 +24,7 @@ export default function UnstyledSelectForm() {
           <StyledOption value={20}>Twenty</StyledOption>
           <StyledOption value={30}>Thirty</StyledOption>
         </CustomSelect>
-      </Box>
+      </div>
     </div>
   );
 }

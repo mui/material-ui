@@ -7,7 +7,7 @@ The default style library used for generating CSS styles for Material-UI compone
 ## How to switch to styled-components
 
 :::error
-❗ **Warning**: Using `styled-components` as an engine at this moment is not working when used in a SSR projects. The reason is that the `babel-plugin-styled-components` is not picking up correctly the usages of the `styled()` utility inside the `@mui` packages. For more details, take a look at this [issue](https://github.com/mui/material-ui/issues/29742). We strongly recommend using `emotion` for SSR projects.
+**Warning**: Using `styled-components` as an engine at this moment is not working when used in a SSR projects. The reason is that the `babel-plugin-styled-components` is not picking up correctly the usages of the `styled()` utility inside the `@mui` packages. For more details, take a look at this [issue](https://github.com/mui/material-ui/issues/29742). We strongly recommend using `emotion` for SSR projects.
 :::
 
 If you already have [styled-components](https://github.com/styled-components/styled-components) installed, it's possible to use it exclusively. There are currently two packages available to choose from:

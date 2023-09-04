@@ -75,7 +75,12 @@
   ],
   "classes": {
     "classes": ["disabled", "error", "focused", "formControl", "readOnly"],
-    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
+    "globalClasses": {
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "readOnly": "Mui-readOnly",
+      "error": "Mui-error"
+    }
   },
   "spread": true,
   "muiName": "MuiNumberInput",

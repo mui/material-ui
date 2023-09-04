@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent, OverridableTypeMap, Simplify } from '@mui/types';
+import { Simplify } from '@mui/types';
 import { PortalProps } from '../Portal';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 
@@ -137,18 +137,6 @@ export interface ModalTypeMap<
   props: ModalOwnProps & AdditionalProps;
   defaultComponent: RootComponentType;
 }
-
-/**
- * Utility to create component types that inherit props from Modal.
- */
-export interface ExtendModalTypeMap<TypeMap extends OverridableTypeMap> {
-  props: TypeMap['props'] & ModalTypeMap['props'];
-  defaultComponent: TypeMap['defaultComponent'];
-}
-
-export type ExtendModal<TypeMap extends OverridableTypeMap> = OverridableComponent<
-  ExtendModalTypeMap<TypeMap>
->;
 
 export type ModalProps<
   RootComponentType extends React.ElementType = ModalTypeMap['defaultComponent'],

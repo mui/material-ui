@@ -10,6 +10,7 @@
       "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",

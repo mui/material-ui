@@ -54,7 +54,7 @@ Similarly, the `unmountOnExit` prop removes the component from the DOM after it 
 The Slide component also accepts `container` prop, which is a reference to a DOM node.
 If this prop is set, the Slide component will slide from the edge of that DOM node.
 
-{{"demo": "SlideFromContainer.js"}}
+{{"demo": "SlideFromContainer.js", "bg": true}}
 
 ## Zoom
 
