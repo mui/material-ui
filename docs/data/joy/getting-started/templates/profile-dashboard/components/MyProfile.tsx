@@ -160,12 +160,12 @@ export default function MyProfile() {
         }}
       >
         <Card>
-          <div>
+          <Box sx={{ mb: 1 }}>
             <Typography level="title-md">Personal info</Typography>
             <Typography level="body-sm">
               Customize how your profile information will apper to the networks.
             </Typography>
-          </div>
+          </Box>
           <Divider />
           <Stack
             direction="row"
@@ -362,7 +362,7 @@ export default function MyProfile() {
             </div>
           </Stack>
           <CardOverflow sx={{ bgcolor: 'background.body' }}>
-            <CardActions sx={{ alignSelf: 'flex-end' }}>
+            <CardActions sx={{ alignSelf: 'flex-end', pt: 2 }}>
               <Button size="sm" variant="outlined" color="neutral">
                 Cancel
               </Button>
@@ -373,12 +373,12 @@ export default function MyProfile() {
           </CardOverflow>
         </Card>
         <Card>
-          <div>
+          <Box sx={{ mb: 1 }}>
             <Typography level="title-md">Bio</Typography>
             <Typography level="body-sm">
               Write a short introduction to be displayed on your profile
             </Typography>
-          </div>
+          </Box>
           <Divider />
           <Stack spacing={2} sx={{ my: 1 }}>
             <EditorToolbar />
@@ -393,7 +393,7 @@ export default function MyProfile() {
             </FormHelperText>
           </Stack>
           <CardOverflow sx={{ bgcolor: 'background.body' }}>
-            <CardActions sx={{ alignSelf: 'flex-end' }}>
+            <CardActions sx={{ alignSelf: 'flex-end', pt: 2 }}>
               <Button size="sm" variant="outlined" color="neutral">
                 Cancel
               </Button>
@@ -404,12 +404,12 @@ export default function MyProfile() {
           </CardOverflow>
         </Card>
         <Card>
-          <div>
+          <Box sx={{ mb: 1 }}>
             <Typography level="title-md">Portfolio projects</Typography>
             <Typography level="body-sm">
               Share a few snippets of your work.
             </Typography>
-          </div>
+          </Box>
 
           <Divider />
           <Stack spacing={2} sx={{ my: 1 }}>
@@ -428,7 +428,7 @@ export default function MyProfile() {
             />
           </Stack>
           <CardOverflow sx={{ bgcolor: 'background.body' }}>
-            <CardActions sx={{ alignSelf: 'flex-end' }}>
+            <CardActions sx={{ alignSelf: 'flex-end', pt: 2 }}>
               <Button size="sm" variant="outlined" color="neutral">
                 Cancel
               </Button>
