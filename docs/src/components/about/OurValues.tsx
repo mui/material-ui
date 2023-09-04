@@ -6,8 +6,6 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
-import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
-import PhishingRoundedIcon from '@mui/icons-material/PhishingRounded';
 import Link from 'docs/src/modules/components/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
@@ -19,25 +17,21 @@ const values = [
     icon: <StyleRoundedIcon color="primary" />,
     title: 'Put community first 💙',
     description: 'We never lose sight of who we’re serving and why.',
-    link: '/base-ui/getting-started/',
   },
   {
-    icon: <PhishingRoundedIcon color="primary" />,
+    icon: <StyleRoundedIcon color="primary" />,
     title: 'Avoid bureaucracy 🚫',
     description: 'We’re so not corporate — and we like it that way.',
-    link: '/base-ui/getting-started/usage/#components-vs-hooks',
   },
   {
-    icon: <AccessibilityNewRounded color="primary" />,
+    icon: <StyleRoundedIcon color="primary" />,
     title: 'Chase “better” 🌱',
     description: 'We’re driven by an unending desire to improve.',
-    link: '/base-ui/getting-started/quickstart/#components-and-hooks',
   },
   {
-    icon: <AccessibilityNewRounded color="primary" />,
+    icon: <StyleRoundedIcon color="primary" />,
     title: 'Trust and deliver together 🚀',
     description: 'We choose to cultivate unity as the core of achievement.',
-    link: '/base-ui/getting-started/quickstart/#components-and-hooks',
   },
 ];
 
@@ -62,7 +56,7 @@ export default function OurValues() {
         <Button
           component={Link}
           noLinkStyle
-          href={ROUTES.careers}
+          href={ROUTES.handbook}
           endIcon={<KeyboardArrowRightRounded fontSize="small" />}
           variant="contained"
           size="medium"
@@ -72,12 +66,9 @@ export default function OurValues() {
         </Button>
       </Box>
       <Grid container spacing={3} sx={{ mt: { xs: 1, sm: 2 } }}>
-        {values.map(({ icon, title, description, link }) => (
+        {values.map(({ icon, title, description }) => (
           <Grid key={title} item xs={12} md={3}>
             <Paper
-              component={Link}
-              href={link}
-              noLinkStyle
               variant="outlined"
               sx={(theme) => ({
                 p: 4,
