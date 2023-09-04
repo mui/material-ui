@@ -7,7 +7,7 @@ card: true
 tags: ['Company']
 ---
 
-## Evolving MUI's core values & behaviors
+## Why we chose to revise our core values
 
 MUI was founded in 2014 to grow and serve a community — from developers to designers, our core mission has been to enable others to create incredible user experiences with unrivalled speed and ease. 
 
@@ -29,6 +29,8 @@ To make that happen, we decided to engage the whole company in a series of disco
 
 By doing so, we could make sure that any changes to the company values would accurately reflect the values truly shared by our team, and the language we use to express them. Here’s how we did it! 👇
 
+<img alt="A collage of slides from the values discovery exercise kickoff." src="/static/blog/2023-mui-values/good-values.png" loading="lazy" />
+
 ## Stage one: discovery questions
 
 Kicking off, everyone was invited to answer 10 questions via an asynchronous survey. 
@@ -37,7 +39,11 @@ The purpose of this portion was to get a picture of how the existing values were
 
 We asked people to reflect on how accurately they felt each value described our internal culture; what they felt our company cared deeply about and why; what is utterly unique about us as a team; and more. 🤔💭
 
+<img alt="A screenshot of the intro page to our discovery survey." src="/static/blog/2023-mui-values/values-survey.png" loading="lazy" />
+
 Then, using keyword and sentiment analysis, we captured clear themes in experience and common language used to describe our culture. I presented this back to the team via recorded video presentation, inviting reactions and further dialogue in the open of our Slack workspace.
+
+<img alt="A screenshot of a video message in our internal Slack revealing themes from the survey." src="/static/blog/2023-mui-values/themes-video.png" loading="lazy" />
 
 ## Stage two: workshop
 
@@ -58,6 +64,8 @@ Once we’d generated a wonderfully full board, we took a pause to review the co
 Finally, we organized all of these cards into little clusters based on relatedness, and started to identify their underlying values and themes.
 
 We came up with a list of words that we felt best-encapsulated each cluster. This became our values "shortlist" which stakeholders would use to influence the final selection and copywriting.
+
+<img alt="description" src="/static/blog/2023-mui-values/figjam-board.png" loading="lazy" />
 
 ## Stage three: workshop
 
@@ -124,6 +132,8 @@ Our core four are:
 **T** — Trust & deliver together. “We cultivate unity as the core of achievement.” 🚀
 
 To delve deeper into the meaning of each value and what it looks like in practice, you can also check out our handbook: <a href="https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4">Values & Behaviors.</a>
+
+<img alt="description" src="/static/blog/2023-mui-values/notion-values-page.png" loading="lazy" />
 
 ## What do they mean?
 
