@@ -39,11 +39,11 @@ The purpose of this portion was to get a picture of how the existing values were
 
 We asked people to reflect on how accurately they felt each value described our internal culture; what they felt our company cared deeply about and why; what is utterly unique about us as a team; and more. 🤔💭
 
-<img alt="A screenshot of the intro page to our discovery survey." src="/static/blog/2023-mui-values/values-survey.png" loading="lazy" />
+<img alt="A screenshot of the intro page to our discovery survey." src="/static/blog/2023-mui-values/values-survey-bordered.png" loading="lazy" />
 
 Then, using keyword and sentiment analysis, we captured clear themes in experience and common language used to describe our culture. I presented this back to the team via recorded video presentation, inviting reactions and further dialogue in the open of our Slack workspace.
 
-<img alt="A screenshot of a video message in our internal Slack revealing themes from the survey." src="/static/blog/2023-mui-values/themes-video.png" loading="lazy" />
+<img alt="A screenshot of a video message in our internal Slack revealing themes from the survey." src="/static/blog/2023-mui-values/themes-video-bordered.png" loading="lazy" />
 
 ## Stage two: workshop
 
@@ -65,7 +65,7 @@ Finally, we organized all of these cards into little clusters based on relatedne
 
 We came up with a list of words that we felt best-encapsulated each cluster. This became our values "shortlist" which stakeholders would use to influence the final selection and copywriting.
 
-<img alt="description" src="/static/blog/2023-mui-values/figjam-board.png" loading="lazy" />
+<img alt="description" src="/static/blog/2023-mui-values/figjam-board-bordered.png" loading="lazy" />
 
 ## Stage three: workshop
 
