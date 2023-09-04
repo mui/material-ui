@@ -1255,7 +1255,7 @@ describe('<Select />', () => {
     expect(firstOption).to.have.class(optionClasses.highlighted);
   });
 
-  it('except for 1st option - other options should have highlighted class when option is selected', () => {
+  it('except for 1st option - other options should have highlighted class when option is selected by mouse click', () => {
     const { getAllByRole, getByRole } = render(
       <Select multiple>
         <Option value={10}>10</Option>
@@ -1287,5 +1287,41 @@ describe('<Select />', () => {
     // deselects option
     fireEvent.click(secondOption);
     expect(secondOption).not.to.have.class(optionClasses.highlighted);
+  });
+
+  it('options should have highlighted class on keyboard navigation irrespective of option selection', () => {
+    const { getAllByRole, getByRole } = render(
+      <Select multiple>
+        <Option value={10}>10</Option>
+        <Option value={20}>20</Option>
+        <Option value={30}>30</Option>
+        <Option value={40}>40</Option>
+      </Select>,
+    );
+
+    const select = getByRole('combobox');
+
+    act(() => {
+      select.focus();
+    });
+
+    fireEvent.keyDown(select, { key: 'ArrowDown' });
+
+    const options = getAllByRole('option');
+    const firstOption = options[0];
+    const secondOption = options[1];
+
+    expect(firstOption).to.have.class(optionClasses.highlighted);
+    // it doesn't have highlighted class as it is not navigated yet
+    expect(secondOption).not.to.have.class(optionClasses.highlighted);
+
+    fireEvent.keyDown(select, { key: 'ArrowDown' });
+    expect(secondOption).to.have.class(optionClasses.highlighted);
+
+    fireEvent.keyDown(select, { key: ' ' });
+    expect(secondOption).to.have.class(optionClasses.highlighted);
+
+    fireEvent.keyDown(select, { key: ' ' });
+    expect(secondOption).to.have.class(optionClasses.highlighted);
   });
 });
