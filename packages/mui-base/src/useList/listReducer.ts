@@ -431,10 +431,6 @@ function handleItemHover<ItemValue, State extends ListState<ItemValue>>(
   item: ItemValue,
   state: State,
 ): State {
-  if (state.highlightedValue && state.selectedValues.includes(state.highlightedValue)) {
-    return state;
-  }
-
   return {
     ...state,
     highlightedValue: item,
