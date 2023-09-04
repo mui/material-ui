@@ -26,6 +26,7 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
     selected,
   } = useListItem({
     item: value,
+    handlePointerOverEvents: true,
   });
 
   const id = useId(idParam);

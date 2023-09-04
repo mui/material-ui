@@ -427,6 +427,20 @@ function handleResetHighlight<ItemValue, State extends ListState<ItemValue>>(
   };
 }
 
+function handleItemHover<ItemValue, State extends ListState<ItemValue>>(
+  item: ItemValue,
+  state: State,
+): State {
+  if (state.highlightedValue && state.selectedValues.includes(state.highlightedValue)) {
+    return state;
+  }
+
+  return {
+    ...state,
+    highlightedValue: item,
+  };
+}
+
 export function listReducer<ItemValue, State extends ListState<ItemValue>>(
   state: State,
   action: ListReducerAction<ItemValue> & { context: ListActionContext<ItemValue> },
@@ -438,6 +452,8 @@ export function listReducer<ItemValue, State extends ListState<ItemValue>>(
       return handleKeyDown(action.key, state, context);
     case ListActionTypes.itemClick:
       return handleItemSelection(action.item, state, context, 'mouse');
+    case ListActionTypes.itemHover:
+      return handleItemHover(action.item, state);
     case ListActionTypes.blur:
       return handleBlur(state, context);
     case ListActionTypes.textNavigation:
