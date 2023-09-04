@@ -1,15 +1,19 @@
 import * as React from 'react';
 import LinearProgress from '@mui/joy/LinearProgress';
 import Typography from '@mui/joy/Typography';
-import { useCountUp } from "use-count-up";
+import { useCountUp } from 'use-count-up';
 
 export default function LinearProgressCountUp() {
   const { value } = useCountUp({
     isCounting: true,
     duration: 5,
-    easing: "linear",
+    easing: 'linear',
     start: 0,
-    end: 75
+    end: 75,
+    onComplete: () => ({
+      shouldRepeat: true,
+      delay: 2,
+    }),
   });
 
   return (
@@ -19,12 +23,10 @@ export default function LinearProgressCountUp() {
       color="neutral"
       size="sm"
       thickness={24}
-      value={value}
+      value={Number(value!)}
       sx={{
         '--LinearProgress-radius': '20px',
-        '--LinearProgress-progressThickness': '24px',
-        boxShadow: 'sm',
-        borderColor: 'neutral.500',
+        '--LinearProgress-thickness': '24px',
       }}
     >
       <Typography
@@ -33,7 +35,7 @@ export default function LinearProgressCountUp() {
         textColor="common.white"
         sx={{ mixBlendMode: 'difference' }}
       >
-        LOADING… {`${Math.round(value)}%`}
+        LOADING… {`${Math.round(Number(value!))}%`}
       </Typography>
     </LinearProgress>
   );
