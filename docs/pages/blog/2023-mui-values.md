@@ -101,9 +101,9 @@ Other phrases included: “Own your impact” or “Maximize flexibility” but 
 
 In short, they weren’t right.
 
-Fortunately, this helped us find ones that *****are.***** 👏
+Fortunately, this helped us find the ones that *****are.***** 👏
 
-I presented a video presentation to our team, pitching a set of values and providing another opportunity for feedback and shaping.
+I presented a video presentation to our team, pitching this set of values and providing another opportunity for feedback and shaping.
 
 You can <a href="https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4#09dc19a420504a3090dc4fbe6a68a543">watch the "reveal" video for yourself here</a>!
 
