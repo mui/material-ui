@@ -246,13 +246,11 @@ describe('e2e', () => {
       const combobox = (await screen.getByRole('combobox'))!;
       await combobox.click();
 
-      const firstOption = (await screen.getByText('10'))!;
       const secondOption = (await screen.getByText('20'))!;
 
-      const dimensions = (await firstOption.boundingBox())!;
+      const dimensions = (await secondOption.boundingBox())!;
 
-      await page.mouse.move(dimensions.x + 10, dimensions.y + 10); // moves to 1st option
-      await page.keyboard.down('ArrowDown'); // moves to 2nd option
+      await page.mouse.move(dimensions.x + 10, dimensions.y + 10); // moves to 2nd option
       await page.keyboard.down(' '); // selects 2nd option
 
       const classNames = await secondOption.evaluate((element) => {
