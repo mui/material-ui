@@ -20,7 +20,7 @@ export default function UnstyledSelectIntroduction() {
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
-      <CustomSelect defaultValue={10}>
+      <CustomSelect defaultValue={10} placeholder="Select an option…">
         <Option value={10}>Documentation</Option>
         <Option value={20}>Components</Option>
         <Option value={30}>Features</Option>
@@ -71,13 +71,13 @@ const Button = React.forwardRef(function Button<
   TValue extends {},
   Multiple extends boolean,
 >(
-  props: SelectRootSlotProps<TValue, Multiple>,
+  props: SelectRootSlotProps<TValue, Multiple> & { placeholder?: string },
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
-  const { ownerState, ...other } = props;
+  const { ownerState, placeholder, ...other } = props;
   return (
     <button type="button" {...other} ref={ref}>
-      {other.children}
+      {other.children || (placeholder ?? ' ')}
       <UnfoldMoreRoundedIcon />
     </button>
   );
@@ -116,7 +116,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<
                 ownerState.focusVisible
                   ? 'border-purple-400 shadow-outline-purple'
                   : ''
-              } [&>svg]:text-base	[&>svg]:absolute [&>svg]:h-full [&>svg]:top-0 [&>svg]:right-2.5`,
+              } [&>svg]:text-base [&>svg]:absolute [&>svg]:h-full [&>svg]:top-0 [&>svg]:right-2.5`,
               resolvedSlotProps?.className,
             ),
           };
