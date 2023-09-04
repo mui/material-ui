@@ -1,12 +1,12 @@
 import * as babel from '@babel/core';
 import * as babelTypes from '@babel/types';
 import { v4 as uuid } from 'uuid';
-import * as t from './types';
-import { generate, GenerateOptions } from './generator';
+import { generatePropTypes, GeneratePropTypesOptions } from './generatePropTypes';
+import { PropTypesComponent, PropTypeDefinition, LiteralType } from './models';
 
-export interface InjectOptions
+export interface InjectPropTypesInFileOptions
   extends Pick<
-    GenerateOptions,
+    GeneratePropTypesOptions,
     | 'sortProptypes'
     | 'includeJSDoc'
     | 'comment'
@@ -15,7 +15,7 @@ export interface InjectOptions
     | 'ensureBabelPluginTransformReactRemovePropTypesIntegration'
   > {
   /**
-   * By default all unused props are omitted from the result.
+   * By default, all unused props are omitted from the result.
    * Set this to true to include them instead.
    */
   includeUnusedProps?: boolean;
@@ -26,14 +26,14 @@ export interface InjectOptions
    * @default includeUnusedProps ? true : data.usedProps.includes(data.prop.name)
    */
   shouldInclude?(data: {
-    component: t.Component;
-    prop: t.PropTypeDefinition;
+    component: PropTypesComponent;
+    prop: PropTypeDefinition;
     usedProps: readonly string[];
   }): boolean | undefined;
   /**
    * You can override the order of literals in unions based on the proptype.
    *
-   * By default literals in unions are sorted by:
+   * By default, literals in unions are sorted by:
    * - numbers last, ascending
    * - anything else by their stringified value using localeCompare
    * Note: The order of the literals as they "appear" in the typings cannot be preserved.
@@ -41,9 +41,9 @@ export interface InjectOptions
    * By always returning 0 from the sort function you keep the order the type checker dictates.
    */
   getSortLiteralUnions?: (
-    component: t.Component,
-    propType: t.PropTypeDefinition,
-  ) => ((a: t.LiteralType, b: t.LiteralType) => number) | undefined;
+    component: PropTypesComponent,
+    propType: PropTypeDefinition,
+  ) => ((a: LiteralType, b: LiteralType) => number) | undefined;
   /**
    * Options passed to babel.transformSync
    */
@@ -132,21 +132,27 @@ function flattenTsAsExpression(node: babel.types.Node | null | undefined) {
   return node;
 }
 
-function plugin(
-  propTypes: t.Program,
-  options: InjectOptions,
-  mapOfPropTypes: Map<string, string>,
-): babel.PluginObj {
+function createBabelPlugin({
+  components,
+  options,
+  mapOfPropTypes,
+}: {
+  components: PropTypesComponent[];
+  options: InjectPropTypesInFileOptions;
+  mapOfPropTypes: Map<string, string>;
+}): babel.PluginObj {
   const {
     includeUnusedProps = false,
     reconcilePropTypes = (
-      _prop: t.PropTypeDefinition,
+      _prop: PropTypeDefinition,
       _previous: string | undefined,
       generated: string,
     ) => generated,
     ...otherOptions
   } = options;
-  const shouldInclude: Exclude<InjectOptions['shouldInclude'], undefined> = (data) => {
+  const shouldInclude: Exclude<InjectPropTypesInFileOptions['shouldInclude'], undefined> = (
+    data,
+  ) => {
     // key is a reserved prop name in React
     // e.g. https://github.com/reactjs/rfcs/pull/107
     // no need to add a prop-type if we won't generate the docs for it.
@@ -173,12 +179,12 @@ function plugin(
   function injectPropTypes(injectOptions: {
     path: babel.NodePath;
     usedProps: readonly string[];
-    props: t.Component;
+    props: PropTypesComponent;
     nodeName: string;
   }) {
     const { path, props, usedProps, nodeName } = injectOptions;
 
-    const source = generate(props, {
+    const source = generatePropTypes(props, {
       ...otherOptions,
       importedName: importName,
       previousPropTypesSource,
@@ -319,7 +325,7 @@ function plugin(
         if (!node.id) {
           return;
         }
-        const props = propTypes.body.find((prop) => prop.name === node.id!.name);
+        const props = components.find((component) => component.name === node.id!.name);
         if (!props) {
           return;
         }
@@ -353,7 +359,7 @@ function plugin(
         }
         const nodeName = node.id.name;
 
-        const props = propTypes.body.find((prop) => prop.name === nodeName);
+        const props = components.find((component) => component.name === nodeName);
         if (!props) {
           return;
         }
@@ -406,7 +412,7 @@ function plugin(
         }
         const nodeName = node.id.name;
 
-        const props = propTypes.body.find((prop) => prop.name === nodeName);
+        const props = components.find((component) => component.name === nodeName);
         if (!props) {
           return;
         }
@@ -428,20 +434,24 @@ function plugin(
 
 /**
  * Injects the PropTypes from `parse` into the provided JavaScript code
- * @param propTypes Result from `parse` to inject into the JavaScript code
+ * @param components Result from `generateFilePropTypes` to inject into the JavaScript code
  * @param target The JavaScript code to add the PropTypes to
  * @param options Options controlling the final result
  */
-export function inject(
-  propTypes: t.Program,
-  target: string,
-  options: InjectOptions = {},
-): string | null {
-  if (propTypes.body.length === 0) {
+export function injectPropTypesInFile({
+  components,
+  target,
+  options = {},
+}: {
+  components: PropTypesComponent[];
+  target: string;
+  options?: InjectPropTypesInFileOptions;
+}): string | null {
+  if (components.length === 0) {
     return target;
   }
 
-  const propTypesToInject = new Map<string, string>();
+  const mapOfPropTypes = new Map<string, string>();
 
   const { plugins: babelPlugins = [], ...babelOptions } = options.babelOptions || {};
   const result = babel.transformSync(target, {
@@ -449,7 +459,7 @@ export function inject(
       require.resolve('@babel/plugin-syntax-class-properties'),
       require.resolve('@babel/plugin-syntax-jsx'),
       [require.resolve('@babel/plugin-syntax-typescript'), { isTSX: true }],
-      plugin(propTypes, options, propTypesToInject),
+      createBabelPlugin({ components, options, mapOfPropTypes }),
       ...(babelPlugins || []),
     ],
     configFile: false,
@@ -458,14 +468,14 @@ export function inject(
     ...babelOptions,
   });
 
-  let code = result && result.code;
+  let code = result?.code;
   if (!code) {
     return null;
   }
 
   // Replace the placeholders with the generated prop-types
   // Workaround for issues with comments getting removed and malformed
-  propTypesToInject.forEach((value, key) => {
+  mapOfPropTypes.forEach((value, key) => {
     code = code!.replace(key, `\n\n${value}\n\n`);
   });
 

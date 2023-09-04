@@ -1,7 +1,8 @@
 import _ from 'lodash';
-import * as t from './types';
+import { PropTypeDefinition, PropTypesComponent, PropType, LiteralType } from './models';
+import { createDOMElementType, createBooleanType, uniqueUnionTypes } from './createType';
 
-export interface GenerateOptions {
+export interface GeneratePropTypesOptions {
   /**
    * If source itself written in typescript prop-types disable prop-types validation
    * by injecting propTypes as
@@ -18,7 +19,7 @@ export interface GenerateOptions {
    * Enable/disable the default sorting (ascending) or provide your own sort function
    * @default true
    */
-  sortProptypes?: boolean | ((a: t.PropTypeDefinition, b: t.PropTypeDefinition) => 0 | -1 | 1);
+  sortProptypes?: boolean | ((a: PropTypeDefinition, b: PropTypeDefinition) => 0 | -1 | 1);
   /**
    * The name used when importing prop-types
    * @default 'PropTypes'
@@ -40,7 +41,7 @@ export interface GenerateOptions {
    * @default Uses `generated` source
    */
   reconcilePropTypes?(
-    proptype: t.PropTypeDefinition,
+    proptype: PropTypeDefinition,
     previous: string | undefined,
     generated: string,
   ): string;
@@ -48,7 +49,7 @@ export interface GenerateOptions {
    * Control which PropTypes are included in the final result
    * @param proptype The current PropType about to be converted to text
    */
-  shouldInclude?(proptype: t.PropTypeDefinition): boolean | undefined;
+  shouldInclude?(proptype: PropTypeDefinition): boolean | undefined;
   /**
    * A comment that will be added to the start of the PropTypes code block
    * @example
@@ -62,18 +63,18 @@ export interface GenerateOptions {
    * If `undefined` is returned the default `sortLiteralUnions` will be used.
    */
   getSortLiteralUnions?: (
-    component: t.Component,
-    propType: t.PropTypeDefinition,
-  ) => ((a: t.LiteralType, b: t.LiteralType) => number) | undefined;
+    component: PropTypesComponent,
+    propType: PropTypeDefinition,
+  ) => ((a: LiteralType, b: LiteralType) => number) | undefined;
   /**
    * By default literals in unions are sorted by:
    * - numbers last, ascending
    * - anything else by their stringified value using localeCompare
    */
-  sortLiteralUnions?: (a: t.LiteralType, b: t.LiteralType) => number;
+  sortLiteralUnions?: (a: LiteralType, b: LiteralType) => number;
 }
 
-function defaultSortLiteralUnions(a: t.LiteralType, b: t.LiteralType) {
+function defaultSortLiteralUnions(a: LiteralType, b: LiteralType) {
   const { value: valueA } = a;
   const { value: valueB } = b;
   // numbers ascending
@@ -96,7 +97,10 @@ function defaultSortLiteralUnions(a: t.LiteralType, b: t.LiteralType) {
  * @param component The component to convert to code
  * @param options The options used to control the way the code gets generated
  */
-export function generate(component: t.Component, options: GenerateOptions = {}): string {
+export function generatePropTypes(
+  component: PropTypesComponent,
+  options: GeneratePropTypesOptions = {},
+): string {
   const {
     disablePropTypesTypeChecking = false,
     ensureBabelPluginTransformReactRemovePropTypesIntegration = false,
@@ -104,13 +108,13 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
     includeJSDoc = true,
     sortProptypes = true,
     previousPropTypesSource = new Map<string, string>(),
-    reconcilePropTypes = (_prop: t.PropTypeDefinition, _previous: string, generated: string) =>
+    reconcilePropTypes = (_prop: PropTypeDefinition, _previous: string, generated: string) =>
       generated,
     shouldInclude,
     getSortLiteralUnions = () => defaultSortLiteralUnions,
   } = options;
 
-  function jsDoc(documentedNode: t.PropTypeDefinition | t.LiteralType): string {
+  function jsDoc(documentedNode: PropTypeDefinition | LiteralType): string {
     if (!includeJSDoc || !documentedNode.jsDoc) {
       return '';
     }
@@ -120,8 +124,8 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
   }
 
   function generatePropType(
-    propType: t.PropType,
-    context: { component: t.Component; propTypeDefinition: t.PropTypeDefinition },
+    propType: PropType,
+    context: { component: PropTypesComponent; propTypeDefinition: PropTypeDefinition },
   ): string {
     if (propType.type === 'InterfaceNode') {
       return `${importedName}.shape({\n${propType.types
@@ -204,7 +208,7 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
     }
 
     if (propType.type === 'UnionNode') {
-      const uniqueTypes = t.uniqueUnionTypes(propType).types;
+      const uniqueTypes = uniqueUnionTypes(propType).types;
       const isOptional = uniqueTypes.some(
         (type) =>
           type.type === 'UndefinedNode' || (type.type === 'LiteralNode' && type.value === 'null'),
@@ -217,14 +221,14 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
 
       if (uniqueTypes.length === 2 && uniqueTypes.some((type) => type.type === 'DOMElementNode')) {
         return generatePropType(
-          t.createDOMElementType({ jsDoc: undefined, optional: isOptional }),
+          createDOMElementType({ jsDoc: undefined, optional: isOptional }),
           context,
         );
       }
 
       let [literals, rest] = _.partition(
         isOptional ? nonNullishUniqueTypes : uniqueTypes,
-        (type): type is t.LiteralType => type.type === 'LiteralNode',
+        (type): type is LiteralType => type.type === 'LiteralNode',
       );
 
       const sortLiteralUnions =
@@ -232,7 +236,7 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
         defaultSortLiteralUnions;
       literals = literals.sort(sortLiteralUnions);
 
-      const nodeToStringName = (type: t.PropType): string => {
+      const nodeToStringName = (type: PropType): string => {
         if (type.type === 'InstanceOfNode') {
           return `${type.type}.${type.instance}`;
         }
@@ -248,7 +252,7 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
       rest = rest.sort((a, b) => nodeToStringName(a).localeCompare(nodeToStringName(b)));
 
       if (literals.find((x) => x.value === 'true') && literals.find((x) => x.value === 'false')) {
-        rest.push(t.createBooleanType({ jsDoc: undefined }));
+        rest.push(createBooleanType({ jsDoc: undefined }));
         literals = literals.filter((x) => x.value !== 'true' && x.value !== 'false');
       }
 
@@ -278,8 +282,8 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
   }
 
   function generatePropTypeDefinition(
-    propTypeDefinition: t.PropTypeDefinition,
-    context: { component: t.Component },
+    propTypeDefinition: PropTypeDefinition,
+    context: { component: PropTypesComponent },
   ): string {
     let isRequired: boolean | undefined = true;
 
