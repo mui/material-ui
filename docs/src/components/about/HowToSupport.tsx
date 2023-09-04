@@ -26,12 +26,12 @@ function Widget({
       sx={(theme) => ({
         p: 4,
         height: '100%',
-        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
         borderRadius: '12px',
         border: '1px solid',
         borderColor: 'grey.100',
         background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
-
         ...theme.applyDarkStyles({
           bgcolor: 'primaryDark.900',
           borderColor: 'primaryDark.700',
@@ -102,7 +102,7 @@ export default function HowToSupport() {
               size="small"
               href="https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
               endIcon={<KeyboardArrowRightRounded />}
-              sx={{ ml: -1 }}
+              sx={{ ml: -1, mt: 'auto', width: 'fit-content' }}
             >
               Leave your feedback{' '}
             </Button>
@@ -163,7 +163,7 @@ export default function HowToSupport() {
               size="small"
               href="https://github.com/mui/material-ui"
               endIcon={<KeyboardArrowRightRounded />}
-              sx={{ ml: -1 }}
+              sx={{ ml: -1, mt: 'auto', width: 'fit-content' }}
             >
               See the repository
             </Button>
@@ -190,7 +190,7 @@ export default function HowToSupport() {
               size="small"
               href="https://opencollective.com/mui"
               endIcon={<KeyboardArrowRightRounded />}
-              sx={{ ml: -1 }}
+              sx={{ ml: -1, mt: 'auto', width: 'fit-content' }}
             >
               {'See Open Collective'}
             </Button>
