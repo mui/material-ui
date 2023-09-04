@@ -773,6 +773,9 @@ export default function JoyUITemplates() {
         <Sheet
           variant="outlined"
           sx={(theme) => ({
+            [theme.breakpoints.up(800)]: {
+              minWidth: 700,
+            },
             maxWidth: '80vw',
             backdropFilter: 'blur(8px)',
             bgcolor: 'rgba(var(--template-palette-primary-mainChannel) / 0.12)',
