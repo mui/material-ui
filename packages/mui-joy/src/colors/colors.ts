@@ -1,7 +1,7 @@
 const colors = {
-  grey: { 
+  grey: {
     50: '#FBFCFE',
-	  100: '#F0F4F8',
+    100: '#F0F4F8',
     200: '#DDE7EE',
     300: '#CDD7E1',
     400: '#9FA6AD',
@@ -62,4 +62,3 @@ const colors = {
 };
 
 export default colors;
-
