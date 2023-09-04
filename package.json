@@ -150,7 +150,7 @@
     "karma-sourcemap-loader": "^0.4.0",
     "karma-webpack": "^5.0.0",
     "karma": "^6.4.2",
-    "lerna": "^7.1.5",
+    "lerna": "^7.2.0",
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.8.1",
     "mocha": "^10.2.0",
@@ -176,7 +176,7 @@
     "webpack-cli": "^4.10.0",
     "yargs": "^17.7.2"
   },
-  "packageManager": "pnpm@8.6.12",
+  "packageManager": "pnpm@8.7.1",
   "resolutions": {
     "@babel/core": "^7.22.10",
     "@babel/code-frame": "^7.22.10",
