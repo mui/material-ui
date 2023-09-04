@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import { ColorPaletteProp } from '@mui/joy/styles';
-import Box from '@mui/joy/Box';
+import Box, { BoxProps } from '@mui/joy/Box';
 import Avatar from '@mui/joy/Avatar';
 import Chip from '@mui/joy/Chip';
 import Link from '@mui/joy/Link';
@@ -108,9 +108,15 @@ function RowMenu() {
   );
 }
 
-export default function OrderList() {
+export default function OrderList({ sx, ...props }: BoxProps) {
   return (
-    <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
+    <Box
+      sx={[
+        { display: { xs: 'block', sm: 'none' } },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+      {...props}
+    >
       {listItems.map((listItem) => (
         <List
           key={listItem.id}

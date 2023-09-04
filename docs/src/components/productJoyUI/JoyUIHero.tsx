@@ -1,12 +1,25 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import JoyBox from '@mui/joy/Box';
+import JoyButton from '@mui/joy/Button';
+import JoyBreadcrumbs from '@mui/joy/Breadcrumbs';
+import JoyLink from '@mui/joy/Link';
+import JoySheet from '@mui/joy/Sheet';
+import JoyTypography from '@mui/joy/Typography';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
+import OrderDashboardApp from 'docs/data/joy/getting-started/templates/order-dashboard/App';
+import OrderList from 'docs/data/joy/getting-started/templates/order-dashboard/components/OrderList';
+import MuiLogo from 'docs/data/joy/getting-started/templates/order-dashboard/components/MuiLogo';
+import ColorSchemeToggle from 'docs/data/joy/getting-started/templates/order-dashboard/components/ColorSchemeToggle';
 
 export default function JoyUIHero() {
   return (
@@ -63,7 +76,118 @@ export default function JoyUIHero() {
           />
         </Box>
       }
-      right={<div />}
+      rightSx={{
+        perspective: '1200px',
+        overflow: 'initial',
+      }}
+      right={
+        <React.Fragment>
+          <Box
+            sx={{
+              '--_frame-height': 'calc(100vh - 60px)',
+              '--screen-height': 'var(--_frame-height)',
+              position: 'absolute',
+              transform: 'scale(0.72) rotateX(8deg) rotateY(-5deg) rotateZ(2deg)',
+              transformOrigin: '4% 24%',
+              width: '72vw',
+              height: 'var(--_frame-height)',
+              overflow: 'hidden',
+              borderRadius: '1rem',
+              boxShadow:
+                '1px 1px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 1px 1px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
+            }}
+          >
+            <OrderDashboardApp />
+          </Box>
+          <JoyBox
+            sx={{
+              '--_frame-height': '80vh',
+              '--screen-height': 'var(--_frame-height)',
+              position: 'absolute',
+              left: '50%',
+              transform: 'scale(0.72) rotateX(8deg) rotateY(-7deg) rotateZ(2deg)',
+              transformOrigin: '140% 120%',
+              width: '320px',
+              height: 'var(--_frame-height)',
+              overflow: 'hidden',
+              borderRadius: '1rem',
+              boxShadow:
+                '1px 1px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 1px 1px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
+              bgcolor: 'background.body',
+            }}
+          >
+            <JoySheet
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                px: 2,
+                py: 1,
+                gap: 1,
+                borderBottom: '1px solid',
+                borderColor: 'background.level1',
+                boxShadow: 'sm',
+              }}
+            >
+              <MuiLogo />
+              <ColorSchemeToggle id={undefined} />
+            </JoySheet>
+            <JoyBox
+              sx={{
+                px: 2,
+                pt: 'calc(12px + var(--Header-height))',
+                pb: 2,
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                minWidth: 0,
+                height: '100%',
+                gap: 1,
+              }}
+            >
+              <JoyBreadcrumbs
+                size="sm"
+                aria-label="breadcrumbs"
+                separator={<ChevronRightRoundedIcon fontSize="sm" />}
+              >
+                <JoyLink underline="none" color="neutral" href="#some-link" aria-label="Home">
+                  <HomeRoundedIcon />
+                </JoyLink>
+                <JoyLink
+                  underline="hover"
+                  color="neutral"
+                  href="#some-link"
+                  fontSize={12}
+                  fontWeight={500}
+                >
+                  Dashboard
+                </JoyLink>
+                <JoyTypography color="primary" fontWeight={500} fontSize={12}>
+                  Orders
+                </JoyTypography>
+              </JoyBreadcrumbs>
+              <Box
+                sx={{
+                  display: 'flex',
+                  my: 1,
+                  gap: 1,
+                  flexDirection: 'column',
+                  flexWrap: 'wrap',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <JoyTypography level="h2">Orders</JoyTypography>
+                <JoyButton color="primary" startDecorator={<DownloadRoundedIcon />} size="sm">
+                  Download PDF
+                </JoyButton>
+              </Box>
+              <OrderList
+                sx={{ display: 'block !important', '& > div': { display: 'flex !important' } }}
+              />
+            </JoyBox>
+          </JoyBox>
+        </React.Fragment>
+      }
     />
   );
 }
