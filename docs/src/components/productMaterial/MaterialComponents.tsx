@@ -68,7 +68,7 @@ const CODES = {
   Add item
 </Button>
 <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
-  Add item  
+  Add item
 </Button>
 `,
   'Text field': `
