@@ -1289,7 +1289,7 @@ describe('<Select />', () => {
     expect(secondOption).not.to.have.class(optionClasses.highlighted);
   });
 
-  it('options should have highlighted class on keyboard navigation irrespective of option selection', () => {
+  it('deselected option should have highlighted class when deselected by keyboard', () => {
     const { getAllByRole, getByRole } = render(
       <Select multiple>
         <Option value={10}>10</Option>
@@ -1315,13 +1315,13 @@ describe('<Select />', () => {
     // it doesn't have highlighted class as it is not navigated yet
     expect(secondOption).not.to.have.class(optionClasses.highlighted);
 
-    fireEvent.keyDown(select, { key: 'ArrowDown' });
+    fireEvent.keyDown(select, { key: 'ArrowDown' }); // navigates to second option
     expect(secondOption).to.have.class(optionClasses.highlighted);
 
-    fireEvent.keyDown(select, { key: ' ' });
+    fireEvent.keyDown(select, { key: ' ' }); // selects second option
     expect(secondOption).to.have.class(optionClasses.highlighted);
 
-    fireEvent.keyDown(select, { key: ' ' });
+    fireEvent.keyDown(select, { key: ' ' }); // deselects second option
     expect(secondOption).to.have.class(optionClasses.highlighted);
   });
 });
