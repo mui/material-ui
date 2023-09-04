@@ -224,7 +224,7 @@ function getCodeblock(content) {
  * @param {string} markdown
  */
 function renderInline(markdown) {
-  return marked.parseInline(markdown, markedOptions).replace(/\n- /g, '<br>- '); // Add breaks after bullet points
+  return marked.parseInline(markdown, markedOptions).replace(/\n- /g, '<br>- '); // Add line breaks before bullet points
 }
 
 // Help rank mui.com on component searches first.
