@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <Sheet
       sx={{
-        display: { xs: 'flex', lg: 'none' },
+        display: { xs: 'flex', sm: 'none' },
         alignItems: 'center',
         position: 'fixed',
         top: 0,
@@ -20,7 +20,6 @@ export default function Header() {
         py: 1,
         px: 2,
         gap: 1,
-        boxShadow: 'sm',
       }}
     >
       <GlobalStyles

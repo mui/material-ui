@@ -74,6 +74,7 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
           startDecorator={<i data-feather="phone-call" />}
           color="neutral"
           variant="outlined"
+          size="sm"
           sx={{
             display: { xs: 'none', md: 'inline-flex' },
           }}
@@ -81,6 +82,9 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
           Call
         </Button>
         <Button
+          color="neutral"
+          variant="outlined"
+          size="sm"
           sx={{
             display: { xs: 'none', md: 'inline-flex' },
           }}
@@ -88,7 +92,7 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
           View profile
         </Button>
 
-        <IconButton variant="plain" color="neutral">
+        <IconButton size="sm" variant="plain" color="neutral">
           <i data-feather="more-vertical" />
         </IconButton>
       </Stack>

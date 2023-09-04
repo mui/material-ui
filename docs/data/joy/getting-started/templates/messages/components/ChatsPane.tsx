@@ -28,14 +28,21 @@ export default function ChatsPane({
         overflowY: 'auto',
       }}
     >
-      <Stack direction="row" spacing={1} alignItems="center" p={2} pb={1.5}>
+      <Stack
+        direction="row"
+        spacing={1}
+        alignItems="center"
+        justifyContent="space-between"
+        p={2}
+        pb={1.5}
+      >
         <Typography
           fontSize={{ xs: 'md', md: 'lg' }}
           component="h1"
           fontWeight="lg"
           endDecorator={
             <Chip
-              variant="outlined"
+              variant="soft"
               color="neutral"
               size="sm"
               slotProps={{ root: { component: 'span' } }}
@@ -48,7 +55,7 @@ export default function ChatsPane({
           Messages
         </Typography>
 
-        <IconButton variant="outlined" aria-label="edit" color="neutral" size="sm">
+        <IconButton variant="plain" aria-label="edit" color="neutral" size="sm">
           <i data-feather="edit" />
         </IconButton>
 

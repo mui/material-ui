@@ -50,7 +50,9 @@ export default function MessageInput({
               <IconButton variant="plain" color="neutral">
                 <i data-feather="more-horizontal" />
               </IconButton>
-              <Button onClick={handleClick}>Send</Button>
+              <Button size="sm" sx={{ alignSelf: 'center' }} onClick={handleClick}>
+                Send
+              </Button>
             </Stack>
           }
           onKeyDown={(event) => {

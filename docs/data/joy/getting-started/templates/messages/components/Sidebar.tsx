@@ -1,11 +1,12 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import GlobalStyles from '@mui/joy/GlobalStyles';
+import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import Divider from '@mui/joy/Divider';
 import IconButton from '@mui/joy/IconButton';
-import Link from '@mui/joy/Link';
+import Input from '@mui/joy/Input';
 import LinearProgress from '@mui/joy/LinearProgress';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -14,7 +15,25 @@ import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
-import MuiLogo from './MuiLogo';
+import { Stack } from '@mui/system';
+import AccordionGroup from '@mui/joy/AccordionGroup';
+import Accordion from '@mui/joy/Accordion';
+import AccordionDetails from '@mui/joy/AccordionDetails';
+import AccordionSummary from '@mui/joy/AccordionSummary';
+
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
+import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded';
+import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
+import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
+import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
+import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import BadgeRoundedIcon from '@mui/icons-material/BadgeRounded';
+
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { closeSidebar } from '../utils';
 
@@ -25,19 +44,19 @@ export default function Sidebar() {
       sx={{
         position: {
           xs: 'fixed',
-          lg: 'sticky',
+          md: 'sticky',
         },
         transform: {
           xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1)))',
-          lg: 'none',
+          md: 'none',
         },
         transition: 'transform 0.4s, width 0.4s',
         zIndex: 10000,
         height: '100dvh',
         width: 'var(--Sidebar-width)',
         top: 0,
-        px: 1.5,
-        py: 2,
+        p: 1.5,
+        py: 3,
         flexShrink: 0,
         display: 'flex',
         flexDirection: 'column',
@@ -49,9 +68,9 @@ export default function Sidebar() {
       <GlobalStyles
         styles={(theme) => ({
           ':root': {
-            '--Sidebar-width': '224px',
+            '--Sidebar-width': '220px',
             [theme.breakpoints.up('lg')]: {
-              '--Sidebar-width': '256px',
+              '--Sidebar-width': '240px',
             },
           },
         })}
@@ -65,8 +84,8 @@ export default function Sidebar() {
           left: 0,
           width: '100vw',
           height: '100vh',
-
-          opacity: 'calc(var(--SideNavigation-slideIn, 0) - 0.2)',
+          opacity: 'var(--SideNavigation-slideIn)',
+          backgroundColor: 'var(--joy-palette-background-backdrop)',
           transition: 'opacity 0.4s',
           transform: {
             xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1) + var(--SideNavigation-slideIn, 0) * var(--Sidebar-width, 0px)))',
@@ -76,10 +95,13 @@ export default function Sidebar() {
         onClick={() => closeSidebar()}
       />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-        <MuiLogo />
-        <Typography fontWeight="xl">MUI</Typography>
+        <IconButton variant="soft" color="primary" size="sm">
+          <BadgeRoundedIcon />
+        </IconButton>
+        <Typography level="title-lg">Profiles</Typography>
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
       </Box>
+      <Input size="sm" startDecorator={<SearchRoundedIcon />} placeholder="Search" />
       <Box
         sx={{
           minHeight: 0,
@@ -89,139 +111,147 @@ export default function Sidebar() {
           flexDirection: 'column',
         }}
       >
-        <List
+        <AccordionGroup
+          disableDivider
+          size="sm"
           sx={{
-            '--ListItem-radius': '8px',
-            '--List-gap': '4px',
-            '--List-nestedInsetStart': '40px',
+            gap: 1,
           }}
         >
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <i data-feather="home" />
-              </ListItemDecorator>
-              <ListItemContent>Home</ListItemContent>
-              <i data-feather="chevron-down" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <i data-feather="bar-chart-2" />
-              </ListItemDecorator>
-              <ListItemContent>Dashboard</ListItemContent>
-              <i data-feather="chevron-down" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <i data-feather="layers" />
-              </ListItemDecorator>
-              <ListItemContent>Projects</ListItemContent>
-              <i data-feather="chevron-down" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <i data-feather="check-square" />
-              </ListItemDecorator>
-              <ListItemContent>Tasks</ListItemContent>
-              <i data-feather="chevron-down" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <i data-feather="flag" />
-              </ListItemDecorator>
-              <ListItemContent>Reporting</ListItemContent>
-              <i data-feather="chevron-down" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem nested>
-            <ListItemButton>
-              <ListItemDecorator>
-                <i data-feather="message-square" />
-              </ListItemDecorator>
-              <ListItemContent>Messages</ListItemContent>
-              <i data-feather="chevron-up" />
-            </ListItemButton>
-            <List>
-              <ListItem>
-                <ListItemButton selected color="primary">
-                  View all
+          <Accordion defaultExpanded>
+            <AccordionSummary>
+              <HomeRoundedIcon />
+              <ListItemContent>
+                <Typography level="title-sm">Home</Typography>
+              </ListItemContent>
+            </AccordionSummary>
+            <AccordionDetails>
+              <List size="sm" sx={{ '--ListItem-paddingLeft': '38px' }}>
+                <ListItemButton>Summary</ListItemButton>
+                <ListItemButton selected sx={{ borderRadius: 'sm' }}>
+                  Messages
                 </ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>Your team</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>Archived</ListItemButton>
-              </ListItem>
-            </List>
-          </ListItem>
-        </List>
+              </List>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary indicator={null}>
+              <DashboardRoundedIcon />
+              <ListItemContent>
+                <Typography level="title-sm">Dashboard</Typography>
+              </ListItemContent>
+            </AccordionSummary>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary indicator={null}>
+              <CollectionsBookmarkRoundedIcon />
+              <ListItemContent>
+                <Typography level="title-sm">Projects</Typography>
+              </ListItemContent>
+            </AccordionSummary>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary>
+              <AssignmentRoundedIcon />
+              <ListItemContent>
+                <Typography level="title-sm">Tasks</Typography>
+              </ListItemContent>
+            </AccordionSummary>
+            <AccordionDetails>
+              <List size="sm" sx={{ '--ListItem-paddingLeft': '38px' }}>
+                <ListItemButton>All tasks</ListItemButton>
+                <ListItemButton>Backlog</ListItemButton>
+                <ListItemButton>In progress</ListItemButton>
+                <ListItemButton>Done</ListItemButton>
+              </List>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary indicator={null}>
+              <FlagRoundedIcon />
+              <ListItemContent>
+                <Typography level="title-sm">Reporting</Typography>
+              </ListItemContent>
+            </AccordionSummary>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary>
+              <GroupRoundedIcon />
+              <ListItemContent>
+                <Typography level="title-sm">Users</Typography>
+              </ListItemContent>
+            </AccordionSummary>
+            <AccordionDetails>
+              <List size="sm" sx={{ '--ListItem-paddingLeft': '38px' }}>
+                <ListItemButton>My profile</ListItemButton>
+                <ListItemButton>Create a new user</ListItemButton>
+                <ListItemButton>Roles & permission</ListItemButton>
+              </List>
+            </AccordionDetails>
+          </Accordion>
+        </AccordionGroup>
         <List
+          size="sm"
           sx={{
             mt: 'auto',
             flexGrow: 0,
             '--ListItem-radius': '8px',
             '--List-gap': '8px',
+            mb: 2,
           }}
         >
           <ListItem>
             <ListItemButton>
               <ListItemDecorator>
-                <i data-feather="life-buoy" />
+                <SupportRoundedIcon />
               </ListItemDecorator>
-              <ListItemContent>Supports</ListItemContent>
+              Support
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton>
               <ListItemDecorator>
-                <i data-feather="settings" />
+                <SettingsRoundedIcon />
               </ListItemDecorator>
-              <ListItemContent>Settings</ListItemContent>
+              Settings
             </ListItemButton>
           </ListItem>
         </List>
         <Card
-          variant="soft"
-          color="primary"
           invertedColors
+          variant="soft"
+          color="warning"
+          size="sm"
           sx={{ boxShadow: 'none' }}
         >
-          <Typography fontSize="sm" fontWeight="lg" mb={0.5}>
-            Used space
-          </Typography>
+          <Stack direction="row" justifyContent="space-between" alignItems="center">
+            <Typography level="title-sm">Used space</Typography>
+            <IconButton size="sm">
+              <CloseRoundedIcon />
+            </IconButton>
+          </Stack>
           <Typography level="body-xs">
             Your team has used 80% of your available space. Need more?
           </Typography>
-          <LinearProgress value={80} determinate sx={{ my: 1.5 }} />
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <Link fontSize="sm" component="button" fontWeight="lg">
-              Upgrade plan
-            </Link>
-            <Link fontSize="sm" component="button">
-              Dismiss
-            </Link>
-          </Box>
+          <LinearProgress variant="outlined" value={80} determinate sx={{ my: 1 }} />
+          <Button size="sm" variant="solid">
+            Upgrade plan
+          </Button>
         </Card>
       </Box>
       <Divider />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+        <Avatar
+          variant="outlined"
+          size="sm"
+          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286"
+        />
         <Box sx={{ minWidth: 0, flex: 1 }}>
-          <Typography fontSize="sm" fontWeight="lg">
-            Steve E.
-          </Typography>
+          <Typography level="title-sm">Steve E.</Typography>
           <Typography level="body-xs">@steveEberger</Typography>
         </Box>
-        <IconButton variant="plain" color="neutral">
-          <i data-feather="log-out" />
+        <IconButton size="sm" variant="plain" color="neutral">
+          <LogoutRoundedIcon />
         </IconButton>
       </Box>
     </Sheet>

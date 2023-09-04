@@ -25,7 +25,7 @@ export default function ChatBubble({
   const [isLiked, setIsLiked] = React.useState<boolean>(false);
   const [isCelebrated, setIsCelebrated] = React.useState<boolean>(false);
   return (
-    <Box sx={{ maxWidth: '80%', minWidth: attachment ? '80%' : 'auto' }}>
+    <Box sx={{ maxWidth: '60%', minWidth: 'auto' }}>
       <Stack
         direction="row"
         justifyContent="space-between"
@@ -66,14 +66,25 @@ export default function ChatBubble({
             color={isSent ? 'primary' : 'neutral'}
             variant={isSent ? 'solid' : 'soft'}
             sx={{
-              px: 1.25,
-              py: 1.25,
+              p: 1.25,
               borderRadius: 'lg',
               borderTopRightRadius: isSent ? 0 : 'lg',
               borderTopLeftRadius: isSent ? 'lg' : 0,
+              backgroundColor: isSent
+                ? 'var(--joy-palette-primary-solidBg)'
+                : 'background.level1',
             }}
           >
-            {content}
+            <Typography
+              level="body-sm"
+              sx={{
+                color: isSent
+                  ? 'var(--joy-palette-common-white)'
+                  : 'var(--joy-palette-text-primary)',
+              }}
+            >
+              {content}
+            </Typography>
           </Sheet>
           {(isHovered || isLiked || isCelebrated) && (
             <Stack
