@@ -86,8 +86,8 @@ export default function DiamondSponsors() {
       >
         <a
           data-ga-event-category="sponsor"
-          data-ga-event-action="drawer"
-          data-ga-event-label="octopus"
+          data-ga-event-action="docs-premium"
+          data-ga-event-label="octopus.com"
           href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
@@ -109,8 +109,8 @@ export default function DiamondSponsors() {
         </a>
         <a
           data-ga-event-category="sponsor"
-          data-ga-event-action="drawer"
-          data-ga-event-label="doit"
+          data-ga-event-action="docs-premium"
+          data-ga-event-label="doit.com"
           href="https://www.doit.com/flexsave/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"

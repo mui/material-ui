@@ -14,7 +14,7 @@ const warn = () => {
         "You should use `import { TreeItem } from '@mui/x-tree-view'`",
         "or `import { TreeItem } from '@mui/x-tree-view/TreeItem'`",
         '',
-        'More information about this migration on our blog: INSERT BLOG POST.',
+        'More information about this migration on our blog: https://mui.com/blog/lab-tree-view-to-mui-x/.',
       ].join('\n'),
     );
 
