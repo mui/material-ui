@@ -239,6 +239,30 @@ describe('e2e', () => {
     });
   });
 
+  describe('<Select/>', () => {
+    it('should highlight correct option on mouse over selection', async () => {
+      await renderFixture('Select/BaseSelect');
+
+      const combobox = (await screen.getByRole('combobox'))!;
+      await combobox.click();
+
+      const firstOption = (await screen.getByText('10'))!;
+      const secondOption = (await screen.getByText('20'))!;
+
+      const dimensions = (await firstOption.boundingBox())!;
+
+      await page.mouse.move(dimensions.x + 10, dimensions.y + 10); // moves to 1st option
+      await page.keyboard.down('ArrowDown'); // moves to 2nd option
+      await page.keyboard.down(' '); // selects 2nd option
+
+      const classNames = await secondOption.evaluate((element) => {
+        return Array.from(element.classList);
+      });
+
+      expect(classNames).to.include('Mui-selected');
+    });
+  });
+
   describe('<TextareaAutosize />', () => {
     // https://github.com/mui/material-ui/issues/32640
     it('should handle suspense without error', async () => {
