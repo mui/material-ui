@@ -21,7 +21,7 @@ The variables are flattened and prefixed with `--mui` by default:
 }
 ```
 
-The follow demo uses `--md-demo` as prefix for the variables:
+The following demo uses `--md-demo` as a prefix for the variables:
 
 {{"demo": "CssVarsBasic.js", "defaultCodeOpen": true}}
 
