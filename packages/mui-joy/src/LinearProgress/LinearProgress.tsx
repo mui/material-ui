@@ -16,6 +16,7 @@ import {
   LinearProgressTypeMap,
 } from './LinearProgressProps';
 import useSlot from '../utils/useSlot';
+import { resolveSxValue } from '../styles/styleUtils';
 
 // TODO: replace `left` with `inset-inline-start` in the future to work with writing-mode. https://caniuse.com/?search=inset-inline-start
 //       replace `width` with `inline-size`, not sure why inline-size does not work with animation in Safari.
@@ -129,6 +130,16 @@ const LinearProgressRoot = styled('div', {
               var(--LinearProgress-circulation, 2.5s ease-in-out 0s infinite normal none running);
           }
         `,
+  ({ ownerState, theme }) => {
+    const { borderRadius, height } = resolveSxValue({ theme, ownerState }, [
+      'borderRadius',
+      'height',
+    ]);
+    return {
+      ...(borderRadius !== undefined && { '--LinearProgress-radius': borderRadius }),
+      ...(height !== undefined && { '--LinearProgress-thickness': height }),
+    };
+  },
 );
 
 /**
