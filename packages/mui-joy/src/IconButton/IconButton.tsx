@@ -76,8 +76,8 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       paddingBlock: 0,
       fontFamily: theme.vars.fontFamily.body,
       fontWeight: theme.vars.fontWeight.md,
-      margin: `var(--IconButton-margin)`, // to be controlled by other components, eg. Input
-      borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
+      margin: `var(--IconButton-margin)`, // to be controlled by other components, e.g. Input
+      borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, e.g. Input
       border: 'none',
       boxSizing: 'border-box',
       backgroundColor: 'transparent',

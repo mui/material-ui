@@ -81,7 +81,6 @@ const CardRoot = styled('div', {
       }),
       padding: 'var(--Card-padding)',
       borderRadius: 'var(--Card-radius)',
-      boxShadow: theme.shadow.sm,
       backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
       display: 'flex',
@@ -120,7 +119,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     component = 'div',
     invertedColors = false,
     size = 'md',
-    variant = 'plain',
+    variant = 'outlined',
     children,
     orientation = 'vertical',
     slots = {},
@@ -259,7 +258,7 @@ Card.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'plain'
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

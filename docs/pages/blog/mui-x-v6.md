@@ -16,7 +16,7 @@ tags: ['MUI X', 'News']
 - [Data Grid - feature highlights ✨](#data-grid-features-highlights-✨)
   - [ApiRef moved to the MIT (Community) version](#apiref-moved-to-the-mit-community-version)
   - [Improved column menu](#improved-column-menu)
-  - [Row pinning is now stable](#row-pinning-is-now-stable) <a title="Pro plan" href="/x/introduction/licensing/#pro-plan"><span class="plan-pro"></span></a>
+  - [Row pinning is now stable](#row-pinning-is-now-stable) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Aggregation is now stable](#aggregation-is-now-stable) <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premim"></span></a>
   - [Cell selection](#cell-selection) <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premim"></span></a>
   - [Use web workers to export data to excel files](#use-web-workers-to-export-data-to-excel-files) <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premim"></span></a>
@@ -25,8 +25,8 @@ tags: ['MUI X', 'News']
   - [Improved layout customization](#improved-layout-customization)
   - [Overhaul in the documentation](#overhaul-in-the-documentation)
   - [Removed clock view on desktop Time Pickers](#removed-clock-view-on-desktop-time-pickers)
-  - [Shortcuts for picking specific dates in a calendar](#shortcuts-for-picking-specific-dates-in-a-calendar) <a title="Pro plan" href="/x/introduction/licensing/#pro-plan"><span class="plan-pro"></span></a>
-  - [Edit date ranges with drag and drop](#edit-date-ranges-with-drag-and-drop) <a title="Pro plan" href="/x/introduction/licensing/#pro-plan"><span class="plan-pro"></span></a>
+  - [Shortcuts for picking specific dates in a calendar](#shortcuts-for-picking-specific-dates-in-a-calendar) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Edit date ranges with drag and drop](#edit-date-ranges-with-drag-and-drop) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Installation and migration](#installation-and-migration)
 - [What's next](#whats-next)
 - [Decoupling versions from MUI Core](#decoupling-versions-from-mui-core)
@@ -76,7 +76,7 @@ We've redesigned this sub-component to make it as extensible as possible.
 
 This improvement is part of an overarching effort throughout the life cycle of v6 to refactor all Data Grid panels.
 
-### Row pinning is now stable <a title="Pro plan" href="/x/introduction/licensing/#pro-plan"><span class="plan-pro"></span></a>
+### Row pinning is now stable [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 [Row pinning](/x/react-data-grid/row-pinning/) was previously released in a minor v5 version under the `experimentalFeatures={{ rowPinning: true }}` flag.
 The API is now stable, thanks to the community for trying it out and reporting bugs.
@@ -214,7 +214,7 @@ Many end-users complained, and we completely agree, the [clock view](/x/react-da
 
 You can still use the Clock if you like to, but [a replacement UI](https://github.com/mui/mui-x/issues/4483) for the time picker is coming shortly after this release.
 
-### Shortcuts for picking specific dates in a calendar <a title="Pro plan" href="/x/introduction/licensing/#pro-plan"><span class="plan-pro"></span></a>
+### Shortcuts for picking specific dates in a calendar [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 You can now [add quick and customizable shortcuts](/x/react-date-pickers/shortcuts/) for your end-users.
 While shortcuts are an MIT licensed, it's particularly useful for date range pickers.
@@ -226,7 +226,7 @@ You can display them on the left, right, bottom, or top.
 
 <p class="blog-description">A demo of a Pro plan date range picker with shortcuts on the left.</p>
 
-### Edit date ranges with drag and drop <a title="Pro plan" href="/x/introduction/licensing/#pro-plan"><span class="plan-pro"></span></a>
+### Edit date ranges with drag and drop [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 [Editing a date range](/x/react-date-pickers/date-range-calendar/) is even easier now with the new drag-and-drop interaction.
 End-users can more easily change the start and end dates.

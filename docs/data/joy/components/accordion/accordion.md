@@ -67,7 +67,7 @@ Use `disableDivider` prop on the Accordion Group component to hide the divider b
 {{"demo": "AccordionNoDivider.js"}}
 
 :::info
-💡 **Good to know**: the reason that ListDivider can be used is because the accordion family reuses styles from the [List](/joy-ui/react-list/) family.
+**Good to know**: the reason that ListDivider can be used is because the accordion family reuses styles from the [List](/joy-ui/react-list/) family.
 :::
 
 ### Animating the expansion

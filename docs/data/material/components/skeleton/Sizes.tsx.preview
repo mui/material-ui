@@ -1,0 +1,2 @@
+<Skeleton size="text" sx={{ fontSize: '1rem' }} />
+<Skeleton size="box" height={40} />

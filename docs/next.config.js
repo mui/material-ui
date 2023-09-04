@@ -58,6 +58,7 @@ module.exports = withDocsInfra({
             '@mui/x-date-pickers-pro',
             '@mui/x-data-grid-generator',
             '@mui/x-charts',
+            '@mui/x-tree-view',
             '@mui/x-license-pro',
           ].some((dep) => request.startsWith(dep));
 
@@ -119,7 +120,7 @@ module.exports = withDocsInfra({
             test: /\.(js|mjs|jsx)$/,
             resourceQuery: { not: [/raw/] },
             include:
-              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers|@mui(\/|\\)x-charts)/,
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers|@mui(\/|\\)x-charts|@mui(\/|\\)x-tree-view)/,
             use: {
               loader: 'babel-loader',
               options: {

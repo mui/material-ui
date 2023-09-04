@@ -1,4 +1,3 @@
-'use client';
 export { default as Abc } from './Abc';
 export { default as AbcOutlined } from './AbcOutlined';
 export { default as AbcRounded } from './AbcRounded';

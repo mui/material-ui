@@ -52,7 +52,7 @@ const Button = styled('button')(({ theme }) => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
-  '&:focus svg': {
+  '&:focus, &:hover svg': {
     opacity: 1,
   },
 }));
@@ -76,8 +76,7 @@ export default function NpmCopyButton(
       }}
       {...other}
     >
-      <strong>$</strong>
-      {installation}
+      $ {installation}
       {copied ? (
         <CheckRounded color="inherit" sx={{ fontSize: 15 }} />
       ) : (
