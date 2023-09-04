@@ -481,9 +481,11 @@ export function getThemedComponents(): ThemeOptions {
             ...(ownerState.size === 'small' && {
               padding: theme.spacing(0.5, 1),
               fontFamily: theme.typography.fontFamily,
-              fontSize: '0.75rem',
+              fontSize: defaultTheme.typography.pxToRem(13),
               fontWeight: theme.typography.fontWeightSemiBold,
-              borderRadius: '6px',
+              borderRadius: 8,
+              '& > span': { transition: '0.2s', marginLeft: 4 },
+              '&:hover > span': { transform: 'translateX(2px)' },
             }),
             ...(ownerState.variant === 'outlined' &&
               ownerState.color === 'secondary' && {
@@ -688,16 +690,19 @@ export function getThemedComponents(): ThemeOptions {
             // @ts-ignore internal repo module augmentation issue
             props: { variant: 'link' },
             style: ({ theme }) => ({
+              mb: 1,
               fontSize: theme.typography.pxToRem(14),
-              fontWeight: 700,
+              fontWeight: theme.typography.fontWeightBold,
               color: (theme.vars || theme).palette.primary[600],
+              '&:hover': {
+                backgroundColor: (theme.vars || theme).palette.primary[50],
+              },
               ...theme.applyDarkStyles({
                 color: (theme.vars || theme).palette.primary[300],
+                '&:hover': {
+                  backgroundColor: alpha(theme.palette.primary[800], 0.3),
+                },
               }),
-              mb: 1,
-              '& svg': {
-                ml: -0.5,
-              },
             }),
           },
         ],
