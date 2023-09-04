@@ -119,7 +119,7 @@ importers:
         version: 10.0.1
       '@types/node':
         specifier: ^18.17.6
-        version: 18.17.6
+        version: 18.17.8
       '@types/prettier':
         specifier: ^2.7.3
         version: 2.7.3
@@ -311,7 +311,7 @@ importers:
         version: 5.3.9(webpack@5.88.2)
       ts-node:
         specifier: ^10.9.1
-        version: 10.9.1(@types/node@18.17.6)(typescript@5.1.6)
+        version: 10.9.1(@types/node@18.17.8)(typescript@5.1.6)
       tslint:
         specifier: 5.14.0
         version: 5.14.0(typescript@5.1.6)
@@ -581,7 +581,7 @@ importers:
         version: 2.0.0
       core-js:
         specifier: ^2.6.11
-        version: 2.6.11
+        version: 2.6.12
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -707,13 +707,13 @@ importers:
         version: 5.3.11(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
       stylis:
         specifier: ^4.2.0
-        version: 4.2.0
+        version: 4.3.0
       stylis-plugin-rtl:
         specifier: ^2.1.1
-        version: 2.1.1(stylis@4.2.0)
+        version: 2.1.1(stylis@4.3.0)
       stylis-plugin-rtl-sc:
         specifier: npm:stylis-plugin-rtl@^1.1.0
-        version: /stylis-plugin-rtl@1.1.0(stylis@4.2.0)
+        version: /stylis-plugin-rtl@1.1.0(stylis@4.3.0)
       webpack-bundle-analyzer:
         specifier: ^4.9.0
         version: 4.9.0
@@ -732,7 +732,7 @@ importers:
         version: 4.3.5
       '@types/node':
         specifier: ^18.17.6
-        version: 18.17.6
+        version: 18.17.8
       '@types/prop-types':
         specifier: ^15.7.5
         version: 15.7.5
@@ -853,7 +853,7 @@ importers:
         version: 10.0.1
       '@types/node':
         specifier: ^18.17.6
-        version: 18.17.6
+        version: 18.17.8
       '@types/sinon':
         specifier: ^10.0.16
         version: 10.0.16
@@ -1779,7 +1779,7 @@ importers:
         version: 10.0.1
       '@types/node':
         specifier: ^18.17.6
-        version: 18.17.6
+        version: 18.17.8
       '@types/prop-types':
         specifier: ^15.7.5
         version: 15.7.5
@@ -1837,7 +1837,7 @@ importers:
         version: 10.0.1
       '@types/node':
         specifier: ^18.17.6
-        version: 18.17.6
+        version: 18.17.8
 
   packages/typescript-to-proptypes:
     dependencies:
@@ -1886,7 +1886,7 @@ importers:
         version: 4.14.197
       '@types/node':
         specifier: ^18.17.6
-        version: 18.17.6
+        version: 18.17.8
       '@types/prettier':
         specifier: ^2.7.3
         version: 2.7.3
@@ -1925,7 +1925,7 @@ importers:
         version: 10.0.1
       '@types/node':
         specifier: ^18.17.6
-        version: 18.17.6
+        version: 18.17.8
       '@types/react':
         specifier: 18.2.20
         version: 18.2.20
@@ -1983,7 +1983,7 @@ importers:
         version: 10.0.1
       '@types/node':
         specifier: ^18.17.6
-        version: 18.17.6
+        version: 18.17.8
 
   test:
     devDependencies:
@@ -2136,13 +2136,13 @@ importers:
         version: 6.0.7(react-dom@18.2.0)(react@18.2.0)
       stylis:
         specifier: ^4.2.0
-        version: 4.2.0
+        version: 4.3.0
       stylis-plugin-rtl:
         specifier: ^2.1.1
-        version: 2.1.1(stylis@4.2.0)
+        version: 2.1.1(stylis@4.3.0)
       stylis-plugin-rtl-sc:
         specifier: npm:stylis-plugin-rtl@^1.1.0
-        version: /stylis-plugin-rtl@1.1.0(stylis@4.2.0)
+        version: /stylis-plugin-rtl@1.1.0(stylis@4.3.0)
       webfontloader:
         specifier: ^1.6.28
         version: 1.6.28
@@ -2637,6 +2637,7 @@ packages:
   /@babel/plugin-proposal-class-properties@7.18.6(@babel/core@7.22.10):
     resolution: {integrity: sha512-cumfXOF0+nzZrrN8Rf0t7M+tF6sZc7vhQwYQck9q1/5w2OExlD+b4v4RpMJFaV1Z7WcDRgO6FqvxqxGlwo+RHQ==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
     peerDependencies:
       '@babel/core': ^7.22.10
     dependencies:
@@ -2647,6 +2648,7 @@ packages:
   /@babel/plugin-proposal-export-namespace-from@7.18.9(@babel/core@7.22.10):
     resolution: {integrity: sha512-k1NtHyOMvlDDFeb9G5PhUXuGj8m/wiwojgQVEhJ/fsVsMCpLyOP4h0uGEjYJKrRI+EVPlb5Jk+Gt9P97lOGwtA==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-export-namespace-from instead.
     peerDependencies:
       '@babel/core': ^7.22.10
     dependencies:
@@ -2658,6 +2660,7 @@ packages:
   /@babel/plugin-proposal-nullish-coalescing-operator@7.18.6(@babel/core@7.22.10):
     resolution: {integrity: sha512-wQxQzxYeJqHcfppzBDnm1yAY0jSRkUXR2z8RePZYrKwMKgMlE8+Z6LUno+bd6LvbGh8Gltvy74+9pIYkr+XkKA==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
     peerDependencies:
       '@babel/core': ^7.22.10
     dependencies:
@@ -2669,6 +2672,7 @@ packages:
   /@babel/plugin-proposal-object-rest-spread@7.20.7(@babel/core@7.22.10):
     resolution: {integrity: sha512-d2S98yCiLxDVmBmE8UjGcfPvNEUbA1U5q5WxaWFUGRzJSVAZqm5W6MbPct0jxnegUZ0niLeNX+IOzEs7wYg9Dg==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-object-rest-spread instead.
     peerDependencies:
       '@babel/core': ^7.22.10
     dependencies:
@@ -2683,6 +2687,7 @@ packages:
   /@babel/plugin-proposal-optional-chaining@7.21.0(@babel/core@7.22.10):
     resolution: {integrity: sha512-p4zeefM72gpmEe2fkUr/OnOXpWEf8nAgk7ZYVqqfFiyIG7oFfVZcCrU64hWn5xp4tQ9LkV4bTIa5rD0KANpKNA==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
     peerDependencies:
       '@babel/core': ^7.22.10
     dependencies:
@@ -2695,6 +2700,7 @@ packages:
   /@babel/plugin-proposal-private-methods@7.18.6(@babel/core@7.22.10):
     resolution: {integrity: sha512-nutsvktDItsNn4rpGItSNV2sz1XwS+nfU0Rg8aCx3W3NOKVzdMjJRu0O5OkgDp3ZGICSTbgRpxZoWsxoKRvbeA==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
     peerDependencies:
       '@babel/core': ^7.22.10
     dependencies:
@@ -2714,6 +2720,7 @@ packages:
   /@babel/plugin-proposal-private-property-in-object@7.21.11(@babel/core@7.22.10):
     resolution: {integrity: sha512-0QZ8qP/3RLDVBwBFoWAwCtgcDZJVwA5LUJRZU8x2YFfKNuFq161wK3cuGrALu5yiPu+vzwTAg/sMWVNeWeNyaw==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
     peerDependencies:
       '@babel/core': ^7.22.10
     dependencies:
@@ -6757,10 +6764,6 @@ packages:
     resolution: {integrity: sha512-/fvYntiO1GeICvqbQ3doGDIP97vWmvFt83GKguJ6prmQM2iXZfFcq6YE8KteFyRtX2/h5Hf91BYvPodJKFYv5Q==}
     dev: true
 
-  /@types/node@18.17.6:
-    resolution: {integrity: sha512-fGmT/P7z7ecA6bv/ia5DlaWCH4YeZvAQMNpUhrJjtAhOhZfoxS1VLUgU2pdk63efSjQaOJWdXMuAJsws+8I6dg==}
-    dev: true
-
   /@types/node@18.17.8:
     resolution: {integrity: sha512-Av/7MqX/iNKwT9Tr60V85NqMnsmh8ilfJoBlIVibkXfitk9Q22D9Y5mSpm+FvG5DET7EbVfB40bOiLzKgYFgPw==}
 
@@ -9356,12 +9359,6 @@ packages:
     resolution: {integrity: sha512-7a9a3D1k4UCVKnLhrgALyFcP7YCsLOQIxPd0dKjf/6GuPcgyiGP70ewWdCGrSK7evyhymi0qO4EqCmSJofDeYw==}
     dependencies:
       browserslist: 4.21.10
-
-  /core-js@2.6.11:
-    resolution: {integrity: sha512-5wjnpaT/3dV+XB4borEsnAYQchn00XSgTAWKDkEqv+K8KevjbzmofK6hfJ9TZIlpj2N0xQpazy7PiRQiWHqzWg==}
-    deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
-    requiresBuild: true
-    dev: false
 
   /core-js@2.6.12:
     resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
@@ -16416,7 +16413,7 @@ packages:
     dependencies:
       lilconfig: 2.1.0
       postcss: 8.4.28
-      ts-node: 10.9.1(@types/node@18.17.6)(typescript@5.1.6)
+      ts-node: 10.9.1(@types/node@18.17.8)(typescript@5.1.6)
       yaml: 2.3.1
     dev: true
 
@@ -18921,28 +18918,27 @@ packages:
       - supports-color
     dev: true
 
-  /stylis-plugin-rtl@1.1.0(stylis@4.2.0):
+  /stylis-plugin-rtl@1.1.0(stylis@4.3.0):
     resolution: {integrity: sha512-FPoSxP+gbBLJRUXDRDFNBhqy/eToquDLn7ZrjIVBRfXaZ9bunwNnDtDm2qW1EoU0c93krm1Dy+8iVmJpjRGsKw==}
     peerDependencies:
       stylis: 3.x
     dependencies:
       cssjanus: 1.3.2
-      stylis: 4.2.0
+      stylis: 4.3.0
 
-  /stylis-plugin-rtl@2.1.1(stylis@4.2.0):
+  /stylis-plugin-rtl@2.1.1(stylis@4.3.0):
     resolution: {integrity: sha512-q6xIkri6fBufIO/sV55md2CbgS5c6gg9EhSVATtHHCdOnbN/jcI0u3lYhNVeuI65c4lQPo67g8xmq5jrREvzlg==}
     peerDependencies:
       stylis: 4.x
     dependencies:
       cssjanus: 2.1.0
-      stylis: 4.2.0
+      stylis: 4.3.0
 
   /stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
 
   /stylis@4.3.0:
     resolution: {integrity: sha512-E87pIogpwUsUwXw7dNyU4QDjdgVMy52m+XEOPEKUn161cCzWjjhPSQhByfd1CcNvrOLnXQ6OnnZDwnJrz/Z4YQ==}
-    dev: true
 
   /sucrase@3.34.0:
     resolution: {integrity: sha512-70/LQEZ07TEcxiU2dz51FKaE6hCTWC6vr7FOk3Gr0U60C3shtAN+H+BFr9XlYe5xqf3RA8nrc+VIwzCfnxuXJw==}
@@ -19369,7 +19365,7 @@ packages:
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
-  /ts-node@10.9.1(@types/node@18.17.6)(typescript@5.1.6):
+  /ts-node@10.9.1(@types/node@18.17.8)(typescript@5.1.6):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -19388,7 +19384,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
-      '@types/node': 18.17.6
+      '@types/node': 18.17.8
       acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
