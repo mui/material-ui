@@ -96,6 +96,7 @@
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
     "@octokit/rest": "^20.0.1",
+    "@pnpm/workspace.find-packages": "1.0.5",
     "@playwright/test": "1.37.1",
     "@slack/bolt": "^3.13.3",
     "@slack/web-api": "^6.9.0",
