@@ -1,8 +1,9 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Menu as BaseMenu, MenuProps } from '@mui/base/Menu';
-import { MenuButton as BaseMenuButton, MenuButtonProps } from '@mui/base/MenuButton';
-import { MenuItem as BaseMenuItem, MenuItemProps } from '@mui/base/MenuItem';
+import { Menu as BaseMenu } from '@mui/base/Menu';
+import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
+import { MenuItem as BaseMenuItem } from '@mui/base/MenuItem';
 import { Dropdown } from '@mui/base/Dropdown';
 import { useTheme } from '@mui/system';
 
@@ -11,11 +12,11 @@ function useIsDarkMode() {
   return theme.palette.mode === 'dark';
 }
 
-export default function MenuSimple() {
+export default function MenuIntroduction() {
   // Replace this with your app logic for determining dark mode
   const isDarkMode = useIsDarkMode();
 
-  const createHandleMenuClick = (menuItem: string) => {
+  const createHandleMenuClick = (menuItem) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
     };
@@ -24,11 +25,11 @@ export default function MenuSimple() {
   return (
     <div className={`${isDarkMode ? 'dark' : ''}`}>
       <Dropdown>
-        <MenuButton>Dashboard</MenuButton>
+        <MenuButton>My account</MenuButton>
         <Menu>
           <MenuItem onClick={createHandleMenuClick('Profile')}>Profile</MenuItem>
-          <MenuItem onClick={createHandleMenuClick('My account')}>
-            My account
+          <MenuItem onClick={createHandleMenuClick('Language settings')}>
+            Language settings
           </MenuItem>
           <MenuItem onClick={createHandleMenuClick('Log out')}>Log out</MenuItem>
         </Menu>
@@ -37,10 +38,9 @@ export default function MenuSimple() {
   );
 }
 
-const resolveSlotProps = (fn: any, args: any) =>
-  typeof fn === 'function' ? fn(args) : fn;
+const resolveSlotProps = (fn, args) => (typeof fn === 'function' ? fn(args) : fn);
 
-const Menu = React.forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
+const Menu = React.forwardRef((props, ref) => {
   // Replace this with your app logic for determining dark modes
   const isDarkMode = useIsDarkMode();
 
@@ -81,23 +81,39 @@ const Menu = React.forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   );
 });
 
-const MenuButton = React.forwardRef<HTMLButtonElement, MenuButtonProps>(
-  (props, ref) => {
-    const { className, ...other } = props;
-    return (
-      <BaseMenuButton
-        ref={ref}
-        className={clsx(
-          'cursor-pointer text-sm font-sans box-border rounded-lg font-semibold px-4 py-2 leading-normal bg-transparent border border-solid border-slate-300 dark:border-slate-700 text-purple-600 dark:text-purple-300 hover:bg-slate-50 hover:dark:bg-slate-800 hover:border-slate-400 dark:hover:border-slate-600 focus-visible:border-purple-500 focus-visible:hover:border-purple-500 focus-visible:dark:hover:border-purple-500 focus-visible:outline-0 focus-visible:shadow-outline-purple',
-          className,
-        )}
-        {...other}
-      />
-    );
-  },
-);
+Menu.propTypes = {
+  /**
+   * The props used for each slot inside the Menu.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+};
 
-const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>((props, ref) => {
+const MenuButton = React.forwardRef((props, ref) => {
+  const { className, ...other } = props;
+  return (
+    <BaseMenuButton
+      ref={ref}
+      className={clsx(
+        'cursor-pointer text-sm min-h-[calc(1.5em+22px)] font-sans box-border rounded-xl font-semibold px-3.5 py-2 leading-normal bg-white dark:bg-slate-900 border border-solid border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-300 hover:bg-slate-50 hover:dark:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-600 focus-visible:border-purple-500 focus-visible:hover:border-purple-500 focus-visible:dark:hover:border-purple-500 focus-visible:outline-0 focus-visible:shadow-outline-purple',
+        className,
+      )}
+      {...other}
+    />
+  );
+});
+
+MenuButton.propTypes = {
+  /**
+   * Class name applied to the root element.
+   */
+  className: PropTypes.string,
+};
+
+const MenuItem = React.forwardRef((props, ref) => {
   const { className, ...other } = props;
   return (
     <BaseMenuItem
@@ -110,3 +126,7 @@ const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>((props, ref) => 
     />
   );
 });
+
+MenuItem.propTypes = {
+  className: PropTypes.string,
+};
