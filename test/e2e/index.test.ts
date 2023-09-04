@@ -240,7 +240,7 @@ describe('e2e', () => {
   });
 
   describe('<Select/>', () => {
-    it('should highlight correct option on mouse over selection', async () => {
+    it('should select hovered option when initial navigation through options starts from mouse move', async () => {
       await renderFixture('Select/BaseSelect');
 
       const combobox = (await screen.getByRole('combobox'))!;
@@ -258,6 +258,25 @@ describe('e2e', () => {
       });
 
       expect(classNames).to.include('Mui-selected');
+    });
+
+    it('should not select option on mouse over', async () => {
+      await renderFixture('Select/BaseSelect');
+
+      const combobox = (await screen.getByRole('combobox'))!;
+      await combobox.click();
+
+      const secondOption = (await screen.getByText('20'))!;
+
+      const dimensions = (await secondOption.boundingBox())!;
+
+      await page.mouse.move(dimensions.x + 10, dimensions.y + 10); // moves to 2nd option
+
+      const classNames = await secondOption.evaluate((element) => {
+        return Array.from(element.classList);
+      });
+
+      expect(classNames).not.to.include('Mui-selected');
     });
   });
 
