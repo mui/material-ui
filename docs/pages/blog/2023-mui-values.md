@@ -101,7 +101,7 @@ Other phrases included: “Own your impact” or “Maximize flexibility” but 
 
 In short, they weren’t right.
 
-These, however, *****were.***** 👏
+Fortunately, this helped us find ones that *****are.***** 👏
 
 I presented a video presentation to our team, pitching a set of values and providing another opportunity for feedback and shaping.
 
@@ -189,7 +189,7 @@ As a fun way to reinforce values and show team gratitude, we've also created #Th
 
 Our design team even created custom Slack emojis to make highlighting values-driven moments with just a few clicks. (Thank you Gerda, Victor, and Danilo!) 🙏
 
-<img alt="description" src="/static/blog/2023-mui-values/notion-values-page.png" loading="lazy" />
+<img alt="description" src="/static/blog/2023-mui-values/values-emojis.png" loading="lazy" />
 
 
 ## When might the values change again?
