@@ -11,7 +11,7 @@
       "description": "If <code>true</code>, the selected option becomes the value of the input\nwhen the Autocomplete loses focus unless the user chooses\na different option or changes the character string in the input.\n\nWhen using <code>freeSolo</code> mode, the typed value will be the input value\nif the Autocomplete loses focus without highlighting an option."
     },
     "blurOnSelect": {
-      "description": "Control if the input should be blurred when an option is selected:\n\n- <code>false</code> the input is not blurred.\n- <code>true</code> the input is always blurred.\n- <code>touch</code> the input is blurred after a touch event.\n- <code>mouse</code> the input is blurred after a mouse event."
+      "description": "Control if the input should be blurred when an option is selected:\n<br>- <code>false</code> the input is not blurred.<br>- <code>true</code> the input is always blurred.<br>- <code>touch</code> the input is blurred after a touch event.<br>- <code>mouse</code> the input is blurred after a mouse event."
     },
     "clearOnBlur": {
       "description": "If <code>true</code>, the input&#39;s text is cleared on blur if no value is selected.\n\nSet to <code>true</code> if you want to help the user enter a new value.\nSet to <code>false</code> if you want to help the user resume their search."
