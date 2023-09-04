@@ -209,7 +209,6 @@ See the complete usage of `createVssVarsProvider` in [Material UI](https://githu
 
 - `defaultMode?: 'light' | 'dark' | 'system'` - Application's default mode (`light` by default)
 - `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
-- `prefix: string` - CSS variable prefix
 - `theme: ThemeInput` - the theme provided to React's context
 - `modeStorageKey?: string` - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme
