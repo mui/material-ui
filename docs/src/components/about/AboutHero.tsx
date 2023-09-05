@@ -127,7 +127,8 @@ function PhotoGallery() {
           />
         ))}
       </ImageContainer>
-      <ImageContainer>
+      <ImageContainer aria-hidden="true">
+        {/* aria-hidden is used here because this element is a copy from the above, meaning we want to hide it from screen readers. */}
         {teamPhotos.map((item, index) => (
           <Image
             key={index}
