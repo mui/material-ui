@@ -1,7 +1,7 @@
 // inspire by reacts dangerfile
 // danger has to be the first thing required!
-import { exec } from 'child_process';
 import { danger, markdown } from 'danger';
+import { exec } from 'child_process';
 import { loadComparison } from './scripts/sizeSnapshot';
 import replaceUrl from './packages/api-docs-builder/utils/replaceUrl';
 
