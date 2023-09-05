@@ -127,33 +127,27 @@ function Styles() {
     }
 
     .TriggerButtonIntroduction {
-      font-family: IBM Plex Sans, sans-serif;
-      font-size: 0.875rem;
+      font-family: IBM Plex Sans,sans-serif;
       font-weight: 600;
-      box-sizing: border-box;
-      min-height: calc(1.5em + 22px);
-      border-radius: 12px;
-      padding: 8px 14px;
+      font-size: 0.875rem;
       line-height: 1.5;
-      background: ${isDarkMode ? grey[900] : '#fff'};
+      background-color: ${cyan[500]};
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: white;
       cursor: pointer;
-      border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
-      color: ${isDarkMode ? grey[300] : grey[900]};
-    
-      transition-property: all;
-      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-      transition-duration: 120ms;
+      border: none;
+
+      &:hover {
+        background-color: ${cyan[600]};
+      }
+
+      &:focus-visible {
+        border-color: ${cyan[400]};
+        outline: 3px solid ${isDarkMode ? cyan[500] : cyan[200]};
+        }
     }
 
-    .TriggerButtonIntroduction:hover {
-      background: ${isDarkMode ? grey[800] : grey[50]};
-      border-color: ${isDarkMode ? grey[600] : grey[300]};
-    }
-  
-    .TriggerButtonIntroduction:focus-visible {
-      border-color: ${cyan[400]};
-      outline: 3px solid ${isDarkMode ? cyan[500] : cyan[200]};
-    }
 
     .CustomMenuIntroduction {
       z-index: 1;

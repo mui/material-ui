@@ -89,26 +89,30 @@ export default function UseMenu() {
   );
 }
 
-const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
-};
-
 const blue = {
-  100: '#DAECFF',
+  50: '#F0F7FF',
+  100: '#C2E0FF',
   200: '#99CCF3',
+  300: '#66B2FF',
   400: '#3399FF',
   500: '#007FFF',
-  600: '#0072E5',
+  600: '#0072E6',
+  700: '#0059B3',
+  800: '#004C99',
   900: '#003A75',
+};
+
+const grey = {
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 const styles = `
@@ -125,7 +129,7 @@ const styles = `
     color: ${grey[900]};
     overflow: auto;
     outline: 0px;
-    box-shadow: 0px 2px 16px ${grey[200]};
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
   }
 
   .mode-dark .menu-root {
@@ -177,44 +181,24 @@ const styles = `
   }
 
   .button {
-    font-family: IBM Plex Sans, sans-serif;
+    font-family: IBM Plex Sans,sans-serif;
+    font-weight: 600;
     font-size: 0.875rem;
-    box-sizing: border-box;
-    min-height: calc(1.5em + 22px);
-    border-radius: 12px;
-    padding: 8px 14px;
     line-height: 1.5;
-    background: #fff;
-    border: 1px solid ${grey[200]};
-    color: ${grey[900]};
+    background-color: ${blue[500]};
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: white;
     cursor: pointer;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 120ms;
+    border: none;
 
     &:hover {
-      background: ${grey[50]};
-      border-color: ${grey[300]};
+      background-color: ${blue[600]};
     }
-
-    &:focus-visible {
-      border-color: ${blue[400]};
-      outline: 3px solid ${blue[200]};
-    }
-  }
-
-  .mode-dark .button {
-    background: ${grey[900]};
-    border: 1px solid ${grey[700]};
-    color: ${grey[300]};
-
-    &:hover {
-      background: ${grey[800]};
-      border-color: ${grey[600]};
-    }
-
-    &:focus {
-      outline: 3px solid ${blue[500]}
-    }
+      
+      &:focus-visible {
+        box-shadow: 0 3px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
+        outline: none;
+      }
   }
 `;
