@@ -20,11 +20,7 @@ export interface SliderOwnerState extends SliderProps {
   focusedThumbIndex: number;
 }
 
-// https://github.com/millsp/ts-toolbelt/blob/master/sources/Function/NoInfer.ts
-// Explain to TS which function parameter has priority for generic inference
-type NoInfer<T> = [T][T extends any ? 0 : never];
-
-export interface SliderOwnProps<Value> {
+export interface SliderOwnProps<Value, OnChangeValue> {
   /**
    * The label of the slider.
    */
@@ -154,14 +150,14 @@ export interface SliderOwnProps<Value> {
    * @param {number | number[]} value The new value.
    * @param {number} activeThumb Index of the currently moved thumb.
    */
-  onChange?: (event: Event, value: NoInfer<Value>, activeThumb: number) => void;
+  onChange?: (event: Event, value: OnChangeValue, activeThumb: number) => void;
   /**
    * Callback function that is fired when the `mouseup` is triggered.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
    */
-  onChangeCommitted?: (event: React.SyntheticEvent | Event, value: NoInfer<Value>) => void;
+  onChangeCommitted?: (event: React.SyntheticEvent | Event, value: OnChangeValue) => void;
   /**
    * The component orientation.
    * @default 'horizontal'
@@ -274,8 +270,9 @@ export interface SliderTypeMap<
   RootComponent extends React.ElementType = 'span',
   AdditionalProps = {},
   Value extends number | number[] = number | number[],
+  OnChangeValue extends Value = Value,
 > {
-  props: AdditionalProps & SliderOwnProps<Value>;
+  props: AdditionalProps & SliderOwnProps<Value, OnChangeValue>;
   defaultComponent: RootComponent;
 }
 
@@ -302,7 +299,11 @@ export declare const SliderThumb: React.FC<SliderThumbProps>;
 export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
 
 interface SliderType {
-  <RootComponent extends React.ElementType, Value extends number | number[]>(
+  <
+    RootComponent extends React.ElementType,
+    Value extends number | number[],
+    OnChangeValue extends Value,
+  >(
     props: {
       /**
        * The component used for the root node.
@@ -310,11 +311,36 @@ interface SliderType {
        */
       component: RootComponent;
       value?: Value;
-    } & OverrideProps<SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value>, RootComponent>,
+      /**
+       * Callback function that is fired when the slider's value changed.
+       *
+       * @param {Event} event The event source of the callback.
+       * You can pull out the new value by accessing `event.target.value` (any).
+       * **Warning**: This is a generic event not a change event.
+       * @param {number | number[]} value The new value.
+       * @param {number} activeThumb Index of the currently moved thumb.
+       */
+      onChange?: (event: Event, value: OnChangeValue, activeThumb: number) => void;
+    } & OverrideProps<
+      SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value, OnChangeValue>,
+      RootComponent
+    >,
   ): JSX.Element | null;
-  <Value extends number | number[]>(
-    props: { value?: Value } & DefaultComponentProps<
-      SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value>
+  <Value extends number | number[], OnChangeValue extends Value>(
+    props: {
+      value?: Value;
+      /**
+       * Callback function that is fired when the slider's value changed.
+       *
+       * @param {Event} event The event source of the callback.
+       * You can pull out the new value by accessing `event.target.value` (any).
+       * **Warning**: This is a generic event not a change event.
+       * @param {number | number[]} value The new value.
+       * @param {number} activeThumb Index of the currently moved thumb.
+       */
+      onChange?: (event: Event, value: OnChangeValue, activeThumb: number) => void;
+    } & DefaultComponentProps<
+      SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value, OnChangeValue>
     >,
   ): JSX.Element | null;
 }
