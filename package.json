@@ -96,6 +96,7 @@
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
     "@octokit/rest": "^20.0.1",
+    "@pnpm/logger": "^5.0.0",
     "@pnpm/read-package-json": "^8.0.3",
     "@pnpm/write-project-manifest": "^5.0.2",
     "@pnpm/workspace.find-packages": "^1.0.5",

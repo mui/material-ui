@@ -96,6 +96,9 @@ importers:
       '@playwright/test':
         specifier: 1.37.1
         version: 1.37.1
+      '@pnpm/logger':
+        specifier: ^5.0.0
+        version: 5.0.0
       '@pnpm/read-package-json':
         specifier: ^8.0.3
         version: 8.0.3
