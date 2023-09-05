@@ -1,0 +1,11 @@
+{buttons}
+<Snackbar
+  anchorOrigin={{ vertical, horizontal }}
+  open={open}
+  onClose={handleClose}
+  variant="soft"
+  color="success"
+  size="lg"
+>
+  I love snacks
+</Snackbar>

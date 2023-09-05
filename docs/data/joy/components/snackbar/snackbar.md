@@ -19,3 +19,10 @@ Snackbars inform users of a process that an app has performed or will perform. T
 Snackbars contain a single line of text directly related to the operation performed. They may contain a text action, but no icons. You can use them to display notifications.
 
 {{"demo": "SnackbarUsage.js", "hideToolbar": true, "bg": "gradient"}}
+
+## Positioned snackbars
+
+In wide layouts, snackbars can be left-aligned or center-aligned if they are consistently placed on the same spot at the bottom of the screen, however there may be circumstances where the placement of the snackbar needs to be more flexible.
+You can control the position of the snackbar by specifying the `anchorOrigin` prop.
+
+{{"demo": "PositionedSnackbar.js"}}
