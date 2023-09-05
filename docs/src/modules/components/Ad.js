@@ -88,12 +88,7 @@ class AdErrorBoundary extends React.Component {
     // send explicit `'null'`
     const eventLabel = String(this.props.eventLabel);
     // TODO: Use proper error monitoring service (e.g. Sentry) instead
-    window.ga('send', {
-      hitType: 'event',
-      eventCategory: 'ad',
-      eventAction: 'crash',
-      eventLabel,
-    });
+
     window.gtag('event', 'ad', {
       eventAction: 'crash',
       eventLabel,
@@ -199,12 +194,6 @@ export default function Ad() {
     }
 
     const delay = setTimeout(() => {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'ad',
-        eventAction: 'display',
-        eventLabel,
-      });
       window.gtag('event', 'ad', {
         eventAction: 'display',
         eventLabel,
