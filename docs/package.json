@@ -119,7 +119,7 @@
     "styled-components": "^5.3.11",
     "stylis-plugin-rtl-sc": "npm:stylis-plugin-rtl@^1.1.0",
     "stylis-plugin-rtl": "^2.1.1",
-    "stylis": "^4.2.0",
+    "stylis": "4.2.0",
     "use-count-up": "^3.0.1",
     "webpack-bundle-analyzer": "^4.9.1"
   },
