@@ -16,6 +16,12 @@ npm install @mui/base
 yarn add @mui/base
 ```
 
+或使用**Bun**
+
+```bash
+bun add @mui/base
+```
+
 <!-- #react-peer-version -->
 
 :::warning

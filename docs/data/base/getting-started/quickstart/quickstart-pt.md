@@ -16,6 +16,12 @@ Com o **yarn**:
 yarn add @mui/base
 ```
 
+Com o **Bun**:
+
+```bash
+bun add @mui/base
+```
+
 <!-- #react-peer-version -->
 
 :::warning

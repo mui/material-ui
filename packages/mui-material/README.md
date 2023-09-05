@@ -12,6 +12,9 @@ npm install @mui/material
 
 // with yarn
 yarn add @mui/material
+
+// with Bun
+bun add @mui/material
 ```
 
 ## Documentation

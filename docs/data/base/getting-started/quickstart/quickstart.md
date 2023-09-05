@@ -24,6 +24,10 @@ yarn add @mui/base
 pnpm add @mui/base
 ```
 
+```bash bun
+bun add @mui/base
+```
+
 </codeblock>
 
 ### Peer dependencies

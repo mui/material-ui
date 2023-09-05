@@ -32,6 +32,10 @@ yarn add @mui/icons-material @mui/material @emotion/styled @emotion/react
 pnpm add @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 
+```bash bun
+bun add @mui/icons-material @mui/material @emotion/styled @emotion/react
+```
+
 </codeblock>
 
 See the [Installation](/material-ui/getting-started/installation/) page for additional docs about how to make sure everything is set up correctly.

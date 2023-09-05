@@ -21,6 +21,11 @@ pnpm add @mui/material @emotion/react @emotion/styled
 # `@emotion/react` and `@emotion/styled` are peer dependencies
 ```
 
+```bash bun
+bun add @mui/material @emotion/react @emotion/styled
+# `@emotion/react` and `@emotion/styled` are peer dependencies
+```
+
 </codeblock>
 
 <codeblock storageKey="license">

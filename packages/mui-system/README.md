@@ -14,6 +14,9 @@ npm install @mui/system @emotion/react @emotion/styled
 
 // with yarn
 yarn add @mui/system @emotion/react @emotion/styled
+
+// with Bun
+bun add @mui/system @emotion/react @emotion/styled
 ```
 
 ## Documentation

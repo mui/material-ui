@@ -51,6 +51,12 @@ npm install @mui/material @emotion/react @emotion/styled
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
+**Bun:**
+
+```bash
+bun add @mui/material @emotion/react @emotion/styled
+```
+
 <details>
   <summary>Older versions</summary>
 
@@ -79,6 +85,12 @@ npm install @mui/base
 yarn add @mui/base
 ```
 
+**Bun:**
+
+```bash
+bun add @mui/base
+```
+
 **Note**: Base UI is still in beta.
 We are adding new components regularly and you're welcome to contribute!
 
@@ -98,6 +110,12 @@ npm install @mui/system @emotion/react @emotion/styled
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
+**Bun:**
+
+```bash
+bun add @mui/system @emotion/react @emotion/styled
+```
+
 Or if you want to use `styled-components` as a styling engine:
 
 **npm:**
@@ -110,6 +128,12 @@ npm install @mui/material @mui/styled-engine-sc styled-components
 
 ```bash
 yarn add @mui/material @mui/styled-engine-sc styled-components
+```
+
+**Bun:**
+
+```bash
+bun add @mui/material @mui/styled-engine-sc styled-components
 ```
 
 Visit our [`styled-engine` guide](https://mui.com/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
