@@ -724,14 +724,14 @@ importers:
         specifier: ^5.3.11
         version: 5.3.11(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
       stylis:
-        specifier: ^4.2.0
-        version: 4.3.0
+        specifier: 4.2.0
+        version: 4.2.0
       stylis-plugin-rtl:
         specifier: ^2.1.1
-        version: 2.1.1(stylis@4.3.0)
+        version: 2.1.1(stylis@4.2.0)
       stylis-plugin-rtl-sc:
         specifier: npm:stylis-plugin-rtl@^1.1.0
-        version: /stylis-plugin-rtl@1.1.0(stylis@4.3.0)
+        version: /stylis-plugin-rtl@1.1.0(stylis@4.2.0)
       use-count-up:
         specifier: ^3.0.1
         version: 3.0.1(react@18.2.0)
@@ -1353,6 +1353,9 @@ importers:
       '@testing-library/dom':
         specifier: ^9.3.1
         version: 9.3.1
+      '@testing-library/user-event':
+        specifier: ^14.4.3
+        version: 14.4.3(@testing-library/dom@9.3.1)
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -2168,14 +2171,14 @@ importers:
         specifier: 6.0.7
         version: 6.0.7(react-dom@18.2.0)(react@18.2.0)
       stylis:
-        specifier: ^4.2.0
-        version: 4.3.0
+        specifier: 4.2.0
+        version: 4.2.0
       stylis-plugin-rtl:
         specifier: ^2.1.1
-        version: 2.1.1(stylis@4.3.0)
+        version: 2.1.1(stylis@4.2.0)
       stylis-plugin-rtl-sc:
         specifier: npm:stylis-plugin-rtl@^1.1.0
-        version: /stylis-plugin-rtl@1.1.0(stylis@4.3.0)
+        version: /stylis-plugin-rtl@1.1.0(stylis@4.2.0)
       webfontloader:
         specifier: ^1.6.28
         version: 1.6.28
@@ -18930,27 +18933,28 @@ packages:
       - supports-color
     dev: true
 
-  /stylis-plugin-rtl@1.1.0(stylis@4.3.0):
+  /stylis-plugin-rtl@1.1.0(stylis@4.2.0):
     resolution: {integrity: sha512-FPoSxP+gbBLJRUXDRDFNBhqy/eToquDLn7ZrjIVBRfXaZ9bunwNnDtDm2qW1EoU0c93krm1Dy+8iVmJpjRGsKw==}
     peerDependencies:
       stylis: 3.x
     dependencies:
       cssjanus: 1.3.2
-      stylis: 4.3.0
+      stylis: 4.2.0
 
-  /stylis-plugin-rtl@2.1.1(stylis@4.3.0):
+  /stylis-plugin-rtl@2.1.1(stylis@4.2.0):
     resolution: {integrity: sha512-q6xIkri6fBufIO/sV55md2CbgS5c6gg9EhSVATtHHCdOnbN/jcI0u3lYhNVeuI65c4lQPo67g8xmq5jrREvzlg==}
     peerDependencies:
       stylis: 4.x
     dependencies:
       cssjanus: 2.1.0
-      stylis: 4.3.0
+      stylis: 4.2.0
 
   /stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
 
   /stylis@4.3.0:
     resolution: {integrity: sha512-E87pIogpwUsUwXw7dNyU4QDjdgVMy52m+XEOPEKUn161cCzWjjhPSQhByfd1CcNvrOLnXQ6OnnZDwnJrz/Z4YQ==}
+    dev: true
 
   /sucrase@3.34.0:
     resolution: {integrity: sha512-70/LQEZ07TEcxiU2dz51FKaE6hCTWC6vr7FOk3Gr0U60C3shtAN+H+BFr9XlYe5xqf3RA8nrc+VIwzCfnxuXJw==}
