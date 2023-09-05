@@ -107,10 +107,22 @@ export default function OurValues() {
               <Typography
                 fontWeight="bold"
                 component="h3"
-                color="text.primary"
                 variant="body2"
-                mt={2}
-                mb={0.5}
+                sx={(theme) => ({
+                  mt: 2,
+                  mb: 0.5,
+                  color: (theme.vars || theme).palette.text.primary,
+                  '&::first-letter': {
+                    mr: 0.1,
+                    fontSize: theme.typography.pxToRem(18),
+                    color: (theme.vars || theme).palette.primary.main,
+                  },
+                  ...theme.applyDarkStyles({
+                    '&::first-letter': {
+                      color: (theme.vars || theme).palette.primary[400],
+                    },
+                  }),
+                })}
               >
                 {title}
               </Typography>
