@@ -107,7 +107,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   const buttonRef = React.useRef<HTMLElement>(null);
   const handleButtonRef = useForkRef(buttonRefProp, buttonRef);
 
-  const listboxRef = React.useRef<HTMLElement | null>(null);
+  const listboxRef = React.useRef<HTMLElement>(null);
   const listboxId = useId(listboxIdProp);
 
   let defaultValue: OptionValue[] | undefined;

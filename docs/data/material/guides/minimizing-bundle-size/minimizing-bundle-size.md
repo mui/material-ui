@@ -213,7 +213,7 @@ The package published on npm is **transpiled**, with [Babel](https://github.com/
 
 ⚠️ Developers are **strongly discouraged** to import from any of the other bundles directly.
 Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles.
-Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
+Instead, use these bundles at the bundler level with e.g. [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
 
 ```js
 {

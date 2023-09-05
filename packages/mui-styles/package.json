@@ -51,7 +51,7 @@
     "@emotion/hash": "^0.9.1",
     "@mui/private-theming": "^5.14.7",
     "@mui/types": "^7.2.4",
-    "@mui/utils": "^5.14.7",
+    "@mui/utils": "^5.14.8",
     "clsx": "^2.0.0",
     "csstype": "^3.1.2",
     "hoist-non-react-statics": "^3.3.2",
