@@ -17,17 +17,17 @@ In 2019, these became formalized in our first-ever company values: user obsessio
 
 Needless to say, we've grown significantly since then — as a company, product, and broader community too. 
 
-That’s why, we wanted to take a moment to honor the values that led us to where we are today, and share how we’ve reshaped them to be an even more powerful force behind MUI’s next phase of growth. 🚀
+That's why, we wanted to take a moment to honor the values that led us to where we are today, and share how we've reshaped them to be an even more powerful force behind MUI’s next phase of growth. 🚀
 
 ## How we approached our values revision
 
-Company values show up in some facet of all our roles every day — whether we’re evaluating different ideas, making tough decisions, or determining the biggest priorities.
+Company values show up in some facet of all our roles every day — whether we're evaluating different ideas, making tough decisions, or determining the biggest priorities.
 
 That's why, it's so critical to ensure company values are actionable and authentic — that they are easily understood and truly shared by every MUIer.
 
 To make that happen, we decided to engage the whole company in a series of discovery and reflection exercises. 🔍
 
-By doing so, we could make sure that any changes to the company values would accurately reflect the values shared by our team, and the language used to express them. Here’s how we did it! 👇
+By doing so, we could make sure that any changes to the company values would accurately reflect the values shared by our team, and the language used to express them. Here's how we did it! 👇
 
 <img alt="A collage of slides from the values discovery exercise kickoff." src="/static/blog/2023-mui-values/good-values.png" loading="lazy" />
 
@@ -47,19 +47,19 @@ Then, using keyword and sentiment analysis, we captured clear themes in experien
 
 ## Stage two: workshop
 
-At the next stage, folks came together for a synchronous workshop. (This was completely voluntary, but I’m proud to say we had major representation from all different corners and levels of the company!)
+At the next stage, folks came together for a synchronous workshop. (This was completely voluntary, but I'm proud to say we had major representation from all different corners and levels of the company!)
 
-The purpose of this workshop was to pinpoint the *most* critical mindsets and behaviors that we felt underpinned the company’s success at scale. 
+The purpose of this workshop was to pinpoint the *most* critical mindsets and behaviors that we felt underpinned the company's success at scale. 
 
 Broadly speaking, everyone was asked to consider:
 
-(a) what mindsets and behaviors we should actively preserve and encourage as we scale — these are our superpowers and biggest differentiators. They’re the stuff that makes us “us.” 💚
+(a) what mindsets and behaviors we should actively preserve and encourage as we scale — these are our superpowers and biggest differentiators. They're the stuff that makes us "us." 💚
 
-(b) what mindsets and behaviors should we actively discourage, even punish — these are the biggest threats to our desired culture. They’re the things we would never tolerate, maybe even at the cost of a customer. 🛑
+(b) what mindsets and behaviors should we actively discourage, even punish — these are the biggest threats to our desired culture. They're the things we would never tolerate, maybe even at the cost of a customer. 🛑
 
 We used a shared FigJam board to brainstorm together against a timer, and repeat the process for different core questions.
 
-Once we’d generated a wonderfully full board, we took a pause to review the contributions. We upvoted cards that really stood out and resonated with us as individuals.
+Once we'd generated a wonderfully full board, we took a pause to review the contributions. We upvoted cards that really stood out and resonated with us as individuals.
 
 Finally, we organized all of these cards into little clusters based on relatedness, and started to identify their underlying values and themes.
 
@@ -71,15 +71,15 @@ We came up with a list of words that we felt best-encapsulated each cluster. Thi
 
 36.
 
-That’s how many words surfaced in our workshop as potential values — or at least, as words to inspire the copywriting process.
+That's how many words surfaced in our workshop as potential values — or at least, as words to inspire the copywriting process.
 
 Narrowing down the shortlist was both a chance to find the strongest themes to influence team values, and also the chance to stress-test them. 🧪
 
-To do this, we immediately eliminated [what Patrick Lencioni calls “permission-to-play” values](https://www.youtube.com/watch?v=bNRn6FimzoU). These are the things as basic as showing respect, which might be *valuable* to a great team culture and performance, but aren’t exactly *exciting* or *measurable*. They’re simply the minimum required standard of behavior to work together.
+To do this, we immediately eliminated [what Patrick Lencioni calls “permission-to-play” values](https://www.youtube.com/watch?v=bNRn6FimzoU). These are the things as basic as showing respect, which might be *valuable* to a great team culture and performance, but aren’t exactly *exciting* or *measurable*. They're simply the minimum required standard of behavior to work together.
 
 We also started striking out anything that could not clearly be expressed *as an action.*
 
-It’s what Simon Sinek was talking about when he said, “[Honesty is not a value.](https://www.youtube.com/watch?v=IQuYzXWXDqI)” If there was not a clear and natural way to transform something into an action or provide examples of how it would be lived in our specific workplace, it was out. 🙅
+It's what Simon Sinek was talking about when he said, “[Honesty is not a value.](https://www.youtube.com/watch?v=IQuYzXWXDqI)” If there was not a clear and natural way to transform something into an action or provide examples of how it would be lived in our specific workplace, it was out. 🙅
 
 Success!
 
@@ -87,7 +87,7 @@ We narrowed the list down from 36 to *just 6.*
 
 Now, it was time to transform these 6 words into actionable phrases to inspire the very actions we want to see championed on a daily basis.
 
-## Stage four: pitching the ‘PACT’
+## Stage four: pitching the 'PACT'
 
 All of the above and more influenced what's now referred to as our team "pact." (You'll see why.)
 
@@ -97,9 +97,9 @@ Finding the right phraseology started with carefully reviewing *all* team inputs
 
 Things like: “Build in the open” made an appearance, but felt too limited. There was so much more we wanted to capture in the enduring theme of transparency, why it matters to us, and how we show it.
 
-Other phrases included: “Own your impact” or “Maximize flexibility” but these, again, felt too limited and also generic. 
+Other phrases included: "Own your impact" or "Maximize flexibility" but these, again, felt too limited and also generic. 
 
-In short, they weren’t right.
+In short, they weren't right.
 
 Fortunately, this helped us find the ones that *****are.***** 👏
 
@@ -111,25 +111,25 @@ You can <a href="https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c07
 
 Since we work asynchronously at MUI, we like to leave a good window of time for peers to properly review, digest, and offer thoughtful feedback.
 
-Since we place such a high value on quality and accuracy, we didn’t want to rush this process and extended our deadline for delivery. 
+Since we place such a high value on quality and accuracy, we didn't want to rush this process and extended our deadline for delivery. 
 
 As we approached the finish line, I collaborated closely with our Co-Founder, Olivier. 🙋
 
 Our goal was to ensure that the final values not only reflected our team and company's culture but, most importantly, that they could be effectively integrated into our company's operations and performance expectations.
 
-And we believe we’ve achieved just that! Here they come... 🥁 
+And we believe we've achieved just that! Here they come... 🥁 
 
 ## What are MUI's core values today?
 
 Our core four are:
 
-**P** — Put community first. “We never lose sight of who we’re serving and why.” 💙
+**P** — Put community first. "We never lose sight of who we're serving and why." 💙
 
-**A** — Avoid bureaucracy. “We’re so not corporate — and we like it that way.” 🚫
+**A** — Avoid bureaucracy. "We're so not corporate — and we like it that way." 🚫
 
-**C** — Chase better. “We’re driven by an unending desire to improve.” 🌱
+**C** — Chase better. "We're driven by an unending desire to improve." 🌱
 
-**T** — Trust & deliver together. “We cultivate unity as the core of achievement.” 🚀
+**T** — Trust & deliver together. "We cultivate unity as the core of achievement." 🚀
 
 To delve deeper into the meaning of each value and what it looks like in practice, you can also check out our handbook: <a href="https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4">Values & Behaviors.</a>
 
