@@ -260,7 +260,7 @@ describe('e2e', () => {
       expect(classNames).to.include('Mui-selected');
     });
 
-    it('should not select option on mouse over', async () => {
+    it('should just highlight not select the option on mouse over', async () => {
       await renderFixture('Select/BaseSelect');
 
       const combobox = (await screen.getByRole('combobox'))!;
@@ -277,6 +277,7 @@ describe('e2e', () => {
       });
 
       expect(classNames).not.to.include('Mui-selected');
+      expect(classNames).to.include('MuiOption-highlighted');
     });
   });
 
