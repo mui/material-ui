@@ -505,7 +505,6 @@ const StyledSwitch = styled('span')(`
     border-radius: max(2px, var(--border-radius));
     background-color: #fff;
     position: relative;
-    
     transition-property: left;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 120ms;
@@ -625,7 +624,7 @@ const StyledBadge = styled(Badge)(
   list-style: none;
   font-family: IBM Plex Sans, sans-serif;
   position: relative;
-  display: inline-block;  
+  display: inline-block;
 
   & .${badgeClasses.badge} {
     --_scale: 1.5em;

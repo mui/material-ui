@@ -147,7 +147,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const color = getColor(inProps.color, buttonGroup.color || colorProp);
   const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp);
 
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({

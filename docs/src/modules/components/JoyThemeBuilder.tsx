@@ -349,7 +349,7 @@ const theme = extendTheme(${JSON.stringify(
     (k, v) => (v === undefined ? '__undefined' : v),
     2,
   ).replace(/"__undefined"/g, 'undefined')})
-  
+
 export default theme;`;
 
 function getPaletteFormProps(colorSchemes: any, colorMode: string, node: string) {
