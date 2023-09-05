@@ -9,39 +9,41 @@ import TeamStatistics from 'docs/src/components/about/TeamStatistics';
 const teamPhotos = [
   {
     img: '/static/blog/2023-chamonix-retreat/skiers.jpeg',
-    title: 'Snacks',
+    title: 'MUI team members standing lined-up in the snow with their skigear.',
   },
   {
     img: '/static/blog/2022-tenerife-retreat/group-photo.jpeg',
-    title: 'Fern',
+    title: 'Photo of the MUI team in front of the pool at our accommodations in Tenerife',
   },
   {
     img: '/static/blog/2023-chamonix-retreat/team-dinner.jpeg',
-    title: 'Mushrooms',
+    title: 'Members of the MUI team sitting around a large wooden dining table.',
   },
   {
     img: '/static/about/working-table-tenerife.jpeg',
-    title: 'Tower',
+    title: 'The Toolpad team working together on a heads-down moment in Tenerife.',
   },
   {
     img: '/static/blog/2022-tenerife-retreat/scuba-gear.jpeg',
-    title: 'Tower',
+    title:
+      'MUI team members and their diving instructors pose in scuba gear before a successful scuba diving lesson.',
   },
   {
     img: '/static/blog/2022-tenerife-retreat/outdoor-focus-group.jpeg',
-    title: 'Tower',
+    title:
+      'An impromptu focus group gathered next to the pool with laptops to discuss cross-team marketing strategies.',
   },
   {
     img: '/static/about/working-table-portugal.jpeg',
-    title: 'Tower',
+    title: 'MUI team members working together on a heads-down moment in Portugal.',
   },
   {
     img: '/static/about/snow-tea.jpeg',
-    title: 'Tower',
+    title: 'The team shares a cup of tea up in the mountains on Chamonix.',
   },
   {
     img: '/static/about/portugal-sight-seeing.jpeg',
-    title: 'Tower',
+    title: 'MUI team selfie while sight seeing in Lisbon, Portugal.',
   },
 ];
 
