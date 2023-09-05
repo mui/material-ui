@@ -40,19 +40,30 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   });
 
   const {
+    autoHideDuration = null,
     color = 'neutral',
     children,
     className,
     component,
+    disableWindowBlurListener = false,
+    onClose,
+    open,
+    resumeHideDuration,
     size = 'md',
     slots,
     slotProps,
-    open,
     variant = 'outlined',
     ...other
   } = props;
 
-  const ownerState = { ...props, color, size, variant };
+  const ownerState = {
+    ...props,
+    autoHideDuration,
+    color,
+    disableWindowBlurListener,
+    size,
+    variant,
+  };
 
   const classes = useUtilityClasses(ownerState);
 
@@ -82,6 +93,10 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     externalForwardedProps,
     ownerState,
   });
+
+  if (!open) {
+    return null;
+  }
 
   return (
     <SlotRoot {...rootProps}>
