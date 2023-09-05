@@ -56,6 +56,7 @@ describe('<AccordionGroup />', () => {
         expect(getByTestId('root')).to.have.class(variantConfig.class);
       });
     });
+
     (
       [
         { color: 'danger', class: classes.colorDanger },
