@@ -23,6 +23,12 @@ export interface AccordionGroupClasses {
   variantSoft: string;
   /** Class name applied to the root element if `variant="solid"`. */
   variantSolid: string;
+  /** Class name applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Class name applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Class name applied to the root element if `size="lg"`. */
+  sizeLg: string;
 }
 
 export type AccordionGroupClassKey = keyof AccordionGroupClasses;
@@ -43,6 +49,9 @@ const accordionGroupClasses: AccordionGroupClasses = generateUtilityClasses('Mui
   'variantOutlined',
   'variantSoft',
   'variantSolid',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
 ]);
 
 export default accordionGroupClasses;

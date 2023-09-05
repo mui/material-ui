@@ -26,6 +26,22 @@ describe('<AccordionGroup />', () => {
   describe('classes', () => {
     (
       [
+        { size: 'sm', class: classes.sizeSm },
+        { size: 'md', class: classes.sizeMd },
+        { size: 'lg', class: classes.sizeLg },
+      ] as const
+    ).forEach((sizeConfig) => {
+      it(`should have ${sizeConfig.class} class for ${sizeConfig.size} size `, () => {
+        const { getByTestId } = render(
+          <AccordionGroup data-testid="root" size={sizeConfig.size} />,
+        );
+
+        expect(getByTestId('root')).to.have.class(sizeConfig.class);
+      });
+    });
+
+    (
+      [
         { variant: 'outlined', class: classes.variantOutlined },
         { variant: 'plain', class: classes.variantPlain },
         { variant: 'soft', class: classes.variantSoft },
