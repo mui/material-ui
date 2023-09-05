@@ -1,4 +1,5 @@
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
+import { ClickAwayListenerProps } from '@mui/base/ClickAwayListener';
 import { UseSnackbarParameters } from '@mui/base/useSnackbar';
 import { ColorPaletteProp, VariantProp, ApplyColorInversion, SxProps } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
@@ -51,6 +52,10 @@ export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default { vertical: 'bottom', horizontal: 'left' }
        */
       anchorOrigin?: SnackbarOrigin;
+      /**
+       * Props applied to the `ClickAwayListener` element.
+       */
+      ClickAwayListenerProps?: Partial<ClickAwayListenerProps>;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'

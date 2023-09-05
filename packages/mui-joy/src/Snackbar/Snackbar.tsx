@@ -2,6 +2,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { useSnackbar } from '@mui/base/useSnackbar';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
@@ -135,6 +136,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     color = 'neutral',
     children,
     className,
+    ClickAwayListenerProps,
     component,
     disableWindowBlurListener = false,
     onBlur,
@@ -163,7 +165,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const { getRootProps } = useSnackbar({ ...ownerState });
+  const { getRootProps, onClickAway } = useSnackbar({ ...ownerState });
 
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
@@ -195,19 +197,21 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   }
 
   return (
-    <SlotRoot {...rootProps}>
-      {slots?.startDecorator && (
-        <SlotStartDecorator {...startDecoratorProps}>
-          {slots?.startDecorator as React.ReactNode}
-        </SlotStartDecorator>
-      )}
-      {children}
-      {slots?.endDecorator && (
-        <SlotEndDecorator {...endDecoratorProps}>
-          {slots?.endDecorator as React.ReactNode}
-        </SlotEndDecorator>
-      )}
-    </SlotRoot>
+    <ClickAwayListener onClickAway={onClickAway} {...ClickAwayListenerProps}>
+      <SlotRoot {...rootProps}>
+        {slots?.startDecorator && (
+          <SlotStartDecorator {...startDecoratorProps}>
+            {slots?.startDecorator as React.ReactNode}
+          </SlotStartDecorator>
+        )}
+        {children}
+        {slots?.endDecorator && (
+          <SlotEndDecorator {...endDecoratorProps}>
+            {slots?.endDecorator as React.ReactNode}
+          </SlotEndDecorator>
+        )}
+      </SlotRoot>
+    </ClickAwayListener>
   );
 }) as OverridableComponent<SnackbarTypeMap>;
 
