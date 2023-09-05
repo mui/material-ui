@@ -127,16 +127,16 @@ export default function MyProfile() {
               },
             }}
           >
-            <Tab indicatorInset value={0}>
+            <Tab sx={{ borderRadius: '6px 6px 0 0' }} indicatorInset value={0}>
               Settings
             </Tab>
-            <Tab indicatorInset value={1}>
+            <Tab sx={{ borderRadius: '6px 6px 0 0' }} indicatorInset value={1}>
               Team
             </Tab>
-            <Tab indicatorInset value={2}>
+            <Tab sx={{ borderRadius: '6px 6px 0 0' }} indicatorInset value={2}>
               Plan
             </Tab>
-            <Tab indicatorInset value={3}>
+            <Tab sx={{ borderRadius: '6px 6px 0 0' }} indicatorInset value={3}>
               Billing
             </Tab>
           </TabList>
@@ -361,7 +361,7 @@ export default function MyProfile() {
               </FormControl>
             </div>
           </Stack>
-          <CardOverflow sx={{ bgcolor: 'background.body' }}>
+          <CardOverflow sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
             <CardActions sx={{ alignSelf: 'flex-end', pt: 2 }}>
               <Button size="sm" variant="outlined" color="neutral">
                 Cancel
@@ -392,7 +392,7 @@ export default function MyProfile() {
               275 characters left
             </FormHelperText>
           </Stack>
-          <CardOverflow sx={{ bgcolor: 'background.body' }}>
+          <CardOverflow sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
             <CardActions sx={{ alignSelf: 'flex-end', pt: 2 }}>
               <Button size="sm" variant="outlined" color="neutral">
                 Cancel
@@ -427,7 +427,7 @@ export default function MyProfile() {
               progress={40}
             />
           </Stack>
-          <CardOverflow sx={{ bgcolor: 'background.body' }}>
+          <CardOverflow sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
             <CardActions sx={{ alignSelf: 'flex-end', pt: 2 }}>
               <Button size="sm" variant="outlined" color="neutral">
                 Cancel
