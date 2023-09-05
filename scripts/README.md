@@ -22,15 +22,15 @@ A typical release goes like this:
 
 The following steps must be proposed as a pull request.
 
-1. Generate the changelog with `yarn release:changelog`
+1. Generate the changelog with `pnpm release:changelog`
    The output must be prepended to the top level `CHANGELOG.md`
-   `yarn release:changelog --help` for more information. If your GitHub token is not in your env, pass it as `--githubToken <my-token>` to the above command.
+   `pnpm release:changelog --help` for more information. If your GitHub token is not in your env, pass it as `--githubToken <my-token>` to the above command.
 
 2. Clean the generated changelog:
    1. Match the format of https://github.com/mui/material-ui/releases.
    2. Change the packages names casing to be lowercase if applicable, e.g. change `Material` to `material`
 3. Update the root `/package.json`'s version
-4. `yarn release:version`, keep in mind:
+4. `pnpm release:version`, keep in mind:
    1. Keep the package versions of stable public packages the same as the root `package.json` version.
    2. Don't bump private packages unless necessary, these have `"private": true` in their `package.json`
    3. Manually remove `^` from packages with prerelease version, e.g. `-alpha`
@@ -40,15 +40,15 @@ The following steps must be proposed as a pull request.
 ### Release
 
 1. Checkout merge commit of the merged PR
-2. `yarn`
-3. `yarn release:build`
-4. `yarn release:publish`
+2. `pnpm`
+3. `pnpm release:build`
+4. `pnpm release:publish`
    You need your 2FA device.
-5. `yarn release:tag`
+5. `pnpm release:tag`
 
 ### Documentation
 
-`yarn docs:deploy` to deploy the documentation (it lives at https://material-ui.netlify.app/) with the latest changes.
+`pnpm docs:deploy` to deploy the documentation (it lives at https://material-ui.netlify.app/) with the latest changes.
 Force push if necessary.
 
 ### Announce

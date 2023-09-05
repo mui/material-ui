@@ -72,10 +72,10 @@ git checkout master
 git pull upstream master
 ```
 
-4. Install the dependencies with yarn (npm isn't supported):
+4. Install the dependencies with pnpm (yarn or npm aren't supported):
 
 ```bash
-yarn install
+pnpm install
 ```
 
 5. Create a new topic branch:
@@ -103,7 +103,7 @@ It's the local development environment used by the maintainers.
 To get started:
 
 ```bash
-yarn start
+pnpm start
 ```
 
 You can now access the documentation site locally: http://localhost:3000.
@@ -121,7 +121,7 @@ You might face the following problems:
 To solve these problems—you can use the playground:
 
 ```bash
-yarn docs:create-playground && yarn start
+pnpm docs:create-playground && pnpm start
 ```
 
 You can now access it locally: http://localhost:3000/playground/.
@@ -150,11 +150,11 @@ Make sure the following is true:
 
 Because we will only merge a Pull Request for which all tests pass. The following items need to be true:
 
-- The code is formatted. If the code was changed, run `yarn prettier`.
-- The code is linted. If the code was changed, run `yarn eslint`.
-- The code is type-safe. If TypeScript sources/declarations were changed, `yarn typescript` passed.
-- The API docs are up-to-date. If API was changed, run `yarn proptypes && yarn docs:api`.
-- The demos are up-to-date. If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes. See [about writing demos](#3-write-the-content-of-the-demo).
+- The code is formatted. If the code was changed, run `pnpm prettier`.
+- The code is linted. If the code was changed, run `pnpm eslint`.
+- The code is type-safe. If TypeScript sources/declarations were changed, `pnpm typescript` passed.
+- The API docs are up-to-date. If API was changed, run `pnpm proptypes && pnpm docs:api`.
+- The demos are up-to-date. If demos were changed, make sure `pnpm docs:typescript:formatted` does not introduce changes. See [about writing demos](#3-write-the-content-of-the-demo).
 - The Pull Request title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
 
 If you have missed a step, don't worry, the Continuous Integration will run a thorough test on your commits, and the maintainers of the project can assist.
@@ -178,27 +178,27 @@ of MUI that was built from this Pull Request. Use it to test more complex scenar
 
 #### ci/circleci: checkout
 
-A preflight check to see if the dependencies and lockfile are ok. Running `yarn`
-and `yarn deduplicate` should fix most of the issues.
+A preflight check to see if the dependencies and lockfile are ok. Running `pnpm`
+and `pnpm deduplicate` should fix most of the issues.
 
 #### ci/circleci: test_static
 
 Checks code format, and lints the repository. The log of the failed build should explain
 how to fix the issues. It also runs commands that generate or change some files
-(like `yarn docs:api` for API documentation). If the CI job fails you might need to run them locally and commit the changes.
+(like `pnpm docs:api` for API documentation). If the CI job fails you might need to run them locally and commit the changes.
 
 #### ci/circleci: test_unit-1
 
-Runs the unit tests in a `jsdom` environment. If this fails then `yarn test:unit`
-should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
-If `yarn test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
+Runs the unit tests in a `jsdom` environment. If this fails then `pnpm test:unit`
+should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well. You can narrow the scope of tests run with `pnpm test:unit --grep ComponentName`.
+If `pnpm test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
 #### ci/circleci: test_browser-1
 
 Runs the unit tests in multiple browsers (via BrowserStack). The log of the failed
-build should list which browsers failed. If Chrome failed then `yarn test:karma`
+build should list which browsers failed. If Chrome failed then `pnpm test:karma`
 should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
-If `yarn test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
+If `pnpm test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
 #### ci/circleci: test_regression-1
 
@@ -224,8 +224,8 @@ might be intended. Clicking on _Details_ will show you the differences.
 
 #### deploy/netlify
 
-Renders a preview of the docs with your changes if it succeeds. Otherwise `yarn docs:build`
-or `yarn docs:export` usually fail locally as well.
+Renders a preview of the docs with your changes if it succeeds. Otherwise `pnpm docs:build`
+or `pnpm docs:export` usually fail locally as well.
 
 #### codecov/project
 
@@ -243,16 +243,16 @@ The component API in the component `propTypes` and under `docs/pages/api-docs` i
 Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/mui-material/src/Button/Button.d.ts` for `<Button>`) and then run:
 
 ```bash
-$ yarn proptypes
-$ yarn docs:api
+$ pnpm proptypes
+$ pnpm docs:api
 ```
 
 ### Coding style
 
 Please follow the coding style of the project. MUI uses prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
 
-- `yarn prettier` reformats the code.
-- `yarn eslint` runs manually the linting rules.
+- `pnpm prettier` reformats the code.
+- `pnpm eslint` runs manually the linting rules.
 
 Finally, when you submit a Pull Request, they are run again by our continuous integration tools, but hopefully, your code is already clean!
 
@@ -292,7 +292,7 @@ about translations](#translations).
 MUI documents how to use this library with TypeScript.
 
 If you are familiar with this language, write the demo in TypeScript, and only, in a \*.tsx file.
-When you're done run `yarn docs:typescript:formatted` to automatically create the JavaScript version.
+When you're done run `pnpm docs:typescript:formatted` to automatically create the JavaScript version.
 
 If you are not familiar with that language, write the demo in JavaScript, a core contributor might help you to migrate it to TypeScript.
 
@@ -327,9 +327,9 @@ The following example shows how to package `@mui/material`, but you can package 
 
 ```bash
 $> cd packages/mui-material # or path to any other mui package
-$packages\mui-material> yarn build
+$packages\mui-material> pnpm build
 $packages\mui-material> cd ./build
-$packages\mui-material> npm pack
+$packages\mui-material> pnpm pack
 ```
 
 Navigate to the build folder of your respective package and locate a file with the format `mui-material-x.x.x.tar.gz`.
@@ -342,7 +342,7 @@ $test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
 > **Note**
 >
 > If you have already installed this package, your changes will not be reflected when you reinstall it.
-> As a quick fix, you can temporarily bump the version number in your `package.json` before running `yarn build`.
+> As a quick fix, you can temporarily bump the version number in your `package.json` before running `pnpm build`.
 
 ## Roadmap
 

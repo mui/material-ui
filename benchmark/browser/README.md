@@ -3,7 +3,7 @@
 This project is used when running the following command:
 
 ```bash
-yarn benchmark:browser
+pnpm benchmark:browser
 ```
 
 It is suppose to give developers comparable values between running different scenarios inside the browser, that can be find the `./scenarios` folder.

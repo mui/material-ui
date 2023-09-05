@@ -35,7 +35,7 @@ async function main() {
     cwd: packageRoot,
   });
   // Need to process in chunks or we might run out-of-memory
-  // approximate yarn lerna --concurrency 7
+  // approximate pnpm lerna --concurrency 7
   const tsconfigPathsChunks = chunk(tsconfigPaths, 7);
 
   // eslint-disable-next-line no-restricted-syntax
