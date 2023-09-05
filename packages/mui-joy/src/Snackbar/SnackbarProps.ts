@@ -1,6 +1,6 @@
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { UseSnackbarParameters } from '@mui/base/useSnackbar';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp, ApplyColorInversion, SxProps } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export interface SnackbarSlots {
@@ -62,6 +62,10 @@ export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       size?: OverridableStringUnion<'sm' | 'md' | 'lg', SnackbarPropsSizeOverrides>;
       /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps;
+      /**
        * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'outlined'
        */
@@ -75,4 +79,4 @@ export type SnackbarProps<
   P = { component?: React.ElementType },
 > = OverrideProps<SnackbarTypeMap<P, D>, D>;
 
-export interface SnackbarOwnerState extends SnackbarProps {}
+export interface SnackbarOwnerState extends ApplyColorInversion<SnackbarProps> {}
