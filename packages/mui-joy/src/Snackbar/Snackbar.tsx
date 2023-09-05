@@ -11,7 +11,7 @@ import { SnackbarProps, SnackbarOwnerState } from './SnackbarProps';
 import { getSnackbarUtilityClass } from './snackbarClasses';
 
 const useUtilityClasses = (ownerState: SnackbarOwnerState) => {
-  const { variant, color, size } = ownerState;
+  const { variant, color, size, anchorOrigin } = ownerState;
 
   const slots = {
     root: [
@@ -19,6 +19,7 @@ const useUtilityClasses = (ownerState: SnackbarOwnerState) => {
       size && `size${capitalize(size)}`,
       color && `color${capitalize(color)}`,
       variant && `variant${capitalize(variant)}`,
+      `anchorOrigin${capitalize(anchorOrigin!.vertical)}${capitalize(anchorOrigin!.horizontal)}`,
     ],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
@@ -27,7 +28,11 @@ const useUtilityClasses = (ownerState: SnackbarOwnerState) => {
   return composeClasses(slots, getSnackbarUtilityClass, {});
 };
 
-const SnackbarRoot = styled('div')({});
+const SnackbarRoot = styled('div', {
+  name: 'SnackbarAlert',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
 const SnackbarStartDecorator = styled('span', {
   name: 'JoySnackbar',
