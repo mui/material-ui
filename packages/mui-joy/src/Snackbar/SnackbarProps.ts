@@ -34,11 +34,23 @@ export interface SnackbarPropsColorOverrides {}
 export interface SnackbarPropsSizeOverrides {}
 export interface SnackbarPropsVariantOverrides {}
 
-export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
+export interface SnackbarOrigin {
+  vertical: 'top' | 'bottom';
+  horizontal: 'left' | 'center' | 'right';
+}
+
+export type { SnackbarCloseReason } from '@mui/base/useSnackbar';
 
 export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     UseSnackbarParameters & {
+      /**
+       * The anchor of the `Snackbar`.
+       * On smaller screens, the component grows to occupy all the available width,
+       * the horizontal alignment is ignored.
+       * @default { vertical: 'bottom', horizontal: 'left' }
+       */
+      anchorOrigin?: SnackbarOrigin;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'

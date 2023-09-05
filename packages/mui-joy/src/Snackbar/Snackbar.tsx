@@ -29,9 +29,24 @@ const useUtilityClasses = (ownerState: SnackbarOwnerState) => {
 
 const SnackbarRoot = styled('div')({});
 
-const SnackbarStartDecorator = styled('span')({});
+const SnackbarStartDecorator = styled('span', {
+  name: 'JoySnackbar',
+  slot: 'StartDecorator',
+  overridesResolver: (props, styles) => styles.startDecorator,
+})({
+  display: 'inherit',
+  flex: 'none',
+});
 
-const SnackbarEndDecorator = styled('span')({});
+const SnackbarEndDecorator = styled('span', {
+  name: 'JoySnackbar',
+  slot: 'EndDecorator',
+  overridesResolver: (props, styles) => styles.endDecorator,
+})({
+  display: 'inherit',
+  flex: 'none',
+  marginLeft: 'auto',
+});
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const props = useThemeProps<typeof inProps & SnackbarProps>({
@@ -40,13 +55,18 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   });
 
   const {
+    anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
     autoHideDuration = null,
     color = 'neutral',
     children,
     className,
     component,
     disableWindowBlurListener = false,
+    onBlur,
     onClose,
+    onFocus,
+    onMouseEnter,
+    onMouseLeave,
     open,
     resumeHideDuration,
     size = 'md',
@@ -58,6 +78,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
 
   const ownerState = {
     ...props,
+    anchorOrigin: { vertical, horizontal },
     autoHideDuration,
     color,
     disableWindowBlurListener,
