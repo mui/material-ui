@@ -23,7 +23,7 @@ export default function SimplePopper() {
   return (
     <div className={`${isDarkMode ? 'dark' : ''}`}>
       <button
-        className="cursor-pointer text-sm font-sans box-border rounded-lg font-semibold px-4 py-2 leading-normal bg-transparent border border-solid border-slate-300 dark:border-slate-700 text-purple-600 dark:text-purple-300 hover:bg-slate-50 hover:dark:bg-slate-800 hover:border-purple-300 dark:hover:border-purple-300 focus-visible:border-purple-500 focus-visible:hover:border-purple-500 focus-visible:dark:hover:border-purple-500 focus-visible:outline-0 focus-visible:shadow-outline-purple"
+        className="cursor-pointer text-sm font-sans box-border rounded-lg font-semibold px-4 py-2 bg-violet-500 hover:bg-violet-600 active:bg-violet-700 text-white border-none leading-normal focus-visible:outline-0 focus-visible:shadow-outline-purple"
         aria-describedby={id}
         type="button"
         onClick={handleClick}

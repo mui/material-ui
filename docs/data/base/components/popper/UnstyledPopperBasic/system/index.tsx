@@ -52,28 +52,27 @@ const grey = {
 
 const TriggerButton = styled('button')(
   ({ theme }) => `
-    font-family: IBM Plex Sans, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 600;
-    box-sizing: border-box;
-    border-radius: 8px;
-    padding: 8px 16px;
-    line-height: 1.5;
-    background: transparent;
-    cursor: pointer;
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-    color: ${theme.palette.mode === 'dark' ? blue[300] : blue[500]};
+font-family: IBM Plex Sans, sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background-color: ${blue[500]};
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  transition: all 150ms ease;
+  cursor: pointer;
+  border: none;
 
-    &:hover {
-      background: ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
-      border-color: ${theme.palette.mode === 'dark' ? blue[200] : blue[400]};
-    }
+  &:hover {
+    background-color: ${blue[600]};
+  }
 
-    &:focus-visible {
-      border-color: ${blue[400]};
-      outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-    }
-    `,
+  &:focus-visible {
+    box-shadow: 0 3px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
+    outline: none;
+  }
+  `,
 );
 
 const StyledPopperDiv = styled('div')(

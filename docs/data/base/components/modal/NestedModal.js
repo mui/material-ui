@@ -84,22 +84,13 @@ Backdrop.propTypes = {
 };
 
 const blue = {
-  200: '#99CCF3',
-  400: '#3399FF',
   500: '#007FFF',
+  600: '#0072E6',
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  900: '#1C2025',
 };
 
 const StyledModal = styled(Modal)`
@@ -127,32 +118,33 @@ const style = (theme) => ({
   width: 400,
   borderRadius: '12px',
   padding: '16px 32px 24px 32px',
-  backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
-  boxShadow: `0px 2px 24px ${theme.palette.mode === 'dark' ? '#000' : '#383838'}`,
+  backgroundColor: theme.palette.mode === 'dark' ? grey[900] : grey[50],
+  boxshadow: `0px 4px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  }`,
 });
 
 const TriggerButton = styled(Button)(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
+font-family: IBM Plex Sans, sans-serif;
   font-weight: 600;
-  box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 6px 12px;
+  font-size: 0.875rem;
   line-height: 1.5;
-  background: transparent;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[100] : grey[900]};
+  background-color: ${blue[500]};
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  transition: all 150ms ease;
+  cursor: pointer;
+  border: none;
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
+    background-color: ${blue[600]};
   }
 
   &:focus-visible {
-    border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 3px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
+    outline: none;
   }
   `,
 );

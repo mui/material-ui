@@ -67,27 +67,25 @@ function Styles() {
   return (
     <style>{`
       .Button {
-        font-family: IBM Plex Sans, sans-serif;
-        font-size: 0.875rem;
+        font-family: IBM Plex Sans,sans-serif;
         font-weight: 600;
-        box-sizing: border-box;
-        border-radius: 8px;
-        padding: 8px 16px;
+        font-size: 0.875rem;
         line-height: 1.5;
-        background: transparent;
+        background-color: ${cyan[500]};
+        padding: 8px 16px;
+        border-radius: 8px;
+        color: white;
         cursor: pointer;
-        border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
-        color: ${isDarkMode ? cyan[300] : cyan[400]};
-
+        border: none;
+  
         &:hover {
-          background: ${isDarkMode ? grey[900] : grey[100]};
-          border-color: ${isDarkMode ? cyan[200] : cyan[400]};
+          background-color: ${cyan[600]};
         }
-
+  
         &:focus-visible {
           border-color: ${cyan[400]};
           outline: 3px solid ${isDarkMode ? cyan[500] : cyan[200]};
-        }
+          }
       }
 
       .CustomPopper{
