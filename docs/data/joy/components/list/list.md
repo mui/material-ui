@@ -244,12 +244,21 @@ To ensure that your List is accessible, here are some factors you should conside
 
 ## Anatomy
 
-The List component is composed of a root `<ul>` element that contains one or more child `<li>` elements rendered by the List Item component.
+The List component is composed of a root `<ul>` element with one or more child `<li>` elements rendered by the List Item component.
+All components nested inside the List Item are optional.
+The [List Divider](#divider) (when present) renders an `<li>` with `role="separator"`, while the [List Subheader](#nested-list) renders a `<div>`.
 
 ```html
 <ul class="MuiList-root">
   <li class="MuiListItem-root">
-    <!-- List item content --->
+    <div class="MuiListItemButton-root" role="button">
+      <span class="MuiListItemDecorator-root">
+        <!-- Icon for List Item Decorator -->
+      </span>
+      <div class="MuiListItemContent-root">
+        <!-- List Item content -->
+      </div>
+    </div>
   </li>
 </ul>
 ```
