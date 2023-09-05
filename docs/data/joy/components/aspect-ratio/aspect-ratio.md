@@ -46,7 +46,7 @@ Note that you lose the global variants when you add custom variants.
 
 ### Ratio
 
-Use the `ratio` prop to change the aspect ratio, following the pattern `height/width`.
+Use the `ratio` prop to change the aspect ratio, following the pattern `width/height`.
 For example, the demo below uses a ratio of `4/3`, which is a common alternative to the default `16/9`:
 
 {{"demo": "CustomRatio.js"}}

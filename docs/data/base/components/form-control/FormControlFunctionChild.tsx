@@ -18,7 +18,6 @@ export default function FormControlFunctionChild() {
 
 const StyledInput = styled(Input)(
   ({ theme }) => `
-  
   display: inline-block;
 
   .${inputClasses.input} {

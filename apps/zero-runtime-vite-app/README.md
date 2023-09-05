@@ -13,7 +13,7 @@ You can either run `pnpm release:build` command to build all the packages, or yo
 Make sure you have also run `pnpm release:build` at least once because we also use `@mui/material` and `@mui/system` packages. On subsequent runs, you can only build the above 2 packages using -
 
 ```bash
-pnpm build:zero
+pnpm build
 ```
 
 After building, you can run the project by changing into the directory and then

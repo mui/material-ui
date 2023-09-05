@@ -96,7 +96,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
     ...other
   } = props;
 
-  const tooltipRef = React.useRef<HTMLElement | null>(null);
+  const tooltipRef = React.useRef<HTMLElement>(null);
   const ownRef = useForkRef(tooltipRef, forwardedRef);
 
   const popperRef = React.useRef<Instance | null>(null);

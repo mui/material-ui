@@ -1,6 +1,6 @@
 {
   "name": "@mui/joy",
-  "version": "5.0.0-beta.3",
+  "version": "5.0.0-beta.5",
   "private": false,
   "author": "MUI Team",
   "description": "A library of beautifully designed React UI components.",
@@ -51,7 +51,7 @@
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.5",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^18.2.20",
+    "@types/react": "^18.2.21",
     "@types/sinon": "^10.0.16",
     "chai": "^4.3.7",
     "fast-glob": "^3.3.1",

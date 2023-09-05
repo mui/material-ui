@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "5.14.6",
+  "version": "5.14.8",
   "private": false,
   "author": "MUI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
@@ -57,7 +57,7 @@
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.5",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^18.2.20",
+    "@types/react": "^18.2.21",
     "@types/sinon": "^10.0.16",
     "@types/styled-components": "^5.1.26",
     "chai": "^4.3.7",

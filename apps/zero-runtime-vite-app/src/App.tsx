@@ -9,9 +9,7 @@ const Button = styled('button', {
   'color:red',
   ({ theme }: any) => ({
     fontFamily: 'sans-serif',
-    color: 'primary.main',
     backgroundColor: [theme.palette.primary.main, 'text.primary', 'background.paper'],
-    fontSize: (props: any) => (props.isRed ? 'h1.fontSize' : 'h2.fontSize'),
   }),
   {
     fontFamily: 'sans-serif',
@@ -34,7 +32,7 @@ const HalfWidth = styled.div({
   border: '1px solid #ccc',
 });
 
-export default function App() {
+export default function App({ isRed }: any) {
   const [count, setCount] = React.useState(0);
   const [value, setValue] = React.useState(50);
   const [isColorPrimary, setIsColorPrimary] = React.useState(true);
@@ -106,7 +104,19 @@ export default function App() {
         </div>
       </div>
       <div>
-        <HalfWidth sx={{ color: 'red' }}>
+        <HalfWidth
+          sx={({ theme }: any) => ({
+            color: theme.palette.primary.main,
+            fontSize: isRed ? 'h1.fontSize' : 'h2.fontSize',
+            ':hover': {
+              backgroundColor: ['primary.dark', 'secondary.main'],
+              color: {
+                sm: 'primary.dark',
+                md: 'secondary.main',
+              },
+            },
+          })}
+        >
           <Slider
             aria-label="Small steps"
             defaultValue={50}

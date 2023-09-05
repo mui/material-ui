@@ -4,7 +4,7 @@ import { Theme, SxProps } from './types';
  * internal utility
  *
  * Why? to read `sx` values and attach component's CSS variables
- *      eg. <Card sx={{ borderRadius: 0 }} /> should attach
+ *      e.g. <Card sx={{ borderRadius: 0 }} /> should attach
  *          `--Card-radius: 0px` so that developers don't have to remember
  *
  * Why not reuse `styleFunctionSx`?

@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine",
-  "version": "5.14.6",
+  "version": "5.14.8",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for emotion.",
@@ -48,7 +48,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@types/chai": "^4.3.5",
-    "@types/react": "^18.2.20",
+    "@types/react": "^18.2.21",
     "chai": "^4.3.7",
     "test": "workspace:^"
   },

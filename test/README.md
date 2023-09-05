@@ -248,7 +248,7 @@ Possible values for `version`:
 
 - default: `stable` (minimum supported React version)
 - a tag on npm e.g. `next`, `experimental` or `latest`
-- an older version e.g `^17.0.0`
+- an older version e.g. `^17.0.0`
 
 #### CI
 

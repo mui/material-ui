@@ -25,7 +25,7 @@ const useUtilityClasses = (ownerState: AccordionGroupOwnerState) => {
       'root',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
-      size && `size${capitalize(size)}}`,
+      size && `size${capitalize(size)}`,
     ],
   };
 

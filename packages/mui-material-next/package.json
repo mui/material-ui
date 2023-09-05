@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-next",
-  "version": "6.0.0-alpha.98",
+  "version": "6.0.0-alpha.100",
   "private": false,
   "author": "MUI Team",
   "description": "v6-alpha: React components that implement Google's Material Design",
@@ -55,7 +55,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/chai": "^4.3.5",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^18.2.20",
+    "@types/react": "^18.2.21",
     "@types/sinon": "^10.0.16",
     "chai": "^4.3.7",
     "lodash": "^4.17.21",

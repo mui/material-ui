@@ -19,7 +19,6 @@ export default function RichMarkdownElement(props) {
     demos = {},
     disableAd,
     localizedDoc,
-    location,
     renderedMarkdownOrDemo,
     srcComponents,
     theme,
@@ -99,7 +98,7 @@ export default function RichMarkdownElement(props) {
     );
   }
 
-  const splitLocationBySlash = location.split('/');
+  const splitLocationBySlash = localizedDoc.location.split('/');
   splitLocationBySlash.pop();
   const fileNameWithLocation = `${splitLocationBySlash.join('/')}/${name}`;
 
@@ -139,7 +138,6 @@ RichMarkdownElement.propTypes = {
   demos: PropTypes.any,
   disableAd: PropTypes.bool,
   localizedDoc: PropTypes.any,
-  location: PropTypes.string,
   renderedMarkdownOrDemo: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.shape({ component: PropTypes.any, demo: PropTypes.any }),

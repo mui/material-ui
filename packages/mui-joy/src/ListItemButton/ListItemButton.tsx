@@ -154,7 +154,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({

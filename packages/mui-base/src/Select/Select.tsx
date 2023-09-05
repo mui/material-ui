@@ -96,7 +96,7 @@ const Select = React.forwardRef(function Select<
     renderValueProp ?? defaultRenderValue;
 
   const [buttonDefined, setButtonDefined] = React.useState(false);
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
 
   const Button = slots.root ?? 'button';

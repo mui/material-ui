@@ -31,7 +31,7 @@
     "@types/prop-types": "^15.7.5",
     "@types/react-dom": "^18.2.7",
     "@types/react-test-renderer": "^18.0.0",
-    "@types/react": "^18.2.20",
+    "@types/react": "^18.2.21",
     "@types/react-is": "^18.2.1",
     "@types/sinon": "^10.0.16",
     "chai-dom": "^1.11.0",

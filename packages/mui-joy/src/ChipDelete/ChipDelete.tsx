@@ -82,7 +82,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   const color = getColor(inProps.color, inheritedColor);
   const disabled = disabledProp ?? chipContext.disabled;
 
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, getRootProps } = useButton({

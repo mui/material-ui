@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0-alpha.141",
+  "version": "5.0.0-alpha.143",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -46,13 +46,14 @@
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
+    "@mui/x-tree-view": "https://pkg.csb.dev/mui/mui-x/commit/1f23b33d/@mui/x-tree-view",
     "clsx": "^2.0.0",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
     "@types/chai": "^4.3.5",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^18.2.20",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@types/sinon": "^10.0.16",
     "chai": "^4.3.7",
