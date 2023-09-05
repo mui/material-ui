@@ -65,11 +65,11 @@ function Styles() {
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
         box-shadow: 0px 2px 24px ${isDarkMode ? cyan[800] : cyan[100]};
-      
+
         &:hover {
           border-color: ${cyan[400]};
         }
-      
+
         &:focus {
           border-color: ${cyan[400]};
           box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};

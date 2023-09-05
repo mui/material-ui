@@ -14,6 +14,7 @@ const GLOBAL_STATE_CLASSES: string[] = [
   'expanded',
   'focused',
   'focusVisible',
+  'open',
   'readOnly',
   'required',
   'selected',

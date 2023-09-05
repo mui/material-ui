@@ -128,7 +128,7 @@ export default function UserFeedbacks() {
           onClick={() => setSlideIndex((i) => i + 1)}
           sx={{ mr: 'auto' }}
         />
-        <Box alignSelf="center">
+        <Box sx={{ alignSelf: 'center' }}>
           {TESTIMONIALS.map((item, index) => (
             <ButtonBase
               key={index}

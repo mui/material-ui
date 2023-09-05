@@ -20,8 +20,8 @@ Now that we've reached [MUI X v6.11.0](https://github.com/mui/mui-x/releases/ta
   - [Support for time zones](#support-for-time-zones)
   - [Digital clock](#digital-clock)
 - [Data Grid](#data-grid)
-  - [Filter on column headers](#filter-on-column-headers) <a title="Pro plan" href="/x/introduction/licensing/#pro-plan"><span class="plan-pro"></span></a>
-  - [Copy and paste](#copy-and-paste) <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premium"></span></a>
+  - [Filter on column headers](#filter-on-column-headers) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Copy and paste](#copy-and-paste) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'premium plan')
 - [Charts - alpha version](#charts-alpha-version)
 - [Tree View is moving to MUI X](#tree-view-is-moving-to-mui-x)
 - [Feedback](#feedback)
@@ -66,7 +66,7 @@ Check out all the possibilities in the [Date Pickers—Digital clock documentati
 
 ## Data Grid
 
-### Filter on column headers <a title="Pro plan" href="/x/introduction/licensing/#pro-plan"><span class="plan-pro"></span></a>
+### Filter on column headers [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 Filtering on column headers gives users the ability to quickly filter data without any additional menu.
 Use the the `unstable_headerFilters` prop to activate this feature.
@@ -80,7 +80,7 @@ If you prefer more simplicity, you can disable the default filter panel using th
 
 For more details on how to use and customize the filters, check out its [documentation page](https://mui.com/x/react-data-grid/filtering/header-filters/).
 
-### Copy and paste <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premium"></span></a>
+### Copy and paste [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'premium plan')
 
 After setting the `experimentalFeatures={{ clipboardPaste: true }}` prop, you can copy and paste data directly to and from your Data Grid.
 

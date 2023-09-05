@@ -265,6 +265,12 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 <Autocomplete filterOptions={filterOptions} />;
 ```
 
+## CSS variables playground
+
+The Autocomplete component reuses CSS variables from the Input component to give you the consistent customization experience.
+
+{{"demo": "AutocompleteVariables.js", "hideToolbar": true, "bg": "gradient"}}
+
 ## Common examples
 
 ### Hint
@@ -306,12 +312,6 @@ If you would like to prevent the default key handler behavior, you can set the e
   }}
 />
 ```
-
-## CSS Variables
-
-The Autocomplete component reuses CSS variables from the Input component to give you the consistent customization experience.
-
-{{"demo": "AutocompleteVariables.js", "hideToolbar": true}}
 
 ## Limitations
 

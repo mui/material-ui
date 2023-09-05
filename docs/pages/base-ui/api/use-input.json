@@ -5,24 +5,30 @@
     "error": { "type": { "name": "boolean", "description": "boolean" } },
     "inputRef": {
       "type": {
-        "name": "React.Ref&lt;HTMLInputElement&gt;",
-        "description": "React.Ref&lt;HTMLInputElement&gt;"
+        "name": "React.Ref&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.Ref&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
       }
     },
     "onBlur": {
-      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+      "type": {
+        "name": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
+      }
     },
     "onChange": {
       "type": {
-        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt;",
-        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt;"
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
       }
     },
     "onClick": {
       "type": { "name": "React.MouseEventHandler", "description": "React.MouseEventHandler" }
     },
     "onFocus": {
-      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+      "type": {
+        "name": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
+      }
     },
     "required": { "type": { "name": "boolean", "description": "boolean" } },
     "value": { "type": { "name": "unknown", "description": "unknown" } }
@@ -54,8 +60,8 @@
     },
     "inputRef": {
       "type": {
-        "name": "React.RefCallback&lt;HTMLInputElement&gt; | null",
-        "description": "React.RefCallback&lt;HTMLInputElement&gt; | null"
+        "name": "React.RefCallback&lt;HTMLInputElement | HTMLTextAreaElement&gt; | null",
+        "description": "React.RefCallback&lt;HTMLInputElement | HTMLTextAreaElement&gt; | null"
       },
       "required": true
     },

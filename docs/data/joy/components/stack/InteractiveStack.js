@@ -11,13 +11,13 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import BrandingProvider from 'docs/src/BrandingProvider';
 
 const Item = styled(Sheet)(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === 'dark' ? theme.palette.background.level1 : '#fff',
   ...theme.typography['body-sm'],
-  padding: theme.spacing(1),
   textAlign: 'center',
-  borderRadius: 4,
+  fontWeight: theme.fontWeight.md,
   color: theme.vars.palette.text.secondary,
+  border: '1px solid',
+  borderColor: theme.palette.divider,
+  borderRadius: theme.radius.md,
 }));
 
 export default function InteractiveStack() {
@@ -36,13 +36,13 @@ export default function InteractiveStack() {
 `;
 
   return (
-    <Stack sx={{ flexGrow: 1 }}>
+    <Stack sx={{ flexGrow: 1, '* pre': { mb: 0 } }}>
       <Stack
         direction={direction}
         justifyContent={justifyContent}
         alignItems={alignItems}
         spacing={spacing}
-        sx={{ height: 300, pt: 2, pb: 2 }}
+        sx={{ minHeight: 200, pb: 3 }}
       >
         {[0, 1, 2].map((value) => (
           <Item
@@ -57,12 +57,25 @@ export default function InteractiveStack() {
           </Item>
         ))}
       </Stack>
-      <Sheet sx={{ p: 2, backgroundColor: 'background.level1' }}>
+      <Sheet
+        variant="outlined"
+        sx={(theme) => ({
+          p: 2,
+          borderRadius: 'md',
+          bgcolor: theme.palette.neutral[50],
+          borderColor: theme.palette.neutral[100],
+          [theme.getColorSchemeSelector('dark')]: {
+            borderColor: theme.palette.neutral[800],
+            backgroundColor: theme.palette.neutral[900],
+          },
+        })}
+      >
         <Grid container spacing={3}>
           <Grid xs={12}>
             <FormControl>
-              <FormLabel sx={{ mb: 1.5 }}>direction</FormLabel>
+              <FormLabel sx={{ mb: 0.5 }}>direction</FormLabel>
               <RadioGroup
+                size="sm"
                 orientation="horizontal"
                 name="direction"
                 aria-label="direction"
@@ -81,8 +94,9 @@ export default function InteractiveStack() {
           </Grid>
           <Grid xs={12}>
             <FormControl>
-              <FormLabel sx={{ mb: 1.5 }}>alignItems</FormLabel>
+              <FormLabel sx={{ mb: 0.5 }}>alignItems</FormLabel>
               <RadioGroup
+                size="sm"
                 orientation="horizontal"
                 name="alignItems"
                 aria-label="align items"
@@ -102,8 +116,9 @@ export default function InteractiveStack() {
           </Grid>
           <Grid xs={12}>
             <FormControl>
-              <FormLabel sx={{ mb: 1.5 }}>justifyContent</FormLabel>
+              <FormLabel sx={{ mb: 0.5 }}>justifyContent</FormLabel>
               <RadioGroup
+                size="sm"
                 orientation="horizontal"
                 name="justifyContent"
                 aria-label="justifyContent"
@@ -124,8 +139,9 @@ export default function InteractiveStack() {
           </Grid>
           <Grid xs={12}>
             <FormControl>
-              <FormLabel sx={{ mb: 1.5 }}>spacing</FormLabel>
+              <FormLabel sx={{ mb: 0.5 }}>spacing</FormLabel>
               <RadioGroup
+                size="sm"
                 orientation="horizontal"
                 name="spacing"
                 aria-label="spacing"

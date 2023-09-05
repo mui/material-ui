@@ -2,6 +2,8 @@ import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/
 import generateUtilityClass from '../generateUtilityClass';
 
 export interface SelectClasses {
+  /** Styles applied to the root element. */
+  root: string;
   /** Styles applied to the select component `select` class. */
   select: string;
   /** Styles applied to the select component if `multiple={true}`. */
@@ -37,6 +39,7 @@ export function getSelectUtilityClasses(slot: string): string {
 }
 
 const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
+  'root',
   'select',
   'multiple',
   'filled',
