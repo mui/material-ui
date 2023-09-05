@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { ClickAwayListenerProps } from '@mui/base/ClickAwayListener';
 import { UseSnackbarParameters } from '@mui/base/useSnackbar';
