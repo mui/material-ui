@@ -96,9 +96,15 @@ importers:
       '@playwright/test':
         specifier: 1.37.1
         version: 1.37.1
+      '@pnpm/read-package-json':
+        specifier: ^8.0.3
+        version: 8.0.3
       '@pnpm/workspace.find-packages':
-        specifier: 1.0.5
+        specifier: ^1.0.5
         version: 1.0.5(@pnpm/logger@5.0.0)
+      '@pnpm/write-project-manifest':
+        specifier: ^5.0.2
+        version: 5.0.2
       '@slack/bolt':
         specifier: ^3.13.3
         version: 3.13.3
@@ -5847,6 +5853,16 @@ packages:
 
   /@pnpm/ramda@0.28.1:
     resolution: {integrity: sha512-zcAG+lvU0fMziNeGXpPyCyCJYp5ZVrPElEE4t14jAmViaihohocZ+dDkcRIyAomox8pQsuZnv1EyHR+pOhmUWw==}
+    dev: true
+
+  /@pnpm/read-package-json@8.0.3:
+    resolution: {integrity: sha512-I4oZGqWC5tc+n5omMWUp5wFphsUFu9Qd2OtqUFzeV97Zx9/PaEE0Eh/sFKpJM91FNeatezF+OszETPFsvrsusw==}
+    engines: {node: '>=16.14'}
+    dependencies:
+      '@pnpm/error': 5.0.2
+      '@pnpm/types': 9.2.0
+      load-json-file: 6.2.0
+      normalize-package-data: 5.0.0
     dev: true
 
   /@pnpm/read-project-manifest@5.0.4:
