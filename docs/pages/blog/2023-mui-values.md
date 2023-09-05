@@ -95,7 +95,7 @@ But before we get there, I want to share a few examples of phrases that didn’t
 
 Finding the right phraseology started with carefully reviewing *all* team inputs. As I had a unique vantage point of all those inputs, I began to jot down phrases that effectively pulled from them *all* and led with *action verbs.* 🕸️💪
 
-Things like: “Build in the open” made an appearance, but felt too limited. There was so much more we wanted to capture in the enduring theme of transparency, why it matters to us, and how we show it.
+Things like: "Build in the open" made an appearance, but felt too limited. There was so much more we wanted to capture in the enduring theme of transparency, why it matters to us, and how we show it.
 
 Other phrases included: "Own your impact" or "Maximize flexibility" but these, again, felt too limited and also generic. 
 
@@ -157,7 +157,7 @@ We don't over-structure, add process or hierarchy where it isn't needed. To intr
 
 We don't have lengthy approvals processes or a formalized chain of command; instead we collaborate as a tight-knit network where anyone can ask about and contribute to anything.
 
-**Chase "better”** is all about consistently improving and developing in all aspects of our work as well as raising the bar for quality. 
+**Chase "better"** is all about consistently improving and developing in all aspects of our work as well as raising the bar for quality. 
 
 It addresses our attitude to risk, feedback, and setbacks too. Genuine innovation demands a fearless embrace of the uncharted, even if it entails a touch of chaos. 
 
