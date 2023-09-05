@@ -82,7 +82,7 @@ function PhotoGallery() {
     <Box
       sx={(theme) => ({
         borderRadius: 1,
-        overflow: 'auto',
+        overflow: 'hidden',
         position: 'relative',
         minWidth: '100%',
         display: 'flex',
@@ -100,12 +100,12 @@ function PhotoGallery() {
           zIndex: 2,
         },
         '&::before': {
-          right: -20,
+          right: { xs: -64, sm: -20 },
           top: 0,
           transform: 'rotateZ(180deg)',
         },
         '&::after': {
-          left: -20,
+          left: { xs: -64, sm: -20 },
           top: 0,
         },
         ...theme.applyDarkStyles({
