@@ -41,7 +41,6 @@ export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoin
   styleFunction: StyleFunction<Props>,
 ): StyleFunction<Partial<Record<Breakpoints, Props>> & Props>;
 
-
 export function compose<T extends Array<StyleFunction<any>>>(...args: T): ComposedStyleFunction<T>;
 
 export type DisplayProps = PropsFor<typeof display>;
