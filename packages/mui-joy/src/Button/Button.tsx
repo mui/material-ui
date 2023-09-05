@@ -132,8 +132,8 @@ export const getButtonStyles = ({
         paddingInline: '1.5rem',
       }),
       WebkitTapHighlightColor: 'transparent',
-      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
-      margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
+      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, e.g. Input
+      margin: `var(--Button-margin)`, // to be controlled by other components, e.g. Input
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -217,7 +217,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const color = getColor(inProps.color, buttonGroup.color || colorProp);
   const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp || loading);
 
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({

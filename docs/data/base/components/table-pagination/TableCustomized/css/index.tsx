@@ -169,7 +169,7 @@ function Styles() {
       .TablePaginationDemo th {
         background-color: ${isDarkMode ? cyan[800] : cyan[50]};
       }
-      
+
       .CustomTablePagination .${classes.spacer} {
         display: none;
       }

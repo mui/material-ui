@@ -386,9 +386,9 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
-  const rootRef = React.useRef<HTMLElement | null>(null);
-  const buttonRef = React.useRef<HTMLElement | null>(null);
-  const listboxRef = React.useRef<HTMLElement | null>(null);
+  const rootRef = React.useRef<HTMLElement>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
+  const listboxRef = React.useRef<HTMLElement>(null);
 
   const handleRef = useForkRef(ref, rootRef);
 
