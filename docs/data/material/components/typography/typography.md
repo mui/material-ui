@@ -43,7 +43,7 @@ import '@fontsource/roboto/700.css';
 ```
 
 :::info
-Fontsource can be configured to load specific subsets, weights and styles. Material UI's default typography configuration relies only on the 300, 400, 500, and 700 font weights.
+Fontsource can be configured to load specific subsets, weights, and styles. Material UI's default typography configuration relies only on the 300, 400, 500, and 700 font weights.
 :::
 
 ### Google Web Fonts
