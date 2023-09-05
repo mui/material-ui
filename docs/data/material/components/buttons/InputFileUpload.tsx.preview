@@ -1,0 +1,9 @@
+<Button
+  component="label"
+  variant="contained"
+  startIcon={<CloudUploadIcon />}
+  href="#file-upload"
+>
+  Upload a file
+  <VisuallyHiddenInput type="file" />
+</Button>
