@@ -119,7 +119,16 @@ const SnackbarEndDecorator = styled('span', {
   flex: 'none',
   marginLeft: 'auto',
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Snackbar](https://mui.com/joy-ui/react-snackbar/)
+ *
+ * API:
+ *
+ * - [Snackbar API](https://mui.com/joy-ui/api/snackbar/)
+ */
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const props = useThemeProps<typeof inProps & SnackbarProps>({
     props: inProps,
