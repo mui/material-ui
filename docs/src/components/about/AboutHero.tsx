@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { styled, keyframes, alpha } from '@mui/material/styles';
+import { styled, keyframes } from '@mui/material/styles';
 import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
 import TeamStatistics from 'docs/src/components/about/TeamStatistics';
@@ -63,7 +63,7 @@ const Image = styled('img')(({ theme }) => ({
   boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.grey[200]}`,
   transition: 'all 100ms ease',
   ...theme.applyDarkStyles({
-    borderColor: 'primaryDark.600',
+    borderColor: (theme.vars || theme).palette.primaryDark[600],
     boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.common.black}`,
   }),
 }));
@@ -88,10 +88,11 @@ function PhotoGallery() {
         display: 'flex',
         gap: 2,
         my: 4,
+        '> div': {
+          animation: `${scroll} 120s linear infinite`,
+        },
         '&::before, &::after': {
-          background: `linear-gradient(to right, #FFF 0%, ${
-            (theme.vars || theme).palette.primary[50]
-          } 100%)`,
+          background: `linear-gradient(to right, #FFF 0%, rgba(255, 255, 255, 0) 100%)`,
           content: "''",
           height: '100%',
           position: 'absolute',
@@ -107,14 +108,11 @@ function PhotoGallery() {
           left: -20,
           top: 0,
         },
-        '> div': {
-          animation: `${scroll} 120s linear infinite`,
-        },
         ...theme.applyDarkStyles({
           '&::before, &::after': {
             background: `linear-gradient(to right, ${
               (theme.vars || theme).palette.primaryDark[900]
-            } 0%, ${alpha(theme.palette.primary[900], 0)} 100%)`,
+            } 0%, rgba(0, 0, 0, 0) 100%)`,
           },
         }),
       })}
