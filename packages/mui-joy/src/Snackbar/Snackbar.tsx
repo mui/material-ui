@@ -72,23 +72,18 @@ const SnackbarRoot = styled('div', {
         }),
       },
       '--Snackbar-radius': theme.vars.radius.sm,
-      '--Snackbar-decoratorChildRadius':
-        'max((var(--Snackbar-radius) - var(--variant-borderWidth, 0px)) - var(--Snackbar-padding), min(var(--Snackbar-padding) + var(--variant-borderWidth, 0px), var(--Snackbar-radius) / 2))',
       ...(ownerState.size === 'sm' && {
         '--Snackbar-padding': '0.5rem',
-        '--Snackbar-decoratorChildHeight': '1.5rem',
         '--Icon-fontSize': theme.vars.fontSize.xl,
         gap: '0.5rem',
       }),
       ...(ownerState.size === 'md' && {
         '--Snackbar-padding': '0.75rem',
-        '--Snackbar-decoratorChildHeight': '2rem',
         '--Icon-fontSize': theme.vars.fontSize.xl,
         gap: '0.625rem',
       }),
       ...(ownerState.size === 'lg' && {
         '--Snackbar-padding': '1rem',
-        '--Snackbar-decoratorChildHeight': '2.375rem',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
         gap: '0.875rem',
       }),
