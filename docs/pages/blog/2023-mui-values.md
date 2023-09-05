@@ -111,7 +111,7 @@ You can <a href="https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c07
 
 Since we work asynchronously at MUI, we like to leave a good window of time for peers to properly review, digest, and offer thoughtful feedback.
 
-Since we place such a high — ahem, *************value —************* on quality and accuracy, we didn’t want to rush this process and extended our deadline for delivery. 
+Since we place such a high — ahem, *************value ************* — on quality and accuracy, we didn’t want to rush this process and extended our deadline for delivery. 
 
 As we approached the finish line, I collaborated closely with our Co-Founder, Olivier. 🙋
 
@@ -132,6 +132,8 @@ Our core four are:
 **T** — Trust & deliver together. “We cultivate unity as the core of achievement.” 🚀
 
 To delve deeper into the meaning of each value and what it looks like in practice, you can also check out our handbook: <a href="https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4">Values & Behaviors.</a>
+
+In it, we offer concrete examples of each core value and explicitly address tensions folks may encounter in trying to live them out.
 
 <img alt="description" src="/static/blog/2023-mui-values/notion-values-page.png" loading="lazy" />
 
