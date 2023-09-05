@@ -50,12 +50,10 @@ const SnackbarRoot = styled('div', {
       display: 'flex',
       left: 8,
       right: 8,
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       alignItems: 'center',
-      maxWidth: 300,
+      minWidth: 300,
       ...(ownerState.anchorOrigin!.vertical === 'top' ? { top: 8 } : { bottom: 8 }),
-      ...(ownerState.anchorOrigin!.horizontal === 'left' && { justifyContent: 'flex-start' }),
-      ...(ownerState.anchorOrigin!.horizontal === 'right' && { justifyContent: 'flex-end' }),
       [theme.breakpoints.up('sm')]: {
         ...(ownerState.anchorOrigin!.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
         ...(ownerState.anchorOrigin!.horizontal === 'center' && {
@@ -88,6 +86,7 @@ const SnackbarRoot = styled('div', {
         '--Icon-fontSize': theme.vars.fontSize.xl2,
         gap: '0.875rem',
       }),
+      boxShadow: theme.vars.shadow.md,
       backgroundColor: theme.vars.palette.background.surface,
       padding: `var(--Snackbar-padding)`,
       borderRadius: 'var(--Snackbar-radius)',
