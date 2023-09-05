@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import TeamStatistics from 'docs/src/components/about/TeamStatistics';
-import GradientText from 'docs/src/components/typography/GradientText';
+import { styled, keyframes, alpha } from '@mui/material/styles';
 import Section from 'docs/src/layouts/Section';
+import GradientText from 'docs/src/components/typography/GradientText';
+import TeamStatistics from 'docs/src/components/about/TeamStatistics';
 
 const teamPhotos = [
   {
@@ -44,61 +45,98 @@ const teamPhotos = [
   },
 ];
 
+const ImageContainer = styled('div')(() => ({
+  display: 'flex',
+  gap: 16,
+  justifyContent: 'center',
+}));
+
+const Image = styled('img')(({ theme }) => ({
+  width: 350,
+  height: 250,
+  objectFit: 'cover',
+  borderRadius: theme.shape.borderRadius,
+  border: '1px solid',
+  borderColor: (theme.vars || theme).palette.divider,
+  boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.grey[200]}`,
+  transition: 'all 100ms ease',
+  ...theme.applyDarkStyles({
+    borderColor: 'primaryDark.600',
+    boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.common.black}`,
+  }),
+}));
+
+const scroll = keyframes`
+  0% { 
+    transform: translateX(0); 
+  }
+  100% { 
+    transform: translateX(-100%)
+  }
+`;
+
 function PhotoGallery() {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
+        borderRadius: 1,
+        overflow: 'auto',
+        position: 'relative',
+        minWidth: '100%',
         display: 'flex',
-        flexDirection: 'row',
-        gap: 4,
+        gap: 2,
         my: 4,
-        animation: 'bannermove 28s linear infinite',
-        '@keyframes bannermove': {
-          '0%': {
-            transform: 'translateX(0%)',
-          },
-          '100%': {
-            transform: 'translateX(-100%)',
-          },
+        '&::before, &::after': {
+          background: `linear-gradient(to right, #FFF 0%, ${
+            (theme.vars || theme).palette.primary[50]
+          } 100%)`,
+          content: "''",
+          height: '100%',
+          position: 'absolute',
+          width: 200,
+          zIndex: 2,
         },
-        '&:hover': {
-          animationPlayState: 'paused',
+        '&::before': {
+          right: -20,
+          top: 0,
+          transform: 'rotateZ(180deg)',
         },
-      }}
+        '&::after': {
+          left: -20,
+          top: 0,
+        },
+        '> div': {
+          animation: `${scroll} 120s linear infinite`,
+        },
+        ...theme.applyDarkStyles({
+          '&::before, &::after': {
+            background: `linear-gradient(to right, ${
+              (theme.vars || theme).palette.primaryDark[900]
+            } 0%, ${alpha(theme.palette.primary[900], 0)} 100%)`,
+          },
+        }),
+      })}
     >
-      {teamPhotos.map((item, index) => (
-        <div key={index}>
-          <Box
-            component="img"
+      <ImageContainer>
+        {teamPhotos.map((item, index) => (
+          <Image
+            key={index}
             src={`${item.img}?w=162&auto=format`}
-            srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
             alt={item.title}
             loading="lazy"
-            sx={(theme) => ({
-              width: '100%',
-              minWidth: { xs: 200, sm: 400 },
-              minHeight: { xs: 100, sm: 200 },
-              objectFit: 'cover',
-              borderRadius: 1,
-              border: '1px solid',
-              borderColor: 'divider',
-              boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.grey[200]}`,
-              transition: 'all 150ms ease',
-              '&:hover': {
-                transform: 'scale(1.1)',
-                boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
-              },
-              ...theme.applyDarkStyles({
-                borderColor: 'primaryDark.600',
-                boxShadow: `0px 2px 8px ${(theme.vars || theme).palette.common.black}`,
-                '&:hover': {
-                  boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.common.black}`,
-                },
-              }),
-            })}
           />
-        </div>
-      ))}
+        ))}
+      </ImageContainer>
+      <ImageContainer>
+        {teamPhotos.map((item, index) => (
+          <Image
+            key={index}
+            src={`${item.img}?w=162&auto=format`}
+            alt={item.title}
+            loading="lazy"
+          />
+        ))}
+      </ImageContainer>
     </Box>
   );
 }
@@ -106,7 +144,14 @@ function PhotoGallery() {
 export default function AboutHero() {
   return (
     <Section cozy bg="gradient">
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
         <Typography variant="body2" color="primary.600" fontWeight="bold">
           About us
         </Typography>
@@ -124,9 +169,9 @@ export default function AboutHero() {
           We aim high at enabling developers & designers to bring stunning UIs to life with
           unrivalled speed and ease.
         </Typography>
-        <PhotoGallery />
-        <TeamStatistics />
       </Box>
+      <PhotoGallery />
+      <TeamStatistics />
     </Section>
   );
 }

@@ -12,10 +12,7 @@ export default function TeamStatistics() {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
       {data.map((item) => (
-        <Box
-          key={item.title}
-          sx={{ height: '100%', width: '100%', minWidth: { xs: 'auto', sm: 200 } }}
-        >
+        <Box key={item.title} sx={{ height: '100%', minWidth: { xs: 'auto', sm: 200 } }}>
           <Typography
             component="p"
             variant="h4"
