@@ -47,7 +47,7 @@ export default function MyProfile() {
         sx={{
           position: 'sticky',
           top: {
-            sm: 80,
+            sm: -100,
             md: -110,
           },
           bgcolor: 'background.body',

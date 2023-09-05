@@ -19,7 +19,6 @@ export default function JoyOrderDashboardTemplate() {
           sx={{
             pt: {
               xs: 'calc(12px + var(--Header-height))',
-              sm: 'calc(12px + var(--Header-height))',
               md: 3,
             },
             pb: {
