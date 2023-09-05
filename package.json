@@ -95,6 +95,7 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
+    "@mui-internal/api-docs-builder": "workspace:^",
     "@octokit/rest": "^20.0.1",
     "@pnpm/logger": "^5.0.0",
     "@pnpm/read-package-json": "^8.0.3",

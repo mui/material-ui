@@ -78,6 +78,9 @@ importers:
       '@mnajdova/enzyme-adapter-react-18':
         specifier: ^0.2.0
         version: 0.2.0(enzyme@3.11.0)(react-dom@18.2.0)(react@18.2.0)
+      '@mui-internal/api-docs-builder':
+        specifier: workspace:^
+        version: link:packages/api-docs-builder
       '@mui-internal/docs-utilities':
         specifier: workspace:^
         version: link:packages/docs-utilities
