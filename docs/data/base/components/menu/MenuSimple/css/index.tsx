@@ -5,7 +5,7 @@ import { MenuButton } from '@mui/base/MenuButton';
 import { Dropdown } from '@mui/base/Dropdown';
 import { useTheme } from '@mui/system';
 
-export default function MenuIntroduction() {
+export default function MenuSimple() {
   const createHandleMenuClick = (menuItem: string) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
@@ -14,28 +14,28 @@ export default function MenuIntroduction() {
 
   return (
     <Dropdown>
-      <MenuButton className="TriggerButtonIntroduction">My account</MenuButton>
+      <MenuButton className="TriggerButtonSimple">My account</MenuButton>
 
       <Menu
-        className="CustomMenuIntroduction"
+        className="CustomMenuSimple"
         slotProps={{
-          listbox: { className: 'CustomMenuIntroduction--listbox' },
+          listbox: { className: 'CustomMenuSimple--listbox' },
         }}
       >
         <MenuItem
-          className="CustomMenuIntroduction--item"
+          className="CustomMenuSimple--item"
           onClick={createHandleMenuClick('Profile')}
         >
           Profile
         </MenuItem>
         <MenuItem
-          className="CustomMenuIntroduction--item"
+          className="CustomMenuSimple--item"
           onClick={createHandleMenuClick('Language settings')}
         >
           Language settings
         </MenuItem>
         <MenuItem
-          className="CustomMenuIntroduction--item"
+          className="CustomMenuSimple--item"
           onClick={createHandleMenuClick('Log out')}
         >
           Log out
@@ -83,7 +83,7 @@ function Styles() {
 
   return (
     <style>{`
-    .CustomMenuIntroduction--listbox {
+    .CustomMenuSimple--listbox {
       font-family: IBM Plex Sans, sans-serif;
       font-size: 0.875rem;
       box-sizing: border-box;
@@ -101,7 +101,7 @@ function Styles() {
       };
     }
 
-    .CustomMenuIntroduction--item {
+    .CustomMenuSimple--item {
       list-style: none;
       padding: 8px;
       border-radius: 8px;
@@ -109,26 +109,26 @@ function Styles() {
       user-select: none;
     }
 
-    .CustomMenuIntroduction--item:last-of-type {
+    .CustomMenuSimple--item:last-of-type {
       border-bottom: none;
     }
 
-    .CustomMenuIntroduction--item.${menuItemClasses.focusVisible} {
+    .CustomMenuSimple--item.${menuItemClasses.focusVisible} {
       outline: 3px solid ${isDarkMode ? cyan[600] : cyan[200]};
       background-color: ${isDarkMode ? grey[800] : grey[100]};
       color: ${isDarkMode ? grey[300] : grey[900]};
     }
 
-    .CustomMenuIntroduction--item.${menuItemClasses.disabled} {
+    .CustomMenuSimple--item.${menuItemClasses.disabled} {
       color: ${isDarkMode ? grey[700] : grey[400]};
     }
 
-    .CustomMenuIntroduction--item:hover:not(.${menuItemClasses.disabled}) {
+    .CustomMenuSimple--item:hover:not(.${menuItemClasses.disabled}) {
       background-color: ${isDarkMode ? cyan[800] : cyan[50]};
       color: ${isDarkMode ? grey[300] : grey[900]};
     }
 
-    .TriggerButtonIntroduction {
+    .TriggerButtonSimple {
       font-family: IBM Plex Sans,sans-serif;
       font-weight: 600;
       font-size: 0.875rem;
@@ -151,7 +151,7 @@ function Styles() {
     }
 
 
-    .CustomMenuIntroduction {
+    .CustomMenuSimple {
       z-index: 1;
     }
     `}</style>
