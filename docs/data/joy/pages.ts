@@ -73,7 +73,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/joy-ui/react-linear-progress', title: 'Linear Progress' },
           { pathname: '/joy-ui/react-modal' },
           { pathname: '/joy-ui/react-skeleton', newFeature: true },
-          { pathname: '/joy-ui/react-snackbar', planned: true },
+          { pathname: '/joy-ui/react-snackbar' },
         ],
       },
       {
