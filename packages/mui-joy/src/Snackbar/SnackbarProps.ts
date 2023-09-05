@@ -1,5 +1,5 @@
-import { OverrideProps } from '@mui/types';
-import { ClickAwayListenerProps } from '@mui/base/ClickAwayListener';
+import { OverrideProps, OverridableStringUnion } from '@mui/types';
+import { ColorPaletteProp, VariantProp } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export interface SnackbarSlots {
@@ -29,16 +29,31 @@ export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
+export interface SnackbarPropsColorOverrides {}
+export interface SnackbarPropsSizeOverrides {}
+export interface SnackbarPropsVariantOverrides {}
+
 export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * Props applied to the `ClickAwayListener` element.
+     * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'neutral'
      */
-    ClickAwayListenerProps?: Partial<ClickAwayListenerProps>;
+    color?: OverridableStringUnion<ColorPaletteProp, SnackbarPropsColorOverrides>;
     /**
      * If `true`, the component is shown.
      */
     open?: boolean;
+    /**
+     * The size of the component.
+     * @default 'md'
+     */
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', SnackbarPropsSizeOverrides>;
+    /**
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+     * @default 'outlined'
+     */
+    variant?: OverridableStringUnion<VariantProp, SnackbarPropsVariantOverrides>;
   } & SnackbarSlotsAndSlotProps;
   defaultComponent: D;
 }

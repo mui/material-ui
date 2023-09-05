@@ -3,15 +3,23 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSnackbar } from '@mui/base/useSnackbar';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
-import { SnackbarProps } from './SnackbarProps';
+import { SnackbarProps, SnackbarOwnerState } from './SnackbarProps';
 import { getSnackbarUtilityClass } from './snackbarClasses';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: SnackbarOwnerState) => {
+  const { variant, color, size } = ownerState;
+
   const slots = {
-    root: ['root'],
+    root: [
+      'root',
+      size && `size${capitalize(size)}`,
+      color && `color${capitalize(color)}`,
+      variant && `variant${capitalize(variant)}`,
+    ],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
   };
@@ -31,11 +39,22 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     name: 'JoySnackbar',
   });
 
-  const { children, className, component, slots, slotProps, open, ...other } = props;
+  const {
+    color = 'neutral',
+    children,
+    className,
+    component,
+    size = 'md',
+    slots,
+    slotProps,
+    open,
+    variant = 'outlined',
+    ...other
+  } = props;
 
-  const ownerState = { ...props };
+  const ownerState = { ...props, color, size, variant };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   const { getRootProps } = useSnackbar({ ...ownerState });
 
