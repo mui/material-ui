@@ -67,7 +67,7 @@ We came up with a list of words that we felt best-encapsulated each cluster. Thi
 
 <img alt="description" src="/static/blog/2023-mui-values/figjam-board-bordered.png" loading="lazy" />
 
-## Stage three: workshop
+## Stage three: transforming the shortlist
 
 36.
 
