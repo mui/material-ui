@@ -151,7 +151,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     open,
     resumeHideDuration,
     size = 'md',
-    slots,
+    slots = {},
     slotProps,
     variant = 'outlined',
     ...other
@@ -203,16 +203,15 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   return (
     <ClickAwayListener onClickAway={onClickAway} {...ClickAwayListenerProps}>
       <SlotRoot {...rootProps}>
-        {slots?.startDecorator && (
+        {slots.startDecorator && (
           <SlotStartDecorator {...startDecoratorProps}>
-            {slots?.startDecorator as React.ReactNode}
+            {slots.startDecorator as React.ReactNode}
           </SlotStartDecorator>
         )}
-
         {children}
-        {slots?.endDecorator && (
+        {slots.endDecorator && (
           <SlotEndDecorator {...endDecoratorProps}>
-            {slots?.endDecorator as React.ReactNode}
+            {slots.endDecorator as React.ReactNode}
           </SlotEndDecorator>
         )}
       </SlotRoot>
