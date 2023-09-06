@@ -16,8 +16,7 @@ import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipOwnerState, ChipProps, ChipTypeMap } from './Chip.types';
 
 const useUtilityClasses = (ownerState: ChipOwnerState) => {
-  const { classes, disabled, size, color, iconColor, hasDeleteIcon, clickable, variant } =
-    ownerState;
+  const { classes, disabled, size, color, hasDeleteIcon, clickable, variant } = ownerState;
 
   const slots = {
     root: [
@@ -27,23 +26,20 @@ const useUtilityClasses = (ownerState: ChipOwnerState) => {
       `size${capitalize(size)}`,
       color && `color${capitalize(color)}`,
       clickable && 'clickable',
-      clickable && color && `clickableColor${capitalize(color)}`,
       hasDeleteIcon && 'deletable',
-      hasDeleteIcon && color && `deletableColor${capitalize(color)}`,
-      color && `${variant}${capitalize(color)}`,
     ],
-    label: ['label', `label${capitalize(size)}`],
-    avatar: ['avatar', `avatar${capitalize(size)}`, color && `avatarColor${capitalize(color)}`],
-    icon: ['icon', `icon${capitalize(size)}`, iconColor && `iconColor${capitalize(iconColor)}`],
-    deleteIcon: [
-      'deleteIcon',
-      `deleteIcon${capitalize(size)}`,
-      color && `deleteIconColor${capitalize(color)}`,
-      color && `deleteIcon${capitalize(variant)}Color${capitalize(color)}`,
-    ],
+    label: ['label'],
+    avatar: ['avatar'],
+    icon: ['icon'],
+    deleteIcon: ['deleteIcon'],
   };
 
-  return composeClasses(slots, getChipUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getChipUtilityClass, classes);
+
+  return {
+    ...classes, // forward the focused, disabled, etc. classes to the ButtonBase
+    ...composedClasses,
+  };
 };
 
 const ChipRoot = styled('div', {
@@ -51,31 +47,18 @@ const ChipRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { color, iconColor, clickable, hasDeleteIcon, size, variant } = ownerState;
+    const { color, clickable, hasDeleteIcon, size, variant } = ownerState;
 
     return [
       { [`& .${chipClasses.avatar}`]: styles.avatar },
-      { [`& .${chipClasses.avatar}`]: styles[`avatar${capitalize(size)}`] },
-      { [`& .${chipClasses.avatar}`]: color && styles[`avatarColor${capitalize(color)}`] },
       { [`& .${chipClasses.icon}`]: styles.icon },
-      { [`& .${chipClasses.icon}`]: styles[`icon${capitalize(size)}`] },
-      { [`& .${chipClasses.icon}`]: iconColor && styles[`iconColor${capitalize(iconColor)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles.deleteIcon },
-      { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIcon${capitalize(size)}`] },
-      { [`& .${chipClasses.deleteIcon}`]: color && styles[`deleteIconColor${capitalize(color)}`] },
-      {
-        [`& .${chipClasses.deleteIcon}`]:
-          color && styles[`deleteIcon${capitalize(variant)}Color${capitalize(color)}`],
-      },
       styles.root,
       styles[`size${capitalize(size)}`],
       color && styles[`color${capitalize(color)}`],
       clickable && styles.clickable,
-      clickable && color && styles[`clickableColor${capitalize(color)})`],
       hasDeleteIcon && styles.deletable,
-      hasDeleteIcon && color && styles[`deletableColor${capitalize(color)}`],
       styles[variant],
-      color && styles[`${variant}${capitalize(color)}`],
     ];
   },
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => {
@@ -280,13 +263,7 @@ const ChipRoot = styled('div', {
 const ChipLabel = styled('span', {
   name: 'MuiChip',
   slot: 'Label',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-    const { size } = ownerState;
-
-    return [styles.label, styles[`label${capitalize(size)}`]];
-  },
-})({
+})<{ ownerState: ChipOwnerState }>({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
@@ -386,7 +363,6 @@ const Chip = React.forwardRef(function Chip<
     disabled,
     size,
     color,
-    iconColor: React.isValidElement(iconProp) ? (iconProp.props as any)?.color : null,
     clickable,
     variant,
     hasIcon,
@@ -463,7 +439,9 @@ const Chip = React.forwardRef(function Chip<
   return (
     <ChipRoot {...rootProps}>
       {avatar || icon}
-      <ChipLabel className={clsx(classes.label)}>{label}</ChipLabel>
+      <ChipLabel className={clsx(classes.label)} ownerState={ownerState}>
+        {label}
+      </ChipLabel>
       {deleteIcon}
     </ChipRoot>
   );

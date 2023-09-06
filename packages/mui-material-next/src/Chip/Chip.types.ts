@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { IconProps } from '@mui/material/Icon';
 import { SxProps } from '../styles/Theme.types';
 import { ChipClasses } from './chipClasses';
 
@@ -104,7 +103,6 @@ export interface ChipOwnerState extends ChipProps {
   /**
    * color for the icon component
    */
-  iconColor: NonNullable<IconProps['color'] | ChipProps['color']>;
   hasIcon: boolean;
   hasDeleteIcon: boolean;
   hasAvatar: boolean;
