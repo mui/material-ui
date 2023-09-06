@@ -19,41 +19,19 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-sel
 
 A select is a UI element that gives users a list of options to choose from.
 
-Base UI offers components to replace the native HTML `<select>` tag: Select.
-It also includes Option for creating the options on the list, and Option Group for grouping those options.
+Base UI's Select component replaces the native HTML `<select>` tag.
+It also includes the Option component for creating the options on the list, and Option Group for grouping those options.
 
 {{"demo": "UnstyledSelectIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
-### Features
-
-- 🦍 Can be used as a controlled or uncontrolled component
-- 🧬 Accepts custom elements and non-string values for options
-- 🗃️ Options can be grouped and nested
-
 ## Components
-
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import { Select } from '@mui/base/Select';
 import { Option } from '@mui/base/Option';
-
-export default function MyApp() {
-  return (
-    <Select>
-      <Option value="#F00">Red</Option>
-      <Option value="#0F0">Green</Option>
-      <Option value="#00F">Blue</Option>
-    </Select>
-  );
-}
 ```
 
-### Basics
-
-The following demo shows how to create and style a Select component.
+The following demo shows how to create and style a Select component with Options:
 
 {{"demo": "UnstyledSelectBasic", "defaultCodeOpen": false}}
 
@@ -65,9 +43,7 @@ When the `name` prop is set, the Select will render a hidden input with the sele
 {{"demo": "UnstyledSelectForm.js"}}
 
 Note how the second Select in the demo above renders a hidden input with the name provided as a prop.
-
-You can customize the value of this hidden input.
-See the [Object values](#object-values) section to learn how to do it.
+You can customize the value of this hidden input—see the [Object values](#object-values) section for details.
 
 #### TypeScript caveat
 
@@ -93,14 +69,12 @@ For the sake of brevity, the rest of the demos throughout this doc will not use 
 
 ### Multi-select
 
-The Select component lets your users select multiple options from the list.
-In contrast to the single-selection mode, the options popup doesn't close after an item is selected, enabling users to continue choosing more options.
-
-Set the `multiple` prop to turn on the multi-selection mode.
+Set the `multiple` prop to let your users select multiple options from the list.
+In contrast with single-selection mode, the options popup doesn't close after an item is selected, which enables users to continue choosing more options.
 
 {{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
 
-Note that in the multiple selection mode, the `value` prop (and `defaultValue`) is an array.
+Note that in multiple selection mode, the `value` prop (and `defaultValue`) is an array.
 
 ### Controlled select
 
@@ -116,9 +90,9 @@ Learn more about controlled and uncontrolled components in the [React documentat
 
 {{"demo": "UnstyledSelectControlled.js", "defaultCodeOpen": false}}
 
-To set the value of the controlled Select, use the `value` prop.
+Use the `value` prop to set the value of the controlled Select.
 The uncontrolled component accepts the `defaultValue` that can be used to set the initial value.
-In any case, if you wish to deselect all values, pass `null` to the respective prop.
+To deselect all values, pass `null` to the respective prop.
 
 :::warning
 This pattern is where Base UI's Select differs from the equivalent [Material UI component](/material-ui/react-select/).
@@ -192,7 +166,8 @@ To instead render the popup where the component is defined, override the `disabl
 
 #### Usage with TypeScript
 
-In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. 
+This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
 <Select<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
@@ -210,10 +185,10 @@ The same applies for props specific to custom primitive elements:
 import { useSelect } from '@mui/base/useSelect';
 ```
 
-The `useSelect` hook lets you apply the functionality of a select to a fully custom component.
+The `useSelect` hook lets you apply the functionality of a Select to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
-Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+Hooks _do not_ support [slot props](#custom-structure), but they do support [customization props](#customization).
 
 :::info
 Hooks give you the most room for customization, but require more work to implement.
