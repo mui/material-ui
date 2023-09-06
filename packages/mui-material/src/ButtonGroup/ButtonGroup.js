@@ -256,7 +256,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     ],
   );
 
-  const addButtonGroupButtonContextPositionClassName = (index, childrenParam) => {
+  const getButtonPositionClassName = (index, childrenParam) => {
     const isFirstButton = index === 0;
     const isLastButton = index === React.Children.count(childrenParam) - 1;
 
@@ -289,7 +289,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
 
           return (
             <ButtonGroupButtonContext.Provider
-              value={addButtonGroupButtonContextPositionClassName(index, children)}
+              value={getButtonPositionClassName(index, children)}
             >
               {child}
             </ButtonGroupButtonContext.Provider>

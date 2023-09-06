@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-type ButtonGroupButtonContextClassNameValue = string;
+type ButtonPositionClassName = string;
 
 /**
  * @ignore - internal component.
  */
-const ButtonGroupButtonContext = React.createContext<
-  ButtonGroupButtonContextClassNameValue | undefined
->(undefined);
+const ButtonGroupButtonContext = React.createContext<ButtonPositionClassName | undefined>(
+  undefined,
+);
 
 if (process.env.NODE_ENV !== 'production') {
   ButtonGroupButtonContext.displayName = 'ButtonGroupButtonContext';
