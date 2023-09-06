@@ -35,8 +35,6 @@ Once the [Popup](/base-ui/react-popup/) is stable, we will deprecate and, later,
 import { Popper } from '@mui/base/Popper';
 ```
 
-### Basics
-
 By default, the Popper is mounted to the DOM when its `open` prop is set to `true`, and removed from the DOM when `open` is `false`.
 
 `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
