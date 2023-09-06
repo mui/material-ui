@@ -110,6 +110,10 @@ export default function DrawerUsage() {
           defaultValue: 'md',
           options: ['sm', 'md', 'lg'],
         },
+        {
+          propName: 'invertedColors',
+          defaultValue: true,
+        },
       ]}
       renderDemo={(props) => <Demo {...props} />}
     />
