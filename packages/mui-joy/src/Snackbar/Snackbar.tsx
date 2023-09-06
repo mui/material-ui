@@ -218,6 +218,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
             {<slots.startDecorator />}
           </SlotStartDecorator>
         )}
+
         {children}
         {slots.endDecorator && (
           <SlotEndDecorator {...endDecoratorProps}>{<slots.endDecorator />}</SlotEndDecorator>
