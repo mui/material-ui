@@ -26,6 +26,7 @@ type CalendarPickerComponent = (<TDate>(
 
 /**
  * @ignore - do not document.
+ * @deprecated The CalendarPicker component was moved from `@mui/lab` to `@mui/x-date-pickers`. More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.
  */
 const CalendarPicker = React.forwardRef(function DeprecatedCalendarPicker() {
   warn();

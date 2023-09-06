@@ -24,6 +24,7 @@ const warn = () => {
 
 /**
  * @ignore - do not document.
+ * @deprecated The TreeItem component was moved from `@mui/lab` to `@mui/x-date-pickers`. More information about this migration on our blog: https://mui.com/blog/lab-tree-view-to-mui-x/.
  */
 const TreeView = React.forwardRef(function DeprecatedTreeView(
   props: TreeViewProps,

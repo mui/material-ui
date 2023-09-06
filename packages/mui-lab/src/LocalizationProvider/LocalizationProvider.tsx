@@ -25,6 +25,7 @@ type LocalizationProviderComponent = ((
 
 /**
  * @ignore - do not document.
+ * @deprecated The LocalizationProvider component was moved from `@mui/lab` to `@mui/x-date-pickers`. More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.
  */
 const LocalizationProvider = React.forwardRef(function DeprecatedLocalizationProvider() {
   warn();

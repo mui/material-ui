@@ -27,6 +27,7 @@ type MobileDateRangePickerComponent = (<TDate>(
 
 /**
  * @ignore - do not document.
+ * @deprecated The MobileDateRangePicker component was moved from `@mui/lab` to `@mui/x-date-pickers-pro`. More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.
  */
 const MobileDateRangePicker = React.forwardRef(function DeprecatedMobileDateRangePicker() {
   warn();

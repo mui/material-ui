@@ -56,8 +56,14 @@ Follow the [migration steps](/x/migration/migration-tree-view-lab/) by updating 
 
 ```diff
 -import TreeView from '@mui/lab/TreeView';
+-import TreeItem from '@mui/lab/TreeItem';
 +import { TreeView } from '@mui/x-tree-view/TreeView';
++import { TreeItem } from '@mui/x-tree-view/TreeItem';
+```
 
+or
+
+```diff
 -import { TreeView, TreeItem } from '@mui/lab';
 +import { TreeView, TreeItem } from '@mui/x-tree-view';
 ```
