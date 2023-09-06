@@ -9,7 +9,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 
 # Menu
 
-<p class="description">The Menu components provide your users with a list of options on temporary surfaces.</p>
+<p class="description">The Menu components provide end users with a list of options on temporary surfaces.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -17,11 +17,14 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 
 ## Introduction
 
-The Menu component gives users a list of items in a popup that they can navigate through with a mouse or keyboard.
-It renders an unordered list (`<ul>`) by default.
+Menus are implemented using a collection of related components:
 
-Use the Menu Item to add items to the Menu.
-These are rendered as `<li>` elements.
+- [Dropdown]() - 
+- [Menu]() -
+- [Menu Item]() - 
+- [MenuButton]() - 
+
+
 
 {{"demo": "MenuIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
