@@ -5,7 +5,7 @@ const createDarkColorScheme = (
   palette: MD3Palettes,
 ) => ({
   surfaceTint: getCssVar('ref-palette-primary-40', palette.primary[40]),
-  onErrorContainer: getCssVar('ref-palette-error-80', palette.error[80]),
+  onErrorContainer: getCssVar('ref-palette-error-90', palette.error[90]),
   onError: getCssVar('ref-palette-error-20', palette.error[20]),
   errorContainer: getCssVar('ref-palette-error-30', palette.error[30]),
   onTertiaryContainer: getCssVar('ref-palette-tertiary-90', palette.tertiary[90]),
@@ -23,6 +23,7 @@ const createDarkColorScheme = (
   onSurface: getCssVar('ref-palette-neutral-90', palette.neutral[90]),
   surfaceVariant: getCssVar('ref-palette-neutralVariant-30', palette.neutralVariant[30]),
   surface: getCssVar('ref-palette-neutral-10', palette.neutral[10]),
+  surfaceContainerLow: getCssVar('ref-palette-neutral-10', palette.neutral[10]),
   surfaceContainerHigh: getCssVar('ref-palette-neutral-17', palette.neutral[17]),
   surfaceContainerHighest: getCssVar('ref-palette-neutral-22', palette.neutral[22]),
   onSecondaryContainer: getCssVar('ref-palette-secondary-90', palette.secondary[90]),
@@ -36,10 +37,16 @@ const createDarkColorScheme = (
   primary: getCssVar('ref-palette-primary-80', palette.primary[80]),
   info: getCssVar('ref-palette-info-80', palette.info[80]),
   onInfo: getCssVar('ref-palette-info-20', palette.info[20]),
+  infoContainer: getCssVar('ref-palette-info-30', palette.info[30]),
+  onInfoContainer: getCssVar('ref-palette-info-90', palette.info[90]),
   warning: getCssVar('ref-palette-warning-80', palette.warning[80]),
   onWarning: getCssVar('ref-palette-warning-20', palette.warning[20]),
+  warningContainer: getCssVar('ref-palette-warning-30', palette.warning[30]),
+  onWarningContainer: getCssVar('ref-palette-warning-90', palette.warning[90]),
   success: getCssVar('ref-palette-success-80', palette.success[80]),
   onSuccess: getCssVar('ref-palette-success-20', palette.success[20]),
+  successContainer: getCssVar('ref-palette-success-30', palette.success[30]),
+  onSuccessContainer: getCssVar('ref-palette-success-90', palette.success[90]),
 });
 
 export default createDarkColorScheme;

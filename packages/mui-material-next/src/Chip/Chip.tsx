@@ -2,21 +2,22 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { EventHandlers, unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
   unstable_unsupportedProp as unsupportedProp,
 } from '@mui/utils';
-import ButtonBase from '@mui/material/ButtonBase';
 import { OverridableComponent } from '@mui/types';
-import CancelIcon from '../internal/svg-icons/Cancel';
-import { useThemeProps, styled } from '../styles';
+import ClearIcon from '../internal/svg-icons/Clear';
+import { useThemeProps, styled, MD3ColorSchemeTokens } from '../styles';
+import ButtonBase from '../ButtonBase';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipOwnerState, ChipProps, ChipTypeMap } from './Chip.types';
 
 const useUtilityClasses = (ownerState: ChipOwnerState) => {
-  const { classes, disabled, size, color, iconColor, onDelete, clickable, variant } = ownerState;
+  const { classes, disabled, size, color, iconColor, hasDeleteIcon, clickable, variant } =
+    ownerState;
 
   const slots = {
     root: [
@@ -24,21 +25,21 @@ const useUtilityClasses = (ownerState: ChipOwnerState) => {
       variant,
       disabled && 'disabled',
       `size${capitalize(size)}`,
-      `color${capitalize(color)}`,
+      color && `color${capitalize(color)}`,
       clickable && 'clickable',
-      clickable && `clickableColor${capitalize(color)}`,
-      onDelete && 'deletable',
-      onDelete && `deletableColor${capitalize(color)}`,
-      `${variant}${capitalize(color)}`,
+      clickable && color && `clickableColor${capitalize(color)}`,
+      hasDeleteIcon && 'deletable',
+      hasDeleteIcon && color && `deletableColor${capitalize(color)}`,
+      color && `${variant}${capitalize(color)}`,
     ],
     label: ['label', `label${capitalize(size)}`],
-    avatar: ['avatar', `avatar${capitalize(size)}`, `avatarColor${capitalize(color)}`],
-    icon: ['icon', `icon${capitalize(size)}`, `iconColor${capitalize(iconColor)}`],
+    avatar: ['avatar', `avatar${capitalize(size)}`, color && `avatarColor${capitalize(color)}`],
+    icon: ['icon', `icon${capitalize(size)}`, iconColor && `iconColor${capitalize(iconColor)}`],
     deleteIcon: [
       'deleteIcon',
       `deleteIcon${capitalize(size)}`,
-      `deleteIconColor${capitalize(color)}`,
-      `deleteIcon${capitalize(variant)}Color${capitalize(color)}`,
+      color && `deleteIconColor${capitalize(color)}`,
+      color && `deleteIcon${capitalize(variant)}Color${capitalize(color)}`,
     ],
   };
 
@@ -50,224 +51,231 @@ const ChipRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { color, iconColor, clickable, onDelete, size, variant } = ownerState;
+    const { color, iconColor, clickable, hasDeleteIcon, size, variant } = ownerState;
 
     return [
       { [`& .${chipClasses.avatar}`]: styles.avatar },
       { [`& .${chipClasses.avatar}`]: styles[`avatar${capitalize(size)}`] },
-      { [`& .${chipClasses.avatar}`]: styles[`avatarColor${capitalize(color)}`] },
+      { [`& .${chipClasses.avatar}`]: color && styles[`avatarColor${capitalize(color)}`] },
       { [`& .${chipClasses.icon}`]: styles.icon },
       { [`& .${chipClasses.icon}`]: styles[`icon${capitalize(size)}`] },
-      { [`& .${chipClasses.icon}`]: styles[`iconColor${capitalize(iconColor)}`] },
+      { [`& .${chipClasses.icon}`]: iconColor && styles[`iconColor${capitalize(iconColor)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles.deleteIcon },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIcon${capitalize(size)}`] },
-      { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconColor${capitalize(color)}`] },
+      { [`& .${chipClasses.deleteIcon}`]: color && styles[`deleteIconColor${capitalize(color)}`] },
       {
         [`& .${chipClasses.deleteIcon}`]:
-          styles[`deleteIcon${capitalize(variant)}Color${capitalize(color)}`],
+          color && styles[`deleteIcon${capitalize(variant)}Color${capitalize(color)}`],
       },
       styles.root,
       styles[`size${capitalize(size)}`],
-      styles[`color${capitalize(color)}`],
+      color && styles[`color${capitalize(color)}`],
       clickable && styles.clickable,
-      clickable && color !== 'default' && styles[`clickableColor${capitalize(color)})`],
-      onDelete && styles.deletable,
-      onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`],
+      clickable && color && styles[`clickableColor${capitalize(color)})`],
+      hasDeleteIcon && styles.deletable,
+      hasDeleteIcon && color && styles[`deletableColor${capitalize(color)}`],
       styles[variant],
-      styles[`${variant}${capitalize(color)}`],
+      color && styles[`${variant}${capitalize(color)}`],
     ];
   },
-})<{ ownerState: ChipOwnerState }>(
-  ({ theme, ownerState }) => {
-    const { vars: tokens } = theme;
+})<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
 
-    return {
-      maxWidth: '100%',
-      fontFamily: theme.typography.fontFamily,
-      fontSize: theme.typography.pxToRem(13),
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: 32,
-      color: tokens.palette.text.primary,
-      backgroundColor: tokens.palette.action.selected,
-      borderRadius: 32 / 2,
-      whiteSpace: 'nowrap',
-      transition: theme.transitions.create(['background-color', 'box-shadow']),
-      // label will inherit this from root, then `clickable` class overrides this for both
-      cursor: 'default',
-      // We disable the focus ring for mouse, touch and keyboard users.
-      outline: 0,
-      textDecoration: 'none',
-      border: 0, // Remove `button` border
-      padding: 0, // Remove `button` padding
-      verticalAlign: 'middle',
-      boxSizing: 'border-box',
-      [`&.${chipClasses.disabled}`]: {
-        opacity: tokens.palette.action.disabledOpacity,
-        pointerEvents: 'none',
+  const containerColor = {
+    filled:
+      tokens.sys.color[`${ownerState.color ?? 'secondary'}Container` as keyof MD3ColorSchemeTokens],
+    outlined: 'transparent',
+    elevated:
+      tokens.sys.color[
+        (ownerState.color
+          ? `${ownerState.color}Container`
+          : 'surfaceContainerLow') as keyof MD3ColorSchemeTokens
+      ],
+  };
+
+  const labelTextColor = {
+    filled:
+      tokens.sys.color[
+        `on${capitalize(ownerState.color ?? 'secondary')}Container` as keyof MD3ColorSchemeTokens
+      ],
+    outlined: tokens.sys.color.onSurfaceVariant,
+    elevated:
+      tokens.sys.color[
+        (ownerState.color
+          ? `on${capitalize(ownerState.color)}Container`
+          : 'onSurface') as keyof MD3ColorSchemeTokens
+      ],
+  };
+
+  const containerElevation = {
+    filled: tokens.sys.elevation[0],
+    outlined: tokens.sys.elevation[0],
+    elevated: tokens.sys.elevation[1],
+  };
+
+  const disabledContainerColor = {
+    filled: `rgba(${tokens.sys.color.onSurfaceChannel} / 0.12)`,
+    outlined: 'transparent',
+    elevated: `rgba(${tokens.sys.color.onSurfaceChannel} / 0.12)`,
+  };
+
+  const disabledContainerBorder = {
+    filled: null,
+    outlined: `1px solid rgba(${tokens.sys.color.onSurfaceChannel} / 0.12)`,
+    elevated: null,
+  };
+
+  const disabledElevation = {
+    filled: tokens.sys.elevation[0],
+    outlined: tokens.sys.elevation[0],
+    elevated: tokens.sys.elevation[0],
+  };
+
+  const stateLayerBackgroundColor = {
+    filled: tokens.sys.color.onSecondaryContainer,
+    outlined: tokens.sys.color.onSurfaceVariant,
+    elevated: tokens.sys.color.onSurfaceVariant,
+  };
+
+  const hoveredContainerElevation = {
+    filled: tokens.sys.elevation[1],
+    outlined: tokens.sys.elevation[0],
+    elevated: tokens.sys.elevation[2],
+  };
+
+  const focusedContainerElevation = {
+    filled: tokens.sys.elevation[0],
+    outlined: tokens.sys.elevation[0],
+    elevated: tokens.sys.elevation[1],
+  };
+
+  const pressedContainerElevation = {
+    filled: tokens.sys.elevation[1],
+    outlined: tokens.sys.elevation[0],
+    elevated: tokens.sys.elevation[1],
+  };
+
+  const letterSpacing = `${
+    theme.sys.typescale.label.large.tracking / theme.sys.typescale.label.large.size
+  }rem`;
+
+  return {
+    '--md-comp-chip-container-color': containerColor[ownerState.variant],
+    '--md-comp-chip-label-padding-y': '16px',
+    '--md-comp-chip-label-padding-left': 'var(--md-comp-chip-label-padding-y)',
+    '--md-comp-chip-label-padding-right': 'var(--md-comp-chip-label-padding-y)',
+    '--md-comp-chip-icon-size': '18px',
+    position: 'relative',
+    maxWidth: '100%',
+    fontFamily: tokens.sys.typescale.label.large.family,
+    fontSize: theme.typography.pxToRem(theme.sys.typescale.label.large.size), // the pxToRem should be moved to typescale in the future
+    fontWeight: tokens.sys.typescale.label.large.weight,
+    lineHeight: `calc(${tokens.sys.typescale.label.large.lineHeight} / ${theme.sys.typescale.label.large.size})`,
+    letterSpacing,
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 32,
+    color: labelTextColor[ownerState.variant],
+    backgroundColor: 'var(--md-comp-chip-container-color)',
+    borderRadius: tokens.sys.shape.corner.small,
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    transition: theme.transitions.create(['background-color', 'box-shadow']),
+    boxSizing: 'border-box',
+    boxShadow: containerElevation[ownerState.variant],
+    ...(ownerState.size === 'small' && {
+      '--md-comp-chip-label-padding-y': '10px',
+      '--md-comp-chip-icon-size': '16px',
+      height: 24,
+    }),
+    ...(ownerState.variant === 'outlined' && {
+      border: `1px solid ${tokens.sys.color[ownerState.color ?? 'outline']}`,
+      '--md-comp-chip-label-padding-left': 'calc(var(--md-comp-chip-label-padding-y) - 1px)',
+      '--md-comp-chip-label-padding-right': 'calc(var(--md-comp-chip-label-padding-y) - 1px)',
+    }),
+    ...((ownerState.hasIcon || ownerState.hasAvatar) && {
+      '--md-comp-chip-label-padding-left': ownerState.size === 'small' ? '6px' : '8px',
+    }),
+    ...(ownerState.hasDeleteIcon && {
+      '--md-comp-chip-label-padding-right': '5px',
+      cursor: 'auto',
+    }),
+    [`&.${chipClasses.disabled}`]: {
+      backgroundColor: disabledContainerColor[ownerState.variant],
+      border: disabledContainerBorder[ownerState.variant],
+      color: `rgba(${tokens.sys.color.onSurfaceChannel} / 0.38)`,
+      boxShadow: disabledElevation[ownerState.variant],
+      pointerEvents: 'none',
+    },
+    ...((ownerState.clickable || ownerState.hasDeleteIcon) && {
+      [`&.${chipClasses.focusVisible}`]: {
+        boxShadow: focusedContainerElevation[ownerState.variant],
+        '--md-comp-chip-container-color': `color-mix(in srgb, ${
+          stateLayerBackgroundColor[ownerState.variant]
+        } calc(${tokens.sys.state.focus.stateLayerOpacity} * 100%), ${
+          containerColor[ownerState.variant]
+        })`,
       },
-      [`& .${chipClasses.avatar}`]: {
-        marginLeft: 5,
-        marginRight: -6,
-        width: 24,
-        height: 24,
-        color: tokens.palette.Chip.defaultAvatarColor,
-        fontSize: theme.typography.pxToRem(12),
+    }),
+    ...(ownerState.clickable && {
+      WebkitTapHighlightColor: 'transparent',
+      cursor: 'pointer',
+      '&:hover': {
+        boxShadow: hoveredContainerElevation[ownerState.variant],
+        backgroundColor: `color-mix(in srgb, ${
+          stateLayerBackgroundColor[ownerState.variant]
+        } calc(${
+          tokens.sys.state.hover.stateLayerOpacity
+        } * 100%), var(--md-comp-chip-container-color))`,
       },
-      [`& .${chipClasses.avatarColorPrimary}`]: {
-        color: tokens.palette.primary.contrastText,
-        backgroundColor: tokens.palette.primary.dark,
+      '&:active': {
+        boxShadow: pressedContainerElevation[ownerState.variant],
       },
-      [`& .${chipClasses.avatarColorSecondary}`]: {
-        color: tokens.palette.secondary.contrastText,
-        backgroundColor: tokens.palette.secondary.dark,
-      },
-      [`& .${chipClasses.avatarSmall}`]: {
-        marginLeft: 4,
-        marginRight: -4,
-        width: 18,
-        height: 18,
-        fontSize: theme.typography.pxToRem(10),
-      },
-      [`& .${chipClasses.icon}`]: {
-        marginLeft: 5,
-        marginRight: -6,
-        ...(ownerState.size === 'small' && {
-          fontSize: 18,
-          marginLeft: 4,
-          marginRight: -4,
-        }),
-        ...(ownerState.iconColor === ownerState.color && {
-          color: tokens.palette.Chip.defaultIconColor,
-          ...(ownerState.color !== 'default' && {
-            color: 'inherit',
-          }),
-        }),
-      },
-      [`& .${chipClasses.deleteIcon}`]: {
-        WebkitTapHighlightColor: 'transparent',
-        color: `rgba(${tokens.palette.text.primaryChannel} / 0.26)`,
-        fontSize: 22,
-        cursor: 'pointer',
-        margin: '0 5px 0 -6px',
-        '&:hover': {
-          color: `rgba(${tokens.palette.text.primaryChannel} / 0.4)`,
-        },
-        ...(ownerState.size === 'small' && {
-          fontSize: 16,
-          marginRight: 4,
-          marginLeft: -4,
-        }),
-        ...(ownerState.color !== 'default' && {
-          color: `rgba(${tokens.palette[ownerState.color].contrastTextChannel} / 0.7)`,
-          '&:hover, &:active': {
-            color: tokens.palette[ownerState.color].contrastText,
-          },
-        }),
-      },
+    }),
+    [`& .${chipClasses.avatar}`]: {
+      width: 24,
+      height: 24,
+      marginLeft: 4,
+      color:
+        tokens.sys.color[
+          `on${capitalize(ownerState.color ?? 'secondary')}` as keyof MD3ColorSchemeTokens
+        ],
+      backgroundColor: tokens.sys.color[ownerState.color ?? 'secondary'],
+      fontSize: theme.typography.pxToRem(theme.sys.typescale.label.large.size), // the pxToRem should be moved to typescale in the future
       ...(ownerState.size === 'small' && {
-        height: 24,
+        height: 18,
+        width: 18,
+        fontSize: theme.typography.pxToRem(theme.sys.typescale.label.small.size), // the pxToRem should be moved to typescale in the future
       }),
-      ...(ownerState.color !== 'default' && {
-        backgroundColor: tokens.palette[ownerState.color].main,
-        color: tokens.palette[ownerState.color].contrastText,
+    },
+    [`& .${chipClasses.icon}`]: {
+      height: 'var(--md-comp-chip-icon-size)',
+      width: 'var(--md-comp-chip-icon-size)',
+      marginLeft: 8,
+    },
+    [`& .${chipClasses.deleteIcon}`]: {
+      zIndex: 1,
+      height: 'var(--md-comp-chip-icon-size)',
+      width: 'var(--md-comp-chip-icon-size)',
+      padding: 3,
+      marginRight: 5,
+      ...(ownerState.size === 'small' && {
+        padding: 1,
       }),
-      ...(ownerState.onDelete && {
-        [`&.${chipClasses.focusVisible}`]: {
-          backgroundColor: `rgba(${tokens.palette.action.selectedChannel} / calc(${tokens.palette.action.selectedOpacity} + ${tokens.palette.action.focusOpacity}))`,
-        },
-      }),
-      ...(ownerState.onDelete &&
-        ownerState.color !== 'default' && {
-          [`&.${chipClasses.focusVisible}`]: {
-            backgroundColor: tokens.palette[ownerState.color].dark,
-          },
-        }),
-    };
-  },
-  ({ theme, ownerState }) => {
-    const { vars: tokens } = theme;
-
-    return {
-      ...(ownerState.clickable && {
-        userSelect: 'none',
-        WebkitTapHighlightColor: 'transparent',
-        cursor: 'pointer',
-        '&:hover': {
-          backgroundColor: `rgba(${tokens.palette.action.selectedChannel} / calc(${tokens.palette.action.selectedOpacity} + ${tokens.palette.action.hoverOpacity}))`,
-        },
-        [`&.${chipClasses.focusVisible}`]: {
-          backgroundColor: `rgba(${tokens.palette.action.selectedChannel} / calc(${tokens.palette.action.selectedOpacity} + ${tokens.palette.action.focusOpacity}))`,
-        },
-        '&:active': {
-          boxShadow: tokens.shadows[1],
-        },
-      }),
-      ...(ownerState.clickable &&
-        ownerState.color !== 'default' && {
-          [`&:hover, &.${chipClasses.focusVisible}`]: {
-            backgroundColor: tokens.palette[ownerState.color].dark,
-          },
-        }),
-    };
-  },
-  ({ theme, ownerState }) => {
-    const { vars: tokens } = theme;
-
-    return {
-      ...(ownerState.variant === 'outlined' && {
-        backgroundColor: 'transparent',
-        border: `1px solid ${tokens.palette.Chip.defaultBorder}`,
-        [`&.${chipClasses.clickable}:hover`]: {
-          backgroundColor: tokens.palette.action.hover,
-        },
-        [`&.${chipClasses.focusVisible}`]: {
-          backgroundColor: tokens.palette.action.focus,
-        },
-        [`& .${chipClasses.avatar}`]: {
-          marginLeft: 4,
-        },
-        [`& .${chipClasses.avatarSmall}`]: {
-          marginLeft: 2,
-        },
-        [`& .${chipClasses.icon}`]: {
-          marginLeft: 4,
-        },
-        [`& .${chipClasses.iconSmall}`]: {
-          marginLeft: 2,
-        },
-        [`& .${chipClasses.deleteIcon}`]: {
-          marginRight: 5,
-        },
-        [`& .${chipClasses.deleteIconSmall}`]: {
-          marginRight: 3,
-        },
-      }),
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.color !== 'default' && {
-          color: tokens.palette[ownerState.color].main,
-          border: `1px solid rgba(${tokens.palette[ownerState.color].mainChannel} / 0.7)`,
-          [`&.${chipClasses.clickable}:hover`]: {
-            backgroundColor: `rgba(${tokens.palette[ownerState.color].mainChannel} / ${
-              tokens.palette.action.hoverOpacity
-            })`,
-          },
-          [`&.${chipClasses.focusVisible}`]: {
-            backgroundColor: `rgba(${tokens.palette[ownerState.color].mainChannel} / ${
-              tokens.palette.action.focusOpacity
-            })`,
-          },
-          [`& .${chipClasses.deleteIcon}`]: {
-            color: `rgba(${tokens.palette[ownerState.color].mainChannel} / 0.7)`,
-            '&:hover, &:active': {
-              color: tokens.palette[ownerState.color].main,
-            },
-          },
-        }),
-    };
-  },
-);
+      WebkitTapHighlightColor: 'transparent',
+      cursor: 'pointer',
+      borderRadius: tokens.sys.shape.corner.full,
+      '&:hover': {
+        backgroundColor: `color-mix(in srgb, ${
+          stateLayerBackgroundColor[ownerState.variant]
+        } calc(${
+          tokens.sys.state.hover.stateLayerOpacity
+        } * 100%), var(--md-comp-chip-container-color))`,
+      },
+    },
+  };
+});
 
 const ChipLabel = styled('span', {
   name: 'MuiChip',
@@ -278,17 +286,13 @@ const ChipLabel = styled('span', {
 
     return [styles.label, styles[`label${capitalize(size)}`]];
   },
-})<{ ownerState: ChipOwnerState }>(({ ownerState }) => ({
+})({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  paddingLeft: 12,
-  paddingRight: 12,
   whiteSpace: 'nowrap',
-  ...(ownerState.size === 'small' && {
-    paddingLeft: 8,
-    paddingRight: 8,
-  }),
-}));
+  paddingLeft: 'var(--md-comp-chip-label-padding-left)',
+  paddingRight: 'var(--md-comp-chip-label-padding-right)',
+});
 
 function isDeleteKeyboardEvent(keyboardEvent: React.KeyboardEvent<HTMLDivElement>) {
   return keyboardEvent.key === 'Backspace' || keyboardEvent.key === 'Delete';
@@ -313,7 +317,7 @@ const Chip = React.forwardRef(function Chip<
     avatar: avatarProp,
     className,
     clickable: clickableProp,
-    color = 'default',
+    color,
     component: ComponentProp,
     deleteIcon: deleteIconProp,
     disabled = false,
@@ -325,8 +329,6 @@ const Chip = React.forwardRef(function Chip<
     onKeyUp,
     size = 'medium',
     variant = 'filled',
-    tabIndex,
-    skipFocusWhenDisabled = false, // TODO v6: Rename to `focusableWhenDisabled`.
     ...other
   } = props;
 
@@ -370,8 +372,13 @@ const Chip = React.forwardRef(function Chip<
   };
 
   const clickable = clickableProp !== false && onClick ? true : clickableProp;
+  const isButton = clickable || !!onDelete;
 
-  const component = clickable || onDelete ? ButtonBase : ComponentProp || 'div';
+  const component = isButton ? ButtonBase : ComponentProp || 'div';
+
+  const hasIcon = !!iconProp && React.isValidElement(iconProp);
+  const hasDeleteIcon = !!onDelete;
+  const hasAvatar = !!avatarProp && React.isValidElement(avatarProp);
 
   const ownerState: ChipOwnerState = {
     ...props,
@@ -379,22 +386,22 @@ const Chip = React.forwardRef(function Chip<
     disabled,
     size,
     color,
-    iconColor: React.isValidElement(iconProp) ? (iconProp.props as any)?.color || color : color,
-    onDelete: !!onDelete,
+    iconColor: React.isValidElement(iconProp) ? (iconProp.props as any)?.color : null,
     clickable,
     variant,
+    hasIcon,
+    hasDeleteIcon,
+    hasAvatar,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const moreProps =
-    component === ButtonBase
-      ? {
-          component: ComponentProp || 'div',
-          focusVisibleClassName: chipClasses.focusVisible,
-          ...(onDelete && { disableRipple: true }),
-        }
-      : {};
+  const buttonProps = {
+    disabled: clickable && disabled,
+    component: ComponentProp,
+    focusVisibleClassName: chipClasses.focusVisible,
+    ...(onDelete && { disableRipple: true }),
+  };
 
   let deleteIcon = null;
   if (onDelete) {
@@ -405,19 +412,19 @@ const Chip = React.forwardRef(function Chip<
           onClick: handleDeleteIconClick,
         })
       ) : (
-        <CancelIcon className={clsx(classes.deleteIcon)} onClick={handleDeleteIconClick} />
+        <ClearIcon className={clsx(classes.deleteIcon)} onClick={handleDeleteIconClick} />
       );
   }
 
   let avatar = null;
-  if (avatarProp && React.isValidElement(avatarProp)) {
+  if (hasAvatar) {
     avatar = React.cloneElement(avatarProp as React.ReactElement, {
       className: clsx(classes.avatar, (avatarProp.props as any)?.className),
     });
   }
 
   let icon = null;
-  if (iconProp && React.isValidElement(iconProp)) {
+  if (hasIcon) {
     icon = React.cloneElement(iconProp as React.ReactElement, {
       className: clsx(classes.icon, (iconProp.props as any)?.className),
     });
@@ -432,24 +439,31 @@ const Chip = React.forwardRef(function Chip<
     }
   }
 
+  const rootProps = useSlotProps({
+    elementType: ChipRoot,
+    getSlotProps: (otherHandlers: EventHandlers) => ({
+      ...otherHandlers,
+      onKeyDown: handleKeyDown,
+      onKeyUp: handleKeyUp,
+    }),
+    externalForwardedProps: {
+      onClick,
+      ...other,
+    },
+    externalSlotProps: {},
+    additionalProps: {
+      as: component,
+      ref: handleRef,
+      ...(isButton && buttonProps),
+    },
+    ownerState,
+    className: [classes.root, className],
+  });
+
   return (
-    <ChipRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      disabled={clickable && disabled ? true : undefined}
-      onClick={onClick}
-      onKeyDown={handleKeyDown}
-      onKeyUp={handleKeyUp}
-      ref={handleRef}
-      tabIndex={skipFocusWhenDisabled && disabled ? -1 : tabIndex}
-      ownerState={ownerState}
-      {...moreProps}
-      {...other}
-    >
+    <ChipRoot {...rootProps}>
       {avatar || icon}
-      <ChipLabel className={clsx(classes.label)} ownerState={ownerState}>
-        {label}
-      </ChipLabel>
+      <ChipLabel className={clsx(classes.label)}>{label}</ChipLabel>
       {deleteIcon}
     </ChipRoot>
   );
@@ -458,7 +472,7 @@ const Chip = React.forwardRef(function Chip<
 Chip.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The Avatar element to display.
@@ -490,10 +504,10 @@ Chip.propTypes /* remove-proptypes */ = {
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-   * @default 'default'
+   * @default 'secondary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -544,12 +558,6 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * If `true`, allows the disabled chip to escape focus.
-   * If `false`, allows the disabled chip to receive focus.
-   * @default false
-   */
-  skipFocusWhenDisabled: PropTypes.bool,
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -569,6 +577,6 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['filled', 'outlined']),
     PropTypes.string,
   ]),
-};
+} as any;
 
 export default Chip;

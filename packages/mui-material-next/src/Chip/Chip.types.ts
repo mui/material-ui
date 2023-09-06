@@ -41,10 +41,10 @@ export interface ChipTypeMap<
      * The color of the component.
      * It supports both default and custom theme colors, which can be added as shown in the
      * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-     * @default 'default'
+     * @default 'secondary'
      */
     color?: OverridableStringUnion<
-      'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+      'primary' | 'secondary' | 'tertiary' | 'error' | 'info' | 'success' | 'warning',
       ChipPropsColorOverrides
     >;
     /**
@@ -75,12 +75,6 @@ export interface ChipTypeMap<
      */
     size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
     /**
-     * If `true`, allows the disabled chip to escape focus.
-     * If `false`, allows the disabled chip to receive focus.
-     * @default false
-     */
-    skipFocusWhenDisabled?: boolean;
-    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
@@ -92,7 +86,7 @@ export interface ChipTypeMap<
      * The variant to use.
      * @default 'filled'
      */
-    variant?: OverridableStringUnion<'filled' | 'outlined', ChipPropsVariantOverrides>;
+    variant?: OverridableStringUnion<'filled' | 'outlined' | 'elevated', ChipPropsVariantOverrides>;
   };
   defaultComponent: DefaultComponent;
 }
@@ -107,9 +101,11 @@ export type ChipProps<
 export interface ChipOwnerState extends ChipProps {
   variant: NonNullable<ChipProps['variant']>;
   size: NonNullable<ChipProps['size']>;
-  color: NonNullable<ChipProps['color']>;
   /**
    * color for the icon component
    */
   iconColor: NonNullable<IconProps['color'] | ChipProps['color']>;
+  hasIcon: boolean;
+  hasDeleteIcon: boolean;
+  hasAvatar: boolean;
 }
