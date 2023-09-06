@@ -24,8 +24,6 @@ Menus are implemented using a collection of related components:
 - [Menu Item]() - 
 - [MenuButton]() - 
 
-
-
 {{"demo": "MenuIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Components
