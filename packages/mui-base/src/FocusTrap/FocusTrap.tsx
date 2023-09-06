@@ -148,7 +148,9 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
   const nodeToRestore = React.useRef<EventTarget | null>(null);
   const reactFocusEventTarget = React.useRef<EventTarget | null>(null);
   // if disableEnforceFocus is set, we need an internal state for activating/disactivating the trap focus
-  const [controlledOpen, setControlledOpen] = React.useState(!disableEnforceFocus || !disableAutoFocus);
+  const [controlledOpen, setControlledOpen] = React.useState(
+    !disableEnforceFocus || !disableAutoFocus,
+  );
   // This variable is useful when disableAutoFocus is true.
   // It waits for the active element to move into the component to activate.
   const activated = React.useRef(false);
