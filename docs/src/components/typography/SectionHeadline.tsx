@@ -20,18 +20,15 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
       <Typography
         id={id}
         component="h2"
-        fontWeight="bold"
         variant="body2"
-        sx={(theme) => ({
+        fontWeight="bold"
+        color="primary.main"
+        sx={{
           mb: 1,
-          color: 'primary.500',
-          ...theme.applyDarkStyles({
-            color: 'primary.400',
-          }),
           ...(alwaysCenter && {
             textAlign: 'center',
           }),
-        })}
+        }}
       >
         {overline}
       </Typography>
