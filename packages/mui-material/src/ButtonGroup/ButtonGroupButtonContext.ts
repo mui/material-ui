@@ -1,8 +1,9 @@
 import * as React from 'react';
 
 interface ButtonGroupButtonContextType {
-  isFirstButton?: boolean;
-  isLastButton?: boolean;
+  firstButtonClassName?: string;
+  lastButtonClassName?: string;
+  middleButtonClassName?: string;
 }
 
 /**
