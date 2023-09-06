@@ -32,13 +32,6 @@ import { Badge } from '@mui/base/Badge';
 ```
 
 The Badge wraps around the UI element that it's attached to.
-For instance, if the Badge indicates the number of emails in an inbox, then the component will be structured like this:
-
-```jsx
-<Badge>
-  <MailIcon />
-</Badge>
-```
 
 ### Anatomy
 

@@ -25,17 +25,9 @@ The Button component replaces the native HTML `<button>` element, and offers exp
 
 ### Usage
 
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
 import { Button } from '@mui/base/Button';
-
-export default function MyApp() {
-  return <Button>{/* button text */}</Button>;
-}
 ```
-
-### Basics
 
 The Button behaves similar to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
 
@@ -94,6 +86,8 @@ The same applies for props specific to custom primitive elements:
 
 ## Hook
 
+### Usage
+
 ```js
 import { useButton } from '@mui/base/useButton';
 ```
@@ -101,7 +95,7 @@ import { useButton } from '@mui/base/useButton';
 The `useButton` hook lets you apply the functionality of a button to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
-Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+Hooks _do not_ support [slot props](#custom-structure), but they do support [customization props](#customization).
 
 :::info
 Hooks give you the most room for customization, but require more work to implement.
@@ -110,7 +104,7 @@ With hooks, you can take full control over how your component is rendered, and d
 You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
-The following demo shows how to build the same buttons as those found in the [Basics](#basics) section above, but with the `useButton` hook:
+The following demo shows how to build the same buttons as those found in the [Component—Usage](#usage) section above, but with the `useButton` hook:
 
 {{"demo": "UseButton.js", "defaultCodeOpen": true}}
 
