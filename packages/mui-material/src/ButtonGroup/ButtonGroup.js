@@ -256,12 +256,21 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     ],
   );
 
-  const buttonGroupPositionContext = (index, childrenParam) => ({
-    firstButtonClassName: index === 0 ? classes.firstButton : '',
-    lastButtonClassName:
-      index === React.Children.count(childrenParam) - 1 ? classes.lastButton : '',
-    middleButtonClassName: classes.middleButton,
-  });
+  const addButtonGroupButtonContextPositionClassName = (index, childrenParam) => {
+    const isFirstButton = index === 0;
+    const isLastButton = index === React.Children.count(childrenParam) - 1;
+
+    if (isFirstButton && isLastButton) {
+      return '';
+    }
+    if (isFirstButton) {
+      return classes.firstButton;
+    }
+    if (isLastButton) {
+      return classes.lastButton;
+    }
+    return classes.middleButton;
+  };
 
   return (
     <ButtonGroupRoot
@@ -279,7 +288,9 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
           }
 
           return (
-            <ButtonGroupButtonContext.Provider value={buttonGroupPositionContext(index, children)}>
+            <ButtonGroupButtonContext.Provider
+              value={addButtonGroupButtonContextPositionClassName(index, children)}
+            >
               {child}
             </ButtonGroupButtonContext.Provider>
           );

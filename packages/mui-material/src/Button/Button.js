@@ -296,26 +296,10 @@ const ButtonEndIcon = styled('span', {
   ...commonIconStyles(ownerState),
 }));
 
-const addClassNameBasedOnPosition = (buttonGroupButtonContext) => {
-  if (
-    buttonGroupButtonContext.firstButtonClassName &&
-    buttonGroupButtonContext.lastButtonClassName
-  ) {
-    return '';
-  }
-  if (buttonGroupButtonContext.firstButtonClassName) {
-    return buttonGroupButtonContext.firstButtonClassName;
-  }
-  if (buttonGroupButtonContext.lastButtonClassName) {
-    return buttonGroupButtonContext.lastButtonClassName;
-  }
-  return buttonGroupButtonContext.middleButtonClassName;
-};
-
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
   const contextProps = React.useContext(ButtonGroupContext);
-  const buttonGroupButtonContext = React.useContext(ButtonGroupButtonContext);
+  const buttonGroupButtonContextPositionClassName = React.useContext(ButtonGroupButtonContext);
   const resolvedProps = resolveProps(contextProps, inProps);
   const props = useThemeProps({ props: resolvedProps, name: 'MuiButton' });
   const {
@@ -363,10 +347,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     </ButtonEndIcon>
   );
 
-  let positionClassName = '';
-  if (buttonGroupButtonContext) {
-    positionClassName = addClassNameBasedOnPosition(buttonGroupButtonContext);
-  }
+  const positionClassName = buttonGroupButtonContextPositionClassName || '';
 
   return (
     <ButtonRoot
