@@ -47,7 +47,7 @@ Use the `min` and `max` props to define a range of accepted values:
 
 For an open-ended range, define only `min` or `max`:
 
-```
+```jsx
 // Open-ended
 <NumberInput min={0} />
 ```

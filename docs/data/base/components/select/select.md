@@ -35,7 +35,7 @@ The following demo shows how to create and style a Select component with Options
 
 {{"demo": "UnstyledSelectBasic", "defaultCodeOpen": false}}
 
-#### Form submission
+### Form submission
 
 The value(s) chosen in the Select can be posted to a server using a standard HTML form.
 When the `name` prop is set, the Select will render a hidden input with the selected value.
@@ -45,7 +45,7 @@ When the `name` prop is set, the Select will render a hidden input with the sele
 Note how the second Select in the demo above renders a hidden input with the name provided as a prop.
 You can customize the value of this hidden input—see the [Object values](#object-values) section for details.
 
-#### TypeScript caveat
+### TypeScript caveat
 
 Select's props are generic.
 Due to TypeScript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).
@@ -67,7 +67,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
 
 For the sake of brevity, the rest of the demos throughout this doc will not use `forwardRef`.
 
-### Multi-select
+### Multiple selections
 
 Set the `multiple` prop to let your users select multiple options from the list.
 In contrast with single-selection mode, the options popup doesn't close after an item is selected, which enables users to continue choosing more options.
