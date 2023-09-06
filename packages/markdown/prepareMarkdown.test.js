@@ -396,4 +396,20 @@ npm install @mui/material
 Use "bash" instead.
 `);
   });
+
+  it('should report duplicated trailing splashes', () => {
+    const markdown = `
+# Localization
+<p class="description">Foo</p>
+[foo](/foo/)
+[bar](/bar//#foo)
+`;
+
+    expect(() => {
+      prepareMarkdown({
+        ...defaultParams,
+        translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
+      });
+    }).to.throw(`docs-infra: Duplicated trailing slashes.`);
+  });
 });

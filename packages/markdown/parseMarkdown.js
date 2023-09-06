@@ -362,9 +362,7 @@ function createRender(context) {
 
       let finalHref = href;
 
-      if (process.env.DEPLOY_ENV !== 'production') {
-        checkUrlHealth(href, linkText, context);
-      }
+      checkUrlHealth(href, linkText, context);
 
       if (userLanguage !== 'en' && href.indexOf('/') === 0 && !options.ignoreLanguagePages(href)) {
         finalHref = `/${userLanguage}${href}`;
