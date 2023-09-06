@@ -24,9 +24,9 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
         variant="body2"
         sx={(theme) => ({
           mb: 1,
-          color: 'primary.600',
+          color: 'primary.500',
           ...theme.applyDarkStyles({
-            color: 'primary.300',
+            color: 'primary.400',
           }),
           ...(alwaysCenter && {
             textAlign: 'center',

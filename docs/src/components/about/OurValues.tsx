@@ -114,7 +114,7 @@ export default function OurValues() {
                   color: (theme.vars || theme).palette.text.primary,
                   '&::first-letter': {
                     mr: 0.1,
-                    fontSize: theme.typography.pxToRem(18),
+                    fontSize: theme.typography.pxToRem(16),
                     color: (theme.vars || theme).palette.primary.main,
                   },
                   ...theme.applyDarkStyles({
