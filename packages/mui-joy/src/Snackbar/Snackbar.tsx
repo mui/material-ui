@@ -71,18 +71,28 @@ const SnackbarRoot = styled('div', {
         }),
       },
       '--Snackbar-radius': theme.vars.radius.sm,
+      '--Snackbar-decoratorChildRadius':
+        'max((var(--Snackbar-radius) - var(--variant-borderWidth, 0px)) - var(--Snackbar-padding), min(var(--Snackbar-padding) + var(--variant-borderWidth, 0px), var(--Snackbar-radius) / 2))',
+      '--Button-minHeight': 'var(--Snackbar-decoratorChildHeight)',
+      '--IconButton-size': 'var(--Snackbar-decoratorChildHeight)',
+      '--Button-radius': 'var(--Snackbar-decoratorChildRadius)',
+      '--IconButton-radius': 'var(--Snackbar-decoratorChildRadius)',
+      '--Icon-color': 'currentColor',
       ...(ownerState.size === 'sm' && {
         '--Snackbar-padding': '0.5rem',
+        '--Snackbar-decoratorChildHeight': '1.5rem',
         '--Icon-fontSize': theme.vars.fontSize.xl,
         gap: '0.5rem',
       }),
       ...(ownerState.size === 'md' && {
         '--Snackbar-padding': '0.75rem',
+        '--Snackbar-decoratorChildHeight': '2rem',
         '--Icon-fontSize': theme.vars.fontSize.xl,
         gap: '0.625rem',
       }),
       ...(ownerState.size === 'lg' && {
         '--Snackbar-padding': '1rem',
+        '--Snackbar-decoratorChildHeight': '2.375rem',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
         gap: '0.875rem',
       }),
@@ -205,14 +215,12 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
       <SlotRoot {...rootProps}>
         {slots.startDecorator && (
           <SlotStartDecorator {...startDecoratorProps}>
-            {slots.startDecorator as React.ReactNode}
+            {<slots.startDecorator />}
           </SlotStartDecorator>
         )}
         {children}
         {slots.endDecorator && (
-          <SlotEndDecorator {...endDecoratorProps}>
-            {slots.endDecorator as React.ReactNode}
-          </SlotEndDecorator>
+          <SlotEndDecorator {...endDecoratorProps}>{<slots.endDecorator />}</SlotEndDecorator>
         )}
       </SlotRoot>
     </ClickAwayListener>

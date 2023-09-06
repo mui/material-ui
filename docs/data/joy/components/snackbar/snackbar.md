@@ -26,3 +26,11 @@ In wide layouts, snackbars can be left-aligned or center-aligned if they are con
 You can control the position of the snackbar by specifying the `anchorOrigin` prop.
 
 {{"demo": "PositionedSnackbar.js"}}
+
+## Customization
+
+### Decorators
+
+Use the `slots.startDecorator` and `slots.endDecorator` props to append actions and icons to either side of the Snackbar:
+
+{{"demo": "SnackbarWithDecorators.js"}}
