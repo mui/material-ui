@@ -105,7 +105,7 @@ The following code snippet applies a CSS class called `my-rail` to the rail slot
 
 #### Usage with TypeScript
 
-In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. 
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component.
 This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
@@ -177,7 +177,7 @@ To let users set the start and end of a range on a Slider, provide an array of v
 
 ### Value label
 
-A label for the value can be rendered around the thumb by using the optional `slots` prop with the `valueLabel` slot. 
+A label for the value can be rendered around the thumb by using the optional `slots` prop with the `valueLabel` slot.
 These are typical use cases for showing the value label:
 
 - always

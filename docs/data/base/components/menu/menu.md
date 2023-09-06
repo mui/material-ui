@@ -19,10 +19,10 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 
 Menus are implemented using a collection of related components:
 
-- [Dropdown]() - 
+- [Dropdown]() -
 - [Menu]() -
-- [Menu Item]() - 
-- [MenuButton]() - 
+- [Menu Item]() -
+- [MenuButton]() -
 
 {{"demo": "MenuIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 

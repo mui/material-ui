@@ -52,7 +52,7 @@ For an open-ended range, define only `min` or `max`:
 <NumberInput min={0} />
 ```
 
-Use the `step` prop to define the granularity of the change in value when incrementing or decrementing. 
+Use the `step` prop to define the granularity of the change in value when incrementing or decrementing.
 For example, if `min={0}` and `step={2}`, valid values for the component would be 0, 2, 4, and on, since the value can only be changed in increments of 2.
 
 ```jsx
@@ -64,12 +64,12 @@ For example, if `min={0}` and `step={2}`, valid values for the component would b
 Support for decimal values or step sizes isn't available yet, but you can upvote [this GitHub issue](https://github.com/mui/material-ui/issues/38518) to see it arrive sooner.
 :::
 
-When the input field is in focus, you can enter values that fall outside the valid range. 
+When the input field is in focus, you can enter values that fall outside the valid range.
 The value will be clamped based on `min`, `max` and `step` once the input field is blurred.
 
 Holding down the <kbd>Shift</kbd> key when interacting with the stepper buttons applies a multipler (default 10x) to the value change of each step.
 
-This can be customized with the `shiftMultiplier` prop. 
+This can be customized with the `shiftMultiplier` prop.
 In the following snippet, if <kbd>Shift</kbd> is held when clicking the increment button, the value will change from 0, to 5, to 10, and on.
 
 ```jsx
