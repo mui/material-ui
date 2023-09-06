@@ -2063,6 +2063,12 @@ importers:
       '@types/babel__core':
         specifier: ^7.20.1
         version: 7.20.1
+      '@types/chai':
+        specifier: ^4.3.5
+        version: 4.3.5
+      chai:
+        specifier: ^4.3.8
+        version: 4.3.8
       vite:
         specifier: ^4.4.9
         version: 4.4.9(@types/node@18.17.14)
