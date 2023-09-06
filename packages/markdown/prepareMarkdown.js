@@ -247,7 +247,7 @@ ${headers.hooks
       throw new Error(
         [
           `MUI: the card image for the blog post "${slug}" is missing.`,
-          `Add a docs/public/static/blog/${slug}/card.png file then restart Next.js or remove card: true from the headers.`,
+          `Add a docs/public/static/blog/${slug}/card.png file and then restart Next.js or else remove card: true from the headers.`,
         ].join('\n'),
       );
     }
