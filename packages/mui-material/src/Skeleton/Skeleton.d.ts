@@ -49,6 +49,7 @@ export interface SkeletonOwnProps {
   /**
    * The type of content that will be rendered.
    * @default 'text'
+   * @deprecated Use `shape` prop to set the shape of the skeleton and `size` prop to set the scale adaptation.
    */
   variant?: OverridableStringUnion<
     'text' | 'rectangular' | 'rounded' | 'circular',
