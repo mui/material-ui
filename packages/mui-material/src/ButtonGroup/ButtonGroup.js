@@ -288,9 +288,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
           }
 
           return (
-            <ButtonGroupButtonContext.Provider
-              value={getButtonPositionClassName(index, children)}
-            >
+            <ButtonGroupButtonContext.Provider value={getButtonPositionClassName(index, children)}>
               {child}
             </ButtonGroupButtonContext.Provider>
           );
