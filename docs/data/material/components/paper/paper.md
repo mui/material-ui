@@ -10,25 +10,29 @@ materialDesign: https://m2.material.io/design/environment/elevation.html
 
 <p class="description">In Material Design, the physical properties of paper are translated to the screen. </p>
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Introduction
+
 Material Design v2 surface components and shadow styling were heavily influenced by how these elements exist in the physical world.
 
 Material UI picked that up by creating the Paper component, a general container-like surface that includes handy built-in props such as `elevation` that allows you to pull box-shadow values from the theme that adhere to [Material Design's elevation system](https://m2.material.io/design/environment/elevation.html#elevation-in-material-design).
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+## Component
 
-## Basic paper
+### Basic usage
 
 Note how the Paper component comes with a light elevation by default.
 
 {{"demo": "SimplePaper.js", "bg": true}}
 
-## Variants
+### Variants
 
 Use the `variant` prop to toggle between an outlined version of the Paper component, without elevation, and an elevated version.
 
 {{"demo": "Variants.js", "bg": true}}
 
-## Elevation
+### Elevation
 
 Use the `elevation` prop to establish hierarchy through the use of shadows.
 
