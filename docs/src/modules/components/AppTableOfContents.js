@@ -7,17 +7,19 @@ import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { shouldHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
+import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 import featureToggle from 'docs/src/featureToggle';
+import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 
 const Nav = styled('nav')(({ theme }) => ({
-  top: 0,
+  top: 'var(--MuiDocs-header-height)',
+  marginTop: 'var(--MuiDocs-header-height)',
   paddingLeft: 2, // Fix truncated focus outline style
   position: 'sticky',
-  height: '100vh',
+  height: 'calc(100vh - var(--MuiDocs-header-height))',
   overflowY: 'auto',
-  paddingTop: `calc(var(--MuiDocs-header-height) + ${theme.spacing(4)})`,
+  paddingTop: theme.spacing(4),
   paddingBottom: theme.spacing(4),
   paddingRight: theme.spacing(4), // We can't use `padding` as stylis-plugin-rtl doesn't swap it
   display: 'none',
@@ -196,7 +198,7 @@ export default function AppTableOfContents(props) {
 
   const handleClick = (hash) => (event) => {
     // Ignore click for new tab/new window behavior
-    if (shouldHandleLinkClick(event)) {
+    if (samePageLinkNavigation(event)) {
       return;
     }
 
@@ -233,8 +235,8 @@ export default function AppTableOfContents(props) {
 
   return (
     <Nav aria-label={t('pageTOC')}>
+      <TableOfContentsBanner />
       <NoSsr>
-        <TableOfContentsBanner />
         {showSurveyBanner && (
           <Link
             href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=docs"
@@ -349,6 +351,7 @@ export default function AppTableOfContents(props) {
           </NavList>
         </React.Fragment>
       ) : null}
+      <DiamondSponsors />
     </Nav>
   );
 }

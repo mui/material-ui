@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import SvgIcon, {
   svgIconClasses as classes,
   SvgIconClassKey,
   SvgIconProps,
 } from '@mui/joy/SvgIcon';
 import { ThemeProvider } from '@mui/joy/styles';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<SvgIcon />', () => {
   const { render } = createRenderer();
@@ -60,6 +60,21 @@ describe('<SvgIcon />', () => {
     expect(container.firstChild).to.have.attribute('aria-hidden', 'true');
   });
 
+  it('renders children of provided svg and merge the props', () => {
+    const { container } = render(
+      <SvgIcon>
+        <svg viewBox="0 0 48 48" strokeWidth="1.5">
+          {path}
+        </svg>
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).to.have.tagName('svg');
+    expect(container.firstChild?.firstChild).to.have.tagName('path');
+    expect(container.firstChild).to.have.attribute('viewBox', '0 0 48 48');
+    expect(container.firstChild).to.have.attribute('stroke-width', '1.5');
+  });
+
   describe('prop: titleAccess', () => {
     it('should be able to make an icon accessible', () => {
       const { container, queryByText } = render(<SvgIcon titleAccess="Network">{path}</SvgIcon>);
@@ -76,40 +91,27 @@ describe('<SvgIcon />', () => {
       expect(container.firstChild).to.have.class('meow');
     });
 
-    it('should render with `inherit` by default', () => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+      it(`should render ${color}`, () => {
+        const { container } = render(<SvgIcon color={color}>{path}</SvgIcon>);
+
+        expect(container.firstChild).to.have.class(
+          classes[`color${capitalize(color)}` as SvgIconClassKey],
+        );
+      });
+    });
+  });
+
+  describe('prop: size', function test() {
+    it('should render with `md` by default', () => {
       const { container } = render(<SvgIcon>{path}</SvgIcon>);
 
-      expect(container.firstChild).to.have.class(classes.colorInherit);
+      expect(container.firstChild).to.have.class(classes.sizeMd);
     });
-
-    (['inherit', 'primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach(
-      (color) => {
-        it(`should render ${color}`, () => {
-          const { container } = render(<SvgIcon color={color}>{path}</SvgIcon>);
-
-          expect(container.firstChild).to.have.class(
-            classes[`color${capitalize(color)}` as SvgIconClassKey],
-          );
-        });
-      },
-    );
   });
 
   describe('prop: fontSize', function test() {
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
-
-    it('should render with `xl` by default', () => {
-      const { container } = render(<SvgIcon>{path}</SvgIcon>);
-
-      expect(container.firstChild).to.have.class(classes.fontSizeXl);
-    });
-
-    (['inherit', 'xs', 'sm', 'md', 'lg', 'xl', 'xl2', 'xl3', 'xl4', 'xl5', 'xl6'] as const).forEach(
+    (['inherit', 'xs', 'sm', 'md', 'lg', 'xl', 'xl2', 'xl3', 'xl4'] as const).forEach(
       (fontSize) => {
         it(`should render ${fontSize}`, () => {
           const { container } = render(<SvgIcon fontSize={fontSize}>{path}</SvgIcon>);
@@ -156,6 +158,34 @@ describe('<SvgIcon />', () => {
       // @ts-expect-error
       <SvgIcon ownerState={{ fontSize: 'sm' }}>{path}</SvgIcon>,
     );
-    expect(container.firstChild).toHaveComputedStyle({ fontSize: '20px' }); // fontSize: xl -> 1.25rem = 20px
+    expect(container.firstChild).toHaveComputedStyle({ fontSize: '24px' }); // fontSize: xl2 -> 1.5rem = 24px
+  });
+
+  it('should have `fill="currentColor"`', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+    const { container } = render(
+      <SvgIcon>
+        <path />
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({ fill: 'currentColor' });
+  });
+
+  it('should not add `fill` if svg is a direct child', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+    const { container } = render(
+      <SvgIcon>
+        <svg>
+          <path />
+        </svg>
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).not.toHaveComputedStyle({ fill: 'currentColor' });
   });
 });

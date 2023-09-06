@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import {
@@ -10,19 +11,19 @@ import {
 } from './useList.types';
 import { ListActionTypes, ListAction } from './listActions.types';
 import { ListContextValue } from './ListContext';
-import defaultReducer from './listReducer';
-import useListChangeNotifiers from './useListChangeNotifiers';
-import useControllableReducer from '../utils/useControllableReducer';
+import { listReducer as defaultReducer } from './listReducer';
+import { useListChangeNotifiers } from './useListChangeNotifiers';
+import { useControllableReducer } from '../utils/useControllableReducer';
 import {
   ControllableReducerAction,
   StateChangeCallback,
   StateComparers,
 } from '../utils/useControllableReducer.types';
-import areArraysEqual from '../utils/areArraysEqual';
+import { areArraysEqual } from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
-import useLatest from '../utils/useLatest';
-import useTextNavigation from '../utils/useTextNavigation';
-import MuiCancellableEvent from '../utils/muiCancellableEvent';
+import { useLatest } from '../utils/useLatest';
+import { useTextNavigation } from '../utils/useTextNavigation';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 
 const EMPTY_OBJECT = {};
 const NOOP = () => {};
@@ -402,4 +403,4 @@ function useList<
   };
 }
 
-export default useList;
+export { useList };

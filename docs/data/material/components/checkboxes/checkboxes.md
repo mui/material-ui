@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Checkbox component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: https://m2.material.io/components/selection-controls#checkboxes

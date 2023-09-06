@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Textarea component
 components: Textarea
 githubLabel: 'component: TextareaAutosize'
@@ -87,7 +87,7 @@ To trigger the focus ring programmatically, set the CSS variable `--Textarea-foc
 {{"demo": "TriggerFocusTextarea.js"}}
 
 :::info
-💡 The focus ring still appear on focus even though you set `--Textarea-focused: 0`.
+The focus ring still appear on focus even though you set `--Textarea-focused: 0`.
 :::
 
 ### Validation

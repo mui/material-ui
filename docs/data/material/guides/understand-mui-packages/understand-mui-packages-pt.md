@@ -44,7 +44,7 @@ Material UI is a comprehensive library of components that features our implement
 
 ### Base UI
 
-[Base UI](/base-ui/getting-started/overview/) is our library of "unstyled" components and hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+[Base UI](/base-ui/getting-started/) is our library of "unstyled" components and hooks. With Base, you gain complete control over your app's CSS and accessibility features.
 
 The Base package includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
 
@@ -91,12 +91,13 @@ Material UI relies on styling engines to inject CSS into your app. These engines
 
 By default, Material UI uses [Emotion](https://emotion.sh/docs/styled) as its styling engine—it's included in the [installation](/material-ui/getting-started/installation/) process. If you plan to stick with Emotion, then `@mui/styled-engine` is a dependency in your app, and you don't need to install it separately.
 
-If you prefer to use [styled-components](https://styled-components.com/docs/basics#getting-started), then you need to install `@mui/styled-engine-sc` in place of the Emotion packages. See the [Styled engine guide](/material-ui/guides/styled-engine/) for more details.
+If you prefer to use [styled-components](https://styled-components.com/docs/basics#getting-started), then you need to install `@mui/styled-engine-sc` in place of the Emotion packages. 
+See the [styled-components guide](/material-ui/guides/styled-components/) for more details.
 
 In either case, you won't interact much with either of these packages beyond installation—they're used internally in `@mui/system`.
 
 :::warning
-⚠ **Note:** prior to v5, Material UI used `@mui/styles` as a JSS wrapper. This package is now deprecated and will be removed in the future. Check out [the guide to migrating from v4 to v5](/material-ui/migration/migration-v4/) to learn how to upgrade to a newer solution.
+**Note:** prior to v5, Material UI used `@mui/styles` as a JSS wrapper. This package is now deprecated and will be removed in the future. Check out [the guide to migrating from v4 to v5](/material-ui/migration/migration-v4/) to learn how to upgrade to a newer solution.
 :::
 
 ### MUI System

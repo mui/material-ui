@@ -1,7 +1,8 @@
 import * as ts from 'typescript';
 import { getSymbolDescription } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
-import getPropsFromComponentSymbol from './getPropsFromComponentSymbol';
+import { getPropsFromComponentNode } from './getPropsFromComponentNode';
+import resolveExportSpecifier from './resolveExportSpecifier';
 
 export interface Classes {
   classes: string[];
@@ -31,6 +32,40 @@ function removeUndefinedFromType(type: ts.Type) {
   return type;
 }
 
+/**
+ * Gets class names and descriptions from the {ComponentName}Classes interface.
+ */
+function extractClasses(project: TypeScriptProject, componentName: string): Styles {
+  const result: Styles = {
+    classes: [],
+    descriptions: {},
+    globalClasses: {},
+    name: null,
+  };
+
+  const classesInterfaceName = `${componentName}Classes`;
+  if (!project.exports[classesInterfaceName]) {
+    return EMPTY_STYLES;
+  }
+
+  const classesType = project.checker.getDeclaredTypeOfSymbol(
+    project.exports[classesInterfaceName],
+  );
+
+  const classesTypeDeclaration = classesType?.symbol?.declarations?.[0];
+  if (classesTypeDeclaration && ts.isInterfaceDeclaration(classesTypeDeclaration)) {
+    const classesProperties = classesType.getProperties();
+    classesProperties.forEach((symbol) => {
+      result.classes.push(symbol.name);
+      result.descriptions[symbol.name] = getSymbolDescription(symbol, project);
+    });
+
+    return result;
+  }
+
+  return EMPTY_STYLES;
+}
+
 export default function parseStyles({
   project,
   componentName,
@@ -44,18 +79,24 @@ export default function parseStyles({
     throw new Error(`No exported component for the componentName "${componentName}"`);
   }
 
-  const classesProp = getPropsFromComponentSymbol({
-    symbol: exportedSymbol,
+  const localeSymbol = resolveExportSpecifier(exportedSymbol, project);
+  const declaration = localeSymbol.valueDeclaration!;
+
+  const classesProp = getPropsFromComponentNode({
+    node: declaration,
     project,
     shouldInclude: ({ name }) => name === 'classes',
-  })?.classes;
+    checkDeclarations: true,
+  })?.props.classes;
   if (classesProp == null) {
-    return EMPTY_STYLES;
+    // We could not infer the type of the classes prop, so we try to extract them from the {ComponentName}Classes interface
+    return extractClasses(project, componentName);
   }
 
   const classes: Record<string, string> = {};
-  classesProp.types.forEach((propType) => {
-    removeUndefinedFromType(propType)
+  classesProp.signatures.forEach((propType) => {
+    const type = project.checker.getTypeAtLocation(propType.symbol.declarations?.[0]!);
+    removeUndefinedFromType(type)
       ?.getProperties()
       .forEach((property) => {
         classes[property.escapedName.toString()] = getSymbolDescription(property, project);

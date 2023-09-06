@@ -9,7 +9,6 @@ import Stack from '@mui/joy/Stack';
 import useScript from './useScript';
 import FirstSidebar from './components/FirstSidebar';
 import Header from './components/Header';
-import customTheme from './theme';
 import RentalCard from './components/RentalCard';
 import Main from './components/Main';
 import HeaderSection from './components/HeaderSection';
@@ -34,17 +33,17 @@ export default function RentalDashboard() {
   }, [status]);
 
   return (
-    <CssVarsProvider disableTransitionOnChange theme={customTheme}>
+    <CssVarsProvider disableTransitionOnChange>
       <GlobalStyles
-        styles={{
+        styles={(theme) => ({
           '[data-feather], .feather': {
-            color: 'var(--Icon-color)',
+            color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
             margin: 'var(--Icon-margin)',
-            fontSize: 'var(--Icon-fontSize, 20px)',
+            fontSize: `var(--Icon-fontSize, ${theme.vars.fontSize.xl})`,
             width: '1em',
             height: '1em',
           },
-        }}
+        })}
       />
       <CssBaseline />
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>

@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { createRenderer } from 'test/utils';
-import useControllableReducer from './useControllableReducer';
+import { useControllableReducer } from './useControllableReducer';
 import { ControllableReducerParameters } from './useControllableReducer.types';
 
 interface TestState {

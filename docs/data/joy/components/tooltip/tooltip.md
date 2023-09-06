@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Tooltip component
 components: Tooltip
 githubLabel: 'component: tooltip'

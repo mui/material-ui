@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Alert component
 components: Alert
 githubLabel: 'component: alert'

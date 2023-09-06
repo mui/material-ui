@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Theme } from '@mui/system';
+import { Box, Theme, styled } from '@mui/system';
 
 interface TestProps {
   test?: string;
@@ -103,4 +103,16 @@ function TestFillPropCallback() {
       },
     ]}
   />;
+}
+
+const StyledBox = styled(Box)`
+  color: white;
+`;
+
+export default function StyledBoxWithSx() {
+  return (
+    <StyledBox component="span" sx={{ width: 300 }}>
+      Box
+    </StyledBox>
+  );
 }

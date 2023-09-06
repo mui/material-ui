@@ -1,3 +1,4 @@
+'use client';
 import {
   unstable_createCssVarsProvider as createCssVarsProvider,
   SxProps,

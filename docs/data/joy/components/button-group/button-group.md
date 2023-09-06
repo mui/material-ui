@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Button Group component
 components: Button, IconButton, ButtonGroup
 githubLabel: 'component: ButtonGroup'
@@ -122,14 +122,6 @@ The Button Group component supports arbitrary children that wrap the buttons by 
 {{"demo": "TooltipButtonGroup.js"}}
 
 ## Common examples
-
-### Figma-like button group
-
-Use the CSS variable `--ButtonGroup-connected` to control when border radius of the buttons in-between should be removed.
-
-To create a Figma-like button group where the buttons are connected when users hover on any of the buttons, set the `--ButtonGroup-connected` to `0` and change to `1` on hover.
-
-{{"demo": "FigmaButtonGroup.js"}}
 
 ### Pill button group
 

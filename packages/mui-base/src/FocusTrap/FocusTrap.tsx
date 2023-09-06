@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex */
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -423,4 +424,4 @@ if (process.env.NODE_ENV !== 'production') {
   (FocusTrap as any)['propTypes' + ''] = exactProp(FocusTrap.propTypes);
 }
 
-export default FocusTrap;
+export { FocusTrap };

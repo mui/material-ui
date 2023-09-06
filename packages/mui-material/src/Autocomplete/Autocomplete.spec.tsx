@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { expectType } from '@mui/types';
 import Autocomplete, {
   AutocompleteOwnerState,
   AutocompleteProps,
   AutocompleteRenderGetTagProps,
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { expectType } from '@mui/types';
 import { ChipTypeMap } from '@mui/material/Chip';
 
 interface MyAutocompleteProps<
@@ -45,7 +45,7 @@ function MyAutocomplete<
 <MyAutocomplete
   options={['1', '2', '3']}
   onChange={(event, value) => {
-    expectType<string[], typeof value>(value);
+    expectType<readonly string[], typeof value>(value);
   }}
   renderInput={() => null}
   multiple

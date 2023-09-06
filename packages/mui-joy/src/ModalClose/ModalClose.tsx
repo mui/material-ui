@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 import useSlot from '../utils/useSlot';
 import { useThemeProps, styled } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -47,6 +48,7 @@ export const ModalCloseRoot = styled(StyledIconButton, {
     '--IconButton-size': '40px',
   }),
   position: 'absolute',
+  zIndex: 1, // stay on top of the title in case it is positioned relatively
   top: `var(--ModalClose-inset, ${theme.spacing(1)})`,
   right: `var(--ModalClose-inset, ${theme.spacing(1)})`,
   borderRadius: `var(--ModalClose-radius, ${theme.vars.radius.sm})`,
@@ -154,7 +156,7 @@ ModalClose.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 components: CssBaseline, ScopedCssBaseline
 githubLabel: 'component: CssBaseline'
 ---
@@ -58,7 +58,7 @@ export default function MyApp() {
 ```
 
 :::warning
-⚠️ Make sure you import `ScopedCssBaseline` first to avoid box-sizing conflicts as in the above example.
+Make sure you import `ScopedCssBaseline` first to avoid box-sizing conflicts as in the above example.
 :::
 
 ## Approach

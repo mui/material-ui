@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Badge（徽章）组件
 components: Badge
 githubLabel: 'component: badge'

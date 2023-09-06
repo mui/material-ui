@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Slider（滑块）组件
 components: Slider
 githubLabel: 'component: slider'

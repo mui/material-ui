@@ -1,7 +1,7 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import LinearProgress from '@mui/joy/LinearProgress';
 import Box from '@mui/joy/Box';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function LinearProgressVariables() {
   return (

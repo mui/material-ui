@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Popper component
 components: Popper
 githubLabel: 'component: Popper'

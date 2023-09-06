@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { SelectOption, UseOptionParameters, UseOptionReturnValue } from './useOption.types';
@@ -15,7 +16,7 @@ import { useCompoundItem } from '../utils/useCompoundItem';
  *
  * - [useOption API](https://mui.com/base-ui/react-select/hooks-api/#use-option)
  */
-export default function useOption<Value>(params: UseOptionParameters<Value>): UseOptionReturnValue {
+export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionReturnValue {
   const { value, label, disabled, rootRef: optionRefParam, id: idParam } = params;
 
   const {

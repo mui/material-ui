@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Modal component
 components: Modal, ModalClose, ModalDialog, ModalOverflow
 githubLabel: 'component: modal'

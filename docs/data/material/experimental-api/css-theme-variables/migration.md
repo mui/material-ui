@@ -211,7 +211,7 @@ export default class MyDocument extends Document {
 Place the script in your [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { getInitColorSchemeScript } from '@mui/material/styles';
 
 export function onRenderBody({ setPreBodyComponents }) {

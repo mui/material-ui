@@ -28,6 +28,8 @@ export interface SliderClasses {
   trackInverted: string;
   /** Styles applied to the thumb element. */
   thumb: string;
+  /** Styles applied to the tumb element if it overlaps another thumb */
+  thumbOverlap: string;
   /** State class applied to the thumb element if it's active. */
   active: string;
   /** State class applied to the thumb element if keyboard focused. */
@@ -52,8 +54,8 @@ export interface SliderClasses {
   valueLabel: string;
   /** Styles applied to the thumb label element if it's open. */
   valueLabelOpen: string;
-  /** Styles applied to the thumb label's circle element. */
-  valueLabelCircle: string;
+  /** Styles applied to the thumb's label element if it overlaps another thumb's label */
+  valueLabelOverlap: string;
   /** Styles applied to the thumb label's label element. */
   valueLabelLabel: string;
 }
@@ -80,6 +82,7 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'rail',
   'sizeSmall',
   'thumb',
+  'thumbOverlap',
   'thumbColorPrimary',
   'thumbColorSecondary',
   'track',
@@ -88,7 +91,7 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'thumbSizeSmall',
   'valueLabel',
   'valueLabelOpen',
-  'valueLabelCircle',
+  'valueLabelOverlap',
   'valueLabelLabel',
   'vertical',
 ]);

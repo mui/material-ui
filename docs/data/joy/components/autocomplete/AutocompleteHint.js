@@ -38,7 +38,6 @@ export default function AutocompleteHint() {
         const matchingOption = top100Films.find((option) =>
           option.label.startsWith(value),
         );
-
         if (value && matchingOption) {
           hint.current = matchingOption.label;
         } else {
@@ -69,7 +68,6 @@ export default function AutocompleteHint() {
         const matchingOption = options.find((option) =>
           option.label.startsWith(state.inputValue),
         );
-
         if (displayOptions.length > 0 && state.inputValue && matchingOption) {
           hint.current = matchingOption.label;
         } else {

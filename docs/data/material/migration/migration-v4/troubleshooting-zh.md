@@ -22,7 +22,7 @@
 
 To check this, run `npm ls @material-ui/core` (or `yarn why @material-ui/core`). If your project contains such dependencies, you will see a list that looks something like this:
 
-```sh
+```bash
 $ npm ls @material-ui/core
 project@0.1.0 /path/to/project
 └─┬  @mui/x-data-grid@4.0.0
@@ -200,7 +200,7 @@ declare module '@mui/private-theming' {
 
 We recommend using this codemod to fix all imports in your project:
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/optimal-imports <path>
 ```
 

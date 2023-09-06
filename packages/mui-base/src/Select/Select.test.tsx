@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import Select, { SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
-import useOption, { SelectOption } from '@mui/base/useOption';
-import Option, { OptionProps, optionClasses } from '@mui/base/Option';
-import OptionGroup from '@mui/base/OptionGroup';
 import {
   createMount,
   createRenderer,
@@ -14,6 +10,10 @@ import {
   act,
   screen,
 } from 'test/utils';
+import { Select, SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
+import { useOption, SelectOption } from '@mui/base/useOption';
+import { Option, OptionProps, optionClasses } from '@mui/base/Option';
+import { OptionGroup } from '@mui/base/OptionGroup';
 
 describe('<Select />', () => {
   const mount = createMount();
@@ -77,7 +77,7 @@ describe('<Select />', () => {
         const select = getByRole('combobox');
         act(() => {
           select.focus();
-          select.click();
+          fireEvent.mouseDown(select);
         });
 
         const listbox = getByRole('listbox');
@@ -121,7 +121,7 @@ describe('<Select />', () => {
           const select = getByRole('combobox');
           act(() => {
             select.focus();
-            select.click();
+            fireEvent.mouseDown(select);
           });
 
           userEvent.keyPress(select, { key: 'ArrowDown' }); // highlights '2'
@@ -523,7 +523,7 @@ describe('<Select />', () => {
         const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
           event.preventDefault();
           const formData = new FormData(event.currentTarget);
-          expect(formData.get('test-select')).to.equal('2,3');
+          expect(formData.get('test-select')).to.equal('[2,3]');
         };
 
         const { getByText } = render(
@@ -851,6 +851,24 @@ describe('<Select />', () => {
     });
   });
 
+  describe('prop: areOptionsEqual', () => {
+    it('should use the `areOptionsEqual` prop to determine if an option is selected', () => {
+      interface TestValue {
+        id: string;
+      }
+
+      const areOptionsEqual = (a: TestValue, b: TestValue) => a.id === b.id;
+      const { getByRole } = render(
+        <Select defaultValue={{ id: '1' }} areOptionsEqual={areOptionsEqual}>
+          <Option value={{ id: '1' }}>One</Option>
+          <Option value={{ id: '2' }}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One');
+    });
+  });
+
   // according to WAI-ARIA 1.2 (https://www.w3.org/TR/wai-aria-1.2/#combobox)
   describe('a11y attributes', () => {
     it('should have the `combobox` role', () => {
@@ -882,7 +900,7 @@ describe('<Select />', () => {
 
       const select = screen.getByRole('combobox');
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       expect(select).to.have.attribute('aria-expanded', 'true');
@@ -898,7 +916,7 @@ describe('<Select />', () => {
       const select = screen.getByRole('combobox');
 
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       const listbox = screen.getByRole('listbox');
@@ -938,7 +956,7 @@ describe('<Select />', () => {
 
       const select = getByRole('combobox');
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       expect(select).to.have.attribute('aria-expanded', 'true');
@@ -953,11 +971,11 @@ describe('<Select />', () => {
 
       const select = getByRole('combobox');
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       expect(select).to.have.attribute('aria-expanded', 'false');
@@ -980,7 +998,7 @@ describe('<Select />', () => {
 
       act(() => {
         select.focus();
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       const listbox = getByRole('listbox');
@@ -1040,7 +1058,7 @@ describe('<Select />', () => {
     });
 
     it('does not steal focus from other elements on page when it is open on mount', () => {
-      const { getByRole } = render(
+      const { getAllByRole } = render(
         <div>
           <input autoFocus />
           <Select defaultListboxOpen>
@@ -1050,7 +1068,7 @@ describe('<Select />', () => {
         </div>,
       );
 
-      const input = getByRole('textbox');
+      const input = getAllByRole('textbox')[0];
       expect(document.activeElement).to.equal(input);
     });
 
@@ -1089,7 +1107,7 @@ describe('<Select />', () => {
       const select = getByRole('combobox');
 
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       const listbox = getByRole('listbox');
@@ -1197,7 +1215,7 @@ describe('<Select />', () => {
     const select = getByRole('combobox');
     act(() => {
       select.focus();
-      select.click(); // opens and highlights '1'
+      fireEvent.mouseDown(select); // opens and highlights '1'
     });
 
     // React renders twice in strict mode, so we expect twice the number of spy calls

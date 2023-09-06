@@ -29,7 +29,7 @@ export default function AlertDialogModal() {
         >
           <Typography
             id="alert-dialog-modal-title"
-            component="h2"
+            level="h2"
             startDecorator={<WarningRoundedIcon />}
           >
             Confirmation

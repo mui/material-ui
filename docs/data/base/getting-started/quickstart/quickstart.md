@@ -2,27 +2,29 @@
 
 <p class="description">Get started with Base UI, a library of headless ("unstyled") React UI components and low-level hooks.</p>
 
+:::info
+If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](/base-ui/guides/next-js-app-router/).
+:::
+
 ## Installation
 
 `@mui/base` is completely standalone – run one of the following commands to add Base UI to your React project:
 
-### With npm
+<codeblock storageKey="package-manager">
 
-```sh
+```bash npm
 npm install @mui/base
 ```
 
-### With yarn
-
-```sh
+```bash yarn
 yarn add @mui/base
 ```
 
-### With pnpm
-
-```sh
+```bash pnpm
 pnpm add @mui/base
 ```
+
+</codeblock>
 
 ### Peer dependencies
 
@@ -39,7 +41,7 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ## Implementing a Button
 
-This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style) as a reference.
+This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style/design/) as a reference.
 
 {{"demo": "Tutorial.js", "defaultCodeOpen": false, "hideToolbar": true}}
 
@@ -54,7 +56,7 @@ The code snippets below demonstrate the basic implementation of each:
 
 ```tsx
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 
 export default function App() {
   return <Button>Click Me</Button>;
@@ -65,7 +67,7 @@ export default function App() {
 
 ```tsx
 import * as React from 'react';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 
 export default function App() {
   const { getRootProps } = useButton();
@@ -128,11 +130,11 @@ After installing Tailwind CSS, pass its utility classes to `className`, as shown
 
 The demo below shows how to build the Primer button using Tailwind CSS:
 
-{{"demo": "BaseButtonTailwind.js", "hideToolbar": true}}
+{{"demo": "BaseButtonTailwind.js", "hideToolbar": true, "bg": "inline"}}
 
 ### Styling with MUI System
 
-[MUI System](/system/getting-started/overview/) is a small set of CSS utilties that provide a styled-components-like API for building out designs that adhere to a theme.
+[MUI System](/system/getting-started/) is a small set of CSS utilties that provide a styled-components-like API for building out designs that adhere to a theme.
 
 MUI System's core utility is a [`styled` function](/system/styled/) that's equivalent to the `styled()` function in emotion and styled-components.
 Interpolations or arguments that are functions called by `styled` receive the `theme` from an upper `ThemeProvider`.
@@ -141,25 +143,30 @@ Interpolations or arguments that are functions called by `styled` receive the `t
 import * as React from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { styled } from '@mui/system';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 
 const theme = {
-  colors: {
+  palette: {
     primary: 'green',
+    text: '#fff',
   },
 };
 
 const GitHubButton = styled(Button)(
   ({ theme }) => `
-    background-color: ${theme.colors.primary /* => 'green' */};
+    background-color: ${theme.palette.primary /* => 'green' */};
+    ${/* ... the rest of the styles */}
   `,
 );
 
-render(
-  <ThemeProvider theme={theme}>
-    <GitHubButton>Create Repository</GitHubButton>
-  </ThemeProvider>,
-);
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <GitHubButton>Create Repository</GitHubButton>
+    </ThemeProvider>
+  );
+}
+
 ```
 
 Most of the demos in the Base UI docs are styled with MUI System in this way.
@@ -171,7 +178,7 @@ The demos below show how to create the Primer button using MUI System:
 
 ```tsx
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 import { styled } from '@mui/system';
 
 const GitHubButton = styled(Button)(
@@ -192,7 +199,7 @@ export default function App() {
 
 ```tsx
 import * as React from 'react';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 import { styled } from '@mui/system';
 
 const GitHubButton = styled('button')(

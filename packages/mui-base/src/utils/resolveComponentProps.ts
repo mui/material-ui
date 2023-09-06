@@ -2,12 +2,19 @@
  * If `componentProps` is a function, calls it with the provided `ownerState`.
  * Otherwise, just returns `componentProps`.
  */
-export default function resolveComponentProps<TProps, TOwnerState>(
-  componentProps: TProps | ((ownerState: TOwnerState) => TProps) | undefined,
+export function resolveComponentProps<TProps, TOwnerState, TSlotState>(
+  componentProps:
+    | TProps
+    | ((ownerState: TOwnerState, slotState?: TSlotState) => TProps)
+    | undefined,
   ownerState: TOwnerState,
+  slotState?: TSlotState,
 ): TProps | undefined {
   if (typeof componentProps === 'function') {
-    return (componentProps as (ownerState: TOwnerState) => TProps)(ownerState);
+    return (componentProps as (ownerState: TOwnerState, slotState?: TSlotState) => TProps)(
+      ownerState,
+      slotState,
+    );
   }
 
   return componentProps;

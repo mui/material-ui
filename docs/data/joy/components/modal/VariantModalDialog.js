@@ -55,7 +55,7 @@ export default function VariantModalDialog() {
           variant={variant}
         >
           <ModalClose />
-          <Typography id="variant-modal-title" component="h2" level="inherit">
+          <Typography id="variant-modal-title" level="h2" textColor="inherit">
             Modal Dialog
           </Typography>
           <Typography id="variant-modal-description" textColor="inherit">

@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React para emblemas
 components: Badge
 githubLabel: 'component: badge'

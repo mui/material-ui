@@ -30,6 +30,7 @@
     }
   },
   "name": "Slide",
+  "imports": ["import Slide from '@mui/material/Slide';", "import { Slide } from '@mui/material';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "themeDefaultProps": false,

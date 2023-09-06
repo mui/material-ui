@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: Unstyled React Input component and hook
 components: InputUnstyled
 githubLabel: 'component: input'

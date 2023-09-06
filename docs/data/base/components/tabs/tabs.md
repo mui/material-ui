@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Tabs components
 components: Tabs, Tab, TabPanel, TabsList
 hooks: useTab, useTabPanel, useTabs, useTabsList
@@ -30,29 +30,12 @@ Tabs are implemented using a collection of related components:
 
 ### Usage
 
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
-
 ```jsx
-import Tab from '@mui/base/Tab';
-import TabsList from '@mui/base/TabsList';
-import TabPanel from '@mui/base/TabPanel';
-import Tabs from '@mui/base/Tabs';
-
-export default function MyApp() {
-  return (
-    <Tabs>
-      <TabsList>
-        <Tab>{/* tab one */}</Tab>
-        <Tab>{/* tab two */}</Tab>
-      </TabsList>
-      <TabPanel>{/* panel one */}</TabPanel>
-      <TabPanel>{/* panel two */}</TabPanel>
-    </Tabs>
-  );
-}
+import { Tab } from '@mui/base/Tab';
+import { TabsList } from '@mui/base/TabsList';
+import { TabPanel } from '@mui/base/TabPanel';
+import { Tabs } from '@mui/base/Tabs';
 ```
-
-### Basics
 
 By default, Tab components and their corresponding panels are **zero-indexed** (i.e. the first tab has a `value` of `0`, then `1`, `2`, etc.).
 Clicking on a given Tab opens the panel with the same `value`, which corresponds to the order in which each component is nested within its container.
@@ -65,7 +48,7 @@ The following demo omits the `value` prop from the Tab components, and also defi
 
 The next demo shows how to apply custom styles to a set of tabs:
 
-{{"demo": "UnstyledTabsCustomized.js"}}
+{{"demo": "UnstyledTabsCustomized"}}
 
 ### Anatomy
 
@@ -127,7 +110,9 @@ The same applies for props specific to custom primitive elements:
 
 A common use case for tabs is to implement client-side navigation that doesn't require an HTTP round-trip to the server.
 
-The Tab component provides the [slots](/base-ui/react-tabs/#custom-structure) prop to handle this use case—see [the Material UI documentation on routing](/material-ui/guides/routing/#tabs) for more details.
+The Tab component provides the `slots` prop to handle this, as shown below:
+
+{{"demo": "UnstyledTabsRouting.js"}}
 
 ## Accessibility
 

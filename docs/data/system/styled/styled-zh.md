@@ -4,7 +4,8 @@
 
 ## Introduction
 
-All the MUI components are styled with this `styled()` utility. This utility is built on top of the `styled()` module of [`@mui/styled-engine`](/material-ui/guides/styled-engine/) and provides additional features.
+All MUI components are styled with the `styled()` utility. 
+This utility is built on top of the `styled()` module of `@mui/styled-engine` and provides additional features.
 
 ### 引用路径
 
@@ -244,7 +245,7 @@ With MUI's `styled()` utility, you can use components as selectors, too. When us
 
 First, you should install [`@emotion/babel-plugin`](https://emotion.sh/docs/@emotion/babel-plugin).
 
-```sh
+```bash
 npm install @emotion/babel-plugin
 ```
 

@@ -13,7 +13,6 @@ import Stack from '@mui/joy/Stack';
 
 export default function DialogVerticalScroll() {
   const [layout, setLayout] = React.useState(undefined);
-
   const [scroll, setScroll] = React.useState(true);
   return (
     <React.Fragment>
@@ -45,7 +44,7 @@ export default function DialogVerticalScroll() {
       >
         <ModalDialog aria-labelledby="dialog-vertical-scroll-title" layout={layout}>
           <ModalClose />
-          <Typography id="dialog-vertical-scroll-title" component="h2">
+          <Typography id="dialog-vertical-scroll-title" level="h2">
             Vertical scroll example
           </Typography>
           <FormControl

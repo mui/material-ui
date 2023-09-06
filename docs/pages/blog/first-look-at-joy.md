@@ -7,7 +7,7 @@ tags: ['News', 'MUI Core']
 card: true
 ---
 
-<a href="/joy-ui/getting-started/overview/"><img src="/static/blog/first-look-at-joy/card.png" style="width: 692px; aspect-ratio: 2/1; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." /></a>
+<a href="/joy-ui/getting-started/"><img src="/static/blog/first-look-at-joy/card.png" style="width: 692px; aspect-ratio: 2/1; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." /></a>
 
 If you're a close follower of everything MUI, you might be aware that we've been working on a new design system.
 If not, then this post will give you a first look at **Joy UI**－MUI's new starting point for your design system!
@@ -36,7 +36,7 @@ Material UI and Joy UI still share many of the same conventions and features.
 We've done this not only to decrease the learning curve for adopting Joy UI, but also because we believe that the conventions we've established represent the ideal developer experience for working with design systems.
 
 :::info
-💡 Any new DX feature introduced in Joy UI will eventually be reproduced in Material UI, and vice versa.
+Any new DX feature introduced in Joy UI will eventually be reproduced in Material UI, and vice versa.
 :::
 
 ## What new features does Joy UI offer?
@@ -130,8 +130,8 @@ It should be ready for more mature experimentation and testing in the second hal
 Meanwhile, we've developed a couple of templates that showcase what Joy UI looks like out of the box, so you can explore it further.
 Follow the templates' CodeSandbox or live demo links to experiment with Joy UI for yourself.
 
-:::info
-👉 They are also available in the docs [Templates page](/joy-ui/getting-started/templates/).
+:::success
+They are also available in the docs [Templates page](/joy-ui/getting-started/templates/).
 :::
 
 ### Email

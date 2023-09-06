@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Button, { buttonClasses } from '@mui/base/Button';
+import { Button, buttonClasses } from '@mui/base/Button';
 import { styled } from '@mui/system';
 
 const ButtonRoot = React.forwardRef(function ButtonRoot(props, ref) {
@@ -53,7 +53,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
     transition: all 800ms ease;
     pointer-events: none;
   }
-  
+
   & .bg {
     stroke: var(--main-color);
     stroke-width: 1;
@@ -86,7 +86,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
     outline-offset: 2px;
   }
 
-  &.${buttonClasses.active} { 
+  &.${buttonClasses.active} {
     & .bg {
       fill: var(--active-color);
       transition: fill 300ms ease-out;
@@ -99,7 +99,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
     & .content {
       font-size: 0.875rem;
       font-family: IBM Plex Sans, sans-serif;
-      font-weight: 500;
+      font-weight: 600;
       line-height: 1.5;
       height: 100%;
       display: flex;

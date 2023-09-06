@@ -1,6 +1,7 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { getTabsListUtilityClass } from './tabsListClasses';
 import {
@@ -9,9 +10,9 @@ import {
   TabsListRootSlotProps,
   TabsListTypeMap,
 } from './TabsList.types';
-import useTabsList from '../useTabsList';
+import { useTabsList } from '../useTabsList';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import TabsListProvider from '../useTabsList/TabsListProvider';
+import { TabsListProvider } from '../useTabsList/TabsListProvider';
 
 const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
   const { orientation } = ownerState;
@@ -78,6 +79,10 @@ TabsList.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The props used for each slot inside the TabsList.
    * @default {}
    */
@@ -94,4 +99,4 @@ TabsList.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default TabsList;
+export { TabsList };

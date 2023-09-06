@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Button, { buttonClasses } from '@mui/base/Button';
-import useButton from '@mui/base/useButton';
+import { Button, buttonClasses } from '@mui/base/Button';
+import { useButton } from '@mui/base/useButton';
 import { styled, alpha } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
@@ -88,7 +88,7 @@ const GitHubButtonComponent = styled(Button)(getStyles);
 
 const GitHubButtonHook = styled('button')(getStyles);
 
-export default function App() {
+export default function BaseButtonMuiSystem() {
   const { getRootProps } = useButton({});
 
   return (

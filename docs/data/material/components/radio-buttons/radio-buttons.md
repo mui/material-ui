@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Radio Group component
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 githubLabel: 'component: radio'

@@ -36,7 +36,7 @@ export default (function More(props: ButtonBaseProps) {
           cursor: 'pointer',
           borderRadius: 1,
           height: '100%',
-          border: '2px dashed',
+          border: '1px dashed',
           transitionProperty: 'all',
           transitionDuration: '150ms',
           borderColor: 'grey.200',
@@ -50,7 +50,7 @@ export default (function More(props: ButtonBaseProps) {
         },
         (theme) =>
           theme.applyDarkStyles({
-            borderColor: 'primaryDark.500',
+            borderColor: 'primaryDark.600',
             '&:hover, &:focus': {
               bgcolor: 'primaryDark.700',
             },

@@ -4,7 +4,7 @@
 
 > ⚠️ `@mui/styles` is the _**legacy**_ styling solution for Material UI.
 > It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5.
-> If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/overview/) documentation which is the recommended alternative.
+> If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/) documentation which is the recommended alternative.
 
 > ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18.
 
@@ -35,7 +35,7 @@ To install and save in your `package.json` dependencies, run:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 // with npm
 npm install @mui/styles
 

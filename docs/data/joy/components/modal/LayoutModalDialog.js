@@ -8,7 +8,6 @@ import Typography from '@mui/joy/Typography';
 
 export default function LayoutModalDialog() {
   const [layout, setLayout] = React.useState(undefined);
-
   return (
     <React.Fragment>
       <Stack direction="row" spacing={1}>
@@ -38,7 +37,7 @@ export default function LayoutModalDialog() {
           layout={layout}
         >
           <ModalClose />
-          <Typography id="layout-modal-title" component="h2">
+          <Typography id="layout-modal-title" level="h2">
             Modal Dialog
           </Typography>
           <Typography id="layout-modal-description" textColor="text.tertiary">

@@ -9,8 +9,6 @@ export interface LinkClasses {
   colorNeutral: string;
   /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Class name applied to the root element if `color="info"`. */
-  colorInfo: string;
   /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
   /** Class name applied to the root element if `color="warning"`. */
@@ -43,16 +41,20 @@ export interface LinkClasses {
   h3: string;
   /** Class name applied to the root element if `level="h4"`. */
   h4: string;
-  /** Class name applied to the root element if `level="h5"`. */
-  h5: string;
-  /** Class name applied to the root element if `level="h6"`. */
-  h6: string;
-  /** Class name applied to the root element if `level="body1"`. */
-  body1: string;
-  /** Class name applied to the root element if `level="body2"`. */
-  body2: string;
-  /** Class name applied to the root element if `level="body3"`. */
-  body3: string;
+  /** Class name applied to the root element if `level="title-lg"`. */
+  'title-lg': string;
+  /** Class name applied to the root element if `level="title-md"`. */
+  'title-md': string;
+  /** Class name applied to the root element if `level="title-sm"`. */
+  'title-sm': string;
+  /** Class name applied to the root element if `level="body-lg"`. */
+  'body-lg': string;
+  /** Class name applied to the root element if `level="body-md"`. */
+  'body-md': string;
+  /** Class name applied to the root element if `level="body-sm"`. */
+  'body-sm': string;
+  /** Class name applied to the root element if `level="body-xs"`. */
+  'body-xs': string;
   /** Class name applied to the startDecorator element */
   startDecorator: string;
   /** Class name applied to the endDecorator element */
@@ -72,7 +74,6 @@ const linkClasses: LinkClasses = generateUtilityClasses('MuiLink', [
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',
@@ -88,11 +89,13 @@ const linkClasses: LinkClasses = generateUtilityClasses('MuiLink', [
   'h2',
   'h3',
   'h4',
-  'h5',
-  'h6',
-  'body1',
-  'body2',
-  'body3',
+  'title-lg',
+  'title-md',
+  'title-sm',
+  'body-lg',
+  'body-md',
+  'body-sm',
+  'body-xs',
   'startDecorator',
   'endDecorator',
 ]);

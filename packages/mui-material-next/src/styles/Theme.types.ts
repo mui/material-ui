@@ -34,6 +34,9 @@ export interface MD3Palettes {
   neutral: MD3NeutralTones;
   neutralVariant: MD3Tones;
   error: MD3Tones;
+  info: MD3Tones;
+  warning: MD3Tones;
+  success: MD3Tones;
   common: {
     black: string;
     white: string;
@@ -60,6 +63,15 @@ export interface MD3ColorSchemeTokens {
   onError: string;
   errorContainer: string;
   onErrorContainer: string;
+
+  info: string;
+  onInfo: string;
+
+  warning: string;
+  onWarning: string;
+
+  success: string;
+  onSuccess: string;
 
   background: string;
   onBackground: string;

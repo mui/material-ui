@@ -1,13 +1,15 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import isHostComponent from '../utils/isHostComponent';
-import composeClasses from '../composeClasses';
+import { isHostComponent } from '../utils/isHostComponent';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSliderUtilityClass } from './sliderClasses';
-import useSlider, { valueToPercent } from '../useSlider';
-import useSlotProps from '../utils/useSlotProps';
+import { useSlider, valueToPercent } from '../useSlider';
+import { useSlotProps } from '../utils/useSlotProps';
+import { resolveComponentProps } from '../utils/resolveComponentProps';
 import { SliderOwnerState, SliderProps, SliderTypeMap } from './Slider.types';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
@@ -90,10 +92,14 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
 
   // all props with defaults
   // consider extracting to hook an reusing the lint rule for the variants
-  const partialOwnerState: Omit<SliderOwnerState, 'focusedThumbIndex' | 'marked' | 'dragging'> = {
+  const partialOwnerState: Omit<
+    SliderOwnerState,
+    'focusedThumbIndex' | 'activeThumbIndex' | 'marked' | 'dragging'
+  > = {
     ...props,
     marks: marksProp,
     disabled,
+    disableSwap,
     isRtl,
     defaultValue,
     max,
@@ -119,6 +125,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     values,
     trackOffset,
     trackLeap,
+    getThumbStyle,
   } = useSlider({ ...partialOwnerState, rootRef: forwardedRef });
 
   const ownerState: SliderOwnerState = {
@@ -126,6 +133,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     marked: marks.length > 0 && marks.some((mark) => mark.label),
     dragging,
     focusedThumbIndex,
+    activeThumbIndex: active,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -168,6 +176,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     getSlotProps: getThumbProps,
     externalSlotProps: slotProps.thumb,
     ownerState,
+    skipResolvingSlotProps: true,
   });
 
   const ValueLabel = slots.valueLabel;
@@ -260,20 +269,26 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
       {values.map((value, index) => {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
-
+        const resolvedSlotProps = resolveComponentProps(slotProps.thumb, ownerState, {
+          index,
+          focused: focusedThumbIndex === index,
+          active: active === index,
+        });
         return (
           <Thumb
             key={index}
             data-index={index}
             {...thumbProps}
-            className={clsx(classes.thumb, thumbProps.className, {
+            {...resolvedSlotProps}
+            className={clsx(classes.thumb, thumbProps.className, resolvedSlotProps?.className, {
               [classes.active]: active === index,
               [classes.focusVisible]: focusedThumbIndex === index,
             })}
             style={{
               ...style,
-              pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+              ...getThumbStyle(index),
               ...thumbProps.style,
+              ...resolvedSlotProps?.style,
             }}
           >
             <Input
@@ -513,4 +528,4 @@ Slider.propTypes /* remove-proptypes */ = {
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 } as any;
 
-export default Slider;
+export { Slider };

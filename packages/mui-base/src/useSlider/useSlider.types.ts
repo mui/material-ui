@@ -213,6 +213,12 @@ export interface UseSliderReturnValue {
     otherHandlers?: TOther,
   ) => UseSliderThumbSlotProps<TOther>;
   /**
+   * Resolver for the thumb slot's style prop.
+   * @param index of the currently moved thumb
+   * @returns props that should be spread on the style prop of thumb slot
+   */
+  getThumbStyle: (index: number) => object;
+  /**
    * The marks of the slider. Marks indicate predetermined values to which the user can move the slider.
    */
   marks: Mark[];

@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: Unstyled React Menu components and hooks
 components: MenuUnstyled, MenuItemUnstyled
 githubLabel: 'component: menu'

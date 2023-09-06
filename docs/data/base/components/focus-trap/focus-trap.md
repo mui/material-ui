@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Focus Trap component
 components: FocusTrap
 githubLabel: 'component: FocusTrap'
@@ -24,7 +24,7 @@ Focus Trap is a utility component that's useful when implementing an overlay suc
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import FocusTrap from '@mui/base/FocusTrap';
+import { FocusTrap } from '@mui/base/FocusTrap';
 
 export default function MyApp() {
   return <FocusTrap>{/* children where the focus will be trapped */}</FocusTrap>;

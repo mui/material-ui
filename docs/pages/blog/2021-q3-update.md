@@ -67,13 +67,13 @@ Here are the most significant improvements since early July 2021.
   - [Modal](/material-ui/react-modal/#unstyled)
 
   ```jsx
-  import ModalUnstyled from '@mui/base/ModalUnstyled';
+  import { ModalUnstyled } from '@mui/base/ModalUnstyled';
   ```
 
   - [Slider](/material-ui/react-slider/#unstyled)
 
   ```jsx
-  import SliderUnstyled from '@mui/base/SliderUnstyled';
+  import { SliderUnstyled } from '@mui/base/SliderUnstyled';
   ```
 
   - [Switch](/material-ui/react-switch/#unstyled)
@@ -85,13 +85,13 @@ Here are the most significant improvements since early July 2021.
   - [Portal](/material-ui/react-portal/#unstyled)
 
   ```jsx
-  import Portal from '@mui/base/Portal';
+  import { Portal } from '@mui/base/Portal';
   ```
 
   - [TrapFocus](/base-ui/react-focus-trap/)
 
   ```jsx
-  import TrapFocus from '@mui/base/TrapFocus';
+  import { TrapFocus } from '@mui/base/TrapFocus';
   ```
 
 ### MUI X

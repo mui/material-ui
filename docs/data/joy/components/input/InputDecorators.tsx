@@ -17,6 +17,11 @@ export default function InputDecorators() {
             variant="plain"
             value={currency}
             onChange={(_, value) => setCurrency(value!)}
+            slotProps={{
+              listbox: {
+                variant: 'outlined',
+              },
+            }}
             sx={{ mr: -1.5, '&:hover': { bgcolor: 'transparent' } }}
           >
             <Option value="dollar">US dollar</Option>

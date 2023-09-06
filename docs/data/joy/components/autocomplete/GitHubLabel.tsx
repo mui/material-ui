@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Popper from '@mui/base/Popper';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { Popper } from '@mui/base/Popper';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
@@ -32,8 +32,11 @@ const Listbox = React.forwardRef<HTMLUListElement, any>((props, ref) => (
 
 export default function GitHubLabel() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [value, setValue] = React.useState<LabelType[]>([labels[1], labels[11]]);
-  const [pendingValue, setPendingValue] = React.useState<LabelType[]>([]);
+  const [value, setValue] = React.useState<readonly LabelType[]>([
+    labels[1],
+    labels[11],
+  ]);
+  const [pendingValue, setPendingValue] = React.useState<readonly LabelType[]>([]);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setPendingValue(value);
@@ -59,7 +62,7 @@ export default function GitHubLabel() {
           color="neutral"
           component="button"
           underline="none"
-          level="body3"
+          level="body-xs"
           aria-describedby={id}
           onClick={handleClick}
           sx={{
@@ -80,13 +83,12 @@ export default function GitHubLabel() {
         <List
           size="sm"
           sx={{
-            '--List-radius': '0px',
             '--List-gap': '3px',
             '--ListItem-minHeight': '20px',
             '--ListItem-paddingX': '4px',
             '--ListItem-paddingY': '0.15em',
             '--ListItem-radius': '2px',
-            '--ListItem-fontSize': '13px',
+            fontSize: '13px',
           }}
         >
           {value.map((label) => (
@@ -179,10 +181,8 @@ export default function GitHubLabel() {
                     }}
                   />
                   <Box sx={{ flexGrow: 1 }}>
-                    <Typography fontSize="sm">{option.name}</Typography>
-                    <Typography level="body3" textColor="text.secondary">
-                      {option.description}
-                    </Typography>
+                    <Typography level="title-sm">{option.name}</Typography>
+                    <Typography level="body-xs">{option.description}</Typography>
                   </Box>
                   <CloseIcon sx={{ visibility: selected ? 'visible' : 'hidden' }} />
                 </AutocompleteOption>

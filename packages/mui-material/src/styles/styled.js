@@ -1,3 +1,4 @@
+'use client';
 import { createStyled, shouldForwardProp } from '@mui/system';
 import defaultTheme from './defaultTheme';
 import THEME_ID from './identifier';

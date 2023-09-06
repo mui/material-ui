@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Button component
 components: Button, IconButton, LoadingButton
 githubLabel: 'component: button'

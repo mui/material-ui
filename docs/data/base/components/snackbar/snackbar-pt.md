@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: Unstyled React Snackbar component and hook
 components: SnackbarUnstyled
 githubLabel: 'component: snackbar'

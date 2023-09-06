@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Timeline component
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
 githubLabel: 'component: timeline'
@@ -33,6 +33,12 @@ The main content of the timeline can be positioned on the left side relative to 
 The timeline can display the events on alternating sides.
 
 {{"demo": "AlternateTimeline.js"}}
+
+## Reverse Alternating timeline
+
+The timeline can display the events on alternating sides in reverse order.
+
+{{"demo": "AlternateReverseTimeline.js"}}
 
 ## Color
 

@@ -1,5 +1,5 @@
 ---
-product: base-ui
+productId: base-ui
 title: React Button component and hook
 components: Button
 hooks: useButton
@@ -19,7 +19,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
 The Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
 
-{{"demo": "UnstyledButtonIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledButtonIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
@@ -28,7 +28,7 @@ The Button component replaces the native HTML `<button>` element, and offers exp
 After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 
 export default function MyApp() {
   return <Button>{/* button text */}</Button>;
@@ -42,7 +42,7 @@ The Button behaves similar to the native HTML `<button>`, so it wraps around the
 The following demo shows how to create and style two basic buttons.
 Notice that the second button cannot be clicked due to the `disabled` prop:
 
-{{"demo": "UnstyledButtonsSimple.js", "defaultCodeOpen": true}}
+{{"demo": "UnstyledButtonsSimple"}}
 
 ### Anatomy
 
@@ -71,7 +71,7 @@ If you provide a non-interactive element such as a `<span>`, the Button componen
 
 Compare the attributes on the `<span>` in this demo with the Button from the previous demo—try inspecting them both with your browser's dev tools:
 
-{{"demo": "UnstyledButtonsSpan.js"}}
+{{"demo": "UnstyledButtonsSpan"}}
 
 :::warning
 If a Button is customized with a non-button element (for instance, `<Button slots={{ root: "span" }} />`), it will not submit the form it's in when clicked.
@@ -95,7 +95,7 @@ The same applies for props specific to custom primitive elements:
 ## Hook
 
 ```js
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 ```
 
 The `useButton` hook lets you apply the functionality of a button to a fully custom component.
@@ -134,6 +134,12 @@ The Button accepts a wide range of custom elements beyond HTML elements.
 You can even use SVGs, as the following demo illustrates:
 
 {{"demo": "UnstyledButtonCustom.js", "defaultCodeOpen": false}}
+
+### Using with links
+
+The following demo illustrates how to use the Button as a link, whether using the Base UI Button itself for the `href`, or with the [Next.js Link component](https://nextjs.org/learn/basics/navigate-between-pages/link-component):
+
+{{"demo": "UnstyledLinkButton.js", "defaultCodeOpen": true}}
 
 ### Focus on disabled buttons
 

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Head from 'docs/src/modules/components/Head';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -7,20 +6,21 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import Section from 'docs/src/layouts/Section';
-import PageContext from 'docs/src/modules/components/PageContext';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import Link from 'docs/src/modules/components/Link';
-import { MuiPage } from 'docs/src/pages';
+import type { MuiPage } from 'docs/src/MuiPage';
+import materialPages from 'docs/data/material/pages';
 
 export default function Components() {
-  const { pages } = React.useContext(PageContext);
   const t = useTranslate();
-  const componentPageData = pages.find(({ pathname }) => pathname === '/components');
+  const pages = materialPages;
+  const componentPageData = pages.find(({ title }) => title === 'Components');
   function renderItem(aPage: MuiPage) {
     return (
       <ListItem key={aPage.pathname} disablePadding>

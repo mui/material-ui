@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -47,17 +48,20 @@ const CardActionsRoot = styled('div', {
     [`.${dividerClasses.root} + &`]: {
       '--unstable_padding': '0',
     },
-    ...(ownerState.buttonFlex && {
-      [`& > :not(.${iconButtonClasses.root})`]: {
-        flex: ownerState.buttonFlex,
-      },
-      [`& > :not(button) > .${buttonClasses.root}`]: {
-        width: '100%', // for button to fill its wrapper.
-      },
-    }),
-    [`& > .${buttonClasses.root}:only-child`]: {
-      flex: 'auto',
-    },
+    ...(ownerState.buttonFlex
+      ? {
+          [`& > :not(.${iconButtonClasses.root})`]: {
+            flex: ownerState.buttonFlex,
+          },
+          [`& > :not(button) > .${buttonClasses.root}`]: {
+            width: '100%', // for button to fill its wrapper.
+          },
+        }
+      : {
+          [`& > .${buttonClasses.root}:only-child`]: {
+            flex: 'auto',
+          },
+        }),
   };
 });
 /**

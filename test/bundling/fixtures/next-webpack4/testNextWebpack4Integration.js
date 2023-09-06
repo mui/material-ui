@@ -46,7 +46,7 @@ async function main() {
       `Expected no console messages but got ${consoleMessage.type()}: '${consoleMessage.text()}' `,
     );
   });
-  await attemptGoto(page, 'http://localhost:3000/next-webpack.fixture');
+  await attemptGoto(page, 'http://localhost:5001/next-webpack.fixture');
 
   await browser.close();
 }

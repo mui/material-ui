@@ -7,12 +7,12 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import TextFieldsRounded from '@mui/icons-material/TextFieldsRounded';
+import WidgetsRounded from '@mui/icons-material/WidgetsRounded';
+import ToggleOnRounded from '@mui/icons-material/ToggleOnRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
-import WidgetsRounded from '@mui/icons-material/WidgetsRounded';
-import ToggleOnRounded from '@mui/icons-material/ToggleOnRounded';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
@@ -39,10 +39,10 @@ export default function TemplateDemo() {
     [DEMOS[2]]: <WidgetsRounded fontSize="small" />,
   };
   return (
-    <Section bg="comfort">
+    <Section bg="gradient" cozy>
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
+          <Box sx={{ maxWidth: 500 }}>
             <SectionHeadline
               overline="Features"
               title={
@@ -50,7 +50,7 @@ export default function TemplateDemo() {
                   Upgrade your <GradientText>design workflow</GradientText>
                 </Typography>
               }
-              description="The UI kits contain many of the MUI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date MUI release."
+              description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date Material UI release."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>
@@ -201,7 +201,7 @@ export default function TemplateDemo() {
             <Frame.Info sx={{ display: 'flex', alignItems: 'center', minWidth: 0 }}>
               <Box sx={{ minWidth: 0 }}>
                 <Typography variant="body2" fontWeight={500} noWrap sx={{ mb: 0.5 }}>
-                  e.g. MUI for Figma
+                  e.g. Material UI for Figma
                 </Typography>
               </Box>
               <Button
