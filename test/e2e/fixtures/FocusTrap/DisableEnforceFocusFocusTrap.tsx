@@ -7,7 +7,7 @@ export default function disableEnforceFocusFocusTrap() {
       <button data-testid="initial-focus" type="button" autoFocus>
         initial focus
       </button>
-      <FocusTrap open disableEnforceFocus>
+      <FocusTrap open disableEnforceFocus disableAutoFocus>
         <div data-testid="root">
           <button data-testid="inside-trap-focus" type="button">
             inside focusable
