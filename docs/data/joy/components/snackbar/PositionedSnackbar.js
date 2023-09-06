@@ -27,7 +27,7 @@ export default function PositionedSnackbar() {
           variant="plain"
           onClick={handleClick({ vertical: 'top', horizontal: 'center' })}
         >
-          Top-Center
+          TOP-CENTER
         </Button>
       </Box>
       <Grid container justifyContent="center">
@@ -36,7 +36,7 @@ export default function PositionedSnackbar() {
             variant="plain"
             onClick={handleClick({ vertical: 'top', horizontal: 'left' })}
           >
-            Top-Left
+            TOP-LEFT
           </Button>
         </Grid>
         <Grid xs={6} textAlign="right">
@@ -44,7 +44,7 @@ export default function PositionedSnackbar() {
             variant="plain"
             onClick={handleClick({ vertical: 'top', horizontal: 'right' })}
           >
-            Top-Right
+            TOP-RIGHT
           </Button>
         </Grid>
         <Grid xs={6}>
@@ -52,7 +52,7 @@ export default function PositionedSnackbar() {
             variant="plain"
             onClick={handleClick({ vertical: 'bottom', horizontal: 'left' })}
           >
-            Bottom-Left
+            BOTTOM-LEFT
           </Button>
         </Grid>
         <Grid xs={6} textAlign="right">
@@ -60,7 +60,7 @@ export default function PositionedSnackbar() {
             variant="plain"
             onClick={handleClick({ vertical: 'bottom', horizontal: 'right' })}
           >
-            Bottom-Right
+            BOTTOM-RIGHT
           </Button>
         </Grid>
       </Grid>
@@ -69,7 +69,7 @@ export default function PositionedSnackbar() {
           variant="plain"
           onClick={handleClick({ vertical: 'bottom', horizontal: 'center' })}
         >
-          Bottom-Center
+          BOTTOM-CENTER
         </Button>
       </Box>
     </React.Fragment>
@@ -82,7 +82,7 @@ export default function PositionedSnackbar() {
         anchorOrigin={{ vertical, horizontal }}
         open={open}
         onClose={handleClose}
-        variant="soft"
+        variant="solid"
         color="success"
         size="lg"
       >

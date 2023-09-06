@@ -3,7 +3,7 @@
   anchorOrigin={{ vertical, horizontal }}
   open={open}
   onClose={handleClose}
-  variant="soft"
+  variant="solid"
   color="success"
   size="lg"
 >
