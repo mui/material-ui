@@ -1,12 +1,12 @@
 {
   "extends": "../tsconfig.json",
   "include": ["e2e/**/*", "regressions/**/*", "utils/**/*"],
+  "exclude": ["node_modules", "regressions/build/**/*"],
   "compilerOptions": {
     "allowJs": true,
     "noEmit": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "esModuleInterop": true
-  },
-  "exclude": ["node_modules"]
+  }
 }

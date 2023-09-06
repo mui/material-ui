@@ -55,6 +55,7 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/material-next": "workspace:*",
+    "@mui/system": "workspace:*",
     "@types/chai": "^4.3.5",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.21",

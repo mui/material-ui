@@ -59,6 +59,7 @@
   "devDependencies": {
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
+    "@mui/styles": "workspace:*",
     "@types/chai": "^4.3.5",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",

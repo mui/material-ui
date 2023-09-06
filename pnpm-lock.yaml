@@ -969,6 +969,9 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
+      '@mui/base':
+        specifier: workspace:*
+        version: 'link:'
       '@mui/material':
         specifier: workspace:^
         version: link:../mui-material
@@ -1173,9 +1176,6 @@ importers:
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils
-      '@types/react-dom':
-        specifier: 18.2.7
-        version: 18.2.7
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
@@ -1195,6 +1195,9 @@ importers:
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
+      '@types/react-dom':
+        specifier: 18.2.7
+        version: 18.2.7
       '@types/sinon':
         specifier: ^10.0.16
         version: 10.0.16
@@ -1365,6 +1368,9 @@ importers:
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
+      '@types/react-dom':
+        specifier: 18.2.7
+        version: 18.2.7
       '@types/sinon':
         specifier: ^10.0.16
         version: 10.0.16
@@ -1474,6 +1480,9 @@ importers:
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
+      '@types/react-dom':
+        specifier: 18.2.7
+        version: 18.2.7
       '@types/sinon':
         specifier: ^10.0.16
         version: 10.0.16
@@ -1560,6 +1569,9 @@ importers:
       '@emotion/styled':
         specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
+      '@mui/styled-engine':
+        specifier: workspace:*
+        version: 'link:'
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -1588,6 +1600,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@mui/styled-engine-sc':
+        specifier: workspace:*
+        version: 'link:'
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -1667,12 +1682,18 @@ importers:
       '@mui/material':
         specifier: workspace:^
         version: link:../mui-material
+      '@mui/styles':
+        specifier: workspace:*
+        version: 'link:'
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
+      '@types/react-dom':
+        specifier: 18.2.7
+        version: 18.2.7
       '@types/sinon':
         specifier: ^10.0.16
         version: 10.0.16
@@ -1734,6 +1755,9 @@ importers:
       '@mui/material-next':
         specifier: workspace:*
         version: link:../mui-material-next
+      '@mui/system':
+        specifier: workspace:*
+        version: 'link:'
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -1773,6 +1797,9 @@ importers:
 
   packages/mui-types:
     devDependencies:
+      '@mui/types':
+        specifier: workspace:*
+        version: 'link:'
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
