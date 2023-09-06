@@ -378,10 +378,10 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 }) as OverridableComponent<CheckboxTypeMap>;
 
 Checkbox.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component is checked.
    */

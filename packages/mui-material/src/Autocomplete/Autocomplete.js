@@ -708,10 +708,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 });
 
 Autocomplete.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
    * known as the completion string, appears inline after the input cursor in the textbox.

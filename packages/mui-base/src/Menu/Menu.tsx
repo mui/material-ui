@@ -99,10 +99,10 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
 }) as PolymorphicComponent<MenuTypeMap>;
 
 Menu.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref with imperative actions that can be performed on the menu.
    */

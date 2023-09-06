@@ -205,10 +205,10 @@ const MenuButton = React.forwardRef(function MenuButton(
 }) as OverridableComponent<MenuButtonTypeMap>;
 
 MenuButton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

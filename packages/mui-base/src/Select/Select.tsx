@@ -224,10 +224,10 @@ const Select = React.forwardRef(function Select<
 }) as SelectType;
 
 Select.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A function used to determine if two options' values are equal.
    * By default, reference equality is used.

@@ -101,10 +101,10 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
 }) as OverridableComponent<AutocompleteOptionTypeMap>;
 
 AutocompleteOption.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

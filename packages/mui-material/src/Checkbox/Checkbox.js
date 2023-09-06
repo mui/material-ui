@@ -132,10 +132,10 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 });
 
 Checkbox.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "pnpm proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component is checked.
    */

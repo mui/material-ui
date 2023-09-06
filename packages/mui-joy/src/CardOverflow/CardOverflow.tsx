@@ -159,10 +159,10 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
 }) as OverridableComponent<CardOverflowTypeMap>;
 
 CardOverflow.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "pnpm proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used to render icon or text elements inside the CardOverflow if `src` is not set.
    * This can be an element, or just a string.
