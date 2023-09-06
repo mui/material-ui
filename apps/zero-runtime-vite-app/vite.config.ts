@@ -20,9 +20,7 @@ export default defineConfig({
   plugins: [
     zeroVitePlugin({
       cssVariablesPrefix: varPrefix,
-      themeArgs: {
-        theme,
-      },
+      theme,
     }),
     reactPlugin(),
     splitVendorChunkPlugin(),

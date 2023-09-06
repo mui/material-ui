@@ -1,15 +1,15 @@
-import type { PluginOption } from 'vite';
+import type { Plugin, PluginOption } from 'vite';
 import { generateCss } from '@mui/zero-tag-processor/generateCss';
 import { transformAsync } from '@babel/core';
-import linaria from '@linaria/vite';
+import baseLinaria from '@linaria/vite';
 
-type LinariaOptions = Exclude<Parameters<typeof linaria>[0], undefined>;
+type LinariaOptions = Exclude<Parameters<typeof baseLinaria>[0], undefined>;
 
 export interface ZeroVitePluginOptions extends LinariaOptions {
   /**
-   * An object of the themes that you want passed in as an argument in the callback argument of `styled`.
+   * The theme object that you want to be passed to the `styled` function
    */
-  themeArgs?: Record<string, unknown>;
+  theme: unknown;
   /**
    * Prefix string to use in the generated css variables.
    */
@@ -21,12 +21,16 @@ export interface ZeroVitePluginOptions extends LinariaOptions {
   injectDefaultThemeInRoot?: boolean;
 }
 
-export function zeroVitePlugin(options?: ZeroVitePluginOptions): PluginOption {
-  const {
-    cssVariablesPrefix = 'mui',
-    themeArgs = {},
-    injectDefaultThemeInRoot = true,
-  } = options ?? {};
+type LinariaWrapperOptions = Exclude<ZeroVitePluginOptions, 'theme'> & {
+  themeArgs: Record<string, unknown>;
+};
+
+const linaria = (options: LinariaWrapperOptions): Plugin => {
+  return baseLinaria(options);
+};
+
+export function zeroVitePlugin(options: ZeroVitePluginOptions): PluginOption {
+  const { cssVariablesPrefix = 'mui', injectDefaultThemeInRoot = true, theme } = options ?? {};
 
   function injectMUITokensPlugin(): PluginOption {
     return {
@@ -37,7 +41,9 @@ export function zeroVitePlugin(options?: ZeroVitePluginOptions): PluginOption {
             code: generateCss(
               {
                 cssVariablesPrefix,
-                themeArgs,
+                themeArgs: {
+                  theme,
+                },
               },
               {
                 defaultThemeKey: 'theme',
@@ -77,7 +83,9 @@ export function zeroVitePlugin(options?: ZeroVitePluginOptions): PluginOption {
 
   const linariaPlugin = linaria({
     cssVariablesPrefix,
-    themeArgs,
+    themeArgs: {
+      theme,
+    },
     ...options,
     babelOptions: {
       ...options?.babelOptions,
