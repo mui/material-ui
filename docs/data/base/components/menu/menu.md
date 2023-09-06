@@ -151,6 +151,11 @@ Components and their corresponding hooks work interchangeably with one anotherâ€
 
 ## Customization
 
+:::info
+The following features can be used with both components and hooks.
+For the sake of simplicity, demos and code snippets primarily feature components.
+:::
+
 ### Wrapping Menu Items
 
 Menu Item components don't have to be direct children of a Menu component.

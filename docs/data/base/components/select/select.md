@@ -20,7 +20,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-sel
 A select is a UI element that gives users a list of options to choose from.
 
 Base UI's Select component replaces the native HTML `<select>` tag.
-It also includes the Option component for creating the options on the list, and Option Group for grouping those options.
+It also includes the Option component for creating the options in the list, and Option Group for grouping those options.
 
 {{"demo": "UnstyledSelectIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
@@ -31,7 +31,7 @@ import { Select } from '@mui/base/Select';
 import { Option } from '@mui/base/Option';
 ```
 
-The following demo shows how to create and style a Select component with Options:
+The following demo shows how to create and style a Select component with several Options:
 
 {{"demo": "UnstyledSelectBasic", "defaultCodeOpen": false}}
 
@@ -72,9 +72,9 @@ For the sake of brevity, the rest of the demos throughout this doc will not use 
 Set the `multiple` prop to let your users select multiple options from the list.
 In contrast with single-selection mode, the options popup doesn't close after an item is selected, which enables users to continue choosing more options.
 
-{{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
-
 Note that in multiple selection mode, the `value` prop (and `defaultValue`) is an array.
+
+{{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
 
 ### Controlled select
 
@@ -113,17 +113,21 @@ You can change this behavior with the help of the `getSerializedValue` prop.
 
 ### Grouping options
 
+```jsx
+import { OptionGroup } from '@mui/base/OptionGroup';
+```
+
 Options can be grouped, similarly to how the native `<select>` element works.
 Unlike the native `<select>`, groups can be nested.
 
-The following demo shows how to group options with the Option Group component:
+The following demo shows how to group Options with the Option Group component:
 
 {{"demo": "UnstyledSelectGrouping.js", "defaultCodeOpen": false}}
 
 ### Anatomy
 
-The Select component is composed of a root `<button>` along with a `<div>` that houses a `<ul>` within a Popper.
-Option renders as an `<li>`:
+The Select component is composed of a root `<button>` along with a `<div>` that houses a `<ul>` within a [Popper](/base-ui/react-popper/).
+Option renders as an `<li>`, and Option Group renders a `<ul>` with an `<li>` that represents its label.
 
 ```html
 <button class="MuiSelect-root" type="button">Open</button>
@@ -199,16 +203,21 @@ You may not need to use hooks unless you find that you're limited by the customi
 
 The following example shows a select built with a hook.
 Note how this component does not include any built-in classes.
-The resulting HTML is much smaller compared to the unstyled component version, as the class names are not applied.
+The resulting HTML is much smaller compared with its prebuilt component counterpart, because the class names are not applied.
 
 {{"demo": "UseSelect.js", "defaultCodeOpen": false}}
 
 ## Customization
 
+:::info
+The following features can be used with both components and hooks.
+For the sake of simplicity, demos and code snippets primarily feature components.
+:::
+
 ### Selected value appearance
 
 You can customize the appearance of the selected value display by providing a function to the `renderValue` prop.
-The element returned by this function will be rendered inside the select's button.
+The element returned by this function will be rendered inside the Select's button.
 
 {{"demo": "UnstyledSelectCustomRenderValue.js", "defaultCodeOpen": false}}
 
