@@ -254,7 +254,9 @@ export default function MarkdownDocsV2(props) {
     >
       <div
         style={{
-          '--MuiDocs-header-height': `${AppFrameHeight + TabsHeight}px`,
+          '--MuiDocs-header-height': hasTabs
+            ? `${AppFrameHeight + TabsHeight}px`
+            : `${AppFrameHeight}px`,
         }}
       >
         {disableAd ? null : (

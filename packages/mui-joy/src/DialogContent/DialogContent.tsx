@@ -34,7 +34,7 @@ const DialogContentRoot = styled(StyledCardContentRoot, {
   overflow: 'auto',
   margin: 'var(--unstable_DialogContent-margin)',
   [`.${modalDialogClasses.root} > .${dialogTitleClasses.root} + &`]: {
-    '--unstable_DialogContent-margin': 'calc(var(--Card-padding) * -0.375) 0 0 0',
+    '--unstable_DialogContent-margin': '-0.375em 0 0 0',
   },
 }));
 /**

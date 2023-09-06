@@ -28,7 +28,11 @@
     }
   },
   "name": "DialogActions",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import DialogActions from '@mui/joy/DialogActions';",
+    "import { DialogActions } from '@mui/joy';"
+  ],
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogActions" },
   "slots": [
     {
       "name": "root",

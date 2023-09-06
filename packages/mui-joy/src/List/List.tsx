@@ -74,23 +74,24 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
     return {};
   }
   return [
-    ownerState.nesting && {
-      // instanceSize is the specified size of the rendered element <List size="sm" />
-      // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
-      ...applySizeVars(ownerState.instanceSize),
-      '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
-      '--ListItem-paddingLeft': 'var(--NestedListItem-paddingLeft)',
-      // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
-      '--ListItemButton-marginBlock': '0px',
-      '--ListItemButton-marginInline': '0px',
-      '--ListItem-marginBlock': '0px',
-      '--ListItem-marginInline': '0px',
-      padding: 0,
-      marginInlineStart: 'var(--NestedList-marginLeft)',
-      marginInlineEnd: 'var(--NestedList-marginRight)',
-      marginBlockStart: 'var(--List-gap)',
-      marginBlockEnd: 'initial', // reset user agent stylesheet.
-    },
+    ownerState.nesting &&
+      ({
+        // instanceSize is the specified size of the rendered element <List size="sm" />
+        // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
+        ...applySizeVars(ownerState.instanceSize),
+        '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
+        '--ListItem-paddingLeft': 'var(--NestedListItem-paddingLeft)',
+        // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
+        '--ListItemButton-marginBlock': '0px',
+        '--ListItemButton-marginInline': '0px',
+        '--ListItem-marginBlock': '0px',
+        '--ListItem-marginInline': '0px',
+        padding: 0,
+        marginInlineStart: 'var(--NestedList-marginLeft)',
+        marginInlineEnd: 'var(--NestedList-marginRight)',
+        marginBlockStart: 'var(--List-gap)',
+        marginBlockEnd: 'initial', // reset user agent stylesheet.
+      } as const),
     !ownerState.nesting && {
       ...applySizeVars(ownerState.size),
       '--List-gap': '0px',
@@ -131,9 +132,10 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       listStyle: 'none',
       display: 'flex',
       flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-      ...(ownerState.wrap && {
-        flexWrap: 'wrap',
-      }),
+      ...(ownerState.wrap &&
+        ({
+          flexWrap: 'wrap',
+        } as const)),
       flexGrow: 1,
       position: 'relative', // for sticky ListItem
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -143,7 +145,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       }),
       ...(p !== undefined && { '--List-padding': p }),
       ...(padding !== undefined && { '--List-padding': padding }),
-    },
+    } as const,
   ];
 });
 

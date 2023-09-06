@@ -142,7 +142,7 @@ describe('<NumberInput />', () => {
       expect(input.value).to.equal('9');
     });
 
-    it('clicking the increment and decrement buttons changes the value based on shiftMultiplier if the Shift key is held', async () => {
+    it('clicking the increment and decrement buttons changes the value based on shiftMultiplier if the Shift key is held', () => {
       const handleChange = spy();
 
       const { getByTestId } = render(

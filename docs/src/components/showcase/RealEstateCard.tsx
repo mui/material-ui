@@ -35,7 +35,7 @@ export default function RealEstateCard({ sx, ...props }: CardProps) {
           width: 'clamp(100px, (304px - 100%) * 999 , 100%)',
         }}
       />
-      <Box width="clamp(15px, (304px - 100%) * 999 , 100%)" height={15} />
+      <Box sx={{ width: 'clamp(15px, (304px - 100%) * 999 , 100%)', height: 15 }} />
       <Box sx={{ alignSelf: 'center' }}>
         <Typography variant="body2" color="text.secondary" noWrap>
           123 Main St, Phoenix, AZ

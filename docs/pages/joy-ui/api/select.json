@@ -61,7 +61,8 @@
     }
   },
   "name": "Select",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import Select from '@mui/joy/Select';", "import { Select } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSelect" },
   "slots": [
     {
       "name": "root",

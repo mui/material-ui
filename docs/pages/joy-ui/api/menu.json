@@ -56,7 +56,8 @@
     }
   },
   "name": "Menu",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import Menu from '@mui/joy/Menu';", "import { Menu } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiMenu" },
   "slots": [
     {
       "name": "root",

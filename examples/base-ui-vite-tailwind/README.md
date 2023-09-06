@@ -15,22 +15,17 @@ curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip
 cd base-ui-vite-tailwind
 ```
 
-Install dependencies:
+Install dependencies and run:
 
 ```bash
-yarn
+npm install
+npm start
 ```
 
-Start the dev server:
+PS: Don't forget to [optimize](https://tailwindcss.com/docs/optimizing-for-production) Tailwind CSS for production!
 
-```bash
-yarn start
-```
+or:
 
-[Build](https://vitejs.dev/guide/build.html) a production bundle:
+<!-- #default-branch-switch -->
 
-```bash
-yarn build
-```
-
-PS: Don't forget to [optimize](https://tailwindcss.com/docs/optimizing-for-production) Tailwind CSS for production!
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/base-ui-vite-tailwind)

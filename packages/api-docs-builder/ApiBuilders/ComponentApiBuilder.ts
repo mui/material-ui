@@ -70,6 +70,10 @@ export interface ReactApi extends ReactDocgenApi {
     signature: undefined | { type: string; describedArgs?: string[]; returned?: string };
     additionalInfo?: AdditionalPropsInfo;
   }>;
+  /**
+   * Different ways to import components
+   */
+  imports: string[];
   translations: {
     componentDescription: string;
     propDescriptions: {
@@ -418,6 +422,7 @@ const generateApiPage = (
       }),
     ),
     name: reactApi.name,
+    imports: reactApi.imports,
     styles: {
       classes: reactApi.styles.classes,
       globalClasses: _.fromPairs(
@@ -652,6 +657,42 @@ const attachPropsTable = (reactApi: ReactApi) => {
 };
 
 /**
+ * Helper to get the import options
+ * @param name The name of the component
+ * @param filename The filename where its defined (to infer the package)
+ * @returns an array of import command
+ */
+const getComponentImports = (name: string, filename: string) => {
+  const githubPath = toGitHubPath(filename);
+  const rootImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/.*/,
+    (match, pkg) => `@mui/${pkg}`,
+  );
+
+  const subdirectoryImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/([^\\/]+)\/.*/,
+    (match, pkg, directory) => `@mui/${pkg}/${directory}`,
+  );
+
+  let namedImportName = name;
+  const defaultImportName = name;
+
+  if (/Unstable_/.test(githubPath)) {
+    namedImportName = `Unstable_${name} as ${name}`;
+  }
+
+  const useNamedImports = rootImportPath === '@mui/base';
+
+  const subpathImport = useNamedImports
+    ? `import { ${namedImportName} } from '${subdirectoryImportPath}';`
+    : `import ${defaultImportName} from '${subdirectoryImportPath}';`;
+
+  const rootImport = `import { ${namedImportName} } from '${rootImportPath}';`;
+
+  return [subpathImport, rootImport];
+};
+
+/**
  * - Build react component (specified filename) api by lookup at its definition (.d.ts or ts)
  *   and then generate the API page + json data
  * - Generate the translations
@@ -742,6 +783,7 @@ export default async function generateComponentApi(
   }
   reactApi.filename = filename;
   reactApi.name = name;
+  reactApi.imports = getComponentImports(name, filename);
   reactApi.muiName = muiName;
   reactApi.apiPathname = apiPathname;
   reactApi.EOL = EOL;

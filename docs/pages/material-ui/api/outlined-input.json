@@ -56,6 +56,10 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "OutlinedInput",
+  "imports": [
+    "import OutlinedInput from '@mui/material/OutlinedInput';",
+    "import { OutlinedInput } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

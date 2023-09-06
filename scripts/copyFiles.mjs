@@ -154,6 +154,7 @@ async function addLicense(packageData) {
 }
 
 async function run() {
+  const extraFiles = process.argv.slice(2);
   try {
     // TypeScript
     await typescriptCopy({ from: srcPath, to: buildPath });
@@ -166,6 +167,7 @@ async function run() {
         packageData.name === '@mui/material' ? '../../README.md' : './README.md',
         '../../CHANGELOG.md',
         '../../LICENSE',
+        ...extraFiles,
       ].map((file) => includeFileInBuild(file)),
     );
 

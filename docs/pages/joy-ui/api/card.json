@@ -49,7 +49,8 @@
     }
   },
   "name": "Card",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import Card from '@mui/joy/Card';", "import { Card } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiCard" },
   "slots": [
     {
       "name": "root",

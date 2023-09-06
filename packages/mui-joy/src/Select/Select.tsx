@@ -176,7 +176,7 @@ const SelectRoot = styled('div', {
       [`&.${selectClasses.disabled}`]: {
         '--Select-indicatorColor': 'inherit',
       },
-    },
+    } as const,
     {
       '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
       [`&.${selectClasses.disabled}`]:

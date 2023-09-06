@@ -28,6 +28,7 @@
     }
   },
   "name": "Link",
+  "imports": ["import Link from '@mui/material/Link';", "import { Link } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",

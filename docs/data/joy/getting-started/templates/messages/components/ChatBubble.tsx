@@ -25,7 +25,7 @@ export default function ChatBubble({
   const [isLiked, setIsLiked] = React.useState<boolean>(false);
   const [isCelebrated, setIsCelebrated] = React.useState<boolean>(false);
   return (
-    <Box maxWidth="80%" minWidth={attachment ? '80%' : 'auto'}>
+    <Box sx={{ maxWidth: '80%', minWidth: attachment ? '80%' : 'auto' }}>
       <Stack
         direction="row"
         justifyContent="space-between"

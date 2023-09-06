@@ -42,6 +42,7 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "Radio",
+  "imports": ["import Radio from '@mui/material/Radio';", "import { Radio } from '@mui/material';"],
   "styles": {
     "classes": ["root", "checked", "disabled", "colorPrimary", "colorSecondary"],
     "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },

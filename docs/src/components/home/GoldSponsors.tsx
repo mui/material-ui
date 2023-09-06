@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -68,7 +67,7 @@ export default function GoldSponsors() {
     rootMargin: '500px',
   });
   return (
-    <Box ref={ref}>
+    <div ref={ref}>
       <Typography
         component="h3"
         variant="h6"
@@ -138,6 +137,6 @@ export default function GoldSponsors() {
           </Paper>
         </Grid>
       </Grid>
-    </Box>
+    </div>
   );
 }

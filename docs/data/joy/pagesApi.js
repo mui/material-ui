@@ -1,4 +1,8 @@
 module.exports = [
+  { pathname: '/joy-ui/api/accordion' },
+  { pathname: '/joy-ui/api/accordion-details' },
+  { pathname: '/joy-ui/api/accordion-group' },
+  { pathname: '/joy-ui/api/accordion-summary' },
   { pathname: '/joy-ui/api/alert' },
   { pathname: '/joy-ui/api/aspect-ratio' },
   { pathname: '/joy-ui/api/autocomplete' },

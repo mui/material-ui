@@ -87,6 +87,7 @@ const TypographyRoot = styled('span', {
         }
       : {
           display: 'block', // don't rely on user agent, always `block`.
+          position: 'relative',
         }),
     ...((ownerState.startDecorator || ownerState.endDecorator) && {
       display: 'flex',

@@ -1,5 +1,7 @@
 import ClassNameGenerator from '../ClassNameGenerator';
 
+// If GlobalStateSlot is changed, GLOBAL_STATE_CLASSES in
+// \packages\api-docs-builder\utils\parseSlotsAndClasses.ts must be updated accordingly.
 export type GlobalStateSlot =
   | 'active'
   | 'checked'

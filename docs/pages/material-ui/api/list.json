@@ -15,6 +15,7 @@
     }
   },
   "name": "List",
+  "imports": ["import List from '@mui/material/List';", "import { List } from '@mui/material';"],
   "styles": {
     "classes": ["root", "padding", "dense", "subheader"],
     "globalClasses": {},

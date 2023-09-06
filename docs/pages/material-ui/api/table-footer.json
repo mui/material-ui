@@ -12,6 +12,10 @@
     }
   },
   "name": "TableFooter",
+  "imports": [
+    "import TableFooter from '@mui/material/TableFooter';",
+    "import { TableFooter } from '@mui/material';"
+  ],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableFooter" },
   "spread": true,
   "themeDefaultProps": true,

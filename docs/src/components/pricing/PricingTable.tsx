@@ -1118,10 +1118,10 @@ export default function PricingTable({
             </Button>
           </Box>
           <ColumnHeadHighlight>
-            <Box>
+            <div>
               <PlanName plan="pro" />
               <PlanPrice plan="pro" />
-            </Box>
+            </div>
             <PricingTableBuyPro />
           </ColumnHeadHighlight>
           <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>

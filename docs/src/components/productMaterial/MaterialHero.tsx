@@ -246,8 +246,10 @@ export default function MaterialHero() {
             make it easy to implement your own custom design system.
           </Typography>
           <GetStartedButtons
-            to="/material-ui/getting-started/"
-            installation="npm install @mui/material @emotion/react @emotion/styled"
+            primaryUrl={ROUTES.materialDocs}
+            secondaryLabel="View templates"
+            secondaryUrl={ROUTES.freeTemplates}
+            altInstallation="npm install @mui/material @emotion/react @emotion/styled"
           />
         </Box>
       }

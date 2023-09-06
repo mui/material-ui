@@ -37,7 +37,6 @@ export default function Pricing() {
             <PricingTable />
           </Container>
         </LicensingModelProvider>
-        <Divider />
         <PricingWhatToExpect />
         <Divider />
         <PricingFAQ />

@@ -41,7 +41,11 @@
     }
   },
   "name": "DialogTitle",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import DialogTitle from '@mui/joy/DialogTitle';",
+    "import { DialogTitle } from '@mui/joy';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiDialogTitle" },
   "slots": [
     {
       "name": "root",

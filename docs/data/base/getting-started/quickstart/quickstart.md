@@ -146,22 +146,27 @@ import { styled } from '@mui/system';
 import { Button } from '@mui/base/Button';
 
 const theme = {
-  colors: {
+  palette: {
     primary: 'green',
+    text: '#fff',
   },
 };
 
 const GitHubButton = styled(Button)(
   ({ theme }) => `
-    background-color: ${theme.colors.primary /* => 'green' */};
+    background-color: ${theme.palette.primary /* => 'green' */};
+    ${/* ... the rest of the styles */}
   `,
 );
 
-render(
-  <ThemeProvider theme={theme}>
-    <GitHubButton>Create Repository</GitHubButton>
-  </ThemeProvider>,
-);
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <GitHubButton>Create Repository</GitHubButton>
+    </ThemeProvider>
+  );
+}
+
 ```
 
 Most of the demos in the Base UI docs are styled with MUI System in this way.

@@ -68,6 +68,10 @@
     "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
   },
   "name": "Popover",
+  "imports": [
+    "import Popover from '@mui/material/Popover';",
+    "import { Popover } from '@mui/material';"
+  ],
   "styles": { "classes": ["root", "paper"], "globalClasses": {}, "name": "MuiPopover" },
   "spread": true,
   "themeDefaultProps": false,

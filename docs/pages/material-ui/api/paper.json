@@ -21,6 +21,7 @@
     }
   },
   "name": "Paper",
+  "imports": ["import Paper from '@mui/material/Paper';", "import { Paper } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",
