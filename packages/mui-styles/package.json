@@ -63,8 +63,8 @@
     "@types/react": "^18.2.21",
     "@types/sinon": "^10.0.16",
     "chai": "^4.3.7",
-    "react-dom": "^18.2.0",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "sinon": "^15.2.0",
     "test": "workspace:^"
   },
