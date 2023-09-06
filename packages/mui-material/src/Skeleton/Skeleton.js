@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { keyframes, css } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
+import { alpha } from '../styles';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getSkeletonUtilityClass } from './skeletonClasses';
@@ -63,8 +63,8 @@ const SkeletonRoot = styled('span', {
     const { ownerState } = props;
     return [
       styles.root,
-      styles[ownerState.shape],
-      styles[ownerState.size],
+      ownerState.shape && styles[ownerState.shape],
+      ownerState.size && styles[ownerState.size],
       ownerState.animation !== false && styles[ownerState.animation],
       ownerState.hasChildren && styles.withChildren,
       ownerState.hasChildren && !ownerState.width && styles.fitContent,
@@ -72,51 +72,43 @@ const SkeletonRoot = styled('span', {
     ];
   },
 })(
-  ({ theme, ownerState }) => {
-    const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
-    const radiusValue = toUnitless(theme.shape.borderRadius);
-
-    return {
-      display: 'block',
-      // Create a "on paper" color with sufficient contrast retaining the color
-      backgroundColor: theme.vars
-        ? theme.vars.palette.Skeleton.bg
-        : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
-      height: '1.2em',
-      ...(ownerState.size === 'text' && {
-        marginTop: 0,
-        marginBottom: 0,
+  ({ theme, ownerState }) => ({
+    display: 'block',
+    // Create a "on paper" color with sufficient contrast retaining the color
+    backgroundColor: theme.vars
+      ? theme.vars.palette.Skeleton.bg
+      : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
+    height: '1.2em',
+    ...(ownerState.size === 'text' && {
+      marginTop: 0,
+      marginBottom: 0,
+      height: 'auto',
+      transformOrigin: '0 55%',
+      transform: 'scale(1, 0.60)',
+      '&:empty:before': {
+        content: '"\\00a0"',
+      },
+    }),
+    ...(ownerState.shape === 'circular' && {
+      borderRadius: '50%',
+    }),
+    ...(ownerState.shape === 'rounded' && {
+      borderRadius: (theme.vars || theme).shape.borderRadius,
+    }),
+    ...(ownerState.hasChildren && {
+      '& > *': {
+        visibility: 'hidden',
+      },
+    }),
+    ...(ownerState.hasChildren &&
+      !ownerState.width && {
+        maxWidth: 'fit-content',
+      }),
+    ...(ownerState.hasChildren &&
+      !ownerState.height && {
         height: 'auto',
-        transformOrigin: '0 55%',
-        transform: 'scale(1, 0.60)',
-        borderRadius: `${radiusValue}${radiusUnit}/${
-          Math.round((radiusValue / 0.6) * 10) / 10
-        }${radiusUnit}`,
-        '&:empty:before': {
-          content: '"\\00a0"',
-        },
       }),
-      ...(ownerState.shape === 'circular' && {
-        borderRadius: '50%',
-      }),
-      ...(ownerState.shape === 'rounded' && {
-        borderRadius: (theme.vars || theme).shape.borderRadius,
-      }),
-      ...(ownerState.hasChildren && {
-        '& > *': {
-          visibility: 'hidden',
-        },
-      }),
-      ...(ownerState.hasChildren &&
-        !ownerState.width && {
-          maxWidth: 'fit-content',
-        }),
-      ...(ownerState.hasChildren &&
-        !ownerState.height && {
-          height: 'auto',
-        }),
-    };
-  },
+  }),
   ({ ownerState }) =>
     ownerState.animation === 'pulse' &&
     css`

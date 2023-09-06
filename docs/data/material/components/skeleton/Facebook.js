@@ -60,7 +60,12 @@ function Media(props) {
         }
       />
       {loading ? (
-        <Skeleton sx={{ height: 190 }} animation="wave" size="box" shape="rectangular" />
+        <Skeleton
+          sx={{ height: 190 }}
+          animation="wave"
+          size="box"
+          shape="rectangular"
+        />
       ) : (
         <CardMedia
           component="img"
