@@ -180,6 +180,7 @@ async function generateProptypes(
       if (
         name.toLowerCase().endsWith('classes') ||
         name === 'theme' ||
+        name === 'ownerState' ||
         (name.endsWith('Props') && name !== 'componentsProps' && name !== 'slotProps')
       ) {
         return false;
