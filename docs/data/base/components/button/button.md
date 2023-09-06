@@ -23,8 +23,6 @@ The Button component replaces the native HTML `<button>` element, and offers exp
 
 ## Component
 
-### Usage
-
 ```jsx
 import { Button } from '@mui/base/Button';
 ```
@@ -86,13 +84,11 @@ The same applies for props specific to custom primitive elements:
 
 ## Hook
 
-### Usage
-
 ```js
 import { useButton } from '@mui/base/useButton';
 ```
 
-The `useButton` hook lets you apply the functionality of a button to a fully custom component.
+The `useButton` hook lets you apply the functionality of a Button to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#custom-structure), but they do support [customization props](#customization).
@@ -104,7 +100,7 @@ With hooks, you can take full control over how your component is rendered, and d
 You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
-The following demo shows how to build the same buttons as those found in the [Component—Usage](#usage) section above, but with the `useButton` hook:
+The following demo shows how to build the same buttons as those found in the [Component](#component) section above, but with the `useButton` hook:
 
 {{"demo": "UseButton.js", "defaultCodeOpen": true}}
 
@@ -125,7 +121,7 @@ For the sake of simplicity, demos and code snippets primarily feature components
 ### Custom elements
 
 The Button accepts a wide range of custom elements beyond HTML elements.
-You can even use SVGs, as the following demo illustrates:
+You can even use SVGs, as shown in the demo below:
 
 {{"demo": "UnstyledButtonCustom.js", "defaultCodeOpen": false}}
 
@@ -141,14 +137,14 @@ Similarly to the native HTML `<button>` element, the Button component can't rece
 This may reduce its accessibility, as screen readers won't be able to announce the existence and state of the button.
 
 The `focusableWhenDisabled` prop lets you change this behavior.
-When this prop is set, the underlying button does not set the `disabled` prop.
-Instead, `aria-disabled` is used, which makes the button focusable.
+When this prop is set, the underlying Button does not set the `disabled` prop.
+Instead, `aria-disabled` is used, which makes the Button focusable.
 
-This should be used whenever the disabled button needs to be read by screen readers.
+This should be used whenever the disabled Button needs to be read by screen readers.
 
 Base UI uses this prop internally in [menu items](/base-ui/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
 
-The following demo shows how the `focusableWhenDisabled` prop works—use the <kbd class="key">Tab</kbd> key to navigate within this document to see that only the second button accepts the focus:
+The following demo shows how the `focusableWhenDisabled` prop works—use the <kbd class="key">Tab</kbd> key to navigate within this document to see that only the second Button accepts the focus:
 
 {{"demo": "UnstyledButtonsDisabledFocus.js"}}
 

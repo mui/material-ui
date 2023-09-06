@@ -25,8 +25,6 @@ The Badge component creates a badge that is applied to its child element.
 
 ## Component
 
-### Usage
-
 ```jsx
 import { Badge } from '@mui/base/Badge';
 ```
@@ -80,8 +78,6 @@ The same applies for props specific to custom primitive elements:
 ```
 
 ## Hook
-
-### Usage
 
 ```jsx
 import { useBadge } from '@mui/base/useBadge';
