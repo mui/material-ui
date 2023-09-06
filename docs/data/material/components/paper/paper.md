@@ -10,26 +10,39 @@ materialDesign: https://m2.material.io/design/environment/elevation.html
 
 <p class="description">In Material Design, the physical properties of paper are translated to the screen. </p>
 
-The background of an application resembles the flat, opaque texture of a sheet of paper, and an application's behavior mimics paper's ability to be re-sized, shuffled, and bound together in multiple sheets.
+Material Design v2 surface components and shadow styling were heavily influenced by how these elements exist in the physical world.
+
+Material UI picked that up by creating the Paper component, a general container-like surface that includes handy built-in props such as `elevation` that allows you to pull box-shadow values from the theme that adhere to [Material Design's elevation system](https://m2.material.io/design/environment/elevation.html#elevation-in-material-design).
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic paper
 
+Note how the Paper component comes with a light elevation by default.
+
 {{"demo": "SimplePaper.js", "bg": true}}
 
 ## Variants
 
-If you need an outlined surface, use the `variant` prop.
+Use the `variant` prop to toggle between an outlined version of the Paper component, without elevation, and an elevated version.
 
-{{"demo": "Variants.js", "bg": "inline"}}
+{{"demo": "Variants.js", "bg": true}}
 
 ## Elevation
 
-The elevation can be used to establish a hierarchy between other content. In practical terms, the elevation controls the size of the shadow applied to the surface. In dark mode, raising the elevation also makes the surface lighter.
+Use the `elevation` prop to establish hierarchy through the use of shadows.
 
-{{"demo": "Elevation.js", "bg": "inline"}}
+Note that in dark mode, increasing the elevation also makes the background color lighter.
+This is done by applying a semi-transparent gradient with the `background-image` CSS property.
 
-The change of shade in dark mode is done by applying a semi-transparent gradient to the `background-image` property.
-This can lead to confusion when overriding the styles of `Paper`, as setting just the `background-color` property will not affect the elevation-related shading.
-To ignore the shading and set the background color that is not affected by elevation in dark mode, override the `background` property (or both `background-color` and `background-image`).
+:::info
+The dark mode behavior can lead to confusion when overriding the Paper component, as just changing the `background-color` property won't affect the lighter shading. To override it, either use a new background value or customize the values for both `background-color` and `background-image`.
+:::
+
+{{"demo": "Elevation.js", "bg": "outlined"}}
+
+## When to use
+
+The Paper component is better suited if you want to follow Material Design's steps and try to replicate, on your app, how light casts shadows in the physical world through the use of a thoughtfully designed elevation scale.
+
+If that's not the case, other general layout components may suffice, like the [Box](/material-ui/react-box/) and [Container](/material-ui/react-container/) components.
