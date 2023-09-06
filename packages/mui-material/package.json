@@ -66,6 +66,7 @@
     "@types/chai": "^4.3.5",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
     "@types/sinon": "^10.0.16",
     "chai": "^4.3.7",
     "css-mediaquery": "^0.1.2",
