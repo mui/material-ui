@@ -225,9 +225,9 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
     const focusinHandler = () => {
       if (disableEnforceFocus) {
         if (
-          rootRef.current?.contains(doc.activeElement)
-          || sentinelStart.current?.contains(doc.activeElement)
-          || sentinelEnd.current?.contains(doc.activeElement)
+          rootRef.current?.contains(doc.activeElement) ||
+          sentinelStart.current?.contains(doc.activeElement) ||
+          sentinelEnd.current?.contains(doc.activeElement)
         ) {
           setControlledOpen(true);
         } else {
@@ -367,7 +367,15 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
       doc.removeEventListener('focusin', contain);
       doc.removeEventListener('keydown', loopFocus, true);
     };
-  }, [disableAutoFocus, disableRestoreFocus, isEnabled, open, controlledOpen, getTabbable]);
+  }, [
+    disableAutoFocus,
+    disableEnforceFocus,
+    disableRestoreFocus,
+    isEnabled,
+    open,
+    controlledOpen,
+    getTabbable,
+  ]);
 
   const onFocus = (event: FocusEvent) => {
     if (nodeToRestore.current === null) {
