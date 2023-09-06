@@ -25,8 +25,8 @@ type DateTimePickerComponent = (<TDate>(
 ) => JSX.Element) & { propTypes?: any };
 
 /**
- * @ignore - do not document.
  * @deprecated The DateTimePicker component was moved from `@mui/lab` to `@mui/x-date-pickers`. More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.
+ * @ignore - do not document.
  */
 const DateTimePicker = React.forwardRef(function DeprecatedDateTimePicker() {
   warn();

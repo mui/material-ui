@@ -25,8 +25,8 @@ type DateRangePickerDayComponent = (<TDate>(
 ) => JSX.Element) & { propTypes?: any };
 
 /**
- * @ignore - do not document.
  * @deprecated The DateRangePickerDay component was moved from `@mui/lab` to `@mui/x-date-pickers-pro`. More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.
+ * @ignore - do not document.
  */
 const DateRangePickerDay = React.forwardRef(function DeprecatedDateRangePickerDay() {
   warn();
