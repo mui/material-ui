@@ -39,11 +39,11 @@ const teamPhotos = [
   },
   {
     img: '/static/about/snow-tea.jpeg',
-    title: 'The team shares a cup of tea up in the mountains on Chamonix.',
+    title: 'The team shares a cup of tea up in the mountains of Chamonix, France.',
   },
   {
     img: '/static/about/portugal-sight-seeing.jpeg',
-    title: 'MUI team selfie while sight seeing in Lisbon, Portugal.',
+    title: 'MUI team selfie while sightseeing in Lisbon, Portugal.',
   },
 ];
 
