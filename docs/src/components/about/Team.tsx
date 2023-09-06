@@ -317,8 +317,9 @@ export default function Team() {
           <Typography variant="h2" mb={1}>
             Meet the <GradientText>MUIers</GradientText>
           </Typography>
-          <Typography color="text.secondary" mb={2}>
-            Contributing from all corners of the world, MUI is a global team & community.
+          <Typography color="text.secondary" mb={2} sx={{ maxWidth: 450 }}>
+            Contributing from all corners of the world, <br />
+            MUI is a global team & community.
           </Typography>
           <Button
             component={Link}
@@ -359,7 +360,8 @@ export default function Team() {
             Community contributors
           </Typography>
           <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
-            Some members of the community have so enriched it, that they deserve special mention.
+            Special members of the community deserve a shout-out for their ever-lasting impact on
+            MUI’s products.
           </Typography>
           <Grid container spacing={2} mt={2}>
             {contributors.map((profile) => (

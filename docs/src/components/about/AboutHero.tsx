@@ -54,8 +54,8 @@ const ImageContainer = styled('div')(() => ({
 }));
 
 const Image = styled('img')(({ theme }) => ({
-  width: 350,
-  height: 250,
+  width: 400,
+  height: 300,
   objectFit: 'cover',
   borderRadius: theme.shape.borderRadius,
   border: '1px solid',
@@ -87,7 +87,7 @@ function PhotoGallery() {
         minWidth: '100%',
         display: 'flex',
         gap: 2,
-        my: 4,
+        my: 5,
         '> div': {
           animation: `${scroll} 120s linear infinite`,
         },
@@ -153,7 +153,7 @@ export default function AboutHero() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="body2" color="primary.600" fontWeight="bold">
+        <Typography color="primary.main" variant="body2" fontWeight="bold">
           About us
         </Typography>
         <Typography component="h1" variant="h2" sx={{ my: 1, textAlign: 'center' }}>
@@ -164,7 +164,7 @@ export default function AboutHero() {
           color="text.secondary"
           textAlign="center"
           sx={{
-            maxWidth: { md: 500 },
+            maxWidth: { md: 450 },
           }}
         >
           We aim high at enabling developers & designers to bring stunning UIs to life with
