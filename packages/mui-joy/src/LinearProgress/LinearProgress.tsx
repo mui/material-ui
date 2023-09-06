@@ -38,7 +38,7 @@ const progressKeyframe = keyframes`
   75% {
     width: var(--LinearProgress-progressMaxWidth);
   }
-  
+
   100% {
     left: var(--_LinearProgress-progressInset);
     width: var(--LinearProgress-progressMinWidth);

@@ -178,7 +178,7 @@ Currently, `prepend` does not work reliably with the App Router, but you can wor
 
 ## Function props
 
-Props passed from Server Components—for example `page.js` or other routing files—must be [serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
+Props passed from Server Components—for example `page.js` or other routing files—must be [serializable](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#passing-props-from-server-to-client-components-serialization).
 
 This works without any additional directives:
 
@@ -227,5 +227,5 @@ export default function Page() {
 }
 ```
 
-Instead, the Next.js team recommend moving components like these ["to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.
+Instead, the Next.js team recommend moving components like these ["down the tree"](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree) to avoid this issue and improve overall performance.
 :::

@@ -34,7 +34,7 @@ const SelectButton = React.forwardRef(function SelectButton<
 
 // the components exported from this file have function props which are non-serializable
 // therefore they are additionally wrapped with 'use client' here
-// https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization
+// https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#passing-props-from-server-to-client-components-serialization
 
 export function SelectOption(props: OptionProps<string>) {
   const {

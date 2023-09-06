@@ -140,7 +140,6 @@ function Styles() {
       cursor: pointer;
       border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
       color: ${isDarkMode ? cyan[300] : cyan[400]};
-    
       transition-property: all;
       transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       transition-duration: 120ms;
@@ -150,7 +149,7 @@ function Styles() {
       background: ${isDarkMode ? grey[800] : grey[50]};
       border-color: ${isDarkMode ? grey[600] : grey[300]};
     }
-  
+
     .TriggerButton:focus-visible {
       border-color: ${cyan[400]};
       outline: 3px solid ${isDarkMode ? cyan[500] : cyan[200]};

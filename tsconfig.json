@@ -39,6 +39,9 @@
       "@mui/material-next/*": ["./packages/mui-material-next/src/*"],
       "@mui/joy": ["./packages/mui-joy/src"],
       "@mui/joy/*": ["./packages/mui-joy/src/*"],
+      "@mui/zero-runtime/*": ["./packages/zero-runtime/src/*"],
+      "@mui/zero-tag-processor/*": ["./packages/zero-tag-processor/src/*"],
+      "@mui/zero-vite-plugin/*": ["./packages/zero-vite-plugin/src/*"],
       "test/*": ["./test/*"],
       "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
     },

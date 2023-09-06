@@ -138,7 +138,7 @@ const StyledAutocompleteRoot = styled('div')(
   padding-right: 5px;
   overflow: hidden;
   width: 320px;
-  
+
   &.focused {
     border-color: ${blue[400]};
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
@@ -247,7 +247,7 @@ const StyledPopupIndicator = styled(Button)(
     background-color: transparent;
     align-self: center;
     padding: 0 2px;
-    
+
     &:hover {
       background-color: ${theme.palette.mode === 'dark' ? grey[700] : blue[100]};
       cursor: pointer;
@@ -272,7 +272,7 @@ const StyledClearIndicator = styled(Button)(
     background-color: transparent;
     align-self: center;
     padding: 0 2px;
-    
+
     &:hover {
       background-color: ${theme.palette.mode === 'dark' ? grey[700] : blue[100]};
       cursor: pointer;

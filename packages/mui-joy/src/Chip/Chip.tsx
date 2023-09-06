@@ -248,7 +248,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   const resolvedActionProps =
     typeof slotProps.action === 'function' ? slotProps.action(ownerState) : slotProps.action;
-  const actionRef = React.useRef<HTMLElement | null>(null);
+  const actionRef = React.useRef<HTMLElement>(null);
   const { focusVisible, getRootProps } = useButton({
     ...resolvedActionProps,
     disabled,
