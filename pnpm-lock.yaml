@@ -1253,8 +1253,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-utils
       '@mui/x-tree-view':
-        specifier: https://pkg.csb.dev/mui/mui-x/commit/1f23b33d/@mui/x-tree-view
-        version: '@pkg.csb.dev/mui/mui-x/commit/1f23b33d/@mui/x-tree-view(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0)'
+        specifier: 6.0.0-alpha.1
+        version: 6.0.0-alpha.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0)
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
@@ -20981,34 +20981,4 @@ packages:
 
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
-    dev: false
-
-  '@pkg.csb.dev/mui/mui-x/commit/1f23b33d/@mui/x-tree-view(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0)':
-    resolution: {tarball: https://pkg.csb.dev/mui/mui-x/commit/1f23b33d/@mui/x-tree-view}
-    id: '@pkg.csb.dev/mui/mui-x/commit/1f23b33d/@mui/x-tree-view'
-    name: '@mui/x-tree-view'
-    version: 6.0.0-alpha.0
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      '@emotion/react': ^11.9.0
-      '@emotion/styled': ^11.8.1
-      '@mui/base': ^5.0.0-alpha.87
-      '@mui/material': ^5.8.6
-      '@mui/system': ^5.8.0
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.22.10
-      '@emotion/react': 11.11.1(@types/react@18.2.21)(react@18.2.0)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
-      '@mui/base': link:packages/mui-base
-      '@mui/material': link:packages/mui-material
-      '@mui/system': link:packages/mui-system
-      '@mui/utils': 5.14.8(react@18.2.0)
-      '@types/react-transition-group': 4.4.6
-      clsx: 1.2.1
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
     dev: false
