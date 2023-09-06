@@ -62,7 +62,7 @@ The following code snippet applies a CSS class called `my-badge` to the badge sl
 <Badge slotProps={{ badge: { className: 'my-badge' } }} />
 ```
 
-#### Usage with TypeScript
+### Usage with TypeScript
 
 In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component.
 This way, you can safely provide the custom root's props directly on the component:

@@ -88,7 +88,7 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 <Menu slotProps={{ listbox: { className: 'my-listbox' } }} />
 ```
 
-#### Usage with TypeScript
+### Usage with TypeScript
 
 In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component.
 This way, you can safely provide the custom root's props directly on the component:

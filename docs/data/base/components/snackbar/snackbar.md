@@ -63,7 +63,7 @@ The `slots` prop is available on all non-utility Base components.
 See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
 :::
 
-#### Usage with TypeScript
+### Usage with TypeScript
 
 In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component.
 This way, you can safely provide the custom component's props directly on the component:

@@ -103,7 +103,7 @@ The following code snippet applies a CSS class called `my-rail` to the rail slot
 <Slider slotProps={{ rail: { className: 'my-rail' } }} />
 ```
 
-#### Usage with TypeScript
+### Usage with TypeScript
 
 In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component.
 This way, you can safely provide the custom root's props directly on the component:
