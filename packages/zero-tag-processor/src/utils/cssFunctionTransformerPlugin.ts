@@ -1,6 +1,7 @@
 import { declare } from '@babel/helper-plugin-utils';
 import defaultSxConfig from '@mui/system/styleFunctionSx/defaultSxConfig';
 import get from 'lodash.get';
+import type { Theme } from '@mui/material/styles';
 import type { PluginCustomOptions } from './cssFnValueToVariable';
 
 type BabelPluginOptions = {
@@ -25,7 +26,7 @@ const cssFunctionTransformerPlugin = declare<BabelPluginOptions>((api, pluginOpt
     options: { cssVariablesPrefix = 'mui', themeArgs: { theme } = {} },
     styleKey,
   } = pluginOptions;
-  const config = theme?.unstable_sxConfig ?? defaultSxConfig;
+  const config = (theme as Theme)?.unstable_sxConfig ?? defaultSxConfig;
   const cssPropOptions = config[styleKey];
   const { themeKey } = cssPropOptions;
   if (!theme || !config || !cssPropOptions || !themeKey) {
