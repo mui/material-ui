@@ -23,57 +23,56 @@ Base UI's Number Input component is a customizable replacement for the native HT
 - Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
 - Incompatibilities with assistive technologies and limited accessibility features
 
-See [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV.UK Design System team for a more detailed explanation.
+:::info
+See [_Why the GOV.UK Design System team changed the input type for numbers_](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) for a more detailed explanation of the limitations of `<input type="number">`.
+:::
 
 {{"demo": "NumberInputIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
 import NumberInput from '@mui/base/Unstable_NumberInput';
-
-export default function MyApp() {
-  return <NumberInput />;
-}
 ```
 
-### Basics
-
-The following demo shows how to create a number input component, apply some styling, and write the latest value to a state variable using the `onChange` prop:
+The following demo shows how to create a Number Input component, apply some styling, and write the latest value to a state variable using the `onChange` prop:
 
 {{"demo": "NumberInputBasic"}}
 
-The `min` and `max` props can be used to define a range of accepted values. You can pass only one of them to define an open-ended range.
+Use the `min` and `max` props to define a range of accepted values:
 
-```tsx
+```jsx
 <NumberInput min={-10} max={10} />
+```
 
+For an open-ended range, define only `min` or `max`:
+
+```
 // Open-ended
 <NumberInput min={0} />
 ```
 
-The `step` prop can be used to defined the granularity of the change in value when incrementing or decrementing. For example, if `min={0}` and `step={2}`, valid values for the component would be 0, 2, 4… since the value can only be changed in increments of 2.
+Use the `step` prop to define the granularity of the change in value when incrementing or decrementing. 
+For example, if `min={0}` and `step={2}`, valid values for the component would be 0, 2, 4, and on, since the value can only be changed in increments of 2.
 
-```tsx
+```jsx
 // valid values: 0, 2, 4, 6, 8...
 <NumberInput min={0} step={2} />
 ```
 
 :::warning
-Support for decimal values or step sizes isn't available yet, but you can upvote [this GitHub issue](https://github.com/mui/material-ui/issues/38518) to see it arrive sooner!
+Support for decimal values or step sizes isn't available yet, but you can upvote [this GitHub issue](https://github.com/mui/material-ui/issues/38518) to see it arrive sooner.
 :::
 
-When the input field is in focus, you can enter values that fall outside the valid range. The value will be clamped based on `min`, `max` and `step` once the input field is blurred.
+When the input field is in focus, you can enter values that fall outside the valid range. 
+The value will be clamped based on `min`, `max` and `step` once the input field is blurred.
 
 Holding down the <kbd>Shift</kbd> key when interacting with the stepper buttons applies a multipler (default 10x) to the value change of each step.
 
-This can be customized with the `shiftMultiplier` prop. In the following snippet, if <kbd>Shift</kbd> is held when clicking the increment button, the value will change from 0 to 5, then to 10 etc.
+This can be customized with the `shiftMultiplier` prop. 
+In the following snippet, if <kbd>Shift</kbd> is held when clicking the increment button, the value will change from 0, to 5, to 10, and on.
 
-```tsx
+```jsx
 <NumberInput min={0} step={1} shiftMultiplier={5} />
 ```
 
@@ -83,9 +82,9 @@ Here's another demo of a Number Input with fully customized styles:
 
 ### Anatomy
 
-The Base UI Number Input component consists of 4 slots:
+The Base UI Number Input component consists of four slots:
 
-- `root`: a outer `<div>` containing the other interior slots
+- `root`: an outer `<div>` containing the other interior slots
 - `input`: an `<input>` element
 - `incrementButton`: a `<button>` for increasing the value
 - `decrementButton`: a `<button>` for decreasing the value
@@ -98,12 +97,7 @@ The Base UI Number Input component consists of 4 slots:
 </div>
 ```
 
-### Slot props
-
-:::info
-The following props are available on all non-utility Base components.
-See [Usage](/base-ui/getting-started/usage/) for full details.
-:::
+### Custom structure
 
 Use the `slots` prop to override the root slot or any interior slots:
 
@@ -117,11 +111,16 @@ Use the `slots` prop to override the root slot or any interior slots:
 />
 ```
 
+:::info
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
+:::
+
 Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet:
 
-- applies a CSS class called `my-num-input` to the input slot,
-- and passes a `direction` prop to the `CustomButton` components in the increment and decrement button slots
+- applies a CSS class called `my-num-input` to the input slot
+- passes a `direction` prop to the `CustomButton` components in the increment and decrement button slots
 
 ```jsx
 <NumberInput
@@ -139,10 +138,10 @@ The following code snippet:
 import useNumberInput from '@mui/base/unstable_useNumberInput';
 ```
 
-The `useNumberInput` hook lets you apply the functionality of a number input to a fully custom component.
+The `useNumberInput` hook lets you apply the functionality of a Number Input to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
-Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+Hooks _do not_ support [slot props](#custom-structure), but they do support [customization props](#customization).
 
 :::info
 Hooks give you the most room for customization, but require more work to implement.
