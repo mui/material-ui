@@ -53,10 +53,10 @@ Clicking on a Menu Item closes its associated Menu.
 
 ### Anatomy
 
-- The Dropdown does not render any HTML element—it only provides the context that links a Menu Button to a Menu, so you don't have to.
-- The Menu Button renders a `<button>`.
-- The Menu component renders a `<div>` with a `<ul>` nested inside.
-- The Menu Item renders a `<li>`.
+- The `<Dropdown />` does not render any HTML element—it only provides the context that links a Menu Button to a Menu, so you don't have to.
+- The `<MenuButton />` renders a `<button>`.
+- The `<Menu />` component renders a `<div>` with a `<ul>` nested inside.
+- The `<MenuItem />` renders a `<li>`.
 
 ```html
 <button class="MuiMenuButton-root">Click me</button>
