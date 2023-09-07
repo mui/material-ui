@@ -190,7 +190,6 @@ export function useInput(parameters: UseInputParameters = {}): UseInputReturnVal
     const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
 
     const mergedEventHandlers = {
-      ...externalProps,
       ...externalEventHandlers,
       onBlur: handleBlur(externalEventHandlers),
       onChange: handleChange(externalEventHandlers),
@@ -201,10 +200,12 @@ export function useInput(parameters: UseInputParameters = {}): UseInputReturnVal
       ...mergedEventHandlers,
       'aria-invalid': error || undefined,
       defaultValue: defaultValue as string | number | readonly string[] | undefined,
-      ref: handleInputRef,
       value: value as string | number | readonly string[] | undefined,
       required,
       disabled,
+      ...externalProps,
+      ref: handleInputRef,
+      ...mergedEventHandlers,
     };
   };
 
