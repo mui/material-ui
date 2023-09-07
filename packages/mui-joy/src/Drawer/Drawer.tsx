@@ -107,6 +107,7 @@ const DrawerContent = styled('div', {
   height: ownerState.anchor!.match(/(left|right)/) ? '100%' : 'var(--Drawer-verticalSize)',
   width: ownerState.anchor!.match(/(top|bottom)/) ? '100vw' : 'var(--Drawer-horizontalSize)',
   transition: 'transform var(--Drawer-transitionDuration) var(--Drawer-transitionFunction)',
+  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
 
 /**

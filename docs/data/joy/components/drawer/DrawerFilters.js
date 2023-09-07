@@ -206,8 +206,6 @@ export default function DrawerFilters() {
             </List>
           </div>
 
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-
           <Typography level="title-md" sx={{ mt: 1 }}>
             Booking Options
           </Typography>
