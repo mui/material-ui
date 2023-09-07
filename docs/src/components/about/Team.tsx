@@ -58,6 +58,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
         <Tooltip
           title={props.location || false}
           placement="right-end"
+          describeChild
           PopperProps={{
             popperOptions: {
               modifiers: [
