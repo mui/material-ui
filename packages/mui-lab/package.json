@@ -40,6 +40,28 @@
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-lab/**/*.test.{js,ts,tsx}'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
+  "dependencies": {
+    "@babel/runtime": "^7.22.10",
+    "@mui/base": "5.0.0-beta.14",
+    "@mui/system": "^5.14.8",
+    "@mui/types": "^7.2.4",
+    "@mui/utils": "^5.14.8",
+    "@mui/x-tree-view": "6.0.0-alpha.1",
+    "clsx": "^2.0.0",
+    "prop-types": "^15.8.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.5",
+    "@types/prop-types": "^15.7.5",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@types/sinon": "^10.0.16",
+    "chai": "^4.3.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sinon": "^15.2.0",
+    "test": "^5.0.0"
+  },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
@@ -58,17 +80,6 @@
     "@emotion/styled": {
       "optional": true
     }
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.22.10",
-    "@mui/base": "5.0.0-beta.14",
-    "@mui/system": "^5.14.8",
-    "@mui/types": "^7.2.4",
-    "@mui/utils": "^5.14.8",
-    "@mui/x-tree-view": "6.0.0-alpha.1",
-    "clsx": "^2.0.0",
-    "prop-types": "^15.8.1",
-    "react-is": "^18.2.0"
   },
   "sideEffects": false,
   "publishConfig": {
