@@ -293,7 +293,7 @@ Our survey revealed that over 60% of respondents have not been exposed to low-co
 
 ### What are your 3 most important features in a low-code tool to build admin apps?
 
-The ability to import and export code freely and easily emerged as a key expectation for low code for our community members, along with great documentation and look and feel of the output. We are attempting to address them through [MUI Toolpad](https://mui.com/toolpad/)
+The ability to import and export code freely and easily emerged as a key expectation for low code for our community members, along with great documentation and look and feel of the output. We are attempting to address them through [MUI Toolpad](https://mui.com/toolpad/).
 
 <img src="/static/blog/2022-developer-survey-results/26.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">467 respondents.</p>
