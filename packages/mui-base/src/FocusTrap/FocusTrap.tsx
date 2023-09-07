@@ -212,75 +212,78 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  const contain = React.useCallback((nativeEvent: FocusEvent | null | false) => {
-    const rootElement = rootRef.current;
-    const doc = ownerDocument(rootRef.current);
+  const contain = React.useCallback(
+    (nativeEvent: FocusEvent | null | false) => {
+      const rootElement = rootRef.current;
+      const doc = ownerDocument(rootRef.current);
 
-    // Cleanup functions are executed lazily in React 17.
-    // Contain can be called between the component being unmounted and its cleanup function being run.
-    if (rootElement === null) {
-      return;
-    }
-
-    if (
-      !doc.hasFocus() ||
-      !isEnabled() ||
-      ignoreNextEnforceFocus.current
-    ) {
-      ignoreNextEnforceFocus.current = false;
-      return;
-    }
-
-    if (disableEnforceFocus && nativeEvent !== false) {
-      return;
-    }
-
-    // The focus is already inside
-    if (rootElement.contains(doc.activeElement)) {
-      return;
-    }
-
-    // if the focus event is not coming from inside the children's react tree, reset the refs
-    if (
-      (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
-      doc.activeElement !== reactFocusEventTarget.current
-    ) {
-      reactFocusEventTarget.current = null;
-    } else if (reactFocusEventTarget.current !== null) {
-      return;
-    }
-
-    if (!activated.current) {
-      return;
-    }
-
-    let tabbable: string[] | HTMLElement[] = [];
-    if (
-      doc.activeElement === sentinelStart.current ||
-      doc.activeElement === sentinelEnd.current
-    ) {
-      tabbable = getTabbable(rootRef.current as HTMLElement);
-    }
-
-    if (tabbable.length > 0) {
-      const isShiftTab = Boolean(
-        lastKeydown.current?.shiftKey && lastKeydown.current?.key === 'Tab',
-      );
-
-      const focusNext = tabbable[0];
-      const focusPrevious = tabbable[tabbable.length - 1];
-
-      if (typeof focusNext !== 'string' && typeof focusPrevious !== 'string') {
-        if (isShiftTab) {
-          focusPrevious.focus();
-        } else {
-          focusNext.focus();
-        }
+      // Cleanup functions are executed lazily in React 17.
+      // Contain can be called between the component being unmounted and its cleanup function being run.
+      if (rootElement === null) {
+        return;
       }
-    } else {
-      rootElement.focus();
-    }
-  }, [disableEnforceFocus, isEnabled, getTabbable]);
+
+      if (!doc.hasFocus() || !isEnabled() || ignoreNextEnforceFocus.current) {
+        ignoreNextEnforceFocus.current = false;
+        return;
+      }
+
+      // The disableEnforceFocus is set and the focus is not coming from the sentinel nodes, so do nothing
+      if (disableEnforceFocus && nativeEvent !== false) {
+        return;
+      }
+
+      // The focus is already inside
+      if (rootElement.contains(doc.activeElement)) {
+        return;
+      }
+
+      // if the focus event is not coming from inside the children's react tree, reset the refs
+      if (
+        (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
+        doc.activeElement !== reactFocusEventTarget.current
+      ) {
+        reactFocusEventTarget.current = null;
+      } else if (reactFocusEventTarget.current !== null) {
+        return;
+      }
+
+      if (!activated.current) {
+        return;
+      }
+
+      let tabbable: string[] | HTMLElement[] = [];
+      if (
+        doc.activeElement === sentinelStart.current ||
+        doc.activeElement === sentinelEnd.current
+      ) {
+        tabbable = getTabbable(rootRef.current as HTMLElement);
+      }
+
+      // one of the sentinel nodes was focused, so move the focus
+      // to the first/last tabbable element inside the focus trap
+      if (tabbable.length > 0) {
+        const isShiftTab = Boolean(
+          lastKeydown.current?.shiftKey && lastKeydown.current?.key === 'Tab',
+        );
+
+        const focusNext = tabbable[0];
+        const focusPrevious = tabbable[tabbable.length - 1];
+
+        if (typeof focusNext !== 'string' && typeof focusPrevious !== 'string') {
+          if (isShiftTab) {
+            focusPrevious.focus();
+          } else {
+            focusNext.focus();
+          }
+        }
+        // no tabbable elements in the trap focus or the focus was outside of the focus trap
+      } else {
+        rootElement.focus();
+      }
+    },
+    [disableEnforceFocus, isEnabled, getTabbable],
+  );
 
   React.useEffect(() => {
     // We might render an empty child.
@@ -330,7 +333,15 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
       doc.removeEventListener('focusin', contain);
       doc.removeEventListener('keydown', loopFocus, true);
     };
-  }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open, getTabbable, contain]);
+  }, [
+    disableAutoFocus,
+    disableEnforceFocus,
+    disableRestoreFocus,
+    isEnabled,
+    open,
+    getTabbable,
+    contain,
+  ]);
 
   const onFocus = (event: FocusEvent) => {
     if (nodeToRestore.current === null) {
