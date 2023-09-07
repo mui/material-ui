@@ -100,11 +100,6 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
-    },
     "endDecorator": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the endDecorator element",
