@@ -6,10 +6,10 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.22.5",
-    "@babel/preset-typescript": "^7.22.5",
-    "@babel/register": "^7.22.5",
-    "@babel/runtime": "^7.22.10",
+    "@babel/plugin-transform-modules-commonjs": "^7.22.15",
+    "@babel/preset-typescript": "^7.22.15",
+    "@babel/register": "^7.22.15",
+    "@babel/runtime": "^7.22.15",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
