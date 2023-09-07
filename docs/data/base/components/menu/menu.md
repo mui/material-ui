@@ -42,14 +42,13 @@ Note that it uses the built-in [Popper](/base-ui/react-popper/) component to vis
 {{"demo": "MenuSimple"}}
 
 The `<Dropdown />` should be the outermost component—all other Menu-related components must be placed as its children (but not necessarily as direct ones).
-If you need to control the open state of the Menu or react to its changes, place an `open`/`onOpenChange` props on the `<Dropdown />`.
+If you need to control the open state of the Menu or react to its changes, place `open`/`onOpenChange` props on the `<Dropdown />`.
 
 The `<Dropdown />` must only contain one `<MenuButton />` and one `<Menu />`.
 It will wire them together, so that pressing the Button will open the Menu.
 It also takes care of assigning proper accessibility attributes, so the Dropdown Menu can be used with assistive technologies or a keyboard.
 
-The `<Menu />` hosts `<MenuItem>` components.
-They can be wrapped in arbitrary tags and components, as well as grouped together.
+The `<Menu />` hosts `<MenuItem />` components can be wrapped in arbitrary tags and components, as well as grouped together.
 Clicking on a Menu Item closes its associated Menu.
 
 ### Anatomy
