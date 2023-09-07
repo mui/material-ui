@@ -319,7 +319,7 @@ The vast majority, 88%, utilize REST APIs as the backend for their internal appl
 
 ### Which low-code products did you use?
 
-The community uses a wide variety of low-code products for use cases like internal tools, websites, automation. This indicates a high level of adaptability and comfort with different development tools and systems.
+The community uses a wide variety of low-code products for use cases like internal tools, websites and automation. This indicates a high level of adaptability and comfort with different development tools and systems.
 
 Note: It was a broad question and in the chart below, we only showed products whose occurence was 3 or more. Apart from these, 90 more such tools were mentioned!
 
