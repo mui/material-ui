@@ -147,10 +147,6 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
   const sentinelEnd = React.useRef<HTMLDivElement>(null);
   const nodeToRestore = React.useRef<EventTarget | null>(null);
   const reactFocusEventTarget = React.useRef<EventTarget | null>(null);
-  // if disableEnforceFocus is set, we need an internal state for activating/disactivating the trap focus
-  const [controlledOpen, setControlledOpen] = React.useState(
-    !disableEnforceFocus || !disableAutoFocus,
-  );
   // This variable is useful when disableAutoFocus is true.
   // It waits for the active element to move into the component to activate.
   const activated = React.useRef(false);
@@ -162,16 +158,16 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
 
   React.useEffect(() => {
     // We might render an empty child.
-    if (!open || !controlledOpen || !rootRef.current) {
+    if (!open || !rootRef.current) {
       return;
     }
 
     activated.current = !disableAutoFocus;
-  }, [disableAutoFocus, open, controlledOpen]);
+  }, [disableAutoFocus, open]);
 
   React.useEffect(() => {
     // We might render an empty child.
-    if (!open || !controlledOpen || !rootRef.current) {
+    if (!open || !rootRef.current) {
       return;
     }
 
@@ -214,7 +210,77 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
     // Missing `disableRestoreFocus` which is fine.
     // We don't support changing that prop on an open FocusTrap
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open, controlledOpen]);
+  }, [open]);
+
+  const contain = React.useCallback((nativeEvent: FocusEvent | null | false) => {
+    const rootElement = rootRef.current;
+    const doc = ownerDocument(rootRef.current);
+
+    // Cleanup functions are executed lazily in React 17.
+    // Contain can be called between the component being unmounted and its cleanup function being run.
+    if (rootElement === null) {
+      return;
+    }
+
+    if (
+      !doc.hasFocus() ||
+      !isEnabled() ||
+      ignoreNextEnforceFocus.current
+    ) {
+      ignoreNextEnforceFocus.current = false;
+      return;
+    }
+
+    if (disableEnforceFocus && nativeEvent !== false) {
+      return;
+    }
+
+    // The focus is already inside
+    if (rootElement.contains(doc.activeElement)) {
+      return;
+    }
+
+    // if the focus event is not coming from inside the children's react tree, reset the refs
+    if (
+      (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
+      doc.activeElement !== reactFocusEventTarget.current
+    ) {
+      reactFocusEventTarget.current = null;
+    } else if (reactFocusEventTarget.current !== null) {
+      return;
+    }
+
+    if (!activated.current) {
+      return;
+    }
+
+    let tabbable: string[] | HTMLElement[] = [];
+    if (
+      doc.activeElement === sentinelStart.current ||
+      doc.activeElement === sentinelEnd.current
+    ) {
+      tabbable = getTabbable(rootRef.current as HTMLElement);
+    }
+
+    if (tabbable.length > 0) {
+      const isShiftTab = Boolean(
+        lastKeydown.current?.shiftKey && lastKeydown.current?.key === 'Tab',
+      );
+
+      const focusNext = tabbable[0];
+      const focusPrevious = tabbable[tabbable.length - 1];
+
+      if (typeof focusNext !== 'string' && typeof focusPrevious !== 'string') {
+        if (isShiftTab) {
+          focusPrevious.focus();
+        } else {
+          focusNext.focus();
+        }
+      }
+    } else {
+      rootElement.focus();
+    }
+  }, [disableEnforceFocus, isEnabled, getTabbable]);
 
   React.useEffect(() => {
     // We might render an empty child.
@@ -223,111 +289,6 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
     }
 
     const doc = ownerDocument(rootRef.current);
-
-    const focusinHandler = () => {
-      if (disableEnforceFocus) {
-        if (
-          rootRef.current?.contains(doc.activeElement) ||
-          sentinelStart.current?.contains(doc.activeElement) ||
-          sentinelEnd.current?.contains(doc.activeElement)
-        ) {
-          setControlledOpen(true);
-        } else {
-          setControlledOpen(false);
-          activated.current = false;
-        }
-      }
-    };
-
-    const mouseDownHandler = (nativeEvent: MouseEvent) => {
-      if (disableEnforceFocus) {
-        if (
-          rootRef.current?.contains(nativeEvent.target as Node) ||
-          sentinelStart.current?.contains(nativeEvent.target as Node) ||
-          sentinelEnd.current?.contains(nativeEvent.target as Node)
-        ) {
-          setControlledOpen(true);
-        } else {
-          setControlledOpen(false);
-          activated.current = false;
-        }
-      }
-    };
-
-    doc.addEventListener('focusin', focusinHandler);
-    doc.addEventListener('mousedown', mouseDownHandler);
-
-    return () => {
-      doc.removeEventListener('focusin', focusinHandler);
-      doc.removeEventListener('mousedown', mouseDownHandler);
-    };
-  }, [disableEnforceFocus, open]);
-
-  React.useEffect(() => {
-    // We might render an empty child.
-    if (!open || !controlledOpen || !rootRef.current) {
-      return;
-    }
-
-    const doc = ownerDocument(rootRef.current);
-
-    const contain = (nativeEvent: FocusEvent | null) => {
-      const { current: rootElement } = rootRef;
-
-      // Cleanup functions are executed lazily in React 17.
-      // Contain can be called between the component being unmounted and its cleanup function being run.
-      if (rootElement === null) {
-        return;
-      }
-
-      if (!doc.hasFocus() || !isEnabled() || ignoreNextEnforceFocus.current) {
-        ignoreNextEnforceFocus.current = false;
-        return;
-      }
-
-      if (!rootElement.contains(doc.activeElement)) {
-        // if the focus event is not coming from inside the children's react tree, reset the refs
-        if (
-          (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
-          doc.activeElement !== reactFocusEventTarget.current
-        ) {
-          reactFocusEventTarget.current = null;
-        } else if (reactFocusEventTarget.current !== null) {
-          return;
-        }
-
-        if (!activated.current) {
-          return;
-        }
-
-        let tabbable: string[] | HTMLElement[] = [];
-        if (
-          doc.activeElement === sentinelStart.current ||
-          doc.activeElement === sentinelEnd.current
-        ) {
-          tabbable = getTabbable(rootRef.current as HTMLElement);
-        }
-
-        if (tabbable.length > 0) {
-          const isShiftTab = Boolean(
-            lastKeydown.current?.shiftKey && lastKeydown.current?.key === 'Tab',
-          );
-
-          const focusNext = tabbable[0];
-          const focusPrevious = tabbable[tabbable.length - 1];
-
-          if (typeof focusNext !== 'string' && typeof focusPrevious !== 'string') {
-            if (isShiftTab) {
-              focusPrevious.focus();
-            } else {
-              focusNext.focus();
-            }
-          }
-        } else {
-          rootElement.focus();
-        }
-      }
-    };
 
     const loopFocus = (nativeEvent: KeyboardEvent) => {
       lastKeydown.current = nativeEvent;
@@ -369,15 +330,7 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
       doc.removeEventListener('focusin', contain);
       doc.removeEventListener('keydown', loopFocus, true);
     };
-  }, [
-    disableAutoFocus,
-    disableEnforceFocus,
-    disableRestoreFocus,
-    isEnabled,
-    open,
-    controlledOpen,
-    getTabbable,
-  ]);
+  }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open, getTabbable, contain]);
 
   const onFocus = (event: FocusEvent) => {
     if (nodeToRestore.current === null) {
@@ -397,19 +350,21 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
       nodeToRestore.current = event.relatedTarget;
     }
     activated.current = true;
+
+    contain(false);
   };
 
   return (
     <React.Fragment>
       <div
-        tabIndex={open && controlledOpen ? 0 : -1}
+        tabIndex={open ? 0 : -1}
         onFocus={handleFocusSentinel}
         ref={sentinelStart}
         data-testid="sentinelStart"
       />
       {React.cloneElement(children, { ref: handleRef, onFocus })}
       <div
-        tabIndex={open && controlledOpen ? 0 : -1}
+        tabIndex={open ? 0 : -1}
         onFocus={handleFocusSentinel}
         ref={sentinelEnd}
         data-testid="sentinelEnd"
