@@ -233,7 +233,7 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
         return;
       }
 
-      // The disableEnforceFocus is set and the focus is outside of the focus trap, so do nothing
+      // The disableEnforceFocus is set and the focus is outside of the focus trap (and sentinel nodes)
       if (disableEnforceFocus && nativeEvent !== false) {
         return;
       }
