@@ -488,14 +488,12 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /base-ui/react-components/ /base-ui/all-components/ 301
 /system/getting-started/overview/ /system/getting-started/ 301
 /blog/introducing-mui-base/ /blog/introducing-base-ui/ 301
-/joy-ui/guides/next-js-app-router/ /joy-ui/integrations/next-js-app-router/ 301
-/joy-ui/guides/using-joy-ui-and-material-ui-together/ /joy-ui/integrations/material-ui/ 301
-/joy-ui/guides/using-icon-libraries/ /joy-ui/integrations/icon-libraries/ 301
 /joy-ui/guides/themeable-component/ /joy-ui/customization/creating-themed-components/ 301
 /joy-ui/guides/overriding-component-structure/ /joy-ui/customization/overriding-component-structure/ 301
 /material-ui/react-tree-view/ /x/react-tree-view/ 301
 /material-ui/api/tree-view/ /x/api/tree-view/tree-view/ 301
 /material-ui/api/tree-item/ /x/api/tree-view/tree-item/ 301
+/material-ui/guides/styled-engine/ /material-ui/guides/styled-components/ 301
 
 # Proxies
 

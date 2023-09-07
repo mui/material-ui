@@ -369,7 +369,7 @@ export default class StyledProcessor extends BaseProcessor {
     if (!value.name || !theme) {
       return;
     }
-    const componentData = theme.components?.[value.name];
+    const componentData = (theme as Theme).components?.[value.name];
     if (!componentData) {
       return;
     }
