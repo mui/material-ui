@@ -238,7 +238,6 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
         return;
       }
 
-
       // if the focus event is not coming from inside the children's react tree, reset the refs
       if (
         (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
