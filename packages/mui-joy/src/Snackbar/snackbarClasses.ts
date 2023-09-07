@@ -25,6 +25,8 @@ export interface SnackbarClasses {
   colorSuccess: string;
   /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Class name applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Class name applied to the endDecorator element if supplied. */
   endDecorator: string;
   /** Class name applied to the root element if `size="sm"`. */
@@ -64,6 +66,7 @@ const snackbarClasses: SnackbarClasses = generateUtilityClasses('MuiSnackbar', [
   'colorNeutral',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'endDecorator',
   'sizeSm',
   'sizeMd',
