@@ -130,7 +130,6 @@ const StyledButton = styled('button')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 0;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
@@ -145,7 +144,7 @@ const StyledButton = styled('button')(
     grid-column: 2/3;
     grid-row: 1/2;
   }
-  
+
   &.${numberInputClasses.decrementButton} {
     grid-column: 2/3;
     grid-row: 2/3;

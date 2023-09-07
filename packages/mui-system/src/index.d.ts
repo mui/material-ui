@@ -32,7 +32,7 @@ export type BordersProps = PropsFor<typeof borders>;
 
 // breakpoints.js
 type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export { handleBreakpoints } from './breakpoints';
+export { handleBreakpoints, mergeBreakpointsInOrder } from './breakpoints';
 
 /**
  * @returns An enhanced stylefunction that considers breakpoints
@@ -40,12 +40,6 @@ export { handleBreakpoints } from './breakpoints';
 export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
   styleFunction: StyleFunction<Props>,
 ): StyleFunction<Partial<Record<Breakpoints, Props>> & Props>;
-
-// restructures the breakpoints in the in the correct order and merges all styles args
-export function mergeBreakpointsInOrder(
-  breakpointsInput: { keys: string[]; up: (key: string) => string },
-  ...styles: object[]
-): object;
 
 export function compose<T extends Array<StyleFunction<any>>>(...args: T): ComposedStyleFunction<T>;
 

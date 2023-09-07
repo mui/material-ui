@@ -13,13 +13,13 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.10",
-    "@linaria/vite": "^4.5.4",
-    "@mui/utils": "^5.14.6",
-    "@mui/material": "^5.14.6",
-    "@mui/zero-tag-processor": "file:../../packages/zero-tag-processor/build",
-    "@types/babel__core": "^7.20.1",
+    "@mui/utils": "^5.14.8",
+    "@mui/material": "^5.14.8",
+    "@mui/zero-vite-plugin": "file:../../packages/zero-vite-plugin/build",
     "@vitejs/plugin-react": "^4.0.4",
     "vite": "4.4.9"
+  },
+  "resolutions": {
+    "@mui/zero-tag-processor": "file:../../packages/zero-tag-processor/build"
   }
 }

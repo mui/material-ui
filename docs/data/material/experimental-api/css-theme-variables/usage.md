@@ -167,7 +167,6 @@ const StyledComponent = styled('button')(({ theme }) => ({
 
 - `defaultMode?: 'light' | 'dark' | 'system'` - Application's default mode (`light` by default)
 - `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
-- `enableColorScheme: boolean` - Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
 - `prefix: string` - CSS variable prefix
 - `theme: ThemeInput` - the theme provided to React's context
 - `modeStorageKey?: string` - localStorage key used to store application `mode`
