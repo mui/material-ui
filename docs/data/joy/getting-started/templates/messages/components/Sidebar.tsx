@@ -4,38 +4,66 @@ import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
+import Chip from '@mui/joy/Chip';
 import Divider from '@mui/joy/Divider';
 import IconButton from '@mui/joy/IconButton';
 import Input from '@mui/joy/Input';
 import LinearProgress from '@mui/joy/LinearProgress';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
-import ListItemButton from '@mui/joy/ListItemButton';
+import ListItemButton, { listItemButtonClasses } from '@mui/joy/ListItemButton';
 import ListItemContent from '@mui/joy/ListItemContent';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
-import { Stack } from '@mui/system';
-import AccordionGroup from '@mui/joy/AccordionGroup';
-import Accordion from '@mui/joy/Accordion';
-import AccordionDetails from '@mui/joy/AccordionDetails';
-import AccordionSummary from '@mui/joy/AccordionSummary';
-
+import Stack from '@mui/joy/Stack';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded';
 import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
-import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
+import QuestionAnswerRoundedIcon from '@mui/icons-material/QuestionAnswerRounded';
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import BadgeRoundedIcon from '@mui/icons-material/BadgeRounded';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { closeSidebar } from '../utils';
+
+function Toggler({
+  defaultExpanded = false,
+  renderToggle,
+  children,
+}: {
+  defaultExpanded?: boolean;
+  children: React.ReactNode;
+  renderToggle: (params: {
+    open: boolean;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  }) => React.ReactNode;
+}) {
+  const [open, setOpen] = React.useState(defaultExpanded);
+  return (
+    <React.Fragment>
+      {renderToggle({ open, setOpen })}
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateRows: open ? '1fr' : '0fr',
+          transition: '0.2s ease',
+          '& > *': {
+            overflow: 'hidden',
+          },
+        }}
+      >
+        {children}
+      </Box>
+    </React.Fragment>
+  );
+}
 
 export default function Sidebar() {
   return (
@@ -109,110 +137,147 @@ export default function Sidebar() {
           flexGrow: 1,
           display: 'flex',
           flexDirection: 'column',
+          [`& .${listItemButtonClasses.root}`]: {
+            gap: 1.5,
+          },
         }}
       >
-        <AccordionGroup
-          disableDivider
+        <List
           size="sm"
           sx={{
             gap: 1,
+            '--List-nestedInsetStart': '30px',
+            '--ListItem-radius': (theme) => theme.vars.radius.sm,
           }}
         >
-          <Accordion defaultExpanded>
-            <AccordionSummary>
+          <ListItem>
+            <ListItemButton>
               <HomeRoundedIcon />
               <ListItemContent>
                 <Typography level="title-sm">Home</Typography>
               </ListItemContent>
-            </AccordionSummary>
-            <AccordionDetails>
-              <List size="sm" sx={{ '--ListItem-paddingLeft': '38px' }}>
-                <ListItemButton>Summary</ListItemButton>
-                <ListItemButton selected sx={{ borderRadius: 'sm' }}>
-                  Messages
-                </ListItemButton>
-              </List>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary indicator={null}>
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem>
+            <ListItemButton>
               <DashboardRoundedIcon />
               <ListItemContent>
                 <Typography level="title-sm">Dashboard</Typography>
               </ListItemContent>
-            </AccordionSummary>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary indicator={null}>
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem>
+            <ListItemButton>
               <CollectionsBookmarkRoundedIcon />
               <ListItemContent>
                 <Typography level="title-sm">Projects</Typography>
               </ListItemContent>
-            </AccordionSummary>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary>
-              <AssignmentRoundedIcon />
-              <ListItemContent>
-                <Typography level="title-sm">Tasks</Typography>
-              </ListItemContent>
-            </AccordionSummary>
-            <AccordionDetails>
-              <List size="sm" sx={{ '--ListItem-paddingLeft': '38px' }}>
-                <ListItemButton>All tasks</ListItemButton>
-                <ListItemButton>Backlog</ListItemButton>
-                <ListItemButton>In progress</ListItemButton>
-                <ListItemButton>Done</ListItemButton>
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem nested>
+            <Toggler
+              renderToggle={({ open, setOpen }) => (
+                <ListItemButton onClick={() => setOpen(!open)}>
+                  <AssignmentRoundedIcon />
+                  <ListItemContent>
+                    <Typography level="title-sm">Tasks</Typography>
+                  </ListItemContent>
+                  <KeyboardArrowDownIcon
+                    sx={{ transform: open ? 'rotate(180deg)' : 'none' }}
+                  />
+                </ListItemButton>
+              )}
+            >
+              <List sx={{ gap: 0.5 }}>
+                <ListItem sx={{ mt: 0.5 }}>
+                  <ListItemButton>All tasks</ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>Backlog</ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>In progress</ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>Done</ListItemButton>
+                </ListItem>
               </List>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary indicator={null}>
-              <FlagRoundedIcon />
+            </Toggler>
+          </ListItem>
+
+          <ListItem>
+            <ListItemButton selected>
+              <QuestionAnswerRoundedIcon />
               <ListItemContent>
-                <Typography level="title-sm">Reporting</Typography>
+                <Typography level="title-sm">Messages</Typography>
               </ListItemContent>
-            </AccordionSummary>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary>
-              <GroupRoundedIcon />
-              <ListItemContent>
-                <Typography level="title-sm">Users</Typography>
-              </ListItemContent>
-            </AccordionSummary>
-            <AccordionDetails>
-              <List size="sm" sx={{ '--ListItem-paddingLeft': '38px' }}>
-                <ListItemButton>My profile</ListItemButton>
-                <ListItemButton>Create a new user</ListItemButton>
-                <ListItemButton>Roles & permission</ListItemButton>
+              <ListItem
+                endAction={
+                  <Chip size="sm" color="primary" variant="solid">
+                    4
+                  </Chip>
+                }
+              />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem nested>
+            <Toggler
+              renderToggle={({ open, setOpen }) => (
+                <ListItemButton onClick={() => setOpen(!open)}>
+                  <GroupRoundedIcon />
+                  <ListItemContent>
+                    <Typography level="title-sm">Users</Typography>
+                  </ListItemContent>
+                  <KeyboardArrowDownIcon
+                    sx={{ transform: open ? 'rotate(180deg)' : 'none' }}
+                  />
+                </ListItemButton>
+              )}
+            >
+              <List sx={{ gap: 0.5 }}>
+                <ListItem sx={{ mt: 0.5 }}>
+                  <ListItemButton
+                    role="menuitem"
+                    component="a"
+                    href="/joy-ui/getting-started/templates/profile-dashboard/"
+                  >
+                    My profile
+                  </ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>Create a new user</ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>Roles & permission</ListItemButton>
+                </ListItem>
               </List>
-            </AccordionDetails>
-          </Accordion>
-        </AccordionGroup>
+            </Toggler>
+          </ListItem>
+        </List>
+
         <List
           size="sm"
           sx={{
             mt: 'auto',
             flexGrow: 0,
-            '--ListItem-radius': '8px',
+            '--ListItem-radius': (theme) => theme.vars.radius.sm,
             '--List-gap': '8px',
             mb: 2,
           }}
         >
           <ListItem>
             <ListItemButton>
-              <ListItemDecorator>
-                <SupportRoundedIcon />
-              </ListItemDecorator>
+              <SupportRoundedIcon />
               Support
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton>
-              <ListItemDecorator>
-                <SettingsRoundedIcon />
-              </ListItemDecorator>
+              <SettingsRoundedIcon />
               Settings
             </ListItemButton>
           </ListItem>
@@ -247,8 +312,8 @@ export default function Sidebar() {
           src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286"
         />
         <Box sx={{ minWidth: 0, flex: 1 }}>
-          <Typography level="title-sm">Steve E.</Typography>
-          <Typography level="body-xs">@steveEberger</Typography>
+          <Typography level="title-sm">Siriwat K.</Typography>
+          <Typography level="body-xs">siriwatk@test.com</Typography>
         </Box>
         <IconButton size="sm" variant="plain" color="neutral">
           <LogoutRoundedIcon />

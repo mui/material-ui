@@ -21,6 +21,7 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
       sx={{
         borderBottom: '1px solid',
         borderColor: 'divider',
+        backgroundColor: 'background.body',
       }}
       py={{ xs: 2, md: 2 }}
       px={{ xs: 1, md: 2 }}

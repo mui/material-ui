@@ -4,6 +4,8 @@ import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import { Box, Chip, IconButton, Input } from '@mui/joy';
 import List from '@mui/joy/List';
+import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import ChatListItem from './ChatListItem';
 import { ChatProps } from '../types';
 import { toggleMessagesPane } from '../utils';
@@ -43,11 +45,11 @@ export default function ChatsPane({
           endDecorator={
             <Chip
               variant="soft"
-              color="neutral"
-              size="sm"
+              color="primary"
+              size="md"
               slotProps={{ root: { component: 'span' } }}
             >
-              40
+              4
             </Chip>
           }
           sx={{ mr: 'auto' }}
@@ -56,7 +58,7 @@ export default function ChatsPane({
         </Typography>
 
         <IconButton variant="plain" aria-label="edit" color="neutral" size="sm">
-          <i data-feather="edit" />
+          <EditNoteRoundedIcon />
         </IconButton>
 
         <IconButton
@@ -69,13 +71,13 @@ export default function ChatsPane({
           }}
           sx={{ display: { sm: 'none' } }}
         >
-          <i data-feather="x" />
+          <SearchRoundedIcon />
         </IconButton>
       </Stack>
       <Box sx={{ px: 2, pb: 1.5 }}>
         <Input
           size="sm"
-          startDecorator={<i data-feather="search" />}
+          startDecorator={<SearchRoundedIcon />}
           placeholder="Search"
           aria-label="Search"
         />

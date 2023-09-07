@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import Stack from '@mui/joy/Stack';
@@ -6,7 +7,7 @@ import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import CelebrationOutlinedIcon from '@mui/icons-material/CelebrationOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FileIcon from './FileIcon';
+import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRounded';
 import { MessageProps } from '../types';
 
 type ChatBubbleProps = MessageProps & {
@@ -49,7 +50,9 @@ export default function ChatBubble({
           }}
         >
           <Stack direction="row" spacing={1.5} alignItems="center">
-            <FileIcon fileType={attachment.type} />
+            <Avatar color="primary" size="lg">
+              <InsertDriveFileRoundedIcon />
+            </Avatar>
             <div>
               <Typography fontSize="sm">{attachment.fileName}</Typography>
               <Typography level="body-sm">{attachment.size}</Typography>
@@ -72,7 +75,7 @@ export default function ChatBubble({
               borderTopLeftRadius: isSent ? 'lg' : 0,
               backgroundColor: isSent
                 ? 'var(--joy-palette-primary-solidBg)'
-                : 'background.level1',
+                : 'background.body',
             }}
           >
             <Typography

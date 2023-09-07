@@ -5,6 +5,12 @@ import FormControl from '@mui/joy/FormControl';
 import Textarea from '@mui/joy/Textarea';
 import { IconButton, Stack } from '@mui/joy';
 
+import FormatBoldRoundedIcon from '@mui/icons-material/FormatBoldRounded';
+import FormatItalicRoundedIcon from '@mui/icons-material/FormatItalicRounded';
+import StrikethroughSRoundedIcon from '@mui/icons-material/StrikethroughSRounded';
+import FormatListBulletedRoundedIcon from '@mui/icons-material/FormatListBulletedRounded';
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
+
 export type MessageInputProps = {
   textAreaValue: string;
   setTextAreaValue: (value: string) => void;
@@ -34,23 +40,40 @@ export default function MessageInput({
             setTextAreaValue(e.target.value);
           }}
           value={textAreaValue}
-          minRows={2}
+          minRows={3}
           maxRows={10}
           endDecorator={
             <Stack
               direction="row"
-              spacing={1}
-              justifyContent="flex-end"
+              justifyContent="space-between"
+              alignItems="center"
               flexGrow={1}
-              minHeight={40}
+              sx={{
+                pt: 0.5,
+                borderTop: '1px solid',
+                borderColor: 'divider',
+              }}
             >
-              <IconButton variant="plain" color="neutral">
-                <i data-feather="smile" />
-              </IconButton>
-              <IconButton variant="plain" color="neutral">
-                <i data-feather="more-horizontal" />
-              </IconButton>
-              <Button size="sm" sx={{ alignSelf: 'center' }} onClick={handleClick}>
+              <Box>
+                <IconButton size="sm" variant="plain" color="neutral">
+                  <FormatBoldRoundedIcon />
+                </IconButton>
+                <IconButton size="sm" variant="plain" color="neutral">
+                  <FormatItalicRoundedIcon />
+                </IconButton>
+                <IconButton size="sm" variant="plain" color="neutral">
+                  <StrikethroughSRoundedIcon />
+                </IconButton>
+                <IconButton size="sm" variant="plain" color="neutral">
+                  <FormatListBulletedRoundedIcon />
+                </IconButton>
+              </Box>
+              <Button
+                size="sm"
+                sx={{ alignSelf: 'center' }}
+                endDecorator={<SendRoundedIcon />}
+                onClick={handleClick}
+              >
                 Send
               </Button>
             </Stack>
