@@ -19,8 +19,10 @@ const code = `
 <Card
   variant="outlined"
   sx={{
-    p: 1,
+    p: 2,
+    width: { xs: '100%', sm: 'auto' },
     display: 'flex',
+    flexDirection: { xs: 'column', sm: 'row' },
     alignItems: 'center',
     gap: 2,
   }}
@@ -32,9 +34,8 @@ const code = `
     alt="Birds of Tokyo album cover"
     src="/static/images/cards/birds-of-tokyo.jpg"
     sx={{
+      width: { xs: '100%', sm: 100 },
       borderRadius: 0.6,
-      height: {xs: 80, sm: 100},
-      width: {xs: 80, sm: 100},
     }}
   />
   <Stack direction="column" spacing={2} alignItems="center">
@@ -126,10 +127,10 @@ export default function MaterialTheming() {
               }}
             >
               {customized ? (
-                <PlayerCard horizontal extraStyles />
+                <PlayerCard extraStyles />
               ) : (
                 <CssVarsProvider>
-                  <PlayerCard horizontal disableTheming />
+                  <PlayerCard disableTheming />
                 </CssVarsProvider>
               )}
             </Frame.Demo>

@@ -205,10 +205,17 @@ export default function MaterialDesignKits() {
                 alignItems: { xs: 'start', sm: 'center' },
                 flexDirection: { xs: 'column', sm: 'row' },
                 minWidth: 0,
-                gap: { xs: 1, sm: 0 },
+                gap: { xs: 3, sm: 0 },
               }}
             >
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  alignItems: { xs: 'start', sm: 'center' },
+                  gap: 1,
+                }}
+              >
                 <Typography variant="body2" fontWeight="semiBold">
                   Available for all design softwares:
                 </Typography>
@@ -223,7 +230,11 @@ export default function MaterialDesignKits() {
                 variant="outlined"
                 href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
                 endIcon={<LaunchRounded sx={{ '&&': { fontSize: 16 } }} />}
-                sx={{ ml: { xs: 0, sm: 'auto' }, color: 'primary.300' }}
+                sx={{
+                  ml: { xs: 0, sm: 'auto' },
+                  color: 'primary.300',
+                  width: { xs: '100%', sm: 'fit-content' },
+                }}
               >
                 Buy now
               </Button>

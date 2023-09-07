@@ -139,8 +139,7 @@ export default function MaterialTemplates() {
               <br /> <GradientText>specific use case</GradientText>
             </Typography>
           }
-          description="A collection of 4.5 average rating templates, for multiple use cases, all powered by Material UI components and carefully curated by MUI's team.
-              "
+          description="A collection of 4.5 average rating templates, for multiple use cases, all powered by Material UI components and carefully curated by MUI's team."
         />
       </Box>
       <Group rowLayout desktopColumns={2} sx={{ mt: 3 }}>
@@ -166,7 +165,7 @@ export default function MaterialTemplates() {
         />
       </Group>
       <Frame sx={{ mt: 3 }}>
-        <Frame.Demo sx={{ minHeight: { xs: 240, sm: 320 }, height: { xs: 320, sm: 400, md: 500 } }}>
+        <Frame.Demo sx={{ minHeight: { xs: 240, sm: 320 }, height: { xs: 260, sm: 400, md: 500 } }}>
           <Box
             sx={{
               overflow: 'hidden',
@@ -199,7 +198,7 @@ export default function MaterialTemplates() {
                   sx={(theme) => ({
                     overflow: 'auto',
                     borderRadius: 1,
-                    height: { xs: 250, sm: 320, md: 450 },
+                    height: { xs: 220, sm: 320, md: 450 },
                     backgroundImage: `url(${item.src.light})`,
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
