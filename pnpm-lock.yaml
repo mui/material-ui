@@ -1091,7 +1091,7 @@ importers:
         specifier: ^7.22.10
         version: 7.22.10
       '@mui/material':
-        specifier: workspace:^
+        specifier: ^5.0.0
         version: link:../mui-material/build
     devDependencies:
       '@mui/internal-waterfall':
@@ -1232,7 +1232,7 @@ importers:
         specifier: workspace:*
         version: link:../mui-base/build
       '@mui/material':
-        specifier: workspace:^
+        specifier: ^5.0.0
         version: link:../mui-material/build
       '@mui/system':
         specifier: workspace:^

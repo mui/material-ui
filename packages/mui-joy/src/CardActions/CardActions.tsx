@@ -7,10 +7,11 @@ import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardActionsUtilityClass } from './cardActionsClasses';
-import { CardActionsProps, CardActionsTypeMap } from './CardActionsProps';
+import { CardActionsProps, CardActionsOwnerState, CardActionsTypeMap } from './CardActionsProps';
 import useSlot from '../utils/useSlot';
 import buttonClasses from '../Button/buttonClasses';
 import iconButtonClasses from '../IconButton/iconButtonClasses';
+import cardClasses from '../Card/cardClasses';
 import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
 import dividerClasses from '../Divider/dividerClasses';
 
@@ -22,48 +23,52 @@ const useUtilityClasses = () => {
   return composeClasses(slots, getCardActionsUtilityClass, {});
 };
 
-const CardActionsRoot = styled('div', {
+export const StyledCardActionsRoot = styled('div')<{ ownerState: CardActionsOwnerState }>(
+  ({ ownerState }) => {
+    return {
+      '--Button-radius': 'var(--Card-childRadius)',
+      '--IconButton-radius': 'var(--Card-childRadius)',
+      display: 'flex',
+      ...(ownerState.orientation?.startsWith('horizontal') && {
+        alignItems: 'center', // it is common to have children aligned center in horizontal orientation, but not vertically.
+      }),
+      flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+      ...(ownerState.orientation === 'horizontal-reverse' && {
+        flexDirection: 'row-reverse',
+      }),
+      zIndex: 1, // render above Link's overlay
+      gap: 'calc(0.625 * var(--Card-padding))',
+      padding: 'var(--unstable_padding)',
+      '--unstable_padding': 'calc(0.75 * var(--Card-padding)) 0 0 0',
+      [`.${cardOverflowClasses.root} > &`]: {
+        '--unstable_padding': 'calc(0.75 * var(--Card-padding)) 0 var(--Card-padding)',
+      },
+      [`.${cardClasses.root} > .${dividerClasses.root} + &`]: {
+        '--unstable_padding': '0',
+      },
+      ...(ownerState.buttonFlex
+        ? {
+            [`& > :not(.${iconButtonClasses.root})`]: {
+              flex: ownerState.buttonFlex,
+            },
+            [`& > :not(button) > .${buttonClasses.root}`]: {
+              width: '100%', // for button to fill its wrapper.
+            },
+          }
+        : {
+            [`& > .${buttonClasses.root}:only-child`]: {
+              flex: 'auto',
+            },
+          }),
+    };
+  },
+);
+
+const CardActionsRoot = styled(StyledCardActionsRoot, {
   name: 'JoyCardActions',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardActionsProps }>(({ ownerState }) => {
-  return {
-    '--Button-radius': 'var(--Card-childRadius)',
-    '--IconButton-radius': 'var(--Card-childRadius)',
-    display: 'flex',
-    ...(ownerState.orientation?.startsWith('horizontal') && {
-      alignItems: 'center', // it is common to have children aligned center in horizontal orientation, but not vertically.
-    }),
-    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-    ...(ownerState.orientation === 'horizontal-reverse' && {
-      flexDirection: 'row-reverse',
-    }),
-    zIndex: 1, // render above Link's overlay
-    gap: 'calc(0.625 * var(--Card-padding))',
-    padding: 'var(--unstable_padding)',
-    '--unstable_padding': 'calc(0.75 * var(--Card-padding)) 0 0 0',
-    [`.${cardOverflowClasses.root} > &`]: {
-      '--unstable_padding': 'calc(0.75 * var(--Card-padding)) 0 var(--Card-padding)',
-    },
-    [`.${dividerClasses.root} + &`]: {
-      '--unstable_padding': '0',
-    },
-    ...(ownerState.buttonFlex
-      ? {
-          [`& > :not(.${iconButtonClasses.root})`]: {
-            flex: ownerState.buttonFlex,
-          },
-          [`& > :not(button) > .${buttonClasses.root}`]: {
-            width: '100%', // for button to fill its wrapper.
-          },
-        }
-      : {
-          [`& > .${buttonClasses.root}:only-child`]: {
-            flex: 'auto',
-          },
-        }),
-  };
-});
+})<{ ownerState: CardActionsOwnerState }>({});
 /**
  *
  * Demos:

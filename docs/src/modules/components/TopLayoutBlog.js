@@ -247,7 +247,7 @@ function TopLayoutBlog(props) {
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
   const router = useRouter();
-  const slug = router.pathname.replace(/\/blog\//, '');
+  const slug = router.pathname.replace(/(.*)\/(.*)/, '$2');
   const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const card =
     headers.card === 'true'
