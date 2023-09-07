@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
-    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:copy-files && node ../../scripts/updateWorkspaceProject.mjs ./build/package.json",
+    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:copy-files",
     "build:legacy": "node ../../scripts/build.mjs legacy",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node",
@@ -55,7 +55,8 @@
     }
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   },
   "engines": {
     "node": ">=12.0.0"

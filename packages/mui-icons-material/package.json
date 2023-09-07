@@ -28,7 +28,7 @@
     "url": "https://opencollective.com/mui"
   },
   "scripts": {
-    "build": "shx cp -r lib/ build/ && pnpm build:typings && pnpm build:copy-files && node ../../scripts/updateWorkspaceProject.mjs ./build/package.json",
+    "build": "shx cp -r lib/ build/ && pnpm build:typings && pnpm build:copy-files",
     "build:lib": "pnpm build:node && pnpm build:stable",
     "build:lib:clean": "rimraf lib/ && pnpm build:lib",
     "build:legacy": "echo 'Skip legacy build'",
