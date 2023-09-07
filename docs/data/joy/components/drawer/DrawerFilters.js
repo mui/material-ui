@@ -43,13 +43,14 @@ export default function DrawerFilters() {
       </Button>
       <Drawer
         size="md"
+        variant="plain"
         open={open}
         onClose={() => setOpen(false)}
         slotProps={{
           content: {
             sx: {
               bgcolor: 'transparent',
-              p: 3,
+              p: { md: 3, sm: 0 },
               boxShadow: 'none',
             },
           },
@@ -210,7 +211,7 @@ export default function DrawerFilters() {
             Booking Options
           </Typography>
           <FormControl orientation="horizontal">
-            <Box sx={{ flex: 1 }}>
+            <Box sx={{ flex: 1, pr: 1 }}>
               <FormLabel sx={{ typography: 'title-sm' }}>Instant Book</FormLabel>
               <FormHelperText sx={{ typography: 'body-sm' }}>
                 Listings you can book without waiting for host approval
@@ -220,7 +221,7 @@ export default function DrawerFilters() {
           </FormControl>
 
           <FormControl orientation="horizontal">
-            <Box sx={{ flex: 1, mt: 1 }}>
+            <Box sx={{ flex: 1, mt: 1, mr: 1 }}>
               <FormLabel sx={{ typography: 'title-sm' }}>Self Check-in</FormLabel>
               <FormHelperText sx={{ typography: 'body-sm' }}>
                 Easy access to the property when you arrive
@@ -230,7 +231,7 @@ export default function DrawerFilters() {
           </FormControl>
 
           <FormControl orientation="horizontal">
-            <Box sx={{ flex: 1, mt: 1 }}>
+            <Box sx={{ flex: 1, mt: 1, mr: 1 }}>
               <FormLabel sx={{ typography: 'title-sm' }}>Superhost</FormLabel>
               <FormHelperText sx={{ typography: 'body-sm' }}>
                 Stay with top tier recognized hosts
