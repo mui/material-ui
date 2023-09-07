@@ -31,11 +31,8 @@ There are docs generation scripts that require this pattern.
 
 ```ts
 function useAwesomeControl(parameters: UseAwesomeControlParameters) {
-  const {
-    disabled,
-    readOnly
-  } = parameters;
-  
+  const { disabled, readOnly } = parameters;
+
   // the rest of the hook's logic...
 }
 ```
