@@ -174,7 +174,7 @@
     "typescript-to-proptypes": "^5.0.0",
     "webpack": "^5.88.2",
     "webpack-bundle-analyzer": "^4.9.1",
-    "webpack-cli": "^4.10.0",
+    "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2",
     "yarn-deduplicate": "^6.0.2"
   },
