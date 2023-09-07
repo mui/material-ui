@@ -42,7 +42,7 @@ export interface DialogTitleTypeMap<P = {}, D extends React.ElementType = 'div'>
     color?: OverridableStringUnion<ColorPaletteProp, DialogTitlePropsColorOverrides>;
     /**
      * Applies the theme typography styles.
-     * @default 'body-md'
+     * @default { sm: 'title-md', md: 'title-lg', lg: 'h4' }
      */
     level?: keyof TypographySystem | 'inherit';
     /**

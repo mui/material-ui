@@ -56,6 +56,9 @@ const DialogTitleRoot = styled('h2', {
     },
   };
 });
+
+const sizeToLevel = { sm: 'title-md', md: 'title-lg', lg: 'h4' } as const;
+
 /**
  * ⚠️ DialogTitle must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
@@ -80,7 +83,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     children,
     variant,
     color: colorProp,
-    level,
+    level = sizeToLevel[size || 'md'],
     slots = {},
     slotProps = {},
     ...other
@@ -96,9 +99,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     component,
     color,
     variant,
-    level:
-      level ??
-      (({ sm: 'title-md', md: 'title-lg', lg: 'h4' } as const)[size || 'md'] || 'title-lg'),
+    level,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -138,7 +139,7 @@ DialogTitle.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * Applies the theme typography styles.
-   * @default 'body-md'
+   * @default { sm: 'title-md', md: 'title-lg', lg: 'h4' }
    */
   level: PropTypes.oneOf([
     'body-lg',

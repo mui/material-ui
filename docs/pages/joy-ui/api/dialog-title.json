@@ -14,7 +14,7 @@
         "name": "enum",
         "description": "'body-lg'<br>&#124;&nbsp;'body-md'<br>&#124;&nbsp;'body-sm'<br>&#124;&nbsp;'body-xs'<br>&#124;&nbsp;'h1'<br>&#124;&nbsp;'h2'<br>&#124;&nbsp;'h3'<br>&#124;&nbsp;'h4'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'title-lg'<br>&#124;&nbsp;'title-md'<br>&#124;&nbsp;'title-sm'"
       },
-      "default": "'body-md'"
+      "default": "{ sm: 'title-md', md: 'title-lg', lg: 'h4' }"
     },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
