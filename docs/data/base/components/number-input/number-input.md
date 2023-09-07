@@ -32,7 +32,7 @@ See [_Why the GOV.UK Design System team changed the input type for numbers_](htt
 ## Component
 
 ```jsx
-import NumberInput from '@mui/base/Unstable_NumberInput';
+import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
 ```
 
 The following demo shows how to create a Number Input component, apply some styling, and write the latest value to a state variable using the `onChange` prop:
