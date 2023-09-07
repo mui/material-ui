@@ -131,13 +131,13 @@ We also see a big opportunity to reach those that are already interested in tryi
 
 ### What is the main benefit you receive from using MUI libraries?
 
- With a significant 41% of respondents highlighting 'Fast development' as a benefit, it is clear that developers and businesses are seeking solutions that streamline processes and reduce the time to market. 
- 
- 14% of participants emphasized the importance of a 'Large portfolio of quality components'. But 'Design / Look and Feel' is the second most flagged benefit, with 30% of participants mentioning MUI out-of-the-box UI/UX.
+With a significant 41% of respondents highlighting 'Fast development' as a benefit, it is clear that developers and businesses are seeking solutions that streamline processes and reduce the time to market.
 
- Surprisingly, only 3% explicitly mentioned Material design as a requirement for their projects.
+14% of participants emphasized the importance of a 'Large portfolio of quality components'. But 'Design / Look and Feel' is the second most flagged benefit, with 30% of participants mentioning MUI out-of-the-box UI/UX.
 
- The following chart is the top 20 most flagged benefits.
+Surprisingly, only 3% explicitly mentioned Material design as a requirement for their projects.
+
+The following chart is the top 20 most flagged benefits.
 
 <img src="/static/blog/2022-developer-survey-results/9.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">826 respondents</p>
@@ -153,7 +153,6 @@ Here are the Top 25 Categorized community requests.
 
 <img src="/static/blog/2022-developer-survey-results/10.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
 <p class="blog-description">716 respondents</p>
-
 
 ### Please rate the following statements (our differentiators)
 
@@ -322,7 +321,10 @@ The vast majority, 88%, utilize REST APIs as the backend for their internal appl
 
 The community uses a wide variety of low-code tools, indicating a high level of adaptability and comfort with different development tools and systems.
 
-(Missing chart)
+Note: It was a broad question and we only showed products whose occurence was 3 or more. Apart from these, 90 more such tools were mentioned!
+
+<img src="/static/blog/2022-developer-survey-results/30.png" style="width: 630px; margin-top: 16px; margin-bottom: 8px;" alt="" />
+<p class="blog-description">160 respondents.</p>
 
 ## Conclusion
 
