@@ -103,25 +103,6 @@ The same applies to props specific to custom primitive elements:
 <Menu<'ol'> slots={{ root: 'ol' }} start={5} />
 ```
 
-### CSS classes
-
-`<Menu />` can set the following class:
-
-- `Mui-expanded` - set on the root slot when the Menu is open
-
-`<MenuItem />` can set the following classes:
-
-- `Mui-disabled` - set when the Menu Item has the `disabled` prop
-- `Mui-focusVisible` - set when the Menu Item is highlighted via keyboard navigation.
-  This is a polyfill for the native `:focus-visible` pseudoclass, as it's not available in older versions of Safari.
-
-The following classes are available on the `<MenuButton />`:
-
-- `Mui-active` - set when the button is pressed.
-- `Mui-disabled` - set when the button has the `disabled` prop.
-  It's equivalent to the native `:active` pseudoclass.
-- `Mui-expanded` - set when the menu associated with the given button is open.
-
 ## Hooks
 
 ```jsx
