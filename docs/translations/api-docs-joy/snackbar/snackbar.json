@@ -19,6 +19,9 @@
     "disableWindowBlurListener": {
       "description": "If <code>true</code>, the <code>autoHideDuration</code> timer will expire even if the window is not focused."
     },
+    "invertedColors": {
+      "description": "If <code>true</code>, the children with an implicit color prop invert their colors to match the component&#39;s variant and color."
+    },
     "onClose": {
       "description": "Callback fired when the component requests to be closed. Typically <code>onClose</code> is used to set state in the parent component, which is used to control the <code>Snackbar</code> <code>open</code> prop. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>, for example ignoring <code>clickaway</code>.",
       "typeDescriptions": {

@@ -7,6 +7,7 @@ import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { useSnackbar } from '@mui/base/useSnackbar';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
+import { ColorInversionProvider } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
@@ -104,6 +105,9 @@ const SnackbarRoot = styled('div', {
       fontWeight: theme.vars.fontWeight.md,
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     } as const,
+    ownerState.color !== 'context' &&
+      ownerState.invertedColors &&
+      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
     p !== undefined && { '--Snackbar-padding': p },
     padding !== undefined && { '--Snackbar-padding': padding },
     borderRadius !== undefined && { '--Snackbar-radius': borderRadius },
@@ -153,6 +157,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     ClickAwayListenerProps,
     component,
     disableWindowBlurListener = false,
+    invertedColors = false,
     onBlur,
     onClose,
     onFocus,
@@ -173,6 +178,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     autoHideDuration,
     color,
     disableWindowBlurListener,
+    invertedColors,
     size,
     variant,
   };
@@ -210,18 +216,26 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     return null;
   }
 
+  const result = (
+    <React.Fragment>
+      {slots.startDecorator && (
+        <SlotStartDecorator {...startDecoratorProps}>{<slots.startDecorator />}</SlotStartDecorator>
+      )}
+
+      {children}
+      {slots.endDecorator && (
+        <SlotEndDecorator {...endDecoratorProps}>{<slots.endDecorator />}</SlotEndDecorator>
+      )}
+    </React.Fragment>
+  );
+
   return (
     <ClickAwayListener onClickAway={onClickAway} {...ClickAwayListenerProps}>
       <SlotRoot {...rootProps}>
-        {slots.startDecorator && (
-          <SlotStartDecorator {...startDecoratorProps}>
-            {<slots.startDecorator />}
-          </SlotStartDecorator>
-        )}
-
-        {children}
-        {slots.endDecorator && (
-          <SlotEndDecorator {...endDecoratorProps}>{<slots.endDecorator />}</SlotEndDecorator>
+        {invertedColors ? (
+          <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>
+        ) : (
+          result
         )}
       </SlotRoot>
     </ClickAwayListener>
@@ -278,6 +292,11 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableWindowBlurListener: PropTypes.bool,
+  /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
   /**
    * @ignore
    */

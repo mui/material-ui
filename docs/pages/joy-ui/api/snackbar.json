@@ -19,6 +19,7 @@
     },
     "component": { "type": { "name": "elementType" } },
     "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
+    "invertedColors": { "type": { "name": "bool" }, "default": "false" },
     "onClose": {
       "type": { "name": "func" },
       "signature": {

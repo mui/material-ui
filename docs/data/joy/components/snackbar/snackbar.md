@@ -34,3 +34,11 @@ You can control the position of the snackbar by specifying the `anchorOrigin` pr
 Use the `slots.startDecorator` and `slots.endDecorator` props to append actions and icons to either side of the Snackbar:
 
 {{"demo": "SnackbarWithDecorators.js"}}
+
+### Inverted colors
+
+When the Snackbar's variant is `soft` or `solid`, you can use the `invertedColors={true}` prop to invert the colors of the children to have enough contrast.
+
+To learn more about this, check out [Color Inversion](/joy-ui/main-features/color-inversion/) feature.
+
+{{"demo": "SnackbarInvertedColors.js"}}
