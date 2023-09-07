@@ -72,7 +72,7 @@ function traverseLoaders(rules: Webpack.RuleSetRule[]) {
 
 let moduleStore: VirtualModuleStore;
 
-export default function withLinaria(nextConfig: NextConfig, zeroConfig: ZeroPluginOptions) {
+export default function withZero(nextConfig: NextConfig, zeroConfig: ZeroPluginOptions) {
   const {
     theme,
     cssVariablesPrefix = 'mui',
