@@ -17,6 +17,7 @@ export default function RealEstateCard({ sx, ...props }: CardProps) {
           bgcolor: '#fff',
           p: 1,
           zIndex: 1,
+          boxShadow: '0 2px 4px rgba(0, 127, 255, 0.2)',
           ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.800',
           }),
@@ -45,17 +46,20 @@ export default function RealEstateCard({ sx, ...props }: CardProps) {
         </Typography>
         <Box
           sx={(theme) => ({
-            mt: 0.75,
+            mt: 1,
             px: 1,
             py: 0.5,
             typography: 'caption',
-            borderRadius: 1,
+            borderRadius: 10,
             display: 'flex',
             bgcolor: 'primary.50',
+            border: '1px solid',
+            borderColor: 'primary.100',
             color: 'primary.700',
             ...theme.applyDarkStyles({
-              bgcolor: 'primary.900',
+              bgcolor: 'primaryDark.700',
               color: 'primary.200',
+              borderColor: 'primary.900',
             }),
           })}
         >

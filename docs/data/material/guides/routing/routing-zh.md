@@ -14,7 +14,7 @@
 
 ## Global theme Link
 
-在实际应用中，使用原生的 `<a>` 元素是不够的， 您可以使用系统化地增强的 Link 组件来提升用户体验： MUI 主题允许配置此组件一次 例如，通过react-router：
+在实际应用中，使用原生的 `<a>` 元素是不够的， 您可以使用系统化地增强的 Link 组件来提升用户体验： MUI 主题允许配置此组件一次 例如，通过 react-router：
 
 ```tsx
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
@@ -48,7 +48,7 @@ const theme = createTheme({
 {{"demo": "LinkRouterWithTheme.js", "defaultCodeOpen": false}}
 
 :::warning
-⚠️ This approach has limitations with TypeScript. The `href` prop only accepts a string. In the event you need to provide a richer structure, see the next section.
+This approach has limitations with TypeScript. The `href` prop only accepts a string. In the event you need to provide a richer structure, see the next section.
 :::
 
 ## `component` 属性

@@ -39,7 +39,7 @@ export default function DiamondSponsors() {
         fontWeight="bold"
         sx={(theme) => ({
           mt: 4,
-          mb: 2,
+          mb: 1.5,
           background: `linear-gradient(90deg, ${(theme.vars || theme).palette.primary[400]} 50%, ${
             (theme.vars || theme).palette.primary[700]
           } 100%)`,
@@ -81,6 +81,7 @@ export default function DiamondSponsors() {
                 sx={(theme) => ({
                   mr: 2,
                   border: '1px solid',
+                  borderColor: 'grey.300',
                   ...theme.applyDarkStyles({
                     borderColor: 'primaryDark.400',
                   }),

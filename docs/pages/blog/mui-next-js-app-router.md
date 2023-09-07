@@ -26,8 +26,8 @@ See [this explanation of Client Components and SSR](https://github.com/reactwg/s
 Additionally, we've created guides to walk you through setting up an app using the Next.js App Router with each of the Core libraries:
 
 - [Material UI setup](https://mui.com/material-ui/guides/next-js-app-router/)
+- [Joy UI setup](https://mui.com/joy-ui/integrations/next-js-app-router/)
 - [Base UI setup](https://mui.com/base-ui/guides/next-js-app-router/)
-- [Joy UI setup](https://mui.com/joy-ui/guides/next-js-app-router/)
 
 <img alt="Screenshot of the Material UI documentation" src="/static/blog/mui-next-js-app-router/docs.png" loading="lazy" width="2400" height="1394" style="margin-bottom:24px;" />
 

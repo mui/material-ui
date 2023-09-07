@@ -19,9 +19,7 @@ export type PluginCustomOptions = {
   /**
    * Object to pass as parameter to the styled css callback functions.
    */
-  themeArgs?: {
-    theme: Theme;
-  };
+  themeArgs?: Record<string, unknown>;
 };
 
 type CssFnValueToVariableParams = {
@@ -39,7 +37,8 @@ function transformThemeKeysInFn(
   filename?: string,
 ) {
   const { themeArgs: { theme } = {} } = options;
-  const config = theme?.unstable_sxConfig ?? defaultSxConfig;
+  const userTheme = theme as Theme;
+  const config = userTheme?.unstable_sxConfig ?? defaultSxConfig;
   const cssPropOptions = config[styleKey];
   const { themeKey } = cssPropOptions;
 

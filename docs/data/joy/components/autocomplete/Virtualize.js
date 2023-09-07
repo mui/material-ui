@@ -56,6 +56,7 @@ const OuterElementType = React.forwardRef((props, ref) => {
 });
 
 // Adapter for react-window
+
 const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
   const { children, anchorEl, open, modifiers, ...other } = props;
   const itemData = [];

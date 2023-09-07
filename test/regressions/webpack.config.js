@@ -11,6 +11,7 @@ module.exports = {
     // Helps debugging and build perf.
     // Bundle size is irrelevant for local serving
     minimize: false,
+    concatenateModules: false,
   },
   output: {
     path: path.resolve(__dirname, './build'),
@@ -32,11 +33,13 @@ module.exports = {
     rules: [
       {
         test: /\.(js|ts|tsx)$/,
-        exclude: /node_modules/,
+        // prism.js blocks @mui/markdown/prism from being interpreted as ESM in this build.
+        exclude: /node_modules|prism\.js/,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
           configFile: path.resolve(__dirname, '../../babel.config.js'),
+          envName: 'regressions',
         },
       },
       {
