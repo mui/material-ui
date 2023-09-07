@@ -107,7 +107,7 @@ If your project includes these packages, you'll need to update them:
 - `@types/react-dom`
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ## Set up `ThemeProvider`
@@ -138,7 +138,7 @@ function App() {
 ```
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ## Update MUI packages
@@ -217,7 +217,7 @@ Note that if your app uses server-side rendering (SSR), there is a [known bug](h
 We strongly recommend using the default setup with Emotion instead.
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ### Replace all imports

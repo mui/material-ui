@@ -445,7 +445,7 @@ export default function TableSortAndSelection() {
                 } as React.CSSProperties
               }
             >
-              <td colSpan={6} />
+              <td colSpan={6} aria-hidden />
             </tr>
           )}
         </tbody>

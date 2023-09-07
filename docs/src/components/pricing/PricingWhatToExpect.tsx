@@ -83,7 +83,7 @@ export default function PricingWhatToExpect() {
             when you renew:
             <ul>
               <li>before the support expires: 50% discount</li>
-              <li>up to 60 days after the support has expired: 25% discount</li>
+              <li>up to 60 days after the support has expired: 35% discount</li>
               <li>more than 60 days after the support has expired: 15% discount</li>
             </ul>
           </Typography>

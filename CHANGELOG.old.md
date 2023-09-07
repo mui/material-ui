@@ -5540,7 +5540,7 @@ you to add them up quickly in your head without having to worry about decimals.
 
 - [docs] Fix search suggestions on dark mode (#13874) @rfbotto
 - [docs] Add accessibility section to selection-controls with demo (#13896) @wyseguyonline
-- [docs] Add support for multiple demo variants e.g JS or Hooks (#13873) @adeelibr
+- [docs] Add support for multiple demo variants e.g. JS or Hooks (#13873) @adeelibr
 - [docs] Remove the withRoot HOC (#13909) @oliviertassinari
 - [docs] Add material-ui-pickers in pickers page (#13697) @dmtrKovalenko
 - [docs] Continue #13806 and port back some fix from @system (#13917) @oliviertassinari
@@ -6156,7 +6156,7 @@ A big thanks to the 18 contributors who made this release possible!
 Here are some highlights ✨:
 
 - 💅 Update the Typography implementation to better follow the specification (#12916) @eps1lon.
-- 📝 Enable [translating the documentation into Chinese](https://translate.mui.com) @mbrookes.
+- 📝 Enable [translating the documentation into Chinese](https://crowdin.com/project/material-ui-docs) @mbrookes.
 - 📝 Fix many SEO issues of the docs.
 - And many more bug fixes 🐛 and documentation improvements.
 

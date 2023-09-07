@@ -1,9 +1,16 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import TreeView from '@mui/lab/TreeView';
-import TreeItem, { useTreeItem, TreeItemProps, TreeItemContentProps } from '@mui/lab/TreeItem';
+import { TreeView } from '@mui/x-tree-view/TreeView';
+import {
+  TreeItem,
+  useTreeItem,
+  TreeItemProps,
+  TreeItemContentProps,
+} from '@mui/x-tree-view/TreeItem';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';
@@ -36,11 +43,11 @@ const CustomContent = React.forwardRef(function CustomContent(
 
   const icon = iconProp || expansionIcon || displayIcon;
 
-  const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     preventSelection(event);
   };
 
-  const handleExpansionClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleExpansionClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     handleExpansion(event);
   };
 
@@ -49,16 +56,18 @@ const CustomContent = React.forwardRef(function CustomContent(
   };
 
   return (
-    /* @ts-ignore -- Key event is handled by the TreeView */
-    <Box
+    <div
       className={clsx(className, classes.root, {
         [classes.expanded]: expanded,
         [classes.selected]: selected,
         [classes.focused]: focused,
         [classes.disabled]: disabled,
       })}
+      // @ts-ignore
       onClick={handleExpansionClick}
+      // @ts-ignore
       onMouseDown={handleMouseDown}
+      // @ts-ignore
       ref={ref as React.Ref<HTMLButtonElement>}
     >
       {lastNestedChild ? (
@@ -95,7 +104,7 @@ const CustomContent = React.forwardRef(function CustomContent(
         {label}
       </Typography>
       {icon}
-    </Box>
+    </div>
   );
 });
 
@@ -164,13 +173,14 @@ const StyledTreeItem = styled(TreeItem)(({ theme }) => [
   }),
 ]);
 
-function CustomTreeItem(
+const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   props: TreeItemProps & {
     ContentProps?: { lastNestedChild?: boolean };
   },
+  ref: React.Ref<HTMLLIElement>,
 ) {
-  return <StyledTreeItem ContentComponent={CustomContent} {...props} />;
-}
+  return <StyledTreeItem ContentComponent={CustomContent} {...props} ref={ref} />;
+});
 
 export default function FolderTreeView() {
   return (

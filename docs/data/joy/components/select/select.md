@@ -43,6 +43,12 @@ The `Select` component is similar to the native HTML's `<select>` and `<option>`
 
 {{"demo": "SelectBasic.js"}}
 
+### Form submission
+
+The `Select` component supports `name` and `required` props that will be used when submitting the form.
+
+{{"demo": "SelectFormSubmission.js"}}
+
 ### Variants
 
 The Select component supports the four global variants: `outlined` (default), `plain`, `soft`, and `solid`.

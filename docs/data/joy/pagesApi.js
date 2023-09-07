@@ -1,4 +1,8 @@
 module.exports = [
+  { pathname: '/joy-ui/api/accordion' },
+  { pathname: '/joy-ui/api/accordion-details' },
+  { pathname: '/joy-ui/api/accordion-group' },
+  { pathname: '/joy-ui/api/accordion-summary' },
   { pathname: '/joy-ui/api/alert' },
   { pathname: '/joy-ui/api/aspect-ratio' },
   { pathname: '/joy-ui/api/autocomplete' },
@@ -20,6 +24,9 @@ module.exports = [
   { pathname: '/joy-ui/api/chip-delete' },
   { pathname: '/joy-ui/api/circular-progress' },
   { pathname: '/joy-ui/api/css-baseline' },
+  { pathname: '/joy-ui/api/dialog-actions' },
+  { pathname: '/joy-ui/api/dialog-content' },
+  { pathname: '/joy-ui/api/dialog-title' },
   { pathname: '/joy-ui/api/divider' },
   { pathname: '/joy-ui/api/form-control' },
   { pathname: '/joy-ui/api/form-helper-text' },

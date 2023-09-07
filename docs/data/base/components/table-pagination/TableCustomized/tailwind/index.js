@@ -82,6 +82,7 @@ export default function TableCustomized() {
               <td
                 className="border border-solid border-slate-200 dark:border-slate-800 text-left p-1.5"
                 colSpan={3}
+                aria-hidden
               />
             </tr>
           )}

@@ -124,18 +124,18 @@ Use the Icon Button component for a square button to house an icon with no text 
 
 {{"demo": "IconButtons.js"}}
 
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Button and Icon Button components to see how the design changes.
 You can use these to customize the components with both the `sx` prop and the theme.
 
 ### Button
 
-{{"demo": "ButtonVariables.js", "hideToolbar": true}}
+{{"demo": "ButtonVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ### Icon Button
 
-{{"demo": "IconButtonVariables.js", "hideToolbar": true}}
+{{"demo": "IconButtonVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Accessibility
 

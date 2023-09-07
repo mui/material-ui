@@ -84,6 +84,9 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--Button-radius': 'var(--Input-decoratorChildRadius)',
         '--IconButton-radius': 'var(--Input-decoratorChildRadius)',
         boxSizing: 'border-box',
+        ...(ownerState.variant !== 'plain' && {
+          boxShadow: theme.shadow.xs,
+        }),
         minWidth: 0,
         minHeight: 'var(--Input-minHeight)',
         ...(ownerState.fullWidth && {
@@ -396,7 +399,7 @@ Input.propTypes /* remove-proptypes */ = {
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the button will take up the full width of its container.
+   * If `true`, the input will take up the full width of its container.
    * @default false
    */
   fullWidth: PropTypes.bool,
