@@ -228,15 +228,16 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
         return;
       }
 
-      // The disableEnforceFocus is set and the focus is not coming from the sentinel nodes, so do nothing
-      if (disableEnforceFocus && nativeEvent !== false) {
-        return;
-      }
-
       // The focus is already inside
       if (rootElement.contains(doc.activeElement)) {
         return;
       }
+
+      // The disableEnforceFocus is set and the focus is outside of the focus trap, so do nothing
+      if (disableEnforceFocus && nativeEvent !== false) {
+        return;
+      }
+
 
       // if the focus event is not coming from inside the children's react tree, reset the refs
       if (
