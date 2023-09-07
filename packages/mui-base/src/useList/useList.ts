@@ -20,10 +20,10 @@ import {
   StateComparers,
 } from '../utils/useControllableReducer.types';
 import { areArraysEqual } from '../utils/areArraysEqual';
-import { EventHandlers } from '../utils/types';
 import { useLatest } from '../utils/useLatest';
 import { useTextNavigation } from '../utils/useTextNavigation';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 
 const EMPTY_OBJECT = {};
 const NOOP = () => {};
@@ -333,17 +333,18 @@ function useList<
       });
     };
 
-  const getRootProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseListRootSlotProps<TOther> => {
+  const getRootProps = <ExternalProps extends Record<string, any> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseListRootSlotProps<ExternalProps> => {
+    const externalEventHandlers = extractEventHandlers(externalProps);
     return {
-      ...otherHandlers,
+      ...externalProps,
       'aria-activedescendant':
         focusManagement === 'activeDescendant' && highlightedValue != null
           ? getItemId!(highlightedValue)
           : undefined,
-      onBlur: createHandleBlur(otherHandlers),
-      onKeyDown: createHandleKeyDown(otherHandlers),
+      onBlur: createHandleBlur(externalEventHandlers),
+      onKeyDown: createHandleKeyDown(externalEventHandlers),
       tabIndex: focusManagement === 'DOM' ? -1 : 0,
       ref: handleRef,
     };

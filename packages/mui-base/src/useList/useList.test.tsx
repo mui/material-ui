@@ -85,4 +85,20 @@ describe('useList', () => {
       }),
     );
   });
+
+  describe('external props', () => {
+    it('should pass arbitrary props to the root slot', () => {
+      function Listbox() {
+        const { getRootProps } = useList({
+          items: [],
+          getItemId: () => undefined,
+        });
+        return <div role="listbox" {...getRootProps({ 'data-testid': 'test-listbox' })} />;
+      }
+
+      const { getByRole } = render(<Listbox />);
+
+      expect(getByRole('listbox')).to.have.attribute('data-testid', 'test-listbox');
+    });
+  });
 });
