@@ -33,6 +33,17 @@
     "release": "yarn build && npm publish build",
     "test": "exit 0"
   },
+  "dependencies": {
+    "@babel/runtime": "^7.22.10",
+    "@mui/base": "5.0.0-beta.14",
+    "@mui/utils": "^5.14.8",
+    "nprogress": "^0.2.0",
+    "prop-types": "^15.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.21",
+    "react": "^18.2.0"
+  },
   "peerDependencies": {
     "@mui/material": "^5.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",
@@ -42,11 +53,6 @@
     "@types/react": {
       "optional": true
     }
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.22.10",
-    "@mui/utils": "^5.14.8",
-    "nprogress": "^0.2.0"
   },
   "publishConfig": {
     "access": "public"
