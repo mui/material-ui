@@ -81,8 +81,8 @@ export default function DemoEditor(props: DemoEditorProps) {
   const { language, value, onChange, copyButtonProps, children, id, ...other } = props;
   const t = useTranslate();
   const contextTheme = useTheme();
-  const wrapperRef = React.useRef<HTMLElement | null>(null);
-  const enterRef = React.useRef<HTMLElement | null>(null);
+  const wrapperRef = React.useRef<HTMLElement>(null);
+  const enterRef = React.useRef<HTMLElement>(null);
   const handlers = useCodeCopy();
 
   React.useEffect(() => {

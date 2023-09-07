@@ -188,16 +188,15 @@ const styles = `
     border: 1px solid ${grey[200]};
     color: ${grey[900]};
     cursor: pointer;
-  
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 120ms;
-  
+
     &:hover {
       background: ${grey[50]};
       border-color: ${grey[300]};
     }
-  
+
     &:focus-visible {
       border-color: ${blue[400]};
       outline: 3px solid ${blue[200]};

@@ -4,7 +4,7 @@ description: Migrate to the new package to start building with our powerful Tree
 date: 2023-08-21T00:00:00.000Z
 authors: ['flaviendelangle']
 tags: ['MUI X', 'News']
-card: true
+card: false
 ---
 
 After more than 4 years in the lab, the [Tree View](https://mui.com/x/react-tree-view/) components have found a new home as part of MUI X.
@@ -56,8 +56,14 @@ Follow the [migration steps](/x/migration/migration-tree-view-lab/) by updating 
 
 ```diff
 -import TreeView from '@mui/lab/TreeView';
+-import TreeItem from '@mui/lab/TreeItem';
 +import { TreeView } from '@mui/x-tree-view/TreeView';
++import { TreeItem } from '@mui/x-tree-view/TreeItem';
+```
 
+or
+
+```diff
 -import { TreeView, TreeItem } from '@mui/lab';
 +import { TreeView, TreeItem } from '@mui/x-tree-view';
 ```
@@ -75,7 +81,7 @@ You can find the documentation for the Tree View component in the [MUI X docs](/
 ## What's next for the Tree View?
 
 For now, `@mui/x-tree-view` is in alpha.
-Our next goal is to work on the stability and API consistency of its components to prepare a stable release on the next few months.
+Our next goal is to work on the stability and API consistency of its components to prepare a stable release in the next few months.
 
 Please feel free to try out the component and provide any feedback you may have.
 
