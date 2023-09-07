@@ -464,7 +464,7 @@ importers:
         version: link:../packages/mui-docs/build
       '@mui/icons-material':
         specifier: workspace:^
-        version: link:../packages/mui-icons-material
+        version: link:../packages/mui-icons-material/build
       '@mui/joy':
         specifier: workspace:*
         version: link:../packages/mui-joy/build
@@ -494,7 +494,7 @@ importers:
         version: link:../packages/mui-system/build
       '@mui/types':
         specifier: workspace:^
-        version: link:../packages/mui-types
+        version: link:../packages/mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../packages/mui-utils/build
@@ -506,7 +506,7 @@ importers:
         version: 6.12.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid-generator':
         specifier: 6.12.1
-        version: 6.12.1(@mui/icons-material@packages+mui-icons-material)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
+        version: 6.12.1(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid-premium':
         specifier: 6.12.1
         version: 6.12.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0)
@@ -943,7 +943,7 @@ importers:
         version: 2.0.2(react-dom@18.2.0)(react@18.2.0)
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types
+        version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -1037,8 +1037,10 @@ importers:
       chai:
         specifier: ^4.3.7
         version: 4.3.8
+    publishDirectory: build
 
-  packages/mui-core-downloads-tracker: {}
+  packages/mui-core-downloads-tracker:
+    publishDirectory: build
 
   packages/mui-docs:
     dependencies:
@@ -1139,6 +1141,7 @@ importers:
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
+    publishDirectory: build
 
   packages/mui-joy:
     dependencies:
@@ -1156,13 +1159,13 @@ importers:
         version: link:../mui-base/build
       '@mui/core-downloads-tracker':
         specifier: workspace:^
-        version: link:../mui-core-downloads-tracker
+        version: link:../mui-core-downloads-tracker/build
       '@mui/system':
         specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types
+        version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -1239,7 +1242,7 @@ importers:
         version: link:../mui-system/build
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types
+        version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -1301,13 +1304,13 @@ importers:
         version: link:../mui-base/build
       '@mui/core-downloads-tracker':
         specifier: workspace:^
-        version: link:../mui-core-downloads-tracker
+        version: link:../mui-core-downloads-tracker/build
       '@mui/system':
         specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types
+        version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -1332,7 +1335,7 @@ importers:
     devDependencies:
       '@mui/icons-material':
         specifier: workspace:^
-        version: link:../mui-icons-material
+        version: link:../mui-icons-material/build
       '@mui/lab':
         specifier: workspace:*
         version: link:../mui-lab/build
@@ -1444,7 +1447,7 @@ importers:
         version: link:../mui-system/build
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types
+        version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -1522,7 +1525,7 @@ importers:
         version: link:../mui-styles/build
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types
+        version: link:../mui-types/build
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -1632,7 +1635,7 @@ importers:
         version: link:../mui-private-theming/build
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types
+        version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -1724,7 +1727,7 @@ importers:
         version: link:../mui-styled-engine/build
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types
+        version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -1798,10 +1801,11 @@ importers:
     devDependencies:
       '@mui/types':
         specifier: workspace:*
-        version: 'link:'
+        version: link:build
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
+    publishDirectory: build
 
   packages/mui-utils:
     dependencies:
@@ -1820,7 +1824,7 @@ importers:
         version: 7.22.5
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types
+        version: link:../mui-types/build
       '@types/babel-plugin-macros':
         specifier: ^3.1.0
         version: 3.1.0
@@ -2104,7 +2108,7 @@ importers:
         version: link:../packages/mui-base/build
       '@mui/icons-material':
         specifier: workspace:^
-        version: link:../packages/mui-icons-material
+        version: link:../packages/mui-icons-material/build
       '@mui/joy':
         specifier: workspace:*
         version: link:../packages/mui-joy/build
@@ -5069,7 +5073,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@mui/x-data-grid-generator@6.12.1(@mui/icons-material@packages+mui-icons-material)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0):
+  /@mui/x-data-grid-generator@6.12.1(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Iqy5ACWCb19M0qGdO4IQPPvzSmYakc+ENm3a01H678hTXXOnkfBB94CwJ8YT/izvXBIXBfg50nkg+ZDUG3x5mw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -5079,7 +5083,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.22.10
       '@mui/base': 5.0.0-beta.14(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
-      '@mui/icons-material': link:packages/mui-icons-material
+      '@mui/icons-material': link:packages/mui-icons-material/build
       '@mui/material': link:packages/mui-material/build
       '@mui/x-data-grid-premium': 6.12.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0)
       chance: 1.1.11
