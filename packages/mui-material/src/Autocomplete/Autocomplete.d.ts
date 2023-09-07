@@ -273,7 +273,7 @@ export interface AutocompleteProps<
    */
   slotProps?: {
     clearIndicator?: Partial<IconButtonProps>;
-    paper?: PaperProps;
+    paper?: Partial<PaperProps>;
     popper?: Partial<PopperProps>;
     popupIndicator?: Partial<IconButtonProps>;
   };
