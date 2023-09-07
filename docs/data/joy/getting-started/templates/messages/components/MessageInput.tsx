@@ -54,7 +54,7 @@ export default function MessageInput({
                 borderColor: 'divider',
               }}
             >
-              <Box>
+              <div>
                 <IconButton size="sm" variant="plain" color="neutral">
                   <FormatBoldRoundedIcon />
                 </IconButton>
@@ -67,7 +67,7 @@ export default function MessageInput({
                 <IconButton size="sm" variant="plain" color="neutral">
                   <FormatListBulletedRoundedIcon />
                 </IconButton>
-              </Box>
+              </div>
               <Button
                 size="sm"
                 sx={{ alignSelf: 'center' }}
