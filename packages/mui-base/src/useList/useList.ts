@@ -24,6 +24,7 @@ import { useLatest } from '../utils/useLatest';
 import { useTextNavigation } from '../utils/useTextNavigation';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { EventHandlers } from '../utils/types';
 
 const EMPTY_OBJECT = {};
 const NOOP = () => {};
@@ -276,9 +277,9 @@ function useList<
   }, [highlightedValue, notifyHighlightChanged]);
 
   const createHandleKeyDown =
-    (other: Record<string, React.EventHandler<any>>) =>
+    (externalHandlers: EventHandlers) =>
     (event: React.KeyboardEvent<HTMLElement> & MuiCancellableEvent) => {
-      other.onKeyDown?.(event);
+      externalHandlers.onKeyDown?.(event);
 
       if (event.defaultMuiPrevented) {
         return;
@@ -314,9 +315,9 @@ function useList<
     };
 
   const createHandleBlur =
-    (other: Record<string, React.EventHandler<any>>) =>
+    (externalHandlers: EventHandlers) =>
     (event: React.FocusEvent<HTMLElement> & MuiCancellableEvent) => {
-      other.onBlur?.(event);
+      externalHandlers.onBlur?.(event);
 
       if (event.defaultMuiPrevented) {
         return;

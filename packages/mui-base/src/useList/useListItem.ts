@@ -4,8 +4,9 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
-import { EventHandlers } from '../utils/types';
 import { useForcedRerendering } from '../utils/useForcedRerendering';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { EventHandlers } from '../utils/types';
 import { UseListItemParameters, UseListItemReturnValue } from './useListItem.types';
 import { ListActionTypes } from './listActions.types';
 import { ListContext } from './ListContext';
@@ -65,8 +66,8 @@ export function useListItem<ItemValue>(
   }, [registerSelectionChangeHandler, rerender, selected, item]);
 
   const createHandleClick = React.useCallback(
-    (other: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
-      other.onClick?.(event);
+    (externalHandlers: EventHandlers) => (event: React.MouseEvent) => {
+      externalHandlers.onClick?.(event);
       if (event.defaultPrevented) {
         return;
       }
@@ -81,8 +82,8 @@ export function useListItem<ItemValue>(
   );
 
   const createHandlePointerOver = React.useCallback(
-    (other: Record<string, React.EventHandler<any>>) => (event: React.PointerEvent) => {
-      other.onMouseOver?.(event);
+    (externalHandlers: EventHandlers) => (event: React.PointerEvent) => {
+      externalHandlers.onMouseOver?.(event);
       if (event.defaultPrevented) {
         return;
       }
@@ -101,12 +102,14 @@ export function useListItem<ItemValue>(
     tabIndex = highlighted ? 0 : -1;
   }
 
-  const getRootProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
+  const getRootProps = <ExternalProps extends Record<string, any>>(
+    externalProps: ExternalProps = {} as ExternalProps,
   ) => ({
-    ...otherHandlers,
-    onClick: createHandleClick(otherHandlers),
-    onPointerOver: handlePointerOverEvents ? createHandlePointerOver(otherHandlers) : undefined,
+    ...externalProps,
+    onClick: createHandleClick(extractEventHandlers(externalProps)),
+    onPointerOver: handlePointerOverEvents
+      ? createHandlePointerOver(extractEventHandlers(externalProps))
+      : undefined,
     ref: handleRef,
     tabIndex,
   });
