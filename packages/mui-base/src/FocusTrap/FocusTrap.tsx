@@ -213,7 +213,7 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
   }, [open]);
 
   const contain = React.useCallback(
-    (nativeEvent: FocusEvent | null | false) => {
+    (nativeEvent: FocusEvent | null) => {
       const rootElement = rootRef.current;
       const doc = ownerDocument(rootRef.current);
 
@@ -234,7 +234,11 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
       }
 
       // The disableEnforceFocus is set and the focus is outside of the focus trap (and sentinel nodes)
-      if (disableEnforceFocus && nativeEvent !== false) {
+      if (
+        disableEnforceFocus &&
+        doc.activeElement !== sentinelStart.current &&
+        doc.activeElement !== sentinelEnd.current
+      ) {
         return;
       }
 
@@ -361,8 +365,6 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
       nodeToRestore.current = event.relatedTarget;
     }
     activated.current = true;
-
-    contain(false);
   };
 
   return (
