@@ -41,22 +41,22 @@ The [Order Dashboard](/joy-ui/getting-started/templates/order-dashboard/) templa
 You should feel inspired and empowered to change, extend, and revamp Joy UI's appearance and behavior with ease.
 Drawing from many years of experience with Material UI, Joy UI applies new approaches to customization, enabling you to customize every piece of the components to match your unique design.
 
-Using Gatsby's documentation side nav as an example, the demo below shows how to customize the [List](/joy-ui/react-list/) component using built-in CSS variables.
+Using [Gatsby's documentation side nav](https://www.gatsbyjs.com/docs/) as an example, the demo below shows how to customize the [List](/joy-ui/react-list/) component to look like it using built-in CSS variables.
 
 {{"demo": "../../components/list/ExampleCollapsibleList.js"}}
 
 ### Developer experience
 
 One of the main goals of Joy UI is to spark joy in the creative process of building apps.
-This is why promoting an unrivaled developer experience is a big priority.
+Promoting an unrivaled developer experience is at the heart of this.
 
-An example of this can be demonstrated by the automatic adjustment of the [Input](/joy-ui/react-input/) component, whereby by customizing its border radius, all components inside it will adapt accordingly, ensuring a great design and saving you time.
+Take as an example of this the automatic adjustment of the [Input](/joy-ui/react-input/) component, whereby by customizing its border radius, all components inside it will adapt accordingly, ensuring a polished design _and_ saving you time.
 
 {{"demo": "../../main-features/automatic-adjustment/InputVariables.js"}}
 
 ### Accessibility
 
-Joy UI components are built on top of [Base UI's unstyled components and low-level hooks](/base-ui/getting-started/), giving you support for many accessibility features out of the box.
+Joy UI components are built on top of [Base UI's unstyled components and low-level hooks](/base-ui/getting-started/), giving you many accessibility features support out of the box.
 We do our best to make all components screen reader-friendly and offer suggestions for optimizing accessibility throughout our documentation.
 
 One example of this is the [Input](/joy-ui/react-input/) component that needs to have a descriptive label linked to help users understand its purpose.
