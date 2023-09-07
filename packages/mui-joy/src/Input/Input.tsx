@@ -69,7 +69,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           '--Input-minHeight': '2.75rem',
           '--Input-paddingInline': '1rem',
           '--Input-gap': '0.75rem',
-          '--Input-decoratorChildHeight': 'min(2.375rem, var(--Input-minHeight))',
+          '--Input-decoratorChildHeight': 'min(2.25rem, var(--Input-minHeight))',
           '--Icon-fontSize': theme.vars.fontSize.xl2,
         }),
         // variables for controlling child components

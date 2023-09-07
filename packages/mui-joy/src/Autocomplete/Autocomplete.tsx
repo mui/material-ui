@@ -108,15 +108,12 @@ const AutocompleteRoot = styled(StyledInputRoot as unknown as 'div', {
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
   ...(ownerState.size === 'sm' && {
     '--Autocomplete-wrapperGap': '3px',
-    '--Chip-minHeight': '1.5rem',
   }),
   ...(ownerState.size === 'md' && {
     '--Autocomplete-wrapperGap': '3px',
-    '--Chip-minHeight': '1.75rem',
   }),
   ...(ownerState.size === 'lg' && {
     '--Autocomplete-wrapperGap': '4px',
-    '--Chip-minHeight': '2.5rem',
   }),
   /* Avoid double tap issue on iOS */
   '@media (pointer: fine)': {
