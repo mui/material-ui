@@ -178,7 +178,7 @@ In practice, this looks like: doing what we say we will; proactively communicati
 
 It's also about strategic collaboration, and being able to recognize and enlist one another for our unique strengths toward shared goals.
 
-Trust & deliver together reflects our firm belief that together, our combined efforts are stronger and more impactful than what we can achieve individually.
+"Trust and deliver together" reflects our firm belief that together, our combined efforts are stronger and more impactful than what we can achieve individually.
 
 ## How do we reinforce values across the org?
 
