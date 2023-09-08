@@ -112,7 +112,7 @@ You can <a href="https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c07
 
 Since we work asynchronously at MUI, we like to leave a good window of time for peers to properly review, digest, and offer thoughtful feedback.
 
-Since we place such a high value on quality and accuracy, we didn't want to rush this process and extended our deadline for delivery. 
+Since we place such a high value on quality and accuracy, we didn't want to rush this process, and so we extended our deadline for delivery. 
 
 As we approached the finish line, I collaborated closely with our Co-Founder, Olivier. 🙋
 
