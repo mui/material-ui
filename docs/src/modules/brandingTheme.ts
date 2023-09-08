@@ -690,7 +690,7 @@ export function getThemedComponents(): ThemeOptions {
             // @ts-ignore internal repo module augmentation issue
             props: { variant: 'link' },
             style: ({ theme }) => ({
-              mb: 1,
+              marginBottom: 1,
               fontSize: theme.typography.pxToRem(14),
               fontWeight: theme.typography.fontWeightBold,
               color: (theme.vars || theme).palette.primary[600],

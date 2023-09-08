@@ -315,7 +315,7 @@ export default function Team() {
             flexDirection: 'column',
           }}
         >
-          <Typography variant="h2" mb={1}>
+          <Typography variant="h2" mb={1} id="muiers">
             Meet the <GradientText>MUIers</GradientText>
           </Typography>
           <Typography color="text.secondary" mb={2} sx={{ maxWidth: 450 }}>

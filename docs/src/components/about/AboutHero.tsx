@@ -8,41 +8,46 @@ import TeamStatistics from 'docs/src/components/about/TeamStatistics';
 
 const teamPhotos = [
   {
-    img: '/static/blog/2023-chamonix-retreat/skiers.jpeg',
+    img: '/static/about/teide-group.png',
+    title:
+      'A group photo of the MUI crew posing near the base of Mount Teide at the start of the hike.',
+  },
+  {
+    img: '/static/about/skiers.png',
     title: 'MUI team members standing lined-up in the snow with their skigear.',
   },
   {
-    img: '/static/blog/2022-tenerife-retreat/group-photo.jpeg',
+    img: '/static/about/group-photo.png',
     title: 'Photo of the MUI team in front of the pool at our accommodations in Tenerife',
   },
   {
-    img: '/static/blog/2023-chamonix-retreat/team-dinner.jpeg',
+    img: '/static/about/team-dinner.png',
     title: 'Members of the MUI team sitting around a large wooden dining table.',
   },
   {
-    img: '/static/about/working-table-tenerife.jpeg',
+    img: '/static/about/working-table-tenerife.png',
     title: 'The Toolpad team working together on a heads-down moment in Tenerife.',
   },
   {
-    img: '/static/blog/2022-tenerife-retreat/scuba-gear.jpeg',
+    img: '/static/about/scuba-gear.png',
     title:
       'MUI team members and their diving instructors pose in scuba gear before a successful scuba diving lesson.',
   },
   {
-    img: '/static/blog/2022-tenerife-retreat/outdoor-focus-group.jpeg',
+    img: '/static/about/outdoor-focus-group.png',
     title:
       'An impromptu focus group gathered next to the pool with laptops to discuss cross-team marketing strategies.',
   },
   {
-    img: '/static/about/working-table-portugal.jpeg',
+    img: '/static/about/working-table-portugal.png',
     title: 'MUI team members working together on a heads-down moment in Portugal.',
   },
   {
-    img: '/static/about/snow-tea.jpeg',
+    img: '/static/about/snow-tea.png',
     title: 'The team shares a cup of tea up in the mountains of Chamonix, France.',
   },
   {
-    img: '/static/about/portugal-sight-seeing.jpeg',
+    img: '/static/about/portugal-sight-seeing.png',
     title: 'MUI team selfie while sightseeing in Lisbon, Portugal.',
   },
 ];
@@ -56,6 +61,7 @@ const ImageContainer = styled('div')(() => ({
 const Image = styled('img')(({ theme }) => ({
   width: 400,
   height: 300,
+  boxSizing: 'content-box',
   objectFit: 'cover',
   borderRadius: theme.shape.borderRadius,
   border: '1px solid',
