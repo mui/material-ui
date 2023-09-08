@@ -20,10 +20,10 @@
     "link-check": "node ./scripts/reportBrokenLinks.js"
   },
   "dependencies": {
-    "@babel/core": "^7.22.10",
+    "@babel/core": "^7.22.15",
     "@babel/plugin-transform-object-assign": "^7.22.5",
-    "@babel/runtime": "^7.22.10",
-    "@babel/runtime-corejs2": "^7.22.10",
+    "@babel/runtime": "^7.22.15",
+    "@babel/runtime-corejs2": "^7.22.15",
     "@docsearch/react": "^3.5.2",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
@@ -125,7 +125,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "^7.22.5",
-    "@babel/preset-typescript": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.15",
     "@mui-internal/docs-utilities": "^1.0.0",
     "@types/chai": "^4.3.5",
     "@types/node": "^18.17.6",

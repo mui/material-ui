@@ -39,11 +39,11 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/core": "^7.22.10",
-    "@babel/helper-module-imports": "^7.22.5",
+    "@babel/core": "^7.22.15",
+    "@babel/helper-module-imports": "^7.22.15",
     "@babel/helper-plugin-utils": "^7.22.5",
-    "@babel/parser": "^7.22.10",
-    "@babel/types": "^7.22.10",
+    "@babel/parser": "^7.22.16",
+    "@babel/types": "^7.22.15",
     "@emotion/css": "^11.11.2",
     "@linaria/tags": "^4.5.4",
     "@linaria/utils": "^4.5.3",
