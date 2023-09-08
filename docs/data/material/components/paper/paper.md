@@ -14,7 +14,7 @@ materialDesign: https://m2.material.io/design/environment/elevation.html
 
 ## Introduction
 
-In Material Design, the physical properties of paper are translated to the screen. Surface components and shadow styles are heavily influenced by their real-world physical counterparts.
+In Material Design, surface components and shadow styles are heavily influenced by their real-world physical counterparts.
 
 Material UI implements this concept with the Paper component, a container-like surface that features the [`elevation`](#elevation) prop for pulling box-shadow values from the theme.
 
