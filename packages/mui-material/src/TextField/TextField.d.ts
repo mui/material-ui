@@ -34,6 +34,10 @@ export interface BaseTextFieldProps
    */
   autoFocus?: boolean;
   /**
+   * @ignore
+   */
+  children?: FormControlProps['children'];
+  /**
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<TextFieldClasses>;

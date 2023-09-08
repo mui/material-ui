@@ -236,7 +236,7 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   autoFocus: PropTypes.bool,
   /**
-   * The content of the component.
+   * @ignore
    */
   children: PropTypes.node,
   /**
