@@ -80,7 +80,7 @@ To do this, we immediately eliminated [what Patrick Lencioni calls “permission
 
 We also started striking out anything that could not clearly be expressed _as an action._
 
-It's what Simon Sinek was talking about when he said, “[Honesty is not a value.](https://www.youtube.com/watch?v=IQuYzXWXDqI)” If there was not a clear and natural way to transform something into an action or provide examples of how it would be lived in our specific workplace, it was out. 🙅
+It's [what Simon Sinek was talking about](https://www.youtube.com/watch?v=IQuYzXWXDqI) when he said "honesty is not a value." If there was not a clear and natural way to transform something into an action or provide examples of how it would be lived in our specific workplace, it was out. 🙅
 
 Success!
 
