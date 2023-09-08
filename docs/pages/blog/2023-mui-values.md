@@ -74,7 +74,7 @@ We came up with a list of words that we felt best encapsulated each cluster. Thi
 
 That's how many words surfaced in our workshop as potential values—or at least, as words to inspire the copywriting process.
 
-Narrowing down the shortlist was both a chance to find the strongest themes to influence team values, and also the chance to stress-test them. 🧪
+Narrowing down the shortlist gave us a chance to both find _and_ stress-test the strongest recurring themes. 🧪
 
 To do this, we immediately eliminated [what Patrick Lencioni calls “permission-to-play” values](https://www.youtube.com/watch?v=bNRn6FimzoU). These are the things as basic as showing respect, which might be *valuable* to a great team culture and performance, but aren’t exactly *exciting* or *measurable*. They're simply the minimum required standard of behavior to work together.
 
