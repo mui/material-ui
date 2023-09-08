@@ -198,7 +198,7 @@ Our design team even created custom Slack emojis to make highlighting values-dri
 
 MUI's first values were set forth by our founders during the earliest stages of the company, with the recognition that they would evolve alongside our company's growth.
 
-Those values remain very foundational to the ways we work and engage. It's quite evident how these have been represented in new ways within the core four.
+Those values remain foundational to the ways we work and engage. It's quite evident how these have been represented in new ways within the core four.
 
 But we don't expect these to last forever either.
 
