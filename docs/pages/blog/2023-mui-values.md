@@ -17,7 +17,7 @@ In 2019, these became formalized in our first-ever company values: user obsessio
 
 Needless to say, we've seen significant growth since then: both for the company and its products, as well as the broader community surrounding us.
 
-That's why, we wanted to take a moment to honor the values that led us to where we are today, and share how we've reshaped them to be an even more powerful force behind MUI’s next phase of growth. 🚀
+That's why we wanted to take a moment to honor the values that led us to where we are today, and share how we've reshaped them to be an even more powerful force behind MUI’s next phase of growth. 🚀
 
 ## How we approached our values revision
 
