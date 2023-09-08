@@ -196,7 +196,7 @@ Our design team even created custom Slack emojis to make highlighting values-dri
 
 ## When might the values change again?
 
-MUI's first values were set fourth by our founders during the earliest stages of the company, with the recognition that they would evolve alongside our company's growth.
+MUI's first values were set forth by our founders during the earliest stages of the company, with the recognition that they would evolve alongside our company's growth.
 
 Those values remain very foundational to the ways we work and engage. It's quite evident how these have been represented in new ways within the core four.
 
