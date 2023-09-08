@@ -1,7 +1,11 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { HTMLElementType, unstable_capitalize as capitalize } from '@mui/utils';
+import {
+  HTMLElementType,
+  unstable_capitalize as capitalize,
+  unstable_useId as useId,
+} from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
@@ -13,6 +17,9 @@ import CloseModalContext from '../Modal/CloseModalContext';
 import useSlot from '../utils/useSlot';
 import { getDrawerUtilityClass } from './drawerClasses';
 import { DrawerOwnerState, DrawerTypeMap } from './DrawerProps';
+import ModalDialogVariantColorContext from '../ModalDialog/ModalDialogVariantColorContext';
+import ModalDialogSizeContext from '../ModalDialog/ModalDialogSizeContext';
+import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
 
 const useUtilityClasses = (ownerState: DrawerOwnerState) => {
   const { open, variant, color, size } = ownerState;
@@ -45,16 +52,19 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
     '--ModalClose-inset': '0.5rem',
     '--Drawer-verticalSize': 'clamp(350px, 30%, 100%)',
     '--Drawer-horizontalSize': 'clamp(256px, 20%, 100%)',
+    '--Drawer-titleMargin': '0.625rem 0.75rem calc(0.625rem / 2)',
   }),
   ...(ownerState.size === 'md' && {
     '--ModalClose-inset': '0.5rem',
     '--Drawer-verticalSize': 'clamp(400px, 45%, 100%)',
     '--Drawer-horizontalSize': 'clamp(300px, 30%, 100%)',
+    '--Drawer-titleMargin': '0.75rem 0.75rem calc(0.75rem / 2)',
   }),
   ...(ownerState.size === 'lg' && {
     '--ModalClose-inset': '0.75rem',
     '--Drawer-verticalSize': 'clamp(500px, 60%, 100%)',
     '--Drawer-horizontalSize': 'clamp(440px, 60%, 100%)',
+    '--Drawer-titleMargin': '1rem 1rem calc(1rem / 2)',
   }),
   transitionProperty: 'visibility',
   transitionDelay: ownerState.open ? '0s' : 'var(--Drawer-transitionDuration)',
@@ -104,10 +114,17 @@ const DrawerContent = styled('div', {
     bottom: 0,
     transform: ownerState.open ? 'translateY(0)' : 'translateY(100%)',
   }),
-  height: ownerState.anchor!.match(/(left|right)/) ? '100%' : 'var(--Drawer-verticalSize)',
-  width: ownerState.anchor!.match(/(top|bottom)/) ? '100vw' : 'var(--Drawer-horizontalSize)',
+  height: ownerState.anchor!.match(/(left|right)/)
+    ? '100%'
+    : 'min(100vh - 2.5rem, var(--Drawer-verticalSize))',
+  width: ownerState.anchor!.match(/(top|bottom)/)
+    ? '100vw'
+    : 'min(100vw - 2.5rem, var(--Drawer-horizontalSize))',
   transition: 'transform var(--Drawer-transitionDuration) var(--Drawer-transitionFunction)',
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+  [`& > .${dialogTitleClasses.root}`]: {
+    '--unstable_DialogTitle-margin': 'var(--Drawer-titleMargin)',
+  },
 }));
 
 /**
@@ -139,7 +156,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     color: colorProp = 'neutral',
-    variant = 'outlined',
+    variant = 'plain',
     invertedColors = false,
     size = 'md',
     onClose,
@@ -178,6 +195,13 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
+  const labelledBy = useId();
+  const describedBy = useId();
+  const contextValue = React.useMemo(
+    () => ({ variant, color: color === 'context' ? undefined : color, labelledBy, describedBy }),
+    [color, variant, labelledBy, describedBy],
+  );
+
   const [SlotRoot, rootProps] = useSlot('root', {
     ref: rootRef,
     className: classes.root,
@@ -200,6 +224,10 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     elementType: DrawerContent,
     additionalProps: {
       tabIndex: -1,
+      role: 'dialog',
+      'aria-modal': 'true',
+      'aria-labelledby': labelledBy,
+      'aria-describedby': describedBy,
     },
     externalForwardedProps,
     ownerState,
@@ -207,26 +235,30 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
 
   const result = (
     <CloseModalContext.Provider value={onClose}>
-      <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
-        {/*
-         * Marking an element with the role presentation indicates to assistive technology
-         * that this element should be ignored; it exists to support the web application and
-         * is not meant for humans to interact with directly.
-         * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
-         */}
-        <SlotRoot {...rootProps}>
-          {!hideBackdrop ? <SlotBackdrop {...backdropProps} /> : null}
-          <FocusTrap
-            disableEnforceFocus={disableEnforceFocus}
-            disableAutoFocus={disableAutoFocus}
-            disableRestoreFocus={disableRestoreFocus}
-            isEnabled={isTopModal}
-            open={open}
-          >
-            <SlotContent {...contentProps}>{children}</SlotContent>
-          </FocusTrap>
-        </SlotRoot>
-      </Portal>
+      <ModalDialogSizeContext.Provider value={size}>
+        <ModalDialogVariantColorContext.Provider value={contextValue}>
+          <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
+            {/*
+             * Marking an element with the role presentation indicates to assistive technology
+             * that this element should be ignored; it exists to support the web application and
+             * is not meant for humans to interact with directly.
+             * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+             */}
+            <SlotRoot {...rootProps}>
+              {!hideBackdrop ? <SlotBackdrop {...backdropProps} /> : null}
+              <FocusTrap
+                disableEnforceFocus={disableEnforceFocus}
+                disableAutoFocus={disableAutoFocus}
+                disableRestoreFocus={disableRestoreFocus}
+                isEnabled={isTopModal}
+                open={open}
+              >
+                <SlotContent {...contentProps}>{children}</SlotContent>
+              </FocusTrap>
+            </SlotRoot>
+          </Portal>
+        </ModalDialogVariantColorContext.Provider>
+      </ModalDialogSizeContext.Provider>
     </CloseModalContext.Provider>
   );
 
@@ -361,7 +393,7 @@ Drawer.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'outlined'
+   * @default 'plain'
    */
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;

@@ -63,7 +63,7 @@ export interface DrawerTypeMap<P = {}, D extends React.ElementType = 'div'> {
       size?: OverridableStringUnion<'sm' | 'md' | 'lg', DrawerPropsSizeOverrides>;
       /**
        * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-       * @default 'outlined'
+       * @default 'plain'
        */
       variant?: OverridableStringUnion<VariantProp, DrawerPropsVariantOverrides>;
     };
