@@ -154,7 +154,10 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     elementType: RootSlot,
     externalSlotProps: rootSlotProps,
     externalForwardedProps: other,
-    getSlotProps: getRootProps,
+    getSlotProps: (otherHandlers) => {
+      const { onTransitionEnter, onTransitionExited, ...restOfHandlers } = otherHandlers;
+      return getRootProps(restOfHandlers);
+    },
     additionalProps: {
       ref,
       as: component,
