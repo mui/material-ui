@@ -25,9 +25,7 @@ export default function NonLinearSlider() {
   const [value, setValue] = React.useState(10);
 
   const handleChange = (event: Event, newValue: number) => {
-    if (typeof newValue === 'number') {
-      setValue(newValue);
-    }
+    setValue(newValue);
   };
 
   return (
