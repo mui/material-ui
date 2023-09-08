@@ -58,7 +58,7 @@ Broadly speaking, everyone was asked to consider:
 
 (b) what mindsets and behaviors should we actively discourage, even punish—these are the biggest threats to our desired culture. They're the things we would never tolerate, maybe even at the cost of a customer. 🛑
 
-We used a shared FigJam board to brainstorm together against a timer, and repeat the process for different core questions.
+We used a shared FigJam board to brainstorm together against a timer, and repeated the process for different core questions.
 
 Once we'd generated a wonderfully full board, we took a pause to review the contributions. We upvoted cards that really stood out and resonated with us as individuals.
 
