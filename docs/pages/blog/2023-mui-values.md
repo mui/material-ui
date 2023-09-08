@@ -56,7 +56,7 @@ Broadly speaking, everyone was asked to consider:
 
 (a) what mindsets and behaviors we should actively preserve and encourage as we scale—these are our superpowers and biggest differentiators. They're the stuff that makes us "us." 💚
 
-(b) what mindsets and behaviors should we actively discourage, even punish — these are the biggest threats to our desired culture. They're the things we would never tolerate, maybe even at the cost of a customer. 🛑
+(b) what mindsets and behaviors should we actively discourage, even punish—these are the biggest threats to our desired culture. They're the things we would never tolerate, maybe even at the cost of a customer. 🛑
 
 We used a shared FigJam board to brainstorm together against a timer, and repeat the process for different core questions.
 
