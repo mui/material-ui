@@ -21,13 +21,13 @@ import Link from 'docs/src/modules/components/Link';
 const DEMOS = ['Components', 'Branding', 'Iconography'];
 
 const Image = styled('img')(({ theme }) => ({
-  filter: 'drop-shadow(-8px 4px 20px rgba(61, 71, 82, 0.2))',
+  filter: 'drop-shadow(-2px 4px 4px rgba(61, 71, 82, 0.1))',
   transition: '0.4s',
   display: 'block',
   height: 'auto',
   borderRadius: '10px',
   ...theme.applyDarkStyles({
-    filter: 'drop-shadow(-8px 4px 20px rgba(0, 0, 0, 0.4))',
+    filter: 'drop-shadow(-2px 4px 4px rgba(0, 0, 0, 0.3))',
   }),
 }));
 

@@ -14,12 +14,12 @@ export default function RealEstateCard({ sx, ...props }: CardProps) {
         (theme) => ({
           display: 'flex',
           flexWrap: 'wrap',
-          bgcolor: '#FFF',
           p: 2,
           zIndex: 1,
-          boxShadow: '0 1px 3px rgba(0, 127, 255, 0.1)',
+          boxShadow: '0 2px 4px rgba(0, 127, 255, 0.1)',
           ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.800',
+            bgcolor: 'primaryDark.900',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.8)',
           }),
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
