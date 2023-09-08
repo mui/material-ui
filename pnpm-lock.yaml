@@ -86,13 +86,13 @@ importers:
         version: link:packages/docs-utilities
       '@mui/joy':
         specifier: workspace:*
-        version: link:packages/mui-joy/build
+        version: link:packages/mui-joy
       '@mui/material':
         specifier: workspace:^
-        version: link:packages/mui-material/build
+        version: link:packages/mui-material
       '@mui/utils':
         specifier: workspace:^
-        version: link:packages/mui-utils/build
+        version: link:packages/mui-utils
       '@octokit/rest':
         specifier: ^20.0.1
         version: 20.0.1
@@ -353,13 +353,13 @@ importers:
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
       '@mui/material':
         specifier: workspace:^
-        version: link:../packages/mui-material/build
+        version: link:../packages/mui-material
       '@mui/styles':
         specifier: workspace:^
-        version: link:../packages/mui-styles/build
+        version: link:../packages/mui-styles
       '@mui/system':
         specifier: workspace:^
-        version: link:../packages/mui-system/build
+        version: link:../packages/mui-system
       '@styled-system/css':
         specifier: ^5.1.5
         version: 5.1.5
@@ -458,73 +458,73 @@ importers:
         version: 0.2.0(@fortawesome/fontawesome-svg-core@6.4.2)(react@18.2.0)
       '@mui/base':
         specifier: workspace:*
-        version: link:../packages/mui-base/build
+        version: link:../packages/mui-base
       '@mui/docs':
         specifier: workspace:^
-        version: link:../packages/mui-docs/build
+        version: link:../packages/mui-docs
       '@mui/icons-material':
         specifier: workspace:^
-        version: link:../packages/mui-icons-material/build
+        version: link:../packages/mui-icons-material
       '@mui/joy':
         specifier: workspace:*
-        version: link:../packages/mui-joy/build
+        version: link:../packages/mui-joy
       '@mui/lab':
         specifier: workspace:*
-        version: link:../packages/mui-lab/build
+        version: link:../packages/mui-lab
       '@mui/markdown':
         specifier: workspace:^
         version: link:../packages/markdown
       '@mui/material':
         specifier: workspace:^
-        version: link:../packages/mui-material/build
+        version: link:../packages/mui-material
       '@mui/material-next':
         specifier: workspace:*
-        version: link:../packages/mui-material-next/build
+        version: link:../packages/mui-material-next
       '@mui/styled-engine':
         specifier: workspace:^
-        version: link:../packages/mui-styled-engine/build
+        version: link:../packages/mui-styled-engine
       '@mui/styled-engine-sc':
         specifier: workspace:^
-        version: link:../packages/mui-styled-engine-sc/build
+        version: link:../packages/mui-styled-engine-sc
       '@mui/styles':
         specifier: workspace:^
-        version: link:../packages/mui-styles/build
+        version: link:../packages/mui-styles
       '@mui/system':
         specifier: workspace:^
-        version: link:../packages/mui-system/build
+        version: link:../packages/mui-system
       '@mui/types':
         specifier: workspace:^
-        version: link:../packages/mui-types/build
+        version: link:../packages/mui-types
       '@mui/utils':
         specifier: workspace:^
-        version: link:../packages/mui-utils/build
+        version: link:../packages/mui-utils
       '@mui/x-charts':
         specifier: ^6.0.0-alpha.9
-        version: 6.0.0-alpha.9(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0)
+        version: 6.0.0-alpha.9(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid':
         specifier: 6.12.1
-        version: 6.12.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0)
+        version: 6.12.1(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid-generator':
         specifier: 6.12.1
-        version: 6.12.1(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
+        version: 6.12.1(@mui/icons-material@packages+mui-icons-material)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid-premium':
         specifier: 6.12.1
-        version: 6.12.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0)
+        version: 6.12.1(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid-pro':
         specifier: 6.12.1
-        version: 6.12.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0)
+        version: 6.12.1(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-date-pickers':
         specifier: 6.12.1
-        version: 6.12.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
+        version: 6.12.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-date-pickers-pro':
         specifier: 6.12.1
-        version: 6.12.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
+        version: 6.12.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license-pro':
         specifier: 6.10.2
         version: 6.10.2(react@18.2.0)
       '@mui/x-tree-view':
         specifier: 6.0.0-alpha.1
-        version: 6.0.0-alpha.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0)
+        version: 6.0.0-alpha.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0)
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -804,7 +804,7 @@ importers:
         version: link:../markdown
       '@mui/utils':
         specifier: workspace:^
-        version: link:../mui-utils/build
+        version: link:../mui-utils
       ast-types:
         specifier: ^0.14.2
         version: 0.14.2
@@ -943,10 +943,10 @@ importers:
         version: 2.0.2(react-dom@18.2.0)(react@18.2.0)
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types/build
+        version: link:../mui-types
       '@mui/utils':
         specifier: workspace:^
-        version: link:../mui-utils/build
+        version: link:../mui-utils
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -959,10 +959,10 @@ importers:
     devDependencies:
       '@mui/base':
         specifier: workspace:*
-        version: link:build
+        version: 'link:'
       '@mui/material':
         specifier: workspace:^
-        version: link:../mui-material/build
+        version: link:../mui-material
       '@testing-library/react':
         specifier: ^14.0.0
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -1049,13 +1049,13 @@ importers:
         version: 7.22.10
       '@mui/base':
         specifier: workspace:*
-        version: link:../mui-base/build
+        version: link:../mui-base
       '@mui/material':
         specifier: workspace:^
-        version: link:../mui-material/build
+        version: link:../mui-material
       '@mui/utils':
         specifier: workspace:^
-        version: link:../mui-utils/build
+        version: link:../mui-utils
       nprogress:
         specifier: ^0.2.0
         version: 0.2.0
@@ -1094,7 +1094,7 @@ importers:
         version: 7.22.10
       '@mui/material':
         specifier: ^5.0.0
-        version: link:../mui-material/build
+        version: link:../mui-material
     devDependencies:
       '@mui/internal-waterfall':
         specifier: workspace:^
@@ -1156,19 +1156,19 @@ importers:
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
       '@mui/base':
         specifier: workspace:*
-        version: link:../mui-base/build
+        version: link:../mui-base
       '@mui/core-downloads-tracker':
         specifier: workspace:^
-        version: link:../mui-core-downloads-tracker/build
+        version: link:../mui-core-downloads-tracker
       '@mui/system':
         specifier: workspace:^
-        version: link:../mui-system/build
+        version: link:../mui-system
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types/build
+        version: link:../mui-types
       '@mui/utils':
         specifier: workspace:^
-        version: link:../mui-utils/build
+        version: link:../mui-utils
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
@@ -1178,7 +1178,7 @@ importers:
     devDependencies:
       '@mui/material':
         specifier: workspace:^
-        version: link:../mui-material/build
+        version: link:../mui-material
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -1233,22 +1233,22 @@ importers:
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
       '@mui/base':
         specifier: workspace:*
-        version: link:../mui-base/build
+        version: link:../mui-base
       '@mui/material':
         specifier: ^5.0.0
-        version: link:../mui-material/build
+        version: link:../mui-material
       '@mui/system':
         specifier: workspace:^
-        version: link:../mui-system/build
+        version: link:../mui-system
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types/build
+        version: link:../mui-types
       '@mui/utils':
         specifier: workspace:^
-        version: link:../mui-utils/build
+        version: link:../mui-utils
       '@mui/x-tree-view':
         specifier: 6.0.0-alpha.1
-        version: 6.0.0-alpha.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0)
+        version: 6.0.0-alpha.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0)
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
@@ -1301,19 +1301,19 @@ importers:
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
       '@mui/base':
         specifier: workspace:*
-        version: link:../mui-base/build
+        version: link:../mui-base
       '@mui/core-downloads-tracker':
         specifier: workspace:^
-        version: link:../mui-core-downloads-tracker/build
+        version: link:../mui-core-downloads-tracker
       '@mui/system':
         specifier: workspace:^
-        version: link:../mui-system/build
+        version: link:../mui-system
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types/build
+        version: link:../mui-types
       '@mui/utils':
         specifier: workspace:^
-        version: link:../mui-utils/build
+        version: link:../mui-utils
       '@types/react-transition-group':
         specifier: ^4.4.6
         version: 4.4.6
@@ -1335,13 +1335,13 @@ importers:
     devDependencies:
       '@mui/icons-material':
         specifier: workspace:^
-        version: link:../mui-icons-material/build
+        version: link:../mui-icons-material
       '@mui/lab':
         specifier: workspace:*
-        version: link:../mui-lab/build
+        version: link:../mui-lab
       '@mui/styles':
         specifier: workspace:^
-        version: link:../mui-styles/build
+        version: link:../mui-styles
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -1438,19 +1438,19 @@ importers:
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
       '@mui/base':
         specifier: workspace:*
-        version: link:../mui-base/build
+        version: link:../mui-base
       '@mui/material':
         specifier: workspace:^
-        version: link:../mui-material/build
+        version: link:../mui-material
       '@mui/system':
         specifier: workspace:^
-        version: link:../mui-system/build
+        version: link:../mui-system
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types/build
+        version: link:../mui-types
       '@mui/utils':
         specifier: workspace:^
-        version: link:../mui-utils/build
+        version: link:../mui-utils
       '@types/react-transition-group':
         specifier: ^4.4.6
         version: 4.4.6
@@ -1512,20 +1512,20 @@ importers:
         version: 7.22.10
       '@mui/utils':
         specifier: workspace:^
-        version: link:../mui-utils/build
+        version: link:../mui-utils
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
     devDependencies:
       '@mui/material':
         specifier: workspace:^
-        version: link:../mui-material/build
+        version: link:../mui-material
       '@mui/styles':
         specifier: workspace:^
-        version: link:../mui-styles/build
+        version: link:../mui-styles
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types/build
+        version: link:../mui-types
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -1569,7 +1569,7 @@ importers:
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
       '@mui/styled-engine':
         specifier: workspace:*
-        version: link:build
+        version: 'link:'
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -1601,7 +1601,7 @@ importers:
     devDependencies:
       '@mui/styled-engine-sc':
         specifier: workspace:*
-        version: link:build
+        version: 'link:'
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -1632,13 +1632,13 @@ importers:
         version: 0.9.1
       '@mui/private-theming':
         specifier: workspace:^
-        version: link:../mui-private-theming/build
+        version: link:../mui-private-theming
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types/build
+        version: link:../mui-types
       '@mui/utils':
         specifier: workspace:^
-        version: link:../mui-utils/build
+        version: link:../mui-utils
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
@@ -1678,13 +1678,13 @@ importers:
     devDependencies:
       '@mui/joy':
         specifier: workspace:*
-        version: link:../mui-joy/build
+        version: link:../mui-joy
       '@mui/material':
         specifier: workspace:^
-        version: link:../mui-material/build
+        version: link:../mui-material
       '@mui/styles':
         specifier: workspace:*
-        version: link:build
+        version: 'link:'
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -1721,16 +1721,16 @@ importers:
         version: 7.22.10
       '@mui/private-theming':
         specifier: workspace:^
-        version: link:../mui-private-theming/build
+        version: link:../mui-private-theming
       '@mui/styled-engine':
         specifier: workspace:^
-        version: link:../mui-styled-engine/build
+        version: link:../mui-styled-engine
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types/build
+        version: link:../mui-types
       '@mui/utils':
         specifier: workspace:^
-        version: link:../mui-utils/build
+        version: link:../mui-utils
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
@@ -1749,16 +1749,16 @@ importers:
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
       '@mui/joy':
         specifier: workspace:*
-        version: link:../mui-joy/build
+        version: link:../mui-joy
       '@mui/material':
         specifier: workspace:^
-        version: link:../mui-material/build
+        version: link:../mui-material
       '@mui/material-next':
         specifier: workspace:*
-        version: link:../mui-material-next/build
+        version: link:../mui-material-next
       '@mui/system':
         specifier: workspace:*
-        version: link:build
+        version: 'link:'
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -1801,7 +1801,7 @@ importers:
     devDependencies:
       '@mui/types':
         specifier: workspace:*
-        version: link:build
+        version: 'link:'
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -1824,7 +1824,7 @@ importers:
         version: 7.22.5
       '@mui/types':
         specifier: workspace:^
-        version: link:../mui-types/build
+        version: link:../mui-types
       '@types/babel-plugin-macros':
         specifier: ^3.1.0
         version: 3.1.0
@@ -2023,14 +2023,14 @@ importers:
         version: 4.5.3
       '@mui/system':
         specifier: workspace:^
-        version: link:../mui-system/build
+        version: link:../mui-system
       lodash.get:
         specifier: ^4.4.2
         version: 4.4.2
     devDependencies:
       '@mui/material':
         specifier: workspace:^
-        version: link:../mui-material/build
+        version: link:../mui-material
       '@types/babel__core':
         specifier: ^7.20.1
         version: 7.20.1
@@ -2064,7 +2064,7 @@ importers:
         version: 4.5.4(vite@4.4.9)
       '@mui/zero-tag-processor':
         specifier: 0.0.1-alpha.2
-        version: link:../zero-tag-processor/build
+        version: link:../zero-tag-processor
     devDependencies:
       '@types/babel__core':
         specifier: ^7.20.1
@@ -2105,28 +2105,28 @@ importers:
         version: 0.2.0(enzyme@3.11.0)(react-dom@18.2.0)(react@18.2.0)
       '@mui/base':
         specifier: workspace:*
-        version: link:../packages/mui-base/build
+        version: link:../packages/mui-base
       '@mui/icons-material':
         specifier: workspace:^
-        version: link:../packages/mui-icons-material/build
+        version: link:../packages/mui-icons-material
       '@mui/joy':
         specifier: workspace:*
-        version: link:../packages/mui-joy/build
+        version: link:../packages/mui-joy
       '@mui/lab':
         specifier: workspace:*
-        version: link:../packages/mui-lab/build
+        version: link:../packages/mui-lab
       '@mui/material':
         specifier: workspace:^
-        version: link:../packages/mui-material/build
+        version: link:../packages/mui-material
       '@mui/material-next':
         specifier: workspace:*
-        version: link:../packages/mui-material-next/build
+        version: link:../packages/mui-material-next
       '@mui/system':
         specifier: workspace:^
-        version: link:../packages/mui-system/build
+        version: link:../packages/mui-system
       '@mui/utils':
         specifier: workspace:^
-        version: link:../packages/mui-utils/build
+        version: link:../packages/mui-utils
       '@playwright/test':
         specifier: 1.37.1
         version: 1.37.1
@@ -5043,7 +5043,7 @@ packages:
       react-is: 18.2.0
     dev: false
 
-  /@mui/x-charts@6.0.0-alpha.9(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0):
+  /@mui/x-charts@6.0.0-alpha.9(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-2DVTbyxsm3g0D6kztQP9W4W9OOGeIQ/g6Ip6gjHj2wOOqkDB36bZxwVG/HlJuaVFBL001vI2VkYJYy+helw9gA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -5062,8 +5062,8 @@ packages:
       '@babel/runtime': 7.22.10
       '@emotion/react': 11.11.1(@types/react@18.2.21)(react@18.2.0)
       '@emotion/styled': 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
-      '@mui/material': link:packages/mui-material/build
-      '@mui/system': link:packages/mui-system/build
+      '@mui/material': link:packages/mui-material
+      '@mui/system': link:packages/mui-system
       clsx: 2.0.0
       d3-color: 3.1.0
       d3-scale: 4.0.2
@@ -5073,7 +5073,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@mui/x-data-grid-generator@6.12.1(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0):
+  /@mui/x-data-grid-generator@6.12.1(@mui/icons-material@packages+mui-icons-material)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Iqy5ACWCb19M0qGdO4IQPPvzSmYakc+ENm3a01H678hTXXOnkfBB94CwJ8YT/izvXBIXBfg50nkg+ZDUG3x5mw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -5083,9 +5083,9 @@ packages:
     dependencies:
       '@babel/runtime': 7.22.10
       '@mui/base': 5.0.0-beta.14(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
-      '@mui/icons-material': link:packages/mui-icons-material/build
-      '@mui/material': link:packages/mui-material/build
-      '@mui/x-data-grid-premium': 6.12.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/icons-material': link:packages/mui-icons-material
+      '@mui/material': link:packages/mui-material
+      '@mui/x-data-grid-premium': 6.12.1(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0)
       chance: 1.1.11
       clsx: 2.0.0
       lru-cache: 7.18.3
@@ -5096,7 +5096,7 @@ packages:
       - react-dom
     dev: false
 
-  /@mui/x-data-grid-premium@6.12.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0):
+  /@mui/x-data-grid-premium@6.12.1(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-hiFMrbDZFfOS0fyfPyFqaaoqmcnQnyv75RAI3Fx0kQ9H8fr11qb03uoU0B2D5djIWgaz5ZkL8XFWvN4moeYQuQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -5106,11 +5106,11 @@ packages:
       react-dom: ^17.0.0 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.22.10
-      '@mui/material': link:packages/mui-material/build
-      '@mui/system': link:packages/mui-system/build
+      '@mui/material': link:packages/mui-material
+      '@mui/system': link:packages/mui-system
       '@mui/utils': 5.14.8(react@18.2.0)
-      '@mui/x-data-grid': 6.12.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0)
-      '@mui/x-data-grid-pro': 6.12.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-data-grid': 6.12.1(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-data-grid-pro': 6.12.1(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license-pro': 6.10.2(react@18.2.0)
       '@types/format-util': 1.0.2
       clsx: 2.0.0
@@ -5121,7 +5121,7 @@ packages:
       reselect: 4.1.8
     dev: false
 
-  /@mui/x-data-grid-pro@6.12.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0):
+  /@mui/x-data-grid-pro@6.12.1(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-41rJbZy9+aE7uZLbdMmoERHIjMQ0W8cEq6WO9fcx3yjOzDPpIUvBbVglUs4oWrab/yYtfpwvJrScJBbD4HSV+g==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -5131,10 +5131,10 @@ packages:
       react-dom: ^17.0.0 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.22.10
-      '@mui/material': link:packages/mui-material/build
-      '@mui/system': link:packages/mui-system/build
+      '@mui/material': link:packages/mui-material
+      '@mui/system': link:packages/mui-system
       '@mui/utils': 5.14.8(react@18.2.0)
-      '@mui/x-data-grid': 6.12.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-data-grid': 6.12.1(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license-pro': 6.10.2(react@18.2.0)
       '@types/format-util': 1.0.2
       clsx: 2.0.0
@@ -5144,7 +5144,7 @@ packages:
       reselect: 4.1.8
     dev: false
 
-  /@mui/x-data-grid@6.12.1(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0):
+  /@mui/x-data-grid@6.12.1(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-lSY1dFBv6yh2ffkkWeMM9c0ajpwIWn/da/ec0kY8OfLa79Hboh53mN09nopylZO8MHJGfDlPvduwuWcgWs+zFw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -5154,8 +5154,8 @@ packages:
       react-dom: ^17.0.0 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.22.10
-      '@mui/material': link:packages/mui-material/build
-      '@mui/system': link:packages/mui-system/build
+      '@mui/material': link:packages/mui-material
+      '@mui/system': link:packages/mui-system
       '@mui/utils': 5.14.8(react@18.2.0)
       clsx: 2.0.0
       prop-types: 15.8.1
@@ -5164,7 +5164,7 @@ packages:
       reselect: 4.1.8
     dev: false
 
-  /@mui/x-date-pickers-pro@6.12.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0):
+  /@mui/x-date-pickers-pro@6.12.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-gD5rOBL4L8GIpGyGOqeDf/ibrzBj5NOEQnSkpcB5BErqZ6+uuNP9nkwBvCMxk1X6I6LiikpujvYr11jMhoVg3Q==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -5205,11 +5205,11 @@ packages:
       '@babel/runtime': 7.22.10
       '@emotion/react': 11.11.1(@types/react@18.2.21)(react@18.2.0)
       '@emotion/styled': 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
-      '@mui/base': link:packages/mui-base/build
-      '@mui/material': link:packages/mui-material/build
-      '@mui/system': link:packages/mui-system/build
+      '@mui/base': link:packages/mui-base
+      '@mui/material': link:packages/mui-material
+      '@mui/system': link:packages/mui-system
       '@mui/utils': 5.14.8(react@18.2.0)
-      '@mui/x-date-pickers': 6.12.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-date-pickers': 6.12.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-license-pro': 6.10.2(react@18.2.0)
       clsx: 2.0.0
       date-fns: 2.30.0
@@ -5220,7 +5220,7 @@ packages:
       react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
-  /@mui/x-date-pickers@6.12.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0):
+  /@mui/x-date-pickers@6.12.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(date-fns-jalali@2.21.3-1)(date-fns@2.30.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-euMM7KNbqoOgIdf5P8T8KG74qqbpDvLp5k8yEVMx1zHeSiSZGofKpQrDFAMxjJRnJ0x1aJLIhFEc46O70fSAlA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -5261,9 +5261,9 @@ packages:
       '@babel/runtime': 7.22.10
       '@emotion/react': 11.11.1(@types/react@18.2.21)(react@18.2.0)
       '@emotion/styled': 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
-      '@mui/base': link:packages/mui-base/build
-      '@mui/material': link:packages/mui-material/build
-      '@mui/system': link:packages/mui-system/build
+      '@mui/base': link:packages/mui-base
+      '@mui/material': link:packages/mui-material
+      '@mui/system': link:packages/mui-system
       '@mui/utils': 5.14.8(react@18.2.0)
       '@types/react-transition-group': 4.4.6
       clsx: 2.0.0
@@ -5286,7 +5286,7 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@mui/x-tree-view@6.0.0-alpha.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(react-dom@18.2.0)(react@18.2.0):
+  /@mui/x-tree-view@6.0.0-alpha.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@mui/base@packages+mui-base)(@mui/material@packages+mui-material)(@mui/system@packages+mui-system)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-JUG3HmBrmGEALbCFg1b+i7h726e1dWYZs4db3syO1j+Q++E3nbvE4Lehp5yGTFm+8esH0Tny50tuJaa4WX6VSA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -5301,9 +5301,9 @@ packages:
       '@babel/runtime': 7.22.10
       '@emotion/react': 11.11.1(@types/react@18.2.21)(react@18.2.0)
       '@emotion/styled': 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
-      '@mui/base': link:packages/mui-base/build
-      '@mui/material': link:packages/mui-material/build
-      '@mui/system': link:packages/mui-system/build
+      '@mui/base': link:packages/mui-base
+      '@mui/material': link:packages/mui-material
+      '@mui/system': link:packages/mui-system
       '@mui/utils': 5.14.8(react@18.2.0)
       '@types/react-transition-group': 4.4.6
       clsx: 2.0.0

@@ -54,7 +54,8 @@
   "sideEffects": false,
   "publishConfig": {
     "access": "public",
-    "directory": "build"
+    "directory": "build",
+    "linkDirectory": false
   },
   "engines": {
     "node": ">=12.0.0"
