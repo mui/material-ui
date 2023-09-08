@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/",
+  "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-private-theming",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
