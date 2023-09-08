@@ -1,6 +1,14 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+
+const DemoPaper = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  paddingTop: 20,
+}));
 
 export default function Variants() {
   return (
@@ -14,8 +22,12 @@ export default function Variants() {
         },
       }}
     >
-      <Paper variant="outlined" />
-      <Paper variant="outlined" square />
+      <DemoPaper variant="elevation">
+        {' '}
+        {/* this is the default value */}
+        default variant
+      </DemoPaper>
+      <DemoPaper variant="outlined">outlined variant</DemoPaper>
     </Box>
   );
 }

@@ -10,7 +10,7 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
   paddingTop: 20,
 }));
 
-export default function Variants() {
+export default function SquareCorners() {
   return (
     <Box
       sx={{
@@ -22,12 +22,12 @@ export default function Variants() {
         },
       }}
     >
-      <DemoPaper variant="elevation">
+      <DemoPaper square={false}>
         {' '}
         {/* this is the default value */}
-        default variant
+        rounded corners
       </DemoPaper>
-      <DemoPaper variant="outlined">outlined variant</DemoPaper>
+      <DemoPaper square>square corners</DemoPaper>
     </Box>
   );
 }

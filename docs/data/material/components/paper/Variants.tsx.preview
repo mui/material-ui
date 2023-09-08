@@ -1,2 +1,6 @@
-<Paper variant="outlined" />
-<Paper variant="outlined" square />
+<DemoPaper variant="elevation"> {/* this is the default value */}
+  default variant
+</DemoPaper>
+<DemoPaper variant="outlined">
+  outlined variant
+</DemoPaper>
