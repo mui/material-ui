@@ -178,11 +178,6 @@ const blue = {
   600: '#0072E6',
 };
 
-const grey = {
-  50: '#F3F6F9',
-  900: '#1C2025',
-};
-
 const style = (theme: Theme) => ({
   position: 'absolute' as 'absolute',
   top: '50%',
