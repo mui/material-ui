@@ -116,10 +116,10 @@ const DrawerContent = styled('div', {
   }),
   height: ownerState.anchor!.match(/(left|right)/)
     ? '100%'
-    : 'min(100vh - 2.5rem, var(--Drawer-verticalSize))',
+    : 'min(100vh, var(--Drawer-verticalSize))',
   width: ownerState.anchor!.match(/(top|bottom)/)
     ? '100vw'
-    : 'min(100vw - 2.5rem, var(--Drawer-horizontalSize))',
+    : 'min(100vw, var(--Drawer-horizontalSize))',
   transition: 'transform var(--Drawer-transitionDuration) var(--Drawer-transitionFunction)',
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   [`& > .${dialogTitleClasses.root}`]: {
