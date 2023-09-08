@@ -45,7 +45,7 @@ function MyAutocomplete<
 <MyAutocomplete
   options={['1', '2', '3']}
   onChange={(event, value) => {
-    expectType<string[], typeof value>(value);
+    expectType<readonly string[], typeof value>(value);
   }}
   renderInput={() => null}
   multiple

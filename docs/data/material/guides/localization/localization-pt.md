@@ -31,13 +31,13 @@ const theme = createTheme(
 {{"demo": "Locales.js", "defaultCodeOpen": false}}
 
 :::warning
-⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
+For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
 :::
 
 ### Localidades suportadas
 
 | Localidade              | Etiqueta do idioma BCP 47 | Nome da importação |
-|:----------------------- |:------------------------- |:------------------ |
+| :---------------------- | :------------------------ | :----------------- |
 | Amharic                 | am-ET                     | `amET`             |
 | Arabic (Egypt)          | ar-EG                     | `arEG`             |
 | Arabic (Sudan)          | ar-SD                     | `arSD`             |

@@ -10,12 +10,19 @@
       "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
+    "invertedColors": { "type": { "name": "bool" }, "default": "false" },
     "layout": {
       "type": {
         "name": "union",
         "description": "'center'<br>&#124;&nbsp;'fullscreen'<br>&#124;&nbsp;string"
       },
       "default": "'center'"
+    },
+    "maxWidth": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "minWidth": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'vertical'"
     },
     "size": {
       "type": {

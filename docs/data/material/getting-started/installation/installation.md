@@ -51,7 +51,13 @@ pnpm add @mui/material @mui/styled-engine-sc styled-components
 
 </codeblock>
 
-Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more information about how to configure styled-components.
+:::error
+As of late 2021, [styled-components](https://github.com/styled-components/styled-components) is **not compatible** with server-rendered Material UI projects.
+This is because `babel-plugin-styled-components` isn't able to work with the `styled()` utility inside `@mui` packages.
+See [this GitHub issue](https://github.com/mui/material-ui/issues/29742) for more details.
+
+We **strongly recommend** using Emotion for SSR projects.
+:::
 
 ## Peer dependencies
 

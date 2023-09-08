@@ -359,13 +359,6 @@ export function reportWebVitals({ id, name, label, delta, value }) {
     return;
   }
 
-  window.ga('send', 'event', {
-    eventCategory: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
-    eventAction: name,
-    eventValue: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
-    eventLabel: id, // id unique to current page load
-    nonInteraction: true, // avoids affecting bounce rate.
-  });
   window.gtag('event', name, {
     value: delta,
     metric_label: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',

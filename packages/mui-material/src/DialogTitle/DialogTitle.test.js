@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer } from 'test/utils';
+import Typography from '@mui/material/Typography';
 import DialogTitle, { dialogTitleClasses as classes } from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 
@@ -9,7 +10,7 @@ describe('<DialogTitle />', () => {
 
   describeConformance(<DialogTitle>foo</DialogTitle>, () => ({
     classes,
-    inheritComponent: 'h2',
+    inheritComponent: Typography,
     render,
     muiName: 'MuiDialogTitle',
     refInstanceof: window.HTMLHeadingElement,
