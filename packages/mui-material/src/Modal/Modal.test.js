@@ -872,7 +872,7 @@ describe('<Modal />', () => {
     });
   });
 
-  it.only('should not warn when onTransitionEnter and onTransitionExited are provided', () => {
+  it('should not warn when onTransitionEnter and onTransitionExited are provided', () => {
     expect(() => {
       render(
         <Modal open onTransitionEnter={() => {}} onTransitionExited={() => {}}>
