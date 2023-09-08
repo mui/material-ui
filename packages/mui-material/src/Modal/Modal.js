@@ -91,6 +91,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     keepMounted = false,
     onBackdropClick,
     onClose,
+    onTransitionEnter,
+    onTransitionExited,
     open,
     slotProps,
     slots,

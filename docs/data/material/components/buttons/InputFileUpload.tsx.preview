@@ -1,9 +1,4 @@
-<Button
-  component="label"
-  variant="contained"
-  startIcon={<CloudUploadIcon />}
-  href="#file-upload"
->
-  Upload a file
+<Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+  Upload file
   <VisuallyHiddenInput type="file" />
 </Button>

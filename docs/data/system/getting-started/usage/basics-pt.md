@@ -40,7 +40,9 @@ npm install @mui/system @mui/styled-engine-sc styled-components
 yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
 
-Take a look at the [Styled Engine guide](/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+:::warning
+Visit the [styled-components guide](/material-ui/guides/styled-components/) for more information on configuration.
+:::
 
 ## Por que usar o sistema?
 
