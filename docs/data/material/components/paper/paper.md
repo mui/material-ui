@@ -16,7 +16,7 @@ materialDesign: https://m2.material.io/design/environment/elevation.html
 
 In Material Design, the physical properties of paper are translated to the screen. Surface components and shadow styles are heavily influenced by their real-world physical counterparts.
 
-Material UI implements this concept with the Paper component, a general container-like surface that features the [`elevation`](#elevation) prop for pulling box-shadow values from the theme.
+Material UI implements this concept with the Paper component, a container-like surface that features the [`elevation`](#elevation) prop for pulling box-shadow values from the theme.
 
 :::success
 The Paper component is ideally suited for designs that follow [Material Design's elevation system](https://m2.material.io/design/environment/elevation.html#elevation-in-material-design), which is meant to replicate how light casts shadows in the physical world.
@@ -24,9 +24,13 @@ The Paper component is ideally suited for designs that follow [Material Design's
 If you just need a generic container, you may prefer to use the [Box](/material-ui/react-box/) or [Container](/material-ui/react-container/) components.
 :::
 
+{{"demo": "SimplePaper.js", "bg": true}}
+
 ## Component
 
-{{"demo": "SimplePaper.js", "bg": true}}
+```jsx
+import Paper from '@mui/material/Paper';
+```
 
 ## Customization
 
