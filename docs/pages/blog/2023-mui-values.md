@@ -1,5 +1,5 @@
 ---
-title: Evolving MUI's core values & behaviors
+title: Evolving MUI's core values and behaviors
 description: After significant growth, we united as a team to rediscover the values that underpin our shared sucess.
 date: 2023-09-04T00:00:00.000Z
 authors: ['mikailaread']
