@@ -156,7 +156,7 @@ We actively champion this principle by fostering an environment of unparalleled 
 
 Our dedication to shunning bureaucracy manifests in tangible ways—for instance, most of our communications and work are in the open. We default to transparency as much as possible.
 
-We don't over-structure, add process or hierarchy where it isn't needed. To introduce a process, we need to clearly show how it makes things 10x better than the current approach.
+We don't over-structure, or add processes or hierarchies where they aren't needed. To introduce a process, we need to clearly show how it makes things 10x better than the current approach.
 
 We don't have lengthy approvals processes or a formalized chain of command; instead we collaborate as a tight-knit network where anyone can ask about and contribute to anything.
 
