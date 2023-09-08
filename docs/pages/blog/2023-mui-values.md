@@ -186,7 +186,7 @@ Articulating company values and operationalizing them are two different things.
 
 To ensure values don't become mere writing on the wall at MUI, we've purposefully woven them into internal processes and programs. We surface them often and stay attuned to how people are perceiving and connecting to them through different initiatives. 🌠🔦
 
-For example, before you even join MUI, you'll answer carefully chosen questions in your interviews. This helps us understand how well you align to our company values and how you might contribute to enhancing them and our culture. 📝
+For example, before you even join MUI, you'll answer carefully chosen questions in your interviews. This helps us understand how well you align with our company values and how you might contribute to enhancing them and our culture. 📝
 
 On a day-to-day level, values show up everywhere. They're referenced in discussions and deliberations related to our work. We explicitly state how they directly influence our strategies and plans within our documents. Exemplifying core values is also a condition for promotion here and therefore a topic in performance and development conversations. 🆙
 
