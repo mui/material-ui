@@ -33,7 +33,6 @@ export default function DrawerSize() {
 
   const list = (size: Size) => (
     <Box
-      sx={{ m: 3 }}
       role="presentation"
       onClick={toggleDrawer(size, false)}
       onKeyDown={toggleDrawer(size, false)}

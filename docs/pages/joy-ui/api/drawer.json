@@ -58,7 +58,7 @@
         "name": "enum",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'"
       },
-      "default": "'outlined'",
+      "default": "'plain'",
       "additionalInfo": { "joy-variant": true }
     }
   },
@@ -85,7 +85,25 @@
       "class": ".MuiDrawer-content"
     }
   ],
-  "classes": { "classes": ["hidden"], "globalClasses": {} },
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "hidden",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "JoyDrawer",

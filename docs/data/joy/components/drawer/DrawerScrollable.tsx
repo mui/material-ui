@@ -3,6 +3,8 @@ import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Drawer from '@mui/joy/Drawer';
+import DialogTitle from '@mui/joy/DialogTitle';
+import DialogContent from '@mui/joy/DialogContent';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
@@ -19,18 +21,18 @@ export default function DrawerScrollable() {
       </Button>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <ModalClose />
-        <Typography level="title-lg" sx={{ m: 1.5 }}>
-          Title
-        </Typography>
-        <List sx={{ overflow: 'auto' }}>
-          {[...new Array(100)].map((_, index) => (
-            <ListItem key={index}>
-              <ListItemButton onClick={() => setOpen(false)}>
-                Item {index}
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        <DialogTitle>Title</DialogTitle>
+        <DialogContent>
+          <List>
+            {[...new Array(100)].map((_, index) => (
+              <ListItem key={index}>
+                <ListItemButton onClick={() => setOpen(false)}>
+                  Item {index}
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </DialogContent>
         <Box
           sx={{
             display: 'flex',
