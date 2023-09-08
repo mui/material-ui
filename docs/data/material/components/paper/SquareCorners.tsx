@@ -23,8 +23,6 @@ export default function SquareCorners() {
       }}
     >
       <DemoPaper square={false}>
-        {' '}
-        {/* this is the default value */}
         rounded corners
       </DemoPaper>
       <DemoPaper square>square corners</DemoPaper>

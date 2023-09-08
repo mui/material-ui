@@ -23,8 +23,6 @@ export default function Variants() {
       }}
     >
       <DemoPaper variant="elevation">
-        {' '}
-        {/* this is the default value */}
         default variant
       </DemoPaper>
       <DemoPaper variant="outlined">outlined variant</DemoPaper>
