@@ -86,7 +86,7 @@ Success!
 
 We narrowed the list down from 36 to _just 6._
 
-Now, it was time to transform these 6 words into actionable phrases to inspire the very actions we want to see championed on a daily basis.
+Now it was time to transform these six words into actionable phrases to inspire the very actions we want to see championed on a daily basis.
 
 ## Stage four: pitching the 'PACT'
 
