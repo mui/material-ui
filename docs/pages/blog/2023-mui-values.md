@@ -166,7 +166,7 @@ It addresses our attitude to risk, feedback, and setbacks too. Genuine innovatio
 
 We want to create the exceptional—not the "good enough." So we tend to prioritize quality over speed. This doesn't mean we wait for things to be perfect before releasing them.
 
-On the contrary, chase better encourages us all to make small changes and incremental improvements again and again.
+On the contrary, "chase better" encourages us all to make small changes and incremental improvements again and again.
 
 It also encourages us to venture into unfamiliar territory and get out of our comfort zones in the name of growth.
 
