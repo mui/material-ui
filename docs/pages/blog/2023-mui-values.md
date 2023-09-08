@@ -23,7 +23,7 @@ That's why we wanted to take a moment to honor the values that led us to where w
 
 Company values show up in some facet of all our roles every day, whether we're evaluating different ideas, making tough decisions, or determining the biggest priorities.
 
-That's why, it's so critical to ensure company values are actionable and authentic — that they are easily understood and truly shared by every MUIer.
+That's why it's so critical to ensure company values are actionable and authentic—that they are easily understood and truly shared by every MUIer.
 
 To make that happen, we decided to engage the whole company in a series of discovery and reflection exercises. 🔍
 
