@@ -8,8 +8,11 @@ import { FormControlClasses } from './formControlClasses';
 export interface FormControlPropsSizeOverrides {}
 export interface FormControlPropsColorOverrides {}
 
-export interface FormControlOwnProps
-  extends Pick<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface FormControlOwnProps {
+  /**
+   * The content of the component.
+   */
+  children?: React.HTMLAttributes<HTMLDivElement>['children'];
   /**
    * Override or extend the styles applied to the component.
    */
