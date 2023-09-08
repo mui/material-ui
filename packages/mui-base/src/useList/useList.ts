@@ -344,10 +344,11 @@ function useList<
         focusManagement === 'activeDescendant' && highlightedValue != null
           ? getItemId!(highlightedValue)
           : undefined,
-      onBlur: createHandleBlur(externalEventHandlers),
-      onKeyDown: createHandleKeyDown(externalEventHandlers),
       tabIndex: focusManagement === 'DOM' ? -1 : 0,
       ref: handleRef,
+      ...externalEventHandlers,
+      onBlur: createHandleBlur(externalEventHandlers),
+      onKeyDown: createHandleKeyDown(externalEventHandlers),
     };
   };
 
