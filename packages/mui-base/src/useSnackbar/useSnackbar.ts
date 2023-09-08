@@ -145,21 +145,19 @@ export function useSnackbar(parameters: UseSnackbarParameters): UseSnackbarRetur
     return undefined;
   }, [disableWindowBlurListener, handleResume, open]);
 
-  const getRootProps: UseSnackbarReturnValue['getRootProps'] = <
-    TOther extends Parameters<UseSnackbarReturnValue['getRootProps']>[0],
-  >(
-    otherHandlers: TOther = {} as TOther,
+  const getRootProps = <ExternalProps extends Record<string, any> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
   ) => {
-    const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseSnackbarParameters>;
     const externalEventHandlers = {
-      ...propsEventHandlers,
-      ...otherHandlers,
+      ...extractEventHandlers(parameters),
+      ...extractEventHandlers(externalProps),
     };
 
     return {
       // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
       // See https://github.com/mui/material-ui/issues/29080
       role: 'presentation',
+      ...externalProps,
       ...externalEventHandlers,
       onBlur: createHandleBlur(externalEventHandlers),
       onFocus: createHandleFocus(externalEventHandlers),
