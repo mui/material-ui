@@ -170,7 +170,7 @@ On the contrary, "chase better" encourages us all to make small changes and incr
 
 It also encourages us to venture into unfamiliar territory and get out of our comfort zones in the name of growth.
 
-**Trust & deliver together** is all about building trust, alignment, and shared responsibility.
+**Trust and deliver together** is all about building trust, alignment, and shared responsibility.
 
 It reflects our commitment to following through and working as one force to solve problems and create value.
 
