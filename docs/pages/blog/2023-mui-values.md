@@ -174,7 +174,7 @@ It also encourages us to venture into unfamiliar territory and get out of our co
 
 It reflects our commitment to following through and working as one force to solve problems and create value.
 
-In practice, this looks like: doing what we say we will, proactively communicating progress, adapting swiftly to changing circumstances and demands to guarantee success, and readily offering or seeking help when necessary.
+In practice, this looks like: doing what we say we will; proactively communicating progress; adapting swiftly to changing circumstances and demands to guarantee success; and readily offering or seeking help when necessary.
 
 It's also about strategic collaboration, and being able to recognize and enlist one another for our unique strengths toward shared goals.
 
