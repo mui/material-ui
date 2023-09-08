@@ -96,7 +96,7 @@ But before we get there, I want to share a few examples of phrases that didn’t
 
 Finding the right phraseology started with carefully reviewing _all_ team inputs. As I had a unique vantage point of all those inputs, I began to jot down phrases that effectively pulled from them _all_ and led with _action verbs._ 🕸️💪
 
-Things like: "Build in the open" made an appearance, but felt too limited. There was so much more we wanted to capture in the enduring theme of transparency, why it matters to us, and how we show it.
+Things like "build in the open" made an appearance, but felt too limited. There was so much more we wanted to capture in the enduring theme of transparency, why it matters to us, and how we show it.
 
 Other phrases included: "Own your impact" or "Maximize flexibility" but these, again, felt too limited and also generic. 
 
