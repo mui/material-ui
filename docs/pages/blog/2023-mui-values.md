@@ -98,7 +98,7 @@ Finding the right phraseology started with carefully reviewing _all_ team inputs
 
 Things like "build in the open" made an appearance, but felt too limited. There was so much more we wanted to capture in the enduring theme of transparency, why it matters to us, and how we show it.
 
-Other phrases included: "Own your impact" or "Maximize flexibility" but these, again, felt too limited and also generic. 
+Other phrases included "own your impact" and "maximize flexibility," but these, again, felt too limited and also generic. 
 
 In short, they weren't right.
 
