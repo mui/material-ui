@@ -6,6 +6,7 @@ import { Box, Chip, IconButton, Input } from '@mui/joy';
 import List from '@mui/joy/List';
 import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ChatListItem from './ChatListItem';
 import { ChatProps } from '../types';
 import { toggleMessagesPane } from '../utils';
@@ -57,12 +58,18 @@ export default function ChatsPane({
           Messages
         </Typography>
 
-        <IconButton variant="plain" aria-label="edit" color="neutral" size="sm">
+        <IconButton
+          variant="plain"
+          aria-label="edit"
+          color="neutral"
+          size="sm"
+          sx={{ display: { xs: 'none', sm: 'unset' } }}
+        >
           <EditNoteRoundedIcon />
         </IconButton>
 
         <IconButton
-          variant="outlined"
+          variant="plain"
           aria-label="edit"
           color="neutral"
           size="sm"
@@ -71,7 +78,7 @@ export default function ChatsPane({
           }}
           sx={{ display: { sm: 'none' } }}
         >
-          <SearchRoundedIcon />
+          <CloseRoundedIcon />
         </IconButton>
       </Stack>
       <Box sx={{ px: 2, pb: 1.5 }}>

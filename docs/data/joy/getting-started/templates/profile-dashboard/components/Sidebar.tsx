@@ -218,13 +218,9 @@ export default function Sidebar() {
               <ListItemContent>
                 <Typography level="title-sm">Messages</Typography>
               </ListItemContent>
-              <ListItem
-                endAction={
-                  <Chip size="sm" color="primary" variant="solid">
-                    4
-                  </Chip>
-                }
-              />
+              <Chip size="sm" color="primary" variant="solid">
+                4
+              </Chip>
             </ListItemButton>
           </ListItem>
 

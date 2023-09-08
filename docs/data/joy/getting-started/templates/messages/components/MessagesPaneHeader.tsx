@@ -6,6 +6,9 @@ import IconButton from '@mui/joy/IconButton';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import CircleIcon from '@mui/icons-material/Circle';
+import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
+import PhoneInTalkRoundedIcon from '@mui/icons-material/PhoneInTalkRounded';
+import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import { UserProps } from '../types';
 import { toggleMessagesPane } from '../utils';
 
@@ -36,7 +39,7 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
           }}
           onClick={() => toggleMessagesPane()}
         >
-          <i data-feather="chevron-left" />
+          <ArrowBackIosNewRoundedIcon />
         </IconButton>
         <Avatar size="lg" src={sender.avatar} />
         <div>
@@ -52,7 +55,7 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
                   size="sm"
                   color="neutral"
                   sx={{
-                    '--Chip-radius': '6px',
+                    borderRadius: 'sm',
                   }}
                   startDecorator={
                     <CircleIcon sx={{ fontSize: 8 }} color="success" />
@@ -72,7 +75,7 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
       </Stack>
       <Stack spacing={1} direction="row" alignItems="center">
         <Button
-          startDecorator={<i data-feather="phone-call" />}
+          startDecorator={<PhoneInTalkRoundedIcon />}
           color="neutral"
           variant="outlined"
           size="sm"
@@ -94,7 +97,7 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
         </Button>
 
         <IconButton size="sm" variant="plain" color="neutral">
-          <i data-feather="more-vertical" />
+          <MoreVertRoundedIcon />
         </IconButton>
       </Stack>
     </Stack>
