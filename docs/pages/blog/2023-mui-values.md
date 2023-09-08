@@ -130,7 +130,7 @@ Our core four are:
 
 **C** — Chase better. "We're driven by an unending desire to improve." 🌱
 
-**T** — Trust & deliver together. "We cultivate unity as the core of achievement." 🚀
+**T** — Trust and deliver together. "We cultivate unity as the core of achievement." 🚀
 
 To delve deeper into the meaning of each value and what it looks like in practice, you can also check out our handbook: <a href="https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4">Values & Behaviors.</a>
 
