@@ -200,7 +200,7 @@ MUI's first values were set forth by our founders during the earliest stages of 
 
 Those values remain foundational to the ways we work and engage. It's quite evident how these have been represented in new ways within the core four.
 
-But we don't expect these to last forever either.
+But we don't expect these to last forever, either.
 
 As we continue to progress through new stages of development in the coming years, we intentionally plan to review our values and continue cultivating a values-driven culture.
 
