@@ -164,7 +164,7 @@ We don't have lengthy approvals processes or a formalized chain of command; inst
 
 It addresses our attitude to risk, feedback, and setbacks too. Genuine innovation demands a fearless embrace of the uncharted, even if it entails a touch of chaos.
 
-We want to create the exceptional; not the "good enough" so we tend to prioritise quality over speed. This doesn't mean we wait for things to be perfect before releasing them.
+We want to create the exceptional—not the "good enough." So we tend to prioritize quality over speed. This doesn't mean we wait for things to be perfect before releasing them.
 
 On the contrary, chase better encourages us all to make small changes and incremental improvements again and again.
 
