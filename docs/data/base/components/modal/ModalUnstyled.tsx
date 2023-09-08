@@ -81,7 +81,7 @@ const style = (theme: Theme) => ({
 });
 
 const TriggerButton = styled('button')`
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -98,7 +98,7 @@ const TriggerButton = styled('button')`
   }
 
   &:focus-visible {
-    box-shadow: 0 3px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
+    box-shadow: 0 3px 20px 0 rgb(61 71 82 / 0.1), 0 0 0 5px rgb(0 127 255 / 0.5);
     outline: none;
   }
 `;
