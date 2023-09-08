@@ -140,6 +140,8 @@ In it, we offer concrete examples of each core value and explicitly address tens
 
 ## What do they mean?
 
+### Put community first
+
 **Put community first** underscores our unwavering commitment to anchoring every decision in the best interests of the collective.
 
 By "community," we refer to both the user base that we serve and the team that propels us forward.
