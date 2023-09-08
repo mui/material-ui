@@ -188,7 +188,7 @@ For example, before you even join MUI, you'll answer carefully chosen questions 
 
 On a day-to-day level, values show up everywhere. They're referenced in discussions and deliberations related to our work. We explicitly state how they directly influence our strategies and plans within our documents. Exemplifying core values is also a condition for promotion here and therefore a topic in performance and development conversations. 🆙
 
-As a fun way to reinforce values and show team gratitude, we've also created #Thanks-And-Praise Thursdays — a dedicated Slack channel that prompts us every Thursday to think about who we could recognize for championing core values and behaviors.
+As a fun way to reinforce values and show team gratitude, we've also created #Thanks-And-Praise Thursdays—a dedicated Slack channel that prompts us every Thursday to think about who we could recognize for championing core values and behaviors.
 
 Our design team even created custom Slack emojis to make highlighting values-driven moments as simple as just a few clicks. (Thank you Gerda, Victor, and Danilo!) 🙏
 
