@@ -11,11 +11,11 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
 }));
 
-export default function Variants() {
+export default function SquareCorners() {
   return (
     <Stack direction="row" spacing={2}>
-      <DemoPaper variant="elevation">default variant</DemoPaper>
-      <DemoPaper variant="outlined">outlined variant</DemoPaper>
+      <DemoPaper square={false}>rounded corners</DemoPaper>
+      <DemoPaper square>square corners</DemoPaper>
     </Stack>
   );
 }
