@@ -64,7 +64,7 @@ Once we'd generated a wonderfully full board, we took a pause to review the cont
 
 Finally, we organized all of these cards into little clusters based on relatedness, and started to identify their underlying values and themes.
 
-We came up with a list of words that we felt best-encapsulated each cluster. This became our values "shortlist."
+We came up with a list of words that we felt best encapsulated each cluster. This became our values "shortlist."
 
 <img alt="description" src="/static/blog/2023-mui-values/figjam-board.png" width="1200" height="500" loading="lazy" />
 
