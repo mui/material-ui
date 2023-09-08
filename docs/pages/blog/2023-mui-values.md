@@ -72,7 +72,7 @@ We came up with a list of words that we felt best encapsulated each cluster. Thi
 
 36.
 
-That's how many words surfaced in our workshop as potential values — or at least, as words to inspire the copywriting process.
+That's how many words surfaced in our workshop as potential values—or at least, as words to inspire the copywriting process.
 
 Narrowing down the shortlist was both a chance to find the strongest themes to influence team values, and also the chance to stress-test them. 🧪
 
