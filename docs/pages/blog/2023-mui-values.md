@@ -154,7 +154,7 @@ Putting community first means also that we consciously forge connections. We rec
 
 We actively champion this principle by fostering an environment of unparalleled flexibility and autonomy, which serves as a bedrock for sustained excellence.
 
-Our dedication to shunning bureaucracy manifests in tangible ways, for instance: Most of our communications and work are in the open. We default to transparency as much as possible.
+Our dedication to shunning bureaucracy manifests in tangible ways—for instance, most of our communications and work are in the open. We default to transparency as much as possible.
 
 We don't over-structure, add process or hierarchy where it isn't needed. To introduce a process, we need to clearly show how it makes things 10x better than the current approach.
 
