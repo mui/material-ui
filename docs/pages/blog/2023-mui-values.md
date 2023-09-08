@@ -108,7 +108,7 @@ I presented a video presentation to our team, pitching this set of values and pr
 
 You can <a href="https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4#09dc19a420504a3090dc4fbe6a68a543">watch the "reveal" video for yourself here</a>! 🎬👀
 
-## Stage five: revising and finalising
+## Stage five: revising and finalizing
 
 Since we work asynchronously at MUI, we like to leave a good window of time for peers to properly review, digest, and offer thoughtful feedback.
 
