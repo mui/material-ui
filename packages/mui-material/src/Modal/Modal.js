@@ -91,6 +91,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     keepMounted = false,
     onBackdropClick,
     onClose,
+    onTransitionEnter,
+    onTransitionExited,
     open,
     slotProps,
     slots,
@@ -154,10 +156,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     elementType: RootSlot,
     externalSlotProps: rootSlotProps,
     externalForwardedProps: other,
-    getSlotProps: (otherHandlers) => {
-      const { onTransitionEnter, onTransitionExited, ...restOfHandlers } = otherHandlers;
-      return getRootProps(restOfHandlers);
-    },
+    getSlotProps: getRootProps,
     additionalProps: {
       ref,
       as: component,
