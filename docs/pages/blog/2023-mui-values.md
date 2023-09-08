@@ -11,7 +11,7 @@ tags: ['Company']
 
 MUI was founded in 2014 to grow and serve a community—from developers to designers, our core mission has always been to enable others to create incredible user experiences with unrivaled speed and ease.
 
-Along the way, we embraced certain core principles that guided our ways of working — how we think, act, and how we innovate has always been grounded in fulfilling the best interests of our community.
+Along the way, we embraced certain core principles that guided our ways of working—how we think, act, and innovate have always been grounded in fulfilling the best interests of our community.
 
 In 2019, these became formalized in our first-ever company values: user obsession, excellence, transparency, freedom, and autonomy.
 
