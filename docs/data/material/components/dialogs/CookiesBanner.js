@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import TrapFocus from '@mui/material/Unstable_TrapFocus';
+import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
@@ -11,7 +12,6 @@ import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { CssBaseline } from '@mui/material';
 
 export default function CookiesBanner() {
   const [bannerOpen, setBannerOpen] = React.useState(true);
