@@ -126,7 +126,7 @@ Our core four are:
 
 **P** — Put community first. "We never lose sight of who we're serving and why." 💙
 
-**A** — Avoid bureaucracy. "We're so not corporate — and we like it that way." 🚫
+**A** — Avoid bureaucracy. "We're so not corporate—and we like it that way." 🚫
 
 **C** — Chase better. "We're driven by an unending desire to improve." 🌱
 
