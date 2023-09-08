@@ -110,6 +110,14 @@ function TestOnChangeValueType() {
         }}
       />
       <Slider
+        onChange={(event, value) => {
+          expectType<number[] | number, typeof value>(value);
+        }}
+        onChangeCommitted={(event, value) => {
+          expectType<number[] | number, typeof value>(value);
+        }}
+      />
+      <Slider
         defaultValue={multipleVal}
         onChange={(event, value) => {
           expectType<number[], typeof value>(value);
