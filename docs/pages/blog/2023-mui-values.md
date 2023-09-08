@@ -84,7 +84,7 @@ It's [what Simon Sinek was talking about](https://www.youtube.com/watch?v=IQuYzX
 
 Success!
 
-We narrowed the list down from 36 to _just 6._
+We narrowed the list down from 36 to _just six._
 
 Now it was time to transform these six words into actionable phrases to inspire the very actions we want to see championed on a daily basis.
 
