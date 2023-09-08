@@ -114,7 +114,7 @@ Since we work asynchronously at MUI, we like to leave a good window of time for 
 
 Since we place such a high value on quality and accuracy, we didn't want to rush this process, and so we extended our deadline for delivery. 
 
-As we approached the finish line, I collaborated closely with our Co-Founder, Olivier. 🙋
+As we approached the finish line, I collaborated closely with our CEO and  co-founder, Olivier. 🙋
 
 Our goal was to ensure that the final values not only reflected our team and company's culture but, most importantly, that they could be effectively integrated into our company's operations and performance expectations.
 
