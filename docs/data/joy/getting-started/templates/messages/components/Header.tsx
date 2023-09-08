@@ -2,8 +2,8 @@ import * as React from 'react';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import IconButton from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
-import MuiLogo from './MuiLogo';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import MuiLogo from './MuiLogo';
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { toggleSidebar } from '../utils';
 
