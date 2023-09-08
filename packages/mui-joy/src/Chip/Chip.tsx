@@ -59,26 +59,28 @@ const ChipRoot = styled('div', {
       '--Icon-color': 'currentColor',
       '--unstable_actionRadius': 'var(--_Chip-radius)', // to be used with Radio or Checkbox
       ...(ownerState.size === 'sm' && {
-        '--Chip-paddingInline': '0.5rem',
+        '--Chip-paddingInline': '0.375rem',
         '--Chip-decoratorChildHeight':
-          'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth, 0px))',
+          'calc(var(--_Chip-minHeight) - 2 * var(--variant-borderWidth))',
         '--Icon-fontSize': theme.vars.fontSize.sm,
-        '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)',
-        gap: '0.25rem',
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 1.25rem)', // 20px
+        gap: '3px',
       }),
       ...(ownerState.size === 'md' && {
-        '--Chip-paddingInline': '0.75rem',
-        '--Chip-decoratorChildHeight': 'min(1.375rem, var(--_Chip-minHeight))',
-        '--Icon-fontSize': theme.vars.fontSize.lg,
-        '--_Chip-minHeight': 'var(--Chip-minHeight, 2rem)',
-        gap: '0.375rem',
+        '--Chip-paddingInline': '0.5rem',
+        '--Chip-decoratorChildHeight':
+          'calc(var(--_Chip-minHeight) - 0.25rem - 2 * var(--variant-borderWidth))',
+        '--Icon-fontSize': theme.vars.fontSize.md,
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)', // 26px
+        gap: '0.25rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Chip-paddingInline': '1rem',
-        '--Chip-decoratorChildHeight': 'min(1.75rem, var(--_Chip-minHeight))',
-        '--Icon-fontSize': theme.vars.fontSize.xl,
-        '--_Chip-minHeight': 'var(--Chip-minHeight, 2.5rem)',
-        gap: '0.5rem',
+        '--Chip-paddingInline': '0.75rem',
+        '--Chip-decoratorChildHeight':
+          'calc(var(--_Chip-minHeight) - 0.375rem - 2 * var(--variant-borderWidth))',
+        '--Icon-fontSize': theme.vars.fontSize.lg,
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 1.75rem)', // 28px
+        gap: '0.375rem',
       }),
       '--_Chip-radius': 'var(--Chip-radius, 1.5rem)',
       '--_Chip-paddingBlock':
@@ -181,7 +183,8 @@ const ChipStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: ChipOwnerState }>({
   '--Avatar-marginInlineStart': 'calc(var(--Chip-decoratorChildOffset) * -1)',
-  '--IconButton-margin': '0 0 0 calc(var(--Chip-decoratorChildOffset) * -1)',
+  '--IconButton-margin':
+    '0 calc(-1 * var(--Chip-paddingInline) / 3) 0 calc(var(--Chip-decoratorChildOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Chip-paddingInline) / -4)',
   display: 'inherit',
   // set zIndex to 1 with order to stay on top of other controls, e.g. Checkbox, Radio
@@ -195,7 +198,8 @@ const ChipEndDecorator = styled('span', {
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: ChipOwnerState }>({
-  '--IconButton-margin': '0 calc(var(--Chip-decoratorChildOffset) * -1) 0 0',
+  '--IconButton-margin':
+    '0 calc(var(--Chip-decoratorChildOffset) * -1) 0 calc(-1 * var(--Chip-paddingInline) / 3)',
   '--Icon-margin': '0 calc(var(--Chip-paddingInline) / -4) 0 0',
   display: 'inherit',
   // set zIndex to 1 with order to stay on top of other controls, e.g. Checkbox, Radio

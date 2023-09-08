@@ -102,13 +102,13 @@ const SelectRoot = styled('div', {
         '--Icon-fontSize': theme.vars.fontSize.xl,
       }),
       ...(ownerState.size === 'md' && {
-        '--Select-minHeight': '2.5rem',
+        '--Select-minHeight': '2.25rem',
         '--Select-paddingInline': '0.75rem',
-        '--Select-decoratorChildHeight': 'min(2rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(1.75rem, var(--Select-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Select-minHeight': '3rem',
+        '--Select-minHeight': '2.75rem',
         '--Select-paddingInline': '1rem',
         '--Select-decoratorChildHeight': 'min(2.375rem, var(--Select-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,

@@ -130,10 +130,10 @@ importers:
         specifier: ^17.0.24
         version: 17.0.24
       '@typescript-eslint/eslint-plugin':
-        specifier: ^6.4.1
+        specifier: ^6.6.0
         version: 6.6.0(@typescript-eslint/parser@6.6.0)(eslint@8.48.0)(typescript@5.1.6)
       '@typescript-eslint/parser':
-        specifier: ^6.4.1
+        specifier: ^6.6.0
         version: 6.6.0(eslint@8.48.0)(typescript@5.1.6)
       babel-loader:
         specifier: ^9.1.3
@@ -193,8 +193,8 @@ importers:
         specifier: ^17.1.0
         version: 17.1.0(@typescript-eslint/eslint-plugin@6.6.0)(@typescript-eslint/parser@6.6.0)(eslint-plugin-import@2.28.1)(eslint@8.48.0)
       eslint-config-prettier:
-        specifier: ^8.10.0
-        version: 8.10.0(eslint@8.48.0)
+        specifier: ^9.0.0
+        version: 9.0.0(eslint@8.48.0)
       eslint-import-resolver-webpack:
         specifier: ^0.13.7
         version: 0.13.7(eslint-plugin-import@2.28.1)(webpack@5.88.2)
@@ -888,7 +888,7 @@ importers:
         specifier: ^8.44.2
         version: 8.44.2
       '@typescript-eslint/parser':
-        specifier: ^6.4.1
+        specifier: ^6.6.0
         version: 6.6.0(eslint@8.48.0)(typescript@5.1.6)
       eslint:
         specifier: ^8.47.0
@@ -10637,8 +10637,8 @@ packages:
       object.entries: 1.1.6
     dev: true
 
-  /eslint-config-prettier@8.10.0(eslint@8.48.0):
-    resolution: {integrity: sha512-SM8AMJdeQqRYT9O9zguiruQZaN7+z+E4eAP9oiLNGKMtomwaB1E9dcgUD6ZAn/eQAb52USbvezbiljfZUhbJcg==}
+  /eslint-config-prettier@9.0.0(eslint@8.48.0):
+    resolution: {integrity: sha512-IcJsTkJae2S35pRsRAwoCE+925rJJStOdkKnLVgtE+tEpqU0EVVM7OqrwxqgptKdX29NUwC82I5pXsGFIgSevw==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'

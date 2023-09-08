@@ -43,7 +43,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
           ? 'currentColor'
           : theme.vars.palette.text.icon,
       ...(ownerState.instanceSize && {
-        '--IconButton-size': { sm: '2rem', md: '2.5rem', lg: '3rem' }[ownerState.instanceSize],
+        '--IconButton-size': { sm: '2rem', md: '2.25rem', lg: '2.75rem' }[ownerState.instanceSize],
       }),
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
@@ -55,20 +55,20 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
         paddingInline: '2px', // add a gap, in case the content is long, e.g. multiple icons
       }),
       ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 2.5rem) / 1.667)', // 1.5rem by default
-        '--CircularProgress-size': '24px',
-        '--CircularProgress-thickness': '3px',
-        minWidth: 'var(--IconButton-size, 2.5rem)',
-        minHeight: 'var(--IconButton-size, 2.5rem)',
+        '--Icon-fontSize': 'calc(var(--IconButton-size, 2.25rem) / 1.5)', // 1.5rem by default
+        '--CircularProgress-size': '20px',
+        '--CircularProgress-thickness': '2px',
+        minWidth: 'var(--IconButton-size, 2.25rem)',
+        minHeight: 'var(--IconButton-size, 2.25rem)',
         fontSize: theme.vars.fontSize.md,
         paddingInline: '0.25rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 3rem) / 1.714)', // 1.75rem by default
+        '--Icon-fontSize': 'calc(var(--IconButton-size, 2.75rem) / 1.571)', // 1.75rem by default
         '--CircularProgress-size': '28px',
         '--CircularProgress-thickness': '4px',
-        minWidth: 'var(--IconButton-size, 3rem)',
-        minHeight: 'var(--IconButton-size, 3rem)',
+        minWidth: 'var(--IconButton-size, 2.75rem)',
+        minHeight: 'var(--IconButton-size, 2.75rem)',
         fontSize: theme.vars.fontSize.lg,
         paddingInline: '0.375rem',
       }),
