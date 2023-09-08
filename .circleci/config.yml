@@ -270,7 +270,7 @@ jobs:
       - run:
           name: Test module augmentation
           command: |
-            yarn workspace @mui/material typescript:module-augmentation
+            yarn workspace @mui/material typescript:augmentation
             yarn workspace @mui/base typescript:module-augmentation
             yarn workspace @mui/joy typescript:module-augmentation
       - run:
