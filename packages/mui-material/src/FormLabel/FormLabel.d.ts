@@ -12,11 +12,7 @@ export interface FormLabelPropsColorOverrides {}
  */
 export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 
-export interface FormLabelOwnProps {
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
+export interface FormLabelOwnProps extends Pick<FormLabelBaseProps, 'children'> {
   /**
    * Override or extend the styles applied to the component.
    */

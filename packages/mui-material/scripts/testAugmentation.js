@@ -21,7 +21,7 @@ async function test(tsconfigPath) {
 }
 
 /**
- * Tests various module augmentation scenarios.
+ * Tests various augmentation scenarios.
  * We can't run them with a single `tsc` run since these apply globally.
  * Running them all would mean they're not isolated.
  * Each test case represents a section in our docs.
@@ -30,7 +30,7 @@ async function test(tsconfigPath) {
  * This script also allows us to test in parallel which we can't do with our mocha tests.
  */
 async function main() {
-  const tsconfigPaths = await glob('test/typescript/moduleAugmentation/*.tsconfig.json', {
+  const tsconfigPaths = await glob('test/typescript/*Augmentation/*.tsconfig.json', {
     absolute: true,
     cwd: packageRoot,
   });

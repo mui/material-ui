@@ -34,10 +34,6 @@ export interface BaseTextFieldProps
    */
   autoFocus?: boolean;
   /**
-   * @ignore
-   */
-  children?: React.ReactNode;
-  /**
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<TextFieldClasses>;
