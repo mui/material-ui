@@ -184,7 +184,7 @@ It's also about strategic collaboration, and being able to recognize and enlist 
 
 Articulating company values and operationalizing them are two different things.
 
-To ensure values don't become mere writing on the wall at MUI, we've purposefully woven them into internal processes and programs. We surface them often and stay attuned to on how people are perceiving and connecting to them through different initiatives. 🌠🔦
+To ensure values don't become mere writing on the wall at MUI, we've purposefully woven them into internal processes and programs. We surface them often and stay attuned to how people are perceiving and connecting to them through different initiatives. 🌠🔦
 
 For example, before you even join MUI, you'll answer carefully chosen questions in your interviews. This helps us understand how well you align to our company values and how you might contribute to enhancing them and our culture. 📝
 
