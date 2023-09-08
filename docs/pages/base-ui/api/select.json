@@ -14,6 +14,7 @@
     "onChange": { "type": { "name": "func" } },
     "onListboxOpenChange": { "type": { "name": "func" } },
     "renderValue": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {
         "name": "shape",
@@ -27,11 +28,12 @@
         "description": "{ listbox?: elementType, popper?: elementType, root?: elementType }"
       },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "value": { "type": { "name": "any" } }
   },
   "name": "Select",
+  "imports": ["import { Select } from '@mui/base/Select';", "import { Select } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

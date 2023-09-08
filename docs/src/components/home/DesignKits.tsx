@@ -46,7 +46,7 @@ const Anchor = styled('a')(({ theme }) => [
     '&:hover, &:focus': {
       boxShadow: '0 6px 20px 0 rgba(0,0,0,0.2)',
     },
-  },
+  } as const,
   theme.applyDarkStyles({
     '&:hover, &:focus': {
       boxShadow: `0 6px 20px 0 ${alpha(theme.palette.primaryDark[100], 0.5)}`,
@@ -255,9 +255,9 @@ export default function DesignKits() {
           width: '100%',
           height: '100%',
           background: `linear-gradient(to bottom, ${
-            (theme.vars || theme).palette.grey[50]
+            (theme.vars || theme).palette.primary[50]
           } 0%, ${transparent} 30%, ${transparent} 70%, ${
-            (theme.vars || theme).palette.grey[50]
+            (theme.vars || theme).palette.primary[50]
           } 100%)`,
           zIndex: 2,
           ...theme.applyDarkStyles({
@@ -279,7 +279,7 @@ export default function DesignKits() {
           width: 400,
           height: '100%',
           background: `linear-gradient(to right, ${
-            (theme.vars || theme).palette.grey[50]
+            (theme.vars || theme).palette.primary[50]
           }, ${transparent})`,
           zIndex: 2,
           ...theme.applyDarkStyles({

@@ -1,5 +1,5 @@
-import generateUtilityClass from '../generateUtilityClass';
-import generateUtilityClasses from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
 
 export interface MenuClasses {
   /** Class name applied to the root element. */
@@ -16,6 +16,8 @@ export function getMenuUtilityClass(slot: string): string {
   return generateUtilityClass('MuiMenu', slot);
 }
 
-const menuClasses: MenuClasses = generateUtilityClasses('MuiMenu', ['root', 'listbox', 'expanded']);
-
-export default menuClasses;
+export const menuClasses: MenuClasses = generateUtilityClasses('MuiMenu', [
+  'root',
+  'listbox',
+  'expanded',
+]);

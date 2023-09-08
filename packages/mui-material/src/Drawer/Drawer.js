@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import Modal from '../Modal';
 import Slide from '../Slide';
 import Paper from '../Paper';
@@ -309,8 +309,10 @@ Drawer.propTypes /* remove-proptypes */ = {
   ModalProps: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
+   * The `reason` parameter can optionally be used to control the response to `onClose`.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
   /**

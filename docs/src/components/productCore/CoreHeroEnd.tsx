@@ -4,13 +4,13 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import { alpha } from '@mui/material/styles';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
-import { alpha } from '@mui/material/styles';
 
 export default function CoreHeroEnd() {
   return (

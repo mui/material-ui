@@ -1,6 +1,7 @@
 {
   "props": {
     "checked": { "type": { "name": "bool" } },
+    "className": { "type": { "name": "string" } },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "onChange": {
@@ -25,10 +26,11 @@
         "description": "{ input?: elementType, root?: elementType, thumb?: elementType, track?: elementType<br>&#124;&nbsp;null }"
       },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     }
   },
   "name": "Switch",
+  "imports": ["import { Switch } from '@mui/base/Switch';", "import { Switch } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
@@ -61,7 +63,8 @@
     "globalClasses": {
       "checked": "Mui-checked",
       "disabled": "Mui-disabled",
-      "focusVisible": "Mui-focusVisible"
+      "focusVisible": "Mui-focusVisible",
+      "readOnly": "Mui-readOnly"
     }
   },
   "spread": true,

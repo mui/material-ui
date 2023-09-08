@@ -11,7 +11,7 @@ import {
   unstable_ownerWindow as ownerWindow,
 } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useTabs, { TabsProvider } from '@mui/base/useTabs';
+import { useTabs, TabsProvider } from '@mui/base/useTabs';
 import { styled, useThemeProps, useTheme } from '@mui/material/styles';
 import animate from '@mui/material/internal/animate';
 import TabScrollButton from '../TabScrollButton';

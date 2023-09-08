@@ -11,10 +11,10 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import { hexToRgb } from '@mui/system';
-import Chip, { chipClasses as classes } from '@mui/material-next/Chip';
-import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import { createTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
+import Chip, { chipClasses as classes } from '@mui/material-next/Chip';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
 
 // TODO: remove after implementing Material You Chip's style

@@ -99,6 +99,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/92228082',
     github: 'prakhargupta1',
   },
+  richbustos: {
+    name: 'Rich Bustos',
+    avatar: 'https://avatars.githubusercontent.com/u/92274722',
+    github: 'richbustos',
+  },
 };
 
 const classes = {
@@ -242,7 +247,7 @@ function TopLayoutBlog(props) {
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
   const router = useRouter();
-  const slug = router.pathname.replace(/\/blog\//, '');
+  const slug = router.pathname.replace(/(.*)\/(.*)/, '$2');
   const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const card =
     headers.card === 'true'

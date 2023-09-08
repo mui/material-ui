@@ -37,7 +37,6 @@ export default function ColorInversionPopup() {
             'primary',
             'neutral',
             'danger',
-            'info',
             'success',
             'warning',
           ];

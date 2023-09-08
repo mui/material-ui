@@ -9,10 +9,10 @@ import {
   screen,
   createMount,
 } from 'test/utils';
-import Tab from '@mui/base/Tab';
-import Tabs, { tabsClasses as classes, TabsProps } from '@mui/base/Tabs';
-import TabsList from '@mui/base/TabsList';
-import TabPanel from '@mui/base/TabPanel';
+import { Tab } from '@mui/base/Tab';
+import { Tabs, tabsClasses as classes, TabsProps } from '@mui/base/Tabs';
+import { TabsList } from '@mui/base/TabsList';
+import { TabPanel } from '@mui/base/TabPanel';
 
 describe('<Tabs />', () => {
   const mount = createMount();

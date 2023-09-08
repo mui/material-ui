@@ -4,12 +4,12 @@ import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import createEmotionCache from 'docs/src/createEmotionCache';
-import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { getInitColorSchemeScript as getMuiInitColorSchemeScript } from '@mui/material/styles';
 import { getInitColorSchemeScript as getJoyInitColorSchemeScript } from '@mui/joy/styles';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import createEmotionCache from 'docs/src/createEmotionCache';
+import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -33,9 +33,6 @@ if (process.env.NODE_ENV === 'production') {
 
 const PRODUCTION_GA =
   process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
-
-// TODO remove https://support.google.com/analytics/answer/11986666
-const GOOGLE_ANALYTICS_ID = PRODUCTION_GA ? 'UA-106598593-2' : 'UA-106598593-3';
 
 const GOOGLE_ANALYTICS_ID_V4 = PRODUCTION_GA ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J';
 
@@ -81,7 +78,7 @@ export default class MyDocument extends Document {
           <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
             rel="stylesheet"
           />
           {/* ========== Font preload (prevent font flash) ============= */}
@@ -176,11 +173,6 @@ export default class MyDocument extends Document {
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-window.ga('create','${GOOGLE_ANALYTICS_ID}',{
-  sampleRate: ${PRODUCTION_GA ? 80 : 100},
-});
-
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 window.gtag = gtag;

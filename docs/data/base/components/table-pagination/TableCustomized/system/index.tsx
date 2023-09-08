@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TablePagination, {
+import {
+  TablePagination,
   tablePaginationClasses as classes,
 } from '@mui/base/TablePagination';
 
@@ -54,7 +55,7 @@ export default function TableCustomized() {
 
           {emptyRows > 0 && (
             <tr style={{ height: 34 * emptyRows }}>
-              <td colSpan={3} />
+              <td colSpan={3} aria-hidden />
             </tr>
           )}
         </tbody>

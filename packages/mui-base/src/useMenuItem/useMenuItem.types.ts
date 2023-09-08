@@ -1,6 +1,6 @@
 import { EventHandlers } from '../utils/types';
 import { UseButtonRootSlotProps } from '../useButton';
-import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
+import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 interface UseMenuItemRootSlotOwnProps {
   role: 'menuitem';

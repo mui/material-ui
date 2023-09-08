@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { EventHandlers } from '@mui/base';
 import { createRenderer } from 'test/utils';
-import useSlotProps, { UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps';
+import { EventHandlers } from '@mui/base';
+import { useSlotProps, UseSlotPropsParameters, UseSlotPropsResult } from './useSlotProps';
 
 const { render } = createRenderer();
 

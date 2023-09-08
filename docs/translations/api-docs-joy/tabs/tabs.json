@@ -31,30 +31,41 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Classname applied to the root element." },
+    "root": { "description": "Class name applied to the root element." },
     "horizontal": {
-      "description": "Classname applied to the root element if <code>orientation=&quot;horizontal&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
     },
     "vertical": {
-      "description": "Classname applied to the root element if <code>orientation=&quot;vertical&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>orientation=\"vertical\"</code>"
     },
     "colorPrimary": {
-      "description": "Classname applied to the root element if <code>color=&quot;primary&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorNeutral": {
-      "description": "Classname applied to the root element if <code>color=&quot;neutral&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"neutral\"</code>"
     },
     "colorDanger": {
-      "description": "Classname applied to the root element if <code>color=&quot;danger&quot;</code>."
-    },
-    "colorInfo": {
-      "description": "Classname applied to the root element if <code>color=&quot;info&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
     },
     "colorSuccess": {
-      "description": "Classname applied to the root element if <code>color=&quot;success&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
     },
     "colorWarning": {
-      "description": "Classname applied to the root element if <code>color=&quot;warning&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
     },
     "colorContext": {
       "description": "Class name applied to {{nodeName}} when {{conditions}}.",
@@ -62,25 +73,39 @@
       "conditions": "color inversion is triggered"
     },
     "variantPlain": {
-      "description": "Classname applied to the root element if <code>variant=&quot;plain&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
     },
     "variantOutlined": {
-      "description": "Classname applied to the root element if <code>variant=&quot;outlined&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantSoft": {
-      "description": "Classname applied to the root element if <code>variant=&quot;soft&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"soft\"</code>"
     },
     "variantSolid": {
-      "description": "Classname applied to the root element if <code>variant=&quot;solid&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"solid\"</code>"
     },
     "sizeSm": {
-      "description": "Classname applied to the root element if <code>size=&quot;sm&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"sm\"</code>"
     },
     "sizeMd": {
-      "description": "Classname applied to the root element if <code>size=&quot;md&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"md\"</code>"
     },
     "sizeLg": {
-      "description": "Classname applied to the root element if <code>size=&quot;lg&quot;</code>."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"lg\"</code>"
     }
   },
   "slotDescriptions": { "root": "The component that renders the root." }

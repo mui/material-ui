@@ -15,7 +15,7 @@ export default function BasicCardSkeleton() {
         <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
           <Skeleton>Yosemite National Park</Skeleton>
         </Typography>
-        <Typography level="body2">
+        <Typography level="body-sm">
           <Skeleton>April 24 to May 02, 2021</Skeleton>
         </Typography>
         <IconButton
@@ -41,7 +41,7 @@ export default function BasicCardSkeleton() {
       </AspectRatio>
       <CardContent orientation="horizontal">
         <div>
-          <Typography level="body3">
+          <Typography level="body-xs">
             <Skeleton>Total price:</Skeleton>
           </Typography>
           <Typography fontSize="lg" fontWeight="lg">

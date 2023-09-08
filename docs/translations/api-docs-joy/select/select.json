@@ -43,6 +43,9 @@
     "renderValue": {
       "description": "Function that customizes the rendering of the selected value."
     },
+    "required": {
+      "description": "If <code>true</code>, the Select cannot be empty when submitting form."
+    },
     "size": { "description": "The size of the component." },
     "slots": { "description": "The components used for each slot inside." },
     "startDecorator": { "description": "Leading adornment for the select." },
@@ -96,11 +99,6 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>color=\"danger\"</code>"
-    },
-    "colorInfo": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root slot",
-      "conditions": "<code>color=\"info\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",

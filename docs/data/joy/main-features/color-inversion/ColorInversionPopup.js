@@ -33,14 +33,7 @@ export default function ColorInversionPopup() {
         startDecorator={<PaletteIcon />}
         variant="outlined"
         onClick={() => {
-          const colors = [
-            'primary',
-            'neutral',
-            'danger',
-            'info',
-            'success',
-            'warning',
-          ];
+          const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
 
           const nextColor = colors.indexOf(color);
           setColor(colors[nextColor + 1] ?? colors[0]);

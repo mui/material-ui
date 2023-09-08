@@ -1,11 +1,11 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Box from '@mui/joy/Box';
 import MenuButton from '@mui/joy/MenuButton';
 import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import ListDivider from '@mui/joy/ListDivider';
 import Dropdown from '@mui/joy/Dropdown';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function MenuUsage() {
   return (

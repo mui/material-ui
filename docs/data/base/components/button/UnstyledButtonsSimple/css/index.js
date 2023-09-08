@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button, { buttonClasses } from '@mui/base/Button';
+import { Button, buttonClasses } from '@mui/base/Button';
 import Stack from '@mui/material/Stack';
 
 export default function UnstyledButtonsSimple() {
@@ -54,12 +54,11 @@ function Styles() {
       .CustomButton:active:not(.${buttonClasses.disabled}) {
         background-color: ${cyan[700]};
       }
-      
+
       .${buttonClasses.disabled} {
         opacity: 0.5;
         cursor: not-allowed;
-
-
+      }
       `}
     </style>
   );

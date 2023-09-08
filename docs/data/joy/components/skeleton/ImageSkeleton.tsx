@@ -10,21 +10,22 @@ import Switch from '@mui/joy/Switch';
 export default function ImageSkeleton() {
   const [loading, setLoading] = React.useState(true);
   return (
-    <Stack spacing={2} useFlexGap>
+    <Stack spacing={2} useFlexGap sx={{ alignItems: 'center' }}>
       <Box sx={{ m: 'auto' }}>
         <AspectRatio variant="plain" sx={{ width: 300 }}>
           <Skeleton loading={loading}>
             <img
-              src="https://images.unsplash.com/photo-1686548812883-9d3777f4c137?h=400&fit=crop&auto=format&dpr=2"
+              src={
+                loading
+                  ? 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
+                  : 'https://images.unsplash.com/photo-1686548812883-9d3777f4c137?h=400&fit=crop&auto=format&dpr=2'
+              }
               alt=""
             />
           </Skeleton>
         </AspectRatio>
       </Box>
-      <FormControl
-        orientation="horizontal"
-        sx={{ gap: 1, justifyContent: 'center' }}
-      >
+      <FormControl orientation="horizontal" sx={{ gap: 1 }}>
         <Switch
           size="sm"
           checked={loading}

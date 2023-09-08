@@ -22,7 +22,7 @@ export default function ToggleGroupToolbar() {
   return (
     <Sheet
       variant="outlined"
-      sx={{ borderRadius: 'sm', display: 'flex', gap: 2, p: 1 }}
+      sx={{ borderRadius: 'md', display: 'flex', gap: 2, p: 0.5 }}
     >
       <ToggleButtonGroup
         variant="plain"
@@ -32,7 +32,6 @@ export default function ToggleGroupToolbar() {
           setAlignment(newAlignment);
         }}
         aria-label="text alignment"
-        sx={{ borderRadius: 'xs' }}
       >
         <IconButton value="left" aria-label="left aligned">
           <FormatAlignLeftIcon />
@@ -56,7 +55,6 @@ export default function ToggleGroupToolbar() {
           setFormats(newFormats);
         }}
         aria-label="text formatting"
-        sx={{ borderRadius: 'xs' }}
       >
         <IconButton value="bold" aria-label="bold">
           <FormatBoldIcon />
@@ -93,7 +91,7 @@ export default function ToggleGroupToolbar() {
             </svg>
           </SvgIcon>
         }
-        sx={{ borderRadius: 'xs', pl: 1 }}
+        sx={{ pl: 1 }}
       >
         <AspectRatio
           variant="plain"

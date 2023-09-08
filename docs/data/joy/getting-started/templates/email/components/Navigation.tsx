@@ -22,12 +22,7 @@ export default function EmailNav() {
       <ListItem nested>
         <ListSubheader>
           Browse
-          <IconButton
-            size="sm"
-            variant="plain"
-            color="primary"
-            sx={{ '--IconButton-size': '24px', ml: 'auto' }}
-          >
+          <IconButton size="sm" variant="plain" color="primary" sx={{ ml: 'auto' }}>
             <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
           </IconButton>
         </ListSubheader>
@@ -38,8 +33,8 @@ export default function EmailNav() {
           }}
         >
           <ListItem>
-            <ListItemButton variant="soft" color="primary">
-              <ListItemDecorator sx={{ color: 'inherit' }}>
+            <ListItemButton selected>
+              <ListItemDecorator>
                 <InboxRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Inbox</ListItemContent>
@@ -47,7 +42,7 @@ export default function EmailNav() {
           </ListItem>
           <ListItem>
             <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+              <ListItemDecorator>
                 <OutboxRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Sent</ListItemContent>
@@ -55,7 +50,7 @@ export default function EmailNav() {
           </ListItem>
           <ListItem>
             <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+              <ListItemDecorator>
                 <DraftsRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Draft</ListItemContent>
@@ -63,7 +58,7 @@ export default function EmailNav() {
           </ListItem>
           <ListItem>
             <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+              <ListItemDecorator>
                 <AssistantPhotoRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Flagged</ListItemContent>
@@ -71,7 +66,7 @@ export default function EmailNav() {
           </ListItem>
           <ListItem>
             <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+              <ListItemDecorator>
                 <DeleteRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Trash</ListItemContent>
@@ -82,12 +77,7 @@ export default function EmailNav() {
       <ListItem nested sx={{ mt: 2 }}>
         <ListSubheader>
           Tags
-          <IconButton
-            size="sm"
-            variant="plain"
-            color="primary"
-            sx={{ '--IconButton-size': '24px', ml: 'auto' }}
-          >
+          <IconButton size="sm" variant="plain" color="primary" sx={{ ml: 'auto' }}>
             <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
           </IconButton>
         </ListSubheader>
@@ -137,7 +127,7 @@ export default function EmailNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'warning.200',
+                    bgcolor: 'warning.300',
                   }}
                 />
               </ListItemDecorator>

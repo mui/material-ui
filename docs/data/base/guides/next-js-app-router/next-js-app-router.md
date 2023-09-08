@@ -5,7 +5,7 @@
 :::info
 Starting fresh on a new App Router-based project?
 
-Jump right into the code with [this example: Base UI - Next.js App Router with Tailwind CSS example in TypeScript](https://github.com/mui/material-ui/tree/master/examples/base-next-app-router-tailwind-ts).
+Jump right into the code with [this example: Base UI - Next.js App Router with Tailwind CSS example in TypeScript](https://github.com/mui/material-ui/tree/master/examples/base-ui-nextjs-tailwind-ts).
 :::
 
 ## Next.js and React Server Components
@@ -47,7 +47,7 @@ module.exports = {
 };
 ```
 
-Refer to this [example repo](https://github.com/mui/material-ui/tree/master/examples/base-next-app-router-tailwind-ts) for a full working demo of a Next.js 13 app using Base UI and Tailwind CSS.
+Refer to this [example repo](https://github.com/mui/material-ui/tree/master/examples/base-ui-nextjs-tailwind-ts) for a full working demo of a Next.js 13 app using Base UI and Tailwind CSS.
 
 ### Emotion
 
@@ -195,5 +195,5 @@ export default function Page() {
 }
 ```
 
-Unfortunately, **this does not work in a Server Component** since function props are [non-serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
-Instead, the Next.js team recommend moving components like these ["to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.
+Unfortunately, **this does not work in a Server Component** since function props are [non-serializable](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#passing-props-from-server-to-client-components-serialization).
+Instead, the Next.js team recommend moving components like these ["down the tree"](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree) to avoid this issue and improve overall performance.

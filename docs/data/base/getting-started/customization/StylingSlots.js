@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import Switch, { switchClasses } from '@mui/base/Switch';
+import { Switch, switchClasses } from '@mui/base/Switch';
 
 const Root = styled('span')`
   font-size: 0;

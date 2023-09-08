@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import useSelect, { SelectProvider } from '@mui/base/useSelect';
-import useOption from '@mui/base/useOption';
+import { useSelect, SelectProvider } from '@mui/base/useSelect';
+import { useOption } from '@mui/base/useOption';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 

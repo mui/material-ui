@@ -4,11 +4,11 @@ import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import GradientText from 'docs/src/components/typography/GradientText';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import PhishingRoundedIcon from '@mui/icons-material/PhishingRounded';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import GradientText from 'docs/src/components/typography/GradientText';
 import Link from 'docs/src/modules/components/Link';
 
 const content = [

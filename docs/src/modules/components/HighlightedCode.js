@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import prism from '@mui/markdown/prism';
-import NoSsr from '@mui/base/NoSsr';
+import { NoSsr } from '@mui/base/NoSsr';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
 import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';

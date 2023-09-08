@@ -8,7 +8,7 @@ import {
 } from '../utils/useControllableReducer.types';
 import { EventHandlers } from '../utils';
 import type { ListContextValue } from './ListContext';
-import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
+import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 type ListActionContextRequiredKeys =
   | 'disabledItemsFocusable'

@@ -36,8 +36,8 @@ export default function Navigation() {
           }}
         >
           <ListItem>
-            <ListItemButton variant="soft" color="primary">
-              <ListItemDecorator sx={{ color: 'inherit' }}>
+            <ListItemButton selected>
+              <ListItemDecorator>
                 <FolderOpenIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>My files</ListItemContent>

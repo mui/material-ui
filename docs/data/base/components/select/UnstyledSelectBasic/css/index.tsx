@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Select, { selectClasses } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
+import { Select, selectClasses } from '@mui/base/Select';
+import { Option, optionClasses } from '@mui/base/Option';
 import { useTheme } from '@mui/system';
 
 export default function UnstyledSelectBasic() {

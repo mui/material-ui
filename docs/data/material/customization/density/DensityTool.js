@@ -7,9 +7,9 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
 import IncreaseIcon from '@mui/icons-material/AddCircleOutline';
 import DecreaseIcon from '@mui/icons-material/RemoveCircleOutline';
+import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const minSpacing = 0;

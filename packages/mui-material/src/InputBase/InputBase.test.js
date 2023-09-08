@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import { ThemeProvider } from '@emotion/react';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import InputBase, { inputBaseClasses as classes } from '@mui/material/InputBase';
 import { createTheme } from '@mui/material/styles';
-import { ThemeProvider } from '@emotion/react';
 
 describe('<InputBase />', () => {
   const { render } = createRenderer();
@@ -128,6 +128,14 @@ describe('<InputBase />', () => {
         getByRole('textbox').focus();
       });
       expect(handleFocus.called).to.equal(false);
+    });
+
+    it('fires the click event when the <input /> is disabled', () => {
+      const handleClick = spy();
+      const { getByRole } = render(<InputBase disabled onClick={handleClick} />);
+      const input = getByRole('textbox');
+      fireEvent.click(input);
+      expect(handleClick.callCount).to.equal(1);
     });
   });
 

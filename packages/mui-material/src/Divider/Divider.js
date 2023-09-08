@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -214,6 +214,12 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     </DividerRoot>
   );
 });
+
+/**
+ * The following flag is used to ensure that this component isn't tabbable i.e.
+ * does not get highlight/focus inside of MUI List.
+ */
+Divider.muiSkipListHighlight = true;
 
 Divider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

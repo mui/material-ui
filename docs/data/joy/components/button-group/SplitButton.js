@@ -25,7 +25,12 @@ export default function SplitButton() {
 
   return (
     <React.Fragment>
-      <ButtonGroup ref={anchorRef} variant="solid" aria-label="split button">
+      <ButtonGroup
+        ref={anchorRef}
+        variant="solid"
+        color="success"
+        aria-label="split button"
+      >
         <Button onClick={handleClick}>{options[selectedIndex]}</Button>
         <IconButton
           aria-controls={open ? 'split-button-menu' : undefined}
@@ -33,11 +38,9 @@ export default function SplitButton() {
           aria-label="select merge strategy"
           aria-haspopup="menu"
           onMouseDown={() => {
-            // @ts-ignore
             actionRef.current = () => setOpen(!open);
           }}
           onKeyDown={() => {
-            // @ts-ignore
             actionRef.current = () => setOpen(!open);
           }}
           onClick={() => {

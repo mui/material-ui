@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
-import useButton from '../useButton';
+import { useButton } from '../useButton';
 import {
   MenuItemMetadata,
   UseMenuItemParameters,
@@ -10,10 +10,10 @@ import {
 } from './useMenuItem.types';
 import { useListItem } from '../useList';
 import { DropdownActionTypes } from '../useDropdown';
-import DropdownContext, { DropdownContextValue } from '../useDropdown/DropdownContext';
-import combineHooksSlotProps from '../utils/combineHooksSlotProps';
+import { DropdownContext, DropdownContextValue } from '../useDropdown/DropdownContext';
+import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
 import { useCompoundItem } from '../utils/useCompoundItem';
-import MuiCancellableEvent from '../utils/muiCancellableEvent';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { EventHandlers } from '../utils/types';
 
 function idGenerator(existingKeys: Set<string>) {
@@ -39,7 +39,7 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
  *
  * - [useMenuItem API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu-item)
  */
-export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnValue {
+export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnValue {
   const { disabled = false, id: idParam, rootRef: externalRef, label } = params;
 
   const id = useId(idParam);

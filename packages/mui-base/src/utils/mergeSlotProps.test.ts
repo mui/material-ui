@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import mergeSlotProps from './mergeSlotProps';
+import { mergeSlotProps } from './mergeSlotProps';
 import { EventHandlers } from './types';
 
 describe('mergeSlotProps', () => {

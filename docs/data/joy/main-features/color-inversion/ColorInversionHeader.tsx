@@ -47,7 +47,6 @@ export default function ColorInversionHeader() {
             'primary',
             'neutral',
             'danger',
-            'info',
             'success',
             'warning',
           ];
@@ -122,7 +121,7 @@ export default function ColorInversionHeader() {
             <Typography
               component="span"
               variant="outlined"
-              level="body3"
+              level="body-xs"
               sx={{ bgcolor: 'background.surface', mx: 0 }}
             >
               ⌘K

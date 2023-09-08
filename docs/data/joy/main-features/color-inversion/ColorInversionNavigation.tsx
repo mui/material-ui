@@ -30,7 +30,7 @@ export default function ColorInversionNavigation() {
     <Box sx={{ display: 'flex', borderRadius: 'sm', overflow: 'auto' }}>
       <Sheet
         variant="solid"
-        color="info"
+        color="neutral"
         invertedColors
         sx={{
           p: 2,
@@ -44,10 +44,10 @@ export default function ColorInversionNavigation() {
           defaultValue="1"
           size="sm"
           placeholder={
-            <Box>
+            <div>
               <Typography level="inherit">Saleshouse</Typography>
-              <Typography level="body2">general team</Typography>
-            </Box>
+              <Typography level="body-md">general team</Typography>
+            </div>
           }
           startDecorator={
             <Sheet
@@ -62,11 +62,6 @@ export default function ColorInversionNavigation() {
               <BubbleChartIcon sx={{ m: 0 }} />
             </Sheet>
           }
-          slotProps={{
-            listbox: {
-              disablePortal: true,
-            },
-          }}
           sx={{ py: 1 }}
         >
           <Option value="1">General team</Option>
@@ -91,7 +86,7 @@ export default function ColorInversionNavigation() {
               <SmsIcon />
             </ListItemDecorator>
             Chat
-            <Chip size="sm" color="danger" sx={{ ml: 'auto' }}>
+            <Chip size="sm" color="warning" variant="soft" sx={{ ml: 'auto' }}>
               5
             </Chip>
           </ListItemButton>
@@ -131,7 +126,7 @@ export default function ColorInversionNavigation() {
       </Sheet>
       <Sheet
         variant="soft"
-        color="info"
+        color="neutral"
         invertedColors
         sx={(theme) => ({
           p: 2,
@@ -178,7 +173,6 @@ export default function ColorInversionNavigation() {
               'primary',
               'neutral',
               'danger',
-              'info',
               'success',
               'warning',
             ];

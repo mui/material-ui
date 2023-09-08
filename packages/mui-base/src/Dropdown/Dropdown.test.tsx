@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { act, createRenderer } from 'test/utils';
-import Dropdown from '@mui/base/Dropdown';
+import { Dropdown } from '@mui/base/Dropdown';
 import { DropdownContext } from '@mui/base/useDropdown';
-import MenuButton from '@mui/base/MenuButton';
-import MenuItem from '@mui/base/MenuItem';
-import Menu from '@mui/base/Menu';
+import { MenuButton } from '@mui/base/MenuButton';
+import { MenuItem } from '@mui/base/MenuItem';
+import { Menu } from '@mui/base/Menu';
 
 describe('<Dropdown />', () => {
   const { render } = createRenderer();

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Paper, { PaperProps } from '@mui/material/Paper';
 import { expectType } from '@mui/types';
+import Paper, { PaperProps } from '@mui/material/Paper';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
   function CustomComponent() {

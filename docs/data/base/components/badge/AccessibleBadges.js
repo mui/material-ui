@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import Badge, { badgeClasses } from '@mui/base/Badge';
+import { Badge, badgeClasses } from '@mui/base/Badge';
 import MailIcon from '@mui/icons-material/Mail';
 
 function notificationsLabel(count) {

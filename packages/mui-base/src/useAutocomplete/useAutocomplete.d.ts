@@ -28,7 +28,7 @@ export function createFilterOptions<Value>(
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
 
 export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Multiple extends true
-  ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  ? ReadonlyArray<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
   : DisableClearable extends true
   ? NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
   : Value | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
@@ -339,7 +339,7 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
  *
  * - [useAutocomplete API](https://mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
  */
-export default function useAutocomplete<
+export function useAutocomplete<
   Value,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,

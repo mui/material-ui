@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { expect } from 'chai';
+import { spy } from 'sinon';
 import { createRenderer, describeConformance } from 'test/utils';
+import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuButton, { menuButtonClasses as classes } from '@mui/joy/MenuButton';
-import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 
 const testContext: DropdownContextValue = {
   dispatch: () => {},
@@ -40,4 +42,37 @@ describe('<MenuButton />', () => {
     testVariantProps: { variant: 'soft' },
     ThemeProvider,
   }));
+
+  describe('prop: disabled', () => {
+    it('should render a disabled button', () => {
+      const { getByRole } = render(
+        <DropdownContext.Provider value={testContext}>
+          <MenuButton disabled />
+        </DropdownContext.Provider>,
+      );
+
+      const button = getByRole('button');
+      expect(button).to.have.property('disabled', true);
+    });
+
+    it('should not open the menu when clicked', () => {
+      const dispatchSpy = spy();
+      const context = {
+        ...testContext,
+        state: { open: false },
+        dispatch: dispatchSpy,
+      };
+
+      const { getByRole } = render(
+        <DropdownContext.Provider value={context}>
+          <MenuButton disabled />
+        </DropdownContext.Provider>,
+      );
+
+      const button = getByRole('button');
+      button.click();
+
+      expect(dispatchSpy.called).to.equal(false);
+    });
+  });
 });

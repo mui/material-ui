@@ -18,7 +18,7 @@ Things to know when using the `Popover` component:
 
 ## Basic Popover
 
-{{"demo": "BasicPopover.js" }}
+{{"demo": "BasicPopover.js"}}
 
 ## Anchor playground
 

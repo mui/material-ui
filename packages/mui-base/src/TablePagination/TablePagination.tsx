@@ -3,9 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import composeClasses from '../composeClasses';
-import isHostComponent from '../utils/isHostComponent';
-import TablePaginationActions from './TablePaginationActions';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { isHostComponent } from '../utils/isHostComponent';
+import { TablePaginationActions } from './TablePaginationActions';
 import { getTablePaginationUtilityClass } from './tablePaginationClasses';
 import {
   TablePaginationProps,
@@ -374,4 +374,4 @@ TablePagination.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default TablePagination;
+export { TablePagination };

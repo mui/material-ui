@@ -13,13 +13,13 @@ export default function CommentSkeleton() {
         <Skeleton variant="rectangular" width={44} height={44} />
         <div>
           <Skeleton variant="text" width={100} />
-          <Skeleton level="body2" variant="text" width={200} />
+          <Skeleton level="body-sm" variant="text" width={200} />
         </div>
       </CardContent>
       <CardContent sx={{ gap: 0.5, mt: 1 }}>
-        <Skeleton level="body3" variant="text" width="92%" />
-        <Skeleton level="body3" variant="text" width="99%" />
-        <Skeleton level="body3" variant="text" width="96%" />
+        <Skeleton level="body-xs" variant="text" width="92%" />
+        <Skeleton level="body-xs" variant="text" width="99%" />
+        <Skeleton level="body-xs" variant="text" width="96%" />
       </CardContent>
     </Card>
   );

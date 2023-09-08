@@ -85,4 +85,4 @@ function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
   };
 }
 
-export default useTabs;
+export { useTabs };

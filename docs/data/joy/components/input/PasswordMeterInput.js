@@ -32,7 +32,7 @@ export default function PasswordMeterInput() {
         }}
       />
       <Typography
-        level="body3"
+        level="body-xs"
         sx={{ alignSelf: 'flex-end', color: 'hsl(var(--hue) 80% 30%)' }}
       >
         {value.length < 3 && 'Very weak'}
