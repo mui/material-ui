@@ -132,9 +132,8 @@ const StyledMenuItem = styled(MenuItem)(
   `,
 );
 
-const TriggerButton = styled(MenuButton)(
-  ({ theme }) => `
-font-family: IBM Plex Sans, sans-serif;
+const TriggerButton = styled(MenuButton)`
+  font-family: IBM Plex Sans, sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -154,8 +153,7 @@ font-family: IBM Plex Sans, sans-serif;
     box-shadow: 0 3px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
     outline: none;
   }
-  `,
-);
+`;
 
 interface MenuSectionProps {
   children: React.ReactNode;
