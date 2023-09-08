@@ -27,7 +27,7 @@ That's why it's so critical to ensure company values are actionable and authenti
 
 To make that happen, we decided to engage the whole company in a series of discovery and reflection exercises. 🔍
 
-By doing so, we could make sure that any changes to the company values would accurately reflect the values shared by our team, and the language used to express them. Here's how we did it! 👇
+This way, any changes to the company values—along with the language used to express them—would accurately reflect the values shared by our team. Here's how we did it! 👇
 
 <img alt="A collage of slides from the values discovery exercise kickoff." src="/static/blog/2023-mui-values/good-values.png" width="1200" height="840" loading="lazy" />
 
