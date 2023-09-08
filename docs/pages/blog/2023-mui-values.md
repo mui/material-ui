@@ -186,7 +186,7 @@ To ensure values don't become mere writing on the wall at MUI, we've purposefull
 
 For example, before you even join MUI, you'll answer carefully chosen questions in your interviews. This helps us understand how well you align to our company values and how you might contribute to enhancing them and our culture. 📝
 
-On a day to day level, values show up everywhere. They're referenced in discussions and deliberations related to our work. We explicitly state how they directly influence our strategies and plans within our documents. Exemplifying core values is also a condition for promotion here and therefore a topic in performance and development conversations. 🆙
+On a day-to-day level, values show up everywhere. They're referenced in discussions and deliberations related to our work. We explicitly state how they directly influence our strategies and plans within our documents. Exemplifying core values is also a condition for promotion here and therefore a topic in performance and development conversations. 🆙
 
 As a fun way to reinforce values and show team gratitude, we've also created #Thanks-And-Praise Thursdays — a dedicated Slack channel that prompts us every Thursday to think about who we could recognize for championing core values and behaviors.
 
