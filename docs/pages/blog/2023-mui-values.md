@@ -35,7 +35,7 @@ This way, any changes to the company values—along with the language used to ex
 
 Kicking off, everyone was invited to answer 10 questions via an asynchronous survey.
 
-The purpose of this portion was to get a picture of how the existing values were being perceived and actioned throughout the company on a day to day.
+The purpose of this portion was to get a picture of how the existing values were being perceived and actioned throughout the company from day to day.
 It was also to give people an opportunity to express what they felt may be _missing_ and important to include for our future success.
 
 We asked people to reflect on how accurately they felt each value described our internal culture; what they felt our company cared deeply about and why; what is utterly unique about us as a team; and more. 🤔💭
