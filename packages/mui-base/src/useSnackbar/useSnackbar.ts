@@ -20,7 +20,7 @@ import { EventHandlers } from '../utils/types';
  *
  * - [useSnackbar API](https://mui.com/base-ui/react-snackbar/hooks-api/#use-snackbar)
  */
-export function useSnackbar(parameters: UseSnackbarParameters): UseSnackbarReturnValue {
+export function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
   const {
     autoHideDuration = null,
     disableWindowBlurListener = false,
