@@ -116,7 +116,7 @@ Since we place such a high value on quality and accuracy, we didn't want to rush
 
 As we approached the finish line, I collaborated closely with our CEO and  co-founder, Olivier. 🙋
 
-Our goal was to ensure that the final values not only reflected our team and company's culture but, most importantly, that they could be effectively integrated into our company's operations and performance expectations.
+Our goal was to ensure that the final values not only reflected our team and company culture but, most importantly, that they could be integrated effectively into our company's operations and performance expectations.
 
 And we believe we've achieved just that! Here they come... 🥁 
 
