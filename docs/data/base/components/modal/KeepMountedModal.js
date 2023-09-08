@@ -91,7 +91,7 @@ const style = (theme) => ({
 });
 
 const TriggerButton = styled('button')`
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
