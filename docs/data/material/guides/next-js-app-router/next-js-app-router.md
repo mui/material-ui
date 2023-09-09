@@ -212,7 +212,6 @@ export default function Page() {
     <Container>
       {/* Next.js won't render this button without 'use-client' */}
       <Button
-        variant="text"
         onClick={() => {
           console.log('handle click');
         }}
