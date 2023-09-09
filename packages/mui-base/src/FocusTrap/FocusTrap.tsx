@@ -241,7 +241,6 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
 
     const contain = () => {
       const rootElement = rootRef.current;
-      const doc = ownerDocument(rootRef.current);
 
       // Cleanup functions are executed lazily in React 17.
       // Contain can be called between the component being unmounted and its cleanup function being run.
