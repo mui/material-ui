@@ -28,7 +28,7 @@ export function createFilterOptions<Value>(
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
 
 export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Multiple extends true
-  ? ReadonlyArray<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
   : DisableClearable extends true
   ? NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
   : Value | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
