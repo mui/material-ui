@@ -20,7 +20,7 @@ Adoption of v3 is tentatively planned for Material UI v6—see [the release sche
 You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future updates.
 :::
 
-## Advantages of Material UI
+## Advantages of Material UI
 
 - **Ship faster:** Over 2,500 open-source [contributors](https://github.com/mui/material-ui/graphs/contributors) have poured countless hours into these components.
   Focus on your core business logic instead of reinventing the wheel—we've got your UI covered.
@@ -33,7 +33,7 @@ You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/293
   It's almost as old as React itself—its history stretches back to 2014—and we're in this for the long haul.
   You can count on the community's support for years to come (e.g. [Stack Overflow](https://insights.stackoverflow.com/trends?tags=material-ui)).
 
-## Material UI vs. Base UI
+## Material UI vs. Base UI
 
 Material UI and [Base UI](/base-ui/getting-started/) feature many of the same UI components, but Base UI comes without any default styles or styling solutions.
 

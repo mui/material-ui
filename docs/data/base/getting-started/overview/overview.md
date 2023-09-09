@@ -24,7 +24,7 @@ We're adding new components and features regularly, and you're welcome to contri
 Look for the [`package: base-ui`](https://github.com/mui/material-ui/labels/package%3A%20base-ui) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own.
 :::
 
-## Advantages of Base UI
+## Advantages of Base UI
 
 - **Ship faster:** Base UI gives you the foundational building blocks you need to assemble a sleek and sophisticated user interface in a fraction of the time that it would take to do it all from scratch.
 - **You own the CSS:** unlike Material UI, which uses Emotion as a default style engine, Base UI has no built-in styling solution.
@@ -32,7 +32,7 @@ Look for the [`package: base-ui`](https://github.com/mui/material-ui/labels/pack
 - **Accessibility:** Base UI components are built with accessibility in mind.
   We do our best to make all components screen reader-friendly, and offer suggestions for optimizing accessibility throughout our documentation.
 
-## Base UI vs. Material UI
+## Base UI vs. Material UI
 
 Base UI features many of the same components as [Material UI](/material-ui/getting-started/), but without the Material Design implementation.
 
