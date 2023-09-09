@@ -37,6 +37,6 @@ It demonstrates what results after handling v5's breaking changes to the [theme]
 
 ## The Link component
 
-Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link).
+Next.js has [a custom Link component](https://nextjs.org/docs/pages/api-reference/components/link).
 The example folder provides adapters for usage with Material UI.
 You can find more information [in the documentation](https://mui.com/material-ui/guides/routing/#next-js).
