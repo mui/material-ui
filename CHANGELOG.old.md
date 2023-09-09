@@ -1293,7 +1293,7 @@ Here are some highlights ✨:
 
 - [Autocomplete] Fix list of countries (#19862) @FottyM
 - [TreeView] Fix conditional nodes support (#19849) @joshwooding
-- [Treeview] Add node selection support (#18357) @joshwooding
+- [TreeView] Add node selection support (#18357) @joshwooding
 
 ### Docs
 
