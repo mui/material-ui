@@ -1,4 +1,4 @@
-import generateUtilityClasses from '@mui/utils/generateUtilityClasses'; // TODO import from @mui/base, private package
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 import generateUtilityClass from '../generateUtilityClass';
 
 export interface ListSubheaderClasses {
