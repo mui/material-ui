@@ -2,17 +2,17 @@
 
 <p class="description">Learn how to use Joy UI with the Next.js App Router.</p>
 
-:::info
+## Example
+
 Starting fresh on a new App Router-based project?
 
 Jump right into the code with [this example: Joy UI - Next.js App Router with TypeScript](https://github.com/mui/material-ui/tree/master/examples/joy-ui-nextjs-ts).
-:::
 
 ## Next.js and React Server Components
 
 The Next.js App Router implements React Server Components, [an upcoming feature for React](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md).
 
-To support the App Router, currently all components and hooks from Joy UI and other MUI libraries are exported with the `"use client"` directive.
+To support the App Router, the components and hooks from Joy UI that need access to browser APIs are exported with the `"use client"` directive.
 
 :::warning
 React Server Components should not be conflated with the concept of server-side rendering (SSR).
@@ -104,37 +104,40 @@ export default function RootLayout(props) {
 }
 ```
 
-## Function props
+## Props serialization
 
 Props passed from server components-for example `page.js` or other routing files-must be [serializable](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#passing-props-from-server-to-client-components-serialization).
 
+:::success
 This works without any additional directives:
 
-```jsx
+```tsx
 // app/page.tsx
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 
 export default function Page() {
   return (
-    <Sheet variant="outlined">
+    <Sheet>
       <Typography fontSize="sm">Hello World</Typography>
     </Sheet>
   );
 }
 ```
 
+:::
+
 :::error
-This code snippet _doesn't work_, because the Button's click handler is **non-serializable**:
+This _doesn't work_ because the Button's click handler is **non-serializable**:
 
 ```tsx
-// page.tsx
+// app/page.tsx
 import Button from '@mui/joy/Button';
 import Sheet from '@mui/joy/Sheet';
 
 export default function Page() {
   return (
-    <Sheet variant="outlined">
+    <Sheet>
       {/* Next.js won't render this button without 'use-client' */}
       <Button
         variant="outlined"
