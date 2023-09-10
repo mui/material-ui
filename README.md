@@ -1,23 +1,21 @@
 <!-- markdownlint-disable-next-line -->
 <p align="center">
-  <a href="https://mui.com/" rel="noopener" target="_blank"><img width="150" src="/docs/public/static/logo.svg" alt="MUI logo"></a>
+  <a href="https://mui.com/core/" rel="noopener" target="_blank"><img width="150" height="133" src="/docs/public/static/logo.svg" alt="MUI Core logo"></a>
 </p>
 
 <h1 align="center">MUI Core</h1>
 
-**MUI Core** contains foundational React UI component libraries for shipping new features faster.
+**MUI Core** contains foundational React UI component libraries for shipping new features faster:
 
-- [_Material UI_](https://mui.com/material-ui/getting-started/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
+- [Material UI](https://mui.com/material-ui/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
 
-- [_Joy UI_](https://mui.com/joy-ui/getting-started/) is a beautifully designed library of React UI components.
+- [Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy.
 
-- [_Base UI_](https://mui.com/base-ui/getting-started/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+- [Base UI](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.
 
-- [_MUI System_](https://mui.com/system/getting-started/) is a collection of CSS utilities to help you rapidly lay out custom designs.
+- [MUI System](https://mui.com/system/getting-started/) is a collection of CSS utilities to help you rapidly lay out custom designs.
 
 <div align="center">
-
-**[Stable channel v5](https://mui.com/)**
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui/material-ui/blob/HEAD/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@mui/material/latest.svg)](https://www.npmjs.com/package/@mui/material)
@@ -39,16 +37,8 @@
 
 Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
 
-**npm:**
-
 ```bash
 npm install @mui/material @emotion/react @emotion/styled
-```
-
-**yarn:**
-
-```bash
-yarn add @mui/material @emotion/react @emotion/styled
 ```
 
 <details>
@@ -67,16 +57,8 @@ Use `@latest` for the latest stable release.
 
 Base UI is available as an [npm package](https://www.npmjs.com/package/@mui/base).
 
-**npm:**
-
 ```bash
 npm install @mui/base
-```
-
-**yarn:**
-
-```bash
-yarn add @mui/base
 ```
 
 **Note**: Base UI is still in beta.
@@ -86,30 +68,14 @@ We are adding new components regularly and you're welcome to contribute!
 
 MUI System is available as an [npm package](https://www.npmjs.com/package/@mui/system).
 
-**npm:**
-
 ```bash
 npm install @mui/system @emotion/react @emotion/styled
 ```
 
-**yarn:**
-
-```bash
-yarn add @mui/system @emotion/react @emotion/styled
-```
-
 Or if you want to use styled-components as the styling engine:
-
-**npm:**
 
 ```bash
 npm install @mui/material @mui/styled-engine-sc styled-components
-```
-
-**yarn:**
-
-```bash
-yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
 Visit our [styled-components guide](https://mui.com/material-ui/guides/styled-components/) for more information on configuration.
@@ -176,9 +142,9 @@ Our documentation features [a collection of example projects using Material UI](
 
 ## Documentation
 
-- [Material UI](https://mui.com/material-ui/getting-started/)
+- [Material UI](https://mui.com/material-ui)
 - [Joy UI](https://mui.com/joy-ui/getting-started/)
-- [Base UI](https://mui.com/base-ui/getting-started/)
+- [Base UI](https://mui.com/base-ui/)
 - [MUI System](https://mui.com/system/getting-started/)
 
 ## Premium themes

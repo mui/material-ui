@@ -7,12 +7,10 @@ function App() {
 
       <ul>
         <li className="card">
-          <a href="https://mui.com/base-ui/getting-started/" className="link">
+          <a href="https://mui.com/base-ui/" className="link">
             Base UI
           </a>{' '}
-          is a library of unstyled React UI components which includes prebuilt components with
-          production-ready functionality, along with low-level hooks for transferring that
-          functionality to other components.
+          is a library of unstyled React UI components and hooks.
         </li>
 
         <li className="card">
