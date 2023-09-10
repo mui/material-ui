@@ -60,16 +60,13 @@ export default function getInitColorSchemeScript(options?: GetInitColorSchemeScr
         __html: `(function() {
 try {
   var mode = localStorage.getItem('${modeStorageKey}') || '${defaultMode}';
-  var cssColorScheme = mode;
   var colorScheme = '';
   if (mode === 'system') {
     // handle system mode
     var mql = window.matchMedia('(prefers-color-scheme: dark)');
     if (mql.matches) {
-      cssColorScheme = 'dark';
       colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
     } else {
-      cssColorScheme = 'light';
       colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
     }
   }
@@ -82,7 +79,7 @@ try {
   if (colorScheme) {
     ${colorSchemeNode}.setAttribute('${attribute}', colorScheme);
   }
-} catch (e) {} })();`,
+} catch(e){}})();`,
       }}
     />
   );
