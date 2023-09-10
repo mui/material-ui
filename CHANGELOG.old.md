@@ -279,7 +279,7 @@ A big thanks to the 12 contributors who made this release possible.
 
 - [styles] Add support for TypeScript 4.1 (#23692) @ldrick
 - [ClickAwayListener] Fix mounting behavior in Portals in React 17 (#23367) @eps1lon
-- [TrapFocus] Prevent possible crash in React 17 (#22263) @eps1lon
+- [FocusTrap] Prevent possible crash in React 17 (#22263) @eps1lon
 - [Tabs] Fix RTL scrollbar with Chrome 85 (#22830) @ankit
 
 ### `@material-ui/styles@v4.11.1`
@@ -542,7 +542,7 @@ A big thanks to the 21 contributors who made this release possible.
 
 ### Core
 
-- [TrapFocus] Make an unstable version public (#21201) @dmtrKovalenko
+- [FocusTrap] Make an unstable version public (#21201) @dmtrKovalenko
 - [test] Track size of `@material-ui/utils` (#21240) @eps1lon
 - [core] Batch small changes (#21156) @oliviertassinari
 - [core] Batch small changes (#21249) @oliviertassinari
@@ -729,7 +729,7 @@ Here are some highlights ✨:
 - [Tabs] Improve customizability of the scroll buttons (#20783) @netochaves
 - [TextField] Fix caret color in autofill dark theme (#20857) @CarsonF
 - [Tooltip] Fix disableTouchListener behavior (#20807) @weslenng
-- [unstable_TrapFocus] Guard against dropped memo cache (#20848) @eps1lon
+- [FocusTrap] Guard against dropped memo cache (#20848) @eps1lon
 
 ### `@material-ui/styles@v4.9.13`
 
@@ -3443,7 +3443,7 @@ Here are some highlights ✨:
 - [Portal] Synchronously call onRendered (#15943) @Arlevoy
 - [Radio] Fix dot misalignment in IE11 (#15952) @rupert-ong
 - [theme] Return default value for spacing when no args provided (#15891) @mbrookes
-- [TrapFocus] Fix error restoring focus when activeElement is null (#15967) @ryancogswell
+- [FocusTrap] Fix error restoring focus when activeElement is null (#15967) @ryancogswell
 - [core] Export useMediaQuery & useScrollTrigger in index.js (#15958) @adeelibr
 - [core] Migrate extend ButtonBaseProps typings (#15869) @joshwooding
 
@@ -3963,7 +3963,7 @@ You will learn more about v4 in the final release blog post and our plans for th
 - [core] Use terser for minification in umd bundle (#15491) @eps1lon
 - [test] Conform components forward ref to root component (#15425) @eps1lon
 - [test] Fix a flaky test (#15445) @oliviertassinari
-- [test] Keep track of the bundle size of TrapFocus (#15453) @oliviertassinari
+- [test] Keep track of the bundle size of FocusTrap (#15453) @oliviertassinari
 
 ## 4.0.0-alpha.8
 

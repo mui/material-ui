@@ -3217,7 +3217,7 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 
 ### `@mui/base@5.0.0-alpha.101`
 
-- &#8203;<!-- 01 -->[TrapFocus] Restore the previously exported type from @mui/material (#34601) @michaldudak
+- &#8203;<!-- 01 -->[FocusTrap] Restore the previously exported type from @mui/material (#34601) @michaldudak
 
 ### `@mui/joy@5.0.0-alpha.49`
 
@@ -3333,7 +3333,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 #### Breaking changes
 
-- [TrapFocus] Rename TrapFocus to FocusTrap (#34216) @kabernardes
+- [FocusTrap] Rename TrapFocus to FocusTrap (#34216) @kabernardes
 
   ```diff
   -import TrapFocus from '@mui/base/TrapFocus';
@@ -3575,7 +3575,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 - [Button][base] Prevent too many ref updates (#33882) @michaldudak
 - [Select][base] Fix typo in listbox blur event handler (#34120) @ZeeshanTamboli
-- [TrapFocus] Improve tab test and simplify demo (#34008) @EthanStandel
+- [FocusTrap] Improve tab test and simplify demo (#34008) @EthanStandel
 
 ### `@mui/joy@5.0.0-alpha.43`
 
@@ -3681,7 +3681,7 @@ A big thanks to the 18 contributors who made this release possible. This release
 
 ### `@mui/base@5.0.0-alpha.93`
 
-- &#8203;<!-- 31 -->[TrapFocus] Removes invisible tabbable elements from (#33543) @EthanStandel
+- &#8203;<!-- 31 -->[FocusTrap] Removes invisible tabbable elements from (#33543) @EthanStandel
 - &#8203;<!-- 30 -->[Input][base] Pass the rows prop to the underlying textarea (#33873) @michaldudak
 - &#8203;<!-- 06 -->[SelectUnstyled] Add ability to post the select's value when submitting a form (#33697) @michaldudak
 
@@ -5026,7 +5026,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   );
   ```
 
-- &#8203;<!-- 03 -->[TrapFocus] Move docs to Base and drop the Unstyled prefix (#31954) @michaldudak
+- &#8203;<!-- 03 -->[FocusTrap] Move docs to Base and drop the Unstyled prefix (#31954) @michaldudak
 
   Removed the `Unstyled_` prefix from the Base export (it remains in the Material UI export, though).
 
@@ -7993,7 +7993,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 ### `@material-ui/unstyled@5.0.0-alpha.37`
 
 - &#8203;<!-- 04 -->[Slider] Improve TS definition (#26642) @mnajdova
-- &#8203;<!-- 21 -->[TrapFocus] Capture nodeToRestore via relatedTarget (#26696) @eps1lon
+- &#8203;<!-- 21 -->[FocusTrap] Capture nodeToRestore via relatedTarget (#26696) @eps1lon
 
 ### `@material-ui/icons@5.0.0-alpha.37`
 
@@ -9063,7 +9063,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - &#8203;<!-- 28 -->[Timeline] Migrate TimelineContent to emotion (#25781) @siriwatknp
 - &#8203;<!-- 53 -->[Timeline] Migrate TimelineItem to emotion (#25822) @vicasas
 - &#8203;<!-- 47 -->[Timeline] Migrate TimelineOppositeContent to emotion (#25816) @vicasas
-- &#8203;<!-- 54 -->[TrapFocus] Make isEnabled and getDoc optional (#25784) @m4theushw
+- &#8203;<!-- 54 -->[FocusTrap] Make isEnabled and getDoc optional (#25784) @m4theushw
 
 ### `@material-ui/styled-engine@5.0.0-alpha.31`
 
@@ -9545,7 +9545,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 ### `@material-ui/unstyled@5.0.0-alpha.26`
 
 - &#8203;<!-- 033 -->[Portal] Migrate to unstyled (#24890) @povilass
-- &#8203;<!-- 047 -->[TrapFocus] Migrate to unstyled (#24957) @povilass
+- &#8203;<!-- 047 -->[FocusTrap] Migrate to unstyled (#24957) @povilass
 - &#8203;<!-- 060 -->[Backdrop] Migrate to unstyled (#24985) @povilass
 - &#8203;<!-- 078 -->[Modal] Migrate to emotion + unstyled (#24857) @povilass
 
@@ -10142,7 +10142,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [ButtonBase] Migrate styles to emotion (#24100) @mnajdova
 - [Button] Migrate styles to emotion (#24107) @mnajdova
 - [unstyled] Add utils for generating utility classes (#24126) @mnajdova
-- [TrapFocus] Fix trap to only focus on tabbable elements (#23364) @gregnb
+- [FocusTrap] Fix trap to only focus on tabbable elements (#23364) @gregnb
 - [Link] Improve integration with Next.js (#24121) @kelvinsanchez15
 - [Select] Fix overflow showing scrollbar (#24085) @Segebre
 - [Slider] Fix circular type reference in SliderValueLabel (#24190) @eps1lon
@@ -12075,9 +12075,9 @@ Here are some highlights ✨:
 - [Tabs] Document how to make scroll icons visible (#22255) @Sorgrum
 - [TextField] Add hidden label to multi-line filled textfield (#22284) @fakeharahman
 - [Toolbar] Custom variant (#22217) @mnajdova
-- [TrapFocus] Entangle effects (#22155) @eps1lon
-- [TrapFocus] Fix compatibility issues with React 17 (#22270) @eps1lon
-- [TrapFocus] Prevent possible crash in React 17 (#22262) @eps1lon
+- [FocusTrap] Entangle effects (#22155) @eps1lon
+- [FocusTrap] Fix compatibility issues with React 17 (#22270) @eps1lon
+- [FocusTrap] Prevent possible crash in React 17 (#22262) @eps1lon
 
 ### `@material-ui/icons@v5.0.0-alpha.7`
 
@@ -12162,7 +12162,7 @@ Here are some highlights ✨:
 
   More details in [the documentation](https://mui.com/material-ui/customization/components/#adding-new-component-variants) and [RFC](#21749).
 
-- 👮 Add documentation for the [TrapFocus](https://mui.com/components/trap-focus/) component (#22062) @oliviertassinari.
+- 👮 Add documentation for the [FocusTrap](https://mui.com/base-ui/react-focus-trap/) component (#22062) @oliviertassinari.
 - ⚛️ Prepare support for React v17 (#22093, #22105, #22143, #22111) @eps1lon.
 - 🚧 We have undertaken breaking changes.
 
@@ -12339,7 +12339,7 @@ Here are some highlights ✨:
 - [CssBaseline] Add text size adjust property (#22089) @Tolsee
 - [l10n] Add Greek (el-GR) locale (#21988) @tmanolat
 - [Table] Cell small's right padding is bigger than medium (#22017) @adamlaurencik
-- [TrapFocus] Add documentation (#22062) @oliviertassinari
+- [FocusTrap] Add documentation (#22062) @oliviertassinari
 - [Typography] Add custom variants support (#22006) @mnajdova
 - [useIsFocusVisible] Remove focus-visible if focus is re-targetted (#22102) @eps1lon
 - [core] Fix various potential issues with multiple windows (#22159) @scottander
@@ -12535,7 +12535,7 @@ A big thanks to the 14 contributors who made this release possible.
 - [List] Fix secondary action position when disableGutters={true} (#21732) @kgregory
 - [TablePagination] Fix broken labelling if SelectProps provided ids (#21703) @eps1lon
 - [theme] Fix custom breakpoint in CSS Media Queries (#21759) @nkrivous
-- [TrapFocus] Fix disableAutoFocus prop (#21612) @oliviertassinari
+- [FocusTrap] Fix disableAutoFocus prop (#21612) @oliviertassinari
 
 ### `@material-ui/lab@v5.0.0-alpha.3`
 
@@ -12610,7 +12610,7 @@ A big thanks to the 16 contributors who made this release possible.
 - [MenuItem] Add types for ListItemClasses (#21654) @eps1lon
 - [Slider] Fix cannot read property 'focus' of null (#21653) @mageprincess
 - [TextField] Fix CSS isolation issue (#21665) @Codetalker777
-- [TrapFocus] Fix portal support (#21610) @mnajdova
+- [FocusTrap] Fix portal support (#21610) @mnajdova
 - [TypeScript] Fix version support (#21640) @jakubfiglak
 
 ### `@material-ui/lab@v5.0.0-alpha.2`
