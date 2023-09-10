@@ -8,9 +8,9 @@ import {
 } from '../unstable_useNumberInput/useNumberInput.types';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 
-export interface NumberInputRootSlotPropsOverrides {}
-export interface NumberInputInputSlotPropsOverrides {}
-export interface NumberInputStepperButtonSlotPropsOverrides {}
+export interface NumberInputRootSlotPropsOverrides { }
+export interface NumberInputInputSlotPropsOverrides { }
+export interface NumberInputStepperButtonSlotPropsOverrides { }
 
 export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
   /**
