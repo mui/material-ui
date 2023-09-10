@@ -8,46 +8,46 @@ import TeamStatistics from 'docs/src/components/about/TeamStatistics';
 
 const teamPhotos = [
   {
-    img: '/static/about/teide-group.png',
+    img: '/static/branding/about/group-photo/teide-group.png',
     title:
       'A group photo of the MUI crew posing near the base of Mount Teide at the start of the hike.',
   },
   {
-    img: '/static/about/skiers.png',
+    img: '/static/branding/about/group-photo/skiers.png',
     title: 'MUI team members standing lined-up in the snow with their skigear.',
   },
   {
-    img: '/static/about/group-photo.png',
+    img: '/static/branding/about/group-photo/group-photo.png',
     title: 'Photo of the MUI team in front of the pool at our accommodations in Tenerife',
   },
   {
-    img: '/static/about/team-dinner.png',
+    img: '/static/branding/about/group-photo/team-dinner.png',
     title: 'Members of the MUI team sitting around a large wooden dining table.',
   },
   {
-    img: '/static/about/working-table-tenerife.png',
+    img: '/static/branding/about/group-photo/working-table-tenerife.png',
     title: 'The Toolpad team working together on a heads-down moment in Tenerife.',
   },
   {
-    img: '/static/about/scuba-gear.png',
+    img: '/static/branding/about/group-photo/scuba-gear.png',
     title:
       'MUI team members and their diving instructors pose in scuba gear before a successful scuba diving lesson.',
   },
   {
-    img: '/static/about/outdoor-focus-group.png',
+    img: '/static/branding/about/group-photo/outdoor-focus-group.png',
     title:
       'An impromptu focus group gathered next to the pool with laptops to discuss cross-team marketing strategies.',
   },
   {
-    img: '/static/about/working-table-portugal.png',
+    img: '/static/branding/about/group-photo/working-table-portugal.png',
     title: 'MUI team members working together on a heads-down moment in Portugal.',
   },
   {
-    img: '/static/about/snow-tea.png',
+    img: '/static/branding/about/group-photo/snow-tea.png',
     title: 'The team shares a cup of tea up in the mountains of Chamonix, France.',
   },
   {
-    img: '/static/about/portugal-sight-seeing.png',
+    img: '/static/branding/about/group-photo/portugal-sight-seeing.png',
     title: 'MUI team selfie while sightseeing in Lisbon, Portugal.',
   },
 ];
@@ -75,10 +75,10 @@ const Image = styled('img')(({ theme }) => ({
 }));
 
 const scroll = keyframes`
-  0% { 
-    transform: translateX(0); 
+  0% {
+    transform: translateX(0);
   }
-  100% { 
+  100% {
     transform: translateX(-100%)
   }
 `;
