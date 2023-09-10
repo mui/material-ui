@@ -6,7 +6,7 @@ import AddCircleOutlineRounded from '@mui/icons-material/AddCircleOutlineRounded
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
 export default (function More(props: ButtonBaseProps) {
-  const ref = React.useRef<null | HTMLButtonElement>(null);
+  const ref = React.useRef<HTMLButtonElement>(null);
   return (
     <ButtonBase
       ref={ref}
