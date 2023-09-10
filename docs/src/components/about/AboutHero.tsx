@@ -103,7 +103,8 @@ function PhotoGallery() {
           height: '100%',
           position: 'absolute',
           width: 200,
-          zIndex: 2,
+          zIndex: 1,
+          pointerEvents: 'none',
         },
         '&::before': {
           right: { xs: -64, sm: -20 },
@@ -125,23 +126,7 @@ function PhotoGallery() {
     >
       <ImageContainer>
         {teamPhotos.map((item, index) => (
-          <Image
-            key={index}
-            src={item.img}
-            alt={item.title}
-            loading="lazy"
-          />
-        ))}
-      </ImageContainer>
-      <ImageContainer aria-hidden="true">
-        {/* aria-hidden is used here because this element is a copy from the above, meaning we want to hide it from screen readers. */}
-        {teamPhotos.map((item, index) => (
-          <Image
-            key={index}
-            src={item.img}
-            alt={item.title}
-            loading="lazy"
-          />
+          <Image key={index} src={item.img} alt={item.title} loading="lazy" />
         ))}
       </ImageContainer>
     </Box>
