@@ -94,7 +94,7 @@ function PhotoGallery() {
         display: 'flex',
         gap: 2,
         my: 5,
-        '> div': {
+        '& > div': {
           animation: `${scroll} 120s linear infinite`,
         },
         '&::before, &::after': {
