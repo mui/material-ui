@@ -1,0 +1,8 @@
+<CustomNumberInput
+  startAdornment={
+    <InputAdornment>
+      <AttachMoneyIcon />
+    </InputAdornment>
+  }
+/>
+<CustomNumberInput endAdornment={<InputAdornment>kg</InputAdornment>} />
