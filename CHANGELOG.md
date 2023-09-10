@@ -670,7 +670,7 @@ _Jul 11, 2023_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- 💫 Material UI, Joy UI, and Base UI are compatible with [NextJS App Router](https://nextjs.org/docs/app) (#37656) @mj12albert
+- 💫 Material UI, Joy UI, and Base UI are compatible with [Next.js App Router](https://nextjs.org/docs/app) (#37656) @mj12albert
 - 📚 Added new guides for integrating with Next.js 13 App Router (#37656) @mj12albert
   - Ⓜ️ [Material UI guide](https://mui.com/material-ui/guides/next-js-app-router/)
   - 🅙 [Joy UI guide](https://mui.com/joy-ui/integrations/next-js-app-router/)
@@ -1959,7 +1959,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 20 -->[docs][joy] List slots in API documentation (#36271) @hbjORbj
 - &#8203;<!-- 19 -->[docs][joy] Build API documentations (#36008) @hbjORbj
 - &#8203;<!-- 18 -->[examples] Update Next.js examples to use built-in font (#36315) @Juneezee
-- &#8203;<!-- 17 -->[examples] Update curl link in `material-next-ts-v4-v5-migration` example README (#36321) @ZeeshanTamboli
+- &#8203;<!-- 17 -->[examples] Update curl link in `material-ui-nextjs-ts-v4-v5-migration` example README (#36321) @ZeeshanTamboli
 - &#8203;<!-- 16 -->[examples] Convert Next.js \_document class components to function components (#36109) @ossan-engineer
 
 ### Core

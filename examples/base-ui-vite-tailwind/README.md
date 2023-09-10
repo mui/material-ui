@@ -15,17 +15,17 @@ curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip
 cd base-ui-vite-tailwind
 ```
 
-Install dependencies and run:
+Install it and run:
 
 ```bash
 npm install
 npm start
 ```
 
-PS: Don't forget to [optimize](https://tailwindcss.com/docs/optimizing-for-production) Tailwind CSS for production!
-
 or:
 
 <!-- #default-branch-switch -->
 
 [![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/base-ui-vite-tailwind)
+
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/base-ui-vite-tailwind)

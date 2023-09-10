@@ -1,5 +1,5 @@
 {
-  "name": "material-next-app-router-ts",
+  "name": "material-ui-nextjs-ts",
   "version": "5.0.0",
   "private": true,
   "scripts": {
@@ -15,9 +15,9 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
-    "next": "13.x",
-    "react": "18.x",
-    "react-dom": "18.x"
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",

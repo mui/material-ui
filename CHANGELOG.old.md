@@ -5571,7 +5571,7 @@ Here are some highlights ✨:
 - [Tooltip] Suppress warning if button is disabled and title is empty (#13785) @rfbotto
 - [Dialog] Warn if className in PaperProps is set (#13797) @eps1lon
 - [TextField] Fix textfield label position when empty (#13791) @Studio384
-- [Popper] Save 7 KB gzipped (for people only using it) (#13804) @oliviertassinari
+- [Popper] Save 7 kB gzipped (for people only using it) (#13804) @oliviertassinari
 - [Modal] Handle modal mount interruption (#13778) @amensouissi
 - [Select] Make value prop required in TypeScript (#13810) @t49tran
 - [Popover] Fix onEntering event propagation (#13821) @ekoeditaa
@@ -5788,7 +5788,7 @@ This new package is a significant step forward. Some of the key features:
 - Supports 4 different APIs: hooks, styled-components, higher-order components and render props.
 - Allow accessing the component's props from within the style object.
 - Replace the usage of the old React APIs with the new ones.
-- 15.0 KB gzipped.
+- 15.0 kB gzipped.
 
 Here is an example: https://codesandbox.io/s/vjzn5z4k77.
 
@@ -9898,7 +9898,7 @@ Here are some highlights ✨:
 
 - New InputAdornment component (#8504).
 - New [Frequently asked questions](https://github.com/mui/material-ui/blob/4df547d56448cedf70977d6e2463b38eaf64d1c7/docs/src/pages/getting-started/frequently-asked-questions.md) documentation section
-- We have saved 1 KB gzip by removing our internal react-transition-group fork (#8785).
+- We have saved 1 kB gzip by removing our internal react-transition-group fork (#8785).
 - We have made one step further in order to upgrade all our development dependencies to react@16 (#8804).
 
 ### Breaking change
