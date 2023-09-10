@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import { Switch as UnstyledSwitch, switchClasses } from '@mui/base/Switch';
+import { Switch as BaseSwitch, switchClasses } from '@mui/base/Switch';
 
-const Switch = styled(UnstyledSwitch)`
+const Switch = styled(BaseSwitch)`
   font-size: 0;
   position: relative;
   display: inline-block;

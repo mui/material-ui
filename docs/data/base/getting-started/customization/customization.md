@@ -35,7 +35,7 @@ When working with [CSS Modules](https://github.com/css-modules/css-modules), the
 
 ```tsx
 import clsx from 'clsx';
-import { Switch as UnstyledSwitch, SwitchOwnerState } from '@mui/base/Switch';
+import { Switch as BaseSwitch, SwitchOwnerState } from '@mui/base/Switch';
 import classes from './styles.module.css';
 
 export default function Switch(props) {
@@ -51,7 +51,7 @@ export default function Switch(props) {
     input: { className: classes.input },
   };
 
-  return <UnstyledSwitch {...props} slotProps={slotProps} />;
+  return <BaseSwitch {...props} slotProps={slotProps} />;
 }
 ```
 
@@ -62,7 +62,7 @@ In this example we're using the [clsx](https://www.npmjs.com/package/clsx) utili
 Use [`slotProps`](#customizing-slot-props) to apply custom styles using [Tailwind CSS](https://tailwindcss.com/), as shown below:
 
 ```tsx
-import { Switch as UnstyledSwitch, SwitchOwnerState } from '@mui/base/Switch';
+import { Switch as BaseSwitch, SwitchOwnerState } from '@mui/base/Switch';
 
 export default function Switch(props) {
   const slotProps = {
@@ -79,7 +79,7 @@ export default function Switch(props) {
     input: { className: 'absolute w-full h-full inset-0 opacity-0 z-10 m-0' },
   };
 
-  return <UnstyledSwitch {...props} slotProps={slotProps} />;
+  return <BaseSwitch {...props} slotProps={slotProps} />;
 }
 ```
 
