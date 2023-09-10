@@ -3753,10 +3753,10 @@
   dependencies:
     "@types/lodash" "*"
 
-"@types/lodash@*", "@types/lodash@^4.14.197":
-  version "4.14.197"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.197.tgz#e95c5ddcc814ec3e84c891910a01e0c8a378c54b"
-  integrity sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==
+"@types/lodash@*", "@types/lodash@^4.14.198":
+  version "4.14.198"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.198.tgz#4d27465257011aedc741a809f1269941fa2c5d4c"
+  integrity sha512-trNJ/vtMZYMLhfN45uLq4ShQSw0/S7xCTLLVM+WM1rmFpba/VS42jVUgaO3w/NOLiWR/09lnYk0yMaA/atdIsg==
 
 "@types/markdown-to-jsx@^7.0.1":
   version "7.0.1"
