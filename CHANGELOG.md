@@ -1959,7 +1959,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 20 -->[docs][joy] List slots in API documentation (#36271) @hbjORbj
 - &#8203;<!-- 19 -->[docs][joy] Build API documentations (#36008) @hbjORbj
 - &#8203;<!-- 18 -->[examples] Update Next.js examples to use built-in font (#36315) @Juneezee
-- &#8203;<!-- 17 -->[examples] Update curl link in `material-nextjs-ts-v4-v5-migration` example README (#36321) @ZeeshanTamboli
+- &#8203;<!-- 17 -->[examples] Update curl link in `material-ui-nextjs-ts-v4-v5-migration` example README (#36321) @ZeeshanTamboli
 - &#8203;<!-- 16 -->[examples] Convert Next.js \_document class components to function components (#36109) @ossan-engineer
 
 ### Core
