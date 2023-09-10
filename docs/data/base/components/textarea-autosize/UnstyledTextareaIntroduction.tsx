@@ -1,6 +1,10 @@
 import * as React from 'react';
-import { TextareaAutosize as TextareaAutosizeUnstyled } from '@mui/base/TextareaAutosize';
+import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
+
+export default function UnstyledTextareaIntroduction() {
+  return <TextareaAutosize aria-label="empty textarea" placeholder="Empty" />;
+}
 
 const blue = {
   100: '#DAECFF',
@@ -24,7 +28,7 @@ const grey = {
   900: '#24292f',
 };
 
-const TextareaAutosize = styled(TextareaAutosizeUnstyled)(
+const TextareaAutosize = styled(BaseTextareaAutosize)(
   ({ theme }) => `
   width: 320px;
   font-family: IBM Plex Sans, sans-serif;
@@ -53,7 +57,3 @@ const TextareaAutosize = styled(TextareaAutosizeUnstyled)(
   }
 `,
 );
-
-export default function UnstyledTextareaIntroduction() {
-  return <TextareaAutosize aria-label="empty textarea" placeholder="Empty" />;
-}
