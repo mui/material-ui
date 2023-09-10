@@ -179,11 +179,11 @@ const NumberInput = React.forwardRef(function NumberInput(
 
   return (
     <Root {...rootProps}>
+      <DecrementButton {...decrementButtonProps} />
+      <IncrementButton {...incrementButtonProps} />
       {startAdornment}
       <Input {...inputProps} />
       {endAdornment}
-      <DecrementButton {...decrementButtonProps} />
-      <IncrementButton {...incrementButtonProps} />
     </Root>
   );
 }) as OverridableComponent<NumberInputTypeMap>;
