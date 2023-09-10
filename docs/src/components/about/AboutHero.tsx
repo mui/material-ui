@@ -127,7 +127,7 @@ function PhotoGallery() {
         {teamPhotos.map((item, index) => (
           <Image
             key={index}
-            src={`${item.img}?w=162&auto=format`}
+            src={item.img}
             alt={item.title}
             loading="lazy"
           />
@@ -138,7 +138,7 @@ function PhotoGallery() {
         {teamPhotos.map((item, index) => (
           <Image
             key={index}
-            src={`${item.img}?w=162&auto=format`}
+            src={item.img}
             alt={item.title}
             loading="lazy"
           />
