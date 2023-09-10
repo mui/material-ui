@@ -132,6 +132,7 @@ export interface TablePaginationTypeMap<
  *
  * Demos:
  *
+ * - [Pagination](https://mui.com/material-ui/react-pagination/)
  * - [Table](https://mui.com/material-ui/react-table/)
  *
  * API:
