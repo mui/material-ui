@@ -5,6 +5,7 @@ const inter = Inter({
   subsets: ['latin'],
   adjustFontFallback: false, // prevent NextJS from adding its own fallback font
   fallback: ['var(--joy-fontFamily-fallback)'], // use Joy UI's fallback font
+  display: 'swap',
 });
 
 const sourceCodePro = Source_Code_Pro({
@@ -21,6 +22,7 @@ const sourceCodePro = Source_Code_Pro({
     'Courier New',
     'monospace',
   ],
+  display: 'swap',
 });
 
 const theme = extendTheme({
