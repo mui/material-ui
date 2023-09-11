@@ -126,7 +126,13 @@ function PhotoGallery() {
     >
       <ImageContainer>
         {teamPhotos.map((item, index) => (
-          <Image key={index} src={item.img} alt={item.title} loading="lazy" />
+          <Image
+            key={index}
+            src={item.img}
+            alt={item.title}
+            loading={index > 2 ? 'lazy' : undefined}
+            fetchPriority={index > 2 ? undefined : 'high'}
+          />
         ))}
       </ImageContainer>
     </Box>
