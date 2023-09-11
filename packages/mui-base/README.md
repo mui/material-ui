@@ -1,24 +1,20 @@
-# @mui/base
+# Base UI
 
-This package hosts unstyled React components and hooks that can be used for creating custom design systems.
+Base UI is a library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.
 
 ## Installation
 
 Install the package in your project directory with:
 
 ```bash
-// with npm
 npm install @mui/base
-
-// with yarn
-yarn add @mui/base
 ```
 
 ## Documentation
 
 <!-- #default-branch-switch -->
 
-[The documentation](https://mui.com/base-ui/getting-started/)
+[The documentation](https://mui.com/base-ui/)
 
 ## Contributing
 

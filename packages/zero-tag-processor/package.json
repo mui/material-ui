@@ -58,7 +58,7 @@
     "@types/lodash.get": "^4.4.7",
     "@types/chai": "^4.3.5",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.17.6"
+    "@types/node": "^18.17.15"
   },
   "sideEffects": false,
   "publishConfig": {
