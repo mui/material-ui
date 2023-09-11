@@ -31,6 +31,7 @@ export default function ChipMaterialYouPlayground() {
           propName: 'size',
           knob: 'select',
           options: ['small', 'medium'],
+          defaultValue: 'medium',
         },
         {
           propName: 'disabled',
