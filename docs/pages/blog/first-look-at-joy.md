@@ -22,7 +22,7 @@ Material UI is MUI's React implementation of Google's Material Design.
 
 Over time Material UI has established itself as the go-to library for quickly breathing life into products, mostly thanks to its design, customizability, and documentation.
 However, the components do come by default with the 2018 Google look and feel that is no longer as popular as it once was.
-And as we've confirmed with [our latest developer survey](/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library/), design quality is one of the most important elements that developers consider when choosing a UI library.
+And as we've confirmed with [our latest developer survey](/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), design quality is one of the most important elements that developers consider when choosing a UI library.
 
 ## Why not just build a new Material UI theme?
 

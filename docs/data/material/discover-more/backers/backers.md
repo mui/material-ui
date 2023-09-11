@@ -67,7 +67,7 @@ via [Open Collective](https://opencollective.com/mui)
 
 ### Why is Material UI a "crowd-funded open-source project"?
 
-Material UI (as well as [Base UI](/base-ui/getting-started/) and [Joy UI](/joy-ui/getting-started/)) is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To ensure that MUI's component libraries can stand the test of time for our users, they need to be well directed and financially sustainable.
+Material UI (as well as [Base UI](/base-ui/) and [Joy UI](/joy-ui/getting-started/)) is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To ensure that MUI's component libraries can stand the test of time for our users, they need to be well directed and financially sustainable.
 
 The absolute best way to support MUI's libraries ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving MUI's products, which you and other MUI users then benefit from.
 
