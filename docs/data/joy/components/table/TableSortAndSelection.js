@@ -401,7 +401,7 @@ export default function TableSortAndSelection() {
                 '--TableRow-hoverBackground': 'transparent',
               }}
             >
-              <td colSpan={6} />
+              <td colSpan={6} aria-hidden />
             </tr>
           )}
         </tbody>

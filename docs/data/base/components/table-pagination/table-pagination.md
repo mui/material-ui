@@ -21,33 +21,17 @@ It controls two properties of its parent table:
 - displayed page index
 - number of rows per page
 
-Table Pagination renders its internal elements in a `<td>` tag by default so it can be inserted into a table's `<tr>`.
-You can use the `slots.root` prop to render a different root element—for example, if you need to place the pagination controls outside of the table.
-See the [Slot props section](#slot-props) for details.
-
 {{"demo": "UnstyledPaginationIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
 import { TablePagination } from '@mui/base/TablePagination';
-
-export default function MyApp() {
-  return (
-    <table>
-      <tr>
-        <TablePagination />
-      </tr>
-    </table>
-  );
-}
 ```
 
-### Basics
+Table Pagination renders its internal elements in a `<td>` tag by default so it can be inserted into a table's `<tr>`.
+You can use the `slots.root` prop to render a different root element—for example, if you need to place the pagination controls outside of the table.
+See [Custom structure](#custom-structure) for details.
 
 The following demo shows an example of customized pagination controls in a table footer that spans the entire row:
 
@@ -123,7 +107,8 @@ The following code snippet applies a CSS class called `my-spacer` to the spacer 
 
 ### Usage with TypeScript
 
-In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component.
+This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
 <TablePagination<typeof CustomComponent>

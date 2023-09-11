@@ -44,7 +44,7 @@ const StyledTab = styled(Tab)<{ ownerState: { mounted: boolean } }>(({ theme, ow
     cursor: 'pointer',
     borderRadius: '8px',
     position: 'relative',
-    '&:not(:first-child)': {
+    '&:not(:first-of-type)': {
       marginLeft: 0.5,
     },
     ...(ownerState.mounted && {

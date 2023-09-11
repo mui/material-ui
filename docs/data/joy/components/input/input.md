@@ -95,7 +95,7 @@ To trigger the focus ring programmatically, set the CSS variable `--Input-focuse
 {{"demo": "TriggerFocusInput.js"}}
 
 :::info
-💡 The focus ring still appear on focus even though you set `--Input-focused: 0`.
+The focus ring still appear on focus even though you set `--Input-focused: 0`.
 :::
 
 ### Label and helper text

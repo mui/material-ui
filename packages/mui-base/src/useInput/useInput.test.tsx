@@ -47,4 +47,24 @@ describe('useInput', () => {
       expect(handleFocus.callCount).to.equal(1);
     });
   });
+
+  describe('external props', () => {
+    it('prop getter functions should forward arbitrary props to the corresponding slot', () => {
+      const rootRef = React.createRef<HTMLDivElement>();
+
+      function Input() {
+        const { getRootProps, getInputProps } = useInput();
+        return (
+          <div {...getRootProps({ 'data-testid': 'test-root-slot', ref: rootRef })}>
+            <input {...getInputProps({ 'data-testid': 'test-input-slot' })} />
+          </div>
+        );
+      }
+      const { getByRole } = render(<Input />);
+
+      expect(rootRef.current).to.have.attribute('data-testid', 'test-root-slot');
+
+      expect(getByRole('textbox')).to.have.attribute('data-testid', 'test-input-slot');
+    });
+  });
 });

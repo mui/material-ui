@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { CssVarsProvider } from '@mui/joy/styles';
-import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
+import GlobalStyles from '@mui/joy/GlobalStyles';
 import Box from '@mui/joy/Box';
-import useScript from './useScript';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import MyProfile from './components/MyProfile';
+import useScript from './useScript';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -46,19 +46,15 @@ export default function JoyOrderDashboardTemplate(props: any) {
       >
         <Header />
         <Sidebar />
+        <Header />
         <Box
           component="main"
           className="MainContent"
-          sx={(theme) => ({
-            '--main-paddingTop': {
-              xs: `calc(${theme.spacing(2)} + var(--Header-height, 0px))`,
-              md: '32px',
-            },
-            px: {
-              xs: 2,
+          sx={{
+            pt: {
+              xs: 'calc(12px + var(--Header-height))',
               md: 3,
             },
-            pt: 'var(--main-paddingTop)',
             pb: {
               xs: 2,
               sm: 2,
@@ -71,7 +67,7 @@ export default function JoyOrderDashboardTemplate(props: any) {
             height: '100%',
             gap: 1,
             overflow: 'auto',
-          })}
+          }}
         >
           <MyProfile />
         </Box>

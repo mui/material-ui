@@ -20,10 +20,10 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(
       }}
       slotProps={{
         incrementButton: {
-          children: '▴',
+          children: <span className="arrow">▴</span>,
         },
         decrementButton: {
-          children: '▾',
+          children: <span className="arrow">▾</span>,
         },
       }}
       {...props}
@@ -120,12 +120,11 @@ const StyledButton = styled('button')(
   height: 19px;
   font-family: system-ui, sans-serif;
   font-size: 0.875rem;
+  line-height: 1;
   box-sizing: border-box;
-  line-height: 1.2;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 0;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
@@ -140,10 +139,14 @@ const StyledButton = styled('button')(
     grid-column: 2/3;
     grid-row: 1/2;
   }
-  
+
   &.${numberInputClasses.decrementButton} {
     grid-column: 2/3;
     grid-row: 2/3;
+  }
+
+  & .arrow {
+    transform: translateY(-1px);
   }
 `,
 );

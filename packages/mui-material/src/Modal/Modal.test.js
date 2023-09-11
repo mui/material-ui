@@ -871,4 +871,14 @@ describe('<Modal />', () => {
       expect(getByTestId('backdrop')).to.have.class('custom-backdrop');
     });
   });
+
+  it('should not warn when onTransitionEnter and onTransitionExited are provided', () => {
+    expect(() => {
+      render(
+        <Modal open onTransitionEnter={() => {}} onTransitionExited={() => {}}>
+          <div />
+        </Modal>,
+      );
+    }).not.toErrorDev();
+  });
 });

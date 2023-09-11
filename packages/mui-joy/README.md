@@ -1,17 +1,13 @@
-# @mui/joy
+# Joy UI
 
-Joy UI is a library of beautifully designed React UI components built to spark joy in the development process.
+Joy UI is a library of beautifully designed React UI components built to spark joy.
 
 ## Installation
 
 Install the package in your project directory with:
 
 ```bash
-// with npm
 npm install @mui/joy @emotion/react @emotion/styled
-
-// with yarn
-yarn add @mui/joy @emotion/react @emotion/styled
 ```
 
 ## Documentation

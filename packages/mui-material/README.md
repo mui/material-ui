@@ -1,19 +1,15 @@
-# @mui/material
+# Material UI
 
-React components that implement Google's Material Design.
+Material UI is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
 
 ## Installation
 
 Install the package in your project directory with:
 
 ```bash
-// with npm
 npm install @mui/material
-
-// with yarn
-yarn add @mui/material
 ```
 
 ## Documentation
 
-[The documentation](https://mui.com/)
+[The documentation](https://mui.com/material-ui/)
