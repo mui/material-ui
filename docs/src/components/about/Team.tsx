@@ -123,6 +123,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               <img
                 loading="lazy"
                 height="20"
+                width="40"
                 src={`https://flagcdn.com/${props.locationCountry}.svg`}
                 alt=""
               />
