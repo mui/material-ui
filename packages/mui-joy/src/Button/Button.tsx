@@ -6,12 +6,12 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { Interpolation } from '@mui/system';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, Theme, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const {
@@ -151,13 +151,24 @@ export const getButtonStyles = ({
       [theme.focus.selector]: theme.focus.default,
     } as const,
     {
-      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+      ...getScopedGlobalVariantVars(
+        theme.variants[ownerState.variant!]?.[ownerState.color!],
+        ownerState.instanceColor,
+      ),
       '&:hover': {
-        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        '@media (hover: hover)': getScopedGlobalVariantVars(
+          theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+          ownerState.instanceColor,
+        ),
       },
-      '&:active, &[aria-pressed="true"]':
+      '&:active, &[aria-pressed="true"]': getScopedGlobalVariantVars(
         theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-      '&:disabled': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        ownerState.instanceColor,
+      ),
+      '&:disabled': getScopedGlobalVariantVars(
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        ownerState.instanceColor,
+      ),
       ...(ownerState.loadingPosition === 'center' && {
         // this has to come after the variant styles to take effect.
         [`&.${buttonClasses.loading}`]: {
@@ -213,8 +224,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, buttonGroup.color || colorProp);
+  const color = inProps.color || buttonGroup.color || colorProp;
   const disabled =
     (inProps.disabled || inProps.loading) ?? (buttonGroup.disabled || disabledProp || loading);
 
@@ -228,8 +238,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (
+    // @ts-ignore internal logic for `instanceColor`
     <CircularProgress
-      {...(color !== 'context' && { color })}
+      color={color}
+      instanceColor={inProps.color}
       thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3}
     />
   );
@@ -246,6 +258,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   );
 
   const ownerState = {
+    instanceColor: inProps.color, // must be before `...props` for internal overrides.
     ...props,
     color,
     fullWidth,

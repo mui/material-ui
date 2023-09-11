@@ -130,7 +130,62 @@ export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
     });
   }
 
+  result.context = createVariantStyle(variant, {
+    plainColor: 'var(--variant-plainColor)',
+    plainHoverColor: `var(--variant-plainHoverColor)`,
+    plainHoverBg: 'var(--variant-plainHoverBg)',
+    plainActiveBg: 'var(--variant-plainActiveBg)',
+    plainDisabledColor: 'var(--variant-plainDisabledColor)',
+
+    outlinedColor: 'var(--variant-outlinedColor)',
+    outlinedBorder: 'var(--variant-outlinedBorder)',
+    outlinedHoverColor: `var(--variant-outlinedHoverColor)`,
+    outlinedHoverBorder: `var(--variant-outlinedHoverBorder)`,
+    outlinedHoverBg: `var(--variant-outlinedHoverBg)`,
+    outlinedActiveBg: `var(--variant-outlinedActiveBg)`,
+    outlinedDisabledColor: `var(--variant-outlinedDisabledColor)`,
+    outlinedDisabledBorder: `var(--variant-outlinedDisabledBorder)`,
+
+    softColor: 'var(--variant-softColor)',
+    softBg: 'var(--variant-softBg)',
+    softHoverColor: 'var(--variant-softHoverColor)',
+    softHoverBg: 'var(--variant-softHoverBg)',
+    softActiveBg: 'var(--variant-softActiveBg)',
+    softDisabledColor: 'var(--variant-softDisabledColor)',
+    softDisabledBg: 'var(--variant-softDisabledBg)',
+
+    solidColor: 'var(--variant-solidColor)',
+    solidBg: 'var(--variant-solidBg)',
+    solidHoverBg: 'var(--variant-solidHoverBg)',
+    solidActiveBg: 'var(--variant-solidActiveBg)',
+    solidDisabledColor: 'var(--variant-solidDisabledColor)',
+    solidDisabledBg: 'var(--variant-solidDisabledBg)',
+  });
   return result;
+};
+
+/**
+ * Get the scoped global variant variables if `color` prop is specified on the element instance.
+ */
+export const getScopedGlobalVariantVars = (
+  variantStyle: Record<string, any>,
+  instanceColor: ColorPaletteProp | undefined,
+) => {
+  const scopedVariables: Record<string, string> = {};
+  if (instanceColor) {
+    (Object.values(variantStyle) as Array<any>).forEach((value) => {
+      if (typeof value === 'string' && value.startsWith('var')) {
+        const { groups } = value.match(/^var\((?<variantVar>[^,]*),\s*(?<tokenValue>.*)\)$/) || {};
+        if (groups) {
+          scopedVariables[groups.variantVar] = groups.tokenValue;
+        }
+      }
+    });
+  }
+  return {
+    ...scopedVariables,
+    ...variantStyle,
+  };
 };
 
 export const createSoftInversion = (
@@ -396,7 +451,12 @@ export const createSolidInversion = (theme: ThemeFragment, addDefaultValues?: bo
   return result;
 };
 
-export const invertSolidVariant = (color: ColorPaletteProp) => (theme: ThemeFragment) => {
+/**
+ *
+ * @param color a supported theme color palette
+ * @returns (theme: ThemeFragment) => Record<DefaultColorPalette, CSSObject>
+ */
+export const applySolidInversion = (color: ColorPaletteProp) => (theme: ThemeFragment) => {
   const getCssVarDefault = createGetCssVar(theme.cssVarPrefix);
   const prefixVar = createPrefixVar(theme.cssVarPrefix);
   const getCssVar = (cssVar: string) => {
