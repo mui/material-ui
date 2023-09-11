@@ -90,14 +90,14 @@ const StyledInputRoot = styled('div')(
     grid-template-columns: 24px 1fr;
     grid-template-rows: 1fr 1fr;
     column-gap: 8px;
-    padding: 6px;
+    padding: 8px;
 
-    border-radius: 6px;
-    border-style: solid;
+    border-radius: 8px;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     border-width: 1px;
 
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
 
     border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
