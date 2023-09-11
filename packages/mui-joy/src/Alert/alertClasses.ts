@@ -13,6 +13,8 @@ export interface AlertClasses {
   colorSuccess: string;
   /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Class name applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Class name applied to the endDecorator element if supplied. */
   endDecorator: string;
   /** Class name applied to the root element if `size="sm"`. */
@@ -48,6 +50,7 @@ const alertClasses: AlertClasses = generateUtilityClasses('MuiAlert', [
   'colorNeutral',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'sizeSm',
   'sizeMd',
   'sizeLg',

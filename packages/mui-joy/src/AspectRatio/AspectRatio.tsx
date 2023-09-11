@@ -7,6 +7,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getAspectRatioUtilityClass } from './aspectRatioClasses';
 import { AspectRatioProps, AspectRatioOwnerState, AspectRatioTypeMap } from './AspectRatioProps';
 
@@ -110,7 +111,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     minHeight,
     maxHeight,
     objectFit = 'cover',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     variant = 'soft',
     component,
     flex = false,
@@ -118,6 +119,8 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

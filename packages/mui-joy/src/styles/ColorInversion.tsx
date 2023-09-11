@@ -21,7 +21,7 @@ export const useColorInversion = (childVariant: VariantProp | undefined) => {
       if (overridableVariants && childVariant) {
         if (overridableVariants.includes(childVariant)) {
           // @ts-ignore internal logic
-          return instanceColorProp || defaultColorProp;
+          return instanceColorProp || 'context';
         }
       }
       // @ts-ignore internal logic

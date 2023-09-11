@@ -7,6 +7,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getAlertUtilityClass } from './alertClasses';
 import { AlertProps, AlertOwnerState, AlertTypeMap } from './AlertProps';
@@ -77,6 +78,9 @@ const AlertRoot = styled('div', {
       fontWeight: theme.vars.fontWeight.md,
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     } as const,
+    ownerState.color !== 'context' &&
+      ownerState.invertedColors &&
+      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
     p !== undefined && { '--Alert-padding': p },
     padding !== undefined && { '--Alert-padding': padding },
     borderRadius !== undefined && { '--Alert-radius': borderRadius },
@@ -120,7 +124,8 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   const {
     children,
     className,
-    color = 'neutral',
+    color: colorProp = 'neutral',
+    invertedColors = false,
     role = 'alert',
     variant = 'soft',
     size = 'md',
@@ -131,6 +136,8 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -178,7 +185,15 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     </React.Fragment>
   );
 
-  return <SlotRoot {...rootProps}>{result}</SlotRoot>;
+  return (
+    <SlotRoot {...rootProps}>
+      {invertedColors ? (
+        <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>
+      ) : (
+        result
+      )}
+    </SlotRoot>
+  );
 }) as OverridableComponent<AlertTypeMap>;
 
 Alert.propTypes /* remove-proptypes */ = {
