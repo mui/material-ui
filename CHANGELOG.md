@@ -14,7 +14,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 ### `@mui/material@5.14.9`
 
 - &#8203;<!-- 44 -->[ButtonGroup][material-ui] Determine first, last and middle buttons to support different elements with correct styling (#38520) @ZeeshanTamboli
-- - &#8203;<!-- 07 -->[Modal][material-ui] Fix console warning when onTransitionEnter , onTransitionExit provided (#38868) @sai6855
+- &#8203;<!-- 07 -->[Modal][material-ui] Fix console warning when onTransitionEnter , onTransitionExit provided (#38868) @sai6855
 - &#8203;<!-- 54 -->Revert "[Autocomplete] Type multiple values with readonly arrays." (#38827) @mnajdova
 
 ### `@mui/base@5.0.0-beta.15`
@@ -55,7 +55,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 47 -->[blog] Polish component reference name @oliviertassinari
 - &#8203;<!-- 46 -->[blog] Fix missing card (#38834) @oliviertassinari
 - &#8203;<!-- 45 -->[Button][docs][material-ui] Update the file upload demo (#38823) @danilo-leal
-- &#8203;<!-- 33 -->[docs][DialogTitle] Fix props docs doesn’t mention it extends `Typography` props (#38856) @sai6855
+- &#8203;<!-- 33 -->[docs][DialogTitle] Fix props docs doesn't mention it extends `Typography` props (#38856) @sai6855
 - &#8203;<!-- 32 -->[docs] Improve npm experience (#38906) @oliviertassinari
 - &#8203;<!-- 31 -->[docs] Fix redirection to Base UI URLs @oliviertassinari
 - &#8203;<!-- 30 -->[docs] Fix use of callouts (#38747) @oliviertassinari
