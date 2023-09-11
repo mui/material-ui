@@ -15,16 +15,16 @@ export default function CardVariants() {
         gap: 2,
       }}
     >
-      <Card>
+      <Card variant="plain">
         <CardContent>
-          <Typography level="title-md">Plain card (default)</Typography>
+          <Typography level="title-md">Plain card</Typography>
           <Typography>Description of the card.</Typography>
         </CardContent>
       </Card>
 
       <Card variant="outlined">
         <CardContent>
-          <Typography level="title-md">Outlined card</Typography>
+          <Typography level="title-md">Outlined card (default)</Typography>
           <Typography>Description of the card.</Typography>
         </CardContent>
       </Card>

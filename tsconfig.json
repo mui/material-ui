@@ -19,6 +19,7 @@
       "@mui/lab": ["./packages/mui-lab/src"],
       "@mui/lab/*": ["./packages/mui-lab/src/*"],
       "@mui/markdown": ["./packages/markdown"],
+      "@mui/markdown/*": ["./packages/markdown/*"],
       "@mui/styled-engine": ["./packages/mui-styled-engine/src"],
       "@mui/styled-engine/*": ["./packages/mui-styled-engine/src/*"],
       "@mui/styled-engine-sc": ["./packages/mui-styled-engine-sc/src"],
@@ -38,6 +39,9 @@
       "@mui/material-next/*": ["./packages/mui-material-next/src/*"],
       "@mui/joy": ["./packages/mui-joy/src"],
       "@mui/joy/*": ["./packages/mui-joy/src/*"],
+      "@mui/zero-runtime/*": ["./packages/zero-runtime/src/*"],
+      "@mui/zero-tag-processor/*": ["./packages/zero-tag-processor/src/*"],
+      "@mui/zero-vite-plugin/*": ["./packages/zero-vite-plugin/src/*"],
       "test/*": ["./test/*"],
       "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
     },

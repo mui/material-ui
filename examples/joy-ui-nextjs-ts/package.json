@@ -1,6 +1,6 @@
 {
-  "name": "joy-next-app-router-ts",
-  "version": "0.1.0",
+  "name": "joy-ui-nextjs-ts",
+  "version": "5.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -14,9 +14,9 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@mui/joy": "latest",
-    "next": "13.x",
-    "react": "18.x",
-    "react-dom": "18.x"
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",

@@ -209,4 +209,46 @@ describe('<ButtonGroup />', () => {
       expect(screen.getByRole('button')).to.have.class(buttonClasses.outlinedSecondary);
     });
   });
+
+  describe('position classes', () => {
+    it('correctly applies position classes to buttons', () => {
+      render(
+        <ButtonGroup>
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3</Button>
+        </ButtonGroup>,
+      );
+
+      const firstButton = screen.getAllByRole('button')[0];
+      const middleButton = screen.getAllByRole('button')[1];
+      const lastButton = screen.getAllByRole('button')[2];
+
+      expect(firstButton).to.have.class(classes.firstButton);
+      expect(firstButton).not.to.have.class(classes.middleButton);
+      expect(firstButton).not.to.have.class(classes.lastButton);
+
+      expect(middleButton).to.have.class(classes.middleButton);
+      expect(middleButton).not.to.have.class(classes.firstButton);
+      expect(middleButton).not.to.have.class(classes.lastButton);
+
+      expect(lastButton).to.have.class(classes.lastButton);
+      expect(lastButton).not.to.have.class(classes.middleButton);
+      expect(lastButton).not.to.have.class(classes.firstButton);
+    });
+
+    it('does not apply any position classes to a single button', () => {
+      render(
+        <ButtonGroup>
+          <Button>Single Button</Button>
+        </ButtonGroup>,
+      );
+
+      const button = screen.getByRole('button');
+
+      expect(button).not.to.have.class(classes.firstButton);
+      expect(button).not.to.have.class(classes.middleButton);
+      expect(button).not.to.have.class(classes.lastButton);
+    });
+  });
 });

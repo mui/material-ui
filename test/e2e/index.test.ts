@@ -172,6 +172,26 @@ describe('e2e', () => {
       await page.keyboard.press('Tab');
       await expect(screen.getByText('final tab target')).toHaveFocus();
     });
+
+    it('should not trap focus when clicking outside when disableEnforceFocus is set', async () => {
+      await renderFixture('FocusTrap/DisableEnforceFocusFocusTrap');
+
+      // initial focus is on the button outside of the trap focus
+      await expect(screen.getByTestId('initial-focus')).toHaveFocus();
+
+      // focus the button inside the trap focus
+      await page.keyboard.press('Tab');
+      await expect(screen.getByTestId('inside-trap-focus')).toHaveFocus();
+
+      // the focus is now trapped inside
+      await page.keyboard.press('Tab');
+      await expect(screen.getByTestId('inside-trap-focus')).toHaveFocus();
+
+      const initialFocus = (await screen.getByTestId('initial-focus'))!;
+      await initialFocus.click();
+
+      await expect(screen.getByTestId('initial-focus')).toHaveFocus();
+    });
   });
 
   describe('<Rating />', () => {
@@ -256,12 +276,13 @@ describe('e2e', () => {
   });
 
   describe('<TextField />', () => {
-    it('should handle `onClick` when clicking on the focused label position', async () => {
-      await renderFixture('TextField/TextFieldWithOnClick');
+    it('should fire `onClick` when clicking on the focused label position', async () => {
+      await renderFixture('TextField/OutlinedTextFieldOnClick');
 
       // execute the click on the focused label position
       await page.getByRole('textbox').click({ position: { x: 10, y: 10 } });
-      await page.waitForSelector('.MuiInputBase-root.Mui-error');
+      const errorSelector = page.locator('.MuiInputBase-root.Mui-error');
+      await errorSelector.waitFor();
     });
   });
 });

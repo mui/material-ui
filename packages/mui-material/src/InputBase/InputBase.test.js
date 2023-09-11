@@ -129,6 +129,14 @@ describe('<InputBase />', () => {
       });
       expect(handleFocus.called).to.equal(false);
     });
+
+    it('fires the click event when the <input /> is disabled', () => {
+      const handleClick = spy();
+      const { getByRole } = render(<InputBase disabled onClick={handleClick} />);
+      const input = getByRole('textbox');
+      fireEvent.click(input);
+      expect(handleClick.callCount).to.equal(1);
+    });
   });
 
   describe('prop: readonly', () => {
