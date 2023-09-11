@@ -1,28 +1,33 @@
 {
   "name": "@mui/envinfo",
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "license": "MIT",
-  "description": "Logs infos about the environment relevant to @mui/*",
   "version": "2.0.9",
-  "bin": "./envinfo.js",
-  "dependencies": {
-    "envinfo": "^7.10.0"
-  },
+  "private": false,
   "author": "MUI Team",
-  "bugs": {
-    "url": "https://github.com/mui/material-ui/issues"
-  },
-  "homepage": "https://github.com/mui/material-ui/tree/HEAD/packages/mui-envinfo",
+  "description": "Logs infos about the environment relevant to @mui/*",
+  "bin": "./envinfo.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/mui/material-ui",
     "directory": "packages/mui-envinfo"
   },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "homepage": "https://github.com/mui/material-ui/tree/HEAD/packages/mui-envinfo",
   "files": [],
   "scripts": {
     "build": "node scripts/build"
+  },
+  "dependencies": {
+    "envinfo": "^7.10.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.5",
+    "chai": "^4.3.7",
+    "fs-extra": "^11.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -23,7 +23,7 @@ function Identity<Type>(x: Type): Type {
   return x;
 }
 
-const SliderRoot = styled('span', {
+export const SliderRoot = styled('span', {
   name: 'MuiSlider',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -95,21 +95,7 @@ const SliderRoot = styled('span', {
     },
   };
 });
-
-SliderRoot.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
-} as any;
-
-export { SliderRoot };
-
-const SliderRail = styled('span', {
+export const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
   overridesResolver: (props, styles) => styles.rail,
@@ -136,20 +122,7 @@ const SliderRail = styled('span', {
   }),
 }));
 
-SliderRail.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
-} as any;
-
-export { SliderRail };
-
-const SliderTrack = styled('span', {
+export const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
@@ -184,20 +157,7 @@ const SliderTrack = styled('span', {
   };
 });
 
-SliderTrack.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
-} as any;
-
-export { SliderTrack };
-
-const SliderThumb = styled('span', {
+export const SliderThumb = styled('span', {
   name: 'MuiSlider',
   slot: 'Thumb',
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'isOverlapping',
@@ -285,20 +245,7 @@ const SliderThumb = styled('span', {
   };
 });
 
-SliderThumb.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
-} as any;
-
-export { SliderThumb };
-
-const SliderValueLabel = styled('span', {
+export const SliderValueLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   shouldForwardProp: (prop) =>
@@ -382,20 +329,7 @@ const SliderValueLabel = styled('span', {
   };
 });
 
-SliderValueLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  children: PropTypes.element,
-} as any;
-
-export { SliderValueLabel };
-
-const SliderMark = styled('span', {
+export const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'markActive',
@@ -429,20 +363,7 @@ const SliderMark = styled('span', {
   }),
 );
 
-SliderMark.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
-} as any;
-
-export { SliderMark };
-
-const SliderMarkLabel = styled('span', {
+export const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'markLabelActive',
@@ -480,19 +401,6 @@ const SliderMarkLabel = styled('span', {
     };
   },
 );
-
-SliderMarkLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
-} as any;
-
-export { SliderMarkLabel };
 
 const useUtilityClasses = (ownerState: SliderOwnerState) => {
   const { disabled, dragging, marked, orientation, track, classes, color, size } = ownerState;

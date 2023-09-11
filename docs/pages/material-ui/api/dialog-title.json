@@ -21,7 +21,7 @@
   "muiName": "MuiDialogTitle",
   "forwardsRefTo": "HTMLHeadingElement",
   "filename": "/packages/mui-material/src/DialogTitle/DialogTitle.js",
-  "inheritance": null,
+  "inheritance": { "component": "Typography", "pathname": "/material-ui/api/typography/" },
   "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialog</a></li></ul>",
   "cssComponent": false
 }
