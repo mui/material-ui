@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getTabPanelUtilityClass } from './tabPanelClasses';
-import useTabPanel from '../useTabPanel/useTabPanel';
+import { useTabPanel } from '../useTabPanel/useTabPanel';
 import {
   TabPanelOwnerState,
   TabPanelProps,
@@ -73,6 +74,10 @@ TabPanel.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The props used for each slot inside the TabPanel.
    * @default {}
    */
@@ -95,4 +100,4 @@ TabPanel.propTypes /* remove-proptypes */ = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;
 
-export default TabPanel;
+export { TabPanel };

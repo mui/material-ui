@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Popper from '@mui/base/Popper';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { Popper } from '@mui/base/Popper';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { styled } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 import MenuList from '@mui/joy/MenuList';
@@ -42,7 +42,6 @@ export default function MenuListComposition(): JSX.Element {
         onClick={() => {
           setOpen(!open);
         }}
-        sx={{ borderRadius: 0 }}
       >
         Open menu
       </Button>
@@ -65,7 +64,7 @@ export default function MenuListComposition(): JSX.Element {
           <MenuList
             variant="outlined"
             onKeyDown={handleListKeyDown}
-            sx={{ boxShadow: 'md', bgcolor: 'background.body' }}
+            sx={{ boxShadow: 'md' }}
           >
             <MenuItem onClick={handleClose}>Single</MenuItem>
             <MenuItem onClick={handleClose}>1.15</MenuItem>

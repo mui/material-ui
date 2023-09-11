@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import omitEventHandlers from './omitEventHandlers';
+import { omitEventHandlers } from './omitEventHandlers';
 
 describe('omitEventHandlers', () => {
   it('should remove functions with names beginning with `on` followed by uppercase letter', () => {

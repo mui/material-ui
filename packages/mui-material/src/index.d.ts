@@ -11,13 +11,13 @@ export { StyledComponentProps };
  * @deprecated will be removed in v5 for internal usage only
  */
 export type StandardProps<
-  C,
+  ComponentProps,
   ClassKey extends string,
-  Removals extends keyof C = never,
-> = DistributiveOmit<C, 'classes' | Removals> &
+  Removals extends keyof ComponentProps = never,
+> = DistributiveOmit<ComponentProps, 'classes' | Removals> &
   StyledComponentProps<ClassKey> & {
     className?: string;
-    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+    ref?: ComponentProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
     style?: React.CSSProperties;
   };
 
@@ -29,13 +29,13 @@ export type StandardProps<
  * However, we don't declare classes on this type.
  * It is recommended to declare them manually with an interface so that each class can have a separate JSDoc.
  */
-export type InternalStandardProps<C, Removals extends keyof C = never> = DistributiveOmit<
-  C,
-  'classes' | Removals
-> &
+export type InternalStandardProps<
+  ComponentProps,
+  Removals extends keyof ComponentProps = never,
+> = DistributiveOmit<ComponentProps, 'classes' | Removals> &
   // each component declares it's classes in a separate interface for proper JSDoc
   StyledComponentProps<never> & {
-    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+    ref?: ComponentProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
     // TODO: Remove implicit props. Up to each component.
     className?: string;
     style?: React.CSSProperties;
@@ -481,7 +481,7 @@ export * from './GlobalStyles';
  */
 export { StyledEngineProvider } from './styles';
 
-export { default as unstable_composeClasses } from '@mui/base/composeClasses';
+export { unstable_composeClasses } from '@mui/base/composeClasses';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';

@@ -1,6 +1,8 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
 import { expectType } from '@mui/types';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { FormHelperTextProps } from '@mui/material/FormHelperText';
 
 {
   // https://github.com/mui/material-ui/issues/12999
@@ -91,4 +93,18 @@ function FocusHandlerTest() {
   const field = <TextField onFocus={fieldHandler} />;
 
   return null;
+}
+
+{
+  const HelperText = ({ children }: FormHelperTextProps) => (
+    <Typography component="h6">{children}</Typography>
+  );
+
+  <TextField
+    sx={{ mt: 4 }}
+    label="Enter some stuff"
+    defaultValue="Hello"
+    helperText="Hello, world!"
+    FormHelperTextProps={{ component: HelperText }}
+  />;
 }

@@ -25,6 +25,26 @@ The Typography component wraps around its content, and displays text with specif
 
 {{"demo": "TypographyBasics.js"}}
 
+### Heading
+
+Use `h1` through `h4` to render a headline. The produced HTML element will match the semantic [headings](https://www.w3.org/WAI/tutorials/page-structure/headings/) of the page structure.
+
+{{"demo": "TypographyHeadline.js"}}
+
+:::info
+The `h5` and `h6` levels are not provided by default given that they are not commonly used. However, you can add them by [customizing the theme's typography](#typography-scale).
+:::
+
+### Title and body
+
+The `title-*` and `body-*` are commonly used in components.
+
+We recommend to combine the title and body with the same or lower size when using them together. For example, `title-lg` and `body-lg` or `title-md` and `body-sm`.
+
+Each level are designed to fit perfectly with the same size of the `SvgIcon` component.
+
+{{"demo": "TypographyTitleBody.js"}}
+
 ### Nested Typography
 
 The Typography component renders as a `<p>` by default.
@@ -56,11 +76,11 @@ Note that the `color` prop is an exception, it refers to the palette instead of 
 ### Levels
 
 The `level` prop gives access to a pre-defined scale of typographic values defined in the theme.
-These values include various heading levels (h1, h2, h3, etc.) as well as body text levels (body1, body2, etc) and can be used to apply consistent typography throughout your application.
+These values include various heading levels (h1, h2, h3, etc.) as well as body text levels (body-md, body-sm, etc) and can be used to apply consistent typography throughout your application.
 Additionally, you can also use the level prop to control the font size, weight, line height, and other typographic properties.
 
 :::warning
-Keep in mind that each level renders a specific HTML tag (e.g. "h1" renders as an `<h1>` element, "body1" renders as a `<p>`, etc.)
+Keep in mind that each level renders a specific HTML tag (e.g. "h1" renders as an `<h1>` element, "body-md" renders as a `<p>`, etc.)
 :::
 
 {{"demo": "TypographyScales.js"}}
@@ -87,19 +107,16 @@ const theme = extendTheme({
     JoyTypography: {
       defaultProps: {
         levelMapping: {
-          display1: 'h1',
-          display2: 'h1',
           h1: 'h2',
           h2: 'h2',
           h3: 'h3',
           h4: 'h3',
-          h5: 'h3',
-          h6: 'h3',
-          body1: 'p',
-          body2: 'span',
-          body3: 'span',
-          body4: 'span',
-          body5: 'span',
+          'title-lg': 'p',
+          'title-md': 'p',
+          'title-sm': 'p',
+          'body-md': 'p',
+          'body-sm': 'p',
+          'body-xs': 'span',
         },
       },
     },
@@ -171,11 +188,13 @@ extendTheme({
     h2: undefined,
     h3: undefined,
     h4: undefined,
-    h5: undefined,
-    h6: undefined,
-    body1: undefined,
-    body2: undefined,
-    body3: undefined,
+    'title-lg': undefined,
+    'title-md': undefined,
+    'title-sm': undefined,
+    'body-lg': undefined,
+    'body-md': undefined,
+    'body-sm': undefined,
+    'body-xs': undefined,
     // ...your scale
   },
 });
@@ -187,19 +206,17 @@ When using TypeScript, be sure to also remove the built-in typography tokens fro
 // in your theme or index file
 declare module '@mui/joy/styles' {
   interface TypographySystemOverrides {
-    display1: false;
-    display2: false;
     h1: false;
     h2: false;
     h3: false;
     h4: false;
-    h5: false;
-    h6: false;
-    body1: false;
-    body2: false;
-    body3: false;
-    body4: false;
-    body5: false;
+    'title-lg': false;
+    'title-md': false;
+    'title-sm': false;
+    'body-lg': false;
+    'body-md': false;
+    'body-sm': false;
+    'body-xs': false;
   }
 }
 ```
@@ -221,12 +238,12 @@ Here are some factors to ensure that your Typography components are accessible:
 
 ## Anatomy
 
-The Typography component is composed of a single root `<p>` that's assigned the `body1` class, unless these defaults are overridden by the [`level`](#levels) and/or [`component`](#semantic-elements) props.
+The Typography component is composed of a single root `<p>` that's assigned the `body-md` class, unless these defaults are overridden by the [`level`](#levels) and/or [`component`](#semantic-elements) props.
 
 When one Typography component is nested within another, the nested component renders as a `<span>` (unless customized as described above).
 
 ```html
-<p class="MuiTypography-root MuiTypography-body1">
+<p class="MuiTypography-root MuiTypography-body-md">
   <!-- Typography content -->
   <span class="MuiTypography-root MuiTypography-inherit">
     <!-- Nested Typography content -->

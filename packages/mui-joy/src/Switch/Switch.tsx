@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
-import useSwitch from '@mui/base/useSwitch';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps, Theme } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -41,12 +42,12 @@ const switchColorVariables =
     const styles =
       theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
-      '--Switch-trackBackground': styles.backgroundColor,
+      '--Switch-trackBackground': styles.backgroundColor ?? theme.vars.palette.background.surface,
       '--Switch-trackColor': styles.color,
       '--Switch-trackBorderColor':
         ownerState.variant === 'outlined' ? styles.borderColor : 'currentColor',
       '--Switch-thumbBackground': styles.color,
-      '--Switch-thumbColor': styles.backgroundColor,
+      '--Switch-thumbColor': styles.backgroundColor ?? theme.vars.palette.background.surface,
     };
   };
 
@@ -57,29 +58,30 @@ const SwitchRoot = styled('div', {
 })<{ ownerState: SwitchOwnerState }>(({ theme, ownerState }) => {
   const getColorVariables = switchColorVariables({ theme, ownerState });
   return {
+    '--Icon-color': 'currentColor',
     '--variant-borderWidth':
       theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
-    '--Switch-trackRadius': theme.vars.radius.lg,
+    '--Switch-trackRadius': theme.vars.radius.xl,
     '--Switch-thumbShadow':
       ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-trackBackground)', // create border-like if the thumb is bigger than the track
     ...(ownerState.size === 'sm' && {
-      '--Switch-trackWidth': '40px',
-      '--Switch-trackHeight': '20px',
-      '--Switch-thumbSize': '12px',
+      '--Switch-trackWidth': '32px',
+      '--Switch-trackHeight': '16px',
+      '--Switch-thumbSize': '8px',
       '--Switch-gap': '6px',
       fontSize: theme.vars.fontSize.sm,
     }),
     ...(ownerState.size === 'md' && {
-      '--Switch-trackWidth': '48px',
-      '--Switch-trackHeight': '24px',
-      '--Switch-thumbSize': '16px',
+      '--Switch-trackWidth': '40px',
+      '--Switch-trackHeight': '20px',
+      '--Switch-thumbSize': '12px',
       '--Switch-gap': '8px',
       fontSize: theme.vars.fontSize.md,
     }),
     ...(ownerState.size === 'lg' && {
-      '--Switch-trackWidth': '64px',
-      '--Switch-trackHeight': '32px',
-      '--Switch-thumbSize': '24px',
+      '--Switch-trackWidth': '48px',
+      '--Switch-trackHeight': '24px',
+      '--Switch-thumbSize': '16px',
       '--Switch-gap': '12px',
     }),
     '--unstable_paddingBlock': `max((var(--Switch-trackHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumbSize)) / 2, 0px)`,
@@ -404,7 +406,7 @@ Switch.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import listReducer from './listReducer';
+import { listReducer } from './listReducer';
 import { ListReducerAction, ListState } from './useList.types';
 import { ListActionTypes } from './listActions.types';
 

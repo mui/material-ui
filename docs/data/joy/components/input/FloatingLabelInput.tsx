@@ -70,7 +70,7 @@ const InnerInput = React.forwardRef<
 export default function FloatingLabelInput() {
   return (
     <Input
-      endDecorator={<CheckCircleOutlined sx={{ color: 'text.tertiary' }} />}
+      endDecorator={<CheckCircleOutlined />}
       slots={{ input: InnerInput }}
       slotProps={{ input: { placeholder: 'A placeholder', type: 'password' } }}
       sx={{

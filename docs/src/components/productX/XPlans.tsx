@@ -3,9 +3,9 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import Section from 'docs/src/layouts/Section';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Link from 'docs/src/modules/components/Link';
@@ -25,7 +25,7 @@ const Image = styled('img')(({ theme }) => ({
 
 export default function XPlans() {
   return (
-    <Section>
+    <Section cozy>
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500} sx={{ mb: { xs: 2, sm: 0 } }}>
@@ -62,7 +62,7 @@ export default function XPlans() {
             >
               <Image
                 src={`/static/branding/mui-x/Mocktable-light.png`}
-                alt=""
+                alt="Illustration of MUI's pricing page."
                 loading="lazy"
                 width="300"
                 sx={(theme) => ({

@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import composeClasses from '../composeClasses';
-import useBadge from '../useBadge';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
+import { useBadge } from '../useBadge';
 import { getBadgeUtilityClass } from './badgeClasses';
 import {
   BadgeProps,
@@ -139,4 +140,4 @@ Badge.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default Badge;
+export { Badge };

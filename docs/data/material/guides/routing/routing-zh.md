@@ -14,7 +14,7 @@
 
 ## Global theme Link
 
-在实际应用中，使用原生的 `<a>` 元素是不够的， 您可以使用系统化地增强的 Link 组件来提升用户体验： MUI 主题允许配置此组件一次 例如，通过react-router：
+在实际应用中，使用原生的 `<a>` 元素是不够的， 您可以使用系统化地增强的 Link 组件来提升用户体验： MUI 主题允许配置此组件一次 例如，通过 react-router：
 
 ```tsx
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
@@ -48,7 +48,7 @@ const theme = createTheme({
 {{"demo": "LinkRouterWithTheme.js", "defaultCodeOpen": false}}
 
 :::warning
-⚠️ This approach has limitations with TypeScript. The `href` prop only accepts a string. In the event you need to provide a richer structure, see the next section.
+This approach has limitations with TypeScript. The `href` prop only accepts a string. In the event you need to provide a richer structure, see the next section.
 :::
 
 ## `component` 属性
@@ -83,9 +83,9 @@ In real-life applications, using a native <code><a></code> element is rarely eno
 
 ### Next.js
 
-Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with MUI.
+Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-next-ts) provides adapters for usage with MUI.
 
-- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component. This component is unstyled and only responsible for handling the navigation. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component.
+- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/tree/HEAD/examples/material-next-ts/src/Link.tsx) component. This component is unstyled and only responsible for handling the navigation. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component.
 
   ```tsx
   import Button from '@mui/material/Button';

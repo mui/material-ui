@@ -122,9 +122,9 @@ The structure of this object is nearly identical to the theme structure, the onl
 
 Place `getInitColorSchemeScript()` before the `<Main />` tag to prevent the dark-mode SSR flickering during the hydration phase.
 
-### Next.js
+### Next.js Pages Router
 
-Add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/advanced-features/custom-document) file:
+Add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document) file:
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';
@@ -143,19 +143,6 @@ export default class MyDocument extends Document {
       </Html>
     );
   }
-}
-```
-
-### Gatsby
-
-Add the following code to the custom [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
-
-```jsx
-import React from 'react';
-import { getInitColorSchemeScript } from '@mui/material/styles';
-
-export function onRenderBody({ setPreBodyComponents }) {
-  setPreBodyComponents([getInitColorSchemeScript()]);
 }
 ```
 
@@ -180,7 +167,6 @@ const StyledComponent = styled('button')(({ theme }) => ({
 
 - `defaultMode?: 'light' | 'dark' | 'system'` - Application's default mode (`light` by default)
 - `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
-- `enableColorScheme: boolean` - Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
 - `prefix: string` - CSS variable prefix
 - `theme: ThemeInput` - the theme provided to React's context
 - `modeStorageKey?: string` - localStorage key used to store application `mode`

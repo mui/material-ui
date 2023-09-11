@@ -2,8 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { act, createRenderer, describeConformance } from 'test/utils';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Transition } from 'react-transition-group';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Collapse, { collapseClasses as classes } from '@mui/material/Collapse';
 
 describe('<Collapse />', () => {

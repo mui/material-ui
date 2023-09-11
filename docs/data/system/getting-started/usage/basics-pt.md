@@ -18,13 +18,13 @@ _(Redimensione a janela para ver os pontos de quebra responsivos)_
 
 To install and save in your `package.json` dependencies, run the command below using **npm**:
 
-```sh
+```bash
 npm install @mui/system @emotion/react @emotion/styled
 ```
 
 Or **yarn**:
 
-```sh
+```bash
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
@@ -32,15 +32,17 @@ Or if you want to use `styled-components` as a styling engine:
 
 <!-- #default-branch-switch -->
 
-```sh
+```bash
 npm install @mui/system @mui/styled-engine-sc styled-components
 ```
 
-```sh
+```bash
 yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
 
-Take a look at the [Styled Engine guide](/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+:::warning
+Visit the [styled-components guide](/material-ui/guides/styled-components/) for more information on configuration.
+:::
 
 ## Por que usar o sistema?
 

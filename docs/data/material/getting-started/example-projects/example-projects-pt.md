@@ -8,17 +8,17 @@ Você pode encontrar alguns exemplos de projetos no repositório [GitHub](https:
 
 <!-- #default-branch-switch -->
 
-- [Next.js](https://github.com/mui/material-ui/tree/master/examples/material-next) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-next-ts))
-- [Create React App](https://github.com/mui/material-ui/tree/master/examples/material-cra) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-cra-ts))
-- [Remix](https://github.com/mui/material-ui/tree/master/examples/material-remix-ts)
-- [Gatsby](https://github.com/mui/material-ui/tree/master/examples/material-gatsby)
-- [Preact](https://github.com/mui/material-ui/tree/master/examples/material-preact)
-- [CDN](https://github.com/mui/material-ui/tree/master/examples/material-via-cdn)
-- [Plain server-side](https://github.com/mui/material-ui/tree/master/examples/material-express-ssr)
-- [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-cra-tailwind-ts)
-- [Vite.js](https://github.com/mui/material-ui/tree/master/examples/material-vite) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-vite-ts))
-- [Use styled-components as style engine](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts))
-- [Next.js + @mui/styles (v5 migration helper)](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration)
+- [Next.js](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts))
+- [Create React App](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-ts))
+- [Remix](https://github.com/mui/material-ui/tree/master/examples/material-ui-remix-ts)
+- [Gatsby](https://github.com/mui/material-ui/tree/master/examples/material-ui-gatsby)
+- [Preact](https://github.com/mui/material-ui/tree/master/examples/material-ui-preact)
+- [CDN](https://github.com/mui/material-ui/tree/master/examples/material-ui-via-cdn)
+- [Plain server-side](https://github.com/mui/material-ui/tree/master/examples/material-ui-express-ssr)
+- [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-tailwind-ts)
+- [Vite.js](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-ts))
+- [Use styled-components as style engine](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts))
+- [Next.js + @mui/styles (v5 migration helper)](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts-v4-v5-migration)
 
 Create React App é um projeto incrível para aprender React. Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
 

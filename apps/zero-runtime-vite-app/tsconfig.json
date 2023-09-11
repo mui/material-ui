@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": ["src", "vite.config.ts"],
+  "compilerOptions": {
+    "composite": true,
+    "isolatedModules": true,
+    "module": "ESNext",
+    /* files are emitted by babel */
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "types": ["react"],
+    "incremental": true
+  },
+  "exclude": ["node_modules"],
+  "references": [
+    { "path": "../../packages/mui-material/tsconfig.build.json" },
+    { "path": "../../packages/mui-system/tsconfig.build.json" }
+    // { "path": "../../packages/mui-utils/tsconfig.build.json" }
+  ]
+}

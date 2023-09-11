@@ -28,7 +28,12 @@ export default function SplitButton() {
 
   return (
     <React.Fragment>
-      <ButtonGroup ref={anchorRef} variant="solid" aria-label="split button">
+      <ButtonGroup
+        ref={anchorRef}
+        variant="solid"
+        color="success"
+        aria-label="split button"
+      >
         <Button onClick={handleClick}>{options[selectedIndex]}</Button>
         <IconButton
           aria-controls={open ? 'split-button-menu' : undefined}

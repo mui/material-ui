@@ -2,7 +2,7 @@
   "props": {
     "autoComplete": { "type": { "name": "string" } },
     "autoFocus": { "type": { "name": "bool" }, "default": "false" },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -33,7 +33,10 @@
     "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "multiline": { "type": { "name": "bool" }, "default": "false" },
     "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] }
+    },
     "placeholder": { "type": { "name": "string" } },
     "required": { "type": { "name": "bool" }, "default": "false" },
     "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
@@ -49,7 +52,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "type": { "type": { "name": "string" } },
     "value": { "type": { "name": "any" } },
@@ -62,6 +66,10 @@
     }
   },
   "name": "TextField",
+  "imports": [
+    "import TextField from '@mui/material/TextField';",
+    "import { TextField } from '@mui/material';"
+  ],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTextField" },
   "spread": true,
   "themeDefaultProps": true,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/system/Box';
-import FocusTrap from '@mui/base/FocusTrap';
+import { FocusTrap } from '@mui/base/FocusTrap';
 
 export default function LazyFocusTrap() {
   const [open, setOpen] = React.useState(false);

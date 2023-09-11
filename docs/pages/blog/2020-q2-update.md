@@ -46,7 +46,7 @@ Here are the most significant improvements since March 2020:
   <img src="/static/blog/2020-q2-update/brazilian.png" alt="brazilian" style="width: 152px; margin-bottom: 24px;" />
 
   After English, Chinese, and Brazilian, the languages that would benefit the most from translation are **Russian** and **Spanish**.<br />
-  Feel free to [get stuck into](https://translate.mui.com/) if you are a native speaker and able to give a hand with either of these two languages.
+  Feel free to [get stuck into](https://crowdin.com/project/material-ui-docs) if you are a native speaker and able to give a hand with either of these two languages.
 
 - 🗂 A new extension of the Tab API [in the lab](/material-ui/react-tabs/#experimental-api) implements accessible tabs following [WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) authoring practices.
 
@@ -63,7 +63,7 @@ Here are the most significant improvements since March 2020:
 </TabContext>
 ```
 
-- 📆 On the [date picker](https://next.material-ui-pickers.dev/):
+- 📆 On the [date picker](https://mui.com/x/react-date-pickers/):
 
   - A new `renderInput` API which matches that of the autocomplete component has been added.
   - The input mask UX has been improved.
@@ -112,6 +112,6 @@ These are objectives, no guarantees:
 ### Enterprise components
 
 - ⌗ Make available a first alpha version of our advanced data grid component as part of the enterprise bundle.
-  You can already [play with an early version](https://muix-preview.netlify.app/#/grid).
+  You can already play with an early version.
 - 📆 Make available a first alpha version of the date range picker as part of the enterprise bundle.
-  You can already [play with an early version](https://next.material-ui-pickers.dev/demo/daterangepicker).
+  You can already play with an early version.

@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useTabsContext } from '../Tabs';
@@ -5,7 +6,7 @@ import { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useT
 import { EventHandlers } from '../utils';
 import { useCompoundItem } from '../utils/useCompoundItem';
 import { useListItem } from '../useList';
-import useButton from '../useButton';
+import { useButton } from '../useButton';
 import { TabMetadata } from '../useTabs';
 
 function tabValueGenerator(otherTabValues: Set<string | number>) {
@@ -101,4 +102,4 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
   };
 }
 
-export default useTab;
+export { useTab };

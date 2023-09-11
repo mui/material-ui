@@ -423,7 +423,7 @@ function handleResetHighlight<ItemValue, State extends ListState<ItemValue>>(
   };
 }
 
-export default function listReducer<ItemValue, State extends ListState<ItemValue>>(
+export function listReducer<ItemValue, State extends ListState<ItemValue>>(
   state: State,
   action: ListReducerAction<ItemValue> & { context: ListActionContext<ItemValue> },
 ): State {

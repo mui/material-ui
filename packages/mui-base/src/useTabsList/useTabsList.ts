@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { useTabsContext } from '../Tabs';
 import {
@@ -10,8 +11,8 @@ import {
 import { EventHandlers } from '../utils';
 import { useCompoundParent } from '../utils/useCompound';
 import { TabMetadata } from '../useTabs/useTabs';
-import useList, { ListState, UseListParameters } from '../useList';
-import tabsListReducer from './tabsListReducer';
+import { useList, ListState, UseListParameters } from '../useList';
+import { tabsListReducer } from './tabsListReducer';
 
 /**
  *
@@ -172,4 +173,4 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
   };
 }
 
-export default useTabsList;
+export { useTabsList };

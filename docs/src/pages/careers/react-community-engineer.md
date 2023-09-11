@@ -1,4 +1,4 @@
-# React Community Engineer - X
+# React Community Engineer - X (future role)
 
 <p class="description">You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.</p>
 

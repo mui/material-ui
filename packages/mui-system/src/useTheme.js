@@ -1,3 +1,4 @@
+'use client';
 import createTheme from './createTheme';
 import useThemeWithoutDefault from './useThemeWithoutDefault';
 

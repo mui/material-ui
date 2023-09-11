@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { ClassValue } from 'clsx';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';

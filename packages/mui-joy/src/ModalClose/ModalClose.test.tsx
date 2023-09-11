@@ -58,7 +58,7 @@ describe('<ModalClose />', () => {
       expect(getByRole('button')).to.have.class(classes.colorNeutral);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByRole } = render(<ModalClose color={color}>Hello World</ModalClose>);
 

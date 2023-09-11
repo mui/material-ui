@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import Switch, { switchClasses } from '@mui/base/Switch';
+import { Switch, switchClasses } from '@mui/base/Switch';
 
 export default function UnstyledSwitches() {
   const label = { slotProps: { input: { 'aria-label': 'Demo switch' } } };
@@ -81,7 +81,6 @@ const Root = styled('span')(
     border-radius: 16px;
     background-color: #fff;
     position: relative;
-    
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 120ms;

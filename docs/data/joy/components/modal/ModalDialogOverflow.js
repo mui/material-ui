@@ -46,7 +46,7 @@ export default function ModalDialogOverflow() {
         <ModalOverflow>
           <ModalDialog aria-labelledby="modal-dialog-overflow" layout={layout}>
             <ModalClose />
-            <Typography id="modal-dialog-overflow" component="h2">
+            <Typography id="modal-dialog-overflow" level="h2">
               Overflow content
             </Typography>
             <FormControl

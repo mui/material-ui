@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Simplify } from '@mui/types';
 import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
 import { SelectOption } from '../useOption';
-import Popper, { PopperProps } from '../Popper';
+import { Popper, PopperProps } from '../Popper';
 import { PolymorphicProps, SlotComponentProps, WithOptionalOwnerState } from '../utils';
 
 export interface SelectRootSlotPropsOverrides {}
@@ -113,6 +113,11 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
       SelectOwnerState<OptionValue, Multiple>
     >;
   };
+  /**
+   * If `true`, the Select cannot be empty when submitting form.
+   * @default false
+   */
+  required?: boolean;
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.

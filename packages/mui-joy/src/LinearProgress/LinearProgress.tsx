@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -15,6 +16,7 @@ import {
   LinearProgressTypeMap,
 } from './LinearProgressProps';
 import useSlot from '../utils/useSlot';
+import { resolveSxValue } from '../styles/styleUtils';
 
 // TODO: replace `left` with `inset-inline-start` in the future to work with writing-mode. https://caniuse.com/?search=inset-inline-start
 //       replace `width` with `inline-size`, not sure why inline-size does not work with animation in Safari.
@@ -36,7 +38,7 @@ const progressKeyframe = keyframes`
   75% {
     width: var(--LinearProgress-progressMaxWidth);
   }
-  
+
   100% {
     left: var(--_LinearProgress-progressInset);
     width: var(--LinearProgress-progressMinWidth);
@@ -128,6 +130,16 @@ const LinearProgressRoot = styled('div', {
               var(--LinearProgress-circulation, 2.5s ease-in-out 0s infinite normal none running);
           }
         `,
+  ({ ownerState, theme }) => {
+    const { borderRadius, height } = resolveSxValue({ theme, ownerState }, [
+      'borderRadius',
+      'height',
+    ]);
+    return {
+      ...(borderRadius !== undefined && { '--LinearProgress-radius': borderRadius }),
+      ...(height !== undefined && { '--LinearProgress-thickness': height }),
+    };
+  },
 );
 
 /**
@@ -228,7 +240,7 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

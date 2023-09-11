@@ -1,4 +1,5 @@
-import { CODE_VARIANTS } from '../constants';
+import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 
 type RegExpMatchArrayWithGroupsOnly<T> = {
   groups?: {
@@ -10,7 +11,7 @@ type RegExpMatchArrayWithGroups<T> = (RegExpMatchArray & RegExpMatchArrayWithGro
 export default function SandboxDependencies(
   demo: {
     raw: string;
-    productId?: 'joy-ui' | 'base-ui';
+    productId?: MuiProductId;
     codeVariant: keyof typeof CODE_VARIANTS;
   },
   options?: { commitRef?: string },
@@ -127,7 +128,7 @@ export default function SandboxDependencies(
         deps[name] = versions[name] ? versions[name] : 'latest';
       }
 
-      // e.g date-fns
+      // e.g. date-fns
       const dateAdapterMatch = fullName.match(
         /^@mui\/(lab|x-date-pickers)\/(?<adapterName>Adapter.*)/,
       ) as RegExpMatchArrayWithGroups<{ adapterName: string }>;

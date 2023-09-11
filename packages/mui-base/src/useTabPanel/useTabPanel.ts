@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useTabsContext } from '../Tabs';
@@ -55,4 +56,4 @@ function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue 
   };
 }
 
-export default useTabPanel;
+export { useTabPanel };

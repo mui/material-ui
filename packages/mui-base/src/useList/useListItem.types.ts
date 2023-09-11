@@ -27,11 +27,7 @@ interface UseListItemRootSlotOwnProps {
   tabIndex?: number;
 }
 
-export type UseListItemRootSlotProps<TOther = {}> = Omit<
-  TOther,
-  keyof UseListItemRootSlotOwnProps
-> &
-  UseListItemRootSlotOwnProps;
+export type UseListItemRootSlotProps<TOther = {}> = TOther & UseListItemRootSlotOwnProps;
 
 export interface UseListItemReturnValue {
   /**

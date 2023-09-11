@@ -9,7 +9,7 @@ import {
   fireEvent,
   strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 
 function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;
