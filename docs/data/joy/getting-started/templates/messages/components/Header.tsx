@@ -3,8 +3,6 @@ import GlobalStyles from '@mui/joy/GlobalStyles';
 import IconButton from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import MuiLogo from './MuiLogo';
-import ColorSchemeToggle from './ColorSchemeToggle';
 import { toggleSidebar } from '../utils';
 
 export default function Header() {
@@ -13,14 +11,17 @@ export default function Header() {
       sx={{
         display: { xs: 'flex', sm: 'none' },
         alignItems: 'center',
+        justifyContent: 'space-between',
         position: 'fixed',
         top: 0,
         width: '100vw',
         height: 'var(--Header-height)',
         zIndex: 9995,
-        py: 1,
-        px: 2,
+        p: 2,
         gap: 1,
+        borderBottom: '1px solid',
+        borderColor: 'background.level1',
+        boxShadow: 'sm',
       }}
     >
       <GlobalStyles
@@ -41,8 +42,6 @@ export default function Header() {
       >
         <MenuRoundedIcon />
       </IconButton>
-      <MuiLogo variant="plain" sx={{ boxShadow: 'none', mr: 'auto' }} />
-      <ColorSchemeToggle id={undefined} />
     </Sheet>
   );
 }
