@@ -49,7 +49,8 @@ export default function MessageInput({
               alignItems="center"
               flexGrow={1}
               sx={{
-                pt: 0.5,
+                py: 1,
+                pr: 1,
                 borderTop: '1px solid',
                 borderColor: 'divider',
               }}
@@ -70,7 +71,8 @@ export default function MessageInput({
               </div>
               <Button
                 size="sm"
-                sx={{ alignSelf: 'center' }}
+                color="primary"
+                sx={{ alignSelf: 'center', borderRadius: 'sm' }}
                 endDecorator={<SendRoundedIcon />}
                 onClick={handleClick}
               >
