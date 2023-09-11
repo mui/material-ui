@@ -1,7 +1,9 @@
 function App() {
   return (
     <div className="p-8">
-      <h1 className="text-3xl font-semibold mb-4">Base UI + Vite.js + Tailwind CSS</h1>
+      <h1 className="text-3xl font-semibold mb-4">
+        Base UI + Vite.js + Tailwind CSS in TypeScript
+      </h1>
 
       <ul>
         <li className="card">
