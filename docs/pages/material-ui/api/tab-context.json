@@ -4,6 +4,10 @@
     "children": { "type": { "name": "node" } }
   },
   "name": "TabContext",
+  "imports": [
+    "import TabContext from '@mui/lab/TabContext';",
+    "import { TabContext } from '@mui/lab';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "themeDefaultProps": null,

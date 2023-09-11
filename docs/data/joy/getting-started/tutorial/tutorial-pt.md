@@ -11,7 +11,7 @@ In this small tutorial, you'll learn how to:
 The only **prerequesite** is [having Joy UI installed](/joy-ui/getting-started/installation/).
 
 :::warning
-⚠️ **Note:** We won't cover theming and general component customization at this moment. Learn more about [the different customization approaches](/joy-ui/customization/approaches/) later.
+**Note:** We won't cover theming and general component customization at this moment. Learn more about [the different customization approaches](/joy-ui/customization/approaches/) later.
 :::
 
 ## Building the login page
@@ -209,7 +209,7 @@ export default function App() {
 ```
 
 :::info
-💡 **Note:** With the `useColorScheme` hook, Joy UI ensures that the user selected mode (stored in localStorage by default) is in-sync across browser tabs.
+**Note:** With the `useColorScheme` hook, Joy UI ensures that the user selected mode (stored in localStorage by default) is in-sync across browser tabs.
 :::
 
 Congratulations 🎉! You've built your first good looking UI with Joy UI!

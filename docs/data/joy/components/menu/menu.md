@@ -75,7 +75,7 @@ To learn how to add more sizes to the component, check out [Themed components—
 
 Use the `selected` prop to signal whether a `MenuItem` is selected or not.
 
-The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/#selected).
+The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/#interactive-list-items).
 
 {{"demo": "SelectedMenu.js"}}
 
@@ -97,6 +97,13 @@ For example, this is how you'd go for displaying the menu on the bottom-end of t
 ### Group menus
 
 {{"demo": "GroupMenu.js"}}
+
+### Controlling the open state
+
+By default, the open/close state of the menu is managed internally by the Dropdown component.
+To control it programmatically from the outside, apply the Dropdown's `open` and `onOpenChange` props as shown below:
+
+{{"demo": "ControlledDropdown.js"}}
 
 ### `MenuList` composition
 

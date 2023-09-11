@@ -73,11 +73,10 @@ const AlertRoot = styled('div', {
       alignItems: 'center',
       padding: `var(--Alert-padding)`,
       borderRadius: 'var(--Alert-radius)',
-      boxShadow: theme.vars.shadow.xs,
       ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
       fontWeight: theme.vars.fontWeight.md,
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-    },
+    } as const,
     p !== undefined && { '--Alert-padding': p },
     padding !== undefined && { '--Alert-padding': padding },
     borderRadius !== undefined && { '--Alert-radius': borderRadius },
@@ -123,7 +122,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     className,
     color = 'neutral',
     role = 'alert',
-    variant = 'outlined',
+    variant = 'soft',
     size = 'md',
     startDecorator,
     endDecorator,
@@ -262,7 +261,7 @@ Alert.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'outlined'
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

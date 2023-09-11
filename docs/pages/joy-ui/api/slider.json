@@ -122,6 +122,7 @@
     }
   },
   "name": "Slider",
+  "imports": ["import Slider from '@mui/joy/Slider';", "import { Slider } from '@mui/joy';"],
   "styles": { "classes": [], "globalClasses": {}, "name": "MuiSlider" },
   "slots": [
     {

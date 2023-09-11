@@ -47,6 +47,7 @@
     }
   },
   "name": "Menu",
+  "imports": ["import Menu from '@mui/material/Menu';", "import { Menu } from '@mui/material';"],
   "styles": { "classes": ["root", "paper", "list"], "globalClasses": {}, "name": "MuiMenu" },
   "spread": true,
   "themeDefaultProps": false,

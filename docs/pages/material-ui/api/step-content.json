@@ -20,6 +20,10 @@
     "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "StepContent",
+  "imports": [
+    "import StepContent from '@mui/material/StepContent';",
+    "import { StepContent } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "last", "transition"],
     "globalClasses": {},

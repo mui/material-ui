@@ -10,6 +10,10 @@
     }
   },
   "name": "StepConnector",
+  "imports": [
+    "import StepConnector from '@mui/material/StepConnector';",
+    "import { StepConnector } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

@@ -35,6 +35,10 @@
     }
   },
   "name": "Collapse",
+  "imports": [
+    "import Collapse from '@mui/material/Collapse';",
+    "import { Collapse } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "horizontal", "entered", "hidden", "wrapper", "wrapperInner"],
     "globalClasses": {},

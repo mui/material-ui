@@ -125,6 +125,7 @@ module.exports = {
 
     'material-ui/docgen-ignore-before-comment': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
+    'material-ui/no-empty-box': 'error',
 
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
     'react-hooks/rules-of-hooks': 'error',
@@ -293,6 +294,16 @@ module.exports = {
         'react/prop-types': 'off',
         'no-alert': 'off',
         'no-console': 'off',
+      },
+    },
+    // demos - proptype generation
+    {
+      files: ['docs/data/base/components/modal/UseModal.js'],
+      rules: {
+        'consistent-return': 'off',
+        'func-names': 'off',
+        'no-else-return': 'off',
+        'prefer-template': 'off',
       },
     },
     {

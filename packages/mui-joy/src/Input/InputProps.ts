@@ -84,7 +84,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       error?: boolean;
       /**
-       * If `true`, the button will take up the full width of its container.
+       * If `true`, the input will take up the full width of its container.
        * @default false
        */
       fullWidth?: boolean;

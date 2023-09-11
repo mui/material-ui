@@ -25,6 +25,10 @@
     "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "Accordion",
+  "imports": [
+    "import Accordion from '@mui/material/Accordion';",
+    "import { Accordion } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "rounded", "expanded", "disabled", "gutters", "region"],
     "globalClasses": { "expanded": "Mui-expanded", "disabled": "Mui-disabled" },

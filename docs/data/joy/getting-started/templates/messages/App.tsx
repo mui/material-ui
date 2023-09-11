@@ -40,7 +40,7 @@ export default function JoyMessagesTemplate() {
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
         <Header />
         <Sidebar />
-        <Box component="main" className="MainContent" flex={1}>
+        <Box component="main" className="MainContent" sx={{ flex: 1 }}>
           <MyMessages />
         </Box>
       </Box>

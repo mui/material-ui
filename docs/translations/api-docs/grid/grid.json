@@ -55,5 +55,37 @@
       "description": "If a number, it sets the margin-left equals to the number of columns the grid item uses. If &#39;auto&#39;, the grid item push itself to the right-end of the container. The value is applied for the <code>xs</code> breakpoint and wider screens if not overridden."
     }
   },
-  "classDescriptions": {}
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "container": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>container={true}</code>"
+    },
+    "direction-xs-column": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>direction=\"column\"</code>"
+    },
+    "direction-xs-column-reverse": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>direction=\"column-reverse\"</code>"
+    },
+    "direction-xs-row-reverse": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>direction=\"row-reverse\"</code>"
+    },
+    "wrap-xs-nowrap": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>wrap=\"nowrap\"</code>"
+    },
+    "wrap-xs-wrap-reverse": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>wrap=\"reverse\"</code>"
+    }
+  }
 }

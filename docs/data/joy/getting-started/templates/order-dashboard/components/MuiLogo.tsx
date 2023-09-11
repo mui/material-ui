@@ -10,7 +10,6 @@ export default function MuiLogo({ sx, ...props }: AspectRatioProps) {
       sx={[
         {
           width: 36,
-          borderRadius: 'sm',
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

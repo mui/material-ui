@@ -32,6 +32,10 @@
     }
   },
   "name": "NativeSelect",
+  "imports": [
+    "import NativeSelect from '@mui/material/NativeSelect';",
+    "import { NativeSelect } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

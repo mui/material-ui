@@ -53,6 +53,11 @@ export interface TabPanelTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'plain'
        */
       variant?: OverridableStringUnion<VariantProp, TabPanelPropsVariantOverrides>;
+      /**
+       * Always keep the children in the DOM.
+       * @default false
+       */
+      keepMounted?: boolean;
     } & TabPanelSlotsAndSlotProps;
   defaultComponent: D;
 }

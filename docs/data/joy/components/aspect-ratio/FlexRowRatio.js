@@ -11,7 +11,12 @@ export default function FlexRowRatio() {
   const [flexBasis, setFlexBasis] = React.useState(200);
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Card variant="outlined" orientation="horizontal" sx={{ minWidth: 300 }}>
+      <Card
+        variant="outlined"
+        size="sm"
+        orientation="horizontal"
+        sx={{ gap: 2, minWidth: 300 }}
+      >
         <AspectRatio
           sx={{
             flexBasis: flexBasis ? `${flexBasis}px` : undefined,

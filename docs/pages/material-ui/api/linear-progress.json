@@ -26,6 +26,10 @@
     }
   },
   "name": "LinearProgress",
+  "imports": [
+    "import LinearProgress from '@mui/material/LinearProgress';",
+    "import { LinearProgress } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

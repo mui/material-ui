@@ -44,6 +44,8 @@ const AspectRatioRoot = styled('div', {
         ? 'currentColor'
         : theme.vars.palette.text.icon,
     borderRadius: 'var(--AspectRatio-radius)',
+    display: ownerState.flex ? 'flex' : 'block',
+    flex: ownerState.flex ? 1 : 'initial',
     flexDirection: 'column',
     margin: 'var(--AspectRatio-margin)',
   };
@@ -111,6 +113,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     color = 'neutral',
     variant = 'soft',
     component,
+    flex = false,
     slots = {},
     slotProps = {},
     ...other
@@ -118,6 +121,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
 
   const ownerState = {
     ...props,
+    flex,
     minHeight,
     maxHeight,
     objectFit,
@@ -177,6 +181,12 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * By default, the AspectRatio will maintain the aspect ratio of its content.
+   * Set this prop to `true` when the container is a flex row and you want the AspectRatio to fill the height of its container.
+   * @default false
+   */
+  flex: PropTypes.bool,
   /**
    * The maximum calculated height of the element (not the CSS height).
    */
