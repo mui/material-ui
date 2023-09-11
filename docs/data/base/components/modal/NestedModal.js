@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { styled, Box } from '@mui/system';
+import { styled } from '@mui/system';
 import { Modal } from '@mui/base/Modal';
 import { Button } from '@mui/base/Button';
 
@@ -24,13 +24,15 @@ export default function NestedModal() {
         aria-describedby="parent-modal-description"
         slots={{ backdrop: StyledBackdrop }}
       >
-        <Box sx={style}>
-          <h2 id="parent-modal-title">Text in a modal</h2>
-          <p id="parent-modal-description">
+        <ModalContent sx={style}>
+          <h3 id="parent-modal-title" className="modal-title">
+            Text in a modal
+          </h3>
+          <p id="parent-modal-description" className="modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </p>
           <ChildModal />
-        </Box>
+        </ModalContent>
       </StyledModal>
     </div>
   );
@@ -47,7 +49,7 @@ function ChildModal() {
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen}>Open Child Modal</Button>
+      <TriggerButton onClick={handleOpen}>Open Child Modal</TriggerButton>
       <StyledModal
         open={open}
         onClose={handleClose}
@@ -55,13 +57,15 @@ function ChildModal() {
         aria-describedby="child-modal-description"
         slots={{ backdrop: StyledBackdrop }}
       >
-        <Box sx={[style, { width: '200px' }]}>
-          <h2 id="child-modal-title">Text in a child modal</h2>
-          <p id="child-modal-description">
+        <ModalContent sx={[style, { width: '240px' }]}>
+          <h3 id="child-modal-title" className="modal-title">
+            Text in a child modal
+          </h3>
+          <p id="child-modal-description" className="modal-description">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           </p>
-          <Button onClick={handleClose}>Close Child Modal</Button>
-        </Box>
+          <TriggerButton onClick={handleClose}>Close Child Modal</TriggerButton>
+        </ModalContent>
       </StyledModal>
     </React.Fragment>
   );
@@ -89,8 +93,16 @@ const blue = {
 };
 
 const grey = {
-  50: '#F3F6F9',
-  900: '#1C2025',
+  50: '#f6f8fa',
+  100: '#eaeef2',
+  200: '#d0d7de',
+  300: '#afb8c1',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
+  700: '#424a53',
+  800: '#32383f',
+  900: '#24292f',
 };
 
 const StyledModal = styled(Modal)`
@@ -116,13 +128,42 @@ const style = (theme) => ({
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  borderRadius: '12px',
-  padding: '16px 32px 24px 32px',
-  backgroundColor: theme.palette.mode === 'dark' ? grey[900] : grey[50],
-  boxshadow: `0px 4px 6px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
-  }`,
 });
+
+const ModalContent = styled('div')(
+  ({ theme }) => `
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+  background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  border-radius: 8px;
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  box-shadow: 0px 4px 12px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.20)'
+  };
+  padding: 1rem;
+  color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 500;
+  text-align: start;
+  position: relative;
+
+
+  & .modal-title {
+    margin: 0;
+    line-height: 1.5rem;
+    margin-right: 0.5rem;
+  }
+
+  & .modal-description {
+    margin: 0;
+    line-height: 1.5rem;
+    font-weight: 400;
+    color: ${theme.palette.mode === 'dark' ? grey[400] : grey[800]};
+  }
+  `,
+);
 
 const TriggerButton = styled(Button)`
   font-family: 'IBM Plex Sans', sans-serif;

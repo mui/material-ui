@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Box, styled } from '@mui/system';
+import { styled } from '@mui/system';
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
 import { Button } from '@mui/base/Button';
@@ -25,12 +25,14 @@ export default function UseModal() {
         closeAfterTransition
       >
         <Fade in={open}>
-          <Box sx={style}>
-            <h2 id="transition-modal-title">Text in a modal</h2>
-            <span id="transition-modal-description" style={{ marginTop: 16 }}>
+          <ModalContent sx={style}>
+            <h3 id="transition-modal-title" className="modal-title">
+              Text in a modal
+            </h3>
+            <span id="transition-modal-description" className="modal-description">
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </span>
-          </Box>
+          </ModalContent>
         </Fade>
       </Modal>
     </div>
@@ -186,17 +188,61 @@ const blue = {
   600: '#0072E6',
 };
 
+const grey = {
+  50: '#f6f8fa',
+  100: '#eaeef2',
+  200: '#d0d7de',
+  300: '#afb8c1',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
+  700: '#424a53',
+  800: '#32383f',
+  900: '#24292f',
+};
+
 const style = (theme) => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  borderRadius: '12px',
-  padding: '16px 32px 24px 32px',
-  backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
-  boxShadow: `0px 2px 24px ${theme.palette.mode === 'dark' ? '#000' : '#383838'}`,
 });
+
+const ModalContent = styled('div')(
+  ({ theme }) => `
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+  background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  border-radius: 8px;
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  box-shadow: 0px 4px 12px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.20)'
+  };
+  padding: 1rem;
+  color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 500;
+  text-align: start;
+  position: relative;
+
+
+  & .modal-title {
+    margin: 0;
+    line-height: 1.5rem;
+    margin-right: 0.5rem;
+  }
+
+  & .modal-description {
+    margin: 0;
+    line-height: 1.5rem;
+    font-weight: 400;
+    color: ${theme.palette.mode === 'dark' ? grey[400] : grey[800]};
+  }
+  `,
+);
 
 const CustomModalRoot = styled('div')`
   position: fixed;

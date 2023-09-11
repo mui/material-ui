@@ -134,7 +134,7 @@ const StyledStepperButton = styled('button')(
     align-items: center;
     font-size: 0.875rem;
     box-sizing: border-box;
-    border: 0;
+    border: 1px solid;
     padding: 0;
 
     & > svg {
@@ -149,8 +149,10 @@ const StyledStepperButton = styled('button')(
         color: ${grey[50]};
       }
 
-      background: ${theme.palette.mode === 'dark' ? grey[600] : grey[200]};
-      color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+      
     }
 
     &.increment {
@@ -158,6 +160,7 @@ const StyledStepperButton = styled('button')(
       grid-row: 1/2;
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
+      border-bottom: 0;
     }
 
     &.decrement {
