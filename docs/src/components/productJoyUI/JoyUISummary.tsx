@@ -18,28 +18,28 @@ const content = [
     title: 'Beautiful out of the box',
     description:
       'Start looking good with very little effort. Joy UI is designed to be simple and agnostic.',
-    link: '/base-ui/getting-started/quickstart/#components-and-hooks',
+    link: '/joy-ui/getting-started/#beautiful-out-of-the-box/',
   },
   {
     icon: <HandymanRoundedIcon fontSize="small" color="primary" />,
     title: 'Highly customizable',
     description:
       'Complete control over how the component looks, powered by several customization tools.',
-    link: '/base-ui/getting-started/quickstart/#components-and-hooks',
+    link: '/joy-ui/getting-started/#highly-customizable/',
   },
   {
     icon: <ArticleRoundedIcon fontSize="small" color="primary" />,
     title: 'Developer experience',
     description:
       'Feel joy when working with Joy UI. Streamlined component API, documentation, and more.',
-    link: '/base-ui/getting-started/quickstart/#components-and-hooks',
+    link: '/joy-ui/getting-started/#developer-experience/',
   },
   {
     icon: <AccessibilityNewRounded fontSize="small" color="primary" />,
     title: 'Accessibility',
     description:
       'Joy UI is built off of from Base UI, which delivers several built-in accessibility features.',
-    link: '/base-ui/getting-started/quickstart/#components-and-hooks',
+    link: '/joy-ui/getting-started/#accessibility/',
   },
 ];
 
