@@ -81,7 +81,7 @@ const ChipRoot = styled('div', {
       tokens.sys.color[
         `on${capitalize(ownerState.color ?? 'secondary')}Container` as keyof MD3ColorSchemeTokens
       ],
-    outlined: tokens.sys.color.onSurfaceVariant,
+    outlined: tokens.sys.color.onSurface,
     elevated:
       tokens.sys.color[
         (ownerState.color
@@ -238,6 +238,7 @@ const ChipRoot = styled('div', {
       marginLeft: 8,
     },
     [`& .${chipClasses.deleteIcon}`]: {
+      boxSizing: 'content-box',
       zIndex: 1,
       height: 'var(--md-comp-chip-icon-size)',
       width: 'var(--md-comp-chip-icon-size)',
@@ -552,7 +553,7 @@ Chip.propTypes /* remove-proptypes */ = {
    * @default 'filled'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['filled', 'outlined']),
+    PropTypes.oneOf(['filled', 'outlined', 'elevated']),
     PropTypes.string,
   ]),
 } as any;
