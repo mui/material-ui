@@ -46,7 +46,7 @@
     "jsdom": "^22.1.0",
     "lodash": "^4.17.21",
     "mocha": "^10.2.0",
-    "playwright": "^1.36.2",
+    "playwright": "^1.37.1",
     "prop-types": "^15.8.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
