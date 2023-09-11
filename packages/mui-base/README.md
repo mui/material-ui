@@ -28,7 +28,7 @@ Use the "base-ui" tag on Stack Overflow to make it easier for the community to f
 
 ## Examples
 
-Our documentation features [a collection of example projects using Joy UI](https://github.com/mui/material-ui/tree/master/examples).
+Our documentation features [a collection of example projects using Base UI](https://github.com/mui/material-ui/tree/master/examples).
 
 ## Contributing
 
