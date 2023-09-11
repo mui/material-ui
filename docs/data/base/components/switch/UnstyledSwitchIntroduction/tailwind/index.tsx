@@ -42,7 +42,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `relative inline-block w-10 h-6 m-2.5 ${
+              `relative inline-block w-12 h-6 m-2.5 ${
                 ownerState.disabled
                   ? 'cursor-not-allowed opacity-40'
                   : 'cursor-pointer'
@@ -73,10 +73,10 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `absolute block w-full h-full rounded-2xl ${
+              `absolute block w-full h-full rounded-2xl border-2 shadow-inner ${
                 ownerState.checked
                   ? 'bg-purple-500'
-                  : 'bg-slate-400 dark:bg-slate-600'
+                  : 'bg-slate-100 dark:bg-slate-900'
               }`,
               resolvedSlotProps?.className,
             ),
@@ -91,12 +91,12 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>((props, ref) => {
             ...resolvedSlotProps,
             className: clsx(
               `block w-4 h-4 top-1 ${
-                ownerState.checked ? 'left-5' : 'left-1'
+                ownerState.checked ? 'left-7' : 'left-1'
               } rounded-2xl ${
                 ownerState.focusVisible
                   ? `${
                       ownerState.checked ? 'bg-white' : 'bg-slate-500'
-                    } shadow-outline-switch`
+                    } shadow-outline-switch `
                   : 'bg-white'
               } relative transition-all`,
               resolvedSlotProps?.className,
