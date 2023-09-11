@@ -1,5 +1,257 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.8
+
+<!-- generated comparing v5.14.7..master -->
+
+_Sep 5, 2023_
+
+A big thanks to the 25 contributors who made this release possible.
+
+### `@mui/material@5.14.8`
+
+- &#8203;<!-- 53 -->ImageItemList fix incorrect (below) rendering (#38452) @omriklein
+- &#8203;<!-- 42 -->[Button] Add demo for file upload (#38786) @anle9650
+- &#8203;<!-- 12 -->[Slider] Add missing classes for `Slider` `InputLabel` `InputBase` `Radio` (#38401) @sai6855
+- &#8203;<!-- 11 -->[Select] Merge slotProps.paper with internal Paper props (#38703) @michaldudak
+- &#8203;<!-- 09 -->[Tabs] Fix `ref` type (#38717) @ZeeshanTamboli
+- &#8203;<!-- 08 -->[TabScrollButton] Extend ButtonBase types (#38719) @ZeeshanTamboli
+
+### `@mui/base@5.0.0-beta.14`
+
+- &#8203;<!-- 50 -->[Autocomplete] Type multiple values with readonly arrays. (#38253) @pcorpet
+- &#8203;<!-- 07 -->[TextField] Fix unstable height of memoized multiline TextField component (#37135) @amal-qb
+
+### `@mui/joy@5.0.0-beta.5`
+
+- &#8203;<!-- 53 -->[Accordion] Fix incorrect display of classname (#38695) @sai6855
+- &#8203;<!-- 51 -->[AspectRatio] Correct `ratio` prop description (#38743) @sai6855
+- &#8203;<!-- 43 -->[Button] Fix disablity of button (#38673) @sai6855
+- &#8203;<!-- 35 -->[design] Stray design tweaks to components (#38476) @zanivan
+- &#8203;<!-- 05 -->[Typography] Added position only when Skeleton is a direct child (#38799) @siriwatknp
+
+### `@mui/lab@5.0.0-alpha.143`
+
+- &#8203;<!-- 06 -->[TreeView] Use Tree View from MUI X in the lab (#38261) @flaviendelangle
+- &#8203;<!-- 13 -->[LoadingButton] Fix HTML rule button > div forbidden nesting (#38584) @oliviertassinari
+
+### `@mui/system@5.14.8`
+
+- &#8203;<!-- 11 -->[system] Fix the inconsistent types of the `mergeBreakpointsInOrder` function (#38749) @imevanc
+- &#8203;<!-- 10 -->[system] Fix maxWidth incorrectly resolving breakpoints with non-pixel units (#38633) @mj12albert
+- &#8203;<!-- 05 -->[typescript] Introduce \*OwnProps interfaces for components (#36798) @szalonna
+
+### Docs
+
+- &#8203;<!-- 52 -->Update changelog (#38704) @mj12albert
+- &#8203;<!-- 49 -->[docs][Autocomplete] Require referentially stable value (#38734) @michaldudak
+- &#8203;<!-- 48 -->[docs][base-ui] Add type parameter to the button in prepareForSlot demo (#38640) @michaldudak
+- &#8203;<!-- 47 -->[docs][base-ui] Fix the broken image in the Tailwind CSS guide (#38721) @michaldudak
+- &#8203;<!-- 46 -->[docs][base-ui]: Working With Tailwind Guide - revises example code to avoid import errors (#38693) @christophermorin
+- &#8203;<!-- 45 -->[docs][base] Add Tailwind CSS + plain CSS demo on the Menu page (#38618) @alisasanib
+- &#8203;<!-- 44 -->[blog] Clearer blog release title @oliviertassinari
+- &#8203;<!-- 43 -->[blog] Add a post for the Tree View migration (#38407) @flaviendelangle
+- &#8203;<!-- 34 -->[docs] Fix broken links to Next.js docs (#38764) @ruflair
+- &#8203;<!-- 33 -->[docs] Trim trailing whitespace (#38793) @oliviertassinari
+- &#8203;<!-- 32 -->[docs] Fix a typo in lab-tree-view-to-mui-x.md @mbrookes
+- &#8203;<!-- 31 -->[docs] Clean up not used Usage files (#38715) @danilo-leal
+- &#8203;<!-- 30 -->[docs] Improve theme builder exceptions (#38709) @jyash97
+- &#8203;<!-- 29 -->[docs] Polish Slider demos (#38759) @oliviertassinari
+- &#8203;<!-- 28 -->[docs] Fix Joy UI docs link regression (#38761) @oliviertassinari
+- &#8203;<!-- 27 -->[docs] Fix typo @oliviertassinari
+- &#8203;<!-- 26 -->[docs] Fix e.g. typo (#38748) @oliviertassinari
+- &#8203;<!-- 25 -->[docs] Fix Next.js pages router example redirect link (#38750) @sai6855
+- &#8203;<!-- 24 -->[docs] Fix SEO issue broken links @oliviertassinari
+- &#8203;<!-- 23 -->[docs] Improve SSR example reference (#38651) @oliviertassinari
+- &#8203;<!-- 17 -->[docs][joy-ui] Integrate a count-up feature to the Linear Progress (#38738) @anon-phantom
+- &#8203;<!-- 16 -->[docs][joy-ui] Fix Link's `overlay` prop demo (#38702) @danilo-leal
+- &#8203;<!-- 15 -->[docs][joy-ui] Polish the Stack page (#38623) @danilo-leal
+- &#8203;<!-- 14 -->[docs][material-ui] Adjust simple Slide demo (#38646) @rajgop1
+
+### Core
+
+- &#8203;<!-- 43 -->[core] Re-add nx and setup build caching (#38752) @brijeshb42
+- &#8203;<!-- 41 -->[core] Remove dead code seoTitle @oliviertassinari
+- &#8203;<!-- 40 -->[core] Use immutable refs (#38762) @oliviertassinari
+- &#8203;<!-- 39 -->[core] Rework `typescript-to-proptypes` to share the AST parsing with `parseStyles` (#38517) @flaviendelangle
+- &#8203;<!-- 38 -->[core] Fix CI @oliviertassinari
+- &#8203;<!-- 37 -->[core] Remove unnecessary `@types/webpack` package (#38720) @ZeeshanTamboli
+- &#8203;<!-- 36 -->[core] Remove duplicate prop @oliviertassinari
+
+- &#8203;<!-- 22 -->[docs-infra] Fix mobile display in CodeSandbox (#38767) @oliviertassinari
+- &#8203;<!-- 21 -->[docs-infra] Remove legacy GA (#37579) @alexfauquette
+- &#8203;<!-- 20 -->[docs-infra] Fix emotion :first-child console log (#38690) @oliviertassinari
+- &#8203;<!-- 19 -->[docs-infra] Fix leaking callout content (#38712) @danilo-leal
+- &#8203;<!-- 18 -->[docs-infra] Remove emoji from callouts (#38694) @danilo-leal
+
+- &#8203;<!-- 04 -->[website] Fix out of date discount value @oliviertassinari
+- &#8203;<!-- 03 -->[website] Fix out-of-date label on Toolpad (#38744) @bharatkashyap
+- &#8203;<!-- 02 -->[website] Fine-tune branding buttons box shadows (#38731) @danilo-leal
+- &#8203;<!-- 01 -->[website] Fix pricing table style (#38681) @alexfauquette
+
+All contributors of this release in alphabetical order: @alexfauquette, @alisasanib, @amal-qb, @anle9650, @anon-phantom, @bharatkashyap, @brijeshb42, @christophermorin, @danilo-leal, @flaviendelangle, @imevanc, @jyash97, @mbrookes, @michaldudak, @mj12albert, @oliviertassinari, @omriklein, @pcorpet, @rajgop1, @ruflair, @sai6855, @siriwatknp, @szalonna, @zanivan, @ZeeshanTamboli
+
+## 5.14.7
+
+<!-- generated comparing v5.14.6..master -->
+
+_Aug 29, 2023_
+
+A big thanks to the 11 contributors who made this release possible. This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.14.7`
+
+- [Autocomplete] Fix listbox opened unexpectedly when component is `disabled` (#38611) @mj12albert
+- [Select][material-ui] Fix select menu moving on scroll when disableScrollLock is true (#37773) @VishruthR
+
+### `@mui/base@5.0.0-beta.13`
+
+- [useButton][base-ui] Accept arbitrary props in getRootProps and forward them (#38475) @DiegoAndai
+
+### `@mui/zero-runtime@0.0.1-alpha.1`
+
+- [system][zero][tag] Add support for sx prop (#38535) @brijeshb42
+
+### Docs
+
+- [docs] Number Input docs fixes (#38521) @mj12albert
+- [docs] Show all the code in the usage section (#38691) @oliviertassinari
+- [docs][joy-ui] Change the customization and how-to guides docs tree (#38396) @danilo-leal
+- [docs][lab][LoadingButton] Improve `loading` prop documentation (#38625) @sai6855
+- [docs][material-ui] Format `key` prop JSDoc description in `Snackbar` component code correctly (#38603) @jaydenseric
+
+### Core
+
+- [core] Add use-client to custom icons (#38132) @mj12albert
+- [core] Remove unnecessary `@types/jsdom` (#38657) @renovate[bot]
+- [core] Improve sponsors GA labels (#38649) @oliviertassinari
+- [core] Fix ESM issues with regression tests (#37963) @Janpot
+- [core] Potential fix for intermittent ci crashes in e2e test (#38614) @Janpot
+- [docs-infra] Mark unstable components with a chip in the nav drawer (#38573) @michaldudak
+- [docs-infra] Adjust the Material You playground demo design (#38636) @danilo-leal
+- [docs-infra] Hide the SkipLink button if user prefers reduced motion (#38632) @DerTimonius
+- [website] Add tiny fixes the homepage Sponsors section (#38635) @danilo-leal
+
+All contributors of this release in alphabetical order: @brijeshb42, @danilo-leal, @DerTimonius, @DiegoAndai, @Janpot, @jaydenseric, @mj12albert, @oliviertassinari, @renovate[bot], @sai6855, @VishruthR
+
+## 5.14.6
+
+<!-- generated comparing v5.14.5..master -->
+
+_Aug 23, 2023_
+
+A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added the [Popup](https://mui.com/base-ui/react-popup/) component to Base UI (#37960) @michaldudak
+  It's intended to replace the Popper component, which uses the deprecated Popper JS library. The Popup is built on top of Floating UI and has a similar API to the Popper.
+- 🚀 Added the [Accordion](https://mui.com/joy-ui/react-accordion/) component to Joy UI (#38164) @siriwatknp
+- 🚀 Added InputBase and ButtonBase components to `material-next` (#38319) @DiegoAndai @mj12albert
+- 🔋 First iteration on the zero-runtime styling engine compatible with Server Components (#38378) @brijeshb42
+
+### `@mui/material@5.14.6`
+
+- [Modal] Update it to use the useModal hook (#38498) @mnajdova
+- [Select] Add `root` class to `SelectClasses` (#38424) @sai6855
+- [Skeleton] Soften the pulse animation (#38506) @oliviertassinari
+- [TextField] Fix onClick regressions handling changes (#38474) @mj12albert
+- [TextField] Fix TextField onClick test (#38597) @mj12albert
+
+### `@mui/base@5.0.0-beta.12`
+
+- [Popup] New component (#37960) @michaldudak
+
+### `@mui/joy@5.0.0-beta.3`
+
+- [Accordion] Add Joy UI Accordion components (#38164) @siriwatknp
+- [Select] Add `required` prop (#38167) @siriwatknp
+- Miscellaneous fixes (#38462) @siriwatknp
+
+### `@mui/material-next@6.0.0-alpha.98`
+
+- [ButtonBase] Add ButtonBase component (#38319) @DiegoAndai
+- [Input] Add InputBase component (#38392) @mj12albert
+
+### `@mui/zero-runtime@0.0.1-alpha.0`
+
+- Implementation of styled tag processor for linaria (#38378) @brijeshb42
+
+### Docs
+
+- [blog] Clarify tree view move @oliviertassinari
+- [docs] Improve the "Understanding MUI packages" page images (#38619) @danilo-leal
+- [docs][base-ui] Revise the structure of the Component docs (#38529) @samuelsycamore
+- [docs][base-ui] Fix Menu Hooks demo (#38479) @homerchen19
+- [docs][base-ui] Correct the MUI System quickstart example (#38496) @michaldudak
+- [docs][base-ui] Add Tailwind & plain CSS demos for Autocomplete page (#38157) @mj12albert
+- [docs][base-ui] Add Tailwind CSS + plain CSS demo on the Input page (#38302) @alisasanib
+- [docs][base-ui] Add Tailwind CSS + plain CSS demo on the Snackbar, Badge, Switch pages (#38425) @alisasanib
+- [docs][base-ui] Add Tailwind CSS + plain CSS demo on the Slider page (#38413) @alisasanib
+- [docs][base-ui] Add Tailwind CSS + plain CSS demo on the Select page (#38367) @alisasanib
+- [docs][joy-ui] Fix typo: Classname -> Class name for consistency (#38510) @alexfauquette
+- [docs][joy-ui] Revise the theme color page (#38402) @danilo-leal
+- [docs][joy-ui] Sort templates by popularity (#38490) @oliviertassinari
+- [docs][joy-ui] Fix the `fullWidth` prop description for the Input (#38545) @0xturner
+- [docs][joy-ui] Updated the List playground demo (#38499) @zanivan
+- [docs][joy-ui] Changed bgcolor of the Playground demo (#38502) @zanivan
+- [docs][material-ui] Fix key warning in SimpleDialog demo (#38580) @ZeeshanTamboli
+- [docs][material-ui] Fixed Google Fonts link for material two-tone icons in CodeSandbox and Stackblitz (#38247) @ZeeshanTamboli
+- [docs][material-ui] Fix the Drawer's `onClose` API docs (#38273) @johnmatthiggins
+- [docs][material-ui] Improve nav link tab example (#38315) @oliviertassinari
+- [docs][material-ui] Fix missing import in the styled engine guide (#38450) @codersjj
+- [docs][material-ui][Dialog] Improve screen reader announcement of Customized Dialog (#38592) @ZeeshanTamboli
+- [docs] Add 3rd party libraries integration examples for Joy Input (#38541) @siriwatknp
+- [docs] Hide translation call to action (#38449) @cristianmacedo
+- [docs] Fix codemod name in changelog of v5.14.4 (#38593) @GresilleSiffle
+- [docs] More space for theme builder (#38532) @oliviertassinari
+- [docs] Fix the math symbol of the width sx prop range @oliviertassinari
+- [docs] Fix typo on a11y section of Tabs @oliviertassinari
+- [docs] Clarify System peer dependencies @oliviertassinari
+- [docs] Fix horizontal scrollbar @oliviertassinari
+- [docs] Code style convention @oliviertassinari
+- [docs] Fix typo in Base UI @oliviertassinari
+- [docs] Update the backers page (#38505) @danilo-leal
+- [docs] Add stray design adjustments to the docs (#38501) @danilo-leal
+- [docs] Use IBM Plex Sans in Tailwind CSS demos (#38464) @mnajdova
+- [docs] Fix SEO issues reported by ahrefs (#38423) @oliviertassinari
+
+### Examples
+
+- [examples] Start to remove Gatsby (#38567) @oliviertassinari
+- [examples][joy-ui] Fix Joy UI example CLI (#38531) @oliviertassinari
+- [examples][joy-ui] Improve example when using Next Font (#38540) @mwskwong
+
+### Core
+
+- [CHANGELOG] Fix issues in highlight @oliviertassinari
+- [core] Remove redundant `@material-ui/` aliases from regression test webpack config (#38574) @ZeeshanTamboli
+- [core] Fix CI error @oliviertassinari
+- [core] Remove unnecessary Box (#38461) @oliviertassinari
+- [core] Set GitHub Action top level permission @oliviertassinari
+- [docs-infra][joy-ui] Polish the usage and CSS vars playgrounds (#38600) @danilo-leal
+- [docs-infra] Support link title (#38579) @oliviertassinari
+- [docs-infra] Fix ad layout shift (#38622) @oliviertassinari
+- [docs-infra] Add light tweaks to the ad container (#38504) @danilo-leal
+- [docs-infra] Fix anchor scroll without tabs (#38586) @oliviertassinari
+- [docs-infra] Retain velocity animation speed (#38470) @oliviertassinari
+- [docs-infra] Follow import and CSS token standard (#38508) @oliviertassinari
+- [docs-infra] Add icon to callouts (#38525) @alexfauquette
+- [docs-infra] Fix the anchor link on headings (#38528) @danilo-leal
+- [docs-infra] Cleanup code on demo code block expansion (#38522) @ZeeshanTamboli
+- [docs-infra] Improve the heading buttons positioning (#38428) @danilo-leal
+- [docs-infra] Customize the blockquote design (#38503) @danilo-leal
+- [docs-infra] Improve the alert before a negative feedback (#38500) @danilo-leal
+- [docs-infra] Fix GoogleAnalytics missing event for code copy (#38469) @alexfauquette
+- [docs-infra] Improve affordance on the code block expansion (#38421) @danilo-leal
+- [website] Fine-tune the branding theme buttons (#38588) @danilo-leal
+- [website] Improve the Base UI hero section demo (#38585) @danilo-leal
+- [website] Add stray design improvements to the Material UI page (#38590) @danilo-leal
+- [website] Fix mobile view Material UI page (#38568) @oliviertassinari
+- [website] Fix reference to the data grid @oliviertassinari
+- [website] Configure Apple Pay @oliviertassinari
+- [website] Fix template link on the homepage (#38471) @danilo-leal
+
+All contributors of this release in alphabetical order: @0xturner, @alexfauquette, @alisasanib, @brijeshb42, @codersjj, @cristianmacedo, @danilo-leal, @DiegoAndai, @GresilleSiffle, @homerchen19, @johnmatthiggins, @michaldudak, @mj12albert, @mnajdova, @mwskwong, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
+
 ## 5.14.5
 
 <!-- generated comparing v5.14.4..master -->
@@ -418,10 +670,10 @@ _Jul 11, 2023_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- 💫 Material UI, Joy UI, and Base UI are compatible with [NextJS App Router](https://nextjs.org/docs/app) (#37656) @mj12albert
+- 💫 Material UI, Joy UI, and Base UI are compatible with [Next.js App Router](https://nextjs.org/docs/app) (#37656) @mj12albert
 - 📚 Added new guides for integrating with Next.js 13 App Router (#37656) @mj12albert
   - Ⓜ️ [Material UI guide](https://mui.com/material-ui/guides/next-js-app-router/)
-  - 🅙 [Joy UI guide](https://mui.com/joy-ui/guides/next-js-app-router/)
+  - 🅙 [Joy UI guide](https://mui.com/joy-ui/integrations/next-js-app-router/)
   - 🅱️ [Base UI guide](https://mui.com/base-ui/guides/next-js-app-router/)
 - 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
 
@@ -1219,7 +1471,7 @@ _Apr 11, 2023_
 
 A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
 
-- 💫 Added [theme scope](https://mui.com/material-ui/guides/styled-engine/#theme-scoping) for using multiple design systems (#36664) @siriwatknp
+- 💫 Added [theme scope](https://mui.com/material-ui/guides/theme-scoping/) for using multiple design systems (#36664) @siriwatknp
 - 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/system@5.12.0`
@@ -1707,7 +1959,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 20 -->[docs][joy] List slots in API documentation (#36271) @hbjORbj
 - &#8203;<!-- 19 -->[docs][joy] Build API documentations (#36008) @hbjORbj
 - &#8203;<!-- 18 -->[examples] Update Next.js examples to use built-in font (#36315) @Juneezee
-- &#8203;<!-- 17 -->[examples] Update curl link in `material-next-ts-v4-v5-migration` example README (#36321) @ZeeshanTamboli
+- &#8203;<!-- 17 -->[examples] Update curl link in `material-ui-nextjs-ts-v4-v5-migration` example README (#36321) @ZeeshanTamboli
 - &#8203;<!-- 16 -->[examples] Convert Next.js \_document class components to function components (#36109) @ossan-engineer
 
 ### Core
@@ -2965,7 +3217,7 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 
 ### `@mui/base@5.0.0-alpha.101`
 
-- &#8203;<!-- 01 -->[TrapFocus] Restore the previously exported type from @mui/material (#34601) @michaldudak
+- &#8203;<!-- 01 -->[FocusTrap] Restore the previously exported type from @mui/material (#34601) @michaldudak
 
 ### `@mui/joy@5.0.0-alpha.49`
 
@@ -3081,7 +3333,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 #### Breaking changes
 
-- [TrapFocus] Rename TrapFocus to FocusTrap (#34216) @kabernardes
+- [FocusTrap] Rename TrapFocus to FocusTrap (#34216) @kabernardes
 
   ```diff
   -import TrapFocus from '@mui/base/TrapFocus';
@@ -3323,7 +3575,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 - [Button][base] Prevent too many ref updates (#33882) @michaldudak
 - [Select][base] Fix typo in listbox blur event handler (#34120) @ZeeshanTamboli
-- [TrapFocus] Improve tab test and simplify demo (#34008) @EthanStandel
+- [FocusTrap] Improve tab test and simplify demo (#34008) @EthanStandel
 
 ### `@mui/joy@5.0.0-alpha.43`
 
@@ -3429,7 +3681,7 @@ A big thanks to the 18 contributors who made this release possible. This release
 
 ### `@mui/base@5.0.0-alpha.93`
 
-- &#8203;<!-- 31 -->[TrapFocus] Removes invisible tabbable elements from (#33543) @EthanStandel
+- &#8203;<!-- 31 -->[FocusTrap] Removes invisible tabbable elements from (#33543) @EthanStandel
 - &#8203;<!-- 30 -->[Input][base] Pass the rows prop to the underlying textarea (#33873) @michaldudak
 - &#8203;<!-- 06 -->[SelectUnstyled] Add ability to post the select's value when submitting a form (#33697) @michaldudak
 
@@ -4774,7 +5026,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   );
   ```
 
-- &#8203;<!-- 03 -->[TrapFocus] Move docs to Base and drop the Unstyled prefix (#31954) @michaldudak
+- &#8203;<!-- 03 -->[FocusTrap] Move docs to Base and drop the Unstyled prefix (#31954) @michaldudak
 
   Removed the `Unstyled_` prefix from the Base export (it remains in the Material UI export, though).
 
@@ -7741,7 +7993,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 ### `@material-ui/unstyled@5.0.0-alpha.37`
 
 - &#8203;<!-- 04 -->[Slider] Improve TS definition (#26642) @mnajdova
-- &#8203;<!-- 21 -->[TrapFocus] Capture nodeToRestore via relatedTarget (#26696) @eps1lon
+- &#8203;<!-- 21 -->[FocusTrap] Capture nodeToRestore via relatedTarget (#26696) @eps1lon
 
 ### `@material-ui/icons@5.0.0-alpha.37`
 
@@ -8811,7 +9063,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - &#8203;<!-- 28 -->[Timeline] Migrate TimelineContent to emotion (#25781) @siriwatknp
 - &#8203;<!-- 53 -->[Timeline] Migrate TimelineItem to emotion (#25822) @vicasas
 - &#8203;<!-- 47 -->[Timeline] Migrate TimelineOppositeContent to emotion (#25816) @vicasas
-- &#8203;<!-- 54 -->[TrapFocus] Make isEnabled and getDoc optional (#25784) @m4theushw
+- &#8203;<!-- 54 -->[FocusTrap] Make isEnabled and getDoc optional (#25784) @m4theushw
 
 ### `@material-ui/styled-engine@5.0.0-alpha.31`
 
@@ -9293,7 +9545,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 ### `@material-ui/unstyled@5.0.0-alpha.26`
 
 - &#8203;<!-- 033 -->[Portal] Migrate to unstyled (#24890) @povilass
-- &#8203;<!-- 047 -->[TrapFocus] Migrate to unstyled (#24957) @povilass
+- &#8203;<!-- 047 -->[FocusTrap] Migrate to unstyled (#24957) @povilass
 - &#8203;<!-- 060 -->[Backdrop] Migrate to unstyled (#24985) @povilass
 - &#8203;<!-- 078 -->[Modal] Migrate to emotion + unstyled (#24857) @povilass
 
@@ -9890,7 +10142,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [ButtonBase] Migrate styles to emotion (#24100) @mnajdova
 - [Button] Migrate styles to emotion (#24107) @mnajdova
 - [unstyled] Add utils for generating utility classes (#24126) @mnajdova
-- [TrapFocus] Fix trap to only focus on tabbable elements (#23364) @gregnb
+- [FocusTrap] Fix trap to only focus on tabbable elements (#23364) @gregnb
 - [Link] Improve integration with Next.js (#24121) @kelvinsanchez15
 - [Select] Fix overflow showing scrollbar (#24085) @Segebre
 - [Slider] Fix circular type reference in SliderValueLabel (#24190) @eps1lon
@@ -10559,7 +10811,7 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 - [Avatar] Fix usage of srcset property (#23286) @matheuspiment
 - [ClickAwayListener] Fix mounting behavior in Portals in React 17 (#23315) @eps1lon
 - [core] Allow React 17 (#23311) @eps1lon
-- [Icon] Fix translation, e.g Google Translate (#23237) @cbeltrangomez84
+- [Icon] Fix translation, e.g. Google Translate (#23237) @cbeltrangomez84
 - [LinearProgress] Fix Safari's bug during composition of different paint (#23293) @montogeek
 - [Radio] Fix dot misalignment in Safari (#23239) @anasufana
 - [styled-engine] Fix tagged template syntax with multiple expressions (#23269) @eps1lon
@@ -11823,9 +12075,9 @@ Here are some highlights ✨:
 - [Tabs] Document how to make scroll icons visible (#22255) @Sorgrum
 - [TextField] Add hidden label to multi-line filled textfield (#22284) @fakeharahman
 - [Toolbar] Custom variant (#22217) @mnajdova
-- [TrapFocus] Entangle effects (#22155) @eps1lon
-- [TrapFocus] Fix compatibility issues with React 17 (#22270) @eps1lon
-- [TrapFocus] Prevent possible crash in React 17 (#22262) @eps1lon
+- [FocusTrap] Entangle effects (#22155) @eps1lon
+- [FocusTrap] Fix compatibility issues with React 17 (#22270) @eps1lon
+- [FocusTrap] Prevent possible crash in React 17 (#22262) @eps1lon
 
 ### `@material-ui/icons@v5.0.0-alpha.7`
 
@@ -11910,7 +12162,7 @@ Here are some highlights ✨:
 
   More details in [the documentation](https://mui.com/material-ui/customization/components/#adding-new-component-variants) and [RFC](#21749).
 
-- 👮 Add documentation for the [TrapFocus](https://mui.com/components/trap-focus/) component (#22062) @oliviertassinari.
+- 👮 Add documentation for the [FocusTrap](https://mui.com/base-ui/react-focus-trap/) component (#22062) @oliviertassinari.
 - ⚛️ Prepare support for React v17 (#22093, #22105, #22143, #22111) @eps1lon.
 - 🚧 We have undertaken breaking changes.
 
@@ -12087,7 +12339,7 @@ Here are some highlights ✨:
 - [CssBaseline] Add text size adjust property (#22089) @Tolsee
 - [l10n] Add Greek (el-GR) locale (#21988) @tmanolat
 - [Table] Cell small's right padding is bigger than medium (#22017) @adamlaurencik
-- [TrapFocus] Add documentation (#22062) @oliviertassinari
+- [FocusTrap] Add documentation (#22062) @oliviertassinari
 - [Typography] Add custom variants support (#22006) @mnajdova
 - [useIsFocusVisible] Remove focus-visible if focus is re-targetted (#22102) @eps1lon
 - [core] Fix various potential issues with multiple windows (#22159) @scottander
@@ -12283,7 +12535,7 @@ A big thanks to the 14 contributors who made this release possible.
 - [List] Fix secondary action position when disableGutters={true} (#21732) @kgregory
 - [TablePagination] Fix broken labelling if SelectProps provided ids (#21703) @eps1lon
 - [theme] Fix custom breakpoint in CSS Media Queries (#21759) @nkrivous
-- [TrapFocus] Fix disableAutoFocus prop (#21612) @oliviertassinari
+- [FocusTrap] Fix disableAutoFocus prop (#21612) @oliviertassinari
 
 ### `@material-ui/lab@v5.0.0-alpha.3`
 
@@ -12358,7 +12610,7 @@ A big thanks to the 16 contributors who made this release possible.
 - [MenuItem] Add types for ListItemClasses (#21654) @eps1lon
 - [Slider] Fix cannot read property 'focus' of null (#21653) @mageprincess
 - [TextField] Fix CSS isolation issue (#21665) @Codetalker777
-- [TrapFocus] Fix portal support (#21610) @mnajdova
+- [FocusTrap] Fix portal support (#21610) @mnajdova
 - [TypeScript] Fix version support (#21640) @jakubfiglak
 
 ### `@material-ui/lab@v5.0.0-alpha.2`

@@ -9,57 +9,59 @@ export interface IconPropsSizeOverrides {}
 
 export interface IconPropsColorOverrides {}
 
+export interface IconOwnProps {
+  /**
+   * The base class applied to the icon. Defaults to 'material-icons', but can be changed to any
+   * other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc).
+   * @default 'material-icons'
+   */
+  baseClassName?: string;
+  /**
+   * The name of the icon font ligature.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<IconClasses>;
+  /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * @default 'inherit'
+   */
+  color?: OverridableStringUnion<
+    | 'inherit'
+    | 'action'
+    | 'disabled'
+    | 'primary'
+    | 'secondary'
+    | 'error'
+    | 'info'
+    | 'success'
+    | 'warning',
+    IconPropsColorOverrides
+  >;
+  /**
+   * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
+   * @default 'medium'
+   */
+  fontSize?: OverridableStringUnion<
+    'inherit' | 'large' | 'medium' | 'small',
+    IconPropsSizeOverrides
+  >;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export interface IconTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'span',
+  RootComponent extends React.ElementType = 'span',
 > {
-  props: AdditionalProps & {
-    /**
-     * The base class applied to the icon. Defaults to 'material-icons', but can be changed to any
-     * other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc).
-     * @default 'material-icons'
-     */
-    baseClassName?: string;
-    /**
-     * The name of the icon font ligature.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<IconClasses>;
-    /**
-     * The color of the component.
-     * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-     * @default 'inherit'
-     */
-    color?: OverridableStringUnion<
-      | 'inherit'
-      | 'action'
-      | 'disabled'
-      | 'primary'
-      | 'secondary'
-      | 'error'
-      | 'info'
-      | 'success'
-      | 'warning',
-      IconPropsColorOverrides
-    >;
-    /**
-     * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
-     * @default 'medium'
-     */
-    fontSize?: OverridableStringUnion<
-      'inherit' | 'large' | 'medium' | 'small',
-      IconPropsSizeOverrides
-    >;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
-  defaultComponent: DefaultComponent;
+  props: AdditionalProps & IconOwnProps;
+  defaultComponent: RootComponent;
 }
 /**
  *

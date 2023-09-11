@@ -56,7 +56,7 @@ Every palette included in the theme is available via the `color` prop.
 
 {{"demo": "InputColors.js"}}
 
-### Form props
+### Form submission
 
 You can add standard form attributes such as `required` and `disabled` to the Input component:
 
@@ -95,7 +95,7 @@ To trigger the focus ring programmatically, set the CSS variable `--Input-focuse
 {{"demo": "TriggerFocusInput.js"}}
 
 :::info
-💡 The focus ring still appear on focus even though you set `--Input-focused: 0`.
+The focus ring still appear on focus even though you set `--Input-focused: 0`.
 :::
 
 ### Label and helper text
@@ -132,6 +132,13 @@ If you need to pass props to the inner HTML `<input>`, use `slotProps={{ input: 
 These props may include HTML attributes such as `ref`, `min`, `max`, and `autocomplete`.
 
 {{"demo": "InputSlotProps.js"}}
+
+## CSS variables playground
+
+Play around with the CSS variables available to the Input component to see how the design changes.
+You can use these to customize the component with both the `sx` prop and the theme.
+
+{{"demo": "InputVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Common examples
 
@@ -179,13 +186,6 @@ The demos below illustrate how to do this with two popular libraries.
 [react-number-format](https://github.com/s-yadav/react-number-format) provides the `NumericFormat` component for enforcing text formatting that follows a specific number or string pattern.
 
 {{"demo": "InputReactNumberFormat.js"}}
-
-## CSS variable playground
-
-Play around with the CSS variables available to the Input component to see how the design changes.
-You can use these to customize the component with both the `sx` prop and the theme.
-
-{{"demo": "InputVariables.js", "hideToolbar": true}}
 
 ## Accessibility
 

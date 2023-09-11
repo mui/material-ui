@@ -48,7 +48,7 @@ const theme = createTheme({
 {{"demo": "LinkRouterWithTheme.js", "defaultCodeOpen": false}}
 
 :::warning
-⚠️ This approach has limitations with TypeScript. The `href` prop only accepts a string. In the event you need to provide a richer structure, see the next section.
+This approach has limitations with TypeScript. The `href` prop only accepts a string. In the event you need to provide a richer structure, see the next section.
 :::
 
 ## Propriedade `component`
