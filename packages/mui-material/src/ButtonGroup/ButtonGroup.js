@@ -9,6 +9,7 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 import ButtonGroupContext from './ButtonGroupContext';
+import ButtonGroupButtonContext from './ButtonGroupButtonContext';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -26,6 +27,15 @@ const overridesResolver = (props, styles) => {
     {
       [`& .${buttonGroupClasses.grouped}`]:
         styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.color)}`],
+    },
+    {
+      [`& .${buttonGroupClasses.firstButton}`]: styles.firstButton,
+    },
+    {
+      [`& .${buttonGroupClasses.lastButton}`]: styles.lastButton,
+    },
+    {
+      [`& .${buttonGroupClasses.middleButton}`]: styles.middleButton,
     },
     styles.root,
     styles[ownerState.variant],
@@ -55,6 +65,9 @@ const useUtilityClasses = (ownerState) => {
       `grouped${capitalize(variant)}${capitalize(color)}`,
       disabled && 'disabled',
     ],
+    firstButton: ['firstButton'],
+    lastButton: ['lastButton'],
+    middleButton: ['middleButton'],
   };
 
   return composeClasses(slots, getButtonGroupUtilityClass, classes);
@@ -81,98 +94,6 @@ const ButtonGroupRoot = styled('div', {
   }),
   [`& .${buttonGroupClasses.grouped}`]: {
     minWidth: 40,
-    '&:not(:first-of-type)': {
-      ...(ownerState.orientation === 'horizontal' && {
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
-      }),
-      ...(ownerState.orientation === 'vertical' && {
-        borderTopRightRadius: 0,
-        borderTopLeftRadius: 0,
-      }),
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.orientation === 'horizontal' && {
-          marginLeft: -1,
-        }),
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.orientation === 'vertical' && {
-          marginTop: -1,
-        }),
-    },
-    '&:not(:last-of-type)': {
-      ...(ownerState.orientation === 'horizontal' && {
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
-      }),
-      ...(ownerState.orientation === 'vertical' && {
-        borderBottomRightRadius: 0,
-        borderBottomLeftRadius: 0,
-      }),
-      ...(ownerState.variant === 'text' &&
-        ownerState.orientation === 'horizontal' && {
-          borderRight: theme.vars
-            ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
-            : `1px solid ${
-                theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-              }`,
-          [`&.${buttonGroupClasses.disabled}`]: {
-            borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
-          },
-        }),
-      ...(ownerState.variant === 'text' &&
-        ownerState.orientation === 'vertical' && {
-          borderBottom: theme.vars
-            ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
-            : `1px solid ${
-                theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-              }`,
-          [`&.${buttonGroupClasses.disabled}`]: {
-            borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
-          },
-        }),
-      ...(ownerState.variant === 'text' &&
-        ownerState.color !== 'inherit' && {
-          borderColor: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
-            : alpha(theme.palette[ownerState.color].main, 0.5),
-        }),
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.orientation === 'horizontal' && {
-          borderRightColor: 'transparent',
-        }),
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.orientation === 'vertical' && {
-          borderBottomColor: 'transparent',
-        }),
-      ...(ownerState.variant === 'contained' &&
-        ownerState.orientation === 'horizontal' && {
-          borderRight: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
-          [`&.${buttonGroupClasses.disabled}`]: {
-            borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
-          },
-        }),
-      ...(ownerState.variant === 'contained' &&
-        ownerState.orientation === 'vertical' && {
-          borderBottom: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
-          [`&.${buttonGroupClasses.disabled}`]: {
-            borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
-          },
-        }),
-      ...(ownerState.variant === 'contained' &&
-        ownerState.color !== 'inherit' && {
-          borderColor: (theme.vars || theme).palette[ownerState.color].dark,
-        }),
-      '&:hover': {
-        ...(ownerState.variant === 'outlined' &&
-          ownerState.orientation === 'horizontal' && {
-            borderRightColor: 'currentColor',
-          }),
-        ...(ownerState.variant === 'outlined' &&
-          ownerState.orientation === 'vertical' && {
-            borderBottomColor: 'currentColor',
-          }),
-      },
-    },
     '&:hover': {
       ...(ownerState.variant === 'contained' && {
         boxShadow: 'none',
@@ -181,6 +102,98 @@ const ButtonGroupRoot = styled('div', {
     ...(ownerState.variant === 'contained' && {
       boxShadow: 'none',
     }),
+  },
+  [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
+    ...(ownerState.orientation === 'horizontal' && {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    }),
+    ...(ownerState.orientation === 'vertical' && {
+      borderBottomRightRadius: 0,
+      borderBottomLeftRadius: 0,
+    }),
+    ...(ownerState.variant === 'text' &&
+      ownerState.orientation === 'horizontal' && {
+        borderRight: theme.vars
+          ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+          : `1px solid ${
+              theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+            }`,
+        [`&.${buttonGroupClasses.disabled}`]: {
+          borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
+        },
+      }),
+    ...(ownerState.variant === 'text' &&
+      ownerState.orientation === 'vertical' && {
+        borderBottom: theme.vars
+          ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+          : `1px solid ${
+              theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+            }`,
+        [`&.${buttonGroupClasses.disabled}`]: {
+          borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
+        },
+      }),
+    ...(ownerState.variant === 'text' &&
+      ownerState.color !== 'inherit' && {
+        borderColor: theme.vars
+          ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
+          : alpha(theme.palette[ownerState.color].main, 0.5),
+      }),
+    ...(ownerState.variant === 'outlined' &&
+      ownerState.orientation === 'horizontal' && {
+        borderRightColor: 'transparent',
+      }),
+    ...(ownerState.variant === 'outlined' &&
+      ownerState.orientation === 'vertical' && {
+        borderBottomColor: 'transparent',
+      }),
+    ...(ownerState.variant === 'contained' &&
+      ownerState.orientation === 'horizontal' && {
+        borderRight: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
+        [`&.${buttonGroupClasses.disabled}`]: {
+          borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
+        },
+      }),
+    ...(ownerState.variant === 'contained' &&
+      ownerState.orientation === 'vertical' && {
+        borderBottom: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
+        [`&.${buttonGroupClasses.disabled}`]: {
+          borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
+        },
+      }),
+    ...(ownerState.variant === 'contained' &&
+      ownerState.color !== 'inherit' && {
+        borderColor: (theme.vars || theme).palette[ownerState.color].dark,
+      }),
+    '&:hover': {
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.orientation === 'horizontal' && {
+          borderRightColor: 'currentColor',
+        }),
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.orientation === 'vertical' && {
+          borderBottomColor: 'currentColor',
+        }),
+    },
+  },
+  [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
+    ...(ownerState.orientation === 'horizontal' && {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    }),
+    ...(ownerState.orientation === 'vertical' && {
+      borderTopRightRadius: 0,
+      borderTopLeftRadius: 0,
+    }),
+    ...(ownerState.variant === 'outlined' &&
+      ownerState.orientation === 'horizontal' && {
+        marginLeft: -1,
+      }),
+    ...(ownerState.variant === 'outlined' &&
+      ownerState.orientation === 'vertical' && {
+        marginTop: -1,
+      }),
   },
 }));
 
@@ -243,6 +256,22 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     ],
   );
 
+  const getButtonPositionClassName = (index, childrenParam) => {
+    const isFirstButton = index === 0;
+    const isLastButton = index === React.Children.count(childrenParam) - 1;
+
+    if (isFirstButton && isLastButton) {
+      return '';
+    }
+    if (isFirstButton) {
+      return classes.firstButton;
+    }
+    if (isLastButton) {
+      return classes.lastButton;
+    }
+    return classes.middleButton;
+  };
+
   return (
     <ButtonGroupRoot
       as={component}
@@ -252,7 +281,19 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      <ButtonGroupContext.Provider value={context}>{children}</ButtonGroupContext.Provider>
+      <ButtonGroupContext.Provider value={context}>
+        {React.Children.map(children, (child, index) => {
+          if (!React.isValidElement(child)) {
+            return child;
+          }
+
+          return (
+            <ButtonGroupButtonContext.Provider value={getButtonPositionClassName(index, children)}>
+              {child}
+            </ButtonGroupButtonContext.Provider>
+          );
+        })}
+      </ButtonGroupContext.Provider>
     </ButtonGroupRoot>
   );
 });

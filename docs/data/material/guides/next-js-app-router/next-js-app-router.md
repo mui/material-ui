@@ -2,20 +2,20 @@
 
 <p class="description">Learn how to use Material UI with the Next.js App Router.</p>
 
-:::info
+## Example
+
 Starting fresh on a new App Router-based project?
 
-Jump right into the code with [this example: Material UI - Next.js App Router example in TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts).
-:::
+Jump right into the code with [this example: Material UI - Next.js App Router in TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts).
 
 ## Next.js and React Server Components
 
 The Next.js App Router implements React Server Components, [an upcoming feature for React](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md).
 
-To support the App Router, currently all components and hooks from MUI libraries (Material UI, Joy UI, Base UI etc.) are exported with the `"use client"` directive.
+To support the App Router, the components and hooks from Material UI that need access to browser APIs are exported with the `"use client"` directive.
 
 :::warning
-React Server Components should not be conflated with the concept of server-side rendering (SSR).
+React Server Components is not the same concept as server-side rendering (SSR).
 So-called Client Components are still server-rendered to HTML.
 
 For more details, see [this explanation](https://github.com/reactwg/server-components/discussions/4) of Client Components and SSR from the React Working Group.
@@ -176,43 +176,40 @@ Currently, `prepend` does not work reliably with the App Router, but you can wor
  });
 ```
 
-## Function props
+## Props serialization
 
 Props passed from Server Components—for example `page.js` or other routing files—must be [serializable](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#passing-props-from-server-to-client-components-serialization).
 
+:::success
 This works without any additional directives:
 
-```jsx
+```tsx
 // app/page.tsx
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 export default function Page() {
   return (
-    <Container maxWidth="lg">
-      <Box>
-        <Card raised>
-          <Typography variant="h2">Hello World</Typography>
-        </Card>
-      </Box>
+    <Container>
+      <Typography variant="h2">Hello World</Typography>
     </Container>
   );
 }
 ```
 
+:::
+
 :::error
-This code snippet _doesn't work_, because the Button's click handler is **non-serializable**:
+This _doesn't work_ because the Button's click handler is **non-serializable**:
 
 ```tsx
-// page.tsx
-import Button from '@mui/material/Button';
+// app/page.tsx
 import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
 
 export default function Page() {
   return (
-    <Container maxWidth="lg">
+    <Container>
       {/* Next.js won't render this button without 'use-client' */}
       <Button
         variant="text"

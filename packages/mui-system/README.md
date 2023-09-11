@@ -1,4 +1,4 @@
-# @mui/system
+# MUI System
 
 CSS utilities for rapidly laying out custom designs.
 
@@ -9,11 +9,7 @@ Install the package in your project directory with:
 <!-- #default-branch-switch -->
 
 ```bash
-// with npm
 npm install @mui/system @emotion/react @emotion/styled
-
-// with yarn
-yarn add @mui/system @emotion/react @emotion/styled
 ```
 
 ## Documentation

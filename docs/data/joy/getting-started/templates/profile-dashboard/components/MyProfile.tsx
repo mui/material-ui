@@ -417,7 +417,7 @@ export default function MyProfile() {
             <FileUpload
               icon={<InsertDriveFileRoundedIcon />}
               fileName="Tech design requirements.pdf"
-              fileSize="200 KB"
+              fileSize="200 kB"
               progress={100}
             />
             <FileUpload
