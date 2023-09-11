@@ -1047,6 +1047,18 @@ describe('<Select />', () => {
       expect(options[2]).to.have.attribute('aria-selected', 'true');
     });
 
+    it('should have aria-multiselectable=true when multiple is true', () => {
+      const { getByRole } = render(
+        <Select multiple value={[10, 30]}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      expect(getByRole('button')).to.have.attribute('aria-multiselectable', 'true');
+    });
+
     it('should serialize multiple select display value', () => {
       const { getByRole } = render(
         <Select multiple value={[10, 20, 30]}>
