@@ -155,6 +155,10 @@ export function generatePropTypes(
       return `${importedName}.bool`;
     }
 
+    if (propType.type === 'ReactRefNode') {
+      return 'refType';
+    }
+
     if (propType.type === 'NumericNode') {
       return `${importedName}.number`;
     }

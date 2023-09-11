@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import { useButton } from '@mui/base/useButton';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { Interpolation } from '@mui/system';
-import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
+import {
+  unstable_capitalize as capitalize,
+  unstable_useForkRef as useForkRef,
+  refType,
+} from '@mui/utils';
 import { styled, Theme, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -325,14 +329,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
-  action: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.shape({
-        focusVisible: PropTypes.func.isRequired,
-      }),
-    }),
-  ]),
+  action: refType,
   /**
    * @ignore
    */

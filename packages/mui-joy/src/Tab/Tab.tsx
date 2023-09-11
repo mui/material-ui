@@ -2,7 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
+import {
+  unstable_capitalize as capitalize,
+  unstable_useForkRef as useForkRef,
+  refType,
+} from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useTab } from '@mui/base/useTab';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
@@ -215,14 +219,7 @@ Tab.propTypes /* remove-proptypes */ = {
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
-  action: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.shape({
-        focusVisible: PropTypes.func.isRequired,
-      }),
-    }),
-  ]),
+  action: refType,
   /**
    * @ignore
    */

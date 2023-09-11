@@ -170,9 +170,11 @@ function createBabelPlugin({
     return includeUnusedProps ? true : data.usedProps.includes(data.prop.name);
   };
 
-  let importName = '';
-  let needImport = false;
-  let alreadyImported = false;
+  let importNodeFromMuiUtils: babel.NodePath | null = null;
+  let hasRefTypeImportFromMuiUtils = false;
+  let needRefTypeImportFromMuiUtils = false;
+  let alreadyImportedPropTypesName: string | null = null;
+  let needImportFromPropTypePackage = false;
   let originalPropTypesPath: null | babel.NodePath = null;
   const previousPropTypesSource = new Map<string, string>();
 
@@ -186,7 +188,7 @@ function createBabelPlugin({
 
     const source = generatePropTypes(props, {
       ...otherOptions,
-      importedName: importName,
+      importedName: alreadyImportedPropTypesName ?? 'PropTypes',
       previousPropTypesSource,
       reconcilePropTypes,
       shouldInclude: (prop) => shouldInclude({ component: props, prop, usedProps }),
@@ -194,7 +196,13 @@ function createBabelPlugin({
     const emptyPropTypes = source === '';
 
     if (!emptyPropTypes) {
-      needImport = true;
+      needImportFromPropTypePackage = true;
+    }
+
+    // TODO: If we filter the injected proptypes in this file instead of in generatePropTypes.
+    // Then we could check correctly if some prop-type is a ref and not just rely on some string analysis.
+    if (source.includes(': refType')) {
+      needRefTypeImportFromMuiUtils = true;
     }
 
     const placeholder = `const a${uuid().replace(/-/g, '_')} = null;`;
@@ -233,25 +241,23 @@ function createBabelPlugin({
     visitor: {
       Program: {
         enter(path, state: any) {
-          if (
-            !path.node.body.some((n) => {
-              if (
-                babelTypes.isImportDeclaration(n) &&
-                n.source.value === 'prop-types' &&
-                n.specifiers.length
-              ) {
-                importName = n.specifiers[0].local.name;
-                alreadyImported = true;
-                return true;
-              }
-              return false;
-            })
-          ) {
-            importName = 'PropTypes';
-          }
-
           path.get('body').forEach((nodePath) => {
             const { node } = nodePath;
+
+            if (babelTypes.isImportDeclaration(node) && node.specifiers.length) {
+              if (node.source.value === 'prop-types') {
+                alreadyImportedPropTypesName = node.specifiers[0].local.name;
+              } else if (node.source.value === '@mui/utils') {
+                importNodeFromMuiUtils = nodePath;
+                const specifier = node.specifiers.find(
+                  (el) => babelTypes.isImportSpecifier(el) && el.local.name === 'refType',
+                );
+                if (specifier) {
+                  hasRefTypeImportFromMuiUtils = true;
+                }
+              }
+            }
+
             if (
               babelTypes.isExpressionStatement(node) &&
               babelTypes.isAssignmentExpression(node.expression, { operator: '=' }) &&
@@ -293,23 +299,54 @@ function createBabelPlugin({
           });
         },
         exit(path) {
-          if (alreadyImported || !needImport) {
-            return;
+          if (alreadyImportedPropTypesName == null && needImportFromPropTypePackage) {
+            const propTypesImport = babel.template.ast(
+              `import PropTypes from 'prop-types'`,
+            ) as babel.types.ImportDeclaration;
+
+            const firstImport = path
+              .get('body')
+              .find((nodePath) => babelTypes.isImportDeclaration(nodePath.node));
+
+            // Insert import after the first one to avoid issues with comment flags
+            if (firstImport) {
+              firstImport.insertAfter(propTypesImport);
+            } else {
+              path.node.body = [propTypesImport, ...path.node.body];
+            }
           }
 
-          const propTypesImport = babel.template.ast(
-            `import ${importName} from 'prop-types'`,
-          ) as babel.types.ImportDeclaration;
+          if (needRefTypeImportFromMuiUtils && !hasRefTypeImportFromMuiUtils) {
+            if (importNodeFromMuiUtils) {
+              const node = importNodeFromMuiUtils.node as babel.types.ImportDeclaration;
+              importNodeFromMuiUtils.replaceWith(
+                babelTypes.importDeclaration(
+                  [
+                    ...node.specifiers,
+                    babelTypes.importSpecifier(
+                      babelTypes.identifier('refType'),
+                      babelTypes.identifier('refType'),
+                    ),
+                  ],
+                  babelTypes.stringLiteral('@mui/utils'),
+                ),
+              );
+            } else {
+              const refTypeImport = babel.template.ast(
+                `import { refType } from '@mui/utils'`,
+              ) as babel.types.ImportDeclaration;
 
-          const firstImport = path
-            .get('body')
-            .find((nodePath) => babelTypes.isImportDeclaration(nodePath.node));
+              const firstImport = path
+                .get('body')
+                .find((nodePath) => babelTypes.isImportDeclaration(nodePath.node));
 
-          // Insert import after the first one to avoid issues with comment flags
-          if (firstImport) {
-            firstImport.insertAfter(propTypesImport);
-          } else {
-            path.node.body = [propTypesImport, ...path.node.body];
+              // Insert import after the first one to avoid issues with comment flags
+              if (firstImport) {
+                firstImport.insertAfter(refTypeImport);
+              } else {
+                path.node.body = [refTypeImport, ...path.node.body];
+              }
+            }
           }
         },
       },

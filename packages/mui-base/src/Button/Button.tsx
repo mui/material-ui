@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { refType } from '@mui/utils';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
@@ -97,14 +98,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
-  action: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.shape({
-        focusVisible: PropTypes.func.isRequired,
-      }),
-    }),
-  ]),
+  action: refType,
   /**
    * @ignore
    */

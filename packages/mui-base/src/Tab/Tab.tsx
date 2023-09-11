@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import { unstable_useForkRef as useForkRef, refType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getTabUtilityClass } from './tabClasses';
 import { TabProps, TabTypeMap, TabRootSlotProps, TabOwnerState } from './Tab.types';
@@ -87,14 +87,7 @@ Tab.propTypes /* remove-proptypes */ = {
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
-  action: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.shape({
-        focusVisible: PropTypes.func.isRequired,
-      }),
-    }),
-  ]),
+  action: refType,
   /**
    * @ignore
    */

@@ -21,6 +21,7 @@ export type PropType =
   | BooleanType
   | DOMElementType
   | ElementType
+  | ReactRefType
   | FunctionType
   | InstanceOfType
   | InterfaceType
@@ -61,6 +62,10 @@ export interface DOMElementType extends BasePropType {
 export interface ElementType extends BasePropType {
   elementType: 'element' | 'node' | 'elementType';
   type: 'ElementNode';
+}
+
+export interface ReactRefType extends BasePropType {
+  type: 'ReactRefNode';
 }
 
 export interface FunctionType extends BasePropType {

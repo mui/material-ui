@@ -299,15 +299,7 @@ ButtonBase.propTypes /* remove-proptypes */ = {
   /**
    * A ref that points to the `TouchRipple` element.
    */
-  touchRippleRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.shape({
-        start: PropTypes.func.isRequired,
-        stop: PropTypes.func.isRequired,
-      }),
-    }),
-  ]),
+  touchRippleRef: refType,
   /**
    * Type attribute applied to the root component.
    * @default 'button'

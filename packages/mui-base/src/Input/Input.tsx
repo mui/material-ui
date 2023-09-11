@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { refType } from '@mui/utils';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { isHostComponent } from '../utils/isHostComponent';
@@ -244,12 +245,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.object,
-    }),
-  ]),
+  inputRef: refType,
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */

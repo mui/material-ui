@@ -3,7 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverrideProps, DefaultComponentProps } from '@mui/types';
-import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
+import {
+  unstable_capitalize as capitalize,
+  unstable_useForkRef as useForkRef,
+  refType,
+} from '@mui/utils';
 import { Popper, PopperProps } from '@mui/base/Popper';
 import { useSelect, SelectProvider } from '@mui/base/useSelect';
 import { SelectOption } from '@mui/base/useOption';
@@ -625,14 +629,7 @@ Select.propTypes /* remove-proptypes */ = {
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
-  action: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.shape({
-        focusVisible: PropTypes.func.isRequired,
-      }),
-    }),
-  ]),
+  action: refType,
   /**
    * If `true`, the select element is focused during the first mount
    * @default false

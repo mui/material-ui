@@ -15,6 +15,7 @@ import {
   StringType,
   ObjectType,
   NumericType,
+  ReactRefType,
 } from './models';
 
 export function createAnyType(init: { jsDoc: string | undefined }): AnyType {
@@ -61,6 +62,13 @@ export function createElementType(init: {
     type: 'ElementNode',
     jsDoc: init.jsDoc,
     elementType: init.elementType,
+  };
+}
+
+export function createReactRefType(init: { jsDoc: string | undefined }): ReactRefType {
+  return {
+    type: 'ReactRefNode',
+    jsDoc: init.jsDoc,
   };
 }
 

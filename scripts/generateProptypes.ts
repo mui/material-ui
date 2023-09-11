@@ -248,7 +248,10 @@ async function generateProptypes(
       ensureBabelPluginTransformReactRemovePropTypesIntegration: true,
       getSortLiteralUnions,
       reconcilePropTypes: (prop, previous, generated) => {
-        const usedCustomValidator = previous !== undefined && !previous.startsWith('PropTypes');
+        const usedCustomValidator =
+          previous !== undefined &&
+          !previous.startsWith('PropTypes') &&
+          !previous.startsWith('refType');
         const ignoreGenerated =
           previous !== undefined &&
           previous.startsWith('PropTypes /* @typescript-to-proptypes-ignore */');

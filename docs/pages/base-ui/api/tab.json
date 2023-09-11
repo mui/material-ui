@@ -1,11 +1,6 @@
 {
   "props": {
-    "action": {
-      "type": {
-        "name": "union",
-        "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
-      }
-    },
+    "action": { "type": { "name": "custom", "description": "ref" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "onChange": { "type": { "name": "func" } },
     "slotProps": {
