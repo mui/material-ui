@@ -63,7 +63,7 @@ const Tag = styled('span')((theme) => ({
 
 ## Customizations
 
-To customize a default level, provide its name as a key along with an object containing the CSS rules as a value to the `theme.typography` node.
+To customize a default typography level, provide its name as a key along with an object containing the CSS rules as a value to the `theme.typography` node.
 
 The example below illustrates the customization of the `h1` level:
 
@@ -93,12 +93,6 @@ declare module '@mui/joy/styles' {
   }
 }
 ```
-
-## Customize font family
-
-Following demo showcases how to customize font family using `extendTheme` function:
-
-{{"demo": "CustomFontFamily.js"}}
 
 ### Adding more levels
 
@@ -132,6 +126,12 @@ extendTheme({
   },
 });
 ```
+
+### Customize the font family
+
+To customize the font family, use the `extendTheme` function:
+
+{{"demo": "CustomFontFamily.js"}}
 
 ## Common examples
 
