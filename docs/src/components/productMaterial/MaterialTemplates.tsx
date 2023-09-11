@@ -27,23 +27,23 @@ function ActionArea(props: ButtonBaseProps) {
       {...props}
       sx={[
         (theme) => ({
-          width: 100,
-          height: 100,
+          width: { xs: 70, sm: 100 },
+          height: { xs: 70, sm: 100 },
+          position: 'absolute',
+          top: 'calc(50% - 50px)',
+          p: 1.5,
+          color: '#FFF',
           borderRadius: '50%',
           transition: '0.2s',
+          backdropFilter: 'blur(4px)',
+          bgcolor: alpha(theme.palette.primary[500], 0.5),
+          '& > svg': { transition: '0.2s' },
           '&.Mui-disabled': {
             opacity: 0,
           },
-          '& > svg': { transition: '0.2s' },
-          backdropFilter: 'blur(4px)',
-          bgcolor: alpha(theme.palette.primary[500], 0.5),
           '&:hover, &:focus': {
             '& > svg': { fontSize: 28 },
           },
-          position: 'absolute',
-          top: 'calc(50% - 50px)',
-          color: '#fff',
-          p: 1.5,
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
