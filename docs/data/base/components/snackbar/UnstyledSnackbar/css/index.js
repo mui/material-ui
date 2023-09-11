@@ -115,7 +115,7 @@ function Styles() {
       justify-content: start;
       max-width: 560px;
       min-width: 300px;
-      background-color: ${isDarkMode ? grey[900] : grey[50]};
+      background-color: ${isDarkMode ? grey[900] : '#FFF'};
       border-radius: 8px;
       border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
       box-shadow: ${

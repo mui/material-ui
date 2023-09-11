@@ -36,7 +36,7 @@ export default function SimplePopper() {
         anchorEl={anchorEl}
         className={`${isDarkMode ? 'dark' : ''}`}
       >
-        <div className=" z-50 rounded-lg font-medium font-sans text-sm m-1 p-3 border border-solid border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 shadow-md text-purple-900 dark:text-purple-100">
+        <div className=" z-50 rounded-lg font-medium font-sans text-sm m-1 p-3 border border-solid border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-md text-purple-900 dark:text-purple-100">
           The content of the Popper.
         </div>
       </Popper>

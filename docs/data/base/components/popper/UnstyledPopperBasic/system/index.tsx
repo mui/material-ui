@@ -75,7 +75,7 @@ const TriggerButton = styled('button')`
 
 const StyledPopperDiv = styled('div')(
   ({ theme }) => css`
-    background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
     border-radius: 8px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     box-shadow: ${theme.palette.mode === 'dark'

@@ -65,7 +65,7 @@ export default function UnstyledSnackbarIntroduction() {
         >
           {(status) => (
             <div
-              className="flex gap-4	overflow-hidden	bg-slate-50 dark:bg-slate-900 rounded-lg	border border-solid border-slate-200 dark:border-slate-700 shadow-md text-slate-900 dark:text-slate-50 p-3	text-start"
+              className="flex gap-4	overflow-hidden	bg-white dark:bg-slate-900 rounded-lg	border border-solid border-slate-200 dark:border-slate-700 shadow-md text-slate-900 dark:text-slate-50 p-3	text-start"
               style={{
                 transform: positioningStyles[status],
                 transition: 'transform 300ms ease',

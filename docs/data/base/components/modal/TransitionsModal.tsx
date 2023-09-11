@@ -95,7 +95,7 @@ const ModalContent = styled('div')(
   flex-direction: column;
   gap: 8px;
   overflow: hidden;
-  background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
   border-radius: 8px;
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   box-shadow: 0px 4px 12px ${

@@ -115,7 +115,7 @@ const PopupBody = styled('div')(
     padding: 0.5rem 1rem;
     margin: 8px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
     border-radius: 8px;
     box-shadow: ${
       theme.palette.mode === 'dark'

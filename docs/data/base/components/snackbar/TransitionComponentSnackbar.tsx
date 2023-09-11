@@ -132,7 +132,7 @@ const SnackbarContent = styled('div')(
   justify-content: space-between;
   max-width: 560px;
   min-width: 300px;
-  background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
   border-radius: 8px;
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   box-shadow: ${

@@ -40,7 +40,7 @@ export default function UseSnackbar() {
       {open ? (
         <ClickAwayListener onClickAway={onClickAway}>
           <div
-            className="fixed z-50 font-sans flex right-4 bottom-4 left-auto justify-start rounded-lg font-semibold bg-slate-50 dark:bg-slate-900 p-3 animation-appear transition-transform border border-solid border-slate-200 dark:border-slate-700 min-w-snackbar max-w-snackbar shadow-md text-purple-900 dark:text-purple-100"
+            className="fixed z-50 font-sans flex right-4 bottom-4 left-auto justify-start rounded-lg font-semibold bg-white dark:bg-slate-900 p-3 animation-appear transition-transform border border-solid border-slate-200 dark:border-slate-700 min-w-snackbar max-w-snackbar shadow-md text-purple-900 dark:text-purple-100"
             {...getRootProps()}
           >
             Hello World
