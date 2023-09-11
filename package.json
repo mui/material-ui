@@ -154,7 +154,7 @@
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.9.2",
     "mocha": "^10.2.0",
-    "nx": "^16.7.4",
+    "nx": "^16.8.1",
     "nyc": "^15.1.0",
     "piscina": "^4.1.0",
     "postcss-styled-syntax": "^0.4.0",
