@@ -1,9 +1,8 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import CircularProgress from '@mui/joy/CircularProgress';
 import Stack from '@mui/joy/Stack';
+import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
+import CircularProgress from '@mui/joy/CircularProgress';
 import { useCountUp } from 'use-count-up';
 
 export default function CircularProgressCountUp() {
@@ -40,8 +39,8 @@ export default function CircularProgressCountUp() {
   };
 
   return (
-    <Box sx={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-      <Stack sx={{ gap: 2 }}>
+    <Stack direction="row" alignItems="center" flexWrap="wrap" spacing={8}>
+      <Stack spacing={2}>
         <CircularProgress size="lg" determinate value={value1}>
           <Typography>{value1}%</Typography>
         </CircularProgress>
@@ -54,7 +53,7 @@ export default function CircularProgressCountUp() {
           {buttonLabel}
         </Button>
       </Stack>
-      <Stack sx={{ gap: 2 }}>
+      <Stack spacing={2}>
         <CircularProgress size="lg" determinate value={value2}>
           <Typography>{value2}%</Typography>
         </CircularProgress>
@@ -62,6 +61,6 @@ export default function CircularProgressCountUp() {
           Reload
         </Button>
       </Stack>
-    </Box>
+    </Stack>
   );
 }
