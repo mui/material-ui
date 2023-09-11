@@ -84,7 +84,7 @@ export default function Sidebar() {
         width: 'var(--Sidebar-width)',
         top: 0,
         p: 1.5,
-        py: 3,
+        py: 2,
         flexShrink: 0,
         display: 'flex',
         flexDirection: 'column',
