@@ -68,7 +68,7 @@ export default function JoyOrderDashboardTemplate(props: any) {
             display: 'flex',
             flexDirection: 'column',
             minWidth: 0,
-            height: '100%',
+            height: '100dvh',
             gap: 1,
             overflow: 'auto',
           })}

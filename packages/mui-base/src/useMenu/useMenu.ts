@@ -38,7 +38,7 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
 export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
   const { listboxRef: listboxRefProp, onItemsChange, id: idParam } = parameters;
 
-  const rootRef = React.useRef<HTMLElement | null>(null);
+  const rootRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(rootRef, listboxRefProp);
 
   const listboxId = useId(idParam) ?? '';
