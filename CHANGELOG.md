@@ -8,7 +8,7 @@ _Sep 11, 2023_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- 🎉 Added `Drawer` component to Joy UI (#38169) @mnajdova
+- 🎉 Added the [`Drawer` component](https://mui.com/joy-ui/react-drawer/) to Joy UI (#38169) @mnajdova
 - ✨ Added `firstButton`, `lastButton`, and `middleButton` classes to `ButtonGroup`'s button descendants in Material UI (#38520) @ZeeshanTamboli
 
 ### `@mui/material@5.14.9`
