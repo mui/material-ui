@@ -330,7 +330,7 @@ Menu.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is shown.
    */
-  open: PropTypes.bool.isRequired,
+  open: PropTypes.bool,
   /**
    * @ignore
    */

@@ -55,7 +55,7 @@ export interface MenuProps
   /**
    * If `true`, the component is shown.
    */
-  open: boolean;
+  open?: boolean;
   /**
    * `classes` prop applied to the [`Popover`](/material-ui/api/popover/) element.
    */
