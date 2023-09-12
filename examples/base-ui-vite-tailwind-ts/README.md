@@ -1,4 +1,4 @@
-# Base UI - Vite.js example with Tailwind CSS
+# Base UI - Vite.js example with Tailwind CSS in TypeScript
 
 [Base UI](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks.
 
@@ -11,8 +11,8 @@
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/base-ui-vite-tailwind
-cd base-ui-vite-tailwind
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/base-ui-vite-tailwind-ts
+cd base-ui-vite-tailwind-ts
 ```
 
 Install it and run:
@@ -26,6 +26,6 @@ or:
 
 <!-- #default-branch-switch -->
 
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/base-ui-vite-tailwind)
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/base-ui-vite-tailwind-ts)
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/base-ui-vite-tailwind)
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/base-ui-vite-tailwind-ts)
