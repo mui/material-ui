@@ -85,37 +85,81 @@ export default function JoyUIHero() {
         <React.Fragment>
           <Box
             sx={{
-              '--_frame-height': '100vh',
-              '--screen-height': 'var(--_frame-height)',
+              '& > div': {
+                '--screen-height': '100%',
+              },
+              '--_translate-start': {
+                xs: '14vw, 120px',
+              },
+              '--_translate-end': {
+                xs: '22vw, 60px',
+                md: '20vw, 60px',
+                xl: '18vw, 60px',
+              },
               position: 'absolute',
-              transform: 'scale(0.72) rotateX(8deg) rotateY(-5deg) rotateZ(2deg)',
-              transformOrigin: '40% 10%',
               width: '72vw',
-              height: 'var(--_frame-height)',
-              maxHeight: { xs: 840, xl: 1200 },
+              height: {
+                xs: 'clamp(0px, 100vh, 840px)',
+                xl: 'clamp(0px, 100vh, 1200px)',
+              },
               overflow: 'hidden',
               borderRadius: '1rem',
-              boxShadow:
-                '1px 1px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 1px 1px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
+              transformOrigin: '0px 0px',
+              '@keyframes rotate-left': {
+                '0%': {
+                  transform: 'scale(0.68) translate(var(--_translate-start))',
+                  boxShadow:
+                    '0px 0px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 0px 0px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
+                },
+                '100%': {
+                  transform:
+                    'scale(0.72) translate(var(--_translate-end)) rotateX(8deg) rotateY(-5deg) rotateZ(2deg)',
+                  boxShadow:
+                    '1px 1px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 1px 1px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
+                },
+              },
+              animation: 'rotate-left 1.5s ease-in-out forwards',
             }}
           >
             <OrderDashboardApp />
           </Box>
           <JoyBox
             sx={{
-              '--_frame-height': '80vh',
-              '--screen-height': 'var(--_frame-height)',
+              '& > div': {
+                '--screen-height': '100%',
+              },
+              '--_translate-start': {
+                xs: '0vw, 40%',
+              },
+              '--_translate-end': {
+                xs: '-6vw, 25%',
+                lg: '2vw, 25%',
+                xl: '-2vw, 25%',
+              },
               position: 'absolute',
-              transform: 'scale(0.72) rotateX(7deg) rotateY(-6deg) rotateZ(2deg)',
-              transformOrigin: '-12% 80%',
-              width: '320px',
-              height: 'var(--_frame-height)',
-              maxHeight: 700,
+              width: { xs: 320, xl: 400 },
+              height: {
+                xs: 'clamp(0px, 80vh, 700px)',
+                xl: 'clamp(0px, 80vh, 960px)',
+              },
               overflow: 'auto',
               borderRadius: '1rem',
-              boxShadow:
-                '1px 1px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 1px 1px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
               bgcolor: 'background.body',
+              transformOrigin: '0px 0px',
+              '@keyframes rotate-right': {
+                '0%': {
+                  transform: 'scale(0.68) translate(var(--_translate-start))',
+                  boxShadow:
+                    '0px 0px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 0px 0px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
+                },
+                '100%': {
+                  transform:
+                    'scale(0.72) translate(var(--_translate-end)) rotateX(4deg) rotateY(16deg) rotateZ(-4deg)',
+                  boxShadow:
+                    '-1px 1px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), -1px 1px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
+                },
+              },
+              animation: 'rotate-right 1.5s ease-in-out forwards',
             }}
           >
             <JoySheet
