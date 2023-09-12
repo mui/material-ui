@@ -295,6 +295,11 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
+   * A text representation of the menu item's content.
+   * Used for keyboard text navigation matching.
+   */
+  label: PropTypes.string,
+  /**
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
@@ -307,9 +312,64 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.any,
     PropTypes.func,
     PropTypes.object,
+    PropTypes.shape({
+      '__@iterator@41767': PropTypes.func.isRequired,
+      '__@unscopables@42382': PropTypes.shape({
+        '__@iterator@41767': PropTypes.bool,
+        '__@unscopables@42382': PropTypes.bool,
+        at: PropTypes.bool,
+        concat: PropTypes.bool,
+        entries: PropTypes.bool,
+        every: PropTypes.bool,
+        filter: PropTypes.bool,
+        find: PropTypes.bool,
+        findIndex: PropTypes.bool,
+        flat: PropTypes.bool,
+        flatMap: PropTypes.bool,
+        forEach: PropTypes.bool,
+        includes: PropTypes.bool,
+        indexOf: PropTypes.bool,
+        join: PropTypes.bool,
+        keys: PropTypes.bool,
+        lastIndexOf: PropTypes.bool,
+        length: PropTypes.bool,
+        map: PropTypes.bool,
+        reduce: PropTypes.bool,
+        reduceRight: PropTypes.bool,
+        slice: PropTypes.bool,
+        some: PropTypes.bool,
+        toLocaleString: PropTypes.bool,
+        toString: PropTypes.bool,
+        values: PropTypes.bool,
+      }).isRequired,
+      at: PropTypes.func.isRequired,
+      concat: PropTypes.func.isRequired,
+      entries: PropTypes.func.isRequired,
+      every: PropTypes.func.isRequired,
+      filter: PropTypes.func.isRequired,
+      find: PropTypes.func.isRequired,
+      findIndex: PropTypes.func.isRequired,
+      flat: PropTypes.func.isRequired,
+      flatMap: PropTypes.func.isRequired,
+      forEach: PropTypes.func.isRequired,
+      includes: PropTypes.func.isRequired,
+      indexOf: PropTypes.func.isRequired,
+      join: PropTypes.func.isRequired,
+      keys: PropTypes.func.isRequired,
+      lastIndexOf: PropTypes.func.isRequired,
+      length: PropTypes.number.isRequired,
+      map: PropTypes.func.isRequired,
+      reduce: PropTypes.func.isRequired,
+      reduceRight: PropTypes.func.isRequired,
+      slice: PropTypes.func.isRequired,
+      some: PropTypes.func.isRequired,
+      toLocaleString: PropTypes.func.isRequired,
+      toString: PropTypes.func.isRequired,
+      values: PropTypes.func.isRequired,
+    }),
   ]),
   /**
    * @default 0

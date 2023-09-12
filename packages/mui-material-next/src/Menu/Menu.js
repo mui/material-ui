@@ -121,7 +121,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   } = useMenu({
     // onItemsChange,
   });
-
   const open = openProp ?? contextOpen;
 
   // contextValue !== undefined can be the other condition, but there could be scenario where the Dropdown can be an ancestor somewhere in the React tree
@@ -279,6 +278,18 @@ Menu.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * A ref with imperative actions that can be performed on the menu.
+   */
+  actions: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.shape({
+        dispatch: PropTypes.func.isRequired,
+        resetHighlight: PropTypes.func.isRequired,
+      }),
+    }),
+  ]),
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.

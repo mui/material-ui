@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { OverrideProps } from '@mui/types';
 import { SxProps } from '@mui/system';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '@mui/material/ButtonBase';
 import { Theme } from '../styles';
-import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { OverrideProps } from '../OverridableComponent';
 import { MenuItemClasses } from './menuItemClasses';
 
 export interface MenuItemOwnProps {
@@ -37,6 +37,11 @@ export interface MenuItemOwnProps {
    * @default false
    */
   divider?: boolean;
+  /**
+   * A text representation of the menu item's content.
+   * Used for keyboard text navigation matching.
+   */
+  label?: string;
   /**
    * If `true`, the component is selected.
    * @default false

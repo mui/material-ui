@@ -1,16 +1,20 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { MenuOwnerState, SlotComponentProps } from '@mui/base';
-import { InternalStandardProps as StandardProps } from '..';
-import Paper, { PaperProps } from '../Paper';
-import { PopoverProps } from '../Popover';
-import { MenuListProps } from '../MenuList';
-import { Theme } from '../styles';
-import { TransitionProps } from '../transitions/transition';
+import { MenuOwnerState, SlotComponentProps, MenuActions } from '@mui/base';
+import { InternalStandardProps as StandardProps } from '@mui/material';
+import Paper, { PaperProps } from '@mui/material/Paper';
+import { PopoverProps } from '@mui/material/Popover';
+import { MenuListProps } from '@mui/material/MenuList';
+import { Theme } from '@mui/material/styles';
+import { TransitionProps } from '@mui/material/transitions/transition';
 import { MenuClasses } from './menuClasses';
 
 export interface MenuProps
-  extends StandardProps<Omit<PopoverProps, 'slots' | 'slotProps'>, 'children'> {
+  extends StandardProps<Omit<PopoverProps, 'slots' | 'slotProps' | 'open'>, 'children'> {
+  /**
+   * A ref with imperative actions that can be performed on the menu.
+   */
+  actions?: React.Ref<MenuActions>;
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.
