@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { styled, Theme } from '@mui/system';
+import { styled } from '@mui/system';
 import { Modal } from '@mui/base/Modal';
 
 export default function ModalUnstyled() {
@@ -82,9 +82,9 @@ const StyledBackdrop = styled(Backdrop)`
   -webkit-tap-highlight-color: transparent;
 `;
 
-const style = (theme: Theme) => ({
+const style = {
   width: 400,
-});
+};
 
 const ModalContent = styled('div')(
   ({ theme }) => `

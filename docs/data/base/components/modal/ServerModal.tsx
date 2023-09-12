@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Modal } from '@mui/base/Modal';
-import { Box, styled, Theme } from '@mui/system';
+import { Box, styled } from '@mui/system';
 
 export default function ServerModal() {
   const rootRef = React.useRef<HTMLDivElement>(null);
@@ -67,10 +67,10 @@ const StyledModal = styled(Modal)`
   font-family: 'IBM Plex Sans', sans-serif;
 `;
 
-const style = (theme: Theme) => ({
+const style = {
   position: 'relative',
   width: 400,
-});
+};
 
 const ModalContent = styled('div')(
   ({ theme }) => `

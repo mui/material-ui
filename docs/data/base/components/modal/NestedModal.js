@@ -122,13 +122,13 @@ const StyledBackdrop = styled(Backdrop)`
   -webkit-tap-highlight-color: transparent;
 `;
 
-const style = (theme) => ({
+const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-});
+};
 
 const ModalContent = styled('div')(
   ({ theme }) => `

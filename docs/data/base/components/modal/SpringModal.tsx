@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, Theme } from '@mui/system';
+import { styled } from '@mui/system';
 import { Modal } from '@mui/base/Modal';
 import { Button } from '@mui/base/Button';
 import { useSpring, animated } from '@react-spring/web';
@@ -110,13 +110,13 @@ const grey = {
   900: '#24292f',
 };
 
-const style = (theme: Theme) => ({
+const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-});
+};
 
 const ModalContent = styled('div')(
   ({ theme }) => `

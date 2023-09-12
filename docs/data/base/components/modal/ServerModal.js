@@ -67,10 +67,10 @@ const StyledModal = styled(Modal)`
   font-family: 'IBM Plex Sans', sans-serif;
 `;
 
-const style = (theme) => ({
+const style = {
   position: 'relative',
   width: 400,
-});
+};
 
 const ModalContent = styled('div')(
   ({ theme }) => `

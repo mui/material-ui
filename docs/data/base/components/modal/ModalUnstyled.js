@@ -85,9 +85,9 @@ const StyledBackdrop = styled(Backdrop)`
   -webkit-tap-highlight-color: transparent;
 `;
 
-const style = (theme) => ({
+const style = {
   width: 400,
-});
+};
 
 const ModalContent = styled('div')(
   ({ theme }) => `
