@@ -144,7 +144,7 @@ export const getButtonStyles = ({
       textDecoration: 'none', // prevent user agent underline when used as anchor
       fontFamily: theme.vars.fontFamily.body,
       fontWeight: theme.vars.fontWeight.lg,
-      lineHeight: 1,
+      lineHeight: theme.vars.lineHeight.md,
       ...(ownerState.fullWidth && {
         width: '100%',
       }),
