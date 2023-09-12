@@ -198,7 +198,7 @@ export interface UseSliderReturnValue {
    * @param externalProps props for the hidden input slot
    * @returns props that should be spread on the hidden input slot
    */
-  getHiddenInputProps: <ExternalProps extends Record<string, any> = {}>(
+  getHiddenInputProps: <ExternalProps extends Record<string, unknown> = {}>(
     externalProps?: ExternalProps,
   ) => UseSliderHiddenInputProps<ExternalProps>;
   /**
@@ -206,7 +206,7 @@ export interface UseSliderReturnValue {
    * @param externalProps props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: <ExternalProps extends Record<string, any> = {}>(
+  getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
     externalProps?: ExternalProps,
   ) => UseSliderRootSlotProps<ExternalProps>;
   /**
@@ -214,7 +214,7 @@ export interface UseSliderReturnValue {
    * @param externalProps props for the thumb slot
    * @returns props that should be spread on the thumb slot
    */
-  getThumbProps: <ExternalProps extends Record<string, any> = {}>(
+  getThumbProps: <ExternalProps extends Record<string, unknown> = {}>(
     externalProps?: ExternalProps,
   ) => UseSliderThumbSlotProps<ExternalProps>;
   /**

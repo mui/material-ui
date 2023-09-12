@@ -62,22 +62,22 @@
     },
     "getHiddenInputProps": {
       "type": {
-        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderHiddenInputProps&lt;ExternalProps&gt;",
-        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderHiddenInputProps&lt;ExternalProps&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderHiddenInputProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderHiddenInputProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getRootProps": {
       "type": {
-        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderRootSlotProps&lt;ExternalProps&gt;",
-        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderRootSlotProps&lt;ExternalProps&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getThumbProps": {
       "type": {
-        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderThumbSlotProps&lt;ExternalProps&gt;",
-        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderThumbSlotProps&lt;ExternalProps&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderThumbSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseSliderThumbSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

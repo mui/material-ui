@@ -609,7 +609,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   const trackOffset = valueToPercent(range ? values[0] : min, min, max);
   const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
 
-  const getRootProps = <ExternalProps extends Record<string, any> = {}>(
+  const getRootProps = <ExternalProps extends Record<string, unknown> = {}>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSliderRootSlotProps<ExternalProps> => {
     const externalHandlers = extractEventHandlers(externalProps);
@@ -645,7 +645,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       setOpen(-1);
     };
 
-  const getThumbProps = <ExternalProps extends Record<string, any> = {}>(
+  const getThumbProps = <ExternalProps extends Record<string, unknown> = {}>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSliderThumbSlotProps<ExternalProps> => {
     const externalHandlers = extractEventHandlers(externalProps);
@@ -669,7 +669,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     };
   };
 
-  const getHiddenInputProps = <ExternalProps extends Record<string, any> = {}>(
+  const getHiddenInputProps = <ExternalProps extends Record<string, unknown> = {}>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSliderHiddenInputProps<ExternalProps> => {
     const externalHandlers = extractEventHandlers(externalProps);
