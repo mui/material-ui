@@ -8,6 +8,7 @@ import { alpha } from '@mui/material/styles';
 interface HeroContainerProps {
   disableMobileHidden?: boolean;
   disableTabExclusion?: boolean;
+  disableRightBackdrop?: boolean;
   left: React.ReactElement;
   linearGradient?: boolean;
   right: React.ReactElement;
@@ -18,6 +19,7 @@ export default function HeroContainer(props: HeroContainerProps) {
   const {
     disableMobileHidden,
     disableTabExclusion = false,
+    disableRightBackdrop = false,
     left,
     linearGradient,
     right,
@@ -53,7 +55,7 @@ export default function HeroContainer(props: HeroContainerProps) {
       ref={frame}
       aria-hidden={disableTabExclusion ? undefined : 'true'}
       sx={[
-        (theme) => ({
+        {
           minWidth: '50vw',
           minHeight: 500,
           height: 'calc(100vh - 120px)',
@@ -62,26 +64,28 @@ export default function HeroContainer(props: HeroContainerProps) {
           transition: 'max-height 0.3s',
           position: 'relative',
           overflow: 'hidden',
-          borderLeft: '1px solid',
-          borderBottom: '1px solid',
-          borderColor: 'divider',
-          ...(linearGradient && {
-            background: `radial-gradient(farthest-corner circle at 0% 0%, ${
-              (theme.vars || theme).palette.grey[50]
-            } 0%, ${(theme.vars || theme).palette.primary[50]} 100%)`,
-          }),
-        }),
-        (theme) =>
-          theme.applyDarkStyles({
-            background: 'primaryDark.900',
-            borderColor: 'primaryDark.700',
+        },
+        !disableRightBackdrop &&
+          ((theme) => ({
+            borderLeft: '1px solid',
+            borderBottom: '1px solid',
+            borderColor: 'divider',
             ...(linearGradient && {
-              background: `radial-gradient(farthest-corner circle at 0% 0%, ${alpha(
-                theme.palette.primary[900],
-                0.3,
-              )} 0%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
+              background: `radial-gradient(farthest-corner circle at 0% 0%, ${
+                (theme.vars || theme).palette.grey[50]
+              } 0%, ${(theme.vars || theme).palette.primary[50]} 100%)`,
             }),
-          }),
+            ...theme.applyDarkStyles({
+              background: 'primaryDark.900',
+              borderColor: 'primaryDark.700',
+              ...(linearGradient && {
+                background: `radial-gradient(farthest-corner circle at 0% 0%, ${alpha(
+                  theme.palette.primary[900],
+                  0.3,
+                )} 0%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
+              }),
+            }),
+          })),
         ...(Array.isArray(sx) ? sx : [sx]),
         ...(Array.isArray(rightSx) ? rightSx : [rightSx]),
       ]}

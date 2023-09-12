@@ -77,20 +77,22 @@ export default function JoyUIHero() {
         </Box>
       }
       rightSx={{
-        perspective: '1200px',
+        perspective: '1500px',
         overflow: 'initial',
       }}
+      disableRightBackdrop
       right={
         <React.Fragment>
           <Box
             sx={{
-              '--_frame-height': 'calc(100vh - 60px)',
+              '--_frame-height': '100vh',
               '--screen-height': 'var(--_frame-height)',
               position: 'absolute',
               transform: 'scale(0.72) rotateX(8deg) rotateY(-5deg) rotateZ(2deg)',
               transformOrigin: '40% 10%',
               width: '72vw',
               height: 'var(--_frame-height)',
+              maxHeight: { xs: 840, xl: 1200 },
               overflow: 'hidden',
               borderRadius: '1rem',
               boxShadow:
@@ -108,7 +110,8 @@ export default function JoyUIHero() {
               transformOrigin: '-12% 80%',
               width: '320px',
               height: 'var(--_frame-height)',
-              overflow: 'hidden',
+              maxHeight: 700,
+              overflow: 'auto',
               borderRadius: '1rem',
               boxShadow:
                 '1px 1px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 1px 1px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
