@@ -140,7 +140,6 @@ export default function Page() {
     <Sheet>
       {/* Next.js won't render this button without 'use-client' */}
       <Button
-        variant="outlined"
         onClick={() => {
           console.log('handle click');
         }}

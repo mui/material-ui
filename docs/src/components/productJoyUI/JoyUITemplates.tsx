@@ -635,21 +635,19 @@ export default function JoyUITemplates() {
     [primary, neutral, radius, bgSwap, family],
   );
   return (
-    <Section bg="comfort">
-      <Box sx={{ textAlign: 'center' }}>
-        <SectionHeadline
-          alwaysCenter
-          overline="Fresh look & feel"
-          title={
-            <Typography variant="h2" textAlign="center">
-              Get started quickly with Joy UI
-              <br />
-              using <GradientText>free templates</GradientText>
-            </Typography>
-          }
-        />
-      </Box>
-      <Box sx={{ my: 3, position: 'relative' }}>
+    <Section bg="gradient">
+      <SectionHeadline
+        alwaysCenter
+        overline="Fresh look & feel"
+        title={
+          <Typography variant="h2" textAlign="center">
+            Get started quickly with Joy UI
+            <br />
+            using <GradientText>free templates</GradientText>
+          </Typography>
+        }
+      />
+      <Box sx={{ mt: 4, position: 'relative' }}>
         <Tabs sx={{ bgcolor: 'transparent' }}>
           <List
             variant="outlined"
@@ -669,6 +667,7 @@ export default function JoyUITemplates() {
               size="sm"
               disableUnderline
               sx={(theme) => ({
+                fontFamily: 'IBM Plex Sans',
                 alignSelf: 'center',
                 p: 0.5,
                 gap: 0.5,
