@@ -33,7 +33,6 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
     focusable: false,
     highlighted,
     item: value,
-    selected,
   });
 
   const id = useId(idParam);

@@ -219,10 +219,6 @@ export interface UseListParameters<
 
 export interface ListItemState {
   /**
-   * If `true` the item is disabled.
-   */
-  disabled: boolean;
-  /**
    * Determines if the item is focusable (its focus is managed by the DOM).
    */
   focusable: boolean;
@@ -233,7 +229,7 @@ export interface ListItemState {
   /**
    * The 0-based index of the item.
    */
-  index: number;
+  /* index: number; */
   /**
    * If `true` the item is selected.
    */

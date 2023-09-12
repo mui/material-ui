@@ -8,7 +8,7 @@ import { getOptionUtilityClass } from './optionClasses';
 import { useSlotProps } from '../utils';
 import { useOption } from '../useOption';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { ListAction, ListContext } from '../useList';
+import { ListAction, ListContext, ListContextValue, ListItemState } from '../useList';
 
 function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue>) {
   const { disabled, highlighted, selected } = ownerState;
@@ -23,17 +23,14 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
 type InnerOptionProps<OptionValue, RootComponentType extends React.ElementType> = OptionProps<
   OptionValue,
   RootComponentType
-> & {
-  dispatch: React.Dispatch<ListAction<OptionValue>>;
-  selected: boolean;
-  highlighted: boolean;
-};
+> &
+  Pick<ListItemState, 'selected' | 'highlighted'> & {
+    // eslint-disable-next-line react/no-unused-prop-types
+    dispatch: React.Dispatch<ListAction<OptionValue>>;
+  };
 
 const InnerOption = React.memo(
-  React.forwardRef(function InnerOptionImpl<
-    OptionValue,
-    RootComponentType extends React.ElementType,
-  >(
+  React.forwardRef(function InnerOption<OptionValue, RootComponentType extends React.ElementType>(
     props: InnerOptionProps<OptionValue, RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>,
   ) {
@@ -47,6 +44,7 @@ const InnerOption = React.memo(
       value,
       selected,
       highlighted,
+      focusable,
       ...other
     } = props;
 
@@ -93,24 +91,27 @@ const InnerOption = React.memo(
   }),
 );
 
-/**
- * An unstyled option to be used within a Select.
- */
 const Option = React.forwardRef(function Option<
   OptionValue,
   RootComponentType extends React.ElementType,
 >(props: OptionProps<OptionValue, RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
-  const { dispatch, getItemState } = React.useContext(ListContext)!;
-  const { highlighted, selected, focusable } = getItemState(props.value);
+  const listContext = React.useContext(ListContext as React.Context<ListContextValue<OptionValue>>);
+  if (!listContext) {
+    throw new Error('MenuItem: ListContext was not found.');
+  }
+
+  const { value } = props;
+
+  const { getItemState, dispatch } = listContext;
+  const { highlighted, selected } = getItemState(value);
 
   return (
     <InnerOption
       {...props}
-      ref={forwardedRef}
-      selected={selected}
       highlighted={highlighted}
-      focusable={focusable}
+      selected={selected}
       dispatch={dispatch}
+      ref={forwardedRef}
     />
   );
 }) as OptionType;

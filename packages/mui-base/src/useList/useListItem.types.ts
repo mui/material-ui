@@ -18,7 +18,6 @@ export interface UseListItemParameters<ItemValue> {
    */
   rootRef?: React.Ref<Element>;
   dispatch: React.Dispatch<ListAction<ItemValue>>;
-  selected: boolean;
   highlighted: boolean;
   focusable: boolean;
 }

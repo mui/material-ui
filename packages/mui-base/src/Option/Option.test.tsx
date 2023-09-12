@@ -4,7 +4,6 @@ import { Option, optionClasses } from '@mui/base/Option';
 import { SelectProvider } from '../useSelect/SelectProvider';
 
 const dummyGetItemState = () => ({
-  disabled: false,
   highlighted: false,
   selected: false,
   index: 0,

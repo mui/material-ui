@@ -334,24 +334,22 @@ function useList<
 
   const getItemState = React.useCallback(
     (item: ItemValue): ListItemState => {
-      const index = items.findIndex((i) => itemComparer(i, item));
+      // const index = items.findIndex((i) => itemComparer(i, item));
       const selected = (selectedValues ?? []).some(
         (value) => value != null && itemComparer(item, value),
       );
 
-      const disabled = isItemDisabled(item, index);
       const highlighted = highlightedValue != null && itemComparer(item, highlightedValue);
       const focusable = focusManagement === 'DOM';
 
       return {
-        disabled,
         focusable,
         highlighted,
-        index,
+        /* index, */
         selected,
       };
     },
-    [items, isItemDisabled, itemComparer, selectedValues, highlightedValue, focusManagement],
+    [itemComparer, selectedValues, highlightedValue, focusManagement],
   );
 
   const contextValue: ListContextValue<ItemValue> = React.useMemo(
