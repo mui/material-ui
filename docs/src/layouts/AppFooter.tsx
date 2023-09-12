@@ -29,7 +29,7 @@ export default function AppFooter(props: AppFooterProps) {
     <Container component="footer">
       <Box
         sx={{
-          py: 8,
+          py: { xs: 4, sm: 8 },
           display: 'grid',
           gridAutoColumns: '1fr',
           alignItems: 'flex-start',

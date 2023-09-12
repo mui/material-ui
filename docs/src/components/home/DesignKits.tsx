@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import Avatar, { AvatarProps } from '@mui/material/Avatar';
+import { AvatarProps } from '@mui/material/Avatar';
 import Box, { BoxProps } from '@mui/material/Box';
 import Slide from 'docs/src/components/animation/Slide';
 import FadeDelay from 'docs/src/components/animation/FadeDelay';
@@ -43,20 +43,27 @@ const Anchor = styled('a')(({ theme }) => [
     transitionProperty: 'all',
     transitionDuration: '150ms',
     borderRadius: '50%',
+    border: '1px solid',
+    borderColor: (theme.vars || theme).palette.grey[200],
+    boxShadow: `0px 2px 12px ${alpha(theme.palette.primary[200], 0.3)}`,
     '&:hover, &:focus': {
-      boxShadow: '0 6px 20px 0 rgba(0,0,0,0.2)',
+      borderColor: (theme.vars || theme).palette.primary[300],
+      boxShadow: `0px 4px 20px ${alpha(theme.palette.primary[400], 0.3)}`,
     },
   } as const,
   theme.applyDarkStyles({
+    borderColor: (theme.vars || theme).palette.primary[900],
+    boxShadow: `0px 2px 12px ${alpha(theme.palette.primaryDark[800], 0.5)}`,
     '&:hover, &:focus': {
-      boxShadow: `0 6px 20px 0 ${alpha(theme.palette.primaryDark[100], 0.5)}`,
+      borderColor: (theme.vars || theme).palette.primary[700],
+      boxShadow: `0 2px 20px 0 ${alpha(theme.palette.primary[800], 0.5)}`,
     },
   }),
 ]);
 
 const DesignToolLink = React.forwardRef<
   HTMLAnchorElement,
-  React.PropsWithChildren<{ brand: 'figma' | 'sketch' | 'xd' }>
+  React.PropsWithChildren<{ brand: 'figma' | 'sketch' | 'adobexd' }>
 >(function DesignToolLink({ brand, ...props }, ref) {
   return (
     <Anchor
@@ -68,7 +75,8 @@ const DesignToolLink = React.forwardRef<
             'https://mui.com/store/items/figma-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
           sketch:
             'https://mui.com/store/items/sketch-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
-          xd: 'https://mui.com/store/items/adobe-xd-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
+          adobexd:
+            'https://mui.com/store/items/adobe-xd-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
         }[brand]
       }
       target="_blank"
@@ -81,24 +89,33 @@ const DesignToolLink = React.forwardRef<
 
 const DesignToolLogo = React.forwardRef<
   HTMLImageElement,
-  { brand: 'figma' | 'sketch' | 'xd' } & AvatarProps
+  { brand: 'figma' | 'sketch' | 'adobexd' } & AvatarProps
 >(function DesignToolLogo({ brand, ...props }, ref) {
   return (
-    <Avatar
+    <Box
       ref={ref}
-      src={`/static/branding/design-kits/designkits-${brand}.png`}
-      alt=""
       {...props}
       sx={[
         (theme) => ({
-          boxShadow: `0px 3.57436px 44.6795px ${'rgba(90, 105, 120, 0.36)'}`,
+          display: 'flex',
+          backgroundColor: '#FFF',
+          p: 2,
+          borderRadius: '50%',
           ...theme.applyDarkStyles({
-            boxShadow: `0px 3.57436px 44.6795px ${(theme.vars || theme).palette.primaryDark[900]}`,
+            backgroundColor: alpha(theme.palette.primary[900], 0.5),
           }),
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
-    />
+    >
+      <img
+        src={`/static/branding/design-kits/${brand}-logo.svg`}
+        alt=""
+        loading="lazy"
+        width="60"
+        height="60"
+      />
+    </Box>
   );
 });
 
@@ -184,7 +201,7 @@ export function DesignKitImagesSet2({
 }
 
 export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolean } & BoxProps) {
-  function renderTool(brand: 'figma' | 'sketch' | 'xd') {
+  function renderTool(brand: 'figma' | 'sketch' | 'adobexd') {
     if (disableLink) {
       return <DesignToolLogo brand={brand} />;
     }
@@ -216,7 +233,7 @@ export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolea
     >
       <FadeDelay delay={200}>{renderTool('figma')}</FadeDelay>
       <FadeDelay delay={400}>{renderTool('sketch')}</FadeDelay>
-      <FadeDelay delay={600}>{renderTool('xd')}</FadeDelay>
+      <FadeDelay delay={600}>{renderTool('adobexd')}</FadeDelay>
     </Box>
   );
 }

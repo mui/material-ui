@@ -396,7 +396,7 @@ export default function MaterialHero() {
               </Paper>
             </Stack>
             <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}>
+              <Box sx={{ display: 'flex', gap: 2, '& button': { textWrap: 'nowrap' } }}>
                 <Button variant="contained" startIcon={<DownloadIcon fontSize="small" />} fullWidth>
                   Install library
                 </Button>
