@@ -4,8 +4,8 @@
 
 ## Introduction
 
-All the MUI components are styled with this `styled()` utility.
-This utility is built on top of the `styled()` module of [`@mui/styled-engine`](/material-ui/guides/styled-engine/) and provides additional features.
+All MUI components are styled with the `styled()` utility.
+This utility is built on top of the `styled()` module of `@mui/styled-engine`and provides additional features.
 
 ### Import path
 

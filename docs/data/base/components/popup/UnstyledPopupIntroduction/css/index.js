@@ -62,40 +62,38 @@ function Styles() {
   // Replace this with your app logic for determining dark mode
   const isDarkMode = useIsDarkMode();
   return (
-    <style>{`  
+    <style>{`
         .Button {
-            font-family: IBM Plex Sans,sans-serif;
-            font-weight: 600;
-            font-size: 0.875rem;
-            line-height: 1.5;
-            background-color: ${cyan[500]};
-            padding: 8px 16px;
-            border-radius: 8px;
-            color: white;
-            cursor: pointer;
-            border: none;
-      
-            &:hover {
-                background-color: ${cyan[600]};
-            }
+          font-family: IBM Plex Sans,sans-serif;
+          font-weight: 600;
+          font-size: 0.875rem;
+          line-height: 1.5;
+          background-color: ${cyan[500]};
+          padding: 8px 16px;
+          border-radius: 8px;
+          color: white;
+          cursor: pointer;
+          border: none;
+
+          &:hover {
+            background-color: ${cyan[600]};
           }
-  
+        }
+
         .CustomPopup{
-            background-color: ${isDarkMode ? grey[900] : grey[50]};
-            border-radius: 8px;
-            border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
-            box-shadow: ${
-              isDarkMode
-                ? `0 4px 8px rgb(0 0 0 / 0.7)`
-                : `0 4px 8px rgb(0 0 0 / 0.1)`
-            };
-            padding: 0.75rem;
-            color: ${isDarkMode ? cyan[100] : cyan[700]};
-            font-size: 0.875rem;
-            font-family: 'IBM Plex Sans', sans-serif;
-            font-weight: 500;
-            opacity: 1;
-            margin: 0.5rem 0px;
+          background-color: ${isDarkMode ? grey[900] : grey[50]};
+          border-radius: 8px;
+          border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+          box-shadow: ${
+            isDarkMode ? `0 4px 8px rgb(0 0 0 / 0.7)` : `0 4px 8px rgb(0 0 0 / 0.1)`
+          };
+          padding: 0.75rem;
+          color: ${isDarkMode ? cyan[100] : cyan[700]};
+          font-size: 0.875rem;
+          font-family: 'IBM Plex Sans', sans-serif;
+          font-weight: 500;
+          opacity: 1;
+          margin: 0.5rem 0px;
         }
     `}</style>
   );
