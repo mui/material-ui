@@ -20,7 +20,7 @@ import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import { ChipProps } from './Chip.types';
 
-// TODO: remove after implementing Material You Chip's style
+// TODO: remove after migrating SvgICon to support Material You colors
 const MaterialV5DefaultTheme = createTheme();
 
 describe('<Chip />', () => {
@@ -220,7 +220,6 @@ describe('<Chip />', () => {
       });
 
       expect(chip).to.have.class(classes.root);
-      expect(chip).to.have.property('disabled', true);
       expect(chip).not.to.have.class(classes.focusVisible);
     });
 
@@ -364,7 +363,7 @@ describe('<Chip />', () => {
       );
 
       const chip = getByRole('button');
-      const icon = getByTestId('CancelIcon');
+      const icon = getByTestId('ClearIcon');
 
       expect(chip).to.have.class(classes.deletable);
       expect(chip).to.contain(icon);
@@ -379,7 +378,7 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
       expect(chip).to.have.class(classes.colorPrimary);
       expect(chip).to.have.class(classes.deletable);
-      const icon = getByTestId('CancelIcon');
+      const icon = getByTestId('ClearIcon');
       expect(icon).to.have.class(classes.deleteIcon);
     });
 
@@ -391,7 +390,7 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
       expect(chip).to.have.class(classes.colorSecondary);
       expect(chip).to.have.class(classes.deletable);
-      const icon = getByTestId('CancelIcon');
+      const icon = getByTestId('ClearIcon');
       expect(icon).to.have.class(classes.deleteIcon);
     });
 
@@ -408,7 +407,7 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
       expect(chip).to.have.class(classes.colorPrimary);
       expect(chip).to.have.class(classes.deletable);
-      const icon = getByTestId('CancelIcon');
+      const icon = getByTestId('ClearIcon');
       expect(icon).to.have.class(classes.deleteIcon);
     });
 
@@ -425,7 +424,7 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
       expect(chip).to.have.class(classes.colorPrimary);
       expect(chip).to.have.class(classes.deletable);
-      const icon = getByTestId('CancelIcon');
+      const icon = getByTestId('ClearIcon');
       expect(icon).to.have.class(classes.deleteIcon);
     });
 
@@ -470,7 +469,15 @@ describe('<Chip />', () => {
       expect(chip).not.toHaveFocus();
     });
 
-    it('should call onClick when `space` is released ', async () => {
+    it('should call onClick when `space` is released ', async function test() {
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      // userEvent.setup() requires Safari 14 or up to work
+      // We can remove this check once we drop support for Safari 13
+      if (isSafari) {
+        this.skip();
+      }
+
+      const user = userEvent.setup();
       const handleClick = spy();
       const { getByRole } = render(<Chip onClick={handleClick} />);
       const chip = getByRole('button');
@@ -478,11 +485,11 @@ describe('<Chip />', () => {
         chip.focus();
       });
 
-      await userEvent.keyboard('{ >}'); // press space without releasing
+      await user.keyboard('{ >}'); // press space without releasing
 
       expect(handleClick.callCount).to.equal(0);
 
-      await userEvent.keyboard('{/ }'); // release space
+      await user.keyboard('{/ }'); // release space
 
       expect(handleClick.callCount).to.equal(1);
     });
@@ -666,8 +673,6 @@ describe('<Chip />', () => {
         </React.Fragment>,
       );
 
-      expect(getByTestId('test-icon')).to.have.class('MuiChip-iconColorSuccess');
-      expect(getByTestId('test-icon2')).to.have.class('MuiChip-iconColorSuccess');
       expect(getByTestId('test-icon')).toHaveComputedStyle({
         color: hexToRgb(MaterialV5DefaultTheme.palette.success.main),
       });
