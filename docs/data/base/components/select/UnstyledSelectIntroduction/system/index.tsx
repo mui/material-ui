@@ -66,9 +66,7 @@ const Button = React.forwardRef(function Button<
   const { ownerState, placeholder, ...other } = props;
   return (
     <button type="button" {...other} ref={ref}>
-      {other.children ||
-        /* placeholder falls back to a zero-width space, from https://github.com/mui/material-ui/pull/24563 */
-        (placeholder ?? <span className="notranslate">&#8203;</span>)}
+      {other.children || (placeholder ?? ' ')}
       <UnfoldMoreRoundedIcon />
     </button>
   );
