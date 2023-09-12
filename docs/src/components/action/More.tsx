@@ -61,8 +61,6 @@ export default (function More(props: ButtonBaseProps) {
       ]}
     >
       <Box component="span" sx={{ mr: 1, lineHeight: 0 }}>
-        <AddCircleRoundedIcon color="primary" fontSize="small" />
-      </Box>
       <Typography
         component="span"
         color="primary.main"

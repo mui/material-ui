@@ -21,17 +21,17 @@ import Link from 'docs/src/modules/components/Link';
 const DEMOS = ['Components', 'Branding', 'Iconography'];
 
 const Image = styled('img')(({ theme }) => ({
-  filter: 'drop-shadow(-8px 4px 20px rgba(61, 71, 82, 0.2))',
+  filter: 'drop-shadow(-2px 4px 4px rgba(61, 71, 82, 0.1))',
   transition: '0.4s',
   display: 'block',
   height: 'auto',
   borderRadius: '10px',
   ...theme.applyDarkStyles({
-    filter: 'drop-shadow(-8px 4px 20px rgba(0, 0, 0, 0.4))',
+    filter: 'drop-shadow(-2px 4px 4px rgba(0, 0, 0, 0.3))',
   }),
 }));
 
-export default function TemplateDemo() {
+export default function MaterialDesignKits() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
     [DEMOS[0]]: <ToggleOnRounded fontSize="small" />,
@@ -39,7 +39,7 @@ export default function TemplateDemo() {
     [DEMOS[2]]: <WidgetsRounded fontSize="small" />,
   };
   return (
-    <Section bg="gradient" cozy>
+    <Section cozy>
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box sx={{ maxWidth: 500 }}>
@@ -47,7 +47,7 @@ export default function TemplateDemo() {
               overline="Design kits"
               title={
                 <Typography variant="h2">
-                  Upgrade your <GradientText>design workflow</GradientText>
+                  Enhance your <GradientText>design workflow</GradientText>
                 </Typography>
               }
               description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
@@ -198,18 +198,43 @@ export default function TemplateDemo() {
                 />
               </Fade>
             </Frame.Demo>
-            <Frame.Info sx={{ display: 'flex', alignItems: 'center', minWidth: 0 }}>
-              <Box sx={{ minWidth: 0 }}>
-                <Typography variant="body2" fontWeight={500} noWrap sx={{ mb: 0.5 }}>
-                  e.g. Material UI for Figma
+            <Frame.Info
+              data-mui-color-scheme="dark"
+              sx={{
+                display: 'flex',
+                alignItems: { xs: 'start', sm: 'center' },
+                flexDirection: { xs: 'column', sm: 'row' },
+                minWidth: 0,
+                gap: { xs: 3, sm: 0 },
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  alignItems: { xs: 'start', sm: 'center' },
+                  gap: 1,
+                }}
+              >
+                <Typography variant="body2" fontWeight="semiBold">
+                  Available for all design softwares:
                 </Typography>
+                <Box sx={{ display: 'flex', gap: 1, '& >img': { width: 26, height: 26 } }}>
+                  <img src="/static/branding/design-kits/figma-logo.svg" alt="" loading="lazy" />
+                  <img src="/static/branding/design-kits/sketch-logo.svg" alt="" loading="lazy" />
+                  <img src="/static/branding/design-kits/adobexd-logo.svg" alt="" loading="lazy" />
+                </Box>
               </Box>
               <Button
                 component={Link}
-                noLinkStyle
+                variant="outlined"
                 href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
                 endIcon={<LaunchRounded sx={{ '&&': { fontSize: 16 } }} />}
-                sx={{ ml: 'auto', color: 'primary.300' }}
+                sx={{
+                  ml: { xs: 0, sm: 'auto' },
+                  color: 'primary.300',
+                  width: { xs: '100%', sm: 'fit-content' },
+                }}
               >
                 Buy now
               </Button>
