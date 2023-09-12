@@ -17,43 +17,76 @@ const MenuButton = React.forwardRef(function MenuButton(
   return <Button type="button" {...props} {...getButtonProps()} />;
 });
 
-export default function BasicMenu() {
-  // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  // const open = Boolean(anchorEl);
-  // const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
+function DropdownUsage() {
   const { contextValue: dropdownContextValue } = useDropdown();
 
   return (
+    <DropdownContext.Provider value={dropdownContextValue}>
+      <MenuButton
+        id="basic-button"
+        // aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        // aria-expanded={open ? 'true' : undefined}
+      >
+        Dashboard
+      </MenuButton>
+      <Menu
+        id="basic-menu"
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem /* onClick={handleClose} */>Profile</MenuItem>
+        <MenuItem /* onClick={handleClose} */>My account</MenuItem>
+        <MenuItem /* onClick={handleClose} */>Logout</MenuItem>
+      </Menu>
+    </DropdownContext.Provider>
+  );
+}
+
+function LegacyUsage() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <Button
+        id="basic-button-legacy"
+        aria-controls={open ? 'basic-menu-legacy' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        Dashboard
+      </Button>
+      <Menu
+        id="basic-menu-legacy"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button-legacy',
+        }}
+      >
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
+    </div>
+  );
+}
+
+export default function BasicMenu() {
+  return (
     <ThemeProvider theme={theme}>
-      <DropdownContext.Provider value={dropdownContextValue}>
-        <MenuButton
-          id="basic-button"
-          // aria-controls={open ? 'basic-menu' : undefined}
-          aria-haspopup="true"
-          // aria-expanded={open ? 'true' : undefined}
-          // onClick={handleClick}
-        >
-          Dashboard
-        </MenuButton>
-        <Menu
-          id="basic-menu"
-          // anchorEl={anchorEl}
-          // open={open}
-          // onClose={handleClose}
-          MenuListProps={{
-            'aria-labelledby': 'basic-button',
-          }}
-        >
-          <MenuItem /* onClick={handleClose} */>Profile</MenuItem>
-          <MenuItem /* onClick={handleClose} */>My account</MenuItem>
-          <MenuItem /* onClick={handleClose} */>Logout</MenuItem>
-        </Menu>
-      </DropdownContext.Provider>
+      <LegacyUsage />
+      <DropdownUsage />
     </ThemeProvider>
   );
 }
