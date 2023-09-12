@@ -523,6 +523,37 @@ describe('<Tabs />', () => {
       });
       expect(tablistContainer.style.overflow).to.equal('');
     });
+
+    it('should handle theme styleOverrides for scrollable tabs without crashing', () => {
+      const theme = createTheme({
+        components: {
+          MuiTabs: {
+            styleOverrides: {
+              root: ({ ownerState: { orientation } }) => ({
+                ...(orientation === 'vertical'
+                  ? {
+                      background: 'magenta',
+                    }
+                  : {
+                      background: 'lime',
+                    }),
+              }),
+            },
+          },
+        },
+      });
+
+      expect(() =>
+        render(
+          <ThemeProvider theme={theme}>
+            <Tabs sx={{ width: 200 }} value={0} variant="scrollable">
+              <Tab label="First" />
+              <Tab label="Second" />
+            </Tabs>
+          </ThemeProvider>,
+        ),
+      ).not.to.throw();
+    });
   });
 
   describe('prop: !variant="scrollable"', () => {

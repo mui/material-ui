@@ -16,7 +16,7 @@ This means we'll be dedicating even more time and effort to these complex compon
 - **No surprise licenses changes**. We are staying true to [our promises](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd).
   What's MIT stays MIT.
   Therefore, all the existing features and future features of the Tree View will remain MIT and free to use.
-- Follow the [migration steps](/x/migration/migration-tree-view-lab/)
+- Follow the [migration steps](/x/migration/migration-tree-view-lab/).
 
 ## What is the Tree View?
 
@@ -36,15 +36,15 @@ As opposed to the MUI Core library, which leans on the open-source community for
 
 MUI X components are available under three licenses:
 
-- **MIT license**, which is free to use and includes all the current (and more to come) Treeview features.
-- **MUI X Pro**, a commercial license that offers features for handling large datasets and will include the most advanced features for Treeview, like virtualization.
+- **MIT license**, which is free to use and includes all the current (and more to come) Tree View features.
+- **MUI X Pro**, a commercial license that offers features for handling large datasets and will include the most advanced features for Tree View, like virtualization.
 - **MUI X Premium**, which is also commercial and includes, in addition to the Pro features, tooling for data analysis.
 
 ## Why did the Tree View move to MUI X?
 
 Once a component is ready to leave the lab, it can either go to MUI X or MUI Core libraries.
 
-Given the complex nature of the Treeview, it was a clear choice to group it with the other advanced components in MUI X.
+Given the complex nature of the Tree View, it was a clear choice to group it with the other advanced components in MUI X.
 
 Moreover, new advanced features such as virtualization and drag and drop are already on the roadmap.
 

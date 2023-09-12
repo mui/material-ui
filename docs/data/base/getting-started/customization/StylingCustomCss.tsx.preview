@@ -1,2 +1,2 @@
 <style type="text/css">{css}</style>
-<Switch className="my-switch" />
+<SwitchUnstyled className="my-switch" />
