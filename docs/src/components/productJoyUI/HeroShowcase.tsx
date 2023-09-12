@@ -37,6 +37,9 @@ export function Desktop() {
         overflow: 'hidden',
         borderRadius: '1rem',
         transformOrigin: '0px 0px',
+        transform: 'scale(0.68) translate(var(--_translate-start))',
+        boxShadow:
+          '0px 0px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 0px 0px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
         '@keyframes rotate-left': {
           '0%': {
             transform: 'scale(0.68) translate(var(--_translate-start))',
@@ -50,7 +53,8 @@ export function Desktop() {
               '1px 1px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 1px 1px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
           },
         },
-        animation: 'rotate-left 1.5s ease-in-out forwards',
+        animation: 'rotate-left 1.5s ease forwards',
+        animationDelay: '2s',
       }}
     >
       <OrderDashboardApp />
@@ -83,6 +87,9 @@ export function Mobile() {
         borderRadius: '1rem',
         bgcolor: 'background.body',
         transformOrigin: '0px 0px',
+        transform: 'scale(0.68) translate(var(--_translate-start))',
+        boxShadow:
+          '0px 0px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 0px 0px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
         '@keyframes rotate-right': {
           '0%': {
             transform: 'scale(0.68) translate(var(--_translate-start))',
@@ -96,7 +103,8 @@ export function Mobile() {
               '-1px 1px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), -1px 1px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
           },
         },
-        animation: 'rotate-right 1.5s ease-in-out forwards',
+        animation: 'rotate-right 1.5s ease forwards',
+        animationDelay: '2s',
       }}
     >
       <JoySheet
