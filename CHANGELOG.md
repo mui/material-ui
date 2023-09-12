@@ -16,6 +16,8 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 44 -->[ButtonGroup] Determine first, last and middle buttons to support different elements with correct styling (#38520) @ZeeshanTamboli
 - &#8203;<!-- 07 -->[Modal] Fix console warning when onTransitionEnter , onTransitionExit provided (#38868) @sai6855
 - &#8203;<!-- 54 -->Revert "[Autocomplete] Type multiple values with readonly arrays." (#38827) @mnajdova
+- &#8203;<!-- 57 -->[Tabs] Scrollable tabs shouldn't crash when customizing their styles in the theme with slot callbacks (#38544) @brentertz
+- &#8203;<!-- 59 -->[AlertTitle][BreadCrumbs] Fix inheritance message in docs (#38876) @sai6855
 
 ### `@mui/base@5.0.0-beta.15`
 
@@ -30,6 +32,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 11 -->Reduce height of some variants (#38527) @zanivan
 - &#8203;<!-- 10 -->Refine the default theme color palette (#38416) @zanivan
 - &#8203;<!-- 34 -->[Dialog] Add `DialogActions`, `DialogTitle` and `DialogContent` (#38382) @siriwatknp
+- &#8203;<!-- 60 -->[AccordionGroup] Add missing `variant` and `color` classes (#38814) @sai6855
 
 ### `@mui/lab@5.0.0-alpha.144`
 
@@ -90,6 +93,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 23 -->[docs-infra] Catch duplicated trailing splashes in links (#38758) @oliviertassinari
 - &#8203;<!-- 14 -->[examples] Add shortcut to open example in online IDE (#38572) @oliviertassinari
 - &#8203;<!-- 01 -->[website] add Michel Engelen to the about us page (#38818) @michelengelen
+- &#8203;<!-- 58 -->[website] Add a templates & design kits section to the Material UI page (#38617) @danilo-leal
 
 All contributors of this release in alphabetical order: @brijeshb42, @danilo-leal, @flaviendelangle, @Janpot, @LadyBluenotes, @michaldudak, @michelengelen, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
 
