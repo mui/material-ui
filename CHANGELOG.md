@@ -13,37 +13,37 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### `@mui/material@5.14.9`
 
-- &#8203;<!-- 44 -->[ButtonGroup][material-ui] Determine first, last and middle buttons to support different elements with correct styling (#38520) @ZeeshanTamboli
-- &#8203;<!-- 07 -->[Modal][material-ui] Fix console warning when onTransitionEnter , onTransitionExit provided (#38868) @sai6855
+- &#8203;<!-- 44 -->[ButtonGroup] Determine first, last and middle buttons to support different elements with correct styling (#38520) @ZeeshanTamboli
+- &#8203;<!-- 07 -->[Modal] Fix console warning when onTransitionEnter , onTransitionExit provided (#38868) @sai6855
 - &#8203;<!-- 54 -->Revert "[Autocomplete] Type multiple values with readonly arrays." (#38827) @mnajdova
 
 ### `@mui/base@5.0.0-beta.15`
 
-- &#8203;<!-- 48 -->[useInput][base-ui] Align ExternalProps naming (#38849) @mj12albert
-- &#8203;<!-- 13 -->[FocusTrap][base-ui] Refactor & cleanup (#38878) @mnajdova
-- &#8203;<!-- 12 -->[FocusTrap][base-ui] Fix `disableEnforceFocus` behavior (#38816) @mnajdova
-- &#8203;<!-- 06 -->[Switch][base-ui] Simplify source (#38910) @oliviertassinari
+- &#8203;<!-- 48 -->[useInput] Align ExternalProps naming (#38849) @mj12albert
+- &#8203;<!-- 13 -->[FocusTrap] Refactor & cleanup (#38878) @mnajdova
+- &#8203;<!-- 12 -->[FocusTrap] Fix `disableEnforceFocus` behavior (#38816) @mnajdova
+- &#8203;<!-- 06 -->[Switch] Simplify source (#38910) @oliviertassinari
 
 ### `@mui/joy@5.0.0-beta.6`
 
-- &#8203;<!-- 15 -->[Drawer][joy-ui] Add Drawer component (#38169) @mnajdova
-- &#8203;<!-- 11 -->[joy-ui] Reduce height of some variants (#38527) @zanivan
-- &#8203;<!-- 10 -->[joy-ui] Refine the default theme color palette (#38416) @zanivan
-- &#8203;<!-- 34 -->[Dialog][joy-ui] Add `DialogActions`, `DialogTitle` and `DialogContent` (#38382) @siriwatknp
+- &#8203;<!-- 15 -->[Drawer] Add Drawer component (#38169) @mnajdova
+- &#8203;<!-- 11 -->Reduce height of some variants (#38527) @zanivan
+- &#8203;<!-- 10 -->Refine the default theme color palette (#38416) @zanivan
+- &#8203;<!-- 34 -->[Dialog] Add `DialogActions`, `DialogTitle` and `DialogContent` (#38382) @siriwatknp
 
 ### `@mui/lab@5.0.0-alpha.144`
 
-- &#8203;<!-- 09 -->[lab] Add TypeScript deprecations (#38833) @oliviertassinari
-- &#8203;<!-- 08 -->[lab] Fix `@mui/x-tree-view` dependency (#38822) @flaviendelangle
+- &#8203;<!-- 09 -->Add TypeScript deprecations (#38833) @oliviertassinari
+- &#8203;<!-- 08 -->Fix `@mui/x-tree-view` dependency (#38822) @flaviendelangle
 
 ### `@mui/system@5.14.9`
 
-- &#8203;<!-- 05 -->[system] Remove dead code (#38884) @oliviertassinari
-- &#8203;<!-- 04 -->[system] Remove getInitColorSchemeScript leading spaces (#38794) @oliviertassinari
+- &#8203;<!-- 05 -->Remove dead code (#38884) @oliviertassinari
+- &#8203;<!-- 04 -->Remove getInitColorSchemeScript leading spaces (#38794) @oliviertassinari
 
 ### `@mui/zero-vite-plugin@0.0.1-alpha.0`
 
-- &#8203;<!-- 02 -->[zero][vite] Create a package for vite plugin (#38685) @brijeshb42
+- &#8203;<!-- 02 -->[vite] Create a package for vite plugin (#38685) @brijeshb42
 
 ### Docs
 
