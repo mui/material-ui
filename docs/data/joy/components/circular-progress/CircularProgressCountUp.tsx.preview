@@ -1,6 +1,0 @@
-<CircularProgress size="lg" determinate value={value1}>
-  <Typography>{value1}%</Typography>
-</CircularProgress>
-<CircularProgress size="lg" determinate value={value2}>
-    <Typography>{value2}%</Typography>
-</CircularProgress>
