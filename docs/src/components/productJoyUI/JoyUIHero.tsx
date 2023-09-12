@@ -9,8 +9,12 @@ import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import dynamic from 'next/dynamic';
 
-const DesktopShowcase = dynamic(() => import('./HeroShowcase').then((mod) => mod.Desktop));
-const MobileShowcase = dynamic(() => import('./HeroShowcase').then((mod) => mod.Mobile));
+const DesktopShowcase = dynamic(() => import('./HeroShowcase').then((mod) => mod.Desktop), {
+  ssr: false,
+});
+const MobileShowcase = dynamic(() => import('./HeroShowcase').then((mod) => mod.Mobile), {
+  ssr: false,
+});
 
 export default function JoyUIHero() {
   return (

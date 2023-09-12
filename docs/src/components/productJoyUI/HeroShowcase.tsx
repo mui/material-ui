@@ -54,7 +54,7 @@ export function Desktop() {
           },
         },
         animation: 'rotate-left 1.5s ease forwards',
-        animationDelay: '2s',
+        animationDelay: '1s',
       }}
     >
       <OrderDashboardApp />
@@ -104,7 +104,7 @@ export function Mobile() {
           },
         },
         animation: 'rotate-right 1.5s ease forwards',
-        animationDelay: '2s',
+        animationDelay: '1s',
       }}
     >
       <JoySheet

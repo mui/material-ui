@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { useColorScheme as useMuiColorScheme } from '@mui/material/styles';
-import {
-  CssVarsProvider,
-  extendTheme,
-  THEME_ID,
-  useColorScheme as useJoyColorScheme,
-} from '@mui/joy/styles';
+import dynamic from 'next/dynamic';
+import { alpha, useColorScheme as useMuiColorScheme } from '@mui/material/styles';
+import { CssVarsProvider, THEME_ID, useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
+import defaultTheme from '@mui/joy/styles/defaultTheme'; // reduce the calculation time
+import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
@@ -18,9 +16,34 @@ import JoyUIComponents from 'docs/src/components/productJoyUI/JoyUIComponents';
 import JoyUIFeatures from 'docs/src/components/productJoyUI/JoyUIFeatures';
 import JoyUITestimonial from 'docs/src/components/productJoyUI/JoyUITestimonial';
 import JoyUIEnd from 'docs/src/components/productJoyUI/JoyUIEnd';
-import JoyUITemplates from 'docs/src/components/productJoyUI/JoyUITemplates';
 
-const theme = extendTheme();
+function Loading() {
+  return (
+    <Box
+      sx={(theme) => ({
+        width: '100%',
+        height: {
+          xs: 892,
+          sm: 1025,
+          lg: 1080,
+        },
+        background: `linear-gradient(180deg, #FFF 0%, ${
+          (theme.vars || theme).palette.primary[50]
+        } 100%)`,
+        ...theme.applyDarkStyles({
+          background: `linear-gradient(180deg, ${
+            (theme.vars || theme).palette.primaryDark[800]
+          } 0%, ${alpha(theme.palette.primary[900], 0.2)} 100%)`,
+        }),
+      })}
+    />
+  );
+}
+
+const JoyUITemplates = dynamic(() => import('../src/components/productJoyUI/JoyUITemplates'), {
+  ssr: false,
+  loading: Loading,
+});
 
 function ModeObserver() {
   const { mode: muiMode, setMode: setMuiMode } = useMuiColorScheme();
@@ -56,7 +79,7 @@ export default function Core() {
         attribute="data-mui-color-scheme"
         modeStorageKey="mui-mode"
         colorSchemeStorageKey="mui-color-scheme"
-        theme={{ [THEME_ID]: theme }}
+        theme={{ [THEME_ID]: defaultTheme }}
       >
         <ModeObserver />
         <main id="main-content">
