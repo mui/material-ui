@@ -7,6 +7,7 @@ import {
   UseSnackbarReturnValue,
 } from './useSnackbar.types';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { EventHandlers } from '../utils/types';
 
 /**
  * The basic building block for creating custom snackbar.
@@ -99,32 +100,28 @@ export function useSnackbar(parameters: UseSnackbarParameters): UseSnackbarRetur
   }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
 
   const createHandleBlur =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.FocusEvent<HTMLDivElement, Element>) => {
+    (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLDivElement, Element>) => {
       const onBlurCallback = otherHandlers.onBlur;
       onBlurCallback?.(event);
       handleResume();
     };
 
   const createHandleFocus =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.FocusEvent<HTMLDivElement, Element>) => {
+    (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLDivElement, Element>) => {
       const onFocusCallback = otherHandlers.onFocus;
       onFocusCallback?.(event);
       handlePause();
     };
 
   const createMouseEnter =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const onMouseEnterCallback = otherHandlers.onMouseEnter;
       onMouseEnterCallback?.(event);
       handlePause();
     };
 
   const createMouseLeave =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const onMouseLeaveCallback = otherHandlers.onMouseLeave;
       onMouseLeaveCallback?.(event);
       handleResume();
@@ -145,7 +142,7 @@ export function useSnackbar(parameters: UseSnackbarParameters): UseSnackbarRetur
     return undefined;
   }, [disableWindowBlurListener, handleResume, open]);
 
-  const getRootProps = <ExternalProps extends Record<string, any> = {}>(
+  const getRootProps = <ExternalProps extends Record<string, unknown> = {}>(
     externalProps: ExternalProps = {} as ExternalProps,
   ) => {
     const externalEventHandlers = {

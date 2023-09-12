@@ -56,7 +56,7 @@ export interface UseSnackbarReturnValue {
    * @param externalProps props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: <ExternalProps extends Record<string, ((event: any) => void) | undefined> = {}>(
+  getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
     externalProps?: ExternalProps,
   ) => UseSnackbarRootSlotProps<ExternalProps>;
   /**
