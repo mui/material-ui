@@ -596,8 +596,8 @@ export default function JoyUITemplates() {
                 }),
               ...(bgSwap && {
                 background: {
-                  body: 'var(--template-palette-common-white)',
-                  surface: 'var(--template-palette-neutral-50)',
+                  body: 'var(--template-palette-neutral-50)',
+                  surface: 'var(--template-palette-common-white)',
                 },
               }),
             },
