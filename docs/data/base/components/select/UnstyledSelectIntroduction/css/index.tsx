@@ -17,7 +17,6 @@ export default function UnstyledSelectIntroduction() {
           popper: { className: 'CustomSelectIntroduction-popper' },
         }}
         defaultValue={10}
-        placeholder="Select an option…"
       >
         <Option className="CustomSelectIntroduction-option" value={10}>
           Documentation
@@ -64,13 +63,13 @@ const Button = React.forwardRef(function Button<
   TValue extends {},
   Multiple extends boolean,
 >(
-  props: SelectRootSlotProps<TValue, Multiple> & { placeholder?: string },
+  props: SelectRootSlotProps<TValue, Multiple>,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
-  const { ownerState, placeholder, ...other } = props;
+  const { ownerState, ...other } = props;
   return (
     <button type="button" {...other} ref={ref}>
-      {other.children || (placeholder ?? ' ')}
+      {other.children}
       <UnfoldMoreRoundedIcon />
     </button>
   );

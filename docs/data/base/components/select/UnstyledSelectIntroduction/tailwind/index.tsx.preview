@@ -1,4 +1,4 @@
-<CustomSelect defaultValue={10} placeholder="Select an option…">
+<CustomSelect defaultValue={10}>
   <Option value={10}>Documentation</Option>
   <Option value={20}>Components</Option>
   <Option value={30}>Features</Option>

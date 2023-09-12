@@ -18,7 +18,6 @@ export default function UnstyledSelectIntroduction() {
           popper: { className: 'CustomSelectIntroduction-popper' },
         }}
         defaultValue={10}
-        placeholder="Select an option…"
       >
         <Option className="CustomSelectIntroduction-option" value={10}>
           Documentation
@@ -62,10 +61,10 @@ const grey = {
 };
 
 const Button = React.forwardRef(function Button(props, ref) {
-  const { ownerState, placeholder, ...other } = props;
+  const { ownerState, ...other } = props;
   return (
     <button type="button" {...other} ref={ref}>
-      {other.children || (placeholder ?? ' ')}
+      {other.children}
       <UnfoldMoreRoundedIcon />
     </button>
   );
@@ -74,7 +73,6 @@ const Button = React.forwardRef(function Button(props, ref) {
 Button.propTypes = {
   children: PropTypes.node,
   ownerState: PropTypes.object.isRequired,
-  placeholder: PropTypes.string,
 };
 
 function useIsDarkMode() {

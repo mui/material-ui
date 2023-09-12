@@ -8,7 +8,7 @@ import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectIntroduction() {
   return (
-    <CustomSelect defaultValue={10} placeholder="Select an option…">
+    <CustomSelect defaultValue={10}>
       <StyledOption value={10}>Documentation</StyledOption>
       <StyledOption value={20}>Components</StyledOption>
       <StyledOption value={30}>Features</StyledOption>
@@ -63,10 +63,10 @@ const grey = {
 };
 
 const Button = React.forwardRef(function Button(props, ref) {
-  const { ownerState, placeholder, ...other } = props;
+  const { ownerState, ...other } = props;
   return (
     <button type="button" {...other} ref={ref}>
-      {other.children || (placeholder ?? ' ')}
+      {other.children}
       <UnfoldMoreRoundedIcon />
     </button>
   );
@@ -75,7 +75,6 @@ const Button = React.forwardRef(function Button(props, ref) {
 Button.propTypes = {
   children: PropTypes.node,
   ownerState: PropTypes.object.isRequired,
-  placeholder: PropTypes.string,
 };
 
 const StyledButton = styled(Button, { shouldForwardProp: () => true })(
