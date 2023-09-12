@@ -2,13 +2,11 @@ import * as React from 'react';
 import { CssVarsProvider } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
-import GlobalStyles from '@mui/joy/GlobalStyles';
 import Box from '@mui/joy/Box';
 import useScript from './useScript';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import MyProfile from './components/MyProfile';
-import useScript from './useScript';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;

@@ -3,7 +3,6 @@ import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
-import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
 export default (function More(props: ButtonBaseProps) {
@@ -61,23 +60,24 @@ export default (function More(props: ButtonBaseProps) {
       ]}
     >
       <Box component="span" sx={{ mr: 1, lineHeight: 0 }}>
-      <Typography
-        component="span"
-        color="primary.main"
-        variant="body2"
-        fontWeight="bold"
-        sx={{
-          width: '100%',
-        }}
-      >
-        Much more{' '}
-        <KeyboardArrowRightRounded
-          className="chevron"
-          color="primary"
-          fontSize="small"
-          sx={{ verticalAlign: 'middle', ml: 'auto' }}
-        />
-      </Typography>
+        <Typography
+          component="span"
+          color="primary.main"
+          variant="body2"
+          fontWeight="bold"
+          sx={{
+            width: '100%',
+          }}
+        >
+          Much more{' '}
+          <KeyboardArrowRightRounded
+            className="chevron"
+            color="primary"
+            fontSize="small"
+            sx={{ verticalAlign: 'middle', ml: 'auto' }}
+          />
+        </Typography>
+      </Box>
     </ButtonBase>
   );
 });
