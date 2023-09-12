@@ -77,6 +77,11 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 16 -->[docs][material-ui] Revise and split up "Styled engine" doc (#37774) @samuelsycamore
 - &#8203;<!-- 03 -->[TextareaAutosize][docs] Fix component creation in render (#38577) @oliviertassinari
 
+### Examples
+
+- &#8203;<!-- 14 -->[examples] Add shortcut to open example in online IDE (#38572) @oliviertassinari
+- &#8203;<!-- 61 -->[examples][base-ui] Add Base UI + Vite + Tailwind CSS example in TypeScript (#37595) @dvkam
+
 ### Core
 
 - &#8203;<!-- 43 -->[core] Fix prop-types generation (#38831) @flaviendelangle
@@ -91,7 +96,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 56 -->[docs-infra] Improve show code button affordance (#38824) @danilo-leal
 - &#8203;<!-- 55 -->[docs–infra] Fix callout container width (#38880) @oliviertassinari
 - &#8203;<!-- 23 -->[docs-infra] Catch duplicated trailing splashes in links (#38758) @oliviertassinari
-- &#8203;<!-- 14 -->[examples] Add shortcut to open example in online IDE (#38572) @oliviertassinari
 - &#8203;<!-- 01 -->[website] add Michel Engelen to the about us page (#38818) @michelengelen
 - &#8203;<!-- 58 -->[website] Add a templates & design kits section to the Material UI page (#38617) @danilo-leal
 
