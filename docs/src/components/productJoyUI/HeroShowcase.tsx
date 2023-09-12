@@ -53,8 +53,8 @@ export function Desktop() {
               '1px 1px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 1px 1px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
           },
         },
-        animation: 'rotate-left 1.5s ease forwards',
-        animationDelay: '1s',
+        animation: 'rotate-left 1s ease forwards',
+        animationDelay: '0.5s',
       }}
     >
       <OrderDashboardApp />
@@ -103,8 +103,8 @@ export function Mobile() {
               '-1px 1px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), -1px 1px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
           },
         },
-        animation: 'rotate-right 1.5s ease forwards',
-        animationDelay: '1s',
+        animation: 'rotate-right 1s ease forwards',
+        animationDelay: '0.5s',
       }}
     >
       <JoySheet

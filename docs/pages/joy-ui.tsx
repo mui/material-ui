@@ -86,15 +86,25 @@ export default function Core() {
           <JoyUIHero />
           <JoyUISummary />
           <Divider />
-          <JoyUITemplates />
+          <Box sx={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' }}>
+            <JoyUITemplates />
+          </Box>
           <Divider />
-          <JoyUIComponents />
+          <Box sx={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' }}>
+            <JoyUIComponents />
+          </Box>
           <Divider />
-          <JoyUIFeatures />
+          <Box sx={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' }}>
+            <JoyUIFeatures />
+          </Box>
           <Divider />
-          <JoyUITestimonial />
+          <Box sx={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' }}>
+            <JoyUITestimonial />
+          </Box>
           <Divider />
-          <JoyUIEnd />
+          <Box sx={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' }}>
+            <JoyUIEnd />
+          </Box>
           <Divider />
         </main>
       </CssVarsProvider>
