@@ -104,15 +104,18 @@ export function useListItem<ItemValue>(
 
   const getRootProps = <ExternalProps extends Record<string, any>>(
     externalProps: ExternalProps = {} as ExternalProps,
-  ) => ({
-    ...externalProps,
-    onClick: createHandleClick(extractEventHandlers(externalProps)),
-    onPointerOver: handlePointerOverEvents
-      ? createHandlePointerOver(extractEventHandlers(externalProps))
-      : undefined,
-    ref: handleRef,
-    tabIndex,
-  });
+  ) => {
+    const externalEventHandlers = extractEventHandlers(externalProps);
+    return {
+      ...externalProps,
+      onClick: createHandleClick(externalEventHandlers),
+      onPointerOver: handlePointerOverEvents
+        ? createHandlePointerOver(externalEventHandlers)
+        : undefined,
+      ref: handleRef,
+      tabIndex,
+    };
+  };
 
   return {
     getRootProps,
