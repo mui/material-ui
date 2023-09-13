@@ -1,2 +1,5 @@
-export { default as styled } from './styled';
-export { default } from './styled';
+import styled from './styled';
+import sx from './sx';
+
+export { styled, sx };
+export default styled;

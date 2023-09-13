@@ -80,7 +80,7 @@ If you did the same with `slots.root`, you would need to place this attribute on
 Base UI includes two kinds of building blocks: **components** and **hooks**.
 
 :::info
-💡 Hooks encapsulate _logic_; components provide _structure_.
+Hooks encapsulate _logic_; components provide _structure_.
 :::
 
 Many Base components are implemented with the help of hooks.

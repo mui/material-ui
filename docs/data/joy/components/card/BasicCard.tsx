@@ -9,7 +9,7 @@ import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 
 export default function BasicCard() {
   return (
-    <Card variant="outlined" sx={{ width: 320 }}>
+    <Card sx={{ width: 320 }}>
       <div>
         <Typography level="title-lg">Yosemite National Park</Typography>
         <Typography level="body-sm">April 24 to May 02, 2021</Typography>

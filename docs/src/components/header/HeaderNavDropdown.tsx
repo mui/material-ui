@@ -113,7 +113,7 @@ const DOCS = [
     name: 'MUI Toolpad',
     description: 'Low-code admin builder.',
     href: ROUTES.toolpadDocs,
-    chip: 'Alpha',
+    chip: 'Beta',
   },
 ];
 

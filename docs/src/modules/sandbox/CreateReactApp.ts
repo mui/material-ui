@@ -15,6 +15,7 @@ export const getHtml = ({
 <html lang="${language}">
   <head>
     <title>${title}</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
