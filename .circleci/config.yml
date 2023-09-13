@@ -661,9 +661,6 @@ jobs:
     <<: *defaults
     steps:
       - run: touch mui-material.tgz
-      - aws-cli/install:
-          version: '2.1.10'
-          override_installed: true
       - aws-cli/setup:
           aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
           region: ${AWS_REGION_ARTIFACTS}
