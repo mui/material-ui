@@ -660,16 +660,6 @@ jobs:
   test_bundle_size_monitor:
     <<: *defaults
     steps:
-      - run: touch mui-material.tgz
-      - aws-cli/setup:
-          aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
-          region: ${AWS_REGION_ARTIFACTS}
-          aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
-      # Upload distributables to S3
-      - aws-s3/copy:
-          from: mui-material.tgz
-          to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
-
       - checkout
       - install_js
       - run:
@@ -695,16 +685,13 @@ jobs:
                 # "^pull/\d+" is not valid YAML
                 # "^pull/\\d+" matches neither 'pull/1' nor 'main'
                 # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-                pattern: '^xpull/.+$'
+                pattern: '^pull/.+$'
                 value: << pipeline.git.branch >>
           steps:
-            - aws-cli/install:
-                version: '2.1.10'
-                override_installed: true
             - aws-cli/setup:
                 aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                region: ${AWS_REGION_ARTIFACTS}
                 aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                region: ${AWS_REGION_ARTIFACTS}
             # Upload distributables to S3
             - aws-s3/copy:
                 from: mui-material.tgz
@@ -727,16 +714,13 @@ jobs:
                 # "^pull/\d+" is not valid YAML
                 # "^pull/\\d+" matches neither 'pull/1' nor 'main'
                 # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-                pattern: '^xpull/.+$'
+                pattern: '^pull/.+$'
                 value: << pipeline.git.branch >>
           steps:
-            - aws-cli/install:
-                version: '2.1.10'
-                override_installed: true
             - aws-cli/setup:
                 aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                region: ${AWS_REGION_ARTIFACTS}
                 aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                region: ${AWS_REGION_ARTIFACTS}
             # persist size snapshot on S3
             - aws-s3/copy:
                 arguments: --content-type application/json
