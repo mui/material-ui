@@ -39,7 +39,7 @@ export default function SlotsList(props: SlotsListProps) {
         return (
           <StyledApiItem
             id={`${hashPrefix}slots-${className}`}
-            key={className}
+            key={name}
             description=""
             title={name}
             note=""
@@ -52,9 +52,12 @@ export default function SlotsList(props: SlotsListProps) {
                 }}
               />
             )}
-            <p className="slot-default-element">
-              <span>{t('api-docs.default')}:</span> <code className="Api-code">{defaultValue}</code>
-            </p>
+            {defaultValue && (
+              <p className="slot-default-element">
+                <span>{t('api-docs.default')}:</span>
+                <code className="Api-code">{defaultValue}</code>
+              </p>
+            )}
             {className && (
               <p className="slot-classname">
                 <span>{t('api-docs.globalClass')}:</span>{' '}
