@@ -44,7 +44,6 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@mui/styled-engine-sc": "^5.14.8",
     "@types/chai": "^4.3.5",
     "@types/react": "^18.2.21",
     "@types/styled-components": "^5.1.26",
