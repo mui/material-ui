@@ -76,4 +76,11 @@ describe('<AccordionGroup />', () => {
 
     describeJoyColorInversion(<AccordionGroup />, { muiName: 'JoyAccordionGroup', classes });
   });
+
+  it('should not warn when using custom color', () => {
+    expect(() => {
+      // @ts-expect-error need to test custom color
+      render(<AccordionGroup color="custom" />);
+    }).not.toErrorDev();
+  });
 });
