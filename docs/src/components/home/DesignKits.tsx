@@ -64,7 +64,8 @@ const Anchor = styled('a')(({ theme }) => [
 const DesignToolLink = React.forwardRef<
   HTMLAnchorElement,
   React.PropsWithChildren<{ brand: 'figma' | 'sketch' | 'adobexd' }>
->(function DesignToolLink({ brand, ...props }, ref) {
+>(function DesignToolLink(props, ref) {
+  const { brand, ...other } = props;
   return (
     <Anchor
       ref={ref}
@@ -80,10 +81,8 @@ const DesignToolLink = React.forwardRef<
         }[brand]
       }
       target="_blank"
-      {...props}
-    >
-      {props.children}
-    </Anchor>
+      {...other}
+    />
   );
 });
 
