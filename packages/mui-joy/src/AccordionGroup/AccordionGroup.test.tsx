@@ -77,10 +77,10 @@ describe('<AccordionGroup />', () => {
     describeJoyColorInversion(<AccordionGroup />, { muiName: 'JoyAccordionGroup', classes });
   });
 
-  it('should not warn when using custom color', () => {
+  it('should not warn when using custom color, variant, size', () => {
     expect(() => {
-      // @ts-expect-error as `custom` color is not part of the type system
-      render(<AccordionGroup color="custom" />);
+      // @ts-expect-error as `custom` color, varaint, size is not part of the type system
+      render(<AccordionGroup color="custom" variant="custom" size="custom" />);
     }).not.toErrorDev();
   });
 });
