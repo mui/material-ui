@@ -4,9 +4,9 @@
 
 <!-- generated comparing v5.14.8..master -->
 
-_Sep 12, 2023_
+_Sep 13, 2023_
 
-A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🎉 Added the [`Drawer` component](https://mui.com/joy-ui/react-drawer/) to Joy UI (#38169) @mnajdova
 - ✨ Material UI's [`ButtonGroup` component](https://mui.com/material-ui/react-button-group/) now styles button elements within it correctly (#38520) @ZeeshanTamboli
@@ -21,6 +21,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### `@mui/base@5.0.0-beta.15`
 
+- &#8203;<!-- 63 -->[useSnackbar] Align externalProps handling (#38935) @mj12albert
 - &#8203;<!-- 48 -->[useInput] Align ExternalProps naming (#38849) @mj12albert
 - &#8203;<!-- 13 -->[FocusTrap] Refactor & cleanup (#38878) @mnajdova
 - &#8203;<!-- 12 -->[FocusTrap] Fix `disableEnforceFocus` behavior (#38816) @mnajdova
@@ -68,6 +69,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 26 -->[docs] Clearer npm package homepages (#38864) @oliviertassinari
 - &#8203;<!-- 25 -->[docs] enableColorScheme prop was removed (#38795) @oliviertassinari
 - &#8203;<!-- 24 -->[docs] Fix a11y issues in tables demos (#38829) @michaldudak
+- &#8203;<!-- 62 -->[docs][joy-ui] Refine the Messages template (#38807) @zanivan
 - &#8203;<!-- 22 -->[docs][joy-ui] Fix copy on the Tutorial page (#38907) @danilo-leal
 - &#8203;<!-- 21 -->[docs][joy-ui] Fix grammar and update Usage section in color inversion page (#38850) @ZeeshanTamboli
 - &#8203;<!-- 20 -->[docs][joy-ui] Revise the Lists page (#36324) @LadyBluenotes
@@ -84,6 +86,8 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### Core
 
+- &#8203;<!-- 65 -->[core] Remove package declaration from same package dependencies (#38951) @DiegoAndai
+- &#8203;<!-- 64 -->[core] Remove workspace dependencies from root package.json (#38940) @michaldudak
 - &#8203;<!-- 43 -->[core] Fix prop-types generation (#38831) @flaviendelangle
 - &#8203;<!-- 42 -->[core] Move types packages to docs' devDependencies (#38914) @michaldudak
 - &#8203;<!-- 41 -->[core] Improve DX when browsing the package on npm and GitHub @oliviertassinari
@@ -99,7 +103,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 01 -->[website] add Michel Engelen to the about us page (#38818) @michelengelen
 - &#8203;<!-- 58 -->[website] Add a templates & design kits section to the Material UI page (#38617) @danilo-leal
 
-All contributors of this release in alphabetical order: @brijeshb42, @danilo-leal, @flaviendelangle, @Janpot, @LadyBluenotes, @michaldudak, @michelengelen, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @brentertz, @brijeshb42, @danilo-leal, @DiegoAndai, @dvkam, @flaviendelangle, @Janpot, @LadyBluenotes, @michaldudak, @michelengelen, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
 
 ## 5.14.8
 
