@@ -44,13 +44,13 @@ export default function TemplateDemo() {
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box sx={{ maxWidth: 500 }}>
             <SectionHeadline
-              overline="Features"
+              overline="Design kits"
               title={
                 <Typography variant="h2">
                   Upgrade your <GradientText>design workflow</GradientText>
                 </Typography>
               }
-              description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date Material UI release."
+              description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>
