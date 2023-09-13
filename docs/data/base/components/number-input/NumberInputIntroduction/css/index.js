@@ -11,13 +11,13 @@ export default function NumberInputIntroduction() {
       <NumberInput
         slotProps={{
           root: { className: 'CustomNumberInput' },
-          input: { className: 'input' },
+          input: { className: 'CustomNumberInput-input' },
           decrementButton: {
-            className: 'btn decrement',
+            className: 'CustomNumberInput-button CustomNumberInput-decrementButton',
             children: <span className="arrow">▾</span>,
           },
           incrementButton: {
-            className: 'btn increment',
+            className: 'CustomNumberInput-button CustomNumberInput-incrementButton',
             children: <span className="arrow">▴</span>,
           },
         }}
@@ -92,14 +92,14 @@ function Styles() {
         box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
       }
 
-      .CustomNumberInput .input {
+      .CustomNumberInput .CustomNumberInput-input {
         font-family: inherit;
         font-size: inherit;
         font-weight: inherit;
         line-height: inherit;
         grid-column: 1/2;
         grid-row: 1/3;
-        color: ${isDarkMode ? grey[300] : grey[900]};
+        color: red;
         background: inherit;
         border: none;
         border-radius: inherit;
@@ -107,11 +107,11 @@ function Styles() {
         outline: 0;
       }
 
-      .CustomNumberInput .input:focus-visible {
+      .CustomNumberInput .CustomNumberInput-button:focus-visible {
         outline: 0;
       }
 
-      .CustomNumberInput .btn {
+      .CustomNumberInput .CustomNumberInput-button {
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
@@ -133,18 +133,18 @@ function Styles() {
         transition-duration: 120ms;
       }
 
-      .CustomNumberInput .btn:hover {
+      .CustomNumberInput .CustomNumberInput-button:hover {
         background: ${isDarkMode ? grey[800] : grey[50]};
         border-color: ${isDarkMode ? grey[600] : grey[300]};
         cursor: pointer;
       }
 
-      .CustomNumberInput .btn.increment {
+      .CustomNumberInput .CustomNumberInput-button.CustomNumberInput-incrementButton {
         grid-column: 2/3;
         grid-row: 1/2;
       }
 
-      .CustomNumberInput .btn.decrement {
+      .CustomNumberInput .CustomNumberInput-button.CustomNumberInput-decrementButton {
         grid-column: 2/3;
         grid-row: 2/3;
       }
