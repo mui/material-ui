@@ -79,7 +79,7 @@ describe('<AccordionGroup />', () => {
 
   it('should not warn when using custom color', () => {
     expect(() => {
-      // @ts-expect-error need to test custom color
+      // @ts-expect-error as `custom` color is not part of the type system
       render(<AccordionGroup color="custom" />);
     }).not.toErrorDev();
   });
