@@ -55,7 +55,6 @@
     "@mui/joy": "5.0.0-beta.5",
     "@mui/material": "^5.14.8",
     "@mui/material-next": "6.0.0-alpha.100",
-    "@mui/system": "^5.14.8",
     "@types/chai": "^4.3.5",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.21",
