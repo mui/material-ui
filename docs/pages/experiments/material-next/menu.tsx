@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import { useDropdown, DropdownContext } from '@mui/base/useDropdown';
 import Menu from '@mui/material-next/Menu';
 import MenuItem from '@mui/material-next/MenuItem';
+import StableMenu from '@mui/material/Menu';
+import StableMenuItem from '@mui/material/MenuItem';
 import { useMenuButton } from '@mui/base/useMenuButton';
 
 const theme = createTheme();
@@ -28,7 +31,7 @@ function DropdownUsage() {
         aria-haspopup="true"
         // aria-expanded={open ? 'true' : undefined}
       >
-        Dashboard
+        Dropdown
       </MenuButton>
       <Menu
         id="basic-menu"
@@ -38,6 +41,8 @@ function DropdownUsage() {
       >
         <MenuItem /* onClick={handleClose} */>Profile</MenuItem>
         <MenuItem /* onClick={handleClose} */>My account</MenuItem>
+        <MenuItem /* onClick={handleClose} */ disabled>Subscription</MenuItem>
+        <Divider />
         <MenuItem /* onClick={handleClose} */>Logout</MenuItem>
       </Menu>
     </DropdownContext.Provider>
@@ -63,7 +68,7 @@ function LegacyUsage() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        Dashboard
+        Legacy
       </Button>
       <Menu
         id="basic-menu-legacy"
@@ -76,18 +81,60 @@ function LegacyUsage() {
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem disabled>Subscription</MenuItem>
+        <Divider />
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>
   );
 }
 
-// TODO add menus with dividers and disabled elements
+function StableComponentUsage() {
+  const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <Button
+        id="basic-button-legacy-1"
+        aria-controls={open ? 'basic-menu-legacy-1' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        Stable
+      </Button>
+      <StableMenu
+        id="basic-menu-legacy-1"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button-legacy-1',
+        }}
+      >
+        <StableMenuItem onClick={handleClose}>Profile</StableMenuItem>
+        <StableMenuItem onClick={handleClose}>My account</StableMenuItem>
+        <StableMenuItem disabled>Subscription</StableMenuItem>
+        <Divider />
+        <StableMenuItem onClick={handleClose}>Logout</StableMenuItem>
+      </StableMenu>
+    </div>
+  );
+}
+
 export default function BasicMenu() {
   return (
     <ThemeProvider theme={theme}>
       <LegacyUsage />
       <DropdownUsage />
+      <StableComponentUsage />
     </ThemeProvider>
   );
 }
