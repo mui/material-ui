@@ -8,7 +8,7 @@ import { useMenuButton } from '@mui/base/useMenuButton';
 
 const theme = createTheme();
 
-const MenuButton = React.forwardRef(function MenuButton(
+const MenuButton = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<{ id?: string }>>(function MenuButton(
   props: React.PropsWithChildren<{}>,
   forwardedRef: React.ForwardedRef<HTMLButtonElement>,
 ) {
@@ -45,9 +45,9 @@ function DropdownUsage() {
 }
 
 function LegacyUsage() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -82,6 +82,7 @@ function LegacyUsage() {
   );
 }
 
+// TODO add menus with dividers and disabled elements
 export default function BasicMenu() {
   return (
     <ThemeProvider theme={theme}>
