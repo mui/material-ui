@@ -21,7 +21,7 @@ function useUtilityClasses(ownerState: MenuItemOwnerState) {
   return composeClasses(slots, useClassNamesOverride(getMenuItemUtilityClass));
 }
 
-type InnerMenuItemProps<RootComponentType extends React.ElementType> =
+type InnerMenuItemProps<RootComponentType extends React.ElementType = 'li'> =
   MenuItemProps<RootComponentType> &
     Pick<ListItemState, 'focusable' | 'highlighted'> & {
       // eslint-disable-next-line react/no-unused-prop-types
@@ -75,46 +75,60 @@ const InnerMenuItem = React.memo(
 
     return <Root {...rootProps}>{children}</Root>;
   }),
-) as React.ComponentType<InnerMenuItemProps<React.ElementType>>;
+);
 
-const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends React.ElementType>(
-  props: MenuItemProps<RootComponentType>,
-  ref: React.ForwardedRef<Element>,
-) {
-  const listContext = React.useContext(ListContext as React.Context<ListContextValue<string>>);
-  if (!listContext) {
-    throw new Error('MenuItem: ListContext was not found.');
-  }
+type WrapperComponentProps<Wrapped> = Omit<Wrapped, 'highlighted' | 'focusable' | 'dispatch'>;
 
-  const { id: idProp } = props;
-  const id = useId(idProp);
+export function unwrapMenuItemContext<WrappedComponentProps extends { id?: string }>(
+  Component: React.ComponentType<WrappedComponentProps>,
+): React.ComponentType<WrapperComponentProps<WrappedComponentProps>> {
+  const MenuItemWrapper = React.forwardRef(function MenuItemWrapper<
+    RootComponentType extends React.ElementType,
+  >(props: MenuItemProps<RootComponentType>, ref: React.ForwardedRef<Element>): React.ReactElement {
+    const listContext = React.useContext(ListContext as React.Context<ListContextValue<string>>);
+    if (!listContext) {
+      throw new Error('MenuItem: ListContext was not found.');
+    }
 
-  if (id === undefined) {
+    const { id: idProp } = props;
+    const id = useId(idProp);
+
+    if (id === undefined) {
+      // id will be undefined during SSR on React 17.
+      // TODO: use idGenerator from useMenuItem instead?
+      return (
+        <Component
+          {...props}
+          id={undefined}
+          highlighted={false}
+          focusable={false}
+          dispatch={() => {}}
+          ref={ref}
+        />
+      );
+    }
+
+    const { getItemState, dispatch } = listContext;
+    const { highlighted, focusable } = getItemState(id);
+
     return (
-      <InnerMenuItem
+      <Component
         {...props}
-        highlighted={false}
-        focusable={false}
-        dispatch={() => {}}
+        id={id}
+        highlighted={highlighted}
+        focusable={focusable}
+        dispatch={dispatch}
         ref={ref}
       />
     );
-  }
+  }) as React.FC<WrapperComponentProps<WrappedComponentProps>>;
 
-  const { getItemState, dispatch } = listContext;
-  const { highlighted, focusable } = getItemState(id);
+  return MenuItemWrapper;
+}
 
-  return (
-    <InnerMenuItem
-      {...props}
-      id={id}
-      highlighted={highlighted}
-      focusable={focusable}
-      dispatch={dispatch}
-      ref={ref}
-    />
-  );
-}) as PolymorphicComponent<MenuItemTypeMap>;
+const MenuItem = unwrapMenuItemContext<InnerMenuItemProps>(
+  InnerMenuItem,
+) as PolymorphicComponent<MenuItemTypeMap>;
 
 MenuItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
