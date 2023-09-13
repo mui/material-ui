@@ -685,7 +685,7 @@ jobs:
                 # "^pull/\d+" is not valid YAML
                 # "^pull/\\d+" matches neither 'pull/1' nor 'main'
                 # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-                pattern: '^pull/.+$'
+                pattern: '^xpull/.+$'
                 value: << pipeline.git.branch >>
           steps:
             - aws-cli/install:
@@ -717,7 +717,7 @@ jobs:
                 # "^pull/\d+" is not valid YAML
                 # "^pull/\\d+" matches neither 'pull/1' nor 'main'
                 # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-                pattern: '^pull/.+$'
+                pattern: '^xpull/.+$'
                 value: << pipeline.git.branch >>
           steps:
             - aws-cli/install:
