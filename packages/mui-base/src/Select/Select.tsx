@@ -27,7 +27,9 @@ function defaultRenderValue<OptionValue>(
     return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
   }
 
-  return selectedOptions?.label ?? '';
+  // fall back to a zero-width space to prevent layout shift
+  // from https://github.com/mui/material-ui/pull/24563
+  return selectedOptions?.label ?? <span className="notranslate">&#8203;</span>;
 }
 
 function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(

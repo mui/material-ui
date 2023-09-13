@@ -20,7 +20,7 @@ describe('<Select />', () => {
   const { render } = createRenderer();
 
   const componentToTest = (
-    <Select defaultListboxOpen slotProps={{ popper: { disablePortal: true } }}>
+    <Select defaultListboxOpen defaultValue={1} slotProps={{ popper: { disablePortal: true } }}>
       <OptionGroup label="Group">
         <Option value={1}>1</Option>
       </OptionGroup>
@@ -822,6 +822,20 @@ describe('<Select />', () => {
       );
 
       expect(getByRole('combobox')).to.have.text('One');
+    });
+
+    it('renders a zero-width space when no value is selected and renderValue is not provided', () => {
+      const { getByRole } = render(
+        <Select>
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      const select = getByRole('combobox');
+      const zws = select.querySelector('.notranslate');
+
+      expect(zws).not.to.equal(null);
     });
 
     it('renders the selected values (multiple) using the renderValue prop', () => {
