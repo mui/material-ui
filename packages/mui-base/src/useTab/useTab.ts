@@ -25,7 +25,16 @@ function tabValueGenerator(otherTabValues: Set<string | number>) {
  * - [useTab API](https://mui.com/base-ui/react-tabs/hooks-api/#use-tab)
  */
 function useTab(parameters: UseTabParameters): UseTabReturnValue {
-  const { value: valueParam, rootRef: externalRef, disabled = false, id: idParam } = parameters;
+  const {
+    disabled = false,
+    dispatch,
+    highlighted,
+    focusable,
+    id: idParam,
+    rootRef: externalRef,
+    selected,
+    value: valueParam,
+  } = parameters;
 
   const tabRef = React.useRef<HTMLElement>(null);
   const id = useId(idParam);
@@ -40,13 +49,11 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
     totalItemCount: totalTabsCount,
   } = useCompoundItem<string | number, TabMetadata>(valueParam ?? tabValueGenerator, tabMetadata);
 
-  const {
-    getRootProps: getTabProps,
-    rootRef: listItemRefHandler,
+  const { getRootProps: getTabProps, rootRef: listItemRefHandler } = useListItem({
     highlighted,
-    selected,
-  } = useListItem({
     item: value,
+    dispatch,
+    focusable,
   });
 
   const {
