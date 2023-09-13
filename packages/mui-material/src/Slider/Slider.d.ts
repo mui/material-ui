@@ -307,7 +307,8 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
 
 // It adjusts valid props based on the type of `component`
 // and passes type of `value` prop to `onChange` handler to make type of `value` in onChange argument and type of `value` prop same.
-// if type of `value` prop is `number` then type of `value` in onChange argument will be `number` and if type of `value` prop is `number[]` then type of `value` in onChange argument will be `number[]`.
+// if type of `value` prop is `number` then type of `value` in onChange argument will be `number`
+// if type of `value` prop is `number[]` then type of `value` in onChange argument will be `number[]`.
 export interface SliderType {
   <
     RootComponent extends React.ElementType,
