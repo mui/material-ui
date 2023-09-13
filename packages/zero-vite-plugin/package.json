@@ -1,6 +1,6 @@
 {
   "name": "@mui/zero-vite-plugin",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1-alpha.1",
   "private": true,
   "author": "MUI Team",
   "description": "Vite plugin for MUI zero styled implementation.",
@@ -41,7 +41,7 @@
   "dependencies": {
     "@babel/core": "^7.22.17",
     "@linaria/vite": "^4.5.4",
-    "@mui/zero-tag-processor": "0.0.1-alpha.2"
+    "@mui/zero-tag-processor": "0.0.1-alpha.3"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.1",

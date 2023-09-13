@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "5.14.8",
+  "version": "5.14.9",
   "private": false,
   "author": "MUI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
@@ -41,10 +41,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.22.15",
-    "@mui/private-theming": "^5.14.8",
-    "@mui/styled-engine": "^5.14.8",
+    "@mui/private-theming": "^5.14.9",
+    "@mui/styled-engine": "^5.14.9",
     "@mui/types": "^7.2.4",
-    "@mui/utils": "^5.14.8",
+    "@mui/utils": "^5.14.9",
     "clsx": "^2.0.0",
     "csstype": "^3.1.2",
     "prop-types": "^15.8.1"
@@ -52,9 +52,9 @@
   "devDependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/joy": "5.0.0-beta.5",
-    "@mui/material": "^5.14.8",
-    "@mui/material-next": "6.0.0-alpha.100",
+    "@mui/joy": "5.0.0-beta.6",
+    "@mui/material": "^5.14.9",
+    "@mui/material-next": "6.0.0-alpha.101",
     "@types/chai": "^4.3.5",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.21",
