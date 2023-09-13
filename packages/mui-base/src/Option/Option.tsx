@@ -91,30 +91,47 @@ const InnerOption = React.memo(
   }),
 );
 
-const Option = React.forwardRef(function Option<
+type WrapperComponentProps<Wrapped> = Omit<Wrapped, 'highlighted' | 'selected' | 'dispatch'>;
+
+export function unwrapOptionContext<
   OptionValue,
-  RootComponentType extends React.ElementType,
->(props: OptionProps<OptionValue, RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
-  const listContext = React.useContext(ListContext as React.Context<ListContextValue<OptionValue>>);
-  if (!listContext) {
-    throw new Error('MenuItem: ListContext was not found.');
-  }
+  WrappedComponentProps extends { value: OptionValue },
+>(
+  Component: React.ComponentType<WrappedComponentProps>,
+): React.ComponentType<WrapperComponentProps<WrappedComponentProps>> {
+  const OptionWrapper = React.forwardRef(function OptionWrapper<
+    RootComponentType extends React.ElementType,
+  >(
+    props: OptionProps<OptionValue, RootComponentType>,
+    forwardedRef: React.ForwardedRef<Element>,
+  ): React.ReactElement {
+    const listContext = React.useContext(
+      ListContext as React.Context<ListContextValue<OptionValue>>,
+    );
+    if (!listContext) {
+      throw new Error('Option: ListContext was not found.');
+    }
 
-  const { value } = props;
+    const { value } = props;
 
-  const { getItemState, dispatch } = listContext;
-  const { highlighted, selected } = getItemState(value);
+    const { getItemState, dispatch } = listContext;
+    const { highlighted, selected } = getItemState(value);
 
-  return (
-    <InnerOption
-      {...props}
-      highlighted={highlighted}
-      selected={selected}
-      dispatch={dispatch}
-      ref={forwardedRef}
-    />
-  );
-}) as OptionType;
+    return (
+      <Component
+        {...props}
+        highlighted={highlighted}
+        selected={selected}
+        dispatch={dispatch}
+        ref={forwardedRef}
+      />
+    );
+  }) as React.FC<WrapperComponentProps<WrappedComponentProps>>;
+
+  return OptionWrapper;
+}
+
+const Option = unwrapOptionContext(InnerOption) as OptionType;
 
 Option.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
