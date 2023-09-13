@@ -7,7 +7,7 @@ import { useCountUp } from 'use-count-up';
 
 export default function CircularProgressCountUp() {
   const [isLoading, setIsLoading] = React.useState(false);
-  const [buttonLabel, setButtonLabel] = React.useState('Start'); // Track button label
+  const [buttonLabel, setButtonLabel] = React.useState('Start');
 
   const { value: value1, reset: resetValue1 } = useCountUp({
     isCounting: isLoading,
@@ -16,7 +16,7 @@ export default function CircularProgressCountUp() {
     end: 25,
     onEnd: () => {
       setIsLoading(false);
-      setButtonLabel('Reset'); // Change the button label when loading is complete
+      setButtonLabel('Reset');
     },
   });
 
@@ -31,7 +31,7 @@ export default function CircularProgressCountUp() {
     if (isLoading) {
       setIsLoading(false);
       setButtonLabel('Start');
-      resetValue1(); // Reset the value
+      resetValue1();
     } else {
       setIsLoading(true);
       setButtonLabel('Reset');
@@ -48,7 +48,7 @@ export default function CircularProgressCountUp() {
           size="sm"
           variant="outlined"
           color="neutral"
-          onClick={handleButtonClick} // Use a single click handler
+          onClick={handleButtonClick}
         >
           {buttonLabel}
         </Button>
