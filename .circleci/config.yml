@@ -689,6 +689,7 @@ jobs:
                 value: << pipeline.git.branch >>
           steps:
             - aws-cli/install:
+                version: '2.1.10'
                 override_installed: true
             - aws-cli/setup:
                 aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
@@ -720,6 +721,7 @@ jobs:
                 value: << pipeline.git.branch >>
           steps:
             - aws-cli/install:
+                version: '2.1.10'
                 override_installed: true
             - aws-cli/setup:
                 aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
