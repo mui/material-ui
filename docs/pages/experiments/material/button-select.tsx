@@ -1,10 +1,5 @@
+/* eslint-disable no-console */
 import * as React from 'react';
-import { Button as BaseUIButton } from '@mui/base';
-import {
-  Button as JoyUIButton,
-  CssVarsProvider as JoyCssVarsProvider,
-  extendTheme as joyExtendTheme,
-} from '@mui/joy';
 import {
   FormControlLabel,
   Button as MaterialUIButton,
@@ -17,8 +12,6 @@ import { Stack } from '@mui/system';
 function createHandlers(name: string) {
   return {
     onClick: () => console.log(`${name} click`),
-    onMouseDown: () => console.log(`${name} mouse down`),
-    onMouseUp: () => console.log(`${name} mouse up`),
   };
 }
 
@@ -44,6 +37,7 @@ export default function App() {
             </Stack>
             <Stack alignItems="flex-start">
               <span>Native anchor</span>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <a href="#" {...createHandlers('Native anchor')}>
                 Anchor
               </a>
@@ -53,62 +47,6 @@ export default function App() {
               <div {...createHandlers('Div')}>Button</div>
             </Stack>
           </Stack>
-
-          {/* <Stack gap={3}>
-        <Stack alignItems="flex-start">
-          <span>Enabled Base UI button</span>
-          <BaseUIButton {...createHandlers('Enabled Base UI')}>Button</BaseUIButton>
-        </Stack>
-        <Stack alignItems="flex-start">
-          <span>Disabled Base UI button</span>
-          <BaseUIButton disabled {...createHandlers('Disabled Base UI')}>
-            Button
-          </BaseUIButton>
-        </Stack>
-        <Stack alignItems="flex-start">
-          <span>Enabled Base UI button as div</span>
-          <BaseUIButton slots={{ root: 'div' }} {...createHandlers('Enabled Base UI as div')}>
-            Button
-          </BaseUIButton>
-        </Stack>
-        <Stack alignItems="flex-start">
-          <span>Disabled Base UI button as div</span>
-          <BaseUIButton
-            slots={{ root: 'div' }}
-            disabled
-            {...createHandlers('Disabled Base UI as div')}
-          >
-            Button
-          </BaseUIButton>
-        </Stack>
-      </Stack>
-
-      <Stack gap={3}>
-        <JoyCssVarsProvider theme={joyExtendTheme({})}>
-          <Stack alignItems="flex-start">
-            <span>Enabled Joy UI button</span>
-            <JoyUIButton {...createHandlers('Enabled Joy UI')}>Button</JoyUIButton>
-          </Stack>
-          <Stack alignItems="flex-start">
-            <span>Disabled Joy UI button</span>
-            <JoyUIButton disabled {...createHandlers('Disabled Joy UI')}>
-              Button
-            </JoyUIButton>
-          </Stack>
-          <Stack alignItems="flex-start">
-            <span>Enabled Joy UI button as div</span>
-            <JoyUIButton component="div" {...createHandlers('Enabled Joy UI as div')}>
-              Button
-            </JoyUIButton>
-          </Stack>
-          <Stack alignItems="flex-start">
-            <span>Disabled Joy UI button as div</span>
-            <JoyUIButton component="div" disabled {...createHandlers('Disabled Joy UI as div')}>
-              Button
-            </JoyUIButton>
-          </Stack>
-        </JoyCssVarsProvider>
-      </Stack> */}
 
           <Stack gap={3}>
             <Stack alignItems="flex-start">
