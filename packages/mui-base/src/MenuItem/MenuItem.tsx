@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_useId as useId } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { MenuItemOwnerState, MenuItemProps, MenuItemTypeMap } from './MenuItem.types';
 import { getMenuItemUtilityClass } from './menuItemClasses';
@@ -8,6 +9,7 @@ import { useMenuItem } from '../useMenuItem';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useSlotProps } from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import { ListAction, ListContext, ListContextValue, ListItemState } from '../useList';
 
 function useUtilityClasses(ownerState: MenuItemOwnerState) {
   const { disabled, focusVisible } = ownerState;
@@ -19,50 +21,99 @@ function useUtilityClasses(ownerState: MenuItemOwnerState) {
   return composeClasses(slots, useClassNamesOverride(getMenuItemUtilityClass));
 }
 
-/**
- *
- * Demos:
- *
- * - [Menu](https://mui.com/base-ui/react-menu/)
- *
- * API:
- *
- * - [MenuItem API](https://mui.com/base-ui/react-menu/components-api/#menu-item)
+type InnerMenuItemProps<RootComponentType extends React.ElementType> =
+  MenuItemProps<RootComponentType> &
+    Pick<ListItemState, 'focusable' | 'highlighted'> & {
+      // eslint-disable-next-line react/no-unused-prop-types
+      dispatch: React.Dispatch<ListAction<string>>;
+    };
+
+/*
+ * @ignore - internal component.
  */
+const InnerMenuItem = React.memo(
+  React.forwardRef(function InnerMenuItem<RootComponentType extends React.ElementType>(
+    props: InnerMenuItemProps<RootComponentType>,
+    forwardedRef: React.ForwardedRef<Element>,
+  ) {
+    const {
+      children,
+      disabled: disabledProp = false,
+      dispatch,
+      label,
+      focusable,
+      highlighted,
+      id,
+      slotProps = {},
+      slots = {},
+      ...other
+    } = props;
+
+    const { getRootProps, disabled, focusVisible } = useMenuItem({
+      disabled: disabledProp,
+      dispatch,
+      highlighted,
+      id,
+      focusable,
+      rootRef: forwardedRef,
+      label,
+    });
+
+    const ownerState: MenuItemOwnerState = { ...props, disabled, focusVisible, highlighted };
+
+    const classes = useUtilityClasses(ownerState);
+
+    const Root = slots.root ?? 'li';
+    const rootProps = useSlotProps({
+      elementType: Root,
+      getSlotProps: getRootProps,
+      externalSlotProps: slotProps.root,
+      externalForwardedProps: other,
+      className: classes.root,
+      ownerState,
+    });
+
+    return <Root {...rootProps}>{children}</Root>;
+  }),
+) as React.ComponentType<InnerMenuItemProps<React.ElementType>>;
+
 const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends React.ElementType>(
   props: MenuItemProps<RootComponentType>,
-  forwardedRef: React.ForwardedRef<Element>,
+  ref: React.ForwardedRef<Element>,
 ) {
-  const {
-    children,
-    disabled: disabledProp = false,
-    label,
-    slotProps = {},
-    slots = {},
-    ...other
-  } = props;
+  const listContext = React.useContext(ListContext as React.Context<ListContextValue<string>>);
+  if (!listContext) {
+    throw new Error('MenuItem: ListContext was not found.');
+  }
 
-  const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({
-    disabled: disabledProp,
-    rootRef: forwardedRef,
-    label,
-  });
+  const { id: idProp } = props;
+  const id = useId(idProp);
 
-  const ownerState: MenuItemOwnerState = { ...props, disabled, focusVisible, highlighted };
+  if (id === undefined) {
+    return (
+      <InnerMenuItem
+        {...props}
+        highlighted={false}
+        focusable={false}
+        dispatch={() => {}}
+        ref={ref}
+      />
+    );
+  }
 
-  const classes = useUtilityClasses(ownerState);
+  const { getItemState, dispatch } = listContext;
+  const { highlighted, focusable } = getItemState(id);
 
-  const Root = slots.root ?? 'li';
-  const rootProps = useSlotProps({
-    elementType: Root,
-    getSlotProps: getRootProps,
-    externalSlotProps: slotProps.root,
-    externalForwardedProps: other,
-    className: classes.root,
-    ownerState,
-  });
-
-  return <Root {...rootProps}>{children}</Root>;
+  return (
+    <InnerMenuItem
+      {...props}
+      id={id}
+      highlighted={highlighted}
+      focusable={focusable}
+      dispatch={dispatch}
+      ref={ref}
+    />
+  );
 }) as PolymorphicComponent<MenuItemTypeMap>;
 
 MenuItem.propTypes /* remove-proptypes */ = {

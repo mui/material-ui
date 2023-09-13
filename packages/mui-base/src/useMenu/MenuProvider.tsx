@@ -19,32 +19,15 @@ export interface MenuProviderProps {
  */
 export function MenuProvider(props: MenuProviderProps) {
   const { value, children } = props;
-
-  const {
-    dispatch,
-    getItemIndex,
-    getItemState,
-    registerHighlightChangeHandler,
-    registerSelectionChangeHandler,
-    registerItem,
-    totalSubitemCount,
-  } = value;
+  const { dispatch, getItemIndex, getItemState, registerItem, totalSubitemCount } = value;
 
   const listContextValue: ListContextValue<string> = React.useMemo(
     () => ({
       dispatch,
       getItemState,
       getItemIndex,
-      registerHighlightChangeHandler,
-      registerSelectionChangeHandler,
     }),
-    [
-      dispatch,
-      getItemIndex,
-      getItemState,
-      registerHighlightChangeHandler,
-      registerSelectionChangeHandler,
-    ],
+    [dispatch, getItemIndex, getItemState],
   );
 
   const compoundComponentContextValue: CompoundComponentContextValue<string, MenuItemMetadata> =

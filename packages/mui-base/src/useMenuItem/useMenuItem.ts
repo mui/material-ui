@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useButton } from '../useButton';
-import {
+import type {
   MenuItemMetadata,
   UseMenuItemParameters,
   UseMenuItemReturnValue,
@@ -41,7 +41,15 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
  * - [useMenuItem API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu-item)
  */
 export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnValue {
-  const { disabled = false, id: idParam, rootRef: externalRef, label } = params;
+  const {
+    disabled = false,
+    id: idParam,
+    rootRef: externalRef,
+    label,
+    highlighted,
+    dispatch: listActionDispatch,
+    focusable,
+  } = params;
 
   const id = useId(idParam);
   const itemRef = React.useRef<HTMLElement>(null);
@@ -53,12 +61,11 @@ export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnVal
 
   const { dispatch } = React.useContext(DropdownContext) ?? FALLBACK_MENU_CONTEXT;
 
-  const {
-    getRootProps: getListRootProps,
-    highlighted,
-    rootRef: listItemRefHandler,
-  } = useListItem({
+  const { getRootProps: getListRootProps, rootRef: listItemRefHandler } = useListItem({
     item: id,
+    highlighted,
+    dispatch: listActionDispatch,
+    focusable,
   });
 
   const { index, totalItemCount } = useCompoundItem(id ?? idGenerator, itemMetadata);
@@ -108,6 +115,7 @@ export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnVal
       ...externalProps,
       ...externalEventHandlers,
       ...getCombinedRootProps(externalEventHandlers),
+      id,
       ref: handleRef,
       role: 'menuitem',
     };

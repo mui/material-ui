@@ -73,6 +73,18 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     [subitems],
   );
 
+  const isItemDisabled = React.useCallback(
+    (id: string) => subitems?.get(id)?.disabled || false,
+    [subitems],
+  );
+
+  const getItemAsString = React.useCallback(
+    (id: string) => subitems.get(id)?.label || subitems.get(id)?.ref.current?.innerText,
+    [subitems],
+  );
+
+  const reducerActionContext = React.useMemo(() => ({ listboxRef: rootRef }), [rootRef]);
+
   const {
     dispatch: listDispatch,
     getRootProps: getListRootProps,
@@ -87,13 +99,12 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
       selectedValues: [],
       highlightedValue: null,
     }),
-    isItemDisabled: (id) => subitems?.get(id)?.disabled || false,
+    isItemDisabled,
     items: subitemKeys,
-    getItemAsString: (id: string) =>
-      subitems.get(id)?.label || subitems.get(id)?.ref.current?.innerText,
+    getItemAsString,
     rootRef: handleRef,
     onItemsChange,
-    reducerActionContext: { listboxRef: rootRef },
+    reducerActionContext,
     selectionMode: 'none',
     stateReducer: menuReducer,
   });
