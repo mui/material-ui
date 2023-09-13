@@ -1056,7 +1056,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      expect(getByRole('button')).to.have.attribute('aria-multiselectable', 'true');
+      expect(getByRole('listbox')).to.have.attribute('aria-multiselectable', 'true');
     });
 
     it('should serialize multiple select display value', () => {
