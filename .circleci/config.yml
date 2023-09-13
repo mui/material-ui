@@ -692,9 +692,9 @@ jobs:
                 version: '2.1.10'
                 override_installed: true
             - aws-cli/setup:
-                aws_access_key_id: ${AWS_ACCESS_KEY_ID_ARTIFACTS}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
                 region: ${AWS_REGION_ARTIFACTS}
-                aws_secret_access_key: ${AWS_SECRET_ACCESS_KEY_ARTIFACTS}
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
             # Upload distributables to S3
             - aws-s3/copy:
                 from: mui-material.tgz
@@ -724,9 +724,9 @@ jobs:
                 version: '2.1.10'
                 override_installed: true
             - aws-cli/setup:
-                aws_access_key_id: ${AWS_ACCESS_KEY_ID_ARTIFACTS}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
                 region: ${AWS_REGION_ARTIFACTS}
-                aws_secret_access_key: ${AWS_SECRET_ACCESS_KEY_ARTIFACTS}
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
             # persist size snapshot on S3
             - aws-s3/copy:
                 arguments: --content-type application/json
