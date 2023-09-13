@@ -133,11 +133,9 @@ const LinkRoot = styled('a', {
               }),
             },
           }),
+      userSelect: 'none',
       MozAppearance: 'none', // Reset
       WebkitAppearance: 'none', // Reset
-      '&:active': {
-        userSelect: 'none',
-      },
       '&::-moz-focus-inner': {
         borderStyle: 'none', // Remove Firefox dotted outline.
       },
