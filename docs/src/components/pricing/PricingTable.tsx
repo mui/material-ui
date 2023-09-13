@@ -57,7 +57,7 @@ export function PlanName({
         fontWeight="bold"
         sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', pr: 0.5 }}
       >
-        <IconImage name={iconName} sx={{ mr: 1 }} /> {title}
+        <IconImage name={iconName} loading="eager" sx={{ mr: 1 }} /> {title}
       </Typography>
       {!disableDescription && (
         <Typography
