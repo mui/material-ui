@@ -27,9 +27,7 @@ function defaultRenderValue<OptionValue>(
     return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
   }
 
-  // fall back to a zero-width space to prevent layout shift
-  // from https://github.com/mui/material-ui/pull/24563
-  return selectedOptions?.label ?? <span className="notranslate">&#8203;</span>;
+  return selectedOptions?.label ?? null;
 }
 
 function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
@@ -88,6 +86,7 @@ const Select = React.forwardRef(function Select<
     onListboxOpenChange,
     getOptionAsString = defaultOptionStringifier,
     renderValue: renderValueProp,
+    placeholder,
     slotProps = {},
     slots = {},
     value: valueProp,
@@ -211,7 +210,13 @@ const Select = React.forwardRef(function Select<
 
   return (
     <React.Fragment>
-      <Button {...buttonProps}>{renderValue(selectedOptionsMetadata)}</Button>
+      <Button {...buttonProps}>
+        {renderValue(selectedOptionsMetadata) ?? placeholder ?? (
+          // fall back to a zero-width space to prevent layout shift
+          // from https://github.com/mui/material-ui/pull/24563
+          <span className="notranslate">&#8203;</span>
+        )}
+      </Button>
       {buttonDefined && (
         <PopperComponent {...popperProps}>
           <ListboxRoot {...listboxProps}>
