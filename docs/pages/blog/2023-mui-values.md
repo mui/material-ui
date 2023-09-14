@@ -42,13 +42,15 @@ We asked people to reflect on how accurately they felt each value described our 
 
 <img alt="A screenshot of the intro page to our discovery survey." src="/static/blog/2023-mui-values/values-survey.png" width="1200" height="1170" loading="lazy" style="margin-bottom: 16px;" />
 
-Then, using keyword and sentiment analysis, we captured clear themes in experience and common language used to describe our culture. I presented this back to the team via recorded video presentation, inviting reactions and further dialogue in the open of our Slack workspace.
+Then, using keyword and sentiment analysis, we captured clear themes in experience and common language used to describe our culture.
+I presented this back to the team via recorded video presentation, inviting reactions and further dialogue in the open of our Slack workspace.
 
 <img alt="A screenshot of a video message in our internal Slack revealing themes from the survey." src="/static/blog/2023-mui-values/themes-video.png" width="1200" height="750" loading="lazy" />
 
 ## Stage two: workshop
 
-At the next stage, folks came together for a synchronous workshop. (This was completely voluntary, but I'm proud to say we had major representation from all different corners and levels of the company!)
+At the next stage, folks came together for a synchronous workshop.
+(This was completely voluntary, but I'm proud to say we had major representation from all different corners and levels of the company!)
 
 The purpose of this workshop was to pinpoint the _most_ critical mindsets and behaviors that we felt underpinned the company's success at scale.
 
@@ -60,7 +62,8 @@ Broadly speaking, everyone was asked to consider:
 
 We used a shared FigJam board to brainstorm together against a timer, and repeated the process for different core questions.
 
-Once we'd generated a wonderfully full board, we took a pause to review the contributions. We upvoted cards that really stood out and resonated with us as individuals.
+Once we'd generated a wonderfully full board, we took a pause to review the contributions.
+We upvoted cards that really stood out and resonated with us as individuals.
 
 Finally, we organized all of these cards into little clusters based on relatedness, and started to identify their underlying values and themes.
 
@@ -76,11 +79,14 @@ That's how many words surfaced in our workshop as potential values—or at least
 
 Narrowing down the shortlist gave us a chance to both find _and_ stress-test the strongest recurring themes. 🧪
 
-To do this, we immediately eliminated [what Patrick Lencioni calls "permission-to-play" values](https://www.youtube.com/watch?v=bNRn6FimzoU). These are the things as basic as showing respect, which might be _valuable_ to a great team culture and performance, but aren't exactly _exciting_ or _measurable_. They're simply the minimum required standard of behavior to work together.
+To do this, we immediately eliminated [what Patrick Lencioni calls "permission-to-play" values](https://www.youtube.com/watch?v=bNRn6FimzoU).
+These are the things as basic as showing respect, which might be _valuable_ to a great team culture and performance, but aren't exactly _exciting_ or _measurable_.
+They're simply the minimum required standard of behavior to work together.
 
 We also started striking out anything that could not clearly be expressed _as an action._
 
-It's [what Simon Sinek was talking about](https://www.youtube.com/watch?v=IQuYzXWXDqI) when he said "honesty is not a value." If there was not a clear and natural way to transform something into an action or provide examples of how it would be lived in our specific workplace, it was out. 🙅
+It's [what Simon Sinek was talking about](https://www.youtube.com/watch?v=IQuYzXWXDqI) when he said "honesty is not a value."
+If there was not a clear and natural way to transform something into an action or provide examples of how it would be lived in our specific workplace, it was out. 🙅
 
 Success!
 
@@ -94,9 +100,11 @@ All of the above and more influenced what's now referred to as our team "pact." 
 
 But before we get there, I want to share a few examples of phrases that didn't wind up being a part of the pitch and why.
 
-Finding the right phraseology started with carefully reviewing _all_ team inputs. As I had a unique vantage point of all those inputs, I began to jot down phrases that effectively pulled from them _all_ and led with _action verbs._ 🕸️💪
+Finding the right phraseology started with carefully reviewing _all_ team inputs.
+As I had a unique vantage point of all those inputs, I began to jot down phrases that effectively pulled from them _all_ and led with _action verbs._ 🕸️💪
 
-Things like "build in the open" made an appearance, but felt too limited. There was so much more we wanted to capture in the enduring theme of transparency, why it matters to us, and how we show it.
+Things like "build in the open" made an appearance, but felt too limited.
+There was so much more we wanted to capture in the enduring theme of transparency, why it matters to us, and how we show it.
 
 Other phrases included "own your impact" and "maximize flexibility," but these, again, felt too limited and also generic.
 
@@ -144,21 +152,26 @@ In it, we offer concrete examples of each core value and explicitly address tens
 
 Put community first underscores our unwavering commitment to anchoring every decision in the best interests of the collective.
 
-By "community," we refer to both the user base that we serve and the team that propels us forward.
+By "community", we refer to both the user base that we serve and the team that propels us forward.
 
 The litmus test for any decision at MUI begins with a simple yet profound query: How does this contribute to our community's progress? We prioritize the needs and feedback of the community, and invest our efforts toward what will bring the greatest benefit to the greatest number of people.
 
-Putting community first means also that we consciously forge connections. We recognize that deeper mutual understanding fuels collective progress. By investing in relationships, we enhance collaboration, foster productive teamwork, and create a work environment that's as enjoyable as it is efficient.
+Putting community first means also that we consciously forge connections.
+We recognize that deeper mutual understanding fuels collective progress.
+By investing in relationships, we enhance collaboration, foster productive teamwork, and create a work environment that's as enjoyable as it is efficient.
 
 ### Avoid bureaucracy
 
-Avoid bureaucracy is all about staying lean, open, and people-first. One of the core beliefs we hold at MUI is that people are the best experts on when, where, and how they will do their best work.
+Avoid bureaucracy is all about staying lean, open, and people-first.
+One of the core beliefs we hold at MUI is that people are the best experts on when, where, and how they will do their best work.
 
 We actively champion this principle by fostering an environment of unparalleled flexibility and autonomy, which serves as a bedrock for sustained excellence.
 
-Our dedication to shunning bureaucracy manifests in tangible ways—for instance, most of our communications and work are in the open. We default to transparency as much as possible.
+Our dedication to shunning bureaucracy manifests in tangible ways—for instance, most of our communications and work are in the open.
+We default to transparency as much as possible.
 
-We don't over-structure, or add processes or hierarchies where they aren't needed. To introduce a process, we need to clearly show how it makes things 10x better than the current approach.
+We don't over-structure, or add processes or hierarchies where they aren't needed.
+To introduce a process, we need to clearly show how it makes things 10x better than the current approach.
 
 We don't have lengthy approvals processes or a formalized chain of command; instead we collaborate as a tight-knit network where anyone can ask about and contribute to anything.
 
@@ -166,9 +179,12 @@ We don't have lengthy approvals processes or a formalized chain of command; inst
 
 Chase "better" is all about consistently improving and developing in all aspects of our work as well as raising the bar for quality.
 
-It addresses our attitude to risk, feedback, and setbacks too. Genuine innovation demands a fearless embrace of the uncharted, even if it entails a touch of chaos.
+It addresses our attitude to risk, feedback, and setbacks too.
+Genuine innovation demands a fearless embrace of the uncharted, even if it entails a touch of chaos.
 
-We want to create the exceptional—not the "good enough." So we tend to prioritize quality over speed. This doesn't mean we wait for things to be perfect before releasing them.
+We want to create the exceptional—not the "good enough."
+So we tend to prioritize quality over speed.
+This doesn't mean we wait for things to be perfect before releasing them.
 
 On the contrary, "chase better" encourages us all to make small changes and incremental improvements again and again.
 
@@ -190,15 +206,21 @@ It's also about strategic collaboration, and being able to recognize and enlist 
 
 Articulating company values and operationalizing them are two different things.
 
-To ensure values don't become mere writing on the wall at MUI, we've purposefully woven them into internal processes and programs. We surface them often and stay attuned to how people are perceiving and connecting to them through different initiatives. 🌠🔦
+To ensure values don't become mere writing on the wall at MUI, we've purposefully woven them into internal processes and programs.
+We surface them often and stay attuned to how people are perceiving and connecting to them through different initiatives. 🌠🔦
 
-For example, before you even join MUI, you'll answer carefully chosen questions in your interviews. This helps us understand how well you align with our company values and how you might contribute to enhancing them and our culture. 📝
+For example, before you even join MUI, you'll answer carefully chosen questions in your interviews.
+This helps us understand how well you align with our company values and how you might contribute to enhancing them and our culture. 📝
 
-On a day-to-day level, values show up everywhere. They're referenced in discussions and deliberations related to our work. We explicitly state how they directly influence our strategies and plans within our documents. Exemplifying core values is also a condition for promotion here and therefore a topic in performance and development conversations. 🆙
+On a day-to-day level, values show up everywhere.
+They're referenced in discussions and deliberations related to our work.
+We explicitly state how they directly influence our strategies and plans within our documents.
+Exemplifying core values is also a condition for promotion here and therefore a topic in performance and development conversations. 🆙
 
 As a fun way to reinforce values and show team gratitude, we've also created #Thanks-And-Praise Thursdays—a dedicated Slack channel that prompts us every Thursday to think about who we could recognize for championing core values and behaviors.
 
-Our design team even created custom Slack emojis to make highlighting values-driven moments as simple as just a few clicks. (Thank you Gerda, Victor, and Danilo!) 🙏
+Our design team even created custom Slack emojis to make highlighting values-driven moments as simple as just a few clicks.
+(Thank you Gerda, Victor, and Danilo!) 🙏
 
 [image here]
 
@@ -206,7 +228,8 @@ Our design team even created custom Slack emojis to make highlighting values-dri
 
 MUI's first values were set forth by our founders during the earliest stages of the company, with the recognition that they would evolve alongside our company's growth.
 
-Those values remain foundational to the ways we work and engage. It's quite evident how these have been represented in new ways within the core four.
+Those values remain foundational to the ways we work and engage.
+It's quite evident how these have been represented in new ways within the core four.
 
 But we don't expect these to last forever, either.
 
