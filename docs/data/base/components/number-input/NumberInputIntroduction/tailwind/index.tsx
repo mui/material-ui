@@ -66,7 +66,7 @@ const NumberInput = React.forwardRef(function NumberInput(
           );
           return {
             ...resolvedSlotProps,
-            children: <span>▴</span>,
+            children: '▴',
             className: clsx(
               'font-[system-ui] flex flex-row flex-nowrap justify-center items-center appearance-none p-0 w-[19px] h-[19px] text-sm box-border leading-[1.2] border-0 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-300 transition-all duration-[120ms] hover:cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 border-slate-300 dark:border-slate-600 col-start-2 col-end-3 row-start-1 row-end-2',
               resolvedSlotProps?.className,
@@ -80,7 +80,7 @@ const NumberInput = React.forwardRef(function NumberInput(
           );
           return {
             ...resolvedSlotProps,
-            children: <span>▾</span>,
+            children: '▾',
             className: clsx(
               'font-[system-ui] flex flex-row flex-nowrap justify-center items-center appearance-none p-0 w-[19px] h-[19px] text-sm box-border leading-[1.2] border-0 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-300 transition-all duration-[120ms] hover:cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 border-slate-300 dark:border-slate-600 col-start-2 col-end-3 row-start-2 row-end-3',
               resolvedSlotProps?.className,
