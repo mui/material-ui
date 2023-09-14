@@ -182,8 +182,9 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
             (component.filename.includes('mui-joy') &&
               // Box's demo isn't ready
               // Container's demo isn't ready
+              // GlobalStyles's demo isn't ready
               // Grid has problem with react-docgen
-              component.filename.match(/(Box|Container|ColorInversion|Grid)/)) ||
+              component.filename.match(/(Box|Container|ColorInversion|Grid|GlobalStyles)/)) ||
             (component.filename.includes('mui-system') && component.filename.match(/GlobalStyles/))
           ) {
             return false;
