@@ -219,7 +219,7 @@ For the sake of simplicity, demos and code snippets primarily feature components
 You can customize the appearance of the selected value display by providing a function to the `renderValue` prop.
 The element returned by this function will be rendered inside the Select's button.
 
-{{"demo": "UnstyledSelectCustomRenderValue.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledSelectCustomRenderValue.js"}}
 
 ### Option appearance
 
