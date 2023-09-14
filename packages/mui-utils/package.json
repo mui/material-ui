@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "5.14.8",
+  "version": "5.14.9",
   "private": false,
   "author": "MUI Team",
   "description": "Utility functions for React components.",
@@ -65,8 +65,7 @@
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {

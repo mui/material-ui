@@ -117,6 +117,25 @@ export const getPropsToC = ({
   ],
 });
 
+function PropDescription({ description }) {
+  const isUlPresent = description.includes('<ul>');
+
+  const ComponentToRender = isUlPresent ? 'div' : 'p';
+
+  return (
+    <ComponentToRender
+      className="prop-list-description" // This className is used by Algolia
+      dangerouslySetInnerHTML={{
+        __html: description,
+      }}
+    />
+  );
+}
+
+PropDescription.propTypes = {
+  description: PropTypes.string.isRequired,
+};
+
 export default function PropertiesTable(props) {
   const {
     properties,
@@ -150,12 +169,7 @@ export default function PropertiesTable(props) {
               type="props"
             >
               {propDescription?.description && (
-                <p
-                  className="prop-list-description" // This className is used by Algolia
-                  dangerouslySetInnerHTML={{
-                    __html: propDescription?.description,
-                  }}
-                />
+                <PropDescription description={propDescription?.description} />
               )}
               {propDescription?.requiresRef && (
                 <Alert
@@ -181,7 +195,6 @@ export default function PropertiesTable(props) {
                   />
                 </Alert>
               )}
-
               {Object.keys(additionalPropsInfoText)
                 .filter((key) => propData.additionalInfo?.[key])
                 .map((key) => (

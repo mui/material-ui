@@ -85,4 +85,31 @@ describe('useList', () => {
       }),
     );
   });
+
+  describe('external props', () => {
+    it('should pass arbitrary props to the root slot', () => {
+      const handleClick = spy();
+
+      function Listbox() {
+        const { getRootProps } = useList({
+          items: [],
+          getItemId: () => undefined,
+        });
+        return (
+          <div
+            role="listbox"
+            {...getRootProps({ 'data-testid': 'test-listbox', onClick: handleClick })}
+          />
+        );
+      }
+
+      const { getByRole } = render(<Listbox />);
+
+      const listbox = getByRole('listbox');
+      expect(listbox).to.have.attribute('data-testid', 'test-listbox');
+
+      fireEvent.click(listbox);
+      expect(handleClick.callCount).to.equal(1);
+    });
+  });
 });

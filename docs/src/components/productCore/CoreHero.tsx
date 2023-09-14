@@ -33,7 +33,7 @@ export default function CoreHero() {
             }),
           })}
         >
-          <IconImage width={28} height={28} name="product-core" /> MUI Core
+          <IconImage loading="eager" width={28} height={28} name="product-core" /> MUI Core
         </Typography>
         <Typography component="h1" variant="h2" sx={{ textAlign: 'center' }} gutterBottom>
           Ready to use components
