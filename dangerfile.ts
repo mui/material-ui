@@ -62,7 +62,7 @@ function createComparisonFilter(parsedThreshold: number, gzipThreshold: number) 
  */
 function isPackageComparison(comparisonEntry: [string, any]) {
   const [bundleKey] = comparisonEntry;
-  return /^@[\w-]+\/[\w-]+$/.test(bundleKey);
+  return !/^@[\w-]+\/[\w-]+\/.+$/.test(bundleKey);
 }
 
 /**
