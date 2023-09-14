@@ -315,6 +315,10 @@ Select.propTypes /* remove-proptypes */ = {
    */
   onListboxOpenChange: PropTypes.func,
   /**
+   * Text to show when there is no selected value.
+   */
+  placeholder: PropTypes.node,
+  /**
    * Function that customizes the rendering of the selected value.
    */
   renderValue: PropTypes.func,
