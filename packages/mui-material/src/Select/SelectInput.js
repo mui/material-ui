@@ -487,12 +487,15 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     ...MenuProps.slotProps?.paper,
   };
 
+  const listboxId = React.useId();
+
   return (
     <React.Fragment>
       <SelectSelect
         ref={handleDisplayRef}
         tabIndex={tabIndex}
-        role="button"
+        role="combobox"
+        aria-controls={listboxId}
         aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : 'false'}
         aria-haspopup="listbox"
@@ -529,8 +532,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         className={classes.nativeInput}
         autoFocus={autoFocus}
         ownerState={ownerState}
-        role="combobox"
-        aria-controls={`menu-${name || ''}`}
         {...other}
       />
       <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
@@ -552,6 +553,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           'aria-labelledby': labelId,
           role: 'listbox',
           disableListWrap: true,
+          id: listboxId,
           ...MenuProps.MenuListProps,
         }}
         slotProps={{
