@@ -42,8 +42,8 @@ export default function CarouselRatio() {
         <Card orientation="horizontal" size="sm" key={item.title} variant="outlined">
           <AspectRatio ratio="1" sx={{ minWidth: 60 }}>
             <img
-              src={`${item.src}?h=120&fit=crop&auto=format`}
               srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
+              src={`${item.src}?h=120&fit=crop&auto=format`}
               alt={item.title}
             />
           </AspectRatio>
