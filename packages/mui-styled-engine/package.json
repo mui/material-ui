@@ -41,8 +41,7 @@
     "@babel/runtime": "^7.22.15",
     "@emotion/cache": "^11.11.0",
     "csstype": "^3.1.2",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0"
+    "prop-types": "^15.8.1"
   },
   "devDependencies": {
     "@emotion/react": "^11.11.1",
@@ -50,6 +49,7 @@
     "@types/chai": "^4.3.5",
     "@types/react": "^18.2.21",
     "chai": "^4.3.7",
+    "react": "^18.2.0",
     "test": "^5.0.0"
   },
   "peerDependencies": {
