@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-next",
-  "version": "6.0.0-alpha.100",
+  "version": "6.0.0-alpha.101",
   "private": false,
   "author": "MUI Team",
   "description": "v6-alpha: React components that implement Google's Material Design",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/material-ui/getting-started/",
+  "homepage": "https://mui.com/material-ui/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
@@ -40,7 +40,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.10",
+    "@babel/runtime": "^7.22.15",
     "@mui/base": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/system": "workspace:^",

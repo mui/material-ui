@@ -1,6 +1,6 @@
 {
   "name": "@mui/joy",
-  "version": "5.0.0-beta.5",
+  "version": "5.0.0-beta.6",
   "private": false,
   "author": "MUI Team",
   "description": "A library of beautifully designed React UI components.",
@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/",
+  "homepage": "https://mui.com/joy-ui/getting-started/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
@@ -38,7 +38,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.10",
+    "@babel/runtime": "^7.22.15",
     "@mui/base": "workspace:*",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
@@ -57,7 +57,7 @@
     "chai": "^4.3.7",
     "fast-glob": "^3.3.1",
     "lodash": "^4.17.21",
-    "next": "^13.4.13",
+    "next": "^13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sinon": "^15.2.0",

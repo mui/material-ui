@@ -46,15 +46,15 @@
     },
     "getInputProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseInputInputSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseInputInputSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputInputSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputInputSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseInputRootSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseInputRootSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

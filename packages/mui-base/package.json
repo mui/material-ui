@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-beta.14",
+  "version": "5.0.0-beta.15",
   "private": false,
   "author": "MUI Team",
   "description": "A library of headless ('unstyled') React UI components and low-level hooks.",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/base-ui/getting-started/",
+  "homepage": "https://mui.com/base-ui/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
@@ -41,7 +41,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.10",
+    "@babel/runtime": "^7.22.15",
     "@floating-ui/react-dom": "^2.0.2",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",

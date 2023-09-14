@@ -233,7 +233,7 @@ const DemoRootMaterial = styled('div', {
     backgroundColor: (theme.vars || theme).palette.grey[50],
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     ...theme.applyDarkStyles({
-      backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+      backgroundColor: alpha(theme.palette.primaryDark[700], 0.3),
     }),
   }),
   /* Mostly meant for introduction demos. */

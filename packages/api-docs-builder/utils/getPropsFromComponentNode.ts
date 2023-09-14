@@ -19,21 +19,36 @@ export interface ParsedComponent {
 }
 
 function isTypeJSXElementLike(type: ts.Type, project: TypeScriptProject): boolean {
+  const symbol = type.symbol ?? type.aliasSymbol;
+  if (symbol) {
+    const name = project.checker.getFullyQualifiedName(symbol);
+    return (
+      // Remove once global JSX namespace is no longer used by React
+      name === 'global.JSX.Element' ||
+      name === 'React.JSX.Element' ||
+      name === 'React.ReactElement' ||
+      name === 'React.ReactNode'
+    );
+  }
+
   if (type.isUnion()) {
     return type.types.every(
       // eslint-disable-next-line no-bitwise
       (subType) => subType.flags & ts.TypeFlags.Null || isTypeJSXElementLike(subType, project),
     );
   }
-  if (type.symbol) {
-    const name = project.checker.getFullyQualifiedName(type.symbol);
-    return (
-      // Remove once global JSX namespace is no longer used by React
-      name === 'global.JSX.Element' || name === 'React.JSX.Element' || name === 'React.ReactElement'
-    );
-  }
 
   return false;
+}
+
+function isStyledFunction(node: ts.VariableDeclaration): boolean {
+  return (
+    !!node.initializer &&
+    ts.isCallExpression(node.initializer) &&
+    ts.isCallExpression(node.initializer.expression) &&
+    ts.isIdentifier(node.initializer.expression.expression) &&
+    node.initializer.expression.expression.escapedText === 'styled'
+  );
 }
 
 function getJSXLikeReturnValueFromFunction(type: ts.Type, project: TypeScriptProject) {
@@ -250,14 +265,13 @@ function getPropsFromVariableDeclaration({
         });
       }
     }
-
-    return null;
   }
 
   // handle component factories: x = createComponent()
   if (
     checkDeclarations &&
     node.initializer &&
+    !isStyledFunction(node) &&
     getJSXLikeReturnValueFromFunction(type, project).length > 0
   ) {
     return parseFunctionComponent({
@@ -277,7 +291,6 @@ export function getPropsFromComponentNode({
   checkDeclarations,
 }: GetPropsFromComponentDeclarationOptions): ParsedComponent | null {
   let parsedComponent: ParsedComponent | null = null;
-
   // function x(props: type) { return <div/> }
   if (
     ts.isFunctionDeclaration(node) &&

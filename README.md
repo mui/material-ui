@@ -1,23 +1,21 @@
 <!-- markdownlint-disable-next-line -->
 <p align="center">
-  <a href="https://mui.com/" rel="noopener" target="_blank"><img width="150" src="/docs/public/static/logo.svg" alt="MUI logo"></a>
+  <a href="https://mui.com/core/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="MUI Core logo"></a>
 </p>
 
 <h1 align="center">MUI Core</h1>
 
-**MUI Core** contains foundational React UI component libraries for shipping new features faster.
+**MUI Core** contains foundational React UI component libraries for shipping new features faster:
 
-- [_Material UI_](https://mui.com/material-ui/getting-started/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
+- [Material UI](https://mui.com/material-ui/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
 
-- [_Joy UI_](https://mui.com/joy-ui/getting-started/) is a beautifully designed library of React UI components.
+- [Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy.
 
-- [_Base UI_](https://mui.com/base-ui/getting-started/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+- [Base UI](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.
 
-- [_MUI System_](https://mui.com/system/getting-started/) is a collection of CSS utilities to help you rapidly lay out custom designs.
+- [MUI System](https://mui.com/system/getting-started/) is a collection of CSS utilities to help you rapidly lay out custom designs.
 
 <div align="center">
-
-**[Stable channel v5](https://mui.com/)**
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui/material-ui/blob/HEAD/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@mui/material/latest.svg)](https://www.npmjs.com/package/@mui/material)
@@ -33,23 +31,11 @@
 
 </div>
 
-## Installation
+## Documentation
 
 ### Material UI
 
-Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
-
-**npm:**
-
-```bash
-npm install @mui/material @emotion/react @emotion/styled
-```
-
-**yarn:**
-
-```bash
-yarn add @mui/material @emotion/react @emotion/styled
-```
+Visit [https://mui.com/material-ui/](https://mui.com/material-ui/) to view the full documentation.
 
 <details>
   <summary>Older versions</summary>
@@ -63,56 +49,23 @@ yarn add @mui/material @emotion/react @emotion/styled
 **Note:** `@next` only points to pre-releases.
 Use `@latest` for the latest stable release.
 
+### Joy UI
+
+Visit [https://mui.com/joy-ui/getting-started/](https://mui.com/joy-ui/getting-started/) to view the full documentation.
+
+**Note**: Joy UI is still in beta.
+We are adding new components regularly and you're welcome to contribute!
+
 ### Base UI
 
-Base UI is available as an [npm package](https://www.npmjs.com/package/@mui/base).
-
-**npm:**
-
-```bash
-npm install @mui/base
-```
-
-**yarn:**
-
-```bash
-yarn add @mui/base
-```
+Visit [https://mui.com/base-ui/](https://mui.com/base-ui/) to view the full documentation.
 
 **Note**: Base UI is still in beta.
 We are adding new components regularly and you're welcome to contribute!
 
 ### MUI System
 
-MUI System is available as an [npm package](https://www.npmjs.com/package/@mui/system).
-
-**npm:**
-
-```bash
-npm install @mui/system @emotion/react @emotion/styled
-```
-
-**yarn:**
-
-```bash
-yarn add @mui/system @emotion/react @emotion/styled
-```
-
-Or if you want to use styled-components as the styling engine:
-
-**npm:**
-
-```bash
-npm install @mui/material @mui/styled-engine-sc styled-components
-```
-
-**yarn:**
-
-```bash
-yarn add @mui/material @mui/styled-engine-sc styled-components
-```
-
-Visit our [styled-components guide](https://mui.com/material-ui/guides/styled-components/) for more information on configuration.
+Visit [https://mui.com/system/](https://mui.com/system/) to view the full documentation.
 
 ## Sponsors
 
@@ -146,42 +99,15 @@ Gold Sponsors are those who have pledged \$500/month or more to MUI.
 
 See the full list of [our backers](https://mui.com/material-ui/discover-more/backers/).
 
-## Getting started with Material UI
-
-Here is an example of a basic app using Material UI's `Button` component:
-
-```jsx
-import * as React from 'react';
-import Button from '@mui/material/Button';
-
-function App() {
-  return <Button variant="contained">Hello World</Button>;
-}
-```
-
-In the interactive demo below, try changing the code and see how it affects the output.
-(Hint: change `variant` to `"outlined"` and `color` to `"secondary"`.
-For more options, see the [`Button` component page](https://mui.com/material-ui/react-button/) in our docs.)
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/material-ui-u9sy1h)
-
 ## Questions
 
-For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/tagged/material-ui) instead of GitHub issues.
-Use the "mui" tag on Stack Overflow to make it easier for the community to find your question.
+For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/) instead of GitHub issues.
 
 ## Examples
 
-Our documentation features [a collection of example projects using Material UI](https://mui.com/material-ui/getting-started/example-projects/).
+Our documentation features [a collection of example projects](https://github.com/mui/material-ui/tree/master/examples).
 
-## Documentation
-
-- [Material UI](https://mui.com/material-ui/getting-started/)
-- [Joy UI](https://mui.com/joy-ui/getting-started/)
-- [Base UI](https://mui.com/base-ui/getting-started/)
-- [MUI System](https://mui.com/system/getting-started/)
-
-## Premium themes
+## Premium templates
 
 You can find complete templates and themes in the [MUI Store](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
 
@@ -213,30 +139,42 @@ For details of supported versions and contact details for reporting security iss
 
 These great services sponsor MUI's core infrastructure:
 
+<div>
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/github-darkmode.svg">
-  <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/github-lightmode.svg">
-  <img alt="GitHub logo" src="/docs/public/static/readme/github-lightmode.svg" width="80" height="43">
+  <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/readme/github-darkmode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/readme/github-lightmode.svg">
+  <img alt="GitHub logo" src="https://mui.com/static/readme/github-lightmode.svg" width="80" height="43">
 </picture>
 
 [GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
 
+</div>
+
+<div>
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/netlify-darkmode.svg">
-  <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/netlify-lightmode.svg">
-  <img alt="Netlify logo" src="/docs/public/static/readme/netlify-lightmode.svg" width="100" height="27" style="margin-top: 1rem;">
+  <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/readme/netlify-darkmode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/readme/netlify-lightmode.svg">
+  <img alt="Netlify logo" src="https://mui.com/static/readme/netlify-lightmode.svg" width="100" height="27">
 </picture>
 
 [Netlify](https://www.netlify.com/) lets us distribute the documentation.
 
+</div>
+
+<div>
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/browserstack-darkmode.svg">
-  <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/browserstack-lightmode.svg">
-  <img alt="BrowserStack logo" src="/docs/public/static/readme/browserstack-lightmode.svg" width="140" height="25" style="margin-top: 1rem;">
+  <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/readme/browserstack-darkmode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/readme/browserstack-lightmode.svg">
+  <img alt="BrowserStack logo" src="https://mui.com/static/readme/browserstack-lightmode.svg" width="140" height="25">
 </picture>
 
 [BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
 
-<img loading="lazy" alt="CodeCov logo" src="https://avatars.githubusercontent.com/u/8226205?s=70" width="35" height="35" style="margin-top: 1rem;">
+</div>
+
+<div>
+<img loading="lazy" alt="CodeCov logo" src="https://avatars.githubusercontent.com/u/8226205?s=70" width="35" height="35">
 
 [CodeCov](https://about.codecov.io/) lets us monitor test coverage.
+
+</div>

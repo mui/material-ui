@@ -212,10 +212,35 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  const contain = React.useCallback(
-    (nativeEvent: FocusEvent | null) => {
+  React.useEffect(() => {
+    // We might render an empty child.
+    if (!open || !rootRef.current) {
+      return;
+    }
+
+    const doc = ownerDocument(rootRef.current);
+
+    const loopFocus = (nativeEvent: KeyboardEvent) => {
+      lastKeydown.current = nativeEvent;
+
+      if (disableEnforceFocus || !isEnabled() || nativeEvent.key !== 'Tab') {
+        return;
+      }
+
+      // Make sure the next tab starts from the right place.
+      // doc.activeElement refers to the origin.
+      if (doc.activeElement === rootRef.current && nativeEvent.shiftKey) {
+        // We need to ignore the next contain as
+        // it will try to move the focus back to the rootRef element.
+        ignoreNextEnforceFocus.current = true;
+        if (sentinelEnd.current) {
+          sentinelEnd.current.focus();
+        }
+      }
+    };
+
+    const contain = () => {
       const rootElement = rootRef.current;
-      const doc = ownerDocument(rootRef.current);
 
       // Cleanup functions are executed lazily in React 17.
       // Contain can be called between the component being unmounted and its cleanup function being run.
@@ -243,10 +268,7 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
       }
 
       // if the focus event is not coming from inside the children's react tree, reset the refs
-      if (
-        (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
-        doc.activeElement !== reactFocusEventTarget.current
-      ) {
+      if (doc.activeElement !== reactFocusEventTarget.current) {
         reactFocusEventTarget.current = null;
       } else if (reactFocusEventTarget.current !== null) {
         return;
@@ -285,35 +307,6 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
       } else {
         rootElement.focus();
       }
-    },
-    [disableEnforceFocus, isEnabled, getTabbable],
-  );
-
-  React.useEffect(() => {
-    // We might render an empty child.
-    if (!open || !rootRef.current) {
-      return;
-    }
-
-    const doc = ownerDocument(rootRef.current);
-
-    const loopFocus = (nativeEvent: KeyboardEvent) => {
-      lastKeydown.current = nativeEvent;
-
-      if (disableEnforceFocus || !isEnabled() || nativeEvent.key !== 'Tab') {
-        return;
-      }
-
-      // Make sure the next tab starts from the right place.
-      // doc.activeElement refers to the origin.
-      if (doc.activeElement === rootRef.current && nativeEvent.shiftKey) {
-        // We need to ignore the next contain as
-        // it will try to move the focus back to the rootRef element.
-        ignoreNextEnforceFocus.current = true;
-        if (sentinelEnd.current) {
-          sentinelEnd.current.focus();
-        }
-      }
     };
 
     doc.addEventListener('focusin', contain);
@@ -327,7 +320,7 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
     // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule.
     const interval = setInterval(() => {
       if (doc.activeElement && doc.activeElement.tagName === 'BODY') {
-        contain(null);
+        contain();
       }
     }, 50);
 
@@ -337,15 +330,7 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
       doc.removeEventListener('focusin', contain);
       doc.removeEventListener('keydown', loopFocus, true);
     };
-  }, [
-    disableAutoFocus,
-    disableEnforceFocus,
-    disableRestoreFocus,
-    isEnabled,
-    open,
-    getTabbable,
-    contain,
-  ]);
+  }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open, getTabbable]);
 
   const onFocus = (event: FocusEvent) => {
     if (nodeToRestore.current === null) {

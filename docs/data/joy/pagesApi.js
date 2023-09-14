@@ -28,6 +28,7 @@ module.exports = [
   { pathname: '/joy-ui/api/dialog-content' },
   { pathname: '/joy-ui/api/dialog-title' },
   { pathname: '/joy-ui/api/divider' },
+  { pathname: '/joy-ui/api/drawer' },
   { pathname: '/joy-ui/api/form-control' },
   { pathname: '/joy-ui/api/form-helper-text' },
   { pathname: '/joy-ui/api/form-label' },

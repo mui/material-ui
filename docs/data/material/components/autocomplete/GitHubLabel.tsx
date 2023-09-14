@@ -113,11 +113,8 @@ const Button = styled(ButtonBase)(({ theme }) => ({
 
 export default function GitHubLabel() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [value, setValue] = React.useState<readonly LabelType[]>([
-    labels[1],
-    labels[11],
-  ]);
-  const [pendingValue, setPendingValue] = React.useState<readonly LabelType[]>([]);
+  const [value, setValue] = React.useState<LabelType[]>([labels[1], labels[11]]);
+  const [pendingValue, setPendingValue] = React.useState<LabelType[]>([]);
   const theme = useTheme();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {

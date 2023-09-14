@@ -4,6 +4,7 @@ import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
+import Chip from '@mui/joy/Chip';
 import Divider from '@mui/joy/Divider';
 import IconButton from '@mui/joy/IconButton';
 import Input from '@mui/joy/Input';
@@ -20,7 +21,7 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded';
 import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
-import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
+import QuestionAnswerRoundedIcon from '@mui/icons-material/QuestionAnswerRounded';
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
@@ -208,13 +209,21 @@ export default function Sidebar() {
           </ListItem>
 
           <ListItem>
-            <ListItemButton>
-              <FlagRoundedIcon />
+            <ListItemButton
+              role="menuitem"
+              component="a"
+              href="/joy-ui/getting-started/templates/messages/"
+            >
+              <QuestionAnswerRoundedIcon />
               <ListItemContent>
-                <Typography level="title-sm">Reporting</Typography>
+                <Typography level="title-sm">Messages</Typography>
               </ListItemContent>
+              <Chip size="sm" color="primary" variant="solid">
+                4
+              </Chip>
             </ListItemButton>
           </ListItem>
+
           <ListItem nested>
             <Toggler
               defaultExpanded
