@@ -1,4 +1,4 @@
-// inspire by reacts dangerfile
+// Inspire by React dangerfile
 // danger has to be the first thing required!
 import { danger, markdown } from 'danger';
 import { exec } from 'child_process';
@@ -13,7 +13,7 @@ const parsedSizeChangeThreshold = 300;
 const gzipSizeChangeThreshold = 100;
 
 /**
- * executes a git subcommand
+ * Executes a git subcommand.
  * @param {any} args
  */
 function git(args: any) {
@@ -40,8 +40,8 @@ async function reportBundleSizeCleanup() {
 }
 
 /**
- * creates a callback for Object.entries(comparison).filter that excludes every
- * entry that does not exceed the given threshold values for parsed and gzip size
+ * Creates a callback for Object.entries(comparison).filter that excludes every
+ * entry that does not exceed the given threshold values for parsed and gzip size.
  * @param {number} parsedThreshold
  * @param {number} gzipThreshold
  */
@@ -56,8 +56,8 @@ function createComparisonFilter(parsedThreshold: number, gzipThreshold: number) 
 }
 
 /**
- * checks if the bundle is of a package e.b. `@mui/material` but not
- * `@mui/material/Paper`
+ * Checks if the bundle is of a package e.b. `@mui/material` but not
+ * `@mui/material/Paper`.
  * @param {[string, any]} comparisonEntry
  */
 function isPackageComparison(comparisonEntry: [string, any]) {
@@ -66,7 +66,7 @@ function isPackageComparison(comparisonEntry: [string, any]) {
 }
 
 /**
- * Generates a user-readable string from a percentage change
+ * Generates a user-readable string from a percentage change.
  * @param {number} change
  * @param {string} goodEmoji emoji on reduction
  * @param {string} badEmoji emoji on increase
@@ -91,7 +91,7 @@ function generateEmphasizedChange([bundle, { parsed, gzip }]: [
 }
 
 /**
- * Puts results in different buckets wh
+ * Puts results in different buckets.
  * @param {*} results
  */
 function sieveResults<T>(results: Array<[string, T]>) {
@@ -137,8 +137,7 @@ async function loadLastComparison(
 }
 
 async function reportBundleSize() {
-  // Use git locally to grab the commit which represents the place
-  // where the branches differ
+  // Use git locally to grab the commit which represents the place where the branches differ
   const upstreamRepo = danger.github.pr.base.repo.full_name;
   const upstreamRef = danger.github.pr.base.ref;
   try {
