@@ -3,6 +3,7 @@ import colors from '@mui/joy/colors';
 import { extendTheme, THEME_ID } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import ToggleButtonGroup, { ToggleButtonGroupStaticProps } from '@mui/joy/ToggleButtonGroup';
+import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
@@ -630,7 +631,7 @@ export default function ThemableTemplate() {
     [primary, neutral, radius, bgSwap, family],
   );
   return (
-    <Box sx={{ mt: 4, position: 'relative' }}>
+    <Box sx={{ mt: 3, position: 'relative' }}>
       <Tabs sx={{ bgcolor: 'transparent' }}>
         <List
           variant="outlined"
@@ -653,12 +654,28 @@ export default function ThemableTemplate() {
               fontFamily: 'IBM Plex Sans',
               alignSelf: 'center',
               p: 0.5,
-              gap: 0.5,
+              gap: 0.2,
               borderRadius: 'xl',
               flex: 'none',
               [`& .${tabClasses.root}[aria-selected="true"]`]: {
                 ...theme.variants.solid.neutral,
-                bgcolor: 'neutral.700',
+                bgcolor: 'primary.50',
+                color: 'primary.500',
+                border: '1px solid',
+                borderColor: 'primary.200',
+              },
+              [theme.getColorSchemeSelector('dark')]: {
+                [`& .${tabClasses.root}`]: {
+                  '&:hover': {
+                    bgcolor: 'neutral.700',
+                  },
+                },
+
+                [`& .${tabClasses.root}[aria-selected="true"]`]: {
+                  bgcolor: 'primary.800',
+                  color: 'primary.200',
+                  borderColor: 'primary.700',
+                },
               },
             })}
           >
@@ -668,25 +685,35 @@ export default function ThemableTemplate() {
             <Tab disableIndicator>Sign-in</Tab>
             <Tab disableIndicator>Rental</Tab>
           </TabList>
-          <ListDivider />
-          <ListItem>
+          <ListDivider sx={{ mx: 0 }} />
+          <ListItem sx={{ px: 0.5 }}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <Link href="#" level="body-sm" endDecorator={<ArrowForwardIcon />}>
+            <Button
+              component="a"
+              href="#"
+              size="sm"
+              variant="plain"
+              endDecorator={<ArrowForwardIcon />}
+              sx={{ fontFamily: 'IBM Plex Sans', borderRadius: 'lg' }}
+            >
               View all
-            </Link>
+            </Button>
           </ListItem>
         </List>
         <Box
-          sx={{
+          sx={(theme) => ({
             // to workaround the Material UI icon color
             '--muidocs-palette-primary-main': 'var(--template-palette-primary-main)',
             '& [role="tabpanel"]': {
-              '--_scale': '0.9',
+              '--_scale': '1',
               '--_preview-height': 'clamp(500px / var(--_scale), 80vh, 600px / var(--_scale))',
-              boxShadow: '0 0 0 6px rgba(var(--joy-palette-neutral-mainChannel) / 0.32)',
+              p: 0,
+              mt: 4,
+              border: '1px solid',
+              borderColor: theme.palette.neutral[200],
+              boxShadow: `0 0 0 8px ${theme.palette.primary[100]}`,
               borderRadius: 'var(--template-radius-lg)',
               height: 'var(--_preview-height)',
-              p: 0,
               transform: 'scale(var(--_scale))',
               transformOrigin: 'center 160px',
               overflow: 'auto hidden',
@@ -695,7 +722,13 @@ export default function ThemableTemplate() {
                 '--screen-height': 'var(--_preview-height)',
               },
             },
-          }}
+            [theme.getColorSchemeSelector('dark')]: {
+              '& [role="tabpanel"]': {
+                borderColor: theme.palette.neutral[800],
+                boxShadow: `0 0 0 8px ${theme.palette.primary[800]}`,
+              },
+            },
+          })}
         >
           <TabPanel value={0}>
             <OrderDashboardApp
@@ -760,20 +793,22 @@ export default function ThemableTemplate() {
           },
           maxWidth: '80vw',
           backdropFilter: 'blur(8px)',
-          bgcolor: 'rgba(var(--template-palette-primary-mainChannel) / 0.12)',
-          borderColor: 'rgba(var(--template-palette-primary-darkChannel) / 0.4)',
+          bgcolor: 'neutral.100',
+          borderColor: 'neutral.200',
           position: 'absolute',
           left: '50%',
           transform: 'translateX(-50%)',
           right: '4rem',
-          bottom: '1rem',
+          bottom: '-3.05rem',
           zIndex: 1,
-          borderRadius: 'lg',
-          boxShadow: 'xl',
+          // borderRadius: 'xl',
+          // boxShadow: 'xl',
+          // boxShadow: `0 2px 4px  ${theme.palette.primary[200]}`,
+          boxShadow: `0 8px 0 8px ${theme.palette.primary[100]}`,
           p: 1,
           display: 'flex',
           flexWrap: 'wrap',
-          gap: '0.375rem 0.5rem',
+          gap: '0.6rem',
           width: 'max-content',
           [theme.getColorSchemeSelector('dark')]: {
             bgcolor: 'rgba(var(--template-palette-primary-darkChannel) / 0.12)',
