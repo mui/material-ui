@@ -226,4 +226,4 @@ The element returned by this function will be rendered inside the Select's butto
 Options don't have to be plain strings.
 You can include custom elements to be rendered inside the listbox.
 
-{{"demo": "UnstyledSelectRichOptions.js", "defaultCodeOpen": false}}
+{{"demo": "UnstyledSelectRichOptions.js"}}
