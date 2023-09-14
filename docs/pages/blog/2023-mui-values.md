@@ -54,9 +54,9 @@ The purpose of this workshop was to pinpoint the _most_ critical mindsets and be
 
 Broadly speaking, everyone was asked to consider:
 
-(a) what mindsets and behaviors we should actively preserve and encourage as we scale—these are our superpowers and biggest differentiators. They're the stuff that makes us "us." 💚
+1. what mindsets and behaviors we should actively preserve and encourage as we scale—these are our superpowers and biggest differentiators. They're the stuff that makes us "us." 💚
 
-(b) what mindsets and behaviors should we actively discourage, even punish—these are the biggest threats to our desired culture. They're the things we would never tolerate, maybe even at the cost of a customer. 🛑
+2. what mindsets and behaviors should we actively discourage, even punish—these are the biggest threats to our desired culture. They're the things we would never tolerate, maybe even at the cost of a customer. 🛑
 
 We used a shared FigJam board to brainstorm together against a timer, and repeated the process for different core questions.
 
@@ -142,7 +142,7 @@ In it, we offer concrete examples of each core value and explicitly address tens
 
 ### Put community first
 
-**Put community first** underscores our unwavering commitment to anchoring every decision in the best interests of the collective.
+Put community first underscores our unwavering commitment to anchoring every decision in the best interests of the collective.
 
 By "community," we refer to both the user base that we serve and the team that propels us forward.
 
@@ -150,7 +150,9 @@ The litmus test for any decision at MUI begins with a simple yet profound query:
 
 Putting community first means also that we consciously forge connections. We recognize that deeper mutual understanding fuels collective progress. By investing in relationships, we enhance collaboration, foster productive teamwork, and create a work environment that's as enjoyable as it is efficient.
 
-**Avoid bureaucracy** is all about staying lean, open, and people-first. One of the core beliefs we hold at MUI is that people are the best experts on when, where, and how they will do their best work.
+### Avoid bureaucracy
+
+Avoid bureaucracy is all about staying lean, open, and people-first. One of the core beliefs we hold at MUI is that people are the best experts on when, where, and how they will do their best work.
 
 We actively champion this principle by fostering an environment of unparalleled flexibility and autonomy, which serves as a bedrock for sustained excellence.
 
@@ -160,7 +162,9 @@ We don't over-structure, or add processes or hierarchies where they aren't neede
 
 We don't have lengthy approvals processes or a formalized chain of command; instead we collaborate as a tight-knit network where anyone can ask about and contribute to anything.
 
-**Chase "better"** is all about consistently improving and developing in all aspects of our work as well as raising the bar for quality.
+### Chase "better"
+
+Chase "better" is all about consistently improving and developing in all aspects of our work as well as raising the bar for quality.
 
 It addresses our attitude to risk, feedback, and setbacks too. Genuine innovation demands a fearless embrace of the uncharted, even if it entails a touch of chaos.
 
@@ -170,7 +174,9 @@ On the contrary, "chase better" encourages us all to make small changes and incr
 
 It also encourages us to venture into unfamiliar territory and get out of our comfort zones in the name of growth.
 
-**Trust and deliver together** is all about building trust, alignment, and shared responsibility.
+### Trust and deliver together
+
+Trust and deliver together is all about building trust, alignment, and shared responsibility.
 
 It reflects our commitment to following through and working as one force to solve problems and create value.
 
@@ -194,7 +200,7 @@ As a fun way to reinforce values and show team gratitude, we've also created #Th
 
 Our design team even created custom Slack emojis to make highlighting values-driven moments as simple as just a few clicks. (Thank you Gerda, Victor, and Danilo!) 🙏
 
-<img alt="description" src="/static/blog/2023-mui-values/values-emojis.png" width="1200" height="750" loading="lazy" />
+[image here]
 
 ## When might the values change again?
 
