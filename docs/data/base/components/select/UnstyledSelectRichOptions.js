@@ -13,8 +13,8 @@ export default function UnstyledSelectRichOptions() {
           <img
             loading="lazy"
             width="20"
-            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
             srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
+            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
             alt={`Flag of ${c.label}`}
           />
           {c.label} ({c.code}) +{c.phone}
