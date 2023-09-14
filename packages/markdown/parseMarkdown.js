@@ -234,7 +234,7 @@ function getCodeblock(content) {
 /**
  * @param {string} markdown
  */
-function renderInline(markdown) {
+function renderMarkdown(markdown) {
   // Check if the markdown contains an inline list. Unordered lists are block elements and cannot be parsed inline.
   if (/[-*+] `([A-Za-z]+)`/g.test(markdown)) {
     return marked.parse(markdown, markedOptions);
@@ -475,5 +475,5 @@ module.exports = {
   getCodeblock,
   getHeaders,
   getTitle,
-  renderInline,
+  renderMarkdown,
 };
