@@ -2,7 +2,7 @@
   "hookDescription": "",
   "parametersDescriptions": {
     "areOptionsEqual": {
-      "description": "A function used to determine if two options&#39; values are equal.\nBy default, reference equality is used.\n\nThere is a performance impact when using the <code>areOptionsEqual</code> prop (proportional to the number of options).\nTherefore, it&#39;s recommented to use the default reference equality comparison whenever possible."
+      "description": "A function used to determine if two options&#39; values are equal. By default, reference equality is used.<br>There is a performance impact when using the <code>areOptionsEqual</code> prop (proportional to the number of options). Therefore, it&#39;s recommented to use the default reference equality comparison whenever possible."
     },
     "buttonRef": { "description": "The ref of the trigger button element." },
     "defaultOpen": { "description": "If <code>true</code>, the select will be open by default." },
@@ -11,33 +11,33 @@
     },
     "disabled": { "description": "If <code>true</code>, the select is disabled." },
     "getOptionAsString": {
-      "description": "A function used to convert the option label to a string.\nThis is useful when labels are elements and need to be converted to plain text\nto enable keyboard navigation with character keys."
+      "description": "A function used to convert the option label to a string. This is useful when labels are elements and need to be converted to plain text to enable keyboard navigation with character keys."
     },
     "getSerializedValue": {
-      "description": "A function to convert the currently selected value to a string.\nUsed to set a value of a hidden input associated with the select,\nso that the selected value can be posted with a form."
+      "description": "A function to convert the currently selected value to a string. Used to set a value of a hidden input associated with the select, so that the selected value can be posted with a form."
     },
     "listboxId": { "description": "The <code>id</code> attribute of the listbox element." },
     "listboxRef": { "description": "The ref of the listbox element." },
     "multiple": {
-      "description": "If <code>true</code>, the end user can select multiple values.\nThis affects the type of the <code>value</code>, <code>defaultValue</code>, and <code>onChange</code> props."
+      "description": "If <code>true</code>, the end user can select multiple values. This affects the type of the <code>value</code>, <code>defaultValue</code>, and <code>onChange</code> props."
     },
     "name": {
-      "description": "The <code>name</code> attribute of the hidden input element.\nThis is useful when the select is embedded in a form and you want to access the selected value in the form data."
+      "description": "The <code>name</code> attribute of the hidden input element. This is useful when the select is embedded in a form and you want to access the selected value in the form data."
     },
     "onChange": { "description": "Callback fired when an option is selected." },
     "onHighlightChange": { "description": "Callback fired when an option is highlighted." },
     "onOpenChange": { "description": "Callback fired when the listbox is opened or closed." },
     "open": {
-      "description": "Controls the open state of the select&#39;s listbox.\nThis is the controlled equivalent of the <code>defaultOpen</code> prop."
+      "description": "Controls the open state of the select&#39;s listbox. This is the controlled equivalent of the <code>defaultOpen</code> prop."
     },
     "options": {
-      "description": "An alternative way to specify the options.\nIf this parameter is set, options defined as JSX children are ignored."
+      "description": "An alternative way to specify the options. If this parameter is set, options defined as JSX children are ignored."
     },
     "required": {
-      "description": "If <code>true</code>, the select embedded in a form must have a selected value.\nOtherwise, the form submission will fail."
+      "description": "If <code>true</code>, the select embedded in a form must have a selected value. Otherwise, the form submission will fail."
     },
     "value": {
-      "description": "The selected value.\nSet to <code>null</code> to deselect all options."
+      "description": "The selected value. Set to <code>null</code> to deselect all options."
     }
   },
   "returnValueDescriptions": {
@@ -53,7 +53,7 @@
     },
     "disabled": { "description": "If <code>true</code>, the select is disabled." },
     "dispatch": {
-      "description": "Action dispatcher for the select component.\nAllows to programmatically control the select."
+      "description": "Action dispatcher for the select component. Allows to programmatically control the select."
     },
     "getButtonProps": { "description": "Resolver for the button slot&#39;s props." },
     "getHiddenInputProps": { "description": "Resolver for the hidden input slot&#39;s props." },

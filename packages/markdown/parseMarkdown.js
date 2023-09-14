@@ -235,7 +235,16 @@ function getCodeblock(content) {
  * @param {string} markdown
  */
 function renderInline(markdown) {
-  return marked.parseInline(markdown, markedOptions);
+  // Parse markdown list. Since unordered lists are block level elements we do not inline parse.
+  if (/[-*+] `([A-Za-z]+)`/g.test(markdown)) {
+    return marked.parse(markdown, markedOptions);
+  }
+  // Two new lines result in a newline in the table.
+  // All other new lines must be eliminated to prevent markdown mayhem.
+  return marked
+    .parseInline(markdown, markedOptions)
+    .replace(/(\r?\n){2}/g, '<br>')
+    .replace(/\r?\n/g, ' ');
 }
 
 // Help rank mui.com on component searches first.
