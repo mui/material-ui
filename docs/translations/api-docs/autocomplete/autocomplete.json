@@ -11,7 +11,7 @@
       "description": "If <code>true</code>, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.<br>When using <code>freeSolo</code> mode, the typed value will be the input value if the Autocomplete loses focus without highlighting an option."
     },
     "blurOnSelect": {
-      "description": "Control if the input should be blurred when an option is selected:<br>- <code>false</code> the input is not blurred. - <code>true</code> the input is always blurred. - <code>touch</code> the input is blurred after a touch event. - <code>mouse</code> the input is blurred after a mouse event."
+      "description": "<p>Control if the input should be blurred when an option is selected:</p>\n<ul>\n<li><code>false</code> the input is not blurred.</li>\n<li><code>true</code> the input is always blurred.</li>\n<li><code>touch</code> the input is blurred after a touch event.</li>\n<li><code>mouse</code> the input is blurred after a mouse event.</li>\n</ul>\n"
     },
     "ChipProps": {
       "description": "Props applied to the <a href=\"/material-ui/api/chip/\"><code>Chip</code></a> element."

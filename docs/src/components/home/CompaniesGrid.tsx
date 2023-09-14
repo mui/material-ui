@@ -170,7 +170,7 @@ export default function CompaniesGrid({ data }: { data: Array<IconImageProps> })
             objectFit: 'contain',
           }}
         >
-          <IconImage alt={imgProps.alt || `${imgProps.name} logo`} {...imgProps} />
+          <IconImage alt={imgProps.alt || `${imgProps.name} logo`} loading="eager" {...imgProps} />
         </Grid>
       ))}
     </Grid>

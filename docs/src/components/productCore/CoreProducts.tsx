@@ -27,7 +27,7 @@ const content = [
     // logo:
     title: 'Base UI',
     description:
-      'A library of unstyled components with production-ready functionality, along with low-level hooks.',
+      'A library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app\'s CSS and accessibility features.',
     link: '/base-ui/',
   },
   {
@@ -59,13 +59,11 @@ export default function CoreProducts() {
                   theme.palette.primary[50],
                   0.3,
                 )} 40%, ${alpha(theme.palette.grey[50], 0.2)} 100%)`,
-
                 '&:hover': {
                   borderColor: 'primary.500',
                   boxShadow:
                     '0px 1px 6px 0px rgba(194, 224, 255, 1), 0px 2px 30px 0px rgba(234, 237, 241, 0.3) inset',
                 },
-
                 ...theme.applyDarkStyles({
                   bgcolor: 'primaryDark.900',
                   borderColor: 'primaryDark.700',
@@ -73,7 +71,6 @@ export default function CoreProducts() {
                     theme.palette.primary[900],
                     0.1,
                   )} 40%, ${alpha(theme.palette.primaryDark[800], 0.2)} 100%)`,
-
                   '&:hover': {
                     boxShadow: '0px 1px 6px #0059B3, inset 0px 2px 30px rgba(0, 0, 0, 0.1)',
                   },
@@ -105,7 +102,7 @@ export default function CoreProducts() {
               </Box> */}
               <Typography
                 fontWeight="bold"
-                component="h3"
+                component="h2"
                 color="text.primary"
                 variant="body1"
                 // mt={2}

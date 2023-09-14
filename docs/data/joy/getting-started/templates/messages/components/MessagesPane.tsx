@@ -29,6 +29,7 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
         },
         display: 'flex',
         flexDirection: 'column',
+        backgroundColor: 'background.level1',
       }}
     >
       <MessagesPaneHeader sender={chat.sender} />
@@ -39,7 +40,7 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
           flex: 1,
           minHeight: 0,
           px: 2,
-          py: 2.5,
+          py: 3,
           overflowY: 'scroll',
           flexDirection: 'column-reverse',
         }}
