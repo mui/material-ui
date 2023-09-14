@@ -235,7 +235,7 @@ function getCodeblock(content) {
  * @param {string} markdown
  */
 function renderInline(markdown) {
-  // Parse markdown list. Since unordered lists are block level elements we do not inline parse.
+  // Check if the markdown contains an inline list. Unordered lists are block elements and cannot be parsed inline.
   if (/[-*+] `([A-Za-z]+)`/g.test(markdown)) {
     return marked.parse(markdown, markedOptions);
   }
