@@ -1,5 +1,5 @@
 {
-  "name": "zero-runtime-next-app",
+  "name": "@app/zero-runtime-next-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mui/base": "^5.0.0-beta.14",
-    "@mui/material": "^5.14.8",
-    "@mui/utils": "^5.14.8",
+    "@mui/base": "file:../../packages/mui-base/build",
+    "@mui/material": "file:../../packages/mui-material/build",
+    "@mui/utils": "file:../../packages/mui-utils/build",
     "@mui/zero-runtime": "file:../../packages/zero-runtime/build",
     "next": "13.4.19",
     "react": "18.2.0",
@@ -23,7 +23,7 @@
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
-    "typescript": "5.2.2"
+    "typescript": "5.1.6"
   },
   "resolutions": {
     "@mui/zero-tag-processor": "file:../../packages/zero-tag-processor/build"
