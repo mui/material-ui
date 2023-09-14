@@ -8,7 +8,7 @@ title: Overview
 
 ## Introduction
 
-Joy UI is an open-source React component library, including many foundational pre-built components that follow a lightly opinionated design direction, thoughtfully crafted to ensure a great-looking UI while giving you plenty of room to customize how they look and feel.
+Joy UI is an open-source React component library that follows a lightly opinionated design direction, for a clean and modern UI that gives you plenty of room to customize the look and feel.
 
 :::warning
 Joy UI is currently in active development, and breaking changes are to be expected.
@@ -20,46 +20,45 @@ Look for the [`package: joy-ui`](https://github.com/mui/material-ui/labels/packa
 
 ## Why use Joy UI
 
-Maintained by MUI, **Joy UI is an alternative to Material UI** for projects that **aren't planning to adhere to or use the Material Design** guidelines as a design system starting point.
+Maintained by MUI, **Joy UI is an alternative to Material UI** for projects that **don't adhere to Material Design** guidelines as a design system starting point.
 
 These two sister libraries feature many of the same components, with similarly designed component APIs and customization features.
-Joy UI is built by applying years of learning with Material UI for an audience looking for sleek design, powerful DX, and extensible components.
+Joy UI applies the decade of lessons learned in building and maintaining Material UI, for developers looking for sleek design, next-gen DX, and extensible components.
 
 Learn more about why you should use Joy UI for your next project below.
 
 ### Beautiful out of the box
 
-Joy UI follows a lightly opinionated design direction we've been calling Joy Design.
-Meant to be simple and functional, it offers a thoughtfully crafted set of defaults that ensure your next project starts off looking great, even without any deep customizations.
+Joy UI follows a lightly opinionated design direction called Joy Design.
+Simple and functional, it offers a thoughtfully crafted set of defaults to ensure that your next project looks and feels great before you even begin customizing.
 
-The [Order Dashboard](/joy-ui/getting-started/templates/order-dashboard/) template below, available on the [Templates](/joy-ui/getting-started/templates/) page, uses very light customizations to demonstrate how carefully designed all components were, ensuring they work well together.
+For example, the [Order Dashboard template](/joy-ui/getting-started/templates/order-dashboard/) (pictured below) is minimally customized beyond defaults, to demonstrate how meticulously we've designed each component for consistency and cohesion across the UI:
 
 <img src="/static/joy-ui/overview/order-dashboard.png" style="width: 814px; margin-top: 4px; margin-bottom: 8px;" alt="The Order Dashboard template, inspired by Untitled UI and built by the MUI team using Joy UI with very little customizations." width="1628" height="400" />
 
 ### Highly customizable
 
 You should feel inspired and empowered to change, extend, and revamp Joy UI's appearance and behavior with ease.
-Drawing from many years of experience with Material UI, Joy UI applies new approaches to customization, enabling you to customize every piece of the components to match your unique design.
+Drawing from many years of experience maintaining Material UI, Joy UI applies new approaches to customization, enabling you to customize every piece of the components to match your unique design.
 
-Using [Gatsby's documentation side nav](https://www.gatsbyjs.com/docs/) as an example, the demo below shows how to customize the [List](/joy-ui/react-list/) component to look like it using built-in CSS variables.
+For example, the demo below shows how to customize the [List](/joy-ui/react-list/) component using built-in CSS variables to match the design of the [Gatsby documentation side nav](https://www.gatsbyjs.com/docs/):
 
 {{"demo": "../../components/list/ExampleCollapsibleList.js"}}
 
 ### Developer experience
 
-One of the main goals of Joy UI is to spark joy in the creative process of building apps.
-Promoting an unrivaled developer experience is at the heart of this.
+Joy UI draws its name from the idea that it should spark joy in the creative process of building apps.
+Providing an unrivaled developer experience is at the heart of this.
 
-Take as an example of this the automatic adjustment of the [Input](/joy-ui/react-input/) component, whereby by customizing its border radius, all components inside it will adapt accordingly, ensuring a polished design _and_ saving you time.
+For example, observe how each element of the [Input](/joy-ui/react-input/) component automatically calculates and adjusts its own dimensions relative to the border radius, saving you from the tedium of doing it yourself:
 
 {{"demo": "../../main-features/automatic-adjustment/InputVariables.js"}}
 
 ### Accessibility
 
-Joy UI components are built on top of [Base UI's unstyled components and low-level hooks](/base-ui/getting-started/), giving you many accessibility features support out of the box.
-We do our best to make all components screen reader-friendly and offer suggestions for optimizing accessibility throughout our documentation.
+Joy UI components are built on top of [Base UI's unstyled components and low-level hooks](/base-ui/getting-started/), giving you many accessibility features out of the box.
+We strive to make all components accessible to end users who require assistive technology, and offer suggestions for optimizing accessibility throughout our documentation.
 
-One example of this is the [Input](/joy-ui/react-input/) component that needs to have a descriptive label linked to help users understand its purpose.
-Joy UI's Form Control component automatically generates a unique ID that links the Input with the Form Label and Form Helper Text components to ensure you adhere to this principle.
+Joy UI's Form Control component automatically generates a unique ID that links the Input that it wraps with the Form Label and Form Helper Text components, ensuring that your app complies with this guideline:
 
 {{"demo": "../../components/input/InputField.js"}}
