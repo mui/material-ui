@@ -57,7 +57,7 @@ export default function JoyUITemplates() {
     rootMargin: '400px',
   });
   return (
-    <Section bg="gradient" ref={ref}>
+    <Section bg="gradient" ref={ref} cozy>
       <SectionHeadline
         alwaysCenter
         overline="Fresh look & feel"
