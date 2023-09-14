@@ -1558,9 +1558,6 @@ importers:
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
     devDependencies:
       '@emotion/react':
         specifier: ^11.11.1
@@ -1580,6 +1577,9 @@ importers:
       chai:
         specifier: ^4.3.7
         version: 4.3.8
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
       test:
         specifier: workspace:^
         version: link:../../test
@@ -1596,9 +1596,6 @@ importers:
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
     devDependencies:
       '@mui/styled-engine-sc':
         specifier: workspace:*
@@ -1615,6 +1612,9 @@ importers:
       chai:
         specifier: ^4.3.7
         version: 4.3.8
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
       styled-components:
         specifier: ^5.3.1
         version: 5.3.11(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)

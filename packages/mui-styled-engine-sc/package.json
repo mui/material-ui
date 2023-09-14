@@ -40,8 +40,7 @@
   "dependencies": {
     "@babel/runtime": "^7.22.15",
     "csstype": "^3.1.2",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0"
+    "prop-types": "^15.8.1"
   },
   "devDependencies": {
     "@mui/styled-engine-sc": "workspace:*",
@@ -50,6 +49,7 @@
     "@types/styled-components": "^5.1.26",
     "chai": "^4.3.7",
     "styled-components": "^5.3.1",
+    "react": "^18.2.0",
     "test": "workspace:^"
   },
   "peerDependencies": {
