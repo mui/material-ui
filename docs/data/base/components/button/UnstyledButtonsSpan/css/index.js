@@ -6,10 +6,10 @@ export default function UnstyledButtonsSpan() {
   return (
     <React.Fragment>
       <Stack spacing={2} direction="row">
-        <Button className="CustomButton" slots={{ root: 'span' }}>
+        <Button className="BaseButton" slots={{ root: 'span' }}>
           Button
         </Button>
-        <Button className="CustomButton" slots={{ root: 'span' }} disabled>
+        <Button className="BaseButton" slots={{ root: 'span' }} disabled>
           Disabled
         </Button>
       </Stack>
@@ -34,7 +34,7 @@ const cyan = {
 function Styles() {
   return (
     <style>{`
-    .CustomButton {
+    .BaseButton {
       font-family: 'IBM Plex Sans', sans-serif;
       font-size: 0.875rem;
       line-height: 1.5;
@@ -47,7 +47,7 @@ function Styles() {
       transition: all 150ms ease;
       border: none;
     }
-    .CustomButton:hover {
+    .BaseButton:hover {
       background-color: ${cyan[600]};
     }
     .${buttonClasses.active} {

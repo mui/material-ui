@@ -6,8 +6,8 @@ export default function UnstyledButtonsIntroduction() {
   return (
     <React.Fragment>
       <Stack spacing={2} direction="row">
-        <Button className="CustomButton">Button</Button>
-        <Button className="CustomButton" disabled>
+        <Button className="BaseButton">Button</Button>
+        <Button className="BaseButton" disabled>
           Disabled
         </Button>
       </Stack>
@@ -32,7 +32,7 @@ const cyan = {
 function Styles() {
   return (
     <style>{`
-  .CustomButton {
+  .BaseButton {
     font-family: IBM Plex Sans,sans-serif;
     font-weight: 600;
     font-size: 0.875rem;
@@ -44,7 +44,7 @@ function Styles() {
     cursor: pointer;
     border: none;
   }
-  .CustomButton:hover {
+  .BaseButton:hover {
     background-color: ${cyan[600]};
   }
   .${buttonClasses.active} {

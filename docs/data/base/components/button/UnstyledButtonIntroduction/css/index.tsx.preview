@@ -1,7 +1,7 @@
 <React.Fragment>
   <Stack spacing={2} direction="row">
-    <Button className="CustomButton">Button</Button>
-    <Button className="CustomButton" disabled>
+    <Button className="BaseButton">Button</Button>
+    <Button className="BaseButton" disabled>
       Disabled
     </Button>
   </Stack>
