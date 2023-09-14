@@ -7,7 +7,7 @@ import { Popper } from '@mui/base';
 
 export default function UnstyledSelectRichOptions() {
   return (
-    <CustomSelect>
+    <CustomSelect placeholder="Select country…">
       {countries.map((c) => (
         <StyledOption key={c.code} value={c.code} label={c.label}>
           <img

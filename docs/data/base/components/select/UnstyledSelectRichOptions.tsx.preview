@@ -1,4 +1,4 @@
-<CustomSelect>
+<CustomSelect placeholder="Select country…">
   {countries.map((c) => (
     <StyledOption key={c.code} value={c.code} label={c.label}>
       <img
