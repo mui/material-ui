@@ -17,7 +17,7 @@ In 2019, these became formalized in our first-ever company values: user obsessio
 
 Needless to say, we've seen significant growth since then: both for the company and its products, as well as the broader community surrounding us.
 
-That's why we wanted to take a moment to honor the values that led us to where we are today, and share how we've reshaped them to be an even more powerful force behind MUI’s next phase of growth. 🚀
+That's why we wanted to take a moment to honor the values that led us to where we are today, and share how we've reshaped them to be an even more powerful force behind MUI's next phase of growth. 🚀
 
 ## How we approached our values revision
 
@@ -50,7 +50,7 @@ Then, using keyword and sentiment analysis, we captured clear themes in experien
 
 At the next stage, folks came together for a synchronous workshop. (This was completely voluntary, but I'm proud to say we had major representation from all different corners and levels of the company!)
 
-The purpose of this workshop was to pinpoint the *most* critical mindsets and behaviors that we felt underpinned the company's success at scale. 
+The purpose of this workshop was to pinpoint the _most_ critical mindsets and behaviors that we felt underpinned the company's success at scale.
 
 Broadly speaking, everyone was asked to consider:
 
@@ -76,7 +76,7 @@ That's how many words surfaced in our workshop as potential values—or at least
 
 Narrowing down the shortlist gave us a chance to both find _and_ stress-test the strongest recurring themes. 🧪
 
-To do this, we immediately eliminated [what Patrick Lencioni calls “permission-to-play” values](https://www.youtube.com/watch?v=bNRn6FimzoU). These are the things as basic as showing respect, which might be *valuable* to a great team culture and performance, but aren’t exactly *exciting* or *measurable*. They're simply the minimum required standard of behavior to work together.
+To do this, we immediately eliminated [what Patrick Lencioni calls "permission-to-play" values](https://www.youtube.com/watch?v=bNRn6FimzoU). These are the things as basic as showing respect, which might be _valuable_ to a great team culture and performance, but aren't exactly _exciting_ or _measurable_. They're simply the minimum required standard of behavior to work together.
 
 We also started striking out anything that could not clearly be expressed _as an action._
 
@@ -92,13 +92,13 @@ Now it was time to transform these six words into actionable phrases to inspire 
 
 All of the above and more influenced what's now referred to as our team "pact." (You'll see why.)
 
-But before we get there, I want to share a few examples of phrases that didn’t wind up being a part of the pitch and why.
+But before we get there, I want to share a few examples of phrases that didn't wind up being a part of the pitch and why.
 
 Finding the right phraseology started with carefully reviewing _all_ team inputs. As I had a unique vantage point of all those inputs, I began to jot down phrases that effectively pulled from them _all_ and led with _action verbs._ 🕸️💪
 
 Things like "build in the open" made an appearance, but felt too limited. There was so much more we wanted to capture in the enduring theme of transparency, why it matters to us, and how we show it.
 
-Other phrases included "own your impact" and "maximize flexibility," but these, again, felt too limited and also generic. 
+Other phrases included "own your impact" and "maximize flexibility," but these, again, felt too limited and also generic.
 
 In short, they weren't right.
 
@@ -112,13 +112,13 @@ You can <a href="https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c07
 
 Since we work asynchronously at MUI, we like to leave a good window of time for peers to properly review, digest, and offer thoughtful feedback.
 
-Since we place such a high value on quality and accuracy, we didn't want to rush this process, and so we extended our deadline for delivery. 
+Since we place such a high value on quality and accuracy, we didn't want to rush this process, and so we extended our deadline for delivery.
 
-As we approached the finish line, I collaborated closely with our CEO and  co-founder, Olivier. 🙋
+As we approached the finish line, I collaborated closely with our CEO and co-founder, Olivier. 🙋
 
 Our goal was to ensure that the final values not only reflected our team and company culture but, most importantly, that they could be integrated effectively into our company's operations and performance expectations.
 
-And we believe we've achieved just that! Here they come... 🥁 
+And we believe we've achieved just that! Here they come... 🥁
 
 ## What are MUI's core values today?
 
@@ -160,7 +160,7 @@ We don't over-structure, or add processes or hierarchies where they aren't neede
 
 We don't have lengthy approvals processes or a formalized chain of command; instead we collaborate as a tight-knit network where anyone can ask about and contribute to anything.
 
-**Chase "better"** is all about consistently improving and developing in all aspects of our work as well as raising the bar for quality. 
+**Chase "better"** is all about consistently improving and developing in all aspects of our work as well as raising the bar for quality.
 
 It addresses our attitude to risk, feedback, and setbacks too. Genuine innovation demands a fearless embrace of the uncharted, even if it entails a touch of chaos.
 
