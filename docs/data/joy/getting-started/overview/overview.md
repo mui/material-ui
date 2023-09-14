@@ -62,3 +62,9 @@ We strive to make all components accessible to end users who require assistive t
 Joy UI's Form Control component automatically generates a unique ID that links the Input that it wraps with the Form Label and Form Helper Text components, ensuring that your app complies with this guideline:
 
 {{"demo": "../../components/input/InputField.js"}}
+
+## Start now
+
+Quickly get started with Joy UI through some of these useful resources:
+
+{{"component": "modules/components/JoyStartingLinksCollection.js"}}
