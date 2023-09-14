@@ -106,11 +106,9 @@ describe('useList', () => {
       const { getByRole } = render(<Listbox />);
 
       const listbox = getByRole('listbox');
-
       expect(listbox).to.have.attribute('data-testid', 'test-listbox');
 
       fireEvent.click(listbox);
-
       expect(handleClick.callCount).to.equal(1);
     });
   });
