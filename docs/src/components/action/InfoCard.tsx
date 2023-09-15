@@ -9,15 +9,14 @@ interface InfoCardProps {
   title: string;
   description: string;
   link?: string;
-  linkable?: boolean;
 }
 
-export default function InfoCard({ icon, title, description, link, linkable }: InfoCardProps) {
+export default function InfoCard({ icon, title, description, link }: InfoCardProps) {
   return (
     <Paper
-      component={linkable ? Link : 'div'}
+      component={link ? Link : 'div'}
       href={link}
-      noLinkStyle={linkable}
+      noLinkStyle={Boolean(link)}
       variant="outlined"
       sx={(theme) => ({
         p: 3.5,

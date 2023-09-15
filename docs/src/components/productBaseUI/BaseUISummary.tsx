@@ -51,7 +51,7 @@ export default function BaseUISummary() {
         <Grid container spacing={3}>
           {content.map(({ icon, title, description, link }) => (
             <Grid key={title} item xs={12} md={4}>
-              <InfoCard link={link} linkable title={title} icon={icon} description={description} />
+              <InfoCard link={link} title={title} icon={icon} description={description} />
             </Grid>
           ))}
         </Grid>
