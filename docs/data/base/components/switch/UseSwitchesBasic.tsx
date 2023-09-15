@@ -32,6 +32,7 @@ function BasicSwitch(props: UseSwitchParameters) {
 }
 
 const blue = {
+  200: '#99CCF3',
   500: '#007FFF',
 };
 
@@ -53,16 +54,24 @@ const BasicSwitchRoot = styled('span')(
   font-size: 0;
   position: relative;
   display: inline-block;
-  width: 48px;
+  width: 38px;
   height: 24px;
   margin: 10px;
   cursor: pointer;
-  background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[300]};
+  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
   border-radius: 24px;
   box-shadow: inset 0px 1px 1px ${
-    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.25)' : 'rgba(0, 0, 0, 0.1)'
+    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.05)'
   };
+
+  &:hover {
+    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
+  }
+    
+  &.Switch-focusVisible {
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? grey[700] : blue[200]};
+  }
 
   &.Switch-disabled {
     opacity: 0.4;
@@ -72,6 +81,7 @@ const BasicSwitchRoot = styled('span')(
   &.Switch-checked {
     background: ${blue[500]};
   }
+  
   `,
 );
 
@@ -93,10 +103,10 @@ const BasicSwitchThumb = styled('span')(
   width: 16px;
   height: 16px;
   top: 3px;
-  left: 4px;
+  left: 2px;
   border-radius: 16px;
   background-color: #fff;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[300]};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   position: relative;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,14 +114,8 @@ const BasicSwitchThumb = styled('span')(
   box-shadow: 0px 1px 2px
     ${theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.25)' : 'rgba(0, 0, 0, 0.1)'};
 
-  &.Switch-focusVisible {
-    background-color: ${grey[500]};
-    box-shadow: 0 0 1px 8px rgb(0 0 0 / 0.25);
-  }
-
   &.Switch-checked {
-    left: 28px;
-    top: 3px;
+    left: 17px;
     background-color: #fff;
   }
 `,
