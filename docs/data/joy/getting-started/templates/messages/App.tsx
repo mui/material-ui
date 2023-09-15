@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { CssVarsProvider } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
+import GlobalStyles from '@mui/joy/GlobalStyles';
 import Box from '@mui/joy/Box';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import MyMessages from './components/MyMessages';
+import useScript from './useScript';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -43,6 +45,7 @@ export default function JoyMessagesTemplate(props: any) {
         }}
       >
         <Header />
+        <Sidebar />
         <Box component="main" className="MainContent" sx={{ flex: 1 }}>
           <MyMessages />
         </Box>

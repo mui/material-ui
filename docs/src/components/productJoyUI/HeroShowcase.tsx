@@ -109,6 +109,9 @@ export function Mobile() {
     >
       <JoySheet
         sx={{
+          position: 'sticky',
+          top: 0,
+          width: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -118,6 +121,7 @@ export function Mobile() {
           borderBottom: '1px solid',
           borderColor: 'background.level1',
           boxShadow: 'sm',
+          zIndex: 1000,
         }}
       >
         <MuiLogo />
