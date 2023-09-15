@@ -135,42 +135,46 @@ describe('Joy <Button />', () => {
   });
 
   describe('prop:disabled', () => {
-    it('should apply disabled styled when button is disabled', function test() {
+    it('should apply disabled styles when button is disabled', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const { getByRole } = render(<Button loading />);
+      const { getByRole } = render(<Button disabled />);
 
       const button = getByRole('button');
+
       const theme = extendTheme();
-      const buttonStyle = window.getComputedStyle(button);
-      console.log(buttonStyle.getPropertyValue('background-color'));
-      // console.log(theme.vars)
-      // console.log(theme.vars)
-      console.log(theme.variants.solidDisabled.primary);
-      expect(buttonStyle.getPropertyValue('pointer-events')).to.equal(
-        theme.variants.solidDisabled.primary.pointerEvents,
-      );
-      expect(buttonStyle.getPropertyValue('cursor')).to.equal(
-        theme.variants.solidDisabled.primary.cursor,
-      );
-      expect(buttonStyle.getPropertyValue('--Icon-color')).to.equal(
-        theme.variants.solidDisabled.primary['--Icon-color'],
-      );
-      expect(buttonStyle.getPropertyValue('color')).to.equal('rgba(0, 0, 0, 0)');
 
       expect(button).toHaveComputedStyle({
-        ...(theme.variants.solidDisabled.primary as Record<string, string>),
-        iconColor: theme.variants.solidDisabled.primary['--Icon-color'],
-        color: 'rgba(0, 0, 0, 0)',
-        backgroundColor: 'rgb(240, 244, 248)',
+        ...({
+          'icon-color': theme.variants.solidDisabled.primary['--Icon-color'],
+          cursor: theme.variants.solidDisabled.primary.cursor,
+          pointerEvents: theme.variants.solidDisabled.primary.pointerEvents,
+          color: 'rgba(0, 0, 0, 0)',
+          backgroundColor: 'rgb(240, 244, 248)',
+        } as Record<string, string>),
       });
     });
-    it('should apply disabled styled when button is disabled and when component prop is provided', () => {
-      const { getByRole } = render(<Button loading disabled={false} />);
+
+    it('should apply disabled styles when button is disabled and when component prop is provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const { getByRole } = render(<Button disabled component="a" />);
 
       const button = getByRole('button');
-      expect(button).to.have.property('disabled', true);
+
+      const theme = extendTheme();
+
+      expect(button).toHaveComputedStyle({
+        ...({
+          'icon-color': theme.variants.solidDisabled.primary['--Icon-color'],
+          cursor: theme.variants.solidDisabled.primary.cursor,
+          pointerEvents: theme.variants.solidDisabled.primary.pointerEvents,
+          color: 'rgba(0, 0, 0, 0)',
+          backgroundColor: 'rgb(240, 244, 248)',
+        } as Record<string, string>),
+      });
     });
   });
 
