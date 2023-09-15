@@ -65,6 +65,6 @@ Joy UI's Form Control component automatically generates a unique ID that links t
 
 ## Start now
 
-Quickly get started with Joy UI through some of these useful resources:
+Get started with Joy UI today through some of these useful resources:
 
 {{"component": "modules/components/JoyStartingLinksCollection.js"}}
