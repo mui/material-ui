@@ -119,19 +119,19 @@ function Styles() {
       {`
       .CustomInput .${inputClasses.input} {
         width: 320px;
-        font-size: 0.875rem;
         font-family: IBM Plex Sans, sans-serif;
+        font-size: 0.875rem;
         font-weight: 400;
         line-height: 1.5;
         padding: 8px 12px;
         border-radius: 8px;
         color: ${isDarkMode ? grey[300] : grey[900]};
         background: ${isDarkMode ? grey[900] : '#fff'};
-        border: 1px solid ${isDarkMode ? grey[800] : grey[300]};
+        border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+        box-shadow: 0px 2px 2px ${isDarkMode ? grey[900] : grey[50]};
       }
       .CustomInput .${inputClasses.input}:hover {
-        background: ${isDarkMode ? '' : grey[100]};
-        border-color: ${isDarkMode ? grey[700] : grey[400]};
+        border-color: ${cyan[400]};
       }
       .CustomInput .${inputClasses.input}:focus {
         border-color: ${cyan[400]};
