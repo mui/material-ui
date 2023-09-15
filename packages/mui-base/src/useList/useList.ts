@@ -233,9 +233,6 @@ function useList<
     }),
   );
 
-  // introducing refs to avoid recreating the getItemState function on each change.
-  // const latestSelectedValues = useLatest(selectedValues);
-  // const latestHighlightedValue = useLatest(highlightedValue);
   const previousItems = React.useRef<ItemValue[]>([]);
 
   React.useEffect(() => {
@@ -334,7 +331,6 @@ function useList<
 
   const getItemState = React.useCallback(
     (item: ItemValue): ListItemState => {
-      // const index = items.findIndex((i) => itemComparer(i, item));
       const selected = (selectedValues ?? []).some(
         (value) => value != null && itemComparer(item, value),
       );
@@ -345,7 +341,6 @@ function useList<
       return {
         focusable,
         highlighted,
-        /* index, */
         selected,
       };
     },
