@@ -8,6 +8,8 @@ export type {
   FormControlRootSlotPropsOverrides,
   FormControlState,
   UseFormControlContextReturnValue,
+  // for material-next
+  FormControlOwnProps,
 } from './FormControl.types';
 
 export * from './formControlClasses';

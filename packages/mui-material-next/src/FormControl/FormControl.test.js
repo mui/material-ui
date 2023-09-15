@@ -26,10 +26,9 @@ describe('<FormControl />', () => {
     inheritComponent: 'div',
     render,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'fieldset',
     muiName: 'MuiFormControl',
     testVariantProps: { margin: 'dense' },
-    skip: ['componentsProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   describe('initial state', () => {

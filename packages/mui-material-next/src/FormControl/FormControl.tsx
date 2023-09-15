@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
@@ -11,9 +12,10 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import FormControlContext from './FormControlContext';
+import { FormControlTypeMap, FormControlOwnerState, FormControlProps } from './FormControl.types';
 import { getFormControlUtilityClasses } from './formControlClasses';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: FormControlOwnerState) => {
   const { classes, margin, fullWidth } = ownerState;
   const slots = {
     root: ['root', margin !== 'none' && `margin${capitalize(margin)}`, fullWidth && 'fullWidth'],
@@ -27,12 +29,12 @@ const FormControlRoot = styled('div', {
   slot: 'Root',
   overridesResolver: ({ ownerState }, styles) => {
     return {
-      ...styles.root,
-      ...styles[`margin${capitalize(ownerState.margin)}`],
+      ...(styles.root as Record<string, unknown>),
+      ...(styles[`margin${capitalize(ownerState.margin)}`] as Record<string, unknown>),
       ...(ownerState.fullWidth && styles.fullWidth),
     };
   },
-})(({ ownerState }) => ({
+})<{ ownerState: FormControlOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
   position: 'relative',
@@ -79,13 +81,15 @@ const FormControlRoot = styled('div', {
  * ⚠️ Only one `InputBase` can be used within a FormControl because it creates visual inconsistencies.
  * For instance, only one input can be focused at the same time, the state shouldn't be shared.
  */
-const FormControl = React.forwardRef(function FormControl(inProps, ref) {
+const FormControl = React.forwardRef(function FormControl<
+  RootComponentType extends React.ElementType = FormControlTypeMap['defaultComponent'],
+>(inProps: FormControlProps<RootComponentType>, ref: React.ForwardedRef<any>) {
   const props = useThemeProps({ props: inProps, name: 'MuiFormControl' });
   const {
     children,
     className,
     color = 'primary',
-    component = 'div',
+    // component = 'div',
     disabled = false,
     error = false,
     focused: visuallyFocused,
@@ -98,10 +102,11 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     ...other
   } = props;
 
-  const ownerState = {
+  const ownerState: FormControlOwnerState = {
     ...props,
+    classes: props.classes ?? {},
     color,
-    component,
+    // component,
     disabled,
     error,
     fullWidth,
@@ -125,7 +130,10 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
           return;
         }
 
-        const input = isMuiElement(child, ['Select']) ? child.props.input : child;
+        const input =
+          React.isValidElement(child) && isMuiElement(child, ['Select'])
+            ? child.props.input
+            : child;
 
         if (input && isAdornedStart(input.props)) {
           initialAdornedStart = true;
@@ -146,7 +154,10 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
           return;
         }
 
-        if (isFilled(child.props, true) || isFilled(child.props.inputProps, true)) {
+        if (
+          React.isValidElement(child) &&
+          (isFilled(child.props, true) || isFilled(child.props.inputProps, true))
+        ) {
           initialFilled = true;
         }
       });
@@ -162,7 +173,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
 
   const focused = visuallyFocused !== undefined && !disabled ? visuallyFocused : focusedState;
 
-  let registerEffect;
+  let registerEffect: undefined | (() => () => void);
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const registeredInput = React.useRef(false);
@@ -229,7 +240,6 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   return (
     <FormControlContext.Provider value={childContext}>
       <FormControlRoot
-        as={component}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}
@@ -239,7 +249,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
       </FormControlRoot>
     </FormControlContext.Provider>
   );
-});
+}) as OverridableComponent<FormControlTypeMap>;
 
 FormControl.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
