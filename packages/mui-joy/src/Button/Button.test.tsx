@@ -160,8 +160,9 @@ describe('Joy <Button />', () => {
       expect(buttonStyle.getPropertyValue('color')).to.equal('rgba(0, 0, 0, 0)');
 
       expect(button).toHaveComputedStyle({
+        ...(theme.variants.solidDisabled.primary as Record<string, string>),
         color: 'rgba(0, 0, 0, 0)',
-        backgroundColor: '#F0F4F8',
+        backgroundColor: 'rgb(240, 244, 248)',
       });
     });
     it('should apply disabled styled when button is disabled and when component prop is provided', () => {
