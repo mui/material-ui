@@ -8,7 +8,7 @@ import { getOptionUtilityClass } from './optionClasses';
 import { useSlotProps } from '../utils';
 import { useOption } from '../useOption';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { ListAction, ListContext, ListContextValue, ListItemState } from '../useList';
+import { OptionUnwrappedContextProps, unwrapOptionContext } from './unwrapOptionContext';
 
 function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue>) {
   const { disabled, highlighted, selected } = ownerState;
@@ -20,118 +20,80 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
   return composeClasses(slots, useClassNamesOverride(getOptionUtilityClass));
 }
 
-type InnerOptionProps<OptionValue, RootComponentType extends React.ElementType> = OptionProps<
-  OptionValue,
-  RootComponentType
-> &
-  Pick<ListItemState, 'selected' | 'highlighted'> & {
-    // eslint-disable-next-line react/no-unused-prop-types
-    dispatch: React.Dispatch<ListAction<OptionValue>>;
-  };
+/**
+ * An unstyled option to be used within a Select.
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/base-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
+ */
+const Option = unwrapOptionContext(
+  React.memo(
+    React.forwardRef(function Option<OptionValue, RootComponentType extends React.ElementType>(
+      props: OptionProps<OptionValue, RootComponentType> & OptionUnwrappedContextProps<OptionValue>,
+      forwardedRef: React.ForwardedRef<Element>,
+    ) {
+      const {
+        children,
+        disabled = false,
+        dispatch,
+        focusable,
+        highlighted,
+        label,
+        selected,
+        slotProps = {},
+        slots = {},
+        value,
+        ...other
+      } = props;
 
-const InnerOption = React.memo(
-  React.forwardRef(function InnerOption<OptionValue, RootComponentType extends React.ElementType>(
-    props: InnerOptionProps<OptionValue, RootComponentType>,
-    forwardedRef: React.ForwardedRef<Element>,
-  ) {
-    const {
-      children,
-      disabled = false,
-      dispatch,
-      label,
-      slotProps = {},
-      slots = {},
-      value,
-      selected,
-      highlighted,
-      focusable,
-      ...other
-    } = props;
+      const Root = slots.root ?? 'li';
 
-    const Root = slots.root ?? 'li';
+      const optionRef = React.useRef<HTMLElement>(null);
+      const combinedRef = useForkRef(optionRef, forwardedRef);
 
-    const optionRef = React.useRef<HTMLElement>(null);
-    const combinedRef = useForkRef(optionRef, forwardedRef);
+      // If `label` is not explicitly provided, the `children` are used for convenience.
+      // This is used to populate the select's trigger with the selected option's label.
+      const computedLabel =
+        label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
 
-    // If `label` is not explicitly provided, the `children` are used for convenience.
-    // This is used to populate the select's trigger with the selected option's label.
-    const computedLabel =
-      label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
+      const { getRootProps, index } = useOption({
+        disabled,
+        dispatch,
+        selected,
+        highlighted,
+        label: computedLabel,
+        rootRef: combinedRef,
+        value,
+      });
 
-    const { getRootProps, index } = useOption({
-      disabled,
-      dispatch,
-      selected,
-      highlighted,
-      label: computedLabel,
-      rootRef: combinedRef,
-      value,
-    });
+      const ownerState: OptionOwnerState<OptionValue> = {
+        ...props,
+        disabled,
+        highlighted,
+        index,
+        selected,
+      };
 
-    const ownerState: OptionOwnerState<OptionValue> = {
-      ...props,
-      disabled,
-      highlighted,
-      index,
-      selected,
-    };
+      const classes = useUtilityClasses(ownerState);
 
-    const classes = useUtilityClasses(ownerState);
+      const rootProps = useSlotProps({
+        getSlotProps: getRootProps,
+        elementType: Root,
+        externalSlotProps: slotProps.root,
+        externalForwardedProps: other,
+        className: classes.root,
+        ownerState,
+      });
 
-    const rootProps = useSlotProps({
-      getSlotProps: getRootProps,
-      elementType: Root,
-      externalSlotProps: slotProps.root,
-      externalForwardedProps: other,
-      className: classes.root,
-      ownerState,
-    });
-
-    return <Root {...rootProps}>{children}</Root>;
-  }),
-);
-
-type WrapperComponentProps<Wrapped> = Omit<Wrapped, 'highlighted' | 'selected' | 'dispatch'>;
-
-export function unwrapOptionContext<
-  OptionValue,
-  WrappedComponentProps extends { value: OptionValue },
->(
-  Component: React.ComponentType<WrappedComponentProps>,
-): React.ComponentType<WrapperComponentProps<WrappedComponentProps>> {
-  const OptionWrapper = React.forwardRef(function OptionWrapper<
-    RootComponentType extends React.ElementType,
-  >(
-    props: OptionProps<OptionValue, RootComponentType>,
-    forwardedRef: React.ForwardedRef<Element>,
-  ): React.ReactElement {
-    const listContext = React.useContext(
-      ListContext as React.Context<ListContextValue<OptionValue>>,
-    );
-    if (!listContext) {
-      throw new Error('Option: ListContext was not found.');
-    }
-
-    const { value } = props;
-
-    const { getItemState, dispatch } = listContext;
-    const { highlighted, selected } = getItemState(value);
-
-    return (
-      <Component
-        {...props}
-        highlighted={highlighted}
-        selected={selected}
-        dispatch={dispatch}
-        ref={forwardedRef}
-      />
-    );
-  }) as React.FC<WrapperComponentProps<WrappedComponentProps>>;
-
-  return OptionWrapper;
-}
-
-const Option = unwrapOptionContext(InnerOption) as OptionType;
+      return <Root {...rootProps}>{children}</Root>;
+    }),
+  ),
+) as OptionType;
 
 Option.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -177,15 +139,4 @@ Option.propTypes /* remove-proptypes */ = {
   value: PropTypes.any.isRequired,
 } as any;
 
-/**
- * An unstyled option to be used within a Select.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base-ui/react-select/)
- *
- * API:
- *
- * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
- */
 export { Option };

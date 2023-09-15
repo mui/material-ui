@@ -10,11 +10,20 @@ export interface SelectOption<Value> {
 
 export interface UseOptionParameters<Value> {
   disabled: boolean;
+  /**
+   * @ignore
+   */
   dispatch: React.Dispatch<ListAction<Value>>;
+  /**
+   * @ignore
+   */
   highlighted: boolean;
   id?: string;
   label: string | React.ReactNode;
   rootRef?: React.Ref<Element>;
+  /**
+   * @ignore
+   */
   selected: boolean;
   value: Value;
 }

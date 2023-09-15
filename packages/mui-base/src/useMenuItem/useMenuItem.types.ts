@@ -23,8 +23,17 @@ export type UseMenuItemRootSlotProps<ExternalProps = {}> = ExternalProps &
 
 export interface UseMenuItemParameters {
   disabled?: boolean;
+  /**
+   * @ignore
+   */
   dispatch: React.Dispatch<ListAction<string>>;
+  /**
+   * @ignore
+   */
   focusable: boolean;
+  /**
+   * @ignore
+   */
   highlighted: boolean;
   id?: string;
   label?: string;

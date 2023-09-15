@@ -3,17 +3,26 @@ import { UseButtonRootSlotProps } from '../useButton';
 import { ListAction } from '../useList';
 
 export interface UseTabParameters {
+  /**
+   * @ignore
+   */
   dispatch: React.Dispatch<ListAction<string | number>>;
   /**
    * If `true`, the tab will be disabled.
    */
   disabled?: boolean;
+  /**
+   * @ignore
+   */
   focusable: boolean;
   /**
    * The id of the tab.
    * If not provided, it will be automatically generated.
    */
   id?: string;
+  /**
+   * @ignore
+   */
   highlighted: boolean;
   /**
    * If `true`, the tab will be disabled.
@@ -27,6 +36,9 @@ export interface UseTabParameters {
    * Ref to the root slot's DOM element.
    */
   rootRef?: React.Ref<Element>;
+  /**
+   * @ignore
+   */
   selected: boolean;
   /**
    * The value of the tab.
