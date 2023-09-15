@@ -309,6 +309,7 @@ function ColorInversionDemo() {
         <Box
           sx={{
             p: 2,
+            minWidth: 300,
             borderRadius: '0.5rem',
             position: 'absolute',
             left: '50%',
@@ -321,7 +322,10 @@ function ColorInversionDemo() {
           <HighlightedCode
             copyButtonHidden
             component={MarkdownElement}
-            code={`<Card variant="solid" color="primary">`}
+            code={`<Card
+  variant="solid"
+  color="primary"
+>`}
             language="jsx"
           />
         </Box>
@@ -346,6 +350,7 @@ function ColorInversionDemo() {
         <Box
           sx={{
             p: 2,
+            minWidth: 300,
             borderRadius: '0.5rem',
             position: 'absolute',
             left: '50%',
@@ -358,7 +363,10 @@ function ColorInversionDemo() {
           <HighlightedCode
             copyButtonHidden
             component={MarkdownElement}
-            code={`<Card variant="solid" color="primary" invertedColors>`}
+            code={`<Card
+  variant="solid"
+  color="primary" 
+  invertedColors>`}
             language="jsx"
           />
         </Box>
