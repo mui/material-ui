@@ -1,5 +1,5 @@
 {
-  "name": "@mui/zero-vite-plugin",
+  "name": "@mui/zero-next-plugin",
   "version": "0.0.1-alpha.3",
   "private": true,
   "author": "MUI Team",
@@ -13,7 +13,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/zero-vite-plugin"
+    "directory": "packages/zero-next-plugin"
   },
   "license": "MIT",
   "bugs": {
@@ -40,17 +40,19 @@
   },
   "dependencies": {
     "@babel/core": "^7.22.17",
-    "@linaria/vite": "^4.5.4",
-    "@mui/zero-tag-processor": "0.0.1-alpha.3"
+    "@babel/plugin-syntax-jsx": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.15",
+    "@linaria/babel-preset": "^4.5.4",
+    "@mui/zero-tag-processor": "0.0.1-alpha.3",
+    "file-system-cache": "2.0.2"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.1",
-    "@types/chai": "^4.3.5",
-    "chai": "^4.3.8",
-    "vite": "^4.4.9"
+    "@types/loader-utils": "^2.0.3",
+    "next": "^13.4.19"
   },
   "peerDependencies": {
-    "vite": "^4.0.0"
+    "next": ">=12.0.0 <14.0.0"
   },
   "sideEffects": false,
   "publishConfig": {

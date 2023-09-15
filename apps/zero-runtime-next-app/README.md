@@ -1,17 +1,17 @@
-# Vite App
+# Next App
 
 A sample vite application to test the working of zero runtime library.
 This project is not part of the workspace yet.
 
 ## How to run
 
-You can either run `yarn release:build` command to build all the packages, or you need to build, the the minimum -
+You can either `yarn build` command to build all the packages, or you need to build, the the minimum -
 
 1. `@mui/zero-runtime`
 2. `@mui/zero-tag-processor`
-3. `@mui/zero-vite-plugin`
+3. `@mui/zero-next-plugin`
 
-Make sure you have also run `yarn release:build` at least once because we also use `@mui/material` and `@mui/system` packages. On subsequent runs, you can only build the above packages using -
+Make sure you have also run `yarn build` at least once because we also use `@mui/material` and `@mui/system` packages. On subsequent runs, you can only build the above packages using -
 
 ```bash
 yarn build
