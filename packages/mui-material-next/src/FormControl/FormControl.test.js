@@ -28,6 +28,12 @@ describe('<FormControl />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiFormControl',
     testVariantProps: { margin: 'dense' },
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithElement: 'fieldset',
+      },
+    },
     skip: ['componentProp', 'componentsProp'],
   }));
 

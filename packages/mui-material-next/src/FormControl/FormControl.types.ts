@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { FormControlOwnProps as BaseFormControlOwnProps } from '@mui/base/FormControl';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps, Simplify } from '@mui/types';
 import { Theme } from '../styles';
 import { FormControlClasses } from './formControlClasses';
 
@@ -86,5 +86,6 @@ type MaterialYouOwnerStateKeys =
   | 'hiddenLabel'
   | 'variant';
 
-export type FormControlOwnerState = Required<Pick<FormControlOwnProps, MaterialYouOwnerStateKeys>> &
-  FormControlProps;
+export type FormControlOwnerState = Simplify<
+  Required<Pick<FormControlOwnProps, MaterialYouOwnerStateKeys>> & FormControlProps
+>;

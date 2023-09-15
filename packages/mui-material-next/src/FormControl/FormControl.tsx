@@ -1,8 +1,8 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useSlotProps } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
@@ -83,13 +83,12 @@ const FormControlRoot = styled('div', {
  */
 const FormControl = React.forwardRef(function FormControl<
   RootComponentType extends React.ElementType = FormControlTypeMap['defaultComponent'],
->(inProps: FormControlProps<RootComponentType>, ref: React.ForwardedRef<any>) {
+>(inProps: FormControlProps<RootComponentType>, forwardedRef: React.ForwardedRef<any>) {
   const props = useThemeProps({ props: inProps, name: 'MuiFormControl' });
   const {
     children,
     className,
     color = 'primary',
-    // component = 'div',
     disabled = false,
     error = false,
     focused: visuallyFocused,
@@ -98,26 +97,11 @@ const FormControl = React.forwardRef(function FormControl<
     margin = 'none',
     required = false,
     size = 'medium',
+    slotProps = {},
+    slots = {},
     variant = 'outlined',
     ...other
   } = props;
-
-  const ownerState: FormControlOwnerState = {
-    ...props,
-    classes: props.classes ?? {},
-    color,
-    // component,
-    disabled,
-    error,
-    fullWidth,
-    hiddenLabel,
-    margin,
-    required,
-    size,
-    variant,
-  };
-
-  const classes = useUtilityClasses(ownerState);
 
   const [adornedStart, setAdornedStart] = React.useState(() => {
     // We need to iterate through the children and find the Input in order
@@ -194,6 +178,24 @@ const FormControl = React.forwardRef(function FormControl<
     };
   }
 
+  const ownerState = {
+    ...props,
+    classes: props.classes ?? {},
+    color,
+    disabled,
+    error,
+    filled,
+    focused,
+    fullWidth,
+    hiddenLabel,
+    margin,
+    required,
+    size,
+    variant,
+  };
+
+  const classes = useUtilityClasses(ownerState);
+
   const childContext = React.useMemo(() => {
     return {
       adornedStart,
@@ -237,16 +239,21 @@ const FormControl = React.forwardRef(function FormControl<
     variant,
   ]);
 
+  const Root = slots.root || FormControlRoot;
+  const rootProps = useSlotProps({
+    elementType: Root,
+    externalSlotProps: slotProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref: forwardedRef,
+    },
+    ownerState,
+    className: [classes.root, className],
+  });
+
   return (
     <FormControlContext.Provider value={childContext}>
-      <FormControlRoot
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        {...other}
-      >
-        {children}
-      </FormControlRoot>
+      <Root {...rootProps}>{children}</Root>
     </FormControlContext.Provider>
   );
 }) as OverridableComponent<FormControlTypeMap>;
