@@ -15,7 +15,7 @@ By the end, you should understand how to:
 
 ## Interactive demo
 
-Here's what the final product looks like—click on the **<>** icon underneath the demo to see the full source code:
+Here's what the final product looks like—click on the "Show code" button underneath the demo to see the full source code:
 
 {{"demo": "LoginFinal.js"}}
 

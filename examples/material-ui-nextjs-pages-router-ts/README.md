@@ -37,8 +37,8 @@ It includes `@mui/material` and its peer dependencies, including [Emotion](https
 
 ## The link component
 
-The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-pages-router-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/pages/api-reference/components/link) with MUI.
-More information [in the documentation](https://mui.com/material-ui/guides/routing/#next-js).
+The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-pages-router-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/pages/api-reference/components/link) with Material UI.
+More information [in the documentation](https://mui.com/material-ui/guides/routing/#next-js-pages-router).
 
 ## What's next?
 

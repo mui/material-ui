@@ -369,7 +369,9 @@ export interface UseAutocompleteReturnValue<
    * Resolver for the input element's props.
    * @returns props that should be spread on the input element
    */
-  getInputProps: () => React.InputHTMLAttributes<HTMLInputElement>;
+  getInputProps: () => React.InputHTMLAttributes<HTMLInputElement> & {
+    ref: React.Ref<HTMLInputElement>;
+  };
   /**
    * Resolver for the input label element's props.
    * @returns props that should be spread on the input label element

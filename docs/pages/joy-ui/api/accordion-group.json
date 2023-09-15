@@ -62,7 +62,24 @@
       "class": ".MuiAccordionGroup-root"
     }
   ],
-  "classes": { "classes": ["sizeLg", "sizeMd", "sizeSm"], "globalClasses": {} },
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAccordionGroup",

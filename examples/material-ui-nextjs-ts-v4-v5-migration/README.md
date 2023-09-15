@@ -22,9 +22,9 @@ or:
 
 <!-- #default-branch-switch -->
 
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration)
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-nextjs-ts-v4-v5-migration)
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration)
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/material-ui-nextjs-ts-v4-v5-migration)
 
 ## The idea behind the example
 
@@ -37,6 +37,6 @@ It demonstrates what results after handling v5's breaking changes to the [theme]
 
 ## The Link component
 
-Next.js has [a custom Link component](https://nextjs.org/docs/pages/api-reference/components/link).
+Next.js Pages Router has [a custom Link component](https://nextjs.org/docs/pages/api-reference/components/link).
 The example folder provides adapters for usage with Material UI.
-You can find more information [in the documentation](https://mui.com/material-ui/guides/routing/#next-js).
+You can find more information [in the documentation](https://mui.com/material-ui/guides/routing/#next-js-pages-router).

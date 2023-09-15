@@ -162,13 +162,9 @@ async function run() {
     const packageData = await createPackageFile();
 
     await Promise.all(
-      [
-        // use enhanced readme from workspace root for `@mui/material`
-        packageData.name === '@mui/material' ? '../../README.md' : './README.md',
-        '../../CHANGELOG.md',
-        '../../LICENSE',
-        ...extraFiles,
-      ].map((file) => includeFileInBuild(file)),
+      ['./README.md', '../../CHANGELOG.md', '../../LICENSE', ...extraFiles].map((file) =>
+        includeFileInBuild(file),
+      ),
     );
 
     await addLicense(packageData);
