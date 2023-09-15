@@ -161,6 +161,7 @@ describe('Joy <Button />', () => {
 
       expect(button).toHaveComputedStyle({
         ...(theme.variants.solidDisabled.primary as Record<string, string>),
+        iconColor: theme.variants.solidDisabled.primary['--Icon-color'],
         color: 'rgba(0, 0, 0, 0)',
         backgroundColor: 'rgb(240, 244, 248)',
       });
