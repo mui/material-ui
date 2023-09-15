@@ -1,6 +1,7 @@
 import * as React from 'react';
 import colors from '@mui/joy/colors';
 import { extendTheme, THEME_ID } from '@mui/joy/styles';
+import Link from 'docs/src/modules/components/Link';
 import Box from '@mui/joy/Box';
 import ToggleButtonGroup, { ToggleButtonGroupStaticProps } from '@mui/joy/ToggleButtonGroup';
 import Button from '@mui/joy/Button';
@@ -24,6 +25,7 @@ import ProfileDashboardApp from 'docs/data/joy/getting-started/templates/profile
 import MessagesApp from 'docs/data/joy/getting-started/templates/messages/App';
 import SignInApp from 'docs/data/joy/getting-started/templates/sign-in-side/App';
 import RentalDashboardApp from 'docs/data/joy/getting-started/templates/rental-dashboard/App';
+import ROUTES from 'docs/src/route';
 
 const joyColors = {
   blue: {
@@ -534,10 +536,10 @@ export default function ThemableTemplate() {
           </TabList>
           <ListDivider sx={{ mx: 0 }} />
           <ListItem sx={{ px: 0.5 }}>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Button
-              component="a"
-              href="#"
+              component={Link}
+              href={ROUTES.joyTemplates}
+              noLinkStyle
               size="sm"
               variant="plain"
               endDecorator={<ArrowForwardIcon />}

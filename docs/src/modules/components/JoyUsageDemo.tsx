@@ -248,7 +248,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
           background: `rgba(${theme.vars.palette.primary.mainChannel} / 0.02)`,
           backdropFilter: 'blur(8px)',
-          minWidth: 'max(280px, 36%)',
+          minWidth: 'max(240px, 36%)',
         })}
       >
         <Box
@@ -388,6 +388,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                               value={value}
                               disableIcon
                               overlay
+                              sx={{ fontSize: 'xs' }}
                             />
                           </Chip>
                         );

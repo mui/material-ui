@@ -17,6 +17,7 @@ const ROUTES = {
   baseQuickstart: '/base-ui/getting-started/quickstart/',
   materialDocs: '/material-ui/getting-started/',
   joyDocs: '/joy-ui/getting-started/',
+  joyTemplates: '/joy-ui/getting-started/templates/',
   joyTutorial: '/joy-ui/getting-started/tutorial/',
   systemDocs: '/system/getting-started/',
   materialIcons: '/material-ui/material-icons/',
