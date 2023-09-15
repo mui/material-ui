@@ -15,7 +15,7 @@ export { CORE_CUSTOMERS, ADVANCED_CUSTOMERS, DESIGNKITS_CUSTOMERS, TEMPLATES_CUS
 
 const CompaniesGrid = dynamic(() => import('./CompaniesGrid'));
 
-function References({
+export default function References({
   companies,
 }: {
   companies:
@@ -50,5 +50,3 @@ function References({
     </Section>
   );
 }
-
-export default References;
