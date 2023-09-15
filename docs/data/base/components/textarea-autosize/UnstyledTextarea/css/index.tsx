@@ -71,9 +71,9 @@ function Styles() {
       }
 
      .CustomTextarea:focus {
+        outline: 0;
         border-color: ${cyan[400]};
-        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
-        outline: none;
+        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};        
       }
 
       // firefox

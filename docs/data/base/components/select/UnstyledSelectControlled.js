@@ -93,6 +93,7 @@ const StyledButton = styled('button')(
   }
 
   &.${selectClasses.focusVisible} {
+    outline: 0;
     border-color: ${blue[400]};
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }

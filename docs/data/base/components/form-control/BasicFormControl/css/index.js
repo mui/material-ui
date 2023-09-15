@@ -134,6 +134,7 @@ function Styles() {
         border-color: ${cyan[400]};
       }
       .CustomInput .${inputClasses.input}:focus {
+        outline: 0;
         border-color: ${cyan[400]};
         box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
       }
