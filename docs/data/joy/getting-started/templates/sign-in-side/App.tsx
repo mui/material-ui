@@ -157,7 +157,10 @@ export default function JoySignInSideTemplate() {
               <Stack gap={1}>
                 <Typography level="h3">Sign in</Typography>
                 <Typography level="body-sm">
-                  New to company? <Link level="title-sm">Sign up!</Link>
+                  New to company?
+                  <Link href="#replace-with-a-link" level="title-sm">
+                    Sign up!
+                  </Link>
                 </Typography>
               </Stack>
 
