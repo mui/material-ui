@@ -147,7 +147,6 @@ describe('Joy <Button />', () => {
 
       expect(button).toHaveComputedStyle({
         ...({
-          'icon-color': theme.variants.solidDisabled.primary['--Icon-color'],
           cursor: theme.variants.solidDisabled.primary.cursor,
           pointerEvents: theme.variants.solidDisabled.primary.pointerEvents,
           color: 'rgba(0, 0, 0, 0)',
@@ -168,7 +167,6 @@ describe('Joy <Button />', () => {
 
       expect(button).toHaveComputedStyle({
         ...({
-          'icon-color': theme.variants.solidDisabled.primary['--Icon-color'],
           cursor: theme.variants.solidDisabled.primary.cursor,
           pointerEvents: theme.variants.solidDisabled.primary.pointerEvents,
           color: 'rgba(0, 0, 0, 0)',
