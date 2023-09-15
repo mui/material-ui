@@ -9,6 +9,7 @@ import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
 import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
+import Link from 'docs/src/modules/components/Link';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Item, { Group } from 'docs/src/components/action/Item';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -22,6 +23,7 @@ import SelectUsage from 'docs/data/joy/components/select/SelectUsage';
 import ButtonUsage from 'docs/data/joy/components/button/ButtonUsage';
 import AlertUsage from 'docs/data/joy/components/alert/AlertUsage';
 import Frame from 'docs/src/components/action/Frame';
+import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Tabs', 'Radio', 'Menu', 'Input', 'Select', 'Slider', 'Button', 'Alert'] as const;
 const icons = {
@@ -58,7 +60,7 @@ export default function JoyUIComponents() {
                 <Item icon={React.cloneElement(icons[name])} title={name} />
               </Highlighter>
             ))}
-            <More />
+            <More component={Link} href={ROUTES.joyComponents} noLinkStyle />
           </Group>
         </Grid>
         <Grid xs={12} md={6}>

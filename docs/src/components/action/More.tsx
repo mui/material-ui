@@ -5,7 +5,7 @@ import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
-export default (function More(props: ButtonBaseProps) {
+export default (function More<P>(props: ButtonBaseProps & P) {
   const ref = React.useRef<null | HTMLButtonElement>(null);
   return (
     <ButtonBase

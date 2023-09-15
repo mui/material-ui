@@ -16,6 +16,7 @@ const ROUTES = {
   baseComponents: '/base-ui/all-components/',
   baseQuickstart: '/base-ui/getting-started/quickstart/',
   materialDocs: '/material-ui/getting-started/',
+  joyComponents: '/joy-ui/react-autocomplete/',
   joyDocs: '/joy-ui/getting-started/',
   joyTemplates: '/joy-ui/getting-started/templates/',
   joyTutorial: '/joy-ui/getting-started/tutorial/',
