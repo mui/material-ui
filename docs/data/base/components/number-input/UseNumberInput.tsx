@@ -109,10 +109,9 @@ const StyledInputRoot: React.ElementType = styled('div')(
     box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
 
     &.focused {
+      outline: 0;
       border-color: ${blue[400]};
-      box-shadow:
-        inset 0 0 0 1px ${blue[400]},
-        0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+      box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
 
       & button:hover {
         background: ${blue[400]};

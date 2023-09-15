@@ -129,12 +129,13 @@ function Styles() {
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[800] : grey[300]};
       }
-           .CustomInput .${inputClasses.input}:hover {
+      .CustomInput .${inputClasses.input}:hover {
         background: ${isDarkMode ? '' : grey[100]};
         border-color: ${isDarkMode ? grey[700] : grey[400]};
       }
-           .CustomInput .${inputClasses.input}:focus {
-        outline: 3px solid ${isDarkMode ? cyan[600] : cyan[100]};
+      .CustomInput .${inputClasses.input}:focus {
+        border-color: ${cyan[400]};
+        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
       }
       `}
     </style>

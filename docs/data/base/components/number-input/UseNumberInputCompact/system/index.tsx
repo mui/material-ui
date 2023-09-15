@@ -146,8 +146,8 @@ const StyledStepperButton = styled('button')(
 
   &:focus-visible {
     outline: 0;
-    background: ${blue[500]};
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[50]};
+    border-color: ${blue[400]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
   &.increment {

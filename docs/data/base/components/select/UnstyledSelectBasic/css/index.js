@@ -95,7 +95,7 @@ function Styles() {
 
         &.${selectClasses.focusVisible} {
           border-color: ${cyan[400]};
-          outline: 3px solid ${isDarkMode ? cyan[500] : cyan[200]};
+          box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
         }
 
         &.${selectClasses.expanded} {
