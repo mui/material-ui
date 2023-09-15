@@ -28,9 +28,9 @@ function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
     value: valueProp,
     defaultValue,
     onChange,
-    orientation,
-    direction,
-    selectionFollowsFocus,
+    orientation = 'horizontal',
+    direction = 'ltr',
+    selectionFollowsFocus = false,
   } = parameters;
 
   const [value, setValue] = useControlled({
