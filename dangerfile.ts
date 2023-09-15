@@ -1,4 +1,4 @@
-// Inspire by React dangerfile
+// Inspired by React dangerfile
 // danger has to be the first thing required!
 import { danger, markdown } from 'danger';
 import { exec } from 'child_process';
@@ -53,16 +53,6 @@ function createComparisonFilter(parsedThreshold: number, gzipThreshold: number) 
       Math.abs(snapshot.gzip.absoluteDiff) >= gzipThreshold
     );
   };
-}
-
-/**
- * Checks if the bundle is of a package e.b. `@mui/material` but not
- * `@mui/material/Paper`.
- * @param {[string, any]} comparisonEntry
- */
-function isPackageComparison(comparisonEntry: [string, any]) {
-  const [bundleKey] = comparisonEntry;
-  return !/^@[\w-]+\/[\w-]+\/.+$/.test(bundleKey);
 }
 
 /**
@@ -160,12 +150,25 @@ async function reportBundleSize() {
   if (anyResultsChanges.length > 0) {
     const importantChanges = mainResults
       .filter(createComparisonFilter(parsedSizeChangeThreshold, gzipSizeChangeThreshold))
-      .filter(isPackageComparison)
+      .sort(([, a], [, b]) => {
+        const aDiff = Math.abs(a.parsed.absoluteDiff) + Math.abs(a.gzip.absoluteDiff);
+        const bDiff = Math.abs(b.parsed.absoluteDiff) + Math.abs(b.gzip.absoluteDiff);
+        return bDiff - aDiff;
+      })
       .map(generateEmphasizedChange);
 
     // have to guard against empty strings
     if (importantChanges.length > 0) {
-      markdown(importantChanges.join('\n'));
+      const maxVisible = 20;
+
+      const lines = importantChanges.slice(0, maxVisible);
+
+      const hiddenChanges = Math.max(0, importantChanges.length - maxVisible);
+      if (hiddenChanges > 0) {
+        lines.push(`and [${hiddenChanges} more changes](${detailedComparisonToolpadUrl})`);
+      }
+
+      markdown(lines.join('\n'));
     }
 
     const details = `## Bundle size report
