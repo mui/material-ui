@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 
 export default function DifferentChildren() {
-  const someCondition = 1 === 2;
+  const falsyCondition = 1 === 2;
 
   return (
     <Stack spacing={2}>
@@ -42,7 +42,7 @@ export default function DifferentChildren() {
       <ButtonGroup>
         <Button>One</Button>
         <Button>Two</Button>
-        {someCondition ? <Button>Three</Button> : undefined}
+        {falsyCondition ? <Button>Three</Button> : undefined}
       </ButtonGroup>
     </Stack>
   );
