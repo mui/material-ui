@@ -163,9 +163,9 @@ async function reportBundleSize() {
 
       const lines = importantChanges.slice(0, maxVisible);
 
-      const hiddenChanges = Math.max(0, importantChanges.length - maxVisible);
-      if (hiddenChanges > 0) {
-        lines.push(`and [${hiddenChanges} more changes](${detailedComparisonToolpadUrl})`);
+      const nrOfHiddenChanges = Math.max(0, importantChanges.length - maxVisible);
+      if (nrOfHiddenChanges > 0) {
+        lines.push(`and [${nrOfHiddenChanges} more changes](${detailedComparisonToolpadUrl})`);
       }
 
       markdown(lines.join('\n'));
