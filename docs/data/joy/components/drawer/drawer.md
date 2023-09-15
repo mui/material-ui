@@ -7,18 +7,18 @@ githubLabel: 'component: drawer'
 
 # Drawer
 
-<p class="description">Navigation drawers provide quick access to other destinations in your app without removing the user out of context.</p>
+<p class="description">Navigation drawers provide quick access to other app areas without removing the user out of context.</p>
 
 ## Introduction
+
+The Drawer component is commonly used as a type of menu on desktop and as a dialog on mobile (similar to [Apple's sheets](https://developer.apple.com/design/human-interface-guidelines/sheets)).
 
 {{"demo": "DrawerUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Basic
 
-The navigation drawers can toggle open or closed. Closed by default, the drawer opens temporarily above all other content until a section is selected.
-
-The Drawer can be cancelled by clicking the overlay or pressing the Esc key.
-It closes when an item is selected, handled by controlling the `open` prop.
+The Drawer can be closed by clicking on the overlay or pressing the <kbd>Esc</kbd> key.
+It will also close if an item inside of it is selected, which can be controlled by the `open` prop.
 
 {{"demo": "DrawerBasic.js"}}
 
@@ -26,34 +26,34 @@ It closes when an item is selected, handled by controlling the `open` prop.
 
 ### Anchor
 
-You can use the `anchor` prop for specifying where the drawer should appear from.
+Use the anchor prop to specify where the drawer should appear from.
 
 {{"demo": "DrawerAnchor.js"}}
 
 ### Close button
 
-Use the ModalClose component to add a close button to the drawer.
+Use the Modal Close component to add a close button to the Drawer.
 
 {{"demo": "DrawerCloseButton.js"}}
 
 ### Size
 
-The `size` prop allows you to adjust the size of the drawer.
+Use the `size` prop to adjust the Drawer's width.
 
 {{"demo": "DrawerSize.js"}}
 
 ### Transition
 
-Set these CSS variables to the `sx` prop to the transition of the drawer:
+Customize the Drawer's opening transition by using the CSS variables below inside the sx prop:
 
-- `--Drawer-transitionFunction`: the [transition function](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function), default is `ease`.
-- `--Drawer-transitionDuration`: the [duration of the transition](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration), default is `0.3s`.
+- `--Drawer-transitionFunction`: the [transition function](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function); default is `ease`.
+- `--Drawer-transitionDuration`: the [duration of the transition](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration); default is `0.3s`.
 
 {{"demo": "DrawerTransition.js"}}
 
 ### Scrollable content
 
-Use the DialogContent component to create a scrollable content inside the drawer.
+Use the Dialog Content component to create a scrollable container inside the Drawer.
 
 {{"demo": "DrawerScrollable.js"}}
 
@@ -61,10 +61,12 @@ Use the DialogContent component to create a scrollable content inside the drawer
 
 ### Mobile navigation
 
+A common use case for the Drawer is mobile menus.
+
 {{"demo": "DrawerMobileNavigation.js"}}
 
-### Filter drawer
+### Inset drawer
 
-To create an inset panel, set the background and padding of the Drawer's content slot and then create a full height wrapper using [Sheet](/joy-ui/react-sheet/) or Box component.
+To make the Drawer not glued to the edge of the viewport, creating an inset style, use a combination of background and padding values on the Drawer component and either a Box or [Sheet](/joy-ui/react-sheet/) to the full-height wrapper.
 
 {{"demo": "DrawerFilters.js"}}
