@@ -66,13 +66,13 @@ function Demo(props) {
   return (
     <React.Fragment>
       <ButtonGroup variant="outlined">
-        {['left', 'right', 'top', 'bottom'].map((anchor) => (
+        {['top', 'right', 'bottom', 'left'].map((anchor) => (
           <Button key={anchor} onClick={toggleDrawer(anchor, true)}>
             {anchor}
           </Button>
         ))}
       </ButtonGroup>
-      {['left', 'right', 'top', 'bottom'].map((anchor) => (
+      {['top', 'right', 'bottom', 'left'].map((anchor) => (
         <Drawer
           key={anchor}
           anchor={anchor}
@@ -109,10 +109,6 @@ export default function DrawerUsage() {
           knob: 'radio',
           defaultValue: 'md',
           options: ['sm', 'md', 'lg'],
-        },
-        {
-          propName: 'invertedColors',
-          defaultValue: true,
         },
       ]}
       renderDemo={(props) => <Demo {...props} />}
