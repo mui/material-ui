@@ -124,7 +124,7 @@ Place `getInitColorSchemeScript()` before the `<Main />` tag to prevent the dark
 
 ### Next.js Pages Router
 
-Add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/advanced-features/custom-document) file:
+Add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document) file:
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';
