@@ -6,7 +6,7 @@ import {
 } from '@mui/base/Unstable_NumberInput';
 import clsx from 'clsx';
 
-export default function NumberInputBasic() {
+export default function NumberInputIntroduction() {
   const [value, setValue] = React.useState<number | undefined>();
   return (
     <NumberInput
