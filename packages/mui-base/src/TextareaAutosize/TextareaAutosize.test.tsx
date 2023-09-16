@@ -17,9 +17,26 @@ function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;
 }
 
+// TODO: merge into a shared test helpers.
+// MUI X already have one under mui-x/test/utils/helperFn.ts
 function sleep(duration: number): Promise<void> {
-  return new Promise<void>((res) => {
-    setTimeout(res, duration);
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, duration);
+  });
+}
+
+async function raf() {
+  return new Promise<void>((resolve) => {
+    // Chrome and Safari have a bug where calling rAF once returns the current
+    // frame instead of the next frame, so we need to call a double rAF here.
+    // See crbug.com/675795 for more.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        resolve();
+      });
+    });
   });
 }
 
@@ -124,7 +141,13 @@ describe('<TextareaAutosize />', () => {
           <div>
             <TextareaAutosize
               ref={ref}
-              style={{ width: 150, padding: 0 }}
+              style={{
+                width: 150,
+                padding: 0,
+                fontSize: 14,
+                lineHeight: '15px',
+                border: '1px solid',
+              }}
               defaultValue="qdzqzd qzd qzd qzd qz dqz"
             />
           </div>
@@ -134,10 +157,11 @@ describe('<TextareaAutosize />', () => {
     const { container } = render(<App />);
     const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
     const button = screen.getByRole('button');
-    expect(input.style).to.have.property('height', '30px');
+    expect(parseInt(input.style.height, 10)).to.be.within(30, 32);
     fireEvent.click(button);
-    await sleep(10);
-    expect(input.style).to.have.property('height', '15px');
+    await raf();
+    await raf();
+    expect(parseInt(input.style.height, 10)).to.be.within(15, 17);
   });
 
   describe('layout', () => {
