@@ -320,7 +320,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         return;
       }
 
-      const listboxClientRect = (listboxRef.current as HTMLElement).getBoundingClientRect();
+      const listboxClientRect = listboxRef.current.getBoundingClientRect();
       const optionClientRect = optionRef.current.getBoundingClientRect();
 
       if (optionClientRect.top < listboxClientRect.top) {
