@@ -135,9 +135,11 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>...</Head>
-        <body>
+        <Head>
           {getInitColorSchemeScript()}
+          {/* ...other head tags */}
+        </Head>
+        <body>
           <Main />
           <NextScript />
         </body>

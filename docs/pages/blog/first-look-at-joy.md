@@ -96,7 +96,7 @@ The out-of-the-box CSS variables support allows every color scheme to be rendere
 What's more, it provides a function called `getInitColorSchemeScript()` that enables you to have perfect functioning dark mode in various React framworks, such as Next.js, Gatsby, and Remix.
 
 ```js
-// A Next.js example
+// A Next.js Pages Router example
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { getInitColorSchemeScript } from '@mui/joy/styles';
 
@@ -104,9 +104,11 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>...</Head>
-        <body>
+        <Head>
           {getInitColorSchemeScript()}
+          {/* ...other head tags */}
+        </Head>
+        <body>
           <Main />
           <NextScript />
         </body>

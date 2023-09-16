@@ -43,6 +43,8 @@ export default class MyDocument extends Document {
     return (
       <Html lang={userLanguage}>
         <Head>
+          {getMuiInitColorSchemeScript({ defaultMode: 'system' })}
+          {getJoyInitColorSchemeScript({ defaultMode: 'system' })}
           {/*
             manifest.json provides metadata used when your web app is added to the
             homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
@@ -166,8 +168,6 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          {getMuiInitColorSchemeScript({ defaultMode: 'system' })}
-          {getJoyInitColorSchemeScript({ defaultMode: 'system' })}
           <Main />
           <script
             // eslint-disable-next-line react/no-danger
