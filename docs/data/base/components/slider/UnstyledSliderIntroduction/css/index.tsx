@@ -7,19 +7,19 @@ export default function UnstyledSliderIntroduction() {
     <div style={{ width: 320 }}>
       <Slider
         slotProps={{
-          root: { className: 'CustomSlider' },
-          rail: { className: 'CustomSlider-rail' },
-          track: { className: 'CustomSlider-track' },
-          thumb: { className: 'CustomSlider-thumb' },
+          root: { className: 'BaseSlider' },
+          rail: { className: 'BaseSlider-rail' },
+          track: { className: 'BaseSlider-track' },
+          thumb: { className: 'BaseSlider-thumb' },
         }}
         defaultValue={50}
       />
       <Slider
         slotProps={{
-          root: { className: 'CustomSlider' },
-          rail: { className: 'CustomSlider-rail' },
-          track: { className: 'CustomSlider-track' },
-          thumb: { className: 'CustomSlider-thumb' },
+          root: { className: 'BaseSlider' },
+          rail: { className: 'BaseSlider-rail' },
+          track: { className: 'BaseSlider-track' },
+          thumb: { className: 'BaseSlider-thumb' },
         }}
         defaultValue={10}
         disabled
@@ -65,7 +65,7 @@ function Styles() {
   const isDarkMode = useIsDarkMode();
   return (
     <style>{`
-    .CustomSlider {
+    .BaseSlider {
       color: ${isDarkMode ? cyan[300] : cyan[500]};
       height: 6px;
       width: 100%;
@@ -77,18 +77,18 @@ function Styles() {
       -webkit-tap-highlight-color: transparent;
     }
 
-    .CustomSlider:hover {
+    .BaseSlider:hover {
       opacity: 1;
     }
 
-    .CustomSlider.${sliderClasses.disabled} { 
+    .BaseSlider.${sliderClasses.disabled} { 
       pointer-events: none;
       cursor: default;
       color: ${isDarkMode ? grey[600] : grey[300]};
       opacity: 0.5;
     }
 
-    .CustomSlider-rail {
+    .BaseSlider-rail {
       display: block;
       position: absolute;
       width: 100%;
@@ -98,7 +98,7 @@ function Styles() {
       opacity: 0.4;
     }
 
-    .CustomSlider-track {
+    .BaseSlider-track {
       display: block;
       position: absolute;
       height: 4px;
@@ -106,7 +106,7 @@ function Styles() {
       background-color: currentColor;
     }
 
-    .CustomSlider-thumb {
+    .BaseSlider-thumb {
       position: absolute;
       width: 16px;
       height: 16px;
@@ -119,11 +119,11 @@ function Styles() {
       background-color: #fff;
     }
 
-    .CustomSlider-thumb:hover,&.${sliderClasses.focusVisible} {
+    .BaseSlider-thumb:hover,&.${sliderClasses.focusVisible} {
       box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? cyan[300] : cyan[400], 0.15)};
     }
 
-    .CustomSlider-thumb.${sliderClasses.active} {
+    .BaseSlider-thumb.${sliderClasses.active} {
       box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? cyan[300] : cyan[200], 0.3)};
     }
     `}</style>
