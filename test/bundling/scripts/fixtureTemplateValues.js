@@ -247,8 +247,8 @@ import { Tooltip as Tooltip_core } from '@mui/material';
 import Tooltip_core__pathImport from '@mui/material/Tooltip';
 import { Typography as Typography_core } from '@mui/material';
 import Typography_core__pathImport from '@mui/material/Typography';
-import { Unstable_TrapFocus as Unstable_TrapFocus_core } from '@mui/material';
-import Unstable_TrapFocus_core__pathImport from '@mui/material/Unstable_TrapFocus';
+import { Unstable_FocusTrap as Unstable_FocusTrap_core } from '@mui/material';
+import Unstable_FocusTrap_core__pathImport from '@mui/material/Unstable_FocusTrap';
 import { useAutocomplete as useAutocomplete_core } from '@mui/material';
 import useAutocomplete_core__pathImport from '@mui/material/useAutocomplete';
 import { useMediaQuery as useMediaQuery_core } from '@mui/material';
@@ -1240,12 +1240,12 @@ console.assert(
   'Typography path import is not consumable.',
 );
 console.assert(
-  ReactIs.isValidElementType(Unstable_TrapFocus_core),
-  'Unstable_TrapFocus named import is not consumable.',
+  ReactIs.isValidElementType(Unstable_FocusTrap_core),
+  'Unstable_FocusTrap named import is not consumable.',
 );
 console.assert(
-  ReactIs.isValidElementType(Unstable_TrapFocus_core__pathImport),
-  'Unstable_TrapFocus path import is not consumable.',
+  ReactIs.isValidElementType(Unstable_FocusTrap_core__pathImport),
+  'Unstable_FocusTrap path import is not consumable.',
 );
 console.assert(
   useAutocomplete_core !== undefined,
