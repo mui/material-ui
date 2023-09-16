@@ -103,6 +103,43 @@ describe('<TextareaAutosize />', () => {
     });
   });
 
+  // For https://github.com/mui/material-ui/pull/37135
+  it('should update height without delay', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // It depends on ResizeObserver
+      this.skip();
+    }
+
+    function App() {
+      const ref = React.useRef<HTMLTextAreaElement>(null);
+      return (
+        <div>
+          <button
+            onClick={() => {
+              ref.current!.style.width = '250px';
+            }}
+          >
+            change
+          </button>
+          <div>
+            <TextareaAutosize
+              ref={ref}
+              style={{ width: 150, padding: 0 }}
+              defaultValue="qdzqzd qzd qzd qzd qz dqz"
+            />
+          </div>
+        </div>
+      );
+    }
+    const { container } = render(<App />);
+    const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
+    const button = screen.getByRole('button');
+    expect(input.style).to.have.property('height', '30px');
+    fireEvent.click(button);
+    await sleep(10);
+    expect(input.style).to.have.property('height', '15px');
+  });
+
   describe('layout', () => {
     const getComputedStyleStub = new Map<Element, Partial<CSSStyleDeclaration>>();
     function setLayout(

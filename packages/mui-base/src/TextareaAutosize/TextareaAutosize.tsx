@@ -188,6 +188,17 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       renders.current = 0;
       syncHeightWithFlushSync();
     };
+    // Workaround a "ResizeObserver loop completed with undelivered notifications" error
+    // in test.
+    // Note that we might need to use this logic in production per https://github.com/WICG/resize-observer/issues/38
+    // Also see https://github.com/mui/mui-x/issues/8733
+    let rAF: any;
+    const rAFHandleResize = () => {
+      cancelAnimationFrame(rAF);
+      rAF = requestAnimationFrame(() => {
+        handleResize();
+      });
+    };
     const debounceHandleResize = debounce(handleResize);
     const input = inputRef.current!;
     const containerWindow = ownerWindow(input);
@@ -197,12 +208,15 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     let resizeObserver: ResizeObserver;
 
     if (typeof ResizeObserver !== 'undefined') {
-      resizeObserver = new ResizeObserver(handleResize);
+      resizeObserver = new ResizeObserver(
+        process.env.NODE_ENV === 'test' ? rAFHandleResize : handleResize,
+      );
       resizeObserver.observe(input);
     }
 
     return () => {
       debounceHandleResize.clear();
+      cancelAnimationFrame(rAF);
       containerWindow.removeEventListener('resize', debounceHandleResize);
       if (resizeObserver) {
         resizeObserver.disconnect();
