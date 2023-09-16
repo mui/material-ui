@@ -17,9 +17,9 @@ function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;
 }
 
-function sleep(time: number): Promise<void> {
+function sleep(duration: number): Promise<void> {
   return new Promise<void>((res) => {
-    setTimeout(res, time);
+    setTimeout(res, duration);
   });
 }
 
