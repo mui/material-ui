@@ -19,17 +19,17 @@ import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelCon
 
 const planInfo = {
   community: {
-    iconName: 'x-plan-community',
+    iconName: 'pricing/x-plan-community',
     title: 'Community',
     description: 'Get started with the industry-standard React UI library, MIT-licensed.',
   },
   pro: {
-    iconName: 'x-plan-pro',
+    iconName: 'pricing/x-plan-pro',
     title: 'Pro',
     description: 'Best for professional developers building enterprise or data-rich applications.',
   },
   premium: {
-    iconName: 'x-plan-premium',
+    iconName: 'pricing/x-plan-premium',
     title: 'Premium',
     description:
       'The most advanced features for data-rich applications, as well as the highest priority for support.',
@@ -57,7 +57,7 @@ export function PlanName({
         fontWeight="bold"
         sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', pr: 0.5 }}
       >
-        <IconImage name={iconName} loading="eager" sx={{ mr: 1 }} /> {title}
+        <IconImage name={iconName} mode="" loading="eager" sx={{ mr: 1 }} /> {title}
       </Typography>
       {!disableDescription && (
         <Typography
@@ -633,9 +633,9 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
 };
 
-const yes = <IconImage name="yes" title="Included" />;
-const pending = <IconImage name="time" title="Work in progress" />;
-const no = <IconImage name="no" title="Not included" />;
+const yes = <IconImage name="pricing/yes" title="Included" />;
+const pending = <IconImage name="pricing/time" title="Work in progress" />;
+const no = <IconImage name="pricing/no" title="Not included" />;
 
 const communityData: Record<string, React.ReactNode> = {
   // MUI Core
