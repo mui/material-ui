@@ -71,15 +71,16 @@ export default class DemoErrorBoundary extends React.Component {
             This demo had a runtime error!
           </Typography>
           <Typography>
-            We would appreciate it if you{' '}
+            {'We would appreciate it if you '}
             <Link href={issueLink} rel="noreferrer" target="_blank">
               report this error
-            </Link>{' '}
-            directly in our issue tracker. You will be provided with a prefilled description that
-            includes valuable information about this error.
+            </Link>
+            {
+              ' directly in our issue tracker with the steps you took to trigger it. The "report this error" link prefills the issue description with valuable information.'
+            }
           </Typography>
           <pre style={{ whiteSpace: 'pre-wrap' }}>{error.toString()}</pre>
-          <Button color="secondary" onClick={onResetDemoClick} variant="text">
+          <Button onClick={onResetDemoClick} variant="text">
             {t('resetDemo')}
           </Button>
         </div>
