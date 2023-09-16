@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
  * with node 8 + IE11 support i.e. not using URL (URLSearchParams.set replaced with Map.set)
  */
 function newGitHubIssueUrl(options) {
-  const url = `https://github.com/${options.user}/${options.repo}/issues/new`;
+  const url = `${process.env.SOURCE_CODE_REPO}/issues/new`;
 
   const query = Object.keys(options)
     .map((type) => {
@@ -38,23 +38,23 @@ export default class DemoErrorBoundary extends React.Component {
       const title = `[docs] Demo ${name} crashes`;
       const searchQuery = encodeURIComponent(`is:issue ${title}`);
       const issueLink = newGitHubIssueUrl({
-        user: 'mui',
-        repo: 'material-ui',
         title,
         body: `
 <!-- Please make sure you have fulfilled the following items before submitting -->
 <!-- Checked checkbox should look like this: [x] -->
-- [ ] I have [searched for similar issues](https://github.com/mui/material-ui/issues?q=${searchQuery}) in this repository and believe that this is not a duplicate.
+- [ ] I have [searched for similar issues](${
+          process.env.SOURCE_CODE_REPO
+        }/issues?q=${searchQuery}) in this repository and believe that this is not a duplicate.
 
-## Steps to Reproduce
+## Steps to reproduce
 1. Visit ${window.location.href}
 2. ??
 3. demo *${name}* crashes
 
-## Your Environment
+## Your environment
 | Tech         | Version |
 |--------------|---------|
-| MUI  | v${process.env.LIB_VERSION}  |
+| Version  | v${process.env.LIB_VERSION}  |
 | Netlify deploy | ${process.env.NETLIFY_DEPLOY_URL} |
 | Browser      | ${
           typeof window !== 'undefined' && window.navigator
