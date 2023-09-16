@@ -2,6 +2,7 @@ import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 import { visuallyHidden } from '@mui/utils';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
@@ -20,64 +21,79 @@ function ProductItem({
   name,
   description,
   href,
+  chip,
 }: {
   label: string;
   icon: React.ReactNode;
   name: React.ReactNode;
   description: React.ReactNode;
   href: string;
+  chip?: React.ReactNode;
 }) {
   return (
     <Box
       component="span"
       sx={{
         display: 'flex',
-        p: 2,
-        flexDirection: { xs: 'column', md: 'row' },
-        alignItems: { md: 'center' },
-        gap: 2.5,
+        p: 0,
+        mr: { xs: 1, md: 0 },
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 2,
       }}
     >
-      <span>{icon}</span>
-      <span>
-        <Typography
-          component="span"
-          color="text.primary"
-          variant="body2"
-          fontWeight="bold"
-          display="block"
-        >
-          {name}
-        </Typography>
-        <Typography
-          component="span"
-          color="text.secondary"
-          variant="body2"
-          fontWeight="regular"
-          display="block"
-          sx={{ my: 0.5 }}
-        >
-          {description}
-        </Typography>
-        <Link
-          href={href}
-          color="primary"
-          variant="body2"
-          fontWeight="bold"
-          sx={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            '& > svg': { transition: '0.2s' },
-            '&:hover > svg': { transform: 'translateX(2px)' },
-          }}
-          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-            event.stopPropagation();
-          }}
-        >
-          <span>Learn more</span> <Box sx={visuallyHidden}>{label}</Box>
-          <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
-        </Link>
-      </span>
+      <Box
+        component="span"
+        sx={{
+          display: 'flex',
+          p: 2,
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: { md: 'center' },
+          gap: 2.5,
+        }}
+      >
+        <span>{icon}</span>
+        <span>
+          <Typography
+            component="span"
+            color="text.primary"
+            variant="body2"
+            fontWeight="bold"
+            display="block"
+          >
+            {name}
+          </Typography>
+          <Typography
+            component="span"
+            color="text.secondary"
+            variant="body2"
+            fontWeight="regular"
+            display="block"
+            sx={{ my: 0.5 }}
+          >
+            {description}
+          </Typography>
+          <Link
+            href={href}
+            color="primary"
+            variant="body2"
+            fontWeight="bold"
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              '& > svg': { transition: '0.2s' },
+              '&:hover > svg': { transform: 'translateX(2px)' },
+            }}
+            onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+              event.stopPropagation();
+            }}
+          >
+            <span>Learn more</span> <Box sx={visuallyHidden}>{label}</Box>
+            <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
+          </Link>
+        </span>
+      </Box>
+      {chip}
     </Box>
   );
 }
@@ -121,6 +137,14 @@ export default function ProductsSwitcher(props: {
       name="Design kits"
       description="Bring our components to your favorite design tool."
       href={ROUTES.productDesignKits}
+    />,
+    <ProductItem
+      label="by going to the Toolpad page"
+      icon={<IconImage name="product-toolpad" />}
+      name="Toolpad"
+      chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
+      description="A low-code tool for building internal applications"
+      href={ROUTES.productToolpad}
     />,
   ];
   return (

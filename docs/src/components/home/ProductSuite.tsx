@@ -36,6 +36,9 @@ const CoreShowcase = dynamic(() => import('./CoreShowcase'), {
 const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'), {
   loading: createLoading({ height: 750, mt: { md: 2 } }),
 });
+const ToolpadShowcase = dynamic(() => import('./ToolpadShowcase'), {
+  loading: createLoading({ height: 750, mt: { md: 2 } }),
+});
 const StoreTemplatesBanner = dynamic(() => import('./StoreTemplatesBanner'));
 const DesignKits = dynamic(() => import('./DesignKits'));
 
@@ -82,6 +85,7 @@ function ProductSuite() {
               {productIndex === 1 && <AdvancedShowcase />}
               {productIndex === 2 && <StoreTemplatesBanner />}
               {productIndex === 3 && <DesignKits />}
+              {productIndex === 4 && <ToolpadShowcase />}
             </React.Fragment>
           )}
         </Grid>
