@@ -5,7 +5,7 @@ import {
 } from '@mui/base/Unstable_NumberInput';
 import { useTheme } from '@mui/system';
 
-export default function NumberInputBasic() {
+export default function NumberInputIntroduction() {
   return (
     <React.Fragment>
       <NumberInput
@@ -14,11 +14,11 @@ export default function NumberInputBasic() {
           input: { className: 'CustomNumberInput-input' },
           decrementButton: {
             className: 'CustomNumberInput-button CustomNumberInput-decrementButton',
-            children: '▾',
+            children: <span className="arrow">▾</span>,
           },
           incrementButton: {
             className: 'CustomNumberInput-button CustomNumberInput-incrementButton',
-            children: '▴',
+            children: <span className="arrow">▴</span>,
           },
         }}
         aria-label="Demo number input"
@@ -76,7 +76,7 @@ function Styles() {
         color: ${isDarkMode ? grey[300] : grey[900]};
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
-        box-shadow: 0px 2px 2px ${isDarkMode ? grey[900] : grey[50]};
+        box-shadow: 0px 2px 24px ${isDarkMode ? grey[900] : grey[100]};
         display: grid;
         grid-template-columns: 1fr 19px;
         grid-template-rows: 1fr 1fr;
@@ -89,7 +89,7 @@ function Styles() {
 
       .CustomNumberInput.${numberInputClasses.focused} {
         border-color: ${cyan[400]};
-        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
+        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
       }
 
       .CustomNumberInput .CustomNumberInput-input {
@@ -97,18 +97,17 @@ function Styles() {
         font-size: inherit;
         font-weight: inherit;
         line-height: inherit;
-        line-height: 1.5;
         grid-column: 1/2;
         grid-row: 1/3;
-        color: ${isDarkMode ? grey[300] : grey[900]};
+        color: red;
         background: inherit;
-        border: 0;
+        border: none;
         border-radius: inherit;
         padding: 8px 12px;
         outline: 0;
       }
 
-      .CustomNumberInput .CustomNumberInput-input:focus-visible {
+      .CustomNumberInput .CustomNumberInput-button:focus-visible {
         outline: 0;
       }
 
@@ -148,6 +147,9 @@ function Styles() {
       .CustomNumberInput .CustomNumberInput-button.CustomNumberInput-decrementButton {
         grid-column: 2/3;
         grid-row: 2/3;
+      }
+      & .arrow {
+        transform: translateY(-1px);
       }
       `}
     </style>

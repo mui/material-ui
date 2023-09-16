@@ -1,13 +1,10 @@
 import * as React from 'react';
-import {
-  Unstable_NumberInput as BaseNumberInput,
-  NumberInputProps,
-  NumberInputOwnerState,
-} from '@mui/base/Unstable_NumberInput';
+import PropTypes from 'prop-types';
+import { Unstable_NumberInput as BaseNumberInput } from '@mui/base/Unstable_NumberInput';
 import clsx from 'clsx';
 
-export default function NumberInputBasic() {
-  const [value, setValue] = React.useState<number | undefined>();
+export default function NumberInputIntroduction() {
+  const [value, setValue] = React.useState();
   return (
     <NumberInput
       aria-label="Demo number input"
@@ -18,19 +15,15 @@ export default function NumberInputBasic() {
   );
 }
 
-const resolveSlotProps = (fn: any, args: any) =>
-  typeof fn === 'function' ? fn(args) : fn;
+const resolveSlotProps = (fn, args) => (typeof fn === 'function' ? fn(args) : fn);
 
-const NumberInput = React.forwardRef(function NumberInput(
-  props: NumberInputProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
+const NumberInput = React.forwardRef(function NumberInput(props, ref) {
   return (
     <BaseNumberInput
       {...props}
       ref={ref}
       slotProps={{
-        root: (ownerState: NumberInputOwnerState) => {
+        root: (ownerState) => {
           const resolvedSlotProps = resolveSlotProps(
             props.slotProps?.root,
             ownerState,
@@ -46,7 +39,7 @@ const NumberInput = React.forwardRef(function NumberInput(
             ),
           };
         },
-        input: (ownerState: NumberInputOwnerState) => {
+        input: (ownerState) => {
           const resolvedSlotProps = resolveSlotProps(
             props.slotProps?.input,
             ownerState,
@@ -59,7 +52,7 @@ const NumberInput = React.forwardRef(function NumberInput(
             ),
           };
         },
-        incrementButton: (ownerState: NumberInputOwnerState) => {
+        incrementButton: (ownerState) => {
           const resolvedSlotProps = resolveSlotProps(
             props.slotProps?.incrementButton,
             ownerState,
@@ -73,7 +66,7 @@ const NumberInput = React.forwardRef(function NumberInput(
             ),
           };
         },
-        decrementButton: (ownerState: NumberInputOwnerState) => {
+        decrementButton: (ownerState) => {
           const resolvedSlotProps = resolveSlotProps(
             props.slotProps?.decrementButton,
             ownerState,
@@ -91,3 +84,16 @@ const NumberInput = React.forwardRef(function NumberInput(
     />
   );
 });
+
+NumberInput.propTypes = {
+  /**
+   * The props used for each slot inside the NumberInput.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    decrementButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    incrementButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+};
