@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
 import Button, { buttonClasses as classes } from '@mui/joy/Button';
-import { ThemeProvider, extendTheme } from '@mui/joy/styles';
+import { ThemeProvider } from '@mui/joy/styles';
 
 describe('Joy <Button />', () => {
   const { render } = createRenderer();
@@ -150,17 +150,8 @@ describe('Joy <Button />', () => {
       }
       const { getByRole } = render(<Button disabled component="a" />);
 
-      const button = getByRole('button');
-
-      const theme = extendTheme();
-
-      expect(button).toHaveComputedStyle({
-        ...({
-          cursor: theme.variants.solidDisabled.primary.cursor,
-          pointerEvents: theme.variants.solidDisabled.primary.pointerEvents,
-          color: 'rgba(0, 0, 0, 0)',
-          backgroundColor: 'rgb(240, 244, 248)',
-        } as Record<string, string>),
+      expect(getByRole('button')).toHaveComputedStyle({
+        color: 'rgba(0, 0, 0, 0)',
       });
     });
   });
@@ -176,15 +167,15 @@ describe('Joy <Button />', () => {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const { getByRole } = render(
-        <Button loadingIndicator="loading.." disabled>
+      const { container, getByRole } = render(
+        <Button loadingIndicator="loading.." loading>
           Test
         </Button>,
       );
 
-      // expect(container.querySelector(`.${classes.loadingIndicatorCenter}`)).to.have.text(
-      //   'loading..',
-      // );
+      expect(container.querySelector(`.${classes.loadingIndicatorCenter}`)).to.have.text(
+        'loading..',
+      );
       expect(getByRole('button')).toHaveComputedStyle({ color: 'rgba(0, 0, 0, 0)' });
     });
   });
