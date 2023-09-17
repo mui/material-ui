@@ -38,7 +38,7 @@ export default function SlotsList(props: SlotsListProps) {
       {componentSlots.map(({ class: className, name, default: defaultValue }) => {
         return (
           <StyledApiItem
-            id={`${hashPrefix}slots-${className}`}
+            id={`${hashPrefix}slots-${name}`}
             key={name}
             description=""
             title={name}
