@@ -265,6 +265,10 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
     [start, stop],
   );
 
+  if (ripples.length === 0) {
+    return null;
+  }
+
   return (
     <TouchRippleRoot
       className={clsx(classes.root, touchRippleClasses.root, className)}
