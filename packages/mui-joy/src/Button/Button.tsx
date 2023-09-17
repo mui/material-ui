@@ -157,8 +157,11 @@ export const getButtonStyles = ({
       },
       '&:active, &[aria-pressed="true"]':
         theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-      ...(ownerState.disabled &&
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]),
+      '&:disabled':
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      // ...(ownerState.disabled &&
+      //   theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]),
+
       ...(ownerState.loadingPosition === 'center' && {
         // this has to come after the variant styles to take effect.
         [`&.${buttonClasses.loading}`]: {
