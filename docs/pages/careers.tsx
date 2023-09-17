@@ -330,12 +330,9 @@ function CareersContent() {
               ],
               ['Time off:', 'We provide 33 days of paid time off globally.'],
             ].map((textArray) => (
-              <Box
-                key={textArray[0]}
-                sx={{ display: 'flex', alignItems: 'center', mt: 1.5, gap: 1 }}
-              >
-                <IconImage name="yes" />
-                <Typography variant="body2" color="text.primary">
+              <Box key={textArray[0]} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+                <IconImage name="pricing/yes" />
+                <Typography variant="body2" color="text.primary" sx={{ ml: 1 }}>
                   <span style={{ fontWeight: 600 }}>{`${textArray[0]}  `}</span>
                   {textArray[1]}
                 </Typography>
