@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.1",
-    "@types/loader-utils": "^2.0.3",
+    "@types/loader-utils": "^2.0.4",
     "next": "^13.4.19"
   },
   "peerDependencies": {
