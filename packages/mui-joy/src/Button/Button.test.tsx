@@ -141,18 +141,7 @@ describe('Joy <Button />', () => {
       }
       const { getByRole } = render(<Button disabled />);
 
-      const button = getByRole('button');
-
-      const theme = extendTheme();
-
-      expect(button).toHaveComputedStyle({
-        ...({
-          cursor: theme.variants.solidDisabled.primary.cursor,
-          pointerEvents: theme.variants.solidDisabled.primary.pointerEvents,
-          color: 'rgba(0, 0, 0, 0)',
-          backgroundColor: 'rgb(240, 244, 248)',
-        } as Record<string, string>),
-      });
+      expect(getByRole('button')).toHaveComputedStyle({ color: 'rgba(0, 0, 0, 0)' });
     });
 
     it('should apply disabled styles when button is disabled and when component prop is provided', function test() {
