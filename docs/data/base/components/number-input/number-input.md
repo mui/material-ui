@@ -94,7 +94,7 @@ The following code snippet:
 ## Hook
 
 ```js
-import useNumberInput from '@mui/base/unstable_useNumberInput';
+import { unstable_useNumberInput as useNumberInput } from '@mui/base/unstable_useNumberInput';
 ```
 
 The `useNumberInput` hook lets you apply the functionality of a Number Input to a fully custom component.
