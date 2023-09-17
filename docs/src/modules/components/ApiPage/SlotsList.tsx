@@ -54,7 +54,7 @@ export default function SlotsList(props: SlotsListProps) {
             )}
             {defaultValue && (
               <p className="slot-default-element">
-                <span>{t('api-docs.default')}:</span>
+                <span>{t('api-docs.default')}:</span>{' '}
                 <code className="Api-code">{defaultValue}</code>
               </p>
             )}
