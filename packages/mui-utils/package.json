@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.22.15",
+    "@types/prop-types": "^15.7.5",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0"
   },
@@ -50,7 +51,6 @@
     "@types/chai": "^4.3.5",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.17.15",
-    "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@types/react-is": "^18.2.1",
