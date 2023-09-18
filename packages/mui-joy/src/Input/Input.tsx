@@ -5,7 +5,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import useSlot from '../utils/useSlot';
 import { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
@@ -34,6 +34,8 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
 export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
   ({ theme, ownerState }) => {
     const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
+    const hoverStyles = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
+    const disabledStyles = theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!];
     return [
       {
         '--Input-radius': theme.vars.radius.sm,
@@ -43,16 +45,11 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--Input-decoratorColor': theme.vars.palette.text.icon,
         '--Input-focused': '0',
         '--Input-focusedThickness': theme.vars.focus.thickness,
-        ...(ownerState.color === 'context'
-          ? {
-              '--Input-focusedHighlight': theme.vars.palette.focusVisible,
-            }
-          : {
-              '--Input-focusedHighlight':
-                theme.vars.palette[
-                  ownerState.color === 'neutral' ? 'primary' : ownerState.color!
-                ]?.[500],
-            }),
+        '--Input-focusedHighlight':
+          theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+        '&:not([data-inverted-colors="false"])': {
+          '--Input-focusedHighlight': theme.vars.palette.focusVisible,
+        },
         ...(ownerState.size === 'sm' && {
           '--Input-minHeight': '2rem',
           '--Input-paddingInline': '0.5rem',
@@ -116,13 +113,15 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           boxShadow: `var(--Input-focusedInset, inset) 0 0 0 calc(var(--Input-focused) * var(--Input-focusedThickness)) var(--Input-focusedHighlight)`,
         },
       } as const,
+      getScopedGlobalVariantVars(variantStyle, ownerState.instanceColor),
+      getScopedGlobalVariantVars(hoverStyles, ownerState.instanceColor),
+      getScopedGlobalVariantVars(disabledStyles, ownerState.instanceColor),
       {
         '&:hover': {
-          ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+          ...hoverStyles,
           backgroundColor: null, // it is not common to change background on hover for Input
         },
-        [`&.${inputClasses.disabled}`]:
-          theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        [`&.${inputClasses.disabled}`]: disabledStyles,
         '&:focus-within::before': { '--Input-focused': '1' },
       },
     ];
@@ -280,10 +279,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? error ? 'danger' : formControl?.color ?? colorProp;
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     fullWidth,
     color,
