@@ -1,6 +1,6 @@
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
-import { InputBaseProps } from '../InputBase';
+import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { InputBaseProps } from '@mui/material/InputBase';
 import { FilledInputClasses } from './filledInputClasses';
 
 export interface FilledInputProps extends StandardProps<InputBaseProps> {

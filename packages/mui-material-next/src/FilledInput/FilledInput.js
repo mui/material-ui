@@ -3,16 +3,16 @@ import * as React from 'react';
 import { refType, deepmerge } from '@mui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+// TODO v6: use material-next/InputBase
+import {
+  rootOverridesResolver as inputBaseRootOverridesResolver,
+  inputOverridesResolver as inputBaseInputOverridesResolver,
+} from '@mui/material/InputBase/InputBase';
 import InputBase from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
-import {
-  rootOverridesResolver as inputBaseRootOverridesResolver,
-  inputOverridesResolver as inputBaseInputOverridesResolver,
-  InputBaseRoot,
-  InputBaseComponent as InputBaseInput,
-} from '../InputBase/InputBase';
+import { InputBaseRoot, InputBaseInput } from '../InputBase/InputBase';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline } = ownerState;
