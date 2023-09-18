@@ -18,13 +18,13 @@ import JoyChip from '@mui/joy/Chip';
 import JoyIconButton from '@mui/joy/IconButton';
 import JoyTypography from '@mui/joy/Typography';
 import JoySwitch from '@mui/joy/Switch';
+import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
-import SvgTwinkle from 'docs/src/icons/SvgTwinkle';
 import Section from 'docs/src/layouts/Section';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Item, { Group } from 'docs/src/components/action/Item';
@@ -663,21 +663,21 @@ export default function JoyUIFeatures() {
           <Group sx={{ mt: 4 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
-                icon={<SvgTwinkle />}
+                icon={<AutoAwesomeRoundedIcon color="warning" />}
                 title="Global variants"
                 description="Pull their styles from a single source, helping you to ensure a consistent look and feel across both pre-built Joy UI components and any custom components you build."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(1)} onClick={() => setIndex(1)}>
               <Item
-                icon={<SvgTwinkle />}
+                icon={<AutoAwesomeRoundedIcon color="warning" />}
                 title="Color inversion"
                 description="With color inversion set on the parent component, its children with implicit color will invert they styles to have a matching design."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
-                icon={<SvgTwinkle />}
+                icon={<AutoAwesomeRoundedIcon color="warning" />}
                 title="Automatic adjustment"
                 description="All Joy UI components work together to ensure consistency and save your time with micro CSS tweaks."
               />
