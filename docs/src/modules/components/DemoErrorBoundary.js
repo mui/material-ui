@@ -75,9 +75,8 @@ export default class DemoErrorBoundary extends React.Component {
             <Link href={issueLink} rel="noreferrer" target="_blank">
               report this error
             </Link>
-            {
-              ' directly in our issue tracker with the steps you took to trigger it. The "report this error" link prefills the issue description with valuable information.'
-            }
+            {` directly in our issue tracker with the steps you took to trigger it.
+The "report this error" link prefills the issue description with valuable information.`}
           </Typography>
           <pre style={{ whiteSpace: 'pre-wrap' }}>{error.toString()}</pre>
           <Button onClick={onResetDemoClick} variant="text">
