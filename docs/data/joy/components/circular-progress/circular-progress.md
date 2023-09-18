@@ -86,6 +86,14 @@ The size of the Circular Progress is controlled by a button, an icon button, or 
 
 {{"demo": "CircularProgressButton.js"}}
 
+## Third-party integrations
+
+### use-count-up
+
+Use the `useCountUp` hook from the [use-count-up](https://www.npmjs.com/package/use-count-up) package to create a counting animation by providing `start`, `end`, and `duration` values.
+
+{{"demo": "CircularProgressCountUp.js"}}
+
 ## CSS variables playground
 
 Play around with all the CSS variables available on the component to see how the design changes.
