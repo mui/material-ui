@@ -111,6 +111,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     ...props,
     component,
     color,
+    instanceColor: inProps.color,
     disabled,
     expanded,
     variant,

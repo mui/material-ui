@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/useButton';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import {
   ListItemButtonOwnerState,
   ExtendListItemButton,
@@ -42,69 +42,84 @@ const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
 };
 
 export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOwnerState }>(
-  ({ theme, ownerState }) => ({
-    '--Icon-margin': 'initial', // reset the icon's margin.
-    '--Icon-color':
-      ownerState.color !== 'neutral' || ownerState.variant === 'solid'
-        ? 'currentColor'
-        : theme.vars.palette.text.icon,
-    WebkitTapHighlightColor: 'transparent',
-    boxSizing: 'border-box',
-    position: 'relative',
-    font: 'inherit',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'stretch', // always stretch itself to fill the parent (List|ListItem)
-    ...(ownerState.orientation === 'vertical' && {
-      flexDirection: 'column',
-      justifyContent: 'center',
-    }),
-    textAlign: 'initial',
-    textDecoration: 'initial', // reset native anchor tag
-    backgroundColor: 'initial', // reset button background
-    cursor: 'pointer',
-    // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
-    marginInline: 'var(--ListItemButton-marginInline)',
-    marginBlock: 'var(--ListItemButton-marginBlock)',
-    ...(ownerState['data-first-child'] === undefined && {
-      marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
-      marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
-    }),
-    // account for the border width, so that all of the ListItemButtons content aligned horizontally
-    paddingBlock: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
-    // account for the border width, so that all of the ListItemButtons content aligned vertically
-    paddingInlineStart:
-      'calc(var(--ListItem-paddingLeft) + var(--ListItem-startActionWidth, var(--unstable_startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
-    paddingInlineEnd:
-      'calc(var(--ListItem-paddingRight) + var(--ListItem-endActionWidth, var(--unstable_endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
-    minBlockSize: 'var(--ListItem-minHeight)',
-    border: '1px solid transparent', // use `transparent` as a placeholder to prevent the button from jumping when switching to `outlined` variant
-    borderRadius: 'var(--ListItem-radius)',
-    flex: 'var(--unstable_ListItem-flex, none)', // prevent children from shrinking when the List's height is limited.
-    fontSize: 'inherit', // prevent user agent style when component="button"
-    lineHeight: 'inherit', // prevent user agent style when component="button"
-    minInlineSize: 0,
-    [theme.focus.selector]: {
-      ...theme.focus.default,
-      zIndex: 1, // to be above of the next element. For example, the first Tab item should be above the second so that the outline is above the second Tab.
-    },
-    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-    [`.${listItemClasses.root} > &`]: {
-      '--unstable_ListItem-flex': '1 0 0%', // grow to fill the available space of ListItem
-    },
-    [`&.${listItemButtonClasses.selected}`]: {
-      ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-      '--Icon-color': 'currentColor',
-    },
-    [`&:not(.${listItemButtonClasses.selected}, [aria-selected="true"])`]: {
-      '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-      '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-    },
-    [`&.${listItemButtonClasses.disabled}`]: {
-      ...theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    },
-  }),
+  ({ theme, ownerState }) => {
+    const baseStyles = theme.variants[ownerState.variant!]?.[ownerState.color!];
+    const hoverStyles = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
+    const activeStyles = theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!];
+    const disabledStyles = theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!];
+    return [
+      {
+        '--Icon-margin': 'initial', // reset the icon's margin.
+        '--Icon-color':
+          ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+            ? 'currentColor'
+            : theme.vars.palette.text.icon,
+        WebkitTapHighlightColor: 'transparent',
+        boxSizing: 'border-box',
+        position: 'relative',
+        font: 'inherit',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'stretch', // always stretch itself to fill the parent (List|ListItem)
+        ...(ownerState.orientation === 'vertical' &&
+          ({
+            flexDirection: 'column',
+            justifyContent: 'center',
+          } as const)),
+        textAlign: 'initial',
+        textDecoration: 'initial', // reset native anchor tag
+        backgroundColor: 'initial', // reset button background
+        cursor: 'pointer',
+        // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
+        marginInline: 'var(--ListItemButton-marginInline)',
+        marginBlock: 'var(--ListItemButton-marginBlock)',
+        ...(ownerState['data-first-child'] === undefined && {
+          marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
+          marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
+        }),
+        // account for the border width, so that all of the ListItemButtons content aligned horizontally
+        paddingBlock: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
+        // account for the border width, so that all of the ListItemButtons content aligned vertically
+        paddingInlineStart:
+          'calc(var(--ListItem-paddingLeft) + var(--ListItem-startActionWidth, var(--unstable_startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+        paddingInlineEnd:
+          'calc(var(--ListItem-paddingRight) + var(--ListItem-endActionWidth, var(--unstable_endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+        minBlockSize: 'var(--ListItem-minHeight)',
+        border: '1px solid transparent', // use `transparent` as a placeholder to prevent the button from jumping when switching to `outlined` variant
+        borderRadius: 'var(--ListItem-radius)',
+        flex: 'var(--unstable_ListItem-flex, none)', // prevent children from shrinking when the List's height is limited.
+        fontSize: 'inherit', // prevent user agent style when component="button"
+        lineHeight: 'inherit', // prevent user agent style when component="button"
+        minInlineSize: 0,
+        [theme.focus.selector]: {
+          ...theme.focus.default,
+          zIndex: 1, // to be above of the next element. For example, the first Tab item should be above the second so that the outline is above the second Tab.
+        },
+      } as const,
+      getScopedGlobalVariantVars(baseStyles, ownerState.instanceColor),
+      getScopedGlobalVariantVars(hoverStyles, ownerState.instanceColor),
+      getScopedGlobalVariantVars(activeStyles, ownerState.instanceColor),
+      getScopedGlobalVariantVars(disabledStyles, ownerState.instanceColor),
+      {
+        ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+        [`.${listItemClasses.root} > &`]: {
+          '--unstable_ListItem-flex': '1 0 0%', // grow to fill the available space of ListItem
+        },
+        [`&.${listItemButtonClasses.selected}`]: {
+          ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+          '--Icon-color': 'currentColor',
+        },
+        [`&:not(.${listItemButtonClasses.selected}, [aria-selected="true"])`]: {
+          '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+          '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+        },
+        [`&.${listItemButtonClasses.disabled}`]: {
+          ...theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        },
+      },
+    ];
+  },
 );
 
 const ListItemButtonRoot = styled(StyledListItemButton, {
@@ -144,15 +159,12 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     orientation = 'horizontal',
     role,
     selected = false,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'plain',
     slots = {},
     slotProps = {},
     ...other
   } = props;
-
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
@@ -177,6 +189,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     ...props,
     component,
     color,
+    instanceColor: inProps.color,
     focusVisible,
     orientation,
     row,
