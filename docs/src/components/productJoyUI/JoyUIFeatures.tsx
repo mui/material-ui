@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import JoyBox from '@mui/joy/Box';
 import Button from '@mui/material/Button';
@@ -9,8 +9,6 @@ import { ColorPaletteProp, VariantProp } from '@mui/joy/styles';
 import JoyFormControl from '@mui/joy/FormControl';
 import JoyFormLabel from '@mui/joy/FormLabel';
 import JoySlider, { sliderClasses as joySliderClasses } from '@mui/joy/Slider';
-import JoySelect from '@mui/joy/Select';
-import JoyOption from '@mui/joy/Option';
 import JoySvgIcon from '@mui/joy/SvgIcon';
 import JoyButton from '@mui/joy/Button';
 import JoyCard from '@mui/joy/Card';
@@ -18,7 +16,9 @@ import JoyChip from '@mui/joy/Chip';
 import JoyIconButton from '@mui/joy/IconButton';
 import JoyTypography from '@mui/joy/Typography';
 import JoySwitch from '@mui/joy/Switch';
+import JoyAlert from '@mui/joy/Alert';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
+import PlaylistAddCheckCircleRoundedIcon from '@mui/icons-material/PlaylistAddCheckCircleRounded';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -36,11 +36,11 @@ import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import useResizeHandle from 'docs/src/modules/utils/useResizeHandle';
 
 const StyledButton = styled(Button)(({ theme }) => ({
-  minWidth: 48,
+  minWidth: 52,
   borderRadius: 40,
-  padding: theme.spacing('2px', 1),
+  padding: theme.spacing('1px', 1, '2px', 1),
   fontSize: theme.typography.pxToRem(12),
-  lineHeight: 18 / 12,
+  lineHeight: 1.5,
   '&.MuiButton-text': {
     color: theme.palette.grey[500],
     border: '1px solid',
@@ -66,91 +66,58 @@ function GlobalVariantDemo() {
     <Frame sx={{ height: '100%' }}>
       <Frame.Demo
         sx={{
-          bgcolor: 'background.paper',
-          overflow: 'auto',
-          flexGrow: 1,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          p: 4,
         }}
       >
-        <JoyFormControl>
-          <JoyFormLabel>Screen</JoyFormLabel>
-          <JoySelect
+        <Box
+          sx={(theme) => ({
+            p: 3,
+            bgcolor: 'rgb(0,0,0 / 0.9)',
+            border: '1px solid',
+            borderColor: 'grey.200',
+            borderRadius: 0.8,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            gap: 2,
+            ...theme.applyDarkStyles({
+              bgcolor: alpha(theme.palette.primaryDark[800], 0.8),
+              borderColor: 'primaryDark.700',
+            }),
+          })}
+        >
+          <Box sx={{ display: 'flex', gap: 3 }}>
+            <div>
+              <JoyChip variant={variant} color={color} size="sm">
+                A new user interface library
+              </JoyChip>
+              <Typography
+                variant="body2"
+                fontWeight="semiBold"
+                mt={2}
+                gutterBottom
+                fontFamily="Inter"
+              >
+                Many Joy UI component share the same variants set!
+              </Typography>
+              <Typography variant="body2" fontFamily="Inter">
+                Ensuring consistency, predictability, and joy for your experience developing with
+                Joy UI.
+              </Typography>
+            </div>
+            <JoySwitch variant={variant} color={color} />
+          </Box>
+          <JoyAlert
             variant={variant}
             color={color}
-            placeholder="Choose an option"
-            defaultListboxOpen
-            sx={{ minWidth: 200, mb: '64px' }}
-            slotProps={{
-              listbox: {
-                sx: {
-                  '& [role="option"]': {
-                    gap: 1.5,
-                  },
-                },
-              },
-            }}
+            startDecorator={<PlaylistAddCheckCircleRoundedIcon />}
           >
-            <JoyOption value="1">
-              <JoySvgIcon>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
-                  <path d="M12 18h.01" />
-                </svg>
-              </JoySvgIcon>
-              Smartphone
-            </JoyOption>
-            <JoyOption value="2">
-              <JoySvgIcon>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect width="10" height="14" x="3" y="8" rx="2" />
-                  <path d="M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4" />
-                  <path d="M8 18h.01" />
-                </svg>
-              </JoySvgIcon>
-              Tablet
-            </JoyOption>
-            <JoyOption value="3">
-              <JoySvgIcon>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16" />
-                </svg>
-              </JoySvgIcon>
-              Laptop
-            </JoyOption>
-          </JoySelect>
-        </JoyFormControl>
+            Your component library has been installed successfully!
+          </JoyAlert>
+          <JoyButton variant={variant} color={color}>
+            View all components
+          </JoyButton>
+        </Box>
       </Frame.Demo>
       <Frame.Info
         data-mui-color-scheme="dark"
@@ -204,14 +171,14 @@ function GlobalVariantDemo() {
         <HighlightedCode
           copyButtonHidden
           component={MarkdownElement}
-          code={`<Select
-  placeholder="Select an option"
-  color="neutral"
-  variant="outlined"
->
-  <Option value="option1">Option 1</Option>
-  …
-</Select>`}
+          code={`
+          <Chip size="sm">A new user interface library</Chip>
+<Switch />
+<Alert startDecorator={<PlaylistAddCheckCircleRoundedIcon />}>
+  Your component library has been installed successfully!
+</Alert>
+<Button>View all components</Button>
+          `}
           language="jsx"
         />
       </Frame.Info>
