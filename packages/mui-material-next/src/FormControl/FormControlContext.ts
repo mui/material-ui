@@ -16,8 +16,8 @@ export interface FormControlContextValue extends Pick<FormControlProps, ContextF
   adornedStart: boolean;
   filled: boolean;
   focused: boolean;
-  onBlur: () => void;
-  onFocus: () => void;
+  onBlur: (event?: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onFocus: (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onEmpty: () => void;
   onFilled: () => void;
   registerEffect: undefined | (() => () => void);

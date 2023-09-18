@@ -18,8 +18,8 @@ import {
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 // import formControlState from '@mui/material/FormControl/formControlState';
-import FormControlContext from '@mui/material/FormControl/FormControlContext';
-import useFormControl from '@mui/material/FormControl/useFormControl';
+import FormControlContext from '@mui/material-next/FormControl/FormControlContext';
+import useFormControl from '@mui/material-next/FormControl/useFormControl';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { isFilled } from './utils';
@@ -262,7 +262,7 @@ const InputBase = React.forwardRef(function InputBase<
     disabled: disabledProp,
     disableInjectingGlobalStyles,
     endAdornment,
-    error,
+    error: errorProp,
     fullWidth = false,
     id,
     inputRef: inputRefProp,
@@ -280,7 +280,7 @@ const InputBase = React.forwardRef(function InputBase<
     placeholder,
     readOnly,
     renderSuffix,
-    required,
+    required: requiredProp,
     rows,
     size: sizeProp,
     slotProps = {},
@@ -293,19 +293,20 @@ const InputBase = React.forwardRef(function InputBase<
 
   const { current: isControlled } = React.useRef(value != null);
 
-  // TODO: integrate material-next/FormControl
   const muiFormControl = useFormControl();
 
-  /*
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
-      if (muiFormControl) {
+      if (muiFormControl && muiFormControl.registerEffect) {
         return muiFormControl.registerEffect();
       }
-       return undefined;
+      return undefined;
     }, [muiFormControl]);
   }
+
+  // TODO: what is this actually doing ?!
+  /*
     const fcs = formControlState({
     props,
     muiFormControl,
@@ -342,9 +343,9 @@ const InputBase = React.forwardRef(function InputBase<
       onFocus(event);
     }
 
-    // if (muiFormControl && muiFormControl.onFocus) {
-    //   muiFormControl.onFocus(event);
-    // }
+    if (muiFormControl && muiFormControl.onFocus) {
+      muiFormControl.onFocus(event);
+    }
   };
 
   const handleBlur = (event?: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -352,9 +353,9 @@ const InputBase = React.forwardRef(function InputBase<
       onBlur(event);
     }
 
-    // if (muiFormControl && muiFormControl.onBlur) {
-    //   muiFormControl.onBlur(event);
-    // }
+    if (muiFormControl && muiFormControl.onBlur) {
+      muiFormControl.onBlur(event);
+    }
   };
 
   const handleChange = (
@@ -375,7 +376,7 @@ const InputBase = React.forwardRef(function InputBase<
   };
 
   const handleClick = (event: React.PointerEvent) => {
-    if (onClick /* && !fcs.disabled */) {
+    if (onClick) {
       onClick(event);
     }
   };
@@ -386,19 +387,20 @@ const InputBase = React.forwardRef(function InputBase<
     }
   }, [muiFormControl, startAdornment]);
 
+  const required = muiFormControl?.required ?? requiredProp;
+
   const {
     getRootProps,
     getInputProps,
     focused: focusedState,
-    // TODO: what if this `formControlContext` is completely ignored and the component uses a completely separate one similar to Joy
-    // formControlContext,
     error: errorState,
     disabled: disabledState,
     inputRef,
+    // ignore Base UI's formControlContext
   } = useInput({
-    disabled: disabledProp,
+    disabled: muiFormControl?.disabled ?? disabledProp,
     defaultValue,
-    error,
+    error: muiFormControl?.error ?? errorProp,
     onBlur: handleBlur,
     onClick: handleClick,
     onChange: handleChange,
@@ -408,19 +410,19 @@ const InputBase = React.forwardRef(function InputBase<
     inputRef: inputRefProp,
   });
 
-  // TODO: integrate ownerState properties with material-next/FormControl: color, disabled, error, focused, hiddenLabel, size
   const ownerState = {
     ...props,
-    color: colorProp || 'primary',
+    color: muiFormControl?.color ?? colorProp ?? 'primary',
     disabled: disabledState,
     endAdornment,
     error: errorState,
-    focused: focusedState,
+    focused: muiFormControl?.focused ?? focusedState,
     formControl: muiFormControl,
     fullWidth,
-    hiddenLabel: false, // TODO: material-next/FormControl integration
+    hiddenLabel: muiFormControl?.hiddenLabel ?? false,
     multiline,
-    size: sizeProp,
+    required,
+    size: muiFormControl?.size ?? sizeProp,
     startAdornment,
     type,
   };
@@ -518,7 +520,7 @@ const InputBase = React.forwardRef(function InputBase<
         {endAdornment}
         {renderSuffix
           ? renderSuffix({
-              // ...fcs,
+              ...muiFormControl,
               startAdornment,
             })
           : null}

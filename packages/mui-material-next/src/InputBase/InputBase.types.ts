@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SlotComponentProps } from '@mui/base';
-import { FormControlState } from '@mui/material/FormControl';
+import { FormControlContextValue } from '@mui/material-next/FormControl/FormControlContext';
 import { UseInputRootSlotProps } from '@mui/base/useInput';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, OverrideProps, Simplify } from '@mui/types';
@@ -265,7 +265,7 @@ export type InputBaseProps<
 
 export type InputBaseOwnerState = Simplify<
   InputBaseOwnProps & {
-    formControl: FormControlState | undefined;
+    formControl: FormControlContextValue | undefined;
     hiddenLabel?: boolean;
     focused: boolean;
     type: React.InputHTMLAttributes<HTMLInputElement>['type'] | undefined;
