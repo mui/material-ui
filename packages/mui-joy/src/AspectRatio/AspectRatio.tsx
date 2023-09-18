@@ -125,6 +125,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   } = props;
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     flex,
     minHeight,
@@ -132,7 +133,6 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     objectFit,
     ratio,
     color,
-    instanceColor: inProps.color,
     variant,
   };
 

@@ -150,10 +150,10 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   } = props;
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     color,
     invertedColors,
-    instanceColor: inProps.color,
     variant,
     size,
   };
