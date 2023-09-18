@@ -32,14 +32,12 @@ export default function CircularProgressCountUp() {
       setIsLoading(false);
       setButtonLabel('Start');
       resetValue1();
+    } else if (buttonLabel === 'Reset') {
+      setButtonLabel('Start');
+      resetValue1();
     } else {
-      if (buttonLabel === 'Reset') {
-        setButtonLabel('Start');
-        resetValue1();
-      } else {
-        setIsLoading(true);
-        setButtonLabel('Reset');
-      }
+      setIsLoading(true);
+      setButtonLabel('Reset');
     }
   };
 
