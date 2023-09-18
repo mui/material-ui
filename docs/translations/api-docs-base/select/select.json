@@ -32,6 +32,7 @@
     "onListboxOpenChange": {
       "description": "Callback fired when the component requests to be opened. Use in controlled mode (see listboxOpen)."
     },
+    "placeholder": { "description": "Text to show when there is no selected value." },
     "renderValue": {
       "description": "Function that customizes the rendering of the selected value."
     },

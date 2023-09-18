@@ -118,3 +118,19 @@ It says, "You will fail if you don't heed this dire warning."
 - a [link](#link).
 :::
 ```
+
+## With code
+
+:::info
+This is a callout.
+
+```jsx
+import * as React from 'react';
+import Stack from '@mui/material/Stack';
+
+export default function BasicAlerts() {
+  return <Stack sx={{ width: '100%' }} spacing={2} />;
+}
+```
+
+:::

@@ -3,8 +3,8 @@
     "children": { "type": { "name": "node" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
+        "name": "union",
+        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'neutral'",
       "additionalInfo": { "joy-color": true }
@@ -12,7 +12,10 @@
     "component": { "type": { "name": "elementType" } },
     "disableDivider": { "type": { "name": "bool" }, "default": "false" },
     "size": {
-      "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },
+      "type": {
+        "name": "union",
+        "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
+      },
       "default": "'md'",
       "additionalInfo": { "joy-size": true }
     },
@@ -41,8 +44,8 @@
     },
     "variant": {
       "type": {
-        "name": "enum",
-        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'"
+        "name": "union",
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
       "default": "'plain'",
       "additionalInfo": { "joy-variant": true }
@@ -62,7 +65,24 @@
       "class": ".MuiAccordionGroup-root"
     }
   ],
-  "classes": { "classes": ["sizeLg", "sizeMd", "sizeSm"], "globalClasses": {} },
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAccordionGroup",

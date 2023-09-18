@@ -8,7 +8,7 @@ import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
-import { renderInline as renderMarkdownInline } from '@mui/markdown';
+import { renderMarkdown } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
 import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
 import {
@@ -328,8 +328,7 @@ const attachTable = (
           // undefined values are not serialized => saving some bytes
           required: requiredProp || undefined,
           deprecated: !!deprecation || undefined,
-          deprecationInfo:
-            renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
+          deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
         },
       };
     })
@@ -351,7 +350,7 @@ const attachTable = (
 };
 
 const generateTranslationDescription = (description: string) => {
-  return renderMarkdownInline(description.replace(/\n@default.*$/, ''));
+  return renderMarkdown(description.replace(/\n@default.*$/, ''));
 };
 
 const attachTranslations = (reactApi: ReactApi) => {
@@ -369,7 +368,7 @@ const attachTranslations = (reactApi: ReactApi) => {
       const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
       if (deprecation !== null) {
         translations.parametersDescriptions[propName].deprecated =
-          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+          renderMarkdown(deprecation?.groups?.info || '').trim() || undefined;
       }
     }
   });
@@ -382,7 +381,7 @@ const attachTranslations = (reactApi: ReactApi) => {
       const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
       if (deprecation !== null) {
         translations.parametersDescriptions[propName].deprecated =
-          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+          renderMarkdown(deprecation?.groups?.info || '').trim() || undefined;
       }
     }
   });

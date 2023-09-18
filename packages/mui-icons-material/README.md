@@ -26,8 +26,8 @@ npm install @mui/material
 
 <!-- #default-branch-switch -->
 
-- [The documentation](https://mui.com/material-ui/icons/#svgicon)
-- [The icons search](https://mui.com/material-ui/material-icons/)
+- [The SvgIcon documentation](https://mui.com/material-ui/icons/#svgicon)
+- [The Material Design icons search](https://mui.com/material-ui/material-icons/)
 
 ## Contributing
 
@@ -39,4 +39,4 @@ To synchronize with Material Icons, do the following:
 1. Inside this workspace run `yarn src:download`
 2. Inside this workspace run `yarn src:icons`
 3. Inside the root run `yarn docs:mdicons:synonyms`
-4. If the number of icons changed significantly, edit the icons/icons.md and material-icons/material-icons.md under docs/data/material/components and update the numbers.
+4. If the number of icons changes significantly, edit the icons/icons.md and material-icons/material-icons.md under docs/data/material/components and update the numbers.

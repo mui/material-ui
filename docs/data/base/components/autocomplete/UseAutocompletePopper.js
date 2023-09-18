@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useAutocomplete } from '@mui/base/useAutocomplete';
 import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import useForkRef from '@mui/utils/useForkRef';
 
 const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   const {
