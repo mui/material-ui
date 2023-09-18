@@ -261,7 +261,7 @@ const FormControl = React.forwardRef(function FormControl<
 FormControl.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The content of the component.
@@ -272,7 +272,7 @@ FormControl.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * Class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -285,11 +285,6 @@ FormControl.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
    * @default false
@@ -335,6 +330,21 @@ FormControl.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside the FormControl.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the FormControl.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -346,7 +356,7 @@ FormControl.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'outlined'
    */
-  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
-};
+  variant: PropTypes.oneOf(['filled', 'outlined']),
+} as any;
 
 export default FormControl;
