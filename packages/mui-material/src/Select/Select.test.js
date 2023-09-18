@@ -1056,6 +1056,8 @@ describe('<Select />', () => {
         </Select>,
       );
 
+      fireEvent.mouseDown(getByRole('button'));
+
       expect(getByRole('listbox')).to.have.attribute('aria-multiselectable', 'true');
     });
 
