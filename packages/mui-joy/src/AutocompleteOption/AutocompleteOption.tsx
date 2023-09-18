@@ -10,7 +10,6 @@ import { styled, useThemeProps } from '../styles';
 import { useVariantColor } from '../styles/variantColorInheritance';
 import { getAutocompleteOptionUtilityClass } from './autocompleteOptionClasses';
 import { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
@@ -68,14 +67,13 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
     slotProps = {},
     ...other
   } = props;
-  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor(
+  const { variant = variantProp, color = colorProp } = useVariantColor(
     inProps.variant,
     inProps.color,
   );
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, inheritedColor);
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     component,
     color,
