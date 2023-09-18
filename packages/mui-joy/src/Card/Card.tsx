@@ -93,12 +93,12 @@ export const StyledCardRoot = styled('div')<{ ownerState: CardOwnerState }>(
           ownerState.invertedColors && {
             '& *': applySoftInversion(ownerState.color)(theme),
           }),
+        ...getScopedGlobalVariantVars(
+          theme.variants[ownerState.variant!]?.[ownerState.color!],
+          ownerState.instanceColor,
+        ),
+        ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       } as const,
-      getScopedGlobalVariantVars(
-        theme.variants[ownerState.variant!]?.[ownerState.color!],
-        ownerState.instanceColor,
-      ),
-      theme.variants[ownerState.variant!]?.[ownerState.color!],
       p !== undefined && { '--Card-padding': p },
       padding !== undefined && { '--Card-padding': padding },
       borderRadius !== undefined && { '--Card-radius': borderRadius },
