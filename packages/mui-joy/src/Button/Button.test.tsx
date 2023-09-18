@@ -141,7 +141,10 @@ describe('Joy <Button />', () => {
       }
       const { getByRole } = render(<Button disabled />);
 
-      expect(getByRole('button')).toHaveComputedStyle({ color: 'rgb(159, 166, 173)' });
+      expect(getByRole('button')).toHaveComputedStyle({
+        color: 'rgb(159, 166, 173)',
+        backgroundColor: 'rgb(240, 244, 248)',
+      });
     });
 
     it('should apply disabled styles when button is disabled and when component prop is provided', function test() {
@@ -152,6 +155,7 @@ describe('Joy <Button />', () => {
 
       expect(getByRole('button')).toHaveComputedStyle({
         color: 'rgb(159, 166, 173)',
+        backgroundColor: 'rgb(240, 244, 248)',
       });
     });
   });
