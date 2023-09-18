@@ -13,15 +13,10 @@ export default function UnstyledButtonsIntroduction() {
 }
 
 const blue = {
+  400: '#3399FF',
   500: '#007FFF',
-  600: '#0072E5',
-  700: '#0059B2',
-};
-
-const grey = {
-  100: '#eaeef2',
-  300: '#afb8c1',
-  900: '#24292f',
+  600: '#0072E6',
+  700: '#0059B3',
 };
 
 const CustomButton = styled(Button)(
@@ -30,21 +25,24 @@ const CustomButton = styled(Button)(
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
-  background-color: ${blue[500]};
+  background-color: ${theme.palette.mode === 'dark' ? blue[600] : blue[500]};
   padding: 8px 16px;
   border-radius: 8px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
-  border: none;
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
+  border: 1px solid ${blue[600]};
+  box-shadow: 0px 4px 8px ${
+    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.35)' : 'rgba(0, 0, 0, 0.15)'
+  }, inset 0px 2px 1px ${blue[400]}, inset 0px -2px 1px ${blue[700]} ;
 
   &:hover {
-    background-color: ${blue[600]};
+    background-color: ${theme.palette.mode === 'dark' ? blue[500] : blue[600]};
   }
 
   &.${buttonClasses.active} {
     background-color: ${blue[700]};
+    box-shadow: none;
   }
 
   &.${buttonClasses.focusVisible} {
@@ -53,8 +51,12 @@ const CustomButton = styled(Button)(
   }
 
   &.${buttonClasses.disabled} {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
+    box-shadow: none;
+    &:hover {
+      background-color: ${blue[500]};
+    }
   }
   `,
 );

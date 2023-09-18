@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Button, buttonClasses } from '@mui/base/Button';
+import { useTheme } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
 export default function UnstyledButtonsIntroduction() {
@@ -29,7 +30,15 @@ const cyan = {
   900: '#022127',
 };
 
+function useIsDarkMode() {
+  const theme = useTheme();
+  return theme.palette.mode === 'dark';
+}
+
 function Styles() {
+  // Replace this with your app logic for determining dark mode
+  const isDarkMode = useIsDarkMode();
+
   return (
     <style>{`
   .CustomButton {
@@ -42,7 +51,11 @@ function Styles() {
     border-radius: 8px;
     color: white;
     cursor: pointer;
-    border: none;
+    border: 1px solid ${cyan[600]};
+    box-shadow: 0px 2px 6px ${
+      isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.2)'
+    }, inset 0px 1px 1px ${cyan[400]}, inset 0px -1px 1px ${cyan[700]} ;
+  
   }
   .CustomButton:hover {
     background-color: ${cyan[600]};
