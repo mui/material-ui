@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer } from '@mui-internal/test-utils';
+import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import FormControl, { formControlClasses as classes } from '@mui/material-next/FormControl';
 // TODO: replace with material-next/OutlinedInput
 import InputBase from '@mui/material-next/InputBase';
@@ -134,6 +134,65 @@ describe('<FormControl />', () => {
         </FormControl>,
       );
       expect(readContext.args[0][0]).to.include({ disabled: true, focused: false });
+    });
+  });
+
+  describe('registering input', () => {
+    it("should warn if more than one input is rendered regardless how it's nested", () => {
+      expect(() => {
+        render(
+          <FormControl>
+            <InputBase />
+            <div>
+              {/* should work regardless how it's nested */}
+              <InputBase />
+            </div>
+          </FormControl>,
+        );
+      }).toErrorDev([
+        'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
+        // React 18 Strict Effects run mount effects twice
+        React.version.startsWith('18') &&
+          'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
+      ]);
+    });
+
+    it('should not warn if only one input is rendered', () => {
+      expect(() => {
+        render(
+          <FormControl>
+            <InputBase />
+          </FormControl>,
+        );
+      }).not.toErrorDev();
+    });
+
+    it('should not warn when toggling between inputs', () => {
+      // this will ensure that deregistering was called during unmount
+      function ToggleFormInputs() {
+        const [flag, setFlag] = React.useState(true);
+
+        return (
+          <FormControl>
+            {flag ? (
+              <InputBase />
+            ) : (
+              // TODO: use material-next/Select
+              <Select native>
+                <option value="">empty</option>
+              </Select>
+            )}
+            <button type="button" onClick={() => setFlag(!flag)}>
+              toggle
+            </button>
+          </FormControl>
+        );
+      }
+
+      const { getByText } = render(<ToggleFormInputs />);
+      expect(() => {
+        fireEvent.click(getByText('toggle'));
+      }).not.toErrorDev();
     });
   });
 

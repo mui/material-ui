@@ -509,7 +509,7 @@ const InputBase = React.forwardRef(function InputBase<
         {endAdornment}
         {renderSuffix
           ? renderSuffix({
-              // TODO: make sure ['color', 'disabled', 'error', 'hiddenLabel', 'size', 'required', 'filled'] are all passed to renderSuffix
+              // TODO: make sure ['color', 'disabled', 'error', 'hiddenLabel', 'size', 'required', 'filled'] are all passed to renderSuffix when integrating OutlinedInput
               ...muiFormControl,
               startAdornment,
             })
