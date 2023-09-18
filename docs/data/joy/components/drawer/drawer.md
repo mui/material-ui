@@ -27,20 +27,22 @@ It will also close if an item inside of it is selected, which can be controlled 
 ### Anchor
 
 Use the anchor prop to specify where the drawer should appear from.
+The default value is `left`.
 
 {{"demo": "DrawerAnchor.js"}}
+
+### Size
+
+Use the size prop to adjust the Drawer's width and height when positioned left/right and top/bottom, respectively.
+
+{{"demo": "DrawerSize.js"}}
 
 ### Close button
 
 Use the Modal Close component to add a close button to the Drawer.
+It automatically handles the `onClick` event.
 
 {{"demo": "DrawerCloseButton.js"}}
-
-### Size
-
-Use the `size` prop to adjust the Drawer's width.
-
-{{"demo": "DrawerSize.js"}}
 
 ### Transition
 
@@ -67,6 +69,6 @@ A common use case for the Drawer is mobile menus.
 
 ### Inset drawer
 
-To make the Drawer not glued to the edge of the viewport, creating an inset style, use a combination of background and padding values on the Drawer component and either a Box or [Sheet](/joy-ui/react-sheet/) to the full-height wrapper.
+To make the Drawer not glued to the edge of the viewport, creating an inset style, use a combination of background and padding values on the Drawer component and either the Box or [Sheet](/joy-ui/react-sheet/) components for the full-height wrapper.
 
 {{"demo": "DrawerFilters.js"}}
