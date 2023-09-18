@@ -24,12 +24,14 @@ function getCssVars() {
 
 const cssVars = getCssVars();
 
-const aa = Object.values(cssVars);
-
-type Aaa = typeof aa extends (infer T)[] ? T : never;
+type Keys = keyof typeof cssVarsConsts extends infer Key
+  ? Key extends string
+    ? `--CircularProgress-${Key}`
+    : never
+  : never;
 
 export type CssVarsValuesType = {
-  [key in Aaa]?: string | number;
+  [key in Keys]?: string | number;
 };
 
 export default cssVars;
