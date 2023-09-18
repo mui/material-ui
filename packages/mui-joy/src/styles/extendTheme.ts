@@ -549,13 +549,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
                   color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
                   ...(ownerState.color &&
                     ownerState.color !== 'inherit' &&
-                    ownerState.color !== 'context' &&
                     themeProp.vars.palette[ownerState.color!] && {
                       color: `rgba(${themeProp.vars.palette[ownerState.color]?.mainChannel} / 1)`,
                     }),
-                  ...(ownerState.color === 'context' && {
-                    color: themeProp.vars.palette.text.secondary,
-                  }),
                 }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {

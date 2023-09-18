@@ -8,7 +8,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
-import { useThemeProps } from '../styles';
+import { useThemeProps, applySolidInversion, applySoftInversion } from '../styles';
 import styled from '../styles/styled';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
@@ -95,7 +95,18 @@ const CardRoot = styled(StyledCardRoot, {
   name: 'JoyCard',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({});
+})<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => ({
+  ...(ownerState.variant === 'solid' &&
+    ownerState.color &&
+    ownerState.invertedColors && {
+      '& *': applySolidInversion(ownerState.color)(theme),
+    }),
+  ...(ownerState.variant === 'soft' &&
+    ownerState.color &&
+    ownerState.invertedColors && {
+      '& *': applySoftInversion(ownerState.color)(theme),
+    }),
+}));
 
 /**
  *
@@ -117,6 +128,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     className,
     color = 'neutral',
     component = 'div',
+    invertedColors = false,
     size = 'md',
     variant = 'outlined',
     children,
@@ -133,6 +145,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     orientation,
     size,
     variant,
+    invertedColors,
   };
 
   const classes = useUtilityClasses(ownerState);

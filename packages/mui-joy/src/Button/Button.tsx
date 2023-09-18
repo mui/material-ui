@@ -94,6 +94,10 @@ export const getButtonStyles = ({
   theme: Theme;
   ownerState: Partial<Omit<ButtonOwnerState, 'slots' | 'slotProps'>>;
 }): Interpolation<any> => {
+  const baseStyles = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const hoverStyles = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
+  const activeStyles = theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!];
+  const disabledStyles = theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!];
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
@@ -150,25 +154,17 @@ export const getButtonStyles = ({
       }),
       [theme.focus.selector]: theme.focus.default,
     } as const,
+    getScopedGlobalVariantVars(baseStyles, ownerState.instanceColor),
+    getScopedGlobalVariantVars(hoverStyles, ownerState.instanceColor),
+    getScopedGlobalVariantVars(activeStyles, ownerState.instanceColor),
+    getScopedGlobalVariantVars(disabledStyles, ownerState.instanceColor),
     {
-      ...getScopedGlobalVariantVars(
-        theme.variants[ownerState.variant!]?.[ownerState.color!],
-        ownerState.instanceColor,
-      ),
+      ...baseStyles,
       '&:hover': {
-        '@media (hover: hover)': getScopedGlobalVariantVars(
-          theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-          ownerState.instanceColor,
-        ),
+        '@media (hover: hover)': hoverStyles,
       },
-      '&:active, &[aria-pressed="true"]': getScopedGlobalVariantVars(
-        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-        ownerState.instanceColor,
-      ),
-      '&:disabled': getScopedGlobalVariantVars(
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-        ownerState.instanceColor,
-      ),
+      '&:active, &[aria-pressed="true"]': activeStyles,
+      '&:disabled': disabledStyles,
       ...(ownerState.loadingPosition === 'center' && {
         // this has to come after the variant styles to take effect.
         [`&.${buttonClasses.loading}`]: {

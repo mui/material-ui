@@ -22,15 +22,19 @@ export default function JoyToggleButton() {
           p: 3,
         }}
       >
+        <Button variant="solid" color="success" endDecorator={<KeyboardArrowRightIcon />}>
+          Read more
+        </Button>
+
         <Card
           variant="solid"
           color="primary"
+          invertedColors
           sx={[
             {
               gap: 2,
               maxWidth: 300,
               boxShadow: 'md',
-              '& *, && [data-color-inverted]': applySolidInversion('primary'),
             },
           ]}
         >
@@ -50,17 +54,17 @@ export default function JoyToggleButton() {
           </Button>
         </Card>
 
-        <Card
-          variant="solid"
-          color="primary"
-          sx={[
-            {
-              gap: 2,
-              maxWidth: 300,
-              boxShadow: 'md',
-              '& *, && [data-color-inverted]': applySolidInversion('primary'),
-            },
-          ]}
+        <Box
+          sx={(theme) => ({
+            display: 'flex',
+            flexDirection: 'column',
+            p: 2,
+            gap: 2,
+            maxWidth: 300,
+            boxShadow: 'md',
+            ...theme.variants.soft.primary,
+            '& *': applySolidInversion('primary')(theme),
+          })}
         >
           <Chip size="sm" variant="soft" sx={{ alignSelf: 'flex-start', borderRadius: 'xl' }}>
             New
@@ -73,10 +77,15 @@ export default function JoyToggleButton() {
             <BookmarkOutlinedIcon />
           </IconButton>
           <Typography level="h3">Instance color prop is applied to the button.</Typography>
-          <Button variant="solid" color="success" endDecorator={<KeyboardArrowRightIcon />}>
+          <Button
+            data-inverted-colors
+            variant="solid"
+            color="success"
+            endDecorator={<KeyboardArrowRightIcon />}
+          >
             Read more
           </Button>
-        </Card>
+        </Box>
       </Box>
     </CssVarsProvider>
   );

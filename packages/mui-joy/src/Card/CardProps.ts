@@ -37,6 +37,11 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, CardPropsColorOverrides>;
     /**
+     * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+     * @default false
+     */
+    invertedColors?: boolean;
+    /**
      * The component orientation.
      * @default 'vertical'
      */
