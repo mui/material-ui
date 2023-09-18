@@ -178,6 +178,6 @@ export interface ColorSystem {
 
 export type ApplyColorInversion<T extends { color?: ColorPaletteProp | 'inherit' }> = Simplify<
   T & {
-    instanceColor?: T['color'];
+    instanceColor: T['color'] | undefined;
   }
 >;
