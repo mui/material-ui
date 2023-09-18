@@ -11,7 +11,8 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
-import { useThemeProps, styled, ColorInversionProvider, useColorInversion } from '../styles';
+import { useThemeProps, styled } from '../styles';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import { StyledModalBackdrop, StyledModalRoot } from '../Modal/Modal';
 import CloseModalContext from '../Modal/CloseModalContext';
 import useSlot from '../utils/useSlot';
@@ -43,7 +44,7 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
   name: 'JoyDrawer',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: DrawerOwnerState }>(({ ownerState, theme }) => ({
   '--Drawer-transitionDuration': '0.3s',
   '--Drawer-transitionFunction': 'ease',
   '--ModalClose-radius':
@@ -66,6 +67,10 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
     '--Drawer-horizontalSize': 'clamp(440px, 60%, 100%)',
     '--Drawer-titleMargin': '1rem 1rem calc(1rem / 2)',
   }),
+  ...getScopedGlobalVariantVars(
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    ownerState.instanceColor,
+  ),
   transitionProperty: 'visibility',
   transitionDelay: ownerState.open ? '0s' : 'var(--Drawer-transitionDuration)',
   ...(!ownerState.open && {
@@ -155,7 +160,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     disableRestoreFocus = false,
     disableScrollLock = false,
     hideBackdrop = false,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'plain',
     invertedColors = false,
     size = 'md',
@@ -168,10 +173,8 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     ...other
   } = props;
 
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
-
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     anchor,
     disableAutoFocus,
@@ -182,6 +185,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     disableScrollLock,
     hideBackdrop,
     color,
+    invertedColors,
     variant,
     size,
   };
@@ -198,7 +202,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   const labelledBy = useId();
   const describedBy = useId();
   const contextValue = React.useMemo(
-    () => ({ variant, color: color === 'context' ? undefined : color, labelledBy, describedBy }),
+    () => ({ variant, color, labelledBy, describedBy }),
     [color, variant, labelledBy, describedBy],
   );
 
@@ -233,7 +237,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     ownerState,
   });
 
-  const result = (
+  return (
     <CloseModalContext.Provider value={onClose}>
       <ModalDialogSizeContext.Provider value={size}>
         <ModalDialogVariantColorContext.Provider value={contextValue}>
@@ -261,11 +265,6 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
       </ModalDialogSizeContext.Provider>
     </CloseModalContext.Provider>
   );
-
-  if (invertedColors) {
-    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
-  }
-  return result;
 }) as OverridableComponent<DrawerTypeMap>;
 
 Drawer.propTypes /* remove-proptypes */ = {
