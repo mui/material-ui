@@ -16,6 +16,7 @@ import {
   CircularProgressProps,
   CircularProgressTypeMap,
 } from './CircularProgressProps';
+import cssVars from './CircularProgressCssVars';
 
 const circulate = keyframes({
   '0%': {
@@ -47,7 +48,7 @@ const useUtilityClasses = (ownerState: CircularProgressOwnerState) => {
 };
 
 function getThickness(slot: 'track' | 'progress', defaultValue: string) {
-  return `var(--CircularProgress-${slot}Thickness, var(--CircularProgress-thickness, ${defaultValue}))`;
+  return `var(--CircularProgress-${slot}Thickness, var(${cssVars.thickness}, ${defaultValue}))`;
 }
 
 const CircularProgressRoot = styled('span', {
@@ -61,8 +62,8 @@ const CircularProgressRoot = styled('span', {
     // integration with icon
     '--Icon-fontSize': 'calc(0.4 * var(--_root-size))',
     // public variables
-    '--CircularProgress-trackColor': backgroundColor,
-    '--CircularProgress-progressColor': color,
+    [cssVars.trackColor]: backgroundColor,
+    [cssVars.progressColor]: color,
     '--CircularProgress-percent': ownerState.value, // 0 - 100
     '--CircularProgress-linecap': 'round',
     ...(ownerState.size === 'sm' && {
