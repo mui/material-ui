@@ -10,6 +10,7 @@ import {
 } from '@mui/utils';
 import { useThemeProps, applySolidInversion, applySoftInversion } from '../styles';
 import styled from '../styles/styled';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
@@ -82,8 +83,22 @@ export const StyledCardRoot = styled('div')<{ ownerState: CardOwnerState }>(
         display: 'flex',
         flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
         ...theme.typography[`body-${ownerState.size!}`],
-        ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+        ...(ownerState.variant === 'solid' &&
+          ownerState.color &&
+          ownerState.invertedColors && {
+            '& *': applySolidInversion(ownerState.color)(theme),
+          }),
+        ...(ownerState.variant === 'soft' &&
+          ownerState.color &&
+          ownerState.invertedColors && {
+            '& *': applySoftInversion(ownerState.color)(theme),
+          }),
       } as const,
+      getScopedGlobalVariantVars(
+        theme.variants[ownerState.variant!]?.[ownerState.color!],
+        ownerState.instanceColor,
+      ),
+      theme.variants[ownerState.variant!]?.[ownerState.color!],
       p !== undefined && { '--Card-padding': p },
       padding !== undefined && { '--Card-padding': padding },
       borderRadius !== undefined && { '--Card-radius': borderRadius },
@@ -95,18 +110,7 @@ const CardRoot = styled(StyledCardRoot, {
   name: 'JoyCard',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => ({
-  ...(ownerState.variant === 'solid' &&
-    ownerState.color &&
-    ownerState.invertedColors && {
-      '& *': applySolidInversion(ownerState.color)(theme),
-    }),
-  ...(ownerState.variant === 'soft' &&
-    ownerState.color &&
-    ownerState.invertedColors && {
-      '& *': applySoftInversion(ownerState.color)(theme),
-    }),
-}));
+})<{ ownerState: CardOwnerState }>({});
 
 /**
  *
@@ -140,6 +144,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const ownerState = {
     ...props,
+    instanceColor: inProps.color,
     color,
     component,
     orientation,
