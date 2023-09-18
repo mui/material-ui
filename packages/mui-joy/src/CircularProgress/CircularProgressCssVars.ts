@@ -1,4 +1,4 @@
-const cssVars = {
+const cssVarsConsts = {
   thickness: 'thickness',
   trackThickness: 'trackThickness',
   progressThickness: 'progressThickness',
@@ -12,14 +12,24 @@ const cssVars = {
 } as const;
 
 function getCssVars() {
-  return Object.entries(cssVars).reduce((acc, [key, value]) => {
+  return Object.entries(cssVarsConsts).reduce((acc, [key, value]) => {
     return {
       ...acc,
       [key]: `--CircularProgress-${value}`,
     };
   }, {}) as {
-    [key in keyof typeof cssVars]: `--CircularProgress-${(typeof cssVars)[key]}`;
+    [key in keyof typeof cssVarsConsts]: `--CircularProgress-${(typeof cssVarsConsts)[key]}`;
   };
 }
 
-export default getCssVars();
+const cssVars = getCssVars();
+
+const aa = Object.values(cssVars);
+
+type Aaa = typeof aa extends (infer T)[] ? T : never;
+
+export type CssVarsValuesType = {
+  [key in Aaa]?: string | number;
+};
+
+export default cssVars;
