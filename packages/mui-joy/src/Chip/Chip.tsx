@@ -9,12 +9,12 @@ import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
-import { useColorInversion } from '../styles/ColorInversion';
 import { resolveSxValue } from '../styles/styleUtils';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
 import useSlot from '../utils/useSlot';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 
 const useUtilityClasses = (ownerState: ChipOwnerState) => {
   const { disabled, size, color, clickable, variant, focusVisible } = ownerState;
@@ -43,6 +43,7 @@ const ChipRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const disabledStyle = theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!];
   const { borderRadius } = resolveSxValue({ theme, ownerState }, ['borderRadius']);
   return [
     {
@@ -100,16 +101,17 @@ const ChipRoot = styled('div', {
       ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
       fontWeight: theme.vars.fontWeight.md,
       [`&.${chipClasses.disabled}`]: {
-        color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
+        color: disabledStyle?.color,
       },
     } as const,
+    getScopedGlobalVariantVars(variantStyle, ownerState.instanceColor),
+    getScopedGlobalVariantVars(disabledStyle, ownerState.instanceColor),
     ...(!ownerState.clickable
       ? [
           {
             backgroundColor: theme.vars.palette.background.surface,
             ...variantStyle,
-            [`&.${chipClasses.disabled}`]:
-              theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+            [`&.${chipClasses.disabled}`]: disabledStyle,
           },
         ]
       : [
@@ -224,7 +226,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const {
     children,
     className,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     onClick,
     disabled = false,
     size = 'md',
@@ -236,11 +238,10 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const clickable = !!onClick || !!slotProps.action;
   const ownerState: ChipOwnerState = {
+    instanceColor: inProps.color,
     ...props,
     disabled,
     size,
@@ -313,7 +314,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   return (
     <ChipContext.Provider value={chipContextValue}>
-      <VariantColorProvider variant={variant} color={colorProp}>
+      <VariantColorProvider variant={variant} color={color}>
         <SlotRoot {...rootProps}>
           {clickable && <SlotAction {...actionProps} />}
 
