@@ -13,7 +13,9 @@ function useIsDarkMode() {
 }
 
 export default function UnstyledTabsIntroduction() {
+  // Replace this with your app logic for determining dark mode
   const isDarkMode = useIsDarkMode();
+
   return (
     <div className={isDarkMode ? 'dark' : ''}>
       <Tabs defaultValue={0}>
