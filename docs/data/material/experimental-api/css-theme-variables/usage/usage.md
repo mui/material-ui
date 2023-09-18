@@ -7,14 +7,6 @@
 The CSS variables API relies on a new experimental provider for the theme called `Experimental_CssVarsProvider` to inject styles into Material UI components.
 In addition to providing the theme in the inner React context, this new provider also generates CSS variables out of all tokens in the theme that are not functions, and makes them available in the context as well.
 
-```js
-import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
-
-function App() {
-  return <CssVarsProvider>...</CssVarsProvider>;
-}
-```
-
 Once the `App` renders on the screen, you will see the CSS theme variables in the html `:root` stylesheet.
 The variables are flattened and prefixed with `--mui` by default:
 
@@ -28,6 +20,10 @@ The variables are flattened and prefixed with `--mui` by default:
   /* ...other variables */
 }
 ```
+
+The following demo uses `--md-demo` as a prefix for the variables:
+
+{{"demo": "CssVarsBasic.js", "defaultCodeOpen": true}}
 
 :::info
 The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variable generation, storage synchronization, unlimited color schemes, and more.
@@ -167,7 +163,6 @@ const StyledComponent = styled('button')(({ theme }) => ({
 
 - `defaultMode?: 'light' | 'dark' | 'system'` - Application's default mode (`light` by default)
 - `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
-- `prefix: string` - CSS variable prefix
 - `theme: ThemeInput` - the theme provided to React's context
 - `modeStorageKey?: string` - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme
