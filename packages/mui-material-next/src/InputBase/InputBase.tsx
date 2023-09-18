@@ -17,7 +17,6 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-// import formControlState from '@mui/material/FormControl/formControlState';
 import FormControlContext from '@mui/material-next/FormControl/FormControlContext';
 import useFormControl from '@mui/material-next/FormControl/useFormControl';
 import styled from '../styles/styled';
@@ -305,20 +304,10 @@ const InputBase = React.forwardRef(function InputBase<
     }, [muiFormControl]);
   }
 
-  // TODO: what is this actually doing ?!
-  /*
-    const fcs = formControlState({
-    props,
-    muiFormControl,
-    states: ['color', 'disabled', 'error', 'hiddenLabel', 'size', 'required', 'filled'],
-  });
-   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
-  */
-
   const onFilled = muiFormControl && muiFormControl.onFilled;
   const onEmpty = muiFormControl && muiFormControl.onEmpty;
 
-  // TODO: needs material-next/FormControl & material-next/Outlined|FilledInput
+  // TODO: needs material-next/Outlined|FilledInput
   const checkDirty = React.useCallback(
     (obj: any) => {
       if (isFilled(obj)) {
@@ -387,7 +376,7 @@ const InputBase = React.forwardRef(function InputBase<
     }
   }, [muiFormControl, startAdornment]);
 
-  const required = muiFormControl?.required ?? requiredProp;
+  const required = requiredProp ?? muiFormControl?.required;
 
   const {
     getRootProps,
@@ -398,9 +387,9 @@ const InputBase = React.forwardRef(function InputBase<
     inputRef,
     // ignore Base UI's formControlContext
   } = useInput({
-    disabled: muiFormControl?.disabled ?? disabledProp,
+    disabled: disabledProp ?? muiFormControl?.disabled,
     defaultValue,
-    error: muiFormControl?.error ?? errorProp,
+    error: errorProp ?? muiFormControl?.error,
     onBlur: handleBlur,
     onClick: handleClick,
     onChange: handleChange,
@@ -412,7 +401,7 @@ const InputBase = React.forwardRef(function InputBase<
 
   const ownerState = {
     ...props,
-    color: muiFormControl?.color ?? colorProp ?? 'primary',
+    color: colorProp ?? muiFormControl?.color ?? 'primary',
     disabled: disabledState,
     endAdornment,
     error: errorState,
@@ -422,7 +411,7 @@ const InputBase = React.forwardRef(function InputBase<
     hiddenLabel: muiFormControl?.hiddenLabel ?? false,
     multiline,
     required,
-    size: muiFormControl?.size ?? sizeProp,
+    size: sizeProp ?? muiFormControl?.size,
     startAdornment,
     type,
   };
@@ -520,6 +509,7 @@ const InputBase = React.forwardRef(function InputBase<
         {endAdornment}
         {renderSuffix
           ? renderSuffix({
+              // TODO: make sure ['color', 'disabled', 'error', 'hiddenLabel', 'size', 'required', 'filled'] are all passed to renderSuffix
               ...muiFormControl,
               startAdornment,
             })
