@@ -15,6 +15,7 @@ import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
+import BadgeRoundedIcon from '@mui/icons-material/BadgeRounded';
 import GoogleIcon from './GoogleIcon';
 
 interface FormElements extends HTMLFormControlsCollection {
@@ -104,30 +105,22 @@ export default function JoySignInSideTemplate() {
             sx={{
               py: 3,
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'left',
               justifyContent: 'space-between',
             }}
           >
-            <Typography
-              fontWeight="lg"
-              startDecorator={
-                <Box
-                  component="span"
-                  sx={{
-                    width: 24,
-                    height: 24,
-                    background: (theme) =>
-                      `linear-gradient(45deg, ${theme.vars.palette.primary.solidBg}, ${theme.vars.palette.primary.solidBg} 30%, ${theme.vars.palette.primary.softBg})`,
-                    borderRadius: '50%',
-                    boxShadow: (theme) => theme.shadow.md,
-                    '--joy-shadowChannel': (theme) =>
-                      theme.vars.palette.primary.mainChannel,
-                  }}
-                />
-              }
+            <Box
+              sx={{
+                gap: 2,
+                display: 'flex',
+                alignItems: 'center',
+              }}
             >
-              Logo
-            </Typography>
+              <IconButton variant="soft" color="primary" size="sm">
+                <BadgeRoundedIcon />
+              </IconButton>
+              <Typography level="title-lg">Company logo</Typography>
+            </Box>
             <ColorSchemeToggle />
           </Box>
           <Box
@@ -157,7 +150,7 @@ export default function JoySignInSideTemplate() {
               <Stack gap={1}>
                 <Typography level="h3">Sign in</Typography>
                 <Typography level="body-sm">
-                  New to company?
+                  New to company?{' '}
                   <Link href="#replace-with-a-link" level="title-sm">
                     Sign up!
                   </Link>
@@ -184,7 +177,7 @@ export default function JoySignInSideTemplate() {
                 },
               })}
             >
-              Or
+              or
             </Divider>
             <Stack gap={4} sx={{ mt: 2 }}>
               <form
@@ -215,11 +208,7 @@ export default function JoySignInSideTemplate() {
                       alignItems: 'center',
                     }}
                   >
-                    <Checkbox
-                      size="sm"
-                      label="Remember for 30 days"
-                      name="persistent"
-                    />
+                    <Checkbox size="sm" label="Remember me" name="persistent" />
                     <Link level="title-sm" href="#replace-with-a-link">
                       Forgot your password?
                     </Link>
