@@ -143,7 +143,7 @@ describe('<InputBase />', () => {
     );
     const input = getByRole('textbox');
 
-    // TODO: refactor this test with @testing-library/user-event
+    // TODO v6: refactor this test with @testing-library/user-event
     // simulating user input: gain focus, key input (keydown, (input), change, keyup), blur
     act(() => {
       input.focus();
@@ -221,7 +221,7 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: slots', () => {
-    // TODO: figure out if this is covered by describeConformance
+    // TODO v6: figure out if this is covered by describeConformance
     it('should accept any html component', () => {
       const { getByTestId } = render(
         <InputBase
@@ -644,7 +644,7 @@ describe('<InputBase />', () => {
       expect(getByTestId('adornment')).not.to.equal(null);
     });
 
-    // TODO: use material-next/Select
+    // TODO v6: use material-next/Select
     it('should allow a Select as an adornment', () => {
       render(
         <InputBase
@@ -676,7 +676,7 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: focused', () => {
-    // TODO: use material-next/TextField
+    // TODO v6: use material-next/TextField
     // eslint-disable-next-line mocha/no-skipped-tests
     it.skip('should render correct border color with `ThemeProvider` imported from `@emotion/react`', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {

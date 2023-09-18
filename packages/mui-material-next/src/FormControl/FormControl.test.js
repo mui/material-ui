@@ -3,9 +3,9 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import FormControl, { formControlClasses as classes } from '@mui/material-next/FormControl';
-// TODO: replace with material-next/OutlinedInput
+// TODO v6: replace with material-next/FilledInput
 import InputBase from '@mui/material-next/InputBase';
-// TODO: replace with material-next/Select
+// TODO v6: replace with material-next/Select
 import Select from '@mui/material/Select';
 import useFormControl from './useFormControl';
 
@@ -177,7 +177,7 @@ describe('<FormControl />', () => {
             {flag ? (
               <InputBase />
             ) : (
-              // TODO: use material-next/Select
+              // TODO v6: use material-next/Select
               <Select native>
                 <option value="">empty</option>
               </Select>
@@ -196,14 +196,14 @@ describe('<FormControl />', () => {
     });
   });
 
-  // TODO: needs Outlined|FilledInput + FormControl integrated
+  // TODO v6: needs FilledInput + FormControl integrated
   // eslint-disable-next-line mocha/no-skipped-tests
   describe.skip('input', () => {
     it('should be filled when a value is set', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO: use material-next/OutlinedInput */}
+          {/* TODO v6: use material-next/FilledInput */}
           <InputBase value="bar" />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -215,7 +215,7 @@ describe('<FormControl />', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO: use material-next/OutlinedInput */}
+          {/* TODO v6: use material-next/FilledInput */}
           <InputBase inputProps={{ value: 'bar' }} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -227,7 +227,7 @@ describe('<FormControl />', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO: use material-next/OutlinedInput */}
+          {/* TODO v6: use material-next/FilledInput */}
           <InputBase defaultValue="bar" />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -239,7 +239,7 @@ describe('<FormControl />', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO: use material-next/OutlinedInput */}
+          {/* TODO v6: use material-next/FilledInput */}
           <InputBase endAdornment={<div />} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -251,7 +251,7 @@ describe('<FormControl />', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO: use material-next/OutlinedInput */}
+          {/* TODO v6: use material-next/FilledInput */}
           <InputBase startAdornment={<div />} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -260,7 +260,7 @@ describe('<FormControl />', () => {
     });
   });
 
-  // TODO: needs material-next/Select + FormControl integrated
+  // TODO v6: needs material-next/Select + FormControl integrated
   // eslint-disable-next-line mocha/no-skipped-tests
   describe.skip('select', () => {
     it('should not be adorned without a startAdornment', () => {
