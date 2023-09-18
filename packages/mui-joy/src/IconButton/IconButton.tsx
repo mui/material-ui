@@ -5,7 +5,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { useButton } from '@mui/base/useButton';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import useSlot from '../utils/useSlot';
 import { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
@@ -35,74 +35,86 @@ const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
 };
 
 export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerState }>(
-  ({ theme, ownerState }) => [
-    {
-      '--Icon-margin': 'initial', // reset the icon's margin.
-      '--Icon-color':
-        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
-          ? 'currentColor'
-          : theme.vars.palette.text.icon,
-      ...(ownerState.instanceSize && {
-        '--IconButton-size': { sm: '2rem', md: '2.25rem', lg: '2.75rem' }[ownerState.instanceSize],
-      }),
-      ...(ownerState.size === 'sm' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
-        '--CircularProgress-size': '20px',
-        '--CircularProgress-thickness': '2px',
-        minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
-        minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
-        fontSize: theme.vars.fontSize.sm,
-        paddingInline: '2px', // add a gap, in case the content is long, e.g. multiple icons
-      }),
-      ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 2.25rem) / 1.5)', // 1.5rem by default
-        '--CircularProgress-size': '20px',
-        '--CircularProgress-thickness': '2px',
-        minWidth: 'var(--IconButton-size, 2.25rem)',
-        minHeight: 'var(--IconButton-size, 2.25rem)',
-        fontSize: theme.vars.fontSize.md,
-        paddingInline: '0.25rem',
-      }),
-      ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 2.75rem) / 1.571)', // 1.75rem by default
-        '--CircularProgress-size': '28px',
-        '--CircularProgress-thickness': '4px',
-        minWidth: 'var(--IconButton-size, 2.75rem)',
-        minHeight: 'var(--IconButton-size, 2.75rem)',
-        fontSize: theme.vars.fontSize.lg,
-        paddingInline: '0.375rem',
-      }),
-      WebkitTapHighlightColor: 'transparent',
-      paddingBlock: 0,
-      fontFamily: theme.vars.fontFamily.body,
-      fontWeight: theme.vars.fontWeight.md,
-      margin: `var(--IconButton-margin)`, // to be controlled by other components, e.g. Input
-      borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, e.g. Input
-      border: 'none',
-      boxSizing: 'border-box',
-      backgroundColor: 'transparent',
-      cursor: 'pointer',
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      [theme.focus.selector]: { '--Icon-color': 'currentColor', ...theme.focus.default },
-    } as const,
-    {
-      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-      '&:hover': {
-        '@media (hover: hover)': {
-          '--Icon-color': 'currentColor',
-          ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+  ({ theme, ownerState }) => {
+    const baseStyles = theme.variants[ownerState.variant!]?.[ownerState.color!];
+    const hoverStyles = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
+    const activeStyles = theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!];
+    const disabledStyles = theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!];
+    return [
+      {
+        '--Icon-margin': 'initial',
+        '--Icon-color':
+          ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+            ? 'currentColor'
+            : theme.vars.palette.text.icon,
+        ...(ownerState.instanceSize && {
+          '--IconButton-size': { sm: '2rem', md: '2.25rem', lg: '2.75rem' }[
+            ownerState.instanceSize
+          ],
+        }),
+        ...(ownerState.size === 'sm' && {
+          '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)',
+          '--CircularProgress-size': '20px',
+          '--CircularProgress-thickness': '2px',
+          minWidth: 'var(--IconButton-size, 2rem)',
+          minHeight: 'var(--IconButton-size, 2rem)',
+          fontSize: theme.vars.fontSize.sm,
+          paddingInline: '2px', // add a gap, in case the content is long, e.g. multiple icons
+        }),
+        ...(ownerState.size === 'md' && {
+          '--Icon-fontSize': 'calc(var(--IconButton-size, 2.25rem) / 1.5)',
+          '--CircularProgress-size': '20px',
+          '--CircularProgress-thickness': '2px',
+          minWidth: 'var(--IconButton-size, 2.25rem)',
+          minHeight: 'var(--IconButton-size, 2.25rem)',
+          fontSize: theme.vars.fontSize.md,
+          paddingInline: '0.25rem',
+        }),
+        ...(ownerState.size === 'lg' && {
+          '--Icon-fontSize': 'calc(var(--IconButton-size, 2.75rem) / 1.571)',
+          '--CircularProgress-size': '28px',
+          '--CircularProgress-thickness': '4px',
+          minWidth: 'var(--IconButton-size, 2.75rem)',
+          minHeight: 'var(--IconButton-size, 2.75rem)',
+          fontSize: theme.vars.fontSize.lg,
+          paddingInline: '0.375rem',
+        }),
+        WebkitTapHighlightColor: 'transparent',
+        paddingBlock: 0,
+        fontFamily: theme.vars.fontFamily.body,
+        fontWeight: theme.vars.fontWeight.md,
+        margin: `var(--IconButton-margin)`,
+        borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`,
+        border: 'none',
+        boxSizing: 'border-box',
+        backgroundColor: 'transparent',
+        cursor: 'pointer',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        [theme.focus.selector]: { '--Icon-color': 'currentColor', ...theme.focus.default },
+      } as const,
+      getScopedGlobalVariantVars(baseStyles, ownerState.instanceColor),
+      getScopedGlobalVariantVars(hoverStyles, ownerState.instanceColor),
+      getScopedGlobalVariantVars(activeStyles, ownerState.instanceColor),
+      getScopedGlobalVariantVars(disabledStyles, ownerState.instanceColor),
+      {
+        ...baseStyles,
+        '&:hover': {
+          '@media (hover: hover)': {
+            '--Icon-color': 'currentColor',
+            ...hoverStyles,
+          },
         },
+        '&:active, &[aria-pressed="true"]': {
+          '--Icon-color': 'currentColor',
+          ...activeStyles,
+        },
+        '&:disabled': disabledStyles,
       },
-      '&:active, &[aria-pressed="true"]': {
-        '--Icon-color': 'currentColor',
-        ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-      },
-      '&:disabled': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    },
-  ],
+    ];
+  },
 );
 
 export const IconButtonRoot = styled(StyledIconButton, {
@@ -143,8 +155,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const buttonGroup = React.useContext(ButtonGroupContext);
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, buttonGroup.color || colorProp);
+  const color = inProps.color || buttonGroup.color || colorProp;
   const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp);
 
   const buttonRef = React.useRef<HTMLElement>(null);
@@ -168,6 +179,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   );
 
   const ownerState = {
+    instanceColor: color,
     ...props,
     component,
     color,
