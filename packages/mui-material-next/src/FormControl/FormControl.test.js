@@ -1,4 +1,3 @@
-/* eslint-disable mocha/no-skipped-tests */
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
@@ -90,8 +89,7 @@ describe('<FormControl />', () => {
     });
   });
 
-  // TODO: needs InputBase + FormControl integrated
-  describe.skip('prop: disabled', () => {
+  describe('prop: disabled', () => {
     it('will be unfocused if it gets disabled', () => {
       const readContext = spy();
       const { container, setProps } = render(
@@ -139,12 +137,14 @@ describe('<FormControl />', () => {
     });
   });
 
-  describe('input', () => {
-    // TODO: needs InputBase + FormControl integrated
-    it.skip('should be filled when a value is set', () => {
+  // TODO: needs Outlined|FilledInput + FormControl integrated
+  // eslint-disable-next-line mocha/no-skipped-tests
+  describe.skip('input', () => {
+    it('should be filled when a value is set', () => {
       const readContext = spy();
       render(
         <FormControl>
+          {/* TODO: use material-next/OutlinedInput */}
           <InputBase value="bar" />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -152,11 +152,11 @@ describe('<FormControl />', () => {
       expect(readContext.args[0][0]).to.have.property('filled', true);
     });
 
-    // TODO: needs InputBase + FormControl integrated
-    it.skip('should be filled when a value is set through inputProps', () => {
+    it('should be filled when a value is set through inputProps', () => {
       const readContext = spy();
       render(
         <FormControl>
+          {/* TODO: use material-next/OutlinedInput */}
           <InputBase inputProps={{ value: 'bar' }} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -164,11 +164,11 @@ describe('<FormControl />', () => {
       expect(readContext.args[0][0]).to.have.property('filled', true);
     });
 
-    // TODO: needs InputBase + FormControl integrated
-    it.skip('should be filled when a defaultValue is set', () => {
+    it('should be filled when a defaultValue is set', () => {
       const readContext = spy();
       render(
         <FormControl>
+          {/* TODO: use material-next/OutlinedInput */}
           <InputBase defaultValue="bar" />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -180,6 +180,7 @@ describe('<FormControl />', () => {
       const readContext = spy();
       render(
         <FormControl>
+          {/* TODO: use material-next/OutlinedInput */}
           <InputBase endAdornment={<div />} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -187,11 +188,11 @@ describe('<FormControl />', () => {
       expect(readContext.args[0][0]).to.have.property('adornedStart', false);
     });
 
-    // TODO: needs InputBase + FormControl integrated
-    it.skip('should be adornedStart with a startAdornment', () => {
+    it('should be adornedStart with a startAdornment', () => {
       const readContext = spy();
       render(
         <FormControl>
+          {/* TODO: use material-next/OutlinedInput */}
           <InputBase startAdornment={<div />} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -200,7 +201,8 @@ describe('<FormControl />', () => {
     });
   });
 
-  // TODO: unskip and refactor when integrating material-next/Select
+  // TODO: needs material-next/Select + FormControl integrated
+  // eslint-disable-next-line mocha/no-skipped-tests
   describe.skip('select', () => {
     it('should not be adorned without a startAdornment', () => {
       const readContext = spy();
