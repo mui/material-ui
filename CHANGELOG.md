@@ -45,6 +45,7 @@ A big thanks to the 16 contributors who made this release possible. This release
 - &#8203;<!-- 16 -->[core] Remove react from styled-engine dependencies (#38971) @michaldudak
 - &#8203;<!-- 15 -->[core] Fix image loading bug on Safari @oliviertassinari
 - &#8203;<!-- 14 -->[core] Fix bundle size upload to S3 job (#38956) @Janpot
+- &#8203;<!-- 20 -->[core] Move eslint to peer dependencies of eslint-plugin-material-ui (#39033) @michaldudak
 - &#8203;<!-- 10 -->[docs-infra] Display markdown lists correctly in docs for props description (#38973) @ZeeshanTamboli
 - &#8203;<!-- 04 -->[website] Improve lighthouse score (#39011) @oliviertassinari
 - &#8203;<!-- 03 -->[website] Fix lighthouse issues @oliviertassinari
