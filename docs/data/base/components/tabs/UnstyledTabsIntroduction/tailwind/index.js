@@ -5,19 +5,28 @@ import { Tabs } from '@mui/base/Tabs';
 import { TabsList as BaseTabsList } from '@mui/base/TabsList';
 import { TabPanel as BaseTabPanel } from '@mui/base/TabPanel';
 import { Tab as BaseTab } from '@mui/base/Tab';
+import { useTheme } from '@mui/system';
+
+function useIsDarkMode() {
+  const theme = useTheme();
+  return theme.palette.mode === 'dark';
+}
 
 export default function UnstyledTabsIntroduction() {
+  const isDarkMode = useIsDarkMode();
   return (
-    <Tabs defaultValue={0}>
-      <TabsList>
-        <Tab value={0}>My account</Tab>
-        <Tab value={1}>Profile</Tab>
-        <Tab value={2}>Language</Tab>
-      </TabsList>
-      <TabPanel value={0}>My account page</TabPanel>
-      <TabPanel value={1}>Profile page</TabPanel>
-      <TabPanel value={2}>Language page</TabPanel>
-    </Tabs>
+    <div className={isDarkMode ? 'dark' : ''}>
+      <Tabs defaultValue={0}>
+        <TabsList>
+          <Tab value={0}>My account</Tab>
+          <Tab value={1}>Profile</Tab>
+          <Tab value={2}>Language</Tab>
+        </TabsList>
+        <TabPanel value={0}>My account page</TabPanel>
+        <TabPanel value={1}>Profile page</TabPanel>
+        <TabPanel value={2}>Language page</TabPanel>
+      </Tabs>
+    </div>
   );
 }
 
