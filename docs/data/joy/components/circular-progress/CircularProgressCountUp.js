@@ -14,7 +14,7 @@ export default function CircularProgressCountUp() {
     duration: 1,
     start: 0,
     end: 25,
-    onEnd: () => {
+    onComplete: () => {
       setIsLoading(false);
       setButtonLabel('Reset');
     },
@@ -33,8 +33,13 @@ export default function CircularProgressCountUp() {
       setButtonLabel('Start');
       resetValue1();
     } else {
-      setIsLoading(true);
-      setButtonLabel('Reset');
+      if (buttonLabel === 'Reset') {
+        setButtonLabel('Start');
+        resetValue1();
+      } else {
+        setIsLoading(true);
+        setButtonLabel('Reset');
+      }
     }
   };
 

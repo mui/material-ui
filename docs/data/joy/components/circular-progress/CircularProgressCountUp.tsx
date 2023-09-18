@@ -14,7 +14,7 @@ export default function CircularProgressCountUp() {
     duration: 1,
     start: 0,
     end: 25,
-    onEnd: () => {
+    onComplete: () => {
       setIsLoading(false);
       setButtonLabel('Reset');
     },
@@ -33,15 +33,20 @@ export default function CircularProgressCountUp() {
       setButtonLabel('Start');
       resetValue1();
     } else {
-      setIsLoading(true);
-      setButtonLabel('Reset');
+      if (buttonLabel === 'Reset') {
+        setButtonLabel('Start');
+        resetValue1();
+      } else {
+        setIsLoading(true);
+        setButtonLabel('Reset');
+      }
     }
   };
 
   return (
     <Stack direction="row" alignItems="center" flexWrap="wrap" spacing={8}>
       <Stack spacing={2}>
-        <CircularProgress size="lg" determinate value={value1}>
+        <CircularProgress size="lg" determinate value={value1 as number}>
           <Typography>{value1}%</Typography>
         </CircularProgress>
         <Button
@@ -54,7 +59,7 @@ export default function CircularProgressCountUp() {
         </Button>
       </Stack>
       <Stack spacing={2}>
-        <CircularProgress size="lg" determinate value={value2}>
+        <CircularProgress size="lg" determinate value={value2 as number}>
           <Typography>{value2}%</Typography>
         </CircularProgress>
         <Button size="sm" variant="outlined" color="neutral" onClick={reset}>
