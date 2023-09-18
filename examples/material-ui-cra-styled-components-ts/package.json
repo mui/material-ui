@@ -12,7 +12,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
-    "styled-components": "latest"
+    "styled-components": "^5.0.0"
   },
   "scripts": {
     "tsc": "./node_modules/.bin/tsc",
@@ -38,7 +38,7 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "@types/styled-components": "latest",
+    "@types/styled-components": "^5.0.0",
     "craco-alias": "^3.0.1",
     "typescript": "latest"
   }

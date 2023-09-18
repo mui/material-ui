@@ -302,6 +302,10 @@ Following this approach reduces the bundle size, and removes the need to configu
 After the style engine is configured properly, you can use the [`styled()`](/system/styled/) utility
 from `@mui/material/styles` and have direct access to the theme.
 
+:::warning
+Currently, `@mui/styled-engine-sc` only supports version 5 of `styled-components`. To stay updated on the progress of version 6 support, please refer to [#38431](https://github.com/mui/material-ui/issues/38431).
+:::
+
 {{"demo": "StyledComponents.js", "hideToolbar": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-interoperability-w9z9d)

@@ -12,7 +12,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
-    "styled-components": "latest"
+    "styled-components": "^5.0.0"
   },
   "scripts": {
     "start": "craco start",
