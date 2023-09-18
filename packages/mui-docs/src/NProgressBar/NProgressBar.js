@@ -32,7 +32,7 @@ const muiNProgressPulse = keyframes`
 
 const animation = css`
   ${muiNProgressPulse} 2s ease-out 0s infinite
-`
+`;
 
 /**
  * Elegant and ready-to-use wrapper on top of https://github.com/rstacruz/nprogress/.
