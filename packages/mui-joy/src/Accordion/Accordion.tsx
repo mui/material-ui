@@ -118,6 +118,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     ...props,
     component,
     color,
+    instanceColor: inProps.color,
     variant,
     expanded,
     disabled,
