@@ -38,7 +38,7 @@ function NProgressBar(props) {
   return (
     <NoSsr>
       {props.children}
-      <GlobalStyles
+      {/* <GlobalStyles
         styles={(theme) => ({
           '#nprogress': {
             direction: 'ltr',
@@ -83,7 +83,7 @@ function NProgressBar(props) {
             },
           },
         })}
-      />
+      /> */}
     </NoSsr>
   );
 }
