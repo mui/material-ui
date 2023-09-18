@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize, usePreviousProps } from '@mui/utils'
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useColorInversion } from '../styles/ColorInversion';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import useSlot from '../utils/useSlot';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeProps, BadgeOwnerState, BadgeTypeMap } from './BadgeProps';
@@ -58,6 +58,10 @@ const BadgeRoot = styled('span', {
   }),
   '--Badge-ringSize': '2px',
   '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.surface})`,
+  ...getScopedGlobalVariantVars(
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    ownerState.instanceColor,
+  ),
   position: 'relative',
   display: 'inline-flex',
   // For correct alignment with the text.
@@ -184,17 +188,23 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   }
 
   const {
-    color: internalColor = colorProp,
+    color = colorProp,
     size = sizeProp,
     anchorOrigin = anchorOriginProp,
     variant = variantProp,
     badgeInset = badgeInsetProp,
   } = invisible ? prevProps : props;
 
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, internalColor);
-
-  const ownerState = { ...props, anchorOrigin, badgeInset, variant, invisible, color, size };
+  const ownerState = {
+    instanceColor: inProps.color,
+    ...props,
+    anchorOrigin,
+    badgeInset,
+    variant,
+    invisible,
+    color,
+    size,
+  };
   const classes = useUtilityClasses(ownerState);
   const externalForwardedProps = { ...other, component, slots, slotProps };
   let displayValue =
