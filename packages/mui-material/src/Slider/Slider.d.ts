@@ -20,7 +20,7 @@ export interface SliderOwnerState extends SliderProps {
   focusedThumbIndex: number;
 }
 
-export interface SliderOwnProps<Value, OnChangeValue> {
+export interface SliderOwnProps<Value> {
   /**
    * The label of the slider.
    */
@@ -150,21 +150,14 @@ export interface SliderOwnProps<Value, OnChangeValue> {
    * @param {number | number[]} value The new value.
    * @param {number} activeThumb Index of the currently moved thumb.
    */
-  onChange?: (
-    event: Event,
-    value: OnChangeValue extends number ? number : number[],
-    activeThumb: number,
-  ) => void;
+  onChange?: (event: Event, value: Value, activeThumb: number) => void;
   /**
    * Callback function that is fired when the `mouseup` is triggered.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
    */
-  onChangeCommitted?: (
-    event: React.SyntheticEvent | Event,
-    value: OnChangeValue extends number ? number : number[],
-  ) => void;
+  onChangeCommitted?: (event: React.SyntheticEvent | Event, value: Value) => void;
   /**
    * The component orientation.
    * @default 'horizontal'
@@ -277,9 +270,8 @@ export interface SliderTypeMap<
   RootComponent extends React.ElementType = 'span',
   AdditionalProps = {},
   Value extends number | number[] = number | number[],
-  OnChangeValue extends Value = Value,
 > {
-  props: AdditionalProps & SliderOwnProps<Value, OnChangeValue>;
+  props: AdditionalProps & SliderOwnProps<Value>;
   defaultComponent: RootComponent;
 }
 
@@ -305,53 +297,104 @@ export declare const SliderTrack: React.FC<SliderTrackProps>;
 export declare const SliderThumb: React.FC<SliderThumbProps>;
 export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
 
-// It sets valid props based on the type of `component`
-// and passes type of `value` prop to `onChange` handler to make type of `value` in onChange argument and type of `value` prop same.
-// if type of `value` prop is `number` then type of `value` in onChange argument will be `number`
-// if type of `value` prop is `number[]` then type of `value` in onChange argument will be `number[]`.
+export interface SliderTypeMap<
+  RootComponent extends React.ElementType = 'span',
+  AdditionalProps = {},
+  Value extends number | number[] = number | number[],
+> {
+  props: AdditionalProps & SliderOwnProps<Value>;
+  defaultComponent: RootComponent;
+}
+
+// TS matches correct type based on type of component, value and defaultValue
 export interface SliderType {
-  <
-    RootComponent extends React.ElementType,
-    Value extends number | number[],
-    OnChangeValue extends Value,
-  >(
+  <RootComponent extends React.ElementType>(
+    props:
+      | {
+          /**
+           * The component used for the root node.
+           * Either a string to use a HTML element or a component.
+           */
+          component: RootComponent;
+        } & (
+          | {
+              value: number;
+              defaultValue?: number;
+            }
+          | {
+              value?: number;
+              defaultValue: number;
+            }
+        ) &
+          OverrideProps<
+            SliderTypeMap<SliderTypeMap['defaultComponent'], {}, number>,
+            RootComponent
+          >,
+  ): JSX.Element | null;
+  (
+    props: DefaultComponentProps<SliderTypeMap<SliderTypeMap['defaultComponent'], {}, number>> &
+      (
+        | {
+            value: number;
+            defaultValue?: number;
+          }
+        | {
+            value?: number;
+            defaultValue: number;
+          }
+      ),
+  ): JSX.Element | null;
+  <RootComponent extends React.ElementType>(
+    props:
+      | {
+          /**
+           * The component used for the root node.
+           * Either a string to use a HTML element or a component.
+           */
+          component: RootComponent;
+        } & (
+          | {
+              value: number[];
+              defaultValue?: number[];
+            }
+          | {
+              value?: number[];
+              defaultValue: number[];
+            }
+        ) &
+          OverrideProps<
+            SliderTypeMap<SliderTypeMap['defaultComponent'], {}, number[]>,
+            RootComponent
+          >,
+  ): JSX.Element | null;
+  (
+    props: DefaultComponentProps<SliderTypeMap<SliderTypeMap['defaultComponent'], {}, number[]>> &
+      (
+        | {
+            value: number[];
+            defaultValue?: number[];
+          }
+        | {
+            value?: number[];
+            defaultValue: number[];
+          }
+      ),
+  ): JSX.Element | null;
+  <RootComponent extends React.ElementType>(
     props: {
       /**
        * The component used for the root node.
        * Either a string to use a HTML element or a component.
        */
       component: RootComponent;
-      value?: Value;
-      /**
-       * Callback function that is fired when the slider's value changed.
-       *
-       * @param {Event} event The event source of the callback.
-       * You can pull out the new value by accessing `event.target.value` (any).
-       * **Warning**: This is a generic event not a change event.
-       * @param {number | number[]} value The new value.
-       * @param {number} activeThumb Index of the currently moved thumb.
-       */
-      onChange?: (event: Event, value: OnChangeValue, activeThumb: number) => void;
     } & OverrideProps<
-      SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value, OnChangeValue>,
+      SliderTypeMap<SliderTypeMap['defaultComponent'], {}, number | number[]>,
       RootComponent
     >,
   ): JSX.Element | null;
-  <Value extends number | number[], OnChangeValue extends Value>(
-    props: {
-      value?: Value;
-      /**
-       * Callback function that is fired when the slider's value changed.
-       *
-       * @param {Event} event The event source of the callback.
-       * You can pull out the new value by accessing `event.target.value` (any).
-       * **Warning**: This is a generic event not a change event.
-       * @param {number | number[]} value The new value.
-       * @param {number} activeThumb Index of the currently moved thumb.
-       */
-      onChange?: (event: Event, value: OnChangeValue, activeThumb: number) => void;
-    } & DefaultComponentProps<
-      SliderTypeMap<SliderTypeMap['defaultComponent'], {}, Value, OnChangeValue>
+  (
+    props: DefaultComponentProps<
+      SliderTypeMap<SliderTypeMap['defaultComponent'], {}, number | number[]>
     >,
   ): JSX.Element | null;
 }
