@@ -156,7 +156,7 @@ export default function useSlot<
     elementType,
     {
       ...(name === 'root' && !rootComponent && !slots[name] && internalForwardedProps),
-      // @ts-ignore internal logic
+      // @ts-ignore internal logic: when instanceColor is valid, added `data-inverted-colors` attribute to prevent color inversion
       ...(name === 'root' && ownerState.instanceColor && { 'data-inverted-colors': 'false' }),
       ...(name !== 'root' && !slots[name] && internalForwardedProps),
       ...mergedProps,
