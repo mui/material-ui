@@ -52,8 +52,7 @@
     "test": "^5.0.0"
   },
   "peerDependencies": {
-    "@types/styled-components": "^5.1.14",
-    "styled-components": "^5.3.1"
+    "styled-components": "^6.0.0"
   },
   "peerDependenciesMeta": {
     "@types/styled-components": {
