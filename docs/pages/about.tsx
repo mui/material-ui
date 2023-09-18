@@ -457,7 +457,7 @@ function AboutContent() {
               "Excellence. We're aiming high, and we know it.",
             ].map((text) => (
               <Box key={text} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-                <IconImage name="yes" />
+                <IconImage name="pricing/yes" />
                 <Typography variant="body2" color="text.primary" fontWeight={600} sx={{ ml: 1.5 }}>
                   {text}
                 </Typography>

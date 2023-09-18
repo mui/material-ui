@@ -104,7 +104,7 @@ export default function XHero() {
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-advanced" /> MUI X
+            <IconImage width={28} height={28} loading="eager" name="product-advanced" /> MUI X
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Performant

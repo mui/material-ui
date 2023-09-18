@@ -41,7 +41,7 @@ export default class MyDocument extends Document {
     const { canonicalAsServer, userLanguage } = this.props;
 
     return (
-      <Html lang={userLanguage}>
+      <Html lang={userLanguage} data-mui-color-scheme="light" data-joy-color-scheme="light">
         <Head>
           {/*
             manifest.json provides metadata used when your web app is added to the
@@ -145,6 +145,13 @@ export default class MyDocument extends Document {
               },
               '.mode-dark .only-dark-mode': {
                 display: 'block',
+              },
+              // TODO migrate to .only-dark-mode to .only-dark-mode-v2
+              '[data-mui-color-scheme="light"] .only-dark-mode-v2': {
+                display: 'none',
+              },
+              '[data-mui-color-scheme="dark"] .only-light-mode-v2': {
+                display: 'none',
               },
               '.plan-pro, .plan-premium': {
                 display: 'inline-block',

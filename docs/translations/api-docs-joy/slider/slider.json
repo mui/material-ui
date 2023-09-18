@@ -73,13 +73,13 @@
     },
     "tabIndex": { "description": "Tab index attribute of the hidden <code>input</code> element." },
     "track": {
-      "description": "The track presentation:<br>- <code>normal</code> the track will render a bar representing the slider value. - <code>inverted</code> the track will render a bar representing the remaining slider value. - <code>false</code> the track will render without a bar."
+      "description": "<p>The track presentation:</p>\n<ul>\n<li><code>normal</code> the track will render a bar representing the slider value.</li>\n<li><code>inverted</code> the track will render a bar representing the remaining slider value.</li>\n<li><code>false</code> the track will render without a bar.</li>\n</ul>\n"
     },
     "value": {
       "description": "The value of the slider. For ranged sliders, provide an array with two values."
     },
     "valueLabelDisplay": {
-      "description": "Controls when the value label is displayed:<br>- <code>auto</code> the value label will display when the thumb is hovered or focused. - <code>on</code> will display persistently. - <code>off</code> will never display."
+      "description": "<p>Controls when the value label is displayed:</p>\n<ul>\n<li><code>auto</code> the value label will display when the thumb is hovered or focused.</li>\n<li><code>on</code> will display persistently.</li>\n<li><code>off</code> will never display.</li>\n</ul>\n"
     },
     "valueLabelFormat": {
       "description": "The format function the value label&#39;s value.<br>When a function is provided, it should have the following signature:<br>- {number} value The value label&#39;s value to format - {number} index The value label&#39;s index to format"

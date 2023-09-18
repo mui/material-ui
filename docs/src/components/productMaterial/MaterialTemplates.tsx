@@ -19,7 +19,78 @@ import Frame from 'docs/src/components/action/Frame';
 import Link from 'docs/src/modules/components/Link';
 import More from 'docs/src/components/action/More';
 
-const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
+export const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
+
+export const icons = {
+  [DEMOS[0]]: <DashboardRounded fontSize="small" />,
+  [DEMOS[1]]: <Layers fontSize="small" />,
+  [DEMOS[2]]: <ShoppingBag fontSize="small" />,
+};
+
+export const TEMPLATES = {
+  [DEMOS[0]]: [
+    {
+      name: 'Devias Kit Pro - Client & Admin Dashboard',
+      src: {
+        light: '/static/branding/store-templates/template-4light.jpg',
+        dark: '/static/branding/store-templates/template-4dark.jpg',
+      },
+      href: 'https://mui.com/store/items/devias-kit-pro/',
+    },
+    {
+      name: 'Minimal - Client & Admin Dashboard',
+      src: {
+        light: '/static/branding/store-templates/template-1light.jpg',
+        dark: '/static/branding/store-templates/template-1dark.jpg',
+      },
+      href: 'https://mui.com/store/items/minimal-dashboard/',
+    },
+    {
+      name: 'Berry - React Material Admin Dashboard Template',
+      src: {
+        light: '/static/branding/store-templates/template-5light.jpg',
+        dark: '/static/branding/store-templates/template-5dark.jpg',
+      },
+      href: 'https://mui.com/store/items/berry-react-material-admin/',
+    },
+    {
+      name: 'Mira Pro - React Material Admin Dashboard',
+      src: {
+        light: '/static/branding/store-templates/template-3light.jpg',
+        dark: '/static/branding/store-templates/template-3dark.jpg',
+      },
+      href: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
+    },
+  ],
+  [DEMOS[1]]: [
+    {
+      name: 'theFront - Multipurpose Template + UI Kit',
+      src: {
+        light: '/static/branding/store-templates/template-2light.jpg',
+        dark: '/static/branding/store-templates/template-2dark.jpg',
+      },
+      href: 'https://mui.com/store/items/the-front-landing-page/',
+    },
+    {
+      name: 'Webbee - Multipurpose landing page UI Kit',
+      src: {
+        light: '/static/branding/store-templates/template-6light.jpg',
+        dark: '/static/branding/store-templates/template-6dark.jpg',
+      },
+      href: 'https://mui.com/store/items/webbee-landing-page/',
+    },
+  ],
+  [DEMOS[2]]: [
+    {
+      name: 'Bazar Pro - Multipurpose React Ecommerce Template',
+      src: {
+        light: '/static/branding/store-templates/template-bazar-light.jpg',
+        dark: '/static/branding/store-templates/template-bazar-dark.jpg',
+      },
+      href: 'https://mui.com/store/items/bazar-pro-react-ecommerce-template/',
+    },
+  ],
+};
 
 function ActionArea(props: ButtonBaseProps) {
   return (
@@ -54,77 +125,6 @@ function ActionArea(props: ButtonBaseProps) {
 export default function MaterialTemplates() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const [templateIndex, setTemplateIndex] = React.useState(1);
-  const icons = {
-    [DEMOS[0]]: <DashboardRounded fontSize="small" />,
-    [DEMOS[1]]: <Layers fontSize="small" />,
-    [DEMOS[2]]: <ShoppingBag fontSize="small" />,
-  };
-
-  const TEMPLATES = {
-    [DEMOS[0]]: [
-      {
-        name: 'Devias Kit Pro - Client & Admin Dashboard',
-        src: {
-          light: '/static/branding/store-templates/template-4light.jpg',
-          dark: '/static/branding/store-templates/template-4dark.jpg',
-        },
-        href: 'https://mui.com/store/items/devias-kit-pro/',
-      },
-      {
-        name: 'Minimal - Client & Admin Dashboard',
-        src: {
-          light: '/static/branding/store-templates/template-1light.jpg',
-          dark: '/static/branding/store-templates/template-1dark.jpg',
-        },
-        href: 'https://mui.com/store/items/minimal-dashboard/',
-      },
-      {
-        name: 'Berry - React Material Admin Dashboard Template',
-        src: {
-          light: '/static/branding/store-templates/template-5light.jpg',
-          dark: '/static/branding/store-templates/template-5dark.jpg',
-        },
-        href: 'https://mui.com/store/items/berry-react-material-admin/',
-      },
-      {
-        name: 'Mira Pro - React Material Admin Dashboard',
-        src: {
-          light: '/static/branding/store-templates/template-3light.jpg',
-          dark: '/static/branding/store-templates/template-3dark.jpg',
-        },
-        href: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
-      },
-    ],
-    [DEMOS[1]]: [
-      {
-        name: 'theFront - Multipurpose Template + UI Kit',
-        src: {
-          light: '/static/branding/store-templates/template-2light.jpg',
-          dark: '/static/branding/store-templates/template-2dark.jpg',
-        },
-        href: 'https://mui.com/store/items/the-front-landing-page/',
-      },
-      {
-        name: 'Webbee - Multipurpose landing page UI Kit',
-        src: {
-          light: '/static/branding/store-templates/template-6light.jpg',
-          dark: '/static/branding/store-templates/template-6dark.jpg',
-        },
-        href: 'https://mui.com/store/items/webbee-landing-page/',
-      },
-    ],
-    [DEMOS[2]]: [
-      {
-        name: 'Bazar Pro - Multipurpose React Ecommerce Template',
-        src: {
-          light: '/static/branding/store-templates/template-bazar-light.jpg',
-          dark: '/static/branding/store-templates/template-bazar-dark.jpg',
-        },
-        href: 'https://mui.com/store/items/bazar-pro-react-ecommerce-template/',
-      },
-    ],
-  };
-
   const templates = TEMPLATES[demo];
 
   return (
