@@ -11,7 +11,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-
 import useSlot from '../utils/useSlot';
 import { getTypographyUtilityClass } from './typographyClasses';
 import { TypographySystem } from '../styles/types';
