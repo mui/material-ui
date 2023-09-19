@@ -198,7 +198,7 @@ You can pass the same arguments as you could to `mocha`.
 For example, `yarn test:regressions:run --watch --grep "docs-system-basic"` to take new screenshots of every demo in `docs/src/pages/system/basic`.
 You can view the screenshots in `test/regressions/screenshots/chrome`.
 
-Alternatively, you might want to open `http://localhost:3000` (while `yarn test:regressions:dev` is running) to view individual views separately.
+Alternatively, you might want to open `http://localhost:5001` (while `yarn test:regressions:dev` is running) to view individual views separately.
 
 ### Caveats
 
@@ -248,7 +248,7 @@ Possible values for `version`:
 
 - default: `stable` (minimum supported React version)
 - a tag on npm e.g. `next`, `experimental` or `latest`
-- an older version e.g `^17.0.0`
+- an older version e.g. `^17.0.0`
 
 #### CI
 

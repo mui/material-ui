@@ -8,53 +8,59 @@ import {
   fireEvent,
   act,
 } from 'test/utils';
-import Menu, { menuClasses } from '@mui/base/Menu';
-import MenuItem from '@mui/base/MenuItem';
+import { Menu, menuClasses } from '@mui/base/Menu';
+import { MenuItem } from '@mui/base/MenuItem';
+import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
+
+const testContext: DropdownContextValue = {
+  dispatch: () => {},
+  popupId: 'menu-popup',
+  registerPopup: () => {},
+  registerTrigger: () => {},
+  state: { open: true },
+  triggerElement: null,
+};
 
 describe('<Menu />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
-  const defaultProps = {
-    anchorEl: document.createElement('div'),
-    open: true,
-  };
-
-  describeConformanceUnstyled(<Menu {...defaultProps} />, () => ({
+  describeConformanceUnstyled(<Menu />, () => ({
     inheritComponent: 'div',
-    render,
-    mount,
+    render: (node) => {
+      return render(
+        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
+      );
+    },
+    mount: (node: React.ReactNode) => {
+      const wrapper = mount(
+        <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>,
+      );
+      return wrapper.childAt(0);
+    },
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiMenu',
     slots: {
       root: {
         expectedClassName: menuClasses.root,
-        testWithElement: null,
       },
       listbox: {
         expectedClassName: menuClasses.listbox,
       },
     },
-    skip: ['reactTestRenderer', 'propsSpread', 'componentProp', 'slotsProp'],
+    skip: ['reactTestRenderer', 'componentProp', 'slotsProp'],
   }));
 
   describe('after initialization', () => {
-    const spyFocus = spy();
-
     function Test() {
-      React.useEffect(() => {
-        document.addEventListener('focus', spyFocus, true);
-        return () => {
-          document.removeEventListener('focus', spyFocus, true);
-        };
-      }, []);
-
       return (
-        <Menu {...defaultProps}>
-          <MenuItem>1</MenuItem>
-          <MenuItem>2</MenuItem>
-          <MenuItem>3</MenuItem>
-        </Menu>
+        <DropdownContext.Provider value={testContext}>
+          <Menu>
+            <MenuItem>1</MenuItem>
+            <MenuItem>2</MenuItem>
+            <MenuItem>3</MenuItem>
+          </Menu>
+        </DropdownContext.Provider>
       );
     }
 
@@ -66,19 +72,19 @@ describe('<Menu />', () => {
       otherItems.forEach((item) => {
         expect(item.tabIndex).to.equal(-1);
       });
-      expect(spyFocus.callCount).to.equal(1);
-      expect(spyFocus.firstCall.args[0]).to.have.property('target', firstItem);
     });
   });
 
   describe('keyboard navigation', () => {
     it('changes the highlighted item using the arrow keys', () => {
       const { getByTestId } = render(
-        <Menu {...defaultProps}>
-          <MenuItem data-testid="item-1">1</MenuItem>
-          <MenuItem data-testid="item-2">2</MenuItem>
-          <MenuItem data-testid="item-3">3</MenuItem>
-        </Menu>,
+        <DropdownContext.Provider value={testContext}>
+          <Menu>
+            <MenuItem data-testid="item-1">1</MenuItem>
+            <MenuItem data-testid="item-2">2</MenuItem>
+            <MenuItem data-testid="item-3">3</MenuItem>
+          </Menu>
+        </DropdownContext.Provider>,
       );
 
       const item1 = getByTestId('item-1');
@@ -101,11 +107,13 @@ describe('<Menu />', () => {
 
     it('changes the highlighted item using the Home and End keys', () => {
       const { getByTestId } = render(
-        <Menu {...defaultProps}>
-          <MenuItem data-testid="item-1">1</MenuItem>
-          <MenuItem data-testid="item-2">2</MenuItem>
-          <MenuItem data-testid="item-3">3</MenuItem>
-        </Menu>,
+        <DropdownContext.Provider value={testContext}>
+          <Menu>
+            <MenuItem data-testid="item-1">1</MenuItem>
+            <MenuItem data-testid="item-2">2</MenuItem>
+            <MenuItem data-testid="item-3">3</MenuItem>
+          </Menu>
+        </DropdownContext.Provider>,
       );
 
       const item1 = getByTestId('item-1');
@@ -124,12 +132,14 @@ describe('<Menu />', () => {
 
     it('includes disabled items during keyboard navigation', () => {
       const { getByTestId } = render(
-        <Menu {...defaultProps}>
-          <MenuItem data-testid="item-1">1</MenuItem>
-          <MenuItem disabled data-testid="item-2">
-            2
-          </MenuItem>
-        </Menu>,
+        <DropdownContext.Provider value={testContext}>
+          <Menu>
+            <MenuItem data-testid="item-1">1</MenuItem>
+            <MenuItem disabled data-testid="item-2">
+              2
+            </MenuItem>
+          </Menu>
+        </DropdownContext.Provider>,
       );
 
       const item1 = getByTestId('item-1');
@@ -154,14 +164,16 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu {...defaultProps}>
-            <MenuItem>Aa</MenuItem>
-            <MenuItem>Ba</MenuItem>
-            <MenuItem>Bb</MenuItem>
-            <MenuItem>Ca</MenuItem>
-            <MenuItem>Cb</MenuItem>
-            <MenuItem>Cd</MenuItem>
-          </Menu>,
+          <DropdownContext.Provider value={testContext}>
+            <Menu>
+              <MenuItem>Aa</MenuItem>
+              <MenuItem>Ba</MenuItem>
+              <MenuItem>Bb</MenuItem>
+              <MenuItem>Ca</MenuItem>
+              <MenuItem>Cb</MenuItem>
+              <MenuItem>Cd</MenuItem>
+            </Menu>
+          </DropdownContext.Provider>,
         );
 
         const items = getAllByRole('menuitem');
@@ -187,12 +199,14 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu {...defaultProps}>
-            <MenuItem>Aa</MenuItem>
-            <MenuItem>Ba</MenuItem>
-            <MenuItem>Bb</MenuItem>
-            <MenuItem>Ca</MenuItem>
-          </Menu>,
+          <DropdownContext.Provider value={testContext}>
+            <Menu>
+              <MenuItem>Aa</MenuItem>
+              <MenuItem>Ba</MenuItem>
+              <MenuItem>Bb</MenuItem>
+              <MenuItem>Ca</MenuItem>
+            </Menu>
+          </DropdownContext.Provider>,
         );
 
         const items = getAllByRole('menuitem');
@@ -216,12 +230,14 @@ describe('<Menu />', () => {
 
       it('changes the highlighted item using text navigation on label prop', () => {
         const { getAllByRole } = render(
-          <Menu {...defaultProps}>
-            <MenuItem label="Aa">1</MenuItem>
-            <MenuItem label="Ba">2</MenuItem>
-            <MenuItem label="Bb">3</MenuItem>
-            <MenuItem label="Ca">4</MenuItem>
-          </Menu>,
+          <DropdownContext.Provider value={testContext}>
+            <Menu>
+              <MenuItem label="Aa">1</MenuItem>
+              <MenuItem label="Ba">2</MenuItem>
+              <MenuItem label="Bb">3</MenuItem>
+              <MenuItem label="Ca">4</MenuItem>
+            </Menu>
+          </DropdownContext.Provider>,
         );
 
         const items = getAllByRole('menuitem');
@@ -251,17 +267,19 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu {...defaultProps}>
-            <MenuItem>Aa</MenuItem>
-            <MenuItem>Ba</MenuItem>
-            <MenuItem />
-            <MenuItem>
-              <div>Nested Content</div>
-            </MenuItem>
-            <MenuItem>{undefined}</MenuItem>
-            <MenuItem>{null}</MenuItem>
-            <MenuItem>Bc</MenuItem>
-          </Menu>,
+          <DropdownContext.Provider value={testContext}>
+            <Menu>
+              <MenuItem>Aa</MenuItem>
+              <MenuItem>Ba</MenuItem>
+              <MenuItem />
+              <MenuItem>
+                <div>Nested Content</div>
+              </MenuItem>
+              <MenuItem>{undefined}</MenuItem>
+              <MenuItem>{null}</MenuItem>
+              <MenuItem>Bc</MenuItem>
+            </Menu>
+          </DropdownContext.Provider>,
         );
 
         const items = getAllByRole('menuitem');
@@ -291,12 +309,14 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu {...defaultProps}>
-            <MenuItem>Aa</MenuItem>
-            <MenuItem>Ba</MenuItem>
-            <MenuItem>Bb</MenuItem>
-            <MenuItem>Bą</MenuItem>
-          </Menu>,
+          <DropdownContext.Provider value={testContext}>
+            <Menu>
+              <MenuItem>Aa</MenuItem>
+              <MenuItem>Ba</MenuItem>
+              <MenuItem>Bb</MenuItem>
+              <MenuItem>Bą</MenuItem>
+            </Menu>
+          </DropdownContext.Provider>,
         );
 
         const items = getAllByRole('menuitem');
@@ -324,12 +344,14 @@ describe('<Menu />', () => {
         }
 
         const { getByText, getAllByRole } = render(
-          <Menu {...defaultProps}>
-            <MenuItem>Aa</MenuItem>
-            <MenuItem>ąa</MenuItem>
-            <MenuItem>ąb</MenuItem>
-            <MenuItem>ąc</MenuItem>
-          </Menu>,
+          <DropdownContext.Provider value={testContext}>
+            <Menu>
+              <MenuItem>Aa</MenuItem>
+              <MenuItem>ąa</MenuItem>
+              <MenuItem>ąb</MenuItem>
+              <MenuItem>ąc</MenuItem>
+            </Menu>
+          </DropdownContext.Provider>,
         );
 
         const items = getAllByRole('menuitem');
@@ -356,6 +378,35 @@ describe('<Menu />', () => {
         expect(document.activeElement).to.equal(getByText('ąc'));
         expect(getByText('ąc')).to.have.attribute('tabindex', '0');
       });
+    });
+  });
+
+  describe('prop: onItemsChange', () => {
+    it('should be called when the menu items change', () => {
+      const handleItemsChange = spy();
+
+      const { setProps } = render(
+        <DropdownContext.Provider value={testContext}>
+          <Menu onItemsChange={handleItemsChange}>
+            <MenuItem key="1">1</MenuItem>
+            <MenuItem key="2">2</MenuItem>
+          </Menu>
+        </DropdownContext.Provider>,
+      );
+
+      // The first call is the initial render.
+      expect(handleItemsChange.callCount).to.equal(1);
+
+      setProps({
+        children: (
+          <Menu onItemsChange={handleItemsChange}>
+            <MenuItem key="1">1</MenuItem>
+            <MenuItem key="3">3</MenuItem>
+          </Menu>
+        ),
+      });
+
+      expect(handleItemsChange.callCount).to.equal(2);
     });
   });
 });

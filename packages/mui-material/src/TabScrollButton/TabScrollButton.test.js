@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
-import TabScrollButton, { tabScrollButtonClasses as classes } from '@mui/material/TabScrollButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import TabScrollButton, { tabScrollButtonClasses as classes } from '@mui/material/TabScrollButton';
 
 describe('<TabScrollButton />', () => {
   const defaultProps = {

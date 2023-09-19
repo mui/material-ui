@@ -1,10 +1,60 @@
 import * as React from 'react';
+import { useColorScheme } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
-import IconButton from '@mui/joy/IconButton';
+import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
 import MuiLogo from './MuiLogo';
-import ColorSchemeToggle from './ColorSchemeToggle';
 import { toggleSidebar } from '../utils';
+
+function ColorSchemeToggle({ onClick, sx, ...props }: IconButtonProps) {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return (
+      <IconButton
+        size="sm"
+        variant="outlined"
+        color="neutral"
+        {...props}
+        sx={sx}
+        disabled
+      />
+    );
+  }
+  return (
+    <IconButton
+      size="sm"
+      variant="outlined"
+      color="neutral"
+      {...props}
+      onClick={(event) => {
+        if (mode === 'light') {
+          setMode('dark');
+        } else {
+          setMode('light');
+        }
+        onClick?.(event);
+      }}
+      sx={[
+        {
+          '& > *:first-of-type': {
+            display: mode === 'dark' ? 'none' : 'initial',
+          },
+          '& > *:last-of-type': {
+            display: mode === 'light' ? 'none' : 'initial',
+          },
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <i data-feather="moon" />
+      <i data-feather="sun" />
+    </IconButton>
+  );
+}
 
 export default function Header() {
   return (

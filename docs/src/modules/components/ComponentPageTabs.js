@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab, { tabClasses } from '@mui/material/Tab';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import Link from 'docs/src/modules/components/Link';
 
 export const HEIGHT = 50;
@@ -54,7 +54,7 @@ export default function ComponentPageTabs(props) {
         sx={{
           position: 'sticky',
           top: 65, // to be positioned below the app bar
-          mt: 3,
+          mt: 1,
           pt: 1,
           mx: {
             xs: -2,
@@ -92,6 +92,7 @@ export default function ComponentPageTabs(props) {
         />
         {headers.components?.length > 0 && (
           <StyledTab
+            className="skip-algolia-crawler" // For more details, see https://github.com/mui/material-ui/pull/37539.
             component={Link}
             shallow
             scroll
@@ -102,6 +103,7 @@ export default function ComponentPageTabs(props) {
         )}
         {headers.hooks && headers.hooks.length > 0 && (
           <StyledTab
+            className="skip-algolia-crawler" // For more details, see https://github.com/mui/material-ui/pull/37539.
             component={Link}
             shallow
             scroll

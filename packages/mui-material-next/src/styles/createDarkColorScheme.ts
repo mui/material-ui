@@ -23,6 +23,8 @@ const createDarkColorScheme = (
   onSurface: getCssVar('ref-palette-neutral-90', palette.neutral[90]),
   surfaceVariant: getCssVar('ref-palette-neutralVariant-30', palette.neutralVariant[30]),
   surface: getCssVar('ref-palette-neutral-10', palette.neutral[10]),
+  surfaceContainerHigh: getCssVar('ref-palette-neutral-17', palette.neutral[17]),
+  surfaceContainerHighest: getCssVar('ref-palette-neutral-22', palette.neutral[22]),
   onSecondaryContainer: getCssVar('ref-palette-secondary-90', palette.secondary[90]),
   onSecondary: getCssVar('ref-palette-secondary-20', palette.secondary[20]),
   secondaryContainer: getCssVar('ref-palette-secondary-30', palette.secondary[30]),
@@ -32,6 +34,12 @@ const createDarkColorScheme = (
   onPrimary: getCssVar('ref-palette-primary-20', palette.primary[20]),
   primaryContainer: getCssVar('ref-palette-primary-30', palette.primary[30]),
   primary: getCssVar('ref-palette-primary-80', palette.primary[80]),
+  info: getCssVar('ref-palette-info-80', palette.info[80]),
+  onInfo: getCssVar('ref-palette-info-20', palette.info[20]),
+  warning: getCssVar('ref-palette-warning-80', palette.warning[80]),
+  onWarning: getCssVar('ref-palette-warning-20', palette.warning[20]),
+  success: getCssVar('ref-palette-success-80', palette.success[80]),
+  onSuccess: getCssVar('ref-palette-success-20', palette.success[20]),
 });
 
 export default createDarkColorScheme;

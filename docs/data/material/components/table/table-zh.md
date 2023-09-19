@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Table（表格）组件
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: table'
@@ -124,4 +124,4 @@ A caption functions like a heading for a table. Most screen readers announce the
 
 ## Unstyled
 
-If you would like to use an unstyled Table, you can use the primitive HTML elements and enhance the table with the TablePaginationUnstyled component. See the demos in the [unstyled table pagination docs](/base/react-table-pagination/)
+If you would like to use an unstyled Table, you can use the primitive HTML elements and enhance the table with the TablePaginationUnstyled component. See the demos in the [unstyled table pagination docs](/base-ui/react-table-pagination/)

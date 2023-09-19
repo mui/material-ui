@@ -18,7 +18,7 @@ Note that you may continue to use JSS for adding overrides for the components (e
 Then, if at any point you want to move over to the new styling engine, you can refactor your components progressively.
 
 :::info
-If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration).
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts-v4-v5-migration).
 :::
 
 This document reviews all the steps necessary to migrate away from JSS.
@@ -38,7 +38,7 @@ But this is the best transformation that we could create with a codemod.
 If you want to refine them later, you can refer to the examples shown in the sections below.
 :::
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/jss-to-styled <path>
 ```
 
@@ -201,13 +201,13 @@ In order to use it, you'll need to add it to your project's dependencies:
 
 With npm:
 
-```sh
+```bash
 npm install tss-react
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add tss-react
 ```
 
@@ -215,14 +215,14 @@ yarn add tss-react
 
 We provide [a codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-tss-react) to help migrate JSS styles to the `tss-react` API.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/jss-to-tss-react <path>
 ```
 
 Example transformation:
 
 ```diff
- import React from 'react';
+ import * as React from 'react';
 -import makeStyles from '@material-ui/styles/makeStyles';
 +import { makeStyles } from 'tss-react/mui';
  import Button from '@mui/material/Button';
@@ -456,13 +456,13 @@ Once you migrate all of the styling, remove unnecessary `@mui/styles` by uninsta
 
 With npm:
 
-```sh
+```bash
 npm uninstall @mui/styles
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn remove @mui/styles
 ```
 

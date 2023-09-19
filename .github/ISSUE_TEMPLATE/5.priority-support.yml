@@ -1,0 +1,39 @@
+name: 'Priority support: SLA ⏰'
+description: I'm an MUI X Premium user and we have purchased the Priority Support add-on. I can't find a solution to my problem with MUI Core (Material UI, Base UI, MUI System, and Joy UI).
+title: '[question] '
+labels: ['status: needs triage', 'support: unknown']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please provide a searchable summary of the issue in the title above ⬆️.
+  - type: checkboxes
+    attributes:
+      label: Duplicates
+      description: Please [search the history](https://github.com/mui/material-ui/issues) to see if an issue already exists for the same problem.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: checkboxes
+    attributes:
+      label: Latest version
+      description: We roll bug fixes, performance enhancements, and other improvements into new releases.
+      options:
+        - label: I have tested the latest version
+          required: true
+  - type: textarea
+    attributes:
+      label: The problem in depth 🔍
+  - type: textarea
+    attributes:
+      label: Your environment 🌎
+      description: Run `npx @mui/envinfo` and post the results. If you encounter issues with TypeScript please include the used tsconfig.
+      value: |
+        <details>
+          <summary>`npx @mui/envinfo`</summary>
+
+        ```
+          Don't forget to mention which browser you used.
+          Output from `npx @mui/envinfo` goes here.
+        ```
+        </details>

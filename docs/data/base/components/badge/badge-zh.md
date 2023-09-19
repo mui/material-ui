@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: Unstyled React Badge component and hook
 components: BadgeUnstyled
 githubLabel: 'component: badge'
@@ -21,7 +21,7 @@ The `BadgeUnstyled` component creates a badge that is applied to its child eleme
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import BadgeUnstyled from '@mui/base/BadgeUnstyled';
@@ -57,7 +57,7 @@ The `BadgeUnstyled` component is composed of a root `<span>` that houses the ele
 ### Slot props
 
 :::info
-The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+The following props are available on all non-utility Base components. See [Usage](/base-ui/getting-started/usage/) for full details.
 :::
 
 Use the `component` prop to override the root slot with a custom element:

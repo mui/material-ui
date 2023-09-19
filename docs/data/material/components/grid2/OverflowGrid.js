@@ -12,7 +12,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function AutoGrid() {
+export default function OverflowGrid() {
   return (
     <Box
       sx={(theme) => ({

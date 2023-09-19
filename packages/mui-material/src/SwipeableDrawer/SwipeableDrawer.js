@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -645,7 +646,7 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
    *
    * @default false
    */
-  allowSwipeInChildren: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+  allowSwipeInChildren: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   /**
    * @ignore
    */
@@ -700,20 +701,20 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the component requests to be closed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent<{}>} event The event source of the callback.
    */
   onClose: PropTypes.func.isRequired,
   /**
    * Callback fired when the component requests to be opened.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent<{}>} event The event source of the callback.
    */
   onOpen: PropTypes.func.isRequired,
   /**
    * If `true`, the component is shown.
    * @default false
    */
-  open: PropTypes.bool.isRequired,
+  open: PropTypes.bool,
   /**
    * @ignore
    */

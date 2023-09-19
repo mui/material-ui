@@ -1,6 +1,6 @@
 import * as React from 'react';
-import FormControl from '@mui/base/FormControl';
-import Input, { inputClasses } from '@mui/base/Input';
+import { FormControl } from '@mui/base/FormControl';
+import { Input, inputClasses } from '@mui/base/Input';
 import { styled } from '@mui/system';
 
 export default function FormControlFunctionChild() {
@@ -18,7 +18,6 @@ export default function FormControlFunctionChild() {
 
 const StyledInput = styled(Input)(
   ({ theme }) => `
-  
   display: inline-block;
 
   .${inputClasses.input} {
@@ -53,7 +52,7 @@ const OkMark = styled('span')`
   margin-left: 8px;
   margin-top: 10px;
   position: absolute;
-  color: rgba(125, 200, 0, 1);
+  color: rgb(125 200 0 / 1);
 `;
 
 const blue = {

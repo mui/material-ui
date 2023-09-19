@@ -6,25 +6,15 @@ import { MenuProviderValue } from './MenuProvider';
 
 export interface UseMenuParameters {
   /**
-   * If `true`, the menu will be initially open.
-   * @default false
+   * The id of the menu. If not provided, it will be generated.
    */
-  defaultOpen?: boolean;
+  id?: string;
   /**
-   * If `true`, the menu will be open.
-   * This is the controlled equivalent of the `defaultOpen` parameter.
+   * Callback fired when the menu items change.
    */
-  open?: boolean;
+  onItemsChange?: (items: string[]) => void;
   /**
-   * Callback fired when the menu is opened or closed.
-   */
-  onOpenChange?: (open: boolean) => void;
-  /**
-   * Id of the menu listbox.
-   */
-  listboxId?: string;
-  /**
-   * Ref of the menu listbox.
+   * The ref to the menu's listbox node.
    */
   listboxRef?: React.Ref<Element>;
 }
@@ -40,7 +30,7 @@ export interface UseMenuReturnValue {
    */
   dispatch: (action: ListAction<string>) => void;
   /**
-   * Resolver for the listbox component's props.
+   * Resolver for the listbox slot's props.
    * @param otherHandlers event handlers for the listbox component
    * @returns props that should be spread on the listbox component
    */
@@ -52,7 +42,7 @@ export interface UseMenuReturnValue {
    */
   highlightedValue: string | null;
   /**
-   * The ref to the listbox DOM node.
+   * The ref to the menu's listbox node.
    */
   listboxRef: React.RefCallback<Element> | null;
   /**
@@ -63,6 +53,10 @@ export interface UseMenuReturnValue {
    * If `true`, the menu is open.
    */
   open: boolean;
+  /**
+   * An element that triggers the visibility of the menu.
+   */
+  triggerElement: HTMLElement | null;
 }
 
 interface UseMenuListboxSlotEventHandlers {
@@ -77,9 +71,4 @@ export type UseMenuListboxSlotProps<TOther = {}> = UseListRootSlotProps<
   role: React.AriaRole;
 };
 
-export interface MenuInternalState extends ListState<string> {
-  /**
-   * If `true`, the menu is open.
-   */
-  open: boolean;
-}
+export interface MenuInternalState extends ListState<string> {}

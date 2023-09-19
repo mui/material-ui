@@ -69,7 +69,7 @@ This does not apply to classes or the `style` prop—they will be merged instead
 
 ### Best practices
 
-If you are customizing a component like the [Button](/base/react-button/) that only has a root slot, you may prefer to use the more succinct `component` prop instead of `slots`.
+If you are customizing a component like the [Button](/base-ui/react-button/) that only has a root slot, you may prefer to use the more succinct `component` prop instead of `slots`.
 
 Overriding with `component` lets you apply the attributes of that element directly to the root.
 For instance, if you replace the Button root with an `<li>` tag, you can add the `<li>` attribute `value` directly to the component.
@@ -80,7 +80,7 @@ If you did the same with `slots.root`, you would need to place this attribute on
 Base UI includes two kinds of building blocks: **components** and **hooks**.
 
 :::info
-💡 Hooks encapsulate _logic_; components provide _structure_.
+Hooks encapsulate _logic_; components provide _structure_.
 :::
 
 Many Base components are implemented with the help of hooks.

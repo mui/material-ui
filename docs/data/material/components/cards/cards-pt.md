@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React para Cartão
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 githubLabel: 'component: card'
@@ -45,7 +45,7 @@ Por padrão, nós usamos a combinação de um elemento `<div>` e uma _imagem de 
 {{"demo": "ImgMediaCard.js", "bg": true}}
 
 :::warning
-⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11.
+When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11.
 :::
 
 ## Ação primária

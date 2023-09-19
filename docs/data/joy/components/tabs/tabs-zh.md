@@ -1,10 +1,10 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Tabs component
 components: Tab, TabList, TabPanel, Tabs
 githubLabel: 'component: tabs'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
-unstyled: /base/react-tabs/
+unstyled: /base-ui/react-tabs/
 ---
 
 # Tabs
@@ -57,7 +57,7 @@ The tabs structure follows [WAI ARIA design pattern](https://www.w3.org/WAI/ARIA
 Both `TabList` and `Tab` accept [global variant](/joy-ui/main-features/global-variants/) values, so you can mix and match to get the desired result.
 
 :::info
-ℹ️ **Note:** the `TabPanel` component is the only one that doesn't support both global variant and color props.
+**Note:** the `TabPanel` component is the only one that doesn't support both global variant and color props.
 :::
 
 {{"demo": "TabsVariants.js"}}

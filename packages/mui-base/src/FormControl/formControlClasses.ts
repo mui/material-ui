@@ -1,5 +1,5 @@
-import generateUtilityClass from '../generateUtilityClass';
-import generateUtilityClasses from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
 
 export interface FormControlClasses {
   /** Class applied to the root element. */
@@ -22,7 +22,7 @@ export function getFormControlUtilityClass(slot: string): string {
   return generateUtilityClass('MuiFormControl', slot);
 }
 
-const formControlClasses: FormControlClasses = generateUtilityClasses('MuiFormControl', [
+export const formControlClasses: FormControlClasses = generateUtilityClasses('MuiFormControl', [
   'root',
   'disabled',
   'error',
@@ -30,5 +30,3 @@ const formControlClasses: FormControlClasses = generateUtilityClasses('MuiFormCo
   'focused',
   'required',
 ]);
-
-export default formControlClasses;

@@ -1,48 +1,42 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
-import Popper, { PopperProps } from '../Popper';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from '../useMenu';
 import { ListAction } from '../useList';
+import { Popper } from '../Popper';
 
 export interface MenuRootSlotPropsOverrides {}
 export interface MenuListboxSlotPropsOverrides {}
 
 export interface MenuActions {
+  /**
+   * Dispatches an action that can cause a change to the menu's internal state.
+   */
   dispatch: (action: ListAction<string>) => void;
+  /**
+   * Resets the highlighted item.
+   */
+  resetHighlight: () => void;
 }
 
 export interface MenuOwnProps {
   /**
-   * A ref with imperative actions.
-   * It allows to select the first or last menu item.
+   * A ref with imperative actions that can be performed on the menu.
    */
   actions?: React.Ref<MenuActions>;
-  /**
-   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
-   * or a function that returns either.
-   * It's used to set the position of the popper.
-   */
-  anchorEl?: PopperProps['anchorEl'];
   children?: React.ReactNode;
   className?: string;
-  defaultOpen?: boolean;
-  listboxId?: string;
   /**
-   * Triggered when focus leaves the menu and the menu should close.
+   * Function called when the items displayed in the menu change.
    */
-  onOpenChange?: (open: boolean) => void;
-  /**
-   * Controls whether the menu is displayed.
-   * @default false
-   */
-  open?: boolean;
+  onItemsChange?: (items: string[]) => void;
   /**
    * The props used for each slot inside the Menu.
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<typeof Popper, MenuRootSlotPropsOverrides, MenuOwnerState>;
+    root?: SlotComponentProps<'div', MenuRootSlotPropsOverrides, MenuOwnerState> &
+      Partial<React.ComponentPropsWithoutRef<typeof Popper>>;
     listbox?: SlotComponentProps<'ul', MenuListboxSlotPropsOverrides, MenuOwnerState>;
   };
   /**
@@ -55,8 +49,8 @@ export interface MenuOwnProps {
 
 export interface MenuSlots {
   /**
-   * The component that renders the root.
-   * @default Popper
+   * The component that renders the popup element.
+   * @default 'div'
    */
   root?: React.ElementType;
   /**
@@ -68,7 +62,7 @@ export interface MenuSlots {
 
 export interface MenuTypeMap<
   AdditionalProps = {},
-  RootComponentType extends React.ElementType = 'ul',
+  RootComponentType extends React.ElementType = 'div',
 > {
   props: MenuOwnProps & AdditionalProps;
   defaultComponent: RootComponentType;
@@ -85,16 +79,14 @@ export type MenuOwnerState = Simplify<
 >;
 
 export type MenuRootSlotProps = {
-  anchorEl: PopperProps['anchorEl'];
   children?: React.ReactNode;
   className?: string;
-  keepMounted: PopperProps['keepMounted'];
-  open: boolean;
   ownerState: MenuOwnerState;
   ref: React.Ref<any>;
 };
 
-export type MenuListboxSlotProps = UseMenuListboxSlotProps & {
-  className: string | undefined;
+export type MenuPopupSlotProps = UseMenuListboxSlotProps & {
+  children?: React.ReactNode;
+  className?: string;
   ownerState: MenuOwnerState;
 };

@@ -194,7 +194,7 @@ const components = [
     materialDesign: 'https://m2.material.io/components/tooltips',
   },
   { name: 'Transfer List', materialUI: '/material-ui/react-transfer-list/' },
-  { name: 'Tree View', materialUI: '/material-ui/react-tree-view/' },
+  { name: 'Tree View', materialUI: '/x/react-tree-view/' },
   {
     name: 'Typography',
     materialUI: '/material-ui/react-typography/',

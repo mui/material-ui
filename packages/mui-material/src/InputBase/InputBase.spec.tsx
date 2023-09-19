@@ -1,6 +1,6 @@
 import * as React from 'react';
-import InputBase from '@mui/material/InputBase';
 import { expectType } from '@mui/types';
+import InputBase from '@mui/material/InputBase';
 
 <InputBase
   onInvalid={(event) => {

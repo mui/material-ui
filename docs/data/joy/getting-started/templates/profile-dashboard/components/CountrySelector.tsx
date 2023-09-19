@@ -15,6 +15,7 @@ export default function ContrySelector({ sx, ...props }: FormControlProps) {
     >
       <FormLabel>Country</FormLabel>
       <Autocomplete
+        size="sm"
         autoHighlight
         isOptionEqualToValue={(option, value) => option.code === value.code}
         defaultValue={{ code: 'TH', label: 'Thailand', phone: '66' }}
@@ -26,8 +27,8 @@ export default function ContrySelector({ sx, ...props }: FormControlProps) {
                 <img
                   loading="lazy"
                   width="20"
-                  src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
                   srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                  src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
                   alt=""
                 />
               </AspectRatio>

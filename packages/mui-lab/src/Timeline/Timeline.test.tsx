@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { createRenderer, describeConformance } from 'test/utils';
+import { expect } from 'chai';
+import { createRenderer, describeConformance, screen } from 'test/utils';
 import Timeline, { timelineClasses as classes } from '@mui/lab/Timeline';
 
 describe('<Timeline />', () => {
@@ -15,4 +16,12 @@ describe('<Timeline />', () => {
     testStateOverrides: { prop: 'position', value: 'left', styleKey: 'positionLeft' },
     skip: ['componentProp', 'componentsProp'],
   }));
+
+  it('should have correct classname', () => {
+    render(<Timeline data-testid="timeline-root" position="alternate-reverse" />);
+
+    expect(screen.getByTestId('timeline-root')).to.have.class(
+      'MuiTimeline-positionAlternateReverse',
+    );
+  });
 });

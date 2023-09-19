@@ -182,9 +182,9 @@ The `mode` is stored inside `CssVarsProvider` which handles local storage synchr
 
 The `getInitColorSchemeScript()` API prevents dark-mode flickering by returning a script that must be run before React.
 
-### Next.js
+### Next.js Pages Router
 
-Place the script before `<Main />` in your [`pages/_document.js`](https://nextjs.org/docs/advanced-features/custom-document):
+Place the script before `<Main />` in your [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document):
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';
@@ -193,7 +193,7 @@ import { getInitColorSchemeScript } from '@mui/material/styles';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html data-color-scheme="light">
         <Head>...</Head>
         <body>
           {getInitColorSchemeScript()}
@@ -211,7 +211,7 @@ export default class MyDocument extends Document {
 Place the script in your [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { getInitColorSchemeScript } from '@mui/material/styles';
 
 export function onRenderBody({ setPreBodyComponents }) {

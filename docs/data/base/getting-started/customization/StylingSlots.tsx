@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import Switch, { switchClasses } from '@mui/base/Switch';
+import { Switch, switchClasses } from '@mui/base/Switch';
 
-const Root = styled('span')`
+const SwitchRoot = styled('span')`
   font-size: 0;
   position: relative;
   display: inline-block;
@@ -23,7 +23,7 @@ const Root = styled('span')`
   }
 `;
 
-const Thumb = styled('span')`
+const SwitchThumb = styled('span')`
   display: block;
   width: 14px;
   height: 14px;
@@ -35,8 +35,8 @@ const Thumb = styled('span')`
   transition: all 200ms ease;
 
   .${switchClasses.focusVisible} & {
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+    background-color: rgb(255 255 255 / 1);
+    box-shadow: 0 0 1px 8px rgb(0 0 0 / 0.25);
   }
 
   .${switchClasses.checked} > & {
@@ -46,7 +46,7 @@ const Thumb = styled('span')`
   }
 `;
 
-const Input = styled('input')`
+const SwitchInput = styled('input')`
   cursor: inherit;
   position: absolute;
   width: 100%;
@@ -59,5 +59,7 @@ const Input = styled('input')`
 `;
 
 export default function StylingSlots() {
-  return <Switch slots={{ root: Root, thumb: Thumb, input: Input }} />;
+  return (
+    <Switch slots={{ root: SwitchRoot, thumb: SwitchThumb, input: SwitchInput }} />
+  );
 }

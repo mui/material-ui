@@ -1,9 +1,23 @@
 {
   "props": {
-    "onClose": { "type": { "name": "func" }, "required": true },
-    "onOpen": { "type": { "name": "func" }, "required": true },
+    "onClose": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": {
+        "type": "function(event: React.SyntheticEvent<{}>) => void",
+        "describedArgs": ["event"]
+      }
+    },
+    "onOpen": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": {
+        "type": "function(event: React.SyntheticEvent<{}>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "allowSwipeInChildren": {
-      "type": { "name": "union", "description": "bool<br>&#124;&nbsp;func" },
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;bool" },
       "default": "false"
     },
     "children": { "type": { "name": "node" } },
@@ -27,7 +41,28 @@
     }
   },
   "name": "SwipeableDrawer",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import SwipeableDrawer from '@mui/material/SwipeableDrawer';",
+    "import { SwipeableDrawer } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": [
+      "root",
+      "docked",
+      "paper",
+      "paperAnchorLeft",
+      "paperAnchorRight",
+      "paperAnchorTop",
+      "paperAnchorBottom",
+      "paperAnchorDockedLeft",
+      "paperAnchorDockedTop",
+      "paperAnchorDockedRight",
+      "paperAnchorDockedBottom",
+      "modal"
+    ],
+    "globalClasses": {},
+    "name": "MuiSwipeableDrawer"
+  },
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiSwipeableDrawer",

@@ -6,9 +6,9 @@
  *
  * See https://github.com/Microsoft/TypeScript/issues/28339 for in-depth discussion
  */
-import { Button } from '@mui/material';
 import { createStyles, withStyles } from '@mui/styles';
 import * as React from 'react';
+import { Button } from '@mui/material';
 
 // https://github.com/mui/material-ui/issues/14586
 {

@@ -1,3 +1,4 @@
+'use client';
 import { deepmerge } from '@mui/utils';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import defaultTheme from './defaultTheme';

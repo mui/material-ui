@@ -1,2 +1,2 @@
-export { default } from './useAutocomplete';
+export { useAutocomplete } from './useAutocomplete';
 export * from './useAutocomplete';

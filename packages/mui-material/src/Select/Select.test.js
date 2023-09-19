@@ -835,6 +835,24 @@ describe('<Select />', () => {
 
       expect(getByTestId('paper').style).to.have.property('minWidth', '12px');
     });
+
+    // https://github.com/mui/material-ui/issues/38700
+    it('should merge `slotProps.paper` with the default Paper props', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getByTestId, getByRole } = render(
+        <Select MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }} open value="10">
+          <MenuItem value="10">Ten</MenuItem>
+        </Select>,
+      );
+
+      const paper = getByTestId('paper');
+      const selectButton = getByRole('button', { hidden: true });
+
+      expect(paper.style).to.have.property('minWidth', `${selectButton.clientWidth}px`);
+    });
   });
 
   describe('prop: SelectDisplayProps', () => {
@@ -1027,6 +1045,20 @@ describe('<Select />', () => {
       expect(options[0]).to.have.attribute('aria-selected', 'true');
       expect(options[1]).not.to.have.attribute('aria-selected', 'true');
       expect(options[2]).to.have.attribute('aria-selected', 'true');
+    });
+
+    it('should have aria-multiselectable=true when multiple is true', () => {
+      const { getByRole } = render(
+        <Select multiple value={[10, 30]}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      fireEvent.mouseDown(getByRole('button'));
+
+      expect(getByRole('listbox')).to.have.attribute('aria-multiselectable', 'true');
     });
 
     it('should serialize multiple select display value', () => {

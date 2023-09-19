@@ -1,6 +1,7 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import ClickAwayListener from '../ClickAwayListener';
+import { ClickAwayListener } from '../ClickAwayListener';
 import {
   SnackbarOwnerState,
   SnackbarProps,
@@ -8,9 +9,9 @@ import {
   SnackbarTypeMap,
   SnackbarClickAwayListenerSlotProps,
 } from './Snackbar.types';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSnackbarUtilityClass } from './snackbarClasses';
-import useSnackbar from '../useSnackbar';
+import { useSnackbar } from '../useSnackbar';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
@@ -25,12 +26,12 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Snackbar](https://mui.com/base/react-snackbar/)
+ * - [Snackbar](https://mui.com/base-ui/react-snackbar/)
  * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
  *
  * API:
  *
- * - [Snackbar API](https://mui.com/base/react-snackbar/components-api/#snackbar)
+ * - [Snackbar API](https://mui.com/base-ui/react-snackbar/components-api/#snackbar)
  */
 const Snackbar = React.forwardRef(function Snackbar<RootComponentType extends React.ElementType>(
   props: SnackbarProps<RootComponentType>,
@@ -189,4 +190,4 @@ Snackbar.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default Snackbar;
+export { Snackbar };

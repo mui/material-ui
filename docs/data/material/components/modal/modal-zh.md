@@ -1,10 +1,10 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Modal（模态框）组件
 components: Modal
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
-unstyled: /base/react-modal/
+unstyled: /base-ui/react-modal/
 ---
 
 # Modal 模态框组件

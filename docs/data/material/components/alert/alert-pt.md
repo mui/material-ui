@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React para Alertas
 components: Alert, AlertTitle
 githubLabel: 'component: Alert'

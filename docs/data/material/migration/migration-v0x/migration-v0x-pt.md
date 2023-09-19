@@ -25,14 +25,14 @@ Material UI was started [4 years ago](https://github.com/mui/material-ui/commit/
 
 utilizando o yarn:
 
-```sh
+```bash
 yarn add material-ui
   yarn add @material-ui/core
 ```
 
 Ou utilizando npm:
 
-```sh
+```bash
 npm install material-ui
   npm install @material-ui/core
 ```

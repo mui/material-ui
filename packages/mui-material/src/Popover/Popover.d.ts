@@ -20,6 +20,11 @@ export interface PopoverPosition {
 
 export type PopoverReference = 'anchorEl' | 'anchorPosition' | 'none';
 
+interface PopoverVirtualElement {
+  getBoundingClientRect: () => DOMRect;
+  nodeType: Node['ELEMENT_NODE'];
+}
+
 export interface PopoverProps
   extends StandardProps<Omit<ModalProps, 'slots' | 'slotProps'>, 'children'> {
   /**
@@ -28,10 +33,16 @@ export interface PopoverProps
    */
   action?: React.Ref<PopoverActions>;
   /**
-   * An HTML element, or a function that returns one.
+   * An HTML element, [PopoverVirtualElement](/material-ui/react-popover/#virtual-element),
+   * or a function that returns either.
    * It's used to set the position of the popover.
    */
-  anchorEl?: null | Element | ((element: Element) => Element);
+  anchorEl?:
+    | null
+    | Element
+    | (() => Element)
+    | PopoverVirtualElement
+    | (() => PopoverVirtualElement);
   /**
    * This is the point on the anchor where the popover's
    * `anchorEl` will attach to. This is not used when the
@@ -80,9 +91,10 @@ export interface PopoverProps
   elevation?: number;
   /**
    * Specifies how close to the edge of the window the popover can appear.
+   * If null, the popover will not be constrained by the window.
    * @default 16
    */
-  marginThreshold?: number;
+  marginThreshold?: number | null;
   onClose?: ModalProps['onClose'];
   /**
    * If `true`, the component is shown.
@@ -96,7 +108,7 @@ export interface PopoverProps
    *
    * @default {}
    */
-  PaperProps?: Partial<PaperProps>;
+  PaperProps?: Partial<PaperProps<React.ElementType>>;
   /**
    * The components used for each slot inside.
    *

@@ -1,0 +1,92 @@
+{
+  "props": {
+    "defaultValue": { "type": { "name": "any" } },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" } },
+    "id": { "type": { "name": "string" } },
+    "max": { "type": { "name": "number" } },
+    "min": { "type": { "name": "number" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent, value: number | undefined) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
+    "onInputChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
+    "readOnly": { "type": { "name": "bool" }, "default": "false" },
+    "required": { "type": { "name": "bool" } },
+    "shiftMultiplier": { "type": { "name": "number" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ decrementButton?: func<br>&#124;&nbsp;object, incrementButton?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ decrementButton?: elementType, incrementButton?: elementType, input?: elementType, root?: elementType }"
+      },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "step": { "type": { "name": "number" } },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "NumberInput",
+  "imports": [
+    "import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';",
+    "import { Unstable_NumberInput as NumberInput } from '@mui/base';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiNumberInput-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": ".MuiNumberInput-input"
+    },
+    {
+      "name": "incrementButton",
+      "description": "The component that renders the increment button.",
+      "default": "'button'",
+      "class": ".MuiNumberInput-incrementButton"
+    },
+    {
+      "name": "decrementButton",
+      "description": "The component that renders the decrement button.",
+      "default": "'button'",
+      "class": ".MuiNumberInput-decrementButton"
+    }
+  ],
+  "classes": {
+    "classes": ["disabled", "error", "focused", "formControl", "readOnly"],
+    "globalClasses": {
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "readOnly": "Mui-readOnly",
+      "error": "Mui-error"
+    }
+  },
+  "spread": true,
+  "muiName": "MuiNumberInput",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/Unstable_NumberInput/NumberInput.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-number-input/\">Number Input</a></li></ul>",
+  "cssComponent": false
+}

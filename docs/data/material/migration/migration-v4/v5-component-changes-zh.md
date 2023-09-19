@@ -1,6 +1,6 @@
 # Breaking changes in v5, part two: core components
 
-<p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4. This part covers changes to components.</p>
+<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrating from v4. This part covers changes to components.</p>
 
 ## Material UI v5 migration
 
@@ -664,7 +664,7 @@ Change the default variant from `standard` to `outlined`.
 `standard` has been removed from the Material Design guidelines.
 
 :::warning
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff
@@ -864,7 +864,7 @@ The default `underline` prop is changed from `"hover"` to `"always"`.
 To recreate the behavior from v4, apply `defaultProps` in the theme.
 
 :::warning
-✅ This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod.
+This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod.
 :::
 
 ```js
@@ -1233,7 +1233,7 @@ Change the default variant from `standard` to `outlined`.
 If you are composing the `Select` with a form control component, you only need to update `FormControl`—the select inherits the variant from its context.
 
 :::success
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff
@@ -1628,7 +1628,7 @@ Change the default variant from `standard` to `outlined`.
 `standard` has been removed from the Material Design guidelines.
 
 :::success
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff

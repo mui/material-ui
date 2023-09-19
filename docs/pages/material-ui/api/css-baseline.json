@@ -4,6 +4,10 @@
     "enableColorScheme": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "CssBaseline",
+  "imports": [
+    "import CssBaseline from '@mui/material/CssBaseline';",
+    "import { CssBaseline } from '@mui/material';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "themeDefaultProps": null,
