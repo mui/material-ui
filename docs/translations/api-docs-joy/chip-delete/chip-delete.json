@@ -12,7 +12,7 @@
       "description": "If <code>true</code>, the component is disabled. If <code>undefined</code>, the value inherits from the parent chip via a React context."
     },
     "onDelete": {
-      "description": "Callback fired when the component is not disabled and either: - <code>Backspace</code>, <code>Enter</code> or <code>Delete</code> is pressed. - The component is clicked."
+      "description": "<p>Callback fired when the component is not disabled and either:</p>\n<ul>\n<li><code>Backspace</code>, <code>Enter</code> or <code>Delete</code> is pressed.</li>\n<li>The component is clicked.</li>\n</ul>\n"
     },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },

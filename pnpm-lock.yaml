@@ -1813,6 +1813,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.22.15
         version: 7.22.15
+      '@types/prop-types':
+        specifier: ^15.7.5
+        version: 15.7.5
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -1838,9 +1841,6 @@ importers:
       '@types/node':
         specifier: ^18.17.15
         version: 18.17.15
-      '@types/prop-types':
-        specifier: ^15.7.5
-        version: 15.7.5
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -1973,6 +1973,37 @@ importers:
 
   packages/waterfall: {}
 
+  packages/zero-next-plugin:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.22.17
+        version: 7.22.17
+      '@babel/plugin-syntax-jsx':
+        specifier: ^7.22.5
+        version: 7.22.5(@babel/core@7.22.17)
+      '@babel/preset-typescript':
+        specifier: ^7.22.15
+        version: 7.22.15(@babel/core@7.22.17)
+      '@linaria/babel-preset':
+        specifier: ^4.5.4
+        version: 4.5.4
+      '@mui/zero-tag-processor':
+        specifier: 0.0.1-alpha.4
+        version: link:../zero-tag-processor
+      file-system-cache:
+        specifier: 2.0.2
+        version: 2.0.2
+    devDependencies:
+      '@types/babel__core':
+        specifier: ^7.20.1
+        version: 7.20.1
+      '@types/loader-utils':
+        specifier: ^2.0.3
+        version: 2.0.4
+      next:
+        specifier: ^13.4.19
+        version: 13.4.19(@babel/core@7.22.17)(babel-plugin-macros@3.1.0)(react-dom@18.2.0)(react@18.2.0)
+
   packages/zero-runtime:
     dependencies:
       clsx:
@@ -2064,7 +2095,7 @@ importers:
         specifier: ^4.5.4
         version: 4.5.4(vite@4.4.9)
       '@mui/zero-tag-processor':
-        specifier: 0.0.1-alpha.3
+        specifier: 0.0.1-alpha.4
         version: link:../zero-tag-processor
     devDependencies:
       '@types/babel__core':
@@ -6775,6 +6806,13 @@ packages:
       '@types/node': 18.17.15
     dev: true
 
+  /@types/loader-utils@2.0.4:
+    resolution: {integrity: sha512-I71X8yySVQW6DuXr78/McC+enpUYQ68JxAYlgVyuMvl5mb7jFUZpFAu1qURZcwvbITXwxPnrA7hbV0W3HHsbbg==}
+    dependencies:
+      '@types/node': 18.17.15
+      '@types/webpack': 4.41.33
+    dev: true
+
   /@types/lodash.get@4.4.7:
     resolution: {integrity: sha512-af34Mj+KdDeuzsJBxc/XeTtOx0SZHZNLd+hdrn+PcKGQs0EG2TJTzQAOTCZTgDJCArahlCzLWSy8c2w59JRz7Q==}
     dependencies:
@@ -6965,6 +7003,10 @@ packages:
     resolution: {integrity: sha512-9GcLXF0/v3t80caGs5p2rRfkB+a8VBGLJZVih6CNFkx8IZ994wiKKLSRs9nuFwk1HevWs/1mnUmkApGrSGsShA==}
     dev: true
 
+  /@types/source-list-map@0.1.2:
+    resolution: {integrity: sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==}
+    dev: true
+
   /@types/styled-components@5.1.26:
     resolution: {integrity: sha512-KuKJ9Z6xb93uJiIyxo/+ksS7yLjS1KzG6iv5i78dhVg/X3u5t1H7juRWqVmodIdz6wGVaIApo1u01kmFRdJHVw==}
     dependencies:
@@ -6983,8 +7025,18 @@ packages:
     resolution: {integrity: sha512-n4sx2bqL0mW1tvDf/loQ+aMX7GQD3lc3fkCMC55VFNDu/vBOabO+LTIeXKM14xK0ppk5TUGcWRjiSpIlUpghKw==}
     dev: true
 
+  /@types/tapable@1.0.9:
+    resolution: {integrity: sha512-fOHIwZua0sRltqWzODGUM6b4ffZrf/vzGUmNXdR+4DzuJP42PMbM5dLKcdzlYvv8bMJ3GALOzkk1q7cDm2zPyA==}
+    dev: true
+
   /@types/tsscmp@1.0.0:
     resolution: {integrity: sha512-rj18XR6c4Ohds86Lq8MI1NMRrXes4eLo4H06e5bJyKucE1rXGsfBBbFGD2oDC+DSufQCpnU3TTW7QAiwLx+7Yw==}
+    dev: true
+
+  /@types/uglify-js@3.17.2:
+    resolution: {integrity: sha512-9SjrHO54LINgC/6Ehr81NjAxAYvwEZqjUHLjJYvC4Nmr9jbLQCIZbWSvl4vXQkkmR1UAuaKDycau3O1kWGFyXQ==}
+    dependencies:
+      source-map: 0.6.1
     dev: true
 
   /@types/unist@2.0.6:
@@ -6996,6 +7048,25 @@ packages:
 
   /@types/uuid@9.0.3:
     resolution: {integrity: sha512-taHQQH/3ZyI3zP8M/puluDEIEvtQHVYcC6y3N8ijFtAd28+Ey/G4sg1u2gB01S8MwybLOKAp9/yCMu/uR5l3Ug==}
+    dev: true
+
+  /@types/webpack-sources@3.2.0:
+    resolution: {integrity: sha512-Ft7YH3lEVRQ6ls8k4Ff1oB4jN6oy/XmU6tQISKdhfh+1mR+viZFphS6WL0IrtDOzvefmJg5a0s7ZQoRXwqTEFg==}
+    dependencies:
+      '@types/node': 18.17.15
+      '@types/source-list-map': 0.1.2
+      source-map: 0.7.4
+    dev: true
+
+  /@types/webpack@4.41.33:
+    resolution: {integrity: sha512-PPajH64Ft2vWevkerISMtnZ8rTs4YmRbs+23c402J0INmxDKCrhZNvwZYtzx96gY2wAtXdrK1BS2fiC8MlLr3g==}
+    dependencies:
+      '@types/node': 18.17.15
+      '@types/tapable': 1.0.9
+      '@types/uglify-js': 3.17.2
+      '@types/webpack-sources': 3.2.0
+      anymatch: 3.1.2
+      source-map: 0.6.1
     dev: true
 
   /@types/ws@7.4.7:
@@ -11291,6 +11362,13 @@ packages:
     dependencies:
       flat-cache: 3.0.4
     dev: true
+
+  /file-system-cache@2.0.2:
+    resolution: {integrity: sha512-lp4BHO4CWqvRyx88Tt3quZic9ZMf4cJyquYq7UI8sH42Bm2ArlBBjKQAalZOo+UfaBassb7X123Lik5qZ/tSAA==}
+    dependencies:
+      fs-extra: 11.1.1
+      ramda: 0.28.0
+    dev: false
 
   /filelist@1.0.4:
     resolution: {integrity: sha512-w1cEuf3S+DrLCQL7ET6kz+gmlJdbq9J7yXCSjK/OZCPA+qEN1WyF4ZAf0YYJa4/shHJra2t/d/r8SV4Ji+x+8Q==}
@@ -16588,6 +16666,10 @@ packages:
     resolution: {integrity: sha512-Wswj8ZvzdI3VhaGPkZAxaCTwuMmGtgWt7Zxsgyo4P+iTmVnkojvyWaOep5q3ZjMIecW0wtQa66GWxaKkZ24RAA==}
     dev: true
 
+  /ramda@0.28.0:
+    resolution: {integrity: sha512-9QnLuG/kPVgWvMQ4aODhsBUFKOUmnbUnsSXACv+NCQZcHbeb+v8Lodp8OVxtRULN1/xOyYLLaL6npE6dMq5QTA==}
+    dev: false
+
   /randexp@0.4.6:
     resolution: {integrity: sha512-80WNmd9DA0tmZrw9qQa62GPPWfuXJknrmVmLcxvq4uZBdYqb1wYoKTmnlGUchvVWe0XiLupYkBoXVOxz3C8DYQ==}
     engines: {node: '>=0.12'}
@@ -18131,7 +18213,6 @@ packages:
   /source-map@0.7.4:
     resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
     engines: {node: '>= 8'}
-    dev: false
 
   /sourcemap-codec@1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}

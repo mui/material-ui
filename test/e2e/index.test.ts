@@ -9,9 +9,11 @@ import type {
 } from '@testing-library/dom';
 import '../utils/initPlaywrightMatchers';
 
-function sleep(timeoutMS: number): Promise<void> {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(), timeoutMS);
+function sleep(duration: number): Promise<void> {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, duration);
   });
 }
 

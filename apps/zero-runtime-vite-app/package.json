@@ -1,5 +1,5 @@
 {
-  "name": "zero-runtime-vite-app",
+  "name": "@app/zero-runtime-vite-app",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -13,8 +13,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@mui/utils": "^5.14.8",
-    "@mui/material": "^5.14.8",
+    "@mui/utils": "file:../../packages/mui-utils/build",
+    "@mui/material": "file:../../packages/mui-material/build",
     "@mui/zero-vite-plugin": "file:../../packages/zero-vite-plugin/build",
     "@vitejs/plugin-react": "^4.0.4",
     "vite": "4.4.9"
