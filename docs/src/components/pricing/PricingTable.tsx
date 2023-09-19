@@ -1206,6 +1206,7 @@ export default function PricingTable({
     ml: '-14px',
     '&>div:first-of-type': {
       ml: '14px',
+      width: 'calc(100% - 14px)', // avoid overflow on hover transparent background
     },
   };
 
