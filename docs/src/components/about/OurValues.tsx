@@ -60,7 +60,6 @@ export default function OurValues() {
           href={ROUTES.handbook}
           endIcon={<KeyboardArrowRightRounded fontSize="small" />}
           variant="contained"
-          size="medium"
           sx={{ width: { xs: '100%', sm: 'fit-content' } }}
         >
           View our handbook

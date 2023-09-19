@@ -333,7 +333,6 @@ export default function Team() {
             href={ROUTES.careers}
             endIcon={<KeyboardArrowRightRounded fontSize="small" />}
             variant="contained"
-            size="medium"
             sx={{ width: { xs: '100%', sm: 'fit-content' } }}
           >
             View careers

@@ -26,7 +26,7 @@ export default function AboutEnd() {
           overline="Join us"
           title={
             <Typography variant="h2" sx={{ maxWidth: 600, mx: 'auto' }}>
-              Build <GradientText>the next generation</GradientText>
+              <GradientText>Build the next generation</GradientText>
               <br /> of tools for UI development
             </Typography>
           }
@@ -38,7 +38,6 @@ export default function AboutEnd() {
           href={ROUTES.careers}
           endIcon={<KeyboardArrowRightRounded fontSize="small" />}
           variant="contained"
-          size="medium"
           sx={{ width: { xs: '100%', sm: 'fit-content' } }}
         >
           View careers
