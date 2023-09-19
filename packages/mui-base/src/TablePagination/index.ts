@@ -1,4 +1,3 @@
-'use client';
 export { TablePagination } from './TablePagination';
 export * from './TablePagination.types';
 
