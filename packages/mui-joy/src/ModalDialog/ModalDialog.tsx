@@ -149,9 +149,9 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
   } = props;
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     color,
-    instanceColor: inProps.color,
     component,
     maxWidth,
     minWidth,
