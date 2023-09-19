@@ -3,7 +3,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import { elementTypeAcceptingRef } from '@mui/utils';
+import { elementTypeAcceptingRef, unstable_useTimeout as useTimeout } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -130,19 +130,13 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const theme = useTheme();
-  const timer = React.useRef();
+  const timer = useTimeout();
   const wrapperRef = React.useRef(null);
   const autoTransitionDuration = React.useRef();
   const collapsedSize =
     typeof collapsedSizeProp === 'number' ? `${collapsedSizeProp}px` : collapsedSizeProp;
   const isHorizontal = orientation === 'horizontal';
   const size = isHorizontal ? 'width' : 'height';
-
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(timer.current);
-    };
-  }, []);
 
   const nodeRef = React.useRef(null);
   const handleRef = useForkRef(ref, nodeRef);
@@ -255,7 +249,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
 
   const handleAddEndListener = (next) => {
     if (timeout === 'auto') {
-      timer.current = setTimeout(next, autoTransitionDuration.current || 0);
+      timer.start(autoTransitionDuration.current || 0, next);
     }
     if (addEndListener) {
       // Old call signature before `react-transition-group` implemented `nodeRef`
