@@ -1,7 +1,7 @@
 import useLazyRef from './useLazyRef';
 import useOnMount from './useOnMount';
 
-class Timeout {
+export class Timeout {
   static create() {
     return new Timeout();
   }
