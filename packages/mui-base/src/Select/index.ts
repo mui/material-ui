@@ -1,3 +1,4 @@
+'use client';
 export { Select } from './Select';
 
 export * from './selectClasses';

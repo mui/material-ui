@@ -1,3 +1,4 @@
+'use client';
 export { appendOwnerState } from './appendOwnerState';
 export { areArraysEqual } from './areArraysEqual';
 export { ClassNameConfigurator } from './ClassNameConfigurator';

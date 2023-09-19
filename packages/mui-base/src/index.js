@@ -1,3 +1,4 @@
+'use client';
 export * from './utils';
 export * from './Badge';
 export * from './Button';
