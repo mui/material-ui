@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -1158,6 +1158,22 @@ function PricingTableBuyPremium() {
   );
 }
 
+const StyledCollapse = styled(Collapse, {
+  name: 'MuiSlider',
+  slot: 'Track',
+})(({ theme }) => {
+  return {
+    position: 'relative',
+    marginLeft: theme.spacing(1.5),
+    borderLeftWidth: '2px',
+    borderLeftStyle: 'solid',
+    borderColor: theme.palette.grey[100],
+    ...theme.applyDarkStyles({
+      borderColor: theme.palette.primaryDark[700],
+    }),
+  };
+});
+
 export default function PricingTable({
   columnHeaderHidden,
   plans = ['community', 'pro', 'premium'],
@@ -1319,20 +1335,7 @@ export default function PricingTable({
           Data Grid
         </Button>
       </Box>
-      <Collapse
-        in={dataGridCollapsed}
-        timeout={700}
-        sx={(theme) => ({
-          position: 'relative',
-          ml: 1.5,
-          borderLeftWidth: '2px',
-          borderLeftStyle: 'solid',
-          borderColor: 'grey.100',
-          ...theme.applyDarkStyles({
-            borderColor: 'primaryDark.700',
-          }),
-        })}
-      >
+      <StyledCollapse in={dataGridCollapsed} timeout={700}>
         <RowCategory>Column features</RowCategory>
         {renderNestedRow('data-grid/column-groups')}
         {divider}
@@ -1419,7 +1422,7 @@ export default function PricingTable({
         {renderNestedRow('data-grid/keyboard-nav')}
         {divider}
         {renderNestedRow('data-grid/localization')}
-      </Collapse>
+      </StyledCollapse>
       {divider}
       {renderRow('date-picker/simple')}
       {divider}
@@ -1482,65 +1485,52 @@ export default function PricingTable({
           Charts
         </Button>
       </Box>
-      <Collapse in={chartsCollapsed} timeout={700} sx={{ position: 'relative' }}>
-        <Box
-          sx={(theme) => ({
-            position: 'absolute',
-            width: '2px',
-            left: 10,
-            top: 0,
-            bottom: 0,
-            bgcolor: 'grey.100',
-            ...theme.applyDarkStyles({
-              bgcolor: 'primaryDark.700',
-            }),
-          })}
-        />
+      <StyledCollapse in={chartsCollapsed} timeout={700}>
         <RowCategory>Components</RowCategory>
-        {renderRow('charts/line')}
-        {nestedDivider}
-        {renderRow('charts/bar')}
-        {nestedDivider}
-        {renderRow('charts/scatter')}
-        {nestedDivider}
-        {renderRow('charts/pie')}
-        {nestedDivider}
-        {renderRow('charts/sparkline')}
-        {nestedDivider}
-        {renderRow('charts/gauge')}
-        {nestedDivider}
-        {renderRow('charts/treemap')}
-        {nestedDivider}
-        {renderRow('charts/radar')}
-        {nestedDivider}
-        {renderRow('charts/funnel')}
-        {nestedDivider}
-        {renderRow('charts/sankey')}
-        {nestedDivider}
-        {renderRow('charts/gantt')}
-        {nestedDivider}
-        {renderRow('charts/gantt-advenced')}
-        {nestedDivider}
-        {renderRow('charts/candlestick')}
-        {nestedDivider}
-        {renderRow('charts/large-dataset')}
-        {nestedDivider}
+        {renderNestedRow('charts/line')}
+        {divider}
+        {renderNestedRow('charts/bar')}
+        {divider}
+        {renderNestedRow('charts/scatter')}
+        {divider}
+        {renderNestedRow('charts/pie')}
+        {divider}
+        {renderNestedRow('charts/sparkline')}
+        {divider}
+        {renderNestedRow('charts/gauge')}
+        {divider}
+        {renderNestedRow('charts/treemap')}
+        {divider}
+        {renderNestedRow('charts/radar')}
+        {divider}
+        {renderNestedRow('charts/funnel')}
+        {divider}
+        {renderNestedRow('charts/sankey')}
+        {divider}
+        {renderNestedRow('charts/gantt')}
+        {divider}
+        {renderNestedRow('charts/gantt-advenced')}
+        {divider}
+        {renderNestedRow('charts/candlestick')}
+        {divider}
+        {renderNestedRow('charts/large-dataset')}
+        {divider}
         <RowCategory>Interactions</RowCategory>
-        {renderRow('charts/legend')}
-        {nestedDivider}
-        {renderRow('charts/tooltip')}
-        {nestedDivider}
-        {renderRow('charts/mouse-zoom')}
-        {nestedDivider}
-        {renderRow('charts/export')}
-        {nestedDivider}
+        {renderNestedRow('charts/legend')}
+        {divider}
+        {renderNestedRow('charts/tooltip')}
+        {divider}
+        {renderNestedRow('charts/mouse-zoom')}
+        {divider}
+        {renderNestedRow('charts/export')}
+        {divider}
         <RowCategory>Data Grid Integration</RowCategory>
-        {renderRow('charts/cell-with-charts')}
-        {nestedDivider}
-        {renderRow('charts/filter-interaction')}
-        {nestedDivider}
-        {renderRow('charts/selection-interaction')}
-      </Collapse>
+        {renderNestedRow('charts/cell-with-charts')}
+        {divider}
+        {renderNestedRow('charts/filter-interaction')}
+        {divider}
+        {renderNestedRow('charts/selection-interaction')}
+      </StyledCollapse>
       {divider}
       {renderRow('mui-x-production')}
       {divider}
