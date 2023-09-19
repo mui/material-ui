@@ -15,7 +15,7 @@ const createPrefixVar = (cssVarPrefix: string | undefined | null) => {
 };
 
 export const INVERTED_COLORS_SELECTOR =
-  '& :not([data-inverted-colors="false"]):not([data-inverted-colors="false"] *)';
+  '& :not([data-skip-inverted-colors]):not([data-skip-inverted-colors] *)';
 
 /**
  *
