@@ -45,7 +45,13 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--Input-focusedHighlight':
           theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
         '&:not([data-inverted-colors="false"])': {
-          '--Input-focusedHighlight': theme.vars.palette.focusVisible,
+          ...(ownerState.instanceColor && {
+            '--_Input-focusedHighlight':
+              theme.vars.palette[
+                ownerState.instanceColor === 'neutral' ? 'primary' : ownerState.instanceColor
+              ]?.[500],
+          }),
+          '--Input-focusedHighlight': `var(--_Input-focusedHighlight, ${theme.vars.palette.focusVisible})`,
         },
         ...(ownerState.size === 'sm' && {
           '--Input-minHeight': '2rem',
@@ -274,9 +280,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = inProps.color ?? error ? 'danger' : formControl?.color ?? colorProp;
+  const color = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
 
   const ownerState = {
+    instanceColor: error ? 'danger' : inProps.color,
     ...props,
     fullWidth,
     color,

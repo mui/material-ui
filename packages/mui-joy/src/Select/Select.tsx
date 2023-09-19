@@ -84,6 +84,12 @@ const SelectRoot = styled('div', {
       '--Select-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
       '&:not([data-inverted-colors="false"])': {
+        ...(ownerState.instanceColor && {
+          '--_Select-focusedHighlight':
+            theme.vars.palette[
+              ownerState.instanceColor === 'neutral' ? 'primary' : ownerState.instanceColor
+            ]?.[500],
+        }),
         '--Select-focusedHighlight': theme.vars.palette.focusVisible,
       },
       '--Select-indicatorColor': variantStyle?.backgroundColor

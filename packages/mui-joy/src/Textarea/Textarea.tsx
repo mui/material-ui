@@ -49,7 +49,13 @@ const TextareaRoot = styled('div', {
       '--Textarea-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
       '&:not([data-inverted-colors="false"])': {
-        '--Textarea-focusedHighlight': theme.vars.palette.focusVisible,
+        ...(ownerState.instanceColor && {
+          '--_Textarea-focusedHighlight':
+            theme.vars.palette[
+              ownerState.instanceColor === 'neutral' ? 'primary' : ownerState.instanceColor
+            ]?.[500],
+        }),
+        '--Textarea-focusedHighlight': `var(--_Textarea-focusedHighlight, ${theme.vars.palette.focusVisible})`,
       },
       ...(ownerState.size === 'sm' && {
         '--Textarea-minHeight': '2rem',
