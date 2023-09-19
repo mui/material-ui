@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 
 export const DEFAULT_MODE_STORAGE_KEY = 'mode';
