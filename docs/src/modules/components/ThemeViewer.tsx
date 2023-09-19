@@ -205,7 +205,7 @@ export default function ThemeViewer({
         color: '#FFF',
         p: 1.5,
         bgcolor: '#0F1924', // one-off code container color
-        borderRadius: 4,
+        borderRadius: 3,
         border: '1px solid',
         borderColor: '#1F262E', // primaryDark[700]
       }}
