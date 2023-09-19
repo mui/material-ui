@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import { exactProp } from '@mui/utils';
-import GlobalStyles from '@mui/material/GlobalStyles';
+import { createGlobalStyle } from 'styled-components';
 import NoSsr from '@mui/material/NoSsr';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import Head from 'docs/src/modules/components/Head';
@@ -96,6 +96,12 @@ const ActionsDiv = styled('div')(({ theme }) => ({
   },
 }));
 
+const GlobalStyles = createGlobalStyle({
+  ':root': {
+    '--MuiDocs-navDrawer-width': '300px',
+  },
+})
+
 export default function AppLayoutDocs(props) {
   const router = useRouter();
   const {
@@ -138,13 +144,7 @@ export default function AppLayoutDocs(props) {
 
   return (
     <Layout {...layoutProps}>
-      <GlobalStyles
-        styles={{
-          ':root': {
-            '--MuiDocs-navDrawer-width': '300px',
-          },
-        }}
-      />
+      <GlobalStyles />
       <AdManager {...(hasTabs && { classSelector: '.component-tabs' })}>
         <Head
           title={`${title} - ${productName}`}
