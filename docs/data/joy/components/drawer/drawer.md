@@ -7,18 +7,23 @@ githubLabel: 'component: drawer'
 
 # Drawer
 
-<p class="description">Navigation drawers provide quick access to other app areas without removing the user out of context.</p>
+<p class="description">Navigation drawers provide quick access to other areas of an app without taking the user away from their current location.</p>
 
 ## Introduction
 
-The Drawer component is commonly used as a type of menu on desktop and as a dialog on mobile (similar to [Apple's sheets](https://developer.apple.com/design/human-interface-guidelines/sheets)).
+Drawers are commonly used as menus for desktop navigation, and as dialogs on mobile devices (similar to [Apple's sheets](https://developer.apple.com/design/human-interface-guidelines/sheets)).
 
 {{"demo": "DrawerUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-## Basic
+## Basics
 
-The Drawer can be closed by clicking on the overlay or pressing the <kbd>Esc</kbd> key.
-It will also close if an item inside of it is selected, which can be controlled by the `open` prop.
+```jsx
+import Drawer from '@mui/joy/Drawer';
+```
+
+The Drawer will close after the user makes a selection, clicks anywhere outside of it, or presses the <kbd>Esc</kbd> key.
+
+Use the `open` prop to control the toggling of the Drawer's open and close states, as shown in the demo below:
 
 {{"demo": "DrawerBasic.js"}}
 
@@ -26,27 +31,30 @@ It will also close if an item inside of it is selected, which can be controlled 
 
 ### Anchor
 
-Use the anchor prop to specify where the drawer should appear from.
+Use the `anchor` prop to specify which side of the screen the Drawer should originate from.
 The default value is `left`.
 
 {{"demo": "DrawerAnchor.js"}}
 
 ### Size
 
-Use the size prop to adjust the Drawer's width and height when positioned left/right and top/bottom, respectively.
+Use the `size` prop to adjust the Drawer's width (when anchored to the left or right) or height (when anchored to the top or bottom).
 
 {{"demo": "DrawerSize.js"}}
 
 ### Close button
 
-Use the Modal Close component to add a close button to the Drawer.
-It automatically handles the `onClick` event.
+Use the Modal Close component to add a close button to the Drawer that automatically handles the `onClick` event.
+
+```jsx
+import ModalClose from '@mui/joy/ModalClose';
+```
 
 {{"demo": "DrawerCloseButton.js"}}
 
 ### Transition
 
-Customize the Drawer's opening transition by using the CSS variables below inside the sx prop:
+Customize the Drawer's opening transition by using the CSS variables below inside the [`sx` prop](/system/getting-started/the-sx-prop/):
 
 - `--Drawer-transitionFunction`: the [transition function](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function); default is `ease`.
 - `--Drawer-transitionDuration`: the [duration of the transition](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration); default is `0.3s`.
@@ -57,18 +65,24 @@ Customize the Drawer's opening transition by using the CSS variables below insid
 
 Use the Dialog Content component to create a scrollable container inside the Drawer.
 
+```jsx
+import DialogContent from '@mui/joy/DialogContent';
+```
+
 {{"demo": "DrawerScrollable.js"}}
 
 ## Common examples
 
 ### Mobile navigation
 
-A common use case for the Drawer is mobile menus.
+A common use case for the Drawer is to build mobile-friendly navigation menus:
 
 {{"demo": "DrawerMobileNavigation.js"}}
 
 ### Inset drawer
 
-To make the Drawer not glued to the edge of the viewport, creating an inset style, use a combination of background and padding values on the Drawer component and either the Box or [Sheet](/joy-ui/react-sheet/) components for the full-height wrapper.
+An inset drawer is a panel that's not anchored to any edge of the screen.
+
+You can achieve this by applying background and padding values to the Drawer component, and using either a Box or [Sheet](/joy-ui/react-sheet/) component for a full-height wrapper, as shown below:
 
 {{"demo": "DrawerFilters.js"}}
