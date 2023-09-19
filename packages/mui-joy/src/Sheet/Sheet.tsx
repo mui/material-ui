@@ -7,13 +7,12 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { getPath } from '@mui/system';
 import { applySoftInversion, applySolidInversion, useThemeProps } from '../styles';
+import { INVERTED_COLORS_SELECTOR } from '../styles/colorInversionUtils';
 import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
-
 import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
 import useSlot from '../utils/useSlot';
-import { INVERTED_COLORS_SELECTOR } from '../styles/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: SheetOwnerState) => {
   const { variant, color } = ownerState;

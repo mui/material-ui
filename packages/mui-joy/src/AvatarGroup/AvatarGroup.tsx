@@ -79,7 +79,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       size,
       variant,
     }),
-    [color, component, inProps.color, props, size, variant],
+    [color, component, props, size, variant],
   );
 
   const classes = useUtilityClasses();

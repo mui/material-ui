@@ -37,8 +37,6 @@ const TextareaRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TextareaOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
-  const hoverStyles = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
-  const disabledStyles = theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!];
   return [
     {
       '--Textarea-radius': theme.vars.radius.sm,
@@ -118,11 +116,12 @@ const TextareaRoot = styled('div', {
     } as const,
     {
       '&:hover': {
-        ...hoverStyles,
+        ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
         backgroundColor: null, // it is not common to change background on hover for Textarea
         cursor: 'text',
       },
-      [`&.${textareaClasses.disabled}`]: disabledStyles,
+      [`&.${textareaClasses.disabled}`]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       '&:focus-within::before': { '--Textarea-focused': '1' },
     },
   ];

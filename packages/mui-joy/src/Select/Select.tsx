@@ -15,7 +15,6 @@ import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import { SelectOwnProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
 import { resolveSxValue } from '../styles/styleUtils';
-
 import useSlot from '../utils/useSlot';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
 import { ListOwnerState } from '../List';
@@ -74,8 +73,6 @@ const SelectRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
-  const hoverStyles = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
-  const disabledStyles = theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!];
   const { borderRadius } = resolveSxValue({ theme, ownerState }, ['borderRadius']);
   return [
     {
@@ -166,8 +163,9 @@ const SelectRoot = styled('div', {
       },
     } as const,
     {
-      '&:hover': hoverStyles,
-      [`&.${selectClasses.disabled}`]: disabledStyles,
+      '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      [`&.${selectClasses.disabled}`]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
     },
     borderRadius !== undefined && { '--Select-radius': borderRadius },
   ];

@@ -8,7 +8,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { css, keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 import {
   LinearProgressOwnerState,

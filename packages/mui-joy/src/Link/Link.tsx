@@ -70,10 +70,6 @@ const LinkRoot = styled('a', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: LinkOwnerState }>(({ theme, ownerState }) => {
-  const baseStyles = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  const hoverStyles = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
-  const activeStyles = theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!];
-  const disabledStyles = theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!];
   return [
     {
       '--Icon-fontSize': '1.25em',
@@ -159,16 +155,13 @@ const LinkRoot = styled('a', {
             [theme.focus.selector]: theme.focus.default,
           } as const)),
     } as const,
-    ...(ownerState.variant
-      ? [
-          {
-            ...baseStyles,
-            '&:hover': hoverStyles,
-            '&:active': activeStyles,
-            [`&.${linkClasses.disabled}`]: disabledStyles,
-          },
-        ]
-      : []),
+    ownerState.variant && {
+      ...theme.variants[ownerState.variant]?.[ownerState.color!],
+      '&:hover': theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
+      '&:active': theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
+      [`&.${linkClasses.disabled}`]:
+        theme.variants[`${ownerState.variant}Disabled`]?.[ownerState.color!],
+    },
   ];
 });
 /**

@@ -42,7 +42,6 @@ const ChipRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  const disabledStyle = theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!];
   const { borderRadius } = resolveSxValue({ theme, ownerState }, ['borderRadius']);
   return [
     {
@@ -100,7 +99,7 @@ const ChipRoot = styled('div', {
       ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
       fontWeight: theme.vars.fontWeight.md,
       [`&.${chipClasses.disabled}`]: {
-        color: disabledStyle?.color,
+        color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       },
     } as const,
     ...(!ownerState.clickable
@@ -108,7 +107,8 @@ const ChipRoot = styled('div', {
           {
             backgroundColor: theme.vars.palette.background.surface,
             ...variantStyle,
-            [`&.${chipClasses.disabled}`]: disabledStyle,
+            [`&.${chipClasses.disabled}`]:
+              theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
           },
         ]
       : [

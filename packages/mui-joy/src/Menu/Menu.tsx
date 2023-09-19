@@ -12,6 +12,7 @@ import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
 import { styled, useThemeProps, applySolidInversion, applySoftInversion } from '../styles';
+import { INVERTED_COLORS_SELECTOR } from '../styles/colorInversionUtils';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
 import { MenuTypeMap, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
@@ -59,12 +60,12 @@ const MenuRoot = styled(StyledList, {
       ...(ownerState.variant === 'solid' &&
         ownerState.color &&
         ownerState.invertedColors && {
-          '& *': applySolidInversion(ownerState.color)(theme),
+          [INVERTED_COLORS_SELECTOR]: applySolidInversion(ownerState.color)(theme),
         }),
       ...(ownerState.variant === 'soft' &&
         ownerState.color &&
         ownerState.invertedColors && {
-          '& *': applySoftInversion(ownerState.color)(theme),
+          [INVERTED_COLORS_SELECTOR]: applySoftInversion(ownerState.color)(theme),
         }),
     },
   ];

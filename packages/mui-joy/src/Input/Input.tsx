@@ -5,7 +5,6 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-
 import useSlot from '../utils/useSlot';
 import { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
@@ -34,8 +33,6 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
 export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
   ({ theme, ownerState }) => {
     const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
-    const hoverStyles = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
-    const disabledStyles = theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!];
     return [
       {
         '--Input-radius': theme.vars.radius.sm,
@@ -115,10 +112,11 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
       } as const,
       {
         '&:hover': {
-          ...hoverStyles,
+          ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
           backgroundColor: null, // it is not common to change background on hover for Input
         },
-        [`&.${inputClasses.disabled}`]: disabledStyles,
+        [`&.${inputClasses.disabled}`]:
+          theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
         '&:focus-within::before': { '--Input-focused': '1' },
       },
     ];
