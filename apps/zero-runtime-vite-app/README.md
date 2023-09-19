@@ -24,3 +24,10 @@ After building, you can run the project by changing into the directory and then
 3. Build the code using `yarn build`
 
 Optionally, before running the dev server, you can run `yarn vite optimize --force` if it logged some error during `yarn vite`.
+
+### Testing
+
+This demo app has been configured to run tests using both vitest or jest.
+
+1. Vitest - You can run `yarn test` to run the tests using vitest
+2. Jest - You can run `yarn jest` to run the tests using jest
