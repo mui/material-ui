@@ -8,7 +8,7 @@ import {
   describeConformanceUnstyled,
   fireEvent,
   screen,
-} from 'test/utils';
+} from '@mui-internal/test-utilities';
 import {
   Slider,
   sliderClasses as classes,

@@ -7,7 +7,7 @@ import {
   createMount,
   describeConformanceUnstyled,
   fireEvent,
-} from 'test/utils';
+} from '@mui-internal/test-utilities';
 import { Snackbar, snackbarClasses as classes } from '@mui/base/Snackbar';
 
 describe('<Snackbar />', () => {

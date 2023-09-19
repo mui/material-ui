@@ -7,7 +7,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-} from 'test/utils';
+} from '@mui-internal/test-utilities';
 import Switch, { switchClasses as classes } from '@mui/joy/Switch';
 import { ThemeProvider } from '@mui/joy/styles';
 

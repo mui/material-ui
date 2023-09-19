@@ -8,7 +8,7 @@ import {
   programmaticFocusTriggersFocusVisible,
   screen,
   simulatePointerDevice,
-} from 'test/utils';
+} from '@mui-internal/test-utilities';
 import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
 
 describe('useSwitch', () => {

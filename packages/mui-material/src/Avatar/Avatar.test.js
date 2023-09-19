@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, describeConformance } from 'test/utils';
+import { createRenderer, fireEvent, describeConformance } from '@mui-internal/test-utilities';
 import { spy } from 'sinon';
 import Avatar, { avatarClasses as classes } from '@mui/material/Avatar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';

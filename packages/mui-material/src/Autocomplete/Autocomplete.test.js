@@ -8,7 +8,7 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
+} from '@mui-internal/test-utilities';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
 import Box from '@mui/system/Box';

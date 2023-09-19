@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, fireEvent, screen } from 'test/utils';
+import {
+  createRenderer,
+  describeConformance,
+  fireEvent,
+  screen,
+} from '@mui-internal/test-utilities';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import MobileStepper, { mobileStepperClasses as classes } from '@mui/material/MobileStepper';

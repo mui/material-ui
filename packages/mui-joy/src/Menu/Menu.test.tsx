@@ -8,7 +8,7 @@ import {
   screen,
   fireEvent,
   describeJoyColorInversion,
-} from 'test/utils';
+} from '@mui-internal/test-utilities';
 import { Popper as PopperUnstyled } from '@mui/base/Popper';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';

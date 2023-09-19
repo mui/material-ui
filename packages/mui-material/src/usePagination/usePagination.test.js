@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utilities';
 import { expect } from 'chai';
 import usePagination from '@mui/material/usePagination';
 

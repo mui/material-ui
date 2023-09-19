@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utilities';
 import { extendTheme, useTheme, CssVarsProvider } from '@mui/joy/styles';
 
 describe('extendTheme', () => {

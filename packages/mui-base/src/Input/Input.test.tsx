@@ -5,7 +5,7 @@ import {
   describeConformanceUnstyled,
   fireEvent,
   screen,
-} from 'test/utils';
+} from '@mui-internal/test-utilities';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { Input, inputClasses } from '@mui/base/Input';

@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, fireEvent, screen } from 'test/utils';
+import {
+  createRenderer,
+  describeConformance,
+  fireEvent,
+  screen,
+} from '@mui-internal/test-utilities';
 import { ThemeProvider } from '@mui/joy/styles';
 import Accordion from '@mui/joy/Accordion';
 import AccordionSummary from '@mui/joy/AccordionSummary';

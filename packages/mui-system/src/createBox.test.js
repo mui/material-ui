@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utilities';
 import { createBox, ThemeProvider } from '@mui/system';
 
 describe('createBox', () => {

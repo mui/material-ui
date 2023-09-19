@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui-internal/test-utilities';
 import Box from '@mui/material/Box';
 import { Experimental_CssVarsProvider as CssVarsProvider, useTheme } from '@mui/material/styles';
 

@@ -9,7 +9,7 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-} from 'test/utils';
+} from '@mui-internal/test-utilities';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
 import {

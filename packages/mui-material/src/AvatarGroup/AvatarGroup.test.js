@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer } from '@mui-internal/test-utilities';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup, { avatarGroupClasses as classes } from '@mui/material/AvatarGroup';
 

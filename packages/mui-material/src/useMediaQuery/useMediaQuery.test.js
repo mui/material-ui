@@ -6,7 +6,7 @@ import {
   screen,
   RenderCounter,
   strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
+} from '@mui-internal/test-utilities';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { stub } from 'sinon';
