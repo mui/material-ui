@@ -10,11 +10,11 @@ import {
 } from '@mui/utils';
 import { useThemeProps, applySolidInversion, applySoftInversion } from '../styles';
 import styled from '../styles/styled';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
 import useSlot from '../utils/useSlot';
+import { INVERTED_COLORS_SELECTOR } from '../styles/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: CardOwnerState) => {
   const { size, variant, color, orientation } = ownerState;
@@ -86,17 +86,13 @@ export const StyledCardRoot = styled('div')<{ ownerState: CardOwnerState }>(
         ...(ownerState.variant === 'solid' &&
           ownerState.color &&
           ownerState.invertedColors && {
-            '& *': applySolidInversion(ownerState.color)(theme),
+            [INVERTED_COLORS_SELECTOR]: applySolidInversion(ownerState.color)(theme),
           }),
         ...(ownerState.variant === 'soft' &&
           ownerState.color &&
           ownerState.invertedColors && {
-            '& *': applySoftInversion(ownerState.color)(theme),
+            [INVERTED_COLORS_SELECTOR]: applySoftInversion(ownerState.color)(theme),
           }),
-        ...getScopedGlobalVariantVars(
-          theme.variants[ownerState.variant!]?.[ownerState.color!],
-          ownerState.instanceColor,
-        ),
         ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       } as const,
       p !== undefined && { '--Card-padding': p },
@@ -144,7 +140,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const ownerState = {
     ...props,
-    instanceColor: inProps.color,
+
     color,
     component,
     orientation,

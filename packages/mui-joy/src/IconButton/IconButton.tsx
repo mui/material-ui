@@ -5,7 +5,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { useButton } from '@mui/base/useButton';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import useSlot from '../utils/useSlot';
 import { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
@@ -95,10 +95,6 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
         position: 'relative',
         [theme.focus.selector]: { '--Icon-color': 'currentColor', ...theme.focus.default },
       } as const,
-      getScopedGlobalVariantVars(baseStyles, ownerState.instanceColor),
-      getScopedGlobalVariantVars(hoverStyles, ownerState.instanceColor),
-      getScopedGlobalVariantVars(activeStyles, ownerState.instanceColor),
-      getScopedGlobalVariantVars(disabledStyles, ownerState.instanceColor),
       {
         ...baseStyles,
         '&:hover': {
@@ -179,7 +175,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   );
 
   const ownerState = {
-    instanceColor: color,
     ...props,
     component,
     color,

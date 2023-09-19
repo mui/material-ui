@@ -170,7 +170,6 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   );
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     disableIndicator,
     indicatorPlacement,

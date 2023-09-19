@@ -198,7 +198,6 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   } = props;
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     buttonFlex,
     color,

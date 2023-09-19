@@ -5,7 +5,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import useSlot from '../utils/useSlot';
 import { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
@@ -113,9 +113,6 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           boxShadow: `var(--Input-focusedInset, inset) 0 0 0 calc(var(--Input-focused) * var(--Input-focusedThickness)) var(--Input-focusedHighlight)`,
         },
       } as const,
-      getScopedGlobalVariantVars(variantStyle, ownerState.instanceColor),
-      getScopedGlobalVariantVars(hoverStyles, ownerState.instanceColor),
-      getScopedGlobalVariantVars(disabledStyles, ownerState.instanceColor),
       {
         '&:hover': {
           ...hoverStyles,
@@ -282,7 +279,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const color = inProps.color ?? error ? 'danger' : formControl?.color ?? colorProp;
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     fullWidth,
     color,

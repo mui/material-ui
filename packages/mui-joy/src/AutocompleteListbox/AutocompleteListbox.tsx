@@ -115,7 +115,6 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
   } = props;
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     size,
     color,

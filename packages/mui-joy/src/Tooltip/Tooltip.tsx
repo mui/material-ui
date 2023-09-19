@@ -14,7 +14,7 @@ import { Popper, unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import useSlot from '../utils/useSlot';
 import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
@@ -73,7 +73,6 @@ const TooltipRoot = styled('div', {
     ...(!variantStyle.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
     }),
-    ...getScopedGlobalVariantVars(variantStyle, ownerState.instanceColor),
     '&::before': {
       // acts as a invisible connector between the element and the tooltip
       // so that the cursor can move to the tooltip without losing focus.
@@ -542,7 +541,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   }
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     arrow,
     disableInteractive,

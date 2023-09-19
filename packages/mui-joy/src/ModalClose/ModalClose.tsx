@@ -105,7 +105,6 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
   });
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     color,
     component,

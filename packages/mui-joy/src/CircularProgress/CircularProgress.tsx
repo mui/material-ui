@@ -225,7 +225,6 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   } = props;
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     color,
     size,

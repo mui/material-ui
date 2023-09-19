@@ -6,7 +6,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import accordionDetailsClasses, {
   getAccordionDetailsUtilityClass,
 } from './accordionDetailsClasses';
@@ -39,10 +38,6 @@ const AccordionDetailsRoot = styled('div', {
   gridTemplateRows: '1fr',
   marginInline: 'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
   transition: 'var(--AccordionDetails-transition)',
-  ...getScopedGlobalVariantVars(
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    ownerState.instanceColor,
-  ),
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   [`&:not(.${accordionDetailsClasses.expanded})`]: {
     gridTemplateRows: '0fr',
@@ -134,7 +129,6 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     component,
     color,

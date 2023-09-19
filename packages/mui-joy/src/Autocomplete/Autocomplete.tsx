@@ -383,7 +383,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
 
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     value,
     disabled,
@@ -420,13 +419,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     } else {
       selectedOptions = (value as Array<unknown>).map((option, index) => {
         return (
-          // @ts-ignore internal logic for `instanceColor`
           <Chip
             key={index}
             size={size}
             variant="soft"
             color="neutral"
-            instanceColor={undefined}
             endDecorator={<ChipDelete {...getCustomizedTagProps({ index })} />}
           >
             {getOptionLabel(option)}

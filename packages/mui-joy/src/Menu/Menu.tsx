@@ -121,7 +121,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   );
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     disablePortal,
     invertedColors,

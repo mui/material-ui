@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps, Theme } from '../styles';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import useSlot from '../utils/useSlot';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
@@ -115,22 +115,6 @@ const SwitchRoot = styled('div', {
       border: 'none',
       margin: 'var(--unstable_Switch-margin)',
     } as const,
-    getScopedGlobalVariantVars(
-      theme.variants[ownerState.variant!]?.[ownerState.color!],
-      ownerState.instanceColor,
-    ),
-    getScopedGlobalVariantVars(
-      theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-      ownerState.instanceColor,
-    ),
-    getScopedGlobalVariantVars(
-      theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-      ownerState.instanceColor,
-    ),
-    getScopedGlobalVariantVars(
-      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-      ownerState.instanceColor,
-    ),
   ];
 });
 
@@ -295,7 +279,6 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     id,
     checked,

@@ -49,7 +49,12 @@ export default function JoyToggleButton() {
             <BookmarkOutlinedIcon />
           </IconButton>
           <Typography level="h3">Learn how to build super fast websites.</Typography>
-          <Button variant="solid" color="success" endDecorator={<KeyboardArrowRightIcon />}>
+          <Button
+            data-inverted-colors="false"
+            variant="solid"
+            color="success"
+            endDecorator={<KeyboardArrowRightIcon />}
+          >
             Read more
           </Button>
         </Card>

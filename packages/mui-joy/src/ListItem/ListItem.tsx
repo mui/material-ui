@@ -9,7 +9,7 @@ import {
 import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import useSlot from '../utils/useSlot';
 import { ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
 import { getListItemUtilityClass } from './listItemClasses';
@@ -105,10 +105,6 @@ export const StyledListItem = styled('li')<{ ownerState: ListItemOwnerState }>(
           background: `var(--ListItem-stickyBackground, ${theme.vars.palette.background.body})`,
         } as const)),
     } as const,
-    getScopedGlobalVariantVars(
-      theme.variants[ownerState.variant!]?.[ownerState.color!],
-      ownerState.instanceColor,
-    ),
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ],
 );
@@ -199,7 +195,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   }
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     sticky,
     startAction,

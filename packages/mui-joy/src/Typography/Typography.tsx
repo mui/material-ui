@@ -11,7 +11,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import useSlot from '../utils/useSlot';
 import { getTypographyUtilityClass } from './typographyClasses';
 import { TypographySystem } from '../styles/types';
@@ -126,10 +126,6 @@ const TypographyRoot = styled('span', {
         marginInline: '-0.25em',
       }),
       ...theme.variants[ownerState.variant]?.[ownerState.color!],
-      ...getScopedGlobalVariantVars(
-        theme.variants[ownerState.variant]?.[ownerState.color!],
-        ownerState.instanceColor,
-      ),
     }),
   };
 });
@@ -201,7 +197,6 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
       : levelMapping[level] || defaultVariantMapping[level] || 'span') as React.ElementType);
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     level,
     component,

@@ -108,7 +108,6 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     component,
     color,

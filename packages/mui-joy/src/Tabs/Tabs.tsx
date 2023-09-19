@@ -8,7 +8,7 @@ import { useTabs, TabsProvider } from '@mui/base/useTabs';
 import { getPath } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './tabsClasses';
 import { TabsOwnerState, TabsTypeMap } from './TabsProps';
@@ -74,10 +74,6 @@ const TabsRoot = styled('div', {
     position: 'relative',
     ...theme.typography[`body-${ownerState.size!}`],
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-    ...getScopedGlobalVariantVars(
-      theme.variants[ownerState.variant!]?.[ownerState.color!],
-      ownerState.instanceColor,
-    ),
     ...(p !== undefined && { '--Tabs-padding': p }),
     ...(padding !== undefined && { '--Tabs-padding': padding }),
   };
@@ -118,7 +114,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const { contextValue } = useTabs({ ...props, orientation, defaultValue });
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     orientation,
     direction,

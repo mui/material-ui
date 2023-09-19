@@ -7,7 +7,6 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import { getCardOverflowUtilityClass } from './cardOverflowClasses';
 import {
   CardOverflowProps,
@@ -105,10 +104,6 @@ const CardOverflowRoot = styled('div', {
         '--Button-radius': '0 0 var(--CardOverflow-radius) var(--CardOverflow-radius)',
       },
     }),
-    ...getScopedGlobalVariantVars(
-      theme.variants[ownerState.variant!]?.[ownerState.color!],
-      ownerState.instanceColor,
-    ),
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   };
 });
@@ -140,7 +135,6 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
   } = props;
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     component,
     color,

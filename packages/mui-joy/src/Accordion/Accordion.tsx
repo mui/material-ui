@@ -115,7 +115,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     component,
     color,

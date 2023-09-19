@@ -99,7 +99,6 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   );
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     variant,
     color,

@@ -9,10 +9,11 @@ import { getPath } from '@mui/system';
 import { applySoftInversion, applySolidInversion, useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
 import useSlot from '../utils/useSlot';
+import { INVERTED_COLORS_SELECTOR } from '../styles/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: SheetOwnerState) => {
   const { variant, color } = ownerState;
@@ -75,17 +76,13 @@ export const SheetRoot = styled('div', {
       ...(ownerState.variant === 'solid' &&
         ownerState.color &&
         ownerState.invertedColors && {
-          '& *': applySolidInversion(ownerState.color)(theme),
+          [INVERTED_COLORS_SELECTOR]: applySolidInversion(ownerState.color)(theme),
         }),
       ...(ownerState.variant === 'soft' &&
         ownerState.color &&
         ownerState.invertedColors && {
-          '& *': applySoftInversion(ownerState.color)(theme),
+          [INVERTED_COLORS_SELECTOR]: applySoftInversion(ownerState.color)(theme),
         }),
-      ...getScopedGlobalVariantVars(
-        theme.variants[ownerState.variant!]?.[ownerState.color!],
-        ownerState.instanceColor,
-      ),
       ...variantStyle,
     },
   ];
@@ -118,7 +115,6 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
   } = props;
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     color,
     component,

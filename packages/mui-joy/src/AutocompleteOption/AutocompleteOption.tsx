@@ -73,7 +73,6 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
   );
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     component,
     color,

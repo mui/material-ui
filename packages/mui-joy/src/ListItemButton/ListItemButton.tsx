@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/useButton';
 import { styled, useThemeProps } from '../styles';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import {
   ListItemButtonOwnerState,
   ExtendListItemButton,
@@ -97,10 +97,6 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
           zIndex: 1, // to be above of the next element. For example, the first Tab item should be above the second so that the outline is above the second Tab.
         },
       } as const,
-      getScopedGlobalVariantVars(baseStyles, ownerState.instanceColor),
-      getScopedGlobalVariantVars(hoverStyles, ownerState.instanceColor),
-      getScopedGlobalVariantVars(activeStyles, ownerState.instanceColor),
-      getScopedGlobalVariantVars(disabledStyles, ownerState.instanceColor),
       {
         ...theme.variants[ownerState.variant!]?.[ownerState.color!],
         [`.${listItemClasses.root} > &`]: {
@@ -186,7 +182,6 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   );
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     component,
     color,

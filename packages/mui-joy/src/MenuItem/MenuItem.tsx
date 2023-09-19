@@ -78,7 +78,6 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   });
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     component,
     color,

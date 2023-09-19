@@ -96,7 +96,6 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   const size = inProps.size || formControl?.size || sizeProp;
 
   const ownerState = {
-    instanceColor: inProps.color,
     orientation,
     size,
     variant,

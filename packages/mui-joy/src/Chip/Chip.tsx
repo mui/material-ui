@@ -14,7 +14,6 @@ import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
 import useSlot from '../utils/useSlot';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 
 const useUtilityClasses = (ownerState: ChipOwnerState) => {
   const { disabled, size, color, clickable, variant, focusVisible } = ownerState;
@@ -104,8 +103,6 @@ const ChipRoot = styled('div', {
         color: disabledStyle?.color,
       },
     } as const,
-    getScopedGlobalVariantVars(variantStyle, ownerState.instanceColor),
-    getScopedGlobalVariantVars(disabledStyle, ownerState.instanceColor),
     ...(!ownerState.clickable
       ? [
           {
@@ -241,7 +238,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   const clickable = !!onClick || !!slotProps.action;
   const ownerState: ChipOwnerState = {
-    instanceColor: inProps.color,
     ...props,
     disabled,
     size,

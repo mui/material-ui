@@ -82,7 +82,6 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
   });
 
   const ownerState: OptionOwnerState = {
-    instanceColor: inProps.color,
     ...props,
     disabled,
     selected,

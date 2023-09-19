@@ -115,7 +115,6 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   const [helperText, setHelperText] = React.useState<HTMLElement | null>(null);
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     id,
     component,

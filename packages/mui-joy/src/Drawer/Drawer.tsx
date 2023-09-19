@@ -12,7 +12,7 @@ import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
 import { useThemeProps, styled } from '../styles';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import { StyledModalBackdrop, StyledModalRoot } from '../Modal/Modal';
 import CloseModalContext from '../Modal/CloseModalContext';
 import useSlot from '../utils/useSlot';
@@ -67,10 +67,6 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
     '--Drawer-horizontalSize': 'clamp(440px, 60%, 100%)',
     '--Drawer-titleMargin': '1rem 1rem calc(1rem / 2)',
   }),
-  ...getScopedGlobalVariantVars(
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    ownerState.instanceColor,
-  ),
   transitionProperty: 'visibility',
   transitionDelay: ownerState.open ? '0s' : 'var(--Drawer-transitionDuration)',
   ...(!ownerState.open && {
@@ -174,7 +170,6 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   } = props;
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     anchor,
     disableAutoFocus,

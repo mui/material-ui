@@ -6,7 +6,6 @@ import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import useSlot from '../utils/useSlot';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { CheckboxOwnerState, CheckboxTypeMap } from './CheckboxProps';
@@ -88,22 +87,6 @@ const CheckboxRoot = styled('span', {
       },
     }),
   } as const,
-  getScopedGlobalVariantVars(
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    ownerState.instanceColor,
-  ),
-  getScopedGlobalVariantVars(
-    theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-    ownerState.instanceColor,
-  ),
-  getScopedGlobalVariantVars(
-    theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-    ownerState.instanceColor,
-  ),
-  getScopedGlobalVariantVars(
-    theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    ownerState.instanceColor,
-  ),
 ]);
 
 const CheckboxCheckbox = styled('span', {
@@ -298,7 +281,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const inactiveColor = color || 'neutral';
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     checked,
     disabled,

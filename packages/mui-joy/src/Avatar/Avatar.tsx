@@ -5,7 +5,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import Person from '../internal/svg-icons/Person';
@@ -66,10 +65,6 @@ const AvatarRoot = styled('div', {
   overflow: 'hidden',
   borderRadius: 'var(--Avatar-radius, 50%)',
   userSelect: 'none',
-  ...getScopedGlobalVariantVars(
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    ownerState.instanceColor,
-  ),
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
 
@@ -179,7 +174,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   let children = null;
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     color,
     size,

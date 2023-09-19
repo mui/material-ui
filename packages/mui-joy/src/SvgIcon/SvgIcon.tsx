@@ -100,7 +100,6 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const hasSvgAsChild = React.isValidElement(children) && children.type === 'svg';
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     color,
     component,

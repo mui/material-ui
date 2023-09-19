@@ -10,7 +10,6 @@ import { ListSubheaderOwnerState, ListSubheaderTypeMap } from './ListSubheaderPr
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 import ListSubheaderDispatch from './ListSubheaderContext';
 import useSlot from '../utils/useSlot';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 
 const useUtilityClasses = (ownerState: ListSubheaderOwnerState) => {
   const { variant, color, sticky } = ownerState;
@@ -52,10 +51,6 @@ const ListSubheaderRoot = styled('div', {
   color: ownerState.color
     ? `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`
     : theme.vars.palette.text.tertiary,
-  ...getScopedGlobalVariantVars(
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    ownerState.instanceColor,
-  ),
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
 /**
@@ -96,7 +91,6 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   }, [setSubheaderId, id]);
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     id,
     sticky,

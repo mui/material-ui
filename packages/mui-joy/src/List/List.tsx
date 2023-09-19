@@ -7,7 +7,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
@@ -138,10 +138,6 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         } as const)),
       flexGrow: 1,
       position: 'relative', // for sticky ListItem
-      ...getScopedGlobalVariantVars(
-        theme.variants[ownerState.variant!]?.[ownerState.color!],
-        ownerState.instanceColor,
-      ),
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '--unstable_List-borderWidth': 'var(--variant-borderWidth, 0px)', // For children to lookup the List's border width.
       ...(borderRadius !== undefined && {
@@ -207,7 +203,7 @@ const List = React.forwardRef(function List(inProps, ref) {
   const ownerState = {
     ...props,
     instanceSize: inProps.size,
-    instanceColor: inProps.color,
+
     size,
     nesting,
     orientation,

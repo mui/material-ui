@@ -95,7 +95,6 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   });
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     disabled,
     variant,

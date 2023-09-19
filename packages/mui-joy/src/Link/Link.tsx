@@ -16,7 +16,6 @@ import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
 import { TypographyNestedContext, TypographyInheritContext } from '../Typography/Typography';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 
 const useUtilityClasses = (ownerState: LinkOwnerState) => {
   const { level, color, variant, underline, focusVisible, disabled } = ownerState;
@@ -168,10 +167,6 @@ const LinkRoot = styled('a', {
             '&:active': activeStyles,
             [`&.${linkClasses.disabled}`]: disabledStyles,
           },
-          getScopedGlobalVariantVars(baseStyles, ownerState.instanceColor),
-          getScopedGlobalVariantVars(hoverStyles, ownerState.instanceColor),
-          getScopedGlobalVariantVars(activeStyles, ownerState.instanceColor),
-          getScopedGlobalVariantVars(disabledStyles, ownerState.instanceColor),
         ]
       : []),
   ];
@@ -248,7 +243,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   };
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     color,
     disabled,

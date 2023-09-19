@@ -12,7 +12,7 @@ import useSlot from '../utils/useSlot';
 import { getAlertUtilityClass } from './alertClasses';
 import { AlertProps, AlertOwnerState, AlertTypeMap } from './AlertProps';
 import { resolveSxValue } from '../styles/styleUtils';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+import { INVERTED_COLORS_SELECTOR } from '../styles/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: AlertOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -80,17 +80,13 @@ const AlertRoot = styled('div', {
       ...(ownerState.variant === 'solid' &&
         ownerState.color &&
         ownerState.invertedColors && {
-          '& *': applySolidInversion(ownerState.color)(theme),
+          [INVERTED_COLORS_SELECTOR]: applySolidInversion(ownerState.color)(theme),
         }),
       ...(ownerState.variant === 'soft' &&
         ownerState.color &&
         ownerState.invertedColors && {
-          '& *': applySoftInversion(ownerState.color)(theme),
+          [INVERTED_COLORS_SELECTOR]: applySoftInversion(ownerState.color)(theme),
         }),
-      ...getScopedGlobalVariantVars(
-        theme.variants[ownerState.variant!]?.[ownerState.color!],
-        ownerState.instanceColor,
-      ),
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     } as const,
     p !== undefined && { '--Alert-padding': p },
@@ -150,7 +146,6 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   } = props;
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     color,
     invertedColors,

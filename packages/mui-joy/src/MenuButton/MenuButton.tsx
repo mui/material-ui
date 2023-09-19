@@ -126,16 +126,10 @@ const MenuButton = React.forwardRef(function MenuButton(
   const { getRootProps, open, active } = useMenuButton({ rootRef: forwardedRef, disabled });
 
   const loadingIndicator = loadingIndicatorProp ?? (
-    // @ts-ignore internal logic to remove instanceColor to make color inversion works
-    <CircularProgress
-      color={color}
-      instanceColor={undefined}
-      thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3}
-    />
+    <CircularProgress color={color} thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3} />
   );
 
   const ownerState: MenuButtonOwnerState = {
-    instanceColor: inProps.color,
     ...props,
     active,
     color,

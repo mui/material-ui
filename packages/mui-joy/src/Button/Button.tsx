@@ -11,7 +11,6 @@ import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const {
@@ -94,10 +93,6 @@ export const getButtonStyles = ({
   theme: Theme;
   ownerState: Partial<Omit<ButtonOwnerState, 'slots' | 'slotProps'>>;
 }): Interpolation<any> => {
-  const baseStyles = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  const hoverStyles = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
-  const activeStyles = theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!];
-  const disabledStyles = theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!];
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
@@ -154,17 +149,14 @@ export const getButtonStyles = ({
       }),
       [theme.focus.selector]: theme.focus.default,
     } as const,
-    getScopedGlobalVariantVars(baseStyles, ownerState.instanceColor),
-    getScopedGlobalVariantVars(hoverStyles, ownerState.instanceColor),
-    getScopedGlobalVariantVars(activeStyles, ownerState.instanceColor),
-    getScopedGlobalVariantVars(disabledStyles, ownerState.instanceColor),
     {
-      ...baseStyles,
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '&:hover': {
-        '@media (hover: hover)': hoverStyles,
+        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
       },
-      '&:active, &[aria-pressed="true"]': activeStyles,
-      '&:disabled': disabledStyles,
+      '&:active, &[aria-pressed="true"]':
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      '&:disabled': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       ...(ownerState.loadingPosition === 'center' && {
         // this has to come after the variant styles to take effect.
         [`&.${buttonClasses.loading}`]: {
@@ -234,12 +226,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (
-    // @ts-ignore internal logic for `instanceColor`
-    <CircularProgress
-      color={color}
-      instanceColor={inProps.color}
-      thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3}
-    />
+    <CircularProgress color={color} thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3} />
   );
 
   React.useImperativeHandle(
@@ -254,7 +241,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   );
 
   const ownerState = {
-    instanceColor: inProps.color, // must be before `...props` for internal overrides.
     ...props,
     color,
     fullWidth,

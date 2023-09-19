@@ -126,7 +126,6 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   const size = sizeProp ?? tabsSize;
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     isRtl,
     orientation,

@@ -6,7 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import useSlot from '../utils/useSlot';
 import { TextareaTypeMap, TextareaProps, TextareaOwnerState } from './TextareaProps';
 import textareaClasses, { getTextareaUtilityClass } from './textareaClasses';
@@ -116,9 +116,6 @@ const TextareaRoot = styled('div', {
         boxShadow: `var(--Textarea-focusedInset, inset) 0 0 0 calc(var(--Textarea-focused) * var(--Textarea-focusedThickness)) var(--Textarea-focusedHighlight)`,
       },
     } as const,
-    getScopedGlobalVariantVars(variantStyle, ownerState.instanceColor),
-    getScopedGlobalVariantVars(hoverStyles, ownerState.instanceColor),
-    getScopedGlobalVariantVars(disabledStyles, ownerState.instanceColor),
     {
       '&:hover': {
         ...hoverStyles,
@@ -254,7 +251,6 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const color = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     color,
     disabled,

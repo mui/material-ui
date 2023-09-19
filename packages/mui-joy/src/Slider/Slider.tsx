@@ -10,7 +10,7 @@ import { OverridableComponent } from '@mui/types';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import useSlot from '../utils/useSlot';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderTypeMap, SliderOwnerState } from './SliderProps';
@@ -133,22 +133,6 @@ const SliderRoot = styled('span', {
         colorAdjust: 'exact',
       },
     } as const,
-    getScopedGlobalVariantVars(
-      theme.variants[ownerState.variant!]?.[ownerState.color!],
-      ownerState.instanceColor,
-    ),
-    getScopedGlobalVariantVars(
-      theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-      ownerState.instanceColor,
-    ),
-    getScopedGlobalVariantVars(
-      theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-      ownerState.instanceColor,
-    ),
-    getScopedGlobalVariantVars(
-      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-      ownerState.instanceColor,
-    ),
   ];
 });
 
@@ -454,7 +438,6 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   } = props;
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     marks: marksProp,
     classes: classesProp,

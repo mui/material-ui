@@ -15,7 +15,7 @@ import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import { SelectOwnProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
 import { resolveSxValue } from '../styles/styleUtils';
-import { getScopedGlobalVariantVars } from '../styles/variantUtils';
+
 import useSlot from '../utils/useSlot';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
 import { ListOwnerState } from '../List';
@@ -169,9 +169,6 @@ const SelectRoot = styled('div', {
       '&:hover': hoverStyles,
       [`&.${selectClasses.disabled}`]: disabledStyles,
     },
-    getScopedGlobalVariantVars(variantStyle, ownerState.instanceColor),
-    getScopedGlobalVariantVars(hoverStyles, ownerState.instanceColor),
-    getScopedGlobalVariantVars(disabledStyles, ownerState.instanceColor),
     borderRadius !== undefined && { '--Select-radius': borderRadius },
   ];
 });
@@ -442,7 +439,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   });
 
   const ownerState = {
-    instanceColor: inProps.color,
     ...props,
     active: buttonActive,
     defaultListboxOpen,
