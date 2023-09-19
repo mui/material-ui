@@ -186,10 +186,10 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   );
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     component,
     color,
-    instanceColor: inProps.color,
     focusVisible,
     orientation,
     row,

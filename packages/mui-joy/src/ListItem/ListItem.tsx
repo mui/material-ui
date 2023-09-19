@@ -199,6 +199,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   }
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     sticky,
     startAction,
@@ -207,7 +208,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     wrap,
     variant,
     color,
-    instanceColor: inProps.color,
     nesting,
     nested,
     component,
