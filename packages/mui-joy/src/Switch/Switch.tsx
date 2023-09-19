@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps, Theme } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import useSlot from '../utils/useSlot';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
@@ -57,63 +57,81 @@ const SwitchRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchOwnerState }>(({ theme, ownerState }) => {
   const getColorVariables = switchColorVariables({ theme, ownerState });
-  return {
-    '--Icon-color': 'currentColor',
-    '--variant-borderWidth':
-      theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
-    '--Switch-trackRadius': theme.vars.radius.xl,
-    '--Switch-thumbShadow':
-      ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-trackBackground)', // create border-like if the thumb is bigger than the track
-    ...(ownerState.size === 'sm' && {
-      '--Switch-trackWidth': '32px',
-      '--Switch-trackHeight': '16px',
-      '--Switch-thumbSize': '8px',
-      '--Switch-gap': '6px',
-      fontSize: theme.vars.fontSize.sm,
-    }),
-    ...(ownerState.size === 'md' && {
-      '--Switch-trackWidth': '40px',
-      '--Switch-trackHeight': '20px',
-      '--Switch-thumbSize': '12px',
-      '--Switch-gap': '8px',
-      fontSize: theme.vars.fontSize.md,
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Switch-trackWidth': '48px',
-      '--Switch-trackHeight': '24px',
-      '--Switch-thumbSize': '16px',
-      '--Switch-gap': '12px',
-    }),
-    '--unstable_paddingBlock': `max((var(--Switch-trackHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumbSize)) / 2, 0px)`,
-    '--Switch-thumbRadius': `max(var(--Switch-trackRadius) - var(--unstable_paddingBlock), min(var(--unstable_paddingBlock) / 2, var(--Switch-trackRadius) / 2))`,
-    '--Switch-thumbWidth': 'var(--Switch-thumbSize)',
-    '--Switch-thumbOffset': `max((var(--Switch-trackHeight) - var(--Switch-thumbSize)) / 2, 0px)`,
-    ...getColorVariables(),
-    '&:hover': {
-      ...getColorVariables({ state: 'Hover' }),
-    },
-    [`&.${switchClasses.checked}`]: {
+  return [
+    {
+      '--Icon-color': 'currentColor',
+      '--variant-borderWidth':
+        theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
+      '--Switch-trackRadius': theme.vars.radius.xl,
+      '--Switch-thumbShadow':
+        ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-trackBackground)', // create border-like if the thumb is bigger than the track
+      ...(ownerState.size === 'sm' && {
+        '--Switch-trackWidth': '32px',
+        '--Switch-trackHeight': '16px',
+        '--Switch-thumbSize': '8px',
+        '--Switch-gap': '6px',
+        fontSize: theme.vars.fontSize.sm,
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Switch-trackWidth': '40px',
+        '--Switch-trackHeight': '20px',
+        '--Switch-thumbSize': '12px',
+        '--Switch-gap': '8px',
+        fontSize: theme.vars.fontSize.md,
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Switch-trackWidth': '48px',
+        '--Switch-trackHeight': '24px',
+        '--Switch-thumbSize': '16px',
+        '--Switch-gap': '12px',
+      }),
+      '--unstable_paddingBlock': `max((var(--Switch-trackHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumbSize)) / 2, 0px)`,
+      '--Switch-thumbRadius': `max(var(--Switch-trackRadius) - var(--unstable_paddingBlock), min(var(--unstable_paddingBlock) / 2, var(--Switch-trackRadius) / 2))`,
+      '--Switch-thumbWidth': 'var(--Switch-thumbSize)',
+      '--Switch-thumbOffset': `max((var(--Switch-trackHeight) - var(--Switch-thumbSize)) / 2, 0px)`,
       ...getColorVariables(),
       '&:hover': {
         ...getColorVariables({ state: 'Hover' }),
       },
-    },
-    [`&.${switchClasses.disabled}`]: {
-      pointerEvents: 'none',
-      color: theme.vars.palette.text.tertiary,
-      ...getColorVariables({ state: 'Disabled' }),
-    },
-    display: 'inline-flex',
-    alignItems: 'center',
-    alignSelf: 'center',
-    fontFamily: theme.vars.fontFamily.body,
-    position: 'relative',
-    padding:
-      'calc((var(--Switch-thumbSize) / 2) - (var(--Switch-trackHeight) / 2)) calc(-1 * var(--Switch-thumbOffset))',
-    backgroundColor: 'initial', // clear background in case `outlined` variant contain background.
-    border: 'none',
-    margin: 'var(--unstable_Switch-margin)',
-  };
+      [`&.${switchClasses.checked}`]: {
+        ...getColorVariables(),
+        '&:hover': {
+          ...getColorVariables({ state: 'Hover' }),
+        },
+      },
+      [`&.${switchClasses.disabled}`]: {
+        pointerEvents: 'none',
+        color: theme.vars.palette.text.tertiary,
+        ...getColorVariables({ state: 'Disabled' }),
+      },
+      display: 'inline-flex',
+      alignItems: 'center',
+      alignSelf: 'center',
+      fontFamily: theme.vars.fontFamily.body,
+      position: 'relative',
+      padding:
+        'calc((var(--Switch-thumbSize) / 2) - (var(--Switch-trackHeight) / 2)) calc(-1 * var(--Switch-thumbOffset))',
+      backgroundColor: 'initial', // clear background in case `outlined` variant contain background.
+      border: 'none',
+      margin: 'var(--unstable_Switch-margin)',
+    } as const,
+    getScopedGlobalVariantVars(
+      theme.variants[ownerState.variant!]?.[ownerState.color!],
+      ownerState.instanceColor,
+    ),
+    getScopedGlobalVariantVars(
+      theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      ownerState.instanceColor,
+    ),
+    getScopedGlobalVariantVars(
+      theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      ownerState.instanceColor,
+    ),
+    getScopedGlobalVariantVars(
+      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      ownerState.instanceColor,
+    ),
+  ];
 });
 
 const SwitchAction = styled('div', {
@@ -267,11 +285,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   }
 
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(
-    inProps.color,
-    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
-  );
+  const color = inProps.color ?? (formControl?.error ? 'danger' : formControl?.color ?? colorProp);
 
   const useSwitchProps = {
     disabled: inProps.disabled ?? formControl?.disabled ?? disabledExternalProp,
@@ -281,6 +295,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     id,
     checked,
