@@ -102,13 +102,13 @@ const SelectRoot = styled('div', {
         '--Icon-fontSize': theme.vars.fontSize.xl,
       }),
       ...(ownerState.size === 'md' && {
-        '--Select-minHeight': '2.5rem',
+        '--Select-minHeight': '2.25rem',
         '--Select-paddingInline': '0.75rem',
-        '--Select-decoratorChildHeight': 'min(2rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(1.75rem, var(--Select-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Select-minHeight': '3rem',
+        '--Select-minHeight': '2.75rem',
         '--Select-paddingInline': '1rem',
         '--Select-decoratorChildHeight': 'min(2.375rem, var(--Select-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
@@ -125,6 +125,9 @@ const SelectRoot = styled('div', {
       '--Button-radius': 'var(--Select-decoratorChildRadius)',
       '--IconButton-radius': 'var(--Select-decoratorChildRadius)',
       boxSizing: 'border-box',
+      ...(ownerState.variant !== 'plain' && {
+        boxShadow: theme.shadow.xs,
+      }),
       minWidth: 0,
       minHeight: 'var(--Select-minHeight)',
       position: 'relative',
@@ -383,9 +386,9 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
-  const rootRef = React.useRef<HTMLElement | null>(null);
-  const buttonRef = React.useRef<HTMLElement | null>(null);
-  const listboxRef = React.useRef<HTMLElement | null>(null);
+  const rootRef = React.useRef<HTMLElement>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
+  const listboxRef = React.useRef<HTMLElement>(null);
 
   const handleRef = useForkRef(ref, rootRef);
 

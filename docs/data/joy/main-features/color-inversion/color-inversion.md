@@ -14,10 +14,10 @@ On the **left**, the Button's variant is `solid`, which is the highest emphasis 
 This conforms to the visual appearance on the screen.
 
 On the **right**, the problem arises when the container's variant becomes `solid`.
-The Button is no longer the highest emphasis element because the it has the same background as the container.
+The Button is no longer the highest emphasis element because it has the same background as the container.
 Also, the text and the icon button don't contrast enough with the parent's background.
 
-The color inversion is implemented to solves this issue, keeping the global variants meaningful when multiple layers of global variants are composed together.
+The color inversion is implemented to solve this issue, keeping the global variants meaningful when multiple layers of global variants are composed together.
 
 ## Overview
 
@@ -54,8 +54,7 @@ Color inversion has no effect on children that have an **explicit** `color` prop
 
 ## Usage
 
-To enable color inversion, use the `invertedColors` prop on one of the two components that support it: [Sheet](/joy-ui/react-sheet/) or [Card](/joy-ui/react-card/).
-Note that this prop only works when these components have the `solid` or `soft` global variant applied.
+To enable color inversion, use the `invertedColors` prop. Note that this prop only works when the components have the `solid` or `soft` global variant applied.
 
 ```js
 <Card variant="solid" invertedColors>…</Card>

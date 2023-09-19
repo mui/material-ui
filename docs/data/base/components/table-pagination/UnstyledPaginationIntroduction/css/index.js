@@ -93,10 +93,12 @@ function Styles() {
       .TablePaginationIntroductionDemo {
         width: 500px;
         max-width: 100%;
-      }  
+      }
+
       th {
         background-color: ${isDarkMode ? grey[900] : '#fff'};
       }
+
       .TablePaginationIntroductionDemo table {
         font-family: IBM Plex Sans, sans-serif;
         font-size: 0.875rem;
@@ -116,7 +118,7 @@ function Styles() {
       .TablePaginationIntroductionDemo th {
         background-color: ${isDarkMode ? grey[900] : '#fff'};
       }
-      
+
       .CustomTablePagination .${classes.spacer} {
         display: none;
       }

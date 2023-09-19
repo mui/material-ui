@@ -270,4 +270,42 @@ describe('useNumberInput', () => {
       expect(handleChange.args[0][1]).to.equal(undefined);
     });
   });
+
+  describe('warnings', () => {
+    it('should warn when switching from uncontrolled to controlled', () => {
+      const handleChange = spy();
+      function NumberInput({ value }: { value?: number }) {
+        const { getInputProps } = useNumberInput({
+          onChange: handleChange,
+          value,
+        });
+
+        return <input {...getInputProps()} />;
+      }
+      const { setProps } = render(<NumberInput />);
+      expect(() => {
+        setProps({ value: 5 });
+      }).to.toErrorDev(
+        'MUI: A component is changing the uncontrolled value state of NumberInput to be controlled',
+      );
+    });
+
+    it('should warn when switching from controlled to uncontrolled', () => {
+      const handleChange = spy();
+      function NumberInput({ value }: { value?: number }) {
+        const { getInputProps } = useNumberInput({
+          onChange: handleChange,
+          value,
+        });
+
+        return <input {...getInputProps()} />;
+      }
+      const { setProps } = render(<NumberInput value={5} />);
+      expect(() => {
+        setProps({ value: undefined });
+      }).to.toErrorDev(
+        'MUI: A component is changing the controlled value state of NumberInput to be uncontrolled',
+      );
+    });
+  });
 });

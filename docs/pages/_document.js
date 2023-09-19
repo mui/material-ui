@@ -34,9 +34,6 @@ if (process.env.NODE_ENV === 'production') {
 const PRODUCTION_GA =
   process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
 
-// TODO remove https://support.google.com/analytics/answer/11986666
-const GOOGLE_ANALYTICS_ID = PRODUCTION_GA ? 'UA-106598593-2' : 'UA-106598593-3';
-
 const GOOGLE_ANALYTICS_ID_V4 = PRODUCTION_GA ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J';
 
 export default class MyDocument extends Document {
@@ -44,7 +41,7 @@ export default class MyDocument extends Document {
     const { canonicalAsServer, userLanguage } = this.props;
 
     return (
-      <Html lang={userLanguage}>
+      <Html lang={userLanguage} data-mui-color-scheme="light" data-joy-color-scheme="light">
         <Head>
           {/*
             manifest.json provides metadata used when your web app is added to the
@@ -149,6 +146,13 @@ export default class MyDocument extends Document {
               '.mode-dark .only-dark-mode': {
                 display: 'block',
               },
+              // TODO migrate to .only-dark-mode to .only-dark-mode-v2
+              '[data-mui-color-scheme="light"] .only-dark-mode-v2': {
+                display: 'none',
+              },
+              '[data-mui-color-scheme="dark"] .only-light-mode-v2': {
+                display: 'none',
+              },
               '.plan-pro, .plan-premium': {
                 display: 'inline-block',
                 height: '1em',
@@ -176,11 +180,6 @@ export default class MyDocument extends Document {
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-window.ga('create','${GOOGLE_ANALYTICS_ID}',{
-  sampleRate: ${PRODUCTION_GA ? 80 : 100},
-});
-
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 window.gtag = gtag;

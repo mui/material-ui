@@ -6,9 +6,6 @@ import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
-import DashboardRounded from '@mui/icons-material/DashboardRounded';
-import Layers from '@mui/icons-material/Layers';
-import ShoppingBag from '@mui/icons-material/ShoppingBag';
 import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Section from 'docs/src/layouts/Section';
@@ -19,8 +16,7 @@ import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import Link from 'docs/src/modules/components/Link';
 import More from 'docs/src/components/action/More';
-
-const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
+import { DEMOS, icons, TEMPLATES } from 'docs/src/components/productMaterial/MaterialTemplates';
 
 function ActionArea(props: ButtonBaseProps) {
   return (
@@ -58,77 +54,6 @@ function ActionArea(props: ButtonBaseProps) {
 export default function TemplateDemo() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const [templateIndex, setTemplateIndex] = React.useState(0);
-  const icons = {
-    [DEMOS[0]]: <DashboardRounded fontSize="small" />,
-    [DEMOS[1]]: <Layers fontSize="small" />,
-    [DEMOS[2]]: <ShoppingBag fontSize="small" />,
-  };
-
-  const TEMPLATES = {
-    [DEMOS[0]]: [
-      {
-        name: 'Devias Kit Pro - Client & Admin Dashboard',
-        src: {
-          light: '/static/branding/store-templates/template-4light.jpg',
-          dark: '/static/branding/store-templates/template-4dark.jpg',
-        },
-        href: 'https://mui.com/store/items/devias-kit-pro/',
-      },
-      {
-        name: 'Minimal - Client & Admin Dashboard',
-        src: {
-          light: '/static/branding/store-templates/template-1light.jpg',
-          dark: '/static/branding/store-templates/template-1dark.jpg',
-        },
-        href: 'https://mui.com/store/items/minimal-dashboard/',
-      },
-      {
-        name: 'Berry - React Material Admin Dashboard Template',
-        src: {
-          light: '/static/branding/store-templates/template-5light.jpg',
-          dark: '/static/branding/store-templates/template-5dark.jpg',
-        },
-        href: 'https://mui.com/store/items/berry-react-material-admin/',
-      },
-      {
-        name: 'Mira Pro - React Material Admin Dashboard',
-        src: {
-          light: '/static/branding/store-templates/template-3light.jpg',
-          dark: '/static/branding/store-templates/template-3dark.jpg',
-        },
-        href: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
-      },
-    ],
-    [DEMOS[1]]: [
-      {
-        name: 'theFront - Multipurpose Template + UI Kit',
-        src: {
-          light: '/static/branding/store-templates/template-2light.jpg',
-          dark: '/static/branding/store-templates/template-2dark.jpg',
-        },
-        href: 'https://mui.com/store/items/the-front-landing-page/',
-      },
-      {
-        name: 'Webbee - Multipurpose landing page UI Kit',
-        src: {
-          light: '/static/branding/store-templates/template-6light.jpg',
-          dark: '/static/branding/store-templates/template-6dark.jpg',
-        },
-        href: 'https://mui.com/store/items/webbee-landing-page/',
-      },
-    ],
-    [DEMOS[2]]: [
-      {
-        name: 'Bazar Pro - Multipurpose React Ecommerce Template',
-        src: {
-          light: '/static/branding/store-templates/template-bazar-light.jpg',
-          dark: '/static/branding/store-templates/template-bazar-dark.jpg',
-        },
-        href: 'https://mui.com/store/items/bazar-pro-react-ecommerce-template/',
-      },
-    ],
-  };
-
   const templates = TEMPLATES[demo];
 
   return (
@@ -137,13 +62,14 @@ export default function TemplateDemo() {
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box sx={{ maxWidth: 500 }}>
             <SectionHeadline
-              overline="Use cases"
+              overline="Templates"
               title={
                 <Typography variant="h2">
-                  The right template for your <GradientText>specific need</GradientText>
+                  The right template for your <GradientText>specific use case</GradientText>
                 </Typography>
               }
-              description="A growing list of templates for multiple use-cases, all powered by Material UI components and carefully curated by MUI's team."
+              description="A collection of 4.5 average rating templates, for multiple use cases, all powered by Material UI components and carefully curated by MUI's team.
+              "
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>

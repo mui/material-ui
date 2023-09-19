@@ -1,5 +1,5 @@
 ---
-title: Introducing MUI X v6.0.0
+title: Introducing MUI X v6
 description: Introducing the new major version of the advanced components.
 date: 2023-03-06T00:00:00.000Z
 authors: ['josefreitas']

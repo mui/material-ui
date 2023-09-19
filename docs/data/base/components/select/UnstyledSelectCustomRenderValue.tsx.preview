@@ -1,4 +1,4 @@
-<CustomSelect renderValue={renderValue}>
+<CustomSelect renderValue={renderValue} placeholder="Select an option…">
   <StyledOption value={10}>Ten</StyledOption>
   <StyledOption value={20}>Twenty</StyledOption>
   <StyledOption value={30}>Thirty</StyledOption>

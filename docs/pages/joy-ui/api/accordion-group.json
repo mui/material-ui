@@ -53,7 +53,7 @@
     "import AccordionGroup from '@mui/joy/AccordionGroup';",
     "import { AccordionGroup } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAccordionGroup" },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAccordionGroup" },
   "slots": [
     {
       "name": "root",
@@ -62,6 +62,24 @@
       "class": ".MuiAccordionGroup-root"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAccordionGroup",

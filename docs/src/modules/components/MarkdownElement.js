@@ -282,6 +282,7 @@ const Root = styled('div')(
       }px)`,
       '& .MuiCallout-content': {
         minWidth: 0, // Allows content to shrink. Useful when callout contains code block
+        flexGrow: 1,
         display: 'flex',
         flexDirection: 'column',
         gap: 6,

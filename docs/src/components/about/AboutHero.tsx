@@ -8,16 +8,16 @@ import TeamStatistics from 'docs/src/components/about/TeamStatistics';
 
 const teamPhotos = [
   {
-    img: '/static/branding/about/group-photo/teide-group.png',
+    img: '/static/branding/about/group-photo/teide-group.jpg',
     title:
       'A group photo of the MUI crew posing near the base of Mount Teide at the start of the hike.',
   },
   {
-    img: '/static/branding/about/group-photo/skiers.png',
+    img: '/static/branding/about/group-photo/skiers.jpg',
     title: 'MUI team members standing lined-up in the snow with their skigear.',
   },
   {
-    img: '/static/branding/about/group-photo/group-photo.png',
+    img: '/static/branding/about/group-photo/group-photo.jpg',
     title: 'Photo of the MUI team in front of the pool at our accommodations in Tenerife',
   },
   {
