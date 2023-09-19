@@ -69,9 +69,7 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
       {
         '--ButtonGroup-separatorSize':
           ownerState.variant === 'outlined' ? '1px' : 'calc(var(--ButtonGroup-connected) * 1px)',
-        ...(ownerState.color !== 'context' && {
-          '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.outlinedBorder,
-        }),
+        '--ButtonGroup-separatorColor': theme.vars.palette[ownerState.color!]?.outlinedBorder,
         '--ButtonGroup-radius': theme.vars.radius.sm,
         '--Divider-inset': '0.5rem',
         '--unstable_childRadius':
@@ -131,19 +129,16 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
           '&:not(:disabled)': {
             zIndex: 1, // to make borders appear above disabled buttons.
           },
-          ...(ownerState.color !== 'context' && {
-            '&:disabled': {
+          '&:disabled': {
+            '--ButtonGroup-separatorColor':
+              theme.vars.palette[ownerState.color!]?.outlinedDisabledBorder,
+          },
+          ...(ownerState.variant === 'outlined' && {
+            '&:hover': {
               '--ButtonGroup-separatorColor':
-                theme.vars.palette[ownerState.color!]?.outlinedDisabledBorder,
+                theme.vars.palette[ownerState.color!]?.outlinedHoverBorder,
             },
           }),
-          ...(ownerState.variant === 'outlined' &&
-            ownerState.color !== 'context' && {
-              '&:hover': {
-                '--ButtonGroup-separatorColor':
-                  theme.vars.palette[ownerState.color!]?.outlinedHoverBorder,
-              },
-            }),
           [`&:hover, ${theme.focus.selector}`]: {
             zIndex: 2, // to make borders appear above sibling.
           },
@@ -203,6 +198,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   } = props;
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     buttonFlex,
     color,
