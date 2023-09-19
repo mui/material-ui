@@ -30,6 +30,13 @@ For additional details about the MUI team and culture, you can check our [career
 The charts team (part of MUI X) needs your help.
 The component is off to [a great start](https://npm-stat.com/charts.html?package=%40mui%2Fx-charts&from=2021-06-01&to=2023-09-13), however we have only started to scratch the surface for the potential of this component. There is x10 more to build.
 
+To be more specific in what we are aiming to achieve in the short to mid-term:
+
+- A tighter integration with the rest of the MUI libraries including Material UI and the Data Grid
+- Faster iteration cycles compared to popular open-source alternatives such as chart.js and Recharts
+
+Looking a the long term we can likely reach 30% of the downloads of alternative React libraries, considering benchmark data. Developers value having a single touch point, but also one they trust, and one that integrates well in the rest of their app.
+
 We also need help to continue to make the components easier to use, make it more customizable, [improve performance](https://www.causal.app/blog/react-perf), make it more accessible, improve the health of the open-source by engaging and collaborating with the community, guide developers to answers, and just generally being a positive presence in the community.
 
 ## About the role
