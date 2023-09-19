@@ -27,7 +27,7 @@ Base UI's Number Input component is a customizable replacement for the native HT
 See [_Why the GOV.UK Design System team changed the input type for numbers_](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) for a more detailed explanation of the limitations of `<input type="number">`.
 :::
 
-{{"demo": "NumberInputIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "NumberInputIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 

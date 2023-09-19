@@ -234,8 +234,17 @@ function getCodeblock(content) {
 /**
  * @param {string} markdown
  */
-function renderInline(markdown) {
-  return marked.parseInline(markdown, markedOptions);
+function renderMarkdown(markdown) {
+  // Check if the markdown contains an inline list. Unordered lists are block elements and cannot be parsed inline.
+  if (/[-*+] `([A-Za-z]+)`/g.test(markdown)) {
+    return marked.parse(markdown, markedOptions);
+  }
+  // Two new lines result in a newline in the table.
+  // All other new lines must be eliminated to prevent markdown mayhem.
+  return marked
+    .parseInline(markdown, markedOptions)
+    .replace(/(\r?\n){2}/g, '<br>')
+    .replace(/\r?\n/g, ' ');
 }
 
 // Help rank mui.com on component searches first.
@@ -466,5 +475,5 @@ module.exports = {
   getCodeblock,
   getHeaders,
   getTitle,
-  renderInline,
+  renderMarkdown,
 };

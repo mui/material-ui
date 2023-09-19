@@ -4,6 +4,7 @@ import { parseExpression } from '@babel/parser';
 import type { Expression } from '@linaria/tags';
 import type { Theme } from '@mui/material/styles';
 import { unstable_defaultSxConfig as defaultSxConfig } from '@mui/system/styleFunctionSx';
+import * as t from '@babel/types';
 import { isUnitLess } from './isUnitLess';
 import { cssFunctionTransformerPlugin } from './cssFunctionTransformerPlugin';
 
@@ -69,6 +70,9 @@ function transformThemeKeysInFn(
   }
   if (firstItem.type === 'ExpressionStatement') {
     return firstItem.expression;
+  }
+  if (firstItem.type === 'FunctionDeclaration') {
+    return t.functionExpression(null, firstItem.params, firstItem.body);
   }
   return parseExpression(functionString);
 }
