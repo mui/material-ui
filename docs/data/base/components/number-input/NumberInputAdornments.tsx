@@ -5,7 +5,6 @@ import {
   numberInputClasses,
 } from '@mui/base/Unstable_NumberInput';
 import Box from '@mui/material/Box';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import { styled } from '@mui/system';
 
 const CustomNumberInput = React.forwardRef(function CustomNumberInput(
@@ -46,7 +45,20 @@ export default function NumberInputAdornments() {
       <CustomNumberInput
         startAdornment={
           <InputAdornment>
-            <AttachMoneyIcon />
+            <svg
+              // From Feather: https://feathericons.com/?query=dollar-sign
+              xmlns="http://www.w3.org/2000/svg"
+              height="18"
+              viewBox="0 0 24 24"
+              width="18"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
           </InputAdornment>
         }
       />
@@ -55,13 +67,16 @@ export default function NumberInputAdornments() {
   );
 }
 
-const InputAdornment = styled('div')`
+const InputAdornment = styled('div')(
+  ({ theme }) => `
   margin: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   grid-row: 1/3;
-`;
+  color: ${theme.palette.mode === 'dark' ? grey[500] : grey[700]};
+`,
+);
 
 const blue = {
   100: '#DAECFF',
@@ -115,21 +130,19 @@ const StyledInputRoot = styled('div')(
 `,
 );
 
-const StyledInputElement = styled('input')(
-  ({ theme }) => `
+const StyledInputElement = styled('input')`
   font-size: 0.875rem;
   font-family: inherit;
   font-weight: 400;
   line-height: 1.5;
   grid-row: 1/3;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  color: inherit;
   background: inherit;
   border: none;
   border-radius: inherit;
   padding: 8px 12px;
   outline: 0;
-`,
-);
+`;
 
 const StyledButton = styled('button')(
   ({ theme }) => `
