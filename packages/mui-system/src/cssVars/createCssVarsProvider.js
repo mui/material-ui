@@ -337,11 +337,11 @@ export default function createCssVarsProvider(options) {
      */
     disableStyleSheetGeneration: PropTypes.bool,
     /**
-     * Disable CSS transitions when switching between modes or color schemes
+     * Disable CSS transitions when switching between modes or color schemes.
      */
     disableTransitionOnChange: PropTypes.bool,
     /**
-     * The document to attach the attribute to
+     * The document to attach the attribute to.
      */
     documentNode: PropTypes.any,
     /**
@@ -349,7 +349,7 @@ export default function createCssVarsProvider(options) {
      */
     modeStorageKey: PropTypes.string,
     /**
-     * The window that attaches the 'storage' event listener
+     * The window that attaches the 'storage' event listener.
      * @default window
      */
     storageWindow: PropTypes.any,

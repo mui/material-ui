@@ -1,5 +1,60 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.10
+
+<!-- generated comparing v5.14.9..master -->
+
+_Sep 18, 2023_
+
+A big thanks to the 16 contributors who made this release possible. This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.14.10`
+
+- &#8203;<!-- 20 -->[Chip] Add cursor CSS property reset (#38984) @DiegoAndai
+
+### `@mui/utils@5.14.10`
+
+- &#8203;<!-- 05 -->[utils] Move @types/prop-types back to dependencies (#39030) @Methuselah96
+
+### `@mui/base@5.0.0-beta.16`
+
+- &#8203;<!-- 24 -->[NumberInput][base-ui] Warn when changing control mode with `useControlled` (#38757) @sai6855
+- &#8203;<!-- 23 -->[Select][base-ui] Fix Select button layout shift, add placeholder prop (#38796) @mj12albert
+- &#8203;<!-- 22 -->[useList][base-ui] Accept arbitrary external props and forward to root (#38848) @mj12albert
+- &#8203;<!-- 25 -->[Autocomplete][base-ui] Added ref to getInputProps return value (#38919) @DarhkVoyd
+
+### `@mui/joy@5.0.0-beta.7`
+
+- &#8203;<!-- 26 -->[AccordionGroup][joy-ui] Fix console warning when using custom color (#38950) @sai6855
+- &#8203;<!-- 07 -->[GlobalStyles][joy-ui] Ensure compatibility with RSC (#38955) @mateuseap
+
+### Docs
+
+- &#8203;<!-- 21 -->[docs][base] Add Tailwind CSS + plain CSS demo on the NumberInput page (#38928) @alisasanib
+- &#8203;<!-- 13 -->[docs][Dialog] Add non-modal dialog docs & demo (#38684) @mnajdova
+- &#8203;<!-- 12 -->[docs] Fix number input wrong demo @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Exclude joy-ui LinearProgressCountup from visual regression (#38969) @siriwatknp
+- &#8203;<!-- 09 -->[docs][joy-ui] Revise the Overview page (#38842) @danilo-leal
+- &#8203;<!-- 08 -->[docs][material-ui][Pagination] Add `TablePagination` to the API components list (#38486) @MonstraG
+
+### Core
+
+- &#8203;<!-- 19 -->[core] Add more context about useEventCallback @oliviertassinari
+- &#8203;<!-- 18 -->[core] Allow deeper import of @mui/utils (#38806) @oliviertassinari
+- &#8203;<!-- 17 -->[core] Remove react-dom from @mui/utils peerDependencies (#38974) @michaldudak
+- &#8203;<!-- 16 -->[core] Remove react from styled-engine dependencies (#38971) @michaldudak
+- &#8203;<!-- 15 -->[core] Fix image loading bug on Safari @oliviertassinari
+- &#8203;<!-- 14 -->[core] Fix bundle size upload to S3 job (#38956) @Janpot
+- &#8203;<!-- 20 -->[core] Move eslint to peer dependencies of eslint-plugin-material-ui (#39033) @michaldudak
+- &#8203;<!-- 10 -->[docs-infra] Display markdown lists correctly in docs for props description (#38973) @ZeeshanTamboli
+- &#8203;<!-- 04 -->[website] Improve lighthouse score (#39011) @oliviertassinari
+- &#8203;<!-- 03 -->[website] Fix lighthouse issues @oliviertassinari
+- &#8203;<!-- 02 -->[website] Create the `InfoCard` component (#38987) @danilo-leal
+- &#8203;<!-- 01 -->[website] Small tweaks for performance @oliviertassinari
+- &#8203;<!-- 06 -->[zero][next] Setup nextjs plugin package (#38852) @brijeshb42
+
+All contributors of this release in alphabetical order: @alisasanib, @brijeshb42, @danilo-leal, @DarhkVoyd, @DiegoAndai, @Janpot, @mateuseap, @Methuselah96, @michaldudak, @mj12albert, @mnajdova, @MonstraG, @oliviertassinari, @sai6855, @siriwatknp, @ZeeshanTamboli
+
 ## 5.14.9
 
 <!-- generated comparing v5.14.8..master -->
