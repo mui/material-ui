@@ -8,8 +8,10 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
+import GradientText from 'docs/src/components/typography/GradientText';
 import Link from 'docs/src/modules/components/Link';
 import Section from 'docs/src/layouts/Section';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 function Widget({
   children,
@@ -80,9 +82,16 @@ function Widget({
 export default function HowToSupport() {
   return (
     <Section cozy>
-      <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
-        How can you support us?
-      </Typography>
+      <SectionHeadline
+        overline="Support us"
+        title={
+          <Typography variant="h2" sx={{ maxWidth: 600, mb: 4 }}>
+            Learn how to support
+            <br /> <GradientText>MUI&apos;s growth</GradientText>
+          </Typography>
+        }
+        description=""
+      />
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={4}>
           <Widget

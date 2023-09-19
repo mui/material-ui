@@ -285,24 +285,17 @@ function CareersContent() {
             textAlign: 'center',
           }}
         >
-          <Typography variant="body2" color="primary.600" fontWeight="bold">
-            Careers
-          </Typography>
-          <Typography component="h1" variant="h2" sx={{ my: 1 }}>
-            Build <GradientText>the next generation</GradientText>
-            <br /> of tools for UI development
-          </Typography>
-          <Typography
-            color="text.secondary"
-            textAlign="center"
-            sx={{
-              maxWidth: { md: 500 },
-              minHeight: 48, // a hack to reduce CLS (layout shift)
-            }}
-          >
-            We aim high at enabling developers & designers to bring stunning UIs to life with
-            unrivalled speed and ease.
-          </Typography>
+          <SectionHeadline
+            alwaysCenter
+            overline="Join us"
+            title={
+              <Typography variant="h2" sx={{ maxWidth: 600, mx: 'auto' }}>
+                Build <GradientText>the next generation</GradientText>
+                <br /> of tools for UI development
+              </Typography>
+            }
+            description="Together, we are enabling developers & designers to bring stunning UIs to life with unrivalled speed and ease."
+          />
         </Box>
       </Container>
       {/* Our ultimate goal */}
