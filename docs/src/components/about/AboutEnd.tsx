@@ -26,7 +26,8 @@ export default function AboutEnd() {
           overline="Join us"
           title={
             <Typography variant="h2" sx={{ mt: 1, maxWidth: 600, mx: 'auto' }}>
-              Build <GradientText>the next generation</GradientText> of tools for UI development
+              Build <GradientText>the next generation</GradientText>
+              <br /> of tools for UI development
             </Typography>
           }
           description="We aim high at enabling developers & designers to bring stunning UIs to life with unrivalled speed and ease."
