@@ -418,4 +418,4 @@ export * from './generateUtilityClass';
 
 export { default as generateUtilityClasses } from './generateUtilityClasses';
 
-export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
+export { default as Unstable_FocusTrap } from './Unstable_FocusTrap';

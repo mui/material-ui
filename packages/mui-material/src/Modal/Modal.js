@@ -6,7 +6,7 @@ import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import { useSlotProps } from '@mui/base';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import FocusTrap from '../Unstable_TrapFocus';
+import FocusTrap from '../Unstable_FocusTrap';
 import Portal from '../Portal';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';

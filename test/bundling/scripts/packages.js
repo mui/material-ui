@@ -124,7 +124,7 @@ export default {
     'Toolbar',
     'Tooltip',
     'Typography',
-    'Unstable_TrapFocus',
+    'Unstable_FocusTrap',
     'useAutocomplete',
     'useMediaQuery',
     'usePagination',
