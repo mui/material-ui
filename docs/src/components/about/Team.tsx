@@ -15,6 +15,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
 
@@ -312,17 +313,20 @@ export default function Team() {
       <Section cozy>
         <Box
           sx={{
+            my: 4,
             display: 'flex',
             flexDirection: 'column',
           }}
         >
-          <Typography variant="h2" mb={1} id="muiers">
-            Meet the <GradientText>MUIers</GradientText>
-          </Typography>
-          <Typography color="text.secondary" mb={2} sx={{ maxWidth: 450 }}>
-            Contributing from all corners of the world, <br />
-            MUI is a global team & community.
-          </Typography>
+          <SectionHeadline
+            overline="Team"
+            title={
+              <Typography variant="h2" id="muiers">
+                Meet the <GradientText>MUIers</GradientText>
+              </Typography>
+            }
+            description="Contributing from all corners of the world, MUI is a global, fully-remote team & community."
+          />
           <Button
             component={Link}
             noLinkStyle
@@ -335,24 +339,22 @@ export default function Team() {
             View careers
           </Button>
         </Box>
-        <Box mt={4}>
-          <Grid container spacing={2}>
-            {(teamMembers as Array<Profile>).map((profileJson) => {
-              const profile = {
-                src: `/static/branding/about/${profileJson.name
-                  .split(' ')
-                  .map((x) => x.toLowerCase())
-                  .join('-')}.png`,
-                ...profileJson,
-              };
-              return (
-                <Grid key={profile.name} item xs={12} sm={6} md={3}>
-                  <Person {...profile} />
-                </Grid>
-              );
-            })}
-          </Grid>
-        </Box>
+        <Grid container spacing={2}>
+          {(teamMembers as Array<Profile>).map((profileJson) => {
+            const profile = {
+              src: `/static/branding/about/${profileJson.name
+                .split(' ')
+                .map((x) => x.toLowerCase())
+                .join('-')}.png`,
+              ...profileJson,
+            };
+            return (
+              <Grid key={profile.name} item xs={12} sm={6} md={3}>
+                <Person {...profile} />
+              </Grid>
+            );
+          })}
+        </Grid>
       </Section>
       <Divider />
       {/* Community contributors */}
@@ -363,7 +365,7 @@ export default function Team() {
           </Typography>
           <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
             Special members of the community deserve a shout-out for their ever-lasting impact on
-            MUI’s products.
+            MUI&apos;s products.
           </Typography>
           <Grid container spacing={2} mt={2}>
             {contributors.map((profile) => (
