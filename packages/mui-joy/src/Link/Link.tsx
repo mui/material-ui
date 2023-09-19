@@ -12,11 +12,11 @@ import {
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
 import { TypographyNestedContext, TypographyInheritContext } from '../Typography/Typography';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 
 const useUtilityClasses = (ownerState: LinkOwnerState) => {
   const { level, color, variant, underline, focusVisible, disabled } = ownerState;
@@ -71,6 +71,10 @@ const LinkRoot = styled('a', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: LinkOwnerState }>(({ theme, ownerState }) => {
+  const baseStyles = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const hoverStyles = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
+  const activeStyles = theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!];
+  const disabledStyles = theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!];
   return [
     {
       '--Icon-fontSize': '1.25em',
@@ -109,11 +113,9 @@ const LinkRoot = styled('a', {
       borderRadius: theme.vars.radius.xs,
       padding: 0, // Remove the padding in Firefox
       cursor: 'pointer',
-      ...(ownerState.color !== 'context' && {
-        textDecorationColor: `rgba(${
-          theme.vars.palette[ownerState.color!]?.mainChannel
-        } / var(--Link-underlineOpacity, 0.72))`,
-      }),
+      textDecorationColor: `rgba(${
+        theme.vars.palette[ownerState.color!]?.mainChannel
+      } / var(--Link-underlineOpacity, 0.72))`,
       ...(ownerState.variant
         ? {
             paddingBlock: 'min(0.1em, 4px)',
@@ -123,14 +125,10 @@ const LinkRoot = styled('a', {
             }),
           }
         : {
-            ...(ownerState.color !== 'context' && {
-              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
-            }),
+            color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
             [`&.${linkClasses.disabled}`]: {
               pointerEvents: 'none',
-              ...(ownerState.color !== 'context' && {
-                color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
-              }),
+              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
             },
           }),
       userSelect: 'none',
@@ -162,13 +160,20 @@ const LinkRoot = styled('a', {
             [theme.focus.selector]: theme.focus.default,
           } as const)),
     } as const,
-    ownerState.variant && {
-      ...theme.variants[ownerState.variant]?.[ownerState.color!],
-      '&:hover': theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
-      '&:active': theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
-      [`&.${linkClasses.disabled}`]:
-        theme.variants[`${ownerState.variant}Disabled`]?.[ownerState.color!],
-    },
+    ...(ownerState.variant
+      ? [
+          {
+            ...baseStyles,
+            '&:hover': hoverStyles,
+            '&:active': activeStyles,
+            [`&.${linkClasses.disabled}`]: disabledStyles,
+          },
+          getScopedGlobalVariantVars(baseStyles, ownerState.instanceColor),
+          getScopedGlobalVariantVars(hoverStyles, ownerState.instanceColor),
+          getScopedGlobalVariantVars(activeStyles, ownerState.instanceColor),
+          getScopedGlobalVariantVars(disabledStyles, ownerState.instanceColor),
+        ]
+      : []),
   ];
 });
 /**
@@ -183,7 +188,7 @@ const LinkRoot = styled('a', {
  */
 const Link = React.forwardRef(function Link(inProps, ref) {
   const {
-    color: colorProp = 'primary',
+    color = 'primary',
     textColor,
     variant,
     ...themeProps
@@ -192,8 +197,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     name: 'JoyLink',
   });
 
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
   const nesting = React.useContext(TypographyNestedContext);
   const inheriting = React.useContext(TypographyInheritContext);
 
@@ -245,6 +248,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   };
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     color,
     disabled,
