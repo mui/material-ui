@@ -1,12 +1,12 @@
 import * as React from 'react';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import Avatar from '@mui/joy/Avatar';
+import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import IconButton from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
-import MuiLogo from './MuiLogo';
 import { openSidebar, closeSidebar } from '../utils';
 import ColorSchemeToggle from './ColorSchemeToggle';
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
@@ -18,6 +18,7 @@ import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import { Divider } from '@mui/joy';
 
 export default function FirstSidebar() {
   return (
@@ -39,17 +40,35 @@ export default function FirstSidebar() {
         height: '100dvh',
         width: 'var(--FirstSidebar-width)',
         top: 0,
-        p: 1.5,
-        py: 2,
+        p: 2,
         flexShrink: 0,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 2,
+        gap: 1,
         borderRight: '1px solid',
         borderColor: 'divider',
       }}
     >
+      <Box
+        className="SecondSidebar-overlay"
+        sx={{
+          position: 'fixed',
+          zIndex: 9998,
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          opacity: 'var(--SideNavigation-slideIn)',
+          backgroundColor: 'var(--joy-palette-background-backdrop)',
+          transition: 'opacity 0.4s',
+          transform: {
+            xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1) + var(--SideNavigation-slideIn, 0) * var(--FirstSidebar-width, 0px)))',
+            lg: 'translateX(-100%)',
+          },
+        }}
+        onClick={() => closeSidebar()}
+      />
       <GlobalStyles
         styles={{
           ':root': {
@@ -58,14 +77,21 @@ export default function FirstSidebar() {
         }}
       />
       <IconButton
-        variant="soft"
-        color="neutral"
+        variant="plain"
+        color="primary"
         onClick={() => closeSidebar()}
-        sx={{ display: { md: 'none' }, mt: -2, borderRadius: '50%' }}
+        sx={{ display: { md: 'none' } }}
       >
         <ArrowBackIosRoundedIcon />
       </IconButton>
-      <MuiLogo />
+      <Divider
+        sx={{
+          display: {
+            xs: 'flex',
+            md: 'none',
+          },
+        }}
+      />
       <List sx={{ '--ListItem-radius': '8px', '--List-gap': '12px' }}>
         <ListItem>
           <ListItemButton>
@@ -106,7 +132,15 @@ export default function FirstSidebar() {
           '--List-gap': '8px',
         }}
       >
-        <ColorSchemeToggle sx={{ display: { xs: 'none', md: 'inline-flex' } }} />
+        <ColorSchemeToggle
+          sx={{
+            display: {
+              xs: 'none',
+              md: 'flex',
+            },
+            alignSelf: 'center',
+          }}
+        />
         <ListItem>
           <ListItemButton>
             <SupportRoundedIcon />
@@ -118,6 +152,7 @@ export default function FirstSidebar() {
           </ListItemButton>
         </ListItem>
       </List>
+      <Divider />
       <Avatar variant="outlined" src="/static/images/avatar/3.jpg" />
     </Sheet>
   );

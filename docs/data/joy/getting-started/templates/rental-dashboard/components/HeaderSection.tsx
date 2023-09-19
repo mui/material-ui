@@ -17,10 +17,10 @@ export default function HeaderSection() {
     >
       <div>
         <Typography
-          level="h1"
-          fontSize={{
-            xs: 'xl2',
-            md: 'xl4',
+          level="h2"
+          sx={{
+            mt: 1,
+            mb: 2,
           }}
         >
           232 stays in Melbourne

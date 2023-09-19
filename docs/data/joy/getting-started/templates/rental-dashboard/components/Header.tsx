@@ -1,63 +1,11 @@
 import * as React from 'react';
-import { useColorScheme } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
-import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
-import MuiLogo from './MuiLogo';
-import { toggleSidebar } from '../utils';
-import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import IconButton from '@mui/joy/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 
-function ColorSchemeToggle({ onClick, sx, ...props }: IconButtonProps) {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return (
-      <IconButton
-        size="sm"
-        variant="outlined"
-        color="neutral"
-        {...props}
-        sx={sx}
-        disabled
-      />
-    );
-  }
-  return (
-    <IconButton
-      size="sm"
-      variant="outlined"
-      color="neutral"
-      {...props}
-      onClick={(event) => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
-        onClick?.(event);
-      }}
-      sx={[
-        {
-          '& > *:first-of-type': {
-            display: mode === 'dark' ? 'none' : 'initial',
-          },
-          '& > *:last-of-type': {
-            display: mode === 'light' ? 'none' : 'initial',
-          },
-        },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
-      <DarkModeRoundedIcon />
-      <LightModeIcon />
-    </IconButton>
-  );
-}
+import ColorSchemeToggle from './ColorSchemeToggle';
+import { toggleSidebar } from '../utils';
 
 export default function Header() {
   return (
@@ -65,14 +13,16 @@ export default function Header() {
       sx={{
         display: { xs: 'flex', md: 'none' },
         alignItems: 'center',
+        justifyContent: 'space-between',
         position: 'fixed',
         top: 0,
         width: '100vw',
         height: 'var(--Header-height)',
         zIndex: 9995,
-        py: 1,
-        px: 2,
+        p: 2,
         gap: 1,
+        borderBottom: '1px solid',
+        borderColor: 'background.level1',
         boxShadow: 'sm',
       }}
     >
@@ -92,9 +42,8 @@ export default function Header() {
         color="neutral"
         size="sm"
       >
-        <MenuRoundedIcon />
+        <MenuIcon />
       </IconButton>
-      <MuiLogo variant="plain" sx={{ boxShadow: 'none', mr: 'auto' }} />
       <ColorSchemeToggle id={undefined} />
     </Sheet>
   );
