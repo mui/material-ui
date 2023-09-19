@@ -9,6 +9,15 @@ import Sheet from '@mui/joy/Sheet';
 import MuiLogo from './MuiLogo';
 import { openSidebar, closeSidebar } from '../utils';
 import ColorSchemeToggle from './ColorSchemeToggle';
+import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
+import LayersRoundedIcon from '@mui/icons-material/LayersRounded';
+import CheckBoxRoundedIcon from '@mui/icons-material/CheckBoxRounded';
+import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
+import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
+import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 
 export default function FirstSidebar() {
   return (
@@ -54,38 +63,38 @@ export default function FirstSidebar() {
         onClick={() => closeSidebar()}
         sx={{ display: { md: 'none' }, mt: -2, borderRadius: '50%' }}
       >
-        <i data-feather="arrow-left" />
+        <ArrowBackIosRoundedIcon />
       </IconButton>
       <MuiLogo />
       <List sx={{ '--ListItem-radius': '8px', '--List-gap': '12px' }}>
         <ListItem>
           <ListItemButton>
-            <i data-feather="home" />
+            <HomeRoundedIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton onClick={() => openSidebar()}>
-            <i data-feather="bar-chart-2" />
+            <BarChartRoundedIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton onClick={() => openSidebar()}>
-            <i data-feather="layers" />
+            <LayersRoundedIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton onClick={() => openSidebar()}>
-            <i data-feather="check-square" />
+            <CheckBoxRoundedIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton selected onClick={() => openSidebar()}>
-            <i data-feather="flag" />
+            <AssistantPhotoRoundedIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton onClick={() => openSidebar()}>
-            <i data-feather="users" />
+            <GroupRoundedIcon />
           </ListItemButton>
         </ListItem>
       </List>
@@ -100,12 +109,12 @@ export default function FirstSidebar() {
         <ColorSchemeToggle sx={{ display: { xs: 'none', md: 'inline-flex' } }} />
         <ListItem>
           <ListItemButton>
-            <i data-feather="life-buoy" />
+            <SupportRoundedIcon />
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton>
-            <i data-feather="settings" />
+            <SettingsRoundedIcon />
           </ListItemButton>
         </ListItem>
       </List>

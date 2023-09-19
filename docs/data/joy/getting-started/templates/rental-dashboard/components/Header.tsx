@@ -5,6 +5,9 @@ import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
 import MuiLogo from './MuiLogo';
 import { toggleSidebar } from '../utils';
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
 function ColorSchemeToggle({ onClick, sx, ...props }: IconButtonProps) {
   const { mode, setMode } = useColorScheme();
@@ -50,8 +53,8 @@ function ColorSchemeToggle({ onClick, sx, ...props }: IconButtonProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <i data-feather="moon" />
-      <i data-feather="sun" />
+      <DarkModeRoundedIcon />
+      <LightModeIcon />
     </IconButton>
   );
 }
@@ -89,7 +92,7 @@ export default function Header() {
         color="neutral"
         size="sm"
       >
-        <i data-feather="menu" />
+        <MenuRoundedIcon />
       </IconButton>
       <MuiLogo variant="plain" sx={{ boxShadow: 'none', mr: 'auto' }} />
       <ColorSchemeToggle id={undefined} />

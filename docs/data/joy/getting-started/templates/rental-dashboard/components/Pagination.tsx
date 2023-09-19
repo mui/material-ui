@@ -3,6 +3,8 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import IconButton, { iconButtonClasses } from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
+import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
+import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 
 export default function Pagination() {
   return (
@@ -17,7 +19,7 @@ export default function Pagination() {
           color="neutral"
           size="sm"
         >
-          <i data-feather="arrow-left" />
+          <ArrowBackIosRoundedIcon />
         </IconButton>
         <Typography level="body-sm" mx="auto">
           Page 1 of 10
@@ -28,7 +30,7 @@ export default function Pagination() {
           color="neutral"
           size="sm"
         >
-          <i data-feather="arrow-right" />
+          <ArrowForwardIosRoundedIcon />
         </IconButton>
       </Box>
       <Box
@@ -47,7 +49,7 @@ export default function Pagination() {
           size="sm"
           variant="plain"
           color="neutral"
-          startDecorator={<i data-feather="arrow-left" />}
+          startDecorator={<ArrowBackIosRoundedIcon />}
         >
           Previous
         </Button>
@@ -69,7 +71,7 @@ export default function Pagination() {
           size="sm"
           variant="plain"
           color="neutral"
-          endDecorator={<i data-feather="arrow-right" />}
+          endDecorator={<ArrowForwardIosRoundedIcon />}
         >
           Next
         </Button>

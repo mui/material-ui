@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Stack } from '@mui/joy';
 import ToggleGroup from './ToggleGroup';
+import ViewStreamRoundedIcon from '@mui/icons-material/ViewStreamRounded';
+import MapRoundedIcon from '@mui/icons-material/MapRounded';
 
 export default function Toggles() {
   return (
@@ -13,8 +15,8 @@ export default function Toggles() {
       />
       <ToggleGroup
         options={[
-          { label: <i data-feather="list" />, value: 'list' },
-          { label: <i data-feather="map-pin" />, value: 'map' },
+          { label: <ViewStreamRoundedIcon />, value: 'list' },
+          { label: <MapRoundedIcon />, value: 'map' },
         ]}
       />
     </Stack>

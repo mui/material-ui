@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
+import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 
 export default function HeaderSection() {
   return (
@@ -36,7 +37,7 @@ export default function HeaderSection() {
         <Button
           variant="solid"
           color="primary"
-          startDecorator={<i data-feather="star" />}
+          startDecorator={<StarRateRoundedIcon />}
         >
           Save search
         </Button>

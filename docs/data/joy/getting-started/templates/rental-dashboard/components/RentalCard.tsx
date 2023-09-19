@@ -8,6 +8,11 @@ import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import Rating from './Rating';
+import WorkspacePremiumRoundedIcon from '@mui/icons-material/WorkspacePremiumRounded';
+import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
+import FmdGoodRoundedIcon from '@mui/icons-material/FmdGoodRounded';
+import KingBedRoundedIcon from '@mui/icons-material/KingBedRounded';
+import WifiRoundedIcon from '@mui/icons-material/WifiRounded';
 
 type RentalCardProps = {
   category: React.ReactNode;
@@ -74,7 +79,7 @@ export default function RentalCard({
             {rareFind && (
               <Chip
                 variant="soft"
-                startDecorator={<i data-feather="award" />}
+                startDecorator={<WorkspacePremiumRoundedIcon />}
                 size="sm"
                 sx={{ position: 'absolute', bottom: 8, left: 8 }}
               >
@@ -91,7 +96,7 @@ export default function RentalCard({
                 display: { xs: 'flex', sm: 'none' },
               }}
             >
-              <i data-feather="star" />
+              <StarRateRoundedIcon />
             </IconButton>
           </AspectRatio>
         </Box>
@@ -133,7 +138,7 @@ export default function RentalCard({
                 display: { xs: 'none', sm: 'flex' },
               }}
             >
-              <i data-feather="star" />
+              <StarRateRoundedIcon />
             </IconButton>
           </Stack>
           <Stack spacing={1} direction="row">
@@ -143,11 +148,11 @@ export default function RentalCard({
           </Stack>
 
           <Stack spacing={3} direction="row">
-            <Typography startDecorator={<i data-feather="map-pin" />}>
+            <Typography startDecorator={<FmdGoodRoundedIcon />}>
               Collingwood VIC
             </Typography>
             <Typography
-              startDecorator={<i data-feather="box" />}
+              startDecorator={<KingBedRoundedIcon />}
               display={{
                 xs: 'none',
                 md: 'flex',
@@ -156,7 +161,7 @@ export default function RentalCard({
               1 bed
             </Typography>
             <Typography
-              startDecorator={<i data-feather="wifi" />}
+              startDecorator={<WifiRoundedIcon />}
               display={{
                 xs: 'none',
                 md: 'flex',

@@ -4,6 +4,7 @@ import FormControl from '@mui/joy/FormControl';
 import Input from '@mui/joy/Input';
 import Grid from '@mui/joy/Grid';
 import CountrySelector from './CountrySelector';
+import FilterListRoundedIcon from '@mui/icons-material/FilterListRounded';
 
 export default function Filters() {
   return (
@@ -37,7 +38,7 @@ export default function Filters() {
           <Button
             variant="outlined"
             color="neutral"
-            startDecorator={<i data-feather="filter" />}
+            startDecorator={<FilterListRoundedIcon />}
           >
             More filters
           </Button>

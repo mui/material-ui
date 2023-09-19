@@ -4,6 +4,7 @@ import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
 import Input from '@mui/joy/Input';
 import Stack from '@mui/joy/Stack';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 
 export default function Search() {
   return (
@@ -11,7 +12,7 @@ export default function Search() {
       <FormControl sx={{ flex: 1 }}>
         <Input
           placeholder="Search"
-          startDecorator={<i data-feather="search" />}
+          startDecorator={<SearchRoundedIcon />}
           aria-label="Search"
         />
       </FormControl>
