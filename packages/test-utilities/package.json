@@ -9,6 +9,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./init": "./src/init.js",
+    "./initMatchers": "./src/initMatchers.ts",
     "./initPlaywrightMatchers": "./src/initPlaywrightMatchers.ts",
     "./KarmaReporterReactProfiler": "./src/KarmaReporterReactProfiler.js",
     "./setupBabel": "./src/setupBabel.js",
