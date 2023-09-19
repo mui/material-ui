@@ -77,7 +77,9 @@ export function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbar
     if (open) {
       setAutoHideTimer(autoHideDuration);
     }
-  }, [open, autoHideDuration, setAutoHideTimer]);
+
+    return timerAutoHide.clear;
+  }, [open, autoHideDuration, setAutoHideTimer, timerAutoHide]);
 
   const handleClickAway = (event: React.SyntheticEvent<any> | Event) => {
     onClose?.(event, 'clickaway');
