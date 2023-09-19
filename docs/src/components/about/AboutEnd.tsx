@@ -30,7 +30,7 @@ export default function AboutEnd() {
               <br /> of tools for UI development
             </Typography>
           }
-          description="We aim high at enabling developers & designers to bring stunning UIs to life with unrivalled speed and ease."
+          description="Together, we are enabling developers & designers to bring stunning UIs to life with unrivalled speed and ease."
         />
         <Button
           component={Link}
