@@ -11,6 +11,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import { GlowingIconContainer } from 'docs/src/components/action/InfoCard';
 
 const values = [
   {
@@ -81,29 +82,7 @@ export default function OurValues() {
                 }),
               })}
             >
-              <Box
-                sx={(theme) => ({
-                  width: 40,
-                  height: 40,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 1,
-                  border: '1px solid',
-                  borderColor: 'primary.200',
-                  bgcolor: 'primary.50',
-                  boxShadow:
-                    '0px 1px 6px 0px rgba(194, 224, 255, 1), 0px 2px 30px 0px rgba(234, 237, 241, 0.3) inset',
-                  ...theme.applyDarkStyles({
-                    borderColor: 'primary.400',
-                    bgcolor: 'primary.900',
-                    boxShadow:
-                      '0px 1px 6px 0px rgba(0, 89, 178, 1), 0px 2px 30px 0px rgba(0, 0, 0, 0.25) inset',
-                  }),
-                })}
-              >
-                {icon}
-              </Box>
+              <GlowingIconContainer icon={icon} />
               <Typography
                 fontWeight="bold"
                 component="h3"
