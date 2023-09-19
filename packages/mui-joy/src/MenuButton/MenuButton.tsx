@@ -15,7 +15,7 @@ import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
 import { getButtonStyles } from '../Button/Button';
-import { styled, useColorInversion } from '../styles';
+import { styled } from '../styles';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState: MenuButtonOwnerState) => {
@@ -103,7 +103,7 @@ const MenuButton = React.forwardRef(function MenuButton(
 
   const {
     children,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     component,
     disabled: disabledProp = false,
     endDecorator,
@@ -121,20 +121,21 @@ const MenuButton = React.forwardRef(function MenuButton(
 
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, buttonGroup.color || colorProp);
   const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp || loading);
 
   const { getRootProps, open, active } = useMenuButton({ rootRef: forwardedRef, disabled });
 
   const loadingIndicator = loadingIndicatorProp ?? (
+    // @ts-ignore internal logic to remove instanceColor to make color inversion works
     <CircularProgress
-      {...(color !== 'context' && { color })}
+      color={color}
+      instanceColor={undefined}
       thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3}
     />
   );
 
   const ownerState: MenuButtonOwnerState = {
+    instanceColor: inProps.color,
     ...props,
     active,
     color,
