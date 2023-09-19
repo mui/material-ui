@@ -22,11 +22,12 @@ In Joy UI, modals are managed through three related components:
 {{"demo": "ModalUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 The Modal component comes equipped with features designed to improve user interaction and accessibility:
-* Manages modal stacking when more than one is needed.
-* Automatically create a backdrop element to disable interactions with the rest of the app.
-* Disables page scrolling when open.
-* Manages focus between modal and its parent app.
-* Adds appropriate ARIA roles automatically.
+
+- Manages modal stacking when more than one is needed.
+- Automatically create a backdrop element to disable interactions with the rest of the app.
+- Disables page scrolling when open.
+- Manages focus between modal and its parent app.
+- Adds appropriate ARIA roles automatically.
 
 :::info
 The term "modal" can sometimes be used interchangeably with "dialog," but this is incorrect.
@@ -43,7 +44,7 @@ Dialog, on the other hand, can either be _modal_ or _nonmodal (modeless)_, offer
 import Modal from '@mui/joy/Modal';
 ```
 
-The `Modal` component is designed to accept just one React element as its child. 
+The `Modal` component is designed to accept just one React element as its child.
 This could be a Joy UI component, such as `Sheet`, or any other custom element.
 
 {{"demo": "BasicModal.js"}}
@@ -58,7 +59,7 @@ Based on `ModalDialog`, `ModalClose` will automatically adapt to the proper cont
 {{"demo": "VariantModalDialog.js"}}
 
 :::info
-The `ModalClose` component accepts the `variant` property, since it shares the same styles as  [`IconButton`](/joy-ui/react-button/#icon-button).
+The `ModalClose` component accepts the `variant` property, since it shares the same styles as [`IconButton`](/joy-ui/react-button/#icon-button).
 :::
 
 ### Sizes
@@ -74,7 +75,7 @@ Every palette included in the theme is available via the `color` prop.
 ### Transition
 
 The modal components **do not** come with built-in transitions.
- To incorporate animations, you will need to create your own transitions or use an external library.
+To incorporate animations, you will need to create your own transitions or use an external library.
 
 The following is an example using [`react-transition-group`](https://reactcommunity.org/react-transition-group/transition/) to create a fade animation:
 
@@ -124,8 +125,8 @@ This will automatically apply spacing to the elements that have either the `aria
 
 The Modal Dialog component offers two layout options for display:
 
-* `center` (default): Positions the modal dialog in the center of the viewport for focused user interaction.
-* `fullScreen`: Expands the modal dialog to occupy the entire viewport.
+- `center` (default): Positions the modal dialog in the center of the viewport for focused user interaction.
+- `fullScreen`: Expands the modal dialog to occupy the entire viewport.
 
 {{"demo": "LayoutModalDialog.js"}}
 
@@ -170,12 +171,6 @@ Use `role="alertdialog"` to create an [alert dialog](https://www.w3.org/WAI/ARIA
 
 {{"demo": "AlertDialogModal.js"}}
 
-## Common examples
-### Example
-
-## Accessibility
-## Anatomy
-
 ## Performance
 
 By default, the content within the modal is unmounted when the modal is closed.
@@ -210,15 +205,16 @@ Should a user need to interact with another elements on the page, such as intera
 
 ## Accessibility
 
-The Modal component is designed for accessibility, using ARIA roles and attributes. 
-The root `div` employs [`role="presentation"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/presentation_role) to remove semantic meaning, making it non-interactive for assistive tools. 
+The Modal component is designed for accessibility, using ARIA roles and attributes.
+The root `div` employs [`role="presentation"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/presentation_role) to remove semantic meaning, making it non-interactive for assistive tools.
 Inside the modal, [`role="dialog"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) and [`aria-modal="true"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-modal) attributes are used to define it as an interactive, focus-capturing dialog that restricts interaction with the rest of the page until closed.
 
-For more complete details on accessibility best practices, you can refer to the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/). 
+For more complete details on accessibility best practices, you can refer to the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
 
 Key highlights include:
-* Providing an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) to all interactive elements using `aria-labelledby="id..."`. 
-You can also add a description using `aria-describedby="id..."`:
+
+- Providing an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) to all interactive elements using `aria-labelledby="id..."`.
+  You can also add a description using `aria-describedby="id..."`:
 
   ```jsx
   <Modal aria-labelledby="modal-title" aria-describedby="modal-description">
@@ -226,7 +222,8 @@ You can also add a description using `aria-describedby="id..."`:
     <p id="modal-description">My Description</p>
   </Modal>
   ```
-* Following the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help set the initial focus on the most relevant element based on the content of the modal.
+
+- Following the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help set the initial focus on the most relevant element based on the content of the modal.
 
   :::warning
   A modal window can overlay either the parent application, or another modal window.
@@ -236,29 +233,21 @@ You can also add a description using `aria-describedby="id..."`:
 
 ## Anatomy
 
-The Modal component consists of a root `<div>` element assigned the role of `presentation`. 
+The Modal component consists of a root `<div>` element assigned the role of `presentation`.
 Directly nested within this root are two specialized `<div>` elements: the first serves as the modal's backdrop and is marked with aria-hidden="true", while the second is designed for accessibility, facilitating focus trapping.
 
-Following these is the `<ModalDialog />` component, represented by a `<div>` with the role="dialog". 
+Following these is the `<ModalDialog />` component, represented by a `<div>` with the role="dialog".
 This container holds the modal's main content.
 
 When included, the `<ModalClose />` component is made up of a `<button>` element with type="button", featuring an SVG icon shaped like an "X" to indicate the close action.
 
 ```html
-<div
-  role="dialog"
-  class="MuiModalDialog-root"
->
-  <div 
-    aria-hidden="true"
-    class="MuiModal-backdrop">
+<div role="dialog" class="MuiModalDialog-root">
+  <div aria-hidden="true" class="MuiModal-backdrop">
     <div tabindex="0"></div>
-      <div 
-        aria-modal="true"
-        class="MuiModalDialog-root"
-        >
-        <!-- Modal contents -->
-      </div>
+    <div aria-modal="true" class="MuiModalDialog-root">
+      <!-- Modal contents -->
+    </div>
   </div>
 </div>
 ```
