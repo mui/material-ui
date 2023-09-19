@@ -103,8 +103,14 @@ const TreeItem = styled(MuiTreeItem)({
     outline: `2px dashed ${lighten('#333', 0.3)}`,
   },
   [`& .${treeItemClasses.content}`]: {
+    padding: 4,
+    borderRadius: 4,
     '&:hover': {
-      backgroundColor: lighten('#333', 0.08),
+      backgroundColor: '#101418',
+    },
+    [`& .${treeItemClasses.label}`]: {
+      fontFamily: 'Menlo',
+      fontSize: '0.825rem',
     },
   },
 });
@@ -189,13 +195,20 @@ export default function ThemeViewer({
 
   return (
     <TreeView
-      sx={{ bgcolor: '#333', color: '#fff', borderRadius: 1, p: 1 }}
       key={key}
       defaultCollapseIcon={<ExpandIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
       defaultExpanded={defaultExpanded}
       defaultExpandIcon={<CollapseIcon />}
       {...other}
+      sx={{
+        color: '#FFF',
+        p: 1.5,
+        bgcolor: '#0F1924', // one-off code container color
+        borderRadius: 2,
+        border: '1px solid',
+        borderColor: '#1F262E', // primaryDark[700]
+      }}
     >
       {Object.keys(data).map((objectKey) => {
         return (

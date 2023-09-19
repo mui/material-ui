@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 import { createTheme } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
@@ -58,31 +59,48 @@ function DefaultTheme() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <FormControlLabel
-        sx={{ pb: 1 }}
-        control={
-          <Switch
-            checked={checked}
-            onChange={(event) => {
-              setChecked(event.target.checked);
-              setExpandPaths(event.target.checked ? allNodeIds : []);
-            }}
-          />
-        }
-        label={t('expandAll')}
-      />
-      <FormControlLabel
-        sx={{ pb: 1 }}
-        control={
-          <Switch
-            checked={darkTheme}
-            onChange={(event) => {
-              setDarkTheme(event.target.checked);
-            }}
-          />
-        }
-        label={t('useDarkTheme')}
-      />
+      <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
+        <FormControlLabel
+          label={t('expandAll')}
+          sx={{
+            m: 0,
+            flexDirection: 'row-reverse',
+            gap: 1,
+            fontFamily: 'IBM Plex Sans',
+            color: 'text.secondary',
+          }}
+          control={
+            <Switch
+              size="small"
+              checked={checked}
+              onChange={(event) => {
+                setChecked(event.target.checked);
+                setExpandPaths(event.target.checked ? allNodeIds : []);
+              }}
+            />
+          }
+        />
+        <Divider orientation="vertical" flexItem />
+        <FormControlLabel
+          label={t('useDarkTheme')}
+          sx={{
+            m: 0,
+            flexDirection: 'row-reverse',
+            gap: 1,
+            fontFamily: 'IBM Plex Sans',
+            color: 'text.secondary',
+          }}
+          control={
+            <Switch
+              size="small"
+              checked={darkTheme}
+              onChange={(event) => {
+                setDarkTheme(event.target.checked);
+              }}
+            />
+          }
+        />
+      </Box>
       <ThemeViewer data={data} expandPaths={expandPaths} />
     </Box>
   );
