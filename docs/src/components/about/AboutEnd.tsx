@@ -46,7 +46,7 @@ export default function AboutEnd() {
       <Box
         component="img"
         src="/static/branding/about/team-globe-distribution-light.png"
-        alt="Illustration of MUI's pricing page."
+        alt="A map illustration with pins loosely positioned where team members from MUI are located."
         loading="lazy"
         width="1100"
         sx={(theme) => ({
