@@ -60,7 +60,6 @@ const SvgIconRoot = styled('svg', {
       color: 'inherit',
     }),
     ...(ownerState.color !== 'inherit' &&
-      ownerState.color !== 'context' &&
       theme.vars.palette[ownerState.color!] && {
         color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
       }),
@@ -101,6 +100,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const hasSvgAsChild = React.isValidElement(children) && children.type === 'svg';
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     color,
     component,
