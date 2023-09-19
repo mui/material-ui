@@ -6,7 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import useSlot from '../utils/useSlot';
 import { TextareaTypeMap, TextareaProps, TextareaOwnerState } from './TextareaProps';
 import textareaClasses, { getTextareaUtilityClass } from './textareaClasses';
@@ -37,6 +37,8 @@ const TextareaRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TextareaOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
+  const hoverStyles = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
+  const disabledStyles = theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!];
   return [
     {
       '--Textarea-radius': theme.vars.radius.sm,
@@ -46,16 +48,11 @@ const TextareaRoot = styled('div', {
       '--Textarea-decoratorColor': theme.vars.palette.text.icon,
       '--Textarea-focused': '0',
       '--Textarea-focusedThickness': theme.vars.focus.thickness,
-      ...(ownerState.color === 'context'
-        ? {
-            '--Textarea-focusedHighlight': theme.vars.palette.focusVisible,
-          }
-        : {
-            '--Textarea-focusedHighlight':
-              theme.vars.palette[
-                ownerState.color === 'neutral' ? 'primary' : ownerState.color!
-              ]?.[500],
-          }),
+      '--Textarea-focusedHighlight':
+        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      '&:not([data-inverted-colors="false"])': {
+        '--Textarea-focusedHighlight': theme.vars.palette.focusVisible,
+      },
       ...(ownerState.size === 'sm' && {
         '--Textarea-minHeight': '2rem',
         '--Textarea-paddingBlock': 'calc(0.375rem - 0.5px - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
@@ -119,14 +116,16 @@ const TextareaRoot = styled('div', {
         boxShadow: `var(--Textarea-focusedInset, inset) 0 0 0 calc(var(--Textarea-focused) * var(--Textarea-focusedThickness)) var(--Textarea-focusedHighlight)`,
       },
     } as const,
+    getScopedGlobalVariantVars(variantStyle, ownerState.instanceColor),
+    getScopedGlobalVariantVars(hoverStyles, ownerState.instanceColor),
+    getScopedGlobalVariantVars(disabledStyles, ownerState.instanceColor),
     {
       '&:hover': {
-        ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        ...hoverStyles,
         backgroundColor: null, // it is not common to change background on hover for Textarea
         cursor: 'text',
       },
-      [`&.${textareaClasses.disabled}`]:
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      [`&.${textareaClasses.disabled}`]: disabledStyles,
       '&:focus-within::before': { '--Textarea-focused': '1' },
     },
   ];
@@ -252,10 +251,10 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const disabled = inProps.disabled ?? formControl?.disabled ?? disabledProp;
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     color,
     disabled,
