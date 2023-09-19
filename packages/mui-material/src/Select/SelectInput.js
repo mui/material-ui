@@ -549,6 +549,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         MenuListProps={{
           'aria-labelledby': labelId,
           role: 'listbox',
+          'aria-multiselectable': multiple ? 'true' : undefined,
           disableListWrap: true,
           ...MenuProps.MenuListProps,
         }}
