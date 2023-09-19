@@ -99,14 +99,14 @@ function ObjectEntryLabel(props: { objectKey: string; objectValue: any }) {
 
 const TreeItem = styled(MuiTreeItem)({
   [`&:focus > .${treeItemClasses.content}`]: {
-    backgroundColor: lighten('#333', 0.08),
-    outline: `2px dashed ${lighten('#333', 0.3)}`,
+    backgroundColor: lighten('#003A75', 0.05), // primary[900]
+    outline: `2px dashed ${lighten('#003A75', 0.3)}`, // primary[900]
   },
   [`& .${treeItemClasses.content}`]: {
     padding: 4,
     borderRadius: '12px',
     '&:hover': {
-      backgroundColor: '#101418', // primaryDark[900]
+      backgroundColor: lighten('#101418', 0.1), // primaryDark[900]
     },
     [`& .${treeItemClasses.label}`]: {
       fontFamily: 'Menlo',

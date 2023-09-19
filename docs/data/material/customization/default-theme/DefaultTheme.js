@@ -66,8 +66,10 @@ function DefaultTheme() {
             m: 0,
             flexDirection: 'row-reverse',
             gap: 1,
-            fontFamily: 'IBM Plex Sans',
-            color: 'text.secondary',
+            '&.MuiFormControlLabel-root': {
+              fontFamily: 'IBM Plex Sans',
+              color: 'text.secondary',
+            },
           }}
           control={
             <Switch
