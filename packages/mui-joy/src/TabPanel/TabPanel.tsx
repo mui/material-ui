@@ -7,7 +7,7 @@ import { OverridableComponent } from '@mui/types';
 import { useTabPanel } from '@mui/base/useTabPanel';
 import { useTabsContext } from '@mui/base/Tabs';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { TabPanelOwnerState, TabPanelTypeMap } from './TabPanelProps';
@@ -42,6 +42,10 @@ const TabPanelRoot = styled('div', {
   fontFamily: theme.vars.fontFamily.body,
   ...theme.typography[`body-${ownerState.size!}`],
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+  ...getScopedGlobalVariantVars(
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    ownerState.instanceColor,
+  ),
 }));
 /**
  *
@@ -66,7 +70,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     children,
     value = 0,
     component,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'plain',
     size: sizeProp,
     slots = {},
@@ -78,10 +82,9 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   const { hidden, getRootProps } = useTabPanel({ ...props, value });
 
   const size = sizeProp ?? tabsSize;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     orientation,
     hidden,
