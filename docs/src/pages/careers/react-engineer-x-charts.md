@@ -1,6 +1,6 @@
 # React Engineer - xCharts
 
-<p class="description">You will help form the Charts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
+<p class="description">You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
 
 ## Details of the Role
 
