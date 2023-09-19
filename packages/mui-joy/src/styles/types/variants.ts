@@ -64,13 +64,3 @@ export interface VariantPlainInversion extends Record<ColorPaletteProp, CSSObjec
 export interface VariantOutlinedInversion extends Record<ColorPaletteProp, CSSObject> {}
 export interface VariantSoftInversion extends Record<ColorPaletteProp, CSSObject> {}
 export interface VariantSolidInversion extends Record<ColorPaletteProp, CSSObject> {}
-
-export interface ColorInversion {
-  plain?: VariantPlainInversion;
-  outlined?: VariantOutlinedInversion;
-  soft: VariantSoftInversion;
-  solid: VariantSolidInversion;
-}
-
-export interface ColorInversionConfig
-  extends Partial<Record<VariantProp, Array<VariantProp> | undefined>> {}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider, applySolidInversion } from '@mui/joy/styles';
+import { CssVarsProvider, applySoftInversion, applySolidInversion } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 import Box from '@mui/joy/Box';
 import CssBaseline from '@mui/joy/CssBaseline';
@@ -49,7 +49,7 @@ export default function JoyToggleButton() {
             <BookmarkOutlinedIcon />
           </IconButton>
           <Typography level="h3">Learn how to build super fast websites.</Typography>
-          <Button variant="solid" endDecorator={<KeyboardArrowRightIcon />}>
+          <Button variant="solid" color="success" endDecorator={<KeyboardArrowRightIcon />}>
             Read more
           </Button>
         </Card>
@@ -58,12 +58,13 @@ export default function JoyToggleButton() {
           sx={(theme) => ({
             display: 'flex',
             flexDirection: 'column',
+            position: 'relative',
             p: 2,
             gap: 2,
             maxWidth: 300,
             boxShadow: 'md',
             ...theme.variants.soft.primary,
-            '& *': applySolidInversion('primary')(theme),
+            '& *': applySoftInversion('primary')(theme),
           })}
         >
           <Chip size="sm" variant="soft" sx={{ alignSelf: 'flex-start', borderRadius: 'xl' }}>
