@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import useSlot from '../utils/useSlot';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import { RadioOwnerState, RadioTypeMap } from './RadioProps';
@@ -103,6 +103,22 @@ const RadioRoot = styled('span', {
             ownerState.orientation === 'horizontal' ? undefined : 'var(--RadioGroup-gap)',
         }),
     } as const,
+    getScopedGlobalVariantVars(
+      theme.variants[ownerState.variant!]?.[ownerState.color!],
+      ownerState.instanceColor,
+    ),
+    getScopedGlobalVariantVars(
+      theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      ownerState.instanceColor,
+    ),
+    getScopedGlobalVariantVars(
+      theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      ownerState.instanceColor,
+    ),
+    getScopedGlobalVariantVars(
+      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      ownerState.instanceColor,
+    ),
   ];
 });
 
@@ -270,7 +286,6 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
 
   const formControl = React.useContext(FormControlContext);
 
@@ -315,9 +330,10 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(useRadioProps);
 
-  const color = getColor(inProps.color, checked ? activeColor : inactiveColor);
+  const color = inProps.color ?? (checked ? activeColor : inactiveColor);
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     checked,
     disabled,

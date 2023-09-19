@@ -171,17 +171,18 @@ export const getScopedGlobalVariantVars = (
   variantStyle: Record<string, any>,
   instanceColor: ColorPaletteProp | undefined,
 ) => {
-  const scopedVariables: Record<string, string> = {};
-  if (instanceColor) {
-    (Object.values(variantStyle) as Array<any>).forEach((value) => {
-      if (typeof value === 'string' && value.startsWith('var')) {
-        const { groups } = value.match(/^var\((?<variantVar>[^,]*),\s*(?<tokenValue>.*)\)$/) || {};
-        if (groups) {
-          scopedVariables[groups.variantVar] = `${groups.tokenValue} !important`;
-        }
-      }
-    });
+  if (!instanceColor) {
+    return undefined;
   }
+  const scopedVariables: Record<string, string> = {};
+  (Object.values(variantStyle) as Array<any>).forEach((value) => {
+    if (typeof value === 'string' && value.startsWith('var')) {
+      const { groups } = value.match(/^var\((?<variantVar>[^,]*),\s*(?<tokenValue>.*)\)$/) || {};
+      if (groups) {
+        scopedVariables[groups.variantVar] = `${groups.tokenValue} !important`;
+      }
+    }
+  });
   // wrapped variables inside a selector so that it is possible to manually enable color inversion.
   return { '&[data-inverted-colors="false"]': scopedVariables };
 };
