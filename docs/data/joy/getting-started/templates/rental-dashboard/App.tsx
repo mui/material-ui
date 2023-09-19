@@ -43,9 +43,8 @@ export default function RentalDashboard() {
                 pb: 5,
               }}
             >
-              <Stack spacing={2}>
+              <Stack spacing={3}>
                 <HeaderSection />
-                <Divider />
                 <Box
                   sx={{
                     width: '100%',
