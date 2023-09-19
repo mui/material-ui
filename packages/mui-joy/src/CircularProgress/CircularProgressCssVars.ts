@@ -1,30 +1,17 @@
-const cssVarsConsts = {
-  thickness: 'thickness',
-  trackThickness: 'trackThickness',
-  progressThickness: 'progressThickness',
-  trackColor: 'trackColor',
-  progressColor: 'progressColor',
-  percent: 'percent',
-  linecap: 'linecap',
-  size: 'size',
-  margin: 'margin',
-  circulation: 'circulation',
+const cssVars = {
+  thickness: '--CircularProgress-thickness',
+  trackThickness: '--CircularProgress-trackThickness',
+  progressThickness: '--CircularProgress-progressThickness',
+  trackColor: '--CircularProgress-trackColor',
+  progressColor: '--CircularProgress-progressColor',
+  percent: '--CircularProgress-percent',
+  linecap: '--CircularProgress-linecap',
+  size: '--CircularProgress-size',
+  margin: '--CircularProgress-margin',
+  circulation: '--CircularProgress-circulation',
 } as const;
 
-function getCssVars() {
-  return Object.entries(cssVarsConsts).reduce((acc, [key, value]) => {
-    return {
-      ...acc,
-      [key]: `--CircularProgress-${value}`,
-    };
-  }, {}) as {
-    [key in keyof typeof cssVarsConsts]: `--CircularProgress-${(typeof cssVarsConsts)[key]}`;
-  };
-}
-
-const cssVars = getCssVars();
-
-type Keys = keyof typeof cssVarsConsts extends infer Key
+type Keys = keyof typeof cssVars extends infer Key
   ? Key extends string
     ? `--CircularProgress-${Key}`
     : never
