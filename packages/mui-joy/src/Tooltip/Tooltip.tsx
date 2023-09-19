@@ -9,6 +9,8 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
   unstable_useId as useId,
+  unstable_useTimeout as useTimeout,
+  unstable_Timeout as Timeout,
 } from '@mui/utils';
 import { Popper, unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
@@ -157,14 +159,12 @@ const TooltipArrow = styled('span', {
 });
 
 let hystersisOpen = false;
-let hystersisTimer: ReturnType<typeof setTimeout> | null = null;
+let hystersisTimer = new Timeout();
 let cursorPosition = { x: 0, y: 0 };
 
 export function testReset() {
   hystersisOpen = false;
-  if (hystersisTimer) {
-    clearTimeout(hystersisTimer);
-  }
+  hystersisTimer.clear();
 }
 
 function composeMouseEventHandler(
@@ -248,14 +248,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const disableInteractive = disableInteractiveProp || followCursor;
 
-  const closeTimer: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> =
-    React.useRef();
-  const enterTimer: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> =
-    React.useRef();
-  const leaveTimer: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> =
-    React.useRef();
-  const touchTimer: React.MutableRefObject<ReturnType<typeof setTimeout> | undefined> =
-    React.useRef();
+  const closeTimer = useTimeout();
+  const enterTimer = useTimeout();
+  const leaveTimer = useTimeout();
+  const touchTimer = useTimeout();
 
   const [openState, setOpenState] = useControlled({
     controlled: openProp,
@@ -269,28 +265,19 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const id = useId(idProp);
 
   const prevUserSelect: React.MutableRefObject<string | undefined> = React.useRef();
-  const stopTouchInteraction = React.useCallback(() => {
+  const stopTouchInteraction = useEventCallback(() => {
     if (prevUserSelect.current !== undefined) {
       (document.body.style as unknown as { WebkitUserSelect?: string }).WebkitUserSelect =
         prevUserSelect.current;
       prevUserSelect.current = undefined;
     }
-    clearTimeout(touchTimer.current);
-  }, []);
+    touchTimer.clear();
+  });
 
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(closeTimer.current);
-      clearTimeout(enterTimer.current);
-      clearTimeout(leaveTimer.current);
-      stopTouchInteraction();
-    };
-  }, [stopTouchInteraction]);
+  React.useEffect(() => stopTouchInteraction, [stopTouchInteraction]);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
-    if (hystersisTimer) {
-      clearTimeout(hystersisTimer);
-    }
+    hystersisTimer.clear();
     hystersisOpen = true;
 
     // The mouseover event will trigger for every nested element in the tooltip.
@@ -304,22 +291,18 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const handleClose = useEventCallback((event: React.SyntheticEvent | Event) => {
-    if (hystersisTimer) {
-      clearTimeout(hystersisTimer);
-    }
-    hystersisTimer = setTimeout(() => {
+    hystersisTimer.start(800 + leaveDelay, () => {
       hystersisOpen = false;
-    }, 800 + leaveDelay);
+    });
     setOpenState(false);
 
     if (onClose && open) {
       onClose(event);
     }
 
-    clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => {
+    closeTimer.start(150, () => {
       ignoreNonTouchEvents.current = false;
-    }, 150);
+    });
   });
 
   const handleEnter = (event: React.MouseEvent<HTMLElement>) => {
@@ -334,14 +317,14 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       (childNode as HTMLElement).removeAttribute('title');
     }
 
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
+    enterTimer.clear();
+    leaveTimer.clear();
     if (enterDelay || (hystersisOpen && enterNextDelay)) {
-      enterTimer.current = setTimeout(
+      enterTimer.start(
+        hystersisOpen ? enterNextDelay : enterDelay,
         () => {
           handleOpen(event);
         },
-        hystersisOpen ? enterNextDelay : enterDelay,
       );
     } else {
       handleOpen(event);
@@ -349,11 +332,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const handleLeave = (event: React.MouseEvent<HTMLElement>) => {
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
-    leaveTimer.current = setTimeout(() => {
+    enterTimer.clear();
+    leaveTimer.start(leaveDelay, () => {
       handleClose(event);
-    }, leaveDelay);
+    });
   };
 
   const {
@@ -402,8 +384,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const handleTouchStart = (event: React.TouchEvent<HTMLElement>) => {
     detectTouchStart(event);
-    clearTimeout(leaveTimer.current);
-    clearTimeout(closeTimer.current);
+    leaveTimer.clear();
+    closeTimer.clear();
     stopTouchInteraction();
 
     prevUserSelect.current = (
@@ -412,11 +394,11 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     // Prevent iOS text selection on long-tap.
     (document.body.style as unknown as { WebkitUserSelect?: string }).WebkitUserSelect = 'none';
 
-    touchTimer.current = setTimeout(() => {
+    touchTimer.start(enterTouchDelay, () => {
       (document.body.style as unknown as { WebkitUserSelect?: string }).WebkitUserSelect =
         prevUserSelect.current;
       handleEnter(event as unknown as React.MouseEvent<HTMLElement>);
-    }, enterTouchDelay);
+    });
   };
 
   const handleTouchEnd = (event: React.TouchEvent<HTMLElement>) => {
@@ -425,10 +407,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
 
     stopTouchInteraction();
-    clearTimeout(leaveTimer.current);
-    leaveTimer.current = setTimeout(() => {
+    leaveTimer.start(leaveTouchDelay, () => {
       handleClose(event);
-    }, leaveTouchDelay);
+    });
   };
 
   React.useEffect(() => {
