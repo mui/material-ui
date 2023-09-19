@@ -104,7 +104,7 @@ const TreeItem = styled(MuiTreeItem)({
   },
   [`& .${treeItemClasses.content}`]: {
     padding: 4,
-    borderRadius: 4,
+    borderRadius: '12px',
     '&:hover': {
       backgroundColor: '#101418',
     },
