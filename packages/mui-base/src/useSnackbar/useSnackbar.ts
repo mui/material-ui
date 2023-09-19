@@ -1,6 +1,9 @@
 'use client';
 import * as React from 'react';
-import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
+import {
+  unstable_useEventCallback as useEventCallback,
+  unstable_useTimeout as useTimeout,
+} from '@mui/utils';
 import {
   UseSnackbarParameters,
   SnackbarCloseReason,
@@ -29,7 +32,7 @@ export function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbar
     resumeHideDuration,
   } = parameters;
 
-  const timerAutoHide = React.useRef<ReturnType<typeof setTimeout>>();
+  const timerAutoHide = useTimeout();
 
   React.useEffect(() => {
     if (!open) {
@@ -65,20 +68,15 @@ export function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbar
       return;
     }
 
-    clearTimeout(timerAutoHide.current);
-    timerAutoHide.current = setTimeout(() => {
+    timerAutoHide.start(autoHideDurationParam, () => {
       handleClose(null, 'timeout');
-    }, autoHideDurationParam);
+    });
   });
 
   React.useEffect(() => {
     if (open) {
       setAutoHideTimer(autoHideDuration);
     }
-
-    return () => {
-      clearTimeout(timerAutoHide.current);
-    };
   }, [open, autoHideDuration, setAutoHideTimer]);
 
   const handleClickAway = (event: React.SyntheticEvent<any> | Event) => {
@@ -88,7 +86,7 @@ export function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbar
   // Pause the timer when the user is interacting with the Snackbar
   // or when the user hide the window.
   const handlePause = () => {
-    clearTimeout(timerAutoHide.current);
+    timerAutoHide.clear();
   };
 
   // Restart the timer when the user is no longer interacting with the Snackbar

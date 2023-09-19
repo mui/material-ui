@@ -9,7 +9,7 @@ const UNINITIALIZED = {};
  * @usage
  *   const ref = useLazyRef(sortColumns, columns)
  */
-export function useLazyRef<T, U>(init: (arg?: U) => T, initArg?: U) {
+export default function useLazyRef<T, U>(init: (arg?: U) => T, initArg?: U) {
   const ref = React.useRef(UNINITIALIZED as unknown as T);
 
   if (ref.current === UNINITIALIZED) {

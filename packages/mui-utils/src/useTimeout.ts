@@ -1,5 +1,5 @@
-import { useLazyRef } from './useLazyRef';
-import { useOnMount } from './useOnMount';
+import useLazyRef from './useLazyRef';
+import useOnMount from './useOnMount';
 
 class Timeout {
   static create() {
@@ -31,7 +31,7 @@ class Timeout {
   };
 }
 
-export function useTimeout() {
+export default function useTimeout() {
   const timeout = useLazyRef(Timeout.create).current;
 
   useOnMount(timeout.disposeEffect);
