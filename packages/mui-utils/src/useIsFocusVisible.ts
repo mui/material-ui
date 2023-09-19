@@ -5,7 +5,7 @@ import { Timeout } from './useTimeout';
 
 let hadKeyboardEvent = true;
 let hadFocusVisibleRecently = false;
-let hadFocusVisibleRecentlyTimeout = new Timeout();
+const hadFocusVisibleRecentlyTimeout = new Timeout();
 
 const inputTypesWhitelist: Record<string, boolean> = {
   text: true,

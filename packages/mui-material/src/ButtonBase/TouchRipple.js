@@ -258,7 +258,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
         startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
       }
     },
-    [centerProp, startCommit],
+    [centerProp, startCommit, startTimer],
   );
 
   const pulsate = React.useCallback(() => {
@@ -288,7 +288,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
       return oldRipples;
     });
     rippleCallback.current = cb;
-  }, []);
+  }, [startTimer]);
 
   React.useImperativeHandle(
     ref,
