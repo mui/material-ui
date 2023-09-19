@@ -101,9 +101,6 @@ function Styles() {
         color: ${isDarkMode ? grey[300] : grey[900]};
         position: relative;
         box-shadow: 0px 2px 24px ${isDarkMode ? cyan[800] : cyan[100]};
-
-
-
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 120ms;
@@ -118,7 +115,6 @@ function Styles() {
           outline: 3px solid ${isDarkMode ? cyan[500] : cyan[200]};
         }
 
-        
         & > svg {
           font-size: 1rem;
           position: absolute;

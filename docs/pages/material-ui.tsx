@@ -7,6 +7,8 @@ import MaterialHero from 'docs/src/components/productMaterial/MaterialHero';
 import MaterialComponents from 'docs/src/components/productMaterial/MaterialComponents';
 import MaterialTheming from 'docs/src/components/productMaterial/MaterialTheming';
 import MaterialStyling from 'docs/src/components/productMaterial/MaterialStyling';
+import MaterialTemplates from 'docs/src/components/productMaterial/MaterialTemplates';
+import MaterialDesignKits from 'docs/src/components/productMaterial/MaterialDesignKits';
 import CoreHeroEnd from 'docs/src/components/productCore/CoreHeroEnd';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -31,6 +33,10 @@ export default function Core() {
         <MaterialTheming />
         <Divider />
         <MaterialStyling />
+        <Divider />
+        <MaterialTemplates />
+        <Divider />
+        <MaterialDesignKits />
         <Divider />
         <CoreHeroEnd />
         <Divider />

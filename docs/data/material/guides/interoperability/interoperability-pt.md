@@ -290,7 +290,8 @@ export default function GlobalCssSliderDeep() {
 
 ### Alterar o motor de estilo padrão
 
-By default, MUI components come with Emotion as their style engine. If, however, you would like to use `styled-components`, you can configure your app by following the [styled engine guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components) or starting with one of the example projects:
+By default, Material UI components come with Emotion as their style engine. 
+If, however, you would like to use styled-components, you can configure your app by following the [styled-components guide](/material-ui/guides/styled-components/) or starting with one of the example projects:
 
 <!-- #default-branch-switch -->
 
@@ -367,7 +368,7 @@ export default function StyledComponentsDeep2() {
 Você é encorajado a compartilhar o mesmo objeto de tema entre Material-UI e o resto de seu projeto.
 
 :::warning
-⚠️ If you are **already** using a custom theme with styled-components or emotion, it might not be compatible with MUI's theme specification. If it's not compatible, you need to render MUI's ThemeProvider <b>first</b>. This will ensure the theme structures are isolated. This is ideal for the progressive adoption of MUI's components in the codebase.
+If you are **already** using a custom theme with styled-components or emotion, it might not be compatible with MUI's theme specification. If it's not compatible, you need to render MUI's ThemeProvider <b>first</b>. This will ensure the theme structures are isolated. This is ideal for the progressive adoption of MUI's components in the codebase.
 :::
 
 You are encouraged to share the same theme object between MUI and the rest of your project.
@@ -857,10 +858,10 @@ There is [an ESLint plugin](https://docs.tss-react.dev/detecting-unused-classes)
 :::
 
 :::warning
-⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly, it's a peer dependency of `@mui/material`.
+**Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly, it's a peer dependency of `@mui/material`.
 :::
 
 :::warning
-For [Storybook](https://storybook.js.org): At the time of this writing, Storybook still uses Emotion 10 by default.  
+For [Storybook](https://storybook.js.org): At the time of this writing, Storybook still uses Emotion 10 by default.
 Material UI and TSS use Emotion 11, so you must make [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32) to `.storybook/main.js` in order to use Storybook with Material UI.
 :::

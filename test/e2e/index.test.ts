@@ -9,9 +9,11 @@ import type {
 } from '@testing-library/dom';
 import '../utils/initPlaywrightMatchers';
 
-function sleep(timeoutMS: number): Promise<void> {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(), timeoutMS);
+function sleep(duration: number): Promise<void> {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, duration);
   });
 }
 
@@ -171,6 +173,26 @@ describe('e2e', () => {
       await expect(screen.getByText('inside focusable')).toHaveFocus();
       await page.keyboard.press('Tab');
       await expect(screen.getByText('final tab target')).toHaveFocus();
+    });
+
+    it('should not trap focus when clicking outside when disableEnforceFocus is set', async () => {
+      await renderFixture('FocusTrap/DisableEnforceFocusFocusTrap');
+
+      // initial focus is on the button outside of the trap focus
+      await expect(screen.getByTestId('initial-focus')).toHaveFocus();
+
+      // focus the button inside the trap focus
+      await page.keyboard.press('Tab');
+      await expect(screen.getByTestId('inside-trap-focus')).toHaveFocus();
+
+      // the focus is now trapped inside
+      await page.keyboard.press('Tab');
+      await expect(screen.getByTestId('inside-trap-focus')).toHaveFocus();
+
+      const initialFocus = (await screen.getByTestId('initial-focus'))!;
+      await initialFocus.click();
+
+      await expect(screen.getByTestId('initial-focus')).toHaveFocus();
     });
   });
 

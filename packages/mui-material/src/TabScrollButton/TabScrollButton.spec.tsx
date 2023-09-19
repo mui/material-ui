@@ -29,3 +29,6 @@ function SampleIcon() {
     }),
   }}
 />;
+
+// Test that ButtonBase props should be available
+<TabScrollButton direction="left" orientation="horizontal" centerRipple />;

@@ -53,7 +53,7 @@ NextLinkComposed.propTypes = {
 };
 
 // A styled version of the Next.js Link component:
-// https://nextjs.org/docs/api-reference/next/link
+// https://nextjs.org/docs/pages/api-reference/components/link
 const Link = React.forwardRef(function Link(props, ref) {
   const {
     activeClassName = 'active',
