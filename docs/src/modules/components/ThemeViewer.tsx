@@ -106,7 +106,7 @@ const TreeItem = styled(MuiTreeItem)({
     padding: 4,
     borderRadius: '12px',
     '&:hover': {
-      backgroundColor: '#101418',
+      backgroundColor: '#101418', // primaryDark[900]
     },
     [`& .${treeItemClasses.label}`]: {
       fontFamily: 'Menlo',
@@ -205,7 +205,7 @@ export default function ThemeViewer({
         color: '#FFF',
         p: 1.5,
         bgcolor: '#0F1924', // one-off code container color
-        borderRadius: 2,
+        borderRadius: 4,
         border: '1px solid',
         borderColor: '#1F262E', // primaryDark[700]
       }}
