@@ -39,7 +39,7 @@ export interface SliderOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
-  color?: OverridableStringUnion<'primary' | 'secondary', SliderPropsColorOverrides>;
+  color?: OverridableStringUnion<'primary' | 'secondary' | string, SliderPropsColorOverrides>;
   /**
    * The components used for each slot inside.
    *
