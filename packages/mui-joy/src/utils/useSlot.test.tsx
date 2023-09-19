@@ -2,10 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
 import { Popper } from '@mui/base/Popper';
-import { ColorPaletteProp, styled, VariantProp } from '../styles';
-import { CreateSlotsAndSlotProps, SlotProps } from './types';
+import { styled } from '../styles';
+import { SlotProps } from './types';
 import useSlot from './useSlot';
-import { ApplyColorInversion } from '../styles/types';
 
 describe('useSlot', () => {
   const { render } = createRenderer();
