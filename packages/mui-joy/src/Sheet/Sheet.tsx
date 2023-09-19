@@ -6,12 +6,12 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { getPath } from '@mui/system';
-import { useThemeProps } from '../styles';
+import { applySoftInversion, applySolidInversion, useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
+import { getScopedGlobalVariantVars } from '../styles/variantUtils';
 import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
-import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: SheetOwnerState) => {
@@ -72,11 +72,22 @@ export const SheetRoot = styled('div', {
     } as const,
     {
       ...theme.typography['body-md'],
+      ...(ownerState.variant === 'solid' &&
+        ownerState.color &&
+        ownerState.invertedColors && {
+          '& *': applySolidInversion(ownerState.color)(theme),
+        }),
+      ...(ownerState.variant === 'soft' &&
+        ownerState.color &&
+        ownerState.invertedColors && {
+          '& *': applySoftInversion(ownerState.color)(theme),
+        }),
+      ...getScopedGlobalVariantVars(
+        theme.variants[ownerState.variant!]?.[ownerState.color!],
+        ownerState.instanceColor,
+      ),
       ...variantStyle,
     },
-    ownerState.color !== 'context' &&
-      ownerState.invertedColors &&
-      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 /**
@@ -97,7 +108,7 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
 
   const {
     className,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     component = 'div',
     variant = 'plain',
     invertedColors = false,
@@ -105,10 +116,9 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     color,
     component,
@@ -127,12 +137,7 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     ownerState,
   });
 
-  const result = <SlotRoot {...rootProps} />;
-
-  if (invertedColors) {
-    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
-  }
-  return result;
+  return <SlotRoot {...rootProps} />;
 }) as OverridableComponent<SheetTypeMap>;
 
 Sheet.propTypes /* remove-proptypes */ = {
