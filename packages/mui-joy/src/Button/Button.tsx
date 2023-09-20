@@ -108,7 +108,7 @@ export const getButtonStyles = ({
         '--Button-gap': '0.375rem',
         minHeight: 'var(--Button-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
-        paddingBlock: '2px',
+        paddingBlock: '0.25rem',
         paddingInline: '0.75rem',
       }),
       ...(ownerState.size === 'md' && {
@@ -118,7 +118,7 @@ export const getButtonStyles = ({
         '--Button-gap': '0.5rem',
         minHeight: 'var(--Button-minHeight, 2.25rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
-        paddingBlock: '0.25rem', // the padding-block act as a minimum spacing between content and root element
+        paddingBlock: '0.375rem', // the padding-block act as a minimum spacing between content and root element
         paddingInline: '1rem',
       }),
       ...(ownerState.size === 'lg' && {
@@ -128,7 +128,7 @@ export const getButtonStyles = ({
         '--Button-gap': '0.75rem',
         minHeight: 'var(--Button-minHeight, 2.75rem)',
         fontSize: theme.vars.fontSize.md,
-        paddingBlock: '0.375rem',
+        paddingBlock: '0.5rem',
         paddingInline: '1.5rem',
       }),
       WebkitTapHighlightColor: 'transparent',
