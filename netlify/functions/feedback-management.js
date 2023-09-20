@@ -54,6 +54,7 @@ const awsLambdaReceiver = new AwsLambdaReceiver({
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   receiver: awsLambdaReceiver,
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
 });
 
 // Define slack actions to answer
@@ -185,16 +186,17 @@ exports.handler = async (event, context, callback) => {
       ].join('\n\n');
 
       const githubNewIssueParams = new URLSearchParams({
-        title: encodeURIComponent('[ ] Docs feedback'),
-        body: encodeURIComponent(`Feedback received:
+        title: '[ ] Docs feedback',
+        body: `Feedback received:
 ${comment}
 
 from ${commmentSectionURL}
-`),
+`,
       });
 
       await app.client.chat.postMessage({
         channel: getSlackChannelId(currentLocationURL, { isDesignFeedback }),
+        text: simpleSlackMessage, // Fallback for notification
         blocks: [
           {
             type: 'section',
@@ -203,7 +205,6 @@ from ${commmentSectionURL}
               text: simpleSlackMessage,
             },
           },
-
           {
             type: 'actions',
             elements: [
