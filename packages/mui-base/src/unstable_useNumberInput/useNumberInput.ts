@@ -1,7 +1,11 @@
 'use client';
 import * as React from 'react';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
+import {
+  unstable_useForkRef as useForkRef,
+  unstable_useId as useId,
+  unstable_useControlled as useControlled,
+} from '@mui/utils';
 import { FormControlState, useFormControlContext } from '../FormControl';
 import {
   UseNumberInputParameters,
@@ -81,7 +85,12 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
   const [focused, setFocused] = React.useState(false);
 
   // the "final" value
-  const [value, setValue] = React.useState(valueProp ?? defaultValueProp);
+  const [value, setValue] = useControlled({
+    controlled: valueProp,
+    default: defaultValueProp,
+    name: 'NumberInput',
+  });
+
   // the (potentially) dirty or invalid input value
   const [dirtyValue, setDirtyValue] = React.useState<string | undefined>(
     value ? String(value) : undefined,
