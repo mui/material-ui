@@ -3,6 +3,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import Typography, { typographyClasses as classes } from '@mui/material/Typography';
+import sinon from 'sinon';
 
 describe('<Typography />', () => {
   const { render } = createRenderer();
@@ -112,6 +113,21 @@ describe('<Typography />', () => {
     });
   });
 
+  describe('prop: color', () => {
+    it('should check for invalid color value', () => {
+      const consoleErrorStub = sinon.stub(console, 'error');
+
+      render(
+        <Typography variant="h6" color="background">
+          Hello
+        </Typography>,
+      );
+
+      sinon.assert.called(consoleErrorStub);
+      consoleErrorStub.restore();
+    });
+  });
+
   it('combines system properties with the sx prop', () => {
     const { container } = render(<Typography mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
 
@@ -121,14 +137,5 @@ describe('<Typography />', () => {
       marginRight: '40px',
       marginBottom: '16px',
     });
-  });
-
-  it('should check for invalid color value', () => {
-    const { container, debug } = render(
-      <Typography variant="h6" color="background">
-        Hello
-      </Typography>,
-    );
-    debug(container);
   });
 });
