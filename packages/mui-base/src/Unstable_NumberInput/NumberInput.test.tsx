@@ -428,4 +428,22 @@ describe('<NumberInput />', () => {
       expect(document.activeElement).to.equal(document.body);
     });
   });
+
+  describe('prop: startAdornment, prop: endAdornment', () => {
+    it('should render adornment before input', () => {
+      const { getByTestId } = render(
+        <NumberInput startAdornment={<span data-testid="adornment">$</span>} />,
+      );
+
+      expect(getByTestId('adornment')).not.to.equal(null);
+    });
+
+    it('should render adornment after input', () => {
+      const { getByTestId } = render(
+        <NumberInput endAdornment={<span data-testid="adornment">$</span>} />,
+      );
+
+      expect(getByTestId('adornment')).not.to.equal(null);
+    });
+  });
 });

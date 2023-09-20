@@ -193,7 +193,7 @@ import { getInitColorSchemeScript } from '@mui/material/styles';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html data-color-scheme="light">
         <Head>...</Head>
         <body>
           {getInitColorSchemeScript()}

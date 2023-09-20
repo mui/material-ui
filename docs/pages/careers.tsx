@@ -346,7 +346,7 @@ function CareersContent() {
                 'Autonomy. We want to create a safe, high-trust team.',
               ].map((text) => (
                 <Box key={text} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-                  <IconImage name="yes" />
+                  <IconImage name="pricing/yes" />
                   <Typography variant="body2" color="text.primary" fontWeight={600} sx={{ ml: 1 }}>
                     {text}
                   </Typography>
@@ -381,7 +381,7 @@ function CareersContent() {
               ['Time off:', 'We provide 33 days of paid time off globally.'],
             ].map((textArray) => (
               <Box key={textArray[0]} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-                <IconImage name="yes" />
+                <IconImage name="pricing/yes" />
                 <Typography variant="body2" color="text.primary" sx={{ ml: 1 }}>
                   <span style={{ fontWeight: 600 }}>{`${textArray[0]}  `}</span>
                   {textArray[1]}
