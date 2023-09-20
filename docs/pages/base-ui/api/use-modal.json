@@ -46,7 +46,10 @@
       "type": { "name": "React.KeyboardEventHandler", "description": "React.KeyboardEventHandler" }
     },
     "onTransitionEnter": { "type": { "name": "() =&gt; void", "description": "() =&gt; void" } },
-    "onTransitionExited": { "type": { "name": "() =&gt; void", "description": "() =&gt; void" } }
+    "onTransitionExited": { "type": { "name": "() =&gt; void", "description": "() =&gt; void" } },
+    "scrollLockContainer": {
+      "type": { "name": "HTMLElement | undefined", "description": "HTMLElement | undefined" }
+    }
   },
   "returnValue": {
     "exited": { "type": { "name": "boolean", "description": "boolean" }, "required": true },

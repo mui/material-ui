@@ -17,7 +17,10 @@
     },
     "onTransitionEnter": { "description": "A function called when a transition enters." },
     "onTransitionExited": { "description": "A function called when a transition has exited." },
-    "open": { "description": "If <code>true</code>, the component is shown." }
+    "open": { "description": "If <code>true</code>, the component is shown." },
+    "scrollLockContainer": {
+      "description": "An HTML element. The <code>scrollLockContainer</code> will have scroll lock styles applied to it.<br>By default, it uses the the body of the top-level document object, so it&#39;s simply <code>document.body</code> most of the time."
+    }
   },
   "returnValueDescriptions": {
     "exited": {

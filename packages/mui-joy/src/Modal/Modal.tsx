@@ -275,13 +275,7 @@ Modal.propTypes /* remove-proptypes */ = {
    * By default, it uses the the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  scrollLockContainer: function (props, propName) {
-    if (props[propName] == null) {
-      return null;
-    } else if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
-      return new Error("Expected prop '" + propName + "' to be of type Element");
-    }
-  },
+  scrollLockContainer: HTMLElementType,
   /**
    * The props used for each slot inside.
    * @default {}

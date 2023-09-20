@@ -50,6 +50,7 @@
     },
     "onTransitionEnter": { "type": { "name": "func" } },
     "onTransitionExited": { "type": { "name": "func" } },
+    "scrollLockContainer": { "type": { "name": "custom", "description": "HTML element" } },
     "slotProps": {
       "type": {
         "name": "shape",
