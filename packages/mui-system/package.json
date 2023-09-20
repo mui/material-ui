@@ -59,7 +59,7 @@
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.21",
     "@types/sinon": "^10.0.16",
-    "@types/styled-components": "^5.1.26",
+    "@types/styled-components": "^5.1.27",
     "chai": "^4.3.8",
     "fast-glob": "^3.3.1",
     "lodash": "^4.17.21",
