@@ -193,6 +193,8 @@ export function ThemeProvider(props) {
   }, [direction]);
 
   useEnhancedEffect(() => {
+    document.documentElement.dataset.muiColorScheme = paletteMode;
+
     // To support light and dark mode images in the docs
     if (paletteMode === 'dark') {
       document.body.classList.remove('mode-light');
@@ -201,8 +203,7 @@ export function ThemeProvider(props) {
       document.body.classList.remove('mode-dark');
       document.body.classList.add('mode-light');
     }
-
-    document.documentElement.dataset.muiColorScheme = paletteMode;
+  
     const metas = document.querySelectorAll('meta[name="theme-color"]');
     metas.forEach((meta) => {
       meta.setAttribute('content', getMetaThemeColor(paletteMode));
