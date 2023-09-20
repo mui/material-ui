@@ -19,12 +19,7 @@
         "describedArgs": ["event", "reason"]
       }
     },
-    "scrollLockContainer": {
-      "type": {
-        "name": "custom",
-        "description": "function (props, propName) {\n  if (props[propName] == null) {\n    return null;\n  } else if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {\n    return new Error(\"Expected prop '\" + propName + \"' to be of type Element\");\n  }\n}"
-      }
-    },
+    "scrollLockContainer": { "type": { "name": "custom", "description": "HTML element" } },
     "slotProps": {
       "type": {
         "name": "shape",
