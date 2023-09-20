@@ -142,7 +142,7 @@ describe('<Modal />', () => {
     );
 
     expect(scrollLockContainer.style.overflow).to.equal('hidden');
-    expect(parseInt(scrollLockContainer.style.paddingRight) > 344).to.be.true;
+    expect(parseInt(scrollLockContainer.style.paddingRight, 10) > 344).to.equal(true);
     setProps({ open: false });
     expect(scrollLockContainer.style.overflow).to.equal('');
     expect(scrollLockContainer.style.paddingRight).to.equal('344px');

@@ -247,14 +247,6 @@ Modal.propTypes /* remove-proptypes */ = {
    */
   disableScrollLock: PropTypes.bool,
   /**
-   * An HTML element.
-   * The `scrollLockContainer` will have scroll lock styles applied to it.
-   *
-   * By default, it uses the the body of the top-level document object,
-   * so it's simply `document.body` most of the time.
-   */
-  scrollLockContainer: HTMLElementType,
-  /**
    * If `true`, the backdrop is not rendered.
    * @default false
    */
@@ -291,6 +283,14 @@ Modal.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * An HTML element.
+   * The `scrollLockContainer` will have scroll lock styles applied to it.
+   *
+   * By default, it uses the the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  scrollLockContainer: HTMLElementType,
   /**
    * The props used for each slot inside the Modal.
    * @default {}

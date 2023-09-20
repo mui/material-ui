@@ -371,6 +371,20 @@ Drawer.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool.isRequired,
   /**
+   * An HTML element.
+   * The `scrollLockContainer` will have scroll lock styles applied to it.
+   *
+   * By default, it uses the the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  scrollLockContainer: function (props, propName) {
+    if (props[propName] == null) {
+      return null;
+    } else if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
+      return new Error("Expected prop '" + propName + "' to be of type Element");
+    }
+  },
+  /**
    * The size of the component.
    * @default 'md'
    */
