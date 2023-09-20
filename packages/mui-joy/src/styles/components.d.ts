@@ -352,7 +352,7 @@ export interface Components<Theme = unknown> {
   };
   JoyDrawer?: {
     defaultProps?: Partial<DrawerProps>;
-    styleOverrides?: StyleOverrides<DrawerSlot, Dheme, DrawerOwnerState>;
+    styleOverrides?: StyleOverrides<DrawerSlot, DrawerOwnerState, Theme>;
   };
   JoyScopedCssBaseline?: {
     defaultProps?: Partial<ScopedCssBaselineProps>;
