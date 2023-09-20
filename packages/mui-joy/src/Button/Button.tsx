@@ -157,8 +157,8 @@ export const getButtonStyles = ({
       },
       '&:active, &[aria-pressed="true"]':
         theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-      ...(ownerState.disabled &&
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]),
+      [`&.${buttonClasses.disabled}`]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       ...(ownerState.loadingPosition === 'center' && {
         // this has to come after the variant styles to take effect.
         [`&.${buttonClasses.loading}`]: {
@@ -293,6 +293,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       ownerState,
     },
   );
+
+  console.log(rootProps.className, buttonClasses.disabled);
 
   return (
     <SlotRoot {...rootProps}>
