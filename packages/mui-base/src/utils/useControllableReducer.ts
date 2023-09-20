@@ -156,6 +156,33 @@ export function useControllableReducer<
     actionContext,
   } = parameters;
 
+  const controlledPropsRef = React.useRef(controlledProps);
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      Object.keys(controlledProps).forEach((key) => {
+        if (
+          (controlledPropsRef.current as Record<string, unknown>)[key] !== undefined &&
+          (controlledProps as Record<string, unknown>)[key] === undefined
+        ) {
+          console.error(
+            'MUI: useControllableReducer is changing a controlled prop to be uncontrolled',
+          );
+        }
+
+        if (
+          (controlledPropsRef.current as Record<string, unknown>)[key] === undefined &&
+          (controlledProps as Record<string, unknown>)[key] !== undefined
+        ) {
+          console.error(
+            'MUI: useControllableReducer is changing an uncontrolled prop to be controlled',
+          );
+        }
+      });
+    }, [controlledProps]);
+  }
+
   // The reducer that is passed to React.useReducer is wrapped with a function that augments the state with controlled values.
   const reducerWithControlledState = React.useCallback(
     (state: State, action: ActionWithContext<Action, ActionContext>) => {

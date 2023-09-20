@@ -168,7 +168,7 @@ describe('useControllableReducer', () => {
         initialState: { make: 'Mazda', model: '3', productionYear: 2022 },
       };
 
-      function TestComponent(props: { make: string }) {
+      function TestComponent(props: { make?: string }) {
         const [state] = useControllableReducer({
           ...reducerParameters,
           controlledProps: {
