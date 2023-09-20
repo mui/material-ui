@@ -59,95 +59,111 @@ const app = new App({
 
 // Define slack actions to answer
 
-app.action('delete_action', async ({ ack, body, client }) => {
-  await ack();
+app.action('delete_action', async ({ ack, body, client, logger }) => {
+  try {
+    await ack();
 
-  const {
-    user: { username },
-    channel: { id: channelId },
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    message_ts,
-    message,
-  } = body;
-  const elements = message?.blocks?.[0]?.elements;
+    const {
+      user: { username },
+      channel: { id: channelId },
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      message_ts,
+      message,
+    } = body;
+    const elements = message?.blocks?.[0]?.elements;
 
-  const quote = message?.text
-    .split('\n\nsent from')[0]
-    .split('\n\n')
-    .slice(1)
-    .join('\n\n')
-    .replace(/&gt;/g, '');
+    const quote = message?.text
+      .split('\n\nsent from')[0]
+      .split('\n\n')
+      .slice(1)
+      .join('\n\n')
+      .replace(/&gt;/g, '');
 
-  const links = elements[2].elements
-    .filter((element) => element.type === 'link')
-    .map((element) => element.url);
+    const links = elements[2].elements
+      .filter((element) => element.type === 'link')
+      .map((element) => element.url);
 
-  const googleAuth = new JWT({
-    email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
-    key: process.env.G_SHEET_TOKEN.replace(/\\n/g, '\n'),
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-  });
-  const service = sheets({ version: 'v4', auth: googleAuth });
+    const googleAuth = new JWT({
+      email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
+      key: process.env.G_SHEET_TOKEN.replace(/\\n/g, '\n'),
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+    const service = sheets({ version: 'v4', auth: googleAuth });
 
-  await service.spreadsheets.values.append({
-    spreadsheetId: spreadSheetsIds.forLater,
-    range: 'Deleted messages!A:D',
-    valueInputOption: 'USER_ENTERED',
-    resource: {
-      values: [[username, quote, links[0] ?? '', links[1] ?? '']],
-    },
-  });
-  await client.chat.delete({
-    channel: channelId,
-    ts: message_ts,
-    as_user: true,
-    token: process.env.SLACK_BOT_TOKEN,
-  });
+    await service.spreadsheets.values.append({
+      spreadsheetId: spreadSheetsIds.forLater,
+      range: 'Deleted messages!A:D',
+      valueInputOption: 'USER_ENTERED',
+      resource: {
+        values: [[username, quote, links[0] ?? '', links[1] ?? '']],
+      },
+    });
+    await client.chat.delete({
+      channel: channelId,
+      ts: message_ts,
+      as_user: true,
+      token: process.env.SLACK_BOT_TOKEN,
+    });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('Error in save_message');
+    // eslint-disable-next-line no-console
+    console.log(JSON.stringify(error, null, 2));
+    logger.error(error);
+  }
 });
 
-app.action('save_message', async ({ ack, body, client }) => {
-  await ack();
-  const {
-    user: { username },
-    channel: { id: channelId },
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    message_ts,
-    message,
-  } = body;
-  const elements = message?.blocks?.[0]?.elements;
+app.action('save_message', async ({ ack, body, client, logger }) => {
+  try {
+    await ack();
+    const {
+      user: { username },
+      channel: { id: channelId },
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      message_ts,
+      message,
+    } = body;
+    const elements = message?.blocks?.[0]?.elements;
 
-  const quote = message?.text
-    .split('\n\nsent from')[0]
-    .split('\n\n')
-    .slice(1)
-    .join('\n\n')
-    .replace(/&gt;/g, '');
+    const quote = message?.text
+      .split('\n\nsent from')[0]
+      .split('\n\n')
+      .slice(1)
+      .join('\n\n')
+      .replace(/&gt;/g, '');
 
-  const links = elements[2].elements
-    .filter((element) => element.type === 'link')
-    .map((element) => element.url);
+    const links = elements[2].elements
+      .filter((element) => element.type === 'link')
+      .map((element) => element.url);
 
-  const googleAuth = new JWT({
-    email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
-    key: process.env.G_SHEET_TOKEN.replace(/\\n/g, '\n'),
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-  });
-  const service = sheets({ version: 'v4', auth: googleAuth });
+    const googleAuth = new JWT({
+      email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
+      key: process.env.G_SHEET_TOKEN.replace(/\\n/g, '\n'),
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+    const service = sheets({ version: 'v4', auth: googleAuth });
 
-  await service.spreadsheets.values.append({
-    spreadsheetId: spreadSheetsIds.forLater,
-    range: 'Sheet1!A:D',
-    valueInputOption: 'USER_ENTERED',
-    resource: {
-      values: [[username, quote, links[0] ?? '', links[1] ?? '']],
-    },
-  });
-  await client.chat.postMessage({
-    channel: channelId,
-    thread_ts: message_ts,
-    as_user: true,
-    text: `Saved in <https://docs.google.com/spreadsheets/d/${spreadSheetsIds.forLater}/>`,
-  });
+    await service.spreadsheets.values.append({
+      spreadsheetId: spreadSheetsIds.forLater,
+      range: 'Sheet1!A:D',
+      valueInputOption: 'USER_ENTERED',
+      resource: {
+        values: [[username, quote, links[0] ?? '', links[1] ?? '']],
+      },
+    });
+    await client.chat.postMessage({
+      channel: channelId,
+      thread_ts: message_ts,
+      as_user: true,
+      text: `Saved in <https://docs.google.com/spreadsheets/d/${spreadSheetsIds.forLater}/>`,
+    });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('Error in save_message');
+    // eslint-disable-next-line no-console
+    console.log(JSON.stringify(error, null, 2));
+    logger.error(error);
+  }
 });
 
 /**
