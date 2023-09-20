@@ -1,4 +1,4 @@
-<Button loading endDecorator={<SendIcon />} variant="solid">
+<Button loading variant="solid">
   Send
 </Button>
 <Button loading loadingIndicator="Loading…" variant="outlined">
