@@ -202,6 +202,7 @@ export function ThemeProvider(props) {
       document.body.classList.add('mode-light');
     }
 
+    document.documentElement.dataset.muiColorScheme = paletteMode;
     const metas = document.querySelectorAll('meta[name="theme-color"]');
     metas.forEach((meta) => {
       meta.setAttribute('content', getMetaThemeColor(paletteMode));
