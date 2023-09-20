@@ -189,8 +189,8 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     disableRestoreFocus,
     disableScrollLock,
     hideBackdrop,
-    color,
     invertedColors,
+    color,
     variant,
     size,
   };

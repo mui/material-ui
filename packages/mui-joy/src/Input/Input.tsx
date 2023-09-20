@@ -9,6 +9,7 @@ import useSlot from '../utils/useSlot';
 import { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import useForwardedInput from './useForwardedInput';
+import { INVERTED_COLORS_ATTR } from '../styles/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: InputOwnerState) => {
   const { disabled, fullWidth, variant, color, size } = ownerState;
@@ -44,7 +45,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--Input-focusedThickness': theme.vars.focus.thickness,
         '--Input-focusedHighlight':
           theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
-        '&:not([data-inverted-colors="false"])': {
+        [`&:not([${INVERTED_COLORS_ATTR}])`]: {
           ...(ownerState.instanceColor && {
             '--_Input-focusedHighlight':
               theme.vars.palette[

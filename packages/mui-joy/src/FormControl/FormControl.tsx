@@ -68,8 +68,8 @@ export const FormControlRoot = styled('div', {
     '--FormHelperText-color': theme.vars.palette.danger[500],
   },
   [`&.${formControlClasses.disabled}`]: {
-    '--FormLabel-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
-    '--FormHelperText-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
+    '--FormLabel-color': theme.variants.plainDisabled?.[ownerState.color || 'neutral']?.color,
+    '--FormHelperText-color': theme.variants.plainDisabled?.[ownerState.color || 'neutral']?.color,
   },
   display: 'flex',
   position: 'relative', // for keeping the control action area, e.g. Switch

@@ -10,6 +10,7 @@ import { ListSubheaderOwnerState, ListSubheaderTypeMap } from './ListSubheaderPr
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 import ListSubheaderDispatch from './ListSubheaderContext';
 import useSlot from '../utils/useSlot';
+import { INVERTED_COLORS_ATTR } from '../styles/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: ListSubheaderOwnerState) => {
   const { variant, color, sticky } = ownerState;
@@ -49,8 +50,13 @@ const ListSubheaderRoot = styled('div', {
     background: 'var(--ListItem-stickyBackground)',
   }),
   color: ownerState.color
-    ? `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`
+    ? `var(--_Link-color, rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1))`
     : theme.vars.palette.text.tertiary,
+  ...(ownerState.instanceColor && {
+    [`&:not([${INVERTED_COLORS_ATTR}])`]: {
+      '--_Link-color': theme.vars.palette.text.secondary,
+    },
+  }),
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
 /**
@@ -91,6 +97,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   }, [setSubheaderId, id]);
 
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     id,
     sticky,

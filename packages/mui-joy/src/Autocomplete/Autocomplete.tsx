@@ -46,6 +46,7 @@ import FormControlContext from '../FormControl/FormControlContext';
 import { StyledAutocompleteListbox } from '../AutocompleteListbox/AutocompleteListbox';
 import { StyledAutocompleteOption } from '../AutocompleteOption/AutocompleteOption';
 import useSlot from '../utils/useSlot';
+import { INVERTED_COLORS_ATTR } from '../styles/colorInversionUtils';
 
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 'defaultValue'>;
 
@@ -383,6 +384,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
 
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     value,
     disabled,
@@ -677,6 +679,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       <VariantColorProvider variant={variant} color={color}>
         <ListProvider nested>
           <SlotListbox
+            {...{
+              [INVERTED_COLORS_ATTR]:
+                (inProps as any)[INVERTED_COLORS_ATTR] && listboxProps.disablePortal
+                  ? true
+                  : undefined,
+            }}
             {...listboxProps}
             className={clsx(listboxProps.className)}
             // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)

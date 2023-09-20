@@ -108,9 +108,9 @@ const LinkRoot = styled('a', {
       borderRadius: theme.vars.radius.xs,
       padding: 0, // Remove the padding in Firefox
       cursor: 'pointer',
-      textDecorationColor: `rgba(${
+      textDecorationColor: `var(--variant-outlinedBorder, rgba(${
         theme.vars.palette[ownerState.color!]?.mainChannel
-      } / var(--Link-underlineOpacity, 0.72))`,
+      } / var(--Link-underlineOpacity, 0.72)))`,
       ...(ownerState.variant
         ? {
             paddingBlock: 'min(0.1em, 4px)',
@@ -120,10 +120,14 @@ const LinkRoot = styled('a', {
             }),
           }
         : {
-            color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
+            color: `var(--variant-plainColor, rgba(${
+              theme.vars.palette[ownerState.color!]?.mainChannel
+            } / 1))`,
             [`&.${linkClasses.disabled}`]: {
               pointerEvents: 'none',
-              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
+              color: `var(--variant-plainDisabledColor, rgba(${
+                theme.vars.palette[ownerState.color!]?.mainChannel
+              } / 0.6))`,
             },
           }),
       userSelect: 'none',

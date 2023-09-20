@@ -51,43 +51,41 @@ const CheckboxRoot = styled('span', {
   name: 'JoyCheckbox',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CheckboxOwnerState }>(({ ownerState, theme }) => [
-  {
-    '--Icon-fontSize': 'var(--Checkbox-size)',
-    ...(ownerState.size === 'sm' && {
-      '--Checkbox-size': '1rem',
-      '--Checkbox-gap': '0.5rem',
-      '& ~ *': { '--FormHelperText-margin': '0 0 0 1.5rem' },
-      fontSize: theme.vars.fontSize.sm,
-    }),
-    ...(ownerState.size === 'md' && {
-      '--Checkbox-size': '1.25rem',
-      '--Checkbox-gap': '0.625rem',
-      '& ~ *': { '--FormHelperText-margin': '0.25rem 0 0 1.875rem' },
-      fontSize: theme.vars.fontSize.md,
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Checkbox-size': '1.5rem',
-      '--Checkbox-gap': '0.75rem',
-      '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.25rem' },
-      fontSize: theme.vars.fontSize.lg,
-    }),
-    position: ownerState.overlay ? 'initial' : 'relative',
-    display: 'inline-flex',
-    fontFamily: theme.vars.fontFamily.body,
-    lineHeight: 'var(--Checkbox-size)',
-    color: theme.vars.palette.text.primary,
+})<{ ownerState: CheckboxOwnerState }>(({ ownerState, theme }) => ({
+  '--Icon-fontSize': 'var(--Checkbox-size)',
+  ...(ownerState.size === 'sm' && {
+    '--Checkbox-size': '1rem',
+    '--Checkbox-gap': '0.5rem',
+    '& ~ *': { '--FormHelperText-margin': '0 0 0 1.5rem' },
+    fontSize: theme.vars.fontSize.sm,
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Checkbox-size': '1.25rem',
+    '--Checkbox-gap': '0.625rem',
+    '& ~ *': { '--FormHelperText-margin': '0.25rem 0 0 1.875rem' },
+    fontSize: theme.vars.fontSize.md,
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Checkbox-size': '1.5rem',
+    '--Checkbox-gap': '0.75rem',
+    '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.25rem' },
+    fontSize: theme.vars.fontSize.lg,
+  }),
+  position: ownerState.overlay ? 'initial' : 'relative',
+  display: 'inline-flex',
+  fontFamily: theme.vars.fontFamily.body,
+  lineHeight: 'var(--Checkbox-size)',
+  color: theme.vars.palette.text.primary,
+  [`&.${checkboxClasses.disabled}`]: {
+    color: theme.variants.plainDisabled?.[ownerState.color!]?.color,
+  },
+  ...(ownerState.disableIcon && {
+    color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
     [`&.${checkboxClasses.disabled}`]: {
-      color: theme.variants.plainDisabled?.[ownerState.color!]?.color,
+      color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
     },
-    ...(ownerState.disableIcon && {
-      color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
-      [`&.${checkboxClasses.disabled}`]: {
-        color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
-      },
-    }),
-  } as const,
-]);
+  }),
+}));
 
 const CheckboxCheckbox = styled('span', {
   name: 'JoyCheckbox',

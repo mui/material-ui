@@ -13,8 +13,8 @@ import styled from '../styles/styled';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
-import useSlot from '../utils/useSlot';
 import { INVERTED_COLORS_SELECTOR } from '../styles/colorInversionUtils';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: CardOwnerState) => {
   const { size, variant, color, orientation } = ownerState;
@@ -140,7 +140,6 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const ownerState = {
     ...props,
-
     color,
     component,
     orientation,

@@ -115,7 +115,9 @@ const TypographyRoot = styled('span', {
       marginBottom: '0.35em',
     }),
     ...(ownerState.color && {
-      color: `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`,
+      color: `var(--variant-plainColor, rgba(${
+        theme.vars.palette[ownerState.color]?.mainChannel
+      } / 1))`,
     }),
     ...(ownerState.variant && {
       borderRadius: theme.vars.radius.xs,
