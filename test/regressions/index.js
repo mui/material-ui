@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import * as ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
@@ -222,7 +222,7 @@ if (unusedBlacklistPatterns.size > 0) {
   );
 }
 
-const viewerRoot = document.getElementById('test-viewer');
+const viewerRoot = ReactDOMClient.createRoot(document.getElementById('test-viewer'));
 
 function FixtureRenderer({ component: FixtureComponent }) {
   React.useLayoutEffect(() => {
@@ -232,12 +232,12 @@ function FixtureRenderer({ component: FixtureComponent }) {
       </TestViewer>
     );
 
-    ReactDOM.render(children, viewerRoot);
+    viewerRoot.render(children);
   }, [FixtureComponent]);
 
   React.useLayoutEffect(() => {
     return () => {
-      ReactDOM.unmountComponentAtNode(viewerRoot);
+      viewerRoot.unmount();
     };
   }, []);
 
@@ -354,9 +354,5 @@ App.propTypes = {
 
 const container = document.getElementById('react-root');
 const children = <App fixtures={regressionFixtures.concat(demoFixtures)} />;
-if (typeof ReactDOM.unstable_createRoot === 'function') {
-  const root = ReactDOM.unstable_createRoot(container);
-  root.render(children);
-} else {
-  ReactDOM.render(children, container);
-}
+const reactRoot = ReactDOMClient.createRoot(container);
+reactRoot.render(children);
