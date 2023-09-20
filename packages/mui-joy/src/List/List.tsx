@@ -203,7 +203,6 @@ const List = React.forwardRef(function List(inProps, ref) {
   const ownerState = {
     ...props,
     instanceSize: inProps.size,
-
     size,
     nesting,
     orientation,
