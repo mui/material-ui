@@ -4,7 +4,7 @@ import NProgress from 'nprogress';
 import { NoSsr } from '@mui/base/NoSsr';
 import { exactProp } from '@mui/utils';
 import { createGlobalStyle } from 'styled-components';
-import { keyframes, css, useTheme } from '@mui/material/styles';
+import { keyframes, css } from '@mui/material/styles';
 
 NProgress.configure({
   barSelector: '.nprogress-bar',
