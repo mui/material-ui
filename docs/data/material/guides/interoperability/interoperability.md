@@ -303,7 +303,7 @@ After the style engine is configured properly, you can use the [`styled()`](/sys
 from `@mui/material/styles` and have direct access to the theme.
 
 :::warning
-Currently, `@mui/styled-engine-sc` only supports version 5 of `styled-components`. To stay updated on the progress of version 6 support, please refer to [#38431](https://github.com/mui/material-ui/issues/38431).
+Currently, `@mui/styled-engine-sc` only supports version 5 of `styled-components`. To stay updated on the progress of version 6 support, please refer to [issue #38431 on GitHub](https://github.com/mui/material-ui/issues/38431).
 :::
 
 {{"demo": "StyledComponents.js", "hideToolbar": true}}
