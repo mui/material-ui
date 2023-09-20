@@ -1,5 +1,4 @@
 const querystring = require('node:querystring');
-const { WebClient } = require('@slack/web-api');
 const { App, AwsLambdaReceiver } = require('@slack/bolt');
 const { JWT } = require('google-auth-library');
 const { sheets } = require('@googleapis/sheets');
@@ -28,6 +27,21 @@ const getSlackChannelId = (url, specialCases) => {
   return CORE_FEEBACKS_CHANNEL_ID;
 };
 
+const getGitHubRepo = (url, specialCases) => {
+  const { isDesignFeedback } = specialCases;
+
+  if (isDesignFeedback) {
+    return 'material-ui';
+  }
+  if (url.includes('/x/')) {
+    return 'mui-x';
+  }
+  if (url.includes('/toolpad/')) {
+    return 'mui-toolpad';
+  }
+  return 'material-ui';
+};
+
 const spreadSheetsIds = {
   forLater: '1NAUTsIcReVylWPby5K0omXWZpgjd9bjxE8V2J-dwPyc',
 };
@@ -44,17 +58,53 @@ const app = new App({
 
 // Define slack actions to answer
 
-app.shortcut('delete_action', async ({ ack, body, client }) => {
+app.action('delete_action', async ({ ack, body, client }) => {
   await ack();
+
+  const {
+    user: { username },
+    channel: { id: channelId },
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    message_ts,
+    message,
+  } = body;
+  const elements = message?.blocks?.[0]?.elements;
+
+  const quote = message?.text
+    .split('\n\nsent from')[0]
+    .split('\n\n')
+    .slice(1)
+    .join('\n\n')
+    .replace(/&gt;/g, '');
+
+  const links = elements[2].elements
+    .filter((element) => element.type === 'link')
+    .map((element) => element.url);
+
+  const googleAuth = new JWT({
+    email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
+    key: process.env.G_SHEET_TOKEN.replace(/\\n/g, '\n'),
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  });
+  const service = sheets({ version: 'v4', auth: googleAuth });
+
+  await service.spreadsheets.values.append({
+    spreadsheetId: spreadSheetsIds.forLater,
+    range: 'Deleted messages!A:D',
+    valueInputOption: 'USER_ENTERED',
+    resource: {
+      values: [[username, quote, links[0] ?? '', links[1] ?? '']],
+    },
+  });
   await client.chat.delete({
-    channel: body.channel.id,
-    ts: body.message_ts,
+    channel: channelId,
+    ts: message_ts,
     as_user: true,
     token: process.env.SLACK_BOT_TOKEN,
   });
 });
 
-app.shortcut('save_message', async ({ ack, body, client }) => {
+app.action('save_message', async ({ ack, body, client }) => {
   await ack();
   const {
     user: { username },
@@ -99,9 +149,6 @@ app.shortcut('save_message', async ({ ack, body, client }) => {
   });
 });
 
-// Slack API
-const slackClient = new WebClient(process.env.SLACK_BOT_TOKEN);
-
 /**
  * @param {object} event
  * @param {object} context
@@ -137,9 +184,60 @@ exports.handler = async (event, context, callback) => {
         }`,
       ].join('\n\n');
 
-      await slackClient.chat.postMessage({
+      const githubNewIssueParams = new URLSearchParams({
+        title: encodeURIComponent('[ ] Docs feedback'),
+        body: encodeURIComponent(`Feedback received:
+${comment}
+
+from ${commmentSectionURL}
+`),
+      });
+
+      await app.client.chat.postMessage({
         channel: getSlackChannelId(currentLocationURL, { isDesignFeedback }),
-        text: simpleSlackMessage,
+        blocks: [
+          {
+            type: 'section',
+            text: {
+              type: 'mrkdwn',
+              text: simpleSlackMessage,
+            },
+          },
+
+          {
+            type: 'actions',
+            elements: [
+              {
+                type: 'button',
+                text: {
+                  type: 'plain_text',
+                  text: 'Create issue',
+                  emoji: true,
+                },
+                url: `https://github.com/mui/${getGitHubRepo(currentLocationURL, {
+                  isDesignFeedback,
+                })}/issues/new?${githubNewIssueParams}`,
+              },
+              {
+                type: 'button',
+                text: {
+                  type: 'plain_text',
+                  text: 'Save',
+                },
+                action_id: 'save_message',
+              },
+              {
+                type: 'button',
+                text: {
+                  type: 'plain_text',
+                  text: 'Delete',
+                },
+                style: 'danger',
+                action_id: 'delete_action',
+              },
+            ],
+          },
+        ],
         as_user: true,
         unfurl_links: false,
         unfurl_media: false,
