@@ -45,10 +45,10 @@
   "devDependencies": {
     "@types/chai": "^4.3.6",
     "@types/react": "^18.2.21",
-    "@types/styled-components": "^5.1.26",
+    "@types/styled-components": "^5.1.27",
     "chai": "^4.3.8",
     "react": "^18.2.0",
-    "styled-components": "^5.3.1",
+    "styled-components": "^5.3.11",
     "test": "^5.0.0"
   },
   "peerDependencies": {
