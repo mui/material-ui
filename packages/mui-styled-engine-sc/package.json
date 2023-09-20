@@ -46,6 +46,7 @@
     "@types/chai": "^4.3.5",
     "@types/react": "^18.2.21",
     "chai": "^4.3.7",
+    "hoist-non-react-statics": "^3.3.2",
     "react": "^18.2.0",
     "styled-components": "^6.0.0",
     "test": "^5.0.0"
