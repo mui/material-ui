@@ -332,7 +332,7 @@ export default function AppSearch(props) {
           })}
         />
         <SearchLabel id="app-search-label">{search}</SearchLabel>
-        <Shortcut>
+        <Shortcut aria-hidden="true">
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {macOS ? '⌘' : 'Ctrl+'}K
         </Shortcut>

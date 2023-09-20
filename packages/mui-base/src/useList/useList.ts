@@ -20,10 +20,11 @@ import {
   StateComparers,
 } from '../utils/useControllableReducer.types';
 import { areArraysEqual } from '../utils/areArraysEqual';
-import { EventHandlers } from '../utils/types';
 import { useLatest } from '../utils/useLatest';
 import { useTextNavigation } from '../utils/useTextNavigation';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { EventHandlers } from '../utils/types';
 
 const EMPTY_OBJECT = {};
 const NOOP = () => {};
@@ -276,9 +277,9 @@ function useList<
   }, [highlightedValue, notifyHighlightChanged]);
 
   const createHandleKeyDown =
-    (other: Record<string, React.EventHandler<any>>) =>
+    (externalHandlers: EventHandlers) =>
     (event: React.KeyboardEvent<HTMLElement> & MuiCancellableEvent) => {
-      other.onKeyDown?.(event);
+      externalHandlers.onKeyDown?.(event);
 
       if (event.defaultMuiPrevented) {
         return;
@@ -314,9 +315,9 @@ function useList<
     };
 
   const createHandleBlur =
-    (other: Record<string, React.EventHandler<any>>) =>
+    (externalHandlers: EventHandlers) =>
     (event: React.FocusEvent<HTMLElement> & MuiCancellableEvent) => {
-      other.onBlur?.(event);
+      externalHandlers.onBlur?.(event);
 
       if (event.defaultMuiPrevented) {
         return;
@@ -333,19 +334,21 @@ function useList<
       });
     };
 
-  const getRootProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseListRootSlotProps<TOther> => {
+  const getRootProps = <ExternalProps extends Record<string, any> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseListRootSlotProps<ExternalProps> => {
+    const externalEventHandlers = extractEventHandlers(externalProps);
     return {
-      ...otherHandlers,
+      ...externalProps,
       'aria-activedescendant':
         focusManagement === 'activeDescendant' && highlightedValue != null
           ? getItemId!(highlightedValue)
           : undefined,
-      onBlur: createHandleBlur(otherHandlers),
-      onKeyDown: createHandleKeyDown(otherHandlers),
       tabIndex: focusManagement === 'DOM' ? -1 : 0,
       ref: handleRef,
+      ...externalEventHandlers,
+      onBlur: createHandleBlur(externalEventHandlers),
+      onKeyDown: createHandleKeyDown(externalEventHandlers),
     };
   };
 
