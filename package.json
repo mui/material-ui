@@ -185,9 +185,9 @@
     "**/@babel/preset-react": "^7.22.15",
     "**/@babel/preset-typescript": "^7.22.15",
     "**/@babel/runtime": "^7.22.15",
-    "**/@definitelytyped/header-parser": "^0.0.177",
-    "**/@definitelytyped/typescript-versions": "^0.0.177",
-    "**/@definitelytyped/utils": "^0.0.177",
+    "**/@definitelytyped/header-parser": "^0.0.178",
+    "**/@definitelytyped/typescript-versions": "^0.0.178",
+    "**/@definitelytyped/utils": "^0.0.178",
     "**/@types/node": "^18.17.18",
     "**/@types/react": "^18.2.21",
     "**/cross-fetch": "^4.0.0"
