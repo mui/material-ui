@@ -44,7 +44,7 @@
     "@mui/zero-tag-processor": "0.0.1-alpha.4"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.1",
+    "@types/babel__core": "^7.20.2",
     "@types/chai": "^4.3.6",
     "chai": "^4.3.8",
     "vite": "^4.4.9"

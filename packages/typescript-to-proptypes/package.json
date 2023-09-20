@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@babel/register": "^7.22.15",
-    "@types/babel__core": "^7.20.1",
+    "@types/babel__core": "^7.20.2",
     "@types/chai": "^4.3.6",
     "@types/doctrine": "^0.0.6",
     "@types/lodash": "^4.14.198",
