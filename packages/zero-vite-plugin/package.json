@@ -39,7 +39,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/core": "^7.22.17",
+    "@babel/core": "^7.22.20",
     "@linaria/vite": "^4.5.4",
     "@mui/zero-tag-processor": "0.0.1-alpha.4"
   },
