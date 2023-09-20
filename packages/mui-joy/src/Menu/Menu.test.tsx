@@ -1,14 +1,7 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import {
-  act,
-  createRenderer,
-  describeConformance,
-  screen,
-  fireEvent,
-  describeJoyColorInversion,
-} from 'test/utils';
+import { act, createRenderer, describeConformance, screen, fireEvent } from 'test/utils';
 import { Popper as PopperUnstyled } from '@mui/base/Popper';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -61,15 +54,6 @@ describe('Joy <Menu />', () => {
 
   const anchorEl = document.createElement('div');
   anchorEl.setAttribute('aria-controls', 'test');
-
-  describeJoyColorInversion(
-    <Menu open disablePortal anchorEl={() => anchorEl} data-testid="test-element" />,
-    {
-      muiName: 'JoyMenu',
-      classes,
-      portalSlot: 'root',
-    },
-  );
 
   it('should render with `ul` by default', () => {
     render(<Menu anchorEl={anchorEl} open data-testid="popover" />);

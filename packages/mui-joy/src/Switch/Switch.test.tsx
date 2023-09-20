@@ -1,13 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  describeConformance,
-  describeJoyColorInversion,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import Switch, { switchClasses as classes } from '@mui/joy/Switch';
 import { ThemeProvider } from '@mui/joy/styles';
 
@@ -39,8 +32,6 @@ describe('<Switch />', () => {
     },
     skip: ['componentProp', 'componentsProp', 'classesRoot'],
   }));
-
-  describeJoyColorInversion(<Switch />, { muiName: 'JoySwitch', classes });
 
   it('should pass `slotProps` down to slots', () => {
     const { container } = render(

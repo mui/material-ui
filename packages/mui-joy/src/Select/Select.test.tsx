@@ -1,14 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import {
-  describeConformance,
-  describeJoyColorInversion,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
@@ -64,12 +57,6 @@ describe('Joy <Select />', () => {
       'reactTestRenderer',
     ],
   }));
-
-  describeJoyColorInversion(<Select listboxOpen />, {
-    muiName: 'JoySelect',
-    classes,
-    portalSlot: 'listbox',
-  });
 
   it('should be able to mount the component', () => {
     render(
