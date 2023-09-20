@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
-import { getDisplayName, unstable_capitalize as capitalize } from '@mui/utils';
+import { getDisplayName, unstable_capitalize as capitalize, isPlainObject, deepmerge } from '@mui/utils';
 import createTheme from './createTheme';
 import propsToClassKey from './propsToClassKey';
 import styleFunctionSx from './styleFunctionSx';
@@ -28,36 +28,46 @@ const getStyleOverrides = (name, theme) => {
   return null;
 };
 
+const transformVariants = (variants) => {
+  const variantsStyles = {};
+
+  if (variants) {
+    variants.forEach((definition) => {
+      const key = propsToClassKey(definition.props);
+      variantsStyles[key] = definition.style;
+    });
+  }
+
+  return variantsStyles;
+}
 const getVariantStyles = (name, theme) => {
   let variants = [];
   if (theme && theme.components && theme.components[name] && theme.components[name].variants) {
     variants = theme.components[name].variants;
   }
 
-  const variantsStyles = {};
-
-  variants.forEach((definition) => {
-    const key = propsToClassKey(definition.props);
-    variantsStyles[key] = definition.style;
-  });
-
-  return variantsStyles;
+  return transformVariants(variants);
 };
 
-const variantsResolver = (props, styles, theme, name) => {
+const themeVariantsResolver = (props, styles, theme, name) => {
+  const themeVariants = theme?.components?.[name]?.variants;
+  return variantsResolver(props, styles, themeVariants);
+};
+
+const variantsResolver = (props, styles, variants) => {
   const { ownerState = {} } = props;
   const variantsStyles = [];
-  const themeVariants = theme?.components?.[name]?.variants;
-  if (themeVariants) {
-    themeVariants.forEach((themeVariant) => {
+
+  if (variants) {
+    variants.forEach((variant) => {
       let isMatch = true;
-      Object.keys(themeVariant.props).forEach((key) => {
-        if (ownerState[key] !== themeVariant.props[key] && props[key] !== themeVariant.props[key]) {
+      Object.keys(variant.props).forEach((key) => {
+        if (ownerState[key] !== variant.props[key] && props[key] !== variant.props[key]) {
           isMatch = false;
         }
       });
       if (isMatch) {
-        variantsStyles.push(styles[propsToClassKey(themeVariant.props)]);
+        variantsStyles.push(styles[propsToClassKey(variant.props)]);
       }
     });
   }
@@ -176,6 +186,21 @@ export default function createStyled(input = {}) {
 
       let transformedStyleArg = styleArg;
 
+      let styledArgVariants;
+
+      if (isPlainObject(styleArg)) {
+        if (styleArg && styleArg.variants) {
+          styledArgVariants = styleArg.variants;
+        }
+        delete transformedStyleArg['variants'];
+      }
+
+      if (styledArgVariants) {
+        expressionsWithDefaultTheme.push((props) => {
+          return variantsResolver(props, transformVariants(styledArgVariants), styledArgVariants);
+        })
+      }
+
       if (componentName && overridesResolver) {
         expressionsWithDefaultTheme.push((props) => {
           const theme = resolveTheme({ ...props, defaultTheme, themeId });
@@ -197,7 +222,7 @@ export default function createStyled(input = {}) {
       if (componentName && !skipVariantsResolver) {
         expressionsWithDefaultTheme.push((props) => {
           const theme = resolveTheme({ ...props, defaultTheme, themeId });
-          return variantsResolver(
+          return themeVariantsResolver(
             props,
             getVariantStyles(componentName, theme),
             theme,
@@ -225,11 +250,33 @@ export default function createStyled(input = {}) {
         styleArg.__emotion_real !== styleArg
       ) {
         // If the type is function, we need to define the default theme.
-        transformedStyleArg = (props) =>
-          styleArg({
+        transformedStyleArg = (props) => {
+          const resolvedStyles = styleArg({
             ...props,
             theme: resolveTheme({ ...props, defaultTheme, themeId }),
           });
+
+          let optionalVariants;
+          if (isPlainObject(resolvedStyles)) {
+            if (resolvedStyles && resolvedStyles.variants) {
+              optionalVariants = resolvedStyles.variants;
+            }
+            delete resolvedStyles['variants'];
+          }
+          let result = resolvedStyles;
+
+          const variantsStyles = variantsResolver(props, transformVariants(optionalVariants), optionalVariants);
+
+          // the variantsStyle is an array of all variant styles that need to be applied,
+          // so we need to merge them on top of the rest of the styles
+          if(variantsStyles) {
+            variantsStyles.forEach(variantStyle => {
+              result = deepmerge(result, variantStyle);
+            });
+          }
+
+          return result;
+        }
       }
 
       const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
