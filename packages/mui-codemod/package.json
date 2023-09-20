@@ -38,9 +38,9 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.5",
+    "@types/chai": "^4.3.6",
     "@types/jscodeshift": "0.11.5",
-    "chai": "^4.3.7"
+    "chai": "^4.3.8"
   },
   "sideEffects": false,
   "publishConfig": {
