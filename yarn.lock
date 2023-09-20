@@ -3739,10 +3739,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/loader-utils@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@types/loader-utils/-/loader-utils-2.0.3.tgz#fbc2337358f8f4a7dc532ac0a3646c74275edf2d"
-  integrity sha512-sDXXzZnTLXgdso54/iOpAFSDgqhVXabCvwGAt77Agadh/Xk0QYgOk520r3tpOouI098gyqGIFywx8Op1voc3vQ==
+"@types/loader-utils@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@types/loader-utils/-/loader-utils-2.0.4.tgz#f1c9dd27392f163ee92394454563286dfc6e4778"
+  integrity sha512-I71X8yySVQW6DuXr78/McC+enpUYQ68JxAYlgVyuMvl5mb7jFUZpFAu1qURZcwvbITXwxPnrA7hbV0W3HHsbbg==
   dependencies:
     "@types/node" "*"
     "@types/webpack" "^4"
