@@ -1352,4 +1352,34 @@ describe('<Select />', () => {
       expect(hiddenInput).to.have.value('');
     });
   });
+
+  describe('warnings', () => {
+    it('should warn when switching from controlled to uncontrolled', () => {
+      const { setProps } = render(
+        <Select value={1}>
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(() => {
+        setProps({ value: undefined });
+      }).toErrorDev('MUI: useControllableReducer is changing a controlled prop to be uncontrolled');
+    });
+
+    it('should warn when switching between uncontrolled to controlled', () => {
+      const { setProps } = render(
+        <Select>
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(() => {
+        setProps({ value: 1 });
+      }).toErrorDev(
+        'MUI: useControllableReducer is changing an uncontrolled prop to be controlled',
+      );
+    });
+  });
 });
