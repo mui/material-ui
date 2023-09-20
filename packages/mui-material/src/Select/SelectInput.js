@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { refType } from '@mui/utils';
+import { refType, unstable_useId as useId } from '@mui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
@@ -487,7 +487,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     ...MenuProps.slotProps?.paper,
   };
 
-  const listboxId = React.useId();
+  const listboxId = useId();
 
   return (
     <React.Fragment>

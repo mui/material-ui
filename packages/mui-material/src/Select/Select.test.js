@@ -482,7 +482,7 @@ describe('<Select />', () => {
       const { getByRole } = render(<Select open value="" />);
       const listboxId = getByRole('listbox').id;
 
-      expect(getByRole('combobox')).to.have.attribute('aria-controls', listboxId);
+      expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-controls', listboxId);
     });
 
     specify('the listbox is focusable', () => {
