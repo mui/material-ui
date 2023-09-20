@@ -20,7 +20,7 @@
     "link-check": "node ./scripts/reportBrokenLinks.js"
   },
   "dependencies": {
-    "@babel/core": "^7.22.17",
+    "@babel/core": "^7.22.20",
     "@babel/plugin-transform-object-assign": "^7.22.5",
     "@babel/runtime": "^7.22.15",
     "@babel/runtime-corejs2": "^7.22.15",

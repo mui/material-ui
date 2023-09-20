@@ -39,7 +39,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/core": "^7.22.17",
+    "@babel/core": "^7.22.20",
     "@babel/plugin-syntax-jsx": "^7.22.5",
     "@babel/preset-typescript": "^7.22.15",
     "@linaria/babel-preset": "^4.5.4",
