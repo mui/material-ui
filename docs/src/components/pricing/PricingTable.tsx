@@ -572,7 +572,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/funnel': <ColumnHead label="Funnel" href="/x/react-charts/funnel/" />,
   'charts/sankey': <ColumnHead label="Sankey" href="/x/react-charts/sankey/" />,
   'charts/gantt': <ColumnHead label="Gantt" href="/x/react-charts/gantt/" />,
-  'charts/gantt-advenced': <ColumnHead label="Advanced Gantt" />,
+  'charts/gantt-advanced': <ColumnHead label="Advanced Gantt" />,
   'charts/candlestick': <ColumnHead label="Candlestick" />,
   'charts/large-dataset': <ColumnHead label="Large dataset with canvas" />,
   // -- charts - features --
@@ -731,7 +731,7 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/funnel': no,
   'charts/sankey': no,
   'charts/gantt': no,
-  'charts/gantt-advenced': no,
+  'charts/gantt-advanced': no,
   'charts/candlestick': no,
   'charts/large-dataset': no,
   // -- charts - features --
@@ -825,7 +825,7 @@ const proData: Record<string, React.ReactNode> = {
   'charts/funnel': pending,
   'charts/sankey': pending,
   'charts/gantt': pending,
-  'charts/gantt-advenced': no,
+  'charts/gantt-advanced': no,
   'charts/candlestick': no,
   'charts/large-dataset': no,
   // -- charts - features --
@@ -924,7 +924,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/funnel': pending,
   'charts/sankey': pending,
   'charts/gantt': pending,
-  'charts/gantt-advenced': pending,
+  'charts/gantt-advanced': pending,
   'charts/candlestick': pending,
   'charts/large-dataset': pending,
   // -- charts - features --
@@ -1511,7 +1511,7 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/gantt')}
         {divider}
-        {renderNestedRow('charts/gantt-advenced')}
+        {renderNestedRow('charts/gantt-advanced')}
         {divider}
         {renderNestedRow('charts/candlestick')}
         {divider}
