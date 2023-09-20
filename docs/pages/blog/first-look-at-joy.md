@@ -103,7 +103,7 @@ import { getInitColorSchemeScript } from '@mui/joy/styles';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html data-color-scheme="light">
         <Head>...</Head>
         <body>
           {getInitColorSchemeScript()}
