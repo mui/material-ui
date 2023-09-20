@@ -294,8 +294,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     },
   );
 
-  console.log(rootProps.className, buttonClasses.disabled);
-
   return (
     <SlotRoot {...rootProps}>
       {(startDecorator || (loading && loadingPosition === 'start')) && (
