@@ -160,9 +160,9 @@ export default function XRoadmap() {
                     </Box>
                     <b>Data Grid</b>
                     {bullet}
-                    <b>Charts integration</b>
-                    {bullet}
                     <b>Pivoting</b>
+                    {bullet}
+                    <b>Charts integration</b>
                     {bullet}
                     <Link href={ROUTES.dataGridFeaturesComparison} sx={{ color: 'primary.300' }}>
                       And more!
