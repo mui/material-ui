@@ -100,7 +100,7 @@ const GlobalStyles = createGlobalStyle({
   ':root': {
     '--MuiDocs-navDrawer-width': '300px',
   },
-})
+});
 
 export default function AppLayoutDocs(props) {
   const router = useRouter();
