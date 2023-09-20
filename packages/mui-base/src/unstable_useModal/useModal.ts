@@ -41,6 +41,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     container,
     disableEscapeKeyDown = false,
     disableScrollLock = false,
+    scrollLockContainer,
     // @ts-ignore internal logic - Base UI supports the manager as a prop too
     manager = defaultManager,
     closeAfterTransition = false,
@@ -73,7 +74,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   };
 
   const handleMounted = () => {
-    manager.mount(getModal(), { disableScrollLock });
+    (manager as ModalManager).mount(getModal(), { disableScrollLock, scrollLockContainer });
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
     if (modalRef.current) {

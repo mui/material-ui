@@ -31,6 +31,7 @@ export type ModalOwnProps = Pick<
   BaseModalOwnProps,
   | 'children'
   | 'container'
+  | 'scrollLockContainer'
   | 'disableAutoFocus'
   | 'disableEnforceFocus'
   | 'disableEscapeKeyDown'

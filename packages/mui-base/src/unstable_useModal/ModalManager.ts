@@ -6,6 +6,7 @@ import {
 
 export interface ManagedModalProps {
   disableScrollLock?: boolean;
+  scrollLockContainer?: HTMLElement;
 }
 
 // Is a vertical scrollbar displayed?
@@ -86,7 +87,7 @@ function findIndexOf<T>(items: readonly T[], callback: (item: T) => boolean): nu
   return idx;
 }
 
-function handleContainer(containerInfo: Container, props: ManagedModalProps) {
+function handleContainer(container: HTMLElement, props: ManagedModalProps) {
   const restoreStyle: Array<{
     /**
      * CSS property name (HYPHEN CASE) to be modified.
@@ -95,23 +96,38 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     el: HTMLElement | SVGElement;
     value: string;
   }> = [];
-  const container = containerInfo.container;
+  let scrollContainer: HTMLElement;
+
+  if (props.scrollLockContainer) {
+    scrollContainer = props.scrollLockContainer;
+  } else if (container.parentNode instanceof DocumentFragment) {
+    scrollContainer = ownerDocument(container).body;
+  } else {
+    // Improve Gatsby support
+    // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
+    const parent = container.parentElement;
+    const containerWindow = ownerWindow(container);
+    scrollContainer =
+      parent?.nodeName === 'HTML' && containerWindow.getComputedStyle(parent).overflowY === 'scroll'
+        ? parent
+        : container;
+  }
 
   if (!props.disableScrollLock) {
-    if (isOverflowing(container)) {
+    if (isOverflowing(scrollContainer)) {
       // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize(ownerDocument(container));
+      const scrollbarSize = getScrollbarSize(ownerDocument(scrollContainer));
 
       restoreStyle.push({
-        value: container.style.paddingRight,
+        value: scrollContainer.style.paddingRight,
         property: 'padding-right',
-        el: container,
+        el: scrollContainer,
       });
       // Use computed style, here to get the real padding to add our scrollbar width.
-      container.style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
+      scrollContainer.style.paddingRight = `${getPaddingRight(scrollContainer) + scrollbarSize}px`;
 
       // .mui-fixed is a global helper.
-      const fixedElements = ownerDocument(container).querySelectorAll('.mui-fixed');
+      const fixedElements = ownerDocument(scrollContainer).querySelectorAll('.mui-fixed');
       [].forEach.call(fixedElements, (element: HTMLElement | SVGElement) => {
         restoreStyle.push({
           value: element.style.paddingRight,
@@ -120,22 +136,6 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
         });
         element.style.paddingRight = `${getPaddingRight(element) + scrollbarSize}px`;
       });
-    }
-
-    let scrollContainer: HTMLElement;
-
-    if (container.parentNode instanceof DocumentFragment) {
-      scrollContainer = ownerDocument(container).body;
-    } else {
-      // Support html overflow-y: auto for scroll stability between pages
-      // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
-      const parent = container.parentElement;
-      const containerWindow = ownerWindow(container);
-      scrollContainer =
-        parent?.nodeName === 'HTML' &&
-        containerWindow.getComputedStyle(parent).overflowY === 'scroll'
-          ? parent
-          : container;
     }
 
     // Block the scroll even if no scrollbar is visible to account for mobile keyboard
@@ -254,7 +254,7 @@ export class ModalManager {
     const containerInfo = this.containers[containerIndex];
 
     if (!containerInfo.restore) {
-      containerInfo.restore = handleContainer(containerInfo, props);
+      containerInfo.restore = handleContainer(containerInfo.container, props);
     }
   }
 

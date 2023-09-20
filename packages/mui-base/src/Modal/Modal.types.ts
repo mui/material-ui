@@ -25,6 +25,14 @@ export interface ModalOwnProps {
    */
   container?: PortalProps['container'];
   /**
+   * An HTML element.
+   * The `scrollLockContainer` will have scroll lock styles applied to it.
+   *
+   * By default, it uses the the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  scrollLockContainer?: HTMLElement | undefined;
+  /**
    * If `true`, the modal will not automatically shift focus to itself when it opens, and
    * replace it to the last focused element when it closes.
    * This also works correctly with any modal children that have the `disableAutoFocus` prop.

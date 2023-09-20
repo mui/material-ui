@@ -131,4 +131,20 @@ describe('<Modal />', () => {
     const { current: element } = elementRef;
     expect(element!.getAttribute('aria-hidden'), 'null when modal closed').to.equal(null);
   });
+
+  it('should work with scrollLockContainer', () => {
+    const scrollLockContainer = document.body.parentElement!;
+    scrollLockContainer.style.paddingRight = '344px';
+    const { setProps } = render(
+      <Modal open scrollLockContainer={scrollLockContainer}>
+        <div />
+      </Modal>,
+    );
+
+    expect(scrollLockContainer.style.overflow).to.equal('hidden');
+    expect(parseInt(scrollLockContainer.style.paddingRight) > 344).to.be.true;
+    setProps({ open: false });
+    expect(scrollLockContainer.style.overflow).to.equal('');
+    expect(scrollLockContainer.style.paddingRight).to.equal('344px');
+  });
 });

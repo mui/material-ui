@@ -37,6 +37,14 @@ export type UseModalParameters = {
    */
   container?: PortalProps['container'];
   /**
+   * An HTML element.
+   * The `scrollLockContainer` will have scroll lock styles applied to it.
+   *
+   * By default, it uses the the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  scrollLockContainer?: HTMLElement | undefined;
+  /**
    * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */

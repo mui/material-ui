@@ -148,6 +148,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     children,
     anchor = 'left',
     container,
+    scrollLockContainer,
     disableAutoFocus = false,
     disableEnforceFocus = false,
     disableEscapeKeyDown = false,
@@ -184,6 +185,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     color,
     variant,
     size,
+    scrollLockContainer,
   };
 
   const { getRootProps, getBackdropProps, rootRef, portalRef, isTopModal } = useModal({

@@ -143,6 +143,24 @@ describe('ModalManager', () => {
       expect(fixedNode.style.paddingRight).to.equal('14px');
     });
 
+    it('should handle the scroll on custom scroll target', () => {
+      const html = document.querySelector('html')!;
+      html.style.paddingRight = '32px';
+
+      const modal = getDummyModal();
+      modalManager.add(modal, container1);
+      modalManager.mount(modal, {
+        scrollLockContainer: html,
+      });
+      expect(container1.style.overflow).to.equal('');
+      expect(container1.style.paddingRight).to.equal('20px');
+      expect(html.style.overflow).to.equal('hidden');
+      expect(html.style.paddingRight).to.equal(`${32 + getScrollbarSize(document)}px`);
+      modalManager.remove(modal);
+      expect(html.style.overflow).to.equal('');
+      expect(html.style.paddingRight).to.equal('32px');
+    });
+
     it('should disable the scroll even when not overflowing', () => {
       // simulate non-overflowing container
       const container2 = document.createElement('div');

@@ -52,6 +52,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     children,
     closeAfterTransition = false,
     container,
+    scrollLockContainer,
     disableAutoFocus = false,
     disableEnforceFocus = false,
     disableEscapeKeyDown = false,
@@ -95,6 +96,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
   } = useModal({
     ...propsWithDefaults,
     rootRef: forwardedRef,
+    scrollLockContainer,
   });
 
   const ownerState = {
@@ -244,6 +246,14 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableScrollLock: PropTypes.bool,
+  /**
+   * An HTML element.
+   * The `scrollLockContainer` will have scroll lock styles applied to it.
+   *
+   * By default, it uses the the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  scrollLockContainer: HTMLElementType,
   /**
    * If `true`, the backdrop is not rendered.
    * @default false
