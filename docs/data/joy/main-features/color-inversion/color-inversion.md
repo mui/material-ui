@@ -54,7 +54,9 @@ Color inversion has no effect on children that have an **explicit** `color` prop
 
 ## Usage
 
-To enable color inversion, use the `invertedColors` prop. Note that this prop only works when the components have the `solid` or `soft` global variant applied.
+### Surface components
+
+Surface components, including the Card, Sheet, and Drawer, have the `invertedColors` prop to enable color inversion for `solid` and `soft` variants.
 
 ```js
 <Card variant="solid" invertedColors>…</Card>
