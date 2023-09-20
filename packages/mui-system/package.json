@@ -59,13 +59,12 @@
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.21",
     "@types/sinon": "^10.0.16",
-    "@types/styled-components": "^5.1.26",
     "chai": "^4.3.7",
     "fast-glob": "^3.3.1",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "sinon": "^15.2.0",
-    "styled-components": "^5.3.11",
+    "styled-components": "^6.0.0",
     "test": "^5.0.0"
   },
   "peerDependencies": {
