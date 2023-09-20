@@ -47,7 +47,7 @@
     "file-system-cache": "2.0.2"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.1",
+    "@types/babel__core": "^7.20.2",
     "@types/loader-utils": "^2.0.4",
     "next": "^13.4.19"
   },

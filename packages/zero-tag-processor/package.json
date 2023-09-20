@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@mui/material": "^5.14.10",
-    "@types/babel__core": "^7.20.1",
+    "@types/babel__core": "^7.20.2",
     "@types/babel__helper-module-imports": "^7.18.1",
     "@types/babel__helper-plugin-utils": "^7.10.0",
     "@types/chai": "^4.3.6",
