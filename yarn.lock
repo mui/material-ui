@@ -3462,10 +3462,10 @@
     "@types/babel__core" "*"
     "@types/babel__traverse" "*"
 
-"@types/babel__helper-plugin-utils@^7.10.0":
-  version "7.10.0"
-  resolved "https://registry.yarnpkg.com/@types/babel__helper-plugin-utils/-/babel__helper-plugin-utils-7.10.0.tgz#dcd2416f9c189d5837ab2a276368cf67134efe78"
-  integrity sha512-60YtHzhQ9HAkToHVV+TB4VLzBn9lrfgrsOjiJMtbv/c1jPdekBxaByd6DMsGBzROXWoIL6U3lEFvvbu69RkUoA==
+"@types/babel__helper-plugin-utils@^7.10.1":
+  version "7.10.1"
+  resolved "https://registry.yarnpkg.com/@types/babel__helper-plugin-utils/-/babel__helper-plugin-utils-7.10.1.tgz#d24424d9cc7785a64cb1c1b41fac5c2d37c92aac"
+  integrity sha512-6RaT7i6r2rT6ouIDZ2Cd6dPkq4wn1F8pLyDO+7wPVsL1dodvORiZORImaD6j9FBcHjPGuERE0hhtwkuPNXsO0A==
   dependencies:
     "@types/babel__core" "*"
 
