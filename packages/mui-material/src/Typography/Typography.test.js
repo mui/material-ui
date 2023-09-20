@@ -122,4 +122,13 @@ describe('<Typography />', () => {
       marginBottom: '16px',
     });
   });
+
+  it('should check for invalid color value', () => {
+    const { container, debug } = render(
+      <Typography variant="h6" color="background">
+        Hello
+      </Typography>,
+    );
+    debug(container);
+  });
 });

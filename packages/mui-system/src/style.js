@@ -39,6 +39,14 @@ export function getStyleValue(themeMapping, transform, propValueFinal, userValue
     value = transform(value, userValue, themeMapping);
   }
 
+  if (typeof value !== 'string' && typeof value !== 'number' && typeof value !== 'boolean') {
+    // Log an error in development mode
+    if (process.env.NODE_ENV !== 'production') {
+      console.error(`Invalid value "${value}" for property "${userValue}"`);
+    }
+    value = userValue;
+  }
+
   return value;
 }
 
