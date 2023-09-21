@@ -159,7 +159,7 @@ const CircularProgressTrack = styled('circle', {
   r: 'calc(var(--_inner-size) / 2 - var(--_track-thickness) / 2 + min(0px, var(--_thickness-diff) / 2))',
   fill: 'transparent',
   strokeWidth: 'var(--_track-thickness)',
-  stroke: `var(${circularProgressCssVars.trackColor}})`,
+  stroke: `var(${circularProgressCssVars.trackColor})`,
 });
 
 const CircularProgressProgress = styled('circle', {
