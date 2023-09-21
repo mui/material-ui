@@ -86,6 +86,8 @@ function GlobalVariantDemo() {
           </JoyChip>
           <JoySwitch variant={variant} color={color} />
           <JoyRadio
+            variant={variant}
+            color={color}
             checked={selectedValue === 'a'}
             onChange={handleChange}
             value="a"
@@ -93,13 +95,15 @@ function GlobalVariantDemo() {
             slotProps={{ input: { 'aria-label': 'A' } }}
           />
           <JoyRadio
+            variant={variant}
+            color={color}
             checked={selectedValue === 'b'}
             onChange={handleChange}
             value="b"
             name="radio-buttons"
             slotProps={{ input: { 'aria-label': 'B' } }}
           />
-          <JoyCheckbox label="That's Joy UI!" />
+          <JoyCheckbox label="That's Joy UI!" variant={variant} color={color} />
         </Box>
         <JoyAlert
           variant={variant}
