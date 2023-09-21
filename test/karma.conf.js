@@ -133,6 +133,43 @@ module.exports = function setKarmaConfig(config) {
               envName: 'stable',
             },
           },
+          // Transpile dependencies outside this repository with dependencies in this repository
+          // TODO: Remove when the lab will stop exporting components from `@mui/x-tree-view`
+          {
+            test: /\.(js|mjs|jsx)$/,
+            include: /node_modules(\/|\\)@mui(\/|\\)x-tree-view/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                // We have to apply `babel-plugin-module-resolve` to the files in `@mui/x-tree-view`.
+                // Otherwise, we can't import `@mui/material` from `@mui/x-tree-view` in `yarn test:karma`.
+                sourceType: 'unambiguous',
+                plugins: [
+                  [
+                    'babel-plugin-module-resolver',
+                    {
+                      alias: {
+                        // all packages in this monorepo
+                        '@mui/material': './packages/mui-material/src',
+                        '@mui/docs': './packages/mui-docs/src',
+                        '@mui/icons-material': './packages/mui-icons-material/lib',
+                        '@mui/lab': './packages/mui-lab/src',
+                        '@mui/styled-engine': './packages/mui-styled-engine/src',
+                        '@mui/styles': './packages/mui-styles/src',
+                        '@mui/system': './packages/mui-system/src',
+                        '@mui/private-theming': './packages/mui-private-theming/src',
+                        '@mui/utils': './packages/mui-utils/src',
+                        '@mui/base': './packages/mui-base/src',
+                        '@mui/material-next': './packages/mui-material-next/src',
+                        '@mui/joy': './packages/mui-joy/src',
+                      },
+                      transformFunctions: ['require'],
+                    },
+                  ],
+                ],
+              },
+            },
+          },
           {
             test: /\.(js|mjs|ts|tsx)$/,
             use: {
