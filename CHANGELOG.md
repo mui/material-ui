@@ -1,5 +1,165 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.10
+
+<!-- generated comparing v5.14.9..master -->
+
+_Sep 18, 2023_
+
+A big thanks to the 16 contributors who made this release possible. This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.14.10`
+
+- &#8203;<!-- 20 -->[Chip] Add cursor CSS property reset (#38984) @DiegoAndai
+
+### `@mui/utils@5.14.10`
+
+- &#8203;<!-- 05 -->[utils] Move @types/prop-types back to dependencies (#39030) @Methuselah96
+
+### `@mui/base@5.0.0-beta.16`
+
+- &#8203;<!-- 24 -->[NumberInput][base-ui] Warn when changing control mode with `useControlled` (#38757) @sai6855
+- &#8203;<!-- 23 -->[Select][base-ui] Fix Select button layout shift, add placeholder prop (#38796) @mj12albert
+- &#8203;<!-- 22 -->[useList][base-ui] Accept arbitrary external props and forward to root (#38848) @mj12albert
+- &#8203;<!-- 25 -->[Autocomplete][base-ui] Added ref to getInputProps return value (#38919) @DarhkVoyd
+
+### `@mui/joy@5.0.0-beta.7`
+
+- &#8203;<!-- 26 -->[AccordionGroup][joy-ui] Fix console warning when using custom color (#38950) @sai6855
+- &#8203;<!-- 07 -->[GlobalStyles][joy-ui] Ensure compatibility with RSC (#38955) @mateuseap
+
+### Docs
+
+- &#8203;<!-- 21 -->[docs][base] Add Tailwind CSS + plain CSS demo on the NumberInput page (#38928) @alisasanib
+- &#8203;<!-- 13 -->[docs][Dialog] Add non-modal dialog docs & demo (#38684) @mnajdova
+- &#8203;<!-- 12 -->[docs] Fix number input wrong demo @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Exclude joy-ui LinearProgressCountup from visual regression (#38969) @siriwatknp
+- &#8203;<!-- 09 -->[docs][joy-ui] Revise the Overview page (#38842) @danilo-leal
+- &#8203;<!-- 08 -->[docs][material-ui][Pagination] Add `TablePagination` to the API components list (#38486) @MonstraG
+
+### Core
+
+- &#8203;<!-- 19 -->[core] Add more context about useEventCallback @oliviertassinari
+- &#8203;<!-- 18 -->[core] Allow deeper import of @mui/utils (#38806) @oliviertassinari
+- &#8203;<!-- 17 -->[core] Remove react-dom from @mui/utils peerDependencies (#38974) @michaldudak
+- &#8203;<!-- 16 -->[core] Remove react from styled-engine dependencies (#38971) @michaldudak
+- &#8203;<!-- 15 -->[core] Fix image loading bug on Safari @oliviertassinari
+- &#8203;<!-- 14 -->[core] Fix bundle size upload to S3 job (#38956) @Janpot
+- &#8203;<!-- 20 -->[core] Move eslint to peer dependencies of eslint-plugin-material-ui (#39033) @michaldudak
+- &#8203;<!-- 10 -->[docs-infra] Display markdown lists correctly in docs for props description (#38973) @ZeeshanTamboli
+- &#8203;<!-- 04 -->[website] Improve lighthouse score (#39011) @oliviertassinari
+- &#8203;<!-- 03 -->[website] Fix lighthouse issues @oliviertassinari
+- &#8203;<!-- 02 -->[website] Create the `InfoCard` component (#38987) @danilo-leal
+- &#8203;<!-- 01 -->[website] Small tweaks for performance @oliviertassinari
+- &#8203;<!-- 06 -->[zero][next] Setup nextjs plugin package (#38852) @brijeshb42
+
+All contributors of this release in alphabetical order: @alisasanib, @brijeshb42, @danilo-leal, @DarhkVoyd, @DiegoAndai, @Janpot, @mateuseap, @Methuselah96, @michaldudak, @mj12albert, @mnajdova, @MonstraG, @oliviertassinari, @sai6855, @siriwatknp, @ZeeshanTamboli
+
+## 5.14.9
+
+<!-- generated comparing v5.14.8..master -->
+
+_Sep 13, 2023_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 🎉 Added the [`Drawer` component](https://mui.com/joy-ui/react-drawer/) to Joy UI (#38169) @mnajdova
+- ✨ Material UI's [`ButtonGroup` component](https://mui.com/material-ui/react-button-group/) now styles button elements within it correctly (#38520) @ZeeshanTamboli
+
+### `@mui/material@5.14.9`
+
+- &#8203;<!-- 44 -->[ButtonGroup] Determine first, last and middle buttons to support different elements with correct styling (#38520) @ZeeshanTamboli
+- &#8203;<!-- 07 -->[Modal] Fix console warning when onTransitionEnter , onTransitionExit provided (#38868) @sai6855
+- &#8203;<!-- 54 -->Revert "[Autocomplete] Type multiple values with readonly arrays." (#38827) @mnajdova
+- &#8203;<!-- 57 -->[Tabs] Scrollable tabs shouldn't crash when customizing their styles in the theme with slot callbacks (#38544) @brentertz
+- &#8203;<!-- 59 -->[AlertTitle][BreadCrumbs] Fix inheritance message in docs (#38876) @sai6855
+
+### `@mui/base@5.0.0-beta.15`
+
+- &#8203;<!-- 63 -->[useSnackbar] Align externalProps handling (#38935) @mj12albert
+- &#8203;<!-- 48 -->[useInput] Align ExternalProps naming (#38849) @mj12albert
+- &#8203;<!-- 13 -->[FocusTrap] Refactor & cleanup (#38878) @mnajdova
+- &#8203;<!-- 12 -->[FocusTrap] Fix `disableEnforceFocus` behavior (#38816) @mnajdova
+- &#8203;<!-- 06 -->[Switch] Simplify source (#38910) @oliviertassinari
+
+### `@mui/joy@5.0.0-beta.6`
+
+- &#8203;<!-- 15 -->[Drawer] Add Drawer component (#38169) @mnajdova
+- &#8203;<!-- 11 -->Reduce height of some variants (#38527) @zanivan
+- &#8203;<!-- 10 -->Refine the default theme color palette (#38416) @zanivan
+- &#8203;<!-- 34 -->[Dialog] Add `DialogActions`, `DialogTitle` and `DialogContent` (#38382) @siriwatknp
+- &#8203;<!-- 60 -->[AccordionGroup] Add missing `variant` and `color` classes (#38814) @sai6855
+
+### `@mui/lab@5.0.0-alpha.144`
+
+- &#8203;<!-- 09 -->Add TypeScript deprecations (#38833) @oliviertassinari
+- &#8203;<!-- 08 -->Fix `@mui/x-tree-view` dependency (#38822) @flaviendelangle
+
+### `@mui/system@5.14.9`
+
+- &#8203;<!-- 05 -->Remove dead code (#38884) @oliviertassinari
+- &#8203;<!-- 04 -->Remove getInitColorSchemeScript leading spaces (#38794) @oliviertassinari
+
+### `@mui/zero-vite-plugin@0.0.1-alpha.0`
+
+- &#8203;<!-- 02 -->[vite] Create a package for vite plugin (#38685) @brijeshb42
+
+### Docs
+
+- &#8203;<!-- 53 -->[docs][base-ui] Improve recommended usage guide (#38570) @oliviertassinari
+- &#8203;<!-- 52 -->[docs][base-ui] Create hooks contribution guide (#38679) @michaldudak
+- &#8203;<!-- 51 -->[docs][base-ui] Structure and style revisions for Component docs (#38826) @samuelsycamore
+- &#8203;<!-- 50 -->[docs][base-ui] Add Number Input to the all components page (#38839) @danilo-leal
+- &#8203;<!-- 49 -->[docs][base-ui] Mark Popup with the Preview tag (#38851) @michaldudak
+- &#8203;<!-- 47 -->[blog] Polish component reference name @oliviertassinari
+- &#8203;<!-- 46 -->[blog] Fix missing card (#38834) @oliviertassinari
+- &#8203;<!-- 45 -->[Button][docs][material-ui] Update the file upload demo (#38823) @danilo-leal
+- &#8203;<!-- 33 -->[docs][DialogTitle] Fix props docs doesn't mention it extends `Typography` props (#38856) @sai6855
+- &#8203;<!-- 32 -->[docs] Improve npm experience (#38906) @oliviertassinari
+- &#8203;<!-- 31 -->[docs] Fix redirection to Base UI URLs @oliviertassinari
+- &#8203;<!-- 30 -->[docs] Fix use of callouts (#38747) @oliviertassinari
+- &#8203;<!-- 29 -->[docs] Fix 301 links for SEO @oliviertassinari
+- &#8203;<!-- 28 -->[docs] Remove flag from installation page @oliviertassinari
+- &#8203;<!-- 27 -->[docs] Fix strange break line on mobile in between product name @oliviertassinari
+- &#8203;<!-- 26 -->[docs] Clearer npm package homepages (#38864) @oliviertassinari
+- &#8203;<!-- 25 -->[docs] enableColorScheme prop was removed (#38795) @oliviertassinari
+- &#8203;<!-- 24 -->[docs] Fix a11y issues in tables demos (#38829) @michaldudak
+- &#8203;<!-- 62 -->[docs][joy-ui] Refine the Messages template (#38807) @zanivan
+- &#8203;<!-- 22 -->[docs][joy-ui] Fix copy on the Tutorial page (#38907) @danilo-leal
+- &#8203;<!-- 21 -->[docs][joy-ui] Fix grammar and update Usage section in color inversion page (#38850) @ZeeshanTamboli
+- &#8203;<!-- 20 -->[docs][joy-ui] Revise the Lists page (#36324) @LadyBluenotes
+- &#8203;<!-- 19 -->[docs][joy-ui] Refine the Profile Dashboard template (#38599) @zanivan
+- &#8203;<!-- 18 -->[docs][material-ui] Revise the Paper component docs (#38841) @danilo-leal
+- &#8203;<!-- 17 -->[docs][material-ui] Revise the Typography page (#38543) @danilo-leal
+- &#8203;<!-- 16 -->[docs][material-ui] Revise and split up "Styled engine" doc (#37774) @samuelsycamore
+- &#8203;<!-- 03 -->[TextareaAutosize][docs] Fix component creation in render (#38577) @oliviertassinari
+
+### Examples
+
+- &#8203;<!-- 14 -->[examples] Add shortcut to open example in online IDE (#38572) @oliviertassinari
+- &#8203;<!-- 61 -->[examples][base-ui] Add Base UI + Vite + Tailwind CSS example in TypeScript (#37595) @dvkam
+
+### Core
+
+- &#8203;<!-- 65 -->[core] Remove package declaration from same package dependencies (#38951) @DiegoAndai
+- &#8203;<!-- 64 -->[core] Remove workspace dependencies from root package.json (#38940) @michaldudak
+- &#8203;<!-- 43 -->[core] Fix prop-types generation (#38831) @flaviendelangle
+- &#8203;<!-- 42 -->[core] Move types packages to docs' devDependencies (#38914) @michaldudak
+- &#8203;<!-- 41 -->[core] Improve DX when browsing the package on npm and GitHub @oliviertassinari
+- &#8203;<!-- 40 -->[core] TrapFocus was renamed to FocusTrap @oliviertassinari
+- &#8203;<!-- 39 -->[core] Add types extension for clarity @oliviertassinari
+- &#8203;<!-- 38 -->[core] Hoist rewriteImportPaths to parent scope @oliviertassinari
+- &#8203;<!-- 37 -->[core] Bump aws-cli orb to 4.1 (#38857) @Janpot
+- &#8203;<!-- 36 -->[core] Explicitly define package dependencies (#38859) @michaldudak
+- &#8203;<!-- 35 -->[core] Fix yarn docs:create-playground script @oliviertassinari
+- &#8203;<!-- 56 -->[docs-infra] Improve show code button affordance (#38824) @danilo-leal
+- &#8203;<!-- 55 -->[docs–infra] Fix callout container width (#38880) @oliviertassinari
+- &#8203;<!-- 23 -->[docs-infra] Catch duplicated trailing splashes in links (#38758) @oliviertassinari
+- &#8203;<!-- 01 -->[website] add Michel Engelen to the about us page (#38818) @michelengelen
+- &#8203;<!-- 58 -->[website] Add a templates & design kits section to the Material UI page (#38617) @danilo-leal
+
+All contributors of this release in alphabetical order: @brentertz, @brijeshb42, @danilo-leal, @DiegoAndai, @dvkam, @flaviendelangle, @Janpot, @LadyBluenotes, @michaldudak, @michelengelen, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
+
 ## 5.14.8
 
 <!-- generated comparing v5.14.7..master -->

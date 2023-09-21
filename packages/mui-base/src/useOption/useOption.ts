@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { SelectOption, UseOptionParameters, UseOptionReturnValue } from './useOption.types';
-import { EventHandlers } from '../utils';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { useListItem } from '../useList';
 import { useCompoundItem } from '../utils/useCompoundItem';
 
@@ -48,14 +48,19 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
   const handleRef = useForkRef(optionRefParam, optionRef, listItemRefHandler)!;
 
   return {
-    getRootProps: <Other extends EventHandlers = {}>(otherHandlers: Other = {} as Other) => ({
-      ...otherHandlers,
-      ...getListItemProps(otherHandlers),
-      id,
-      ref: handleRef,
-      role: 'option',
-      'aria-selected': selected,
-    }),
+    getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
+      externalProps: ExternalProps = {} as ExternalProps,
+    ) => {
+      const externalEventHandlers = extractEventHandlers(externalProps);
+      return {
+        ...externalProps,
+        ...getListItemProps(externalEventHandlers),
+        id,
+        ref: handleRef,
+        role: 'option',
+        'aria-selected': selected,
+      };
+    },
     highlighted,
     index,
     selected,

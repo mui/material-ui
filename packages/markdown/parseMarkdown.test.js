@@ -1,5 +1,12 @@
 import { expect } from 'chai';
-import { getContents, getDescription, getTitle, getHeaders, getCodeblock } from './parseMarkdown';
+import {
+  getContents,
+  getDescription,
+  getTitle,
+  getHeaders,
+  getCodeblock,
+  renderMarkdown,
+} from './parseMarkdown';
 
 describe('parseMarkdown', () => {
   describe('getTitle', () => {
@@ -232,6 +239,41 @@ authors:
           },
         ],
       });
+    });
+  });
+
+  describe('renderMarkdown', () => {
+    it('should render markdown lists correctly', () => {
+      expect(
+        renderMarkdown(
+          [
+            'The track presentation:',
+            '- `normal` the track will render a bar representing the slider value.',
+            '- `inverted` the track will render a bar representing the remaining slider value.',
+            '- `false` the track will render without a bar.',
+          ].join('\n'),
+        ),
+      ).to.equal(
+        [
+          '<p>The track presentation:</p>',
+          '<ul>',
+          '<li><code>normal</code> the track will render a bar representing the slider value.</li>',
+          '<li><code>inverted</code> the track will render a bar representing the remaining slider value.</li>',
+          '<li><code>false</code> the track will render without a bar.</li>',
+          '</ul>',
+          '',
+        ].join('\n'),
+      );
+    });
+
+    it('should render inline descriptions correctly', () => {
+      expect(
+        renderMarkdown(
+          'Allows to control whether the dropdown is open. This is a controlled counterpart of `defaultOpen`.',
+        ),
+      ).to.equal(
+        'Allows to control whether the dropdown is open. This is a controlled counterpart of <code>defaultOpen</code>.',
+      );
     });
   });
 });

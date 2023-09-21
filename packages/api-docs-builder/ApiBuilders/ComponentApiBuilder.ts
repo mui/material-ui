@@ -10,7 +10,7 @@ import remarkVisit from 'unist-util-visit';
 import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
-import { renderInline as renderMarkdownInline } from '@mui/markdown';
+import { renderMarkdown } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
 import { ComponentInfo, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
@@ -333,19 +333,19 @@ function extractClassConditions(descriptions: any) {
 
       if (conditions && conditions[6]) {
         classConditions[className] = {
-          description: renderMarkdownInline(
+          description: renderMarkdown(
             description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
           ),
-          nodeName: renderMarkdownInline(conditions[3]),
-          conditions: renderMarkdownInline(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
+          nodeName: renderMarkdown(conditions[3]),
+          conditions: renderMarkdown(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
         };
       } else if (conditions && conditions[3] && conditions[3] !== 'the root element') {
         classConditions[className] = {
-          description: renderMarkdownInline(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
-          nodeName: renderMarkdownInline(conditions[3]),
+          description: renderMarkdown(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
+          nodeName: renderMarkdown(conditions[3]),
         };
       } else {
-        classConditions[className] = { description: renderMarkdownInline(description) };
+        classConditions[className] = { description: renderMarkdown(description) };
       }
     }
   });
@@ -517,13 +517,13 @@ const attachTranslations = (reactApi: ReactApi) => {
 
       const typeDescriptions: { [t: string]: string } = {};
       (signatureArgs || []).concat(signatureReturn || []).forEach(({ name, description }) => {
-        typeDescriptions[name] = renderMarkdownInline(description);
+        typeDescriptions[name] = renderMarkdown(description);
       });
 
       translations.propDescriptions[propName] = {
-        description: renderMarkdownInline(jsDocText),
+        description: renderMarkdown(jsDocText),
         requiresRef: requiresRef || undefined,
-        deprecated: renderMarkdownInline(deprecated) || undefined,
+        deprecated: renderMarkdown(deprecated) || undefined,
         typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
       };
     }
@@ -631,8 +631,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
           // undefined values are not serialized => saving some bytes
           required: requiredProp || undefined,
           deprecated: !!deprecation || undefined,
-          deprecationInfo:
-            renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
+          deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
           signature,
           additionalInfo:
             Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
