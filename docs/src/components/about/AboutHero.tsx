@@ -5,6 +5,7 @@ import { styled, keyframes } from '@mui/material/styles';
 import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
 import TeamStatistics from 'docs/src/components/about/TeamStatistics';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const teamPhotos = [
   {
@@ -148,32 +149,17 @@ function PhotoGallery() {
 export default function AboutHero() {
   return (
     <Section cozy bg="gradient">
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Typography color="primary.main" variant="body2" fontWeight="bold">
-          About us
-        </Typography>
-        <Typography component="h1" variant="h2" sx={{ my: 1, textAlign: 'center' }}>
-          We&apos;re on a mission to make <br />{' '}
-          <GradientText>building better UIs effortless</GradientText>
-        </Typography>
-        <Typography
-          color="text.secondary"
-          textAlign="center"
-          sx={{
-            maxWidth: { md: 450 },
-          }}
-        >
-          We aim high at enabling developers & designers to bring stunning UIs to life with
-          unrivalled speed and ease.
-        </Typography>
-      </Box>
+      <SectionHeadline
+        alwaysCenter
+        overline="About us"
+        title={
+          <Typography variant="h2" sx={{ maxWidth: 600, mx: 'auto' }}>
+            We&apos;re on a mission to make <br />{' '}
+            <GradientText>building better UIs effortless</GradientText>
+          </Typography>
+        }
+        description="Together, we are enabling developers & designers to bring stunning UIs to life with unrivalled speed and ease."
+      />
       <PhotoGallery />
       <TeamStatistics />
     </Section>

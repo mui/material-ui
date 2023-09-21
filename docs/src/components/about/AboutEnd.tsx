@@ -11,14 +11,13 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 export default function AboutEnd() {
   return (
-    <Section bg="gradient" sx={{ p: { xs: 4, sm: 8 } }}>
+    <Section bg="gradient" sx={{ p: { sm: 8 } }}>
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           position: 'relative',
-          zIdex: 10,
         }}
       >
         <SectionHeadline
