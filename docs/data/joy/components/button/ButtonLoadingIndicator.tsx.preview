@@ -1,6 +1,4 @@
-<Button loading variant="outlined">
-  Default
-</Button>
-<Button loading loadingIndicator="Loading…" variant="outlined">
+<Button loading>Default</Button>
+<Button loading loadingIndicator="Loading…">
   Custom
 </Button>

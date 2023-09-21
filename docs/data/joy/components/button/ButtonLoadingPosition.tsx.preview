@@ -1,11 +1,6 @@
-<Button loading loadingPosition="start" variant="outlined">
+<Button loading loadingPosition="start">
   Start
 </Button>
-<Button
-  loading
-  loadingPosition="end"
-  endDecorator={<SendIcon />}
-  variant="outlined"
->
+<Button loading loadingPosition="end" endDecorator={<SendIcon />}>
   End
 </Button>
