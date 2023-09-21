@@ -13,7 +13,7 @@ import {
 import { getMenuButtonUtilityClass } from './menuButtonClasses';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
-import CircularProgress from '../CircularProgress';
+import CircularProgress, { circularProgressCssVars } from '../CircularProgress';
 import { getButtonStyles } from '../Button/Button';
 import { styled, useColorInversion } from '../styles';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
@@ -51,7 +51,7 @@ const MenuButtonStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: MenuButtonOwnerState }>({
   '--Icon-margin': '0 0 0 calc(var(--Button-gap) / -2)',
-  '--CircularProgress-margin': '0 0 0 calc(var(--Button-gap) / -2)',
+  [circularProgressCssVars.margin]: '0 0 0 calc(var(--Button-gap) / -2)',
   display: 'inherit',
   marginRight: 'var(--Button-gap)',
 });
@@ -62,7 +62,7 @@ const MenuButtonEndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: MenuButtonOwnerState }>({
   '--Icon-margin': '0 calc(var(--Button-gap) / -2) 0 0',
-  '--CircularProgress-margin': '0 calc(var(--Button-gap) / -2) 0 0',
+  [circularProgressCssVars.margin]: '0 calc(var(--Button-gap) / -2) 0 0',
   display: 'inherit',
   marginLeft: 'var(--Button-gap)',
 });

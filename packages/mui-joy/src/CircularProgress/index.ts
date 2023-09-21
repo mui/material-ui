@@ -3,4 +3,4 @@ export { default } from './CircularProgress';
 export * from './circularProgressClasses';
 export { default as circularProgressClasses } from './circularProgressClasses';
 export * from './CircularProgressProps';
-export { default as cssVars } from './CircularProgressCssVars';
+export { default as circularProgressCssVars } from './CircularProgressCssVars';

@@ -10,6 +10,7 @@ import useSlot from '../utils/useSlot';
 import { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
+import { circularProgressCssVars } from '../CircularProgress';
 
 const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, size, variant } = ownerState;
@@ -47,8 +48,8 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       }),
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
-        '--CircularProgress-size': '20px',
-        '--CircularProgress-thickness': '2px',
+        [circularProgressCssVars.size]: '20px',
+        [circularProgressCssVars.thickness]: '2px',
         minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
         minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
@@ -56,8 +57,8 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2.25rem) / 1.5)', // 1.5rem by default
-        '--CircularProgress-size': '20px',
-        '--CircularProgress-thickness': '2px',
+        [circularProgressCssVars.size]: '20px',
+        [circularProgressCssVars.thickness]: '2px',
         minWidth: 'var(--IconButton-size, 2.25rem)',
         minHeight: 'var(--IconButton-size, 2.25rem)',
         fontSize: theme.vars.fontSize.md,
@@ -65,8 +66,8 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       }),
       ...(ownerState.size === 'lg' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2.75rem) / 1.571)', // 1.75rem by default
-        '--CircularProgress-size': '28px',
-        '--CircularProgress-thickness': '4px',
+        [circularProgressCssVars.size]: '28px',
+        [circularProgressCssVars.thickness]: '4px',
         minWidth: 'var(--IconButton-size, 2.75rem)',
         minHeight: 'var(--IconButton-size, 2.75rem)',
         fontSize: theme.vars.fontSize.lg,

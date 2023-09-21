@@ -17,6 +17,7 @@ import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
 import { TypographyNestedContext, TypographyInheritContext } from '../Typography/Typography';
+import { circularProgressCssVars } from '../CircularProgress';
 
 const useUtilityClasses = (ownerState: LinkOwnerState) => {
   const { level, color, variant, underline, focusVisible, disabled } = ownerState;
@@ -75,8 +76,8 @@ const LinkRoot = styled('a', {
     {
       '--Icon-fontSize': '1.25em',
       '--Icon-color': 'currentColor',
-      '--CircularProgress-size': '1.25em',
-      '--CircularProgress-thickness': '3px',
+      [circularProgressCssVars.size]: '1.25em',
+      [circularProgressCssVars.thickness]: '3px',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
       ...(ownerState.level === 'inherit' && {
         font: 'inherit',

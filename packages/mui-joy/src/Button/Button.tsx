@@ -8,7 +8,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { styled, Theme, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
-import CircularProgress from '../CircularProgress';
+import CircularProgress, { circularProgressCssVars } from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
@@ -56,7 +56,7 @@ const ButtonStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: ButtonOwnerState }>({
   '--Icon-margin': '0 0 0 calc(var(--Button-gap) / -2)',
-  '--CircularProgress-margin': '0 0 0 calc(var(--Button-gap) / -2)',
+  [circularProgressCssVars.margin]: '0 0 0 calc(var(--Button-gap) / -2)',
   display: 'inherit',
   marginRight: 'var(--Button-gap)',
 });
@@ -67,7 +67,7 @@ const ButtonEndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: ButtonOwnerState }>({
   '--Icon-margin': '0 calc(var(--Button-gap) / -2) 0 0',
-  '--CircularProgress-margin': '0 calc(var(--Button-gap) / -2) 0 0',
+  [circularProgressCssVars.margin]: '0 calc(var(--Button-gap) / -2) 0 0',
   display: 'inherit',
   marginLeft: 'var(--Button-gap)',
 });
@@ -103,8 +103,8 @@ export const getButtonStyles = ({
           : theme.vars.palette.text.icon,
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': theme.vars.fontSize.lg,
-        '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
-        '--CircularProgress-thickness': '2px',
+        [circularProgressCssVars.size]: '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        [circularProgressCssVars.thickness]: '2px',
         '--Button-gap': '0.375rem',
         minHeight: 'var(--Button-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
@@ -113,8 +113,8 @@ export const getButtonStyles = ({
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': theme.vars.fontSize.xl,
-        '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
-        '--CircularProgress-thickness': '2px',
+        [circularProgressCssVars.size]: '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        [circularProgressCssVars.thickness]: '2px',
         '--Button-gap': '0.5rem',
         minHeight: 'var(--Button-minHeight, 2.25rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
@@ -123,8 +123,8 @@ export const getButtonStyles = ({
       }),
       ...(ownerState.size === 'lg' && {
         '--Icon-fontSize': theme.vars.fontSize.xl2,
-        '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
-        '--CircularProgress-thickness': '4px',
+        [circularProgressCssVars.size]: '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        [circularProgressCssVars.thickness]: '4px',
         '--Button-gap': '0.75rem',
         minHeight: 'var(--Button-minHeight, 2.75rem)',
         fontSize: theme.vars.fontSize.md,
