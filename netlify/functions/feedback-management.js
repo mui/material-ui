@@ -78,7 +78,6 @@ app.action('delete_action', async ({ ack, body, client, logger }) => {
     const {
       user: { username },
       channel: { id: channelId },
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       message,
     } = body;
 
@@ -116,8 +115,6 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
     const {
       user: { username },
       channel: { id: channelId },
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      message_ts,
       message,
     } = body;
 
@@ -140,7 +137,7 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
     });
     await client.chat.postMessage({
       channel: channelId,
-      thread_ts: message_ts,
+      thread_ts: message.ts,
       as_user: true,
       text: `Saved in <https://docs.google.com/spreadsheets/d/${spreadSheetsIds.forLater}/>`,
     });
