@@ -70,22 +70,23 @@ export default function Highlighter({
             ...((!disableBorder || selected) && {
               borderColor: 'primaryDark.700',
             }),
+            ...(!selected && {
+              borderColor: `${alpha(theme.palette.primaryDark[600], 0.3)}`,
+              '&:hover, &:focus': {
+                bgcolor: `${alpha(theme.palette.primary[800], 0.1)}`,
+                borderColor: `${alpha(theme.palette.primary[500], 0.3)}`,
+                '@media (hover: none)': {
+                  bgcolor: 'transparent',
+                },
+              },
+            }),
             ...(selected && {
-              bgcolor: `${alpha(theme.palette.primary[900], 0.3)}`,
+              bgcolor: `${alpha(theme.palette.primary[800], 0.3)}`,
               borderColor: 'primary.700',
               color: 'primary.300',
               boxShadow: `0px 1px 6px ${
                 (theme.vars || theme).palette.primary[800]
               }, inset 0px 2px 8px ${(theme.vars || theme).palette.primaryDark[800]}`,
-            }),
-            ...(!selected && {
-              '&:hover, &:focus': {
-                bgcolor: 'primaryDark.800',
-                borderColor: 'primaryDark.700',
-                '@media (hover: none)': {
-                  bgcolor: 'transparent',
-                },
-              },
             }),
           }),
           '&.Mui-disabled': {
