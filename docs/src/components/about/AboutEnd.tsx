@@ -45,7 +45,7 @@ export default function AboutEnd() {
       </Box>
       <Box
         component="img"
-        src="/static/branding/about/team-globe-distribution-light.png"
+        src="/static/branding/about/illustrations/team-globe-distribution-light.png"
         alt="A map illustration with pins loosely positioned where team members from MUI are located."
         loading="lazy"
         width="1100"
@@ -54,7 +54,7 @@ export default function AboutEnd() {
           display: { xs: 'none', sm: 'block' },
           width: { sm: '100%' },
           ...theme.applyDarkStyles({
-            content: 'url(/static/branding/about/team-globe-distribution-dark.png)',
+            content: 'url(/static/branding/about/illustrations/team-globe-distribution-dark.png)',
           }),
         })}
       />
