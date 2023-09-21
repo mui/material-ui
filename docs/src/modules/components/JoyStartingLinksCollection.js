@@ -21,7 +21,7 @@ const content = [
   {
     title: 'Templates',
     description: 'Get started with our selection of free application templates.',
-    link: 'joy-ui/getting-started/templates/',
+    link: '/joy-ui/getting-started/templates/',
     icon: <WebRoundedIcon color="primary" />,
   },
 ];
