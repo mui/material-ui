@@ -33,7 +33,7 @@ const DialogActionsRoot = styled('div', {
   flex: '0 0 auto',
   ...(!ownerState.disableSpacing && {
     '& > :not(style)': {
-      margin: 0,
+      marginLeft: 0,
     },
     '& > :not(style) ~ :not(style)': {
       marginLeft: '8px',
