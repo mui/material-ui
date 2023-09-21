@@ -48,7 +48,9 @@ const useUtilityClasses = (ownerState: CircularProgressOwnerState) => {
 };
 
 function getThickness(slot: 'track' | 'progress', defaultValue: string) {
-  return `var(${circularProgressCssVars[`${slot}Thickness`]}, var(${circularProgressCssVars.thickness}, ${defaultValue}))`;
+  return `var(${circularProgressCssVars[`${slot}Thickness`]}, var(${
+    circularProgressCssVars.thickness
+  }, ${defaultValue}))`;
 }
 
 const CircularProgressRoot = styled('span', {
@@ -184,7 +186,10 @@ const CircularProgressProgress = styled('circle', {
   ({ ownerState }) =>
     !ownerState.determinate &&
     css`
-      animation: var(${circularProgressCssVars.circulation}, 0.8s linear 0s infinite normal none running)
+      animation: var(
+          ${circularProgressCssVars.circulation},
+          0.8s linear 0s infinite normal none running
+        )
         ${circulate};
     `,
 );
@@ -359,7 +364,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.oneOfType([
+  sx: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
