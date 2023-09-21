@@ -41,8 +41,6 @@ In the mid-term, we aspired for this charting liberty to become a standard in th
 
 In the long term, we envision using the pro-code charting API as a distribution channel for building more abstract charting primitives, using low-code and AI.
 
-We also need help to continue to make the components easier to use, make it more customizable, [improve performance](https://www.causal.app/blog/react-perf), make it more accessible, improve the health of the open-source by engaging and collaborating with the community, guide developers to answers, and just generally being a positive presence in the community.
-
 ## About the role
 
 ### Why this is interesting
@@ -106,11 +104,11 @@ We're looking for someone with strong front-end skills. More important than spec
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Ready and willing to ask and answer questions**.
   If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team. We thrive because of continuous learning. First-time mistakes should be celebrated, not blamed.
-<<<<<<< HEAD
-=======
+  <<<<<<< HEAD
+  =======
 - **Experience or interest in drawing technologies**.
   Charts use SVG and canvas which implies using other API than HTML/CSS. Hope you know them or enjoy discovering new documentation.
->>>>>>> 86d57277432369679adb6cea9294f15bc9c609f2
+  > > > > > > > 86d57277432369679adb6cea9294f15bc9c609f2
 - **Avoid monolithic deliverables**.
   You scope and stage your work into well-defined milestones to ship.
 - **Past work with front-end infrastructure**.
@@ -121,13 +119,13 @@ We're looking for someone with strong front-end skills. More important than spec
 
 - **You've contributed to a design system before**.
   You have worked on enterprise components in the past, maybe for internal use in your company.
-<<<<<<< HEAD
+  <<<<<<< HEAD
   You have built complex and advanced features while making sure the accessibility was fully functional.
-=======
+  =======
 - **You've experience with charts**.
-    You have contributed to building chart libraries, integrated charts in a design system, or contributed to chart intensive applications.
-    You have built complex and advanced features while making sure the accessibility was fully functional.
->>>>>>> 86d57277432369679adb6cea9294f15bc9c609f2
+  You have contributed to building chart libraries, integrated charts in a design system, or contributed to chart intensive applications.
+  You have built complex and advanced features while making sure the accessibility was fully functional.
+  > > > > > > > 86d57277432369679adb6cea9294f15bc9c609f2
 - **You've maintained an active repository before**.
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
   Previous experience with highly active repository workflows is a definite plus for this role.
