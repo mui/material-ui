@@ -23,6 +23,7 @@ import { EventHandlers } from '../utils/types';
 import { defaultOptionStringifier } from './defaultOptionStringifier';
 import { SelectProviderValue } from './SelectProvider';
 import { useCompoundParent } from '../utils/useCompound';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { SelectOption } from '../useOption/useOption.types';
 import { selectReducer } from './selectReducer';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
@@ -299,9 +300,8 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   } = useList(useListParameters);
 
   const createHandleButtonMouseDown =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent & MuiCancellableEvent) => {
-      otherHandlers?.onMouseDown?.(event);
+    (externalEventHandlers?: EventHandlers) => (event: React.MouseEvent & MuiCancellableEvent) => {
+      externalEventHandlers?.onMouseDown?.(event);
       if (!event.defaultMuiPrevented) {
         const action: ButtonClickAction = {
           type: SelectActionTypes.buttonClick,
@@ -336,8 +336,8 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     [getOptionByValue],
   );
 
-  const getSelectTriggerProps = <TOther extends EventHandlers>(
-    otherHandlers: TOther = {} as TOther,
+  const getSelectTriggerProps = <OtherHandlers extends EventHandlers>(
+    otherHandlers: OtherHandlers = {} as OtherHandlers,
   ) => {
     return {
       ...otherHandlers,
@@ -349,19 +349,23 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     };
   };
 
-  const getButtonProps = <TOther extends EventHandlers>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseSelectButtonSlotProps<TOther> => {
+  const getButtonProps = <ExternalProps extends Record<string, unknown>>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseSelectButtonSlotProps<ExternalProps> => {
+    const externalEventHandlers = extractEventHandlers(externalProps);
     const listboxAndButtonProps = combineHooksSlotProps(getButtonRootProps, getListboxRootProps);
     const combinedProps = combineHooksSlotProps(listboxAndButtonProps, getSelectTriggerProps);
-    return combinedProps(otherHandlers);
+    return {
+      ...externalProps,
+      ...combinedProps(externalEventHandlers),
+    };
   };
 
-  const getListboxProps = <TOther extends EventHandlers>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseSelectListboxSlotProps<TOther> => {
+  const getListboxProps = <ExternalProps extends Record<string, unknown>>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseSelectListboxSlotProps<ExternalProps> => {
     return {
-      ...otherHandlers,
+      ...externalProps,
       id: listboxId,
       role: 'listbox' as const,
       'aria-multiselectable': multiple ? 'true' : undefined,
@@ -404,18 +408,20 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
       null) as SelectValue<SelectOption<OptionValue>, Multiple>;
   }
 
-  const getHiddenInputProps = <TOther extends EventHandlers>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseSelectHiddenInputSlotProps<TOther> => ({
-    name,
-    tabIndex: -1,
-    'aria-hidden': true,
-    required: required ? true : undefined,
-    value: getSerializedValue(selectedOptionsMetadata),
-    onChange: noop,
-    style: visuallyHiddenStyle,
-    ...otherHandlers,
-  });
+  const getHiddenInputProps = <ExternalProps extends Record<string, unknown>>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseSelectHiddenInputSlotProps<ExternalProps> => {
+    return {
+      name,
+      tabIndex: -1,
+      'aria-hidden': true,
+      required: required ? true : undefined,
+      value: getSerializedValue(selectedOptionsMetadata),
+      onChange: noop,
+      style: visuallyHiddenStyle,
+      ...externalProps,
+    };
+  };
 
   return {
     buttonActive,

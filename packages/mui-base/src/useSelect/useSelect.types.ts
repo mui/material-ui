@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
-import { EventHandlers } from '../utils/types';
 import { SelectProviderValue } from './SelectProvider';
 import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
@@ -182,27 +181,28 @@ export interface UseSelectReturnValue<Value, Multiple> {
   dispatch: (action: ListAction<Value> | SelectAction) => void;
   /**
    * Resolver for the button slot's props.
-   * @param otherHandlers event handlers for the button slot
+   * @param externalProps event handlers for the button slot
    * @returns props that should be spread on the button slot
    */
-  getButtonProps: <OtherHandlers extends EventHandlers = {}>(
-    otherHandlers?: OtherHandlers,
-  ) => UseSelectButtonSlotProps<OtherHandlers>;
+  getButtonProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSelectButtonSlotProps<ExternalProps>;
   /**
    * Resolver for the hidden input slot's props.
+   * @param externalProps event handlers for the hidden input slot
    * @returns HTML input attributes that should be spread on the hidden input slot
    */
-  getHiddenInputProps: <OtherHandlers extends EventHandlers = {}>(
-    otherHandlers?: OtherHandlers,
-  ) => UseSelectHiddenInputSlotProps<OtherHandlers>;
+  getHiddenInputProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSelectHiddenInputSlotProps<ExternalProps>;
   /**
    * Resolver for the listbox slot's props.
-   * @param otherHandlers event handlers for the listbox slot
+   * @param externalProps event handlers for the listbox slot
    * @returns props that should be spread on the listbox slot
    */
-  getListboxProps: <OtherHandlers extends EventHandlers = {}>(
-    otherHandlers?: OtherHandlers,
-  ) => UseSelectListboxSlotProps<OtherHandlers>;
+  getListboxProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSelectListboxSlotProps<ExternalProps>;
   /**
    * A function that returns the metadata of an option with a given value.
    *
