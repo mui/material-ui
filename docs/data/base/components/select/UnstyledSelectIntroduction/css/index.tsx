@@ -8,23 +8,23 @@ export default function UnstyledSelectIntroduction() {
   return (
     <React.Fragment>
       <Select
-        className="CustomSelectIntroduction"
+        className="BaseSelectIntroduction"
         slots={{
           root: Button,
         }}
         slotProps={{
-          listbox: { className: 'CustomSelectIntroduction-listbox' },
-          popper: { className: 'CustomSelectIntroduction-popper' },
+          listbox: { className: 'BaseSelectIntroduction-listbox' },
+          popper: { className: 'BaseSelectIntroduction-popper' },
         }}
         defaultValue={10}
       >
-        <Option className="CustomSelectIntroduction-option" value={10}>
+        <Option className="BaseSelectIntroduction-option" value={10}>
           Documentation
         </Option>
-        <Option className="CustomSelectIntroduction-option" value={20}>
+        <Option className="BaseSelectIntroduction-option" value={20}>
           Components
         </Option>
-        <Option className="CustomSelectIntroduction-option" value={30}>
+        <Option className="BaseSelectIntroduction-option" value={30}>
           Features
         </Option>
       </Select>
@@ -87,7 +87,7 @@ function Styles() {
   return (
     <style>
       {`
-      .CustomSelectIntroduction {
+      .BaseSelectIntroduction {
         font-family: IBM Plex Sans, sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
@@ -123,7 +123,7 @@ function Styles() {
           right: 10px;
         }
       }
-      .CustomSelectIntroduction-listbox {
+      .BaseSelectIntroduction-listbox {
         font-family: IBM Plex Sans, sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
@@ -140,10 +140,10 @@ function Styles() {
           isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
         };
       }
-      .CustomSelectIntroduction-popper {
+      .BaseSelectIntroduction-popper {
         z-index: 1;
       }
-      .CustomSelectIntroduction-option {
+      .BaseSelectIntroduction-option {
         list-style: none;
         padding: 8px;
         border-radius: 8px;

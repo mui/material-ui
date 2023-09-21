@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Select, selectClasses } from '@mui/base/Select';
+import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
 
 import { Option, optionClasses } from '@mui/base/Option';
 import { Popper } from '@mui/base/Popper';
@@ -33,7 +33,7 @@ export default function UnstyledSelectObjectValuesForm() {
             >
               Default behavior
             </Label>
-            <CustomSelect
+            <Select
               name="character"
               id="object-value-default-button"
               aria-labelledby="object-value-default-label object-value-default-button"
@@ -44,7 +44,7 @@ export default function UnstyledSelectObjectValuesForm() {
                   {character.name}
                 </StyledOption>
               ))}
-            </CustomSelect>
+            </Select>
           </div>
           <Button sx={{ ml: 1 }} type="submit">
             Submit
@@ -60,7 +60,7 @@ export default function UnstyledSelectObjectValuesForm() {
             >
               Custom getSerializedValue
             </Label>
-            <CustomSelect
+            <Select
               getSerializedValue={getSerializedValue}
               name="character"
               id="object-value-serialize-button"
@@ -72,7 +72,7 @@ export default function UnstyledSelectObjectValuesForm() {
                   {character.name}
                 </StyledOption>
               ))}
-            </CustomSelect>
+            </Select>
           </div>
           <Button sx={{ ml: 1 }} type="submit">
             Submit
@@ -83,7 +83,7 @@ export default function UnstyledSelectObjectValuesForm() {
   );
 }
 
-function CustomSelect(props) {
+function Select(props) {
   const slots = {
     root: StyledButton,
     listbox: StyledListbox,
@@ -91,10 +91,10 @@ function CustomSelect(props) {
     ...props.slots,
   };
 
-  return <Select {...props} slots={slots} />;
+  return <BaseSelect {...props} slots={slots} />;
 }
 
-CustomSelect.propTypes = {
+Select.propTypes = {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Select, SelectProps, selectClasses } from '@mui/base/Select';
+import { Select as BaseSelect, SelectProps, selectClasses } from '@mui/base/Select';
 import { SelectOption } from '@mui/base/useOption';
 import { Option, optionClasses } from '@mui/base/Option';
 import { Popper } from '@mui/base/Popper';
@@ -7,15 +7,15 @@ import { styled } from '@mui/system';
 
 export default function UnstyledSelectCustomRenderValue() {
   return (
-    <CustomSelect renderValue={renderValue} placeholder="Select an option…">
+    <Select renderValue={renderValue} placeholder="Select an option…">
       <StyledOption value={10}>Ten</StyledOption>
       <StyledOption value={20}>Twenty</StyledOption>
       <StyledOption value={30}>Thirty</StyledOption>
-    </CustomSelect>
+    </Select>
   );
 }
 
-function CustomSelect(props: SelectProps<number, false>) {
+function Select(props: SelectProps<number, false>) {
   const slots: SelectProps<number, false>['slots'] = {
     root: StyledButton,
     listbox: StyledListbox,
@@ -23,7 +23,7 @@ function CustomSelect(props: SelectProps<number, false>) {
     ...props.slots,
   };
 
-  return <Select {...props} slots={slots} />;
+  return <BaseSelect {...props} slots={slots} />;
 }
 
 function renderValue(option: SelectOption<number> | null) {

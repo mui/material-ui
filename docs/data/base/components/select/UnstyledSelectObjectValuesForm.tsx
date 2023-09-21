@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Select, SelectProps, selectClasses } from '@mui/base/Select';
+import { Select as BaseSelect, SelectProps, selectClasses } from '@mui/base/Select';
 import { SelectOption } from '@mui/base/useOption';
 import { Option, optionClasses } from '@mui/base/Option';
 import { Popper } from '@mui/base/Popper';
@@ -32,7 +32,7 @@ export default function UnstyledSelectObjectValuesForm() {
             >
               Default behavior
             </Label>
-            <CustomSelect
+            <Select
               name="character"
               id="object-value-default-button"
               aria-labelledby="object-value-default-label object-value-default-button"
@@ -43,7 +43,7 @@ export default function UnstyledSelectObjectValuesForm() {
                   {character.name}
                 </StyledOption>
               ))}
-            </CustomSelect>
+            </Select>
           </div>
           <Button sx={{ ml: 1 }} type="submit">
             Submit
@@ -59,7 +59,7 @@ export default function UnstyledSelectObjectValuesForm() {
             >
               Custom getSerializedValue
             </Label>
-            <CustomSelect
+            <Select
               getSerializedValue={getSerializedValue}
               name="character"
               id="object-value-serialize-button"
@@ -71,7 +71,7 @@ export default function UnstyledSelectObjectValuesForm() {
                   {character.name}
                 </StyledOption>
               ))}
-            </CustomSelect>
+            </Select>
           </div>
           <Button sx={{ ml: 1 }} type="submit">
             Submit
@@ -82,7 +82,7 @@ export default function UnstyledSelectObjectValuesForm() {
   );
 }
 
-function CustomSelect<TValue extends {}, Multiple extends boolean = false>(
+function Select<TValue extends {}, Multiple extends boolean = false>(
   props: SelectProps<TValue, Multiple>,
 ) {
   const slots: SelectProps<TValue, Multiple>['slots'] = {
@@ -92,7 +92,7 @@ function CustomSelect<TValue extends {}, Multiple extends boolean = false>(
     ...props.slots,
   };
 
-  return <Select {...props} slots={slots} />;
+  return <BaseSelect {...props} slots={slots} />;
 }
 
 interface Character {

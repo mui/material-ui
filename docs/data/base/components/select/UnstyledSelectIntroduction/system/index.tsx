@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  Select,
+  Select as BaseSelect,
   selectClasses,
   SelectProps,
   SelectRootSlotProps,
@@ -12,15 +12,15 @@ import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectIntroduction() {
   return (
-    <CustomSelect defaultValue={10}>
+    <Select defaultValue={10}>
       <StyledOption value={10}>Documentation</StyledOption>
       <StyledOption value={20}>Components</StyledOption>
       <StyledOption value={30}>Features</StyledOption>
-    </CustomSelect>
+    </Select>
   );
 }
 
-const CustomSelect = React.forwardRef(function CustomSelect<
+const Select = React.forwardRef(function Select<
   TValue extends {},
   Multiple extends boolean,
 >(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
@@ -31,7 +31,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return <BaseSelect {...props} ref={ref} slots={slots} />;
 });
 
 const blue = {

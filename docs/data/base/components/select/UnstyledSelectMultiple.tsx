@@ -1,22 +1,22 @@
 import * as React from 'react';
-import { Select, SelectProps, selectClasses } from '@mui/base/Select';
+import { Select as BaseSelect, SelectProps, selectClasses } from '@mui/base/Select';
 import { Option, optionClasses } from '@mui/base/Option';
 import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 export default function UnstyledSelectMultiple() {
   return (
-    <CustomMultiSelect defaultValue={[10, 20]}>
+    <MultiSelect defaultValue={[10, 20]}>
       <StyledOption value={10}>Ten</StyledOption>
       <StyledOption value={20}>Twenty</StyledOption>
       <StyledOption value={30}>Thirty</StyledOption>
       <StyledOption value={40}>Forty</StyledOption>
       <StyledOption value={50}>Fifty</StyledOption>
-    </CustomMultiSelect>
+    </MultiSelect>
   );
 }
 
-const CustomMultiSelect = React.forwardRef(function CustomMultiSelect(
+const MultiSelect = React.forwardRef(function CustomMultiSelect(
   props: SelectProps<number, true>,
   ref: React.ForwardedRef<any>,
 ) {
@@ -27,7 +27,7 @@ const CustomMultiSelect = React.forwardRef(function CustomMultiSelect(
     ...props.slots,
   };
 
-  return <Select {...props} multiple ref={ref} slots={slots} />;
+  return <BaseSelect {...props} multiple ref={ref} slots={slots} />;
 });
 
 const blue = {

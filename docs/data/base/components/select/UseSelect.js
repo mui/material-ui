@@ -1,13 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useSelect, SelectProvider } from '@mui/base/useSelect';
+import { useSelect as useBaseSelect, SelectProvider } from '@mui/base/useSelect';
 import { useOption } from '@mui/base/useOption';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UseSelect() {
-  return <CustomSelect placeholder="Select a color…" options={options} />;
+  return <Select placeholder="Select a color…" options={options} />;
 }
 
 const blue = {
@@ -181,11 +181,11 @@ CustomOption.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-function CustomSelect({ options, placeholder }) {
+function Select({ options, placeholder }) {
   const listboxRef = React.useRef(null);
   const [listboxVisible, setListboxVisible] = React.useState(false);
 
-  const { getButtonProps, getListboxProps, contextValue, value } = useSelect({
+  const { getButtonProps, getListboxProps, contextValue, value } = useBaseSelect({
     listboxRef,
     onOpenChange: setListboxVisible,
     open: listboxVisible,
@@ -225,7 +225,7 @@ function CustomSelect({ options, placeholder }) {
   );
 }
 
-CustomSelect.propTypes = {
+Select.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       disabled: PropTypes.bool,

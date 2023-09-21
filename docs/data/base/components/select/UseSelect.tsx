@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import {
-  useSelect,
+  useSelect as useBaseSelect,
   SelectOptionDefinition,
   SelectProvider,
 } from '@mui/base/useSelect';
@@ -10,7 +10,7 @@ import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UseSelect() {
-  return <CustomSelect placeholder="Select a color…" options={options} />;
+  return <Select placeholder="Select a color…" options={options} />;
 }
 
 const blue = {
@@ -192,11 +192,11 @@ function CustomOption(props: OptionProps) {
   );
 }
 
-function CustomSelect({ options, placeholder }: Props) {
+function Select({ options, placeholder }: Props) {
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const [listboxVisible, setListboxVisible] = React.useState(false);
 
-  const { getButtonProps, getListboxProps, contextValue, value } = useSelect<
+  const { getButtonProps, getListboxProps, contextValue, value } = useBaseSelect<
     string,
     false
   >({

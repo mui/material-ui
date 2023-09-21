@@ -1,12 +1,12 @@
-<CustomSelect placeholder="Choose a character…">
-  <CustomOptionGroup label="Hobbits">
+<Select placeholder="Choose a character…">
+  <OptionGroup label="Hobbits">
     <StyledOption value="Frodo">Frodo</StyledOption>
     <StyledOption value="Sam">Sam</StyledOption>
     <StyledOption value="Merry">Merry</StyledOption>
     <StyledOption value="Pippin">Pippin</StyledOption>
-  </CustomOptionGroup>
-  <CustomOptionGroup label="Elves">
+  </OptionGroup>
+  <OptionGroup label="Elves">
     <StyledOption value="Galadriel">Galadriel</StyledOption>
     <StyledOption value="Legolas">Legolas</StyledOption>
-  </CustomOptionGroup>
-</CustomSelect>
+  </OptionGroup>
+</Select>

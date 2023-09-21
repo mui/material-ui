@@ -1,4 +1,4 @@
-<CustomSelect
+<Select
   value={character}
   onChange={(event, newValue) => setCharacter(newValue)}
 >
@@ -7,6 +7,6 @@
       {c.name}
     </StyledOption>
   ))}
-</CustomSelect>
+</Select>
 <Paragraph>Selected character:</Paragraph>
 <Pre>{JSON.stringify(character, null, 2)}</Pre>

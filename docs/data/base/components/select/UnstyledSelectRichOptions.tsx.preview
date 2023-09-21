@@ -1,4 +1,4 @@
-<CustomSelect placeholder="Select country…">
+<Select placeholder="Select country…">
   {countries.map((c) => (
     <StyledOption key={c.code} value={c.code} label={c.label}>
       <img
@@ -11,4 +11,4 @@
       {c.label} ({c.code}) +{c.phone}
     </StyledOption>
   ))}
-</CustomSelect>
+</Select>

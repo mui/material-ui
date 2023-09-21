@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Select, SelectProps, selectClasses } from '@mui/base/Select';
+import { Select as BaseSelect, SelectProps, selectClasses } from '@mui/base/Select';
 import { Option, optionClasses } from '@mui/base/Option';
 import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
-const CustomSelect = React.forwardRef(function CustomSelect<
+const Select = React.forwardRef(function Select<
   TValue extends {},
   Multiple extends boolean,
 >(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
@@ -15,18 +15,18 @@ const CustomSelect = React.forwardRef(function CustomSelect<
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return <BaseSelect {...props} ref={ref} slots={slots} />;
 }) as <TValue extends {}, Multiple extends boolean>(
   props: SelectProps<TValue, Multiple> & React.RefAttributes<HTMLButtonElement>,
 ) => JSX.Element;
 
 export default function UnstyledSelectBasic() {
   return (
-    <CustomSelect defaultValue={10}>
+    <Select defaultValue={10}>
       <StyledOption value={10}>Ten</StyledOption>
       <StyledOption value={20}>Twenty</StyledOption>
       <StyledOption value={30}>Thirty</StyledOption>
-    </CustomSelect>
+    </Select>
   );
 }
 

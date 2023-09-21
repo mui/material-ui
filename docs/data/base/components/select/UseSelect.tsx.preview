@@ -1,1 +1,1 @@
-<CustomSelect placeholder="Select a color…" options={options} />
+<Select placeholder="Select a color…" options={options} />

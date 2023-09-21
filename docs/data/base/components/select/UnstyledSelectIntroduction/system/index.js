@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Select, selectClasses } from '@mui/base/Select';
+import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
 import { Option, optionClasses } from '@mui/base/Option';
 import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
@@ -8,15 +8,15 @@ import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectIntroduction() {
   return (
-    <CustomSelect defaultValue={10}>
+    <Select defaultValue={10}>
       <StyledOption value={10}>Documentation</StyledOption>
       <StyledOption value={20}>Components</StyledOption>
       <StyledOption value={30}>Features</StyledOption>
-    </CustomSelect>
+    </Select>
   );
 }
 
-const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+const Select = React.forwardRef(function Select(props, ref) {
   const slots = {
     root: StyledButton,
     listbox: StyledListbox,
@@ -24,10 +24,10 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return <BaseSelect {...props} ref={ref} slots={slots} />;
 });
 
-CustomSelect.propTypes = {
+Select.propTypes = {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
