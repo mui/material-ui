@@ -5,34 +5,44 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import Link from 'docs/src/modules/components/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
-import { GlowingIconContainer } from 'docs/src/components/action/InfoCard';
 
 const values = [
   {
-    icon: <StyleRoundedIcon color="primary" />,
     title: 'Put community first 💙',
     description: 'We never lose sight of who we’re serving and why.',
+    lightIcon: 'url(/static/branding/about/community-light.svg)',
+    darkIcon: 'url(/static/branding/about/community-dark.svg)',
+    width: 92,
+    height: 84,
   },
   {
-    icon: <StyleRoundedIcon color="primary" />,
     title: 'Avoid bureaucracy 🚫',
     description: 'We’re so not corporate — and we like it that way.',
+    lightIcon: 'url(/static/branding/about/bureaucracy-light.svg)',
+    darkIcon: 'url(/static/branding/about/bureaucracy-dark.svg)',
+    width: 81,
+    height: 94,
   },
   {
-    icon: <StyleRoundedIcon color="primary" />,
     title: 'Chase “better” 🌱',
     description: 'We’re driven by an unending desire to improve.',
+    lightIcon: 'url(/static/branding/about/better-light.svg)',
+    darkIcon: 'url(/static/branding/about/better-dark.svg)',
+    width: 89,
+    height: 89,
   },
   {
-    icon: <StyleRoundedIcon color="primary" />,
     title: 'Trust and deliver together 🚀',
     description: 'We choose to cultivate unity as the core of achievement.',
+    lightIcon: 'url(/static/branding/about/trust-light.svg)',
+    darkIcon: 'url(/static/branding/about/trust-dark.svg)',
+    width: 75,
+    height: 92,
   },
 ];
 
@@ -66,13 +76,17 @@ export default function OurValues() {
         </Button>
       </Box>
       <Grid container spacing={3} sx={{ mt: { xs: 1, sm: 2 } }}>
-        {values.map(({ icon, title, description }) => (
+        {values.map(({ title, description, darkIcon, lightIcon, height, width }) => (
           <Grid key={title} item xs={12} md={3}>
             <Paper
               variant="outlined"
               sx={(theme) => ({
                 p: 4,
                 height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'space-between',
+                gap: 1.5,
                 background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
                 ...theme.applyDarkStyles({
                   bgcolor: 'primaryDark.900',
@@ -81,32 +95,42 @@ export default function OurValues() {
                 }),
               })}
             >
-              <GlowingIconContainer icon={icon} />
-              <Typography
-                fontWeight="bold"
-                component="h3"
-                variant="body2"
+              <Box
                 sx={(theme) => ({
-                  mt: 2,
-                  mb: 0.5,
-                  color: (theme.vars || theme).palette.text.primary,
-                  '&::first-letter': {
-                    mr: 0.1,
-                    fontSize: theme.typography.pxToRem(16),
-                    color: (theme.vars || theme).palette.primary.main,
-                  },
+                  background: `${lightIcon}`,
                   ...theme.applyDarkStyles({
-                    '&::first-letter': {
-                      color: (theme.vars || theme).palette.primary[400],
-                    },
+                    background: `${darkIcon}`,
                   }),
                 })}
-              >
-                {title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {description}
-              </Typography>
+                width={width}
+                height={height}
+              />
+              <Box sx={{ flexGrow: 1 }}>
+                <Typography
+                  fontWeight="bold"
+                  component="h3"
+                  variant="body2"
+                  sx={(theme) => ({
+                    mb: 0.5,
+                    color: (theme.vars || theme).palette.text.primary,
+                    '&::first-letter': {
+                      mr: 0.1,
+                      fontSize: theme.typography.pxToRem(16),
+                      color: (theme.vars || theme).palette.primary.main,
+                    },
+                    ...theme.applyDarkStyles({
+                      '&::first-letter': {
+                        color: (theme.vars || theme).palette.primary[400],
+                      },
+                    }),
+                  })}
+                >
+                  {title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {description}
+                </Typography>
+              </Box>
             </Paper>
           </Grid>
         ))}
