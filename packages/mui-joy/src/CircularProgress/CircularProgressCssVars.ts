@@ -1,6 +1,6 @@
 import { CssVarsValuesType } from '../utils/CssVarsType';
 
-const cssVars = {
+const circularProgressCssVars = {
   thickness: '--CircularProgress-thickness',
   trackThickness: '--CircularProgress-trackThickness',
   progressThickness: '--CircularProgress-progressThickness',
@@ -14,8 +14,8 @@ const cssVars = {
 } as const;
 
 export type CircularProgressCssVarsType = CssVarsValuesType<
-  keyof typeof cssVars,
+  keyof typeof circularProgressCssVars,
   'CircularProgress'
 >;
 
-export default cssVars;
+export default circularProgressCssVars;
