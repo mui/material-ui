@@ -49,7 +49,7 @@ describe('<Chip />', () => {
     muiName: 'MuiChip',
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testVariantProps: { variant: 'outlined' },
-    testStatOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
+    testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     skip: ['componentsProp'],
