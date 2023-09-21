@@ -1,6 +1,6 @@
-<Button loading variant="solid">
-  Send
+<Button loading variant="outlined">
+  Default
 </Button>
 <Button loading loadingIndicator="Loading…" variant="outlined">
-  Fetch data
+  Custom
 </Button>

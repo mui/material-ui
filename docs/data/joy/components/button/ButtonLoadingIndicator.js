@@ -5,11 +5,11 @@ import Button from '@mui/joy/Button';
 export default function ButtonLoadingIndicator() {
   return (
     <Stack spacing={2} direction="row">
-      <Button loading variant="solid">
-        Send
+      <Button loading variant="outlined">
+        Default
       </Button>
       <Button loading loadingIndicator="Loading…" variant="outlined">
-        Fetch data
+        Custom
       </Button>
     </Stack>
   );

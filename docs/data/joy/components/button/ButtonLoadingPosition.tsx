@@ -7,15 +7,15 @@ export default function ButtonLoadingPosition() {
   return (
     <Stack spacing={2} direction="row">
       <Button loading loadingPosition="start" variant="outlined">
-        Fetch data
+        Start
       </Button>
       <Button
         loading
         loadingPosition="end"
         endDecorator={<SendIcon />}
-        variant="solid"
+        variant="outlined"
       >
-        Send
+        End
       </Button>
     </Stack>
   );
