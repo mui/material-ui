@@ -57,31 +57,47 @@ const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
 });
 
+/**
+ * Helpping function to retrive data from the message
+ */
+function getQuoteAndLinks(message) {
+  const text = message?.blocks?.[0]?.text?.text;
+
+  const quote = text
+    .split('\n\nsent from')[0]
+    .split('\n\n')
+    .slice(1)
+    .join('\n\n')
+    .replace(/&gt;/g, '');
+
+  const links = text
+    .split('\n\nsent from <')[1]
+    .split(' (from section <')
+    .map((linkSection) => {
+      const splited = linkSection.split('/>');
+      if (splited.length === 2) {
+        // Ensure there is a `/>` which means we are facing a link
+        return splited[0];
+      }
+      return '';
+    })
+    .filter((link) => link !== '');
+  return { quote, links };
+}
 // Define slack actions to answer
 
 app.action('delete_action', async ({ ack, body, client, logger }) => {
   try {
     await ack();
-
+    console.log(JSON.stringify({ body }));
     const {
       user: { username },
       channel: { id: channelId },
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      message_ts,
       message,
     } = body;
-    const elements = message?.blocks?.[0]?.elements;
 
-    const quote = message?.text
-      .split('\n\nsent from')[0]
-      .split('\n\n')
-      .slice(1)
-      .join('\n\n')
-      .replace(/&gt;/g, '');
-
-    const links = elements[2].elements
-      .filter((element) => element.type === 'link')
-      .map((element) => element.url);
+    const { quote, links } = getQuoteAndLinks(message);
 
     const googleAuth = new JWT({
       email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
@@ -100,16 +116,12 @@ app.action('delete_action', async ({ ack, body, client, logger }) => {
     });
     await client.chat.delete({
       channel: channelId,
-      ts: message_ts,
+      ts: message.ts,
       as_user: true,
       token: process.env.SLACK_BOT_TOKEN,
     });
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('Error in save_message');
-    // eslint-disable-next-line no-console
-    console.log(JSON.stringify(error, null, 2));
-    logger.error(error);
+    logger.error(JSON.stringify(error, null, 2));
   }
 });
 
@@ -123,18 +135,8 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
       message_ts,
       message,
     } = body;
-    const elements = message?.blocks?.[0]?.elements;
 
-    const quote = message?.text
-      .split('\n\nsent from')[0]
-      .split('\n\n')
-      .slice(1)
-      .join('\n\n')
-      .replace(/&gt;/g, '');
-
-    const links = elements[2].elements
-      .filter((element) => element.type === 'link')
-      .map((element) => element.url);
+    const { quote, links } = getQuoteAndLinks(message);
 
     const googleAuth = new JWT({
       email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
@@ -158,11 +160,7 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
       text: `Saved in <https://docs.google.com/spreadsheets/d/${spreadSheetsIds.forLater}/>`,
     });
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('Error in save_message');
-    // eslint-disable-next-line no-console
-    console.log(JSON.stringify(error, null, 2));
-    logger.error(error);
+    logger.error(JSON.stringify(error, null, 2));
   }
 });
 
@@ -176,7 +174,7 @@ exports.handler = async (event, context, callback) => {
   }
   try {
     const { payload } = querystring.parse(event.body);
-    const data = JSON.parse(decodeURIComponent(payload));
+    const data = JSON.parse(payload);
 
     if (data.callback_id === 'send_feedback') {
       // We send the feedback to the appopiate slack channel
