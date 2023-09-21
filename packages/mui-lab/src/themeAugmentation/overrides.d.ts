@@ -1,4 +1,5 @@
 import { LoadingButtonClassKey } from '../LoadingButton';
+import { MasonryClassKey } from '../Masonry';
 import { TabListClassKey } from '../TabList';
 import { TabPanelClassKey } from '../TabPanel';
 import { TimelineClassKey } from '../Timeline';
@@ -14,6 +15,7 @@ import { TreeViewClassKey } from '../TreeView';
 // prettier-ignore
 export interface LabComponentNameToClassKey {
   MuiLoadingButton: LoadingButtonClassKey;
+  MuiMasonry: MasonryClassKey;
   MuiTabList: TabListClassKey;
   MuiTabPanel: TabPanelClassKey;
   MuiTimeline: TimelineClassKey;

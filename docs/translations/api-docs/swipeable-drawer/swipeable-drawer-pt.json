@@ -1,6 +1,7 @@
 {
   "componentDescription": "",
   "propDescriptions": {
+    "allowSwipeInChildren": "Callback to determine what children of the drawer the user can use to drag open the drawer. Can be a custom function to control the behavior. Set or return true / false to allow / disallow the swipe event.",
     "children": "O conteúdo do componente.",
     "disableBackdropTransition": "Disable the backdrop transition. This can improve the FPS on low-end devices.",
     "disableDiscovery": "If <code>true</code>, touching the screen near the edge of the drawer will not slide in the drawer a bit to promote accidental discovery of the swipe gesture.",

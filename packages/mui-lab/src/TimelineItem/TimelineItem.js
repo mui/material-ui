@@ -1,13 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { capitalize, isMuiElement } from '@mui/material/utils';
+import { isMuiElement } from '@mui/material/utils';
 import { styled, useThemeProps } from '@mui/material/styles';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { timelineContentClasses } from '../TimelineContent';
 import { timelineOppositeContentClasses } from '../TimelineOppositeContent';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineItemUtilityClass } from './timelineItemClasses';
+import convertTimelinePositionToClass from '../internal/convertTimelinePositionToClass';
 
 const useUtilityClasses = (ownerState) => {
   const { position, classes, hasOppositeContent } = ownerState;
@@ -15,7 +16,7 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: [
       'root',
-      `position${capitalize(position)}`,
+      convertTimelinePositionToClass(position),
       !hasOppositeContent && 'missingOppositeContent',
     ],
   };
@@ -29,7 +30,7 @@ const TimelineItemRoot = styled('li', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [styles.root, styles[`position${capitalize(ownerState.position)}`]];
+    return [styles.root, styles[convertTimelinePositionToClass(ownerState.position)]];
   },
 })(({ ownerState }) => ({
   listStyle: 'none',
@@ -39,8 +40,8 @@ const TimelineItemRoot = styled('li', {
   ...(ownerState.position === 'left' && {
     flexDirection: 'row-reverse',
   }),
-  ...(ownerState.position === 'alternate' && {
-    '&:nth-of-type(even)': {
+  ...((ownerState.position === 'alternate' || ownerState.position === 'alternate-reverse') && {
+    [`&:nth-of-type(${ownerState.position === 'alternate' ? 'even' : 'odd'})`]: {
       flexDirection: 'row-reverse',
       [`& .${timelineContentClasses.root}`]: {
         textAlign: 'right',
@@ -117,7 +118,7 @@ TimelineItem.propTypes /* remove-proptypes */ = {
   /**
    * The position where the timeline's item should appear.
    */
-  position: PropTypes.oneOf(['left', 'right']),
+  position: PropTypes.oneOf(['alternate-reverse', 'alternate', 'left', 'right']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

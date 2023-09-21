@@ -24,15 +24,18 @@ export default function Playground() {
   });
 
   return (
-    <Box>
+    <div>
       <Box
         sx={{
-          pt: 2,
-          pb: 1,
-          bgcolor: 'background.surface',
+          mt: 3,
+          pt: 4,
           position: 'sticky',
           top: 'var(--MuiDocs-header-height)',
           zIndex: 2,
+          border: '1px solid',
+          borderColor: 'divider',
+          borderRadius: 'xs',
+          bgcolor: 'background.surface',
         }}
       >
         <FormControl sx={{ width: 300, mx: 'auto' }}>
@@ -43,15 +46,16 @@ export default function Playground() {
             {...flags.reduce((prev, current) => ({ ...prev, [current]: true }), {})}
           />
         </FormControl>
-        <Divider sx={{ mt: 3, mb: 2 }} />
-        <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
+        <Divider sx={{ mt: 4, mb: 2 }} />
+        <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 2 }}>
           <Typography
             id="flags-playground"
-            level="body3"
+            level="body-xs"
             sx={{
               textTransform: 'uppercase',
               fontWeight: 'lg',
               letterSpacing: 'md',
+              px: 2,
             }}
           >
             Flags {flags.length ? `(${flags.length})` : ''}
@@ -60,9 +64,9 @@ export default function Playground() {
             // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <Link
               component="button"
-              level="body2"
+              level="body-sm"
               onClick={() => setFlags([])}
-              sx={{ ml: 'auto' }}
+              sx={{ ml: 'auto', mr: 2 }}
             >
               Clear all
             </Link>
@@ -273,7 +277,7 @@ export default function Playground() {
           </ListItem>
         </List>
       </Box>
-    </Box>
+    </div>
   );
 }
 

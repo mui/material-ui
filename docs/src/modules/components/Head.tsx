@@ -1,7 +1,7 @@
 import * as React from 'react';
 import NextHead from 'next/head';
 import { useRouter } from 'next/router';
-import { LANGUAGES_SSR } from 'docs/src/modules/constants';
+import { LANGUAGES_SSR } from 'docs/config';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 

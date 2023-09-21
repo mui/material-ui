@@ -1,9 +1,9 @@
-import * as fse from 'fs-extra';
 import * as path from 'path';
+import * as fse from 'fs-extra';
 import * as playwright from 'playwright';
 
 async function main() {
-  const baseUrl = 'http://localhost:3000';
+  const baseUrl = 'http://localhost:5001';
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
 
   const browser = await playwright.chromium.launch({
@@ -27,7 +27,7 @@ async function main() {
   });
 
   // Wait for all requests to finish.
-  // This should load shared ressources such as fonts.
+  // This should load shared resources such as fonts.
   await page.goto(`${baseUrl}#no-dev`, { waitUntil: 'networkidle0' });
   // If we still get flaky fonts after awaiting this try `document.fonts.ready`
   await page.waitForSelector('[data-webfontloader="active"]', { state: 'attached' });

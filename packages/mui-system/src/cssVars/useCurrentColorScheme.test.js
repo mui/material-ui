@@ -738,7 +738,7 @@ describe('useCurrentColorScheme', () => {
       fireEvent.click(screen.getByTestId('dark'));
 
       global.localStorage.setItem.resetHistory();
-      expect(global.localStorage.setItem.callCount).to.equal(0); // reset the calls to neglect inital setItem in the assertion below
+      expect(global.localStorage.setItem.callCount).to.equal(0); // reset the calls to neglect initial setItem in the assertion below
 
       fireEvent.click(screen.getByTestId('reset'));
 

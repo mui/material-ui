@@ -17,6 +17,34 @@ ruleTester.run('mui-name-matches-component-name', rule, {
         useThemeProps({ props: inProps, name: 'MuiCssBaseline' });
       }
     `,
+    `
+    const Container = createContainer({
+      createStyledComponent: styled('div', {
+        name: 'MuiContainer',
+        slot: 'Root',
+        overridesResolver: (props, styles) => {
+          const { ownerState } = props;
+
+          return [
+            styles.root,
+            ownerState.fixed && styles.fixed,
+            ownerState.disableGutters && styles.disableGutters,
+          ];
+        },
+      }),
+      useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiContainer' }),
+    });
+    `,
+    `
+    const Grid2 = createGrid2({
+      createStyledComponent: styled('div', {
+        name: 'MuiGrid2',
+        overridesResolver: (props, styles) => styles.root,
+      }),
+      componentName: 'MuiGrid2',
+      useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiGrid2' }),
+    }) as OverridableComponent<Grid2TypeMap>;
+    `,
     {
       code: `
         const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TDate>(

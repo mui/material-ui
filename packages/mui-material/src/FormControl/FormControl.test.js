@@ -142,6 +142,17 @@ describe('<FormControl />', () => {
       expect(readContext.args[0][0]).to.have.property('filled', true);
     });
 
+    it('should be filled when a value is set through inputProps', () => {
+      const readContext = spy();
+      render(
+        <FormControl>
+          <Input inputProps={{ value: 'bar' }} />
+          <TestComponent contextCallback={readContext} />
+        </FormControl>,
+      );
+      expect(readContext.args[0][0]).to.have.property('filled', true);
+    });
+
     it('should be filled when a defaultValue is set', () => {
       const readContext = spy();
       render(

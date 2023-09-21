@@ -2,8 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, describeConformance } from 'test/utils';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Transition } from 'react-transition-group';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grow from '@mui/material/Grow';
 import useForkRef from '../utils/useForkRef';
 

@@ -1,0 +1,76 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'neutral'",
+      "additionalInfo": { "joy-color": true }
+    },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'contained'<br>&#124;&nbsp;'light'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
+      },
+      "default": "'plain'",
+      "additionalInfo": { "joy-variant": true }
+    }
+  },
+  "name": "MenuItem",
+  "imports": ["import MenuItem from '@mui/joy/MenuItem';", "import { MenuItem } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiMenuItem" },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiMenuItem-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "selected",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {
+      "focusVisible": "Mui-focusVisible",
+      "disabled": "Mui-disabled",
+      "selected": "Mui-selected"
+    }
+  },
+  "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyMenuItem",
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/mui-joy/src/MenuItem/MenuItem.tsx",
+  "inheritance": { "component": "ListItemButton", "pathname": "/joy-ui/api/list-item-button/" },
+  "demos": "<ul><li><a href=\"/joy-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

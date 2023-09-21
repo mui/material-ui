@@ -1,6 +1,6 @@
 <CustomSelect
   value={character}
-  onChange={(e, newValue) => setCharacter(newValue)}
+  onChange={(event, newValue) => setCharacter(newValue)}
 >
   {characters.map((c) => (
     <StyledOption key={c.name} value={c}>

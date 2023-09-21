@@ -4,7 +4,7 @@ export default function PlayerFinal() {
   return (
     <iframe
       title="codesandbox"
-      src="https://codesandbox.io/embed/github/mui/material-ui/tree/master/examples/mui-base-with-tailwind-css?hidenavigation=1&fontsize=14&view=preview"
+      src="https://codesandbox.io/embed/working-with-tailwind-css-dhmf8w?hidenavigation=1&fontsize=14&view=preview"
       style={{
         width: '100%',
         height: 400,

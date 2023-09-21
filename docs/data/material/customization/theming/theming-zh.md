@@ -12,7 +12,7 @@
 
 如果你想要使用自定义的主题，那么需要使用 `MuiThemeProvider` 组件将样式注入到你的应用中。 但是，这是可选的；因为 Material-UI 组件带有默认主题。
 
-`ThemeProvider` 依赖于 [React 的上下文（context）功能](https://reactjs.org/docs/context.html)来将主题传递给下级组件，所以你需要确保 `ThemeProvider` 是你试图自定义组件的父级组件。 您可以在 [API 章节](#themeprovider)中了解有关此内容的更多信息 。
+`ThemeProvider` 依赖于 [React 的上下文（context）功能](https://react.dev/learn/passing-data-deeply-with-context)来将主题传递给下级组件，所以你需要确保 `ThemeProvider` 是你试图自定义组件的父级组件。 您可以在 [API 章节](#themeprovider)中了解有关此内容的更多信息 。
 
 ## 主题配置变量
 
@@ -30,7 +30,7 @@ You can check out the [default theme section](/material-ui/customization/default
 
 ### 自定义变量
 
-When using MUI's theme with [MUI System](/system/getting-started/overview/) or [any other styling solution](/material-ui/guides/interoperability/), it can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
+When using MUI's theme with [MUI System](/system/getting-started/) or [any other styling solution](/material-ui/guides/interoperability/), it can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
 
 ```jsx
 const theme = createTheme({
@@ -208,7 +208,7 @@ theme = responsiveFontSizes(theme);
 
 **WARNING**: Do not use this method in production.
 
-Generates a theme that reduces the amount of warnings inside [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html) like `Warning: findDOMNode is deprecated in StrictMode`.
+Generates a theme that reduces the amount of warnings inside [`React.StrictMode`](https://react.dev/reference/react/StrictMode) like `Warning: findDOMNode is deprecated in StrictMode`.
 
 #### 参数
 

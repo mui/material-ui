@@ -1,8 +1,8 @@
-# Customizando componentes MUI Base
+# Customizando componentes Base UI
 
-<p class="description">Existem muitas maneiras de customizar Componentes MUI Base, aplicando estilzações com regras de CSS, e além construindo componentes totalmente personalizados com o uso de hooks.</p>
+<p class="description">Existem muitas maneiras de customizar Componentes Base UI, aplicando estilzações com regras de CSS, e além construindo componentes totalmente personalizados com o uso de hooks.</p>
 
-With MUI Base, you have the freedom to decide how much you want to customize a component's structure and style.
+With Base UI, you have the freedom to decide how much you want to customize a component's structure and style.
 
 This document reviews the three levels of customization that are available: applying custom CSS rules, overriding default subcomponent slots, and using hooks to build fully custom components.
 
@@ -18,9 +18,9 @@ Each component's API documentation lists all classes that the component uses. Ad
 
 ## Overriding subcomponent slots
 
-If you want to make changes to a component's rendered HTML structure, you can override the default subcomponents ("slots") using the `components` and/or `component` prop—see ["Shared props" on the Base Usage page](/base/getting-started/usage/#shared-props) for more details.
+If you want to make changes to a component's rendered HTML structure, you can override the default subcomponents ("slots") using the `components` and/or `component` prop—see ["Shared props" on the Base Usage page](/base-ui/getting-started/usage/#shared-props) for more details.
 
-The following demo uses [SwitchUnstyled](/base/react-switch/) to show how to create a styled component by applying styles to three of its subcomponent slots: `Root`, `Thumb`, and `Input`.
+The following demo uses [SwitchUnstyled](/base-ui/react-switch/) to show how to create a styled component by applying styles to three of its subcomponent slots: `Root`, `Thumb`, and `Input`.
 
 Note that although this demo uses [MUI System](/system/styled/) as a styling solution, you are free to choose any alternative.
 
@@ -52,11 +52,11 @@ You can use this object to style your component.
 
 If you need complete control over a component's rendered HTML structure, you can build it with hooks.
 
-Hooks give you access to the _logic_ that a component uses, but without any default structure. See ["Components vs. hooks" on the Base Usage page](/base/getting-started/usage/#components-vs-hooks) for more details.
+Hooks give you access to the _logic_ that a component uses, but without any default structure. See ["Components vs. hooks" on the Base Usage page](/base-ui/getting-started/usage/#components-vs-hooks) for more details.
 
 Hooks return the current state of the component (e.g. `checked`, `disabled`, `open`, etc.) and provide functions that return props you can apply to your fully custom components.
 
-In the case of [SwitchUnstyled](/base/react-switch/), the component is accompanied by the `useSwitch` hook which gives you all of the functionality without any structure.
+In the case of [SwitchUnstyled](/base-ui/react-switch/), the component is accompanied by the `useSwitch` hook which gives you all of the functionality without any structure.
 
 It returns the following object:
 

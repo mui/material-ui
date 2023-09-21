@@ -1,9 +1,10 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Menu component
+components: Menu, MenuItem, MenuList
 githubLabel: 'component: menu'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
-unstyled: /base/react-menu/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
+unstyled: /base-ui/react-menu/
 ---
 
 # Menu
@@ -57,13 +58,13 @@ When specifying a size for the `Menu` component, menu items inside of it will in
 
 Use the `selected` prop to signal whether a `MenuItem` is selected or not.
 
-The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/#selected).
+The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/#interactive-list-items).
 
 {{"demo": "SelectedMenu.js"}}
 
 ### Positioned menu
 
-The `Menu` is based on the `PopperUnstyled` component, which exposes a few [placement props](/base/react-popper/#placement). For example, this is how you'd go for displaying the menu on the bottom-end of the anchor button.
+The `Menu` is based on the `PopperUnstyled` component, which exposes a few [placement props](/base-ui/react-popper/#placement). For example, this is how you'd go for displaying the menu on the bottom-end of the anchor button.
 
 {{"demo": "PositionedMenu.js"}}
 

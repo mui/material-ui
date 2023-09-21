@@ -24,7 +24,8 @@
       "@mui/joy/*": ["./packages/mui-joy/src/*"],
       "@mui/lab": ["./packages/mui-lab/src"],
       "@mui/lab/*": ["./packages/mui-lab/src/*"],
-      "@mui/markdown": ["./docs/packages/markdown"],
+      "@mui/markdown": ["./packages/markdown"],
+      "@mui/markdown/*": ["./packages/markdown/*"],
       "@mui/material": ["./packages/mui-material/src"],
       "@mui/material/*": ["./packages/mui-material/src/*"],
       "@mui/material-next": ["./packages/mui-material-next/src"],
@@ -45,6 +46,9 @@
       "@mui/types": ["./packages/mui-types"],
       "@mui/utils": ["./packages/mui-utils/src"],
       "@mui/utils/*": ["./packages/mui-utils/src/*"],
+      "@mui/zero-runtime/*": ["./packages/zero-runtime/src/*"],
+      "@mui/zero-tag-processor/*": ["./packages/zero-tag-processor/src/*"],
+      "@mui/zero-vite-plugin/*": ["./packages/zero-vite-plugin/src/*"],
       "docs/*": ["./docs/*"],
       "modules/*": ["./modules/*"],
       "pages/*": ["./docs/pages"],
@@ -52,7 +56,7 @@
       "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
-    "types": ["node", "react", "react-is/next"]
+    "types": ["node", "react"]
   },
   "exclude": ["**/.*/", "**/build", "**/node_modules", "docs/export"]
 }

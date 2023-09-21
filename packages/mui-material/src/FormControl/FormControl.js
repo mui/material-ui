@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
@@ -73,7 +74,7 @@ const FormControlRoot = styled('div', {
  * </FormControl>
  * ```
  *
- * ⚠️ Only one `InputBase` can be used within a FormControl because it create visual inconsistencies.
+ * ⚠️ Only one `InputBase` can be used within a FormControl because it creates visual inconsistencies.
  * For instance, only one input can be focused at the same time, the state shouldn't be shared.
  */
 const FormControl = React.forwardRef(function FormControl(inProps, ref) {
@@ -143,7 +144,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
           return;
         }
 
-        if (isFilled(child.props, true)) {
+        if (isFilled(child.props, true) || isFilled(child.props.inputProps, true)) {
           initialFilled = true;
         }
       });

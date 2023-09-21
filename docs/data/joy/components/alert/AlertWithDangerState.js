@@ -4,14 +4,13 @@ import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Alert from '@mui/joy/Alert';
 import IconButton from '@mui/joy/IconButton';
-import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 
 export default function AlertWithDangerState() {
   return (
     <Box sx={{ display: 'flex', gap: 2, width: '100%', flexDirection: 'column' }}>
       <Alert
-        startDecorator={<WarningIcon sx={{ mx: 0.5 }} />}
+        startDecorator={<WarningIcon />}
         variant="soft"
         color="danger"
         endDecorator={
@@ -25,12 +24,10 @@ export default function AlertWithDangerState() {
           </React.Fragment>
         }
       >
-        <Typography color="danger" fontWeight="md">
-          This file was successfully deleted
-        </Typography>
+        This file was successfully deleted
       </Alert>
       <Alert
-        startDecorator={<WarningIcon sx={{ mx: 0.5 }} />}
+        startDecorator={<WarningIcon />}
         variant="solid"
         color="danger"
         endDecorator={
@@ -44,13 +41,11 @@ export default function AlertWithDangerState() {
           </React.Fragment>
         }
       >
-        <Typography sx={{ color: 'white' }} fontWeight="md">
-          This file was successfully deleted
-        </Typography>
+        This file was successfully deleted
       </Alert>
 
       <Alert
-        startDecorator={<WarningIcon sx={{ mx: 0.5 }} />}
+        startDecorator={<WarningIcon />}
         variant="outlined"
         color="danger"
         endDecorator={
@@ -64,9 +59,7 @@ export default function AlertWithDangerState() {
           </React.Fragment>
         }
       >
-        <Typography color="danger" fontWeight="md">
-          This file was successfully deleted
-        </Typography>
+        This file was successfully deleted
       </Alert>
     </Box>
   );

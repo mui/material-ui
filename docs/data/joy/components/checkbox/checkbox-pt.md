@@ -1,6 +1,7 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Checkbox component
+components: Checkbox
 githubLabel: 'component: checkbox'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 ---
@@ -71,7 +72,7 @@ Technically, the checkbox component only has two states: checked or unchecked. H
 It's common to find it in tables where you have one checkbox that selects every table row. Use the `indeterminate` prop to circle around these states.
 
 :::warning
-**⚠️ Keep in mind:** When the indeterminate state is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
+**Keep in mind:** When the indeterminate state is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
 :::
 
 {{"demo": "IndeterminateCheckbox.js"}}
@@ -80,7 +81,7 @@ It's common to find it in tables where you have one checkbox that selects every 
 
 To group multiple checkboxes, use `role="group"` on the wrapper component.
 
-Combine with the [`List`](/joy-ui/react-list/) component to ensure consistent spacing and enable screen readers to interpret the checkbox group as a list. Learn more about checkbox accessible design patters [in the W3C documentation](https://www.w3.org/WAI/ARIA/apg/example-index/checkbox/checkbox.html).
+Combine with the [`List`](/joy-ui/react-list/) component to ensure consistent spacing and enable screen readers to interpret the checkbox group as a list. Learn more about checkbox accessible design patters [in the W3C documentation](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/examples/checkbox-mixed/).
 
 {{"demo": "GroupCheckboxes.js"}}
 

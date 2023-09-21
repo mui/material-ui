@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
@@ -20,7 +21,7 @@ const useUtilityClasses = (ownerState) => {
 
 // var2 is the fallback.
 // Ex. var1: 'var(--a)', var2: 'var(--b)'; return: 'var(--a, var(--b))'
-const joinVars = (var1, var2) => `${var1?.replace(')', '')}, ${var2})`;
+const joinVars = (var1, var2) => (var1 ? `${var1?.replace(')', '')}, ${var2})` : var2);
 
 const AppBarRoot = styled(Paper, {
   name: 'MuiAppBar',

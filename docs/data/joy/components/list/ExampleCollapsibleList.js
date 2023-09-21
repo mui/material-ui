@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
-import ListItem, { listItemClasses } from '@mui/joy/ListItem';
+import ListItem from '@mui/joy/ListItem';
 import ListItemButton, { listItemButtonClasses } from '@mui/joy/ListItemButton';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
@@ -31,23 +31,17 @@ export default function ExampleCollapsibleList() {
             '--joy-palette-text-secondary': '#635e69',
             '--joy-palette-primary-plainColor': '#d48cff',
           },
-
           '--List-insetStart': '32px',
-          '--List-item-paddingY': '0px',
-          '--List-item-paddingRight': '16px',
-          '--List-item-paddingLeft': '21px',
-          '--List-item-startActionWidth': '0px',
-          '--List-item-startActionTranslateX': '-50%',
-
+          '--ListItem-paddingY': '0px',
+          '--ListItem-paddingRight': '16px',
+          '--ListItem-paddingLeft': '21px',
+          '--ListItem-startActionWidth': '0px',
+          '--ListItem-startActionTranslateX': '-50%',
           [`& .${listItemButtonClasses.root}`]: {
-            borderLeft: '1px solid',
-            borderColor: 'divider',
+            borderLeftColor: 'divider',
           },
           [`& .${listItemButtonClasses.root}.${listItemButtonClasses.selected}`]: {
-            borderColor: 'currentColor',
-          },
-          [`& .${listItemClasses.nested} > .${listItemButtonClasses.root}`]: {
-            border: 'none',
+            borderLeftColor: 'currentColor',
           },
           '& [class*="startAction"]': {
             color: 'var(--joy-palette-text-tertiary)',
@@ -56,7 +50,7 @@ export default function ExampleCollapsibleList() {
       >
         <ListItem nested>
           <ListItem component="div" startAction={<ReceiptLong />}>
-            <Typography level="body3" sx={{ textTransform: 'uppercase' }}>
+            <Typography level="body-xs" sx={{ textTransform: 'uppercase' }}>
               Documentation
             </Typography>
           </ListItem>
@@ -95,12 +89,12 @@ export default function ExampleCollapsibleList() {
             >
               Tutorial
             </Typography>
-            <Typography component="span" level="body3" sx={{ ml: 1 }}>
+            <Typography component="span" level="body-xs" sx={{ ml: 1 }}>
               9
             </Typography>
           </ListItem>
           {open && (
-            <List sx={{ '--List-item-paddingY': '8px' }}>
+            <List sx={{ '--ListItem-paddingY': '8px' }}>
               <ListItem>
                 <ListItemButton>Overview</ListItemButton>
               </ListItem>
@@ -146,12 +140,12 @@ export default function ExampleCollapsibleList() {
             >
               How-to Guides
             </Typography>
-            <Typography component="span" level="body3" sx={{ ml: 1 }}>
+            <Typography component="span" level="body-xs" sx={{ ml: 1 }}>
               39
             </Typography>
           </ListItem>
           {open2 && (
-            <List sx={{ '--List-item-paddingY': '8px' }}>
+            <List sx={{ '--ListItem-paddingY': '8px' }}>
               <ListItem>
                 <ListItemButton>Overview</ListItemButton>
               </ListItem>

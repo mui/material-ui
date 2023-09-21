@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Head from 'docs/src/modules/components/Head';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -13,6 +12,9 @@ import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
@@ -21,33 +23,41 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
+import Section from 'docs/src/layouts/Section';
 import IconImage from 'docs/src/components/icon/IconImage';
-import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
-import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
-import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
+import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import teamMembers from 'docs/data/about/teamMembers.json';
+/**
+ * Import data from: https://tools-public.mui.com/prod/pages/nSwYn51
+
+curl 'https://tools-public.mui.com/prod/api/data/muicomabout/queryAbout' \
+  -H 'content-type: application/json' \
+  --data-raw '{}' \
+  --compressed
+*/
 
 interface Profile {
-  /**
-   * image url
-   */
-  src: string;
   name: string;
   /**
-   * Role, what are you workin on?
+   * Role, what are you working on?
    */
   title: string;
   /**
-   * Country wher you live in, ISO 3166-1.
+   * Country where you live in, ISO 3166-1.
    */
   locationCountry: string; // https://flagpedia.net/download/api
   /**
-   * Lives in
+   * Image URL.
+   */
+  src?: string;
+  /**
+   * Lives in.
    */
   location?: string;
   /**
-   * Short summary about you
+   * Short summary about you.
    */
   about?: string;
   github?: string;
@@ -91,7 +101,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               }}
               src={props.src}
               alt={props.name}
-              {...(props.src.startsWith('https://avatars.githubusercontent.com') && {
+              {...(props.src?.startsWith('https://avatars.githubusercontent.com') && {
                 src: `${props.src}?s=70`,
                 srcSet: `${props.src}?s=140 2x`,
               })}
@@ -101,7 +111,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
                 borderRadius: 1,
                 backgroundColor: 'primary.100',
                 ...theme.applyDarkStyles({
-                  backgroundColor: 'primary.700',
+                  backgroundColor: 'primary.900',
                 }),
               })}
             />
@@ -131,7 +141,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
             </Box>
           </Box>
         </Tooltip>
-        <Box mx="auto" height={15} />
+        <Box sx={{ mx: 'auto', height: 15 }} />
         <Box sx={{ mt: -0.5, mr: -0.5 }}>
           {props.github && (
             <IconButton
@@ -193,232 +203,61 @@ function Widget({
   icon: React.ReactElement;
 }) {
   return (
-    <Paper variant="outlined" sx={{ height: '100%', px: 2, pt: 2, pb: 1.5 }}>
-      <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-        <Box sx={{ display: 'inline-block', lineHeight: 0, verticalAlign: 'bottom', mr: 1 }}>
-          {icon}
-        </Box>
+    <Paper
+      variant="outlined"
+      sx={(theme) => ({
+        p: 4,
+        height: '100%',
+        position: 'relative',
+        borderRadius: '12px',
+        border: '1px solid',
+        borderColor: 'grey.100',
+        background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+
+        ...theme.applyDarkStyles({
+          bgcolor: 'primaryDark.900',
+          borderColor: 'primaryDark.700',
+          background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+        }),
+      })}
+    >
+      <Box
+        sx={(theme) => ({
+          width: 40,
+          height: 40,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 1,
+          border: '1px solid',
+          borderColor: 'primary.200',
+          bgcolor: 'primary.50',
+          boxShadow:
+            '0px 1px 6px 0px rgba(194, 224, 255, 1), 0px 2px 30px 0px rgba(234, 237, 241, 0.3) inset',
+          ...theme.applyDarkStyles({
+            borderColor: 'primary.400',
+            bgcolor: 'primary.900',
+            boxShadow:
+              '0px 1px 6px 0px rgba(0, 89, 178, 1), 0px 2px 30px 0px rgba(0, 0, 0, 0.25) inset',
+          }),
+        })}
+      >
+        {icon}
+      </Box>
+      <Typography
+        fontWeight="bold"
+        component="h3"
+        color="text.primary"
+        variant="body2"
+        mt={2}
+        mb={0.5}
+      >
         {title}
       </Typography>
       {children}
     </Paper>
   );
 }
-
-const teamMembers: Array<Profile> = [
-  {
-    src: '/static/branding/about/olivier.png',
-    name: 'Olivier Tassinari',
-    title: 'Co-founder',
-    location: 'Paris, France',
-    locationCountry: 'fr',
-    about: 'Exercise addict and lifelong learner',
-    twitter: 'olivtassinari',
-    github: 'oliviertassinari',
-  },
-  {
-    name: 'Matt Brookes',
-    src: '/static/branding/about/matt.png',
-    title: 'Co-founder',
-    location: 'London, UK',
-    locationCountry: 'gb',
-    about: "When I'm not 👨🏻‍💻, I'm 🧗🏼‍♂️",
-    twitter: 'randomtechdude',
-    github: 'mbrookes',
-  },
-  {
-    name: 'Marija Najdova',
-    src: '/static/branding/about/marija.png',
-    title: 'MUI Core Engineer',
-    location: 'Skopje, North Macedonia',
-    locationCountry: 'mk',
-    about: 'I do karate 🥋 and read 📚. A lot!',
-    twitter: 'marijanajdova',
-    github: 'mnajdova',
-  },
-  {
-    name: 'Danail Hadjiatanasov',
-    src: '/static/branding/about/danail.png',
-    title: 'MUI X Engineer',
-    location: 'Sofia, Bulgaria',
-    locationCountry: 'bg',
-    about: 'Boringly normal, geek deep down. I like 🚗  and 🏂',
-    twitter: 'danail_h',
-    github: 'DanailH',
-  },
-  {
-    name: 'Matheus Wichman',
-    src: '/static/branding/about/matheus.png',
-    title: 'MUI X Engineer',
-    location: 'Esteio, Brazil',
-    locationCountry: 'br',
-    about: 'I like road cycling 🚲, DIY 🛠 and aviation ✈!',
-    github: 'm4theushw',
-  },
-  {
-    name: 'Michał Dudak',
-    src: '/static/branding/about/michal.png',
-    title: 'MUI Core Engineer',
-    location: 'Silesia, Poland',
-    locationCountry: 'pl',
-    about: 'Motorcyclist, gamer, and coder (UI and more!)',
-    twitter: 'michaldudak',
-    github: 'michaldudak',
-  },
-  {
-    name: 'Siriwat Kunaporn',
-    src: '/static/branding/about/siriwat.png',
-    title: 'MUI Core Engineer',
-    location: 'Bangkok, Thailand',
-    locationCountry: 'th',
-    about: 'UI Lover and ⛷ skiing newbie.',
-    twitter: 'siriwatknp',
-    github: 'siriwatknp',
-  },
-  {
-    name: 'Danilo Leal',
-    src: '/static/branding/about/danilo.png',
-    title: 'Lead Designer',
-    location: 'São Paulo, Brazil',
-    locationCountry: 'br',
-    about: 'Music production, hiking, and traveling!',
-    github: 'danilo-leal',
-    twitter: 'danilobleal',
-  },
-  {
-    name: 'Flavien Delangle',
-    src: '/static/branding/about/flavien.png',
-    title: 'MUI X Engineer',
-    location: 'Lille, France',
-    about: 'Love cycling 🚴‍♂️ and reading 📚',
-    locationCountry: 'fr',
-    github: 'flaviendelangle',
-  },
-  {
-    name: 'Benny Joo',
-    src: '/static/branding/about/benny.png',
-    title: 'MUI Core Engineer',
-    location: 'London, UK',
-    locationCountry: 'gb',
-    about: 'Love reading 📚 and working out 🏋️‍♂️',
-    github: 'hbjORbj',
-  },
-  {
-    src: '/static/branding/about/alexandre.png',
-    name: 'Alexandre Fauquette',
-    title: 'MUI X Engineer',
-    location: 'Nancy, France',
-    locationCountry: 'fr',
-    about: 'Love hacking and cycling 🚴‍♂️',
-    twitter: 'AleFauquette',
-    github: 'alexfauquette',
-  },
-  {
-    src: '/static/branding/about/bharat.png',
-    name: 'Bharat Kashyap',
-    title: 'MUI Toolpad Engineer',
-    location: 'New Delhi, India',
-    locationCountry: 'in',
-    about: 'Trains 🚅 , architecture 🏛️ , and psychology 🧠 ',
-    twitter: 'bharattttttt',
-    github: 'bharatkashyap',
-  },
-  {
-    src: '/static/branding/about/jan.png',
-    name: 'Jan Potoms',
-    title: 'MUI Toolpad Engineer',
-    location: 'Brussels, Belgium',
-    locationCountry: 'be',
-    about: 'Always curious, I enjoy cinema and hiking',
-    github: 'janpot',
-  },
-  {
-    src: '/static/branding/about/prakhar.png',
-    name: 'Prakhar Gupta',
-    title: 'MUI Toolpad PM',
-    location: 'New Delhi, India',
-    locationCountry: 'in',
-    about: 'Into sports and hiking!',
-    twitter: 'gprakhar123',
-    github: 'prakhargupta1',
-  },
-  {
-    src: '/static/branding/about/jose.png',
-    name: 'José Freitas',
-    title: 'MUI X PM',
-    location: 'Augsburg, Germany',
-    locationCountry: 'de',
-    about: 'Art, fiction, and bar philosophy',
-    twitter: 'zehdefreitas',
-    github: 'joserodolfofreitas',
-  },
-  {
-    src: '/static/branding/about/andrii.png',
-    name: 'Andrii Cherniavskyi',
-    title: 'MUI X Engineer',
-    location: 'Wrocław, Poland',
-    locationCountry: 'pl',
-    about: 'Love playing music - electric and bass guitar 🎸',
-    twitter: 'iamcherniavskii',
-    github: 'cherniavskii',
-  },
-  {
-    src: '/static/branding/about/sycamore.png',
-    name: 'Sam Sycamore',
-    title: 'Developer Advocate',
-    location: 'Saint Paul, Minnesota, USA',
-    locationCountry: 'us',
-    about: 'Musician and edible wild plant enthusiast 🌱',
-    twitter: 'tanoaksam',
-    github: 'samuelsycamore',
-  },
-  {
-    src: '/static/branding/about/pedro.png',
-    name: 'Pedro Ferreira',
-    title: 'MUI Toolpad Engineer',
-    location: 'Porto, Portugal',
-    locationCountry: 'pt',
-    about: 'Passionate about videogames and football',
-    github: 'apedroferreira',
-  },
-  {
-    src: '/static/branding/about/gerda.png',
-    name: 'Gerda Mostonaite',
-    title: 'Senior Designer',
-    location: 'New York, USA',
-    locationCountry: 'us',
-    about: '🎨 Art & design, traveling, and asking questions',
-    github: 'gerdadesign',
-  },
-  {
-    src: '/static/branding/about/vytautas.png',
-    name: 'Vytautas Butkus',
-    title: 'MUI Toolpad Engineering Manager',
-    location: 'Vilnius, Lithuania',
-    locationCountry: 'lt',
-    about: '🛠️ DYI projects, 🏄🏻‍♂️ Wakeboarding & 🏎️ F1',
-    github: 'bytasv',
-  },
-  {
-    src: '/static/branding/about/lukas.png',
-    name: 'Lukas Tyla',
-    title: 'MUI X Engineer',
-    location: 'Vilnius, Lithuania',
-    locationCountry: 'lt',
-    about: 'Learning and experimenting 📚',
-    github: 'LukasTy',
-  },
-  {
-    src: '/static/branding/about/bilal.png',
-    name: 'Bilal Shafi',
-    title: 'MUI X Engineer',
-    location: 'Islamabad, Pakistan',
-    locationCountry: 'pk',
-    about: 'DIY 🛠️, Learning 📚 and 🏓',
-    twitter: 'MBilalShafi',
-    github: 'MBilalShafi',
-  },
-];
 
 const contributors = [
   {
@@ -561,8 +400,9 @@ function AboutContent() {
       <Container>
         <Box
           sx={{
-            height: '40vh',
-            minHeight: 300,
+            pt: 12,
+
+            minHeight: 200,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -593,48 +433,41 @@ function AboutContent() {
         </Box>
         <References companies={CORE_CUSTOMERS} />
       </Container>
-      <Box
-        sx={(theme) => ({
-          bgcolor: 'grey.50',
-          ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.900',
-          }),
-        })}
-      >
-        <Container sx={{ py: { xs: 4, md: 8 } }}>
-          <Grid container alignItems="center" spacing={4}>
-            <Grid item xs={12} md={6}>
-              <Typography variant="h2" sx={{ my: 1 }}>
-                Our ultimate goal
-              </Typography>
-              <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
-                We aim high trying to design the most effective and efficient tool for building UIs,
-                for developers and designers. MUI started back in 2014, to unify React and Material
-                Design. Since then, we&apos;ve become a community of over 2M developers from every
-                corner of the world.
-              </Typography>
-              <Typography color="text.secondary" sx={{ mb: 2 }}>
-                We plan on doing all that cultivating our values:
-              </Typography>
-              {[
-                'Customer obsessed. We put our customers front & center.',
-                'Transparency. Most of our work is public.',
-                'Freedom. We work from anywhere in the world.',
-                'Autonomy. We want to create a safe, high-trust team.',
-                "Excellence. We're aiming high, and we know it.",
-              ].map((text) => (
-                <Box key={text} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
-                  <IconImage name="yes" />
-                  <Typography variant="body2" color="text.primary" fontWeight={700} sx={{ ml: 1 }}>
-                    {text}
-                  </Typography>
-                </Box>
-              ))}
-            </Grid>
-            <MuiStatistics />
+      <Divider />
+      <Section bg="gradient" cozy>
+        <Grid container alignItems="center" spacing={4}>
+          <Grid item xs={12} md={6}>
+            <Typography variant="h2" sx={{ my: 1 }}>
+              Our <GradientText>ultimate</GradientText> goal
+            </Typography>
+            <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
+              We aim high trying to design the most effective and efficient tool for building UIs,
+              for developers and designers. MUI started back in 2014, to unify React and Material
+              Design. Since then, we&apos;ve become a community of over 2M developers from every
+              corner of the world.
+            </Typography>
+            <Typography color="text.secondary" sx={{ mb: 2 }}>
+              We plan on doing all that cultivating our values:
+            </Typography>
+            {[
+              'Customer obsessed. We put our customers front & center.',
+              'Transparency. Most of our work is public.',
+              'Freedom. We work from anywhere in the world.',
+              'Autonomy. We want to create a safe, high-trust team.',
+              "Excellence. We're aiming high, and we know it.",
+            ].map((text) => (
+              <Box key={text} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+                <IconImage name="pricing/yes" />
+                <Typography variant="body2" color="text.primary" fontWeight={600} sx={{ ml: 1.5 }}>
+                  {text}
+                </Typography>
+              </Box>
+            ))}
           </Grid>
-        </Container>
-      </Box>
+          <MuiStatistics />
+        </Grid>
+      </Section>
+      <Divider />
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
@@ -665,23 +498,34 @@ function AboutContent() {
           color="primary"
           fontWeight="extraBold"
           sx={{ mb: 1 }}
+          id="company"
         >
           Company
         </Typography>
-        <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
+        <Typography color="text.secondary" sx={{ maxWidth: { md: 450 } }}>
           The development of the project and its ecosystem is guided by an international team.
         </Typography>
         <Box sx={{ pt: 2 }}>
           <Grid container spacing={2}>
-            {teamMembers.map((profile) => (
-              <Grid key={profile.name} item xs={12} sm={6} md={3}>
-                <Person {...profile} />
-              </Grid>
-            ))}
+            {(teamMembers as Array<Profile>).map((profileJson) => {
+              const profile = {
+                src: `/static/branding/about/${profileJson.name
+                  .split(' ')
+                  .map((x) => x.toLowerCase())
+                  .join('-')}.png`,
+                ...profileJson,
+              };
+              return (
+                <Grid key={profile.name} item xs={12} sm={6} md={3}>
+                  <Person {...profile} />
+                </Grid>
+              );
+            })}
           </Grid>
         </Box>
       </Container>
-      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.700' }}>
+      <Divider />
+      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
         <Container sx={{ py: { xs: 4, sm: 8 } }}>
           <Typography
             component="h3"
@@ -728,11 +572,12 @@ function AboutContent() {
           </Box>
         </Container>
       </Box>
-      <Container sx={{ py: { xs: 4, md: 8 } }}>
+      <Divider />
+      <Container sx={{ py: { xs: 4, md: 12 } }}>
         <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
           How can you support us?
         </Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={4}>
             <Widget
               icon={<ForumRoundedIcon fontSize="small" color="primary" />}
@@ -752,6 +597,7 @@ function AboutContent() {
                 size="small"
                 href="https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
                 endIcon={<KeyboardArrowRightRounded />}
+                sx={{ ml: -1 }}
               >
                 Leave your feedback{' '}
               </Button>
@@ -771,6 +617,7 @@ function AboutContent() {
                   typography: 'body2',
                   color: 'text.secondary',
                   pl: 2,
+                  mb: 2,
                 }}
               >
                 <li>
@@ -793,11 +640,15 @@ function AboutContent() {
                   <Link href="https://github.com/mui/material-ui/issues">issues</Link>.
                 </li>
                 <li>
-                  Help <Link href="https://translate.mui.com/">translate</Link> the documentation.
+                  Help <Link href="https://crowdin.com/project/material-ui-docs">translate</Link>{' '}
+                  the documentation.
                 </li>
                 <li>
                   Answer questions on{' '}
-                  <Link href="https://stackoverflow.com/questions/tagged/mui">Stack Overflow</Link>.
+                  <Link href="https://stackoverflow.com/questions/tagged/material-ui">
+                    Stack Overflow
+                  </Link>
+                  .
                 </li>
               </Box>
               <Button
@@ -807,6 +658,7 @@ function AboutContent() {
                 size="small"
                 href="https://github.com/mui/material-ui"
                 endIcon={<KeyboardArrowRightRounded />}
+                sx={{ ml: -1 }}
               >
                 See the repository
               </Button>
@@ -820,7 +672,7 @@ function AboutContent() {
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 If you use MUI in a commercial project and would like to support its continued
                 development by becoming a Sponsor, or in a side or hobby project and would like to
-                become a Backer, you can do so through OpenCollective.
+                become a Backer, you can do so through {'Open Collective'}.
                 <br />
                 <br />
                 All funds donated are managed transparently, and Sponsors receive recognition in the
@@ -833,13 +685,15 @@ function AboutContent() {
                 size="small"
                 href="https://opencollective.com/mui"
                 endIcon={<KeyboardArrowRightRounded />}
+                sx={{ ml: -1 }}
               >
-                See Open Collective{' '}
+                {'See Open Collective'}
               </Button>
             </Widget>
           </Grid>
         </Grid>
       </Container>
+      <Divider />
       <HeroEnd />
       <Divider />
     </React.Fragment>

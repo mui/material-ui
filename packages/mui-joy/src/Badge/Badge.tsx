@@ -1,11 +1,13 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, usePreviousProps } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeProps, BadgeOwnerState, BadgeTypeMap } from './BadgeProps';
 
@@ -39,7 +41,6 @@ const BadgeRoot = styled('span', {
       '--Badge-minHeight': '1rem',
     }),
     '--Badge-paddingX': '0.25rem',
-    fontSize: theme.vars.fontSize.xs,
   }),
   ...(ownerState.size === 'md' && {
     '--Badge-minHeight': '0.75rem',
@@ -47,7 +48,6 @@ const BadgeRoot = styled('span', {
       '--Badge-minHeight': '1.25rem',
     }),
     '--Badge-paddingX': '0.375rem',
-    fontSize: theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'lg' && {
     '--Badge-minHeight': '1rem',
@@ -55,7 +55,6 @@ const BadgeRoot = styled('span', {
       '--Badge-minHeight': '1.5rem',
     }),
     '--Badge-paddingX': '0.5rem',
-    fontSize: theme.vars.fontSize.md,
   }),
   '--Badge-ringSize': '2px',
   '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.surface})`,
@@ -103,7 +102,11 @@ const BadgeBadge = styled('span', {
     ownerState.anchorOrigin?.horizontal === 'left' ? 'translateX(-50%)' : 'translateX(50%)';
   const transformOriginY = ownerState.anchorOrigin?.vertical === 'top' ? '0%' : '100%';
   const transformOriginX = ownerState.anchorOrigin?.horizontal === 'left' ? '0%' : '100%';
+  const typography =
+    theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`];
   return {
+    '--Icon-color': 'currentColor',
+    '--Icon-fontSize': `calc(1em * ${typography.lineHeight ?? '1'})`,
     display: 'inline-flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -112,16 +115,12 @@ const BadgeBadge = styled('span', {
     position: 'absolute',
     boxSizing: 'border-box',
     boxShadow: 'var(--Badge-ring)',
-    fontFamily: theme.vars.fontFamily.body,
-    fontWeight: theme.vars.fontWeight.md,
     lineHeight: 1,
-    padding:
-      'calc(var(--Badge-paddingX) / 2 - var(--variant-borderWidth)) calc(var(--Badge-paddingX) - var(--variant-borderWidth))',
+    padding: '0 calc(var(--Badge-paddingX) - var(--variant-borderWidth, 0px))',
     minHeight: 'var(--Badge-minHeight)',
     minWidth: 'var(--Badge-minHeight)',
     borderRadius: 'var(--Badge-radius, var(--Badge-minHeight))',
-    zIndex: 1,
-    transition: 'transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    zIndex: theme.vars.zIndex.badge,
     backgroundColor: theme.vars.palette.background.surface,
     [ownerState.anchorOrigin!.vertical]: inset[ownerState.anchorOrigin!.vertical],
     [ownerState.anchorOrigin!.horizontal]: inset[ownerState.anchorOrigin!.horizontal],
@@ -130,13 +129,21 @@ const BadgeBadge = styled('span', {
     [`&.${badgeClasses.invisible}`]: {
       transform: `scale(0) ${translateX} ${translateY}`,
     },
-    ...(ownerState.invisible && {
-      transition: 'transform 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    }),
+    ...typography,
+    fontWeight: theme.vars.fontWeight.md,
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Badge](https://mui.com/joy-ui/react-badge/)
+ *
+ * API:
+ *
+ * - [Badge API](https://mui.com/joy-ui/api/badge/)
+ */
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useThemeProps<typeof inProps & BadgeProps>({ props: inProps, name: 'JoyBadge' });
   const {
@@ -146,8 +153,6 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     },
     badgeInset: badgeInsetProp = 0,
     children,
-    component = 'span',
-    componentsProps = {},
     size: sizeProp = 'md',
     color: colorProp = 'primary',
     invisible: invisibleProp = false,
@@ -155,6 +160,9 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     badgeContent: badgeContentProp = '',
     showZero = false,
     variant: variantProp = 'solid',
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -164,7 +172,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     badgeInset: badgeInsetProp,
     color: colorProp,
     variant: variantProp,
-  }) as BadgeProps;
+  });
 
   let invisible = invisibleProp;
 
@@ -176,15 +184,19 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   }
 
   const {
-    color = colorProp,
+    color: internalColor = colorProp,
     size = sizeProp,
     anchorOrigin = anchorOriginProp,
     variant = variantProp,
     badgeInset = badgeInsetProp,
   } = invisible ? prevProps : props;
 
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, internalColor);
+
   const ownerState = { ...props, anchorOrigin, badgeInset, variant, invisible, color, size };
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
   let displayValue =
     badgeContentProp && Number(badgeContentProp) > max ? `${max}+` : badgeContentProp;
 
@@ -192,30 +204,26 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     displayValue = '';
   }
 
-  const rootProps = useSlotProps({
-    elementType: BadgeRoot,
-    ownerState,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     className: classes.root,
+    elementType: BadgeRoot,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const badgeProps = useSlotProps({
-    elementType: BadgeBadge,
-    ownerState,
-    externalSlotProps: componentsProps.badge,
+  const [SlotBadge, badgeProps] = useSlot('badge', {
     className: classes.badge,
+    elementType: BadgeBadge,
+    externalForwardedProps,
+    ownerState,
   });
 
   return (
-    <BadgeRoot {...rootProps}>
+    <SlotRoot {...rootProps}>
       {children}
-      <BadgeBadge {...badgeProps}>{displayValue}</BadgeBadge>
-    </BadgeRoot>
+      <SlotBadge {...badgeProps}>{displayValue}</SlotBadge>
+    </SlotRoot>
   );
 }) as OverridableComponent<BadgeTypeMap>;
 
@@ -237,6 +245,7 @@ Badge.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The content rendered within the badge.
+   * @default ''
    */
   badgeContent: PropTypes.node,
   /**
@@ -253,7 +262,7 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -261,14 +270,6 @@ Badge.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * If `true`, the badge is invisible.
    * @default false
@@ -293,6 +294,22 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    badge: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -301,7 +318,7 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

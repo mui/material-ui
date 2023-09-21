@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Consulta de mídia no React para design responsivo
 githubLabel: 'hook: useMediaQuery'
 ---
@@ -112,7 +112,7 @@ const theme = createTheme({
 ## Renderização do lado servidor
 
 :::warning
-⚠️ Server-side rendering and client-side media queries are fundamentally at odds.
+Server-side rendering and client-side media queries are fundamentally at odds.
 Be aware of the tradeoff. The support can only be partial.
 :::
 
@@ -134,14 +134,14 @@ Finally, you need to provide an implementation of [matchMedia](https://developer
 For instance on the server-side:
 
 ```js
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
-  const ssrMatchMedia = query => ({
+  const ssrMatchMedia = (query) => ({
     matches: mediaQuery.match(query, {
       // O CSS estimado pelo navegador.
       width: deviceType === 'mobile' ? '0px' : '1024px',

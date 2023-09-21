@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Backdrop（蒙版）组件
 components: Backdrop
 githubLabel: 'component: backdrop'

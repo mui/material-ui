@@ -4,7 +4,7 @@ import Box from '@mui/joy/Box';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
 
-export default function ColorBadge() {
+export default function BadgeVisibility() {
   const [invisible, setInvisible] = React.useState(false);
   return (
     <Box
@@ -24,7 +24,7 @@ export default function ColorBadge() {
         checked={invisible}
         onChange={(event) => setInvisible(event.target.checked)}
         variant={invisible ? 'solid' : 'outlined'}
-        sx={{ '--Switch-track-width': '40px' }}
+        sx={{ '--Switch-trackWidth': '40px' }}
       />
     </Box>
   );

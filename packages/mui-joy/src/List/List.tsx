@@ -1,30 +1,33 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
-import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
-import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
+import { resolveSxValue } from '../styles/styleUtils';
+import { useColorInversion } from '../styles/ColorInversion';
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
 import ComponentListContext from './ComponentListContext';
+import GroupListContext from './GroupListContext';
 import ListProvider from './ListProvider';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ListOwnerState) => {
-  const { variant, color, size, nesting, row, instanceSize } = ownerState;
+  const { variant, color, size, nesting, orientation, instanceSize } = ownerState;
   const slots = {
     root: [
       'root',
+      orientation,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       !instanceSize && !nesting && size && `size${capitalize(size)}`,
       instanceSize && `size${capitalize(instanceSize)}`,
       nesting && 'nesting',
-      row && 'row',
     ],
   };
 
@@ -32,77 +35,80 @@ const useUtilityClasses = (ownerState: ListOwnerState) => {
 };
 
 export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme, ownerState }) => {
+  const { p, padding, borderRadius } = resolveSxValue({ theme, ownerState }, [
+    'p',
+    'padding',
+    'borderRadius',
+  ]);
   function applySizeVars(size: ListProps['size']) {
     if (size === 'sm') {
       return {
-        '--List-divider-gap': '0.25rem',
-        '--List-item-minHeight': '2rem',
-        '--List-item-paddingY': '0.25rem',
-        '--List-item-paddingX': '0.5rem',
-        '--List-item-fontSize': theme.vars.fontSize.sm,
-        '--List-decorator-size': ownerState.row ? '1.5rem' : '2rem',
-        '--Icon-fontSize': '1.125rem',
+        '--ListDivider-gap': '0.25rem',
+        '--ListItem-minHeight': '2rem',
+        '--ListItem-paddingY': '3px',
+        '--ListItem-paddingX': '0.5rem',
+        '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
+        '--Icon-fontSize': theme.vars.fontSize.lg,
       };
     }
     if (size === 'md') {
       return {
-        '--List-divider-gap': '0.375rem',
-        '--List-item-minHeight': '2.5rem',
-        '--List-item-paddingY': '0.375rem',
-        '--List-item-paddingX': '0.75rem',
-        '--List-item-fontSize': theme.vars.fontSize.md,
-        '--List-decorator-size': ownerState.row ? '1.75rem' : '2.5rem',
-        '--Icon-fontSize': '1.25rem',
+        '--ListDivider-gap': '0.375rem',
+        '--ListItem-minHeight': '2.25rem',
+        '--ListItem-paddingY': '0.25rem',
+        '--ListItem-paddingX': '0.75rem',
+        '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl,
       };
     }
     if (size === 'lg') {
       return {
-        '--List-divider-gap': '0.5rem',
-        '--List-item-minHeight': '3rem',
-        '--List-item-paddingY': '0.5rem',
-        '--List-item-paddingX': '1rem',
-        '--List-item-fontSize': theme.vars.fontSize.md,
-        '--List-decorator-size': ownerState.row ? '2.25rem' : '3rem',
-        '--Icon-fontSize': '1.5rem',
+        '--ListDivider-gap': '0.5rem',
+        '--ListItem-minHeight': '2.75rem',
+        '--ListItem-paddingY': '0.375rem',
+        '--ListItem-paddingX': '1rem',
+        '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
       };
     }
     return {};
   }
   return [
-    ownerState.nesting && {
-      // instanceSize is the specified size of the rendered element <List size="sm" />
-      // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
-      ...applySizeVars(ownerState.instanceSize),
-      '--List-item-paddingRight': 'var(--List-item-paddingX)',
-      '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
-      // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
-      '--List-itemButton-marginBlock': '0px',
-      '--List-itemButton-marginInline': '0px',
-      '--List-item-marginBlock': '0px',
-      '--List-item-marginInline': '0px',
-      padding: 0,
-      marginInlineStart: 'var(--NestedList-marginLeft)',
-      marginInlineEnd: 'var(--NestedList-marginRight)',
-      marginBlockStart: 'var(--List-gap)',
-      marginBlockEnd: 'initial', // reset user agent stylesheet.
-    },
+    ownerState.nesting &&
+      ({
+        // instanceSize is the specified size of the rendered element <List size="sm" />
+        // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
+        ...applySizeVars(ownerState.instanceSize),
+        '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
+        '--ListItem-paddingLeft': 'var(--NestedListItem-paddingLeft)',
+        // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
+        '--ListItemButton-marginBlock': '0px',
+        '--ListItemButton-marginInline': '0px',
+        '--ListItem-marginBlock': '0px',
+        '--ListItem-marginInline': '0px',
+        padding: 0,
+        marginInlineStart: 'var(--NestedList-marginLeft)',
+        marginInlineEnd: 'var(--NestedList-marginRight)',
+        marginBlockStart: 'var(--List-gap)',
+        marginBlockEnd: 'initial', // reset user agent stylesheet.
+      } as const),
     !ownerState.nesting && {
       ...applySizeVars(ownerState.size),
       '--List-gap': '0px',
-      '--List-decorator-color': theme.vars.palette.text.tertiary,
       '--List-nestedInsetStart': '0px',
-      '--List-item-paddingLeft': 'var(--List-item-paddingX)',
-      '--List-item-paddingRight': 'var(--List-item-paddingX)',
+      '--ListItem-paddingLeft': 'var(--ListItem-paddingX)',
+      '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
       // Automatic radius adjustment kicks in only if '--List-padding' and '--List-radius' are provided.
-      '--internal-child-radius':
-        'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
-      '--List-item-radius': 'var(--internal-child-radius)',
+      '--unstable_List-childRadius':
+        'calc(max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2)) - var(--variant-borderWidth, 0px))',
+      '--ListItem-radius': 'var(--unstable_List-childRadius)',
       // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
-      '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
-      '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
+      '--ListItem-startActionTranslateX': 'calc(0.5 * var(--ListItem-paddingLeft))',
+      '--ListItem-endActionTranslateX': 'calc(-0.5 * var(--ListItem-paddingRight))',
       margin: 'initial',
-      // --List-padding is not declared to let list uses --List-divider-gap by default.
-      ...(ownerState.row
+      ...theme.typography[`body-${ownerState.size!}`],
+      // --List-padding is not declared to let list uses --ListDivider-gap by default.
+      ...(ownerState.orientation === 'horizontal'
         ? {
             ...(ownerState.wrap
               ? {
@@ -111,12 +117,12 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
                   marginBlockStart: 'calc(-1 * var(--List-gap))',
                 }
               : {
-                  paddingInline: 'var(--List-padding, var(--List-divider-gap))',
+                  paddingInline: 'var(--List-padding, var(--ListDivider-gap))',
                   paddingBlock: 'var(--List-padding)',
                 }),
           }
         : {
-            paddingBlock: 'var(--List-padding, var(--List-divider-gap))',
+            paddingBlock: 'var(--List-padding, var(--ListDivider-gap))',
             paddingInline: 'var(--List-padding)',
           }),
     },
@@ -125,14 +131,21 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       borderRadius: 'var(--List-radius)',
       listStyle: 'none',
       display: 'flex',
-      flexDirection: ownerState.row ? 'row' : 'column',
-      ...(ownerState.wrap && {
-        flexWrap: 'wrap',
-      }),
+      flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+      ...(ownerState.wrap &&
+        ({
+          flexWrap: 'wrap',
+        } as const)),
       flexGrow: 1,
       position: 'relative', // for sticky ListItem
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-    },
+      '--unstable_List-borderWidth': 'var(--variant-borderWidth, 0px)', // For children to lookup the List's border width.
+      ...(borderRadius !== undefined && {
+        '--List-radius': borderRadius,
+      }),
+      ...(p !== undefined && { '--List-padding': p }),
+      ...(padding !== undefined && { '--List-padding': padding }),
+    } as const,
   ];
 });
 
@@ -141,11 +154,19 @@ const ListRoot = styled(StyledList, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [List API](https://mui.com/joy-ui/api/list/)
+ */
 const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
-  const menuContext = React.useContext(MenuUnstyledContext);
-  const selectContext = React.useContext(SelectUnstyledContext);
+  const group = React.useContext(GroupListContext);
   const radioGroupContext = React.useContext(RadioGroupContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -156,17 +177,22 @@ const List = React.forwardRef(function List(inProps, ref) {
     component,
     className,
     children,
-    size = inProps.size ?? 'md',
-    row = false,
+    size: sizeProp,
+    orientation = 'vertical',
     wrap = false,
     variant = 'plain',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     role: roleProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
+  const size = sizeProp || (inProps.size ?? 'md');
 
   let role;
-  if (menuContext || selectContext) {
+  if (group) {
     role = 'group';
   }
   if (radioGroupContext) {
@@ -181,7 +207,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     instanceSize: inProps.size,
     size,
     nesting,
-    row,
+    orientation,
     wrap,
     variant,
     color,
@@ -189,25 +215,31 @@ const List = React.forwardRef(function List(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
+
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role,
+      'aria-labelledby': typeof nesting === 'string' ? nesting : undefined,
+    },
+  });
 
   return (
-    <ListRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      role={role}
-      aria-labelledby={typeof nesting === 'string' ? nesting : undefined}
-      {...other}
-    >
+    <SlotRoot {...rootProps}>
       <ComponentListContext.Provider
         value={`${typeof component === 'string' ? component : ''}:${role || ''}`}
       >
-        <ListProvider row={row} wrap={wrap}>
+        <ListProvider row={orientation === 'horizontal'} wrap={wrap}>
           {children}
         </ListProvider>
       </ComponentListContext.Provider>
-    </ListRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<ListTypeMap>;
 
@@ -229,7 +261,7 @@ List.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -238,14 +270,14 @@ List.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The component orientation.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
-  /**
-   * If `true`, display the list in horizontal direction.
-   * @default false
-   */
-  row: PropTypes.bool,
   /**
    * The size of the component (affect other nested list* components).
    * @default 'md'
@@ -255,6 +287,20 @@ List.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -263,7 +309,7 @@ List.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

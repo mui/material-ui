@@ -14,10 +14,8 @@ export default function TabsPageExample() {
   return (
     <Box
       sx={{
-        bgcolor: 'background.body',
         flexGrow: 1,
         m: -3,
-        p: 3,
         overflowX: 'hidden',
         borderRadius: 'md',
       }}
@@ -26,29 +24,20 @@ export default function TabsPageExample() {
         aria-label="Pipeline"
         value={index}
         onChange={(event, value) => setIndex(value)}
-        sx={{ '--Tabs-gap': '0px', maxWidth: 400, mx: 'auto' }}
       >
         <TabList
-          variant="plain"
           sx={{
-            alignSelf: 'flex-start',
-            [`& .${tabClasses.root}`]: {
+            pt: 2,
+            justifyContent: 'center',
+            [`&& .${tabClasses.root}`]: {
+              flex: 'initial',
               bgcolor: 'transparent',
-              boxShadow: 'none',
               '&:hover': {
                 bgcolor: 'transparent',
               },
               [`&.${tabClasses.selected}`]: {
                 color: 'primary.plainColor',
-                fontWeight: 'lg',
-                '&:before': {
-                  content: '""',
-                  display: 'block',
-                  position: 'absolute',
-                  zIndex: 1,
-                  bottom: '-1px',
-                  left: 'var(--List-item-paddingLeft)',
-                  right: 'var(--List-item-paddingRight)',
+                '&::after': {
                   height: '3px',
                   borderTopLeftRadius: '3px',
                   borderTopRightRadius: '3px',
@@ -58,7 +47,7 @@ export default function TabsPageExample() {
             },
           }}
         >
-          <Tab>
+          <Tab indicatorInset>
             Deals{' '}
             <Chip
               size="sm"
@@ -69,7 +58,7 @@ export default function TabsPageExample() {
               14
             </Chip>
           </Tab>
-          <Tab>
+          <Tab indicatorInset>
             Library{' '}
             <Chip
               size="sm"
@@ -80,53 +69,40 @@ export default function TabsPageExample() {
               24
             </Chip>
           </Tab>
-          <Tab>Search library</Tab>
+          <Tab indicatorInset>Search library</Tab>
         </TabList>
         <Box
           sx={(theme) => ({
-            '--bg': theme.vars.palette.background.level3,
-            height: '1px',
+            '--bg': theme.vars.palette.background.surface,
             background: 'var(--bg)',
             boxShadow: '0 0 0 100vmax var(--bg)',
             clipPath: 'inset(0 -100vmax)',
-          })}
-        />
-        <Box
-          sx={(theme) => ({
-            '--bg': theme.vars.palette.background.level1,
-            background: 'var(--bg)',
-            boxShadow: '0 0 0 100vmax var(--bg)',
-            clipPath: 'inset(0 -100vmax)',
-            px: 1.5,
-            py: 2,
           })}
         >
           <TabPanel value={0}>
             <Typography
-              level="h1"
+              level="h2"
               component="div"
-              fontSize="xl2"
-              mb={2}
-              textColor="text.secondary"
+              fontSize="lg"
+              textColor="text.primary"
             >
-              Deals
+              Deals panel
             </Typography>
           </TabPanel>
           <TabPanel value={1}>
             <Typography
-              level="h1"
+              level="h2"
               component="div"
-              fontSize="xl2"
-              mb={2}
-              textColor="text.secondary"
+              fontSize="lg"
+              textColor="text.primary"
             >
-              Library
+              Library panel
             </Typography>
           </TabPanel>
           <TabPanel value={2}>
             <Input
               autoFocus
-              placeholder="type a library..."
+              placeholder="Type in third panel..."
               startDecorator={<SearchRounded />}
             />
           </TabPanel>

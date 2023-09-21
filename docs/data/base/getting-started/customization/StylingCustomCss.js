@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
+import { Switch as SwitchUnstyled, switchClasses } from '@mui/base/Switch';
 
 const css = `
   .my-switch {
@@ -14,11 +14,11 @@ const css = `
     cursor: pointer;
   }
 
-  .my-switch.${switchUnstyledClasses.checked} {
+  .my-switch.${switchClasses.checked} {
     background: #007FFF;
   }
 
-  .my-switch .${switchUnstyledClasses.thumb} {
+  .my-switch .${switchClasses.thumb} {
     display: block;
     width: 14px;
     height: 14px;
@@ -30,13 +30,13 @@ const css = `
     transition: all 200ms ease;
   }
 
-  .my-switch.${switchUnstyledClasses.checked} .${switchUnstyledClasses.thumb} {
+  .my-switch.${switchClasses.checked} .${switchClasses.thumb} {
     left: 14px;
     top: 3px;
     background-color: #FFF;
   }
 
-  .my-switch .${switchUnstyledClasses.input} {
+  .my-switch .${switchClasses.input} {
     cursor: inherit;
     position: absolute;
     width: 100%;
@@ -52,7 +52,6 @@ export default function StylingCustomCss() {
   return (
     <div>
       <style type="text/css">{css}</style>
-
       <SwitchUnstyled className="my-switch" />
     </div>
   );

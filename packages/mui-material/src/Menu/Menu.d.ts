@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { MenuOwnerState, SlotComponentProps } from '@mui/base';
 import { InternalStandardProps as StandardProps } from '..';
+import Paper, { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { MenuClasses } from './menuClasses';
 
-export interface MenuProps extends StandardProps<PopoverProps> {
+export interface MenuProps
+  extends StandardProps<Omit<PopoverProps, 'slots' | 'slotProps'>, 'children'> {
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.
@@ -58,6 +61,25 @@ export interface MenuProps extends StandardProps<PopoverProps> {
    */
   PopoverClasses?: PopoverProps['classes'];
   /**
+   * The components used for each slot inside.
+   *
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    paper?: React.ElementType;
+  };
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<typeof Menu, {}, MenuOwnerState>;
+    paper?: SlotComponentProps<typeof Paper, {}, {}>;
+  };
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -78,6 +100,8 @@ export interface MenuProps extends StandardProps<PopoverProps> {
    */
   variant?: 'menu' | 'selectedMenu';
 }
+
+export declare const MenuPaper: React.FC<PaperProps>;
 
 /**
  *

@@ -4,14 +4,13 @@ const getMuiAliases = require('./scripts/muiAliases');
 const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
 
-const muiAliases = getMuiAliases('src', true);
-
 const productionPlugins = [
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
 ];
 
 module.exports = function getBabelConfig(api) {
-  const useESModules = api.env(['legacy', 'modern', 'stable', 'rollup']);
+  const muiAliases = getMuiAliases('src', true);
+  const useESModules = api.env(['regressions', 'legacy', 'modern', 'stable', 'rollup']);
 
   const presets = [
     [

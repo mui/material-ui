@@ -5,6 +5,6 @@ createDOM();
 require('./init');
 
 testingLibrary.configure({
-  // JSDOM logs errors otherwise on `getComputedStyles(element, pseudoElement)` calls.
+  // JSDOM logs errors otherwise on `getComputedStyle(element, pseudoElement)` calls.
   computedStyleSupportsPseudoElements: false,
 });

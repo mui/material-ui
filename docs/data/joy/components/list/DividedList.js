@@ -18,8 +18,8 @@ export default function DividedList() {
       }}
     >
       {[undefined, 'gutter', 'startDecorator', 'startContent'].map((inset) => (
-        <Box key={inset || 'default'}>
-          <Typography level="body3" mb={2}>
+        <div key={inset || 'default'}>
+          <Typography level="body-xs" mb={2}>
             <code>{inset ? `inset="${inset}"` : '(default)'}</code>
           </Typography>
           <List
@@ -27,26 +27,23 @@ export default function DividedList() {
             sx={{
               minWidth: 240,
               borderRadius: 'sm',
-              '--List-decorator-size': '48px',
-              '--List-item-paddingLeft': '1.5rem',
-              '--List-item-paddingRight': '1rem',
             }}
           >
             <ListItem>
-              <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+              <ListItemDecorator>
                 <Avatar size="sm" src="/static/images/avatar/1.jpg" />
               </ListItemDecorator>
               Mabel Boyle
             </ListItem>
             <ListDivider inset={inset} />
             <ListItem>
-              <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+              <ListItemDecorator>
                 <Avatar size="sm" src="/static/images/avatar/2.jpg" />
               </ListItemDecorator>
               Boyd Burt
             </ListItem>
           </List>
-        </Box>
+        </div>
       ))}
     </Box>
   );

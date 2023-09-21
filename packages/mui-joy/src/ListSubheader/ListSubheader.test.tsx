@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ListSubheader, { listSubheaderClasses as classes } from '@mui/joy/ListSubheader';
 import ListSubheaderDispatch from './ListSubheaderContext';
@@ -19,7 +19,17 @@ describe('Joy <ListSubheader />', () => {
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
+
+  describeJoyColorInversion(<ListSubheader variant="soft" />, {
+    muiName: 'JoyListSubheader',
+    classes,
+  });
 
   it('should have root className', () => {
     const { container } = render(<ListSubheader />);

@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha } from '@mui/system';
 import SwitchBase from '../internal/SwitchBase';
 import useThemeProps from '../styles/useThemeProps';
@@ -14,10 +15,10 @@ import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, color } = ownerState;
+  const { classes, color, size } = ownerState;
 
   const slots = {
-    root: ['root', `color${capitalize(color)}`],
+    root: ['root', `color${capitalize(color)}`, size !== 'medium' && `size${capitalize(size)}`],
   };
 
   return {
@@ -171,6 +172,7 @@ Radio.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the ripple effect is disabled.
+   * @default false
    */
   disableRipple: PropTypes.bool,
   /**
@@ -204,6 +206,7 @@ Radio.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   /**
    * If `true`, the `input` element is required.
+   * @default false
    */
   required: PropTypes.bool,
   /**

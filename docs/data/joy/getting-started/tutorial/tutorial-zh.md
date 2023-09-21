@@ -11,7 +11,7 @@ In this small tutorial, you'll learn how to:
 The only **prerequesite** is [having Joy UI installed](/joy-ui/getting-started/installation/).
 
 :::warning
-⚠️ **Note:** We won't cover theming and general component customization at this moment. Learn more about [the different customization approaches](/joy-ui/customization/approaches/) later.
+**Note:** We won't cover theming and general component customization at this moment. Learn more about [the different customization approaches](/joy-ui/customization/approaches/) later.
 :::
 
 ## Building the login page
@@ -83,18 +83,20 @@ import Typography from '@mui/joy/Typography';
     <Typography level="h4" component="h1">
       <b>Welcome!</b>
     </Typography>
-    <Typography level="body2">Sign in to continue</Typography>
+    <Typography level="body-sm">Sign in to continue</Typography>
   </div>
 </Sheet>;
 ```
 
-### 4. Using `TextField` to create user name and password inputs
+### 4. Using `FormControl`, `FormLabel` and `Input` to create user name and password inputs
 
-The `TextField` component is made of the `FormLabel`, `Input` and `FormHelperText` components.
+The `FormControl`, `FormLabel` and `Input` components can be used together to provide you with a sophisticated field for user input.
 
 ```jsx
 // ...other imports
-import TextField from '@mui/joy/TextField';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Input from '@mui/joy/Input';
 
 <Sheet
   sx={
@@ -104,20 +106,19 @@ import TextField from '@mui/joy/TextField';
   }
 >
   ...typography
-  <TextField
-    // html input attribute
-    name="email"
-    type="email"
-    placeholder="johndoe@email.com"
-    // pass down to FormLabel as children
-    label="Email"
-  />
-  <TextField
-    name="password"
-    type="password"
-    placeholder="password"
-    label="Password"
-  />
+  <FormControl>
+    <FormLabel>Email</FormLabel>
+    <Input
+      // html input attribute
+      name="email"
+      type="email"
+      placeholder="johndoe@email.com"
+    />
+  </FormControl>
+  <FormControl>
+    <FormLabel>Password</FormLabel>
+    <Input name="password" type="password" placeholder="password" />
+  </FormControl>
 </Sheet>;
 ```
 
@@ -164,7 +165,7 @@ import Link from '@mui/joy/Link';
 Joy UI provides an effortless way to toggle between modes by using the React hook `useColorScheme`. All you need to do is create a component that uses the hook and then render it under the `CssVarsProvider` component.
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 // ...other imports
 
@@ -208,7 +209,7 @@ export default function App() {
 ```
 
 :::info
-💡 **Note:** With the `useColorScheme` hook, Joy UI ensures that the user selected mode (stored in localStorage by default) is in-sync across browser tabs.
+**Note:** With the `useColorScheme` hook, Joy UI ensures that the user selected mode (stored in localStorage by default) is in-sync across browser tabs.
 :::
 
 Congratulations 🎉! You've built your first good looking UI with Joy UI!

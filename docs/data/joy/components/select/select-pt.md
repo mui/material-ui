@@ -1,8 +1,9 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Select component
+components: Select, Option
 githubLabel: 'component: select'
-unstyled: /base/react-select/
+unstyled: /base-ui/react-select/
 ---
 
 # Select
@@ -108,21 +109,21 @@ In the demo below, we're using the `ListItemDecorator` to provide space between 
 {{"demo": "SelectCustomOption.js"}}
 
 :::info
-💡 **Keep in mind:** By default, the option children is used for displaying the selected value. Take a look at [selected value appearance](#selected-value-appearance) to see how to customize its appearance.
+**Keep in mind:** By default, the option children is used for displaying the selected value. Take a look at [selected value appearance](#selected-value-appearance) to see how to customize its appearance.
 :::
 
 #### Group options
 
-To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/example-index/listbox/listbox-grouped.html), wrap the `Option` with `List` component and provide an associated label using `ListItem`. That way, you'll have a consistent height and will be able to leverage nested CSS variables.
+To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/examples/listbox-grouped/), wrap the `Option` with `List` component and provide an associated label using `ListItem`. That way, you'll have a consistent height and will be able to leverage nested CSS variables.
 
 {{"demo": "SelectGroupedOptions.js"}}
 
 :::info
-💡 **Keep in mind:** If you'd like to set a `max-height` for a long list of options, make sure to specify it to the `listbox` slot so that keyboard-based navigation works as expected.
+**Keep in mind:** If you'd like to set a `max-height` for a long list of options, make sure to specify it to the `listbox` slot so that keyboard-based navigation works as expected.
 
 ```jsx
 <Select
-  componentsProps={{
+  slotProps={{
     listbox: {
       sx: {
         maxHeight: 300,

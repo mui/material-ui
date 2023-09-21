@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Grid component
 githubLabel: 'component: Grid'
 materialDesign: https://m2.material.io/design/layout/understanding-layout.html
@@ -47,7 +47,7 @@ The grid system is implemented with the `Grid` component:
 - You can give integer values for each breakpoint, to indicate how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
 - It uses negative margins and padding to create gaps between children, which behave similarly to [the `gap` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/gap).
 - It does _not_ support row spanning. Children elements cannot span multiple rows. We recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) if you need this functionality.
-- It does _not_ automatically place children. It will try to fit the children one by one, and if there is not enough space, the rest of the children will start on the next line, and so on. If you need auto-placement, we recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Auto-placement_in_CSS_Grid_Layout) instead.
+- It does _not_ automatically place children. It will try to fit the children one by one, and if there is not enough space, the rest of the children will start on the next line, and so on. If you need auto-placement, we recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Auto-placement_in_grid_layout) instead.
 
 :::warning
 The `Grid` component is a _layout_ grid, not a _data_ grid. If you need a data grid, check out [the MUI X `DataGrid` component](/x/react-data-grid/).

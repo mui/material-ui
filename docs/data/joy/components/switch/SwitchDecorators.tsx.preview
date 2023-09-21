@@ -1,0 +1,16 @@
+<Switch
+  color={dark ? 'primary' : 'danger'}
+  slotProps={{ input: { 'aria-label': 'dark mode' } }}
+  startDecorator={
+    <LocalFireDepartmentRoundedIcon
+      sx={{ color: dark ? 'text.tertiary' : 'danger.600' }}
+    />
+  }
+  endDecorator={
+    <WavesRoundedIcon sx={{ color: dark ? 'primary.500' : 'text.tertiary' }} />
+  }
+  checked={dark}
+  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+    setDark(event.target.checked)
+  }
+/>

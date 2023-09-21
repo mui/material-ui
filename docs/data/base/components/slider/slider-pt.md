@@ -1,9 +1,9 @@
 ---
-product: base
+productId: base-ui
 title: Unstyled React Slider component and hook
 components: SliderUnstyled
 githubLabel: 'component: slider'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 ---
 
 # Unstyled slider
@@ -23,7 +23,7 @@ Sliders are ideal for interface controls that benefit from a visual representati
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import SliderUnstyled from '@mui/base/SliderUnstyled';
@@ -95,7 +95,7 @@ Both the `mark` and `markLabel` slots have corresponding `*Active` classes that 
 ### Slot props
 
 :::info
-The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+The following props are available on all non-utility Base components. See [Usage](/base-ui/getting-started/usage/) for full details.
 :::
 
 Use the `component` prop to override the root slot with a custom element:
@@ -172,7 +172,7 @@ To let users set the start and end of a range on a slider, provide an array of v
 
 ## Accessibility
 
-See the [WAI-ARIA guide on the Slider (Multi-Thumb) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/) for complete details on accessibility best practices.
+See the [WAI-ARIA guide on the Slider (Multi-Thumb) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/) for complete details on accessibility best practices.
 
 The component handles most of the work necessary to make it accessible. However, you need to make sure that:
 

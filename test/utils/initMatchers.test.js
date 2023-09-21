@@ -30,7 +30,7 @@ describe('custom matchers', () => {
       }).toErrorDev(['expected message', 'another message']);
     });
 
-    it('fails if an expected console.error call wasnt recorded with a useful stacktrace', () => {
+    it("fails if an expected console.error call wasn't recorded with a useful stacktrace", () => {
       let caughtError;
       try {
         console.error('expected message');
@@ -92,7 +92,7 @@ describe('custom matchers', () => {
       }).to.throw('Could not match the following console.error calls');
     });
 
-    it('passes if no messages were recored if expected', () => {
+    it('passes if no messages were recorded if expected', () => {
       expect(() => {}).not.toErrorDev();
       expect(() => {}).not.toErrorDev([]);
     });

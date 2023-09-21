@@ -4,7 +4,6 @@ import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createRenderer } from 'test/utils';
 import createStyled from './createStyled';
-import sx from './sx';
 
 describe('createStyled', () => {
   const { render } = createRenderer();
@@ -87,6 +86,42 @@ describe('createStyled', () => {
       );
       expect(container.firstChild).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
       expect(container.lastChild).toHaveComputedStyle({ color: 'rgb(255, 0, 0)' });
+    });
+  });
+
+  it('default overridesResolver', () => {
+    const styled = createStyled({});
+    const Button = styled('button', {
+      name: 'MuiButton',
+      slot: 'root',
+    })({
+      display: 'flex',
+    });
+
+    const { container } = render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiButton: {
+              styleOverrides: {
+                root: {
+                  width: '300px',
+                  height: '200px',
+                },
+              },
+            },
+          },
+        })}
+      >
+        <Button color="primary" variant="contained" className="Mui-disabled">
+          Hello
+        </Button>
+      </ThemeProvider>,
+    );
+
+    expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
+      width: '300px',
+      height: '200px',
     });
   });
 
@@ -294,12 +329,13 @@ describe('createStyled', () => {
         components: {
           MuiButton: {
             styleOverrides: {
-              root: sx({
-                pt: 10,
-              }),
-              icon: ({ ownerState }) => [
+              root: ({ theme }) =>
+                theme.unstable_sx({
+                  pt: 10,
+                }),
+              icon: ({ ownerState, theme }) => [
                 ownerState.color === 'primary' &&
-                  sx({
+                  theme.unstable_sx({
                     mr: 10,
                   }),
               ],

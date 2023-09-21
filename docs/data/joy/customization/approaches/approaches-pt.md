@@ -51,7 +51,7 @@ const theme = extendTheme({
     },
   },
   fontFamily: {
-    display: 'Inter var, var(--joy-fontFamily-fallback)',
+    display: 'Inter, var(--joy-fontFamily-fallback)',
     body: 'Inter, var(--joy-fontFamily-fallback)',
   },
 });
@@ -96,6 +96,6 @@ function MyApp() {
 
 Creating new and custom components is always an option when you don't find exactly what you're looking for. You can, however, ensure design consistency with other Joy UI components by pulling styles from the theme through the `styled` function.
 
-You also gain as beenfit the ability to use the `sx` prop, that also accept theme tokens, to customize this newly created component.
+You also gain the ability to use the `sx` prop, which also accepts theme tokens, to customize this newly created component.
 
 {{"demo": "StyledComponent.js"}}

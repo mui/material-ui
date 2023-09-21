@@ -70,7 +70,7 @@ const theme = {
 
 ## Example
 
-{{"demo": "Demo.js", "defaultCodeOpen": false, "bg": true}}
+{{"demo": "SpacingDemo.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box sx={{ p: 1 }}>…

@@ -26,6 +26,7 @@ function getMuiAliases(type, isRelative = false) {
     ),
     '@mui/joy': resolveAliasPath(`packages/mui-joy/${type}`),
     '@mui/lab': resolveAliasPath(`packages/mui-lab/${type}`),
+    '@mui/markdown': resolveAliasPath('packages/markdown'),
     '@mui/material': resolveAliasPath(`packages/mui-material/${type}`),
     '@mui/material-next': resolveAliasPath(`packages/mui-material-next/${type}`),
     '@mui/private-theming': resolveAliasPath(`packages/mui-private-theming/${type}`),

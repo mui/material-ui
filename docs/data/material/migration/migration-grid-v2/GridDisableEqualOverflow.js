@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Grid2 from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
-export default function GridsDiff() {
+export default function GridDisableEqualOverflow() {
   return (
     <Box sx={{ pt: 3 }}>
       <Box sx={{ border: '1px solid', borderColor: 'primary.main' }}>

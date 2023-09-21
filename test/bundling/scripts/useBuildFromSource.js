@@ -76,7 +76,7 @@ async function run(context) {
       'base',
       'utils',
     ].map(async (muiPackageName) => {
-      // clean coyp
+      // clean copy
       try {
         await rmRecursiveForce(new URL(`./node_modules/@mui/${muiPackageName}/`, fixtureUrl));
       } catch (error) {

@@ -1,5 +1,6 @@
+'use client';
 import * as React from 'react';
-import { useInput } from '@mui/base/InputUnstyled';
+import { useInput } from '@mui/base/useInput';
 import FormControlContext, { FormControlContextValue } from '../FormControl/FormControlContext';
 
 export default function useForwardedInput<Output>(
@@ -41,7 +42,7 @@ export default function useForwardedInput<Output>(
     onClick,
     onChange,
     onFocus,
-    required,
+    required: required ?? formControl?.required,
     value,
   });
 

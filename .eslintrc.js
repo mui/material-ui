@@ -34,6 +34,7 @@ module.exports = {
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
     '@typescript-eslint/eslint-plugin',
+    'eslint-plugin-filenames',
   ],
   settings: {
     'import/resolver': {
@@ -66,13 +67,6 @@ module.exports = {
       {
         patterns: [
           '@mui/*/*/*',
-          // Begin block: Packages with files instead of packages in the top level
-          // Importing from the top level pulls in CommonJS instead of ES modules
-          // Allowing /icons as to reduce cold-start of dev builds significantly.
-          // There's nothing to tree-shake when importing from /icons this way:
-          // '@mui/icons-material/*/',
-          '@mui/utils/*',
-          // End block
           // Macros are fine since their import path is transpiled away
           '!@mui/utils/macros',
           '@mui/utils/macros/*',
@@ -104,6 +98,7 @@ module.exports = {
 
     // Not sure why it doesn't work
     'import/named': 'off',
+    'import/no-cycle': 'off',
     // Missing yarn workspace support
     'import/no-extraneous-dependencies': 'off',
     // The code is already coupled to webpack. Prefer explicit coupling.
@@ -123,6 +118,7 @@ module.exports = {
 
     'material-ui/docgen-ignore-before-comment': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
+    'material-ui/no-empty-box': 'error',
 
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
     'react-hooks/rules-of-hooks': 'error',
@@ -167,8 +163,27 @@ module.exports = {
       ...baseStyleRules['no-restricted-syntax'],
       {
         message:
-          "Do not import default from React. Use a namespace import (import * as React from 'react';) instead.",
-        selector: 'ImportDeclaration[source.value="react"] ImportDefaultSpecifier',
+          "Do not import default or named exports from React. Use a namespace import (import * as React from 'react';) instead.",
+        selector:
+          'ImportDeclaration[source.value="react"] ImportDefaultSpecifier, ImportDeclaration[source.value="react"] ImportSpecifier',
+      },
+      {
+        message:
+          "Do not import default or named exports from ReactDOM. Use a namespace import (import * as ReactDOM from 'react-dom';) instead.",
+        selector:
+          'ImportDeclaration[source.value="react-dom"] ImportDefaultSpecifier, ImportDeclaration[source.value="react-dom"] ImportSpecifier',
+      },
+      {
+        message:
+          "Do not import default or named exports from ReactDOM. Use a namespace import (import * as ReactDOM from 'react-dom/client';) instead.",
+        selector:
+          'ImportDeclaration[source.value="react-dom/client"] ImportDefaultSpecifier, ImportDeclaration[source.value="react-dom/client"] ImportSpecifier',
+      },
+      {
+        message:
+          "Do not import default or named exports from ReactDOMServer. Use a namespace import (import * as ReactDOM from 'react-dom/server';) instead.",
+        selector:
+          'ImportDeclaration[source.value="react-dom/server"] ImportDefaultSpecifier, ImportDeclaration[source.value="react-dom/server"] ImportSpecifier',
       },
     ],
 
@@ -180,11 +195,13 @@ module.exports = {
     'react/no-invalid-html-attribute': 'off',
 
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
+    'lines-around-directive': 'off',
   },
   overrides: [
     {
       files: [
         // matching the pattern of the test runner
+        '*.test.mjs',
         '*.test.js',
         '*.test.mjs',
         '*.test.ts',
@@ -253,6 +270,7 @@ module.exports = {
         ],
       },
     },
+    // Next.js entry points pages
     {
       files: ['docs/pages/**/*.js'],
       rules: {
@@ -261,12 +279,7 @@ module.exports = {
     },
     // demos
     {
-      files: [
-        'docs/src/pages/**/*.js',
-        'docs/src/pages/**/*.tsx',
-        'docs/data/**/*.js',
-        'docs/data/**/*.tsx',
-      ],
+      files: ['docs/src/pages/**/*{.tsx,.js}', 'docs/data/**/*{.tsx,.js}'],
       rules: {
         // This most often reports data that is defined after the component definition.
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
@@ -274,6 +287,28 @@ module.exports = {
         'react/prop-types': 'off',
         'no-alert': 'off',
         'no-console': 'off',
+      },
+    },
+    // demos - proptype generation
+    {
+      files: ['docs/data/base/components/modal/UseModal.js'],
+      rules: {
+        'consistent-return': 'off',
+        'func-names': 'off',
+        'no-else-return': 'off',
+        'prefer-template': 'off',
+      },
+    },
+    {
+      files: ['docs/data/**/*{.tsx,.js}'],
+      excludedFiles: [
+        'docs/data/joy/getting-started/templates/**/*.tsx',
+        'docs/data/**/css/*{.tsx,.js}',
+        'docs/data/**/system/*{.tsx,.js}',
+        'docs/data/**/tailwind/*{.tsx,.js}',
+      ],
+      rules: {
+        'filenames/match-exported': ['error'],
       },
     },
     {
@@ -291,7 +326,7 @@ module.exports = {
           'error',
           {
             patterns: [
-              // Allow deeper imports for TypeScript types. TODO?
+              // Allow deeper imports for TypeScript types. TODO remove
               '@mui/*/*/*/*',
               // Macros are fine since they're transpiled into something else
               '!@mui/utils/macros/*.macro',
@@ -393,6 +428,7 @@ module.exports = {
             ],
           },
         ],
+        'import/no-cycle': ['error', { ignoreExternal: true }],
       },
     },
     {
@@ -419,9 +455,16 @@ module.exports = {
       },
     },
     {
-      files: ['scripts/**/*.mjs'],
+      files: ['scripts/**/*.mjs', 'packages/**/*.mjs'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
+      },
+    },
+    {
+      files: ['packages/mui-base/src/**/**{.ts,.tsx}'],
+      rules: {
+        'import/no-default-export': 'error',
+        'import/prefer-default-export': 'off',
       },
     },
   ],

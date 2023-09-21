@@ -27,7 +27,7 @@ Need to refer back to an older version of the docs? Check out [the v4 documentat
 :::
 
 :::info
-If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration).
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration).
 :::
 
 ## Why you should migrate
@@ -41,7 +41,7 @@ Additionally, v5 is the only version that fully supports React 18, so you will n
 To learn more, check out [the blog post about the release of Material UI v5](https://mui.com/blog/mui-core-v5/).
 
 :::info
-💡 Create small commits as you go to ensure a smooth migration.
+Create small commits as you go to ensure a smooth migration.
 
 If you encounter any issues along the way, check the [Troubleshooting](/material-ui/migration/troubleshooting/) doc.
 
@@ -88,7 +88,7 @@ If your project includes these packages, you'll need to update them to the `late
 - `@types/react-dom`
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ## Set up `ThemeProvider`
@@ -118,7 +118,7 @@ function App() {
 ```
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ## Update MUI packages
@@ -129,13 +129,13 @@ Install the Material UI v5 packages.
 
 With npm:
 
-```sh
+```bash
 npm install @mui/material @mui/styles
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/material @mui/styles
 ```
 
@@ -145,13 +145,13 @@ If you're using `@material-ui/lab` or `@material-ui/icons`, you will need to ins
 
 With npm:
 
-```sh
+```bash
 npm install @mui/lab
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/lab
 ```
 
@@ -159,19 +159,19 @@ yarn add @mui/lab
 
 With npm:
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 
 ### Date and time pickers
 
-The date and time picker components have been moved to MUI X. If you are using `@material-ui/date-pickers` or the pickers in the `@mui/lab` package, you will need to migrate to `@mui/x-date-pickers`. See [Migration from the lab](https://mui.com/x/react-date-pickers/migration-lab/) for details.
+The date and time picker components have been moved to MUI X. If you are using `@material-ui/date-pickers` or the pickers in the `@mui/lab` package, you will need to migrate to `@mui/x-date-pickers`. See [Migration from the lab](https://mui.com/x/migration/migration-pickers-lab/) for details.
 
 ### Peer dependencies
 
@@ -179,13 +179,13 @@ Next, add the Emotion packages.
 
 With npm:
 
-```sh
+```bash
 npm install @emotion/react @emotion/styled
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @emotion/react @emotion/styled
 ```
 
@@ -198,7 +198,7 @@ Note that if your app uses server-side rendering (SSR), there is a [known bug](h
 We strongly recommend using the default setup with Emotion instead.
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
 ### Replace all imports
@@ -279,7 +279,7 @@ Make sure that your application still runs without errors after running each cod
 
 This codemod contains most of the transformers that are necessary for migration. It should be only applied **once per folder.**
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/preset-safe <path>
 ```
 
@@ -292,7 +292,7 @@ If you want to run the transformers one by one, check out the [preset-safe codem
 This codemod transforms the `<TextField/>`, `<FormControl/>`, and `<Select/>` components by applying `variant="standard"` if no variant is defined—the default variant has changed from `"standard"` in v4 to `"outlined"` in v5.
 
 :::error
-❗️ You should _not_ use this codemod if you have already defined `variant: "outlined"` as the default in the theme.
+You should _not_ use this codemod if you have already defined `variant: "outlined"` as the default in the theme.
 :::
 
 ```js
@@ -311,7 +311,7 @@ createMuiTheme({
 
 If you want to keep `variant="standard"` in your components, run this codemod or else configure the corresponding default theme props.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/variant-prop <path>
 ```
 
@@ -322,7 +322,7 @@ For more details, check out the [variant-prop codemod README](https://github.com
 This codemod transforms the `<Link />` component by applying `underline="hover"` if there is no `underline` prop defined—the default `underline` has changed from `"hover"` in v4 to `"always"` in v5.
 
 :::error
-❗️ You should _not_ use this codemod if you have already defined `underline: "always"` as the default in the theme.
+You should _not_ use this codemod if you have already defined `underline: "always"` as the default in the theme.
 :::
 
 ```js
@@ -341,7 +341,7 @@ createMuiTheme({
 
 If you want to keep `underline="hover"`, run this codemod or else configure the corresponding default theme props.
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/link-underline-hover <path>
 ```
 

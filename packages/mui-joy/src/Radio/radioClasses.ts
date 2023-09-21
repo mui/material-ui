@@ -17,20 +17,20 @@ export interface RadioClasses {
   checked: string;
   /** State class applied to the root, action slots if `disabled`. */
   disabled: string;
-  /** Class applied to the root element if the switch has visible focus */
+  /** Class name applied to the root element if the switch has visible focus */
   focusVisible: string;
   /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Class name applied to the root element if `color="info"`. */
-  colorInfo: string;
   /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
   /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
   /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Class name applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Class name applied to the root element if `size="md"`. */
@@ -48,10 +48,10 @@ export interface RadioClasses {
 export type RadioClassKey = keyof RadioClasses;
 
 export function getRadioUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyRadio', slot);
+  return generateUtilityClass('MuiRadio', slot);
 }
 
-const radioClasses: RadioClasses = generateUtilityClasses('JoyRadio', [
+const radioClasses: RadioClasses = generateUtilityClasses('MuiRadio', [
   'root',
   'radio',
   'icon',
@@ -63,10 +63,10 @@ const radioClasses: RadioClasses = generateUtilityClasses('JoyRadio', [
   'focusVisible',
   'colorPrimary',
   'colorDanger',
-  'colorInfo',
   'colorNeutral',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'sizeSm',
   'sizeMd',
   'sizeLg',

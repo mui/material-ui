@@ -1,0 +1,32 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "badgeContent": { "description": "The content rendered within the badge." },
+    "children": { "description": "The badge will be added relative to this node." },
+    "invisible": { "description": "If <code>true</code>, the badge is invisible." },
+    "max": { "description": "Max count to show." },
+    "showZero": {
+      "description": "Controls whether the badge is hidden when <code>badgeContent</code> is zero."
+    },
+    "slotProps": { "description": "The props used for each slot inside the Badge." },
+    "slots": {
+      "description": "The components used for each slot inside the Badge. Either a string to use a HTML element or a component."
+    }
+  },
+  "classDescriptions": {
+    "root": { "description": "Class name applied to the root element." },
+    "badge": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the badge <code>span</code> element"
+    },
+    "invisible": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge <code>span</code> element",
+      "conditions": "<code>invisible={true}</code>"
+    }
+  },
+  "slotDescriptions": {
+    "root": "The component that renders the root.",
+    "badge": "The component that renders the badge."
+  }
+}

@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import { refType, deepmerge } from '@mui/utils';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import InputBase from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -91,9 +92,10 @@ const FilledInputRoot = styled(InputBaseRoot, {
         // See https://github.com/mui/material-ui/issues/31766
         transform: 'scaleX(1) translateX(0)',
       },
-      [`&.${filledInputClasses.error}:after`]: {
-        borderBottomColor: (theme.vars || theme).palette.error.main,
-        transform: 'scaleX(1)', // error is always underlined in red
+      [`&.${filledInputClasses.error}`]: {
+        '&:before, &:after': {
+          borderBottomColor: (theme.vars || theme).palette.error.main,
+        },
       },
       '&:before': {
         borderBottom: `1px solid ${
@@ -112,7 +114,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      [`&:hover:not(.${filledInputClasses.disabled}):before`]: {
+      [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
         borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
       },
       [`&.${filledInputClasses.disabled}:before`]: {

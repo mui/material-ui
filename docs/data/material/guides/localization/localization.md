@@ -2,7 +2,7 @@
 
 <p class="description">Localization (also referred to as "l10n") is the process of adapting a product or content to a specific locale or market.</p>
 
-The default locale of MUI is English (United States). If you want to use other locales, follow the instructions below.
+The default locale of Material UI is English (United States). If you want to use other locales, follow the instructions below.
 
 ## Locale text
 
@@ -31,7 +31,7 @@ const theme = createTheme(
 {{"demo": "Locales.js"}}
 
 :::warning
-⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
+The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own [localization](/x/react-data-grid/localization/).
 :::
 
 ### Supported locales
@@ -68,9 +68,13 @@ const theme = createTheme(
 | Italian                 | it-IT               | `itIT`      |
 | Japanese                | ja-JP               | `jaJP`      |
 | Khmer                   | kh-KH               | `khKH`      |
-| Kazakh                  | kz-KZ               | `kzKZ`      |
+| Kazakh                  | kk-KZ               | `kkKZ`      |
 | Korean                  | ko-KR               | `koKR`      |
+| Kurdish (Central)       | ku-CKB              | `kuCKB`     |
 | Macedonian              | mk-MK               | `mkMK`      |
+| Myanmar                 | my-MY               | `myMY`      |
+| Malay                   | ms-MS               | `msMS`      |
+| Nepali                  | ne-NP               | `neNP`      |
 | Norwegian (bokmål)      | nb-NO               | `nbNO`      |
 | Persian                 | fa-IR               | `faIR`      |
 | Polish                  | pl-PL               | `plPL`      |
@@ -85,7 +89,9 @@ const theme = createTheme(
 | Swedish                 | sv-SE               | `svSE`      |
 | Thai                    | th-TH               | `thTH`      |
 | Turkish                 | tr-TR               | `trTR`      |
+| Tagalog                 | tl-TL               | `tlTL`      |
 | Ukrainian               | uk-UA               | `ukUA`      |
+| Urdu (Pakistan)         | ur-PK               | `urPK`      |
 | Vietnamese              | vi-VN               | `viVN`      |
 
 <!-- #default-branch-switch -->
@@ -94,8 +100,8 @@ You can [find the source](https://github.com/mui/material-ui/blob/master/package
 
 To create your own translation, or to customize the English text, copy this file to your project, make any changes needed and import the locale from there.
 
-Please do consider contributing new translations back to MUI by opening a pull request.
-However, MUI aims to support the [100 most common](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [locales](https://www.ethnologue.com/guides/ethnologue200), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
+Please do consider contributing new translations back to Material UI by opening a pull request.
+However, Material UI aims to support the [100 most common](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [locales](https://www.ethnologue.com/guides/ethnologue200), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
 
 ## RTL Support
 

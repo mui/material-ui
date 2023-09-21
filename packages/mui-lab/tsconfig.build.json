@@ -11,7 +11,7 @@
     "rootDir": "./src"
   },
   "include": ["src/**/*.ts*"],
-  "exclude": ["src/**/*.d.ts", "src/**/*.test.*", "./**/*.spec.*", "**/test-utils.tsx"],
+  "exclude": ["src/**/*.d.ts", "src/**/*.test.*", "./**/*.spec.*"],
   "references": [
     { "path": "../mui-utils/tsconfig.build.json" },
     { "path": "../mui-system/tsconfig.build.json" },

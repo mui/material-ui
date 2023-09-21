@@ -5,7 +5,7 @@
 This API is introduced in `@mui/material` (v5.0.5) as a replacement of deprecated [`createGenerateClassName`](/system/styles/api/#creategenerateclassname-options-class-name-generator).
 
 :::warning
-⚠️ **Note**: this API is at an unstable stage which might change in the future.
+**Note**: this API is at an unstable stage which might change in the future.
 :::
 
 ## Setup
@@ -160,7 +160,7 @@ Import the initializer in `/src/index.js`.
 ```diff
 +import './MuiClassNameSetup';
  import * as React from 'react';
- import ReactDOM from 'react-dom';
+ import * as ReactDOM from 'react-dom';
  import App from './App';
 
  ReactDOM.render(<App />);

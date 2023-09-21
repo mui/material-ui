@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Head from 'docs/src/modules/components/Head';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -11,6 +10,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import MuiAccordionDetail from '@mui/material/AccordionDetails';
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -18,9 +20,8 @@ import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
 import IconImage from 'docs/src/components/icon/IconImage';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
-import MuiAccordion from '@mui/material/Accordion';
-import MuiAccordionSummary from '@mui/material/AccordionSummary';
-import MuiAccordionDetail from '@mui/material/AccordionDetails';
+import Section from 'docs/src/layouts/Section';
+import Head from 'docs/src/modules/components/Head';
 import ROUTES from 'docs/src/route';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
@@ -48,7 +49,7 @@ function Role(props: RoleProps) {
             variant="body1"
             color="text.primary"
             fontWeight={700}
-            sx={{ display: 'block', my: 1 }}
+            sx={{ display: 'block', mb: 0.5 }}
           >
             {props.title}
           </Typography>
@@ -138,7 +139,7 @@ const faqData = [
   {
     summary: 'Does MUI offer contract job opportunities?',
     detail:
-      'Yes. People outside of France will be hired as full-time contractors. (Benefits may vary.)',
+      'Yes. People outside of France can be hired as full-time contractors. (Benefits may vary.)',
   },
 ];
 
@@ -147,26 +148,10 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'React Engineer - X',
-        description:
-          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/careers/react-engineer-x/',
-      },
-      {
         title: 'Product Engineer - Store',
-        description: 'You will lead the technical and operational development of MUI Store.',
-        url: '/careers/product-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'People',
-    roles: [
-      {
-        title: 'People Operations Manager',
         description:
-          'You will build the HR function from the ground up at a high-growth tech company.',
-        url: '/careers/people-operations-manager/',
+          'You will lead the technical, product, and operational development of the store.',
+        url: '/careers/product-engineer/',
       },
     ],
   },
@@ -177,22 +162,60 @@ const nextRolesData = [
     title: 'Engineering',
     roles: [
       {
+        title: 'Accessibility Engineer',
+        description:
+          'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
+        url: '/careers/accessibility-engineer/',
+      },
+      {
         title: 'Full-stack Engineer - Toolpad',
         description:
           'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
         url: '/careers/fullstack-engineer/',
       },
       {
+        title: 'React Engineer - X',
+        description:
+          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x/',
+      },
+      {
+        title: 'React Tech Lead - Core',
+        description:
+          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
+        url: '/careers/react-tech-lead-core/',
+      },
+      {
         title: 'React Engineer - Core',
         description:
-          'You will strengthen the core components team, e.g. collaborate with the community to land contributions.',
+          'You will strengthen the core components team by collaborating with the community to land contributions.',
         url: '/careers/react-engineer-core/',
       },
       {
-        title: 'React Support Engineer - X',
+        title: 'React Community Engineer - X',
         description:
-          "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/careers/react-support-engineer/',
+          'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
+        url: '/careers/react-community-engineer/',
+      },
+    ],
+  },
+  {
+    title: 'Design',
+    roles: [
+      {
+        title: 'Design Engineer',
+        description: 'You will focus on design to implement great product experiences.',
+        url: '/careers/design-engineer/',
+      },
+    ],
+  },
+  {
+    title: 'People',
+    roles: [
+      {
+        title: 'Technical Recruiter',
+        description: 'You will hire the next engineers, among other roles, joining the team.',
+        url: '/careers/technical-recruiter/',
       },
     ],
   },
@@ -207,22 +230,22 @@ const nextRolesData = [
     ],
   },
   {
-    title: 'People',
+    title: 'Support',
     roles: [
       {
-        title: 'Technical Recruiter',
-        description: 'You will hire the next engineers joining the team.',
+        title: 'Support Agent',
+        description:
+          'You will provide support for the customers. You will directly impact customer satisfaction and success.',
       },
     ],
   },
   {
-    title: 'Support',
+    title: 'Marketing',
     roles: [
       {
-        title: 'Support Agent - Store',
-        description:
-          "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
-        url: '/careers/support-agent/',
+        title: 'Product Marketing Manager',
+        description: 'You will own the marketing efforts at MUI.',
+        url: '/careers/product-marketing-manager/',
       },
     ],
   },
@@ -260,7 +283,7 @@ function CareersContent() {
       <Container>
         <Box
           sx={{
-            height: '40vh',
+            height: '30vh',
             minHeight: 300,
             display: 'flex',
             flexDirection: 'column',
@@ -285,12 +308,13 @@ function CareersContent() {
               minHeight: 48, // a hack to reduce CLS (layout shift)
             }}
           >
-            Our mission is to enable developers at every level of ability to build great UIs,
-            faster.
+            Our mission is to enable developers at every level of ability
+            <br /> to build great UIs, faster.
           </Typography>
         </Box>
       </Container>
       {/* Our ultimate goal */}
+      <Divider />
       <Box
         sx={(theme) => ({
           bgcolor: 'grey.50',
@@ -299,11 +323,11 @@ function CareersContent() {
           }),
         })}
       >
-        <Container sx={{ py: { xs: 4, md: 8 } }}>
+        <Section bg="gradient" cozy>
           <Grid container alignItems="center" spacing={4}>
             <Grid item xs={12} md={6}>
               <Typography variant="h2" sx={{ my: 1 }}>
-                Our ultimate goal
+                Our <GradientText>ultimate</GradientText> goal
               </Typography>
               <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
                 We aim high trying to design the most effective and efficient tool for building UIs,
@@ -316,14 +340,14 @@ function CareersContent() {
               </Typography>
               {[
                 'Customer obsessed. We put our customers front & center.',
+                "Excellence. We're aiming high, and we know it.",
                 'Transparency. Most of our work is public.',
                 'Freedom. We work from anywhere in the world.',
                 'Autonomy. We want to create a safe, high-trust team.',
-                "Excellence. We're aiming high, and we know it.",
               ].map((text) => (
-                <Box key={text} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
-                  <IconImage name="yes" />
-                  <Typography variant="body2" color="text.primary" fontWeight={700} sx={{ ml: 1 }}>
+                <Box key={text} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+                  <IconImage name="pricing/yes" />
+                  <Typography variant="body2" color="text.primary" fontWeight={600} sx={{ ml: 1 }}>
                     {text}
                   </Typography>
                 </Box>
@@ -331,114 +355,83 @@ function CareersContent() {
             </Grid>
             <MuiStatistics />
           </Grid>
-        </Container>
+        </Section>
       </Box>
+      <Divider />
       {/* Perks & benefits */}
-      <div>
-        <Container sx={{ py: 4 }}>
-          <Grid container alignItems="center" spacing={{ xs: 2, sm: 4 }}>
-            <Grid item xs={12} md={6} sx={{ pr: { sm: 0, md: 4 } }}>
-              <Typography variant="h2" sx={{ my: 1 }} id="perks-amp-benefits">
-                {'Perks & benefits'}
-              </Typography>
-              <Typography color="text.secondary" sx={{ mb: 2 }}>
-                To help you go above and beyond with us, we provide:
-              </Typography>
-              {[
-                ['Remote work:', 'Our entire company is distributed.'],
-                [
-                  'Retreats:',
-                  'We meet up once or twice a year for a short week of meetings, events, and fun!',
-                ],
-                [
-                  'Equipment:',
-                  'MUI will let you choose new hardware of your choice (up to $2,500 USD).',
-                ],
-                ['Time off:', 'We provide five weeks of paid time off.'],
-              ].map((textArray) => (
-                <Box key={textArray[0]} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
-                  <IconImage name="yes" />
-                  <Typography variant="body2" color="text.primary" sx={{ ml: 1 }}>
-                    <span style={{ fontWeight: 700 }}>{`${textArray[0]}  `}</span>
-                    {textArray[1]}
-                  </Typography>
-                </Box>
-              ))}
-            </Grid>
-            <Grid item xs={12} sm={12} md={6} container spacing={2}>
-              <Grid item xs={12} sm={12} md={6}>
-                <Paper
-                  component={Link}
-                  href={ROUTES.handbook}
-                  noLinkStyle
-                  variant="outlined"
-                  sx={{ p: 2 }}
-                >
-                  <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                    Handbook
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                    See how we run the company and the way we work.
-                  </Typography>
-                  <Typography
-                    sx={(theme) => ({
-                      color: 'primary.600',
-                      ...theme.applyDarkStyles({
-                        color: 'primary.400',
-                      }),
-                    })}
-                    variant="body2"
-                    fontWeight="bold"
-                  >
-                    Learn more{' '}
-                    <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                  </Typography>
-                </Paper>
-              </Grid>
-              <Grid item xs={12} sm={12} md={6}>
-                <Paper
-                  component={Link}
-                  href={ROUTES.blog}
-                  noLinkStyle
-                  variant="outlined"
-                  sx={{ p: 2 }}
-                >
-                  <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                    Blog
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                    Check behind the scenes and news from the company.
-                  </Typography>
-                  <Typography
-                    sx={(theme) => ({
-                      color: 'primary.600',
-                      ...theme.applyDarkStyles({
-                        color: 'primary.400',
-                      }),
-                    })}
-                    variant="body2"
-                    fontWeight="bold"
-                  >
-                    Learn more{' '}
-                    <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                  </Typography>
-                </Paper>
-              </Grid>
-            </Grid>
+      <Section bg="transparent" cozy>
+        <Grid container alignItems="center" spacing={{ xs: 2, sm: 4 }}>
+          <Grid item xs={12} md={6} sx={{ pr: { sm: 0, md: 4 } }}>
+            <Typography variant="h2" sx={{ my: 1 }} id="perks-amp-benefits">
+              {'Perks & benefits'}
+            </Typography>
+            <Typography color="text.secondary" sx={{ mb: 2 }}>
+              To help you go above and beyond with us, we provide:
+            </Typography>
+            {[
+              ['Remote work:', 'Our entire company is distributed.'],
+              [
+                'Retreats:',
+                'We meet up every eight months for a week of working and having fun together!',
+              ],
+              [
+                'Equipment:',
+                'We will provide the hardware of your choice (initial grant of $2,500 USD).',
+              ],
+              ['Time off:', 'We provide 33 days of paid time off globally.'],
+            ].map((textArray) => (
+              <Box key={textArray[0]} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+                <IconImage name="pricing/yes" />
+                <Typography variant="body2" color="text.primary" sx={{ ml: 1 }}>
+                  <span style={{ fontWeight: 600 }}>{`${textArray[0]}  `}</span>
+                  {textArray[1]}
+                </Typography>
+              </Box>
+            ))}
           </Grid>
-        </Container>
-      </div>
+          <Grid item xs={12} sm={12} md={6}>
+            <Paper
+              component={Link}
+              href={ROUTES.blog}
+              noLinkStyle
+              variant="outlined"
+              sx={{ p: 2, width: { xs: '100%', sm: '50%' } }}
+            >
+              <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                Blog
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                Check behind the scenes and news from the company.
+              </Typography>
+              <Typography
+                sx={(theme) => ({
+                  color: 'primary.600',
+                  ...theme.applyDarkStyles({
+                    color: 'primary.400',
+                  }),
+                })}
+                variant="body2"
+                fontWeight="bold"
+              >
+                Learn more{' '}
+                <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+              </Typography>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Section>
       {/* Open roles */}
+      <Divider />
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <div>
           <Typography variant="h2" sx={{ my: 1 }} id="open-roles">
             {`Open roles (${openRolesData.reduce((acc, item) => acc + item.roles.length, 0)})`}
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 500 }}>
-            The company is bootstrapped (up to now). It was incorporated in mid-2019 and yet growing
-            fast (x2-3 YoY). We doubled the team in 2020 (6), accelerated in 2021 (16), and are on
-            track to triple it in 2022 (40). We&apos;re looking for help keep growing in the
-            following areas:
+            The company is bootstrapped (so far). It was incorporated in mid-2019 and is growing
+            fast (x2 YoY). We doubled the team in 2020 (6), accelerated in 2021 (15), kept a similar
+            pace in 2022 (25), and we plan to double it in 2023 (50). We&apos;re looking for help to
+            grow in the following areas:
           </Typography>
         </div>
         <Divider
@@ -489,8 +482,9 @@ function CareersContent() {
         </Stack>
       </Container>
       {/* Next roles */}
+      <Divider />
       {nextRolesData.length > 0 ? (
-        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.700' }}>
+        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
           <Container sx={{ py: { xs: 4, md: 8 } }}>
             <Box
               sx={{
@@ -545,8 +539,9 @@ function CareersContent() {
           </Container>
         </Box>
       ) : null}
+      <Divider />
       {/* Frequently asked questions */}
-      <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
+      <Section bg="transparent">
         <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
           Frequently asked questions
         </Typography>
@@ -565,7 +560,7 @@ function CareersContent() {
                 borderColor: 'grey.300',
                 bgcolor: 'white',
                 ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.400',
+                  borderColor: 'primaryDark.600',
                   bgcolor: 'primaryDark.800',
                 }),
               })}
@@ -584,7 +579,7 @@ function CareersContent() {
             </Paper>
           </Grid>
         </Grid>
-      </Container>
+      </Section>
     </React.Fragment>
   );
 }

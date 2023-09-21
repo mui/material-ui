@@ -1236,7 +1236,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('prop: touchRipplepRef', () => {
+  describe('prop: touchRippleRef', () => {
     it('should return a ref', () => {
       const ref = React.createRef();
       render(<ButtonBase touchRippleRef={ref} />);

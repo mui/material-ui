@@ -4,12 +4,6 @@ import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});
 
-test('should see legacy styles', async ({ page }) => {
-  await page.goto(`/styles/basics/`);
-
-  await expect(page.locator('h1:has-text("@mui/styles")')).toBeVisible();
-});
-
 test('should see legacy styles inside system', async ({ page }) => {
   await page.goto(`/system/styles/basics/`);
 

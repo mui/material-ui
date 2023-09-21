@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha } from '@mui/system';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -277,7 +278,8 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
-   * @ignore
+   * If `true`, the component is selected.
+   * @default false
    */
   selected: PropTypes.bool,
   /**

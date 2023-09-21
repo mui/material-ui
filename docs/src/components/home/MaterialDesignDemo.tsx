@@ -10,8 +10,8 @@ import MuiTypography from '@mui/material/Typography';
 import MuiStack from '@mui/material/Stack';
 import MuiEdit from '@mui/icons-material/Edit';
 import MuiLocationOn from '@mui/icons-material/LocationOn';
-import { withPointer } from 'docs/src/components/home/ElementPointer';
 import { grey } from '@mui/material/colors';
+import { withPointer } from 'docs/src/components/home/ElementPointer';
 
 export const componentCode = `<Card>
   <Box sx={{ p: 2, display: 'flex' }}>
@@ -65,7 +65,7 @@ export default function MaterialDesignDemo(props: CardProps) {
           sx={{
             mx: 2,
             flexGrow: 1,
-            '& svg': { fontSize: 20, verticalAlign: 'bottom', mr: 0.5 },
+            '& svg': { fontSize: 20, verticalAlign: 'bottom', mr: 0.2 },
           }}
         >
           <Typography fontWeight={700}>Michael Scott</Typography>
@@ -85,7 +85,7 @@ export default function MaterialDesignDemo(props: CardProps) {
         direction="row"
         alignItems="center"
         justifyContent="space-between"
-        sx={{ px: 2, py: 1.5, bgcolor: 'background.default' }}
+        sx={{ pl: 1.5, pr: 2, py: 1.5, bgcolor: 'background.default' }}
       >
         <Chip
           label={active ? 'Active account' : 'Inactive account'}

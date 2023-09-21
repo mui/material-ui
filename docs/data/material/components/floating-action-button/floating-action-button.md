@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Floating Action Button (FAB) component
 components: Fab
 githubLabel: 'component: Fab'

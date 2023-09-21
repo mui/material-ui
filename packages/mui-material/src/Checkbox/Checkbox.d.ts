@@ -36,10 +36,12 @@ export interface CheckboxProps
   >;
   /**
    * If `true`, the component is disabled.
+   * @default false
    */
   disabled?: SwitchBaseProps['disabled'];
   /**
    * If `true`, the ripple effect is disabled.
+   * @default false
    */
   disableRipple?: SwitchBaseProps['disableRipple'];
   /**
@@ -81,6 +83,7 @@ export interface CheckboxProps
   onChange?: SwitchBaseProps['onChange'];
   /**
    * If `true`, the `input` element is required.
+   * @default false
    */
   required?: SwitchBaseProps['required'];
   /**
