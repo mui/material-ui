@@ -1,6 +1,7 @@
 const path = require('path');
 const playwright = require('playwright');
 const webpack = require('webpack');
+const getMuiAliases = require('../scripts/muiAliases');
 
 const CI = Boolean(process.env.CI);
 // renovate PRs are based off of  upstream branches.
@@ -148,21 +149,7 @@ module.exports = function setKarmaConfig(config) {
                   [
                     'babel-plugin-module-resolver',
                     {
-                      alias: {
-                        // all packages in this monorepo
-                        '@mui/material': './packages/mui-material/src',
-                        '@mui/docs': './packages/mui-docs/src',
-                        '@mui/icons-material': './packages/mui-icons-material/lib',
-                        '@mui/lab': './packages/mui-lab/src',
-                        '@mui/styled-engine': './packages/mui-styled-engine/src',
-                        '@mui/styles': './packages/mui-styles/src',
-                        '@mui/system': './packages/mui-system/src',
-                        '@mui/private-theming': './packages/mui-private-theming/src',
-                        '@mui/utils': './packages/mui-utils/src',
-                        '@mui/base': './packages/mui-base/src',
-                        '@mui/material-next': './packages/mui-material-next/src',
-                        '@mui/joy': './packages/mui-joy/src',
-                      },
+                      alias: getMuiAliases({ type: 'src', isRelative: true }),
                       transformFunctions: ['require'],
                     },
                   ],
