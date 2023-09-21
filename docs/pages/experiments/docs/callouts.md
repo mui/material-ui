@@ -5,7 +5,7 @@
 ## Info
 
 :::info
-One-liner success info.
+One-liner info callout.
 :::
 
 :::info
