@@ -109,6 +109,7 @@ async function postFeedbackOnSlack(data) {
     currentLocationURL: window.location.href,
     commmentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
     commmentSectionTitle: commentedSection.text,
+    githubRepo: process.env.SOURCE_CODE_REPO ?? 'https://github.com/mui/material-ui',
   };
   if (!comment || comment.length < 10) {
     return 'ignored';

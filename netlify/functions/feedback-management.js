@@ -27,21 +27,6 @@ const getSlackChannelId = (url, specialCases) => {
   return CORE_FEEBACKS_CHANNEL_ID;
 };
 
-const getGitHubRepo = (url, specialCases) => {
-  const { isDesignFeedback } = specialCases;
-
-  if (isDesignFeedback) {
-    return 'material-ui';
-  }
-  if (url.includes('/x/')) {
-    return 'mui-x';
-  }
-  if (url.includes('/toolpad/')) {
-    return 'mui-toolpad';
-  }
-  return 'material-ui';
-};
-
 const spreadSheetsIds = {
   forLater: '1NAUTsIcReVylWPby5K0omXWZpgjd9bjxE8V2J-dwPyc',
 };
@@ -89,7 +74,7 @@ function getQuoteAndLinks(message) {
 app.action('delete_action', async ({ ack, body, client, logger }) => {
   try {
     await ack();
-    console.log(JSON.stringify({ body }));
+
     const {
       user: { username },
       channel: { id: channelId },
@@ -184,6 +169,7 @@ exports.handler = async (event, context, callback) => {
         currentLocationURL,
         commmentSectionURL: inCommmentSectionURL,
         commmentSectionTitle,
+        githubRepo,
       } = data;
 
       const isDesignFeedback = inCommmentSectionURL.includes('#new-docs-api-feedback');
@@ -229,9 +215,7 @@ from ${commmentSectionURL}
                   text: 'Create issue',
                   emoji: true,
                 },
-                url: `https://github.com/mui/${getGitHubRepo(currentLocationURL, {
-                  isDesignFeedback,
-                })}/issues/new?${githubNewIssueParams}`,
+                url: `${githubRepo}/issues/new?${githubNewIssueParams}`,
               },
               {
                 type: 'button',
