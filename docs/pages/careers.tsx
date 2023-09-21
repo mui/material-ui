@@ -386,7 +386,7 @@ function CareersContent() {
               Open roles
               <Badge
                 badgeContent={openRolesData.reduce((acc, item) => acc + item.roles.length, 0)}
-                color="error"
+                color="success"
                 showZero
                 sx={{ ml: 3 }}
               />
