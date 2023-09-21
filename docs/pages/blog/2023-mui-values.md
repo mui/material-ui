@@ -219,10 +219,10 @@ Exemplifying core values is also a condition for promotion here and therefore a 
 
 As a fun way to reinforce values and show team gratitude, we've also created #Thanks-And-Praise Thursdays—a dedicated Slack channel that prompts us every Thursday to think about who we could recognize for championing core values and behaviors.
 
-Our design team even created custom Slack emojis to make highlighting values-driven moments as simple as just a few clicks.
+Our design team even created custom illustrations and Slack emojis to make highlighting values-driven moments as simple as just a few clicks.
 (Thank you Gerda, Victor, and Danilo!) 🙏
 
-[image here]
+<img alt="Custom-designed illustrations for each MUI company value." src="/static/blog/2023-mui-values/values-illustrations.png" width="1200" height="500" loading="lazy" />
 
 ## When might the values change again?
 
