@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import Badge from '@mui/material/Badge';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
@@ -48,7 +48,7 @@ function Role(props: RoleProps) {
           <Typography variant="body1" color="text.primary" fontWeight="semiBold" gutterBottom>
             {props.title}
           </Typography>
-          <Typography component="p" color="text.secondary" sx={{ mb: 1, maxWidth: 700 }}>
+          <Typography component="p" color="text.secondary" sx={{ maxWidth: 700 }}>
             {props.description}
           </Typography>
         </span>
@@ -71,7 +71,7 @@ function Role(props: RoleProps) {
       <Typography variant="body1" color="text.primary" fontWeight={700} sx={{ my: 1 }}>
         {props.title}
       </Typography>
-      <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 700 }}>
+      <Typography color="text.secondary" sx={{ maxWidth: 700 }}>
         {props.description}
       </Typography>
     </div>
@@ -271,34 +271,19 @@ function CareersContent() {
   return (
     <React.Fragment>
       {/* Hero */}
-      <Container>
-        <Box
-          sx={{
-            height: '36vh',
-            minHeight: 300,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            maxWidth: 600,
-            mx: 'auto',
-            textAlign: 'center',
-          }}
-        >
-          <SectionHeadline
-            alwaysCenter
-            overline="Join us"
-            title={
-              <Typography variant="h2" sx={{ maxWidth: 600, mx: 'auto' }}>
-                Build <GradientText>the next generation</GradientText>
-                <br /> of tools for UI development
-              </Typography>
-            }
-            description="Together, we are enabling developers & designers to bring stunning UIs to life with unrivalled speed and ease."
-          />
-        </Box>
-      </Container>
-      {/* Our ultimate goal */}
+      <Section cozy>
+        <SectionHeadline
+          alwaysCenter
+          overline="Join us"
+          title={
+            <Typography variant="h2" sx={{ maxWidth: 600, mx: 'auto' }}>
+              Build <GradientText>the next generation</GradientText>
+              <br /> of tools for UI development
+            </Typography>
+          }
+          description="Together, we are enabling developers & designers to bring stunning UIs to life with unrivalled speed and ease."
+        />
+      </Section>
       <Divider />
       <OurValues />
       <Divider />
@@ -395,17 +380,21 @@ function CareersContent() {
       <Divider />
       {/* Open roles */}
       <Section cozy>
-        <div>
-          <Typography variant="h2" sx={{ my: 1 }} id="open-roles">
-            {`Open roles (${openRolesData.reduce((acc, item) => acc + item.roles.length, 0)})`}
-          </Typography>
-          <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 500 }}>
-            The company is bootstrapped (so far). It was incorporated in mid-2019 and is growing
-            fast (x2 YoY). We doubled the team in 2020 (6), accelerated in 2021 (15), kept a similar
-            pace in 2022 (25), and we plan to double it in 2023 (50). We&apos;re looking for help to
-            grow in the following areas:
-          </Typography>
-        </div>
+        <SectionHeadline
+          title={
+            <Typography variant="h2" id="open-roles" gutterBottom>
+              Open roles
+              <Badge
+                badgeContent={openRolesData.reduce((acc, item) => acc + item.roles.length, 0)}
+                color="error"
+                showZero
+                sx={{ ml: 3 }}
+              />
+            </Typography>
+          }
+          description="The company is bootstrapped (so far). It was incorporated in mid-2019 and is growing fast (x2 YoY). We doubled the team in 2020 (6), accelerated in 2021 (15), kept a similar pace in 2022 (25), and we plan to double it in 2023 (50). We're looking for help to
+          grow in the following areas:"
+        />
         <Divider sx={{ my: { xs: 2, sm: 4 } }} />
         <Stack
           spacing={2}
@@ -450,27 +439,23 @@ function CareersContent() {
       {nextRolesData.length > 0 && (
         <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
           <Section bg="transparent">
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'start',
-                gap: 1,
-              }}
-            >
-              <Typography variant="h2" id="next-roles">
-                Next roles
-              </Typography>
-              <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
-                We hire in batches, we collect applications a few months before we actively aim to
-                fill the roles. If none of these roles fit with what you are looking for, you can
-                apply to the{' '}
-                <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
-                  Dream job
-                </Link>{' '}
-                role.
-              </Typography>
-            </Box>
+            <SectionHeadline
+              title={
+                <Typography variant="h2" id="next-roles" gutterBottom>
+                  Next roles
+                </Typography>
+              }
+              description={
+                <React.Fragment>
+                  We hire in batches, we collect applications a few months before we actively aim to
+                  fill the roles. If none of them fit with what you are looking for, apply to the{' '}
+                  <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
+                    Dream job
+                  </Link>{' '}
+                  role.
+                </React.Fragment>
+              }
+            />
             <Divider sx={{ my: { xs: 2, sm: 4 } }} />
             <Stack spacing={2} divider={<Divider sx={{ my: { xs: 1, sm: 2 } }} />}>
               {nextRolesData.map((category) => {

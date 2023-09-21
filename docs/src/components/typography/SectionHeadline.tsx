@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 interface SectionHeadlineProps {
   description?: React.ReactNode;
   id?: string;
-  overline: React.ReactNode;
+  overline?: React.ReactNode;
   title: string | React.ReactElement;
   alwaysCenter?: boolean;
   /**
@@ -17,21 +17,23 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
   const { description, id, overline, title, alwaysCenter = false, inverted = false } = props;
   return (
     <React.Fragment>
-      <Typography
-        id={id}
-        component="h2"
-        variant="body2"
-        fontWeight="bold"
-        color="primary.main"
-        sx={{
-          mb: 1,
-          ...(alwaysCenter && {
-            textAlign: 'center',
-          }),
-        }}
-      >
-        {overline}
-      </Typography>
+      {overline && (
+        <Typography
+          id={id}
+          component="h2"
+          variant="body2"
+          fontWeight="bold"
+          color="primary.main"
+          sx={{
+            mb: 1,
+            ...(alwaysCenter && {
+              textAlign: 'center',
+            }),
+          }}
+        >
+          {overline}
+        </Typography>
+      )}
       {typeof title === 'string' ? (
         <Typography
           variant="h2"
