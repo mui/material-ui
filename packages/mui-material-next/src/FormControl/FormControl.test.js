@@ -5,6 +5,7 @@ import { describeConformance, act, createRenderer, fireEvent } from '@mui-intern
 import FormControl, { formControlClasses as classes } from '@mui/material-next/FormControl';
 // TODO v6: replace with material-next/FilledInput
 import InputBase from '@mui/material-next/InputBase';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 // TODO v6: replace with material-next/Select
 import Select from '@mui/material/Select';
 import useFormControl from './useFormControl';
@@ -23,6 +24,8 @@ describe('<FormControl />', () => {
   describeConformance(<FormControl />, () => ({
     classes,
     inheritComponent: 'div',
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiFormControl',
@@ -32,6 +35,7 @@ describe('<FormControl />', () => {
         testWithElement: 'fieldset',
       },
     },
+    testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testComponentPropWith: 'fieldset',
     testVariantProps: { margin: 'dense' },
     skip: ['componentsProp'],
