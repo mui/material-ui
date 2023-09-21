@@ -7,8 +7,9 @@ import { alpha } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDividerUtilityClass } from './dividerClasses';
+import { DividerOwnerState, DividerProps, DividerTypeMap } from './Divider.types';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: DividerOwnerState) => {
   const { absolute, children, classes, flexItem, light, orientation, textAlign, variant } =
     ownerState;
 
@@ -20,8 +21,8 @@ const useUtilityClasses = (ownerState) => {
       light && 'light',
       orientation === 'vertical' && 'vertical',
       flexItem && 'flexItem',
-      children && 'withChildren',
-      children && orientation === 'vertical' && 'withChildrenVertical',
+      // TODO: Check next line with maintainers
+      ...(children ? ['withChildren', orientation === 'vertical' && 'withChildrenVertical'] : []),
       textAlign === 'right' && orientation !== 'vertical' && 'textAlignRight',
       textAlign === 'left' && orientation !== 'vertical' && 'textAlignLeft',
     ],
@@ -54,7 +55,7 @@ const DividerRoot = styled('div', {
         styles.textAlignLeft,
     ];
   },
-})(
+})<{ ownerState: DividerOwnerState }>(
   ({ theme, ownerState }) => ({
     margin: 0, // Reset browser default style.
     flexShrink: 0,
@@ -157,7 +158,7 @@ const DividerWrapper = styled('span', {
 
     return [styles.wrapper, ownerState.orientation === 'vertical' && styles.wrapperVertical];
   },
-})(({ theme, ownerState }) => ({
+})<{ ownerState: DividerOwnerState }>(({ theme, ownerState }) => ({
   display: 'inline-block',
   paddingLeft: `calc(${theme.spacing(1)} * 1.2)`,
   paddingRight: `calc(${theme.spacing(1)} * 1.2)`,
@@ -167,8 +168,14 @@ const DividerWrapper = styled('span', {
   }),
 }));
 
-const Divider = React.forwardRef(function Divider(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDivider' });
+const Divider = React.forwardRef(function Divider<
+  BaseComponentType extends React.ElementType = DividerTypeMap['defaultComponent'],
+>(inProps: DividerProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiDivider',
+  });
+
   const {
     absolute = false,
     children,
@@ -183,7 +190,7 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     ...other
   } = props;
 
-  const ownerState = {
+  const ownerState: DividerOwnerState = {
     ...props,
     absolute,
     component,
@@ -219,7 +226,7 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
  * The following flag is used to ensure that this component isn't tabbable i.e.
  * does not get highlight/focus inside of MUI List.
  */
-Divider.muiSkipListHighlight = true;
+Object.assign(Divider, { muiSkipListHighlight: true });
 
 Divider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
