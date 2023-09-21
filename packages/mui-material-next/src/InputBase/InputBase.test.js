@@ -9,11 +9,12 @@ import {
   fireEvent,
   screen,
 } from '@mui-internal/test-utils';
-import { ThemeProvider } from '@emotion/react';
 import FormControl, { useFormControl } from '@mui/material-next/FormControl';
+// TODO v6: replace with material-next/InputAdornment
 import InputAdornment from '@mui/material/InputAdornment';
+// TODO v6: replace with material-next/TextField
 import TextField from '@mui/material/TextField';
-import { createTheme } from '@mui/material/styles';
+// TODO v6: replace with material-next/Select
 import Select from '@mui/material/Select';
 import InputBase, { inputBaseClasses as classes } from '@mui/material-next/InputBase';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
@@ -676,25 +677,31 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: focused', () => {
-    // TODO v6: use material-next/TextField
+    // TODO v6: requires material-next/OutlinedInput
     // eslint-disable-next-line mocha/no-skipped-tests
-    it.skip('should render correct border color with `ThemeProvider` imported from `@emotion/react`', function test() {
+    it.skip('should render correct border color with a customized primary color supplied to CssVarsProvider', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const theme = createTheme({
-        palette: {
-          mode: 'light',
-          primary: {
-            main: 'rgb(0, 191, 165)',
+      const theme = extendTheme({
+        colorSchemes: {
+          light: {
+            palette: {
+              primary: {
+                main: 'rgb(0, 191, 165)',
+              },
+            },
           },
         },
       });
       const { getByRole } = render(
-        <ThemeProvider theme={theme}>
+        <CssVarsProvider theme={theme}>
+          {/* TODO v6: use material-next/TextField or OutlinedInput */}
           <TextField focused label="Your email" />
-        </ThemeProvider>,
+        </CssVarsProvider>,
       );
+
+      // this `fieldset` is the (internal) NotchedOutline component
       const fieldset = getByRole('textbox').nextSibling;
       expect(fieldset).toHaveComputedStyle({
         borderTopColor: 'rgb(0, 191, 165)',
