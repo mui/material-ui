@@ -7,6 +7,7 @@
     "disabled": {
       "description": "If <code>true</code>, the component is disabled. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
     },
+    "endAdornment": { "description": "Trailing adornment for this input." },
     "error": {
       "description": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute on the input and the <code>Mui-error</code> class on the root element."
     },
@@ -37,6 +38,7 @@
     "slots": {
       "description": "The components used for each slot inside the InputBase. Either a string to use a HTML element or a component."
     },
+    "startAdornment": { "description": "Leading adornment for this input." },
     "step": { "description": "The amount that the value changes on each increment or decrement." },
     "value": { "description": "The current value. Use when the component is controlled." }
   },
@@ -46,6 +48,16 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "the component is a descendant of <code>FormControl</code>"
+    },
+    "adornedStart": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>startAdornment</code> is provided"
+    },
+    "adornedEnd": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>endAdornment</code> is provided"
     },
     "focused": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",

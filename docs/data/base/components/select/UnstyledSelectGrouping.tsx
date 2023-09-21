@@ -7,7 +7,7 @@ import { styled } from '@mui/system';
 
 export default function UnstyledSelectGrouping() {
   return (
-    <CustomSelect>
+    <CustomSelect placeholder="Choose a character…">
       <CustomOptionGroup label="Hobbits">
         <StyledOption value="Frodo">Frodo</StyledOption>
         <StyledOption value="Sam">Sam</StyledOption>
