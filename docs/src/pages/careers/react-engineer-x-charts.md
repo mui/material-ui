@@ -102,6 +102,8 @@ We're looking for someone with strong front-end skills. More important than spec
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Ready and willing to ask and answer questions**.
   If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team. We thrive because of continuous learning. First-time mistakes should be celebrated, not blamed.
+- **Experience or interest in drawing technologies**.
+  Charts use SVG and canvas which implies using other API than HTML/CSS. Hope you know them or enjoy discovering new documentation.
 - **Avoid monolithic deliverables**.
   You scope and stage your work into well-defined milestones to ship.
 - **Past work with front-end infrastructure**.
