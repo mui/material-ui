@@ -110,7 +110,7 @@ const TreeItem = styled(MuiTreeItem)({
       backgroundColor: lighten(blueDark[900], 0.1),
     },
     [`& .${treeItemClasses.label}`]: {
-      fontFamily: 'Menlo',
+      fontFamily: 'Menlo, Consolas',
       fontSize: '0.825rem',
     },
   },
