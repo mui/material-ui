@@ -3,14 +3,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
-import {
-  CssVarsProvider as JoyCssVarsProvider,
-  useColorScheme as useJoyColorScheme,
-} from '@mui/joy/styles';
-import {
-  Experimental_CssVarsProvider as MuiCssVarsProvider,
-  useColorScheme as useMuiColorScheme,
-} from '@mui/material/styles';
+import { CssVarsProvider as JoyCssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
@@ -19,7 +12,7 @@ import BrandingProvider from 'docs/src/BrandingProvider';
 import Ad from 'docs/src/modules/components/Ad';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 
-function ModeObserver({ mode, useColorScheme }) {
+function JoyModeObserver({ mode }) {
   const { setMode } = useColorScheme();
   React.useEffect(() => {
     setMode(mode);
@@ -27,9 +20,8 @@ function ModeObserver({ mode, useColorScheme }) {
   return null;
 }
 
-ModeObserver.propTypes = {
+JoyModeObserver.propTypes = {
   mode: PropTypes.oneOf(['light', 'dark']),
-  useColorScheme: PropTypes.func,
 };
 
 export default function MarkdownDocs(props) {
@@ -54,22 +46,10 @@ export default function MarkdownDocs(props) {
   const localizedDoc = docs[userLanguage] || docs.en;
 
   const isJoy = canonicalAs.startsWith('/joy-ui/') && !disableCssVarsProvider;
-  const isMui = canonicalAs.startsWith('/material-ui/') && !disableCssVarsProvider;
-  let CssVarsProvider = React.Fragment;
-  let useColorScheme;
-  if (isJoy) {
-    CssVarsProvider = JoyCssVarsProvider;
-    useColorScheme = useJoyColorScheme;
-  }
-
-  if (isMui) {
-    CssVarsProvider = MuiCssVarsProvider;
-    useColorScheme = useMuiColorScheme;
-  }
-
-  const Wrapper = isJoy || isMui ? BrandingProvider : React.Fragment;
+  const CssVarsProvider = isJoy ? JoyCssVarsProvider : React.Fragment;
+  const Wrapper = isJoy ? BrandingProvider : React.Fragment;
   const wrapperProps = {
-    ...((isJoy || isMui) && { mode: theme.palette.mode }),
+    ...(isJoy && { mode: theme.palette.mode }),
   };
 
   return (
@@ -89,9 +69,7 @@ export default function MarkdownDocs(props) {
         </BrandingProvider>
       )}
       <CssVarsProvider>
-        {(isJoy || isMui) && (
-          <ModeObserver mode={theme.palette.mode} useColorScheme={useColorScheme} />
-        )}
+        {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
         {localizedDoc.rendered.map((renderedMarkdownOrDemo, index) => (
           <RichMarkdownElement
             key={`demos-section-${index}`}
