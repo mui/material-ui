@@ -1,3 +1,5 @@
+import { CssVarsValuesType } from '../utils/CssVarsType';
+
 const cssVars = {
   thickness: '--CircularProgress-thickness',
   trackThickness: '--CircularProgress-trackThickness',
@@ -11,14 +13,9 @@ const cssVars = {
   circulation: '--CircularProgress-circulation',
 } as const;
 
-type Keys = keyof typeof cssVars extends infer Key
-  ? Key extends string
-    ? `--CircularProgress-${Key}`
-    : never
-  : never;
-
-export type CssVarsValuesType = {
-  [key in Keys]?: string | number;
-};
+export type CircularProgressCssVarsType = CssVarsValuesType<
+  keyof typeof cssVars,
+  'CircularProgress'
+>;
 
 export default cssVars;
