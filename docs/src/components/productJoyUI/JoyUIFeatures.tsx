@@ -17,6 +17,8 @@ import JoyIconButton from '@mui/joy/IconButton';
 import JoyTypography from '@mui/joy/Typography';
 import JoySwitch from '@mui/joy/Switch';
 import JoyAlert from '@mui/joy/Alert';
+import JoyRadio from '@mui/joy/Radio';
+import JoyCheckbox from '@mui/joy/Checkbox';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import PlaylistAddCheckCircleRoundedIcon from '@mui/icons-material/PlaylistAddCheckCircleRounded';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
@@ -62,59 +64,55 @@ const StyledButton = styled(Button)(({ theme }) => ({
 function GlobalVariantDemo() {
   const [variant, setVariant] = React.useState<VariantProp>('outlined');
   const [color, setColor] = React.useState<ColorPaletteProp>('neutral');
+  const [selectedValue, setSelectedValue] = React.useState('a');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedValue(event.target.value);
+  };
+
   return (
     <Frame sx={{ height: '100%' }}>
       <Frame.Demo
         sx={{
           p: 4,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2,
         }}
       >
-        <Box
-          sx={(theme) => ({
-            p: 3,
-            bgcolor: 'rgb(0,0,0 / 0.9)',
-            border: '1px solid',
-            borderColor: 'grey.200',
-            borderRadius: 0.8,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            gap: 2,
-            ...theme.applyDarkStyles({
-              bgcolor: alpha(theme.palette.primaryDark[800], 0.8),
-              borderColor: 'primaryDark.700',
-            }),
-          })}
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <JoyChip variant={variant} color={color} size="sm">
+            A new UI library
+          </JoyChip>
+          <JoySwitch variant={variant} color={color} />
+          <JoyRadio
+            checked={selectedValue === 'a'}
+            onChange={handleChange}
+            value="a"
+            name="radio-buttons"
+            slotProps={{ input: { 'aria-label': 'A' } }}
+          />
+          <JoyRadio
+            checked={selectedValue === 'b'}
+            onChange={handleChange}
+            value="b"
+            name="radio-buttons"
+            slotProps={{ input: { 'aria-label': 'B' } }}
+          />
+          <JoyCheckbox label="That's Joy UI!" />
+        </Box>
+        <JoyAlert
+          variant={variant}
+          color={color}
+          startDecorator={<PlaylistAddCheckCircleRoundedIcon />}
         >
-          <Box sx={{ display: 'flex', gap: 3 }}>
-            <div>
-              <JoyChip variant={variant} color={color} size="sm">
-                A new user interface library
-              </JoyChip>
-              <Typography
-                variant="body2"
-                fontWeight="semiBold"
-                mt={2}
-                gutterBottom
-                fontFamily="Inter"
-              >
-                Many Joy UI component share the same variants set!
-              </Typography>
-              <Typography variant="body2" fontFamily="Inter">
-                Ensuring consistency, predictability, and joy for your experience developing with
-                Joy UI.
-              </Typography>
-            </div>
-            <JoySwitch variant={variant} color={color} />
-          </Box>
-          <JoyAlert
-            variant={variant}
-            color={color}
-            startDecorator={<PlaylistAddCheckCircleRoundedIcon />}
-          >
-            Your component library has been installed successfully!
-          </JoyAlert>
-          <JoyButton variant={variant} color={color}>
+          Your component library has been installed successfully!
+        </JoyAlert>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <JoyButton variant={variant} color={color} fullWidth>
+            View all components
+          </JoyButton>
+          <JoyButton variant={variant} color={color} loading fullWidth>
             View all components
           </JoyButton>
         </Box>
@@ -172,12 +170,24 @@ function GlobalVariantDemo() {
           copyButtonHidden
           component={MarkdownElement}
           code={`
-          <Chip size="sm">A new user interface library</Chip>
+          <Chip size="sm">A new UI library</Chip>
 <Switch />
+<Radio
+  checked={selectedValue === 'a'}
+  onChange={handleChange}
+  value="a"
+/>
+<Radio
+  checked={selectedValue === 'b'}
+  onChange={handleChange}
+  value="b"
+/>
+<Checkbox />
 <Alert startDecorator={<PlaylistAddCheckCircleRoundedIcon />}>
   Your component library has been installed successfully!
 </Alert>
-<Button>View all components</Button>
+<Button fullWidth>View all components</Button>
+<Button loading fullWidth>View all components</Button>
           `}
           language="jsx"
         />
