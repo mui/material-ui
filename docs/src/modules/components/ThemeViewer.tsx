@@ -7,6 +7,7 @@ import CollapseIcon from '@mui/icons-material/ChevronRight';
 import { TreeView } from '@mui/x-tree-view/TreeView';
 import { TreeItem as MuiTreeItem, treeItemClasses } from '@mui/x-tree-view/TreeItem';
 import { lighten } from '@mui/material/styles';
+import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 
 function getType(value: any) {
   if (Array.isArray(value)) {
@@ -99,14 +100,14 @@ function ObjectEntryLabel(props: { objectKey: string; objectValue: any }) {
 
 const TreeItem = styled(MuiTreeItem)({
   [`&:focus > .${treeItemClasses.content}`]: {
-    backgroundColor: lighten('#003A75', 0.05), // primary[900]
-    outline: `2px dashed ${lighten('#003A75', 0.3)}`, // primary[900]
+    backgroundColor: lighten(blue[900], 0.05),
+    outline: `2px dashed ${lighten(blue[900], 0.3)}`,
   },
   [`& .${treeItemClasses.content}`]: {
     padding: 4,
     borderRadius: '12px',
     '&:hover': {
-      backgroundColor: lighten('#101418', 0.1), // primaryDark[900]
+      backgroundColor: lighten(blueDark[900], 0.1),
     },
     [`& .${treeItemClasses.label}`]: {
       fontFamily: 'Menlo',
@@ -207,7 +208,7 @@ export default function ThemeViewer({
         bgcolor: '#0F1924', // one-off code container color
         borderRadius: 3,
         border: '1px solid',
-        borderColor: '#1F262E', // primaryDark[700]
+        borderColor: blueDark[700],
       }}
     >
       {Object.keys(data).map((objectKey) => {
