@@ -104,11 +104,8 @@ We're looking for someone with strong front-end skills. More important than spec
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Ready and willing to ask and answer questions**.
   If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team. We thrive because of continuous learning. First-time mistakes should be celebrated, not blamed.
-  <<<<<<< HEAD
-  =======
 - **Experience or interest in drawing technologies**.
   Charts use SVG and canvas which implies using other API than HTML/CSS. Hope you know them or enjoy discovering new documentation.
-  > > > > > > > 86d57277432369679adb6cea9294f15bc9c609f2
 - **Avoid monolithic deliverables**.
   You scope and stage your work into well-defined milestones to ship.
 - **Past work with front-end infrastructure**.
@@ -117,15 +114,12 @@ We're looking for someone with strong front-end skills. More important than spec
 
 ### What it would be nice if you had, but isn't required
 
-- **You've contributed to a design system before**.
-  You have worked on enterprise components in the past, maybe for internal use in your company.
-  <<<<<<< HEAD
-  You have built complex and advanced features while making sure the accessibility was fully functional.
-  =======
 - **You've experience with charts**.
   You have contributed to building chart libraries, integrated charts in a design system, or contributed to chart intensive applications.
   You have built complex and advanced features while making sure the accessibility was fully functional.
-  > > > > > > > 86d57277432369679adb6cea9294f15bc9c609f2
+- **You've contributed to a design system before**.
+  You have worked on enterprise components in the past, maybe for internal use in your company.
+  You have built complex and advanced features while making sure the accessibility was fully functional.
 - **You've maintained an active repository before**.
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
   Previous experience with highly active repository workflows is a definite plus for this role.
