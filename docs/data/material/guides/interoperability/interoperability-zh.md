@@ -292,8 +292,8 @@ If, however, you would like to use styled-components, you can configure your app
 
 <!-- #default-branch-switch -->
 
-- [Create React App with styled-components](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components)
-- [Create React App with styled-components and typescript](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts)
+- [Create React App with styled-components](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
+- [Create React App with styled-components and typescript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
 
 After the style engine is configured properly, you can use the [`styled()`](/system/styled/) utility from `@mui/core/styles` and have direct access to the theme.
 
@@ -593,7 +593,7 @@ It works exactly like styled components. You can [use the same guide](/material-
 
 ### Setup
 
-If you are used to Tailwind CSS and want to use it together with the MUI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-cra-tailwind-ts) example project. If you use a different framework, or already have set up your project, follow these steps:
+If you are used to Tailwind CSS and want to use it together with the MUI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-tailwind-ts) example project. If you use a different framework, or already have set up your project, follow these steps:
 
 1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
 2. Remove [Tailwind CSS's preflight](https://tailwindcss.com/docs/preflight) style so it can use the MUI's preflight instead ([CssBaseline](/material-ui/react-css-baseline/)).
