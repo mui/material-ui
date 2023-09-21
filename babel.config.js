@@ -9,8 +9,8 @@ const productionPlugins = [
 ];
 
 module.exports = function getBabelConfig(api) {
-  const muiAliases = getMuiAliases({ type: 'src', isRelative: true });
   const useESModules = api.env(['regressions', 'legacy', 'modern', 'stable', 'rollup']);
+  const muiAliases = getMuiAliases({ type: 'src', isRelative: true, useESIcons: useESModules });
 
   const presets = [
     [

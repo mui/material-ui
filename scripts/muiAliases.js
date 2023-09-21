@@ -4,8 +4,9 @@ const path = require('path');
  * @param {object} params The parameters of the function.
  * @param {'build' | 'src'} params.type Define if the target should be the built version or the source.
  * @param {boolean | undefined} params.isRelative If `true` the path will be relative to the repository root.
+ * @param {boolean | undefined} params.useESIcons If `true` will use the ES version of `@mui/icons-material`.
  */
-function getMuiAliases({ type, isRelative = false }) {
+function getMuiAliases({ type, isRelative = false, useESIcons = false }) {
   const workspaceRoot = path.join(__dirname, '..');
 
   const resolveAliasPath = (aliasPath) => {
@@ -23,7 +24,7 @@ function getMuiAliases({ type, isRelative = false }) {
     '@mui/base': resolveAliasPath(`packages/mui-base/${type}`),
     '@mui/docs': resolveAliasPath(`packages/mui-docs/${type}`),
     '@mui/icons-material': resolveAliasPath(
-      `packages/mui-icons-material/${type === 'src' ? 'lib' : 'build'}`,
+      `packages/mui-icons-material/lib${useESIcons ? '/esm' : ''}`,
     ),
     '@mui/joy': resolveAliasPath(`packages/mui-joy/${type}`),
     '@mui/lab': resolveAliasPath(`packages/mui-lab/${type}`),
