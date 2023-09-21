@@ -222,17 +222,6 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: slots', () => {
-    // TODO v6: figure out if this is covered by describeConformance
-    it('should accept any html component', () => {
-      const { getByTestId } = render(
-        <InputBase
-          slots={{ input: 'span' }}
-          slotProps={{ input: { 'data-testid': 'input-component' } }}
-        />,
-      );
-      expect(getByTestId('input-component')).to.have.property('nodeName', 'SPAN');
-    });
-
     it('should inject onBlur and onFocus', () => {
       let injectedProps;
       const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
