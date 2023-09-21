@@ -75,7 +75,9 @@ export interface FormControlTypeMap<
 export type FormControlProps<
   RootComponentType extends React.ElementType = FormControlTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<FormControlTypeMap<AdditionalProps, RootComponentType>, RootComponentType>;
+> = OverrideProps<FormControlTypeMap<AdditionalProps, RootComponentType>, RootComponentType> & {
+  component?: React.ElementType;
+};
 
 type MaterialYouOwnerStateKeys =
   | 'classes'

@@ -88,7 +88,9 @@ const FormControl = React.forwardRef(function FormControl<
   const {
     children,
     className,
+    classes: classesProp,
     color = 'primary',
+    component: ComponentProp = 'div',
     disabled = false,
     error = false,
     focused: visuallyFocused,
@@ -182,6 +184,7 @@ const FormControl = React.forwardRef(function FormControl<
     ...props,
     classes: props.classes ?? {},
     color,
+    component: ComponentProp,
     disabled,
     error,
     filled,
@@ -239,7 +242,7 @@ const FormControl = React.forwardRef(function FormControl<
     variant,
   ]);
 
-  const Root = slots.root || FormControlRoot;
+  const Root = slots.root ?? ComponentProp ?? FormControlRoot;
   const rootProps = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
