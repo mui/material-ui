@@ -176,7 +176,7 @@ function createWebpackConfig(entry, environment) {
   const configuration = {
     // ideally this would be computed from the bundles peer dependencies
     // Ensure that `react` as well as `react/*` are considered externals but not `react*`
-    externals: /^(date-fns|dayjs|luxon|moment|react|react-dom)(\/.*)?$/,
+    externals: /^(react|react-dom)(\/.*)?$/,
     mode: 'production',
     optimization: {
       concatenateModules,
@@ -209,7 +209,7 @@ function createWebpackConfig(entry, environment) {
       }),
     ],
     resolve: {
-      alias: getMuiAliases('build'),
+      alias: getMuiAliases({ type: 'build' }),
     },
     entry: { [entry.id]: path.join(workspaceRoot, entry.path) },
     // TODO: 'browserslist:modern'

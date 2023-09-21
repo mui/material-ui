@@ -132,7 +132,7 @@ module.exports = withDocsInfra({
                   [
                     'babel-plugin-module-resolver',
                     {
-                      alias: getMuiAliases('src'),
+                      alias: getMuiAliases({ type: 'src' }),
                     },
                   ],
                 ],

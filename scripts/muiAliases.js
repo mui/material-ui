@@ -1,10 +1,11 @@
 const path = require('path');
 
 /**
- * @param {'build' | 'src'} type Define if the target should be the built version or the source.
- * @param {boolean} isRelative If `true` the path will be relative to the repository root.
+ * @param {object} params The parameters of the function.
+ * @param {'build' | 'src'} params.type Define if the target should be the built version or the source.
+ * @param {boolean | undefined} params.isRelative If `true` the path will be relative to the repository root.
  */
-function getMuiAliases(type, isRelative = false) {
+function getMuiAliases({ type, isRelative = false }) {
   const workspaceRoot = path.join(__dirname, '..');
 
   const resolveAliasPath = (aliasPath) => {
