@@ -222,24 +222,34 @@ if (unusedBlacklistPatterns.size > 0) {
   );
 }
 
-const viewerRoot = ReactDOMClient.createRoot(document.getElementById('test-viewer'));
+const viewerRoot = document.getElementById('test-viewer');
 
 function FixtureRenderer({ component: FixtureComponent }) {
-  React.useLayoutEffect(() => {
-    const children = (
-      <TestViewer>
-        <FixtureComponent />
-      </TestViewer>
-    );
-
-    viewerRoot.render(children);
-  }, [FixtureComponent]);
+  const viewerReactRoot = React.useRef(null);
 
   React.useLayoutEffect(() => {
+    const renderTimeout = setTimeout(() => {
+      const children = (
+        <TestViewer>
+          <FixtureComponent />
+        </TestViewer>
+      );
+
+      if (viewerReactRoot.current === null) {
+        viewerReactRoot.current = ReactDOMClient.createRoot(viewerRoot);
+      }
+
+      viewerReactRoot.current.render(children);
+    });
+
     return () => {
-      viewerRoot.unmount();
+      clearTimeout(renderTimeout);
+      setTimeout(() => {
+        viewerReactRoot.current.unmount();
+        viewerReactRoot.current = null;
+      });
     };
-  }, []);
+  }, [FixtureComponent]);
 
   return null;
 }
