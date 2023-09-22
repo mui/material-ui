@@ -433,37 +433,39 @@ describe('createStyled', () => {
         ],
       });
 
-      // console.log("fn as arg");
-      // const TestFn = styled('div')(() => ({
-      //   variants: [{
-      //     props: { color: 'blue', variant: 'filled' },
-      //     styles: {
-      //       backgroundColor: 'rgb(0,0,255)'
-      //     }
-      //   }, {
-      //     props: { color: 'blue', variant: 'text' },
-      //     styles: {
-      //       color: 'rgb(0,0,255)'
-      //     }
-      //   }]
-      // }));
+      const { getByTestId } = render(
+        <>
+          <Test data-testid="filled" color="blue" variant="filled">
+            Filled
+          </Test>
+          <Test data-testid="text" color="blue" variant="text">
+            Filled
+          </Test>
+        </>,
+      );
+      expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
+      expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
+    });
 
-      // console.log("string template as arg");
-      // const StringTemplate = styled('div')``;
+    it('should accept variants in function style arg', () => {
+      const styled = createStyled({ defaultTheme: { colors: { blue: 'rgb(0, 0, 255)' } } });
 
-      // console.log("string template with callbacks");
-      // const StringTemplateWithCallbacks = styled('div')`
-      //   background-color: ${props => props.color === 'blue' ? 'rgb(0, 0, 255)' : 'transparent'}
-      // `;
-
-      // const Test = styled('div')(({ variant, color }) => ({
-      //   ...(color === 'blue' && variant === 'filled' && {
-      //     backgroundColor: 'rgb(0,0,255)'
-      //   }),
-      //   ...(color === 'blue' && variant === 'text' && {
-      //     color: 'rgb(0,0,255)'
-      //   }),
-      // }));
+      const Test = styled('div')(({ theme }) => ({
+        variants: [
+          {
+            props: { color: 'blue', variant: 'filled' },
+            style: {
+              backgroundColor: theme.colors.blue,
+            },
+          },
+          {
+            props: { color: 'blue', variant: 'text' },
+            style: {
+              color: theme.colors.blue,
+            },
+          },
+        ],
+      }));
 
       const { getByTestId } = render(
         <>
@@ -541,6 +543,13 @@ describe('createStyled', () => {
                 borderTopColor: 'rgb(0,0,255)',
               },
             },
+            // This is overriding the previous definition
+            {
+              props: { color: 'blue', variant: 'text' },
+              style: {
+                color: 'rgb(0,0,220)',
+              },
+            },
           ],
         },
       );
@@ -559,10 +568,58 @@ describe('createStyled', () => {
         </>,
       );
       expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
-      expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
+      expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 220)' });
       expect(getByTestId('outlined')).toHaveComputedStyle({ borderTopColor: 'rgb(0, 0, 255)' });
     });
 
-    // TODO: Add tests for priority of style definition
+    it('theme variants should override styled variants', () => {
+      const styled = createStyled({});
+
+      const Test = styled('div', { name: 'Test' })({
+        variants: [
+          {
+            props: { color: 'blue', variant: 'filled' },
+            style: {
+              backgroundColor: 'rgb(0,0,255)',
+            },
+          },
+          // This is overriding the previous definition
+          {
+            props: { color: 'blue', variant: 'text' },
+            style: {
+              color: 'rgb(0,0,255)',
+            },
+          },
+        ],
+      });
+
+      const { getByTestId } = render(
+        <ThemeProvider
+          theme={{
+            components: {
+              Test: {
+                variants: [
+                  {
+                    props: { variant: 'text', color: 'blue' },
+                    style: {
+                      color: 'rgb(0,0,220)',
+                    },
+                  },
+                ],
+              },
+            },
+          }}
+        >
+          <Test data-testid="filled" color="blue" variant="filled">
+            Filled
+          </Test>
+          <Test data-testid="text" color="blue" variant="text">
+            Filled
+          </Test>
+        </ThemeProvider>,
+      );
+      expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
+      expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 220)' });
+    });
   });
 });

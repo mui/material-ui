@@ -192,23 +192,13 @@ export default function createStyled(input = {}) {
                   }
                   delete resolvedStyles['variants'];
                 }
-                let result = resolvedStyles;
-
                 const variantsStyles = variantsResolver(
                   props,
                   transformVariants(optionalVariants),
                   optionalVariants,
                 );
 
-                // the variantsStyle is an array of all variant styles that need to be applied,
-                // so we need to merge them on top of the rest of the styles
-                if (variantsStyles) {
-                  variantsStyles.forEach((variantStyle) => {
-                    result = deepmerge(result, variantStyle);
-                  });
-                }
-
-                return result;
+                return [resolvedStyles, ...variantsStyles];
               };
             } else if (isPlainObject(stylesArg)) {
               let transformedStylesArg = stylesArg;
@@ -220,7 +210,6 @@ export default function createStyled(input = {}) {
 
               if (styledArgVariants) {
                 transformedStylesArg = (props) => {
-                  console.log(props);
                   let result = stylesArg;
                   const variantStyles = variantsResolver(
                     props,
@@ -230,7 +219,6 @@ export default function createStyled(input = {}) {
                   variantStyles.forEach((variantStyle) => {
                     result = deepmerge(result, variantStyle);
                   });
-                  console.log(result);
 
                   return result;
                 };
@@ -286,23 +274,13 @@ export default function createStyled(input = {}) {
             }
             delete resolvedStyles['variants'];
           }
-          let result = resolvedStyles;
-
           const variantsStyles = variantsResolver(
             props,
             transformVariants(optionalVariants),
             optionalVariants,
           );
 
-          // the variantsStyle is an array of all variant styles that need to be applied,
-          // so we need to merge them on top of the rest of the styles
-          if (variantsStyles) {
-            variantsStyles.forEach((variantStyle) => {
-              result = deepmerge(result, variantStyle);
-            });
-          }
-
-          return result;
+          return [resolvedStyles, ...variantsStyles];
         };
       }
 
