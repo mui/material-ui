@@ -67,4 +67,90 @@ describe('<Skeleton />', () => {
 
     expect(containerWithHeight.firstChild).not.to.have.class(classes.heightAuto);
   });
+
+  describe('Variant Prop', () => {
+    it('should get `text` class when no variant is specified', () => {
+      const { container } = render(
+        <Skeleton>
+          <span />
+        </Skeleton>,
+      );
+
+      expect(container.firstChild).to.have.class(classes.text);
+    });
+
+    it('should get `circular` when variant is set to `circular`', () => {
+      const { container } = render(
+        <Skeleton variant="circular">
+          <span />
+        </Skeleton>,
+      );
+
+      expect(container.firstChild).to.have.class(classes.circular);
+    });
+
+    it('should get `rounded` when variant is set to `rounded`', () => {
+      const { container } = render(
+        <Skeleton variant="rounded">
+          <span />
+        </Skeleton>,
+      );
+
+      expect(container.firstChild).to.have.class(classes.rounded);
+    });
+
+    it('should get `rectangular` when variant is set to `rectangular`', () => {
+      const { container } = render(
+        <Skeleton variant="rectangular">
+          <span />
+        </Skeleton>,
+      );
+
+      expect(container.firstChild).to.have.class(classes.rectangular);
+    });
+  });
+
+  describe('Size & Shape Prop', () => {
+    it('should get `box` class when size is set to `box`', () => {
+      const { container } = render(
+        <Skeleton size="box">
+          <span />
+        </Skeleton>,
+      );
+
+      expect(container.firstChild).to.have.class(classes.box);
+    });
+
+    it('should set `size` prop over `variant` prop', () => {
+      const { container } = render(
+        <Skeleton size="box" variant="text">
+          <span />
+        </Skeleton>,
+      );
+
+      expect(container.firstChild).to.have.class(classes.box);
+      expect(container.firstChild).not.to.have.class(classes.text);
+    });
+
+    it('should get `circular` when shape is set to `circular`', () => {
+      const { container } = render(
+        <Skeleton shape="circular">
+          <span />
+        </Skeleton>,
+      );
+
+      expect(container.firstChild).to.have.class(classes.circular);
+    });
+
+    it('should set `shape` prop over `variant` prop', () => {
+      const { container } = render(
+        <Skeleton variant="rounded" shape="rectangular">
+          <span />
+        </Skeleton>,
+      );
+
+      expect(container.firstChild).to.have.class(classes.rectangular);
+      expect(container.firstChild).not.to.have.class(classes.rounded);
+    });
+  });
 });
