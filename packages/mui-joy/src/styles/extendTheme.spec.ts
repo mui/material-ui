@@ -638,7 +638,7 @@ extendTheme({
     JoyDrawer: {
       defaultProps: {
         variant: 'plain',
-        color: 'neutral'
+        color: 'neutral',
       },
       styleOverrides: {
         root: ({ ownerState }) => {
