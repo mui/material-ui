@@ -1,5 +1,5 @@
 {
-  "name": "material-remix-ts",
+  "name": "material-ui-remix-ts",
   "version": "5.0.0",
   "private": true,
   "scripts": {
@@ -19,8 +19,7 @@
     "@remix-run/serve": "latest",
     "@remix-run/server-runtime": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "remix": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@remix-run/dev": "latest",

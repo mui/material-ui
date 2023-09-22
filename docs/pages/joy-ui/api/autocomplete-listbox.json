@@ -44,7 +44,7 @@
     "import AutocompleteListbox from '@mui/joy/AutocompleteListbox';",
     "import { AutocompleteListbox } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAutocompleteListbox" },
   "slots": [
     {
       "name": "root",

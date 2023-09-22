@@ -14,10 +14,12 @@ export default function AvatarWithStatus({
     <div>
       <Badge
         color={online ? 'success' : 'neutral'}
+        variant={online ? 'solid' : 'soft'}
+        size="sm"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        badgeInset="6px 6px"
+        badgeInset="4px 4px"
       >
-        <Avatar {...rest} />
+        <Avatar size="sm" {...rest} />
       </Badge>
     </div>
   );

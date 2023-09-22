@@ -54,7 +54,7 @@
   },
   "name": "Avatar",
   "imports": ["import Avatar from '@mui/joy/Avatar';", "import { Avatar } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAvatar" },
   "slots": [
     {
       "name": "root",

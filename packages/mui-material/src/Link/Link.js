@@ -48,9 +48,7 @@ const LinkRoot = styled(Typography, {
     ...(ownerState.underline === 'hover' && {
       textDecoration: 'none',
       '&:hover': {
-        '@media (hover: hover)': {
-          textDecoration: 'underline',
-        },
+        textDecoration: 'underline',
       },
     }),
     ...(ownerState.underline === 'always' && {
@@ -59,9 +57,7 @@ const LinkRoot = styled(Typography, {
         textDecorationColor: getTextDecoration({ theme, ownerState }),
       }),
       '&:hover': {
-        '@media (hover: hover)': {
-          textDecorationColor: 'inherit',
-        },
+        textDecorationColor: 'inherit',
       },
     }),
     // Same reset as ButtonBase.root

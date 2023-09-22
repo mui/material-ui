@@ -8,7 +8,7 @@ import {
   screen,
   act,
   fireEvent,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import Input, { inputClasses as classes } from '@mui/joy/Input';
 import { ThemeProvider } from '@mui/joy/styles';
 

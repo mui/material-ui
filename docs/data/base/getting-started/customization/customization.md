@@ -35,6 +35,7 @@ When working with [CSS Modules](https://github.com/css-modules/css-modules), the
 
 ```tsx
 import clsx from 'clsx';
+import { Switch as BaseSwitch, SwitchOwnerState } from '@mui/base/Switch';
 import classes from './styles.module.css';
 
 export default function Switch(props) {
@@ -50,7 +51,7 @@ export default function Switch(props) {
     input: { className: classes.input },
   };
 
-  return <Switch {...props} slotProps={slotProps} />;
+  return <BaseSwitch {...props} slotProps={slotProps} />;
 }
 ```
 
@@ -61,6 +62,8 @@ In this example we're using the [clsx](https://www.npmjs.com/package/clsx) utili
 Use [`slotProps`](#customizing-slot-props) to apply custom styles using [Tailwind CSS](https://tailwindcss.com/), as shown below:
 
 ```tsx
+import { Switch as BaseSwitch, SwitchOwnerState } from '@mui/base/Switch';
+
 export default function Switch(props) {
   const slotProps = {
     root: (ownerState: SwitchOwnerState) => ({
@@ -76,7 +79,7 @@ export default function Switch(props) {
     input: { className: 'absolute w-full h-full inset-0 opacity-0 z-10 m-0' },
   };
 
-  return <Switch {...props} slotProps={slotProps} />;
+  return <BaseSwitch {...props} slotProps={slotProps} />;
 }
 ```
 
@@ -140,6 +143,16 @@ In this case, `MyCustomThumb` component receives the `ownerState` object with th
 ```
 
 You can use this object to style your component.
+
+:::warning
+When inserting a component from a third-party library into a slot, you may encounter this warning: `"React does not recognize the ownerState prop on a DOM element."`
+This is because the custom component isn't prepared to receive the `ownerState` like a built-in library component would be.
+:::
+
+If you need to use the `ownerState` to propagate some props to a third-party component, you must create a custom wrapper for this purpose.
+But if you don't need the `ownerState` and just want to resolve the error, you can use the `prepareForSlot` utility:
+
+{{"demo": "PrepareForSlot.js", "defaultCodeOpen": true}}
 
 ### Customizing slot props
 

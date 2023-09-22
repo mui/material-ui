@@ -49,7 +49,7 @@
   },
   "name": "Popper",
   "imports": ["import { Popper } from '@mui/base/Popper';", "import { Popper } from '@mui/base';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": null },
   "spread": true,
   "muiName": "MuiPopper",
   "forwardsRefTo": "HTMLDivElement",

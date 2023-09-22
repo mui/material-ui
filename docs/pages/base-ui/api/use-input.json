@@ -5,24 +5,30 @@
     "error": { "type": { "name": "boolean", "description": "boolean" } },
     "inputRef": {
       "type": {
-        "name": "React.Ref&lt;HTMLInputElement&gt;",
-        "description": "React.Ref&lt;HTMLInputElement&gt;"
+        "name": "React.Ref&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.Ref&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
       }
     },
     "onBlur": {
-      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+      "type": {
+        "name": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
+      }
     },
     "onChange": {
       "type": {
-        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt;",
-        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt;"
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
       }
     },
     "onClick": {
       "type": { "name": "React.MouseEventHandler", "description": "React.MouseEventHandler" }
     },
     "onFocus": {
-      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+      "type": {
+        "name": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
+      }
     },
     "required": { "type": { "name": "boolean", "description": "boolean" } },
     "value": { "type": { "name": "unknown", "description": "unknown" } }
@@ -40,22 +46,22 @@
     },
     "getInputProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseInputInputSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseInputInputSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputInputSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputInputSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseInputRootSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseInputRootSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "inputRef": {
       "type": {
-        "name": "React.RefCallback&lt;HTMLInputElement&gt; | null",
-        "description": "React.RefCallback&lt;HTMLInputElement&gt; | null"
+        "name": "React.RefCallback&lt;HTMLInputElement | HTMLTextAreaElement&gt; | null",
+        "description": "React.RefCallback&lt;HTMLInputElement | HTMLTextAreaElement&gt; | null"
       },
       "required": true
     },

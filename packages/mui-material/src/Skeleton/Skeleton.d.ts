@@ -7,49 +7,67 @@ import { SkeletonClasses } from './skeletonClasses';
 
 export interface SkeletonPropsVariantOverrides {}
 
+export interface SkeletonPropsSizeOverrides {}
+
+export interface SkeletonPropsShapeOverrides {}
+
+export interface SkeletonOwnProps {
+  /**
+   * The animation.
+   * If `false` the animation effect is disabled.
+   * @default 'pulse'
+   */
+  animation?: 'pulse' | 'wave' | false;
+  /**
+   * Optional children to infer width and height from.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<SkeletonClasses>;
+  /**
+   * Height of the skeleton.
+   * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
+   */
+  height?: number | string;
+  /**
+   * The shape of the skeleton.
+   */
+  shape?: OverridableStringUnion<
+    'rectangular' | 'rounded' | 'circular',
+    SkeletonPropsShapeOverrides
+  >;
+  /**
+   * Determines whether the skeleton should scale to the element's text or bounding box.
+   */
+  size?: OverridableStringUnion<'text' | 'box', SkeletonPropsSizeOverrides>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
+   * The type of content that will be rendered.
+   * @default 'text'
+   * @deprecated Use `shape` prop to set the shape of the skeleton and `size` prop to set the scale adaptation.
+   */
+  variant?: OverridableStringUnion<
+    'text' | 'rectangular' | 'rounded' | 'circular',
+    SkeletonPropsVariantOverrides
+  >;
+  /**
+   * Width of the skeleton.
+   * Useful when the skeleton is inside an inline element with no width of its own.
+   */
+  width?: number | string;
+}
+
 export interface SkeletonTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'span',
+  RootComponent extends React.ElementType = 'span',
 > {
-  props: AdditionalProps & {
-    /**
-     * The animation.
-     * If `false` the animation effect is disabled.
-     * @default 'pulse'
-     */
-    animation?: 'pulse' | 'wave' | false;
-    /**
-     * Optional children to infer width and height from.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<SkeletonClasses>;
-    /**
-     * Height of the skeleton.
-     * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
-     */
-    height?: number | string;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-    /**
-     * The type of content that will be rendered.
-     * @default 'text'
-     */
-    variant?: OverridableStringUnion<
-      'text' | 'rectangular' | 'rounded' | 'circular',
-      SkeletonPropsVariantOverrides
-    >;
-    /**
-     * Width of the skeleton.
-     * Useful when the skeleton is inside an inline element with no width of its own.
-     */
-    width?: number | string;
-  };
-  defaultComponent: DefaultComponent;
+  props: AdditionalProps & SkeletonOwnProps;
+  defaultComponent: RootComponent;
 }
 
 /**

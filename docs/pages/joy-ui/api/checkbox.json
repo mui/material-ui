@@ -74,7 +74,7 @@
   },
   "name": "Checkbox",
   "imports": ["import Checkbox from '@mui/joy/Checkbox';", "import { Checkbox } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiCheckbox" },
   "slots": [
     {
       "name": "root",

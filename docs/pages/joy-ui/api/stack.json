@@ -26,7 +26,7 @@
   },
   "name": "Stack",
   "imports": ["import Stack from '@mui/joy/Stack';", "import { Stack } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiStack" },
   "slots": [
     {
       "name": "root",

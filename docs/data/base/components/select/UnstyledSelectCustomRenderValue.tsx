@@ -7,7 +7,7 @@ import { styled } from '@mui/system';
 
 export default function UnstyledSelectCustomRenderValue() {
   return (
-    <CustomSelect renderValue={renderValue}>
+    <CustomSelect renderValue={renderValue} placeholder="Select an option…">
       <StyledOption value={10}>Ten</StyledOption>
       <StyledOption value={20}>Twenty</StyledOption>
       <StyledOption value={30}>Thirty</StyledOption>
@@ -28,7 +28,7 @@ function CustomSelect(props: SelectProps<number, false>) {
 
 function renderValue(option: SelectOption<number> | null) {
   if (option == null) {
-    return <span>Select an option...</span>;
+    return null;
   }
 
   return (

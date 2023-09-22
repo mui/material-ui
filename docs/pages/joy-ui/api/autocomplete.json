@@ -182,7 +182,7 @@
     "import Autocomplete from '@mui/joy/Autocomplete';",
     "import { Autocomplete } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAutocomplete" },
   "slots": [
     {
       "name": "root",

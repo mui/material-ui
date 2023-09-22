@@ -63,12 +63,12 @@ const TriggerButton = styled('button')(
     cursor: pointer;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     color: ${theme.palette.mode === 'dark' ? blue[300] : blue[500]};
-  
+
     &:hover {
       background: ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
       border-color: ${theme.palette.mode === 'dark' ? blue[200] : blue[400]};
     }
-  
+
     &:focus-visible {
       border-color: ${blue[400]};
       outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};

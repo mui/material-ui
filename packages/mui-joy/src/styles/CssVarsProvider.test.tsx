@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import { CssVarsProvider, extendTheme, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
 
 describe('[Joy] CssVarsProvider', () => {
@@ -152,6 +152,7 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-neutral-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-neutral-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-neutral-solidDisabledBg)',
+          plainHoverColor: 'var(--joy-palette-neutral-plainHoverColor)',
           mainChannel: 'var(--joy-palette-neutral-mainChannel)',
           lightChannel: 'var(--joy-palette-neutral-lightChannel)',
           darkChannel: 'var(--joy-palette-neutral-darkChannel)',

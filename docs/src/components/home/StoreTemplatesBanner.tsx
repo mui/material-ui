@@ -28,6 +28,7 @@ const Image = styled('img')(({ theme }) => ({
   borderColor: (theme.vars || theme).palette.grey[400],
   borderRadius: (theme.vars || theme).shape.borderRadius,
   objectFit: 'cover',
+  objectPosition: 'top',
   boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
   ...theme.applyDarkStyles({
     borderColor: (theme.vars || theme).palette.grey[800],
@@ -50,7 +51,7 @@ const linkMapping = {
   minimal: 'https://mui.com/store/items/minimal-dashboard/',
   theFront: 'https://mui.com/store/items/the-front-landing-page/',
   miro: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
-  flexy: 'https://mui.com/store/items/flexy-react-admin-dashboard/',
+  devias: 'https://mui.com/store/items/devias-kit-pro/',
   berry: 'https://mui.com/store/items/berry-react-material-admin/',
   webbee: 'https://mui.com/store/items/webbee-landing-page/',
 };
@@ -108,6 +109,7 @@ const StoreTemplateImage = React.forwardRef<
         Object.keys(linkMapping).indexOf(brand) + 1
       }light.jpg`}
       alt=""
+      loading="lazy"
       sx={(theme) =>
         theme.applyDarkStyles({
           content: `url(/static/branding/store-templates/template-${

@@ -56,7 +56,7 @@
     "import CircularProgress from '@mui/joy/CircularProgress';",
     "import { CircularProgress } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiCircularProgress" },
   "slots": [
     {
       "name": "root",

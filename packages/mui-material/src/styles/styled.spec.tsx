@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/no-empty-box */
 import * as React from 'react';
 import { styled, css, ThemeProvider, createTheme } from '@mui/material/styles';
 

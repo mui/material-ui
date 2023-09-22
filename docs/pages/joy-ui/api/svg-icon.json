@@ -47,7 +47,7 @@
   },
   "name": "SvgIcon",
   "imports": ["import SvgIcon from '@mui/joy/SvgIcon';", "import { SvgIcon } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSvgIcon" },
   "slots": [
     {
       "name": "root",

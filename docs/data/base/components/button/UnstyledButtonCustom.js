@@ -53,7 +53,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
     transition: all 800ms ease;
     pointer-events: none;
   }
-  
+
   & .bg {
     stroke: var(--main-color);
     stroke-width: 1;
@@ -71,14 +71,12 @@ const CustomButtonRoot = styled(ButtonRoot)(
 
   &:hover,
   &.${buttonClasses.focusVisible} {
-    @media (hover: hover) {
-      .borderEffect {
-        stroke-dashoffset: -600;
-      }
-  
-      .bg {
-        fill: var(--hover-color);
-      }
+    .borderEffect {
+      stroke-dashoffset: -600;
+    }
+
+    .bg {
+      fill: var(--hover-color);
     }
   }
 
@@ -88,7 +86,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
     outline-offset: 2px;
   }
 
-  &.${buttonClasses.active} { 
+  &.${buttonClasses.active} {
     & .bg {
       fill: var(--active-color);
       transition: fill 300ms ease-out;

@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine",
-  "version": "5.13.2",
+  "version": "5.14.10",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for emotion.",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/material-ui/guides/styled-engine/",
+  "homepage": "https://mui.com/system/styled/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
@@ -38,10 +38,19 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.6",
+    "@babel/runtime": "^7.22.15",
     "@emotion/cache": "^11.11.0",
     "csstype": "^3.1.2",
     "prop-types": "^15.8.1"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui-internal/test-utils": "^1.0.0",
+    "@types/chai": "^4.3.6",
+    "@types/react": "^18.2.21",
+    "chai": "^4.3.8",
+    "react": "^18.2.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.4.1",

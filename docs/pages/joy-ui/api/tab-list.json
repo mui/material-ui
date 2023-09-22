@@ -54,7 +54,7 @@
   },
   "name": "TabList",
   "imports": ["import TabList from '@mui/joy/TabList';", "import { TabList } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTabList" },
   "slots": [
     {
       "name": "root",

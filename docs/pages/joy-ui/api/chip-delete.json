@@ -42,7 +42,7 @@
     "import ChipDelete from '@mui/joy/ChipDelete';",
     "import { ChipDelete } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiChipDelete" },
   "slots": [
     {
       "name": "root",

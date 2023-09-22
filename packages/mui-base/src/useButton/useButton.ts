@@ -187,6 +187,10 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
 
   const buttonProps: AdditionalButtonProps = {};
 
+  if (tabIndex !== undefined) {
+    buttonProps.tabIndex = tabIndex;
+  }
+
   if (hostElementName === 'BUTTON') {
     buttonProps.type = type ?? 'button';
     if (focusableWhenDisabled) {
@@ -205,23 +209,19 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     }
   }
 
-  const getRootProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseButtonRootSlotProps<TOther> => {
-    const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseButtonParameters>;
+  const getRootProps = <ExternalProps extends Record<string, any> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseButtonRootSlotProps<ExternalProps> => {
     const externalEventHandlers = {
-      ...propsEventHandlers,
-      ...otherHandlers,
+      ...extractEventHandlers(parameters),
+      ...extractEventHandlers(externalProps),
     };
 
-    // onFocusVisible can be present on the props, but since it's not a valid React event handler,
-    // it must not be forwarded to the inner component.
-    delete externalEventHandlers.onFocusVisible;
-
-    return {
+    const props = {
       type,
       ...externalEventHandlers,
       ...buttonProps,
+      ...externalProps,
       onBlur: createHandleBlur(externalEventHandlers),
       onClick: createHandleClick(externalEventHandlers),
       onFocus: createHandleFocus(externalEventHandlers),
@@ -231,6 +231,13 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
       onMouseLeave: createHandleMouseLeave(externalEventHandlers),
       ref: handleRef,
     };
+
+    // onFocusVisible can be present on the props or parameters,
+    // but it's not a valid React event handler so it must not be forwarded to the inner component.
+    // If present, it will be handled by the focus handler.
+    delete props.onFocusVisible;
+
+    return props;
   };
 
   return {

@@ -262,5 +262,14 @@
     "locationCountry": "ro",
     "about": "Art enthusiast 🎨 outdoor person 🌳 animal lover 🐾",
     "github": "noraleonte"
+  },
+  {
+    "name": "Michel Engelen",
+    "title": "React Community Engineer - X",
+    "location": "Zeven, Germany",
+    "locationCountry": "de",
+    "about": "Geeking out on Badminton 🏸, everything Japan 🇯🇵 and Pizza 🍕",
+    "twitter": "jsNerdic",
+    "github": "michelengelen"
   }
 ]

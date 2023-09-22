@@ -92,6 +92,8 @@ const ChipRoot = styled('div', {
       borderRadius: 32 / 2,
       whiteSpace: 'nowrap',
       transition: theme.transitions.create(['background-color', 'box-shadow']),
+      // reset cursor explicitly in case ButtonBase is used
+      cursor: 'unset',
       // We disable the focus ring for mouse, touch and keyboard users.
       outline: 0,
       textDecoration: 'none',
@@ -150,11 +152,9 @@ const ChipRoot = styled('div', {
         cursor: 'pointer',
         margin: '0 5px 0 -6px',
         '&:hover': {
-          '@media (hover: hover)': {
-            color: theme.vars
-              ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
-              : alpha(theme.palette.text.primary, 0.4),
-          },
+          color: theme.vars
+            ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
+            : alpha(theme.palette.text.primary, 0.4),
         },
         ...(ownerState.size === 'small' && {
           fontSize: 16,
@@ -165,13 +165,8 @@ const ChipRoot = styled('div', {
           color: theme.vars
             ? `rgba(${theme.vars.palette[ownerState.color].contrastTextChannel} / 0.7)`
             : alpha(theme.palette[ownerState.color].contrastText, 0.7),
-          '&:active': {
+          '&:hover, &:active': {
             color: (theme.vars || theme).palette[ownerState.color].contrastText,
-          },
-          '&:hover': {
-            '@media (hover: hover)': {
-              color: (theme.vars || theme).palette[ownerState.color].contrastText,
-            },
           },
         }),
       },
@@ -206,14 +201,12 @@ const ChipRoot = styled('div', {
       WebkitTapHighlightColor: 'transparent',
       cursor: 'pointer',
       '&:hover': {
-        '@media (hover: hover)': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-            : alpha(
-                theme.palette.action.selected,
-                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-              ),
-        },
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          : alpha(
+              theme.palette.action.selected,
+              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+            ),
       },
       [`&.${chipClasses.focusVisible}`]: {
         backgroundColor: theme.vars
@@ -243,9 +236,7 @@ const ChipRoot = styled('div', {
             theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[700]
           }`,
       [`&.${chipClasses.clickable}:hover`]: {
-        '@media (hover: hover)': {
-          backgroundColor: (theme.vars || theme).palette.action.hover,
-        },
+        backgroundColor: (theme.vars || theme).palette.action.hover,
       },
       [`&.${chipClasses.focusVisible}`]: {
         backgroundColor: (theme.vars || theme).palette.action.focus,
@@ -278,13 +269,11 @@ const ChipRoot = styled('div', {
             : alpha(theme.palette[ownerState.color].main, 0.7)
         }`,
         [`&.${chipClasses.clickable}:hover`]: {
-          '@media (hover: hover)': {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
-                  theme.vars.palette.action.hoverOpacity
-                })`
-              : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
-          },
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
+                theme.vars.palette.action.hoverOpacity
+              })`
+            : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
         },
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: theme.vars

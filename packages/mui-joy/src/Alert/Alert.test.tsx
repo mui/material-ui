@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import {
+  createRenderer,
+  describeConformance,
+  describeJoyColorInversion,
+} from '@mui-internal/test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Alert, { AlertClassKey, alertClasses as classes } from '@mui/joy/Alert';
@@ -32,10 +36,10 @@ describe('<Alert />', () => {
     it('soft by default', () => {
       const { getByRole } = render(<Alert />);
 
-      expect(getByRole('alert')).to.have.class(classes.variantOutlined);
+      expect(getByRole('alert')).to.have.class(classes.variantSoft);
     });
 
-    (['plain', 'soft', 'solid'] as const).forEach((variant) => {
+    (['plain', 'outlined', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByRole } = render(<Alert variant={variant} />);
 

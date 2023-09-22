@@ -1,6 +1,5 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
-import { useInView } from 'react-intersection-observer';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
@@ -15,7 +14,7 @@ export { CORE_CUSTOMERS, ADVANCED_CUSTOMERS, DESIGNKITS_CUSTOMERS, TEMPLATES_CUS
 
 const CompaniesGrid = dynamic(() => import('./CompaniesGrid'));
 
-function References({
+export default function References({
   companies,
 }: {
   companies:
@@ -24,14 +23,10 @@ function References({
     | typeof DESIGNKITS_CUSTOMERS
     | typeof TEMPLATES_CUSTOMERS;
 }) {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0,
-  });
   return (
-    <Section ref={ref}>
+    <Section>
       <Box sx={{ minHeight: { xs: 236, sm: 144, md: 52 } }}>
-        {inView && <CompaniesGrid data={companies} />}
+        <CompaniesGrid data={companies} />
       </Box>
       <Typography
         textAlign="center"
@@ -50,5 +45,3 @@ function References({
     </Section>
   );
 }
-
-export default References;
