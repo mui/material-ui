@@ -43,7 +43,7 @@ const app = new App({
 });
 
 /**
- * Helpping function to retrive data from the message
+ * Helper function to retrieve data from the message
  */
 function getQuoteAndLinks(message) {
   const text = message?.blocks?.[0]?.text?.text;
