@@ -177,7 +177,7 @@ const SelectRoot = styled('div', {
   ];
 });
 
-// Use a `div` instead of a `button` because tab selection does not work for buttons in Safari.
+// Use a `div` instead of a `button` because tab key navigation does not work for buttons in Safari.
 const SelectButton = styled('div', {
   name: 'JoySelect',
   slot: 'Button',
