@@ -94,7 +94,7 @@ const SkeletonRoot = styled('span', {
       borderRadius: '50%',
     }),
     ...(ownerState.shape === 'rectangular' && {
-      borderRadius: 0
+      borderRadius: 0,
     }),
     ...(ownerState.hasChildren && {
       '& > *': {
