@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import JoyBox from '@mui/joy/Box';
 import Button from '@mui/material/Button';
@@ -533,8 +533,7 @@ function AutomaticAdjustment() {
               />
             </JoyFormControl>
           </div>
-
-          <Box>
+          <div>
             <JoyTypography level="title-sm" sx={{ mb: 0.5 }}>
               Thumb
             </JoyTypography>
@@ -552,7 +551,6 @@ function AutomaticAdjustment() {
                 }}
               />
             </JoyFormControl>
-
             <JoyFormControl size="sm" orientation="horizontal">
               <JoyFormLabel>Size: </JoyFormLabel>
               <JoySlider
@@ -567,7 +565,6 @@ function AutomaticAdjustment() {
                 }}
               />
             </JoyFormControl>
-
             <JoyFormControl size="sm" orientation="horizontal">
               <JoyFormLabel>Radius: </JoyFormLabel>
               <JoySlider
@@ -582,7 +579,7 @@ function AutomaticAdjustment() {
                 }}
               />
             </JoyFormControl>
-          </Box>
+          </div>
         </Box>
       </Frame.Demo>
       <Frame.Info
