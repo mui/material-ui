@@ -2,11 +2,15 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2';
-import TableChartRounded from '@mui/icons-material/TableChartRounded';
-import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
-import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
-import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
-import BarChartRounded from '@mui/icons-material/BarChartRounded';
+
+import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
+import InputRoundedIcon from '@mui/icons-material/InputRounded';
+import RadioButtonCheckedRoundedIcon from '@mui/icons-material/RadioButtonCheckedRounded';
+import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded';
+import SelectAllRoundedIcon from '@mui/icons-material/SelectAllRounded';
+import LinearScaleRoundedIcon from '@mui/icons-material/LinearScaleRounded';
+import TabUnselectedRoundedIcon from '@mui/icons-material/TabUnselectedRounded';
+
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
 import Link from 'docs/src/modules/components/Link';
@@ -27,14 +31,14 @@ import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Tabs', 'Radio', 'Menu', 'Input', 'Select', 'Slider', 'Button', 'Alert'] as const;
 const icons = {
-  [DEMOS[0]]: <TableChartRounded fontSize="small" />,
-  [DEMOS[1]]: <DateRangeRounded fontSize="small" />,
-  [DEMOS[2]]: <AccountTreeRounded fontSize="small" />,
-  [DEMOS[3]]: <ShowChartRounded fontSize="small" />,
-  [DEMOS[4]]: <BarChartRounded fontSize="small" />,
-  [DEMOS[5]]: <BarChartRounded fontSize="small" />,
-  [DEMOS[6]]: <BarChartRounded fontSize="small" />,
-  [DEMOS[7]]: <BarChartRounded fontSize="small" />,
+  [DEMOS[0]]: <TabUnselectedRoundedIcon fontSize="small" />,
+  [DEMOS[1]]: <RadioButtonCheckedRoundedIcon fontSize="small" />,
+  [DEMOS[2]]: <MenuOpenRoundedIcon fontSize="small" />,
+  [DEMOS[3]]: <InputRoundedIcon fontSize="small" />,
+  [DEMOS[4]]: <SelectAllRoundedIcon fontSize="small" />,
+  [DEMOS[5]]: <LinearScaleRoundedIcon fontSize="small" />,
+  [DEMOS[6]]: <SmartButtonRoundedIcon fontSize="small" />,
+  [DEMOS[7]]: <LinearScaleRoundedIcon fontSize="small" />,
 };
 
 export default function JoyUIComponents() {
