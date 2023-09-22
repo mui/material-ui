@@ -13,9 +13,6 @@ const circularProgressCssVars = {
   circulation: '--CircularProgress-circulation',
 } as const;
 
-export type CircularProgressCssVarsType = GenerateCssVarsType<
-  keyof typeof circularProgressCssVars,
-  'CircularProgress'
->;
+export type CircularProgressCssVarsType = GenerateCssVarsType<typeof circularProgressCssVars>;
 
 export default circularProgressCssVars;

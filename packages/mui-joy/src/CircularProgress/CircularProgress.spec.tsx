@@ -91,3 +91,31 @@ import CircularProgress, { CircularProgressOwnerState } from '@mui/joy/CircularP
     },
   }}
 />;
+
+<CircularProgress
+  sx={{
+    '--CircularProgress-circulation': '1',
+    '--CircularProgress-linecap': 1,
+  }}
+/>;
+
+<CircularProgress
+  // @ts-expect-error css vars must be only string or number
+  sx={{
+    '--CircularProgress-circulation': true,
+  }}
+/>;
+
+<CircularProgress
+  // @ts-expect-error css vars must be only string or number
+  sx={{
+    '--CircularProgress-circulation': {},
+  }}
+/>;
+
+<CircularProgress
+  // @ts-expect-error css vars must be only string or number
+  sx={{
+    '--CircularProgress-circulation': () => {},
+  }}
+/>;
