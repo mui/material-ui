@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer } from 'test/utils';
+import { describeConformance, act, createRenderer } from '@mui-internal/test-utils';
 import FormControl, { formControlClasses as classes } from '@mui/material-next/FormControl';
 // TODO: replace with material-next/OutlinedInput
 import InputBase from '@mui/material-next/InputBase';

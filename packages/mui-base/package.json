@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@mui/material": "^5.14.10",
+    "@mui-internal/test-utils": "^1.0.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/chai": "^4.3.6",
@@ -63,8 +64,7 @@
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sinon": "^15.2.0",
-    "test": "^5.0.0"
+    "sinon": "^15.2.0"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",

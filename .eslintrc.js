@@ -211,15 +211,6 @@ module.exports = {
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
-        'no-restricted-imports': [
-          'error',
-          {
-            // Use named import from `test/utils` instead.
-            // The other files are private.
-            patterns: ['test/utils/*'],
-          },
-        ],
-
         'material-ui/disallow-active-element-as-key-event-target': 'error',
 
         // upgraded level from recommended
