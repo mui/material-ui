@@ -56,47 +56,51 @@ const DividerRoot = styled('div', {
     ];
   },
 })<{ ownerState: DividerOwnerState }>(
-  ({ theme, ownerState }) => ({
-    margin: 0, // Reset browser default style.
-    flexShrink: 0,
-    borderWidth: 0,
-    borderStyle: 'solid',
-    borderColor: (theme.vars || theme).palette.divider,
-    borderBottomWidth: 'thin',
-    ...(ownerState.absolute && {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      width: '100%',
-    }),
-    ...(ownerState.light && {
-      borderColor: theme.vars
-        ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
-        : alpha(theme.palette.divider, 0.08),
-    }),
-    ...(ownerState.variant === 'inset' && {
-      marginLeft: 72,
-    }),
-    ...(ownerState.variant === 'middle' &&
-      ownerState.orientation === 'horizontal' && {
-        marginLeft: theme.spacing(2),
-        marginRight: theme.spacing(2),
+  ({ theme, ownerState }) => {
+    const { vars: tokens } = theme;
+
+    return {
+      margin: 0, // Reset browser default style.
+      flexShrink: 0,
+      borderWidth: 0,
+      borderStyle: 'solid',
+      borderColor: tokens.sys.color.outlineVariant,
+      borderBottomWidth: 'thin',
+      ...(ownerState.absolute && {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '100%',
       }),
-    ...(ownerState.variant === 'middle' &&
-      ownerState.orientation === 'vertical' && {
-        marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(1),
+      ...(ownerState.light && {
+        borderColor: theme.vars
+          ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
+          : alpha(theme.palette.divider, 0.08),
       }),
-    ...(ownerState.orientation === 'vertical' && {
-      height: '100%',
-      borderBottomWidth: 0,
-      borderRightWidth: 'thin',
-    }),
-    ...(ownerState.flexItem && {
-      alignSelf: 'stretch',
-      height: 'auto',
-    }),
-  }),
+      ...(ownerState.variant === 'inset' && {
+        marginLeft: 72,
+      }),
+      ...(ownerState.variant === 'middle' &&
+        ownerState.orientation === 'horizontal' && {
+          marginLeft: theme.spacing(2),
+          marginRight: theme.spacing(2),
+        }),
+      ...(ownerState.variant === 'middle' &&
+        ownerState.orientation === 'vertical' && {
+          marginTop: theme.spacing(1),
+          marginBottom: theme.spacing(1),
+        }),
+      ...(ownerState.orientation === 'vertical' && {
+        height: '100%',
+        borderBottomWidth: 0,
+        borderRightWidth: 'thin',
+      }),
+      ...(ownerState.flexItem && {
+        alignSelf: 'stretch',
+        height: 'auto',
+      }),
+    };
+  },
   ({ ownerState }) => ({
     ...(ownerState.children && {
       display: 'flex',
@@ -109,22 +113,22 @@ const DividerRoot = styled('div', {
       },
     }),
   }),
-  ({ theme, ownerState }) => ({
+  ({ theme: { vars: tokens }, ownerState }) => ({
     ...(ownerState.children &&
       ownerState.orientation !== 'vertical' && {
         '&::before, &::after': {
           width: '100%',
-          borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
+          borderTop: `thin solid ${tokens.sys.color.outlineVariant}`,
         },
       }),
   }),
-  ({ theme, ownerState }) => ({
+  ({ theme: { vars: tokens }, ownerState }) => ({
     ...(ownerState.children &&
       ownerState.orientation === 'vertical' && {
         flexDirection: 'column',
         '&::before, &::after': {
           height: '100%',
-          borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
+          borderLeft: `thin solid ${tokens.sys.color.outlineVariant}`,
         },
       }),
   }),
