@@ -2,7 +2,7 @@
  * A type which generates CSS Variables.
  * @example
  * type ButtonCssVars = GenerateCssVarsType<'color' | 'size', 'Button'>;
- *  ButtonCssVars wouldb be {
+ *  ButtonCssVars would be {
  * '--Button-color'?: string | number;
  * '--Button-size'?: string | number;
  * }

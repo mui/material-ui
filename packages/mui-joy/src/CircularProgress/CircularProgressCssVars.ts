@@ -1,4 +1,4 @@
-import { GenerateCssVarsType } from '../utils/CssVarsType';
+import { GenerateCssVarsType } from '../utils/GenerateCssVarsType';
 
 const circularProgressCssVars = {
   thickness: '--CircularProgress-thickness',
