@@ -1,5 +1,4 @@
 import { UseListItemRootSlotProps } from '../useList';
-import { EventHandlers } from '../utils';
 
 export interface SelectOption<Value> {
   value: Value;
@@ -18,16 +17,30 @@ export interface UseOptionParameters<Value> {
 }
 
 export interface UseOptionReturnValue {
+  /**
+   * If `true`, the option is selected.
+   */
   selected: boolean;
+  /**
+   * If `true`, the option is highlighted.
+   */
   highlighted: boolean;
   index: number;
-  getRootProps: <Other extends EventHandlers>(
-    otherHandlers?: Other,
-  ) => UseOptionRootSlotProps<Other>;
+  /**
+   * Resolver for the root slot's props.
+   * @param externalProps props for the root slot
+   * @returns props that should be spread on the root slot
+   */
+  getRootProps: <ExternalProps extends Record<string, unknown>>(
+    externalProps?: ExternalProps,
+  ) => UseOptionRootSlotProps<ExternalProps>;
+  /**
+   * Ref to the root slot DOM node.
+   */
   rootRef: React.RefCallback<Element> | null;
 }
 
-export type UseOptionRootSlotProps<Other extends EventHandlers = {}> =
-  UseListItemRootSlotProps<Other> & {
+export type UseOptionRootSlotProps<ExternalProps extends Record<string, unknown> = {}> =
+  UseListItemRootSlotProps<ExternalProps> & {
     ref?: React.RefCallback<Element> | null;
-  } & Other;
+  } & ExternalProps;

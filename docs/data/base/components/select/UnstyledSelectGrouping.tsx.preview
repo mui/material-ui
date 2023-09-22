@@ -1,4 +1,4 @@
-<CustomSelect>
+<CustomSelect placeholder="Choose a character…">
   <CustomOptionGroup label="Hobbits">
     <StyledOption value="Frodo">Frodo</StyledOption>
     <StyledOption value="Sam">Sam</StyledOption>

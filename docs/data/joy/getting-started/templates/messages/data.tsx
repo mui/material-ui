@@ -2,9 +2,9 @@ import { ChatProps, UserProps } from './types';
 
 export const users: UserProps[] = [
   {
-    name: 'Abel Boyle',
-    username: '@abel',
-    avatar: '/static/images/avatar/1.jpg',
+    name: 'Steve E.',
+    username: '@steveEberger',
+    avatar: '/static/images/avatar/2.jpg',
     online: true,
   },
   {
@@ -16,7 +16,7 @@ export const users: UserProps[] = [
   {
     name: 'Phoenix Baker',
     username: '@phoenix',
-    avatar: '/static/images/avatar/2.jpg',
+    avatar: '/static/images/avatar/1.jpg',
     online: true,
   },
   {

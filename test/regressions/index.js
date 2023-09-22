@@ -32,7 +32,9 @@ const blacklist = [
   'docs-joy-tools/PaletteThemeViewer.png', // No need for theme tokens
   'docs-joy-tools/ShadowThemeViewer.png', // No need for theme tokens
   'docs-joy-customization-theme-typography/TypographyThemeViewer.png', // No need for theme tokens
+  'docs-joy-components-circular-progress/CircularProgressCountUp.png', // Flaky due to animation
   'docs-joy-components-divider/DividerChildPosition.png', // Needs interaction
+  'docs-joy-components-linear-progress/LinearProgressCountUp.png', // Flaky due to animation
   'docs-base-guides-working-with-tailwind-css/PlayerFinal.png', // No public components
   'docs-components-alert/TransitionAlerts.png', // Needs interaction
   'docs-components-app-bar/BackToTop.png', // Needs interaction

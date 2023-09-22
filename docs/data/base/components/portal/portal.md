@@ -22,21 +22,9 @@ The Portal component is used internally by the [Modal](/base-ui/react-modal/) an
 
 ## Component
 
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
 import { Portal } from '@mui/base/Portal';
-
-export default function MyApp() {
-  return (
-    <Portal>{/* children to be rendered outside of the current DOM node */}</Portal>
-  );
-}
 ```
-
-### Basics
 
 Normally, children of a component are rendered within that component's DOM tree.
 But sometimes it's necessary to mount a child at a different location in the DOM.

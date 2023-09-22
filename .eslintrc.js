@@ -67,13 +67,6 @@ module.exports = {
       {
         patterns: [
           '@mui/*/*/*',
-          // Begin block: Packages with files instead of packages in the top level
-          // Importing from the top level pulls in CommonJS instead of ES modules
-          // Allowing /icons as to reduce cold-start of dev builds significantly.
-          // There's nothing to tree-shake when importing from /icons this way:
-          // '@mui/icons-material/*/',
-          '@mui/utils/*',
-          // End block
           // Macros are fine since their import path is transpiled away
           '!@mui/utils/macros',
           '@mui/utils/macros/*',
@@ -218,15 +211,6 @@ module.exports = {
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
-        'no-restricted-imports': [
-          'error',
-          {
-            // Use named import from `test/utils` instead.
-            // The other files are private.
-            patterns: ['test/utils/*'],
-          },
-        ],
-
         'material-ui/disallow-active-element-as-key-event-target': 'error',
 
         // upgraded level from recommended
@@ -333,7 +317,7 @@ module.exports = {
           'error',
           {
             patterns: [
-              // Allow deeper imports for TypeScript types. TODO?
+              // Allow deeper imports for TypeScript types. TODO remove
               '@mui/*/*/*/*',
               // Macros are fine since they're transpiled into something else
               '!@mui/utils/macros/*.macro',
