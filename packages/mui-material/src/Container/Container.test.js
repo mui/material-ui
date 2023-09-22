@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import Container, { containerClasses as classes } from '@mui/material/Container';
 
 describe('<Container />', () => {

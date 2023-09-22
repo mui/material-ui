@@ -55,6 +55,7 @@
     "@mui/joy": "5.0.0-beta.7",
     "@mui/material": "^5.14.10",
     "@mui/material-next": "6.0.0-alpha.102",
+    "@mui-internal/test-utils": "^1.0.0",
     "@types/chai": "^4.3.6",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.21",
@@ -65,8 +66,7 @@
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "sinon": "^15.2.0",
-    "styled-components": "^5.3.11",
-    "test": "^5.0.0"
+    "styled-components": "^5.3.11"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
