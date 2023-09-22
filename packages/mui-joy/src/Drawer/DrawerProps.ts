@@ -4,7 +4,7 @@ import { ColorPaletteProp, VariantProp, ApplyColorInversion } from '../styles/ty
 import { ModalOwnProps } from '../Modal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export type DrawerSlot = 'root' | 'label' | 'action' | 'startDecorator' | 'endDecorator';
+export type DrawerSlot = 'root' | 'backdrop' | 'content';
 
 export interface DrawerSlots {
   /**
