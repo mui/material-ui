@@ -57,7 +57,7 @@ export type SelectSlotsAndSlotProps = CreateSlotsAndSlotProps<
   SelectSlots,
   {
     root: SlotProps<'div', {}, SelectOwnerState<any>>;
-    button: SlotProps<'button', {}, SelectOwnerState<any>>;
+    button: SlotProps<'div', {}, SelectOwnerState<any>>;
     startDecorator: SlotProps<'span', {}, SelectOwnerState<any>>;
     endDecorator: SlotProps<'span', {}, SelectOwnerState<any>>;
     indicator: SlotProps<'span', {}, SelectOwnerState<any>>;
