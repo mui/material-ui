@@ -84,7 +84,7 @@ describe('<TablePagination />', () => {
 
   describe('prop: labelRowsPerPage', () => {
     it('labels the select for the current page', () => {
-      const { getAllByRole } = render(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -101,13 +101,12 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      // will be `getByRole('combobox')` in aria 1.2
-      const [combobox] = getAllByRole('combobox');
+      const combobox = getByRole('combobox');
       expect(combobox).toHaveAccessibleName('lines per page:');
     });
 
     it('accepts React nodes', () => {
-      const { getAllByRole } = render(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -128,8 +127,7 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      // will be `getByRole('combobox')` in aria 1.2
-      const [combobox] = getAllByRole('combobox');
+      const combobox = getByRole('combobox');
       expect(combobox).toHaveAccessibleName('lines per page:');
     });
   });
@@ -383,7 +381,7 @@ describe('<TablePagination />', () => {
 
   describe('prop: SelectProps', () => {
     it('does allow manual label ids', () => {
-      const { getAllByRole } = render(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -400,14 +398,13 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      // will be `getByRole('combobox')` in aria 1.2
-      const [combobox] = getAllByRole('combobox');
+      const combobox = getByRole('combobox');
       expect(combobox).toHaveAccessibleName('Rows per page:');
     });
 
     ['standard', 'outlined', 'filled'].forEach((variant) => {
       it(`should be able to apply the ${variant} variant to select`, () => {
-        const { getAllByRole } = render(
+        const { getByRole } = render(
           <table>
             <TableFooter>
               <TableRow>
@@ -424,7 +421,7 @@ describe('<TablePagination />', () => {
           </table>,
         );
 
-        const [combobox] = getAllByRole('combobox');
+        const combobox = getByRole('combobox');
         const comboboxContainer = combobox.parentElement;
 
         if (variant === 'standard') {
