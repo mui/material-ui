@@ -1,6 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
-import { getDisplayName, unstable_capitalize as capitalize, isPlainObject, deepmerge } from '@mui/utils';
+import {
+  getDisplayName,
+  unstable_capitalize as capitalize,
+  isPlainObject,
+  deepmerge,
+} from '@mui/utils';
 import createTheme from './createTheme';
 import propsToClassKey from './propsToClassKey';
 import styleFunctionSx from './styleFunctionSx';
@@ -39,7 +44,7 @@ const transformVariants = (variants) => {
   }
 
   return variantsStyles;
-}
+};
 const getVariantStyles = (name, theme) => {
   let variants = [];
   if (theme && theme.components && theme.components[name] && theme.components[name].variants) {
@@ -173,32 +178,132 @@ export default function createStyled(input = {}) {
             // On the server Emotion doesn't use React.forwardRef for creating components, so the created
             // component stays as a function. This condition makes sure that we do not interpolate functions
             // which are basically components used as a selectors.
-            return typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg
-              ? (props) => {
-                  return stylesArg({
-                    ...props,
-                    theme: resolveTheme({ ...props, defaultTheme, themeId }),
+            if (typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg) {
+              return (props) => {
+                const resolvedStyles = stylesArg({
+                  ...props,
+                  theme: resolveTheme({ ...props, defaultTheme, themeId }),
+                });
+
+                let optionalVariants;
+                if (isPlainObject(resolvedStyles)) {
+                  if (resolvedStyles && resolvedStyles.variants) {
+                    optionalVariants = resolvedStyles.variants;
+                  }
+                  delete resolvedStyles['variants'];
+                }
+                let result = resolvedStyles;
+
+                const variantsStyles = variantsResolver(
+                  props,
+                  transformVariants(optionalVariants),
+                  optionalVariants,
+                );
+
+                // the variantsStyle is an array of all variant styles that need to be applied,
+                // so we need to merge them on top of the rest of the styles
+                if (variantsStyles) {
+                  variantsStyles.forEach((variantStyle) => {
+                    result = deepmerge(result, variantStyle);
                   });
                 }
-              : stylesArg;
+
+                return result;
+              };
+            } else if (isPlainObject(stylesArg)) {
+              let transformedStylesArg = stylesArg;
+              let styledArgVariants;
+              if (stylesArg && stylesArg.variants) {
+                styledArgVariants = stylesArg.variants;
+              }
+              delete transformedStylesArg['variants'];
+
+              if (styledArgVariants) {
+                transformedStylesArg = (props) => {
+                  console.log(props);
+                  let result = stylesArg;
+                  const variantStyles = variantsResolver(
+                    props,
+                    transformVariants(styledArgVariants),
+                    styledArgVariants,
+                  );
+                  variantStyles.forEach((variantStyle) => {
+                    result = deepmerge(result, variantStyle);
+                  });
+                  console.log(result);
+
+                  return result;
+                };
+              }
+              return transformedStylesArg;
+            }
+            return stylesArg;
           })
         : [];
 
       let transformedStyleArg = styleArg;
 
-      let styledArgVariants;
-
       if (isPlainObject(styleArg)) {
+        let styledArgVariants;
         if (styleArg && styleArg.variants) {
           styledArgVariants = styleArg.variants;
         }
         delete transformedStyleArg['variants'];
-      }
 
-      if (styledArgVariants) {
-        expressionsWithDefaultTheme.push((props) => {
-          return variantsResolver(props, transformVariants(styledArgVariants), styledArgVariants);
-        })
+        if (styledArgVariants) {
+          transformedStyleArg = (props) => {
+            let result = styleArg;
+            const variantStyles = variantsResolver(
+              props,
+              transformVariants(styledArgVariants),
+              styledArgVariants,
+            );
+            variantStyles.forEach((variantStyle) => {
+              result = deepmerge(result, variantStyle);
+            });
+
+            return result;
+          };
+        }
+      } else if (
+        typeof styleArg === 'function' &&
+        // On the server Emotion doesn't use React.forwardRef for creating components, so the created
+        // component stays as a function. This condition makes sure that we do not interpolate functions
+        // which are basically components used as a selectors.
+        styleArg.__emotion_real !== styleArg
+      ) {
+        // If the type is function, we need to define the default theme.
+        transformedStyleArg = (props) => {
+          const resolvedStyles = styleArg({
+            ...props,
+            theme: resolveTheme({ ...props, defaultTheme, themeId }),
+          });
+
+          let optionalVariants;
+          if (isPlainObject(resolvedStyles)) {
+            if (resolvedStyles && resolvedStyles.variants) {
+              optionalVariants = resolvedStyles.variants;
+            }
+            delete resolvedStyles['variants'];
+          }
+          let result = resolvedStyles;
+
+          const variantsStyles = variantsResolver(
+            props,
+            transformVariants(optionalVariants),
+            optionalVariants,
+          );
+
+          // the variantsStyle is an array of all variant styles that need to be applied,
+          // so we need to merge them on top of the rest of the styles
+          if (variantsStyles) {
+            variantsStyles.forEach((variantStyle) => {
+              result = deepmerge(result, variantStyle);
+            });
+          }
+
+          return result;
+        };
       }
 
       if (componentName && overridesResolver) {
@@ -242,43 +347,7 @@ export default function createStyled(input = {}) {
         // If the type is array, than we need to add placeholders in the template for the overrides, variants and the sx styles.
         transformedStyleArg = [...styleArg, ...placeholders];
         transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
-      } else if (
-        typeof styleArg === 'function' &&
-        // On the server Emotion doesn't use React.forwardRef for creating components, so the created
-        // component stays as a function. This condition makes sure that we do not interpolate functions
-        // which are basically components used as a selectors.
-        styleArg.__emotion_real !== styleArg
-      ) {
-        // If the type is function, we need to define the default theme.
-        transformedStyleArg = (props) => {
-          const resolvedStyles = styleArg({
-            ...props,
-            theme: resolveTheme({ ...props, defaultTheme, themeId }),
-          });
-
-          let optionalVariants;
-          if (isPlainObject(resolvedStyles)) {
-            if (resolvedStyles && resolvedStyles.variants) {
-              optionalVariants = resolvedStyles.variants;
-            }
-            delete resolvedStyles['variants'];
-          }
-          let result = resolvedStyles;
-
-          const variantsStyles = variantsResolver(props, transformVariants(optionalVariants), optionalVariants);
-
-          // the variantsStyle is an array of all variant styles that need to be applied,
-          // so we need to merge them on top of the rest of the styles
-          if(variantsStyles) {
-            variantsStyles.forEach(variantStyle => {
-              result = deepmerge(result, variantStyle);
-            });
-          }
-
-          return result;
-        }
       }
-
       const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
 
       if (process.env.NODE_ENV !== 'production') {
