@@ -3,11 +3,12 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function SelectUsage() {
+export default function SelectUsage(inProps) {
   const [value, setValue] = React.useState(null);
   const action = React.useRef(null);
   return (
     <JoyUsageDemo
+      {...inProps}
       componentName="Select"
       data={[
         {

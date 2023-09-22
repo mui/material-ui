@@ -5,9 +5,10 @@ import IconButton from '@mui/joy/IconButton';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function ButtonUsage() {
+export default function ButtonUsage(inProps) {
   return (
     <JoyUsageDemo
+      {...inProps}
       componentName="Button"
       data={[
         {
@@ -29,6 +30,11 @@ export default function ButtonUsage() {
         },
         {
           propName: 'disabled',
+          knob: 'switch',
+          defaultValue: false,
+        },
+        {
+          propName: 'loading',
           knob: 'switch',
           defaultValue: false,
         },

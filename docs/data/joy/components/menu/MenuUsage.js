@@ -7,9 +7,10 @@ import ListDivider from '@mui/joy/ListDivider';
 import Dropdown from '@mui/joy/Dropdown';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function MenuUsage() {
+export default function MenuUsage(inProps) {
   return (
     <JoyUsageDemo
+      {...inProps}
       componentName="Menu"
       data={[
         {

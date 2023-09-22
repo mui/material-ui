@@ -162,13 +162,28 @@ interface JoyUsageDemoProps<ComponentProps> {
   renderDemo: (props: ComponentProps) => React.ReactElement;
 }
 
+export interface JoyUsageDemoConfig {
+  /**
+   * If `true`, the code block is visually hidden.
+   * @default false
+   */
+  disableCodeBlock?: boolean;
+  /**
+   * If `true`, the title of the panel is visually hidden.
+   * @default false
+   */
+  disableTitle?: boolean;
+}
+
 export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
   componentName,
   childrenAccepted = false,
   data,
   renderDemo,
   getCodeBlock = defaultGetCodeBlock,
-}: JoyUsageDemoProps<T>) {
+  disableCodeBlock = false,
+  disableTitle = false,
+}: JoyUsageDemoProps<T> & JoyUsageDemoConfig) {
   const initialProps = {} as { [k in keyof T]: any };
   let demoProps = {} as { [k in keyof T]: any };
   let codeBlockProps = {} as { [k in keyof T]: any };
@@ -194,11 +209,18 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
       sx={{
         flexGrow: 1,
         maxWidth: '100%',
-        display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        containerType: 'inline-size',
         '& .markdown-body pre': {
           margin: 0,
           borderRadius: 'md',
+        },
+        '& > *': {
+          gridColumn: 'span 2',
+          '@container (min-width: 520px)': {
+            gridColumn: 'span 1',
+          },
         },
       }}
     >
@@ -225,79 +247,87 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
         >
           {renderDemo(demoProps)}
         </Box>
-        <BrandingProvider mode="dark">
-          <HighlightedCode
-            code={createCode(
-              {
-                name: componentName,
-                props: codeBlockProps,
-                childrenAccepted,
-              },
-              (code) => getCodeBlock(code, demoProps),
-            )}
-            language="jsx"
-            sx={{ display: { xs: 'none', md: 'block' } }}
-          />
-        </BrandingProvider>
+        {!disableCodeBlock && (
+          <BrandingProvider mode="dark">
+            <HighlightedCode
+              code={createCode(
+                {
+                  name: componentName,
+                  props: codeBlockProps,
+                  childrenAccepted,
+                },
+                (code) => getCodeBlock(code, demoProps),
+              )}
+              language="jsx"
+              sx={{ display: { xs: 'none', md: 'block' } }}
+            />
+          </BrandingProvider>
+        )}
       </Box>
       <Sheet
         sx={(theme) => ({
           flexShrink: 0,
           gap: 2,
-          borderLeft: '1px solid',
+          borderWidth: '1px 0 0 0',
+          borderStyle: 'solid',
           borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
           background: `rgba(${theme.vars.palette.primary.mainChannel} / 0.02)`,
           backdropFilter: 'blur(8px)',
           minWidth: 'max(240px, 36%)',
+          '@container (min-width: 520px)': {
+            borderWidth: '0 0 0 1px',
+          },
         })}
       >
-        <Box
-          sx={{
-            px: 3,
-            py: 2,
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
-          <Typography
-            id="usage-props"
-            component="h3"
-            fontWeight="lg"
-            sx={{ scrollMarginTop: 160, fontFamily: 'General Sans' }}
-          >
-            Playground
-          </Typography>
-          <IconButton
-            aria-label="Reset all"
-            variant="outlined"
-            color="primary"
-            size="sm"
-            onClick={() => setProps(initialProps as T)}
+        {!disableTitle && (
+          <Box
             sx={{
-              visibility: !shallowEqual(props, initialProps) ? 'visible' : 'hidden',
-              '--IconButton-size': '30px',
+              px: 3,
+              py: 2,
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
             }}
           >
-            <SvgIcon>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                <path d="M3 3v5h5" />
-              </svg>
-            </SvgIcon>
-          </IconButton>
-        </Box>
-        <Divider sx={{ opacity: 0.5 }} />
+            <Typography
+              id="usage-props"
+              component="h3"
+              fontWeight="lg"
+              sx={{ scrollMarginTop: 160, fontFamily: 'General Sans' }}
+            >
+              Playground
+            </Typography>
+            <IconButton
+              aria-label="Reset all"
+              variant="outlined"
+              color="primary"
+              size="sm"
+              onClick={() => setProps(initialProps as T)}
+              sx={{
+                visibility: !shallowEqual(props, initialProps) ? 'visible' : 'hidden',
+                '--IconButton-size': '30px',
+              }}
+            >
+              <SvgIcon>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                  <path d="M3 3v5h5" />
+                </svg>
+              </SvgIcon>
+            </IconButton>
+          </Box>
+        )}
+        {!disableTitle && <Divider />}
         <Box
           sx={{
             p: 3,
@@ -438,10 +468,11 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                               size="sm"
                               variant={checked ? 'solid' : 'outlined'}
                               color={checked ? 'primary' : 'neutral'}
-                              label={<Typography>{labels?.[index] || value}</Typography>}
+                              label={labels?.[index] || value}
                               value={value}
                               disableIcon
                               overlay
+                              sx={{ fontSize: 'xs' }}
                             />
                           </Chip>
                         );
@@ -482,6 +513,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                               }}
                             >
                               <Radio
+                                size="sm"
                                 variant="solid"
                                 color={value}
                                 label={value}
@@ -489,7 +521,6 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                                 disableIcon
                                 overlay
                                 sx={{
-                                  // [`& .${radioClasses.action}`]: { bgcolor: `${value}.500` },
                                   [`& .${radioClasses.label}`]: {
                                     fontSize: '10px',
                                     color: 'text.secondary',
@@ -721,6 +752,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                             }}
                           >
                             <Radio
+                              size="sm"
                               value={placement}
                               overlay
                               disableIcon
@@ -734,6 +766,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                                   }),
                                 }),
                               }}
+                              sx={{ fontSize: 'xs' }}
                             />
                           </Sheet>
                         ))}

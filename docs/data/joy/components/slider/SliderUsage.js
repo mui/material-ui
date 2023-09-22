@@ -3,9 +3,10 @@ import Box from '@mui/joy/Box';
 import Slider from '@mui/joy/Slider';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function SliderUsage() {
+export default function SliderUsage(inProps) {
   return (
     <JoyUsageDemo
+      {...inProps}
       componentName="Slider"
       data={[
         {

@@ -2,9 +2,10 @@ import * as React from 'react';
 import Input from '@mui/joy/Input';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function InputUsage() {
+export default function InputUsage(inProps) {
   return (
     <JoyUsageDemo
+      {...inProps}
       componentName="Input"
       data={[
         {

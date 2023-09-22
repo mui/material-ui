@@ -66,18 +66,18 @@ export default function JoyUIComponents() {
         <Grid xs={12} md={6}>
           <Frame.Demo
             className="mui-default-theme"
-            sx={{ flexGrow: 1, borderRadius: 1, overflow: 'auto' }}
+            sx={{ flexGrow: 1, borderRadius: 1, overflow: 'auto', height: '100%', display: 'flex' }}
           >
             {
               {
-                [DEMOS[0]]: <TabsUsage />,
-                [DEMOS[1]]: <RadioUsage />,
-                [DEMOS[2]]: <MenuUsage />,
-                [DEMOS[3]]: <InputUsage />,
-                [DEMOS[4]]: <SelectUsage />,
-                [DEMOS[5]]: <SliderUsage />,
-                [DEMOS[6]]: <ButtonUsage />,
-                [DEMOS[7]]: <AlertUsage />,
+                [DEMOS[0]]: <TabsUsage disableCodeBlock disableTitle />,
+                [DEMOS[1]]: <RadioUsage disableCodeBlock disableTitle />,
+                [DEMOS[2]]: <MenuUsage disableCodeBlock disableTitle />,
+                [DEMOS[3]]: <InputUsage disableCodeBlock disableTitle />,
+                [DEMOS[4]]: <SelectUsage disableCodeBlock disableTitle />,
+                [DEMOS[5]]: <SliderUsage disableCodeBlock disableTitle />,
+                [DEMOS[6]]: <ButtonUsage disableCodeBlock disableTitle />,
+                [DEMOS[7]]: <AlertUsage disableCodeBlock disableTitle />,
               }[demo]
             }
           </Frame.Demo>

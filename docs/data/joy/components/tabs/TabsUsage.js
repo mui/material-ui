@@ -5,10 +5,11 @@ import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function TabsUsage() {
+export default function TabsUsage(inProps) {
   const [index, setIndex] = React.useState(0);
   return (
     <JoyUsageDemo
+      {...inProps}
       componentName="Tabs"
       data={[
         {
