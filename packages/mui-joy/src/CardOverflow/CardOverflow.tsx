@@ -17,6 +17,7 @@ import {
 import useSlot from '../utils/useSlot';
 import buttonClasses from '../Button/buttonClasses';
 import cardClasses from '../Card/cardClasses';
+import modalDialogClasses from '../ModalDialog/modalDialogClasses';
 
 const useUtilityClasses = (ownerState: CardOverflowOwnerState) => {
   const { variant, color } = ownerState;
@@ -75,7 +76,7 @@ const CardOverflowRoot = styled('div', {
         '--Button-radius': '0 var(--CardOverflow-radius) var(--CardOverflow-radius) 0',
       },
     },
-    [`.${cardClasses.vertical} > &`]: {
+    [`.${cardClasses.vertical} > &, .${modalDialogClasses.root} > &`]: {
       flexDirection: 'column', // required to make AspectRatio works
       '--AspectRatio-margin': '0 calc(-1 * var(--Card-padding))',
       '--_CardOverflow-margin': '0 var(--CardOverflow-offset)',
