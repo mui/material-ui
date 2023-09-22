@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { skipInvertedColors } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import Chip from '@mui/joy/Chip';
@@ -33,16 +32,9 @@ export default function ColorInversionOverview() {
       <Typography fontSize="xl2" fontWeight="lg">
         Learn how to build super fast websites.
       </Typography>
-      <div>
-        <Button
-          variant="solid"
-          color="success"
-          endDecorator={<KeyboardArrowRightIcon />}
-          data-skip-inverted-colors
-        >
-          Read more
-        </Button>
-      </div>
+      <Button variant="solid" endDecorator={<KeyboardArrowRightIcon />}>
+        Read more
+      </Button>
     </Card>
   );
 }

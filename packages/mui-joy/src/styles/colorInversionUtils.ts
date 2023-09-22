@@ -18,56 +18,6 @@ export const INVERTED_COLORS_ATTR = 'data-skip-inverted-colors';
 
 export const INVERTED_COLORS_SELECTOR = `& :not([${INVERTED_COLORS_ATTR}]):not([${INVERTED_COLORS_ATTR}] *)`;
 
-// Apply cyclic variables to the component to use fallback values.
-// Color inversion variables from the parent will be neglected.
-export const skipInvertedColors = (variant: string | undefined) => {
-  let scopedVars;
-  if (variant === 'plain') {
-    scopedVars = {
-      '--variant-plainColor': 'var(--variant-plainColor) !important',
-      '--variant-plainHoverColor': 'var(--variant-plainHoverColor) !important',
-      '--variant-plainHoverBg': 'var(--variant-plainHoverBg) !important',
-      '--variant-plainActiveBg': 'var(--variant-plainActiveBg) !important',
-      '--variant-plainDisabledColor': 'var(--variant-plainDisabledColor) !important',
-    };
-  }
-  if (variant === 'outlined') {
-    scopedVars = {
-      '--variant-outlinedColor': 'var(--variant-outlinedColor) !important',
-      '--variant-outlinedBorder': 'var(--variant-outlinedBorder) !important',
-      '--variant-outlinedHoverColor': 'var(--variant-outlinedHoverColor) !important',
-      '--variant-outlinedHoverBorder': 'var(--variant-outlinedHoverBorder) !important',
-      '--variant-outlinedHoverBg': 'var(--variant-outlinedHoverBg) !important',
-      '--variant-outlinedActiveBg': 'var(--variant-outlinedActiveBg) !important',
-      '--variant-outlinedDisabledColor': 'var(--variant-outlinedDisabledColor) !important',
-      '--variant-outlinedDisabledBorder': 'var(--variant-outlinedDisabledBorder) !important',
-    };
-  }
-  if (variant === 'soft') {
-    scopedVars = {
-      '--variant-softColor': 'var(--variant-softColor) !important',
-      '--variant-softHoverColor': 'var(--variant-softHoverColor) !important',
-      '--variant-softBg': 'var(--variant-softBg) !important',
-      '--variant-softHoverBg': 'var(--variant-softHoverBg) !important',
-      '--variant-softActiveBg': 'var(--variant-softActiveBg) !important',
-      '--variant-softActiveColor': 'var(--variant-softActiveColor) !important',
-      '--variant-softDisabledColor': 'var(--variant-softDisabledColor) !important',
-      '--variant-softDisabledBg': 'var(--variant-softDisabledBg) !important',
-    };
-  }
-  if (variant === 'solid') {
-    scopedVars = {
-      '--variant-solidColor': 'var(--variant-solidColor) !important',
-      '--variant-solidBg': 'var(--variant-solidBg) !important',
-      '--variant-solidHoverBg': 'var(--variant-solidHoverBg) !important',
-      '--variant-solidActiveBg': 'var(--variant-solidActiveBg) !important',
-      '--variant-solidDisabledColor': 'var(--variant-solidDisabledColor) !important',
-      '--variant-solidDisabledBg': 'var(--variant-solidDisabledBg) !important',
-    };
-  }
-  return scopedVars;
-};
-
 /**
  *
  * @param color a supported theme color palette

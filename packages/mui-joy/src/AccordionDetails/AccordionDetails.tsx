@@ -5,7 +5,6 @@ import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
-import { skipInvertedColors } from '../styles/colorInversionUtils';
 import styled from '../styles/styled';
 import accordionDetailsClasses, {
   getAccordionDetailsUtilityClass,
@@ -40,7 +39,6 @@ const AccordionDetailsRoot = styled('div', {
   marginInline: 'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
   transition: 'var(--AccordionDetails-transition)',
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-  ...(ownerState['data-skip-inverted-colors'] && skipInvertedColors(ownerState.variant)),
   [`&:not(.${accordionDetailsClasses.expanded})`]: {
     gridTemplateRows: '0fr',
   },

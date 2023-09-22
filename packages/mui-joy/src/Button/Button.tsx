@@ -11,7 +11,6 @@ import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
-import { skipInvertedColors } from '../styles/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const {
@@ -151,7 +150,6 @@ export const getButtonStyles = ({
       [theme.focus.selector]: theme.focus.default,
     } as const,
     {
-      ...(ownerState['data-skip-inverted-colors'] && skipInvertedColors(ownerState.variant)),
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '&:hover': {
         '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
