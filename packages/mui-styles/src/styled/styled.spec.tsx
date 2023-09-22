@@ -104,3 +104,23 @@ function acceptanceTest() {
     </React.Fragment>
   );
 }
+
+function variantsAPI() {
+  const ObjectSyntax = styled('div')<{}, { foo?: string; bar?: number }>({
+    variants: [
+      {
+        props: { foo: 'a' },
+        style: { color: 'blue' },
+      },
+    ],
+  });
+
+  const FunctionSyntax = styled('div')<{}, { foo?: string; bar?: number }>(() => ({
+    variants: [
+      {
+        props: { foo: 'a' },
+        style: { color: 'blue' },
+      },
+    ],
+  }));
+}

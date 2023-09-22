@@ -40,7 +40,8 @@ export interface CreateCSSProperties<Props extends object = {}>
   // Allow pseudo selectors and media queries
   [k: string]:
     | BaseCreateCSSProperties<Props>[keyof BaseCreateCSSProperties<Props>]
-    | CreateCSSProperties<Props>;
+    | CreateCSSProperties<Props>
+    | Array<{ props: Props; style: CSSProperties }>;
 }
 
 /**
