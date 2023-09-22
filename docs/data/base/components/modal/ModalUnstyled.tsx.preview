@@ -1,7 +1,7 @@
 <TriggerButton type="button" onClick={handleOpen}>
   Open modal
 </TriggerButton>
-<StyledModal
+<Modal
   aria-labelledby="unstyled-modal-title"
   aria-describedby="unstyled-modal-description"
   open={open}
@@ -12,4 +12,4 @@
     <h2 id="unstyled-modal-title">Text in a modal</h2>
     <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
   </Box>
-</StyledModal>
+</Modal>
