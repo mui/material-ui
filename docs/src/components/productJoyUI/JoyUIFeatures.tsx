@@ -9,7 +9,6 @@ import { ColorPaletteProp, VariantProp } from '@mui/joy/styles';
 import JoyFormControl from '@mui/joy/FormControl';
 import JoyFormLabel from '@mui/joy/FormLabel';
 import JoySlider, { sliderClasses as joySliderClasses } from '@mui/joy/Slider';
-import JoySvgIcon from '@mui/joy/SvgIcon';
 import JoyButton from '@mui/joy/Button';
 import JoyCard from '@mui/joy/Card';
 import JoyChip from '@mui/joy/Chip';
@@ -626,17 +625,15 @@ export default function JoyUIFeatures() {
     <Section bg="gradient">
       <Grid container spacing={2}>
         <Grid md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
-            <SectionHeadline
-              overline="Features"
-              title={
-                <Typography variant="h2">
-                  Powerful features to <GradientText>customize every piece</GradientText>
-                </Typography>
-              }
-              description="Joy UI is built to ensure you ship great products to your users with an amazing developer experience."
-            />
-          </Box>
+          <SectionHeadline
+            overline="Features"
+            title={
+              <Typography variant="h2">
+                Powerful features to <GradientText>customize every piece</GradientText>
+              </Typography>
+            }
+            description="Joy UI is built to ensure you ship great products to your users with an amazing developer experience."
+          />
           <Group sx={{ mt: 4 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
