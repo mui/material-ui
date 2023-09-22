@@ -11,29 +11,23 @@ import Link from 'docs/src/modules/components/Link';
 
 const additionalTestimonials = [
   {
-    testimonial: `“Joy UI played a pivotal role in shaping the success of big-AGI. It turns heads with its stunning looks and makes other devs envious with its responsiveness, lightweight
-    footprint, comprehensive documentation, and polished API. Using Joy UI is a delight,
-    and the optimal React frontend choice.”`,
-    author: 'Enrico Ros',
-    role: 'Product Management',
-    avatar: '/static/branding/joy-ui/enricoros.png',
-    companyLogo: '/static/branding/joy-ui/big-agi-logo.svg',
+    testimonial: `“Joy UI brings the best bits from Material UI, with a cleaner and fresher look out of the box. The variants approach covers almost all of your UI edge cases, while the flexible theme configuration provides plenty of room for customization. I think that with the right approach, Joy UI should cater to all your front-end development needs.”`,
+    author: 'Badal Saibo',
+    workTitle: 'Frontend Engineer ',
+    avatar: '/static/branding/joy-ui/badalsaibo.jpeg',
+  },
+  {
+    testimonial: `“Joy UI is a game-changer for our large-scale internal tool. It lets us focus on our complex system, not UI components. Even in alpha, it became our go-to library, thanks to the trust and expertise we have in the MUI team. The documentation is comprehensive, with many practical examples. Joy UI's support is outstanding; they respond quickly and pay attention to detail in UI/UX and DX. It's a must-have for developers and companies looking to boost productivity and streamline their UI development.”`,
+    author: 'Marc Pacheco',
+    workTitle: 'Lead Frontend Developer',
+    avatar: '/static/branding/joy-ui/marcpacheco.jpeg',
   },
   {
     testimonial: `“Joy UI played a pivotal role in shaping the success of big-AGI. It turns heads with its stunning looks and makes other devs envious with its responsiveness, lightweight
     footprint, comprehensive documentation, and polished API. Using Joy UI is a delight,
     and the optimal React frontend choice.”`,
     author: 'Enrico Ros',
-    role: 'Product Management',
-    avatar: '/static/branding/joy-ui/enricoros.png',
-    companyLogo: '/static/branding/joy-ui/big-agi-logo.svg',
-  },
-  {
-    testimonial: `“Joy UI played a pivotal role in shaping the success of big-AGI. It turns heads with its stunning looks and makes other devs envious with its responsiveness, lightweight
-    footprint, comprehensive documentation, and polished API. Using Joy UI is a delight,
-    and the optimal React frontend choice.”`,
-    author: 'Enrico Ros',
-    role: 'Product Management',
+    workTitle: 'Product Management',
     avatar: '/static/branding/joy-ui/enricoros.png',
     companyLogo: '/static/branding/joy-ui/big-agi-logo.svg',
   },
@@ -42,11 +36,16 @@ const additionalTestimonials = [
 interface TestimonialAuthorProps {
   avatar: string;
   author: string;
-  role: string;
-  companyLogo: string;
+  workTitle: string;
+  companyLogo?: string;
 }
 
-export function TestimonialAuthor({ avatar, author, role, companyLogo }: TestimonialAuthorProps) {
+export function TestimonialAuthor({
+  avatar,
+  author,
+  workTitle,
+  companyLogo,
+}: TestimonialAuthorProps) {
   return (
     <React.Fragment>
       <Divider />
@@ -57,10 +56,10 @@ export function TestimonialAuthor({ avatar, author, role, companyLogo }: Testimo
             {author}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {role}
+            {workTitle}
           </Typography>
         </div>
-        <Box component="img" src={companyLogo} alt="" sx={{ ml: 'auto' }} />
+        {companyLogo && <Box component="img" src={companyLogo} alt="" sx={{ ml: 'auto' }} />}
       </Box>
     </React.Fragment>
   );
@@ -123,14 +122,14 @@ export default function BaseUITestimonial() {
           </Typography>
           <TestimonialAuthor
             author="Enrico Ros"
-            role="Director of Product Management"
+            workTitle="Director of Product Management"
             avatar="/static/branding/joy-ui/enricoros.png"
             companyLogo="/static/branding/joy-ui/big-agi-logo.svg"
           />
         </Grid>
       </Grid>
       <Grid container spacing={3}>
-        {additionalTestimonials.map(({ testimonial, author, role, avatar, companyLogo }) => (
+        {additionalTestimonials.map(({ testimonial, author, workTitle, avatar, companyLogo }) => (
           <Grid key={author} xs={12} md={4}>
             <Paper
               variant="outlined"
@@ -139,7 +138,7 @@ export default function BaseUITestimonial() {
               <Typography color="text.secondary">{testimonial}</Typography>
               <TestimonialAuthor
                 author={author}
-                role={role}
+                workTitle={workTitle}
                 avatar={avatar}
                 companyLogo={companyLogo}
               />
