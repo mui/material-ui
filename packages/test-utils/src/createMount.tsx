@@ -85,6 +85,7 @@ export default function createMount(options: CreateMountOptions = {}) {
 
   afterEach(() => {
     ReactDOMTestUtils.act(() => {
+      // eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(container!);
     });
     container!.parentElement!.removeChild(container!);
@@ -103,6 +104,7 @@ export default function createMount(options: CreateMountOptions = {}) {
       );
     }
     ReactDOMTestUtils.act(() => {
+      // eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(container!);
     });
 
