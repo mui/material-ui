@@ -12,4 +12,4 @@
       {country.label} ({country.code}) +{country.phone}
     </StyledOption>
   ))}
-</CustomSelect>
+</Select>

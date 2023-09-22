@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Select, selectClasses } from '@mui/base/Select';
-import { Option, optionClasses } from '@mui/base/Option';
+import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { Popper } from '@mui/base/Popper';
 import { styled, Box } from '@mui/system';
 
@@ -9,27 +9,27 @@ export default function UnstyledSelectForm() {
     <div>
       <Box sx={{ mb: 2 }}>
         <Label htmlFor="unnamed-select">Default</Label>
-        <CustomSelect defaultValue={10} id="unnamed-select">
-          <StyledOption value={10}>Ten</StyledOption>
-          <StyledOption value={20}>Twenty</StyledOption>
-          <StyledOption value={30}>Thirty</StyledOption>
-        </CustomSelect>
+        <Select defaultValue={10} id="unnamed-select">
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
+        </Select>
       </Box>
       <div>
         <Label htmlFor="named-select">
           With the <code>name</code> prop
         </Label>
-        <CustomSelect defaultValue={10} id="named-select" name="demo-select">
-          <StyledOption value={10}>Ten</StyledOption>
-          <StyledOption value={20}>Twenty</StyledOption>
-          <StyledOption value={30}>Thirty</StyledOption>
-        </CustomSelect>
+        <Select defaultValue={10} id="named-select" name="demo-select">
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
+        </Select>
       </div>
     </div>
   );
 }
 
-const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+const Select = React.forwardRef(function CustomSelect(props, ref) {
   const slots = {
     root: StyledButton,
     listbox: StyledListbox,
@@ -37,7 +37,7 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return <BaseSelect {...props} ref={ref} slots={slots} />;
 });
 
 const blue = {
@@ -126,7 +126,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;

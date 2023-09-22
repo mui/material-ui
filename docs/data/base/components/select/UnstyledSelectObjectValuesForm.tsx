@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Select, SelectProps, selectClasses } from '@mui/base/Select';
+import { Select as BaseSelect, SelectProps, selectClasses } from '@mui/base/Select';
 import { SelectOption } from '@mui/base/useOption';
-import { Option, optionClasses } from '@mui/base/Option';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import Box from '@mui/system/Box';
@@ -32,18 +32,18 @@ export default function UnstyledSelectObjectValuesForm() {
             >
               Default behavior
             </Label>
-            <CustomSelect
+            <Select
               name="character"
               id="object-value-default-button"
               aria-labelledby="object-value-default-label object-value-default-button"
               placeholder="Choose a character…"
             >
               {characters.map((character) => (
-                <StyledOption key={character.name} value={character}>
+                <Option key={character.name} value={character}>
                   {character.name}
-                </StyledOption>
+                </Option>
               ))}
-            </CustomSelect>
+            </Select>
           </div>
           <Button sx={{ ml: 1 }} type="submit">
             Submit
@@ -59,7 +59,7 @@ export default function UnstyledSelectObjectValuesForm() {
             >
               Custom getSerializedValue
             </Label>
-            <CustomSelect
+            <Select
               getSerializedValue={getSerializedValue}
               name="character"
               id="object-value-serialize-button"
@@ -67,11 +67,11 @@ export default function UnstyledSelectObjectValuesForm() {
               placeholder="Choose a character…"
             >
               {characters.map((character) => (
-                <StyledOption key={character.name} value={character}>
+                <Option key={character.name} value={character}>
                   {character.name}
-                </StyledOption>
+                </Option>
               ))}
-            </CustomSelect>
+            </Select>
           </div>
           <Button sx={{ ml: 1 }} type="submit">
             Submit
@@ -82,7 +82,7 @@ export default function UnstyledSelectObjectValuesForm() {
   );
 }
 
-function CustomSelect<TValue extends {}, Multiple extends boolean = false>(
+function Select<TValue extends {}, Multiple extends boolean = false>(
   props: SelectProps<TValue, Multiple>,
 ) {
   const slots: SelectProps<TValue, Multiple>['slots'] = {
@@ -92,7 +92,7 @@ function CustomSelect<TValue extends {}, Multiple extends boolean = false>(
     ...props.slots,
   };
 
-  return <Select {...props} slots={slots} />;
+  return <BaseSelect {...props} slots={slots} />;
 }
 
 interface Character {
@@ -189,7 +189,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px 12px;

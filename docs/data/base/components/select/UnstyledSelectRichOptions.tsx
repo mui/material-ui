@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Select, SelectProps, selectClasses } from '@mui/base/Select';
-import { Option, optionClasses } from '@mui/base/Option';
+import { Select as BaseSelect, SelectProps, selectClasses } from '@mui/base/Select';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
 import { Popper } from '@mui/base/Popper';
 
@@ -20,11 +20,11 @@ export default function UnstyledSelectRichOptions() {
           {country.label} ({country.code}) +{country.phone}
         </StyledOption>
       ))}
-    </CustomSelect>
+    </Select>
   );
 }
 
-const CustomSelect = React.forwardRef(function CustomSelect(
+const Select = React.forwardRef(function CustomSelect(
   props: SelectProps<number, false>,
   ref: React.ForwardedRef<any>,
 ) {
@@ -35,7 +35,7 @@ const CustomSelect = React.forwardRef(function CustomSelect(
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return <BaseSelect {...props} ref={ref} slots={slots} />;
 });
 
 const blue = {
@@ -125,7 +125,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;

@@ -1,28 +1,31 @@
 import * as React from 'react';
-import { Select, SelectProps, selectClasses } from '@mui/base/Select';
-import { Option, optionClasses } from '@mui/base/Option';
-import { OptionGroup, OptionGroupProps } from '@mui/base/OptionGroup';
+import { Select as BaseSelect, SelectProps, selectClasses } from '@mui/base/Select';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
+import {
+  OptionGroup as BaseOptionGroup,
+  OptionGroupProps,
+} from '@mui/base/OptionGroup';
 import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 export default function UnstyledSelectGrouping() {
   return (
-    <CustomSelect placeholder="Choose a character…">
-      <CustomOptionGroup label="Hobbits">
-        <StyledOption value="Frodo">Frodo</StyledOption>
-        <StyledOption value="Sam">Sam</StyledOption>
-        <StyledOption value="Merry">Merry</StyledOption>
-        <StyledOption value="Pippin">Pippin</StyledOption>
-      </CustomOptionGroup>
-      <CustomOptionGroup label="Elves">
-        <StyledOption value="Galadriel">Galadriel</StyledOption>
-        <StyledOption value="Legolas">Legolas</StyledOption>
-      </CustomOptionGroup>
-    </CustomSelect>
+    <Select placeholder="Choose a character…">
+      <OptionGroup label="Hobbits">
+        <Option value="Frodo">Frodo</Option>
+        <Option value="Sam">Sam</Option>
+        <Option value="Merry">Merry</Option>
+        <Option value="Pippin">Pippin</Option>
+      </OptionGroup>
+      <OptionGroup label="Elves">
+        <Option value="Galadriel">Galadriel</Option>
+        <Option value="Legolas">Legolas</Option>
+      </OptionGroup>
+    </Select>
   );
 }
 
-function CustomSelect(props: SelectProps<string, false>) {
+function Select(props: SelectProps<string, false>) {
   const slots: SelectProps<string, false>['slots'] = {
     root: StyledButton,
     listbox: StyledListbox,
@@ -30,10 +33,10 @@ function CustomSelect(props: SelectProps<string, false>) {
     ...props.slots,
   };
 
-  return <Select {...props} slots={slots} />;
+  return <BaseSelect {...props} slots={slots} />;
 }
 
-const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(
+const OptionGroup = React.forwardRef(function CustomOptionGroup(
   props: OptionGroupProps,
   ref: React.ForwardedRef<any>,
 ) {
@@ -44,7 +47,7 @@ const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(
     ...props.slots,
   };
 
-  return <OptionGroup {...props} ref={ref} slots={slots} />;
+  return <BaseOptionGroup {...props} ref={ref} slots={slots} />;
 });
 
 const blue = {
@@ -133,7 +136,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;

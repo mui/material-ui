@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Select, selectClasses } from '@mui/base/Select';
+import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
 
-import { Option, optionClasses } from '@mui/base/Option';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
@@ -25,7 +25,7 @@ export default function UnstyledSelectCustomRenderValue() {
   );
 }
 
-function CustomSelect(props) {
+function Select(props) {
   const slots = {
     root: StyledButton,
     listbox: StyledListbox,
@@ -33,10 +33,10 @@ function CustomSelect(props) {
     ...props.slots,
   };
 
-  return <Select {...props} slots={slots} />;
+  return <BaseSelect {...props} slots={slots} />;
 }
 
-CustomSelect.propTypes = {
+Select.propTypes = {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
@@ -134,7 +134,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;

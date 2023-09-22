@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Select, selectClasses } from '@mui/base/Select';
-import { Option, optionClasses } from '@mui/base/Option';
+import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
@@ -9,23 +9,23 @@ export default function UnstyledSelectObjectValues() {
   const [character, setCharacter] = React.useState(characters[0]);
   return (
     <div>
-      <CustomSelect
+      <Select
         value={character}
         onChange={(event, newValue) => setCharacter(newValue)}
       >
         {characters.map((c) => (
-          <StyledOption key={c.name} value={c}>
+          <Option key={c.name} value={c}>
             {c.name}
-          </StyledOption>
+          </Option>
         ))}
-      </CustomSelect>
+      </Select>
       <Paragraph>Selected character:</Paragraph>
       <Pre>{JSON.stringify(character, null, 2)}</Pre>
     </div>
   );
 }
 
-function CustomSelect(props) {
+function Select(props) {
   const slots = {
     root: StyledButton,
     listbox: StyledListbox,
@@ -33,10 +33,10 @@ function CustomSelect(props) {
     ...props.slots,
   };
 
-  return <Select {...props} slots={slots} />;
+  return <BaseSelect {...props} slots={slots} />;
 }
 
-CustomSelect.propTypes = {
+Select.propTypes = {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
@@ -143,7 +143,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
