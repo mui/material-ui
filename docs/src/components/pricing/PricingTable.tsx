@@ -924,7 +924,7 @@ function StickyHead({
         (theme) =>
           theme.applyDarkStyles({
             boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.primaryDark[700]}`,
-            backgroundColor: alpha(theme.palette.primaryDark[900], 0.72),
+            backgroundColor: alpha(theme.palette.primaryDark[900], 0.7),
           }),
       ]}
     >
@@ -964,8 +964,8 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
         }),
         (theme) =>
           theme.applyDarkStyles({
-            '&:hover': {
-              bgcolor: alpha(theme.palette.primaryDark[900], 0.3),
+            '&:hover > div': {
+              bgcolor: alpha(theme.palette.primaryDark[900], 0.5),
             },
           }),
       ]}
