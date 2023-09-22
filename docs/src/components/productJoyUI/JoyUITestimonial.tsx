@@ -133,9 +133,11 @@ export default function BaseUITestimonial() {
           <Grid key={author} xs={12} md={4}>
             <Paper
               variant="outlined"
-              sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 3 }}
+              sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 3, height: '100%' }}
             >
-              <Typography color="text.secondary">{testimonial}</Typography>
+              <Typography color="text.secondary" variant="body2" sx={{ flexGrow: 1 }}>
+                {testimonial}
+              </Typography>
               <TestimonialAuthor
                 author={author}
                 workTitle={workTitle}
