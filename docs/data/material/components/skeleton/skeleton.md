@@ -30,7 +30,7 @@ For instance:
       src={item.src}
     />
   ) : (
-    <Skeleton shape="rectangular" width={210} height={118} />
+    <Skeleton shape="rectangular" size="box" width={210} height={118} />
   );
 }
 ```
@@ -84,7 +84,7 @@ infer its width and height from them.
 
 ```jsx
 loading ? (
-  <Skeleton shape="circular">
+  <Skeleton shape="circular" size="box">
     <Avatar />
   </Skeleton>
 ) : (
