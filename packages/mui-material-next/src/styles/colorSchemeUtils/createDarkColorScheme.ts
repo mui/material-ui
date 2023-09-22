@@ -1,9 +1,7 @@
-import { MD3Palettes } from './Theme.types';
+import { ColorSchemeGenerator } from './types';
+
 // convert all these values to CSS vars
-const createDarkColorScheme = (
-  getCssVar: (cssVar: string, defaultVal: string) => string,
-  palette: MD3Palettes,
-) => ({
+const createDarkColorScheme: ColorSchemeGenerator = (getCssVar, palette) => ({
   surfaceTint: getCssVar('ref-palette-primary-40', palette.primary[40]),
   onErrorContainer: getCssVar('ref-palette-error-90', palette.error[90]),
   onError: getCssVar('ref-palette-error-20', palette.error[20]),
@@ -15,6 +13,7 @@ const createDarkColorScheme = (
   shadow: getCssVar('ref-palette-common-black', palette.common.black),
   error: getCssVar('ref-palette-error-80', palette.error[80]),
   outline: getCssVar('ref-palette-neutralVariant-60', palette.neutralVariant[60]),
+  outlineVariant: getCssVar('ref-palette-neutralVariant-30', palette.neutralVariant[30]),
   onBackground: getCssVar('ref-palette-neutral-90', palette.neutral[90]),
   background: getCssVar('ref-palette-neutral-10', palette.neutral[10]),
   inverseOnSurface: getCssVar('ref-palette-neutral-20', palette.neutral[20]),
