@@ -1,4 +1,4 @@
-import { Theme, SxProps, CssVarsType } from './types';
+import { Theme, SxProps } from './types';
 
 /**
  * internal utility
@@ -16,10 +16,10 @@ export const resolveSxValue = <K extends string>(
   keys: K[],
 ): Record<K, undefined | number | string> => {
   let sxObject: Record<string, any> = {};
-  function resolveSx(sxProp: SxProps & CssVarsType) {
+  function resolveSx(sxProp: SxProps) {
     if (typeof sxProp === 'function') {
       const result = sxProp(theme);
-      resolveSx(result as SxProps & CssVarsType);
+      resolveSx(result as SxProps);
     } else if (Array.isArray(sxProp)) {
       sxProp.forEach((sxItem) => {
         if (typeof sxItem !== 'boolean') {
