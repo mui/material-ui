@@ -1,6 +1,6 @@
 {
   "name": "@mui/joy",
-  "version": "5.0.0-beta.5",
+  "version": "5.0.0-beta.7",
   "private": false,
   "author": "MUI Team",
   "description": "A library of beautifully designed React UI components.",
@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/",
+  "homepage": "https://mui.com/joy-ui/getting-started/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
@@ -36,6 +36,32 @@
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-joy/**/*.test.{js,ts,tsx}'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.22.15",
+    "@mui/base": "5.0.0-beta.16",
+    "@mui/core-downloads-tracker": "^5.14.10",
+    "@mui/system": "^5.14.10",
+    "@mui/types": "^7.2.4",
+    "@mui/utils": "^5.14.10",
+    "clsx": "^2.0.0",
+    "prop-types": "^15.8.1"
+  },
+  "devDependencies": {
+    "@mui/material": "^5.14.10",
+    "@types/chai": "^4.3.6",
+    "@types/prop-types": "^15.7.5",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@types/sinon": "^10.0.16",
+    "chai": "^4.3.8",
+    "fast-glob": "^3.3.1",
+    "lodash": "^4.17.21",
+    "next": "^13.4.19",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sinon": "^15.2.0",
+    "test": "^5.0.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
@@ -54,18 +80,6 @@
     "@emotion/styled": {
       "optional": true
     }
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.22.10",
-    "@mui/base": "5.0.0-beta.14",
-    "@mui/core-downloads-tracker": "^5.14.8",
-    "@mui/system": "^5.14.8",
-    "@mui/types": "^7.2.4",
-    "@mui/utils": "^5.14.8",
-    "clsx": "^2.0.0",
-    "csstype": "^3.1.2",
-    "prop-types": "^15.8.1",
-    "react-is": "^18.2.0"
   },
   "sideEffects": false,
   "publishConfig": {

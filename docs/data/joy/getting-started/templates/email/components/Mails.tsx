@@ -48,8 +48,8 @@ export default function EmailList() {
               <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
                 <Avatar
                   alt=""
-                  src={item.avatar}
                   srcSet={item.avatar2x}
+                  src={item.avatar}
                   sx={{ borderRadius: 'sm' }}
                 />
               </ListItemDecorator>
