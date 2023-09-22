@@ -1,13 +1,69 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ThemeViewer, {
   useNodeIdsLazy,
 } from 'docs/src/modules/components/ThemeViewer';
+import { blue, grey } from 'docs/src/modules/brandingTheme';
+
+const StyledSwitch = styled(Switch)(({ theme }) => [
+  {
+    display: 'flex',
+    padding: 0,
+    width: 32,
+    height: 20,
+    borderRadius: 99,
+    '&:active': {
+      '& .MuiSwitch-thumb': {
+        width: 16,
+      },
+      '& .MuiSwitch-switchBase.Mui-checked': {
+        transform: 'translateX(9px)',
+      },
+    },
+    '& .MuiSwitch-switchBase': {
+      padding: 2,
+      '&.Mui-checked': {
+        transform: 'translateX(12px)',
+        color: '#FFF',
+        '& + .MuiSwitch-track': {
+          opacity: 1,
+          backgroundColor: blue[500],
+        },
+      },
+    },
+    '& .MuiSwitch-thumb': {
+      width: 16,
+      height: 16,
+      borderRadius: 99,
+      transition: theme.transitions.create(['width'], {
+        duration: 200,
+      }),
+    },
+    '& .MuiSwitch-track': {
+      borderRadius: 16 / 2,
+      opacity: 1,
+      backgroundColor: grey[400],
+      boxSizing: 'border-box',
+    },
+    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+      '& .MuiSwitch-switchBase': {
+        '&.Mui-checked': {
+          '& + .MuiSwitch-track': {
+            backgroundColor: blue[500],
+          },
+        },
+      },
+      '& .MuiSwitch-track': {
+        backgroundColor: grey[700],
+      },
+    },
+  },
+]);
 
 function DefaultTheme() {
   const [checked, setChecked] = React.useState(false);
@@ -66,13 +122,13 @@ function DefaultTheme() {
             m: 0,
             flexDirection: 'row-reverse',
             gap: 1,
-            '&.MuiFormControlLabel-root': {
+            '& .MuiFormControlLabel-label': {
               fontFamily: 'IBM Plex Sans',
               color: 'text.secondary',
             },
           }}
           control={
-            <Switch
+            <StyledSwitch
               size="small"
               checked={checked}
               onChange={(event) => {
@@ -89,11 +145,13 @@ function DefaultTheme() {
             m: 0,
             flexDirection: 'row-reverse',
             gap: 1,
-            fontFamily: 'IBM Plex Sans',
-            color: 'text.secondary',
+            '& .MuiFormControlLabel-label': {
+              fontFamily: 'IBM Plex Sans',
+              color: 'text.secondary',
+            },
           }}
           control={
-            <Switch
+            <StyledSwitch
               size="small"
               checked={darkTheme}
               onChange={(event) => {
