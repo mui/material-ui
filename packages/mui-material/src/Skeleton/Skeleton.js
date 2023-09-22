@@ -79,6 +79,7 @@ const SkeletonRoot = styled('span', {
       ? theme.vars.palette.Skeleton.bg
       : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
     height: '1.2em',
+    borderRadius: (theme.vars || theme).shape.borderRadius,
     ...(ownerState.size === 'text' && {
       marginTop: 0,
       marginBottom: 0,
@@ -92,8 +93,8 @@ const SkeletonRoot = styled('span', {
     ...(ownerState.shape === 'circular' && {
       borderRadius: '50%',
     }),
-    ...(ownerState.shape === 'rounded' && {
-      borderRadius: (theme.vars || theme).shape.borderRadius,
+    ...(ownerState.shape === 'rectangular' && {
+      borderRadius: 0
     }),
     ...(ownerState.hasChildren && {
       '& > *': {
