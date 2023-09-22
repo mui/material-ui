@@ -19,7 +19,7 @@ function SkeletonChildrenDemo(props) {
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Box sx={{ margin: 1 }}>
           {loading ? (
-            <Skeleton variant="circular">
+            <Skeleton size="box" shape="circular">
               <Avatar />
             </Skeleton>
           ) : (
@@ -37,7 +37,7 @@ function SkeletonChildrenDemo(props) {
         </Box>
       </Box>
       {loading ? (
-        <Skeleton variant="rectangular" width="100%">
+        <Skeleton size="box" shape="rectangular" width="100%">
           <div style={{ paddingTop: '57%' }} />
         </Skeleton>
       ) : (
