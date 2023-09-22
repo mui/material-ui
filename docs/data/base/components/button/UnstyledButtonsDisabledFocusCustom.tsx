@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { Button, buttonClasses, ButtonTypeMap } from '@mui/base/Button';
+import {
+  Button as BaseButton,
+  buttonClasses,
+  ButtonTypeMap,
+} from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import { PolymorphicComponent } from '@mui/base/utils';
@@ -7,12 +11,12 @@ import { PolymorphicComponent } from '@mui/base/utils';
 export default function UnstyledButtonsDisabledFocusCustom() {
   return (
     <Stack spacing={2}>
-      <CustomButton slots={{ root: 'span' }} disabled>
+      <Button slots={{ root: 'span' }} disabled>
         focusableWhenDisabled = false
-      </CustomButton>
-      <CustomButton slots={{ root: 'span' }} disabled focusableWhenDisabled>
+      </Button>
+      <Button slots={{ root: 'span' }} disabled focusableWhenDisabled>
         focusableWhenDisabled = true
-      </CustomButton>
+      </Button>
     </Stack>
   );
 }
@@ -23,7 +27,7 @@ const blue = {
   700: '#0059B2',
 };
 
-const CustomButton = styled(Button)`
+const Button = styled(BaseButton)`
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   line-height: 1.5;
