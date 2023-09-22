@@ -15,21 +15,21 @@ const additionalTestimonials = [
     author: 'Badal Saibo',
     workTitle: 'Frontend Engineer ',
     avatar: '/static/branding/joy-ui/badalsaibo.jpeg',
+    companyLogo: undefined,
   },
   {
     testimonial: `“Joy UI is a game-changer for our large-scale internal tool. It lets us focus on our complex system, not UI components. Even in alpha, it became our go-to library, thanks to the trust and expertise we have in the MUI team. The documentation is comprehensive, with many practical examples. Joy UI's support is outstanding; they respond quickly and pay attention to detail in UI/UX and DX. It's a must-have for developers and companies looking to boost productivity and streamline their UI development.”`,
     author: 'Marc Pacheco',
     workTitle: 'Lead Frontend Developer',
     avatar: '/static/branding/joy-ui/marcpacheco.jpeg',
+    companyLogo: undefined,
   },
   {
-    testimonial: `“Joy UI played a pivotal role in shaping the success of big-AGI. It turns heads with its stunning looks and makes other devs envious with its responsiveness, lightweight
-    footprint, comprehensive documentation, and polished API. Using Joy UI is a delight,
-    and the optimal React frontend choice.”`,
-    author: 'Enrico Ros',
-    workTitle: 'Product Management',
-    avatar: '/static/branding/joy-ui/enricoros.png',
-    companyLogo: '/static/branding/joy-ui/big-agi-logo.svg',
+    testimonial: `“Migrating my website from Material UI to Joy UI was a breeze. The transition was seamless, and the library's intuitive nature made it easy to pick up. With its prebuilt components and default design system, Joy UI offers an excellent out-of-the-box experience. I can quickly develop features without getting caught up in styling and design. The customizable default theme system is a plus, allowing me to introduce custom design tokens with type-safe support. Joy UI has transformed my development process, making it enjoyable and efficient. I highly recommend it for React projects.”`,
+    author: 'Matthew Kwong',
+    workTitle: 'Frontend Engineer',
+    avatar: '/static/branding/joy-ui/mwskwong.png',
+    companyLogo: undefined,
   },
 ];
 
