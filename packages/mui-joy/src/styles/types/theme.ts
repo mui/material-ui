@@ -123,6 +123,8 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   unstable_sx: (props: SxProps) => CSSObject;
 }
 
-export type SxProps = SystemSxProps<Theme> & CircularProgressCssVarsType;
+type CssVarsType = CircularProgressCssVarsType;
+
+export type SxProps = SystemSxProps<Theme> & CssVarsType;
 
 export type SystemProps = SystemSystemProps<Theme>;
