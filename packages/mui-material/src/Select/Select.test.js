@@ -308,7 +308,7 @@ describe('<Select />', () => {
   describe('prop: defaultOpen', () => {
     it('should be open on mount', () => {
       const { getByRole } = render(<Select defaultOpen value="" />);
-      expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+      expect(getByRole('combobox')).to.have.attribute('aria-expanded', 'true');
     });
   });
 
@@ -439,7 +439,7 @@ describe('<Select />', () => {
       // technically matter. This is only here in case we keep the rest accessible
       const { getByRole } = render(<Select open value="" />);
 
-      expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+      expect(getByRole('combobox')).to.have.attribute('aria-expanded', 'true');
     });
 
     specify('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
@@ -482,7 +482,7 @@ describe('<Select />', () => {
       const { getByRole } = render(<Select open value="" />);
       const listboxId = getByRole('listbox').id;
 
-      expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-controls', listboxId);
+      expect(getByRole('combobox')).to.have.attribute('aria-controls', listboxId);
     });
 
     specify('the listbox is focusable', () => {
@@ -856,7 +856,7 @@ describe('<Select />', () => {
       );
 
       const paper = getByTestId('paper');
-      const selectButton = getByRole('combobox', { hidden: true });
+      const selectButton = getByRole('combobox');
 
       expect(paper.style).to.have.property('minWidth', `${selectButton.clientWidth}px`);
     });
