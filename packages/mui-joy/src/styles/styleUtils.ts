@@ -1,5 +1,4 @@
-import { CircularProgressCssVarsType } from '../CircularProgress/CircularProgressCssVars';
-import { Theme, SxProps } from './types';
+import { Theme, SxProps, CssVarsType } from './types';
 
 /**
  * internal utility
@@ -17,10 +16,10 @@ export const resolveSxValue = <K extends string>(
   keys: K[],
 ): Record<K, undefined | number | string> => {
   let sxObject: Record<string, any> = {};
-  function resolveSx(sxProp: SxProps & CircularProgressCssVarsType) {
+  function resolveSx(sxProp: SxProps & CssVarsType) {
     if (typeof sxProp === 'function') {
       const result = sxProp(theme);
-      resolveSx(result as SxProps & CircularProgressCssVarsType);
+      resolveSx(result as SxProps & CssVarsType);
     } else if (Array.isArray(sxProp)) {
       sxProp.forEach((sxItem) => {
         if (typeof sxItem !== 'boolean') {
