@@ -204,19 +204,16 @@ function CardDemo({ invertedColors }: { invertedColors?: boolean }) {
   const [bookmarked, setBookmarked] = React.useState(false);
   return (
     <JoyCard
+      size="lg"
       variant="solid"
       color="primary"
       invertedColors={invertedColors}
-      sx={{ gap: 2, maxWidth: 300, boxShadow: 'md' }}
+      sx={{ gap: 2, maxWidth: 350, boxShadow: 'md' }}
     >
       <JoyChip
         size="sm"
         variant="soft"
-        startDecorator={
-          <JoySvgIcon>
-            <path d="M19.46 8l.79-1.75L22 5.46a.5.5 0 000-.91l-1.75-.79L19.46 2a.5.5 0 00-.91 0l-.79 1.75-1.76.79a.5.5 0 000 .91l1.75.79.79 1.76c.18.39.74.39.92 0zM11.5 9.5L9.91 6c-.35-.78-1.47-.78-1.82 0L6.5 9.5 3 11.09c-.78.36-.78 1.47 0 1.82l3.5 1.59L8.09 18c.36.78 1.47.78 1.82 0l1.59-3.5 3.5-1.59c.78-.36.78-1.47 0-1.82L11.5 9.5zm7.04 6.5l-.79 1.75-1.75.79a.5.5 0 000 .91l1.75.79.79 1.76a.5.5 0 00.91 0l.79-1.75 1.76-.79a.5.5 0 000-.91l-1.75-.79-.79-1.76a.508.508 0 00-.92 0z" />
-          </JoySvgIcon>
-        }
+        startDecorator={<AutoAwesomeRoundedIcon />}
         sx={{ alignSelf: 'flex-start', borderRadius: 'xl' }}
       >
         New
@@ -233,9 +230,9 @@ function CardDemo({ invertedColors }: { invertedColors?: boolean }) {
           <BookmarkOutlinedIcon sx={{ color: 'primary.100' }} />
         )}
       </JoyIconButton>
-      <JoyTypography level="h3">Learn how to build super fast websites.</JoyTypography>
+      <JoyTypography level="h3">Learn how to build great-looking websites.</JoyTypography>
       <JoyButton variant="solid" endDecorator={<KeyboardArrowRightIcon />}>
-        Read more
+        Get started
       </JoyButton>
     </JoyCard>
   );
@@ -290,8 +287,8 @@ function ColorInversionDemo() {
         <Box
           sx={{
             p: 2,
-            minWidth: 300,
-            borderRadius: '0.5rem',
+            minWidth: 350,
+            borderRadius: '12px',
             position: 'absolute',
             left: '50%',
             bottom: '1rem',
@@ -331,8 +328,8 @@ function ColorInversionDemo() {
         <Box
           sx={{
             p: 2,
-            minWidth: 300,
-            borderRadius: '0.5rem',
+            minWidth: 350,
+            borderRadius: '12px',
             position: 'absolute',
             left: '50%',
             bottom: '1rem',
@@ -437,6 +434,7 @@ function AutomaticAdjustment() {
                 radius: undefined,
               });
             }}
+            sx={{ fontFamily: 'IBM Plex Sans' }}
           >
             Random
           </JoyButton>
@@ -449,11 +447,12 @@ function AutomaticAdjustment() {
               setJoyTrack(defaultJoyTrack);
               setJoyThumb(defaultJoyThumb);
             }}
+            sx={{ fontFamily: 'IBM Plex Sans' }}
           >
             Reset
           </JoyButton>
         </Box>
-        <Box sx={{ placeSelf: 'center' }}>
+        <Box sx={{ placeSelf: 'center', backgroundColor: 'background.paper' }}>
           <JoySwitch
             sx={{
               ...(joyTrack.width && { '--Switch-trackWidth': `${joyTrack.width}px` }),
@@ -486,12 +485,12 @@ function AutomaticAdjustment() {
           }}
         >
           <div>
-            <JoyTypography level="title-sm" sx={{ mb: 0.5 }}>
+            <JoyTypography level="title-sm" fontWeight="xl" sx={{ fontFamily: 'IBM Plex Sans' }}>
               Track
             </JoyTypography>
 
             <JoyFormControl size="sm" orientation="horizontal">
-              <JoyFormLabel>Width: </JoyFormLabel>
+              <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Width: </JoyFormLabel>
               <JoySlider
                 size="sm"
                 value={joyTrack.width}
@@ -506,7 +505,7 @@ function AutomaticAdjustment() {
             </JoyFormControl>
 
             <JoyFormControl size="sm" orientation="horizontal">
-              <JoyFormLabel>Height: </JoyFormLabel>
+              <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Height: </JoyFormLabel>
               <JoySlider
                 size="sm"
                 value={joyTrack.height}
@@ -520,7 +519,7 @@ function AutomaticAdjustment() {
             </JoyFormControl>
 
             <JoyFormControl size="sm" orientation="horizontal">
-              <JoyFormLabel>Radius: </JoyFormLabel>
+              <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Radius: </JoyFormLabel>
               <JoySlider
                 size="sm"
                 value={joyTrack.radius}
@@ -534,11 +533,11 @@ function AutomaticAdjustment() {
             </JoyFormControl>
           </div>
           <div>
-            <JoyTypography level="title-sm" sx={{ mb: 0.5 }}>
+            <JoyTypography level="title-sm" fontWeight="xl" sx={{ fontFamily: 'IBM Plex Sans' }}>
               Thumb
             </JoyTypography>
             <JoyFormControl size="sm" orientation="horizontal">
-              <JoyFormLabel>Width: </JoyFormLabel>
+              <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Width: </JoyFormLabel>
               <JoySlider
                 size="sm"
                 value={joyThumb.width}
@@ -552,7 +551,7 @@ function AutomaticAdjustment() {
               />
             </JoyFormControl>
             <JoyFormControl size="sm" orientation="horizontal">
-              <JoyFormLabel>Size: </JoyFormLabel>
+              <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Size: </JoyFormLabel>
               <JoySlider
                 size="sm"
                 value={joyThumb.size}
@@ -566,7 +565,7 @@ function AutomaticAdjustment() {
               />
             </JoyFormControl>
             <JoyFormControl size="sm" orientation="horizontal">
-              <JoyFormLabel>Radius: </JoyFormLabel>
+              <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Radius: </JoyFormLabel>
               <JoySlider
                 size="sm"
                 value={joyThumb.radius}
