@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount } from 'test/utils';
+import createMount from './createMount';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 
 describe('findOutermostIntrinsic', () => {
