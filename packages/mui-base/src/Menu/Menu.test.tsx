@@ -7,7 +7,7 @@ import {
   describeConformanceUnstyled,
   fireEvent,
   act,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import { Menu, menuClasses } from '@mui/base/Menu';
 import { MenuItem } from '@mui/base/MenuItem';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';

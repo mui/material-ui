@@ -59,7 +59,7 @@
     "@mui/icons-material": "^5.14.9",
     "@mui/lab": "^5.0.0-alpha.145",
     "@mui/styles": "^5.14.10",
-    "@mui-internal/test-utilities": "^1.0.0",
+    "@mui-internal/test-utils": "^1.0.0",
     "@popperjs/core": "^2.11.8",
     "@rollup/plugin-replace": "^5.0.2",
     "@testing-library/dom": "^9.3.1",

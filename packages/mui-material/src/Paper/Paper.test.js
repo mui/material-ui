@@ -5,7 +5,7 @@ import {
   createRenderer,
   describeConformance,
   strictModeDoubleLoggingSuppressed,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import Paper, { paperClasses as classes } from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 

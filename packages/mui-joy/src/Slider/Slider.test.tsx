@@ -4,7 +4,7 @@ import {
   describeConformance,
   createRenderer,
   describeJoyColorInversion,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import Slider, { sliderClasses as classes } from '@mui/joy/Slider';
 import { ThemeProvider } from '@mui/joy/styles';
 

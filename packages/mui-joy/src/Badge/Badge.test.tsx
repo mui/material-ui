@@ -4,7 +4,7 @@ import {
   createRenderer,
   describeConformance,
   describeJoyColorInversion,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Badge, { BadgeClassKey, BadgeOrigin, badgeClasses as classes } from '@mui/joy/Badge';

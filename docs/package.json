@@ -118,7 +118,7 @@
     "@babel/plugin-transform-react-constant-elements": "^7.22.5",
     "@babel/preset-typescript": "^7.22.15",
     "@mui-internal/docs-utilities": "^1.0.0",
-    "@mui-internal/test-utilities": "^1.0.0",
+    "@mui-internal/test-utils": "^1.0.0",
     "@types/autosuggest-highlight": "^3.2.0",
     "@types/chai": "^4.3.5",
     "@types/css-mediaquery": "^0.1.2",

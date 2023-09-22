@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  createMount,
-  createRenderer,
-  describeConformanceUnstyled,
-} from '@mui-internal/test-utilities';
+import { createMount, createRenderer, describeConformanceUnstyled } from '@mui-internal/test-utils';
 import { expect } from 'chai';
 import { Switch, SwitchOwnerState, switchClasses } from '@mui/base/Switch';
 

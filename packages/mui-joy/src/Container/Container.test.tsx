@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { describeConformance, createRenderer } from '@mui-internal/test-utilities';
+import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Container, { containerClasses as classes } from '@mui/joy/Container';
 

@@ -6,7 +6,7 @@ import {
   describeConformance,
   describeJoyColorInversion,
   fireEvent,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Chip, { ChipClassKey, chipClasses as classes } from '@mui/joy/Chip';

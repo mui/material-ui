@@ -6,7 +6,7 @@ import {
   createRenderer,
   screen,
   strictModeDoubleLoggingSuppressed,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';

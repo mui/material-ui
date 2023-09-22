@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  createMount,
-  createRenderer,
-  describeConformanceUnstyled,
-} from '@mui-internal/test-utilities';
+import { createMount, createRenderer, describeConformanceUnstyled } from '@mui-internal/test-utils';
 import { Tab, tabClasses } from '@mui/base/Tab';
 import { TabsListProvider, TabsListProviderValue } from '../useTabsList';
 import { TabsContext } from '../Tabs';

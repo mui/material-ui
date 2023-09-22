@@ -6,7 +6,7 @@ import {
   createRenderer,
   describeConformanceUnstyled,
   fireEvent,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import { FormControl, formControlClasses, useFormControlContext } from '@mui/base/FormControl';
 
 describe('<FormControl />', () => {

@@ -7,7 +7,7 @@ import {
   fireEvent,
   createRenderer,
   createMount,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableRow from '@mui/material/TableRow';
 import {

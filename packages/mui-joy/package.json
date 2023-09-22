@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@mui/material": "^5.14.10",
-    "@mui-internal/test-utilities": "^1.0.0",
+    "@mui-internal/test-utils": "^1.0.0",
     "@types/chai": "^4.3.5",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.21",

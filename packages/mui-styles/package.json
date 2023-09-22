@@ -59,7 +59,7 @@
   "devDependencies": {
     "@mui/joy": "5.0.0-beta.7",
     "@mui/material": "^5.14.10",
-    "@mui-internal/test-utilities": "^1.0.0",
+    "@mui-internal/test-utils": "^1.0.0",
     "@types/chai": "^4.3.5",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",

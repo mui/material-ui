@@ -8,7 +8,7 @@ import {
   act,
   fireEvent,
   within,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Modal, { modalClasses as classes, ModalProps } from '@mui/joy/Modal';
 

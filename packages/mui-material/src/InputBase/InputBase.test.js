@@ -8,7 +8,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import { ThemeProvider } from '@emotion/react';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';

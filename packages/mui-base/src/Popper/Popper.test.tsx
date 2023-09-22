@@ -5,7 +5,7 @@ import {
   createMount,
   describeConformanceUnstyled,
   screen,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import { Popper, popperClasses } from '@mui/base/Popper';
 
 describe('<Popper />', () => {

@@ -8,7 +8,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import { Slider as BaseSlider } from '@mui/base/Slider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';

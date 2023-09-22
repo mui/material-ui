@@ -5,7 +5,7 @@ import {
   createRenderer,
   screen,
   describeJoyColorInversion,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs, { tabsClasses as classes } from '@mui/joy/Tabs';
 import SizeTabsContext from './SizeTabsContext';

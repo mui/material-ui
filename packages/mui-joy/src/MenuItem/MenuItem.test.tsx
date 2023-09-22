@@ -8,7 +8,7 @@ import {
   fireEvent,
   screen,
   describeJoyColorInversion,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuItem, { menuItemClasses as classes } from '@mui/joy/MenuItem';

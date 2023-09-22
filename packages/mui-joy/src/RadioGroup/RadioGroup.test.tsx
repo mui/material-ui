@@ -8,7 +8,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import RadioGroup, { radioGroupClasses as classes, RadioGroupProps } from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import { ThemeProvider } from '@mui/joy/styles';

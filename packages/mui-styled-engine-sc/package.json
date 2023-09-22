@@ -43,7 +43,7 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui-internal/test-utilities": "^1.0.0",
+    "@mui-internal/test-utils": "^1.0.0",
     "@types/chai": "^4.3.5",
     "@types/react": "^18.2.21",
     "@types/styled-components": "^5.1.26",

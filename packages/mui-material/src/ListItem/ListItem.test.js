@@ -7,7 +7,7 @@ import {
   createRenderer,
   fireEvent,
   queries,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';

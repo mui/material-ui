@@ -16,7 +16,7 @@
     "@mui/material": "^5.14.10",
     "@mui/material-next": "6.0.0-alpha.102",
     "@mui/system": "^5.14.10",
-    "@mui-internal/test-utilities": "^1.0.0",
+    "@mui-internal/test-utils": "^1.0.0",
     "@playwright/test": "1.37.1",
     "@testing-library/dom": "^9.3.1",
     "@types/chai": "^4.3.5",

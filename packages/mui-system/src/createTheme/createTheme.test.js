@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utilities';
+import { createRenderer } from '@mui-internal/test-utils';
 import { createTheme, styled, ThemeProvider } from '@mui/system';
 
 describe('createTheme', () => {

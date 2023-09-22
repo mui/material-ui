@@ -46,7 +46,7 @@
   "devDependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui-internal/test-utilities": "^1.0.0",
+    "@mui-internal/test-utils": "^1.0.0",
     "@types/chai": "^4.3.5",
     "@types/react": "^18.2.21",
     "chai": "^4.3.7",

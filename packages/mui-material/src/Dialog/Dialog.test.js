@@ -7,7 +7,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -25,14 +25,14 @@ function userClick(element) {
 }
 
 /**
- * @param {typeof import('@mui-internal/test-utilities').screen} view
+ * @param {typeof import('@mui-internal/test-utils').screen} view
  */
 function findBackdrop(view) {
   return view.getByRole('dialog').parentElement;
 }
 
 /**
- * @param {typeof import('@mui-internal/test-utilities').screen} view
+ * @param {typeof import('@mui-internal/test-utils').screen} view
  */
 function clickBackdrop(view) {
   userClick(findBackdrop(view));

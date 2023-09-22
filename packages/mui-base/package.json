@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@mui/material": "^5.14.10",
-    "@mui-internal/test-utilities": "^1.0.0",
+    "@mui-internal/test-utils": "^1.0.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/chai": "^4.3.5",

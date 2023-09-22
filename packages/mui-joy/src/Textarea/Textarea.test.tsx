@@ -8,7 +8,7 @@ import {
   screen,
   act,
   fireEvent,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import Textarea, { textareaClasses as classes } from '@mui/joy/Textarea';
 import { ThemeProvider } from '@mui/joy/styles';
 

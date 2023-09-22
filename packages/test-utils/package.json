@@ -1,5 +1,5 @@
 {
-  "name": "@mui-internal/test-utilities",
+  "name": "@mui-internal/test-utils",
   "version": "1.0.0",
   "private": true,
   "scripts": {

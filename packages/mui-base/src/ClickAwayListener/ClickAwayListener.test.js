@@ -8,7 +8,7 @@ import {
   fireEvent,
   fireDiscreteEvent,
   screen,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import { Portal } from '@mui/base/Portal';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 

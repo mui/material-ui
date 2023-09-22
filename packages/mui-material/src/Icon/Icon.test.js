@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utilities';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import Icon, { iconClasses as classes } from '@mui/material/Icon';
 
 describe('<Icon />', () => {

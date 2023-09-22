@@ -7,7 +7,7 @@ import {
   createRenderer,
   describeConformance,
   screen,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import PropTypes from 'prop-types';
 import Grow from '@mui/material/Grow';
 import Modal from '@mui/material/Modal';

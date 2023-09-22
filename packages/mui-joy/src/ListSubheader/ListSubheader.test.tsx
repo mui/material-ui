@@ -5,7 +5,7 @@ import {
   describeConformance,
   createRenderer,
   describeJoyColorInversion,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ListSubheader, { listSubheaderClasses as classes } from '@mui/joy/ListSubheader';
 import ListSubheaderDispatch from './ListSubheaderContext';

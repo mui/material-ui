@@ -8,7 +8,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import Input, { inputClasses as classes } from '@mui/material-next/Input';
 
 describe('<Input />', () => {

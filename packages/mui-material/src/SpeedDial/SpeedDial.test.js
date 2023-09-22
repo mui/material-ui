@@ -8,7 +8,7 @@ import {
   fireDiscreteEvent,
   screen,
   describeConformance,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';

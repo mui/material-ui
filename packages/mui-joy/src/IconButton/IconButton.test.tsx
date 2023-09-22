@@ -4,7 +4,7 @@ import {
   describeConformance,
   createRenderer,
   describeJoyColorInversion,
-} from '@mui-internal/test-utilities';
+} from '@mui-internal/test-utils';
 import IconButton, { iconButtonClasses as classes } from '@mui/joy/IconButton';
 import { ThemeProvider } from '@mui/joy/styles';
 
