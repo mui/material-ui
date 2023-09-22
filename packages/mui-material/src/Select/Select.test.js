@@ -1063,7 +1063,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      fireEvent.mouseDown(getByRole('button'));
+      fireEvent.mouseDown(getByRole('combobox'));
 
       expect(getByRole('listbox')).to.have.attribute('aria-multiselectable', 'true');
     });
