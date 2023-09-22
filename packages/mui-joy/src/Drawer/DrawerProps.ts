@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, VariantProp, ApplyColorInversion } from '../styles/types';
-import { ModalOwnProps } from '../Modal';
+import { ModalOwnProps } from '../Modal/ModalProps';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type DrawerSlot = 'root' | 'backdrop' | 'content';
