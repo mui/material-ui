@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import TimelineConnector, { timelineConnectorClasses as classes } from '@mui/lab/TimelineConnector';
 
 describe('<TimelineConnector />', () => {
