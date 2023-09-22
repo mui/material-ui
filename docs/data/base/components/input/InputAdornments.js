@@ -2,15 +2,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import { Button } from '@mui/base/Button';
-import { Input, inputClasses } from '@mui/base/Input';
+import { Input as BaseInput, inputClasses } from '@mui/base/Input';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/system';
 
-const CustomInput = React.forwardRef(function CustomInput(props, ref) {
+const Input = React.forwardRef(function CustomInput(props, ref) {
   const { slots, ...other } = props;
   return (
-    <Input
+    <BaseInput
       slots={{
         root: StyledInputRoot,
         input: StyledInputElement,
@@ -22,7 +22,7 @@ const CustomInput = React.forwardRef(function CustomInput(props, ref) {
   );
 });
 
-CustomInput.propTypes = {
+Input.propTypes = {
   /**
    * The components used for each slot inside the InputBase.
    * Either a string to use a HTML element or a component.
@@ -67,11 +67,11 @@ export default function InputAdornments() {
         gap: 2,
       }}
     >
-      <CustomInput
+      <Input
         id="outlined-start-adornment"
         startAdornment={<InputAdornment>kg</InputAdornment>}
       />
-      <CustomInput
+      <Input
         id="outlined-adornment-password"
         type={values.showPassword ? 'text' : 'password'}
         value={values.password}

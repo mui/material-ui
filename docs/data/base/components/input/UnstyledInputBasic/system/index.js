@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { Input } from '@mui/base/Input';
+import { Input as BaseInput } from '@mui/base/Input';
 import { styled } from '@mui/system';
 
-const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  return <Input slots={{ input: StyledInputElement }} {...props} ref={ref} />;
+const Input = React.forwardRef(function CustomInput(props, ref) {
+  return <BaseInput slots={{ input: StyledInputElement }} {...props} ref={ref} />;
 });
 
 export default function UnstyledInputBasic() {
-  return <CustomInput aria-label="Demo input" placeholder="Type something…" />;
+  return <Input aria-label="Demo input" placeholder="Type something…" />;
 }
 
 const blue = {

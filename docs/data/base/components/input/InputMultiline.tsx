@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Input, InputProps } from '@mui/base/Input';
+import { Input as BaseInput, InputProps } from '@mui/base/Input';
 import { styled } from '@mui/system';
 
-const CustomInput = React.forwardRef(function CustomInput(
+const Input = React.forwardRef(function CustomInput(
   props: InputProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
@@ -20,9 +20,7 @@ const CustomInput = React.forwardRef(function CustomInput(
 });
 
 export default function InputMultiline() {
-  return (
-    <CustomInput aria-label="Demo input" multiline placeholder="Type something…" />
-  );
+  return <Input aria-label="Demo input" multiline placeholder="Type something…" />;
 }
 
 const blue = {
