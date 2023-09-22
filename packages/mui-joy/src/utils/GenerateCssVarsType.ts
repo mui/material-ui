@@ -7,6 +7,6 @@
  * '--Button-size'?: string | number;
  * }
  */
-export type GenerateCssVarsType<CssVars extends object> = {
-  [Key in keyof CssVars as CssVars[Key] extends string ? CssVars[Key] : never]?: string | number;
+export type GenerateCssVarsType<CssVars extends Record<string, string>> = {
+  [Key in keyof CssVars as CssVars[Key]]?: string | number;
 };
