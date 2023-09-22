@@ -798,6 +798,7 @@ export function getThemedComponents(): ThemeOptions {
         styleOverrides: {
           root: {
             fontWeight: 700,
+            // Core product issue comes from here
             display: 'inline-flex',
             alignItems: 'center',
             '&.MuiTypography-body1 > svg': {
