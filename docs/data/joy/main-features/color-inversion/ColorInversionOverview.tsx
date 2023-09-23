@@ -9,32 +9,51 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 export default function ColorInversionOverview() {
   return (
-    <Card
-      variant="solid"
-      color="primary"
-      invertedColors
-      sx={{ gap: 2, maxWidth: 300, boxShadow: 'md' }}
-    >
-      <Chip
-        size="sm"
-        variant="soft"
-        sx={{ alignSelf: 'flex-start', borderRadius: 'xl' }}
+    <div>
+      <Card
+        variant="solid"
+        color="primary"
+        invertedColors
+        sx={{ gap: 2, maxWidth: 300, boxShadow: 'md' }}
       >
-        New
-      </Chip>
-      <IconButton
-        variant="outlined"
-        size="sm"
-        sx={{ position: 'absolute', top: '0.75rem', right: '0.75rem' }}
-      >
-        <BookmarkOutlinedIcon />
-      </IconButton>
-      <Typography fontSize="xl2" fontWeight="lg">
-        Learn how to build super fast websites.
-      </Typography>
-      <Button variant="solid" endDecorator={<KeyboardArrowRightIcon />}>
-        Read more
-      </Button>
-    </Card>
+        <Chip
+          size="sm"
+          variant="soft"
+          sx={{ alignSelf: 'flex-start', borderRadius: 'xl' }}
+        >
+          New
+        </Chip>
+        <IconButton
+          variant="outlined"
+          size="sm"
+          sx={{ position: 'absolute', top: '0.75rem', right: '0.75rem' }}
+        >
+          <BookmarkOutlinedIcon />
+        </IconButton>
+        <Typography level="h3">Learn how to build super fast websites.</Typography>
+        <div>
+          <Card variant="soft" color="danger" invertedColors>
+            <Typography>Test</Typography>
+            <Button
+              color="success"
+              variant="solid"
+              endDecorator={<KeyboardArrowRightIcon />}
+            >
+              Read more
+            </Button>
+            <Card variant="solid" color="success" invertedColors>
+              <Typography>Test</Typography>
+              <Button
+                color="success"
+                variant="solid"
+                endDecorator={<KeyboardArrowRightIcon />}
+              >
+                Read more
+              </Button>
+            </Card>
+          </Card>
+        </div>
+      </Card>
+    </div>
   );
 }
