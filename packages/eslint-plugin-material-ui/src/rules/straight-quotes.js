@@ -1,5 +1,5 @@
 // eslint-disable-next-line material-ui/straight-quotes
-const nonStraightQuotes = /[‘’“”]/mg;
+const nonStraightQuotes = /[‘’“”]/gm;
 
 /**
  * @type {import('eslint').Rule.RuleModule}
@@ -7,10 +7,12 @@ const nonStraightQuotes = /[‘’“”]/mg;
 const rule = {
   meta: {
     docs: {
-      description: 'Only allow straight quotes. Curly quotes can still be used but in specific context where relevant.',
+      description:
+        'Only allow straight quotes. Curly quotes can still be used but in specific context where relevant.',
     },
     messages: {
-      wrongQuotes: 'Only allow straight quotes. Curly quotes can still be used but in specific context where relevant.',
+      wrongQuotes:
+        'Only allow straight quotes. Curly quotes can still be used but in specific context where relevant.',
     },
     // fixable: 'code', TODO
     type: 'suggestion',
@@ -22,6 +24,7 @@ const rule = {
         const value = context.sourceCode.text;
         let match;
 
+        // eslint-disable-next-line no-cond-assign
         while ((match = nonStraightQuotes.exec(value)) !== null) {
           context.report({
             node,
@@ -32,7 +35,7 @@ const rule = {
             messageId: 'wrongQuotes',
           });
         }
-      }
+      },
     };
   },
 };

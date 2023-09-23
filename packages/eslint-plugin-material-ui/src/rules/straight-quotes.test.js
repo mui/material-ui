@@ -5,13 +5,15 @@ const rule = require('./straight-quotes');
 const ruleTester = new eslint.RuleTester({ parser: require.resolve('@typescript-eslint/parser') });
 
 ruleTester.run('straight-quotes', rule, {
-  valid: [`
+  valid: [
+    `
 const values = [
   {
     title: 'Put community first 💙',
   },
 ];
-  `],
+  `,
+  ],
   invalid: [
     {
       code: `
@@ -54,7 +56,7 @@ const values = 'foo';
           line: 2,
           column: 46,
           messageId: 'wrongQuotes',
-        }
+        },
       ],
     },
   ],

@@ -22,7 +22,7 @@ const values = [
   },
   {
     title: 'Avoid bureaucracy 🚫',
-    description: "Were so not corporate — and we like it that way.",
+    description: 'Were so not corporate — and we like it that way.',
     lightIcon: 'url(/static/branding/about/illustrations/bureaucracy-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/bureaucracy-dark.svg)',
     width: 81,
@@ -95,16 +95,18 @@ export default function OurValues() {
                 }),
               })}
             >
-              <Box
-                sx={(theme) => ({
-                  background: `${lightIcon}`,
-                  ...theme.applyDarkStyles({
-                    background: `${darkIcon}`,
-                  }),
-                })}
-                width={width}
-                height={height}
-              />
+              <Box sx={{ height: 94 }}>
+                <Box
+                  sx={(theme) => ({
+                    background: `${lightIcon}`,
+                    ...theme.applyDarkStyles({
+                      background: `${darkIcon}`,
+                    }),
+                  })}
+                  width={width}
+                  height={height}
+                />
+              </Box>
               <Box sx={{ flexGrow: 1 }}>
                 <Typography
                   fontWeight="bold"
