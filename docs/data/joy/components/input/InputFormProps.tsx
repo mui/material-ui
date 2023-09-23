@@ -8,6 +8,9 @@ export default function InputFormProps() {
     <form
       onSubmit={(event) => {
         event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const formJson = Object.fromEntries((formData as any).entries());
+        alert(JSON.stringify(formJson));
       }}
     >
       <Stack spacing={1}>

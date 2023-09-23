@@ -95,7 +95,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     name,
     onBlur,
     onChange,
-    onClick,
     onFocus,
     placeholder,
     required = false,
@@ -147,15 +146,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     InputMore['aria-describedby'] = undefined;
   }
 
-  const handleClick = (event) => {
-    if (!disabled && onClick) {
-      // The `onClick` is registered both on the root and the input elements.
-      // Without stopping the propagation, the event could be triggered twice.
-      event.stopPropagation();
-      onClick(event);
-    }
-  };
-
   const id = useId(idOverride);
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
   const inputLabelId = label && id ? `${id}-label` : undefined;
@@ -179,7 +169,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       onBlur={onBlur}
       onChange={onChange}
       onFocus={onFocus}
-      onClick={handleClick}
       placeholder={placeholder}
       inputProps={inputProps}
       {...InputMore}
@@ -198,7 +187,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       color={color}
       variant={variant}
       ownerState={ownerState}
-      onClick={handleClick}
       {...other}
     >
       {label != null && label !== '' && (
@@ -358,10 +346,6 @@ TextField.propTypes /* remove-proptypes */ = {
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
   /**
    * @ignore
    */

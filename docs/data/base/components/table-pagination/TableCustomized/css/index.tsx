@@ -56,7 +56,7 @@ export default function TableCustomized() {
 
             {emptyRows > 0 && (
               <tr style={{ height: 34 * emptyRows }}>
-                <td colSpan={3} />
+                <td colSpan={3} aria-hidden />
               </tr>
             )}
           </tbody>
@@ -169,7 +169,7 @@ function Styles() {
       .TablePaginationDemo th {
         background-color: ${isDarkMode ? cyan[800] : cyan[50]};
       }
-      
+
       .CustomTablePagination .${classes.spacer} {
         display: none;
       }

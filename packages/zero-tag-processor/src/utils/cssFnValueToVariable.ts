@@ -4,6 +4,7 @@ import { parseExpression } from '@babel/parser';
 import type { Expression } from '@linaria/tags';
 import type { Theme } from '@mui/material/styles';
 import { unstable_defaultSxConfig as defaultSxConfig } from '@mui/system/styleFunctionSx';
+import * as t from '@babel/types';
 import { isUnitLess } from './isUnitLess';
 import { cssFunctionTransformerPlugin } from './cssFunctionTransformerPlugin';
 
@@ -19,9 +20,7 @@ export type PluginCustomOptions = {
   /**
    * Object to pass as parameter to the styled css callback functions.
    */
-  themeArgs?: {
-    theme: Theme;
-  };
+  themeArgs?: Record<string, unknown>;
 };
 
 type CssFnValueToVariableParams = {
@@ -39,7 +38,8 @@ function transformThemeKeysInFn(
   filename?: string,
 ) {
   const { themeArgs: { theme } = {} } = options;
-  const config = theme?.unstable_sxConfig ?? defaultSxConfig;
+  const userTheme = theme as Theme;
+  const config = userTheme?.unstable_sxConfig ?? defaultSxConfig;
   const cssPropOptions = config[styleKey];
   const { themeKey } = cssPropOptions;
 
@@ -70,6 +70,9 @@ function transformThemeKeysInFn(
   }
   if (firstItem.type === 'ExpressionStatement') {
     return firstItem.expression;
+  }
+  if (firstItem.type === 'FunctionDeclaration') {
+    return t.functionExpression(null, firstItem.params, firstItem.body);
   }
   return parseExpression(functionString);
 }
