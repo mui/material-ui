@@ -106,7 +106,7 @@ describe('Joy <Select />', () => {
   });
 
   it('should pass "name" as part of the event.target for onBlur', () => {
-    const handleBlur = stub().callsFake((event) => event.target.name);
+    const handleBlur = stub().callsFake((event) => event.target.getAttribute('name'));
     const { getByRole } = render(
       <Select
         name="blur-testing"
@@ -305,8 +305,8 @@ describe('Joy <Select />', () => {
     it('associated with a label', () => {
       render(
         <div>
-          <label htmlFor="foo-bar">label</label>
-          <Select id="foo-bar" />
+          <label id="foo-bar">label</label>
+          <Select aria-labelledby="foo-bar" />
         </div>,
       );
       fireEvent.mouseDown(screen.getByLabelText('label'));

@@ -219,7 +219,7 @@ describe('<FormControl />', () => {
         </FormControl>,
       );
 
-      expect(getByLabelText('label')).to.have.attribute('disabled');
+      expect(getByLabelText('label')).to.have.attribute('aria-disabled', 'true');
     });
   });
 
