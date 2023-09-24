@@ -28,14 +28,15 @@ function Placeholder() {
       {/* placeholder for Template preview */}
       <Box
         sx={(theme) => ({
-          '--_scale': '0.9',
+          '--_scale': '1',
           '--_preview-height': 'clamp(500px / var(--_scale), 80vh, 600px / var(--_scale))',
-          boxShadow: '0 0 0 6px rgba(var(--joy-palette-neutral-mainChannel) / 0.32)',
+          boxShadow: '0 0 0 6px rgba(var(--joy-palette-neutral-mainChannel) / 0.12)',
           borderRadius: '11px',
           height: 'var(--_preview-height)',
           transform: 'scale(var(--_scale))',
           transformOrigin: 'center 160px',
           bgcolor: 'grey.100',
+          mt: 4,
           ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
           }),
