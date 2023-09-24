@@ -143,7 +143,8 @@ export const applySolidInversion = (color: ColorPaletteProp) => (theme: ThemeFra
   return {
     [INVERTED_COLORS_SELECTOR]: {
       '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
-      [`${theme.getColorSchemeSelector('light')}, ${theme.getColorSchemeSelector('dark')}`]: {
+      '--Icon-color': 'currentColor',
+      [`&, ${theme.getColorSchemeSelector('light')}, ${theme.getColorSchemeSelector('dark')}`]: {
         colorScheme: 'dark',
         [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-200`),
         [prefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
@@ -226,6 +227,7 @@ export const applySoftInversion = (color: ColorPaletteProp) => (theme: ThemeFrag
   return {
     [INVERTED_COLORS_SELECTOR]: {
       '--Badge-ringColor': getCssVar(`palette-${color}-softBg`),
+      '--Icon-color': 'currentColor',
       [theme.getColorSchemeSelector('dark')]: {
         [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-300`),
         [prefixVar('--palette-background-body')]: `rgba(${getCssVar(

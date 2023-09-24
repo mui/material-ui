@@ -1,5 +1,5 @@
 import { CSSObject } from '@mui/system';
-import { ColorPaletteProp, DefaultColorPalette, PaletteVariant } from './types/colorSystem';
+import { DefaultColorPalette, PaletteVariant } from './types/colorSystem';
 import { VariantKey } from './types/variants';
 
 export const isVariantPalette = (colorPalette: string | number | Record<string, any>) =>
@@ -156,27 +156,4 @@ export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
     solidDisabledBg: 'var(--variant-solidDisabledBg)',
   });
   return result;
-};
-
-/**
- * Get the scoped global variant variables if `color` prop is specified on the element instance.
- */
-export const getScopedGlobalVariantVars = (
-  variantStyle: Record<string, any>,
-  instanceColor: ColorPaletteProp | undefined,
-) => {
-  if (!instanceColor) {
-    return undefined;
-  }
-  const scopedVariables: Record<string, string> = {};
-  (Object.values(variantStyle) as Array<any>).forEach((value) => {
-    if (typeof value === 'string' && value.startsWith('var')) {
-      const { groups } = value.match(/^var\((?<variantVar>[^,]*),\s*(?<tokenValue>.*)\)$/) || {};
-      if (groups) {
-        scopedVariables[groups.variantVar] = `${groups.tokenValue} !important`;
-      }
-    }
-  });
-  // wrapped variables inside a selector so that it is possible to manually enable color inversion.
-  return { '&[data-inverted-colors="false"]': scopedVariables };
 };
