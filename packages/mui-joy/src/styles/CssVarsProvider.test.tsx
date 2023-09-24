@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui-internal/test-utils';
-import { CssVarsProvider, extendTheme, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
+import { CssVarsProvider, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
 
 describe('[Joy] CssVarsProvider', () => {
   let originalMatchmedia: typeof window.matchMedia;
