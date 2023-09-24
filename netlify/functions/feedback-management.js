@@ -42,35 +42,7 @@ const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
 });
 
-/**
- * Helpping function to retrive data from the message
- */
-function getQuoteAndLinks(message) {
-  const text = message?.blocks?.[0]?.text?.text;
-
-  const quote = text
-    .split('\n\nsent from')[0]
-    .split('\n\n')
-    .slice(1)
-    .join('\n\n')
-    .replace(/&gt;/g, '');
-
-  const links = text
-    .split('\n\nsent from <')[1]
-    .split(' (from section <')
-    .map((linkSection) => {
-      const splited = linkSection.split('/>');
-      if (splited.length === 2) {
-        // Ensure there is a `/>` which means we are facing a link
-        return splited[0];
-      }
-      return '';
-    })
-    .filter((link) => link !== '');
-  return { quote, links };
-}
 // Define slack actions to answer
-
 app.action('delete_action', async ({ ack, body, client, logger }) => {
   try {
     await ack();
@@ -79,9 +51,10 @@ app.action('delete_action', async ({ ack, body, client, logger }) => {
       user: { username },
       channel: { id: channelId },
       message,
+      value,
     } = body;
 
-    const { quote, links } = getQuoteAndLinks(message);
+    const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value);
 
     const googleAuth = new JWT({
       email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
@@ -95,7 +68,7 @@ app.action('delete_action', async ({ ack, body, client, logger }) => {
       range: 'Deleted messages!A:D',
       valueInputOption: 'USER_ENTERED',
       resource: {
-        values: [[username, quote, links[0] ?? '', links[1] ?? '']],
+        values: [[username, comment, currentLocationURL, commmentSectionURL]],
       },
     });
     await client.chat.delete({
@@ -116,9 +89,10 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
       user: { username },
       channel: { id: channelId },
       message,
+      value,
     } = body;
 
-    const { quote, links } = getQuoteAndLinks(message);
+    const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value);
 
     const googleAuth = new JWT({
       email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
@@ -132,7 +106,7 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
       range: 'Sheet1!A:D',
       valueInputOption: 'USER_ENTERED',
       resource: {
-        values: [[username, quote, links[0] ?? '', links[1] ?? '']],
+        values: [[username, comment, currentLocationURL, commmentSectionURL]],
       },
     });
     await client.chat.postMessage({
@@ -219,6 +193,11 @@ from ${commmentSectionURL}
                 text: {
                   type: 'plain_text',
                   text: 'Save',
+                  value: JSON.stringify({
+                    comment,
+                    currentLocationURL,
+                    commmentSectionURL,
+                  }),
                 },
                 action_id: 'save_message',
               },
@@ -227,6 +206,11 @@ from ${commmentSectionURL}
                 text: {
                   type: 'plain_text',
                   text: 'Delete',
+                  value: JSON.stringify({
+                    comment,
+                    currentLocationURL,
+                    commmentSectionURL,
+                  }),
                 },
                 style: 'danger',
                 action_id: 'delete_action',
