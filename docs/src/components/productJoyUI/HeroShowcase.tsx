@@ -57,7 +57,7 @@ export function Desktop() {
         animationDelay: '0.5s',
       }}
     >
-      <OrderDashboardApp />
+      <OrderDashboardApp disableCssReset />
     </JoyBox>
   );
 }

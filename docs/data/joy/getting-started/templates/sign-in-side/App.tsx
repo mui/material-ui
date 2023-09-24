@@ -58,10 +58,17 @@ function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
   );
 }
 
-export default function JoySignInSideTemplate(props: any) {
+type PropsOf<T> = T extends React.ComponentType<infer P> ? P : never;
+
+export default function JoySignInSideTemplate({
+  disableCssReset = false,
+  ...props
+}: {
+  disableCssReset?: boolean;
+} & PropsOf<typeof CssVarsProvider>) {
   return (
     <CssVarsProvider defaultMode="dark" disableTransitionOnChange {...props}>
-      <CssBaseline />
+      {!disableCssReset && <CssBaseline />}
       <GlobalStyles
         styles={{
           ':root': {

@@ -11,7 +11,6 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 
-import useScript from './useScript';
 import FirstSidebar from './components/FirstSidebar';
 import SecondSidebar from './components/SecondSidebar';
 import OrderTable from './components/OrderTable';
@@ -19,24 +18,17 @@ import OrderList from './components/OrderList';
 import Header from './components/Header';
 import ColorSchemeToggle from './components/ColorSchemeToggle';
 
-const useEnhancedEffect =
-  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+type PropsOf<T> = T extends React.ComponentType<infer P> ? P : never;
 
-export default function JoyOrderDashboardTemplate(props: any) {
-  const status = useScript(`https://unpkg.com/feather-icons`);
-
-  useEnhancedEffect(() => {
-    // Feather icon setup: https://github.com/feathericons/feather#4-replace
-    // @ts-ignore
-    if (typeof feather !== 'undefined') {
-      // @ts-ignore
-      feather.replace();
-    }
-  }, [status]);
-
+export default function JoyOrderDashboardTemplate({
+  disableCssReset = false,
+  ...props
+}: {
+  disableCssReset?: boolean;
+} & PropsOf<typeof CssVarsProvider>) {
   return (
     <CssVarsProvider disableTransitionOnChange {...props}>
-      <CssBaseline />
+      {!disableCssReset && <CssBaseline />}
       <Box
         sx={{
           '--screen-height': '100dvh',

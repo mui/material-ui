@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -71,16 +70,6 @@ export default function JoyUITemplates() {
         }
       />
       {inView ? <ThemableTemplate /> : <Placeholder />}
-      <GlobalStyles
-        styles={(theme) => ({
-          body: {
-            backgroundColor: theme.vars.palette.background.default,
-            color: theme.vars.palette.text.primary,
-            fontFamily: theme.typography.fontFamily,
-            lineHeight: 1.5,
-          },
-        })}
-      />
     </Section>
   );
 }

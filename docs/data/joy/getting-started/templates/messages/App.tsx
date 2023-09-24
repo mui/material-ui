@@ -1,42 +1,22 @@
 import * as React from 'react';
 import { CssVarsProvider } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
-import GlobalStyles from '@mui/joy/GlobalStyles';
 import Box from '@mui/joy/Box';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import MyMessages from './components/MyMessages';
-import useScript from './useScript';
 
-const useEnhancedEffect =
-  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+type PropsOf<T> = T extends React.ComponentType<infer P> ? P : never;
 
-export default function JoyMessagesTemplate(props: any) {
-  const status = useScript(`https://unpkg.com/feather-icons`);
-
-  useEnhancedEffect(() => {
-    // Feather icon setup: https://github.com/feathericons/feather#4-replace
-    // @ts-ignore
-    if (typeof feather !== 'undefined') {
-      // @ts-ignore
-      feather.replace();
-    }
-  }, [status]);
-
+export default function JoyMessagesTemplate({
+  disableCssReset = false,
+  ...props
+}: {
+  disableCssReset?: boolean;
+} & PropsOf<typeof CssVarsProvider>) {
   return (
     <CssVarsProvider disableTransitionOnChange {...props}>
-      <GlobalStyles
-        styles={(theme) => ({
-          '[data-feather], .feather': {
-            color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
-            margin: 'var(--Icon-margin)',
-            fontSize: `var(--Icon-fontSize, ${theme.vars.fontSize.xl})`,
-            width: '1em',
-            height: '1em',
-          },
-        })}
-      />
-      <CssBaseline />
+      {!disableCssReset && <CssBaseline />}
       <Box
         sx={{
           '--screen-height': '100dvh',

@@ -581,6 +581,7 @@ export default function ThemableTemplate() {
         >
           <TabPanel value={0}>
             <OrderDashboardApp
+              disableCssReset
               attribute="data-mui-color-scheme"
               modeStorageKey="mui-mode"
               colorSchemeStorageKey="mui-color-scheme"
@@ -589,6 +590,7 @@ export default function ThemableTemplate() {
           </TabPanel>
           <TabPanel value={1}>
             <ProfileDashboardApp
+              disableCssReset
               attribute="data-mui-color-scheme"
               modeStorageKey="mui-mode"
               colorSchemeStorageKey="mui-color-scheme"
@@ -597,6 +599,7 @@ export default function ThemableTemplate() {
           </TabPanel>
           <TabPanel value={2}>
             <MessagesApp
+              disableCssReset
               attribute="data-mui-color-scheme"
               modeStorageKey="mui-mode"
               colorSchemeStorageKey="mui-color-scheme"
@@ -618,6 +621,7 @@ export default function ThemableTemplate() {
             }}
           >
             <SignInApp
+              disableCssReset
               attribute="data-mui-color-scheme"
               modeStorageKey="mui-mode"
               colorSchemeStorageKey="mui-color-scheme"
@@ -626,6 +630,7 @@ export default function ThemableTemplate() {
           </TabPanel>
           <TabPanel value={4}>
             <RentalDashboardApp
+              disableCssReset
               attribute="data-mui-color-scheme"
               modeStorageKey="mui-mode"
               colorSchemeStorageKey="mui-color-scheme"
