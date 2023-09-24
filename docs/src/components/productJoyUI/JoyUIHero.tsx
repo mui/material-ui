@@ -66,7 +66,7 @@ export default function JoyUIHero() {
           <GetStartedButtons
             primaryUrl={ROUTES.joyDocs}
             secondaryLabel="Learn Joy UI"
-            secondaryUrl={ROUTES.baseQuickstart}
+            secondaryUrl={ROUTES.joyTutorial}
             altInstallation="npm install @mui/joy @emotion/react @emotion/styled"
           />
         </Box>
