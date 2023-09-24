@@ -156,8 +156,18 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   sx?: SxProps<Theme>;
 }
 
+type SelectVariant = 'filled' | 'standard' | 'outlined';
+
+export type SelectPropsByVariant<Variant extends SelectVariant = SelectVariant> =
+    Variant extends 'filled'
+        ? TablePaginationOwnProps
+        : Variant extends 'standard'
+            ? TablePaginationOwnProps
+            : TablePaginationOwnProps;
+
+
 export interface TablePaginationTypeMap<AdditionalProps, RootComponent extends React.ElementType> {
-  props: AdditionalProps & TablePaginationOwnProps;
+  props: AdditionalProps & SelectPropsByVariant;
   defaultComponent: RootComponent;
 }
 
@@ -175,12 +185,12 @@ export interface TablePaginationTypeMap<AdditionalProps, RootComponent extends R
  * - inherits [TableCell API](https://mui.com/material-ui/api/table-cell/)
  */
 declare const TablePagination: OverridableComponent<
-  TablePaginationTypeMap<{}, React.JSXElementConstructor<TablePaginationBaseProps>>
+    TablePaginationTypeMap<{}, React.JSXElementConstructor<TablePaginationBaseProps>>
 >;
 
 export type TablePaginationProps<
-  RootComponent extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
-  AdditionalProps = {},
+    RootComponent extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
+    AdditionalProps = {},
 > = OverrideProps<TablePaginationTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
 };
