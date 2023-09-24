@@ -12,7 +12,6 @@ import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
 import { useThemeProps, styled, applySoftInversion, applySolidInversion } from '../styles';
-import { INVERTED_COLORS_SELECTOR } from '../styles/colorInversionUtils';
 import { StyledModalBackdrop, StyledModalRoot } from '../Modal/Modal';
 import CloseModalContext from '../Modal/CloseModalContext';
 import useSlot from '../utils/useSlot';
@@ -74,14 +73,13 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
   }),
   ...(ownerState.variant === 'solid' &&
     ownerState.color &&
-    ownerState.invertedColors && {
-      [INVERTED_COLORS_SELECTOR]: applySolidInversion(ownerState.color)(theme),
-    }),
+    ownerState.invertedColors &&
+    applySolidInversion(ownerState.color)(theme)),
   ...(ownerState.variant === 'soft' &&
     ownerState.color &&
-    ownerState.invertedColors && {
-      [INVERTED_COLORS_SELECTOR]: applySoftInversion(ownerState.color)(theme),
-    }),
+    ownerState.invertedColors &&
+    applySoftInversion(ownerState.color)(theme)),
+  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
 
 const DrawerBackdrop = styled(StyledModalBackdrop as unknown as 'div', {

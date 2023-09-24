@@ -13,11 +13,6 @@ import styled from '../styles/styled';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
-import {
-  INVERTED_COLORS_ATTR,
-  INVERTED_COLORS_SELECTOR,
-  skipInvertedColors,
-} from '../styles/colorInversionUtils';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: CardOwnerState) => {
@@ -89,16 +84,12 @@ export const StyledCardRoot = styled('div')<{ ownerState: CardOwnerState }>(
         ...theme.typography[`body-${ownerState.size!}`],
         ...(ownerState.variant === 'solid' &&
           ownerState.color &&
-          ownerState.invertedColors && {
-            [INVERTED_COLORS_SELECTOR]: applySolidInversion(ownerState.color)(theme),
-            [`&, & [${INVERTED_COLORS_ATTR}]`]: skipInvertedColors(theme),
-          }),
+          ownerState.invertedColors &&
+          applySolidInversion(ownerState.color)(theme)),
         ...(ownerState.variant === 'soft' &&
           ownerState.color &&
-          ownerState.invertedColors && {
-            [INVERTED_COLORS_SELECTOR]: applySoftInversion(ownerState.color)(theme),
-            [`&, & [${INVERTED_COLORS_ATTR}]`]: skipInvertedColors(theme),
-          }),
+          ownerState.invertedColors &&
+          applySoftInversion(ownerState.color)(theme)),
         ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       } as const,
       p !== undefined && { '--Card-padding': p },

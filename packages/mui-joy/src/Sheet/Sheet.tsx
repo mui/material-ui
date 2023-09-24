@@ -7,7 +7,6 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { getPath } from '@mui/system';
 import { applySoftInversion, applySolidInversion, useThemeProps } from '../styles';
-import { INVERTED_COLORS_SELECTOR } from '../styles/colorInversionUtils';
 import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
 import { getSheetUtilityClass } from './sheetClasses';
@@ -74,14 +73,13 @@ export const SheetRoot = styled('div', {
       ...theme.typography['body-md'],
       ...(ownerState.variant === 'solid' &&
         ownerState.color &&
-        ownerState.invertedColors && {
-          [INVERTED_COLORS_SELECTOR]: applySolidInversion(ownerState.color)(theme),
-        }),
+        ownerState.invertedColors &&
+        applySolidInversion(ownerState.color)(theme)),
       ...(ownerState.variant === 'soft' &&
         ownerState.color &&
-        ownerState.invertedColors && {
-          [INVERTED_COLORS_SELECTOR]: applySoftInversion(ownerState.color)(theme),
-        }),
+        ownerState.invertedColors &&
+        applySoftInversion(ownerState.color)(theme)),
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       ...variantStyle,
     },
   ];

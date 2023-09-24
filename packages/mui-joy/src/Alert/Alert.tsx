@@ -12,7 +12,6 @@ import useSlot from '../utils/useSlot';
 import { getAlertUtilityClass } from './alertClasses';
 import { AlertProps, AlertOwnerState, AlertTypeMap } from './AlertProps';
 import { resolveSxValue } from '../styles/styleUtils';
-import { INVERTED_COLORS_SELECTOR } from '../styles/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: AlertOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -79,14 +78,12 @@ const AlertRoot = styled('div', {
       fontWeight: theme.vars.fontWeight.md,
       ...(ownerState.variant === 'solid' &&
         ownerState.color &&
-        ownerState.invertedColors && {
-          [INVERTED_COLORS_SELECTOR]: applySolidInversion(ownerState.color)(theme),
-        }),
+        ownerState.invertedColors &&
+        applySolidInversion(ownerState.color)(theme)),
       ...(ownerState.variant === 'soft' &&
         ownerState.color &&
-        ownerState.invertedColors && {
-          [INVERTED_COLORS_SELECTOR]: applySoftInversion(ownerState.color)(theme),
-        }),
+        ownerState.invertedColors &&
+        applySoftInversion(ownerState.color)(theme)),
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     } as const,
     p !== undefined && { '--Alert-padding': p },
