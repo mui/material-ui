@@ -44,7 +44,6 @@
       "@mui/zero-runtime/*": ["./packages/zero-runtime/src/*"],
       "@mui/zero-tag-processor/*": ["./packages/zero-tag-processor/src/*"],
       "@mui/zero-vite-plugin/*": ["./packages/zero-vite-plugin/src/*"],
-      "test/*": ["./test/*"],
       "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.

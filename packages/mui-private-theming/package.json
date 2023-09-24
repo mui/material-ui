@@ -46,11 +46,11 @@
     "@mui/material": "^5.14.10",
     "@mui/styles": "^5.14.10",
     "@mui/types": "^7.2.4",
+    "@mui-internal/test-utils": "^1.0.0",
     "@types/chai": "^4.3.6",
     "@types/react": "^18.2.21",
     "chai": "^4.3.8",
-    "react": "^18.2.0",
-    "test": "^5.0.0"
+    "react": "^18.2.0"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",

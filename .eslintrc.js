@@ -119,6 +119,7 @@ module.exports = {
     'material-ui/docgen-ignore-before-comment': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
     'material-ui/no-empty-box': 'error',
+    'material-ui/straight-quotes': 'error',
 
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
     'react-hooks/rules-of-hooks': 'error',
@@ -211,15 +212,6 @@ module.exports = {
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
-        'no-restricted-imports': [
-          'error',
-          {
-            // Use named import from `test/utils` instead.
-            // The other files are private.
-            patterns: ['test/utils/*'],
-          },
-        ],
-
         'material-ui/disallow-active-element-as-key-event-target': 'error',
 
         // upgraded level from recommended

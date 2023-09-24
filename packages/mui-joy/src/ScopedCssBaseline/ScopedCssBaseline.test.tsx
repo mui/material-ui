@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ScopedCssBaseline, { scopedCssBaselineClasses as classes } from '@mui/joy/ScopedCssBaseline';
 

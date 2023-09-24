@@ -8,7 +8,7 @@ import {
   createRenderer,
   describeConformanceUnstyled,
   fireEvent,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import {
   Unstable_NumberInput as NumberInput,
   numberInputClasses,
