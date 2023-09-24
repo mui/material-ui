@@ -17,7 +17,7 @@ Today, countless teams and organizations rely on our open-source projects to bui
 
 A couple of years ago, we started to expand our suite of products.
 We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
-We've seen rapid growth with all of them (2-3x per year) and we have more to come.
+We've seen rapid growth with all of them (2x per year) and we have more to come.
 We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
 We are a fully distributed team, spread across multiple time zones.

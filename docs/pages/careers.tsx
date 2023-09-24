@@ -392,7 +392,7 @@ function CareersContent() {
               />
             </Typography>
           }
-          description="The company is bootstrapped (so far). It was incorporated in mid-2019 and is growing fast (x2 YoY). We doubled the team in 2020 (6), accelerated in 2021 (15), kept a similar pace in 2022 (25), and we plan to double it in 2023 (50). We're looking for help to
+          description="The company is bootstrapped (so far). It was incorporated in mid-2019 and is growing fast (x2 YoY). We doubled the team in 2020 (6), and kept a similar pace since: 2021 (15), 2022 (25). We plan to reach 40 people in 2023. We're looking for help to
           grow in the following areas:"
         />
         <Divider sx={{ my: { xs: 2, sm: 4 } }} />
