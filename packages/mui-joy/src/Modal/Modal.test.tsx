@@ -382,11 +382,11 @@ describe('<Modal />', () => {
         // see "DemoFrame" in our docs for a documented implementation
         function IFrame(props: React.PropsWithChildren<{}>) {
           const { children } = props;
-          const frameRef = React.useRef<null | HTMLIFrameElement>(null);
+          const frameRef = React.useRef<HTMLIFrameElement>(null);
           const [iframeLoaded, onLoad] = React.useReducer(() => true, false);
 
           React.useEffect(() => {
-            const document = frameRef.current?.contentDocument;
+            const document = frameRef.current!.contentDocument;
 
             if (document != null && document.readyState === 'complete' && !iframeLoaded) {
               onLoad();
