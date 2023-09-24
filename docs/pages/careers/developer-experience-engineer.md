@@ -34,7 +34,7 @@ Developer Experience matters, [a lot](https://future.com/the-case-for-developer-
 We are looking for somebody to build the best developer experience ever created around a component library, earning the love of developers everywhere.
 This is about focusing on the outcome: success, that developers can have a wonderful workflow with our product.
 
-We are looking for someone that can contribute to the following outcomes:
+We are looking for someone who can contribute to the following outcomes:
 
 - Amplify the need of the community so the product direction aims at what people need the most.
 - Improve the overall developer experience, resulting in better NPS & CSAT scores.

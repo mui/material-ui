@@ -146,6 +146,16 @@ const openRolesData = [
       },
     ],
   },
+  {
+    title: 'Developer Experience',
+    roles: [
+      {
+        title: 'Developer Advocate / DevEx Engineer',
+        description: 'You will delight our users and make them excited about the product roadmap.',
+        url: '/careers/developer-advocate/',
+      },
+    ],
+  },
 ];
 
 const nextRolesData = [
