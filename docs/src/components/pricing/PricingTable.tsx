@@ -957,17 +957,13 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
         (theme) => ({
           '&:hover > div': {
             bgcolor: alpha(theme.palette.grey[50], 0.4),
-            '@media (hover: none)': {
-              bgcolor: 'initial',
-            },
           },
-        }),
-        (theme) =>
-          theme.applyDarkStyles({
+          ...theme.applyDarkStyles({
             '&:hover > div': {
               bgcolor: alpha(theme.palette.primaryDark[900], 0.5),
             },
           }),
+        }),
       ]}
     >
       {rowHeaders[key]}
