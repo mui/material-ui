@@ -14,7 +14,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 const values = [
   {
     title: 'Put community first 💙',
-    description: 'We never lose sight of who we’re serving and why.',
+    description: "We never lose sight of who we're serving and why.",
     lightIcon: 'url(/static/branding/about/illustrations/community-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/community-dark.svg)',
     width: 92,
@@ -22,15 +22,15 @@ const values = [
   },
   {
     title: 'Avoid bureaucracy 🚫',
-    description: 'We’re so not corporate — and we like it that way.',
+    description: 'Were so not corporate — and we like it that way.',
     lightIcon: 'url(/static/branding/about/illustrations/bureaucracy-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/bureaucracy-dark.svg)',
     width: 81,
     height: 94,
   },
   {
-    title: 'Chase “better” 🌱',
-    description: 'We’re driven by an unending desire to improve.',
+    title: 'Chase "better" 🌱',
+    description: "We're driven by an unending desire to improve.",
     lightIcon: 'url(/static/branding/about/illustrations/better-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/better-dark.svg)',
     width: 89,
@@ -95,16 +95,18 @@ export default function OurValues() {
                 }),
               })}
             >
-              <Box
-                sx={(theme) => ({
-                  background: `${lightIcon}`,
-                  ...theme.applyDarkStyles({
-                    background: `${darkIcon}`,
-                  }),
-                })}
-                width={width}
-                height={height}
-              />
+              <Box sx={{ height: 94 }}>
+                <Box
+                  sx={(theme) => ({
+                    background: `${lightIcon}`,
+                    ...theme.applyDarkStyles({
+                      background: `${darkIcon}`,
+                    }),
+                  })}
+                  width={width}
+                  height={height}
+                />
+              </Box>
               <Box sx={{ flexGrow: 1 }}>
                 <Typography
                   fontWeight="bold"
