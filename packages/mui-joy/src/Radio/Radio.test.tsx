@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import Radio, { radioClasses as classes } from '@mui/joy/Radio';
 import { ThemeProvider } from '@mui/joy/styles';
 

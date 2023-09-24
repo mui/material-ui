@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import Slider, { sliderClasses as classes } from '@mui/joy/Slider';
 import { ThemeProvider } from '@mui/joy/styles';
 

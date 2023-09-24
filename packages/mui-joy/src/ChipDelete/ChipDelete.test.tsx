@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance, act, fireEvent } from 'test/utils';
+import { createRenderer, describeConformance, act, fireEvent } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Chip from '@mui/joy/Chip';
 import ChipDelete, { chipDeleteClasses as classes } from '@mui/joy/ChipDelete';

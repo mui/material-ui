@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { act, createRenderer, describeConformance, screen, fireEvent } from 'test/utils';
+import {
+  act,
+  createRenderer,
+  describeConformance,
+  screen,
+  fireEvent,
+} from '@mui-internal/test-utils';
 import { Popper as PopperUnstyled } from '@mui/base/Popper';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';
