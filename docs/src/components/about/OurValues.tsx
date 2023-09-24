@@ -22,7 +22,7 @@ const values = [
   },
   {
     title: 'Avoid bureaucracy 🚫',
-    description: 'Were so not corporate — and we like it that way.',
+    description: "We're so not corporate — and we like it that way.",
     lightIcon: 'url(/static/branding/about/illustrations/bureaucracy-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/bureaucracy-dark.svg)',
     width: 81,
