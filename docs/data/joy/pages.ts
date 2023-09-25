@@ -149,6 +149,7 @@ const pages: readonly MuiPage[] = [
         children: [
           { pathname: '/joy-ui/customization/default-theme-viewer' },
           { pathname: '/joy-ui/customization/theme-builder' },
+          { pathname: '/joy-ui/customization/theme-builder2' },
         ],
       },
     ],
