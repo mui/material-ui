@@ -1,5 +1,3 @@
-// Copied from - https://github.com/chakra-ui/chakra-ui/blob/eb0316ddf96dd259433724062e923c33e6eee729/packages/utilities/react-children-utils/src/index.ts
-
 import * as React from 'react';
 
 /**
