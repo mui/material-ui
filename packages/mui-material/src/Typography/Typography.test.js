@@ -115,7 +115,7 @@ describe('<Typography />', () => {
 
   describe('prop: color', () => {
     it('should check for invalid color value', () => {
-      const consoleErrorStub = sinon.stub(console, 'error');
+      const consoleWarnStub = sinon.stub(console, 'warn');
 
       render(
         <Typography variant="h6" color="background">
@@ -123,8 +123,12 @@ describe('<Typography />', () => {
         </Typography>,
       );
 
-      sinon.assert.called(consoleErrorStub);
-      consoleErrorStub.restore();
+      sinon.assert.calledWith(
+        consoleWarnStub,
+        'MUI: Invalid value found in theme for prop: "background". It should be a string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
+      );
+
+      consoleWarnStub.restore();
     });
   });
 

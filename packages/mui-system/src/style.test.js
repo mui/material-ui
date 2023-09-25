@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import style from './style';
+import sinon from 'sinon';
+import style, { getStyleValue } from './style';
 
 describe('style', () => {
   const bgcolor = style({
@@ -256,6 +257,32 @@ describe('style', () => {
       expect(output).to.deep.equal({
         opacity: 0.5,
       });
+    });
+
+    it('should warn', () => {
+      const round = (value) => Math.round(value * 1e5) / 1e5;
+      const consoleWarnStub = sinon.stub(console, 'warn');
+
+      getStyleValue(
+        {
+          body1: {
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontSize: '1rem',
+            letterSpacing: `${round(0.15 / 16)}em`,
+            fontWeight: 400,
+            lineHeight: 1.5,
+          },
+        },
+        null,
+        'body1',
+      );
+
+      sinon.assert.calledWith(
+        consoleWarnStub,
+        'MUI: Invalid value found in theme for prop: "body1". It should be a string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
+      );
+
+      consoleWarnStub.restore();
     });
   });
 });

@@ -35,16 +35,17 @@ export function getStyleValue(themeMapping, transform, propValueFinal, userValue
     value = getPath(themeMapping, propValueFinal) || userValue;
   }
 
-  if (transform) {
-    value = transform(value, userValue, themeMapping);
-  }
-
-  if (typeof value !== 'string' && typeof value !== 'number' && typeof value !== 'boolean') {
-    // Log an error in development mode
+  if (typeof value === 'object') {
     if (process.env.NODE_ENV !== 'production') {
-      console.error(`Invalid value "${value}" for property "${userValue}"`);
+      console.warn(
+        `MUI: Invalid value found in theme for prop: "${propValueFinal}". It should be a string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".`,
+      );
     }
     value = userValue;
+  }
+
+  if (transform) {
+    value = transform(value, userValue, themeMapping);
   }
 
   return value;
