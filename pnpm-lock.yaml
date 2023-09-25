@@ -1912,6 +1912,9 @@ importers:
       '@babel/register':
         specifier: ^7.22.15
         version: 7.22.15(@babel/core@7.22.20)
+      '@babel/runtime':
+        specifier: ^7.22.15
+        version: 7.22.15
       '@emotion/cache':
         specifier: ^11.11.0
         version: 11.11.0
@@ -2274,6 +2277,9 @@ importers:
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
+      '@types/react-is':
+        specifier: ^18.2.1
+        version: 18.2.1
       chai:
         specifier: ^4.3.8
         version: 4.3.8
@@ -2304,6 +2310,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      react-is:
+        specifier: ^18.2.0
+        version: 18.2.0
       react-router-dom:
         specifier: ^6.15.0
         version: 6.15.0(react-dom@18.2.0)(react@18.2.0)
