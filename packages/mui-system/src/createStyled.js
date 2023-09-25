@@ -192,13 +192,17 @@ export default function createStyled(input = {}) {
                   }
                   delete resolvedStyles['variants'];
                 }
-                const variantsStyles = variantsResolver(
-                  props,
-                  transformVariants(optionalVariants),
-                  optionalVariants,
-                );
+                if (optionalVariants) {
+                  const variantsStyles = variantsResolver(
+                    props,
+                    transformVariants(optionalVariants),
+                    optionalVariants,
+                  );
 
-                return [resolvedStyles, ...variantsStyles];
+                  return [resolvedStyles, ...variantsStyles];
+                }
+
+                return resolvedStyles;
               };
             } else if (isPlainObject(stylesArg)) {
               let transformedStylesArg = stylesArg;
