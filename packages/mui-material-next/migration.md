@@ -201,21 +201,26 @@ The following `styleOverrides` `MuiChip` keys were removed:
 - `deleteIconFilledColorPrimary`
 - `deleteIconFilledColorSecondary`
 
-You can replace them by combining other keys with CSS selectors inside the `MuiChip` `styleOverrides` key.
-The following example replaces the usage of `filledPrimary` with the `filled` key and a CSS selector for the `MuiChip-colorPrimary` class
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `filledPrimary` with the variants API:
 
 ```diff
  const theme = extendTheme({
    components: {
      MuiBadge: {
-       styleOverrides: {
+-      styleOverrides: {
 -       filledPrimary: {
-+       filled: {
-+         "&.MuiChip-colorPrimary": {
-             background: "fuchsia"
-           }
-         }
-       }
+-            background: "fuchsia"
+-          }
+-        }
++      variants: [
++        {
++          props: { variant: 'filled', color: 'primary' },
++          style: {
++            background: "fuchsia"
++          },
++        },
++      ],
      }
    }
  });
