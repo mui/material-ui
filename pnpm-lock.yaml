@@ -85,6 +85,9 @@ importers:
       '@mui-internal/docs-utilities':
         specifier: workspace:^
         version: link:packages/docs-utilities
+      '@mui-internal/test-utils':
+        specifier: workspace:^
+        version: link:packages/test-utils
       '@mui/joy':
         specifier: workspace:*
         version: link:packages/mui-joy
@@ -1258,7 +1261,7 @@ importers:
         version: 15.8.1
     devDependencies:
       '@mui-internal/test-utils':
-        specifier: ^1.0.0
+        specifier: workspace:^
         version: link:../test-utils
       '@types/chai':
         specifier: ^4.3.6
@@ -1466,7 +1469,7 @@ importers:
         version: 4.4.5(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@mui-internal/test-utils':
-        specifier: ^1.0.0
+        specifier: workspace:^
         version: link:../test-utils
       '@testing-library/user-event':
         specifier: ^14.4.3

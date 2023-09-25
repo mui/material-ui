@@ -93,6 +93,7 @@
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/docs-utilities": "workspace:^",
+    "@mui-internal/test-utils": "workspace:^",
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
