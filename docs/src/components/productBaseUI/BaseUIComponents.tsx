@@ -84,7 +84,7 @@ export default function BaseUIComponents() {
                   <br /> <GradientText>CSS adventure</GradientText>
                 </Typography>
               }
-              description="Base UI’s skeletal components give you a sturdy foundation to apply custom styles with ease. With no defaults to override, you’re free to start from scratch using vanilla CSS, Tailwind CSS, MUI System, or any other framework you prefer."
+              description="Base UI's skeletal components give you a sturdy foundation to apply custom styles with ease. With no defaults to override, you're free to start from scratch using vanilla CSS, Tailwind CSS, MUI System, or any other framework you prefer."
             />
           </Box>
           <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>

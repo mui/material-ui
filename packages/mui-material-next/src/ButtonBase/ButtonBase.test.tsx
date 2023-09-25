@@ -12,7 +12,7 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import PropTypes from 'prop-types';
 import { MuiCancellableEventHandler } from '@mui/base/utils/MuiCancellableEvent';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
