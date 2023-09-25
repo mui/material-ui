@@ -6,7 +6,7 @@ import {
   createRenderer,
   fireEvent,
   describeJoyColorInversion,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import Radio, { radioClasses as classes } from '@mui/joy/Radio';
 import { ThemeProvider } from '@mui/joy/styles';
 

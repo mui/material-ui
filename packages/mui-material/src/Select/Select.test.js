@@ -8,7 +8,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';

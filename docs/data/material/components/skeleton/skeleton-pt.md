@@ -22,19 +22,27 @@ O componente é projetado para ser usado **diretamente em seus componentes**. Po
   item ? (
     <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />
   ) : (
-    <Skeleton variant="rect" width={210} height={118} />
+    <Skeleton shape="rect" width={210} height={118} />
   );
 }
 ```
 
-## Variantes
+## Formas
 
-The component supports 4 shape variants:
+O componente suporta 3 formas:
 
-- `text` (default): represents a single line of text (you can adjust the height via font size).
-- `circular`, `rectangular`, and `rounded`: come with different border radius to let you take control of the size.
+- `circular`, `rectangular`, e `rounded`: Venha com um raio de borda diferente para permitir que você assuma o controle da forma.
 
-{{"demo": "Variants.js"}}
+{{"demo": "Shapes.js"}}
+
+## Tamanhos
+
+Você pode usar os seguintes valores para especificar o tamanho do componente:
+
+- `text` (default): representa uma única linha de texto (você pode ajustar a altura por tamanho da fonte).
+- `box`: Escala o componente para o tamanho da caixa delimitadora.
+
+{{"demo": "Sizes.js"}}
 
 ## Animações
 
