@@ -43,13 +43,13 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.5",
+    "@mui-internal/test-utils": "^1.0.0",
+    "@types/chai": "^4.3.6",
     "@types/react": "^18.2.21",
-    "chai": "^4.3.7",
+    "chai": "^4.3.8",
     "hoist-non-react-statics": "^3.3.2",
     "react": "^18.2.0",
     "styled-components": "^6.0.0",
-    "test": "^5.0.0"
   },
   "peerDependencies": {
     "styled-components": "^6.0.0"

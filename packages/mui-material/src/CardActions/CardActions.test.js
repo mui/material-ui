@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import CardActions, { cardActionsClasses as classes } from '@mui/material/CardActions';
 
 describe('<CardActions />', () => {

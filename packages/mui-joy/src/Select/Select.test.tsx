@@ -8,7 +8,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';

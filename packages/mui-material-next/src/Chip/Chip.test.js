@@ -9,7 +9,7 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { hexToRgb } from '@mui/system';
 import { createTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
