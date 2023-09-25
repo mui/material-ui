@@ -19,7 +19,6 @@ export default function ExampleFilterMemberCheckbox() {
       variant="outlined"
       sx={{
         p: 2,
-
         borderRadius: 'sm',
         width: 360,
         maxWidth: '100%',
@@ -41,6 +40,7 @@ export default function ExampleFilterMemberCheckbox() {
       <div role="group" aria-labelledby="member">
         <List
           sx={{
+            '--ListItem-gap': '12px',
             [`& .${checkboxClasses.root}`]: {
               mr: 'auto',
               flexGrow: 1,
