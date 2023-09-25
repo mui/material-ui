@@ -4,18 +4,19 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { keyframes, css } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
+import { alpha } from '../styles';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getSkeletonUtilityClass } from './skeletonClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, animation, hasChildren, width, height } = ownerState;
+  const { classes, shape, size, animation, hasChildren, width, height } = ownerState;
 
   const slots = {
     root: [
       'root',
-      variant,
+      size,
+      shape,
       animation,
       hasChildren && 'withChildren',
       hasChildren && !width && 'fitContent',
@@ -60,10 +61,10 @@ const SkeletonRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-
     return [
       styles.root,
-      styles[ownerState.variant],
+      ownerState.shape && styles[ownerState.shape],
+      ownerState.size && styles[ownerState.size],
       ownerState.animation !== false && styles[ownerState.animation],
       ownerState.hasChildren && styles.withChildren,
       ownerState.hasChildren && !ownerState.width && styles.fitContent,
@@ -71,51 +72,44 @@ const SkeletonRoot = styled('span', {
     ];
   },
 })(
-  ({ theme, ownerState }) => {
-    const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
-    const radiusValue = toUnitless(theme.shape.borderRadius);
-
-    return {
-      display: 'block',
-      // Create a "on paper" color with sufficient contrast retaining the color
-      backgroundColor: theme.vars
-        ? theme.vars.palette.Skeleton.bg
-        : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
-      height: '1.2em',
-      ...(ownerState.variant === 'text' && {
-        marginTop: 0,
-        marginBottom: 0,
+  ({ theme, ownerState }) => ({
+    display: 'block',
+    // Create a "on paper" color with sufficient contrast retaining the color
+    backgroundColor: theme.vars
+      ? theme.vars.palette.Skeleton.bg
+      : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
+    height: '1.2em',
+    borderRadius: (theme.vars || theme).shape.borderRadius,
+    ...(ownerState.size === 'text' && {
+      marginTop: 0,
+      marginBottom: 0,
+      height: 'auto',
+      transformOrigin: '0 55%',
+      transform: 'scale(1, 0.60)',
+      '&:empty:before': {
+        content: '"\\00a0"',
+      },
+    }),
+    ...(ownerState.shape === 'circular' && {
+      borderRadius: '50%',
+    }),
+    ...(ownerState.shape === 'rectangular' && {
+      borderRadius: 0,
+    }),
+    ...(ownerState.hasChildren && {
+      '& > *': {
+        visibility: 'hidden',
+      },
+    }),
+    ...(ownerState.hasChildren &&
+      !ownerState.width && {
+        maxWidth: 'fit-content',
+      }),
+    ...(ownerState.hasChildren &&
+      !ownerState.height && {
         height: 'auto',
-        transformOrigin: '0 55%',
-        transform: 'scale(1, 0.60)',
-        borderRadius: `${radiusValue}${radiusUnit}/${
-          Math.round((radiusValue / 0.6) * 10) / 10
-        }${radiusUnit}`,
-        '&:empty:before': {
-          content: '"\\00a0"',
-        },
       }),
-      ...(ownerState.variant === 'circular' && {
-        borderRadius: '50%',
-      }),
-      ...(ownerState.variant === 'rounded' && {
-        borderRadius: (theme.vars || theme).shape.borderRadius,
-      }),
-      ...(ownerState.hasChildren && {
-        '& > *': {
-          visibility: 'hidden',
-        },
-      }),
-      ...(ownerState.hasChildren &&
-        !ownerState.width && {
-          maxWidth: 'fit-content',
-        }),
-      ...(ownerState.hasChildren &&
-        !ownerState.height && {
-          height: 'auto',
-        }),
-    };
-  },
+  }),
   ({ ownerState }) =>
     ownerState.animation === 'pulse' &&
     css`
@@ -156,17 +150,25 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     className,
     component = 'span',
     height,
+    // TODO v6: add defaults
+    shape,
+    size,
     style,
     variant = 'text',
     width,
     ...other
   } = props;
 
+  const sizeValue = size ?? (variant === 'text' ? variant : undefined);
+  const shapeValue =
+    shape ?? (['circular', 'rectangular', 'rounded'].includes(variant) ? variant : undefined);
+
   const ownerState = {
     ...props,
     animation,
     component,
-    variant,
+    size: sizeValue,
+    shape: shapeValue,
     hasChildren: Boolean(other.children),
   };
 
@@ -222,6 +224,14 @@ Skeleton.propTypes /* remove-proptypes */ = {
    */
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
+   * The shape of the skeleton.
+   */
+  shape: PropTypes.oneOf(['circular', 'rectangular', 'rounded']),
+  /**
+   * Determines whether the skeleton should scale to the element's text or bounding box.
+   */
+  size: PropTypes.oneOf(['text', 'box']),
+  /**
    * @ignore
    */
   style: PropTypes.object,
@@ -236,6 +246,7 @@ Skeleton.propTypes /* remove-proptypes */ = {
   /**
    * The type of content that will be rendered.
    * @default 'text'
+   * @deprecated Use `shape` prop to set the shape of the skeleton and `size` prop to set the scale adaptation.
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['circular', 'rectangular', 'rounded', 'text']),

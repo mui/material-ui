@@ -10,7 +10,7 @@ import {
   createRenderer,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 
 function getStyleValue(value: string) {

@@ -168,3 +168,10 @@ In the following snippet, if <kbd>Shift</kbd> is held when clicking the incremen
 ```jsx
 <NumberInput min={0} step={1} shiftMultiplier={5} />
 ```
+
+### Adornments
+
+You can use the `startAdornment` and `endAdornment` props to add a prefix or suffix, respectively, to a Number Input.
+Adornments can be useful for displaying units of measure, like weight or currency, alongside values.
+
+{{"demo": "NumberInputAdornments.js", "defaultCodeOpen": false}}

@@ -5,7 +5,7 @@ import {
   screen,
   describeConformance,
   strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';
 
 describe('<LinearProgress />', () => {

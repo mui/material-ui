@@ -19,7 +19,7 @@
     },
     {
       "groupName": "babel",
-      "matchPackagePatterns": "@babel/*"
+      "matchPackagePatterns": ["^@babel/", "^@types/babel"]
     },
     {
       "groupName": "Emotion",
