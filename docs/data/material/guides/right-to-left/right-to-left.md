@@ -29,7 +29,7 @@ document.dir = 'rtl';
 To only make part of your app support right-to-left, use the `dir` attribute in that part's specific wrapper as an alternative to the global approach above.
 
 :::warning
-This won't work with portaled elements, such as Dialos, as they render outside of the element with the `dir` attribute.
+This won't work with portaled elements, such as Dialogs, as they render outside of the element with the `dir` attribute.
 
 To fix it, make sure to add the `dir` attribute directly to them:
 

@@ -141,6 +141,10 @@ const pages: readonly MuiPage[] = [
             pathname: '/joy-ui/customization/overriding-component-structure',
             title: 'Overriding the component structure',
           },
+          {
+            pathname: '/joy-ui/customization/right-to-left',
+            title: 'Right-to-left',
+          },
         ],
       },
       {
