@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
+import {
+  describeConformance,
+  createRenderer,
+  describeJoyColorInversion,
+} from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import AutocompleteListbox, {
   autocompleteListboxClasses as classes,
