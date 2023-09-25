@@ -193,12 +193,12 @@ from ${commmentSectionURL}
                 text: {
                   type: 'plain_text',
                   text: 'Save',
-                  value: JSON.stringify({
-                    comment,
-                    currentLocationURL,
-                    commmentSectionURL,
-                  }),
                 },
+                value: JSON.stringify({
+                  comment,
+                  currentLocationURL,
+                  commmentSectionURL,
+                }),
                 action_id: 'save_message',
               },
               {
@@ -206,12 +206,12 @@ from ${commmentSectionURL}
                 text: {
                   type: 'plain_text',
                   text: 'Delete',
-                  value: JSON.stringify({
-                    comment,
-                    currentLocationURL,
-                    commmentSectionURL,
-                  }),
                 },
+                value: JSON.stringify({
+                  comment,
+                  currentLocationURL,
+                  commmentSectionURL,
+                }),
                 style: 'danger',
                 action_id: 'delete_action',
               },
