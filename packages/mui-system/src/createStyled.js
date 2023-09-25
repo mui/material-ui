@@ -54,11 +54,6 @@ const getVariantStyles = (name, theme) => {
   return transformVariants(variants);
 };
 
-const themeVariantsResolver = (props, styles, theme, name) => {
-  const themeVariants = theme?.components?.[name]?.variants;
-  return variantsResolver(props, styles, themeVariants);
-};
-
 const variantsResolver = (props, styles, variants) => {
   const { ownerState = {} } = props;
   const variantsStyles = [];
@@ -78,6 +73,11 @@ const variantsResolver = (props, styles, variants) => {
   }
 
   return variantsStyles;
+};
+
+const themeVariantsResolver = (props, styles, theme, name) => {
+  const themeVariants = theme?.components?.[name]?.variants;
+  return variantsResolver(props, styles, themeVariants);
 };
 
 // Update /system/styled/#api in case if this changes
@@ -190,7 +190,7 @@ export default function createStyled(input = {}) {
                   if (resolvedStyles && resolvedStyles.variants) {
                     optionalVariants = resolvedStyles.variants;
                   }
-                  delete resolvedStyles['variants'];
+                  delete resolvedStyles.variants;
                 }
                 if (optionalVariants) {
                   const variantsStyles = variantsResolver(
@@ -204,13 +204,14 @@ export default function createStyled(input = {}) {
 
                 return resolvedStyles;
               };
-            } else if (isPlainObject(stylesArg)) {
+            }
+            if (isPlainObject(stylesArg)) {
               let transformedStylesArg = stylesArg;
               let styledArgVariants;
               if (stylesArg && stylesArg.variants) {
                 styledArgVariants = stylesArg.variants;
               }
-              delete transformedStylesArg['variants'];
+              delete transformedStylesArg.variants;
 
               if (styledArgVariants) {
                 transformedStylesArg = (props) => {
@@ -240,7 +241,7 @@ export default function createStyled(input = {}) {
         if (styleArg && styleArg.variants) {
           styledArgVariants = styleArg.variants;
         }
-        delete transformedStyleArg['variants'];
+        delete transformedStyleArg.variants;
 
         if (styledArgVariants) {
           transformedStyleArg = (props) => {
@@ -276,7 +277,7 @@ export default function createStyled(input = {}) {
             if (resolvedStyles && resolvedStyles.variants) {
               optionalVariants = resolvedStyles.variants;
             }
-            delete resolvedStyles['variants'];
+            delete resolvedStyles.variants;
           }
           const variantsStyles = variantsResolver(
             props,
