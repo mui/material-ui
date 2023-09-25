@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import {
+  createRenderer,
+  describeConformance,
+  describeJoyColorInversion,
+} from '@mui-internal/test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { PopperProps } from '@mui/base';
 import { ThemeProvider } from '@mui/joy/styles';
