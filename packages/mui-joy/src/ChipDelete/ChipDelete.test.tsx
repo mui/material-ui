@@ -7,7 +7,7 @@ import {
   describeJoyColorInversion,
   act,
   fireEvent,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Chip from '@mui/joy/Chip';
 import ChipDelete, { chipDeleteClasses as classes } from '@mui/joy/ChipDelete';

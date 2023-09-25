@@ -23,7 +23,7 @@ import More from 'docs/src/components/action/More';
 import ROUTES from 'docs/src/route';
 import IconImage from 'docs/src/components/icon/IconImage';
 
-const DEMOS = ['Data Grid', 'Date Range Picker', 'Charts', 'Tree View', 'Sparkline'];
+const DEMOS = ['Data Grid', 'Date and Time Pickers', 'Charts', 'Tree View', 'Sparkline'];
 const WIP = DEMOS.slice(4);
 
 function PrefetchImages() {
@@ -96,7 +96,7 @@ export default function XComponents() {
                 )}
               </Highlighter>
             ))}
-            <More href={ROUTES.roadmap} />
+            <More href={ROUTES.xDocs} />
           </Group>
         </Grid>
         <Grid item xs={12} md={6} sx={{ position: 'relative' }}>

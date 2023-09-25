@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import useThemeProps from './useThemeProps';
 import ThemeProvider from './ThemeProvider';
 import ColorInversion, { useColorInversion } from './ColorInversion';

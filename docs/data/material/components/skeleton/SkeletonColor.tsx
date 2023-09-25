@@ -15,7 +15,8 @@ export default function SkeletonColor() {
     >
       <Skeleton
         sx={{ bgcolor: 'grey.900' }}
-        variant="rectangular"
+        shape="rectangular"
+        size="box"
         width={210}
         height={118}
       />
