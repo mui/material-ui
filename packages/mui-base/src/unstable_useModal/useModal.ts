@@ -55,7 +55,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
   // @ts-ignore internal logic
   const modal = React.useRef<{ modalRef: HTMLDivElement; mount: HTMLElement }>({});
   const mountNodeRef = React.useRef<null | HTMLElement>(null);
-  const modalRef = React.useRef<null | HTMLDivElement>(null);
+  const modalRef = React.useRef<HTMLDivElement>(null);
   const handleRef = useForkRef(modalRef, rootRef);
   const [exited, setExited] = React.useState(!open);
   const hasTransition = getHasTransition(children);
@@ -67,8 +67,8 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   const getDoc = () => ownerDocument(mountNodeRef.current);
   const getModal = () => {
-    modal.current.modalRef = modalRef.current as HTMLDivElement;
-    modal.current.mount = mountNodeRef.current as HTMLElement;
+    modal.current.modalRef = modalRef.current!;
+    modal.current.mount = mountNodeRef.current!;
     return modal.current;
   };
 

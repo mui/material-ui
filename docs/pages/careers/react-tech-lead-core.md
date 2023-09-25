@@ -1,12 +1,12 @@
-# React Engineer - xGrid
+# React Tech Lead - Core (future role)
 
-<p class="description">You will strengthen the Data Grid team, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
+<p class="description">You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.</p>
 
 ## Details of the Role
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [4 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
+- **Level**: [6 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## About the company
@@ -17,7 +17,7 @@ Today, countless teams and organizations rely on our open-source libraries to bu
 
 A couple of years ago, we started to expand our suite of products.
 We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
-We've seen rapid growth with all of them (2-3x per year) and we have more to come.
+We've seen rapid growth with all of them (2x per year) and we have more to come.
 We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
 We are a fully distributed team, spread across multiple time zones.
@@ -27,44 +27,39 @@ For additional details about the MUI team and culture, you can check our [career
 
 ## Why we're hiring
 
+The core components team (MUI Core) needs help.
+They are working on 4 products (Material UI, Base UI, Joy UI, and MUI System) with a tiny team.
+
+We also need help to continue to improve the health of the open-source product: make the core components easier to use, increase the contributions by engaging and collaborating with the community, polish all the details, make the components more accessible, guide developers to answers, and just generally be a positive presence in the open-source community.
+
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
-The data grid team (part of MUI X) needs help.
-We have started with the [data grid](https://mui.com/x/react-data-grid/#commercial-version) component.
-We need to build new features on it and introduce new components.
-The enterprise version is built on the open-source version of the components.
-
-We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the open-source community.
-
-## About the role
-
 ### Why this is interesting
-
-The advanced components portfolio is still small, with a million interesting and challenging problems to solve.
 
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
+The core components are widely used, you will receive a lot of feedback on your work. The community has high expectations, they will push you to do better, every day.
+The [results of the latest survey](https://mui.com/blog/2021-developer-survey-results/) can give you a great sense of where we will need to push the open-source library in the coming months.
+
+## About the role
+
 ### What you'll do on a day-to-day basis
 
-Depending on the day, you'll:
+You will extend the [React Engineer](https://mui-org.notion.site/Software-Engineer-fe310cfb22e34fc7881318f9cb1cf023#5f2967e6c60d411ea09ab8a108d95702) responsibilities. Depending on the day, you'll:
 
-- **Help guide architectural decisions**.
-  The future of MUI is discussed and planned in our public RFCs and issues.
-  You'll be helping drive these conversations and guiding MUI toward the best possible solutions.
-- **Contribute to deep, meaningful refactors and feature releases**.
-  MUI is a complex codebase. Components we've shipped recently, such as the data grid have required months of dedicated, careful work.
-- **Reduce friction**.
-  A large amount of the work on MUI is reducing friction and making it easier to use.
-  This might involve careful API design, identifying and fixing top bugs, creating easier-to-understand error messages, and writing documentation and blog posts about features you ship.
-- **Collaborate with the community**.
-  Many small, as well as meaningful fixes and features, have been contributed by the community. Your role is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
-- **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
-- **Take ownership of features from idea/mockup to live deployment**.
-  You'll shape and guide the direction of crucial new features, including new components.
-- **Ship. Early and often**. You'll iterate and ship frequently.
-  You'll have a real impact on the end-user experience and you'll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
-- **You'll be interacting with the users** on a regular basis, handling inbound support and feature requests (every developer helps with developer requests).
+- **Lead**. You will lead by inspiring and setting the bar for code quality for the engineering team, and cracking the hard problems:
+  - Guide the approach and execution.
+  - Guide people in making the right technical decisions themselves over imposing them.
+  - Be aware of the current technical landscape and knows where the wind blows.
+- **Nurture community contributions**. You will provide guidance and direction to unlock the contributions of the community. Your time will often be way better spent doing this than fixing the problems yourself.
+- **Shape the product**. You will be laser-focused on the end goal. It's not about solving technical challenges but about the problem solved for the users.
+- **Enable quality work**. You will:
+  - Embody and foster the engineering culture, e.g. rigorousness, push for small single-purpose PRs, encourage peer reviews, create strong feedback loops between decision and outcome.
+  - Empower the team to aim for high-quality outputs. By doing such it aims for the success of delivered solutions.
+  - Push for consistency, follow what's going on in the other teams.
+- **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace, align the team on "one way" of doing things and make sure engineers follow the conventions.
+- **Be a solver**. You will dig deep into arbitrarily complex problems and find an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
 
 ### The best parts of this job
 
@@ -105,12 +100,12 @@ We're looking for someone with strong front-end skills. More important than spec
 - **Past work with front-end infrastructure**.
   Perhaps you've created your company's design system, written a Babel plugin, or written complex React components.
   It would be great if you could address this in your cover letter!
-
-### What it would be nice if you had, but isn't required
-
 - **You've contributed to a design system before**.
   You have worked on enterprise components in the past, maybe for internal use in your company.
   You have built complex and advanced features while making sure the accessibility was fully functional.
+
+### What it would be nice if you had, but isn't required
+
 - **You've maintained an active repository before**.
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
   Previous experience with highly active repository workflows is a definite plus for this role.
@@ -124,7 +119,7 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 ## How to apply?
 
-[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/77584e4c-9379-45f3-a294-6e50bf250383/application?utm_source=ZNRrPGBkqO)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/73e07586-d3aa-43b3-bfef-8eec52884e2a/application?utm_source=ZNRrPGBkqO)
 
 Don't tick every bullet? Apply anyway! Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
 If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

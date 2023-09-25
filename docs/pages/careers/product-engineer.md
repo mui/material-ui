@@ -1,10 +1,10 @@
-# Developer Experience Engineer - Core
+# Product Engineer - Store
 
-<p class="description">You will focus on providing experiences that delight developers using MUI. This role is mostly about MUI Core.</p>
+<p class="description">You will lead the technical, product, and operational development of the store.</p>
 
 ## Details of the Role
 
-- **Location**: Remote (preference for UTC-6 to UTC+2).
+- **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
 - **Level**: [4 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
@@ -17,7 +17,7 @@ Today, countless teams and organizations rely on our open-source libraries to bu
 
 A couple of years ago, we started to expand our suite of products.
 We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
-We've seen rapid growth with all of them (2-3x per year) and we have more to come.
+We've seen rapid growth with all of them (2x per year) and we have more to come.
 We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
 We are a fully distributed team, spread across multiple time zones.
@@ -30,19 +30,13 @@ For additional details about the MUI team and culture, you can check our [career
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
-Developer Experience matters, [a lot](https://future.com/the-case-for-developer-experience/).
-We are looking for somebody to build the best developer experience ever created around a component library, earning the love of developers everywhere.
-This is about focusing on the outcome: success, that developers can have a wonderful workflow with our product.
-
-We are looking for someone that can contribute to the following outcomes:
-
-- Amplify the need of the community so the product direction aims at what people need the most.
-- Improve the overall developer experience, resulting in better NPS & CSAT scores.
-- Create momentum in the React community and drive adoption of the library.
+The development and operations of the store are currently almost exclusively run by the executive team of the company (the co-founders).
+This team doesn't have enough bandwidth, the store doesn't receive the care it deserves.
+You will be responsible to step up and carry forward the development of the store on new fronts.
 
 ### Why this is interesting
 
-You have a lot of feedback, more than we can process. It's an opportunity to challenge the state of the art in the React component dev tool space.
+You will get the opportunity to work on many different topics.
 
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
@@ -52,43 +46,47 @@ Our products empower React developers to build awesome applications faster – w
 
 Depending on the day, you'll:
 
-- You will collaborate with Developer Advocates, Designers, Product Managers, Engineering Managers, Marketing, and other stakeholders to identify opportunities for improvement.
-- Inform the technical approach and architecture of MUI as it relates to developer experiences.
-- Help contribute to the MUI community by providing code review, mentorship, and support to MUI employees, community members, and partners.
-- Advocate and support improvements to MUI to improve development and integration of tools and plugins, e.g. Storybook, Tailwind CSS.
-- Work on issues and improvements critical to the success of MUI users and the broader community.
-- Foster a culture of learning through iterative improvements and strong collaboration with UX research.
+- Take initiatives to grow the sales of the templates
+- Define the product direction
+- Review new items submitted by the contributors to be hosted on the marketplace
+- Fix root problems raised by store customers on the support channels
+- Take care of operational needs, e.g. automate payouts, create sales reports
 
-For the right candidate:
+### Here are a few initiatives you might work on
 
-- Working with the Leadership to construct and execute on a hiring plan to grow the Developer Experience team.
+Tasks that you might work on once you join:
+
+- Explore ways to provide a theme builder/sell themes on the platform that deeply integrate with MUI Core and the documentation.
+- Develop the SEA & SEO strategy, create new blog posts, try retargeting, Google Ads, etc.
+- Improve the fulfillment workflow of MUI X Pro & Premium.
+- Develop a Figma plugin & backend to push [MUI for Figma](https://mui.com/store/items/figma-react/) to reduce the collaboration friction between designers and developers.
+- Add a search page to scale the hosting to more items from contributors.
+- Revamp the design of the store to match the new brand of mui.com.
+- Migrate the store from Gatsby to Next.js or Remix. Gatsby was introduced at a point in time when it had more downloads than Next.js. Our CEO has experience with Next.js since 2017 but wanted to ensure that MUI was supporting Gatsby well too.
+  This requirement [is no longer relevant](https://npm-stat.com/charts.html?package=next&package=gatsby), and since the DX of Next.js is significantly better, time to migrate.
 
 ## About you
 
+We're looking for someone with strong development skills, and more important than specific technical skills a strong problem solver who loves to learn new things. Details matter to you.
+This role is perfect for you if you are curious, have tenacity, enjoy tacking risk, and care about design.
+You are a [manager of one](https://signalvnoise.com/posts/1430-hire-managers-of-one).
+
 ### Skills you should have
 
-- **A track record of demonstrating an eye for product and solving real-world user problems.** If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
-- **Expertise in the modern JavaScript ecosystem**.
-  MUI is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, webpack, and Babel.
+- **Expertise in modern JavaScript ecosystem.** The store is currently build on WooCommerce so expertise in WordPress/PHP could help. Our backend technology of choice is Node.js.
+- **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, finding boring solutions, we want you on our team.
 - **Strong written and verbal communication skills**.
   As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
 - **Ability to dive into complex problems**.
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Ready and willing to ask and answer questions**.
   If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team. We thrive because of continuous learning. First-time mistakes should be celebrated, not blamed.
-- **Past work with front-end infrastructure**.
-  Perhaps you've created your company's design system, written a Babel plugin, or written complex React components.
-  It would be great if you could address this in your cover letter!
+- **Avoid monolithic deliverables**.
+  You scope and stage your work into well-defined milestones to ship.
 
 ### What it would be nice if you had, but isn't required
 
-- **You've contributed to a design system before**.
-  You have worked on enterprise components in the past, maybe for internal use in your company.
-  You have built complex and advanced features while making sure the accessibility was fully functional.
-- **You've maintained an active repository before**.
-  Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
-  Previous experience with highly active repository workflows is a definite plus for this role.
-- **You have contributed code to MUI before**. A history of contributing to MUI would be a definite plus.
+- **Has or is pursuing a business side project**. You owned a side project generating revenues on the side of your full-time job. You were doing whatever was necessary to solve people's pain.
 
 ## Benefits & Compensation
 
@@ -98,7 +96,7 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 ## How to apply?
 
-[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/e641bac3-5538-4ec8-8d73-eaa1a03704d6/application?utm_source=ZNRrPGBkqO)
 
 Don't tick every bullet? Apply anyway! Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
 If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

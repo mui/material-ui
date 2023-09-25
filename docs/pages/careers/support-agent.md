@@ -1,6 +1,6 @@
-# Technical Product Manager
+# Support Agent - Store (future role)
 
-<p class="description">You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features. Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning.</p>
+<p class="description">You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.</p>
 
 ## Details of the Role
 
@@ -16,7 +16,7 @@ Today, countless teams and organizations rely on our open-source libraries to bu
 
 A couple of years ago, we started to expand our suite of products.
 We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
-We've seen rapid growth with all of them (2-3x per year) and we have more to come.
+We've seen rapid growth with all of them (2x per year) and we have more to come.
 We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
 We are a fully distributed team, spread across multiple time zones.
@@ -29,15 +29,13 @@ For additional details about the MUI team and culture, you can check our [career
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
-The advanced components team (X) needs help to build its best features.
-We have started with the [data grid](https://mui.com/x/react-data-grid/) a year ago, but it's the beginning.
-Our users are continuously providing feedback on the most important [pains they face](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc).
+The support on the store is currently almost exclusively done by the executive team of the company (e.g. CSO). This team does no longer has enough bandwidth. You will be responsible to step up and carry forward the support provided to customers of the store on multiple fronts: answering license questions, processing purchase orders, granting refunds, identifying recurring problems, and a lot more.
 
 ## About the role
 
 ### Why this is interesting
 
-Our enterprise components portfolio is still small, with a million interesting and challenging problems to solve.
+You will be in the tech industry. We offer flexibility in your work day.
 
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
@@ -45,37 +43,32 @@ Our products empower React developers to build awesome applications faster – w
 
 Depending on the day, you'll:
 
-- You will coordinate with the engineering to ensure that the product being delivered at each iteration solves the problem.
-  This involves growing a deep understanding of our technical choices and constraints.
-- If time allows you to, you will assist the engineering team and implement some of the items in the backlog, up to part-time.
-- You will drive the revenue and community growth by owning KPIs.
-- You will grow and cultivate a deep understanding of the problems that developers have when they deal with enterprise applications. This means that you will observe and reach out to the community, run research interviews and share your insights with the team.
-- You will keep a close eye on feature requests, issues, and general improvements (mostly through GitHub issues and occasionally Zendesk), to curate opportunities based on our strategy.
-- You will build a strategy for your product area and contribute to the overall product strategy, e.g. establishing a go-to-market strategy.
-- You will assess the impact of initiatives through telemetry data and qualitative feedback to help us develop our understanding further, and decide on the next steps.
+- Respond to customer inquiries via email in a clear, concise, and comprehensive manner.
+  You might provide refunds, answer license questions, process purchase-orders, etc.
+- Assist in writing and maintaining the FAQs and guides.
+- Suggest opportunities to make customers happier for our product team.
+- Suggest opportunities to improve the quality and efficiency of our customer service operation.
 
 ## About you
 
 ### Skills you should have
 
-- 3+ years prior experience working as a Front-end engineer, with React ideally.
-- 1+ years experience as Product Manager or closely related roles such as Product Owner, Program Manager, or Solutions Architect.
-- Able to switch between the big picture and detailed view multiple times a day.
+- 1+ years' experience in a Customer Support role.
+- Exceptional writing skills (be clear and concise).
+- Experience working remotely.
 
 ### What it would be nice if you had, but isn't required
 
-- Experience building developer tools.
-- Experience working with open-source and having interacted with open-source communities.
+- Basic knowledge of web development.
 
 ## Benefits & Compensation
 
-Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+Competitive compensation depending on the profile and location of up to $20/h.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-amp-benefits) page.
 
 ## How to apply?
 
-[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/79a9b5ec-6fb3-41ec-b48b-0a792ced7c19/application?utm_source=ZNRrPGBkqO)
 
 Don't tick every bullet? Apply anyway! Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
 If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.
