@@ -28,7 +28,7 @@ export function createFilterOptions<Value>(
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
 
 export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Multiple extends true
-  ? ReadonlyArray<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
   : DisableClearable extends true
   ? NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
   : Value | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
@@ -369,7 +369,9 @@ export interface UseAutocompleteReturnValue<
    * Resolver for the input element's props.
    * @returns props that should be spread on the input element
    */
-  getInputProps: () => React.InputHTMLAttributes<HTMLInputElement>;
+  getInputProps: () => React.InputHTMLAttributes<HTMLInputElement> & {
+    ref: React.Ref<HTMLInputElement>;
+  };
   /**
    * Resolver for the input label element's props.
    * @returns props that should be spread on the input label element

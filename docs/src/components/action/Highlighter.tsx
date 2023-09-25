@@ -12,7 +12,7 @@ export default function Highlighter({
   selectedBg?: 'white' | 'comfort';
   selected?: boolean;
 } & ButtonBaseProps) {
-  const ref = React.useRef<null | HTMLButtonElement>(null);
+  const ref = React.useRef<HTMLButtonElement>(null);
   return (
     <ButtonBase
       component="span"

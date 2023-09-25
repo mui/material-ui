@@ -473,6 +473,20 @@ export function getThemedComponents(): ThemeOptions {
               '& > span': { transition: '0.2s', marginLeft: 4 },
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
+            ...(ownerState.size === 'medium' && {
+              padding: theme.spacing('8px', '12px'),
+              '& > span': { transition: '0.2s', marginLeft: 4 },
+              '&:hover > span': { transform: 'translateX(2px)' },
+            }),
+            ...(ownerState.size === 'small' && {
+              padding: theme.spacing(0.5, 1),
+              fontFamily: theme.typography.fontFamily,
+              fontSize: defaultTheme.typography.pxToRem(13),
+              fontWeight: theme.typography.fontWeightSemiBold,
+              borderRadius: 8,
+              '& > span': { transition: '0.2s', marginLeft: 4 },
+              '&:hover > span': { transform: 'translateX(2px)' },
+            }),
             ...(ownerState.variant === 'outlined' &&
               ownerState.color === 'secondary' && {
                 color: (theme.vars || theme).palette.text.secondary,
@@ -522,13 +536,6 @@ export function getThemedComponents(): ThemeOptions {
                   },
                 }),
               }),
-            ...(ownerState.size === 'small' && {
-              padding: theme.spacing(0.5, 1),
-              fontFamily: theme.typography.fontFamily,
-              fontSize: '0.75rem',
-              fontWeight: theme.typography.fontWeightSemiBold,
-              borderRadius: '6px',
-            }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
                 color: '#FFF',
@@ -683,16 +690,19 @@ export function getThemedComponents(): ThemeOptions {
             // @ts-ignore internal repo module augmentation issue
             props: { variant: 'link' },
             style: ({ theme }) => ({
+              marginBottom: 1,
               fontSize: theme.typography.pxToRem(14),
-              fontWeight: 700,
+              fontWeight: theme.typography.fontWeightBold,
               color: (theme.vars || theme).palette.primary[600],
+              '&:hover': {
+                backgroundColor: (theme.vars || theme).palette.primary[50],
+              },
               ...theme.applyDarkStyles({
                 color: (theme.vars || theme).palette.primary[300],
+                '&:hover': {
+                  backgroundColor: alpha(theme.palette.primary[800], 0.3),
+                },
               }),
-              mb: 1,
-              '& svg': {
-                ml: -0.5,
-              },
             }),
           },
         ],
@@ -1004,13 +1014,13 @@ export function getThemedComponents(): ThemeOptions {
                     (theme.vars || theme).palette.grey[50]
                   }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
                   '&:hover': {
-                    borderColor: (theme.vars || theme).palette.primary[300],
+                    borderColor: (theme.vars || theme).palette.primary[200],
                     boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
                   },
                 },
                 ':is(a&), :is(button&)': {
                   '&:hover': {
-                    borderColor: (theme.vars || theme).palette.primary[300],
+                    borderColor: (theme.vars || theme).palette.primary[200],
                     boxShadow: `0px 4px 16px ${(theme.vars || theme).palette.grey[200]}`,
                   },
                 },
@@ -1027,6 +1037,7 @@ export function getThemedComponents(): ThemeOptions {
                     (theme.vars || theme).palette.primaryDark[900]
                   }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
                   '&:hover': {
+                    borderColor: (theme.vars || theme).palette.primary[700],
                     boxShadow: `0px 4px 24px ${(theme.vars || theme).palette.common.black}`,
                   },
                 },

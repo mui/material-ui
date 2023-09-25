@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -12,7 +11,6 @@ import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
-import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import Link from 'docs/src/modules/components/Link';
 import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -41,33 +39,8 @@ interface AppHeaderProps {
 
 export default function AppHeader(props: AppHeaderProps) {
   const { gitHubRepository = 'https://github.com/mui' } = props;
-  const changeTheme = useChangeTheme();
-  const [mode, setMode] = React.useState<string | null>(null);
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const t = useTranslate();
-
-  React.useEffect(() => {
-    let initialMode = 'system';
-    try {
-      initialMode = localStorage.getItem('mui-mode') || initialMode;
-    } catch (error) {
-      // do nothing
-    }
-    setMode(initialMode);
-  }, []);
-
-  const handleChangeThemeMode = (checked: boolean) => {
-    const paletteMode = checked ? 'dark' : 'light';
-    setMode(paletteMode);
-
-    try {
-      localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
-    } catch (error) {
-      // do nothing
-    }
-    changeTheme({ paletteMode });
-  };
 
   return (
     <Header>
@@ -101,12 +74,7 @@ export default function AppHeader(props: AppHeaderProps) {
               <GitHubIcon fontSize="small" />
             </IconButton>
           </Tooltip>
-          {mode !== null ? (
-            <ThemeModeToggle
-              checked={mode === 'system' ? prefersDarkMode : mode === 'dark'}
-              onChange={handleChangeThemeMode}
-            />
-          ) : null}
+          <ThemeModeToggle />
         </Stack>
         <Box sx={{ display: { md: 'none' }, ml: 1 }}>
           <HeaderNavDropdown />

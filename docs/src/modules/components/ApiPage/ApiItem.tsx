@@ -196,7 +196,7 @@ export type ApiItemProps = {
   children: React.ReactNode;
 };
 
-function ApiItem(props: ApiItemProps) {
+export default function ApiItem(props: ApiItemProps) {
   const { title, description, note, children, type, id, ...other } = props;
   const descriptionRef = React.useRef<HTMLSpanElement>(null);
   const [isOverflow, setIsOverflow] = React.useState(false);
@@ -221,26 +221,16 @@ function ApiItem(props: ApiItemProps) {
   return (
     <Root ownerState={{ type }} {...other}>
       <div id={id} className="MuiApi-item-header">
-        <a
-          className="MuiApi-item-link-visual"
-          href={`#${id}`}
-          onClick={() => {
-            navigator.clipboard.writeText(
-              `${window.location.origin}${window.location.pathname}#${id}`,
-            );
-          }}
-        >
+        <a className="MuiApi-item-link-visual" href={`#${id}`}>
           <svg>
             <use xlinkHref="#anchor-link-icon" />
           </svg>
         </a>
-
         <span
           className="MuiApi-item-title" // This className is used by Algolia
         >
           {title}
         </span>
-
         <span
           className={`MuiApi-item-description${
             isExtended ? ' MuiApi-item-description-extended' : ''
@@ -278,5 +268,3 @@ ApiItem.propTypes = {
   note: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
-
-export default ApiItem;
