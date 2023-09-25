@@ -80,6 +80,32 @@ const themeVariantsResolver = (props, styles, theme, name) => {
   return variantsResolver(props, styles, themeVariants);
 };
 
+const muiStyledFunctionResolver = ({ styledArg, props, defaultTheme, themeId }) => {
+  const resolvedStyles = styledArg({
+    ...props,
+    theme: resolveTheme({ ...props, defaultTheme, themeId }),
+  });
+
+  let optionalVariants;
+  if (isPlainObject(resolvedStyles)) {
+    if (resolvedStyles && resolvedStyles.variants) {
+      optionalVariants = resolvedStyles.variants;
+    }
+    delete resolvedStyles.variants;
+  }
+  if (optionalVariants) {
+    const variantsStyles = variantsResolver(
+      props,
+      transformVariants(optionalVariants),
+      optionalVariants,
+    );
+
+    return [resolvedStyles, ...variantsStyles];
+  }
+
+  return resolvedStyles;
+};
+
 // Update /system/styled/#api in case if this changes
 export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
@@ -179,31 +205,8 @@ export default function createStyled(input = {}) {
             // component stays as a function. This condition makes sure that we do not interpolate functions
             // which are basically components used as a selectors.
             if (typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg) {
-              return (props) => {
-                const resolvedStyles = stylesArg({
-                  ...props,
-                  theme: resolveTheme({ ...props, defaultTheme, themeId }),
-                });
-
-                let optionalVariants;
-                if (isPlainObject(resolvedStyles)) {
-                  if (resolvedStyles && resolvedStyles.variants) {
-                    optionalVariants = resolvedStyles.variants;
-                  }
-                  delete resolvedStyles.variants;
-                }
-                if (optionalVariants) {
-                  const variantsStyles = variantsResolver(
-                    props,
-                    transformVariants(optionalVariants),
-                    optionalVariants,
-                  );
-
-                  return [resolvedStyles, ...variantsStyles];
-                }
-
-                return resolvedStyles;
-              };
+              return (props) =>
+                muiStyledFunctionResolver({ styledArg: stylesArg, props, defaultTheme, themeId });
             }
             if (isPlainObject(stylesArg)) {
               let transformedStylesArg = stylesArg;
@@ -266,27 +269,8 @@ export default function createStyled(input = {}) {
         styleArg.__emotion_real !== styleArg
       ) {
         // If the type is function, we need to define the default theme.
-        transformedStyleArg = (props) => {
-          const resolvedStyles = styleArg({
-            ...props,
-            theme: resolveTheme({ ...props, defaultTheme, themeId }),
-          });
-
-          let optionalVariants;
-          if (isPlainObject(resolvedStyles)) {
-            if (resolvedStyles && resolvedStyles.variants) {
-              optionalVariants = resolvedStyles.variants;
-            }
-            delete resolvedStyles.variants;
-          }
-          const variantsStyles = variantsResolver(
-            props,
-            transformVariants(optionalVariants),
-            optionalVariants,
-          );
-
-          return [resolvedStyles, ...variantsStyles];
-        };
+        transformedStyleArg = (props) =>
+          muiStyledFunctionResolver({ styledArg: styleArg, props, defaultTheme, themeId });
       }
 
       if (componentName && overridesResolver) {
