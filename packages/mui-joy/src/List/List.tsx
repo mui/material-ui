@@ -94,6 +94,15 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       } as const),
     !ownerState.nesting && {
       ...applySizeVars(ownerState.size),
+      ...(ownerState.size === 'sm' && {
+        '--ListItem-gap': '0.5rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--ListItem-gap': '0.625rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--ListItem-gap': '0.75rem',
+      }),
       '--List-gap': '0px',
       '--List-nestedInsetStart': '0px',
       '--ListItem-paddingLeft': 'var(--ListItem-paddingX)',
