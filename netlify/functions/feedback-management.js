@@ -51,7 +51,7 @@ app.action('delete_action', async ({ ack, body, client, logger }) => {
       user: { username },
       channel: { id: channelId },
       message,
-      value,
+      actions: [{ value }],
     } = body;
 
     const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value);
@@ -89,7 +89,7 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
       user: { username },
       channel: { id: channelId },
       message,
-      value,
+      actions: [{ value }],
     } = body;
 
     const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value);
