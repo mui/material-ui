@@ -521,7 +521,7 @@ describe('createStyled', () => {
       );
 
       const { getByTestId } = render(
-        <>
+        <React.Fragment>
           <Test data-testid="filled" color="blue" variant="filled">
             Filled
           </Test>
@@ -531,7 +531,7 @@ describe('createStyled', () => {
           <Test data-testid="outlined" color="blue" variant="outlined">
             Outlined
           </Test>
-        </>,
+        </React.Fragment>,
       );
       expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
       expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 220)' });
