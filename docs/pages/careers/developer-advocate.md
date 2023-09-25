@@ -4,7 +4,7 @@
 
 ## Details of the Role
 
-- **Location**: Remote (strong requirement for UTC-6 to UTC+2).
+- **Location**: Remote (strong preference for UTC-6 to UTC+2).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
@@ -28,19 +28,19 @@ For additional details about the MUI team and culture, you can check our [career
 
 In our [last developer survey](https://mui.com/blog/2021-developer-survey-results/#what-else-can-we-do-to-improve-mui-for-you), we learned that we have a long way to go in helping developers to be successful with our technology.
 We have underinvested in this area for too long.
-Your missing will be to lead the developer experience effort at MUI.
+Your mission will be to lead the developer experience effort at MUI.
 We are looking for someone who can contribute to the following outcomes:
 
-- Create excitement in the React community about the product roadmap.
+- Get the React community excited about our product's roadmap
 - Improve the overall developer experience, resulting in better NPS & CSAT scores, through learning content, documentation improvements, integration with other frameworks, etc.
-- Amplify the needs of the community so the product direction aims at what people need the most.
+- Focus on the community's needs ensuring the product direction is covering them.
 
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
 ## About the role
 
-We are looking for an experienced React developer to join us as a Developer Advocate to help the developers build slick UI at a speed they never experienced before, with the MUI's open-source projects.
+We are looking for an experienced React engineer to join us as a Developer Advocate to help developers build slick UI at a speed they have never experienced with MUI's open-source projects.
 
 ### Why this is interesting
 
@@ -55,7 +55,7 @@ Depending on the day, you'll:
   - Follow GitHub issues to understand where developers face frustration and develop strategies to overcome these. This could be suggesting or implementing documentation updates, or proposing or contributing code changes that solve the core issue.
   - Give feedback to product management, to influence the product roadmaps based on developers' needs.
 - **Docs**.
-  - Rework the pages of the documentation that are confusing, base on feedback.
+  - Rewrite confusing documentation pages, ensuring the writing is clear and the structure is intuitive to follow.
 - **Content**.
   - Create inspiring sample applications, documentation, and tutorials.
   - Write code where required to support how-to content, blog posts, and presentations.
@@ -67,7 +67,7 @@ Depending on the day, you'll:
   - Create & produce events (podcasts, roundtables, hackathons).
   - Manage the sponsorships of events, newsletters, etc.
   - Help other team members grow at engaging with the community. For instance by encouraging and providing critical feedback on the blog posts they create, or by keeping track of the health of community contributions.
-  - Create relationships with fellow ecosystem influencers and open-source leaders. Nurture ongoing connections with user group members to build personal relationships and deeply understand their needs, usage, journeys, and barriers to adoption.
+  - Nurture relationships with influencers and members from the React and open-source communities, fostering a connection that allows for a clear understanding of their needs, journeys, and issues.
 
 For the right candidate:
 
@@ -95,7 +95,7 @@ For the right candidate:
 - You have some formal or informal experience in teaching: training, tutoring, mentoring, etc.
 - Hands-on developer who is a skilled React engineer.
 - You are passionate about UI development.
-- You have a taste for great design UI/UX.
+- You have a taste for great product design.
 
 ### What would be nice if you had, but isn't required
 
