@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Switch, switchClasses } from '@mui/base/Switch';
+import { Switch as SwitchUnstyled, switchClasses } from '@mui/base/Switch';
 
 const css = `
   .my-switch {
@@ -52,7 +52,7 @@ export default function StylingCustomCss() {
   return (
     <div>
       <style type="text/css">{css}</style>
-      <Switch className="my-switch" />
+      <SwitchUnstyled className="my-switch" />
     </div>
   );
 }

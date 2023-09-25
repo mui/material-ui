@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
+import {
+  describeConformance,
+  createRenderer,
+  describeJoyColorInversion,
+} from '@mui-internal/test-utils';
 import Button, { buttonClasses as classes } from '@mui/joy/Button';
 import { ThemeProvider } from '@mui/joy/styles';
 
@@ -109,6 +113,18 @@ describe('Joy <Button />', () => {
   describe('prop: loading', () => {
     it('disables the button', () => {
       const { getByRole } = render(<Button loading />);
+
+      const button = getByRole('button');
+      expect(button).to.have.property('disabled', true);
+    });
+    it('should disable button when loading is true and disabled is false', () => {
+      const { getByRole } = render(<Button loading disabled={false} />);
+
+      const button = getByRole('button');
+      expect(button).to.have.property('disabled', true);
+    });
+    it('should disable button when loading is false and disabled is true', () => {
+      const { getByRole } = render(<Button loading={false} disabled />);
 
       const button = getByRole('button');
       expect(button).to.have.property('disabled', true);

@@ -221,13 +221,19 @@ const DemoRootMaterial = styled('div', {
     borderLeftWidth: 0,
     borderRightWidth: 0,
   }),
+  /* Similar to the outlined one but without padding. Ideal for playground demos. */
+  ...(bg === 'playground' && {
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+    border: `1px solid ${(theme.vars || theme).palette.divider}`,
+    overflow: 'auto',
+  }),
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
     backgroundColor: (theme.vars || theme).palette.grey[50],
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     ...theme.applyDarkStyles({
-      backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+      backgroundColor: alpha(theme.palette.primaryDark[700], 0.3),
     }),
   }),
   /* Mostly meant for introduction demos. */

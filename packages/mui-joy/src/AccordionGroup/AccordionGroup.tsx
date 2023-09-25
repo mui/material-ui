@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { useThemeProps } from '../styles';
+import { useColorInversion, useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAccordionGroupUtilityClass } from './accordionGroupClasses';
 import {
@@ -25,7 +25,7 @@ const useUtilityClasses = (ownerState: AccordionGroupOwnerState) => {
       'root',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
-      size && `size${capitalize(size)}}`,
+      size && `size${capitalize(size)}`,
     ],
   };
 
@@ -84,7 +84,7 @@ const AccordionGroup = React.forwardRef(function AccordionGroup(inProps, ref) {
 
   const {
     component = 'div',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     children,
     disableDivider = false,
     variant = 'plain',
@@ -96,6 +96,9 @@ const AccordionGroup = React.forwardRef(function AccordionGroup(inProps, ref) {
   } = props;
 
   const externalForwardedProps = { ...other, component, slots, slotProps };
+
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -138,7 +141,10 @@ AccordionGroup.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -153,7 +159,10 @@ AccordionGroup.propTypes /* remove-proptypes */ = {
    * The size of the component (affect other nested list* components).
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The props used for each slot inside.
    * @default {}
@@ -191,7 +200,10 @@ AccordionGroup.propTypes /* remove-proptypes */ = {
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default AccordionGroup;

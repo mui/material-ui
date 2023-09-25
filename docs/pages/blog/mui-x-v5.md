@@ -1,5 +1,5 @@
 ---
-title: Introducing MUI X v5.0
+title: Introducing MUI X v5
 description: We are excited to introduce MUI X v5.0.0!
 date: 2021-11-22T00:00:00.000Z
 authors:

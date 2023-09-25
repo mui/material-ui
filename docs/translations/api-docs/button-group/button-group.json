@@ -56,6 +56,10 @@
       "nodeName": "the child elements",
       "conditions": "<code>disabled={true}</code>"
     },
+    "firstButton": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the first button in the button group"
+    },
     "fullWidth": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -151,6 +155,14 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
       "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "lastButton": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the last button in the button group"
+    },
+    "middleButton": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "buttons in the middle of the button group"
     }
   }
 }

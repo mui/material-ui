@@ -8,4 +8,4 @@ It is used internally in the `@mui/system` package.
 
 <!-- #default-branch-switch -->
 
-[The documentation](https://mui.com/material-ui/guides/styled-engine/)
+Visit [https://mui.com/material-ui/guides/styled-components/](https://mui.com/material-ui/guides/styled-components/) to view the full documentation.

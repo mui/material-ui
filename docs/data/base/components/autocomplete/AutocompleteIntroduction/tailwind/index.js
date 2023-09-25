@@ -56,7 +56,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       >
         <input
           id={id}
-          ref={setAnchorEl}
           disabled={disabled}
           readOnly={readOnly}
           {...getInputProps()}
