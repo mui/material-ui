@@ -1,27 +1,37 @@
 # Right-to-left
 
-<p class="description">Right-to-left languages such as Arabic, Persian, or Hebrew are supported. To change the direction of Material UI components you must follow the following steps.</p>
+<p class="description">Learn how to make Material UI components support right-to-left languages such as Arabic, Persian, Hebrew, and others.</p>
 
-## Steps
+## Introduction
 
-### 1. HTML
+Following the guide below, you'll learn how to turn text-based components in Material UI to right-to-left.
 
-Make sure the `dir` attribute is set on the `html` tag, otherwise native components will break:
+{{"demo": "Direction.js"}}
+
+## Basic setup
+
+### Global approach
+
+Set the `dir` attribute on the `html` tag to `rtl` as the first step to support right-to-left languages.
 
 ```html
 <html dir="rtl"></html>
 ```
 
-If you need to change the direction of the text at runtime, but React does not control the root HTML element, you may use the JS API:
+If your React app doesn't control the root HTML element and you want to change the text direction at runtime, use the JavaScript API.
 
 ```js
 document.dir = 'rtl';
 ```
 
-As an alternative to the above, you can also wrap your application (or part of it) in an element with the `dir` attribute.
-This, however, will not work correctly with portaled elements, such as Dialogs, as they will render outside of the element with the `dir` attribute.
+### Local approach
 
-To fix the portaled components, add an explicit `dir` attribute to them:
+To only make part of your app support right-to-left, use the `dir` attribute in that part's specific wrapper as an alternative to the global approach above.
+
+:::warning
+This won't work with portaled elements, such as Dialos, as they render outside of the element with the `dir` attribute.
+
+To fix it, make sure to add the `dir` attribute directly to them:
 
 ```jsx
 <Dialog dir="rtl">
@@ -29,9 +39,11 @@ To fix the portaled components, add an explicit `dir` attribute to them:
 </Dialog>
 ```
 
-### 2. Theme
+:::
 
-Set the direction in your custom theme:
+### Theme setup
+
+Set the text direction in your theme with the `createTheme` API.
 
 ```js
 import { createTheme } from '@mui/material/styles';
@@ -41,13 +53,29 @@ const theme = createTheme({
 });
 ```
 
-### 3. Install the rtl plugin
+## Third-party plugins
 
-When using either `emotion` or `styled-components`, you need [`stylis-plugin-rtl`](https://github.com/styled-components/stylis-plugin-rtl) to flip the styles.
+Depending on the style engine you're using with Material UI, you'll need the support of different plugins to pull right-to-left off entirely.
 
-```bash
+### stylis-plugin-rtl
+
+If you're using Emotion, Material UI's default style engine, or styled-component, install the [`stylis-plugin-rtl`](https://github.com/styled-components/stylis-plugin-rtl) to help flip the text direction.
+
+<codeblock storageKey="package-manager">
+
+```bash npm
 npm install stylis stylis-plugin-rtl
 ```
+
+```bash yarn
+yarn add stylis stylis-plugin-rtl
+```
+
+```bash pnpm
+pnpm add stylis stylis-plugin-rtl
+```
+
+</codeblock>
 
 :::warning
 Only Emotion is compatible with version 2 of the plugin.
@@ -55,20 +83,9 @@ styled-components requires version 1.
 If you're using [styled-components instead of Emotion](/material-ui/guides/styled-components/), make sure to install the correct version.
 :::
 
-In case you are using `jss` (up to v4) or with the legacy `@mui/styles` package, you need [`jss-rtl`](https://github.com/alitaheri/jss-rtl) to flip the styles.
+#### Emotion setup
 
-```bash
-npm install jss-rtl
-```
-
-Having installed the plugin in your project, Material UI components still require it to be loaded by the style engine instance that you use. Find bellow guides on how you can load it.
-
-### 4. Load the rtl plugin
-
-#### 4.1 Emotion
-
-If you use Emotion as your style engine, you should create a new cache instance that uses the `stylis-plugin-rtl` (the default `prefixer` plugin must also be included in order to retain vendor prefixing) and provide that on the top of your application tree.
-The [CacheProvider](https://emotion.sh/docs/cache-provider) component enables this:
+If you're using Emotion, use the [CacheProvider](https://emotion.sh/docs/cache-provider) to create a new cache instance that uses the `stylis-plugin-rtl` (also include the default `prefixer` plugin to retain vendor prefixing) and add that to the top of your application tree.
 
 ```jsx
 import rtlPlugin from 'stylis-plugin-rtl';
@@ -87,9 +104,9 @@ function RTL(props) {
 }
 ```
 
-#### 4.2 styled-components
+#### styled-components setup
 
-If you use `styled-components` as your style engine, you can use the [StyleSheetManager](https://styled-components.com/docs/api#stylesheetmanager) and provide the stylis-plugin-rtl as an item in the `stylisPlugins` property:
+If you're using styled-components, use the [StyleSheetManager](https://styled-components.com/docs/api#stylesheetmanager) and provide the stylis-plugin-rtl as an item to the `stylisPlugins` property.
 
 ```jsx
 import { StyleSheetManager } from 'styled-components';
@@ -104,11 +121,34 @@ function RTL(props) {
 }
 ```
 
-#### 4.3 JSS
+### jss-rtl
 
-After installing the plugin in your project, you need to configure the JSS instance to load it.
-The next step is to make the new JSS instance available to all the components in the component tree.
-The [`StylesProvider`](/system/styles/api/#stylesprovider) component enables this:
+In case you are using `jss` (up to v4) or with the legacy `@mui/styles` package, you need [`jss-rtl`](https://github.com/alitaheri/jss-rtl) to flip the styles.
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install jss-rtl
+```
+
+```bash yarn
+yarn add jss-rtl
+```
+
+```bash pnpm
+pnpm add jss-rtl
+```
+
+</codeblock>
+
+:::info
+The `withStyles` API is internally using this plugin whtn `direction: rtl` is set on the theme.
+:::
+
+#### JSS setup
+
+Start by configuring a JSS instance to load the plugin.
+Then, make it available to all components by using the [`StylesProvider`](/system/styles/api/#stylesprovider) component.
 
 ```jsx
 import { create } from 'jss';
@@ -125,20 +165,13 @@ function RTL(props) {
 }
 ```
 
-For more information on the plugin, head to the [plugin README](https://github.com/alitaheri/jss-rtl).
-**Note**: Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme.
+## Locally opting out of rtl
 
-## Demo
-
-_Use the direction toggle button on the top right corner to flip the whole documentation_
-
-{{"demo": "Direction.js"}}
-
-## Opting out of rtl transformation
+To opt out of right-to-left text in specific and local instances, follow the guides below for your styled engine.
 
 ### Emotion & styled-components
 
-You have to use the template literal syntax and add the `/* @noflip */` directive before the rule or property for which you want to disable right-to-left styles.
+Use the template literal syntax and add the `/* @noflip */` directive before the rule or property for which you want to turn off the right-to-left styles.
 
 ```jsx
 const AffectedText = styled('div')`
@@ -155,7 +188,7 @@ const UnaffectedText = styled('div')`
 
 ### JSS
 
-If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning.
+Use the `flip: false` at the beginning of a rule set.
 
 ```jsx
 const useStyles = makeStyles(
