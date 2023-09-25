@@ -663,6 +663,16 @@ const rowHeaders: Record<string, React.ReactNode> = {
 const yes = <IconImage name="pricing/yes" title="Included" />;
 const pending = <IconImage name="pricing/time" title="Work in progress" />;
 const no = <IconImage name="pricing/no" title="Not included" />;
+const toBeDefined = (
+  <Typography
+    component="a"
+    href="https://forms.gle/19vN87eBvmXPjBVp6"
+    sx={{ display: 'inline-block' }}
+    title="Take part to this feature shaping"
+  >
+    To define
+  </Typography>
+);
 
 const communityData: Record<string, React.ReactNode> = {
   // MUI Core
@@ -927,9 +937,9 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/funnel': pending,
   'charts/sankey': pending,
   'charts/gantt': pending,
-  'charts/gantt-advanced': pending,
-  'charts/candlestick': pending,
-  'charts/large-dataset': pending,
+  'charts/gantt-advanced': toBeDefined,
+  'charts/candlestick': toBeDefined,
+  'charts/large-dataset': toBeDefined,
   // -- charts - features --
   'charts/legend': yes,
   'charts/tooltip': yes,
