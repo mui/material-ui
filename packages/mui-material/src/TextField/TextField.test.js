@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { spy } from 'sinon';
+import { createRenderer, describeConformance, fireEvent } from '@mui-internal/test-utils';
 import FormControl from '@mui/material/FormControl';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
@@ -224,6 +225,25 @@ describe('<TextField />', () => {
       );
 
       expect(getByRole('button')).toHaveAccessibleDescription('Foo bar');
+    });
+  });
+
+  describe('event: click', () => {
+    it('registers `onClick` on the root slot', () => {
+      const handleClick = spy((event) => event.currentTarget);
+      const { getByTestId, getByRole } = render(
+        <TextField data-testid="root" onClick={handleClick} />,
+      );
+
+      const input = getByRole('textbox');
+
+      const root = getByTestId('root');
+
+      fireEvent.click(input);
+
+      expect(handleClick.callCount).to.equal(1);
+      // return value is event.currentTarget
+      expect(handleClick.returned(root)).to.equal(true);
     });
   });
 });

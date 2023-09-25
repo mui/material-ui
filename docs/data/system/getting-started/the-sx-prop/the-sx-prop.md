@@ -112,7 +112,7 @@ function transform(value) {
 }
 ```
 
-If the value is between [0, 1], it's converted to a percentage.
+If the value is between (0, 1], it's converted to a percentage.
 Otherwise, it is directly set on the CSS property:
 
 ```jsx

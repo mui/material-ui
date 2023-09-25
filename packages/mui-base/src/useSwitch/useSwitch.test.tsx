@@ -8,8 +8,8 @@ import {
   programmaticFocusTriggersFocusVisible,
   screen,
   simulatePointerDevice,
-} from 'test/utils';
-import useSwitch, { UseSwitchParameters } from '@mui/base/useSwitch';
+} from '@mui-internal/test-utils';
+import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
 
 describe('useSwitch', () => {
   const { render } = createRenderer();

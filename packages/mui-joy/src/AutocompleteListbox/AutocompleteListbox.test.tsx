@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
+import {
+  describeConformance,
+  createRenderer,
+  describeJoyColorInversion,
+} from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import AutocompleteListbox, {
   autocompleteListboxClasses as classes,
@@ -19,6 +23,11 @@ describe('Joy <AutocompleteListbox />', () => {
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<AutocompleteListbox />, {

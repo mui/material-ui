@@ -1,44 +1,44 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface SvgIconClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `color="inherit"`. */
+  /** Class name applied to the root element if `color="inherit"`. */
   colorInherit: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `fontSize="inherit"`. */
+  /** Class name applied to the root element if `fontSize="inherit"`. */
   fontSizeInherit: string;
-  /** Styles applied to the root element if `fontSize="xs"`. */
+  /** Class name applied to the root element if `fontSize="xs"`. */
   fontSizeXs: string;
-  /** Styles applied to the root element if `fontSize="sm"`. */
+  /** Class name applied to the root element if `fontSize="sm"`. */
   fontSizeSm: string;
-  /** Styles applied to the root element if `fontSize="md"`. */
+  /** Class name applied to the root element if `fontSize="md"`. */
   fontSizeMd: string;
-  /** Styles applied to the root element if `fontSize="lg"`. */
+  /** Class name applied to the root element if `fontSize="lg"`. */
   fontSizeLg: string;
-  /** Styles applied to the root element if `fontSize="xl"`. */
+  /** Class name applied to the root element if `fontSize="xl"`. */
   fontSizeXl: string;
-  /** Styles applied to the root element if `fontSize="xl2"`. */
+  /** Class name applied to the root element if `fontSize="xl2"`. */
   fontSizeXl2: string;
-  /** Styles applied to the root element if `fontSize="xl3"`. */
+  /** Class name applied to the root element if `fontSize="xl3"`. */
   fontSizeXl3: string;
-  /** Styles applied to the root element if `fontSize="xl4"`. */
+  /** Class name applied to the root element if `fontSize="xl4"`. */
   fontSizeXl4: string;
-  /** Styles applied to the root element if `fontSize="xl5"`. */
-  fontSizeXl5: string;
-  /** Styles applied to the root element if `fontSize="xl6"`. */
-  fontSizeXl6: string;
+  /** Class name applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Class name applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Class name applied to the root element if `size="lg"`. */
+  sizeLg: string;
 }
 
 export type SvgIconClassKey = keyof SvgIconClasses;
@@ -53,7 +53,6 @@ const svgIconClasses: SvgIconClasses = generateUtilityClasses('MuiSvgIcon', [
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'fontSizeInherit',
@@ -65,8 +64,9 @@ const svgIconClasses: SvgIconClasses = generateUtilityClasses('MuiSvgIcon', [
   'fontSizeXl2',
   'fontSizeXl3',
   'fontSizeXl4',
-  'fontSizeXl5',
-  'fontSizeXl6',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
 ]);
 
 export default svgIconClasses;

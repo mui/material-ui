@@ -1,5 +1,5 @@
 ---
-product: system
+productId: system
 title: React Stack component
 githubLabel: 'component: Stack'
 ---

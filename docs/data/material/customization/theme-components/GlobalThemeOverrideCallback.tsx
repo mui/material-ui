@@ -29,7 +29,7 @@ function valuetext(value: number) {
   return `${value}°C`;
 }
 
-export default function GlobalThemeOverride() {
+export default function GlobalThemeOverrideCallback() {
   return (
     <ThemeProvider theme={finalTheme}>
       <Box sx={{ height: 180, display: 'inline-block' }}>

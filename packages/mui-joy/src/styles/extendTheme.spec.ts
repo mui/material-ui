@@ -1,3 +1,8 @@
+import { expectType } from '@mui/types';
+import { AccordionOwnerState } from '@mui/joy/Accordion';
+import { AccordionGroupOwnerState } from '@mui/joy/AccordionGroup';
+import { AccordionSummaryOwnerState } from '@mui/joy/AccordionSummary';
+import { AccordionDetailsOwnerState } from '@mui/joy/AccordionDetails';
 import { AlertOwnerState } from '@mui/joy/Alert';
 import { AspectRatioOwnerState } from '@mui/joy/AspectRatio';
 import { AutocompleteOwnerState } from '@mui/joy/Autocomplete';
@@ -18,6 +23,9 @@ import { ChipDeleteOwnerState } from '@mui/joy/ChipDelete';
 import { CircularProgressOwnerState } from '@mui/joy/CircularProgress';
 import { ContainerProps } from '@mui/joy/Container';
 import { ScopedCssBaselineOwnerState } from '@mui/joy/ScopedCssBaseline';
+import { DialogActionsOwnerState } from '@mui/joy/DialogActions';
+import { DialogContentOwnerState } from '@mui/joy/DialogContent';
+import { DialogTitleOwnerState } from '@mui/joy/DialogTitle';
 import { DividerOwnerState } from '@mui/joy/Divider';
 import { FormControlOwnerState } from '@mui/joy/FormControl';
 import { FormHelperTextOwnerState } from '@mui/joy/FormHelperText';
@@ -35,11 +43,13 @@ import { ListItemButtonOwnerState } from '@mui/joy/ListItemButton';
 import { ListItemContentOwnerState } from '@mui/joy/ListItemContent';
 import { ListItemDecoratorOwnerState } from '@mui/joy/ListItemDecorator';
 import { MenuOwnerState } from '@mui/joy/Menu';
+import { MenuButtonOwnerState } from '@mui/joy/MenuButton';
 import { MenuItemOwnerState } from '@mui/joy/MenuItem';
 import { MenuListOwnerState } from '@mui/joy/MenuList';
 import { ModalOwnerState } from '@mui/joy/Modal';
 import { ModalCloseOwnerState } from '@mui/joy/ModalClose';
 import { ModalDialogOwnerState } from '@mui/joy/ModalDialog';
+import { ModalOverflowOwnerState } from '@mui/joy/ModalOverflow';
 import { OptionOwnerState } from '@mui/joy/Option';
 import { RadioOwnerState } from '@mui/joy/Radio';
 import { RadioGroupOwnerState } from '@mui/joy/RadioGroup';
@@ -58,20 +68,91 @@ import { TableOwnerState } from '@mui/joy/Table';
 import { TextareaOwnerState } from '@mui/joy/Textarea';
 import { TooltipOwnerState } from '@mui/joy/Tooltip';
 import { TypographyOwnerState } from '@mui/joy/Typography';
-import { expectType } from '@mui/types';
 
 extendTheme({
   colorInversion: (theme) => ({
     soft: {
       primary: {
-        '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-darkChannel')} / 0.4)`,
+        '--variant-plainColor': `rgba(${theme.getCssVar('palette-primary-darkChannel')} / 0.4)`,
         [theme.getColorSchemeSelector('dark')]: {
-          '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-lightChannel')} / 0.4)`,
+          '--variant-plainColor': `rgba(${theme.getCssVar('palette-primary-lightChannel')} / 0.4)`,
         },
       },
     },
   }),
   components: {
+    JoyAccordion: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyAccordionGroup: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionGroupOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyAccordionSummary: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionSummaryOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        button: ({ ownerState }) => {
+          expectType<AccordionSummaryOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        indicator: ({ ownerState }) => {
+          expectType<AccordionSummaryOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyAccordionDetails: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionDetailsOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        content: ({ ownerState }) => {
+          expectType<AccordionDetailsOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
     JoyAlert: {
       defaultProps: {
         variant: 'soft',
@@ -503,6 +584,45 @@ extendTheme({
         },
       },
     },
+    JoyDialogActions: {
+      defaultProps: {
+        buttonFlex: 1,
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<DialogActionsOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyDialogContent: {
+      defaultProps: {
+        orientation: 'horizontal',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<DialogContentOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyDialogTitle: {
+      defaultProps: {
+        level: 'title-md',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<DialogTitleOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
     JoyDivider: {
       defaultProps: {
         orientation: 'vertical',
@@ -593,7 +713,7 @@ extendTheme({
     },
     JoyLink: {
       defaultProps: {
-        level: 'body2',
+        level: 'body-md',
       },
       styleOverrides: {
         root: ({ ownerState }) => {
@@ -723,6 +843,19 @@ extendTheme({
         },
       },
     },
+    JoyMenuButton: {
+      defaultProps: {
+        size: 'sm',
+        variant: 'outlined',
+        color: 'neutral',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<MenuButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
     JoyMenuItem: {
       defaultProps: {
         variant: 'outlined',
@@ -785,6 +918,17 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<ModalDialogOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyModalOverflow: {
+      defaultProps: {},
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<ModalOverflowOwnerState & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};
@@ -1098,7 +1242,7 @@ extendTheme({
     },
     JoyTypography: {
       defaultProps: {
-        level: 'body2',
+        level: 'body-md',
         variant: 'outlined',
         color: 'neutral',
       },

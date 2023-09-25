@@ -26,7 +26,7 @@ V5最大的变化之一是将JSS替换为[Emotion](https://emotion.sh/docs/intro
 需要参考旧版本的文档吗？ 在这里查看[v4的文档](https://v4.mui.com/)
 :::
 
-如果你正在使用Next.js，并且不确定如何配置SSR以与Emotion 和 JSS一起工作，请看这个[例子项目](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration)
+如果你正在使用Next.js，并且不确定如何配置SSR以与Emotion 和 JSS一起工作，请看这个[例子项目](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration)
 :::
 
 ## 为什么你应该迁移
@@ -40,7 +40,7 @@ Material UI v5与v4相比，包括许多错误修复和改进。
 想了解更多，请查看[关于Material UI v5](https://mui.com/blog/mui-core-v5/)发布的博文。
 
 :::info
-💡 在你进行的过程中创建小的提交，以确保顺利迁移。
+在你进行的过程中创建小的提交，以确保顺利迁移。
 
 如果你在途中遇到任何问题，请查看[故障排除](/material-ui/migration/troubleshooting/)文档。
 
@@ -87,7 +87,7 @@ TypeScript的最小支持版本已经从v3.2提高到v3.5。
 - `@types/react-dom`
 
 :::warning
-📝 确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
+确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
 :::
 
 ## 设置`ThemeProvider`
@@ -117,7 +117,7 @@ function App() {
 ```
 
 :::warning
-📝 确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
+确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
 :::
 
 ## 更新MUI软件包
@@ -128,13 +128,13 @@ function App() {
 
 With npm:
 
-```sh
+```bash
 npm install @mui/material @mui/styles
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/material @mui/styles
 ```
 
@@ -144,13 +144,13 @@ yarn add @mui/material @mui/styles
 
 With npm:
 
-```sh
+```bash
 npm install @mui/lab
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/lab
 ```
 
@@ -158,13 +158,13 @@ yarn add @mui/lab
 
 With npm:
 
-```sh
+```bash
 npm install @mui/icons-material
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @mui/icons-material
 ```
 
@@ -178,13 +178,13 @@ yarn add @mui/icons-material
 
 With npm:
 
-```sh
+```bash
 npm install @emotion/react @emotion/styled
 ```
 
 With yarn:
 
-```sh
+```bash
 yarn add @emotion/react @emotion/styled
 ```
 
@@ -197,7 +197,7 @@ yarn add @emotion/react @emotion/styled
 我们强烈建议使用Emotion的默认设置来代替。
 
 :::warning
-📝 确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
+确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
 :::
 
 ### Replace all imports
@@ -278,7 +278,7 @@ const ChipWithGreenIcon = () => (
 
 This codemod contains most of the transformers that are necessary for migration. 它应该只在**每个文件夹**中应用一次。
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/preset-safe <path>
 ```
 
@@ -309,7 +309,7 @@ createMuiTheme({
 
 如果你想在你的组件中保留`variant="standard"`，请运行这个codemod或者配置相应的默认主题props。
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/variant-prop <path>
 ```
 
@@ -320,7 +320,7 @@ npx @mui/codemod v5.0.0/variant-prop <path>
 如果没有定义`underline`，这个codemod通过应用`underline="hover"`来转换组件`<Link />`--默认的`underline`已经从v4的` "hover "`变为v5的 `"always"`。
 
 :::error
-❗️ 如果你已经在主题中定义了underline，你就_不应该_使用这个代码模式。`"always "`作为主题中的默认值。
+如果你已经在主题中定义了underline，你就_不应该_使用这个代码模式。`"always "`作为主题中的默认值。
 :::
 
 ```js
@@ -339,7 +339,7 @@ createMuiTheme({
 
 如果你想保留`underline="hover"`，请运行这个codemod，否则就配置相应的默认主题props。
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/link-underline-hover <path>
 ```
 

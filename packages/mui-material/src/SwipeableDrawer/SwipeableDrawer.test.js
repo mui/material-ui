@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { fireEvent, createRenderer, describeConformance, screen } from 'test/utils';
+import { fireEvent, createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
@@ -305,7 +305,7 @@ describe('<SwipeableDrawer />', () => {
           const handleOpen = spy();
           render(
             <SwipeableDrawer
-              acnhor={params.anchor}
+              anchor={params.anchor}
               onOpen={handleOpen}
               onClose={() => {}}
               open={false}

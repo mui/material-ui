@@ -1,3 +1,4 @@
+'use client';
 import PropTypes from 'prop-types';
 import { createGrid } from '@mui/system/Unstable_Grid';
 import { OverridableComponent } from '@mui/types';
@@ -7,6 +8,7 @@ import { GridTypeMap } from './GridProps';
 const Grid = createGrid({
   createStyledComponent: styled('div', {
     name: 'JoyGrid',
+    slot: 'Root',
     overridesResolver: (props, styles) => styles.root,
   }),
   useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'JoyGrid' }),

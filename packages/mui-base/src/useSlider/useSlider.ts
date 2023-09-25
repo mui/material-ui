@@ -1,21 +1,23 @@
+'use client';
 import * as React from 'react';
 import {
-  unstable_useIsFocusVisible as useIsFocusVisible,
-  unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_ownerDocument as ownerDocument,
+  unstable_useControlled as useControlled,
+  unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
-  unstable_useControlled as useControlled,
+  unstable_useIsFocusVisible as useIsFocusVisible,
   visuallyHidden,
 } from '@mui/utils';
 import {
   Mark,
   UseSliderHiddenInputProps,
   UseSliderParameters,
+  UseSliderReturnValue,
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
 } from './useSlider.types';
-import { EventHandlers } from '../utils';
+import { areArraysEqual, EventHandlers } from '../utils';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
@@ -139,6 +141,19 @@ function focusThumb({
   }
 }
 
+function areValuesEqual(
+  newValue: number | Array<number>,
+  oldValue: number | Array<number>,
+): boolean {
+  if (typeof newValue === 'number' && typeof oldValue === 'number') {
+    return newValue === oldValue;
+  }
+  if (typeof newValue === 'object' && typeof oldValue === 'object') {
+    return areArraysEqual(newValue, oldValue);
+  }
+  return false;
+}
+
 const axisProps = {
   horizontal: {
     offset: (percent: number) => ({ left: `${percent}%` }),
@@ -181,13 +196,13 @@ function doesSupportTouchActionNone() {
  *
  * Demos:
  *
- * - [Unstyled Slider](https://mui.com/base/react-slider/#hook)
+ * - [Slider](https://mui.com/base-ui/react-slider/#hook)
  *
  * API:
  *
- * - [useSlider API](https://mui.com/base/api/use-slider/)
+ * - [useSlider API](https://mui.com/base-ui/react-slider/hooks-api/#use-slider)
  */
-export default function useSlider(parameters: UseSliderParameters) {
+export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
   const {
     'aria-labelledby': ariaLabelledby,
     defaultValue,
@@ -201,7 +216,7 @@ export default function useSlider(parameters: UseSliderParameters) {
     onChange,
     onChangeCommitted,
     orientation = 'horizontal',
-    ref,
+    rootRef: ref,
     scale = Identity,
     step = 1,
     tabIndex,
@@ -315,19 +330,17 @@ export default function useSlider(parameters: UseSliderParameters) {
       let newValue = event.target.valueAsNumber;
 
       if (marks && step == null) {
-        newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
+        const maxMarksValue = marksValues[marksValues.length - 1];
+        if (newValue > maxMarksValue) {
+          newValue = maxMarksValue;
+        } else if (newValue < marksValues[0]) {
+          newValue = marksValues[0];
+        } else {
+          newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
+        }
       }
 
       newValue = clamp(newValue, min, max);
-
-      if (marks && step == null) {
-        const currentMarkIndex = marksValues.indexOf(values[index]);
-
-        newValue =
-          newValue < values[index]
-            ? marksValues[currentMarkIndex - 1]
-            : marksValues[currentMarkIndex + 1];
-      }
 
       if (range) {
         // Bound the new value to the thumb's neighbours.
@@ -355,7 +368,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       setValueState(newValue);
       setFocusedThumbIndex(index);
 
-      if (handleChange) {
+      if (handleChange && !areValuesEqual(newValue, valueDerived)) {
         handleChange(event, newValue, index);
       }
 
@@ -465,7 +478,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       setDragging(true);
     }
 
-    if (handleChange && newValue !== valueDerived) {
+    if (handleChange && !areValuesEqual(newValue, valueDerived)) {
       handleChange(nativeEvent, newValue, activeIndex);
     }
   });
@@ -516,7 +529,7 @@ export default function useSlider(parameters: UseSliderParameters) {
 
       setValueState(newValue);
 
-      if (handleChange) {
+      if (handleChange && !areValuesEqual(newValue, valueDerived)) {
         handleChange(nativeEvent, newValue, activeIndex);
       }
     }
@@ -583,7 +596,7 @@ export default function useSlider(parameters: UseSliderParameters) {
 
         setValueState(newValue);
 
-        if (handleChange) {
+        if (handleChange && !areValuesEqual(newValue, valueDerived)) {
           handleChange(event, newValue, activeIndex);
         }
       }
@@ -645,6 +658,13 @@ export default function useSlider(parameters: UseSliderParameters) {
     };
   };
 
+  const getThumbStyle = (index: number) => {
+    return {
+      // So the non active thumb doesn't show its label on hover.
+      pointerEvents: active !== -1 && active !== index ? 'none' : undefined,
+    };
+  };
+
   const getHiddenInputProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,
   ): UseSliderHiddenInputProps<TOther> => {
@@ -669,7 +689,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       type: 'range',
       min: parameters.min,
       max: parameters.max,
-      step: parameters.step ?? undefined,
+      step: parameters.step === null && parameters.marks ? 'any' : parameters.step ?? undefined,
       disabled,
       ...mergedEventHandlers,
       style: {
@@ -694,8 +714,10 @@ export default function useSlider(parameters: UseSliderParameters) {
     marks: marks as Mark[],
     open,
     range,
+    rootRef: handleRef,
     trackLeap,
     trackOffset,
     values,
+    getThumbStyle,
   };
 }

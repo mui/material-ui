@@ -1,7 +1,7 @@
 <React.Fragment>
   <div>
     <FormControlLabel
-      control={<Switch checked={rtl} onChange={handleChage} />}
+      control={<Switch checked={rtl} onChange={handleChange} />}
       label="RTL"
     />
   </div>

@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -14,6 +15,8 @@ import {
   LinearProgressProps,
   LinearProgressTypeMap,
 } from './LinearProgressProps';
+import useSlot from '../utils/useSlot';
+import { resolveSxValue } from '../styles/styleUtils';
 
 // TODO: replace `left` with `inset-inline-start` in the future to work with writing-mode. https://caniuse.com/?search=inset-inline-start
 //       replace `width` with `inline-size`, not sure why inline-size does not work with animation in Safari.
@@ -35,7 +38,7 @@ const progressKeyframe = keyframes`
   75% {
     width: var(--LinearProgress-progressMaxWidth);
   }
-  
+
   100% {
     left: var(--_LinearProgress-progressInset);
     width: var(--LinearProgress-progressMinWidth);
@@ -127,6 +130,16 @@ const LinearProgressRoot = styled('div', {
               var(--LinearProgress-circulation, 2.5s ease-in-out 0s infinite normal none running);
           }
         `,
+  ({ ownerState, theme }) => {
+    const { borderRadius, height } = resolveSxValue({ theme, ownerState }, [
+      'borderRadius',
+      'height',
+    ]);
+    return {
+      ...(borderRadius !== undefined && { '--LinearProgress-radius': borderRadius }),
+      ...(height !== undefined && { '--LinearProgress-thickness': height }),
+    };
+  },
 );
 
 /**
@@ -161,6 +174,8 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     determinate = false,
     value = determinate ? 0 : 25, // `25` is the 1/4 of the bar.
     style,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -179,30 +194,32 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  return (
-    <LinearProgressRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      role="progressbar"
-      style={{
-        // Setting this CSS varaible via inline-style
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: LinearProgressRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role: 'progressbar',
+      style: {
+        // Setting this CSS variable via inline-style
         // prevents the generation of new CSS every time
         // `value` prop updates
         ...({ '--LinearProgress-percent': value } as React.CSSProperties),
         ...style,
-      }}
-      ownerState={ownerState}
-      {...(typeof value === 'number' &&
+      },
+      ...(typeof value === 'number' &&
         determinate && {
           'aria-valuenow': Math.round(value),
-        })}
-      {...other}
-    >
-      {children}
-    </LinearProgressRoot>
-  );
+        }),
+    },
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<LinearProgressTypeMap>;
 
 LinearProgress.propTypes /* remove-proptypes */ = {
@@ -223,7 +240,7 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -246,6 +263,20 @@ LinearProgress.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * @ignore
    */

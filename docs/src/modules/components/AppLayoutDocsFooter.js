@@ -7,14 +7,15 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
-import ThumbUpIcon from '@mui/icons-material/ThumbUpAlt';
-import ThumbDownIcon from '@mui/icons-material/ThumbDownAlt';
+import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
+import ThumbDownAltRoundedIcon from '@mui/icons-material/ThumbDownAltRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import BugReportRoundedIcon from '@mui/icons-material/BugReportRounded';
@@ -41,6 +42,9 @@ const PaginationDiv = styled('div')(({ theme }) => {
 
 const PageLinkButton = styled(Button)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightMedium,
+  ...theme.applyDarkStyles({
+    color: (theme.vars || theme).palette.primary[300],
+  }),
 }));
 
 const FeedbackGrid = styled(Grid)(({ theme }) => {
@@ -108,14 +112,39 @@ async function postFeedback(data) {
 async function postFeedbackOnSlack(data) {
   const { rating, comment, commentedSection } = data;
 
+  const sentData = {
+    callback_id: 'send_feedback',
+    rating,
+    comment,
+    currentLocationURL: window.location.href,
+    commmentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
+    commmentSectionTitle: commentedSection.text,
+    githubRepo: process.env.SOURCE_CODE_REPO,
+  };
   if (!comment || comment.length < 10) {
     return 'ignored';
+  }
+
+  try {
+    const res = await fetch(`${window.location.origin}/.netlify/functions/feedback-management/`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      // Seems tricky but it's to match how slack send data
+      body: `payload=${encodeURIComponent(JSON.stringify(sentData))}`,
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    }
+    return 'sent';
+  } catch (error) {
+    console.error(error);
+    return null;
   }
 
   /**
    Not used because I ignore how to encode that with:
       'content-type': 'application/x-www-form-urlencoded'
-   
+
    const complexSlackMessage = {
      blocks: [
        {
@@ -153,28 +182,6 @@ async function postFeedbackOnSlack(data) {
      ],
    };
   */
-
-  const simpleSlackMessage = [
-    `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
-    `>${comment.split('\n').join('\n>')}`,
-    `sent from ${window.location.href}${
-      commentedSection.text
-        ? ` (from section <${window.location.origin}${window.location.pathname}#${commentedSection.hash}|${commentedSection.text})>`
-        : ''
-    }`,
-  ].join('\n\n');
-
-  try {
-    await fetch(`https://hooks.slack.com/services/${process.env.SLACK_FEEDBACKS_TOKEN}`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      body: JSON.stringify({ text: simpleSlackMessage }),
-    });
-    return 'sent';
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
 }
 
 async function getUserFeedback(id) {
@@ -250,6 +257,7 @@ function usePageNeighbours() {
 }
 
 const EMPTY_SECTION = { hash: '', text: '' };
+const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API content design' }];
 
 export default function AppLayoutDocsFooter(props) {
   const { tableOfContents = [] } = props;
@@ -317,7 +325,7 @@ export default function AppLayoutDocsFooter(props) {
       setCommentOpen(true);
     }
 
-    // Manualy move focus if commment is already open.
+    // Manually move focus if comment is already open.
     // If the comment is closed, onEntered will call focus itself;
     if (inputRef.current) {
       inputRef.current.focus();
@@ -362,11 +370,14 @@ export default function AppLayoutDocsFooter(props) {
     const eventListener = (event) => {
       const feedbackHash = event.target.getAttribute('data-feedback-hash');
       if (feedbackHash) {
-        const section = sectionOptions.find((item) => item.hash === feedbackHash) || EMPTY_SECTION;
+        const section =
+          [...sectionOptions, ...SPEACIAL_FEEDBACK_HASH].find(
+            (item) => item.hash === feedbackHash,
+          ) || EMPTY_SECTION;
         setCommentOpen(true);
         setCommentedSection(section);
 
-        // Manualy move focus if commment is already open.
+        // Manually move focus if comment is already open.
         // If the comment is closed, onEntered will call focus itself;
         if (inputRef.current) {
           inputRef.current.focus();
@@ -424,13 +435,27 @@ export default function AppLayoutDocsFooter(props) {
                 </Typography>
                 <div>
                   <Tooltip title={t('feedbackYes')}>
-                    <IconButton onClick={handleClickThumb(1)} aria-pressed={rating === 1}>
-                      <ThumbUpIcon fontSize="small" color={rating === 1 ? 'primary' : undefined} />
+                    <IconButton
+                      onClick={handleClickThumb(1)}
+                      aria-pressed={rating === 1}
+                      sx={{ borderRadius: 1 }}
+                    >
+                      <ThumbUpAltRoundedIcon
+                        fontSize="small"
+                        color={rating === 1 ? 'primary' : undefined}
+                      />
                     </IconButton>
                   </Tooltip>
                   <Tooltip title={t('feedbackNo')}>
-                    <IconButton onClick={handleClickThumb(0)} aria-pressed={rating === 0}>
-                      <ThumbDownIcon fontSize="small" color={rating === 0 ? 'error' : undefined} />
+                    <IconButton
+                      onClick={handleClickThumb(0)}
+                      aria-pressed={rating === 0}
+                      sx={{ borderRadius: 1 }}
+                    >
+                      <ThumbDownAltRoundedIcon
+                        fontSize="small"
+                        color={rating === 0 ? 'error' : undefined}
+                      />
                     </IconButton>
                   </Tooltip>
                 </div>
@@ -497,6 +522,25 @@ export default function AppLayoutDocsFooter(props) {
                   ref: inputRef,
                 }}
               />
+              {rating !== 1 && (
+                <Alert
+                  severity="warning"
+                  color="warning"
+                  icon={<PanToolRoundedIcon fontSize="small" />}
+                  sx={{ my: 1.5 }}
+                >
+                  <Typography id="feedback-description" color="text.secondary">
+                    {t('feedbackMessageToGitHub.usecases')}{' '}
+                    <Link
+                      href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
+                      target="_blank"
+                    >
+                      {t('feedbackMessageToGitHub.callToAction.link')}
+                    </Link>{' '}
+                    {t('feedbackMessageToGitHub.reasonWhy')}
+                  </Typography>
+                </Alert>
+              )}
               <DialogActions>
                 <Button type="reset">{t('cancel')}</Button>
                 <Button type="submit" variant="contained">

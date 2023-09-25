@@ -1,19 +1,21 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
-import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
-import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
+import { resolveSxValue } from '../styles/styleUtils';
 import { useColorInversion } from '../styles/ColorInversion';
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
 import ComponentListContext from './ComponentListContext';
+import GroupListContext from './GroupListContext';
 import ListProvider from './ListProvider';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ListOwnerState) => {
   const { variant, color, size, nesting, orientation, instanceSize } = ownerState;
@@ -33,75 +35,78 @@ const useUtilityClasses = (ownerState: ListOwnerState) => {
 };
 
 export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme, ownerState }) => {
+  const { p, padding, borderRadius } = resolveSxValue({ theme, ownerState }, [
+    'p',
+    'padding',
+    'borderRadius',
+  ]);
   function applySizeVars(size: ListProps['size']) {
     if (size === 'sm') {
       return {
         '--ListDivider-gap': '0.25rem',
         '--ListItem-minHeight': '2rem',
-        '--ListItem-paddingY': '0.25rem',
+        '--ListItem-paddingY': '3px',
         '--ListItem-paddingX': '0.5rem',
-        '--ListItem-fontSize': theme.vars.fontSize.sm,
-        '--List-decoratorSize': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
-        '--Icon-fontSize': '1.125rem',
+        '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
+        '--Icon-fontSize': theme.vars.fontSize.lg,
       };
     }
     if (size === 'md') {
       return {
         '--ListDivider-gap': '0.375rem',
-        '--ListItem-minHeight': '2.5rem',
-        '--ListItem-paddingY': '0.375rem',
+        '--ListItem-minHeight': '2.25rem',
+        '--ListItem-paddingY': '0.25rem',
         '--ListItem-paddingX': '0.75rem',
-        '--ListItem-fontSize': theme.vars.fontSize.md,
-        '--List-decoratorSize': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
-        '--Icon-fontSize': '1.25rem',
+        '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl,
       };
     }
     if (size === 'lg') {
       return {
         '--ListDivider-gap': '0.5rem',
-        '--ListItem-minHeight': '3rem',
-        '--ListItem-paddingY': '0.5rem',
+        '--ListItem-minHeight': '2.75rem',
+        '--ListItem-paddingY': '0.375rem',
         '--ListItem-paddingX': '1rem',
-        '--ListItem-fontSize': theme.vars.fontSize.md,
-        '--List-decoratorSize': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
-        '--Icon-fontSize': '1.5rem',
+        '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
       };
     }
     return {};
   }
   return [
-    ownerState.nesting && {
-      // instanceSize is the specified size of the rendered element <List size="sm" />
-      // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
-      ...applySizeVars(ownerState.instanceSize),
-      '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
-      '--ListItem-paddingLeft': 'var(--NestedListItem-paddingLeft)',
-      // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
-      '--ListItemButton-marginBlock': '0px',
-      '--ListItemButton-marginInline': '0px',
-      '--ListItem-marginBlock': '0px',
-      '--ListItem-marginInline': '0px',
-      padding: 0,
-      marginInlineStart: 'var(--NestedList-marginLeft)',
-      marginInlineEnd: 'var(--NestedList-marginRight)',
-      marginBlockStart: 'var(--List-gap)',
-      marginBlockEnd: 'initial', // reset user agent stylesheet.
-    },
+    ownerState.nesting &&
+      ({
+        // instanceSize is the specified size of the rendered element <List size="sm" />
+        // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
+        ...applySizeVars(ownerState.instanceSize),
+        '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
+        '--ListItem-paddingLeft': 'var(--NestedListItem-paddingLeft)',
+        // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
+        '--ListItemButton-marginBlock': '0px',
+        '--ListItemButton-marginInline': '0px',
+        '--ListItem-marginBlock': '0px',
+        '--ListItem-marginInline': '0px',
+        padding: 0,
+        marginInlineStart: 'var(--NestedList-marginLeft)',
+        marginInlineEnd: 'var(--NestedList-marginRight)',
+        marginBlockStart: 'var(--List-gap)',
+        marginBlockEnd: 'initial', // reset user agent stylesheet.
+      } as const),
     !ownerState.nesting && {
       ...applySizeVars(ownerState.size),
       '--List-gap': '0px',
-      '--List-decoratorColor': theme.vars.palette.text.tertiary,
       '--List-nestedInsetStart': '0px',
       '--ListItem-paddingLeft': 'var(--ListItem-paddingX)',
       '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
       // Automatic radius adjustment kicks in only if '--List-padding' and '--List-radius' are provided.
-      '--unstable_childRadius':
-        'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
-      '--ListItem-radius': 'var(--unstable_childRadius)',
+      '--unstable_List-childRadius':
+        'calc(max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2)) - var(--variant-borderWidth, 0px))',
+      '--ListItem-radius': 'var(--unstable_List-childRadius)',
       // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
       '--ListItem-startActionTranslateX': 'calc(0.5 * var(--ListItem-paddingLeft))',
       '--ListItem-endActionTranslateX': 'calc(-0.5 * var(--ListItem-paddingRight))',
       margin: 'initial',
+      ...theme.typography[`body-${ownerState.size!}`],
       // --List-padding is not declared to let list uses --ListDivider-gap by default.
       ...(ownerState.orientation === 'horizontal'
         ? {
@@ -127,13 +132,20 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       listStyle: 'none',
       display: 'flex',
       flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-      ...(ownerState.wrap && {
-        flexWrap: 'wrap',
-      }),
+      ...(ownerState.wrap &&
+        ({
+          flexWrap: 'wrap',
+        } as const)),
       flexGrow: 1,
       position: 'relative', // for sticky ListItem
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-    },
+      '--unstable_List-borderWidth': 'var(--variant-borderWidth, 0px)', // For children to lookup the List's border width.
+      ...(borderRadius !== undefined && {
+        '--List-radius': borderRadius,
+      }),
+      ...(p !== undefined && { '--List-padding': p }),
+      ...(padding !== undefined && { '--List-padding': padding }),
+    } as const,
   ];
 });
 
@@ -154,8 +166,7 @@ const ListRoot = styled(StyledList, {
  */
 const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
-  const menuContext = React.useContext(MenuUnstyledContext);
-  const selectContext = React.useContext(SelectUnstyledContext);
+  const group = React.useContext(GroupListContext);
   const radioGroupContext = React.useContext(RadioGroupContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -172,6 +183,8 @@ const List = React.forwardRef(function List(inProps, ref) {
     variant = 'plain',
     color: colorProp = 'neutral',
     role: roleProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -179,7 +192,7 @@ const List = React.forwardRef(function List(inProps, ref) {
   const size = sizeProp || (inProps.size ?? 'md');
 
   let role;
-  if (menuContext || selectContext) {
+  if (group) {
     role = 'group';
   }
   if (radioGroupContext) {
@@ -202,17 +215,23 @@ const List = React.forwardRef(function List(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
+
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role,
+      'aria-labelledby': typeof nesting === 'string' ? nesting : undefined,
+    },
+  });
 
   return (
-    <ListRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      role={role}
-      aria-labelledby={typeof nesting === 'string' ? nesting : undefined}
-      {...other}
-    >
+    <SlotRoot {...rootProps}>
       <ComponentListContext.Provider
         value={`${typeof component === 'string' ? component : ''}:${role || ''}`}
       >
@@ -220,7 +239,7 @@ const List = React.forwardRef(function List(inProps, ref) {
           {children}
         </ListProvider>
       </ComponentListContext.Provider>
-    </ListRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<ListTypeMap>;
 
@@ -242,7 +261,7 @@ List.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -267,6 +286,20 @@ List.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

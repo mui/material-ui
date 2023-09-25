@@ -7,7 +7,7 @@ import TimelineContent, { timelineContentClasses } from '@mui/lab/TimelineConten
 import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
-export default function OppositeContentTimeline() {
+export default function RightAlignedTimeline() {
   return (
     <Timeline
       sx={{

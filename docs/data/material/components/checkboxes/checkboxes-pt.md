@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React para Caixa de seleção
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: 'https://m2.material.io/components/selection-controls#checkboxes'
@@ -54,7 +54,7 @@ Uma caixa de seleção só pode ter dois estados em um formulário: marcado ou d
 {{"demo": "IndeterminateCheckbox.js"}}
 
 :::warning
-⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
+When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
 :::
 
 ## Posicionamento do rótulo

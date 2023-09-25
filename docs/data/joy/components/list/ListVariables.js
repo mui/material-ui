@@ -1,5 +1,4 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import Avatar from '@mui/joy/Avatar';
 import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
@@ -12,6 +11,7 @@ import Sheet from '@mui/joy/Sheet';
 import Home from '@mui/icons-material/Home';
 import Apps from '@mui/icons-material/Apps';
 import MoreVert from '@mui/icons-material/MoreVert';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function ListVariables() {
   return (
@@ -25,7 +25,7 @@ export default function ListVariables() {
         { var: '--ListItem-minHeight', defaultValue: '40px' },
         { var: '--ListItem-paddingY', defaultValue: '6px' },
         { var: '--ListItem-paddingX', defaultValue: '12px' },
-        { var: '--List-decoratorSize', defaultValue: '40px' },
+        { var: '--ListItemDecorator-size', defaultValue: '40px' },
         { var: '--ListDivider-gap', defaultValue: '6px' },
       ]}
       renderDemo={(sx) => (
@@ -34,8 +34,6 @@ export default function ListVariables() {
             ...sx,
             width: 300,
             ...theme.variants.outlined.neutral,
-            bgcolor: 'background.body',
-            borderRadius: 'sm',
           })}
         >
           <ListItem>
@@ -58,7 +56,7 @@ export default function ListVariables() {
           <ListItem nested>
             <ListItem>
               <Typography
-                level="body2"
+                level="body-sm"
                 fontWeight="md"
                 startDecorator={
                   <Sheet

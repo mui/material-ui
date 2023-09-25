@@ -3,7 +3,7 @@
     "steps": { "type": { "name": "custom", "description": "integer" }, "required": true },
     "activeStep": { "type": { "name": "custom", "description": "integer" }, "default": "0" },
     "backButton": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "LinearProgressProps": { "type": { "name": "object" } },
     "nextButton": { "type": { "name": "node" } },
     "position": {
@@ -17,7 +17,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -28,6 +29,10 @@
     }
   },
   "name": "MobileStepper",
+  "imports": [
+    "import MobileStepper from '@mui/material/MobileStepper';",
+    "import { MobileStepper } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
@@ -43,6 +48,8 @@
     "name": "MuiMobileStepper"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiMobileStepper",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/MobileStepper/MobileStepper.js",
   "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },

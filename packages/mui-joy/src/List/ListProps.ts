@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ListSlot = 'root';
+
+export interface ListSlots {
+  /**
+   * The component that renders the root.
+   * @default 'ul'
+   */
+  root?: React.ElementType;
+}
+
+export type ListSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ListSlots,
+  {
+    root: SlotProps<'ul', {}, ListOwnerState>;
+  }
+>;
 
 export interface ListPropsSizeOverrides {}
 export interface ListPropsVariantOverrides {}
@@ -45,7 +61,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * @default false
      */
     wrap?: boolean;
-  };
+  } & ListSlotsAndSlotProps;
   defaultComponent: D;
 }
 

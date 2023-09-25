@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
-import { ColorPaletteProp, SxProps } from '../styles/types';
+import { ApplyColorInversion, ColorPaletteProp, SxProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type FormControlSlot = 'root';
+
+export interface FormControlSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+}
+
+export type FormControlSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  FormControlSlots,
+  {
+    root: SlotProps<'div', {}, FormControlOwnerState>;
+  }
+>;
 
 export interface FormControlPropsColorOverrides {}
 export interface FormControlPropsSizeOverrides {}
@@ -47,7 +63,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-  };
+  } & FormControlSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -56,4 +72,4 @@ export type FormControlProps<
   P = { component?: React.ElementType },
 > = OverrideProps<FormControlTypeMap<P, D>, D>;
 
-export interface FormControlOwnerState extends FormControlProps {}
+export interface FormControlOwnerState extends ApplyColorInversion<FormControlProps> {}

@@ -36,8 +36,8 @@ export default function Navigation() {
           }}
         >
           <ListItem>
-            <ListItemButton variant="soft" color="primary">
-              <ListItemDecorator sx={{ color: 'inherit' }}>
+            <ListItemButton selected>
+              <ListItemDecorator>
                 <FolderOpenIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>My files</ListItemContent>
@@ -77,7 +77,7 @@ export default function Navigation() {
           aria-labelledby="nav-list-tags"
           size="sm"
           sx={{
-            '--List-decoratorSize': '32px',
+            '--ListItemDecorator-size': '32px',
           }}
         >
           <ListItem>

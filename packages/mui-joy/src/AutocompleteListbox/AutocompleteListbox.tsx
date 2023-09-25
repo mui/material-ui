@@ -1,11 +1,13 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import { styled, useThemeProps } from '../styles';
+import { VariantColorProvider } from '../styles/variantColorInheritance';
 import { getAutocompleteListboxUtilityClass } from './autocompleteListboxClasses';
 import {
   AutocompleteListboxOwnerState,
@@ -15,6 +17,7 @@ import listItemClasses from '../ListItem/listItemClasses';
 import listClasses from '../List/listClasses';
 import { scopedVariables } from '../List/ListProvider';
 import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: AutocompleteListboxOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -34,6 +37,7 @@ const excludePopperProps = <T extends Record<string, any>>({
   anchorEl,
   direction,
   disablePortal,
+  keepMounted,
   modifiers,
   open,
   placement,
@@ -49,7 +53,6 @@ export const StyledAutocompleteListbox = styled(StyledList)<{
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
-    '--List-radius': theme.vars.radius.sm,
     '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
@@ -57,6 +60,7 @@ export const StyledAutocompleteListbox = styled(StyledList)<{
     '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)',
     ...scopedVariables,
     boxShadow: theme.shadow.md,
+    borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
     }),
@@ -106,6 +110,8 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     color: colorProp = 'neutral',
     variant = 'outlined',
     size = 'md',
+    slots = {},
+    slotProps = {},
     ...otherProps
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -124,18 +130,23 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
   const other = excludePopperProps(otherProps);
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
+
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AutocompleteListboxRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      role: 'listbox',
+    },
+  });
 
   return (
-    <AutocompleteListboxRoot
-      ref={ref}
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      role="listbox"
-      {...other}
-    >
-      {children}
-    </AutocompleteListboxRoot>
+    <VariantColorProvider variant={variant} color={colorProp}>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
+    </VariantColorProvider>
   );
 }) as OverridableComponent<AutocompleteListboxTypeMap>;
 
@@ -157,7 +168,7 @@ AutocompleteListbox.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -170,6 +181,20 @@ AutocompleteListbox.propTypes /* remove-proptypes */ = {
    * @default 'md'
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

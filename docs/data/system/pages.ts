@@ -1,11 +1,12 @@
+import type { MuiPage } from 'docs/src/MuiPage';
 import pagesApi from 'docs/data/system/pagesApi';
 
-const pages = [
+const pages: readonly MuiPage[] = [
   {
-    pathname: '/system/getting-started',
-    icon: 'DescriptionIcon',
+    pathname: '/system/getting-started-group',
+    title: 'Getting started',
     children: [
-      { pathname: '/system/getting-started/overview' },
+      { pathname: '/system/getting-started', title: 'Overview' },
       { pathname: '/system/getting-started/installation' },
       { pathname: '/system/getting-started/usage' },
       { pathname: '/system/getting-started/the-sx-prop' },
@@ -14,7 +15,6 @@ const pages = [
   },
   {
     pathname: '/style-utilities',
-    icon: 'BuildIcon',
     children: [
       { pathname: '/system/properties' },
       { pathname: '/system/borders' },
@@ -34,7 +34,6 @@ const pages = [
   {
     pathname: '/system/react-',
     title: 'Components',
-    icon: 'ToggleOnIcon',
     children: [
       { pathname: '/system/react-box', title: 'Box' },
       { pathname: '/system/react-container', title: 'Container' },
@@ -43,19 +42,21 @@ const pages = [
     ],
   },
   {
-    title: 'Component API',
+    title: 'APIs',
     pathname: '/system/api',
-    icon: 'CodeIcon',
     children: pagesApi,
   },
   {
     pathname: '/system/experimental-api',
     title: 'Experimental APIs',
-    icon: 'ExperimentIcon',
     children: [
       {
         pathname: '/system/experimental-api/configure-the-sx-prop',
         title: 'Configure the sx prop',
+      },
+      {
+        pathname: '/system/experimental-api/css-theme-variables',
+        title: 'CSS Theme Variables',
       },
     ],
   },
@@ -63,11 +64,10 @@ const pages = [
     pathname: '/system/styles',
     title: 'Styles',
     legacy: true,
-    icon: 'StyleIcon',
     children: [
       { pathname: '/system/styles/basics' },
       { pathname: '/system/styles/advanced' },
-      { pathname: '/system/styles/api', title: 'API' },
+      { pathname: '/system/styles/api', title: 'APIs' },
     ],
   },
 ];

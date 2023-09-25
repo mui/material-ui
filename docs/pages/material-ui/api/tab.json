@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "custom", "description": "unsupportedProp" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
     "disableRipple": { "type": { "name": "bool" }, "default": "false" },
@@ -18,12 +18,14 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "any" } },
     "wrapped": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Tab",
+  "imports": ["import Tab from '@mui/material/Tab';", "import { Tab } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",
@@ -41,6 +43,8 @@
     "name": "MuiTab"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTab",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/Tab/Tab.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

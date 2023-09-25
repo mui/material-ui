@@ -1,6 +1,6 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import CircularProgress from '@mui/joy/CircularProgress';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function CircularProgressVariables() {
   return (

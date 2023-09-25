@@ -1,2 +1,3 @@
-export { default } from './FocusTrap';
+'use client';
+export { FocusTrap } from './FocusTrap';
 export * from './FocusTrap.types';

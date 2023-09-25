@@ -1,10 +1,10 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Modal component
 components: Modal
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
-unstyled: /base/react-modal/
+unstyled: /base-ui/react-modal/
 ---
 
 # Modal
@@ -85,7 +85,7 @@ Be sure to identify bottlenecks first, and then try out these optimization strat
 
 ## Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
 
 {{"demo": "ServerModal.js"}}

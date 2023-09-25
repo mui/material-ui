@@ -8,3 +8,5 @@ export type BoxProps<
   D extends React.ElementType = BoxTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<BoxTypeMap<P, D, Theme>, D>;
+
+export interface BoxOwnerState extends BoxProps {}

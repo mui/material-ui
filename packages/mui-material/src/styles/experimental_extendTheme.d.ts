@@ -128,6 +128,11 @@ export interface PaletteAvatar {
   defaultBg: string;
 }
 
+export interface PaletteButton {
+  inheritContainedBg: string;
+  inheritContainedHoverBg: string;
+}
+
 export interface PaletteChip {
   defaultBorder: string;
   defaultAvatarColor: string;
@@ -214,6 +219,7 @@ export interface ColorSystemOptions {
     Alert?: Partial<PaletteAlert>;
     AppBar?: Partial<PaletteAppBar>;
     Avatar?: Partial<PaletteAvatar>;
+    Button?: Partial<PaletteButton>;
     Chip?: Partial<PaletteChip>;
     FilledInput?: Partial<PaletteFilledInput>;
     LinearProgress?: Partial<PaletteLinearProgress>;
@@ -247,6 +253,7 @@ export interface CssVarsPalette {
   Alert: PaletteAlert;
   AppBar: PaletteAppBar;
   Avatar: PaletteAvatar;
+  Button: PaletteButton;
   Chip: PaletteChip;
   FilledInput: PaletteFilledInput;
   LinearProgress: PaletteLinearProgress;
@@ -407,13 +414,14 @@ export interface CssVarsTheme extends ColorSystem {
 
   // Default theme tokens
   spacing: Theme['spacing'];
-  breakpints: Theme['breakpoints'];
+  breakpoints: Theme['breakpoints'];
   shape: Theme['shape'];
   typography: Theme['typography'];
   transitions: Theme['transitions'];
   shadows: Theme['shadows'];
   mixins: Theme['mixins'];
   zIndex: Theme['zIndex'];
+  direction: Theme['direction'];
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.

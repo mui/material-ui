@@ -1,41 +1,8 @@
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import { padding, margin } from '../spacing';
-import { handleBreakpoints } from '../breakpoints';
 import { borderRadius, borderTransform } from '../borders';
 import { gap, rowGap, columnGap } from '../cssGrid';
 import { paletteTransform } from '../palette';
 import { maxWidth, sizingTransform } from '../sizing';
-
-const createFontStyleFunction = (prop) => {
-  return (props) => {
-    if (props[prop] !== undefined && props[prop] !== null) {
-      const styleFromPropValue = (propValue) => {
-        let value =
-          props.theme.typography?.[
-            `${prop}${
-              props[prop] === 'default' || props[prop] === prop
-                ? ''
-                : capitalize(props[prop]?.toString())
-            }`
-          ];
-
-        if (!value) {
-          value = props.theme.typography?.[propValue]?.[prop];
-        }
-
-        if (!value) {
-          value = propValue;
-        }
-
-        return {
-          [prop]: value,
-        };
-      };
-      return handleBreakpoints(props, props[prop], styleFromPropValue);
-    }
-    return null;
-  };
-};
 
 const defaultSxConfig = {
   // borders
@@ -316,18 +283,15 @@ const defaultSxConfig = {
   // typography
   fontFamily: {
     themeKey: 'typography',
-    style: createFontStyleFunction('fontFamily'),
   },
   fontSize: {
     themeKey: 'typography',
-    style: createFontStyleFunction('fontSize'),
   },
   fontStyle: {
     themeKey: 'typography',
   },
   fontWeight: {
     themeKey: 'typography',
-    style: createFontStyleFunction('fontWeight'),
   },
   letterSpacing: {},
   textTransform: {},

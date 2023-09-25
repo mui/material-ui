@@ -16,7 +16,7 @@ function testOnChange() {
 // slotProps and componentsProps as objects
 <Slider
   slotProps={{
-    root: { onMouseDown: () => 'onMouseDown event triggerred' },
+    root: { onMouseDown: () => 'onMouseDown event triggered' },
     input: { disabled: true },
     mark: { onClick: () => 'clicked' },
     markLabel: { className: 'markLabel' },
@@ -25,7 +25,7 @@ function testOnChange() {
     valueLabel: { valueLabelDisplay: 'auto' },
   }}
   componentsProps={{
-    root: { onMouseDown: () => 'onMouseDown event triggerred' },
+    root: { onMouseDown: () => 'onMouseDown event triggered' },
     input: { disabled: true },
     mark: { onClick: () => 'clicked' },
     markLabel: { className: 'markLabel' },

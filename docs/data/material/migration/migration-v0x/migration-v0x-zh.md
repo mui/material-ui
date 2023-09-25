@@ -25,14 +25,14 @@ Material UI是在[4年前](https://github.com/mui/material-ui/commit/28b768913b7
 
 用 yarn：
 
-```sh
+```bash
 yarn add material-ui
   yarn add @material-ui/core
 ```
 
 或者用 npm：
 
-```sh
+```bash
 npm install material-ui
   npm install @material-ui/core
 ```

@@ -1,4 +1,4 @@
-<Button onClick={handleToggle}>Show backdrop</Button>
+<Button onClick={handleOpen}>Show backdrop</Button>
 <Backdrop
   sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
   open={open}

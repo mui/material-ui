@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: Unstyled React Form Control component and hook
 components: FormControlUnstyled
 githubLabel: 'component: FormControl'
@@ -21,7 +21,7 @@ For instance, you may want to show an additional element asking the user to ente
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import FormControlUnstyled from '@mui/base/FormControlUnstyled';

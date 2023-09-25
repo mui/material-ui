@@ -20,11 +20,11 @@ describe('styleFunctionSx', () => {
     breakpoints: {
       keys: ['xs', 'sm', 'md', 'lg', 'xl'],
       values: breakpointsValues,
+      unit: 'px',
       up: (key) => {
         return `@media (min-width:${breakpointsValues[key]}px)`;
       },
     },
-    unit: 'px',
     palette: {
       primary: {
         main: 'rgb(0, 0, 255)',
@@ -439,6 +439,23 @@ describe('styleFunctionSx', () => {
       fontSize: 'inherit',
       lineHeight: 'inherit',
       letterSpacing: 'inherit',
+    });
+  });
+
+  it('resolves theme typography properties', () => {
+    const result = styleFunctionSx({
+      theme: { typography: createTypography({}, {}) },
+      sx: {
+        fontFamily: 'default',
+        fontWeight: 'fontWeightMedium',
+        fontSize: 'fontSize',
+      },
+    });
+
+    expect(result).deep.equal({
+      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+      fontWeight: 500,
+      fontSize: 14,
     });
   });
 });

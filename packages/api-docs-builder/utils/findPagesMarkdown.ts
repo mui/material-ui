@@ -16,10 +16,10 @@ export default function findPagesMarkdown(
   const items = fs.readdirSync(directory);
 
   items.forEach((item) => {
-    const itemPath = path.resolve(directory, item);
+    const filename = path.resolve(directory, item);
 
-    if (fs.statSync(itemPath).isDirectory()) {
-      findPagesMarkdown(itemPath, pagesMarkdown);
+    if (fs.statSync(filename).isDirectory()) {
+      findPagesMarkdown(filename, pagesMarkdown);
       return;
     }
 
@@ -28,7 +28,7 @@ export default function findPagesMarkdown(
       return;
     }
 
-    let pathname = itemPath
+    let pathname = filename
       .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
       .replace(/^.*\/data/, '')
       .replace('.md', '');
@@ -37,10 +37,10 @@ export default function findPagesMarkdown(
     pathname = pathname.split('/').slice(0, 4).join('/');
 
     pagesMarkdown.push({
-      // Relative location in the path (URL) system.
+      // Relative location of the markdown file in the file system.
+      filename,
+      // Relative location of the page in the URL.
       pathname,
-      // Relative location in the file system.
-      filename: itemPath,
     });
   });
 

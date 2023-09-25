@@ -206,6 +206,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       'Alert',
       'AppBar',
       'Avatar',
+      'Button',
       'Chip',
       'FilledInput',
       'LinearProgress',
@@ -250,6 +251,8 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       setColor(palette.Alert, 'warningIconColor', getCssVar('palette-warning-light'));
       setColor(palette.AppBar, 'defaultBg', getCssVar('palette-grey-100'));
       setColor(palette.Avatar, 'defaultBg', getCssVar('palette-grey-400'));
+      setColor(palette.Button, 'inheritContainedBg', getCssVar('palette-grey-300'));
+      setColor(palette.Button, 'inheritContainedHoverBg', getCssVar('palette-grey-A100'));
       setColor(palette.Chip, 'defaultBorder', getCssVar('palette-grey-400'));
       setColor(palette.Chip, 'defaultAvatarColor', getCssVar('palette-grey-700'));
       setColor(palette.Chip, 'defaultIconColor', getCssVar('palette-grey-700'));
@@ -322,6 +325,8 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       setColor(palette.AppBar, 'darkBg', getCssVar('palette-background-paper')); // specific for dark mode
       setColor(palette.AppBar, 'darkColor', getCssVar('palette-text-primary')); // specific for dark mode
       setColor(palette.Avatar, 'defaultBg', getCssVar('palette-grey-600'));
+      setColor(palette.Button, 'inheritContainedBg', getCssVar('palette-grey-800'));
+      setColor(palette.Button, 'inheritContainedHoverBg', getCssVar('palette-grey-700'));
       setColor(palette.Chip, 'defaultBorder', getCssVar('palette-grey-700'));
       setColor(palette.Chip, 'defaultAvatarColor', getCssVar('palette-grey-300'));
       setColor(palette.Chip, 'defaultIconColor', getCssVar('palette-grey-300'));
