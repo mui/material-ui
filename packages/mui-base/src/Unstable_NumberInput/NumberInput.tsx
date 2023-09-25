@@ -26,6 +26,8 @@ const useUtilityClasses = (ownerState: NumberInputOwnerState) => {
     formControlContext,
     isIncrementDisabled,
     isDecrementDisabled,
+    startAdornment,
+    endAdornment,
   } = ownerState;
 
   const slots = {
@@ -36,6 +38,8 @@ const useUtilityClasses = (ownerState: NumberInputOwnerState) => {
       focused && 'focused',
       readOnly && 'readOnly',
       Boolean(formControlContext) && 'formControl',
+      Boolean(startAdornment) && 'adornedStart',
+      Boolean(endAdornment) && 'adornedEnd',
     ],
     input: ['input', disabled && 'disabled', readOnly && 'readOnly'],
     incrementButton: ['incrementButton', isIncrementDisabled && 'disabled'],
@@ -63,6 +67,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     className,
     defaultValue,
     disabled,
+    endAdornment,
     error,
     id,
     max,
@@ -75,6 +80,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     required,
     readOnly = false,
     shiftMultiplier,
+    startAdornment,
     step,
     value,
     slotProps = {},
@@ -175,7 +181,9 @@ const NumberInput = React.forwardRef(function NumberInput(
     <Root {...rootProps}>
       <DecrementButton {...decrementButtonProps} />
       <IncrementButton {...incrementButtonProps} />
+      {startAdornment}
       <Input {...inputProps} />
+      {endAdornment}
     </Root>
   );
 }) as OverridableComponent<NumberInputTypeMap>;
@@ -202,6 +210,10 @@ NumberInput.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
+  /**
+   * Trailing adornment for this input.
+   */
+  endAdornment: PropTypes.node,
   /**
    * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
    */
@@ -284,6 +296,10 @@ NumberInput.propTypes /* remove-proptypes */ = {
     input: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
+  /**
+   * Leading adornment for this input.
+   */
+  startAdornment: PropTypes.node,
   /**
    * The amount that the value changes on each increment or decrement.
    */

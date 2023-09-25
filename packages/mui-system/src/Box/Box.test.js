@@ -1,7 +1,7 @@
 /* eslint-disable material-ui/no-empty-box */
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { Box, createTheme, ThemeProvider } from '@mui/system';
 
 describe('<Box />', () => {

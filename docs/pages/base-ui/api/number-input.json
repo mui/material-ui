@@ -2,6 +2,7 @@
   "props": {
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
+    "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "id": { "type": { "name": "string" } },
     "max": { "type": { "name": "number" } },
@@ -38,6 +39,7 @@
       "default": "{}",
       "additionalInfo": { "slotsApi": true }
     },
+    "startAdornment": { "type": { "name": "node" } },
     "step": { "type": { "name": "number" } },
     "value": { "type": { "name": "any" } }
   },
@@ -74,7 +76,15 @@
     }
   ],
   "classes": {
-    "classes": ["disabled", "error", "focused", "formControl", "readOnly"],
+    "classes": [
+      "adornedEnd",
+      "adornedStart",
+      "disabled",
+      "error",
+      "focused",
+      "formControl",
+      "readOnly"
+    ],
     "globalClasses": {
       "focused": "Mui-focused",
       "disabled": "Mui-disabled",
