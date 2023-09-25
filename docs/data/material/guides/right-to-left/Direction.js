@@ -20,8 +20,7 @@ export default function Direction() {
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme}>
         <div dir="rtl">
-          <TextField label="Name" variant="standard" />
-          <input type="text" placeholder="Name" />
+          <TextField label="Name" variant="outlined" />
         </div>
       </ThemeProvider>
     </CacheProvider>

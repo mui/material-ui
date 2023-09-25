@@ -1,14 +1,10 @@
-<React.Fragment>
-  <div>
-    <FormControlLabel
-      control={<Switch checked={rtl} onChange={handleChange} />}
-      label="RTL"
-    />
-  </div>
-  <CacheProvider value={rtl ? rtlCache : ltrCache}>
-    <Root {...(rtl ? { dir: 'rtl' } : {})}>
-      <AffectedText>Affected</AffectedText>
-      <UnaffectedText>Unaffected</UnaffectedText>
-    </Root>
-  </CacheProvider>
-</React.Fragment>
+<FormControlLabel
+  control={<Switch checked={rtl} onChange={handleChange} />}
+  label="Toggle right-to-left styles"
+/>
+<CacheProvider value={rtl ? rtlCache : ltrCache}>
+  <Root {...(rtl ? { dir: 'rtl' } : {})}>
+    <AffectedText>Affected</AffectedText>
+    <UnaffectedText>Unaffected</UnaffectedText>
+  </Root>
+</CacheProvider>

@@ -5,6 +5,7 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Box from '@mui/material/Box';
 import Switch from '@mui/material/Switch';
 
 const Root = styled('div')((props) => ({
@@ -38,19 +39,17 @@ export default function RtlOptOutStylis() {
   };
 
   return (
-    <React.Fragment>
-      <div>
-        <FormControlLabel
-          control={<Switch checked={rtl} onChange={handleChange} />}
-          label="RTL"
-        />
-      </div>
+    <Box sx={{ display: 'flex', gap: 2, width: '100%' }}>
+      <FormControlLabel
+        control={<Switch checked={rtl} onChange={handleChange} />}
+        label="Toggle right-to-left styles"
+      />
       <CacheProvider value={rtl ? rtlCache : ltrCache}>
         <Root {...(rtl ? { dir: 'rtl' } : {})}>
           <AffectedText>Affected</AffectedText>
           <UnaffectedText>Unaffected</UnaffectedText>
         </Root>
       </CacheProvider>
-    </React.Fragment>
+    </Box>
   );
 }
