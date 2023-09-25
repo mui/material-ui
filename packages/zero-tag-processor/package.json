@@ -48,7 +48,8 @@
     "@linaria/tags": "^4.5.4",
     "@linaria/utils": "^4.5.3",
     "@mui/system": "^5.14.11",
-    "lodash.get": "^4.4.2"
+    "lodash.get": "^4.4.2",
+    "stylis": "^4.2.0"
   },
   "devDependencies": {
     "@mui/material": "^5.14.11",
@@ -58,7 +59,8 @@
     "@types/chai": "^4.3.6",
     "@types/lodash.get": "^4.4.7",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.18.0"
+    "@types/node": "^18.18.0",
+    "@types/stylis": "^4.2.0"
   },
   "sideEffects": false,
   "publishConfig": {
