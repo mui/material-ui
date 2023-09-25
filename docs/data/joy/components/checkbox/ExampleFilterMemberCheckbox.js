@@ -47,7 +47,7 @@ export default function ExampleFilterMemberCheckbox() {
               gap: 1.5,
             },
             '& li': {
-              gap: 1.5,
+              gap: 1.25,
             },
           }}
         >
