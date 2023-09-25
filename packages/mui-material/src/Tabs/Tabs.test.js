@@ -9,7 +9,7 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Tab from '@mui/material/Tab';
