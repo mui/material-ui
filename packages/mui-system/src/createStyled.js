@@ -80,6 +80,31 @@ const themeVariantsResolver = (props, styles, theme, name) => {
   return variantsResolver(props, styles, themeVariants);
 };
 
+// Update /system/styled/#api in case if this changes
+export function shouldForwardProp(prop) {
+  return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
+}
+
+export const systemDefaultTheme = createTheme();
+
+const lowercaseFirstLetter = (string) => {
+  if (!string) {
+    return string;
+  }
+  return string.charAt(0).toLowerCase() + string.slice(1);
+};
+
+function resolveTheme({ defaultTheme, theme, themeId }) {
+  return isEmpty(theme) ? defaultTheme : theme[themeId] || theme;
+}
+
+function defaultOverridesResolver(slot) {
+  if (!slot) {
+    return null;
+  }
+  return (props, styles) => styles[slot];
+}
+
 const muiStyledFunctionResolver = ({ styledArg, props, defaultTheme, themeId }) => {
   const resolvedStyles = styledArg({
     ...props,
@@ -105,31 +130,6 @@ const muiStyledFunctionResolver = ({ styledArg, props, defaultTheme, themeId }) 
 
   return resolvedStyles;
 };
-
-// Update /system/styled/#api in case if this changes
-export function shouldForwardProp(prop) {
-  return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
-}
-
-export const systemDefaultTheme = createTheme();
-
-const lowercaseFirstLetter = (string) => {
-  if (!string) {
-    return string;
-  }
-  return string.charAt(0).toLowerCase() + string.slice(1);
-};
-
-function resolveTheme({ defaultTheme, theme, themeId }) {
-  return isEmpty(theme) ? defaultTheme : theme[themeId] || theme;
-}
-
-function defaultOverridesResolver(slot) {
-  if (!slot) {
-    return null;
-  }
-  return (props, styles) => styles[slot];
-}
 
 export default function createStyled(input = {}) {
   const {
