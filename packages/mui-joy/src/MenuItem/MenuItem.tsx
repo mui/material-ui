@@ -4,11 +4,17 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useMenuItem } from '@mui/base/useMenuItem';
+import { unwrapMenuItemContext, MenuItemUnwrappedContextProps } from '@mui/base/MenuItem';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useVariantColor } from '../styles/variantColorInheritance';
 import { getMenuItemUtilityClass } from './menuItemClasses';
-import { MenuItemOwnerState, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
+import {
+  MenuItemOwnerState,
+  ExtendMenuItem,
+  MenuItemTypeMap,
+  MenuItemProps,
+} from './MenuItemProps';
 import RowListContext from '../List/RowListContext';
 import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
 import useSlot from '../utils/useSlot';
@@ -47,66 +53,79 @@ const MenuItemRoot = styled(StyledListItemButton, {
  * - [MenuItem API](https://mui.com/joy-ui/api/menu-item/)
  * - inherits [ListItemButton API](https://mui.com/joy-ui/api/list-item-button/)
  */
-const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
-  const props = useThemeProps({
-    props: inProps,
-    name: 'JoyMenuItem',
-  });
+const MenuItem = unwrapMenuItemContext(
+  React.memo(
+    React.forwardRef(function MenuItem(
+      inProps: MenuItemProps & MenuItemUnwrappedContextProps,
+      ref: React.ForwardedRef<Element>,
+    ) {
+      const props = useThemeProps({
+        props: inProps,
+        name: 'JoyMenuItem',
+      });
 
-  const row = React.useContext(RowListContext);
+      const row = React.useContext(RowListContext);
 
-  const {
-    children,
-    disabled: disabledProp = false,
-    component = 'li',
-    selected = false,
-    color: colorProp = 'neutral',
-    orientation = 'horizontal',
-    variant: variantProp = 'plain',
-    slots = {},
-    slotProps = {},
-    ...other
-  } = props;
-  const { variant = variantProp, color = colorProp } = useVariantColor(
-    inProps.variant,
-    inProps.color,
-  );
+      const {
+        children,
+        disabled: disabledProp = false,
+        dispatch,
+        component = 'li',
+        highlighted,
+        focusable,
+        selected = false,
+        color: colorProp = 'neutral',
+        orientation = 'horizontal',
+        variant: variantProp = 'plain',
+        slots = {},
+        slotProps = {},
+        ...other
+      } = props;
+      const { variant = variantProp, color = colorProp } = useVariantColor(
+        inProps.variant,
+        inProps.color,
+      );
 
-  const { getRootProps, disabled, focusVisible } = useMenuItem({
-    disabled: disabledProp,
-    rootRef: ref,
-  });
+      const { getRootProps, disabled, focusVisible } = useMenuItem({
+        disabled: disabledProp,
+        dispatch,
+        highlighted,
+        focusable,
+        rootRef: ref,
+      });
 
-  const ownerState = {
-    ...props,
-    component,
-    color,
-    disabled,
-    focusVisible,
-    orientation,
-    selected,
-    row,
-    variant,
-  };
+      const ownerState = {
+        ...props,
+        component,
+        color,
+        disabled,
+        focusVisible,
+        orientation,
+        selected,
+        row,
+        variant,
+      };
 
-  const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component, slots, slotProps };
+      const classes = useUtilityClasses(ownerState);
+      const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
-    elementType: MenuItemRoot,
-    getSlotProps: getRootProps,
-    externalForwardedProps,
-    className: classes.root,
-    ownerState,
-  });
+      const [SlotRoot, rootProps] = useSlot('root', {
+        ref,
+        elementType: MenuItemRoot,
+        getSlotProps: getRootProps,
+        externalForwardedProps,
+        className: classes.root,
+        ownerState,
+      });
 
-  return (
-    <ListItemButtonOrientationContext.Provider value={orientation}>
-      <SlotRoot {...rootProps}>{children}</SlotRoot>
-    </ListItemButtonOrientationContext.Provider>
-  );
-}) as ExtendMenuItem<MenuItemTypeMap>;
+      return (
+        <ListItemButtonOrientationContext.Provider value={orientation}>
+          <SlotRoot {...rootProps}>{children}</SlotRoot>
+        </ListItemButtonOrientationContext.Provider>
+      );
+    }),
+  ),
+) as ExtendMenuItem<MenuItemTypeMap>;
 
 MenuItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
