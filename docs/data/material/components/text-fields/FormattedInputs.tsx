@@ -12,7 +12,7 @@ interface CustomProps {
   name: string;
 }
 
-const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(
+const TextMaskCustom = React.forwardRef<HTMLInputElement, CustomProps>(
   function TextMaskCustom(props, ref) {
     const { onChange, ...other } = props;
     return (
@@ -54,13 +54,8 @@ const NumericFormatCustom = React.forwardRef<NumericFormatProps, CustomProps>(
   },
 );
 
-interface State {
-  textmask: string;
-  numberformat: string;
-}
-
 export default function FormattedInputs() {
-  const [values, setValues] = React.useState<State>({
+  const [values, setValues] = React.useState({
     textmask: '(100) 000-0000',
     numberformat: '1320',
   });
