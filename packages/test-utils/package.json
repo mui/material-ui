@@ -28,7 +28,7 @@
     "@testing-library/react": "^14.0.0",
     "chai": "^4.3.8",
     "chai-dom": "^1.11.0",
-    "dom-accessibility-api": "^0.6.1",
+    "dom-accessibility-api": "^0.6.3",
     "enzyme": "^3.11.0",
     "format-util": "^1.0.5",
     "fs-extra": "^11.1.1",
