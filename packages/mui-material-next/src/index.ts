@@ -24,6 +24,9 @@ export * from './FormLabel';
 export { default as InputBase } from './InputBase';
 export * from './InputBase';
 
+export { default as InputLabel } from './InputLabel';
+export * from './InputLabel';
+
 export { default as Input } from './Input';
 
 export { default as Select } from './Select';
