@@ -14,6 +14,8 @@ describe('<Divider />', () => {
     refInstanceof: window.HTMLHRElement,
     testComponentPropWith: 'div',
     testVariantProps: { orientation: 'vertical', flexItem: true, textAlign: 'left' },
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
     skip: ['componentsProp'],
   }));
 
