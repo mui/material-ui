@@ -379,7 +379,7 @@ const Root = styled('div')(
         },
       },
     },
-    '& a, & a code': {
+    '& a, & a code, & strong': {
       // Style taken from the Link component
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
       textDecoration: 'underline',
