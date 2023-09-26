@@ -101,6 +101,7 @@ import {
   DialogTitleOwnerState,
   DialogTitleSlot,
 } from '../DialogTitle/DialogTitleProps';
+import { DrawerProps, DrawerOwnerState, DrawerSlot } from '../Drawer/DrawerProps';
 import {
   ScopedCssBaselineProps,
   ScopedCssBaselineOwnerState,
@@ -348,6 +349,10 @@ export interface Components<Theme = unknown> {
   JoyDialogTitle?: {
     defaultProps?: Partial<DialogTitleProps>;
     styleOverrides?: StyleOverrides<DialogTitleSlot, DialogTitleOwnerState, Theme>;
+  };
+  JoyDrawer?: {
+    defaultProps?: Partial<DrawerProps>;
+    styleOverrides?: StyleOverrides<DrawerSlot, DrawerOwnerState, Theme>;
   };
   JoyScopedCssBaseline?: {
     defaultProps?: Partial<ScopedCssBaselineProps>;
