@@ -116,3 +116,10 @@ export default function StyledBoxWithSx() {
     </StyledBox>
   );
 }
+
+function LogicalPropertiesTest() {
+  <Box
+    marginInline={1}
+    paddingBlockEnd="10px"
+  />;
+}
