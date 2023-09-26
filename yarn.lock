@@ -3898,10 +3898,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-test-renderer@^18.0.1":
-  version "18.0.1"
-  resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-18.0.1.tgz#d3f308912fcc4491e4fbc134b906bb65bdee73f6"
-  integrity sha512-LjEF+jTUCjzd+Qq4eWqsmZvEWPA/l4L0my+YWN5US8Fo3wZOMiyrpBshHDFbkO8usjdO1B430mEWNU/i1MF7Qg==
+"@types/react-test-renderer@^18.0.2":
+  version "18.0.2"
+  resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-18.0.2.tgz#44243977eec18ab8cda88d8977437f47a0d3fdbe"
+  integrity sha512-tJzMn+9GHDrdrLe0O4rwJELDfTrmdJbCn/UdYyzjlnPiXYXDl5FBNzdw4PVk2R3hJvSHKFjZcRgvZc12lV0p5Q==
   dependencies:
     "@types/react" "*"
 
