@@ -37,7 +37,7 @@ To be more specific in what we are aiming to achieve in the short to mid-term:
 
 This should allow us to reach 30% of the downloads of alternative React charting libraries, considering benchmark data in the short term. Developers value having a single touch point, but also one they trust, and one that integrates well into the rest of their application.
 
-In the mid-term, we aspired for this charting liberty to become a standard in the React ecosystem, outgrowing Material UI or any other UI library. We believe we can achieve this with an open-core model. We will match the features available in the alternative open-source projects, licensed as MIT in MUI X Charts. We will then provide extra paid features so developers can use a single charting library, without the need to go to paid alternatives as they do today.
+In the mid-term, we aspired for this charting library to become a standard in the React ecosystem, outgrowing Material UI or any other UI library. We believe we can achieve this with an open-core model. We will match the features available in the alternative open-source projects, licensed as MIT in MUI X Charts. We will then provide extra paid features so developers can use a single charting library, without the need to go to paid alternatives as they do today.
 
 In the long term, we envision using the pro-code charting API as a distribution channel for building more abstract charting primitives, using low-code and AI.
 
