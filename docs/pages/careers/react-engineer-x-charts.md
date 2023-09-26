@@ -1,10 +1,10 @@
-# React Engineer - X
+# React Engineer - xCharts
 
-<p class="description">You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
+<p class="description">You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
 
 ## Details of the Role
 
-- **Location**: Remote (preference for UTC-6 to UTC+5).
+- **Location**: Remote (strong preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
 - **Level**: [4 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
@@ -27,10 +27,19 @@ For additional details about the MUI team and culture, you can check our [career
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+The charts team (part of MUI X) needs your help.
+The component is off to [a great start](https://npm-stat.com/charts.html?package=%40mui%2Fx-charts&from=2021-06-01&to=2023-09-13), however we have only started to scratch the surface for the potential of this component. There is x10 more to build.
 
-We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the open-source community.
+To be more specific in what we are aiming to achieve in the short to mid-term:
+
+- A tighter integration with the rest of the MUI libraries including Material UI and the Data Grid
+- Faster iteration cycles compared to popular open-source alternatives such as chart.js and Recharts
+
+This should allow us to reach 30% of the downloads of alternative React charting libraries, considering benchmark data in the short term. Developers value having a single touch point, but also one they trust, and one that integrates well into the rest of their application.
+
+In the mid-term, we aspired for this charting library to become a standard in the React ecosystem, outgrowing Material UI or any other UI library. We believe we can achieve this with an open-core model. We will match the features available in the alternative open-source projects, licensed as MIT in MUI X Charts. We will then provide extra paid features so developers can use a single charting library, without the need to go to paid alternatives as they do today.
+
+In the long term, we envision using the pro-code charting API as a distribution channel for building more abstract charting primitives, using low-code and AI.
 
 ## About the role
 
@@ -95,6 +104,8 @@ We're looking for someone with strong front-end skills. More important than spec
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Ready and willing to ask and answer questions**.
   If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team. We thrive because of continuous learning. First-time mistakes should be celebrated, not blamed.
+- **Experience or interest in drawing technologies**.
+  Charts use SVG and canvas which implies using other API than HTML/CSS. Hope you know them or enjoy discovering new documentation.
 - **Avoid monolithic deliverables**.
   You scope and stage your work into well-defined milestones to ship.
 - **Past work with front-end infrastructure**.
@@ -103,6 +114,9 @@ We're looking for someone with strong front-end skills. More important than spec
 
 ### What it would be nice if you had, but isn't required
 
+- **You've experience with charts**.
+  You have contributed to building chart libraries, integrated charts in a design system, or contributed to chart intensive applications.
+  You have built complex and advanced features while making sure the accessibility was fully functional.
 - **You've contributed to a design system before**.
   You have worked on enterprise components in the past, maybe for internal use in your company.
   You have built complex and advanced features while making sure the accessibility was fully functional.
