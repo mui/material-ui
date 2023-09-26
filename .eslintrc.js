@@ -74,7 +74,9 @@ module.exports = {
         ],
       },
     ],
+    'no-continue': 'off',
     'no-constant-condition': 'error',
+    'no-use-before-define': ['error', { functions: false }],
     // Use the proptype inheritance chain
     'no-prototype-builtins': 'off',
     'no-underscore-dangle': 'error',
