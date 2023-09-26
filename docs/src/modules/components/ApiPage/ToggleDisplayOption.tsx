@@ -2,11 +2,12 @@ import * as React from 'react';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import CalendarViewDayRoundedIcon from '@mui/icons-material/CalendarViewDayRounded';
+import TableChartRoundedIcon from '@mui/icons-material/TableChartRounded';
 import ReorderRoundedIcon from '@mui/icons-material/ReorderRounded';
 
-export type ApiDisplayOptions = 'collapsed' | 'expended';
+export type ApiDisplayOptions = 'collapsed' | 'expended' | 'table';
 
-const options: ApiDisplayOptions[] = ['collapsed', 'expended'];
+const options: ApiDisplayOptions[] = ['collapsed', 'expended', 'table'];
 
 const getRandomOption = () => options[Math.floor(options.length * Math.random())];
 
@@ -94,6 +95,10 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
 
       <ToggleButton value="expended" aria-label="expended list">
         <CalendarViewDayRoundedIcon />
+      </ToggleButton>
+
+      <ToggleButton value="table" aria-label="table">
+        <TableChartRoundedIcon />
       </ToggleButton>
     </ToggleButtonGroup>
   );

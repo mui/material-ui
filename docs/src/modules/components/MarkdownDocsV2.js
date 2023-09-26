@@ -17,7 +17,7 @@ import Ad from 'docs/src/modules/components/Ad';
 import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import AdGuest from 'docs/src/modules/components/AdGuest';
-import { getPropsToC } from 'docs/src/modules/components/PropertiesTable';
+import { getPropsToC } from 'docs/src/modules/components/ApiPage/PropertiesSection';
 import { getCssToC } from 'docs/src/modules/components/ApiPage/CSSList';
 
 function JoyModeObserver({ mode }) {

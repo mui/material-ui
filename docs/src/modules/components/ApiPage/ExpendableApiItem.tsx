@@ -4,13 +4,12 @@ import clsx from 'clsx';
 import { alpha, styled } from '@mui/material/styles';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { IconButton, SxProps } from '@mui/material';
+import { Divider, Box, IconButton, SxProps } from '@mui/material';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
 
-const TITLE_MAX_WIDTH = 250;
 type DescriptionType = 'props' | 'classes' | 'CSS' | 'slots';
 
 const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
@@ -18,78 +17,57 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
     ...theme.typography.caption,
     fontSize: 13,
     fontFamily: theme.typography.fontFamilyCode,
-    display: 'table-row',
     position: 'relative',
     marginBottom: 8,
     fontWeight: theme.typography.fontWeightRegular,
     lineHeight: 1.6,
-    '&>div': {
-      borderBottom: `solid ${theme.palette.divider} 1px`,
-      padding: '18px 0',
+
+    '& .MuiApi-item-header': {
+      display: 'flex',
+      alignItems: 'flex-start',
+      marginLeft: -40,
     },
-    '& .MuiApi-item-title-cell': {
-      display: 'table-cell',
-      width: 'max-content',
-      maxWidth: TITLE_MAX_WIDTH,
-      '&>p': {
-        display: 'flex',
-        alignItems: 'flex-start',
-        marginLeft: -40,
-        width: 'max-content',
+    '& .MuiApi-item-link-visual': {
+      display: 'none',
+      flexShrink: 0,
+      border: '1px solid',
+      borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
+      borderRadius: 8,
+      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+      height: 26,
+      width: 26,
+      textAlign: 'center',
+      lineHeight: '30px',
+      '& svg': {
+        fill: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
+        height: '14px',
+        width: '14px',
       },
-      '& .MuiApi-item-link-visual': {
-        display: 'none',
-        flexShrink: 0,
-        border: '1px solid',
-        borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
-        borderRadius: 8,
-        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
-        height: 26,
-        width: 26,
-        textAlign: 'center',
-        lineHeight: '30px',
-        '& svg': {
-          fill: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
-          height: '14px',
-          width: '14px',
-        },
-      },
-      '& .MuiApi-item-title': {
-        borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
-        flexShrink: 0,
-        padding: '2px 6px',
-        marginLeft: 32,
-        borderWidth: '1px',
-        borderStyle: 'solid',
-        borderRadius: 8,
-        fontWeight: theme.typography.fontWeightSemiBold,
-        color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
-        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
-        maxWidth: TITLE_MAX_WIDTH,
-        wordWrap: 'break-word',
-      },
+    },
+    '& .MuiApi-item-title': {
+      flexShrink: 0,
+      padding: '2px 6px',
+      marginLeft: 32,
+      fontWeight: theme.typography.fontWeightSemiBold,
     },
     '& .MuiApi-item-content': {
-      display: 'table-cell',
       verticalAlign: 'top',
-      paddingLeft: 6,
-    },
-    '& .MuiApi-item-content-colapsed': {
-      '& .MuiApi-collapsible': {
-        display: 'none',
-      },
+      paddingBottom: theme.spacing(1.5),
+      p: { marginBottom: theme.spacing(0.5) },
     },
     '& .MuiApi-item-note': {
       fontSize: 11,
-      marginRight: 6,
+      marginLeft: 6,
       letterSpacing: '1px',
-      float: 'left',
       textTransform: 'uppercase',
       color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
       fontWeight: theme.typography.fontWeightBold,
       lineHeight: '24px',
     },
-    '& .MuiApi-expend-button': { float: 'right' },
+    '& .MuiApi-expend-button': {},
+    '& hr': {
+      margin: 0,
+    },
     [theme.breakpoints.up('lg')]: {
       '&:hover, &:target': {
         '.MuiApi-item-link-visual': {
@@ -146,10 +124,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         '&>span, &>div': {
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
         },
-        '& .MuiApi-item-title': {
-          color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
-          backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
-        },
+
         '& .MuiApi-item-link-visual': {
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
           backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
@@ -199,52 +174,60 @@ export type ApiItemProps = {
   className?: string;
   children?: React.ReactNode;
   sx?: SxProps;
+  displayOption?: 'collapsed' | 'expended';
 };
 
 function ApiItem(props: ApiItemProps) {
-  const { title, description, note, children, type, id, isExtendable, className, ...other } = props;
+  const {
+    title,
+    description,
+    note,
+    children,
+    type,
+    id,
+    isExtendable = true,
+    className,
+    displayOption,
+    ...other
+  } = props;
 
-  const [isExtended, setIsExtended] = React.useState(false);
+  const [isExtended, setIsExtended] = React.useState(() => displayOption === 'expended');
 
+  React.useEffect(() => {
+    setIsExtended(displayOption === 'expended');
+  }, [displayOption]);
   return (
     <Root
       ownerState={{ type }}
       {...other}
       id={id}
       className={clsx(
-        `MuiApi-item-header ${isExtendable ? 'MuiApi-item-header-extendable' : ''}`,
+        `MuiApi-item-root ${isExtendable ? 'MuiApi-item-header-extendable' : ''}`,
         className,
       )}
     >
-      <div className="MuiApi-item-title-cell">
-        <p>
-          <a
-            className="MuiApi-item-link-visual"
-            href={`#${id}`}
-            onClick={() => {
-              navigator.clipboard.writeText(
-                `${window.location.origin}${window.location.pathname}#${id}`,
-              );
-            }}
-          >
-            <svg>
-              <use xlinkHref="#anchor-link-icon" />
-            </svg>
-          </a>
+      <div className="MuiApi-item-header">
+        <a
+          className="MuiApi-item-link-visual"
+          href={`#${id}`}
+          onClick={() => {
+            navigator.clipboard.writeText(
+              `${window.location.origin}${window.location.pathname}#${id}`,
+            );
+          }}
+        >
+          <svg>
+            <use xlinkHref="#anchor-link-icon" />
+          </svg>
+        </a>
 
-          <span
-            className="MuiApi-item-title" // This className is used by Algolia
-          >
-            {title}
-          </span>
-        </p>
-      </div>
-      <div
-        className={`MuiApi-item-content ${
-          isExtendable && !isExtended ? 'MuiApi-item-content-colapsed' : ''
-        }`}
-      >
+        <span
+          className="MuiApi-item-title" // This className is used by Algolia
+        >
+          {title}
+        </span>
         {note && <span className="MuiApi-item-note">{note}</span>}
+        <Box sx={{ flexGrow: 1 }} />
         {isExtendable && (
           <IconButton
             onClick={() => setIsExtended((prev) => !prev)}
@@ -258,12 +241,9 @@ function ApiItem(props: ApiItemProps) {
             )}
           </IconButton>
         )}
-
-        {children}
       </div>
-      {/* </div> */}
-
-      {/* <Divider /> */}
+      <div className={`MuiApi-item-content`}>{isExtended && children}</div>
+      <Divider />
     </Root>
   );
 }
@@ -276,7 +256,8 @@ ApiItem.propTypes = {
 
 export const ApiItemContaier = styled('div')({
   width: '100%',
-  display: 'table',
+  display: 'flex',
+  flexDirection: 'column',
 });
 
 export default ApiItem;

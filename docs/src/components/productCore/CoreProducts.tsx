@@ -27,7 +27,7 @@ const content = [
     // logo:
     title: 'Base UI',
     description:
-      'A library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app\'s CSS and accessibility features.',
+      "A library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.",
     link: '/base-ui/',
   },
   {
