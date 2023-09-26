@@ -5,7 +5,7 @@ import Icon from '@mui/material/Icon';
 
 export default function Icons() {
   return (
-    <Stack direction='row' spacing={3}>
+    <Stack direction="row" spacing={3}>
       <Icon>add_circle</Icon>
       <Icon color="primary">add_circle</Icon>
       <Icon sx={{ color: green[500] }}>add_circle</Icon>

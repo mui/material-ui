@@ -23,7 +23,7 @@ const PlusIcon = createSvgIcon(
 
 export default function CreateSvgIcon() {
   return (
-    <Stack direction='row' spacing={3}>
+    <Stack direction="row" spacing={3}>
       <HomeIcon />
       <HomeIcon color="primary" />
       <PlusIcon />

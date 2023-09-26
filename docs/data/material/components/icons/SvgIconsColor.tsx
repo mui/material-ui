@@ -13,7 +13,7 @@ function HomeIcon(props: SvgIconProps) {
 
 export default function SvgIconsColor() {
   return (
-    <Stack direction='row' spacing={3}>
+    <Stack direction="row" spacing={3}>
       <HomeIcon />
       <HomeIcon color="primary" />
       <HomeIcon color="secondary" />
