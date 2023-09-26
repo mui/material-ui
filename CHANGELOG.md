@@ -37,7 +37,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/lab@5.0.0-alpha.146`
 
-- [TreeView] Fix JSDoc comments in TreeView and TreeItem  (#38874) @jergason
+- [TreeView] Fix JSDoc comments in TreeView and TreeItem (#38874) @jergason
 
 ### Docs
 
@@ -49,7 +49,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - Revise the Drawer page (#38988) @danilo-leal
 - Simplify the button's loading indicator demo (#39082) @danilo-leal
 - Fix the Templates link on the Overview page (#39086) @danilo-leal
-- Refine the Sign in template  (#38942) @zanivan
+- Refine the Sign in template (#38942) @zanivan
 - Add `use-count-up` integration with the Circular Progress (#38952) @anon-phantom
 
 ### Core
