@@ -6,7 +6,7 @@ import {
   createRenderer,
   fireEvent,
   describeJoyColorInversion,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/joy/Checkbox';
 import { ThemeProvider } from '@mui/joy/styles';
 import CloseIcon from '../internal/svg-icons/Close';

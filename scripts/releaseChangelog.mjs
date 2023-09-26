@@ -1,7 +1,8 @@
 /* eslint-disable no-restricted-syntax */
-import { Octokit } from '@octokit/rest';
-import chalk from 'chalk';
 import childProcess from 'child_process';
+import { Octokit } from '@octokit/rest';
+import fetch from 'node-fetch';
+import chalk from 'chalk';
 import { promisify } from 'util';
 import yargs from 'yargs';
 
@@ -64,6 +65,9 @@ async function main(argv) {
   }
   const octokit = new Octokit({
     auth: githubToken,
+    request: {
+      fetch,
+    },
   });
 
   const latestTaggedVersion = await findLatestTaggedVersion();

@@ -28,6 +28,10 @@
     }
   },
   "name": "ButtonBase",
+  "imports": [
+    "import ButtonBase from '@mui/material/ButtonBase';",
+    "import { ButtonBase } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "disabled", "focusVisible"],
     "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },

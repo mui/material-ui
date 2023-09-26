@@ -52,39 +52,15 @@ export default function HooksApiContent(props) {
   const numberOfHooks = hooks.length;
 
   return hooks.map((key, idx) => {
-    const { filename, name: hookName, parameters, returnValue } = pagesContents[key];
+    const { name: hookName, parameters, returnValue, imports } = pagesContents[key];
 
     const { parametersDescriptions, returnValueDescriptions } = descriptions[key][userLanguage];
 
-    const rootImportPath = filename.replace(
-      /\/packages\/mui(?:-(.+?))?\/src\/.*/,
-      (match, pkg) => `@mui/${pkg}`,
-    );
-
-    const subdirectoryImportPath = filename.replace(
-      /\/packages\/mui(?:-(.+?))?\/src\/([^\\/]+)\/.*/,
-      (match, pkg, directory) => `@mui/${pkg}/${directory}`,
-    );
-
     const hookNameKebabCase = kebabCase(hookName);
 
-    let defaultImportName = hookName;
-
-    if (/unstable_/.test(filename)) {
-      defaultImportName = `unstable_${hookName} as ${hookName}`;
-    }
-
-    const useNamedImports = rootImportPath === '@mui/base';
-
-    const subpathImport = useNamedImports
-      ? `import { ${defaultImportName} } from '${subdirectoryImportPath}';`
-      : `import ${defaultImportName} from '${subdirectoryImportPath}';`;
-
-    const rootImport = `import { ${defaultImportName} } from '${rootImportPath}';`;
-
-    const importInstructions = `${subpathImport}
+    const importInstructions = imports.join(`
 // ${t('or')}
-${rootImport}`;
+`);
 
     return (
       <React.Fragment key={`hook-api-${key}`}>

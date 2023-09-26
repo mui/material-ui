@@ -12,7 +12,7 @@ import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import BrandingProvider from 'docs/src/BrandingProvider';
 
-export default function ButtonThemes() {
+export default function ListThemes() {
   const [preset, setPreset] = React.useState('');
   const rootPresets = {
     dense: {

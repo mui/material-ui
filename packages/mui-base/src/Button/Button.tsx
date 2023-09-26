@@ -110,6 +110,10 @@ Button.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * If `true`, the component is disabled.
    * @default false
    */

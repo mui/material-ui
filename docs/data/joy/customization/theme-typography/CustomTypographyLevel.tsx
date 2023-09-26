@@ -20,7 +20,7 @@ const customTheme = extendTheme({
 export default function CustomTypographyLevel() {
   return (
     <CssVarsProvider theme={customTheme}>
-      <Box sx={(theme) => theme.typography.h1}>Gradient text</Box>
+      <Box sx={(theme) => theme.typography.h1}>This is a gradient h1</Box>
     </CssVarsProvider>
   );
 }

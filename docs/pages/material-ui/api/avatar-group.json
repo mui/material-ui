@@ -36,6 +36,10 @@
     }
   },
   "name": "AvatarGroup",
+  "imports": [
+    "import AvatarGroup from '@mui/material/AvatarGroup';",
+    "import { AvatarGroup } from '@mui/material';"
+  ],
   "styles": { "classes": ["root", "avatar"], "globalClasses": {}, "name": "MuiAvatarGroup" },
   "spread": true,
   "themeDefaultProps": true,

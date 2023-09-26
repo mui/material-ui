@@ -61,7 +61,23 @@
     "xsOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } }
   },
   "name": "Grid",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import Grid from '@mui/system/Unstable_Grid';",
+    "import { Unstable_Grid as Grid } from '@mui/system';"
+  ],
+  "styles": {
+    "classes": [
+      "root",
+      "container",
+      "direction-xs-column",
+      "direction-xs-column-reverse",
+      "direction-xs-row-reverse",
+      "wrap-xs-nowrap",
+      "wrap-xs-wrap-reverse"
+    ],
+    "globalClasses": {},
+    "name": "MuiGrid"
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiGrid",

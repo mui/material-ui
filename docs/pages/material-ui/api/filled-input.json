@@ -64,6 +64,10 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "FilledInput",
+  "imports": [
+    "import FilledInput from '@mui/material/FilledInput';",
+    "import { FilledInput } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

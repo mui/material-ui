@@ -58,16 +58,16 @@ const TextareaRoot = styled('div', {
           }),
       ...(ownerState.size === 'sm' && {
         '--Textarea-minHeight': '2rem',
-        '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
+        '--Textarea-paddingBlock': 'calc(0.375rem - 0.5px - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
         '--Textarea-paddingInline': '0.5rem',
         '--Textarea-decoratorChildHeight': 'min(1.5rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl,
       }),
       ...(ownerState.size === 'md' && {
-        '--Textarea-minHeight': '2.5rem',
-        '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))',
+        '--Textarea-minHeight': '2.25rem',
+        '--Textarea-paddingBlock': 'calc(0.375rem - var(--variant-borderWidth, 0px))',
         '--Textarea-paddingInline': '0.75rem',
-        '--Textarea-decoratorChildHeight': 'min(2rem, var(--Textarea-minHeight))',
+        '--Textarea-decoratorChildHeight': 'min(1.75rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
       ...(ownerState.size === 'lg' && {
@@ -88,6 +88,9 @@ const TextareaRoot = styled('div', {
       '--Button-radius': 'var(--Textarea-decoratorChildRadius)',
       '--IconButton-radius': 'var(--Textarea-decoratorChildRadius)',
       boxSizing: 'border-box',
+      ...(ownerState.variant !== 'plain' && {
+        boxShadow: theme.shadow.xs,
+      }),
       minWidth: 0,
       minHeight: 'var(--Textarea-minHeight)',
       cursor: 'text',
@@ -115,7 +118,7 @@ const TextareaRoot = styled('div', {
         margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
         boxShadow: `var(--Textarea-focusedInset, inset) 0 0 0 calc(var(--Textarea-focused) * var(--Textarea-focusedThickness)) var(--Textarea-focusedHighlight)`,
       },
-    },
+    } as const,
     {
       '&:hover': {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],

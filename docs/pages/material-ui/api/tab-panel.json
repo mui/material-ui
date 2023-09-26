@@ -12,6 +12,7 @@
     }
   },
   "name": "TabPanel",
+  "imports": ["import TabPanel from '@mui/lab/TabPanel';", "import { TabPanel } from '@mui/lab';"],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTabPanel" },
   "spread": true,
   "themeDefaultProps": false,

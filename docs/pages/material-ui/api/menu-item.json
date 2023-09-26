@@ -18,6 +18,10 @@
     }
   },
   "name": "MenuItem",
+  "imports": [
+    "import MenuItem from '@mui/material/MenuItem';",
+    "import { MenuItem } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "focusVisible", "dense", "disabled", "divider", "gutters", "selected"],
     "globalClasses": {

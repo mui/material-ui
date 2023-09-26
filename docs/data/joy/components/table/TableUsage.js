@@ -5,7 +5,7 @@ import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function ButtonUsage() {
+export default function TableUsage() {
   return (
     <JoyUsageDemo
       componentName="Table"

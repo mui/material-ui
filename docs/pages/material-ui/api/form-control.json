@@ -46,6 +46,10 @@
     }
   },
   "name": "FormControl",
+  "imports": [
+    "import FormControl from '@mui/material/FormControl';",
+    "import { FormControl } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "marginNormal", "marginDense", "fullWidth"],
     "globalClasses": {},

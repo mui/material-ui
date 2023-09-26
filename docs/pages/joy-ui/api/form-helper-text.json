@@ -20,7 +20,11 @@
     }
   },
   "name": "FormHelperText",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import FormHelperText from '@mui/joy/FormHelperText';",
+    "import { FormHelperText } from '@mui/joy';"
+  ],
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiFormHelperText" },
   "slots": [
     {
       "name": "root",

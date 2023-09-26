@@ -46,7 +46,11 @@
     }
   },
   "name": "LinearProgress",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import LinearProgress from '@mui/joy/LinearProgress';",
+    "import { LinearProgress } from '@mui/joy';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiLinearProgress" },
   "slots": [
     {
       "name": "root",

@@ -46,7 +46,8 @@
     }
   },
   "name": "ListItem",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import ListItem from '@mui/joy/ListItem';", "import { ListItem } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiListItem" },
   "slots": [
     {
       "name": "root",

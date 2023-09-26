@@ -131,12 +131,12 @@ Combine the Avatar component with the [Badge](/joy-ui/react-badge/) to visually 
 
 {{"demo": "BadgeAvatars.js"}}
 
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Avatar component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.
 
-{{"demo": "AvatarGroupVariables.js", "hideToolbar": true }}
+{{"demo": "AvatarGroupVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Anatomy
 

@@ -21,7 +21,7 @@ The end result of this guide is an interactive media player interface. Here's wh
 {{"demo": "PlayerFinal.js", "hideToolbar": true, "bg": true}}
 
 :::info
-💡 All credits go to the Tailwind Labs team for designing this component, found on the [Tailwind CSS website](https://tailwindcss.com/).
+All credits go to the Tailwind Labs team for designing this component, found on the [Tailwind CSS website](https://tailwindcss.com/).
 :::
 
 ## Setting up the project
@@ -489,4 +489,4 @@ These are the things we covered in this guide:
 ✅ How to create custom components for specific slots in more complex customization scenarios. We used the `component` prop to pass them into the parent component.\
 ✅ How to apply conditional styling based on the owner component's state using a callback as value for the `componentsProps` prop.
 
-Get all the code used in this guide in the [Base UI with Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/base-cra-ts) example project.
+Get all the code used in this guide in the [Base UI with Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/base-ui-cra-tailwind-ts) example project.

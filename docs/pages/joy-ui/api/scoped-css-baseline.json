@@ -21,7 +21,11 @@
     }
   },
   "name": "ScopedCssBaseline",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import ScopedCssBaseline from '@mui/joy/ScopedCssBaseline';",
+    "import { ScopedCssBaseline } from '@mui/joy';"
+  ],
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiScopedCssBaseline" },
   "slots": [
     {
       "name": "root",

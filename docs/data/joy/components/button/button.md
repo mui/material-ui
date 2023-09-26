@@ -100,6 +100,20 @@ It supports three values:
 
 {{"demo": "ButtonLoadingPosition.js"}}
 
+### Link Button
+
+Buttons let users take actions, but if that action is to navigate to a new page, then an anchor tag is generally preferable over a button tag.
+
+If you need the style of a button with the functionality of a link, then you can use the `component` prop to replace the default `<button>` with an `<a>`, as shown below:
+
+{{"demo": "ButtonLink.js"}}
+
+### File upload
+
+To create a file upload button, turn the button into a label using `component="label"` and then create a visually-hidden input with type `file`.
+
+{{"demo": "InputFileUpload.js"}}
+
 ## Icon Button
 
 ```jsx
@@ -110,26 +124,18 @@ Use the Icon Button component for a square button to house an icon with no text 
 
 {{"demo": "IconButtons.js"}}
 
-## Link Button
-
-Buttons let users take actions, but if that action is to navigate to a new page, then an anchor tag is generally preferable over a button tag.
-
-If you need the style of a button with the functionality of a link, then you can use the `component` prop to replace the default `<button>` with an `<a>`, as shown below:
-
-{{"demo": "ButtonLink.js"}}
-
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Button and Icon Button components to see how the design changes.
 You can use these to customize the components with both the `sx` prop and the theme.
 
 ### Button
 
-{{"demo": "ButtonVariables.js", "hideToolbar": true}}
+{{"demo": "ButtonVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ### Icon Button
 
-{{"demo": "IconButtonVariables.js", "hideToolbar": true}}
+{{"demo": "IconButtonVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Accessibility
 

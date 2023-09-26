@@ -63,6 +63,7 @@
     }
   },
   "name": "Badge",
+  "imports": ["import Badge from '@mui/material/Badge';", "import { Badge } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",

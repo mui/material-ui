@@ -53,6 +53,7 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
     indicatorPlacement?: 'top' | 'bottom' | 'left' | 'right';
     /**
      * If `true`, the indicator stay within the padding based on the `Tabs` orientation.
+     * @default false
      */
     indicatorInset?: boolean;
     /**

@@ -57,8 +57,13 @@
     }
   },
   "name": "Select",
+  "imports": [
+    "import Select from '@mui/material/Select';",
+    "import { Select } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
+      "root",
       "select",
       "multiple",
       "filled",

@@ -29,6 +29,10 @@
     "xsUp": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Hidden",
+  "imports": [
+    "import Hidden from '@mui/material/Hidden';",
+    "import { Hidden } from '@mui/material';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "themeDefaultProps": null,

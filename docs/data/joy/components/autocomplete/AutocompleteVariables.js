@@ -4,7 +4,7 @@ import Stack from '@mui/joy/Stack';
 import LiveTv from '@mui/icons-material/LiveTv';
 import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
-export default function ButtonVariables() {
+export default function AutocompleteVariables() {
   return (
     <JoyVariablesDemo
       componentName="Autocomplete"

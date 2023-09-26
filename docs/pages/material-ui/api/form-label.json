@@ -23,6 +23,10 @@
     }
   },
   "name": "FormLabel",
+  "imports": [
+    "import FormLabel from '@mui/material/FormLabel';",
+    "import { FormLabel } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

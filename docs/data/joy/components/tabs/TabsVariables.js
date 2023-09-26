@@ -5,7 +5,7 @@ import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
 import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
-export default function ListVariables() {
+export default function TabsVariables() {
   return (
     <JoyVariablesDemo
       componentName="Tabs"
