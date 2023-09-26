@@ -9,7 +9,6 @@ import { useSlotProps } from '@mui/base/utils';
 import { ListActionTypes } from '@mui/base/useList';
 import { HTMLElementType } from '@mui/utils';
 import Popover, { PopoverPaper } from '@mui/material/Popover';
-import MenuList from '@mui/material/MenuList';
 import { styled, useTheme, useThemeProps } from '@mui/material/styles';
 import { rootShouldForwardProp } from '@mui/material/styles/styled';
 import { getMenuUtilityClass } from './menuClasses';
@@ -56,20 +55,13 @@ export const MenuPaper = styled(PopoverPaper, {
   WebkitOverflowScrolling: 'touch',
 });
 
-const MenuMenuList = styled(MenuList, {
-  name: 'MuiMenu',
-  slot: 'List',
-  overridesResolver: (props, styles) => styles.list,
-})({
-  // We disable the focus ring for mouse, touch and keyboard users.
-  outline: 0,
-});
-
 const MenuListbox = styled('ul', {
   name: 'MuiMenu',
   slot: 'List',
   overridesResolver: (props, styles) => styles.list,
 })({
+  // reset the default padding-inline-start
+  paddingInlineStart: 0,
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
 });
@@ -112,17 +104,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     variant,
   };
 
-  const {
-    contextValue,
-    getListboxProps,
-    dispatch,
-    open: contextOpen,
-    triggerElement,
-  } = useMenu({
+  const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     // onItemsChange,
     disabledItemsFocusable: Boolean(MenuListProps.disabledItemsFocusable),
+    open: openProp,
   });
-  const open = openProp ?? contextOpen;
 
   // contextValue !== undefined can be the other condition, but there could be scenario where the Dropdown can be an ancestor somewhere in the React tree
   const usingContext = openProp === undefined;
@@ -218,7 +204,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     className: classes.paper,
   });
 
-  const Listbox = slots.listbox ?? usingContext ? MenuListbox : MenuMenuList;
+  const Listbox = slots.listbox ?? MenuListbox;
   const listboxProps = useSlotProps({
     elementType: Listbox,
     getSlotProps: (otherHandlers) => {
@@ -229,6 +215,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     },
     externalSlotProps: (args) => ({
       ...(typeof slotProps.listbox === 'function' ? slotProps.listbox(args) : slotProps.listbox),
+      // TOD: Make sure all previous support props still work
       ...MenuListProps,
     }),
     additionalProps: {
@@ -266,9 +253,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       classes={PopoverClasses}
     >
       <MenuProvider value={contextValue}>
-        <MenuMenuList {...listboxProps} {...MenuListProps}>
+        <Listbox {...listboxProps}>
           {children}
-        </MenuMenuList>
+        </Listbox>
       </MenuProvider>
     </MenuRoot>
   );

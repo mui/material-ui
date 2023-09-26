@@ -42,6 +42,7 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     onItemsChange,
     id: idParam,
     disabledItemsFocusable = true,
+    open: openParameter,
   } = parameters;
 
   const rootRef = React.useRef<HTMLElement>(null);
@@ -50,11 +51,13 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
   const listboxId = useId(idParam) ?? '';
 
   const {
-    state: { open },
+    state: { open: contextOpen },
     dispatch: menuDispatch,
     triggerElement,
     registerPopup,
   } = React.useContext(DropdownContext) ?? FALLBACK_MENU_CONTEXT;
+
+  const open = openParameter !== undefined ? openParameter : contextOpen;
 
   // store the initial open state to prevent focus stealing
   // (the first menu items gets focued only when the menu is opened by the user)
