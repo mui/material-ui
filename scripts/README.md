@@ -30,17 +30,14 @@ The following steps must be proposed as a pull request.
    1. Match the format of https://github.com/mui/material-ui/releases.
    2. Change the packages names casing to be lowercase if applicable, e.g. change `Material` to `material`
 3. Update the root `/package.json`'s version
-4. `pnpm release:version`, keep in mind:
-   1. Keep the package versions of stable public packages the same as the root `package.json` version.
-   2. Don't bump private packages unless necessary, these have `"private": true` in their `package.json`
-   3. Manually remove `^` from packages with prerelease version, e.g. `-alpha`
+4. Run `pnpm release:version`. Keep the package versions of stable public packages the same as the root `package.json` version.
 5. Open PR with changes and wait for review and green CI
 6. Merge PR once CI is green and it has been approved
 
 ### Release
 
 1. Checkout merge commit of the merged PR
-2. `pnpm`
+2. `pnpm install`
 3. `pnpm release:build`
 4. `pnpm release:publish`
    You need your 2FA device.
