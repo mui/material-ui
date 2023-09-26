@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { OverridableStringUnion, OverridableComponent, OverrideProps } from '@mui/types';
-import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { SxProps } from '../styles/Theme.types';
 import { ChipClasses } from './chipClasses';
 
 export interface ChipPropsVariantOverrides {}
@@ -41,10 +40,9 @@ export interface ChipTypeMap<
      * The color of the component.
      * It supports both default and custom theme colors, which can be added as shown in the
      * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
-     * @default 'default'
      */
     color?: OverridableStringUnion<
-      'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+      'primary' | 'secondary' | 'tertiary' | 'error' | 'info' | 'success' | 'warning',
       ChipPropsColorOverrides
     >;
     /**
@@ -75,15 +73,9 @@ export interface ChipTypeMap<
      */
     size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
     /**
-     * If `true`, allows the disabled chip to escape focus.
-     * If `false`, allows the disabled chip to receive focus.
-     * @default false
-     */
-    skipFocusWhenDisabled?: boolean;
-    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
-    sx?: SxProps<Theme>;
+    sx?: SxProps;
     /**
      *  @ignore
      */
@@ -92,27 +84,25 @@ export interface ChipTypeMap<
      * The variant to use.
      * @default 'filled'
      */
-    variant?: OverridableStringUnion<'filled' | 'outlined', ChipPropsVariantOverrides>;
+    variant?: OverridableStringUnion<'filled' | 'outlined' | 'elevated', ChipPropsVariantOverrides>;
   };
   defaultComponent: RootComponent;
 }
 
-/**
- * Chips represent complex entities in small blocks, such as a contact.
- *
- * Demos:
- *
- * - [Chip](https://mui.com/material-ui/react-chip/)
- *
- * API:
- *
- * - [Chip API](https://mui.com/material-ui/api/chip/)
- */
-declare const Chip: OverridableComponent<ChipTypeMap>;
-
 export type ChipProps<
   RootComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<ChipTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+> = OverrideProps<ChipTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
-export default Chip;
+export interface ChipOwnerState extends ChipProps {
+  variant: NonNullable<ChipProps['variant']>;
+  size: NonNullable<ChipProps['size']>;
+  /**
+   * color for the icon component
+   */
+  hasIcon: boolean;
+  hasDeleteIcon: boolean;
+  hasAvatar: boolean;
+}
