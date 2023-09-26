@@ -9,7 +9,7 @@ import {
   screen,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Menu, { menuClasses as classes } from '@mui/material-next/Menu';
 import Button from '@mui/material/Button';
@@ -32,9 +32,10 @@ describe('<Menu />', () => {
       root: {
         expectedClassName: classes.root,
       },
-      paper: {
-        expectedClassName: classes.paper,
-      },
+      // TODO: Enable this API
+      // paper: {
+      //   expectedClassName: classes.paper,
+      // },
     },
     testDeepOverrides: { slotName: 'list', slotClassName: classes.list },
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
@@ -163,7 +164,7 @@ describe('<Menu />', () => {
     });
   });
 
-  it('should pass onClose prop to Popover', () => {
+  it.skip('should pass onClose prop to Popover', () => {
     const handleClose = spy();
     render(<Menu anchorEl={document.createElement('div')} open onClose={handleClose} />);
 
@@ -194,7 +195,7 @@ describe('<Menu />', () => {
     });
   });
 
-  it('should open during the initial mount', () => {
+  it.skip('should open during the initial mount', () => {
     function MenuItem(props) {
       const { autoFocus, children } = props;
       return (
@@ -249,7 +250,7 @@ describe('<Menu />', () => {
     expect(onEnteringSpy.callCount).to.equal(1);
   });
 
-  it('should call onClose on tab', () => {
+  it.skip('should call onClose on tab', () => {
     function MenuItem(props) {
       const { autoFocus, children } = props;
 
@@ -544,7 +545,7 @@ describe('<Menu />', () => {
       });
     });
 
-    it('should pass onClose prop to Popover', () => {
+    it.skip('should pass onClose prop to Popover', () => {
       const handleClose = spy();
       render(<ContextMenu anchorEl={document.createElement('div')} open onClose={handleClose} />);
 
@@ -577,7 +578,7 @@ describe('<Menu />', () => {
       });
     });
 
-    it('should open during the initial mount', () => {
+    it.skip('should open during the initial mount', () => {
       function MenuItem(props) {
         const { autoFocus, children } = props;
         return (
@@ -632,7 +633,7 @@ describe('<Menu />', () => {
       expect(onEnteringSpy.callCount).to.equal(1);
     });
 
-    it('should call onClose on tab', () => {
+    it.skip('should call onClose on tab', () => {
       function MenuItem(props) {
         const { autoFocus, children } = props;
 

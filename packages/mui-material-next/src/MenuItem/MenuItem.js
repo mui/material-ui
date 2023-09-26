@@ -227,7 +227,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
       focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),
       classes,
     },
-    className: classes.root,
+    className: clsx(classes.root, className),
     ownerState,
   });
   return (

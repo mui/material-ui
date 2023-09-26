@@ -110,9 +110,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     open: openProp,
   });
 
-  // contextValue !== undefined can be the other condition, but there could be scenario where the Dropdown can be an ancestor somewhere in the React tree
-  const usingContext = openProp === undefined;
-
   React.useImperativeHandle(
     actions,
     () => ({
@@ -253,9 +250,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       classes={PopoverClasses}
     >
       <MenuProvider value={contextValue}>
-        <Listbox {...listboxProps}>
-          {children}
-        </Listbox>
+        <Listbox {...listboxProps}>{children}</Listbox>
       </MenuProvider>
     </MenuRoot>
   );
