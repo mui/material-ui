@@ -227,30 +227,33 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
     [centerProp, startCommit, startTimer],
   );
 
-  const stop = React.useCallback<TouchRippleActions['stop']>((event, cb) => {
-    startTimer.clear();
+  const stop = React.useCallback<TouchRippleActions['stop']>(
+    (event, cb) => {
+      startTimer.clear();
 
-    // The touch interaction occurs too quickly.
-    // We still want to show ripple effect.
-    if (event?.type === 'touchend' && startTimerCommit.current) {
-      startTimerCommit.current();
-      startTimerCommit.current = null;
-      startTimer.start(0, () => {
-        stop(event, cb);
-      });
-      return;
-    }
-
-    startTimerCommit.current = null;
-
-    setRipples((oldRipples) => {
-      if (oldRipples.length > 0) {
-        return oldRipples.slice(1);
+      // The touch interaction occurs too quickly.
+      // We still want to show ripple effect.
+      if (event?.type === 'touchend' && startTimerCommit.current) {
+        startTimerCommit.current();
+        startTimerCommit.current = null;
+        startTimer.start(0, () => {
+          stop(event, cb);
+        });
+        return;
       }
-      return oldRipples;
-    });
-    rippleCallback.current = cb;
-  }, [startTimer]);
+
+      startTimerCommit.current = null;
+
+      setRipples((oldRipples) => {
+        if (oldRipples.length > 0) {
+          return oldRipples.slice(1);
+        }
+        return oldRipples;
+      });
+      rippleCallback.current = cb;
+    },
+    [startTimer],
+  );
 
   React.useImperativeHandle(
     ref,

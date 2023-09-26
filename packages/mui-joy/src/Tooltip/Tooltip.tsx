@@ -320,12 +320,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     enterTimer.clear();
     leaveTimer.clear();
     if (enterDelay || (hystersisOpen && enterNextDelay)) {
-      enterTimer.start(
-        hystersisOpen ? enterNextDelay : enterDelay,
-        () => {
-          handleOpen(event);
-        },
-      );
+      enterTimer.start(hystersisOpen ? enterNextDelay : enterDelay, () => {
+        handleOpen(event);
+      });
     } else {
       handleOpen(event);
     }
