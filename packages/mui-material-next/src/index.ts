@@ -18,6 +18,9 @@ export * from './FilledInput';
 export { default as FormControl } from './FormControl';
 export * from './FormControl';
 
+export { default as FormLabel } from './FormLabel';
+export * from './FormLabel';
+
 export { default as InputBase } from './InputBase';
 export * from './InputBase';
 
