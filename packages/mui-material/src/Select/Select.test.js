@@ -853,6 +853,31 @@ describe('<Select />', () => {
 
       expect(paper.style).to.have.property('minWidth', `${selectButton.clientWidth}px`);
     });
+
+    // https://github.com/mui/material-ui/issues/38949
+    it('should forward `slotProps` to menu', function test() {
+      const { getByTestId } = render(
+        <Select
+          MenuProps={{
+            slotProps: {
+              root: {
+                slotProps: {
+                  backdrop: { 'data-testid': 'backdrop', style: { backgroundColor: 'red' } },
+                },
+              },
+            },
+          }}
+          open
+          value="10"
+        >
+          <MenuItem value="10">Ten</MenuItem>
+        </Select>,
+      );
+
+      const backdrop = getByTestId('backdrop');
+
+      expect(backdrop.style).to.have.property('backgroundColor', 'red');
+    });
   });
 
   describe('prop: SelectDisplayProps', () => {
