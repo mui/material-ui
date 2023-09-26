@@ -1,66 +1,57 @@
 /* eslint-disable no-restricted-globals */
+/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
+// Components
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
+// Icons
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 import ThumbDownAltRoundedIcon from '@mui/icons-material/ThumbDownAltRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import BugReportRoundedIcon from '@mui/icons-material/BugReportRounded';
-import ChangeCircleRoundedIcon from '@mui/icons-material/ChangeCircleRounded';
-import MapRoundedIcon from '@mui/icons-material/MapRounded';
-import Snackbar from '@mui/material/Snackbar';
-import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
-import PageContext from 'docs/src/modules/components/PageContext';
-import Link from 'docs/src/modules/components/Link';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
-import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
+import PanToolRoundedIcon from '@mui/icons-material/PanToolRounded';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import RssFeedIcon from '@mui/icons-material/RssFeed';
+import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
+import DiscordIcon from 'docs/src/icons/DiscordIcon';
+// Other imports
 import ROUTES from 'docs/src/route';
-
-const PaginationDiv = styled('div')(({ theme }) => {
-  return {
-    margin: theme.spacing(4, 0),
-    display: 'flex',
-    justifyContent: 'space-between',
-    [theme.breakpoints.down('sm')]: {
-      flexWrap: 'wrap',
-    },
-  };
-});
+import Link from 'docs/src/modules/components/Link';
+import PageContext from 'docs/src/modules/components/PageContext';
+import EditPage from 'docs/src/modules/components/EditPage';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 
 const PageLinkButton = styled(Button)(({ theme }) => ({
-  fontWeight: theme.typography.fontWeightMedium,
   ...theme.applyDarkStyles({
     color: (theme.vars || theme).palette.primary[300],
   }),
 }));
 
-const FeedbackGrid = styled(Grid)(({ theme }) => {
+const FooterLink = styled(Typography)(({ theme }) => {
   return {
-    width: 'auto',
-    color: theme.palette.text.secondary,
-    justifyContent: 'center',
-    [theme.breakpoints.down('sm')]: {
-      borderTop: '1px solid',
-      borderColor: theme.palette.divider,
-      justifyContent: 'start',
-      order: 3,
-      paddingTop: 32,
-      marginTop: 32,
-      width: '100%',
-    },
+    ...theme.typography.body2,
+    display: 'flex',
+    alignItems: 'center',
+    gap: 4,
+    fontWeight: (theme.vars || theme).typography.fontWeightSemiBold,
+    color: (theme.vars || theme).palette.primary.main,
+    '& > svg': { transition: '0.2s' },
+    '&:hover > svg': { transform: 'translateX(2px)' },
   };
 });
 
@@ -260,7 +251,7 @@ const EMPTY_SECTION = { hash: '', text: '' };
 const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API content design' }];
 
 export default function AppLayoutDocsFooter(props) {
-  const { tableOfContents = [] } = props;
+  const { tableOfContents = [], location } = props;
 
   const theme = useTheme();
   const t = useTranslate();
@@ -394,89 +385,75 @@ export default function AppLayoutDocsFooter(props) {
 
   return (
     <React.Fragment>
-      <Box component="footer" sx={{ my: 8 }}>
+      <Stack component="footer" direction="column" sx={{ my: 6 }}>
+        <Divider />
         {hidePagePagination ? null : (
-          <React.Fragment>
-            <Divider />
-            <PaginationDiv>
-              {prevPage !== null ? (
-                <PageLinkButton
-                  component={Link}
-                  noLinkStyle
-                  prefetch={false}
-                  href={prevPage.pathname}
-                  {...prevPage.linkProps}
-                  size="medium"
-                  startIcon={<ChevronLeftIcon />}
-                >
-                  {pageToTitleI18n(prevPage, t)}
-                </PageLinkButton>
-              ) : (
-                <div />
-              )}
-              <FeedbackGrid
-                container
-                role="group"
-                alignItems="center"
-                aria-labelledby="feedback-message"
+          <Stack direction="row" justifyContent="space-between" sx={{ my: 2 }}>
+            {prevPage !== null ? (
+              <PageLinkButton
+                component={Link}
+                noLinkStyle
+                prefetch={false}
+                href={prevPage.pathname}
+                {...prevPage.linkProps}
+                startIcon={<ChevronLeftIcon />}
+                sx={{ '& > span': { marginLeft: 0 } }}
               >
-                <Typography
-                  align="center"
-                  component="div"
-                  id="feedback-message"
-                  variant="body2"
-                  sx={{
-                    mr: { xs: 'auto', sm: 1 },
-                    fontWeight: { xs: '700', sm: '500' },
-                    color: { xs: 'text.primary', sm: 'text.secondary' },
-                  }}
-                >
-                  {t('feedbackMessage')}
-                </Typography>
-                <div>
-                  <Tooltip title={t('feedbackYes')}>
-                    <IconButton
-                      onClick={handleClickThumb(1)}
-                      aria-pressed={rating === 1}
-                      sx={{ borderRadius: 1 }}
-                    >
-                      <ThumbUpAltRoundedIcon
-                        fontSize="small"
-                        color={rating === 1 ? 'primary' : undefined}
-                      />
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title={t('feedbackNo')}>
-                    <IconButton
-                      onClick={handleClickThumb(0)}
-                      aria-pressed={rating === 0}
-                      sx={{ borderRadius: 1 }}
-                    >
-                      <ThumbDownAltRoundedIcon
-                        fontSize="small"
-                        color={rating === 0 ? 'error' : undefined}
-                      />
-                    </IconButton>
-                  </Tooltip>
-                </div>
-              </FeedbackGrid>
-              {nextPage !== null ? (
-                <PageLinkButton
-                  component={Link}
-                  noLinkStyle
-                  prefetch={false}
-                  href={nextPage.pathname}
-                  {...nextPage.linkProps}
-                  size="medium"
-                  endIcon={<ChevronRightIcon />}
-                >
-                  {pageToTitleI18n(nextPage, t)}
-                </PageLinkButton>
-              ) : null}
-            </PaginationDiv>
-          </React.Fragment>
+                {pageToTitleI18n(prevPage, t)}
+              </PageLinkButton>
+            ) : (
+              <div />
+            )}
+            {nextPage !== null ? (
+              <PageLinkButton
+                component={Link}
+                noLinkStyle
+                prefetch={false}
+                href={nextPage.pathname}
+                {...nextPage.linkProps}
+                endIcon={<ChevronRightIcon />}
+              >
+                {pageToTitleI18n(nextPage, t)}
+              </PageLinkButton>
+            ) : null}
+          </Stack>
         )}
-
+        <Divider />
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems="center"
+          justifyContent="space-between"
+          spacing={{ xs: 3, sm: 1 }}
+          sx={{ my: 4 }}
+        >
+          <EditPage sourceLocation={location} />
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Typography
+              id="feedback-message"
+              variant="body2"
+              fontWeight="medium"
+              color="text.secondary"
+            >
+              {t('feedbackMessage')}
+            </Typography>
+            <Tooltip title={t('feedbackYes')}>
+              <IconButton color="info" onClick={handleClickThumb(1)} aria-pressed={rating === 1}>
+                <ThumbUpAltRoundedIcon
+                  color={rating === 1 ? 'primary' : undefined}
+                  sx={{ fontSize: 15 }}
+                />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title={t('feedbackNo')}>
+              <IconButton color="info" onClick={handleClickThumb(0)} aria-pressed={rating === 0}>
+                <ThumbDownAltRoundedIcon
+                  color={rating === 0 ? 'error' : undefined}
+                  sx={{ fontSize: 15 }}
+                />
+              </IconButton>
+            </Tooltip>
+          </Stack>
+        </Stack>
         <Collapse
           in={commentOpen}
           unmountOnExit
@@ -490,7 +467,7 @@ export default function AppLayoutDocsFooter(props) {
             onSubmit={handleSubmitComment}
             onKeyDown={handleKeyDownForm}
           >
-            <Box sx={{ mb: 4 }}>
+            <div>
               {commentedSection.text ? (
                 <Typography
                   variant="body2"
@@ -541,74 +518,109 @@ export default function AppLayoutDocsFooter(props) {
                   </Typography>
                 </Alert>
               )}
-              <DialogActions>
-                <Button type="reset">{t('cancel')}</Button>
-                <Button type="submit" variant="contained">
+              <DialogActions sx={{ mb: 4 }}>
+                <Button type="reset" size="small">
+                  {t('cancel')}
+                </Button>
+                <Button type="submit" variant="contained" size="small">
                   {t('submit')}
                 </Button>
               </DialogActions>
-            </Box>
+            </div>
           </form>
         </Collapse>
-        <Divider sx={{ mb: 4 }} />
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column-reverse', md: 'row' },
-            justifyContent: 'space-between',
-            gap: { xs: 4, lg: 12 },
-          }}
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems="center"
+          spacing={{ xs: 3, sm: 1 }}
         >
-          <Box flexGrow={1}>
-            <Typography variant="body2" fontWeight="bold">
-              Keep up to date
+          <Stack direction="row" alignItems="center" spacing={1.2} sx={{ flexGrow: 1 }}>
+            <Link href={ROUTES.blog}>
+              <FooterLink>
+                Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 16 }} />
+              </FooterLink>
+            </Link>
+            <Typography color="grey.500" variant="caption">
+              &bull;
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              Join our newsletter for regular updates. No spam ever.
+            <Link href={ROUTES.store}>
+              <FooterLink>
+                Store <ArrowOutwardRoundedIcon sx={{ fontSize: 16 }} />
+              </FooterLink>
+            </Link>
+            <Typography color="grey.500" variant="caption">
+              &bull;
             </Typography>
-            <EmailSubscribe fullWidth sx={{ mb: 1 }} />
-          </Box>
-          <Divider sx={{ display: { xs: 'block', sm: 'none' } }} />
-          <Stack direction="column" spacing={3}>
-            <Typography variant="body2" fontWeight="bold">
-              Connect with us
-            </Typography>
-            <Stack direction="column" spacing={1}>
-              <Stack direction="row" alignItems="center" spacing={1}>
-                <BugReportRoundedIcon fontSize="small" color="disabled" />
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 0 }}>
-                  Need answers?
-                  <Link
-                    href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
-                    target="_blank"
-                    sx={{ ml: 0.5 }}
-                  >
-                    {t('feedbackMessageToGitHub.callToAction.link')}
-                  </Link>
-                </Typography>
-              </Stack>
-              <Stack direction="row" alignItems="center" spacing={1}>
-                <ChangeCircleRoundedIcon fontSize="small" color="disabled" />
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 0 }}>
-                  Past releases?
-                  <Link href={ROUTES.roadmap} target="_blank" sx={{ ml: 0.5 }}>
-                    Check the changelog
-                  </Link>
-                </Typography>
-              </Stack>
-              <Stack direction="row" alignItems="center" spacing={1}>
-                <MapRoundedIcon fontSize="small" color="disabled" />
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 0 }}>
-                  The future?
-                  <Link href={ROUTES.roadmap} target="_blank" sx={{ ml: 0.5 }}>
-                    Check the roadmap
-                  </Link>
-                </Typography>
-              </Stack>
-            </Stack>
+            <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
+              <FooterLink>
+                Contact us <ArrowOutwardRoundedIcon sx={{ fontSize: 16 }} />
+              </FooterLink>
+            </Link>
           </Stack>
-        </Box>
-      </Box>
+          <Stack spacing={2} direction="row">
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/mui"
+              aria-label="github"
+              title="GitHub"
+              size="small"
+            >
+              <GitHubIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href={ROUTES.rssFeed}
+              aria-label="RSS Feed"
+              title="RSS Feed"
+              size="small"
+            >
+              <RssFeedIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://twitter.com/MUI_hq"
+              aria-label="twitter"
+              title="Twitter"
+              size="small"
+            >
+              <TwitterIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/company/mui/"
+              aria-label="linkedin"
+              title="LinkedIn"
+              size="small"
+            >
+              <LinkedInIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.youtube.com/@MUI_hq"
+              aria-label="YouTube"
+              title="YouTube"
+              size="small"
+            >
+              <YouTubeIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://mui.com/r/discord/"
+              aria-label="Discord"
+              title="Discord"
+              size="small"
+            >
+              <DiscordIcon fontSize="small" />
+            </IconButton>
+          </Stack>
+        </Stack>
+      </Stack>
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}
@@ -620,5 +632,6 @@ export default function AppLayoutDocsFooter(props) {
 }
 
 AppLayoutDocsFooter.propTypes = {
+  location: PropTypes.string.isRequired,
   tableOfContents: PropTypes.array,
 };

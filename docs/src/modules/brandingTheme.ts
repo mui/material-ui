@@ -740,6 +740,39 @@ export function getThemedComponents(): ThemeOptions {
               }),
             ],
           },
+          {
+            props: { color: 'info' },
+            style: ({ theme }) => [
+              {
+                height: 34,
+                width: 34,
+                border: `1px solid`,
+                borderColor: (theme.vars || theme).palette.grey[200],
+                color: (theme.vars || theme).palette.grey[600],
+                borderRadius: theme.shape.borderRadius,
+                boxShadow: `inset 0 1px 2px ${
+                  (theme.vars || theme).palette.grey[50]
+                }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary.main,
+                  borderColor: (theme.vars || theme).palette.grey[300],
+                  background: (theme.vars || theme).palette.grey[50],
+                },
+              },
+              theme.applyDarkStyles({
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+                color: (theme.vars || theme).palette.grey[400],
+                boxShadow: `inset 0 1px 1px ${
+                  (theme.vars || theme).palette.primaryDark[900]
+                }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary[400],
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
+                  background: alpha(theme.palette.primaryDark[700], 0.4),
+                },
+              }),
+            ],
+          },
         ],
       },
       MuiMenu: {
