@@ -18,7 +18,7 @@
     "@mui/material-next": "6.0.0-alpha.103",
     "@mui/system": "^5.14.11",
     "@playwright/test": "1.37.1",
-    "@testing-library/dom": "^9.3.1",
+    "@testing-library/dom": "^9.3.3",
     "@types/chai": "^4.3.6",
     "@types/react": "^18.2.21",
     "chai": "^4.3.8",
