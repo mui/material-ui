@@ -3615,10 +3615,10 @@
   resolved "https://registry.yarnpkg.com/@types/doctrine/-/doctrine-0.0.7.tgz#39b67ff31c6eb5883024eef385afe95f34159cdb"
   integrity sha512-M7BAOsy3VDlJktK4ZTg9eiI7J/9lzECY1H8Kes+U/dCu8fOc6067Fn25XBjVCfPc2Vi1Tv8b6sM7AoDGfLzXaA==
 
-"@types/enzyme@^3.10.13":
-  version "3.10.13"
-  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.10.13.tgz#332c0ed59b01f7b1c398c532a1c21a5feefabeb1"
-  integrity sha512-FCtoUhmFsud0Yx9fmZk179GkdZ4U9B0GFte64/Md+W/agx0L5SxsIIbhLBOxIb9y2UfBA4WQnaG1Od/UsUQs9Q==
+"@types/enzyme@^3.10.14":
+  version "3.10.14"
+  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.10.14.tgz#dc30e3820a6331e8165be442cc778f25457ec44d"
+  integrity sha512-JeTG2MNUX1bH2DqccwUe3SuPoLu+kUz5UgR3Tvl9nBdfNj7rBZscytctSjEatd5Ul9GXXGKaQBaxODIgJYVRqA==
   dependencies:
     "@types/cheerio" "*"
     "@types/react" "^16"
