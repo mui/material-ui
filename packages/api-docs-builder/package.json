@@ -12,7 +12,7 @@
     "@babel/traverse": "^7.22.20",
     "@mui-internal/docs-utilities": "^1.0.0",
     "@mui/markdown": "^5.0.0",
-    "@mui/utils": "^5.14.10",
+    "@mui/utils": "^5.14.11",
     "ast-types": "^0.14.2",
     "docs": "^5.0.0",
     "doctrine": "^3.0.0",

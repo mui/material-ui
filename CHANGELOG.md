@@ -1,5 +1,83 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.11
+
+<!-- generated comparing v5.14.10..master -->
+
+_Sep 26, 2023_
+
+A big thanks to the 23 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.14.11`
+
+- [Autocomplete] Re-export `AutocompleteValue` to make it available from path import (#38638) @vadimka123
+- [Select][material-ui] Missing aria-multiselectable attribute on multiple Select component (#38855) @gitstart
+- [l10n] labelDisplayedRows is added for trTR localization (#39056) @tebersefa
+
+### `@mui/utils@5.14.11`
+
+- Support RSC in `isMuiElement` util (#38129) @sai6855
+
+### `@mui/base@5.0.0-beta.17`
+
+- [NumberInput] Support adornments (#38900) @anle9650
+- [Menu] Align external props handling for useMenu/MenuButton/MenuItem (#38946) @mj12albert
+- [Select] Align external props handling (#39038) @mj12albert
+- [TextareaAutosize] Simplify logic and add test (#38728) @oliviertassinari
+
+### `@mui/joy@5.0.0-beta.8`
+
+- [Button] Fix disabled button styling when component prop is provided (#38996) @sai6855
+- [Drawer] Add missing `JoyDrawer` in theme components (#39074) @Studio384
+
+### `@mui/material-next@6.0.0-alpha.103`
+
+- [FormControl] Copy v5 FormControl (#39039) @mj12albert
+
+### `@mui/lab@5.0.0-alpha.146`
+
+- [TreeView] Fix JSDoc comments in TreeView and TreeItem (#38874) @jergason
+
+### Docs
+
+- Improve focus trap demo (#38985) @oliviertassinari
+- Add Tailwind CSS + plain CSS demo on the Tabs page (#39000) @alisasanib
+- Improve the default theme viewer design (#39049) @danilo-leal
+- Add live demo with CssVarsProvider (#38792) @oliviertassinari
+- Fix wrong hash on Card's page (#39151) @mnajdova
+- Revise the Drawer page (#38988) @danilo-leal
+- Simplify the button's loading indicator demo (#39082) @danilo-leal
+- Fix the Templates link on the Overview page (#39086) @danilo-leal
+- Refine the Sign in template (#38942) @zanivan
+- Add `use-count-up` integration with the Circular Progress (#38952) @anon-phantom
+
+### Core
+
+- [blog] Add a company values blog post (#38802) @mikailaread
+- [core] Downgrade lerna to 7.2.0 (#39149) @michaldudak
+- [core] Simplify docs feedback interaction (#39075) @alexfauquette
+- [core] Improve ref type definition (#38903) @oliviertassinari
+- [core] Simplify career (#39112) @oliviertassinari
+- [core] Update Babel types along with source packages (#39070) @michaldudak
+- [core] Add a comment to explain `useEnhancedEffect` (#39035) @Janpot
+- [docs-infra] Fix code removal in table of content (#39165) @alexfauquette
+- [docs-infra] Improve callouts design (#39084) @danilo-leal
+- [docs-infra] Fix key warning in Base UI Slider slots section (#38954) @ZeeshanTamboli
+- [docs-infra] Fix error when redirecting to the root page (#38451) @maheshguntur
+- [docs-infra] Open demo crash in the right repository (#39006) @oliviertassinari
+- [test] Split the test package (#39061) @michaldudak
+- [website] React Engineer - xCharts role (#38976) @DanailH
+- [website] Improve the highlighter component colors (#39087) @danilo-leal
+- [website] Fix Pricing page row hover (#39097) @danilo-leal
+- [website] Fix typo with straight quote @oliviertassinari
+- [website] Sync about page @oliviertassinari
+- [website] Update the about page (#38733) @danilo-leal
+- [website] Small fixes on the X marketing page (#38975) @flaviendelangle
+- [website] Add stray design tweaks to the X page (#38589) @danilo-leal
+
+All contributors of this release in alphabetical order: @alexfauquette, @alisasanib, @anle9650, @anon-phantom, @DanailH, @danilo-leal, @DiegoAndai, @flaviendelangle, @gitstart, @Janpot, @jergason, @maheshguntur, @michaldudak, @mikailaread, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @Studio384, @tebersefa, @vadimka123, @zanivan, @ZeeshanTamboli
+
 ## 5.14.10
 
 <!-- generated comparing v5.14.9..master -->
