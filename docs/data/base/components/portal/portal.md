@@ -47,3 +47,11 @@ See [this GitHub issue](https://github.com/facebook/react/issues/13097) for deta
 :::
 
 The Portal component cannot be used to render child elements on the server—client-side hydration is necessary.
+
+You need to use the `container` callback as the DOM API isn't available on the server:
+
+```jsx
+<Portal container={() => document.getElementById('filter-panel')!}>
+  <Child />
+</Portal>
+```

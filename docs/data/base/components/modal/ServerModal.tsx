@@ -27,7 +27,7 @@ export default function ServerModal() {
         open
         aria-labelledby="server-modal-title"
         aria-describedby="server-modal-description"
-        container={() => rootRef.current}
+        container={() => rootRef.current!}
       >
         <ModalContent sx={style}>
           <h2 id="server-modal-title" className="modal-title">
