@@ -41,7 +41,7 @@ FontAwesomeSvgIcon.propTypes = {
 
 export default function FontAwesomeSvgIconDemo() {
   return (
-    <Stack>
+    <Stack direction="row" spacing={2}>
       <IconButton aria-label="Example">
         <FontAwesomeIcon icon={faEllipsisV} />
       </IconButton>

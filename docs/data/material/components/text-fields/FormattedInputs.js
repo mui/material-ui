@@ -73,7 +73,7 @@ export default function FormattedInputs() {
   };
 
   return (
-    <Stack>
+    <Stack direction="row" spacing={2}>
       <FormControl variant="standard">
         <InputLabel htmlFor="formatted-text-mask-input">react-imask</InputLabel>
         <Input

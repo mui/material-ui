@@ -35,7 +35,7 @@ export default function FontAwesomeIconSize() {
   }, []);
 
   return (
-    <Stack>
+    <Stack direction='row' spacing={2}>
       <ThemeProvider theme={theme}>
         <Chip icon={<MdPhone />} label="Call me" />
         <Chip icon={<Icon className="fas fa-phone-alt" />} label="Call me" />

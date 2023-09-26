@@ -42,7 +42,7 @@ const FontAwesomeSvgIcon = React.forwardRef<SVGSVGElement, FontAwesomeSvgIconPro
 
 export default function FontAwesomeSvgIconDemo() {
   return (
-    <Stack>
+    <Stack direction='row' spacing={2}>
       <IconButton aria-label="Example">
         <FontAwesomeIcon icon={faEllipsisV} />
       </IconButton>
