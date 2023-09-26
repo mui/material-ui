@@ -6,7 +6,11 @@ import FormLabel, { formLabelClasses as classes } from '@mui/material-next/FormL
 import FormControl, { useFormControl } from '@mui/material-next/FormControl';
 // TODO v6: re-export from material-next
 import { hexToRgb } from '@mui/system';
-import defaultTheme from '../styles/defaultTheme';
+// TODO v6: remove after implementing Material You styles
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+// TODO v6: remove after implementing Material You styles
+const MaterialV5DefaultTheme = createTheme();
 
 describe('<FormLabel />', () => {
   const { render } = createRenderer();
@@ -163,21 +167,25 @@ describe('<FormLabel />', () => {
 
     it('should have the focused class and style', () => {
       const { container, getByTestId } = render(
-        <FormLabel data-testid="FormLabel" color="secondary" focused />,
+        <ThemeProvider theme={MaterialV5DefaultTheme}>
+          <FormLabel data-testid="FormLabel" color="secondary" focused />
+        </ThemeProvider>,
       );
       expect(container.querySelector(`.${classes.colorSecondary}`)).to.have.class(classes.focused);
       expect(getByTestId('FormLabel')).toHaveComputedStyle({
-        color: hexToRgb(defaultTheme.palette.secondary.main),
+        color: hexToRgb(MaterialV5DefaultTheme.palette.secondary.main),
       });
     });
 
     it('should have the error class and style, even when focused', () => {
       const { container, getByTestId } = render(
-        <FormLabel data-testid="FormLabel" color="secondary" focused error />,
+        <ThemeProvider theme={MaterialV5DefaultTheme}>
+          <FormLabel data-testid="FormLabel" color="secondary" focused error />
+        </ThemeProvider>,
       );
       expect(container.querySelector(`.${classes.colorSecondary}`)).to.have.class(classes.error);
       expect(getByTestId('FormLabel')).toHaveComputedStyle({
-        color: hexToRgb(defaultTheme.palette.error.main),
+        color: hexToRgb(MaterialV5DefaultTheme.palette.error.main),
       });
     });
   });
