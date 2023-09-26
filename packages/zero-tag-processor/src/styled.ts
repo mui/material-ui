@@ -120,7 +120,7 @@ export default class StyledProcessor extends BaseProcessor {
 
   constructor(params: Params, ...args: TailProcessorParams) {
     super(params, ...args);
-    if (params.length === 2) {
+    if (params.length <= 2) {
       // no need to do any processing if it is an already transformed call.
       throw BaseProcessor.SKIP;
     }
@@ -331,7 +331,7 @@ export default class StyledProcessor extends BaseProcessor {
       );
     }
     this.replacer(
-      t.callExpression(t.identifier('styled'), [componentName, t.objectExpression(argProperties)]),
+      t.callExpression(this.callee, [componentName, t.objectExpression(argProperties)]),
       true,
     );
   }
