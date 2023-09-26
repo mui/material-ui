@@ -224,7 +224,7 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
         startCommit({ rippleX, rippleY, rippleSize, cb });
       }
     },
-    [centerProp, startCommit],
+    [centerProp, startCommit, startTimer],
   );
 
   const stop = React.useCallback<TouchRippleActions['stop']>((event, cb) => {
@@ -250,7 +250,7 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
       return oldRipples;
     });
     rippleCallback.current = cb;
-  }, []);
+  }, [startTimer]);
 
   React.useImperativeHandle(
     ref,

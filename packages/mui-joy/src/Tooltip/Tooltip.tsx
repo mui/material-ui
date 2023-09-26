@@ -159,7 +159,7 @@ const TooltipArrow = styled('span', {
 });
 
 let hystersisOpen = false;
-let hystersisTimer = new Timeout();
+const hystersisTimer = new Timeout();
 let cursorPosition = { x: 0, y: 0 };
 
 export function testReset() {

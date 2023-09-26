@@ -140,7 +140,7 @@ export function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbar
     }
 
     return undefined;
-  }, [disableWindowBlurListener, handleResume, open]);
+  }, [disableWindowBlurListener, open, handleResume, handlePause]);
 
   const getRootProps = <ExternalProps extends Record<string, unknown> = {}>(
     externalProps: ExternalProps = {} as ExternalProps,
