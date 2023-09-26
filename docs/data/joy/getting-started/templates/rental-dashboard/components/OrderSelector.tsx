@@ -15,11 +15,11 @@ export default function OrderSelector() {
         variant="plain"
         color="primary"
         endDecorator={<ArrowDropDown />}
-        sx={{ px: 0 }}
+        sx={{ flexWrap: 'nowrap' }}
       >
         Order by
       </MenuButton>
-      <Menu>
+      <Menu sx={{ pr: 4 }}>
         <MenuItem
           onClick={() => {
             const nextIndex = SIZES.indexOf(size) - 1;

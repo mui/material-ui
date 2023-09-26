@@ -12,7 +12,7 @@ export default function Rating() {
           <Star sx={{ color: 'warning.400' }} />
           <Star sx={{ color: 'warning.400' }} />
           <Star sx={{ color: 'warning.400' }} />
-          <Star sx={{ color: 'warning.100' }} />
+          <Star sx={{ color: 'warning.200' }} />
         </React.Fragment>
       }
     >

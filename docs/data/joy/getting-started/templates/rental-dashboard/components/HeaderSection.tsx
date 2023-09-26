@@ -5,12 +5,7 @@ import ColorSchemeToggle from './ColorSchemeToggle';
 
 export default function HeaderSection() {
   return (
-    <Stack
-      justifyContent="space-between"
-      alignItems="flex-start"
-      spacing={1}
-      sx={{ mb: 2 }}
-    >
+    <Stack spacing={1} sx={{ mb: 2, width: '100%' }}>
       <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
         <Typography level="h2">Rental properties</Typography>
         <ColorSchemeToggle id={undefined} sx={{ alignSelf: 'center' }} />

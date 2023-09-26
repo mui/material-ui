@@ -5,7 +5,6 @@ import Box from '@mui/joy/Box';
 import Grid from '@mui/joy/Grid';
 import Stack from '@mui/joy/Stack';
 
-import Header from './components/Header';
 import RentalCard from './components/RentalCard';
 import Main from './components/Main';
 import HeaderSection from './components/HeaderSection';
@@ -24,7 +23,6 @@ export default function RentalDashboard() {
           minWidth: '100dvw',
         }}
       >
-        <Header />
         <Main>
           <Grid
             container
@@ -39,9 +37,10 @@ export default function RentalDashboard() {
                 <Stack
                   sx={{
                     backgroundColor: 'background.surface',
-                    px: 4,
+                    px: { xs: 2, md: 4 },
                     py: 2,
                     borderBottom: '1px solid',
+                    width: { xs: '100vw', sm: '100%' },
                     borderColor: 'divider',
                   }}
                 >
@@ -55,9 +54,12 @@ export default function RentalDashboard() {
                     backgroundImage:
                       'url("https://images.unsplash.com/photo-1478860409698-8707f313ee8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=4000&q=80")',
                   }}
-                  display={{ xs: 'block', md: 'none' }}
+                  display={{ xs: 'block', sm: 'none' }}
                 />
-                <Stack spacing={2} sx={{ px: 4 }}>
+                <Stack
+                  spacing={2}
+                  sx={{ px: { xs: 2, md: 4 }, width: { xs: '100vw', sm: '100%' } }}
+                >
                   <Filters />
                   <RentalCard
                     title="A Stylish Apt, 5 min walk to Queen Victoria Market"
