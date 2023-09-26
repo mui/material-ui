@@ -36,7 +36,7 @@
     "@babel/register": "^7.22.15",
     "@types/babel__core": "^7.20.2",
     "@types/chai": "^4.3.6",
-    "@types/doctrine": "^0.0.6",
+    "@types/doctrine": "^0.0.7",
     "@types/lodash": "^4.14.198",
     "@types/node": "^18.17.18",
     "@types/prettier": "^2.7.3",
