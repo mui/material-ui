@@ -185,7 +185,7 @@ const TableRoot = styled('table', {
           borderBottomRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
-    },
+    } as const,
     (ownerState.borderAxis?.startsWith('x') || ownerState.borderAxis?.startsWith('both')) && {
       // insert border between rows
       [tableSelector.getHeaderCell()]: {

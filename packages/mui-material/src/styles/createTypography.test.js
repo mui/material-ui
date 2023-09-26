@@ -74,6 +74,7 @@ describe('createTypography', () => {
     );
   });
 
+  // TODO v6: remove, see https://github.com/mui/material-ui/pull/38123
   it('should apply font CSS properties to inherit variant', () => {
     const typography = createTypography(palette, {});
     const fontProperties = ['fontFamily', 'fontWeight', 'fontSize', 'lineHeight', 'letterSpacing'];

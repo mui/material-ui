@@ -19,7 +19,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
-import SliderUnstyled from '@mui/base/SliderUnstyled';
+import { SliderUnstyled } from '@mui/base/SliderUnstyled';
 import FooBar, { Qux } from '@foo-bar/bip';
 const styles = theme => ({
   container: {

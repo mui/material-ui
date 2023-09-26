@@ -1,5 +1,5 @@
 'use client';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { integerPropType } from '@mui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -101,6 +101,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
         gridColumnEnd: variant !== 'masonry' ? `span ${cols}` : undefined,
         gridRowEnd: variant !== 'masonry' ? `span ${rows}` : undefined,
         marginBottom: variant === 'masonry' ? gap : undefined,
+        breakInside: variant === 'masonry' ? 'avoid' : undefined,
         ...style,
       }}
       ownerState={ownerState}

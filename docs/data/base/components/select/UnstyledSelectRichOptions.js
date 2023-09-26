@@ -1,20 +1,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Select, { selectClasses } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
+import { Select, selectClasses } from '@mui/base/Select';
+import { Option, optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
 import { Popper } from '@mui/base';
 
 export default function UnstyledSelectRichOptions() {
   return (
-    <CustomSelect>
+    <CustomSelect placeholder="Select country…">
       {countries.map((c) => (
         <StyledOption key={c.code} value={c.code} label={c.label}>
           <img
             loading="lazy"
             width="20"
-            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
             srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
+            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
             alt={`Flag of ${c.label}`}
           />
           {c.label} ({c.code}) +{c.phone}

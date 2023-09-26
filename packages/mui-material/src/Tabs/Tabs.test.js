@@ -9,13 +9,13 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import capitalize from '../utils/capitalize';
 
 function findScrollButton(container, direction) {
@@ -522,6 +522,37 @@ describe('<Tabs />', () => {
         variant: 'scrollable',
       });
       expect(tablistContainer.style.overflow).to.equal('');
+    });
+
+    it('should handle theme styleOverrides for scrollable tabs without crashing', () => {
+      const theme = createTheme({
+        components: {
+          MuiTabs: {
+            styleOverrides: {
+              root: ({ ownerState: { orientation } }) => ({
+                ...(orientation === 'vertical'
+                  ? {
+                      background: 'magenta',
+                    }
+                  : {
+                      background: 'lime',
+                    }),
+              }),
+            },
+          },
+        },
+      });
+
+      expect(() =>
+        render(
+          <ThemeProvider theme={theme}>
+            <Tabs sx={{ width: 200 }} value={0} variant="scrollable">
+              <Tab label="First" />
+              <Tab label="Second" />
+            </Tabs>
+          </ThemeProvider>,
+        ),
+      ).not.to.throw();
     });
   });
 

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import combineHooksSlotProps from './combineHooksSlotProps';
+import { combineHooksSlotProps } from './combineHooksSlotProps';
 import { EventHandlers } from './types';
 
 describe('combineHooksSlotProps', () => {

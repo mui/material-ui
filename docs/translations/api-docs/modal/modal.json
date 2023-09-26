@@ -74,5 +74,9 @@
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the backdrop element"
     }
+  },
+  "slotDescriptions": {
+    "root": "The component that renders the root.",
+    "backdrop": "The component that renders the backdrop."
   }
 }

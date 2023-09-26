@@ -1,6 +1,7 @@
 {
   "componentDescription": "",
   "propDescriptions": {
+    "className": { "description": "Class name applied to the root element." },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "focusableWhenDisabled": {
       "description": "If <code>true</code>, allows a disabled button to receive focus."

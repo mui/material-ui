@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Button, { ButtonProps } from '@mui/material/Button';
-import MaterialUiLink, { LinkProps as MaterialUiLinkProps } from '@mui/material/Link';
 import { Link as ReactRouterLink, LinkProps } from 'react-router-dom';
 import { expectType } from '@mui/types';
+import Button, { ButtonProps } from '@mui/material/Button';
+import MaterialUiLink, { LinkProps as MaterialUiLinkProps } from '@mui/material/Link';
 
 const log = console.log;
 
@@ -66,7 +66,7 @@ const buttonTest = () => (
       Title
     </Button>
     <Button component="a">Simple Link</Button>
-    <Button component={(props) => <a {...props} />}>Complex Link</Button>
+    <Button component={(props: any) => <a {...props} />}>Complex Link</Button>
     <Button component={ReactRouterLink} to="/open-collective">
       Link
     </Button>

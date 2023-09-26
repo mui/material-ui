@@ -12,10 +12,11 @@
     "slots": {
       "type": { "name": "shape", "description": "{ listbox?: elementType, root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     }
   },
   "name": "Menu",
+  "imports": ["import { Menu } from '@mui/base/Menu';", "import { Menu } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

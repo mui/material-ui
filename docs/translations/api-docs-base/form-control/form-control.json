@@ -2,6 +2,7 @@
   "componentDescription": "Provides context such as filled/focused/error/required for form inputs.\nRelying on the context provides high flexibility and ensures that the state always stays\nconsistent across the children of the `FormControl`.\nThis context is used by the following components:\n\n*   FormLabel\n*   FormHelperText\n*   Input\n*   InputLabel\n\nYou can find one composition example below and more going to [the demos](https://mui.com/material-ui/react-text-field/#components).\n\n```jsx\n<FormControl>\n  <InputLabel htmlFor=\"my-input\">Email address</InputLabel>\n  <Input id=\"my-input\" aria-describedby=\"my-helper-text\" />\n  <FormHelperText id=\"my-helper-text\">We'll never share your email.</FormHelperText>\n</FormControl>\n```\n\n⚠️ Only one `Input` can be used within a FormControl because it create visual inconsistencies.\nFor instance, only one input can be focused at the same time, the state shouldn't be shared.",
   "propDescriptions": {
     "children": { "description": "The content of the component." },
+    "className": { "description": "Class name applied to the root element." },
     "disabled": {
       "description": "If <code>true</code>, the label, input and helper text should be displayed in a disabled state."
     },
@@ -16,5 +17,32 @@
     },
     "value": { "description": "The value of the form element." }
   },
-  "classDescriptions": {}
+  "classDescriptions": {
+    "root": { "description": "Class applied to the root element." },
+    "disabled": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "error": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>error={true}</code>"
+    },
+    "filled": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the inner input has value"
+    },
+    "focused": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the inner input is focused"
+    },
+    "required": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>required={true}</code>"
+    }
+  }
 }

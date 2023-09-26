@@ -14,7 +14,7 @@ import * as React from 'react';
  *
  * - [useLatest API](https://mui.com/base-ui/api/use-latest/)
  */
-export default function useLatest<Value>(value: Value, deps?: React.DependencyList) {
+export function useLatest<Value>(value: Value, deps?: React.DependencyList) {
   const ref = React.useRef<Value>(value);
 
   React.useEffect(() => {

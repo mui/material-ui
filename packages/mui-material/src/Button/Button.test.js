@@ -1,10 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import {
+  describeConformance,
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+} from '@mui-internal/test-utils';
+import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
-import { ClassNames } from '@emotion/react';
 
 describe('<Button />', () => {
   const { render, renderToString } = createRenderer();

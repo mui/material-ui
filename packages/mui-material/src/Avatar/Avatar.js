@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Person from '../internal/svg-icons/Person';
@@ -164,8 +164,8 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     children = (
       <AvatarImg
         alt={alt}
-        src={src}
         srcSet={srcSet}
+        src={src}
         sizes={sizes}
         ownerState={ownerState}
         className={classes.img}

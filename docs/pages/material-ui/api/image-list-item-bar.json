@@ -5,7 +5,7 @@
       "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
       "default": "'right'"
     },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "position": {
       "type": {
         "name": "enum",
@@ -19,11 +19,15 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "title": { "type": { "name": "node" } }
   },
   "name": "ImageListItemBar",
+  "imports": [
+    "import ImageListItemBar from '@mui/material/ImageListItemBar';",
+    "import { ImageListItemBar } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

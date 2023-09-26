@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 import { styled, extendTheme, Shadow } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Link from '@mui/joy/Link';
@@ -9,6 +8,7 @@ import Sheet from '@mui/joy/Sheet';
 import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
 import Check from '@mui/icons-material/CheckCircle';
+import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 
 const Table = styled('table')(({ theme }) => ({
   border: '1px solid',

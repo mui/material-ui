@@ -7,7 +7,7 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -87,6 +87,9 @@ const TypographyRoot = styled('span', {
         }
       : {
           display: 'block', // don't rely on user agent, always `block`.
+          ...(ownerState.unstable_hasSkeleton && {
+            position: 'relative',
+          }),
         }),
     ...((ownerState.startDecorator || ownerState.endDecorator) && {
       display: 'flex',
@@ -188,6 +191,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
 
   const level = nesting || inheriting ? inProps.level || 'inherit' : levelProp;
 
+  const hasSkeleton = isMuiElement(children, ['Skeleton']);
   const component =
     componentProp ||
     ((nesting
@@ -203,6 +207,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     noWrap,
     nesting,
     variant,
+    unstable_hasSkeleton: hasSkeleton,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -237,7 +242,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        {isMuiElement(children, ['Skeleton'])
+        {hasSkeleton
           ? React.cloneElement(children as React.ReactElement, {
               variant: (children as React.ReactElement).props.variant || 'inline',
             })

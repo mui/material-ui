@@ -6,15 +6,16 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
 import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
-import menuReducer from './menuReducer';
-import DropdownContext, { DropdownContextValue } from '../useDropdown/DropdownContext';
-import useList from '../useList';
+import { menuReducer } from './menuReducer';
+import { DropdownContext, DropdownContextValue } from '../useDropdown/DropdownContext';
+import { useList } from '../useList';
 import { MenuItemMetadata } from '../useMenuItem';
 import { DropdownActionTypes } from '../useDropdown';
-import { EventHandlers } from '../utils';
+import { EventHandlers } from '../utils/types';
 import { useCompoundParent } from '../utils/useCompound';
-import MuiCancellableEvent from '../utils/muiCancellableEvent';
-import combineHooksSlotProps from '../utils/combineHooksSlotProps';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 
 const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
   dispatch: () => {},
@@ -35,10 +36,10 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
  *
  * - [useMenu API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu)
  */
-export default function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
+export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
   const { listboxRef: listboxRefProp, onItemsChange, id: idParam } = parameters;
 
-  const rootRef = React.useRef<HTMLElement | null>(null);
+  const rootRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(rootRef, listboxRefProp);
 
   const listboxId = useId(idParam) ?? '';
@@ -154,12 +155,15 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     onKeyDown: createHandleKeyDown(otherHandlers),
   });
 
-  const getListboxProps = <TOther extends EventHandlers>(
-    otherHandlers: TOther = {} as TOther,
+  const getListboxProps = <ExternalProps extends Record<string, unknown>>(
+    externalProps: ExternalProps = {} as ExternalProps,
   ): UseMenuListboxSlotProps => {
     const getCombinedRootProps = combineHooksSlotProps(getOwnListboxHandlers, getListRootProps);
+    const externalEventHandlers = extractEventHandlers(externalProps);
     return {
-      ...getCombinedRootProps(otherHandlers),
+      ...externalProps,
+      ...externalEventHandlers,
+      ...getCombinedRootProps(externalEventHandlers),
       id: listboxId,
       role: 'menu',
     };

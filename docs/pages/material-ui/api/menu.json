@@ -4,7 +4,7 @@
     "anchorEl": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "autoFocus": { "type": { "name": "bool" }, "default": "true" },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "disableAutoFocusItem": { "type": { "name": "bool" }, "default": "false" },
     "MenuListProps": { "type": { "name": "object" }, "default": "{}" },
     "onClose": {
@@ -31,7 +31,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "transitionDuration": {
       "type": {
@@ -47,6 +47,7 @@
     }
   },
   "name": "Menu",
+  "imports": ["import Menu from '@mui/material/Menu';", "import { Menu } from '@mui/material';"],
   "styles": { "classes": ["root", "paper", "list"], "globalClasses": {}, "name": "MuiMenu" },
   "spread": true,
   "themeDefaultProps": false,

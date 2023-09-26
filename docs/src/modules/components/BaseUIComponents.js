@@ -69,6 +69,12 @@ function components() {
       href: '/base-ui/react-no-ssr/',
     },
     {
+      title: 'Number Input',
+      srcLight: '/static/base-ui/react-components/number-input-light.png',
+      srcDark: '/static/base-ui/react-components/number-input-dark.png',
+      href: '/base-ui/react-number-input/',
+    },
+    {
       title: 'Popper',
       srcLight: '/static/base-ui/react-components/popper-light.png',
       srcDark: '/static/base-ui/react-components/popper-dark.png',

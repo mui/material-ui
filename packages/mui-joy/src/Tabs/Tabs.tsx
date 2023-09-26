@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import useTabs, { TabsProvider } from '@mui/base/useTabs';
+import { useTabs, TabsProvider } from '@mui/base/useTabs';
 import { getPath } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';

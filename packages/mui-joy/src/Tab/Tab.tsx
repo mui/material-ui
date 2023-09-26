@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useTab from '@mui/base/useTab';
+import { useTab } from '@mui/base/useTab';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
@@ -145,6 +145,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     color: colorProp = 'neutral',
     disableIndicator = false,
     indicatorPlacement = row ? 'bottom' : 'right',
+    indicatorInset = false,
     slots = {},
     slotProps = {},
     ...other
@@ -175,6 +176,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     ...props,
     disableIndicator,
     indicatorPlacement,
+    indicatorInset,
     orientation,
     row,
     active,
@@ -250,6 +252,7 @@ Tab.propTypes /* remove-proptypes */ = {
   disableIndicator: PropTypes.bool,
   /**
    * If `true`, the indicator stay within the padding based on the `Tabs` orientation.
+   * @default false
    */
   indicatorInset: PropTypes.bool,
   /**

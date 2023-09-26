@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
-import useButton from '../useButton';
+import { useButton } from '../useButton';
 import {
   MenuItemMetadata,
   UseMenuItemParameters,
@@ -10,11 +10,12 @@ import {
 } from './useMenuItem.types';
 import { useListItem } from '../useList';
 import { DropdownActionTypes } from '../useDropdown';
-import DropdownContext, { DropdownContextValue } from '../useDropdown/DropdownContext';
-import combineHooksSlotProps from '../utils/combineHooksSlotProps';
+import { DropdownContext, DropdownContextValue } from '../useDropdown/DropdownContext';
+import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
 import { useCompoundItem } from '../utils/useCompoundItem';
-import MuiCancellableEvent from '../utils/muiCancellableEvent';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { EventHandlers } from '../utils/types';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 
 function idGenerator(existingKeys: Set<string>) {
   return `menu-item-${existingKeys.size}`;
@@ -39,7 +40,7 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
  *
  * - [useMenuItem API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu-item)
  */
-export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnValue {
+export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnValue {
   const { disabled = false, id: idParam, rootRef: externalRef, label } = params;
 
   const id = useId(idParam);
@@ -88,20 +89,25 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
       });
     };
 
-  const getOwnHandlers = <TOther extends EventHandlers>(otherHandlers: TOther = {} as TOther) => ({
+  const getOwnHandlers = <ExternalProps extends EventHandlers>(
+    otherHandlers: ExternalProps = {} as ExternalProps,
+  ) => ({
     ...otherHandlers,
     onClick: createHandleClick(otherHandlers),
   });
 
-  function getRootProps<TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseMenuItemRootSlotProps<TOther> {
+  function getRootProps<ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseMenuItemRootSlotProps<ExternalProps> {
+    const externalEventHandlers = extractEventHandlers(externalProps);
     const getCombinedRootProps = combineHooksSlotProps(
       getOwnHandlers,
       combineHooksSlotProps(getButtonProps, getListRootProps),
     );
     return {
-      ...getCombinedRootProps(otherHandlers),
+      ...externalProps,
+      ...externalEventHandlers,
+      ...getCombinedRootProps(externalEventHandlers),
       ref: handleRef,
       role: 'menuitem',
     };

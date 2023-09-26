@@ -1,6 +1,6 @@
 {
   "props": {
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "delay": { "type": { "name": "number" }, "default": "0" },
     "FabProps": { "type": { "name": "object" }, "default": "{}" },
     "icon": { "type": { "name": "node" } },
@@ -11,7 +11,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "TooltipClasses": { "type": { "name": "object" } },
     "tooltipOpen": { "type": { "name": "bool" }, "default": "false" },
@@ -25,6 +25,10 @@
     "tooltipTitle": { "type": { "name": "node" } }
   },
   "name": "SpeedDialAction",
+  "imports": [
+    "import SpeedDialAction from '@mui/material/SpeedDialAction';",
+    "import { SpeedDialAction } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "fab",

@@ -1,7 +1,7 @@
 ---
 productId: material-ui
 title: React Pagination component
-components: Pagination, PaginationItem
+components: Pagination, PaginationItem, TablePagination
 githubLabel: 'component: pagination'
 ---
 

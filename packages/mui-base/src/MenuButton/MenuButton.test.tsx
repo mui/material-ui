@@ -7,8 +7,8 @@ import {
   createRenderer,
   describeConformanceUnstyled,
   fireEvent,
-} from 'test/utils';
-import MenuButton, { menuButtonClasses } from '@mui/base/MenuButton';
+} from '@mui-internal/test-utils';
+import { MenuButton, menuButtonClasses } from '@mui/base/MenuButton';
 import { DropdownContext, DropdownContextValue, DropdownActionTypes } from '@mui/base/useDropdown';
 
 const testContext: DropdownContextValue = {

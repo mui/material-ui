@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Slider from '@mui/base/Slider';
+import { Slider } from '@mui/base/Slider';
 import { styled, GlobalStyles } from '@mui/system';
 
 const rootStyles = `
@@ -143,7 +143,7 @@ export default function BaseTabsDemo({ styling }: { styling?: 'system' | 'tailwi
 }
 BaseTabsDemo.getCode = (styling?: 'system' | 'tailwindcss' | 'css') => {
   if (styling === 'system') {
-    return `import Slider from '@mui/base/Slider';
+    return `import { Slider } from '@mui/base/Slider';
 import { styled } from '@mui/system';
 
 const StyledSlider = styled('span')\`${rootStyles}\`;
@@ -160,7 +160,7 @@ const StyledSlider = styled('span')\`${rootStyles}\`;
 `;
   }
   if (styling === 'css') {
-    return `import Slider from '@mui/base/Slider';
+    return `import { Slider } from '@mui/base/Slider';
 import './styles.css';
 
 <Slider
@@ -178,7 +178,7 @@ ${CSS}
 `;
   }
   if (styling === 'tailwindcss') {
-    return `import Slider from '@mui/base/Slider';
+    return `import { Slider } from '@mui/base/Slider';
 
 <Slider
   defaultValue={10}

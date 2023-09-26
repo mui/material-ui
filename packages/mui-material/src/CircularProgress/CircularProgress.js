@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { keyframes, css } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
@@ -238,7 +238,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
-   * If using a string, you need to provide the CSS unit, e.g '3rem'.
+   * If using a string, you need to provide the CSS unit, e.g. '3rem'.
    * @default 40
    */
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

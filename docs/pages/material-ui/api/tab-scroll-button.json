@@ -9,7 +9,7 @@
       "required": true
     },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {
@@ -30,10 +30,14 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "TabScrollButton",
+  "imports": [
+    "import TabScrollButton from '@mui/material/TabScrollButton';",
+    "import { TabScrollButton } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "vertical", "disabled"],
     "globalClasses": { "disabled": "Mui-disabled" },

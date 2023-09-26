@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { usePreviousProps, unstable_capitalize as capitalize } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
-import useBadge from '@mui/base/useBadge';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useBadge } from '@mui/base/useBadge';
 import { useSlotProps } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
@@ -356,6 +356,14 @@ Badge.propTypes /* remove-proptypes */ = {
     badge: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The variant to use.
    * @default 'standard'

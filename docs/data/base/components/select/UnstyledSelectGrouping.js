@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Select, { selectClasses } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
-import OptionGroup from '@mui/base/OptionGroup';
-import Popper from '@mui/base/Popper';
+import { Select, selectClasses } from '@mui/base/Select';
+import { Option, optionClasses } from '@mui/base/Option';
+import { OptionGroup } from '@mui/base/OptionGroup';
+import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 export default function UnstyledSelectGrouping() {
   return (
-    <CustomSelect>
+    <CustomSelect placeholder="Choose a character…">
       <CustomOptionGroup label="Hobbits">
         <StyledOption value="Frodo">Frodo</StyledOption>
         <StyledOption value="Sam">Sam</StyledOption>

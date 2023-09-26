@@ -7,9 +7,10 @@
         "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
       "default": "'neutral'",
-      "additionalPropsInfo": { "joy-color": true }
+      "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
+    "flex": { "type": { "name": "bool" }, "default": "false" },
     "maxHeight": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "minHeight": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "objectFit": {
@@ -33,14 +34,14 @@
     "slots": {
       "type": { "name": "shape", "description": "{ content?: elementType, root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -48,11 +49,15 @@
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
       "default": "'soft'",
-      "additionalPropsInfo": { "joy-variant": true }
+      "additionalInfo": { "joy-variant": true }
     }
   },
   "name": "AspectRatio",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import AspectRatio from '@mui/joy/AspectRatio';",
+    "import { AspectRatio } from '@mui/joy';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAspectRatio" },
   "slots": [
     {
       "name": "root",

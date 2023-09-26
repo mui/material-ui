@@ -1,6 +1,6 @@
 const { promises: fs, readdirSync } = require('fs');
 const path = require('path');
-const { prepareMarkdown } = require('./parseMarkdown');
+const prepareMarkdown = require('./prepareMarkdown');
 const extractImports = require('./extractImports');
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
@@ -372,9 +372,7 @@ module.exports = async function demoLoader() {
   );
 
   componentNames.forEach((componentName) => {
-    const moduleID = path
-      .join(this.rootContext, 'src', componentName.replace(/^docs\/src/, ''))
-      .replace(/\\/g, '/');
+    const moduleID = path.join(this.rootContext, 'src', componentName).replace(/\\/g, '/');
 
     components[moduleID] = componentName;
     componentModuleIDs.add(moduleID);

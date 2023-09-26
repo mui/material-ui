@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Switch, { SwitchOwnerState } from '@mui/joy/Switch';
 import { expectType } from '@mui/types';
+import Switch, { SwitchOwnerState } from '@mui/joy/Switch';
 
 <Switch />;
 

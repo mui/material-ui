@@ -1,6 +1,6 @@
 type ItemComparer<Item> = (a: Item, b: Item) => boolean;
 
-export default function areArraysEqual<Item>(
+export function areArraysEqual<Item>(
   array1: Item[],
   array2: Item[],
   itemComparer: ItemComparer<Item> = (a, b) => a === b,

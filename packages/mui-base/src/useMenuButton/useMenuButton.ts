@@ -2,12 +2,13 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { UseMenuButtonParameters, UseMenuButtonReturnValue } from './useMenuButton.types';
-import DropdownContext from '../useDropdown/DropdownContext';
+import { DropdownContext } from '../useDropdown/DropdownContext';
 import { DropdownActionTypes } from '../useDropdown/useDropdown.types';
-import useButton from '../useButton/useButton';
+import { useButton } from '../useButton/useButton';
 import { EventHandlers } from '../utils/types';
-import MuiCancellableEvent from '../utils/muiCancellableEvent';
-import combineHooksSlotProps from '../utils/combineHooksSlotProps';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
+import { extractEventHandlers } from '../utils';
 
 /**
  *
@@ -19,9 +20,7 @@ import combineHooksSlotProps from '../utils/combineHooksSlotProps';
  *
  * - [useMenuButton API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu-button)
  */
-export default function useMenuButton(
-  parameters: UseMenuButtonParameters = {},
-): UseMenuButtonReturnValue {
+export function useMenuButton(parameters: UseMenuButtonParameters = {}): UseMenuButtonReturnValue {
   const { disabled = false, focusableWhenDisabled, rootRef: externalRef } = parameters;
 
   const menuContext = React.useContext(DropdownContext);
@@ -77,14 +76,19 @@ export default function useMenuButton(
     onKeyDown: createHandleKeyDown(otherHandlers),
   });
 
-  const getRootProps = (otherHandlers: EventHandlers = {}) => {
+  const getRootProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ) => {
+    const externalEventHandlers = extractEventHandlers(externalProps);
     const getCombinedProps = combineHooksSlotProps(getButtonRootProps, getOwnRootProps);
 
     return {
-      ...getCombinedProps(otherHandlers),
       'aria-haspopup': 'menu' as const,
       'aria-expanded': state.open,
       'aria-controls': popupId,
+      ...externalProps,
+      ...externalEventHandlers,
+      ...getCombinedProps(externalEventHandlers),
       ref: handleRef,
     };
   };

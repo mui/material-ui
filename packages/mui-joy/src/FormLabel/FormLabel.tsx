@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import { FormLabelProps, FormLabelTypeMap } from './FormLabelProps';
@@ -23,9 +23,11 @@ const FormLabelRoot = styled('label', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormLabelProps }>(({ theme }) => ({
+  '--Icon-fontSize': 'calc(var(--FormLabel-lineHeight) * 1em)',
   WebkitTapHighlightColor: 'transparent',
   alignSelf: 'var(--FormLabel-alignSelf)', // to not fill the block space. It seems like a bug when clicking on empty space (within the label area), even though it is not.
   display: 'flex',
+  gap: '2px',
   alignItems: 'center',
   flexWrap: 'wrap',
   userSelect: 'none',

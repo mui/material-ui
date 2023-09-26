@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Checkbox, { CheckboxOwnerState } from '@mui/joy/Checkbox';
 import { expectType } from '@mui/types';
+import Checkbox, { CheckboxOwnerState } from '@mui/joy/Checkbox';
 
 <Checkbox id="test" name="test" />;
 

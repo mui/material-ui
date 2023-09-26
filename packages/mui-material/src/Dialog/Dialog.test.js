@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import {
+  describeConformance,
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+} from '@mui-internal/test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -19,14 +25,14 @@ function userClick(element) {
 }
 
 /**
- * @param {typeof import('test/utils').screen} view
+ * @param {typeof import('@mui-internal/test-utils').screen} view
  */
 function findBackdrop(view) {
   return view.getByRole('dialog').parentElement;
 }
 
 /**
- * @param {typeof import('test/utils').screen} view
+ * @param {typeof import('@mui-internal/test-utils').screen} view
  */
 function clickBackdrop(view) {
   userClick(findBackdrop(view));

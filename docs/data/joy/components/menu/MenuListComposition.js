@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Popper from '@mui/base/Popper';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { Popper } from '@mui/base/Popper';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { styled } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 import MenuList from '@mui/joy/MenuList';
@@ -22,9 +22,7 @@ export default function MenuListComposition() {
     if (event.key === 'Tab') {
       setOpen(false);
     } else if (event.key === 'Escape') {
-      if (buttonRef.current) {
-        buttonRef.current?.focus();
-      }
+      buttonRef.current.focus();
       setOpen(false);
     }
   };

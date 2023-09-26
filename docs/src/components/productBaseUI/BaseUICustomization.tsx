@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
 import clsx from 'clsx';
-import SwitchUnstyled from '@mui/base/Switch';
-import useSwitch, { UseSwitchParameters } from '@mui/base/useSwitch';
+import { Switch as SwitchUnstyled } from '@mui/base/Switch';
+import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -20,8 +20,8 @@ import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 const code = `
 import clsx from 'clsx';
 import { styled } from '@mui/system';
-import SwitchUnstyled from '@mui/base/Switch';
-import useSwitch from '@mui/base/useSwitch';
+import { SwitchUnstyled } from '@mui/base/Switch';
+import { useSwitch } from '@mui/base/useSwitch';
 
 const StyledSwitchRoot = styled('span')(\`
   font-size: 0;

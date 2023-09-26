@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Popper from '@mui/base/Popper';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { Popper } from '@mui/base/Popper';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { styled } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 import MenuList from '@mui/joy/MenuList';
@@ -10,8 +10,8 @@ const Popup = styled(Popper)({
   zIndex: 1000,
 });
 
-export default function MenuListComposition(): JSX.Element {
-  const buttonRef = React.useRef<HTMLButtonElement | null>(null);
+export default function MenuListComposition() {
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
   const [open, setOpen] = React.useState(false);
 
   const handleClose = () => {
@@ -22,9 +22,7 @@ export default function MenuListComposition(): JSX.Element {
     if (event.key === 'Tab') {
       setOpen(false);
     } else if (event.key === 'Escape') {
-      if (buttonRef.current) {
-        buttonRef.current?.focus();
-      }
+      buttonRef.current!.focus();
       setOpen(false);
     }
   };

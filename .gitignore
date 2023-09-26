@@ -30,6 +30,8 @@
 /test/regressions/screenshots
 /tmp
 .next
+# created by netlify dev (to perform local debug)
+.netlify
 build
 node_modules
 package-lock.json

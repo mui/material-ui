@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
+import {
+  describeConformance,
+  createRenderer,
+  screen,
+  describeJoyColorInversion,
+} from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuList from '@mui/joy/MenuList';
 import List from '@mui/joy/List';

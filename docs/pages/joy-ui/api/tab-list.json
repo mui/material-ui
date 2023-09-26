@@ -7,7 +7,7 @@
         "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'neutral'",
-      "additionalPropsInfo": { "joy-color": true }
+      "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
     "disableUnderline": { "type": { "name": "bool" }, "default": "false" },
@@ -16,7 +16,7 @@
         "name": "union",
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
-      "additionalPropsInfo": { "joy-size": true }
+      "additionalInfo": { "joy-size": true }
     },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
@@ -25,7 +25,7 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "sticky": { "type": { "name": "enum", "description": "'bottom'<br>&#124;&nbsp;'top'" } },
     "sx": {
@@ -33,7 +33,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "tabFlex": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "underlinePlacement": {
@@ -49,11 +49,12 @@
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
       "default": "'plain'",
-      "additionalPropsInfo": { "joy-variant": true }
+      "additionalInfo": { "joy-variant": true }
     }
   },
   "name": "TabList",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import TabList from '@mui/joy/TabList';", "import { TabList } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTabList" },
   "slots": [
     {
       "name": "root",

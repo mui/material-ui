@@ -7,11 +7,11 @@ import {
   fireEvent,
   describeConformance,
   describeJoyColorInversion,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import Link, { LinkClassKey, linkClasses as classes } from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import { ThemeProvider, TypographySystem } from '@mui/joy/styles';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 
 function focusVisible(element: HTMLAnchorElement | null) {
   act(() => {

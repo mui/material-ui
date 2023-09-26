@@ -3,8 +3,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { MenuButtonOwnerState, MenuButtonProps } from './MenuButton.types';
 import { useSlotProps } from '../utils';
-import useMenuButton from '../useMenuButton';
-import composeClasses from '../composeClasses';
+import { useMenuButton } from '../useMenuButton';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getMenuButtonUtilityClass } from './menuButtonClasses';
 
@@ -85,6 +85,10 @@ MenuButton.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * Class name applied to the root element.
+   */
+  className: PropTypes.string,
+  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -115,4 +119,4 @@ MenuButton.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default MenuButton;
+export { MenuButton };

@@ -19,6 +19,7 @@
     }
   },
   "name": "Fade",
+  "imports": ["import Fade from '@mui/material/Fade';", "import { Fade } from '@mui/material';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "themeDefaultProps": false,

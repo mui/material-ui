@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 

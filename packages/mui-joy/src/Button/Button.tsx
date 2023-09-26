@@ -1,8 +1,8 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import useButton from '@mui/base/useButton';
-import composeClasses from '@mui/base/composeClasses';
+import { useButton } from '@mui/base/useButton';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { Interpolation } from '@mui/system';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, Theme, useThemeProps } from '../styles';
@@ -113,10 +113,10 @@ export const getButtonStyles = ({
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': theme.vars.fontSize.xl,
-        '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
-        '--CircularProgress-thickness': '3px',
+        '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '2px',
         '--Button-gap': '0.5rem',
-        minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
+        minHeight: 'var(--Button-minHeight, 2.25rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
         paddingBlock: '0.25rem', // the padding-block act as a minimum spacing between content and root element
         paddingInline: '1rem',
@@ -126,14 +126,14 @@ export const getButtonStyles = ({
         '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--CircularProgress-thickness': '4px',
         '--Button-gap': '0.75rem',
-        minHeight: 'var(--Button-minHeight, 3rem)',
+        minHeight: 'var(--Button-minHeight, 2.75rem)',
         fontSize: theme.vars.fontSize.md,
         paddingBlock: '0.375rem',
         paddingInline: '1.5rem',
       }),
       WebkitTapHighlightColor: 'transparent',
-      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
-      margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
+      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, e.g. Input
+      margin: `var(--Button-margin)`, // to be controlled by other components, e.g. Input
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -149,7 +149,7 @@ export const getButtonStyles = ({
         width: '100%',
       }),
       [theme.focus.selector]: theme.focus.default,
-    },
+    } as const,
     {
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '&:hover': {
@@ -215,9 +215,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const size = inProps.size || buttonGroup.size || sizeProp;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, buttonGroup.color || colorProp);
-  const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp || loading);
+  const disabled =
+    (inProps.disabled || inProps.loading) ?? (buttonGroup.disabled || disabledProp || loading);
 
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
