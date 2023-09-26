@@ -5,6 +5,10 @@
 ## Info
 
 :::info
+One-liner info callout.
+:::
+
+:::info
 This is an info callout.
 It says, "Here's a bit of extra insight to help you understand this feature."
 
@@ -26,6 +30,10 @@ It says, "Here's a bit of extra insight to help you understand this feature."
 ```
 
 ## Success
+
+:::success
+One-liner success callout.
+:::
 
 :::success
 This is a success callout.
@@ -51,6 +59,10 @@ It says, "Here's an actionable suggestion to help you succeed."
 ## Warning
 
 :::warning
+One-liner warning callout.
+:::
+
+:::warning
 This is a warning callout.
 It says, "Be careful! Keep this detail in mind to avoid potential issues."
 
@@ -72,6 +84,10 @@ It says, "Be careful! Keep this detail in mind to avoid potential issues."
 ```
 
 ## Error
+
+:::error
+One-liner error callout.
+:::
 
 :::error
 This is an error callout.
