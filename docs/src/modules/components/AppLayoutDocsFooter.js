@@ -52,6 +52,9 @@ const FooterLink = styled(Typography)(({ theme }) => {
     color: (theme.vars || theme).palette.primary.main,
     '& > svg': { transition: '0.2s' },
     '&:hover > svg': { transform: 'translateX(2px)' },
+    ...theme.applyDarkStyles({
+      color: (theme.vars || theme).palette.primary[300],
+    }),
   };
 });
 
@@ -385,46 +388,12 @@ export default function AppLayoutDocsFooter(props) {
 
   return (
     <React.Fragment>
-      <Stack component="footer" direction="column" sx={{ my: 6 }}>
-        <Divider />
-        {hidePagePagination ? null : (
-          <Stack direction="row" justifyContent="space-between" sx={{ my: 2 }}>
-            {prevPage !== null ? (
-              <PageLinkButton
-                component={Link}
-                noLinkStyle
-                prefetch={false}
-                href={prevPage.pathname}
-                {...prevPage.linkProps}
-                startIcon={<ChevronLeftIcon />}
-                sx={{ '& > span': { marginLeft: 0 } }}
-              >
-                {pageToTitleI18n(prevPage, t)}
-              </PageLinkButton>
-            ) : (
-              <div />
-            )}
-            {nextPage !== null ? (
-              <PageLinkButton
-                component={Link}
-                noLinkStyle
-                prefetch={false}
-                href={nextPage.pathname}
-                {...nextPage.linkProps}
-                endIcon={<ChevronRightIcon />}
-              >
-                {pageToTitleI18n(nextPage, t)}
-              </PageLinkButton>
-            ) : null}
-          </Stack>
-        )}
-        <Divider />
+      <Stack component="footer" direction="column" spacing={2.5} sx={{ my: 6 }}>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           alignItems="center"
           justifyContent="space-between"
           spacing={{ xs: 3, sm: 1 }}
-          sx={{ my: 4 }}
         >
           <EditPage sourceLocation={location} />
           <Stack direction="row" alignItems="center" spacing={1}>
@@ -518,7 +487,7 @@ export default function AppLayoutDocsFooter(props) {
                   </Typography>
                 </Alert>
               )}
-              <DialogActions sx={{ mb: 4 }}>
+              <DialogActions>
                 <Button type="reset" size="small">
                   {t('cancel')}
                 </Button>
@@ -529,12 +498,45 @@ export default function AppLayoutDocsFooter(props) {
             </div>
           </form>
         </Collapse>
+        <Divider />
+        {hidePagePagination ? null : (
+          <Stack direction="row" justifyContent="space-between" sx={{ my: 2 }}>
+            {prevPage !== null ? (
+              <PageLinkButton
+                component={Link}
+                noLinkStyle
+                prefetch={false}
+                href={prevPage.pathname}
+                {...prevPage.linkProps}
+                startIcon={<ChevronLeftIcon />}
+                sx={{ '& > span': { marginLeft: 0 } }}
+              >
+                {pageToTitleI18n(prevPage, t)}
+              </PageLinkButton>
+            ) : (
+              <div />
+            )}
+            {nextPage !== null ? (
+              <PageLinkButton
+                component={Link}
+                noLinkStyle
+                prefetch={false}
+                href={nextPage.pathname}
+                {...nextPage.linkProps}
+                endIcon={<ChevronRightIcon />}
+              >
+                {pageToTitleI18n(nextPage, t)}
+              </PageLinkButton>
+            ) : null}
+          </Stack>
+        )}
+        <Divider />
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           alignItems="center"
           spacing={{ xs: 3, sm: 1 }}
         >
-          <Stack direction="row" alignItems="center" spacing={1.2} sx={{ flexGrow: 1 }}>
+          <Stack direction="row" alignItems="center" spacing={1} sx={{ flexGrow: 1 }}>
             <Link href={ROUTES.blog}>
               <FooterLink>
                 Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 16 }} />
@@ -557,7 +559,7 @@ export default function AppLayoutDocsFooter(props) {
               </FooterLink>
             </Link>
           </Stack>
-          <Stack spacing={2} direction="row">
+          <Stack spacing={1} direction="row">
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
