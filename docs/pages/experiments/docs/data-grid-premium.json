@@ -82,6 +82,7 @@
         "description": "{ ariaV7?: bool, clipboardPaste?: bool, columnGrouping?: bool, lazyLoading?: bool, warnIfFocusStateIsNotSynced?: bool }"
       }
     },
+    "filterDebounceMs": { "type": { "name": "number" }, "default": "150" },
     "filterMode": {
       "type": { "name": "custom", "description": "'client'<br>&#124;&nbsp;'server'" },
       "default": "\"client\""
@@ -916,6 +917,12 @@
     },
     {
       "class": null,
+      "name": "footerRowCount",
+      "description": "Row count component rendered in the footer",
+      "default": "GridRowCount"
+    },
+    {
+      "class": null,
       "name": "groupingCriteriaCollapseIcon",
       "description": "Icon displayed on the grouping column when the children are expanded",
       "default": "GridExpandMoreIcon"
@@ -1042,6 +1049,10 @@
     }
   ],
   "name": "DataGridPremium",
+  "imports": [
+    "import { DataGridPremium } from '@mui/x-data-grid-premium/DataGridPremium';",
+    "import { DataGridPremium } from '@mui/x-data-grid-premium';"
+  ],
   "styles": {
     "classes": [
       "actionsCell",
@@ -1181,6 +1192,5 @@
   },
   "forwardsRefTo": "GridRoot",
   "filename": "/packages/grid/x-data-grid-premium/src/DataGridPremium/DataGridPremium.tsx",
-  "demos": "<ul><li><a href=\"/x/react-data-grid/#commercial-version\">DataGridPremium</a></li></ul>",
-  "packages": [{ "packageName": "@mui/x-data-grid-premium", "componentName": "DataGridPremium" }]
+  "demos": "<ul><li><a href=\"/x/react-data-grid/#commercial-version\">DataGridPremium</a></li></ul>"
 }

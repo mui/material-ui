@@ -211,6 +211,11 @@
       "deprecated": "",
       "typeDescriptions": {}
     },
+    "filterDebounceMs": {
+      "description": "The milliseconds delay to wait after a keystroke before triggering filtering.",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
     "filterMode": {
       "description": "Filtering can be processed on the server or client-side. Set it to &#39;server&#39; if you would like to handle filtering on the server-side.",
       "deprecated": "",
@@ -1528,6 +1533,7 @@
     "filterPanelDeleteIcon": "Icon displayed for deleting the filter from filter panel.",
     "filterPanelRemoveAllIcon": "Icon displayed for deleting all the active filters from filter panel.",
     "footer": "Footer component rendered at the bottom of the grid viewport.",
+    "footerRowCount": "Row count component rendered in the footer",
     "groupingCriteriaCollapseIcon": "Icon displayed on the grouping column when the children are expanded",
     "groupingCriteriaExpandIcon": "Icon displayed on the grouping column when the children are collapsed",
     "headerFilterCell": "Component responsible for showing menu adornment in Header filter row",
