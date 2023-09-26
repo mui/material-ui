@@ -16,7 +16,7 @@ Your participation is invaluable, and we invite you to engage with it whenever p
 
 We use a GitHub project to track initiative prioritization across all MUI Core products, including Joy UI. We usually add to the project tasks that we internally discussed having a strategic impact.
 
-[**Visit it now** 👉](https://github.com/orgs/mui/projects/18/views/8)!
+[**Visit it now** 👉](https://github.com/orgs/mui/projects/18/views/8)
 
 <img src="/static/joy-ui/roadmap/github-projects.png" style="width: 814px; margin-top: 4px; margin-bottom: 8px;" alt="A screenshot of the MUI Core GitHub project." width="1628" height="400" />
 
@@ -25,6 +25,6 @@ We use a GitHub project to track initiative prioritization across all MUI Core p
 We also create milestones within the MUI Core repository, where Joy UI is developed, to keep track of larger cycles.
 You can now follow which issues were picked up for the stable release and how overall progress is going.
 
-[**Visit it now** 👉](https://github.com/mui/material-ui/milestone/47)!
+[**Visit it now** 👉](https://github.com/mui/material-ui/milestone/47)
 
 <img src="/static/joy-ui/roadmap/milestone.png" style="width: 814px; margin-top: 4px; margin-bottom: 8px;" alt="A screenshot from GitHub of the Joy UI stable release milestone." width="1628" height="400" />
