@@ -11,7 +11,12 @@ describe('useMenuItem', () => {
     it('returns props for root slot', () => {
       function TestMenuItem() {
         const rootRef = React.createRef<HTMLElement>();
-        const { getRootProps } = useMenuItem({ rootRef });
+        const { getRootProps } = useMenuItem({
+          rootRef,
+          dispatch: () => {},
+          focusable: true,
+          highlighted: false,
+        });
         return <div {...getRootProps()} />;
       }
 
@@ -34,7 +39,13 @@ describe('useMenuItem', () => {
 
       function TestMenuItem() {
         const rootRef = React.createRef<HTMLElement>();
-        const { getRootProps } = useMenuItem({ rootRef, id: 'test-menu-item-1' });
+        const { getRootProps } = useMenuItem({
+          rootRef,
+          id: 'test-menu-item-1',
+          dispatch: () => {},
+          focusable: true,
+          highlighted: false,
+        });
         return <div {...getRootProps({ 'data-testid': 'test-menu-item', onClick: handleClick })} />;
       }
 
