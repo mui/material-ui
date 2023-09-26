@@ -3,7 +3,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { useDropdown, DropdownContext } from '@mui/base/useDropdown';
-import Menu from '@mui/material-next/Menu';
+import Menu, { MenuProps } from '@mui/material-next/Menu';
 import MenuItem from '@mui/material-next/MenuItem';
 import StableMenu from '@mui/material/Menu';
 import StableMenuItem from '@mui/material/MenuItem';
@@ -11,16 +11,18 @@ import { useMenuButton } from '@mui/base/useMenuButton';
 
 const theme = createTheme();
 
-const MenuButton = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<{ id?: string }>>(function MenuButton(
-  props: React.PropsWithChildren<{}>,
-  forwardedRef: React.ForwardedRef<HTMLButtonElement>,
-) {
-  const { getRootProps: getButtonProps } = useMenuButton({ rootRef: forwardedRef });
+const MenuButton = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<{ id?: string }>>(
+  function MenuButton(
+    props: React.PropsWithChildren<{}>,
+    forwardedRef: React.ForwardedRef<HTMLButtonElement>,
+  ) {
+    const { getRootProps: getButtonProps } = useMenuButton({ rootRef: forwardedRef });
 
-  return <Button type="button" {...props} {...getButtonProps()} />;
-});
+    return <Button type="button" {...props} {...getButtonProps()} />;
+  },
+);
 
-function DropdownUsage() {
+function DropdownUsage(props: MenuProps) {
   const { contextValue: dropdownContextValue } = useDropdown();
 
   return (
@@ -35,8 +37,10 @@ function DropdownUsage() {
       </MenuButton>
       <Menu
         id="basic-menu"
+        {...props}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
+          ...props.MenuListProps,
         }}
       >
         <MenuItem /* onClick={handleClose} */>Profile</MenuItem>
@@ -49,7 +53,7 @@ function DropdownUsage() {
   );
 }
 
-function LegacyUsage() {
+function LegacyUsage(props: MenuProps) {
   const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent) => {
@@ -75,8 +79,10 @@ function LegacyUsage() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        {...props}
         MenuListProps={{
           'aria-labelledby': 'basic-button-legacy',
+          ...props.MenuListProps,
         }}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
@@ -89,7 +95,7 @@ function LegacyUsage() {
   );
 }
 
-function StableComponentUsage() {
+function StableComponentUsage(props: MenuProps) {
   const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent) => {
@@ -115,8 +121,10 @@ function StableComponentUsage() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        {...props}
         MenuListProps={{
           'aria-labelledby': 'basic-button-legacy-1',
+          ...props.MenuListProps,
         }}
       >
         <StableMenuItem onClick={handleClose}>Profile</StableMenuItem>
@@ -135,6 +143,10 @@ export default function BasicMenu() {
       <LegacyUsage />
       <DropdownUsage />
       <StableComponentUsage />
+      <h4>Disabled item focusable</h4>
+      <LegacyUsage MenuListProps={{ disabledItemsFocusable: true }} />
+      <DropdownUsage MenuListProps={{ disabledItemsFocusable: true }} />
+      <StableComponentUsage MenuListProps={{ disabledItemsFocusable: true }} />
     </ThemeProvider>
   );
 }

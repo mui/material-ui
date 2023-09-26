@@ -9,6 +9,11 @@ export interface UseMenuParameters {
    */
   id?: string;
   /**
+   * If `true`, it will be possible to highlight disabled items.
+   * @default true
+   */
+  disabledItemsFocusable?: boolean;
+  /**
    * Callback fired when the menu items change.
    */
   onItemsChange?: (items: string[]) => void;

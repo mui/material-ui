@@ -120,6 +120,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     triggerElement,
   } = useMenu({
     // onItemsChange,
+    disabledItemsFocusable: Boolean(MenuListProps.disabledItemsFocusable),
   });
   const open = openProp ?? contextOpen;
 
