@@ -38,7 +38,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@mui/types": "^7.2.4",
     "@types/react": "^18.2.21"
   },
   "peerDependencies": {

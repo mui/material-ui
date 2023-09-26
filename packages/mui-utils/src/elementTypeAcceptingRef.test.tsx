@@ -26,6 +26,8 @@ describe('elementTypeAcceptingRef', () => {
       function testAct() {
         checkPropType(Component);
         if (shouldMount) {
+          // TODO: replace with React 18 implementation after https://github.com/testing-library/react-testing-library/issues/1216 is closed.
+          // eslint-disable-next-line react/no-deprecated
           ReactDOM.render(
             <React.Suspense fallback={<p />}>
               <Component ref={React.createRef()} />
@@ -47,6 +49,7 @@ describe('elementTypeAcceptingRef', () => {
     });
 
     afterEach(() => {
+      // eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(rootNode);
     });
 

@@ -27,6 +27,7 @@ import { DialogActionsOwnerState } from '@mui/joy/DialogActions';
 import { DialogContentOwnerState } from '@mui/joy/DialogContent';
 import { DialogTitleOwnerState } from '@mui/joy/DialogTitle';
 import { DividerOwnerState } from '@mui/joy/Divider';
+import { DrawerOwnerState } from '@mui/joy/Drawer';
 import { FormControlOwnerState } from '@mui/joy/FormControl';
 import { FormHelperTextOwnerState } from '@mui/joy/FormHelperText';
 import { FormLabelOwnerState } from '@mui/joy/FormLabel';
@@ -630,6 +631,26 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<DividerOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyDrawer: {
+      defaultProps: {
+        variant: 'plain',
+        color: 'neutral',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<DrawerOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        backdrop: ({ ownerState }) => {
+          expectType<DrawerOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        content: ({ ownerState }) => {
+          expectType<DrawerOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
       },

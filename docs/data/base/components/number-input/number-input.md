@@ -27,7 +27,7 @@ Base UI's Number Input component is a customizable replacement for the native HT
 See [_Why the GOV.UK Design System team changed the input type for numbers_](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) for a more detailed explanation of the limitations of `<input type="number">`.
 :::
 
-{{"demo": "NumberInputIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "NumberInputIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
@@ -94,7 +94,7 @@ The following code snippet:
 ## Hook
 
 ```js
-import useNumberInput from '@mui/base/unstable_useNumberInput';
+import { unstable_useNumberInput as useNumberInput } from '@mui/base/unstable_useNumberInput';
 ```
 
 The `useNumberInput` hook lets you apply the functionality of a Number Input to a fully custom component.
@@ -168,3 +168,10 @@ In the following snippet, if <kbd>Shift</kbd> is held when clicking the incremen
 ```jsx
 <NumberInput min={0} step={1} shiftMultiplier={5} />
 ```
+
+### Adornments
+
+You can use the `startAdornment` and `endAdornment` props to add a prefix or suffix, respectively, to a Number Input.
+Adornments can be useful for displaying units of measure, like weight or currency, alongside values.
+
+{{"demo": "NumberInputAdornments.js", "defaultCodeOpen": false}}

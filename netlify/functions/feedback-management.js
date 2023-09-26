@@ -1,5 +1,4 @@
 const querystring = require('node:querystring');
-const { WebClient } = require('@slack/web-api');
 const { App, AwsLambdaReceiver } = require('@slack/bolt');
 const { JWT } = require('google-auth-library');
 const { sheets } = require('@googleapis/sheets');
@@ -40,67 +39,86 @@ const awsLambdaReceiver = new AwsLambdaReceiver({
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   receiver: awsLambdaReceiver,
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
 });
 
 // Define slack actions to answer
+app.action('delete_action', async ({ ack, body, client, logger }) => {
+  try {
+    await ack();
 
-app.shortcut('delete_action', async ({ ack, body, client }) => {
-  await ack();
-  await client.chat.delete({
-    channel: body.channel.id,
-    ts: body.message_ts,
-    as_user: true,
-    token: process.env.SLACK_BOT_TOKEN,
-  });
+    const {
+      user: { username },
+      channel: { id: channelId },
+      message,
+      actions: [{ value }],
+    } = body;
+
+    const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value);
+
+    const googleAuth = new JWT({
+      email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
+      key: process.env.G_SHEET_TOKEN.replace(/\\n/g, '\n'),
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+    const service = sheets({ version: 'v4', auth: googleAuth });
+
+    await service.spreadsheets.values.append({
+      spreadsheetId: spreadSheetsIds.forLater,
+      range: 'Deleted messages!A:D',
+      valueInputOption: 'USER_ENTERED',
+      resource: {
+        values: [[username, comment, currentLocationURL, commmentSectionURL]],
+      },
+    });
+    await client.chat.delete({
+      channel: channelId,
+      ts: message.ts,
+      as_user: true,
+      token: process.env.SLACK_BOT_TOKEN,
+    });
+  } catch (error) {
+    logger.error(JSON.stringify(error, null, 2));
+  }
 });
 
-app.shortcut('save_message', async ({ ack, body, client }) => {
-  await ack();
-  const {
-    user: { username },
-    channel: { id: channelId },
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    message_ts,
-    message,
-  } = body;
-  const elements = message?.blocks?.[0]?.elements;
+app.action('save_message', async ({ ack, body, client, logger }) => {
+  try {
+    await ack();
+    const {
+      user: { username },
+      channel: { id: channelId },
+      message,
+      actions: [{ value }],
+    } = body;
 
-  const quote = message?.text
-    .split('\n\nsent from')[0]
-    .split('\n\n')
-    .slice(1)
-    .join('\n\n')
-    .replace(/&gt;/g, '');
+    const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value);
 
-  const links = elements[2].elements
-    .filter((element) => element.type === 'link')
-    .map((element) => element.url);
+    const googleAuth = new JWT({
+      email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
+      key: process.env.G_SHEET_TOKEN.replace(/\\n/g, '\n'),
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+    const service = sheets({ version: 'v4', auth: googleAuth });
 
-  const googleAuth = new JWT({
-    email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
-    key: process.env.G_SHEET_TOKEN.replace(/\\n/g, '\n'),
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-  });
-  const service = sheets({ version: 'v4', auth: googleAuth });
-
-  await service.spreadsheets.values.append({
-    spreadsheetId: spreadSheetsIds.forLater,
-    range: 'Sheet1!A:D',
-    valueInputOption: 'USER_ENTERED',
-    resource: {
-      values: [[username, quote, links[0] ?? '', links[1] ?? '']],
-    },
-  });
-  await client.chat.postMessage({
-    channel: channelId,
-    thread_ts: message_ts,
-    as_user: true,
-    text: `Saved in <https://docs.google.com/spreadsheets/d/${spreadSheetsIds.forLater}/>`,
-  });
+    await service.spreadsheets.values.append({
+      spreadsheetId: spreadSheetsIds.forLater,
+      range: 'Sheet1!A:D',
+      valueInputOption: 'USER_ENTERED',
+      resource: {
+        values: [[username, comment, currentLocationURL, commmentSectionURL]],
+      },
+    });
+    await client.chat.postMessage({
+      channel: channelId,
+      thread_ts: message.ts,
+      as_user: true,
+      text: `Saved in <https://docs.google.com/spreadsheets/d/${spreadSheetsIds.forLater}/>`,
+    });
+  } catch (error) {
+    logger.error(JSON.stringify(error, null, 2));
+  }
 });
-
-// Slack API
-const slackClient = new WebClient(process.env.SLACK_BOT_TOKEN);
 
 /**
  * @param {object} event
@@ -112,7 +130,7 @@ exports.handler = async (event, context, callback) => {
   }
   try {
     const { payload } = querystring.parse(event.body);
-    const data = JSON.parse(decodeURIComponent(payload));
+    const data = JSON.parse(payload);
 
     if (data.callback_id === 'send_feedback') {
       // We send the feedback to the appopiate slack channel
@@ -122,6 +140,7 @@ exports.handler = async (event, context, callback) => {
         currentLocationURL,
         commmentSectionURL: inCommmentSectionURL,
         commmentSectionTitle,
+        githubRepo,
       } = data;
 
       const isDesignFeedback = inCommmentSectionURL.includes('#new-docs-api-feedback');
@@ -137,9 +156,68 @@ exports.handler = async (event, context, callback) => {
         }`,
       ].join('\n\n');
 
-      await slackClient.chat.postMessage({
+      const githubNewIssueParams = new URLSearchParams({
+        title: '[ ] Docs feedback',
+        body: `Feedback received:
+${comment}
+
+from ${commmentSectionURL}
+`,
+      });
+
+      await app.client.chat.postMessage({
         channel: getSlackChannelId(currentLocationURL, { isDesignFeedback }),
-        text: simpleSlackMessage,
+        text: simpleSlackMessage, // Fallback for notification
+        blocks: [
+          {
+            type: 'section',
+            text: {
+              type: 'mrkdwn',
+              text: simpleSlackMessage,
+            },
+          },
+          {
+            type: 'actions',
+            elements: [
+              {
+                type: 'button',
+                text: {
+                  type: 'plain_text',
+                  text: 'Create issue',
+                  emoji: true,
+                },
+                url: `${githubRepo}/issues/new?${githubNewIssueParams}`,
+              },
+              {
+                type: 'button',
+                text: {
+                  type: 'plain_text',
+                  text: 'Save',
+                },
+                value: JSON.stringify({
+                  comment,
+                  currentLocationURL,
+                  commmentSectionURL,
+                }),
+                action_id: 'save_message',
+              },
+              {
+                type: 'button',
+                text: {
+                  type: 'plain_text',
+                  text: 'Delete',
+                },
+                value: JSON.stringify({
+                  comment,
+                  currentLocationURL,
+                  commmentSectionURL,
+                }),
+                style: 'danger',
+                action_id: 'delete_action',
+              },
+            ],
+          },
+        ],
         as_user: true,
         unfurl_links: false,
         unfurl_media: false,

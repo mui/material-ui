@@ -71,10 +71,12 @@ export default function DrawerFilters() {
         >
           <DialogTitle>Filters</DialogTitle>
           <ModalClose />
-
+          <Divider sx={{ mt: 'auto' }} />
           <DialogContent sx={{ gap: 2 }}>
             <FormControl>
-              <FormLabel sx={{ typography: 'title-md' }}>Property Type</FormLabel>
+              <FormLabel sx={{ typography: 'title-md', fontWeight: 'bold' }}>
+                Property type
+              </FormLabel>
               <RadioGroup
                 value={type || ''}
                 onChange={(event) => {
@@ -146,28 +148,19 @@ export default function DrawerFilters() {
               </RadioGroup>
             </FormControl>
 
-            <Typography component="div" level="title-md">
+            <Typography level="title-md" fontWeight="bold" sx={{ mt: 1 }}>
               Amenities
             </Typography>
             <div role="group" aria-labelledby="rank">
               <List
                 orientation="horizontal"
                 size="sm"
-                wrap
                 sx={{
                   '--List-gap': '12px',
                   '--ListItem-radius': '20px',
                 }}
               >
-                {[
-                  'Wifi',
-                  'Washer',
-                  'Air Conditioner',
-                  'Kitchen',
-                  'Dryer',
-                  'Heating',
-                  'Dedicated Workspace',
-                ].map((item, index) => {
+                {['Wi-fi', 'Washer', 'A/C', 'Kitchen'].map((item, index) => {
                   const selected = amenities.includes(index);
                   return (
                     <ListItem key={item}>
@@ -213,14 +206,16 @@ export default function DrawerFilters() {
               </List>
             </div>
 
-            <Typography level="title-md" sx={{ mt: 1 }}>
-              Booking Options
+            <Typography level="title-md" fontWeight="bold" sx={{ mt: 2 }}>
+              Booking options
             </Typography>
             <FormControl orientation="horizontal">
               <Box sx={{ flex: 1, pr: 1 }}>
-                <FormLabel sx={{ typography: 'title-sm' }}>Instant Book</FormLabel>
+                <FormLabel sx={{ typography: 'title-sm' }}>
+                  Instant booking
+                </FormLabel>
                 <FormHelperText sx={{ typography: 'body-sm' }}>
-                  Listings you can book without waiting for host approval
+                  Listings that you can book without waiting for host approval.
                 </FormHelperText>
               </Box>
               <Switch />
@@ -228,19 +223,9 @@ export default function DrawerFilters() {
 
             <FormControl orientation="horizontal">
               <Box sx={{ flex: 1, mt: 1, mr: 1 }}>
-                <FormLabel sx={{ typography: 'title-sm' }}>Self Check-in</FormLabel>
+                <FormLabel sx={{ typography: 'title-sm' }}>Self check-in</FormLabel>
                 <FormHelperText sx={{ typography: 'body-sm' }}>
-                  Easy access to the property when you arrive
-                </FormHelperText>
-              </Box>
-              <Switch />
-            </FormControl>
-
-            <FormControl orientation="horizontal">
-              <Box sx={{ flex: 1, mt: 1, mr: 1 }}>
-                <FormLabel sx={{ typography: 'title-sm' }}>Superhost</FormLabel>
-                <FormHelperText sx={{ typography: 'body-sm' }}>
-                  Stay with top tier recognized hosts
+                  Easy access to the property when you arrive.
                 </FormHelperText>
               </Box>
               <Switch />

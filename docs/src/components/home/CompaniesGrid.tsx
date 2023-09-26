@@ -4,32 +4,40 @@ import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
 
 export const CORE_CUSTOMERS: Array<IconImageProps> = [
   {
-    name: 'spotify',
+    alt: 'Spotify logo',
+    name: 'companies/spotify',
     width: 100,
     height: 52,
   },
   {
-    name: 'amazon',
+    alt: 'Amazon logo',
+    name: 'companies/amazon',
     width: 80,
     height: 52,
   },
   {
-    name: 'nasa',
+    alt: 'Nasa logo',
+    name: 'companies/nasa',
+    mode: '',
     width: 52,
     height: 42,
   },
   {
-    name: 'netflix',
+    alt: 'Netflix logo',
+    name: 'companies/netflix',
+    mode: '',
     width: 80,
     height: 52,
   },
   {
-    name: 'unity',
+    alt: 'Unity logo',
+    name: 'companies/unity',
     width: 69,
     height: 52,
   },
   {
-    name: 'shutterstock',
+    alt: 'Shutterstock logo',
+    name: 'companies/shutterstock',
     width: 100,
     height: 52,
   },
@@ -37,7 +45,8 @@ export const CORE_CUSTOMERS: Array<IconImageProps> = [
 
 export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
   {
-    name: 'southwest',
+    alt: 'Southwest logo',
+    name: 'companies/southwest',
     width: 130,
     height: 54,
     style: {
@@ -45,7 +54,8 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     },
   },
   {
-    name: 'boeing',
+    alt: 'Boeing logo',
+    name: 'companies/boeing',
     width: 160,
     height: 86,
     style: {
@@ -53,7 +63,8 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     },
   },
   {
-    name: 'apple',
+    alt: 'Apple logo',
+    name: 'companies/apple',
     width: 29,
     height: 52,
     style: {
@@ -61,7 +72,9 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     },
   },
   {
-    name: 'siemens',
+    alt: 'Siemens logo',
+    name: 'companies/siemens',
+    mode: '',
     width: 119,
     height: 59,
     style: {
@@ -69,7 +82,8 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     },
   },
   {
-    name: 'volvo',
+    alt: 'Volvo logo',
+    name: 'companies/volvo',
     width: 128,
     height: 52,
     style: {
@@ -77,7 +91,8 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     },
   },
   {
-    name: 'deloitte',
+    alt: 'Deloitte logo',
+    name: 'companies/deloitte',
     width: 97,
     height: 52,
     style: {
@@ -88,32 +103,41 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
 
 export const DESIGNKITS_CUSTOMERS: Array<IconImageProps> = [
   {
-    name: 'spotify',
+    alt: 'Spotify logo',
+    name: 'companies/spotify',
     width: 100,
     height: 52,
   },
   {
-    name: 'amazon',
+    alt: 'Amazon logo',
+    name: 'companies/amazon',
     width: 80,
     height: 52,
   },
   {
-    name: 'apple',
+    alt: 'Apple logo',
+    name: 'companies/apple',
     width: 29,
     height: 52,
   },
   {
-    name: 'netflix',
+    alt: 'Netflix logo',
+    name: 'companies/netflix',
+    mode: '',
     width: 80,
     height: 52,
   },
   {
-    name: 'twitter',
+    alt: 'Twitter logo',
+    name: 'companies/twitter',
+    mode: '',
     width: 31,
     height: 52,
   },
   {
-    name: 'salesforce',
+    alt: 'Salesforce logo',
+    name: 'companies/salesforce',
+    mode: '',
     width: 50,
     height: 52,
   },
@@ -121,33 +145,39 @@ export const DESIGNKITS_CUSTOMERS: Array<IconImageProps> = [
 
 export const TEMPLATES_CUSTOMERS: Array<IconImageProps> = [
   {
-    name: 'ebay',
+    alt: 'Ebay logo',
+    name: 'companies/ebay',
     width: 73,
     height: 52,
   },
   {
-    name: 'amazon',
+    alt: 'Amazon logo',
+    name: 'companies/amazon',
     width: 80,
     height: 52,
   },
   {
-    name: 'samsung',
+    alt: 'Samsung logo',
+    name: 'companies/samsung',
+    mode: '',
     width: 88,
     height: 52,
   },
   {
-    name: 'patreon',
+    alt: 'Patreon logo',
+    name: 'companies/patreon',
     width: 103,
     height: 52,
   },
   {
-    name: 'atandt',
     alt: 'AT&T logo',
+    name: 'companies/atandt',
     width: 71,
     height: 52,
   },
   {
-    name: 'verizon',
+    alt: 'Verizon logo',
+    name: 'companies/verizon',
     width: 91,
     height: 52,
   },
@@ -170,7 +200,7 @@ export default function CompaniesGrid({ data }: { data: Array<IconImageProps> })
             objectFit: 'contain',
           }}
         >
-          <IconImage alt={imgProps.alt || `${imgProps.name} logo`} {...imgProps} />
+          <IconImage alt={imgProps.alt} loading="eager" {...imgProps} />
         </Grid>
       ))}
     </Grid>

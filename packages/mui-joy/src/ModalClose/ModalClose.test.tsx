@@ -6,7 +6,7 @@ import {
   describeConformance,
   describeJoyColorInversion,
   fireEvent,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Modal from '@mui/joy/Modal';

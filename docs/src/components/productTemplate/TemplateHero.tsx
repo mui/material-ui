@@ -32,7 +32,7 @@ export default function TemplateHero() {
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-templates" /> Templates
+            <IconImage width={28} height={28} loading="eager" name="product-templates" /> Templates
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             <GradientText>Fully built</GradientText> Material&nbsp;UI templates
