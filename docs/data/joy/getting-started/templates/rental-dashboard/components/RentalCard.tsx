@@ -32,11 +32,17 @@ export default function RentalCard({
   const [isLiked, setIsLiked] = React.useState(liked);
   return (
     <Card
-      variant="plain"
+      variant="soft"
       orientation="horizontal"
       sx={{
         p: 0,
         overflow: 'hidden',
+        border: '1px solid',
+        borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
+        '&:hover': {
+          boxShadow: 'lg',
+          borderColor: 'var(--joy-palette-neutral-outlinedDisabledBorder)',
+        },
       }}
     >
       <Stack
