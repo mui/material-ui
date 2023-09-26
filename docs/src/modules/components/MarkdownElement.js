@@ -664,7 +664,7 @@ const Root = styled('div')(
           },
         },
       },
-      '& a, & a code': {
+      '& a, & a code, & strong': {
         color: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
       },
       '& a code': {
