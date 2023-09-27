@@ -112,10 +112,8 @@ const muiStyledFunctionResolver = ({ styledArg, props, defaultTheme, themeId }) 
   });
 
   let optionalVariants;
-  if (isPlainObject(resolvedStyles)) {
-    if (resolvedStyles && resolvedStyles.variants) {
-      optionalVariants = resolvedStyles.variants;
-    }
+  if (resolvedStyles && resolvedStyles.variants) {
+    optionalVariants = resolvedStyles.variants;
     delete resolvedStyles.variants;
   }
   if (optionalVariants) {
@@ -211,12 +209,11 @@ export default function createStyled(input = {}) {
             if (isPlainObject(stylesArg)) {
               let transformedStylesArg = stylesArg;
               let styledArgVariants;
+
               if (stylesArg && stylesArg.variants) {
                 styledArgVariants = stylesArg.variants;
-              }
-              delete transformedStylesArg.variants;
+                delete transformedStylesArg.variants;
 
-              if (styledArgVariants) {
                 transformedStylesArg = (props) => {
                   let result = stylesArg;
                   const variantStyles = variantsResolver(
@@ -243,10 +240,8 @@ export default function createStyled(input = {}) {
         let styledArgVariants;
         if (styleArg && styleArg.variants) {
           styledArgVariants = styleArg.variants;
-        }
-        delete transformedStyleArg.variants;
+          delete transformedStyleArg.variants;
 
-        if (styledArgVariants) {
           transformedStyleArg = (props) => {
             let result = styleArg;
             const variantStyles = variantsResolver(
