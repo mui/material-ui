@@ -12,6 +12,12 @@ export * from './ButtonBase';
 export { default as Chip } from './Chip';
 export * from './Chip';
 
+export { default as FilledInput } from './FilledInput';
+export * from './FilledInput';
+
+export { default as FormControl } from './FormControl';
+export * from './FormControl';
+
 export { default as InputBase } from './InputBase';
 export * from './InputBase';
 

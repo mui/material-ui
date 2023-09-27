@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+import { join, dirname, basename } from 'node:path';
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import reactPlugin from '@vitejs/plugin-react';
 import { zeroVitePlugin } from '@mui/zero-vite-plugin';
@@ -14,15 +16,31 @@ theme.applyDarkStyles = function applyDarkStyles(obj) {
   };
 };
 
-const varPrefix = 'app';
-
 export default defineConfig({
   plugins: [
     zeroVitePlugin({
-      cssVariablesPrefix: varPrefix,
+      cssVariablesPrefix: 'app',
       theme,
     }),
     reactPlugin(),
     splitVendorChunkPlugin(),
   ],
+  test: {
+    globals: true,
+    watch: false,
+    environment: 'jsdom',
+    resolveSnapshotPath(testPath, extension) {
+      return join(
+        join(dirname(testPath), '__vite_snapshots__'),
+        `${basename(testPath)}${extension}`,
+      );
+    },
+    passWithNoTests: true,
+    css: {
+      // to render the final css in the output html to test
+      // computed styles. Users will need to add this if they
+      // want to test computed styles.
+      include: [/.+/],
+    },
+  },
 });
