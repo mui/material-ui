@@ -27,11 +27,11 @@ const Navigation = styled('nav')(({ theme }) => [
       fontWeight: theme.typography.fontWeightBold,
       color: (theme.vars || theme).palette.text.primary,
       '& > a, & > div': {
+        padding: theme.spacing('6px', 1.2),
         display: 'flex',
-        color: 'inherit',
         alignItems: 'center',
+        color: 'inherit',
         textDecoration: 'none',
-        padding: theme.spacing('6px', 1, '8px'),
         borderRadius: (theme.vars || theme).shape.borderRadius,
         '&:hover': {
           color: (theme.vars || theme).palette.grey[700],
@@ -49,6 +49,8 @@ const Navigation = styled('nav')(({ theme }) => [
       },
       '& > div': {
         cursor: 'default',
+        paddingRight: '4px',
+        gap: 4,
       },
     },
   },
@@ -60,11 +62,32 @@ const Navigation = styled('nav')(({ theme }) => [
           color: (theme.vars || theme).palette.primaryDark[200],
         },
         '&:focus-visible': {
-          backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+          backgroundColor: (theme.vars || theme).palette.primaryDark[700],
           color: (theme.vars || theme).palette.primaryDark[100],
         },
       },
     },
+  }),
+]);
+
+const PopperContainer = styled(Paper)(({ theme }) => [
+  {
+    marginTop: 8,
+    paddingBottom: 8,
+    minWidth: 498,
+    overflow: 'hidden',
+    boxShadow: `0px 4px 20px ${alpha(theme.palette.grey[300], 0.5)}`,
+    '& ul': {
+      margin: 0,
+      padding: 0,
+      listStyle: 'none',
+    },
+    '& a': { textDecoration: 'none' },
+  },
+  theme.applyDarkStyles({
+    backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+    borderColor: (theme.vars || theme).palette.divider,
+    boxShadow: `0px 4px 20px ${alpha(theme.palette.background.paper, 0.7)}`,
   }),
 ]);
 
@@ -289,10 +312,9 @@ export default function HeaderNavBar() {
             aria-haspopup
             aria-expanded={subMenuOpen === 'products' ? 'true' : 'false'}
             onKeyDown={handleKeyDown}
-            sx={{ pr: '6px' }}
           >
             Products
-            <ExpandMoreRoundedIcon fontSize="small" sx={{ ml: 0.5 }} />
+            <ExpandMoreRoundedIcon sx={{ fontSize: 18 }} />
           </Box>
           <Popper
             open={subMenuOpen === 'products'}
@@ -306,30 +328,7 @@ export default function HeaderNavBar() {
           >
             {({ TransitionProps }) => (
               <Fade {...TransitionProps} timeout={350}>
-                <Paper
-                  variant="outlined"
-                  sx={[
-                    (theme) => ({
-                      pb: 1,
-                      minWidth: 498,
-                      overflow: 'hidden',
-                      borderColor: 'divider',
-                      bgcolor: 'background.paper',
-                      boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-                      ...theme.applyDarkStyles({
-                        borderColor: 'divider',
-                        bgcolor: 'primaryDark.900',
-                        boxShadow: `0px 4px 20px ${alpha(theme.palette.background.paper, 0.72)}`,
-                      }),
-                      '& ul': {
-                        margin: 0,
-                        padding: 0,
-                        listStyle: 'none',
-                      },
-                      '& a': { textDecoration: 'none' },
-                    }),
-                  ]}
-                >
+                <PopperContainer variant="outlined">
                   <ul role="menu">
                     <li role="none">
                       <CategoryLabelDivider>Core products</CategoryLabelDivider>
@@ -432,7 +431,7 @@ export default function HeaderNavBar() {
                       />
                     </li>
                   </ul>
-                </Paper>
+                </PopperContainer>
               </Fade>
             )}
           </Popper>
@@ -452,7 +451,7 @@ export default function HeaderNavBar() {
             aria-expanded={subMenuOpen === 'docs' ? 'true' : 'false'}
           >
             Docs
-            <ExpandMoreRoundedIcon fontSize="small" sx={{ ml: 0.5 }} />
+            <ExpandMoreRoundedIcon sx={{ fontSize: 18 }} />
           </div>
           <Popper
             open={subMenuOpen === 'docs'}
@@ -463,31 +462,11 @@ export default function HeaderNavBar() {
           >
             {({ TransitionProps }) => (
               <Fade {...TransitionProps} timeout={350}>
-                <Paper
-                  variant="outlined"
-                  sx={(theme) => ({
-                    pb: 1,
-                    minWidth: 498,
-                    overflow: 'hidden',
-                    borderColor: 'grey.200',
-                    bgcolor: 'background.paper',
-                    boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-                    ...theme.applyDarkStyles({
-                      borderColor: 'primaryDark.700',
-                      bgcolor: 'primaryDark.900',
-                      boxShadow: `0px 4px 20px ${alpha(theme.palette.background.paper, 0.72)}`,
-                    }),
-                    '& ul': {
-                      margin: 0,
-                      padding: 0,
-                      listStyle: 'none',
-                    },
-                  })}
-                >
+                <PopperContainer variant="outlined">
                   <ul role="menu">
                     <MuiProductSelector />
                   </ul>
-                </Paper>
+                </PopperContainer>
               </Fade>
             )}
           </Popper>
