@@ -41,17 +41,18 @@ The following demo shows how a `<span>` nested within a Portal can be appended t
 
 ### Server-side
 
-:::error
-React doesn't support the [`createPortal()` API](https://react.dev/reference/react-dom/createPortal) on the server.
-See [this GitHub issue](https://github.com/facebook/react/issues/13097) for details.
-:::
-
-The Portal component cannot be used to render child elements on the server—client-side hydration is necessary.
-
-You need to use the `container` callback as the DOM API isn't available on the server:
+The DOM API isn't available on the server, you need to use the `container` prop callback.
+This callback is called during a React layout effect:
 
 ```jsx
 <Portal container={() => document.getElementById('filter-panel')!}>
   <Child />
 </Portal>
 ```
+
+:::error
+The Portal component cannot be used to render child elements on the server—client-side hydration is necessary.
+
+This is because React doesn't support the [`createPortal()` API](https://react.dev/reference/react-dom/createPortal) on the server.
+See [this GitHub issue](https://github.com/facebook/react/issues/13097) for details.
+:::
