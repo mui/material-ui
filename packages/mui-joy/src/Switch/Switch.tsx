@@ -84,7 +84,6 @@ const SwitchRoot = styled('div', {
       '--Switch-thumbSize': '16px',
       gap: 'var(--Switch-gap, 12px)',
     }),
-    gap: '12px',
     '--unstable_paddingBlock': `max((var(--Switch-trackHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumbSize)) / 2, 0px)`,
     '--Switch-thumbRadius': `max(var(--Switch-trackRadius) - var(--unstable_paddingBlock), min(var(--unstable_paddingBlock) / 2, var(--Switch-trackRadius) / 2))`,
     '--Switch-thumbWidth': 'var(--Switch-thumbSize)',
