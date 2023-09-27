@@ -554,6 +554,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           ...MenuProps.MenuListProps,
         }}
         slotProps={{
+          ...MenuProps.slotProps,
           paper: {
             ...paperProps,
             style: {
