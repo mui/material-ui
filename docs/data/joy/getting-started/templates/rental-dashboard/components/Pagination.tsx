@@ -11,7 +11,7 @@ export default function Pagination() {
     <div>
       <Box
         className="Pagination-mobile"
-        sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}
+        sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', m: 2 }}
       >
         <IconButton
           aria-label="previous page"
@@ -43,6 +43,7 @@ export default function Pagination() {
             xs: 'none',
             md: 'flex',
           },
+          m: 4,
         }}
       >
         <Button
@@ -59,7 +60,7 @@ export default function Pagination() {
           <IconButton
             key={page}
             size="sm"
-            variant={Number(page) ? 'outlined' : 'plain'}
+            variant={Number(page) ? 'plain' : 'soft'}
             color="neutral"
           >
             {page}

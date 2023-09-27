@@ -2,7 +2,6 @@ import * as React from 'react';
 import { CssVarsProvider } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
-import Grid from '@mui/joy/Grid';
 import Stack from '@mui/joy/Stack';
 
 import RentalCard from './components/RentalCard';
@@ -19,21 +18,20 @@ export default function RentalDashboard() {
       <Box
         sx={{
           display: 'flex',
+          flexDirection: 'column',
           minHeight: '100dvh',
           minWidth: '100dvw',
         }}
       >
         <Main>
-          <Grid
-            container
+          <Box
             sx={{
               width: '100%',
               height: '100dvh',
-              margin: 0,
             }}
           >
-            <Stack justifyContent="space-between" sx={{ height: '100dvh' }}>
-              <Stack spacing={2}>
+            <Stack direction="row" sx={{ height: '100%' }}>
+              <Stack spacing={2} sx={{ width: { sm: '100%', md: '60%' } }}>
                 <Stack
                   sx={{
                     backgroundColor: 'background.surface',
@@ -47,15 +45,6 @@ export default function RentalDashboard() {
                   <HeaderSection />
                   <Search />
                 </Stack>
-                <Box
-                  sx={{
-                    width: '100%',
-                    backgroundSize: 'cover',
-                    backgroundImage:
-                      'url("https://images.unsplash.com/photo-1478860409698-8707f313ee8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=4000&q=80")',
-                  }}
-                  display={{ xs: 'block', sm: 'none' }}
-                />
                 <Stack
                   spacing={2}
                   sx={{ px: { xs: 2, md: 4 }, width: { xs: '100vw', sm: '100%' } }}
@@ -84,29 +73,21 @@ export default function RentalDashboard() {
                     image="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=400"
                   />
                 </Stack>
-              </Stack>
-              <Box sx={{ p: 3 }}>
                 <Pagination />
-              </Box>
-            </Stack>
-            <Grid
-              xs={4}
-              sx={{
-                display: { xs: 'none', lg: 'block' },
-              }}
-            >
+              </Stack>
               <Box
                 sx={{
+                  display: { xs: 'none', sm: 'flex' },
                   backgroundColor: 'background.level1',
                   height: '100dvh',
-                  width: '100dvw',
+                  width: '40%',
                   backgroundSize: 'cover',
                   backgroundImage:
                     'url("https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3731&q=80")',
                 }}
               />
-            </Grid>
-          </Grid>
+            </Stack>
+          </Box>
         </Main>
       </Box>
     </CssVarsProvider>

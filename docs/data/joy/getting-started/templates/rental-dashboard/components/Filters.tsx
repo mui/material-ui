@@ -12,10 +12,11 @@ export default function Filters() {
     <Stack
       direction="row"
       spacing={{ xs: 0, sm: 2 }}
-      justifyContent={{ xs: 'space-between', sm: 'auto' }}
+      justifyContent={{ xs: 'space-between', md: 'auto' }}
+      sx={{ maxWidth: '100%' }}
     >
-      <Stack direction="row" gap={2} sx={{ display: { xs: 'none', sm: 'flex' } }}>
-        <CountrySelector sx={{ flexGrow: 1, width: 800 }} />
+      <Stack direction="row" gap={2} sx={{ display: { xs: 'none', md: 'flex' } }}>
+        <CountrySelector />
         <FormControl>
           <Input type="date" placeholder="Jan 6 - Jan 13" aria-label="Date" />
         </FormControl>
@@ -28,14 +29,12 @@ export default function Filters() {
           />
         </FormControl>
       </Stack>
-
       <IconButton
         variant="outlined"
-        sx={{ m: 0, display: { xs: 'auto', sm: 'none' } }}
+        sx={{ m: 0, display: { sm: 'auto', md: 'none' } }}
       >
         <FilterAltRoundedIcon />
       </IconButton>
-
       <OrderSelector />
     </Stack>
   );
