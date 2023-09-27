@@ -79,7 +79,7 @@ export type FormControlProps<
   component?: React.ElementType;
 };
 
-type MaterialYouOwnerStateKeys =
+type MaterialDesignOwnerStateKeys =
   | 'classes'
   | 'color'
   | 'margin'
@@ -89,5 +89,5 @@ type MaterialYouOwnerStateKeys =
   | 'variant';
 
 export type FormControlOwnerState = Simplify<
-  Required<Pick<FormControlOwnProps, MaterialYouOwnerStateKeys>> & FormControlProps
+  Required<Pick<FormControlOwnProps, MaterialDesignOwnerStateKeys>> & FormControlProps
 >;

@@ -28,11 +28,11 @@ const FormControlRoot = styled('div', {
   name: 'MuiFormControl',
   slot: 'Root',
   overridesResolver: ({ ownerState }, styles) => {
-    return {
-      ...(styles.root as Record<string, unknown>),
-      ...(styles[`margin${capitalize(ownerState.margin)}`] as Record<string, unknown>),
-      ...(ownerState.fullWidth && styles.fullWidth),
-    };
+    return [
+      styles.root,
+      styles[`margin${capitalize(ownerState.margin)}`],
+      ownerState.fullWidth && styles.fullWidth,
+    ];
   },
 })<{ ownerState: FormControlOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
@@ -87,8 +87,7 @@ const FormControl = React.forwardRef(function FormControl<
   const props = useThemeProps({ props: inProps, name: 'MuiFormControl' });
   const {
     children,
-    className,
-    classes: classesProp,
+    classes: classesProp = {},
     color = 'primary',
     component: componentProp,
     disabled = false,
@@ -182,7 +181,7 @@ const FormControl = React.forwardRef(function FormControl<
 
   const ownerState = {
     ...props,
-    classes: props.classes ?? {},
+    classes: classesProp,
     color,
     component: componentProp,
     disabled,
@@ -252,7 +251,7 @@ const FormControl = React.forwardRef(function FormControl<
       as: componentProp,
     },
     ownerState,
-    className: [classes.root, className],
+    className: classes.root,
   });
 
   return (

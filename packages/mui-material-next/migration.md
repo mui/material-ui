@@ -132,6 +132,17 @@ If you need to prevent default on a `key-up` and/or `key-down` event, then besid
 
 This is to ensure that default is prevented when the `ButtonBase` root is not a native button, for example, when the root element used is a `span`.
 
+## FormControl
+
+### Renamed `FormControlState`
+
+The `FormControlState` interface was renamed to `FormControlContextValue`:
+
+```diff
+-import { FormControlState } from '@mui/material';
++import { FormControlContextValue } from '@mui/material-next';
+```
+
 ## InputBase
 
 ### Removed `inputProps`
