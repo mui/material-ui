@@ -79,6 +79,9 @@ const Root = styled('span')(
     height: 100%;
     width: 100%;
     position: absolute;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 120ms;
     box-shadow: inset 0px 1px 1px ${
       theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.05)'
     };
@@ -114,9 +117,11 @@ const Root = styled('span')(
     .${switchClasses.thumb} {
       left: 17px;
       background-color: #fff;
+      box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
     }
 
     .${switchClasses.track} {
+      border: none;
       background: ${blue[500]};
     }
   }
