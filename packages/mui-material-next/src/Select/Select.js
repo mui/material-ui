@@ -2,17 +2,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@mui/utils';
+import { deepmerge, unstable_useForkRef as useForkRef } from '@mui/utils';
+// TODO v6: replace @mui/material with @mui/material-next when components are available
+import Input from '@mui/material/Input';
+import NativeSelectInput from '@mui/material/NativeSelect/NativeSelectInput';
+import FilledInput from '@mui/material/FilledInput';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-import Input from '../Input';
-import NativeSelectInput from '../NativeSelect/NativeSelectInput';
-import FilledInput from '../FilledInput';
-import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
-import useForkRef from '../utils/useForkRef';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {

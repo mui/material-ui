@@ -11,14 +11,14 @@ import {
 } from '@mui-internal/test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
+// TODO v6: replace @mui/material with @mui/material-next when components are available
 import ListSubheader from '@mui/material/ListSubheader';
-import InputBase from '@mui/material/InputBase';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
+import { nativeSelectClasses } from '@mui/material/NativeSelect';
 import Divider from '@mui/material/Divider';
+import Select from '@mui/material-next/Select';
 import classes from './selectClasses';
-import { nativeSelectClasses } from '../NativeSelect';
 
 describe('<Select />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -1685,7 +1685,7 @@ describe('<Select />', () => {
       const { getByTestId } = render(
         <Select
           className="foo"
-          input={<InputBase data-testid="root" className="bar" />}
+          input={<OutlinedInput data-testid="root" className="bar" />}
           value=""
         />,
       );

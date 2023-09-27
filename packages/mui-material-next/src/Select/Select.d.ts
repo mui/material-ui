@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
-import { InputProps } from '../Input';
-import { MenuProps } from '../Menu';
+// TODO v6: replace @mui/material with @mui/material-next when components are available
+import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { InputProps } from '@mui/material/Input';
+import { MenuProps } from '@mui/material/Menu';
+import { OutlinedInputProps } from '@mui/material/OutlinedInput';
 import { SelectChangeEvent, SelectInputProps } from './SelectInput';
 import { SelectClasses } from './selectClasses';
-import { OutlinedInputProps } from '../OutlinedInput';
 
 export { SelectChangeEvent };
 

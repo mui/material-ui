@@ -1,7 +1,9 @@
 import * as React from 'react';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+// TODO v6: replace @mui/material with @mui/material-next when Menu component is available
 import MenuItem from '@mui/material/MenuItem';
+// TODO v6: replace createTheme with material-next's extendTheme when implementing Material You design
 import { createTheme } from '@mui/material/styles';
+import Select, { SelectChangeEvent } from '@mui/material-next/Select';
 
 function genericValueTest() {
   function handleChangeWithSameTypeAsSelect(event: SelectChangeEvent<number>) {}

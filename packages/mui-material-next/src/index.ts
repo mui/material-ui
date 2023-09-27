@@ -20,6 +20,9 @@ export * from './InputBase';
 
 export { default as Input } from './Input';
 
+export { default as Select } from './Select';
+export * from './Select';
+
 export { default as Slider } from './Slider';
 export * from './Slider';
 

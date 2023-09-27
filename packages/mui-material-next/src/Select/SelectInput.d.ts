@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+// TODO v6: replace @mui/material with @mui/material-next when Menu component is available
+import { MenuProps } from '@mui/material/Menu';
 import { Theme } from '..';
-import { MenuProps } from '../Menu';
 
 /**
  * The change can be caused by different kind of events.

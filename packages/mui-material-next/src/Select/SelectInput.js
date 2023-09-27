@@ -5,18 +5,23 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { refType, unstable_useId as useId } from '@mui/utils';
-import ownerDocument from '../utils/ownerDocument';
-import capitalize from '../utils/capitalize';
-import Menu from '../Menu/Menu';
+import {
+  refType,
+  unstable_useId as useId,
+  unstable_capitalize as capitalize,
+  unstable_ownerDocument as ownerDocument,
+  unstable_useForkRef as useForkRef,
+  unstable_useControlled as useControlled,
+} from '@mui/utils';
+import { shouldForwardProp } from '@mui/system';
+// TODO v6: replace @mui/material with @mui/material-next when components are available
+import Menu from '@mui/material/Menu/Menu';
 import {
   nativeSelectSelectStyles,
   nativeSelectIconStyles,
-} from '../NativeSelect/NativeSelectInput';
+} from '@mui/material/NativeSelect/NativeSelectInput';
 import { isFilled } from '../InputBase/utils';
-import styled, { slotShouldForwardProp } from '../styles/styled';
-import useForkRef from '../utils/useForkRef';
-import useControlled from '../utils/useControlled';
+import styled from '../styles/styled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
 const SelectSelect = styled('div', {
@@ -57,7 +62,7 @@ const SelectIcon = styled('svg', {
 })(nativeSelectIconStyles);
 
 const SelectNativeInput = styled('input', {
-  shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'classes',
   name: 'MuiSelect',
   slot: 'NativeInput',
   overridesResolver: (props, styles) => styles.nativeInput,
