@@ -3155,12 +3155,12 @@
   resolved "https://registry.yarnpkg.com/@sinonjs/text-encoding/-/text-encoding-0.7.2.tgz#5981a8db18b56ba38ef0efb7d995b12aa7b51918"
   integrity sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==
 
-"@slack/bolt@^3.13.3":
-  version "3.13.3"
-  resolved "https://registry.yarnpkg.com/@slack/bolt/-/bolt-3.13.3.tgz#bd06891675dd7a5de3bd6586b7a8d8b801e28a80"
-  integrity sha512-1rgPTJGpiT/RNeZ0neOAMQKzydX+CcwjObc5Eeq+3z7df8OiI3mqimj9N9Pjg6WePv4kpekvq1TdJIg+TyhINw==
+"@slack/bolt@^3.14.0":
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/@slack/bolt/-/bolt-3.14.0.tgz#8b1d9c0e9e15aefbc7fa154bc5da19bb6b2173ef"
+  integrity sha512-Q7QifLEruuXLQQh0H/JODuBSH0UoiQdMxR+g4aVNdJQemv91XyHgbxRZgGuH8Vi1rVrOyDSLS9czS5jwMh2ewQ==
   dependencies:
-    "@slack/logger" "^3.0.0"
+    "@slack/logger" "^4.0.0"
     "@slack/oauth" "^2.6.1"
     "@slack/socket-mode" "^1.3.2"
     "@slack/types" "^2.8.0"
@@ -3182,6 +3182,13 @@
   integrity sha512-DTuBFbqu4gGfajREEMrkq5jBhcnskinhr4+AnfJEk48zhVeEv3XnUKGIX98B74kxhYsIMfApGGySTn7V3b5yBA==
   dependencies:
     "@types/node" ">=12.0.0"
+
+"@slack/logger@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@slack/logger/-/logger-4.0.0.tgz#788303ff1840be91bdad7711ef66ca0cbc7073d2"
+  integrity sha512-Wz7QYfPAlG/DR+DfABddUZeNgoeY7d1J39OCR2jR+v7VBsB8ezulDK5szTnDDPDwLH5IWhLvXIHlCFZV7MSKgA==
+  dependencies:
+    "@types/node" ">=18.0.0"
 
 "@slack/oauth@^2.6.1":
   version "2.6.1"
@@ -3879,7 +3886,7 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-10.0.1.tgz#2f4f65bb08bc368ac39c96da7b2f09140b26851b"
   integrity sha512-/fvYntiO1GeICvqbQ3doGDIP97vWmvFt83GKguJ6prmQM2iXZfFcq6YE8KteFyRtX2/h5Hf91BYvPodJKFYv5Q==
 
-"@types/node@*", "@types/node@>=10.0.0", "@types/node@>=12", "@types/node@>=12.0.0", "@types/node@^14.0.1", "@types/node@^14.14.35", "@types/node@^18.18.0":
+"@types/node@*", "@types/node@>=10.0.0", "@types/node@>=12", "@types/node@>=12.0.0", "@types/node@>=18.0.0", "@types/node@^14.0.1", "@types/node@^14.14.35", "@types/node@^18.18.0":
   version "18.18.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.18.0.tgz#bd19d5133a6e5e2d0152ec079ac27c120e7f1763"
   integrity sha512-3xA4X31gHT1F1l38ATDIL9GpRLdwVhnEFC8Uikv5ZLlXATwrCYyPq7ZWHxzxc3J/30SUiwiYT+bQe0/XvKlWbw==
