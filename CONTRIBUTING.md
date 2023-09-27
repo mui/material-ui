@@ -279,9 +279,9 @@ When you submit a PR, these checks are run again by our continuous integration t
 
 The following steps explain how to add a new demo to the docs using the Button component as an example:
 
-### 1. Add a new React component file under the related directory
+### 1. Add a new component file to the directory
 
-Add the new file to the following directory:
+Add the new file to the component's corresponding directory...
 
 ```bash
 docs/src/pages/components/buttons/
