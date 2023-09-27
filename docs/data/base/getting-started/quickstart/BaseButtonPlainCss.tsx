@@ -86,7 +86,6 @@ export default function BaseButtonPlainCss() {
       <style type="text/css">{css}</style>
       <Stack spacing={2} direction="row" className="demo">
         <Button className="github-button">Create Repository</Button>
-
         <button type="button" {...getRootProps()} className="github-button">
           Create Repository
         </button>

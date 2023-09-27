@@ -1,5 +1,138 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.11
+
+<!-- generated comparing v5.14.10..master -->
+
+_Sep 26, 2023_
+
+A big thanks to the 23 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.14.11`
+
+- [Autocomplete] Re-export `AutocompleteValue` to make it available from path import (#38638) @vadimka123
+- [Select][material-ui] Missing aria-multiselectable attribute on multiple Select component (#38855) @gitstart
+- [l10n] labelDisplayedRows is added for trTR localization (#39056) @tebersefa
+
+### `@mui/utils@5.14.11`
+
+- Support RSC in `isMuiElement` util (#38129) @sai6855
+
+### `@mui/base@5.0.0-beta.17`
+
+- [NumberInput] Support adornments (#38900) @anle9650
+- [Menu] Align external props handling for useMenu/MenuButton/MenuItem (#38946) @mj12albert
+- [Select] Align external props handling (#39038) @mj12albert
+- [TextareaAutosize] Simplify logic and add test (#38728) @oliviertassinari
+
+### `@mui/joy@5.0.0-beta.8`
+
+- [Button] Fix disabled button styling when component prop is provided (#38996) @sai6855
+- [Drawer] Add missing `JoyDrawer` in theme components (#39074) @Studio384
+
+### `@mui/material-next@6.0.0-alpha.103`
+
+- [FormControl] Copy v5 FormControl (#39039) @mj12albert
+
+### `@mui/lab@5.0.0-alpha.146`
+
+- [TreeView] Fix JSDoc comments in TreeView and TreeItem (#38874) @jergason
+
+### Docs
+
+- Improve focus trap demo (#38985) @oliviertassinari
+- Add Tailwind CSS + plain CSS demo on the Tabs page (#39000) @alisasanib
+- Improve the default theme viewer design (#39049) @danilo-leal
+- Add live demo with CssVarsProvider (#38792) @oliviertassinari
+- Fix wrong hash on Card's page (#39151) @mnajdova
+- Revise the Drawer page (#38988) @danilo-leal
+- Simplify the button's loading indicator demo (#39082) @danilo-leal
+- Fix the Templates link on the Overview page (#39086) @danilo-leal
+- Refine the Sign in template (#38942) @zanivan
+- Add `use-count-up` integration with the Circular Progress (#38952) @anon-phantom
+
+### Core
+
+- [blog] Add a company values blog post (#38802) @mikailaread
+- [core] Downgrade lerna to 7.2.0 (#39149) @michaldudak
+- [core] Simplify docs feedback interaction (#39075) @alexfauquette
+- [core] Improve ref type definition (#38903) @oliviertassinari
+- [core] Simplify career (#39112) @oliviertassinari
+- [core] Update Babel types along with source packages (#39070) @michaldudak
+- [core] Add a comment to explain `useEnhancedEffect` (#39035) @Janpot
+- [docs-infra] Fix code removal in table of content (#39165) @alexfauquette
+- [docs-infra] Improve callouts design (#39084) @danilo-leal
+- [docs-infra] Fix key warning in Base UI Slider slots section (#38954) @ZeeshanTamboli
+- [docs-infra] Fix error when redirecting to the root page (#38451) @maheshguntur
+- [docs-infra] Open demo crash in the right repository (#39006) @oliviertassinari
+- [test] Split the test package (#39061) @michaldudak
+- [website] React Engineer - xCharts role (#38976) @DanailH
+- [website] Improve the highlighter component colors (#39087) @danilo-leal
+- [website] Fix Pricing page row hover (#39097) @danilo-leal
+- [website] Fix typo with straight quote @oliviertassinari
+- [website] Sync about page @oliviertassinari
+- [website] Update the about page (#38733) @danilo-leal
+- [website] Small fixes on the X marketing page (#38975) @flaviendelangle
+- [website] Add stray design tweaks to the X page (#38589) @danilo-leal
+
+All contributors of this release in alphabetical order: @alexfauquette, @alisasanib, @anle9650, @anon-phantom, @DanailH, @danilo-leal, @DiegoAndai, @flaviendelangle, @gitstart, @Janpot, @jergason, @maheshguntur, @michaldudak, @mikailaread, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @Studio384, @tebersefa, @vadimka123, @zanivan, @ZeeshanTamboli
+
+## 5.14.10
+
+<!-- generated comparing v5.14.9..master -->
+
+_Sep 18, 2023_
+
+A big thanks to the 16 contributors who made this release possible. This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.14.10`
+
+- &#8203;<!-- 20 -->[Chip] Add cursor CSS property reset (#38984) @DiegoAndai
+
+### `@mui/utils@5.14.10`
+
+- &#8203;<!-- 05 -->[utils] Move @types/prop-types back to dependencies (#39030) @Methuselah96
+
+### `@mui/base@5.0.0-beta.16`
+
+- &#8203;<!-- 24 -->[NumberInput][base-ui] Warn when changing control mode with `useControlled` (#38757) @sai6855
+- &#8203;<!-- 23 -->[Select][base-ui] Fix Select button layout shift, add placeholder prop (#38796) @mj12albert
+- &#8203;<!-- 22 -->[useList][base-ui] Accept arbitrary external props and forward to root (#38848) @mj12albert
+- &#8203;<!-- 25 -->[Autocomplete][base-ui] Added ref to getInputProps return value (#38919) @DarhkVoyd
+
+### `@mui/joy@5.0.0-beta.7`
+
+- &#8203;<!-- 26 -->[AccordionGroup][joy-ui] Fix console warning when using custom color (#38950) @sai6855
+- &#8203;<!-- 07 -->[GlobalStyles][joy-ui] Ensure compatibility with RSC (#38955) @mateuseap
+
+### Docs
+
+- &#8203;<!-- 21 -->[docs][base] Add Tailwind CSS + plain CSS demo on the NumberInput page (#38928) @alisasanib
+- &#8203;<!-- 13 -->[docs][Dialog] Add non-modal dialog docs & demo (#38684) @mnajdova
+- &#8203;<!-- 12 -->[docs] Fix number input wrong demo @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Exclude joy-ui LinearProgressCountup from visual regression (#38969) @siriwatknp
+- &#8203;<!-- 09 -->[docs][joy-ui] Revise the Overview page (#38842) @danilo-leal
+- &#8203;<!-- 08 -->[docs][material-ui][Pagination] Add `TablePagination` to the API components list (#38486) @MonstraG
+
+### Core
+
+- &#8203;<!-- 19 -->[core] Add more context about useEventCallback @oliviertassinari
+- &#8203;<!-- 18 -->[core] Allow deeper import of @mui/utils (#38806) @oliviertassinari
+- &#8203;<!-- 17 -->[core] Remove react-dom from @mui/utils peerDependencies (#38974) @michaldudak
+- &#8203;<!-- 16 -->[core] Remove react from styled-engine dependencies (#38971) @michaldudak
+- &#8203;<!-- 15 -->[core] Fix image loading bug on Safari @oliviertassinari
+- &#8203;<!-- 14 -->[core] Fix bundle size upload to S3 job (#38956) @Janpot
+- &#8203;<!-- 20 -->[core] Move eslint to peer dependencies of eslint-plugin-material-ui (#39033) @michaldudak
+- &#8203;<!-- 10 -->[docs-infra] Display markdown lists correctly in docs for props description (#38973) @ZeeshanTamboli
+- &#8203;<!-- 04 -->[website] Improve lighthouse score (#39011) @oliviertassinari
+- &#8203;<!-- 03 -->[website] Fix lighthouse issues @oliviertassinari
+- &#8203;<!-- 02 -->[website] Create the `InfoCard` component (#38987) @danilo-leal
+- &#8203;<!-- 01 -->[website] Small tweaks for performance @oliviertassinari
+- &#8203;<!-- 06 -->[zero][next] Setup nextjs plugin package (#38852) @brijeshb42
+
+All contributors of this release in alphabetical order: @alisasanib, @brijeshb42, @danilo-leal, @DarhkVoyd, @DiegoAndai, @Janpot, @mateuseap, @Methuselah96, @michaldudak, @mj12albert, @mnajdova, @MonstraG, @oliviertassinari, @sai6855, @siriwatknp, @ZeeshanTamboli
+
 ## 5.14.9
 
 <!-- generated comparing v5.14.8..master -->

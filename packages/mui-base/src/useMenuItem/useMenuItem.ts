@@ -15,6 +15,7 @@ import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
 import { useCompoundItem } from '../utils/useCompoundItem';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { EventHandlers } from '../utils/types';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 
 function idGenerator(existingKeys: Set<string>) {
   return `menu-item-${existingKeys.size}`;
@@ -88,20 +89,25 @@ export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnVal
       });
     };
 
-  const getOwnHandlers = <TOther extends EventHandlers>(otherHandlers: TOther = {} as TOther) => ({
+  const getOwnHandlers = <ExternalProps extends EventHandlers>(
+    otherHandlers: ExternalProps = {} as ExternalProps,
+  ) => ({
     ...otherHandlers,
     onClick: createHandleClick(otherHandlers),
   });
 
-  function getRootProps<TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseMenuItemRootSlotProps<TOther> {
+  function getRootProps<ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseMenuItemRootSlotProps<ExternalProps> {
+    const externalEventHandlers = extractEventHandlers(externalProps);
     const getCombinedRootProps = combineHooksSlotProps(
       getOwnHandlers,
       combineHooksSlotProps(getButtonProps, getListRootProps),
     );
     return {
-      ...getCombinedRootProps(otherHandlers),
+      ...externalProps,
+      ...externalEventHandlers,
+      ...getCombinedRootProps(externalEventHandlers),
       ref: handleRef,
       role: 'menuitem',
     };
