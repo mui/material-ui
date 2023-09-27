@@ -2,10 +2,10 @@ import * as React from 'react';
 import FormControl from '@mui/joy/FormControl';
 import Input from '@mui/joy/Input';
 import Stack from '@mui/joy/Stack';
-import CountrySelector from './CountrySelector';
-import OrderSelector from './OrderSelector';
 import IconButton from '@mui/joy/IconButton';
+import CountrySelector from './CountrySelector';
 import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
+import OrderSelector from './OrderSelector';
 
 export default function Filters() {
   return (

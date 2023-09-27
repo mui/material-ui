@@ -13,7 +13,6 @@ import FmdGoodRoundedIcon from '@mui/icons-material/FmdGoodRounded';
 import KingBedRoundedIcon from '@mui/icons-material/KingBedRounded';
 import WifiRoundedIcon from '@mui/icons-material/WifiRounded';
 import Star from '@mui/icons-material/Star';
-import Direction from 'docs/data/material/guides/right-to-left/Direction';
 
 type RentalCardProps = {
   category: React.ReactNode;
