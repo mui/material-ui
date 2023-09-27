@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
-import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 interface ProductSubMenuProp extends BoxProps {
   icon: React.ReactNode;
@@ -85,7 +85,7 @@ const products = [
 ];
 
 export default function MuiProductSelector() {
-  const routerExtra = useRouterExtra();
+  const pageContext = React.useContext(PageContext);
 
   return (
     <React.Fragment>
@@ -126,8 +126,8 @@ export default function MuiProductSelector() {
           {products.map((product) => (
             <Chip
               key={product.name}
-              color={routerExtra.product === product.slug ? 'default' : undefined}
-              variant={routerExtra.product === product.slug ? 'filled' : 'outlined'}
+              color={pageContext.productId === product.slug ? 'default' : undefined}
+              variant={pageContext.productId === product.slug ? 'filled' : 'outlined'}
               component={Link}
               href={product.href}
               label={product.name}
