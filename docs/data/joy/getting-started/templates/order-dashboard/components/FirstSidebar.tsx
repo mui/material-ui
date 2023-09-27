@@ -56,7 +56,7 @@ export default function FirstSidebar() {
         size="sm"
         sx={(theme) => ({
           '--ListItem-radius': theme.vars.radius.md,
-          '--List-gap': '8px',
+          '--List-gap': 'var(--ThemeList-gap, 8px)',
         })}
       >
         <ListItem>
@@ -80,7 +80,7 @@ export default function FirstSidebar() {
           mt: 'auto',
           flexGrow: 0,
           '--ListItem-radius': theme.vars.radius.md,
-          '--List-gap': '4px',
+          '--List-gap': 'var(--ThemeList-gap, 8px)',
         })}
       >
         <ListItem>

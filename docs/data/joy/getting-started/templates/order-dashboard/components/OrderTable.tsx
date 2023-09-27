@@ -267,7 +267,7 @@ function RowMenu() {
       >
         <MoreHorizRoundedIcon />
       </MenuButton>
-      <Menu size="sm" sx={{ minWidth: 140 }}>
+      <Menu size="sm" disablePortal placement="bottom-end" sx={{ minWidth: 140 }}>
         <MenuItem>Edit</MenuItem>
         <MenuItem>Rename</MenuItem>
         <MenuItem>Move</MenuItem>
@@ -289,7 +289,10 @@ export default function OrderTable() {
         <Select
           size="sm"
           placeholder="Filter by status"
-          slotProps={{ button: { sx: { whiteSpace: 'nowrap' } } }}
+          slotProps={{
+            button: { sx: { whiteSpace: 'nowrap' } },
+            listbox: { disablePortal: true },
+          }}
         >
           <Option value="paid">Paid</Option>
           <Option value="pending">Pending</Option>
@@ -300,7 +303,11 @@ export default function OrderTable() {
 
       <FormControl size="sm">
         <FormLabel>Category</FormLabel>
-        <Select size="sm" placeholder="All">
+        <Select
+          size="sm"
+          placeholder="All"
+          slotProps={{ listbox: { disablePortal: true } }}
+        >
           <Option value="all">All</Option>
           <Option value="refund">Refund</Option>
           <Option value="purchase">Purchase</Option>
@@ -310,7 +317,11 @@ export default function OrderTable() {
 
       <FormControl size="sm">
         <FormLabel>Customer</FormLabel>
-        <Select size="sm" placeholder="All">
+        <Select
+          size="sm"
+          placeholder="All"
+          slotProps={{ listbox: { disablePortal: true } }}
+        >
           <Option value="all">All</Option>
           <Option value="olivia">Olivia Rhye</Option>
           <Option value="steve">Steve Hampton</Option>

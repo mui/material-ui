@@ -54,8 +54,12 @@ function Toggler({
           display: 'grid',
           gridTemplateRows: open ? '1fr' : '0fr',
           transition: '0.2s ease',
-          '& > *': {
+          '& > :not([hidden])': {
             overflow: 'hidden',
+            ...(!open && {
+              mt: 0,
+              opacity: 0,
+            }),
           },
         }}
       >
@@ -136,6 +140,7 @@ export default function Sidebar() {
           flexGrow: 1,
           display: 'flex',
           flexDirection: 'column',
+          '--focus-outline-offset': '-2px',
           [`& .${listItemButtonClasses.root}`]: {
             gap: 1.5,
           },
@@ -144,7 +149,7 @@ export default function Sidebar() {
         <List
           sx={(theme) => ({
             '--ListItem-radius': theme.vars.radius.md,
-            '--List-gap': '4px',
+            '--List-gap': 'var(--ThemeList-gap, 8px)',
             '--List-nestedInsetStart': '40px',
           })}
         >
@@ -178,7 +183,7 @@ export default function Sidebar() {
           <ListItem nested>
             <Toggler
               renderToggle={({ open, setOpen }) => (
-                <ListItemButton onClick={() => setOpen(!open)}>
+                <ListItemButton data-first-child onClick={() => setOpen(!open)}>
                   <AssignmentRoundedIcon />
                   <ListItemContent>
                     <Typography level="title-sm">Tasks</Typography>
@@ -189,8 +194,8 @@ export default function Sidebar() {
                 </ListItemButton>
               )}
             >
-              <List sx={{ gap: 0.5 }}>
-                <ListItem sx={{ mt: 0.5 }}>
+              <List>
+                <ListItem>
                   <ListItemButton>All tasks</ListItemButton>
                 </ListItem>
                 <ListItem>
@@ -221,7 +226,7 @@ export default function Sidebar() {
           <ListItem nested>
             <Toggler
               renderToggle={({ open, setOpen }) => (
-                <ListItemButton onClick={() => setOpen(!open)}>
+                <ListItemButton data-first-child onClick={() => setOpen(!open)}>
                   <GroupRoundedIcon />
                   <ListItemContent>
                     <Typography level="title-sm">Users</Typography>
@@ -232,8 +237,8 @@ export default function Sidebar() {
                 </ListItemButton>
               )}
             >
-              <List sx={{ gap: 0.5 }}>
-                <ListItem sx={{ mt: 0.5 }}>
+              <List>
+                <ListItem>
                   <ListItemButton
                     role="menuitem"
                     component="a"
@@ -258,7 +263,7 @@ export default function Sidebar() {
             mt: 'auto',
             flexGrow: 0,
             '--ListItem-radius': theme.vars.radius.md,
-            '--List-gap': '8px',
+            '--List-gap': 'var(--ThemeList-gap, 8px)',
           })}
         >
           <ListItem>

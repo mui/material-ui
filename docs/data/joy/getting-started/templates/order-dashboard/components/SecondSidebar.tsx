@@ -71,7 +71,7 @@ export default function SecondSidebar() {
           size="sm"
           sx={(theme) => ({
             '--ListItem-radius': theme.vars.radius.md,
-            '--List-gap': '6px',
+            '--List-gap': 'var(--ThemeList-gap, 6px)',
           })}
         >
           <ListSubheader role="presentation" sx={{ fontWeight: 'lg' }}>

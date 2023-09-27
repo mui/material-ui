@@ -43,6 +43,7 @@ export default function ContrySelector({ sx, ...props }: FormControlProps) {
           input: {
             autoComplete: 'new-password', // disable autocomplete and autofill
           },
+          listbox: { disablePortal: true },
         }}
       />
     </FormControl>

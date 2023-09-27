@@ -203,15 +203,11 @@ export default function MyProfile() {
                 <EditRoundedIcon />
               </IconButton>
             </Stack>
-            <Stack spacing={2} sx={{ flexGrow: 1 }}>
+            <Stack spacing={2} sx={{ flexGrow: 1, minWidth: 0 }}>
               <Stack spacing={1}>
                 <FormLabel>Name</FormLabel>
                 <FormControl
                   sx={{
-                    display: {
-                      sm: 'flex-column',
-                      md: 'flex-row',
-                    },
                     gap: 2,
                   }}
                 >
@@ -220,11 +216,11 @@ export default function MyProfile() {
                 </FormControl>
               </Stack>
               <Stack direction="row" spacing={2}>
-                <FormControl>
+                <FormControl sx={{ minWidth: 0 }}>
                   <FormLabel>Role</FormLabel>
                   <Input size="sm" defaultValue="UI Developer" />
                 </FormControl>
-                <FormControl sx={{ flexGrow: 1 }}>
+                <FormControl sx={{ flexGrow: 1, minWidth: 0 }}>
                   <FormLabel>Email</FormLabel>
                   <Input
                     size="sm"
@@ -246,6 +242,9 @@ export default function MyProfile() {
                     size="sm"
                     startDecorator={<AccessTimeFilledRoundedIcon />}
                     defaultValue="1"
+                    slotProps={{
+                      listbox: { disablePortal: true },
+                    }}
                   >
                     <Option value="1">
                       Indochina Time (Bangkok){' '}
@@ -305,10 +304,6 @@ export default function MyProfile() {
                 <FormLabel>Name</FormLabel>
                 <FormControl
                   sx={{
-                    display: {
-                      sm: 'flex-column',
-                      md: 'flex-row',
-                    },
                     gap: 2,
                   }}
                 >
