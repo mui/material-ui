@@ -221,6 +221,8 @@ describe('<InputBase />', () => {
     });
   });
 
+  // for InputBase, the `component` prop is called `inputComponent` so it's skipped
+  // in describeConformance and manually tested here
   describe('prop: inputComponent', () => {
     it('should accept any html component', () => {
       const { getByTestId } = render(
