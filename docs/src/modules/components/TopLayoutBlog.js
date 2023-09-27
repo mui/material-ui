@@ -94,6 +94,16 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/76401606',
     github: 'mikailaread',
   },
+  prakhargupta: {
+    name: 'Prakhar Gupta',
+    avatar: 'https://avatars.githubusercontent.com/u/92228082',
+    github: 'prakhargupta1',
+  },
+  richbustos: {
+    name: 'Rich Bustos',
+    avatar: 'https://avatars.githubusercontent.com/u/92274722',
+    github: 'richbustos',
+  },
 };
 
 const classes = {
@@ -126,7 +136,7 @@ const Root = styled('div')(
     background: `linear-gradient(180deg, ${
       (theme.vars || theme).palette.grey[50]
     } 0%, #FFFFFF 100%)`,
-    backgroundSize: '100% 300px',
+    backgroundSize: '100% 500px',
     backgroundRepeat: 'no-repeat',
     [`& .${classes.back}`]: {
       display: 'flex',
@@ -205,9 +215,11 @@ const Root = styled('div')(
   }),
   ({ theme }) =>
     theme.applyDarkStyles({
-      background: `linear-gradient(180deg, ${
-        (theme.vars || theme).palette.primaryDark[900]
-      } 0%, #001E3C 100%)`,
+      background: `linear-gradient(180deg, ${alpha(theme.palette.primary[900], 0.2)} 0%, ${
+        (theme.vars || theme).palette.primaryDark[800]
+      } 100%)`,
+      backgroundSize: '100% 500px',
+      backgroundRepeat: 'no-repeat',
       [`& .${classes.container}`]: {
         '& strong': {
           color: (theme.vars || theme).palette.grey[100],
@@ -230,12 +242,12 @@ const Root = styled('div')(
     }),
 );
 
-function TopLayoutBlog(props) {
+export default function TopLayoutBlog(props) {
   const { className, docs } = props;
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
   const router = useRouter();
-  const slug = router.pathname.replace(/\/blog\//, '');
+  const slug = router.pathname.replace(/(.*)\/(.*)/, '$2');
   const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const card =
     headers.card === 'true'
@@ -319,6 +331,11 @@ function TopLayoutBlog(props) {
           </Link>
           {headers.title ? (
             <React.Fragment>
+              {/*
+                Depending on the timezone, the display date can change from one day to another.
+                e.g. Sunday vs. Monday
+                TODO: Move the date formating to the server.
+              */}
               <time dateTime={headers.date} className={classes.time}>
                 {new Intl.DateTimeFormat('en', {
                   weekday: 'long',
@@ -363,6 +380,7 @@ function TopLayoutBlog(props) {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}
         </AppContainer>
+        <Divider />
         <HeroEnd />
         <Divider />
         <AppFooter />
@@ -379,5 +397,3 @@ TopLayoutBlog.propTypes = {
 if (process.env.NODE_ENV !== 'production') {
   TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
-
-export default TopLayoutBlog;

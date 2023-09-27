@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { SelectOption, UseOptionParameters, UseOptionReturnValue } from './useOption.types';
-import { EventHandlers } from '../utils';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { useListItem } from '../useList';
 import { useCompoundItem } from '../utils/useCompoundItem';
 
@@ -9,13 +10,13 @@ import { useCompoundItem } from '../utils/useCompoundItem';
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/#hooks)
+ * - [Select](https://mui.com/base-ui/react-select/#hooks)
  *
  * API:
  *
- * - [useOption API](https://mui.com/base/react-select/hooks-api/#use-option)
+ * - [useOption API](https://mui.com/base-ui/react-select/hooks-api/#use-option)
  */
-export default function useOption<Value>(params: UseOptionParameters<Value>): UseOptionReturnValue {
+export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionReturnValue {
   const { value, label, disabled, rootRef: optionRefParam, id: idParam } = params;
 
   const {
@@ -47,14 +48,19 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
   const handleRef = useForkRef(optionRefParam, optionRef, listItemRefHandler)!;
 
   return {
-    getRootProps: <Other extends EventHandlers = {}>(otherHandlers: Other = {} as Other) => ({
-      ...otherHandlers,
-      ...getListItemProps(otherHandlers),
-      id,
-      ref: handleRef,
-      role: 'option',
-      'aria-selected': selected,
-    }),
+    getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
+      externalProps: ExternalProps = {} as ExternalProps,
+    ) => {
+      const externalEventHandlers = extractEventHandlers(externalProps);
+      return {
+        ...externalProps,
+        ...getListItemProps(externalEventHandlers),
+        id,
+        ref: handleRef,
+        role: 'option',
+        'aria-selected': selected,
+      };
+    },
     highlighted,
     index,
     selected,

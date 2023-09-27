@@ -1,10 +1,10 @@
 ---
-product: material-ui
+productId: material-ui
 title: Componente React Seleção
 components: Select, NativeSelect
 githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
-unstyled: /base/react-select/
+unstyled: /base-ui/react-select/
 ---
 
 # Seleção
@@ -38,7 +38,7 @@ The Select component is implemented as a custom `<input>` element of the [InputB
 {{"demo": "SelectLabels.js"}}
 
 :::warning
-⚠ Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
+Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
 :::
 
 ### Largura automática

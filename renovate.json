@@ -19,7 +19,7 @@
     },
     {
       "groupName": "babel",
-      "matchPackagePatterns": "@babel/*"
+      "matchPackagePatterns": ["^@babel/", "^@types/babel"]
     },
     {
       "groupName": "Emotion",
@@ -74,6 +74,11 @@
     {
       "groupName": "typescript-eslint",
       "matchPackagePatterns": "@typescript-eslint/*"
+    },
+    {
+      "groupName": "@types/node",
+      "matchPackageNames": ["@types/node"],
+      "allowedVersions": "< 19.0.0"
     },
     {
       "groupName": "bundling fixtures",

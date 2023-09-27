@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { unstable_useControlled as useControlled } from '@mui/utils';
 import { UseTabsParameters, UseTabsReturnValue } from './useTabs.types';
@@ -16,11 +17,11 @@ type IdLookupFunction = (id: string | number) => string | undefined;
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/base/react-tabs/#hooks)
+ * - [Tabs](https://mui.com/base-ui/react-tabs/#hooks)
  *
  * API:
  *
- * - [useTabs API](https://mui.com/base/react-tabs/hooks-api/#use-tabs)
+ * - [useTabs API](https://mui.com/base-ui/react-tabs/hooks-api/#use-tabs)
  */
 function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
   const {
@@ -84,4 +85,4 @@ function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
   };
 }
 
-export default useTabs;
+export { useTabs };

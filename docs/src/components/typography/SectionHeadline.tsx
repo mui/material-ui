@@ -4,43 +4,68 @@ import Typography from '@mui/material/Typography';
 interface SectionHeadlineProps {
   description?: React.ReactNode;
   id?: string;
-  overline: React.ReactNode;
-  title: React.ReactNode;
+  overline?: React.ReactNode;
+  title: string | React.ReactElement;
+  alwaysCenter?: boolean;
+  /**
+   * For using with dark background.
+   */
+  inverted?: boolean;
 }
 
 export default function SectionHeadline(props: SectionHeadlineProps) {
-  const { description, id, overline, title } = props;
+  const { description, id, overline, title, alwaysCenter = false, inverted = false } = props;
   return (
     <React.Fragment>
-      <Typography
-        id={id}
-        component="h2"
-        fontWeight="bold"
-        variant="body2"
-        sx={(theme) => ({
-          mb: 1,
-          color: 'primary.600',
-          ...theme.applyDarkStyles({
-            color: 'primary.300',
-          }),
-        })}
-      >
-        {overline}
-      </Typography>
+      {overline && (
+        <Typography
+          id={id}
+          component="h2"
+          variant="body2"
+          fontWeight="bold"
+          color="primary.main"
+          sx={{
+            mb: 1,
+            ...(alwaysCenter && {
+              textAlign: 'center',
+            }),
+          }}
+        >
+          {overline}
+        </Typography>
+      )}
       {typeof title === 'string' ? (
         <Typography
           variant="h2"
           sx={(theme) => ({
-            color: 'primaryDark.900',
-            ...theme.applyDarkStyles({
-              color: 'grey.100',
+            ...(inverted
+              ? {
+                  color: '#fff',
+                }
+              : {
+                  color: 'primaryDark.900',
+                  ...theme.applyDarkStyles({
+                    color: 'grey.100',
+                  }),
+                }),
+            ...(alwaysCenter && {
+              textAlign: 'center',
             }),
           })}
         >
           {title}
         </Typography>
       ) : (
-        title
+        React.cloneElement(title, {
+          style: {
+            ...(alwaysCenter && {
+              textAlign: 'center',
+            }),
+            ...(inverted && {
+              color: '#fff',
+            }),
+          },
+        })
       )}
       {description && (
         <Typography
@@ -48,9 +73,20 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
             mt: 1,
             mb: 2,
             maxWidth: 450,
-            color: 'grey.800',
-            ...theme.applyDarkStyles({
-              color: 'grey.500',
+            ...(inverted
+              ? {
+                  color: 'grey.400',
+                }
+              : {
+                  color: 'grey.800',
+                  ...theme.applyDarkStyles({
+                    color: 'grey.500',
+                  }),
+                }),
+            ...(alwaysCenter && {
+              textAlign: 'center',
+              mx: 'auto',
+              maxWidth: 600,
             }),
           })}
         >

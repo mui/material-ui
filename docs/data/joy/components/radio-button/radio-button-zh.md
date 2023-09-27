@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Radio button component
 components: Radio, RadioGroup
 githubLabel: 'component: radio'
@@ -74,7 +74,7 @@ You can also use it directly in the `RadioGroup` component as it will automatica
 {{"demo": "OverlayRadio.js"}}
 
 :::info
-💡 **Tip:** Use the CSS variable `--Radio-action-radius` to control the border radius of the clickable area.
+**Tip:** Use the CSS variable `--Radio-action-radius` to control the border radius of the clickable area.
 :::
 
 ### Icon

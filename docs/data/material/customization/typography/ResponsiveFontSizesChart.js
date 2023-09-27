@@ -30,7 +30,7 @@ const colors = [
 ];
 const variants = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1'];
 
-export default function ResponsiveFontSizes() {
+export default function ResponsiveFontSizesChart() {
   const convert = convertLength(theme.typography.htmlFontSize);
   const toPx = (rem) => parseFloat(convert(rem, 'px'));
 

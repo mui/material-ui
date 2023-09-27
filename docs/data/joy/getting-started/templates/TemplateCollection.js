@@ -4,7 +4,8 @@ import NextLink from 'next/link';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
-import Chip from '@mui/joy/Chip';
+import CardContent from '@mui/joy/CardContent';
+import CardOverflow from '@mui/joy/CardOverflow';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import IconButton from '@mui/joy/IconButton';
@@ -21,71 +22,79 @@ import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
  * - The name of the folder will be used as the url and title
  */
 
-/**
- * @typedef {Object} Author
- * @property {string} name name of the author
- * @property {string} github github username
- */
+const authors = {
+  MUI: {
+    name: 'MUI',
+    link: 'https://twitter.com/MUI_hq',
+  },
+  SteveEberger: {
+    name: 'Steve Ernstberger',
+    link: 'https://twitter.com/SteveEberger',
+  },
+};
 
-/**
- * @type {Object.<string, Author | undefined>}
- */
-const AUTHORS = {
-  team: {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+const templates = [
+  {
+    name: 'order-dashboard',
+    author: authors.MUI,
+    design: {
+      name: 'Untitled UI',
+      link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+    },
   },
-  files: {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  {
+    name: 'profile-dashboard',
+    author: authors.MUI,
+    design: {
+      name: 'Untitled UI',
+      link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+    },
   },
-  email: {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  {
+    name: 'messages',
+    author: authors.SteveEberger,
+    design: {
+      name: 'Untitled UI',
+      link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+    },
   },
-  'sign-in-side': {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  {
+    name: 'sign-in-side',
+    author: authors.MUI,
   },
-  'order-dashboard': {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  {
+    name: 'rental-dashboard',
+    author: authors.SteveEberger,
+    design: {
+      name: 'Untitled UI',
+      link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+    },
   },
-  'profile-dashboard': {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  {
+    name: 'team',
+    author: authors.MUI,
   },
-  'framesx-web-blocks': {
-    name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+  {
+    name: 'files',
+    author: authors.MUI,
   },
-};
-const DESIGNS = {
-  'order-dashboard': {
-    name: 'Untitled UI',
-    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+  {
+    name: 'framesx-web-blocks',
+    author: authors.MUI,
+    design: {
+      name: 'Frames X',
+      link: 'https://framesxfigma.buninux.com/',
+    },
   },
-  'profile-dashboard': {
-    name: 'Untitled UI',
-    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+  {
+    name: 'email',
+    author: authors.MUI,
   },
-  'framesx-web-blocks': {
-    name: 'Frames X',
-    link: 'https://framesxfigma.buninux.com/',
-  },
-};
+];
 
 export default function TemplateCollection() {
-  const newTemplates = [
-    'framesx-web-blocks',
-    'profile-dashboard',
-    'order-dashboard',
-  ]; // Stay at the top of the page with `new` badge
-  const { names: templateNames, map: templateMap } = sourceJoyTemplates();
-  const names = [
-    ...newTemplates,
-    ...templateNames.filter((name) => !newTemplates.includes(name)),
-  ];
+  const joyTemplates = sourceJoyTemplates();
+
   return (
     <List
       sx={{
@@ -96,19 +105,16 @@ export default function TemplateCollection() {
         gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
       }}
     >
-      {names.map((name) => {
-        const item = templateMap.get(name);
-        const author = AUTHORS[name];
-        const design = DESIGNS[name];
+      {templates.map((template) => {
+        const item = joyTemplates.map.get(template.name);
         return (
           <Card
             component="li"
             variant="outlined"
-            key={name}
+            key={template.name}
             sx={(theme) => ({
               bgcolor: 'initial',
               boxShadow: 'none',
-              p: 0,
               overflow: 'auto',
               transition: 'border-color 0.3s, transform 0.2s, box-shadow 0.4s',
               '&:hover': {
@@ -122,97 +128,55 @@ export default function TemplateCollection() {
               },
             })}
           >
-            <AspectRatio
-              ratio="2"
-              variant="plain"
-              sx={{
-                borderRadius: 0,
-                borderBottom: '1px solid',
-                borderColor: 'divider',
-              }}
-            >
-              <Box
-                sx={(theme) => ({
-                  background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}.jpg)`,
-                  transition: '0.3s',
-                  [theme.getColorSchemeSelector('dark')]: {
-                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}-dark.jpg)`,
-                  },
-                })}
-              />
-              <NextLink
-                href={`/joy-ui/getting-started/templates/${name}/`}
-                passHref
-                legacyBehavior
-              >
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <Link
-                  tabIndex={-1}
-                  overlay
-                  aria-hidden
-                  data-ga-event-category="joy-template"
-                  data-ga-event-label={name}
-                  data-ga-event-action="preview-img"
-                />
-              </NextLink>
-            </AspectRatio>
-            <Box
-              sx={{
-                p: 2,
-                gap: 0.5,
-                display: 'flex',
-                alignItems: 'start',
-                flexWrap: 'wrap',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Box
+            <CardOverflow>
+              <AspectRatio
+                ratio="2"
+                variant="plain"
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'start',
+                  borderRadius: 0,
+                  borderBottom: '1px solid',
+                  borderColor: 'divider',
                 }}
               >
+                <Box
+                  sx={(theme) => ({
+                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}.jpg)`,
+                    transition: '0.3s',
+                    [theme.getColorSchemeSelector('dark')]: {
+                      background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}-dark.jpg)`,
+                    },
+                  })}
+                />
+                <NextLink
+                  href={`/joy-ui/getting-started/templates/${template.name}/`}
+                  passHref
+                  legacyBehavior
+                >
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                  <Link
+                    tabIndex={-1}
+                    overlay
+                    aria-hidden
+                    data-ga-event-category="joy-template"
+                    data-ga-event-label={template.name}
+                    data-ga-event-action="preview-img"
+                  />
+                </NextLink>
+              </AspectRatio>
+            </CardOverflow>
+            <CardContent>
+              <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 1 }}>
                 <Typography
                   component="h3"
                   fontSize="lg"
                   fontWeight="xl"
-                  endDecorator={
-                    newTemplates.includes(name) ? (
-                      <Chip
-                        size="sm"
-                        color="success"
-                        variant="outlined"
-                        sx={{
-                          ml: 1,
-                          bgcolor: 'success.softBg',
-                          borderRadius: 'xs',
-                          textTransform: 'uppercase',
-                          fontWeight: 'xl',
-                          letterSpacing: 'md',
-                          fontSize: '0.625rem',
-                          '--Chip-paddingInline': '0.2rem',
-                          '--Chip-minHeight': '1.3rem',
-                        }}
-                      >
-                        New
-                      </Chip>
-                    ) : null
-                  }
                   slotProps={{ endDecorator: { sx: { ml: 'auto' } } }}
-                  sx={{ mb: 1 }}
+                  sx={{ mr: 'auto' }}
                 >
-                  {startCase(name)}
+                  {startCase(template.name)}
                 </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  gap: 1,
-                }}
-              >
                 <NextLink
-                  href={`/joy-ui/getting-started/templates/${name}/`}
+                  href={`/joy-ui/getting-started/templates/${template.name}/`}
                   passHref
                   legacyBehavior
                 >
@@ -223,7 +187,7 @@ export default function TemplateCollection() {
                     size="sm"
                     aria-label="See live preview"
                     data-ga-event-category="joy-template"
-                    data-ga-event-label={name}
+                    data-ga-event-label={template.name}
                     data-ga-event-action="preview"
                   >
                     <Visibility />
@@ -235,16 +199,16 @@ export default function TemplateCollection() {
                   size="sm"
                   aria-label="Code sandbox playground"
                   data-ga-event-category="joy-template"
-                  data-ga-event-label={name}
+                  data-ga-event-label={template.name}
                   data-ga-event-action="codesandbox"
                   onClick={() =>
                     codeSandbox
                       .createJoyTemplate({
                         ...item,
-                        title: `${startCase(name)} Template - Joy UI`,
+                        title: `${startCase(template.name)} Template - Joy UI`,
                         githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
                           process.env.LIB_VERSION
-                        }/docs/data/joy/templates/${name}/App.${
+                        }/docs/data/joy/templates/${template.name}/App.${
                           item.codeVariant === 'TS' ? 'tsx' : 'js'
                         }`,
                       })
@@ -256,38 +220,45 @@ export default function TemplateCollection() {
                   </SvgIcon>
                 </IconButton>
               </Box>
-              <Box sx={{ width: '100%', display: 'flex', alignItems: 'baseline' }}>
-                {author && (
-                  <Typography level="body2" fontWeight="md">
+              <Box
+                sx={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                }}
+              >
+                {template.author && (
+                  <Typography level="body-sm" fontWeight="md">
                     Built by{' '}
                     <Link
-                      href={author.link}
+                      href={template.author.link}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <b>{author.name}</b>
+                      <b>{template.author.name}</b>
                     </Link>
                   </Typography>
                 )}
-                {design && (
+                {template.design && (
                   <React.Fragment>
                     <Typography level="caption" fontWeight="md" sx={{ mx: 0.5 }}>
                       •
                     </Typography>
-                    <Typography level="body2" fontWeight="md">
+                    <Typography level="body-sm" fontWeight="md">
                       Designed by{' '}
                       <Link
-                        href={design.link}
+                        href={template.design.link}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <b>{design.name}</b>
+                        <b>{template.design.name}</b>
                       </Link>
                     </Typography>
                   </React.Fragment>
                 )}
               </Box>
-            </Box>
+            </CardContent>
           </Card>
         );
       })}

@@ -3,6 +3,8 @@ import { getSymbolDescription, getSymbolJSDocTags } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
 import { Classes } from './parseStyles';
 
+// If GLOBAL_STATE_CLASSES is changed, GlobalStateSlot in
+// \packages\mui-utils\src\generateUtilityClass\generateUtilityClass.ts must be updated accordingly.
 const GLOBAL_STATE_CLASSES: string[] = [
   'active',
   'checked',
@@ -10,8 +12,10 @@ const GLOBAL_STATE_CLASSES: string[] = [
   'disabled',
   'error',
   'expanded',
-  'focusVisible',
   'focused',
+  'focusVisible',
+  'open',
+  'readOnly',
   'required',
   'selected',
 ];

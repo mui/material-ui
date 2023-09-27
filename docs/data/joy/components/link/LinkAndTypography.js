@@ -31,7 +31,7 @@ export default function LinkAndTypography() {
       <Typography>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore{' '}
-        <Link href="#heading-demo" endDecorator={<Launch />}>
+        <Link href="#heading-demo" startDecorator={<Launch />}>
           Magna Aliqua
         </Link>
         . Maecenas sed enim ut sem viverra aliquet eget.

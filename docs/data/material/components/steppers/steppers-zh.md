@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Stepper（步骤条）组件
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 githubLabel: 'component: stepper'

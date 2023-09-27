@@ -37,15 +37,15 @@ export default function ShowcaseContainer({
               justifyContent: 'center',
               alignItems: 'center',
               p: 2,
-              bgcolor: 'grey.100',
-              borderColor: 'grey.300',
+              bgcolor: 'grey.50',
+              borderColor: 'divider',
               borderBottomLeftRadius: 0,
               borderBottomRightRadius: 0,
             },
             (theme) =>
               theme.applyDarkStyles({
                 bgcolor: 'primaryDark.700',
-                borderColor: 'primaryDark.600',
+                borderColor: 'divider',
               }),
             ...(Array.isArray(previewSx) ? previewSx : [previewSx]),
           ]}
@@ -63,14 +63,14 @@ export default function ShowcaseContainer({
               minHeight: 200,
               borderWidth: '0 1px 1px 1px',
               borderStyle: 'solid',
-              borderColor: 'primaryDark.900',
+              borderColor: 'divider',
               bgcolor: 'primaryDark.800',
               borderBottomLeftRadius: 10,
               borderBottomRightRadius: 10,
             },
             (theme) =>
               theme.applyDarkStyles({
-                borderColor: 'primaryDark.700',
+                borderColor: 'divider',
               }),
             ...(Array.isArray(codeSx) ? codeSx : [codeSx]),
           ]}

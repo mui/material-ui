@@ -31,61 +31,61 @@ const theme = createTheme(
 {{"demo": "Locales.js", "defaultCodeOpen": false}}
 
 :::warning
-⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
+For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
 :::
 
 ### 支持的地区
 
-| 地区                      | BCP 47 语言标签 | 导入名称   |
-|:----------------------- |:----------- |:------ |
-| Amharic                 | am-ET       | `amET` |
-| Arabic (Egypt)          | ar-EG       | `arEG` |
-| Arabic (Sudan)          | ar-SD       | `arSD` |
-| Armenian                | hy-AM       | `hyAM` |
-| Azerbaijani             | az-AZ       | `azAZ` |
-| Bangla                  | bn-BD       | `bnBD` |
-| Bulgarian               | bg-BG       | `bgBG` |
-| Catalan                 | ca-ES       | `caES` |
-| Chinese (Hong Kong)     | zh-HK       | `zhHK` |
-| Chinese (Simplified)    | zh-CN       | `zhCN` |
-| Chinese (Taiwan)        | zh-TW       | `zhTW` |
-| Croatian                | hr-HR       | `hrHR` |
-| Czech                   | cs-CZ       | `csCZ` |
-| Danish                  | da-DK       | `daDK` |
-| Dutch                   | nl-NL       | `nlNL` |
-| English (United States) | en-US       | `enUS` |
-| Estonian                | et-EE       | `etEE` |
-| Finnish                 | fi-FI       | `fiFI` |
-| French                  | fr-FR       | `frFR` |
-| German                  | de-DE       | `deDE` |
-| Greek                   | el-GR       | `elGR` |
-| Hebrew                  | he-IL       | `heIL` |
-| Hindi                   | hi-IN       | `hiIN` |
-| Hungarian               | hu-HU       | `huHU` |
-| Icelandic               | is-IS       | `isIS` |
-| Indonesian              | id-ID       | `idID` |
-| Italian                 | it-IT       | `itIT` |
-| Japanese                | ja-JP       | `jaJP` |
-| Khmer                   | kh-KH       | `khKH` |
-| Kazakh                  | kk-KZ       | `kkKZ` |
-| Korean                  | ko-KR       | `koKR` |
-| Macedonian              | mk-MK       | `mkMK` |
-| Norwegian (bokmål)      | nb-NO       | `nbNO` |
-| Persian                 | fa-IR       | `faIR` |
-| Polish                  | pl-PL       | `plPL` |
-| Portuguese              | pt-PT       | `ptPT` |
-| Portuguese (Brazil)     | pt-BR       | `ptBR` |
-| Romanian                | ro-RO       | `roRO` |
-| Russian                 | ru-RU       | `ruRU` |
-| Serbian                 | sr-RS       | `srRS` |
-| Sinhalese               | si-LK       | `siLK` |
-| Slovak                  | sk-SK       | `skSK` |
-| Spanish                 | es-ES       | `esES` |
-| Swedish                 | sv-SE       | `svSE` |
-| Thai                    | th-TH       | `thTH` |
-| Turkish                 | tr-TR       | `trTR` |
-| Ukrainian               | uk-UA       | `ukUA` |
-| Vietnamese              | vi-VN       | `viVN` |
+| 地区                    | BCP 47 语言标签 | 导入名称 |
+| :---------------------- | :-------------- | :------- |
+| Amharic                 | am-ET           | `amET`   |
+| Arabic (Egypt)          | ar-EG           | `arEG`   |
+| Arabic (Sudan)          | ar-SD           | `arSD`   |
+| Armenian                | hy-AM           | `hyAM`   |
+| Azerbaijani             | az-AZ           | `azAZ`   |
+| Bangla                  | bn-BD           | `bnBD`   |
+| Bulgarian               | bg-BG           | `bgBG`   |
+| Catalan                 | ca-ES           | `caES`   |
+| Chinese (Hong Kong)     | zh-HK           | `zhHK`   |
+| Chinese (Simplified)    | zh-CN           | `zhCN`   |
+| Chinese (Taiwan)        | zh-TW           | `zhTW`   |
+| Croatian                | hr-HR           | `hrHR`   |
+| Czech                   | cs-CZ           | `csCZ`   |
+| Danish                  | da-DK           | `daDK`   |
+| Dutch                   | nl-NL           | `nlNL`   |
+| English (United States) | en-US           | `enUS`   |
+| Estonian                | et-EE           | `etEE`   |
+| Finnish                 | fi-FI           | `fiFI`   |
+| French                  | fr-FR           | `frFR`   |
+| German                  | de-DE           | `deDE`   |
+| Greek                   | el-GR           | `elGR`   |
+| Hebrew                  | he-IL           | `heIL`   |
+| Hindi                   | hi-IN           | `hiIN`   |
+| Hungarian               | hu-HU           | `huHU`   |
+| Icelandic               | is-IS           | `isIS`   |
+| Indonesian              | id-ID           | `idID`   |
+| Italian                 | it-IT           | `itIT`   |
+| Japanese                | ja-JP           | `jaJP`   |
+| Khmer                   | kh-KH           | `khKH`   |
+| Kazakh                  | kk-KZ           | `kkKZ`   |
+| Korean                  | ko-KR           | `koKR`   |
+| Macedonian              | mk-MK           | `mkMK`   |
+| Norwegian (bokmål)      | nb-NO           | `nbNO`   |
+| Persian                 | fa-IR           | `faIR`   |
+| Polish                  | pl-PL           | `plPL`   |
+| Portuguese              | pt-PT           | `ptPT`   |
+| Portuguese (Brazil)     | pt-BR           | `ptBR`   |
+| Romanian                | ro-RO           | `roRO`   |
+| Russian                 | ru-RU           | `ruRU`   |
+| Serbian                 | sr-RS           | `srRS`   |
+| Sinhalese               | si-LK           | `siLK`   |
+| Slovak                  | sk-SK           | `skSK`   |
+| Spanish                 | es-ES           | `esES`   |
+| Swedish                 | sv-SE           | `svSE`   |
+| Thai                    | th-TH           | `thTH`   |
+| Turkish                 | tr-TR           | `trTR`   |
+| Ukrainian               | uk-UA           | `ukUA`   |
+| Vietnamese              | vi-VN           | `viVN`   |
 
 <!-- #default-branch-switch -->
 

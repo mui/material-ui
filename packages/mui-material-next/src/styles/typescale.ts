@@ -3,11 +3,15 @@ const mdSysTypescale = {
     small: {
       family: 'Roboto',
       weight: '500',
+      lineHeight: 16,
+      size: 11,
       tracking: 0.5,
     },
     medium: {
       family: 'Roboto',
       weight: '500',
+      lineHeight: 16,
+      size: 12,
       tracking: 0.5,
     },
     large: {

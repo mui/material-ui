@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: React Portal component
 components: Portal
 githubLabel: 'component: Portal'
@@ -13,7 +13,7 @@ githubLabel: 'component: Portal'
 
 `Portal` is a utility component built around [React's `createPortal()` API](https://react.dev/reference/react-dom/createPortal). It gives you the functionality of `createPortal()` in a convenient component form.
 
-The `Portal` component is used internally by the [`ModalUnstyled`](/base/react-modal/) and [`Popper`](/base/react-popper/) components.
+The `Portal` component is used internally by the [`ModalUnstyled`](/base-ui/react-modal/) and [`Popper`](/base-ui/react-popper/) components.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -21,7 +21,7 @@ The `Portal` component is used internally by the [`ModalUnstyled`](/base/react-m
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import Portal from '@mui/base/Portal';

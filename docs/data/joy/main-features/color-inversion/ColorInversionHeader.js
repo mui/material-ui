@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import Avatar from '@mui/joy/Avatar';
 import Badge from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -17,6 +16,7 @@ import AddIcon from '@mui/icons-material/Add';
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 
 export default function ColorInversionHeader() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -31,9 +31,7 @@ export default function ColorInversionHeader() {
         alignItems: 'center',
         flexGrow: 1,
         p: 2,
-        mx: -3,
-        my: -3,
-        borderRadius: { xs: 0, sm: 'xs' },
+        borderRadius: { xs: 0, sm: 'sm' },
         minWidth: 'min-content',
         ...(color !== 'warning' && {
           background: (theme) =>
@@ -45,21 +43,14 @@ export default function ColorInversionHeader() {
         variant="soft"
         size="sm"
         onClick={() => {
-          const colors = [
-            'primary',
-            'neutral',
-            'danger',
-            'info',
-            'success',
-            'warning',
-          ];
+          const colors = ['primary', 'neutral', 'danger', 'success', 'warning'];
 
           const nextColor = colors.indexOf(color);
           setColor(colors[nextColor + 1] ?? colors[0]);
         }}
         sx={{ borderRadius: '50%' }}
       >
-        <img alt="" src="/static/branding/pricing/block-gold.svg" />
+        <ColorLensRoundedIcon fontSize="small" />
       </IconButton>
       <Box sx={{ flex: 1, display: 'flex', gap: 1, px: 2 }}>
         <Chip
@@ -110,45 +101,39 @@ export default function ColorInversionHeader() {
           </MenuItem>
         </Menu>
       </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'row-reverse', flexShrink: 0 }}>
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button
-            startDecorator={<AddIcon />}
-            sx={{ borderRadius: 'xl', display: { xs: 'none', md: 'inline-flex' } }}
-          >
-            New Invoice
-          </Button>
-          <Input
-            placeholder="Search for anything..."
-            variant="soft"
-            size="sm"
-            endDecorator={
-              <Typography
-                component="span"
-                variant="outlined"
-                level="body3"
-                sx={{ bgcolor: 'background.surface', mx: 0 }}
-              >
-                ⌘K
-              </Typography>
-            }
-            sx={{
-              '--Input-radius': '40px',
-              '--Input-paddingInline': '12px',
-              width: 160,
-              display: { xs: 'none', lg: 'flex' },
-            }}
-          />
-          <Badge badgeContent={2} variant="solid" color="danger">
-            <IconButton variant="soft" sx={{ borderRadius: 'xl' }}>
-              <NotificationsIcon />
-            </IconButton>
-          </Badge>
-          <IconButton sx={{ borderRadius: 'xl' }}>
-            <Avatar src="/static/images/avatar/1.jpg" size="sm" />
-            <KeyboardArrowDownIcon />
+      <Box sx={{ display: 'flex', flexShrink: 0, gap: 2 }}>
+        <Button
+          startDecorator={<AddIcon />}
+          sx={{ borderRadius: 'xl', display: { xs: 'none', md: 'inline-flex' } }}
+        >
+          New invoice
+        </Button>
+        <Input
+          placeholder="Search"
+          variant="soft"
+          size="sm"
+          endDecorator={
+            <Typography
+              component="span"
+              variant="outlined"
+              level="body-xs"
+              sx={{ bgcolor: 'background.surface', mx: 0 }}
+            >
+              ⌘K
+            </Typography>
+          }
+          sx={{
+            '--Input-radius': '40px',
+            '--Input-paddingInline': '12px',
+            width: 160,
+            display: { xs: 'none', lg: 'flex' },
+          }}
+        />
+        <Badge badgeContent={2} variant="solid" color="danger">
+          <IconButton variant="soft" sx={{ borderRadius: 'xl' }}>
+            <NotificationsIcon />
           </IconButton>
-        </Box>
+        </Badge>
       </Box>
     </Sheet>
   );

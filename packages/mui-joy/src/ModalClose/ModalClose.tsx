@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 import useSlot from '../utils/useSlot';
 import { useThemeProps, styled } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -38,17 +39,18 @@ export const ModalCloseRoot = styled(StyledIconButton, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalCloseOwnerState }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
-    '--IconButton-size': '28px',
+    '--IconButton-size': '1.75rem',
   }),
   ...(ownerState.size === 'md' && {
-    '--IconButton-size': '36px',
+    '--IconButton-size': '2rem',
   }),
   ...(ownerState.size === 'lg' && {
-    '--IconButton-size': '40px',
+    '--IconButton-size': '2.25rem',
   }),
   position: 'absolute',
-  top: `var(--ModalClose-inset, ${theme.spacing(1)})`,
-  right: `var(--ModalClose-inset, ${theme.spacing(1)})`,
+  zIndex: 1, // stay on top of the title in case it is positioned relatively
+  top: `var(--ModalClose-inset, 0.625rem)`,
+  right: `var(--ModalClose-inset, 0.625rem)`,
   borderRadius: `var(--ModalClose-radius, ${theme.vars.radius.sm})`,
   // for variant without a background, use `tertiary` text color to reduce the importance of the close icon.
   ...(!theme.variants[ownerState.variant!]?.[ownerState.color!]?.backgroundColor && {
@@ -66,6 +68,7 @@ const modalDialogVariantMapping = {
  *
  * Demos:
  *
+ * - [Drawer](https://mui.com/joy-ui/react-drawer/)
  * - [Modal](https://mui.com/joy-ui/react-modal/)
  *
  * API:
@@ -154,7 +157,7 @@ ModalClose.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

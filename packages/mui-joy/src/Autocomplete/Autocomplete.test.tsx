@@ -10,7 +10,7 @@ import {
   fireEvent,
   strictModeDoubleLoggingSuppressed,
   describeJoyColorInversion,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
@@ -1426,6 +1426,30 @@ describe('Joy <Autocomplete />', () => {
       // Options are updated and autocomplete re-renders; reset the highlight since two doesn't exist in the new options.
       setProps({ options: ['one', 'three', 'four'] });
       checkHighlightIs(listbox, null);
+    });
+
+    it('should reset the highlight when the input changed', () => {
+      const filterOptions = createFilterOptions({});
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          autoHighlight
+          autoFocus
+          options={['one', 'two', 'three']}
+          filterOptions={filterOptions}
+        />,
+      );
+      const textbox = getByRole('combobox');
+      const listbox = getByRole('listbox');
+
+      fireEvent.change(textbox, { target: { value: 't' } });
+      checkHighlightIs(listbox, 'two');
+
+      fireEvent.change(textbox, { target: { value: '' } });
+      checkHighlightIs(listbox, 'one');
+
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(textbox).has.value('one');
     });
 
     it('should not select undefined', () => {

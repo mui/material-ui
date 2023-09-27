@@ -135,8 +135,12 @@ export const style = ({ ownerState, theme }: StyleFunctionProps) => {
         return { gap: getValue(transformer, propValue) };
       }
       return {
-        '& > :not(style) + :not(style)': {
+        // The useFlexGap={false} implement relies on each child to give up control of the margin.
+        // We need to reset the margin to avoid double spacing.
+        '& > :not(style):not(style)': {
           margin: 0,
+        },
+        '& > :not(style) ~ :not(style)': {
           [`margin${getSideFromDirection(
             breakpoint ? directionValues[breakpoint] : ownerState.direction,
           )}`]: getValue(transformer, propValue),

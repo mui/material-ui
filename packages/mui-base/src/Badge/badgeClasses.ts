@@ -1,5 +1,5 @@
-import generateUtilityClasses from '../generateUtilityClasses';
-import generateUtilityClass from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
 
 export interface BadgeClasses {
   /** Class name applied to the root element. */
@@ -16,10 +16,8 @@ export function getBadgeUtilityClass(slot: string): string {
   return generateUtilityClass('MuiBadge', slot);
 }
 
-const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
+export const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
   'root',
   'badge',
   'invisible',
 ]);
-
-export default badgeClasses;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
-import Portal from '@mui/base/Portal';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
+import { Portal } from '@mui/base/Portal';
 
 export default function PortalClickAway() {
   const [open, setOpen] = React.useState(false);

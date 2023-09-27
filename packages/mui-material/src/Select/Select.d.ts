@@ -9,10 +9,10 @@ import { OutlinedInputProps } from '../OutlinedInput';
 
 export { SelectChangeEvent };
 
-export interface SelectProps<T = unknown>
+export interface SelectProps<Value = unknown>
   extends StandardProps<InputProps, 'value' | 'onChange'>,
     Omit<OutlinedInputProps, 'value' | 'onChange'>,
-    Pick<SelectInputProps<T>, 'onChange'> {
+    Pick<SelectInputProps<Value>, 'onChange'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -40,7 +40,7 @@ export interface SelectProps<T = unknown>
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: T;
+  defaultValue?: Value;
   /**
    * If `true`, a value is displayed even if no items are selected.
    *
@@ -96,12 +96,12 @@ export interface SelectProps<T = unknown>
   /**
    * Callback fired when a menu item is selected.
    *
-   * @param {SelectChangeEvent<T>} event The event source of the callback.
+   * @param {SelectChangeEvent<Value>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
    * **Warning**: This is a generic event, not a change event, unless the change event is caused by browser autofill.
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
-  onChange?: SelectInputProps<T>['onChange'];
+  onChange?: SelectInputProps<Value>['onChange'];
   /**
    * Callback fired when the component requests to be closed.
    * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select collapses).
@@ -128,7 +128,7 @@ export interface SelectProps<T = unknown>
    * @param {any} value The `value` provided to the component.
    * @returns {ReactNode}
    */
-  renderValue?: (value: T) => React.ReactNode;
+  renderValue?: (value: Value) => React.ReactNode;
   /**
    * Props applied to the clickable div element.
    */
@@ -144,7 +144,7 @@ export interface SelectProps<T = unknown>
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
-  value?: T | '';
+  value?: Value | '';
   /**
    * The variant to use.
    * @default 'outlined'
@@ -163,7 +163,7 @@ export interface SelectProps<T = unknown>
  * - [Select API](https://mui.com/material-ui/api/select/)
  * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
  */
-declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & {
+declare const Select: (<Value>(props: SelectProps<Value>) => JSX.Element) & {
   muiName: string;
 };
 

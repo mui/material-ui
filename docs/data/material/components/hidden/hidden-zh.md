@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Hidden（隐藏）组件
 description: Hidden 组件已废弃，详情请查看迁移指南。
 components: Hidden

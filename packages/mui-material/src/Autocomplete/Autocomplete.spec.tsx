@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { expectType } from '@mui/types';
 import Autocomplete, {
   AutocompleteOwnerState,
   AutocompleteProps,
   AutocompleteRenderGetTagProps,
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { expectType } from '@mui/types';
 import { ChipTypeMap } from '@mui/material/Chip';
 
 interface MyAutocompleteProps<
@@ -88,6 +88,13 @@ function MyAutocomplete<
 <MyAutocomplete
   options={[{ label: '1' }, { label: '2' }]}
   renderInput={(params) => <TextField {...params} value={params.inputProps.value} />}
+/>;
+
+// Test for focusVisible class
+<Autocomplete
+  classes={{ focusVisible: 'test' }}
+  options={[{ label: '1' }, { label: '2' }]}
+  renderInput={(params) => <TextField {...params} />}
 />;
 
 interface Option {
