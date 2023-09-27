@@ -15,16 +15,18 @@ import IconButton from '@mui/joy/IconButton';
 import Select, { SelectStaticProps } from '@mui/joy/Select';
 import SvgIcon from '@mui/joy/SvgIcon';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
+import { unstable_capitalize as capitalize } from '@mui/utils';
+
+const SCALE = { xs: 'scale(1)', md: 'scale(0.84)' };
 
 function Placeholder() {
   return (
     <Box
       sx={{
-        transform: 'scale(0.9)',
+        transform: SCALE,
         overflow: 'hidden',
         position: 'relative',
         transformOrigin: 'top left',
-        bgcolor: 'background.level1',
         height: 1080,
       }}
     />
@@ -60,58 +62,215 @@ const SignInApp = dynamic(
   },
 );
 
-const joyColors = {
-  blue: {
-    50: '#EDF5FD',
-    100: '#E3EFFB',
-    200: '#C7DFF7',
-    300: '#97C3F0',
-    400: '#4393E4',
-    500: '#0B6BCB',
-    600: '#185EA5',
-    700: '#12467B',
-    800: '#0A2744',
-    900: '#051423',
+const tailwindColors = {
+  red: {
+    50: '#fef2f2',
+    100: '#fee2e2',
+    200: '#fecaca',
+    300: '#fca5a5',
+    400: '#f87171',
+    500: '#ef4444',
+    600: '#dc2626',
+    700: '#b91c1c',
+    800: '#991b1b',
+    900: '#7f1d1d',
+  },
+  orange: {
+    50: '#fff7ed',
+    100: '#ffedd5',
+    200: '#fed7aa',
+    300: '#fdba74',
+    400: '#fb923c',
+    500: '#f97316',
+    600: '#ea580c',
+    700: '#c2410c',
+    800: '#9a3412',
+    900: '#7c2d12',
+  },
+  amber: {
+    50: '#fffbeb',
+    100: '#fef3c7',
+    200: '#fde68a',
+    300: '#fcd34d',
+    400: '#fbbf24',
+    500: '#f59e0b',
+    600: '#d97706',
+    700: '#b45309',
+    800: '#92400e',
+    900: '#78350f',
   },
   yellow: {
-    50: '#FEFAF6',
-    100: '#FDF0E1',
-    200: '#FCE1C2',
-    300: '#F3C896',
-    400: '#EA9A3E',
-    500: '#9A5B13',
-    600: '#72430D',
-    700: '#492B08',
-    800: '#2E1B05',
-    900: '#1D1002',
+    50: '#fefce8',
+    100: '#fef9c3',
+    200: '#fef08a',
+    300: '#fde047',
+    400: '#facc15',
+    500: '#eab308',
+    600: '#ca8a04',
+    700: '#a16207',
+    800: '#854d0e',
+    900: '#713f12',
   },
-  red: {
-    50: '#FEF6F6',
-    100: '#FCE4E4',
-    200: '#F7C5C5',
-    300: '#F09898',
-    400: '#E47474',
-    500: '#C41C1C',
-    600: '#A51818',
-    700: '#7D1212',
-    800: '#430A0A',
-    900: '#240505',
+  lime: {
+    50: '#f7fee7',
+    100: '#ecfccb',
+    200: '#d9f99d',
+    300: '#bef264',
+    400: '#a3e635',
+    500: '#84cc16',
+    600: '#65a30d',
+    700: '#4d7c0f',
+    800: '#3f6212',
+    900: '#365314',
   },
   green: {
-    50: '#F6FEF6',
-    100: '#E3FBE3',
-    200: '#C7F7C7',
-    300: '#A1E8A1',
-    400: '#51BC51',
-    500: '#1F7A1F',
-    600: '#136C13',
-    700: '#0A470A',
-    800: '#042F04',
-    900: '#021D02',
+    50: '#f0fdf4',
+    100: '#dcfce7',
+    200: '#bbf7d0',
+    300: '#86efac',
+    400: '#4ade80',
+    500: '#22c55e',
+    600: '#16a34a',
+    700: '#15803d',
+    800: '#166534',
+    900: '#14532d',
   },
-} as const;
+  emerald: {
+    50: '#ecfdf5',
+    100: '#d1fae5',
+    200: '#a7f3d0',
+    300: '#6ee7b7',
+    400: '#34d399',
+    500: '#10b981',
+    600: '#059669',
+    700: '#047857',
+    800: '#065f46',
+    900: '#064e3b',
+  },
+  teal: {
+    50: '#f0fdfa',
+    100: '#ccfbf1',
+    200: '#99f6e4',
+    300: '#5eead4',
+    400: '#2dd4bf',
+    500: '#14b8a6',
+    600: '#0d9488',
+    700: '#0f766e',
+    800: '#115e59',
+    900: '#134e4a',
+  },
+  cyan: {
+    50: '#ecfeff',
+    100: '#cffafe',
+    200: '#a5f3fc',
+    300: '#67e8f9',
+    400: '#22d3ee',
+    500: '#06b6d4',
+    600: '#0891b2',
+    700: '#0e7490',
+    800: '#155e75',
+    900: '#164e63',
+  },
+  sky: {
+    50: '#f0f9ff',
+    100: '#e0f2fe',
+    200: '#bae6fd',
+    300: '#7dd3fc',
+    400: '#38bdf8',
+    500: '#0ea5e9',
+    600: '#0284c7',
+    700: '#0369a1',
+    800: '#075985',
+    900: '#0c4a6e',
+  },
+  blue: {
+    50: '#eff6ff',
+    100: '#dbeafe',
+    200: '#bfdbfe',
+    300: '#93c5fd',
+    400: '#60a5fa',
+    500: '#3b82f6',
+    600: '#2563eb',
+    700: '#1d4ed8',
+    800: '#1e40af',
+    900: '#1e3a8a',
+  },
+  indigo: {
+    50: '#eef2ff',
+    100: '#e0e7ff',
+    200: '#c7d2fe',
+    300: '#a5b4fc',
+    400: '#818cf8',
+    500: '#6366f1',
+    600: '#4f46e5',
+    700: '#4338ca',
+    800: '#3730a3',
+    900: '#312e81',
+  },
+  violet: {
+    50: '#f5f3ff',
+    100: '#ede9fe',
+    200: '#ddd6fe',
+    300: '#c4b5fd',
+    400: '#a78bfa',
+    500: '#8b5cf6',
+    600: '#7c3aed',
+    700: '#6d28d9',
+    800: '#5b21b6',
+    900: '#4c1d95',
+  },
+  purple: {
+    50: '#faf5ff',
+    100: '#f3e8ff',
+    200: '#e9d5ff',
+    300: '#d8b4fe',
+    400: '#c084fc',
+    500: '#a855f7',
+    600: '#9333ea',
+    700: '#7e22ce',
+    800: '#6b21a8',
+    900: '#581c87',
+  },
+  fuchsia: {
+    50: '#fdf4ff',
+    100: '#fae8ff',
+    200: '#f5d0fe',
+    300: '#f0abfc',
+    400: '#e879f9',
+    500: '#d946ef',
+    600: '#c026d3',
+    700: '#a21caf',
+    800: '#86198f',
+    900: '#701a75',
+  },
+  pink: {
+    50: '#fdf2f8',
+    100: '#fce7f3',
+    200: '#fbcfe8',
+    300: '#f9a8d4',
+    400: '#f472b6',
+    500: '#ec4899',
+    600: '#db2777',
+    700: '#be185d',
+    800: '#9d174d',
+    900: '#831843',
+  },
+  rose: {
+    50: '#fff1f2',
+    100: '#ffe4e6',
+    200: '#fecdd3',
+    300: '#fda4af',
+    400: '#fb7185',
+    500: '#f43f5e',
+    600: '#e11d48',
+    700: '#be123c',
+    800: '#9f1239',
+    900: '#881337',
+  },
+};
 
 const tailwindNeutrals = {
+  default: colors.grey,
   slate: {
     50: '#f8fafc',
     100: '#f1f5f9',
@@ -174,6 +333,11 @@ const tailwindNeutrals = {
   },
 } as const;
 
+const joyColors = {
+  default: colors.blue,
+  ...tailwindColors,
+} as const;
+
 const radiusOptions = {
   sharp: {
     xs: '0px',
@@ -198,7 +362,18 @@ const radiusOptions = {
   },
 };
 
-const familyOptions = ['Inter', 'General Sans', 'IBM Plex Sans', 'Menlo'];
+const familyOptions = [
+  'Inter',
+  'Roboto',
+  'Open Sans',
+  'Noto Sans JP',
+  'Montserrat',
+  'Lato',
+  'Poppins',
+  'Oswald',
+  'Raleway',
+  'Noto Sans',
+];
 
 function randomValue<T>(array: Array<T>) {
   return array[Math.floor(Math.random() * array.length)];
@@ -250,12 +425,12 @@ function usePrimarySelector() {
         {...props}
         sx={{ minWidth: { xs: 'auto', sm: 140 } }}
       >
-        <Option value="default">
-          <PalettePreview range={colors.blue} />
-        </Option>
         {(Object.keys(joyColors) as Array<keyof typeof joyColors>).map((color) => (
           <Option key={color} value={color}>
             <PalettePreview range={joyColors[color]} />
+            <Typography level="body-sm" textColor="text.primary" sx={{ ml: 2 }}>
+              {capitalize(color)}
+            </Typography>
           </Option>
         ))}
       </Select>
@@ -298,12 +473,12 @@ function useNeutralSelector() {
         {...props}
         sx={{ minWidth: { xs: 'auto', sm: 140 } }}
       >
-        <Option value="default">
-          <PalettePreview range={colors.grey} />
-        </Option>
         {(Object.keys(tailwindNeutrals) as Array<keyof typeof tailwindNeutrals>).map((color) => (
           <Option key={color} value={color}>
             <PalettePreview range={tailwindNeutrals[color]} />
+            <Typography level="body-sm" textColor="text.primary" sx={{ ml: 2 }}>
+              {capitalize(color)}
+            </Typography>
           </Option>
         ))}
       </Select>
@@ -414,6 +589,10 @@ function useRadiusSelector() {
 
 function useFamilySelector() {
   const [family, setFamily] = React.useState<string>(familyOptions[0]);
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
   return {
     family,
     setFamily,
@@ -440,6 +619,14 @@ function useFamilySelector() {
         ))}
       </Select>
     ),
+    importGoogleFont: () =>
+      mounted ? (
+        <style>
+          {`@import url('https://fonts.googleapis.com/css2?${familyOptions
+            .map((font) => `family=${font}:wght@300;400;500;600;700`)
+            .join('&')}&display=swap');`}
+        </style>
+      ) : null,
   };
 }
 
@@ -481,6 +668,7 @@ export default function ThemeBuilder() {
     renderSelector: renderFamily,
     randomValue: randomFamily,
     setFamily,
+    importGoogleFont,
   } = useFamilySelector();
   const customTheme = React.useMemo(
     () => ({
@@ -539,6 +727,7 @@ export default function ThemeBuilder() {
   );
   return (
     <CssVarsProvider theme={{ [THEME_ID]: defaultTheme }}>
+      {importGoogleFont()}
       <Box sx={{ display: 'flex', mb: 2 }}>
         <Select
           size="sm"
@@ -557,14 +746,15 @@ export default function ThemeBuilder() {
       </Box>
       <Box
         sx={{
-          transform: { xs: 'scale(1)', md: 'scale(0.84)' },
+          transform: SCALE,
           overflow: 'auto',
           position: 'relative',
           transformOrigin: 'top left',
-          bgcolor: 'var(--template-palette-background-body)',
+          bgcolor: 'var(--template-palette-background-body, var(--joy-palette-background-level1))',
           borderRadius: 'sm',
           border: '1px solid',
-          borderColor: 'var(--template-palette-primary-outlinedBorder)',
+          borderColor:
+            'var(--template-palette-primary-outlinedBorder, var(--joy-palette-neutral-outlinedBorder))',
           boxShadow: `0 0 0 6px rgba(var(--template-palette-primary-mainChannel) / 0.1)`,
         }}
       >
