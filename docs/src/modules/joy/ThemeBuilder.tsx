@@ -2,13 +2,15 @@ import * as React from 'react';
 import dynamic from 'next/dynamic';
 import colors from '@mui/joy/colors';
 import defaultTheme from '@mui/joy/styles/defaultTheme';
-import { CssVarsProvider, THEME_ID, extendTheme } from '@mui/joy/styles';
+import { CssVarsThemeOptions, CssVarsProvider, THEME_ID, extendTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import FormLabel from '@mui/joy/FormLabel';
 import FormControl from '@mui/joy/FormControl';
 import Option from '@mui/joy/Option';
+import RadioGroup from '@mui/joy/RadioGroup';
+import Radio, { radioClasses } from '@mui/joy/Radio';
 import ToggleButtonGroup, { ToggleButtonGroupStaticProps } from '@mui/joy/ToggleButtonGroup';
 import Typography from '@mui/joy/Typography';
 import IconButton from '@mui/joy/IconButton';
@@ -16,6 +18,9 @@ import Select, { SelectStaticProps } from '@mui/joy/Select';
 import SvgIcon from '@mui/joy/SvgIcon';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import ViewHeadlineIcon from '@mui/icons-material/ViewHeadlineOutlined';
+import TableRowsIcon from '@mui/icons-material/TableRowsOutlined';
+import ViewStreamIcon from '@mui/icons-material/ViewStreamOutlined';
 
 const SCALE = { xs: 'scale(1)', md: 'scale(0.84)' };
 
@@ -354,11 +359,11 @@ const radiusOptions = {
     xl: '15px',
   },
   round: {
-    xs: '20px',
-    sm: '22px',
-    md: '24px',
+    xs: '18px',
+    sm: '20px',
+    md: '23px',
     lg: '26px',
-    xl: '28px',
+    xl: '30px',
   },
 };
 
@@ -630,6 +635,162 @@ function useFamilySelector() {
   };
 }
 
+const densityOptions = {
+  dense: {
+    components: {
+      JoyList: {
+        variants: [
+          { props: { size: 'sm' }, style: { '--ThemeList-gap': '4px' } },
+          { props: { size: 'md' }, style: { '--ThemeList-gap': '6px' } },
+          { props: { size: 'lg' }, style: { '--ThemeList-gap': '8px' } },
+        ],
+      },
+      JoyTable: {
+        variants: [
+          { props: { size: 'sm' }, style: { '--TableCell-height': '28px' } },
+          { props: { size: 'md' }, style: { '--TableCell-height': '32px' } },
+          { props: { size: 'lg' }, style: { '--TableCell-height': '40px' } },
+        ],
+      },
+      JoyButton: {
+        variants: [
+          { props: { size: 'sm' }, style: { '--Button-minHeight': '28px' } },
+          { props: { size: 'md' }, style: { '--Button-minHeight': '32px' } },
+          { props: { size: 'lg' }, style: { '--Button-minHeight': '40px' } },
+        ],
+      },
+      JoyIconButton: {
+        variants: [
+          { props: { size: 'sm' }, style: { '--IconButton-size': '28px' } },
+          { props: { size: 'md' }, style: { '--IconButton-size': '32px' } },
+          { props: { size: 'lg' }, style: { '--IconButton-size': '40px' } },
+        ],
+      },
+      JoyInput: {
+        variants: [
+          { props: { size: 'sm' }, style: { '--Input-minHeight': '28px' } },
+          { props: { size: 'md' }, style: { '--Input-minHeight': '32px' } },
+          { props: { size: 'lg' }, style: { '--Input-minHeight': '40px' } },
+        ],
+      },
+      JoySelect: {
+        variants: [
+          { props: { size: 'sm' }, style: { '--Select-minHeight': '28px' } },
+          { props: { size: 'md' }, style: { '--Select-minHeight': '32px' } },
+          { props: { size: 'lg' }, style: { '--Select-minHeight': '40px' } },
+        ],
+      },
+      JoyAutocomplete: {
+        variants: [
+          { props: { size: 'sm' }, style: { '--Input-minHeight': '28px' } },
+          { props: { size: 'md' }, style: { '--Input-minHeight': '32px' } },
+          { props: { size: 'lg' }, style: { '--Input-minHeight': '40px' } },
+        ],
+      },
+      JoyTextarea: {
+        variants: [
+          { props: { size: 'sm' }, style: { '--Textarea-minHeight': '28px' } },
+          { props: { size: 'md' }, style: { '--Textarea-minHeight': '32px' } },
+          { props: { size: 'lg' }, style: { '--Textarea-minHeight': '40px' } },
+        ],
+      },
+    },
+    fontSize: {
+      xs: '0.6875rem', // 11px
+      sm: '0.75rem', // 12px
+      md: '0.875rem', // 14px
+      lg: '1rem', // 16px
+      xl: '1.125rem', // 18px
+      xl2: '1.375rem', // 22px
+      xl3: '1.875rem', // 30px
+      xl4: '2.25rem', // 36px
+    },
+  } as CssVarsThemeOptions,
+  regular: {},
+  spacious: {
+    components: {
+      JoyList: {
+        variants: [
+          { props: { size: 'sm' }, style: { '--ThemeList-gap': '12px' } },
+          { props: { size: 'md' }, style: { '--ThemeList-gap': '16px' } },
+          { props: { size: 'lg' }, style: { '--ThemeList-gap': '20px' } },
+        ],
+      },
+    },
+    fontSize: {
+      xs: '0.8125rem', // 13px
+      sm: '0.9375rem', // 15px
+      md: '1.0625rem', // 17px
+      lg: '1.1875rem', // 19px
+      xl: '1.3125rem', // 21px
+      xl2: '1.5625rem', // 25px
+      xl3: '2rem', // 32px
+      xl4: '2.5rem', // 40px
+    },
+  },
+} as const;
+
+const densityIcons = [<ViewHeadlineIcon />, <TableRowsIcon />, <ViewStreamIcon />];
+function useDensitySelector() {
+  const [density, setDensity] = React.useState<keyof typeof densityOptions>('regular');
+  return {
+    density,
+    setDensity,
+    randomValue: () =>
+      setDensity(randomValue(Object.keys(densityOptions) as Array<keyof typeof densityOptions>)),
+    renderSelectorAsRadio: () => (
+      <RadioGroup
+        orientation="horizontal"
+        value={density}
+        onChange={(event) => setDensity(event.target.value as keyof typeof densityOptions)}
+        sx={{ gap: 2 }}
+      >
+        {(Object.keys(densityOptions) as Array<typeof density>).map((item, index) => (
+          <Card size="sm" key={item} sx={{ flex: 1, p: 0.5 }}>
+            <Radio
+              value={item}
+              overlay
+              disableIcon
+              label={
+                <React.Fragment>
+                  {densityIcons[index]}
+                  <Typography
+                    component="span"
+                    level="inherit"
+                    sx={{
+                      position: 'absolute',
+                      left: '50%',
+                      bottom: '-1.5rem',
+                      transform: 'translateX(-50%)',
+                    }}
+                  >
+                    {capitalize(item)}
+                  </Typography>
+                </React.Fragment>
+              }
+              sx={(theme) => ({
+                fontSize: 'xs',
+                fontWeight: 'lg',
+                [`& .${radioClasses.action}.${radioClasses.checked}`]: {
+                  boxShadow: theme.shadow.md,
+                  bgcolor: theme.vars.palette.primary.softBg,
+                  '--joy-shadowOpacity': 0.16,
+                  '--joy-shadowChannel': theme.vars.palette.primary.mainChannel,
+                },
+                [`& .${radioClasses.label}`]: {
+                  lineHeight: 0,
+                  textAlign: 'center',
+                  '--Icon-fontSize': '1.5rem',
+                },
+              })}
+            />
+          </Card>
+        ))}
+      </RadioGroup>
+    ),
+  };
+}
+
 const templateMap = {
   'order-dashboard': (params: any) => <OrderDashboardApp {...params} />,
   'profile-dashboard': (params: any) => <ProfileDashboardApp {...params} />,
@@ -670,8 +831,15 @@ export default function ThemeBuilder() {
     setFamily,
     importGoogleFont,
   } = useFamilySelector();
+  const {
+    density,
+    renderSelectorAsRadio: renderDensity,
+    randomValue: randomDensity,
+    setDensity,
+  } = useDensitySelector();
   const customTheme = React.useMemo(
     () => ({
+      // @ts-ignore TODO Joy should support theme variants
       [THEME_ID]: extendTheme({
         cssVarPrefix: 'template',
         colorSchemes: {
@@ -721,12 +889,18 @@ export default function ThemeBuilder() {
         ...(radius && {
           radius: radiusOptions[radius],
         }),
+        ...(density && densityOptions[density]),
       }),
     }),
-    [primary, neutral, radius, bgSwap, family],
+    [primary, neutral, radius, bgSwap, family, density],
   );
   return (
-    <CssVarsProvider theme={{ [THEME_ID]: defaultTheme }}>
+    <CssVarsProvider
+      attribute="data-mui-color-scheme"
+      modeStorageKey="mui-mode"
+      colorSchemeStorageKey="mui-color-scheme"
+      theme={{ [THEME_ID]: defaultTheme }}
+    >
       {importGoogleFont()}
       <Box sx={{ display: 'flex', mb: 2 }}>
         <Select
@@ -803,6 +977,7 @@ export default function ThemeBuilder() {
               randomBgSwap();
               randomRadius();
               randomFamily();
+              randomDensity();
             }}
           >
             <SvgIcon>
@@ -839,6 +1014,7 @@ export default function ThemeBuilder() {
               setBgSwap(false);
               setRadius('smooth');
               setFamily(familyOptions[0]);
+              setDensity('regular');
             }}
           >
             Reset
@@ -867,6 +1043,11 @@ export default function ThemeBuilder() {
         <FormControl size="sm">
           <FormLabel sx={{ fontWeight: 'lg' }}>Font family</FormLabel>
           {renderFamily()}
+        </FormControl>
+
+        <FormControl size="sm">
+          <FormLabel sx={{ fontWeight: 'lg' }}>Density</FormLabel>
+          {renderDensity()}
         </FormControl>
       </Card>
     </CssVarsProvider>
