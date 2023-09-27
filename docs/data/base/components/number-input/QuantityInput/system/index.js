@@ -60,7 +60,6 @@ const StyledInputRoot = styled('div')(
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
-  
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -110,14 +109,12 @@ const StyledButton = styled('button')(
   border-radius: 999px;
   color: ${theme.palette.mode === 'dark' ? blue[300] : blue[600]};
   background: transparent;
-
   width: 40px;
   height: 40px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;

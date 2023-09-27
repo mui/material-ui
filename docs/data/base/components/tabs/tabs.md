@@ -24,11 +24,9 @@ Tabs are implemented using a collection of related components:
 - `<TabPanel />` - the card that hosts the content associated with a tab.
 - `<Tabs />` - the top-level component that wraps the Tabs List and Tab Panel components so that tabs and their panels can communicate with one another.
 
-{{"demo": "UnstyledTabsIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledTabsIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Components
-
-### Usage
 
 ```jsx
 import { Tab } from '@mui/base/Tab';
@@ -94,7 +92,8 @@ When vertical, you must set `orientation="vertical"` on the `<Tabs />` component
 
 ### Usage with TypeScript
 
-In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component.
+This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
 <Tab<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />

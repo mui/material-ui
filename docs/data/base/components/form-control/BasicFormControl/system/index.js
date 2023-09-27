@@ -16,7 +16,7 @@ export default function BasicFormControl() {
 
 const StyledInput = styled(Input)(
   ({ theme }) => `
-  
+
   .${inputClasses.input} {
     width: 320px;
     font-size: 0.875rem;

@@ -27,19 +27,9 @@ The Popup component, once stable, is intended to replace the [Popper](/base-ui/r
 
 ## Component
 
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
 import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
-
-export default function MyApp() {
-  return <Popup>{/* the popup's content */}</Popup>;
-}
 ```
-
-### Basics
 
 By default, the Popup is mounted to the DOM when its `open` prop is set to `true`, and removed from the DOM when `open` is `false`.
 
@@ -48,13 +38,13 @@ The children are placed in a [Portal](/base-ui/react-portal/) prepended to the b
 You can disable this behavior with `disablePortal` prop.
 See how it's done in the [Disable portal](#disable-portal) section below.
 
-The following demo shows how to create and style a basic popup.
+The following demo shows how to create and style a basic Popup.
 Click **Toggle Popup** to see how it behaves:
 
 {{"demo": "SimplePopup.js", "defaultCodeOpen": true}}
 
 :::warning
-By default, clicking outside the popup does not hide it.
+By default, clicking outside the Popup doesn't hide it.
 If you need this behavior, you can use the [Click-Away Listener](/base-ui/react-click-away-listener/) component.
 :::
 

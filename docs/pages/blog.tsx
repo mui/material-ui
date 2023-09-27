@@ -126,8 +126,8 @@ function PostPreview(props: BlogPost) {
             <Avatar
               key={author}
               alt=""
-              src={`${AUTHORS[author].avatar}?s=${28}`}
               srcSet={`${AUTHORS[author].avatar}?s=${28 * 2} 2x`}
+              src={`${AUTHORS[author].avatar}?s=${28}`}
             />
           ))}
         </AvatarGroup>
@@ -264,13 +264,13 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       <main id="main-content">
         <Box
           sx={(theme) => ({
-            background: `linear-gradient(180deg, #FFF 50%, 
+            background: `linear-gradient(180deg, #FFF 50%,
           ${(theme.vars || theme).palette.primary[50]} 100%)
         `,
             ...theme.applyDarkStyles({
               background: `linear-gradient(180deg, ${
                 (theme.vars || theme).palette.primaryDark[800]
-              } 50%, 
+              } 50%,
           ${alpha(theme.palette.primary[900], 0.2)} 100%)
           `,
             }),

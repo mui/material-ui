@@ -108,8 +108,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     success: colors.green,
     warning: colors.yellow,
     common: {
-      white: '#FCFCFD',
-      black: '#09090B',
+      white: '#FFF',
+      black: '#000',
     },
   };
 
@@ -124,8 +124,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
     plainColor: getCssVarColor(`palette-${color}-500`),
-    plainHoverBg: getCssVarColor(`palette-${color}-50`),
-    plainActiveBg: getCssVarColor(`palette-${color}-100`),
+    plainHoverBg: getCssVarColor(`palette-${color}-100`),
+    plainActiveBg: getCssVarColor(`palette-${color}-200`),
     plainDisabledColor: getCssVarColor(`palette-neutral-400`),
 
     outlinedColor: getCssVarColor(`palette-${color}-500`),
@@ -141,14 +141,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     softActiveColor: getCssVarColor(`palette-${color}-800`),
     softActiveBg: getCssVarColor(`palette-${color}-300`),
     softDisabledColor: getCssVarColor(`palette-neutral-400`),
-    softDisabledBg: getCssVarColor(`palette-${color}-50`),
+    softDisabledBg: getCssVarColor(`palette-neutral-50`),
 
     solidColor: getCssVarColor(`palette-common-white`),
     solidBg: getCssVarColor(`palette-${color}-500`),
     solidHoverBg: getCssVarColor(`palette-${color}-600`),
     solidActiveBg: getCssVarColor(`palette-${color}-700`),
     solidDisabledColor: getCssVarColor(`palette-neutral-400`),
-    solidDisabledBg: getCssVarColor(`palette-${color}-100`),
+    solidDisabledBg: getCssVarColor(`palette-neutral-100`),
   });
 
   const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -170,14 +170,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     softActiveColor: getCssVarColor(`palette-${color}-100`),
     softActiveBg: getCssVarColor(`palette-${color}-600`),
     softDisabledColor: getCssVarColor(`palette-neutral-500`),
-    softDisabledBg: getCssVarColor(`palette-${color}-900`),
+    softDisabledBg: getCssVarColor(`palette-neutral-800`),
 
     solidColor: getCssVarColor(`palette-common-white`),
     solidBg: getCssVarColor(`palette-${color}-500`),
     solidHoverBg: getCssVarColor(`palette-${color}-600`),
     solidActiveBg: getCssVarColor(`palette-${color}-700`),
     solidDisabledColor: getCssVarColor(`palette-neutral-500`),
-    solidDisabledBg: getCssVarColor(`palette-${color}-800`),
+    solidDisabledBg: getCssVarColor(`palette-neutral-800`),
   });
 
   const lightColorSystem = {
@@ -191,6 +191,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...defaultColors.neutral,
         ...createLightModeVariantVariables('neutral'),
         plainColor: getCssVarColor('palette-neutral-700'),
+        plainHoverColor: getCssVarColor(`palette-neutral-900`),
         outlinedColor: getCssVarColor('palette-neutral-700'),
       },
       danger: {
@@ -206,8 +207,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createLightModeVariantVariables('warning'),
       },
       common: {
-        white: '#FBFCFD',
-        black: '#0E0E10',
+        white: '#FFF',
+        black: '#000',
       },
       text: {
         primary: getCssVarColor('palette-neutral-800'),
@@ -216,8 +217,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         icon: getCssVarColor('palette-neutral-500'),
       },
       background: {
-        body: getCssVarColor('palette-neutral-50'),
-        surface: getCssVarColor('palette-common-white'),
+        body: getCssVarColor('palette-common-white'),
+        surface: getCssVarColor('palette-neutral-50'),
         popup: getCssVarColor('palette-common-white'),
         level1: getCssVarColor('palette-neutral-100'),
         level2: getCssVarColor('palette-neutral-200'),
@@ -231,7 +232,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       divider: `rgba(${getCssVar(
         'palette-neutral-mainChannel',
         colorChannel(defaultColors.neutral[500]), // should be the same index as in `attachColorChannels`
-      )} / 0.3)`,
+      )} / 0.2)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
@@ -248,6 +249,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       neutral: {
         ...defaultColors.neutral,
         ...createDarkModeVariantVariables('neutral'),
+        plainColor: getCssVarColor('palette-neutral-300'),
+        plainHoverColor: getCssVarColor(`palette-neutral-300`),
       },
       danger: {
         ...defaultColors.danger,
@@ -262,8 +265,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createDarkModeVariantVariables('warning'),
       },
       common: {
-        white: '#FBFCFD',
-        black: '#0E0E10',
+        white: '#FFF',
+        black: '#000',
       },
       text: {
         primary: getCssVarColor('palette-neutral-100'),
