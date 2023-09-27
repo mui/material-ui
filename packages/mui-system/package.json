@@ -40,7 +40,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.15",
+    "@babel/runtime": "^7.23.1",
     "@mui/private-theming": "^5.14.11",
     "@mui/styled-engine": "^5.14.11",
     "@mui/types": "^7.2.4",

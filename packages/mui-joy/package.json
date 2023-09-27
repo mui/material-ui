@@ -38,7 +38,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.15",
+    "@babel/runtime": "^7.23.1",
     "@mui/base": "5.0.0-beta.17",
     "@mui/core-downloads-tracker": "^5.14.11",
     "@mui/system": "^5.14.11",
