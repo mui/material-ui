@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import TableContainer, { tableContainerClasses as classes } from '@mui/material/TableContainer';
 
 describe('<TableContainer />', () => {

@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
+import {
+  describeConformance,
+  createRenderer,
+  describeJoyColorInversion,
+} from '@mui-internal/test-utils';
 import Button, { buttonClasses as classes } from '@mui/joy/Button';
 import { ThemeProvider } from '@mui/joy/styles';
 
@@ -113,12 +117,50 @@ describe('Joy <Button />', () => {
       const button = getByRole('button');
       expect(button).to.have.property('disabled', true);
     });
+    it('should disable button when loading is true and disabled is false', () => {
+      const { getByRole } = render(<Button loading disabled={false} />);
+
+      const button = getByRole('button');
+      expect(button).to.have.property('disabled', true);
+    });
+    it('should disable button when loading is false and disabled is true', () => {
+      const { getByRole } = render(<Button loading={false} disabled />);
+
+      const button = getByRole('button');
+      expect(button).to.have.property('disabled', true);
+    });
 
     it('renders a progressbar', () => {
       const { getByRole } = render(<Button loading>Submit</Button>);
 
       const progressbar = getByRole('progressbar');
       expect(progressbar).toBeVisible();
+    });
+  });
+
+  describe('prop:disabled', () => {
+    it('should apply disabled styles when button is disabled', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const { getByRole } = render(<Button disabled />);
+
+      expect(getByRole('button')).toHaveComputedStyle({
+        color: 'rgb(159, 166, 173)',
+        backgroundColor: 'rgb(240, 244, 248)',
+      });
+    });
+
+    it('should apply disabled styles when button is disabled and when component prop is provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const { getByRole } = render(<Button disabled component="a" />);
+
+      expect(getByRole('button')).toHaveComputedStyle({
+        color: 'rgb(159, 166, 173)',
+        backgroundColor: 'rgb(240, 244, 248)',
+      });
     });
   });
 

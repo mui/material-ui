@@ -44,6 +44,11 @@
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },
+    "hidden": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "open is false"
+    },
     "backdrop": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the backdrop element"

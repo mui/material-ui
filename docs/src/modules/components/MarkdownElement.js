@@ -280,12 +280,25 @@ const Root = styled('div')(
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
+      '&>code': {
+        height: 'fit-content',
+        backgroundColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
+        borderColor: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
+      },
       '& .MuiCallout-content': {
+        minWidth: 0, // Allows content to shrink. Useful when callout contains code block
+        flexGrow: 1,
         display: 'flex',
         flexDirection: 'column',
         gap: 6,
         '&>p, ul': {
           marginBottom: 0,
+        },
+        '& .MuiCode-root': {
+          '&>pre': {
+            margin: 0,
+            marginTop: 4,
+          },
         },
         '&>ul': {
           paddingLeft: 22,
@@ -448,9 +461,8 @@ const Root = styled('div')(
       fontWeight: 500,
       borderRadius: 6,
       border: 'none',
-      backgroundColor: 'transparent',
+      backgroundColor: '#0F1924', // using the code block one-off background color (defined in line 23)
       color: '#FFF',
-      opacity: 0.6,
       transition: theme.transitions.create(['background', 'borderColor', 'display'], {
         duration: theme.transitions.duration.shortest,
       }),
@@ -463,12 +475,15 @@ const Root = styled('div')(
         flexShrink: 0,
         fontSize: '18px',
         margin: 'auto',
+        opacity: 0.6,
       },
       '& .MuiCode-copied-icon': {
         display: 'none',
       },
       '&:hover, &:focus': {
-        opacity: 1,
+        '& svg': {
+          opacity: 1,
+        },
         backgroundColor: lightTheme.palette.primaryDark[500],
         '& .MuiCode-copyKeypress': {
           display: 'block',
@@ -600,6 +615,11 @@ const Root = styled('div')(
       },
       '& .MuiCallout-root': {
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
+        '&>code': {
+          height: 'fit-content',
+          backgroundColor: `var(--muidocs-palette-primaryDark-600, ${lightTheme.palette.primaryDark[600]})`,
+          borderColor: `var(--muidocs-palette-primaryDark-500, ${lightTheme.palette.primaryDark[500]})`,
+        },
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
           backgroundColor: alpha(darkTheme.palette.error[700], 0.2),

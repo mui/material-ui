@@ -3,7 +3,6 @@ import { SxProps } from '@mui/system';
 import { SlotComponentProps } from '@mui/base';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
-import ButtonBase from '../ButtonBase';
 import { TabScrollButtonProps } from '../TabScrollButton';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TabsClasses } from './tabsClasses';
@@ -156,7 +155,7 @@ export interface TabsOwnProps {
    *
    *  - `scrollable` will invoke scrolling properties and allow for horizontally
    *  scrolling (or swiping) of the tab bar.
-   *  -`fullWidth` will make the tabs grow to use all the available space,
+   *  - `fullWidth` will make the tabs grow to use all the available space,
    *  which should be used for small views, like on mobile.
    *  - `standard` will render the default state.
    * @default 'standard'
@@ -176,7 +175,7 @@ export interface TabsOwnProps {
 
 export interface TabsTypeMap<
   AdditionalProps = {},
-  RootComponent extends React.ElementType = typeof ButtonBase,
+  RootComponent extends React.ElementType = 'div',
 > {
   props: AdditionalProps & TabsOwnProps;
   defaultComponent: RootComponent;

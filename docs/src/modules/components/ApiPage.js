@@ -127,7 +127,7 @@ export default function ApiPage(props) {
     : '/material-ui/customization/theme-components/#theme-style-overrides';
   let slotGuideLink = '';
   if (isJoyComponent) {
-    slotGuideLink = '/joy-ui/guides/overriding-component-structure/';
+    slotGuideLink = '/joy-ui/customization/overriding-component-structure/';
   } else if (isBaseComponent) {
     slotGuideLink = '/base-ui/guides/overriding-component-structure/';
   }
@@ -275,10 +275,11 @@ export default function ApiPage(props) {
           className="MuiCallout-root MuiCallout-info"
           dangerouslySetInnerHTML={{ __html: refHint }}
         />
+        <Divider />
         {inheritance && (
           <React.Fragment>
             <Heading hash="inheritance" level="h3" />
-            <span
+            <p
               dangerouslySetInnerHTML={{
                 __html: t('api-docs.inheritanceDescription')
                   .replace(/{{component}}/, inheritance.component)
