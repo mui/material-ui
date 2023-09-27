@@ -5,16 +5,17 @@
 ## Priorization method
 
 Joy UI is a community-driven project, meaning we usually pick the issues and suggestions that resonate the most with the community.
-Therefore, make sure to leave **an upvote** 👍 on [the GitHub issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:%22package:+joy-ui%22) you are most interested in.
+Therefore, make sure to leave an upvote 👍 on [the GitHub issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:%22package:+joy-ui%22) you are most interested in.
 
-Additionally, the MUI team conducts yearly [developer surveys](/blog/?tags=Developer+survey/), a key input source for the roadmap of every MUI product.
-Your participation is invaluable, and we invite you to engage with it whenever possible. Keep an eye on our social media to not lose the next one!
+Additionally, the MUI team conducts yearly [developer surveys](/blog/?tags=Developer+survey/), which serves as a key input for Joy UI's roadmap, too.
+Your participation is invaluable! Keep an eye on MUI's social media to enagege with the next one and help influence the future of this product!
 
 ## Keeping track of the roadmap
 
 ### Public GitHub project
 
-We use a GitHub project to track initiative prioritization across all MUI Core products, including Joy UI. We usually add to the project tasks that we internally discussed having a strategic impact.
+We use a GitHub project to track initiative prioritization across all MUI Core products, including Joy UI.
+The tasks we add to the project are usually those that we internally discussed having a strategic impact.
 
 [**Visit it now** 👉](https://github.com/orgs/mui/projects/18/views/8)
 
@@ -23,7 +24,7 @@ We use a GitHub project to track initiative prioritization across all MUI Core p
 ### Milestones
 
 We also create milestones within the MUI Core repository, where Joy UI is developed, to keep track of larger cycles.
-You can now follow which issues were picked up for the stable release and how overall progress is going.
+Check it out and follow which issues were picked up for the stable release and how overall progress is going.
 
 [**Visit it now** 👉](https://github.com/mui/material-ui/milestone/47)
 
