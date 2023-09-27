@@ -37,7 +37,7 @@ describe('<MenuItem />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
   // afterEach(() => {
-  //   document.getElementsByTagName('html')[0].innerHTML = ''; 
+  //   document.getElementsByTagName('html')[0].innerHTML = '';
   // });
 
   describeConformance(<MenuItem data-testid="menuitem">1</MenuItem>, () => ({
@@ -57,12 +57,14 @@ describe('<MenuItem />', () => {
   const renderWithMenu = (node) => {
     function Test() {
       return (
-        <Menu anchorEl={document.createElement('div')} open>{node}</Menu>
-      )
+        <Menu anchorEl={document.createElement('div')} open>
+          {node}
+        </Menu>
+      );
     }
 
-    return render(<Test />)
-  }
+    return render(<Test />);
+  };
 
   it('should render a focusable menuitem', () => {
     renderWithMenu(<MenuItem />);
@@ -72,7 +74,9 @@ describe('<MenuItem />', () => {
   });
 
   it('has a ripple when clicked', () => {
-    renderWithMenu(<MenuItem TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />);
+    renderWithMenu(
+      <MenuItem TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />,
+    );
     const menuitem = screen.getByRole('menuitem');
 
     // ripple starts on mousedown
@@ -177,18 +181,26 @@ describe('<MenuItem />', () => {
   });
 
   it('prop: disableGutters', () => {
-    const { rerender } = render(<Menu anchorEl={document.createElement('div')} open><MenuItem /></Menu>);
+    const { rerender } = render(
+      <Menu anchorEl={document.createElement('div')} open>
+        <MenuItem />
+      </Menu>,
+    );
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.class(classes.gutters);
 
-    rerender(<Menu anchorEl={document.createElement('div')} open><MenuItem disableGutters /></Menu>);
+    rerender(
+      <Menu anchorEl={document.createElement('div')} open>
+        <MenuItem disableGutters />
+      </Menu>,
+    );
 
     expect(menuitem).not.to.have.class(classes.gutters);
   });
 
   // TODO: Need to be re-structured now that we don't use the List component internally
-  // describe('context: dense', () => { 
+  // describe('context: dense', () => {
   //   it.skip('should forward the context', () => {
   //     let context = null;
   //     const { setProps } = render(

@@ -10,12 +10,12 @@ import {
   fireEvent,
   strictModeDoubleLoggingSuppressed,
 } from '@mui-internal/test-utils';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Menu, { menuClasses as classes } from '@mui/material-next/Menu';
-import Button from '@mui/material/Button';
 import { useDropdown, DropdownContext } from '@mui/base/useDropdown';
 import { useMenuButton } from '@mui/base/useMenuButton';
+import Button from '@mui/material/Button';
+import Menu, { menuClasses as classes } from '@mui/material-next/Menu';
 import Popover from '@mui/material/Popover';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { MenuPaper } from './Menu';
 
 describe('<Menu />', () => {
@@ -164,10 +164,13 @@ describe('<Menu />', () => {
     });
   });
 
-  it.skip('should pass onClose prop to Popover', () => {
+  it('should pass onClose prop to Popover', () => {
     const handleClose = spy();
     render(<Menu anchorEl={document.createElement('div')} open onClose={handleClose} />);
 
+    act(() => {
+      screen.getByRole('menu').focus();
+    });
     fireEvent.keyDown(screen.getByRole('menu'), { key: 'Escape' });
 
     expect(handleClose.callCount).to.equal(1);
@@ -195,23 +198,24 @@ describe('<Menu />', () => {
     });
   });
 
-  it.skip('should open during the initial mount', () => {
-    function MenuItem(props) {
-      const { autoFocus, children } = props;
-      return (
-        <div role="menuitem" tabIndex={-1} data-autofocus={autoFocus}>
-          {children}
-        </div>
-      );
-    }
-    render(
-      <Menu anchorEl={document.createElement('div')} open>
-        <MenuItem>one</MenuItem>
-      </Menu>,
-    );
+  // TODO: This test is failing
+  // it('should open during the initial mount', () => {
+  //   function MenuItem(props) {
+  //     const { autoFocus, children } = props;
+  //     return (
+  //       <div role="menuitem" tabIndex={-1} data-autofocus={autoFocus}>
+  //         {children}
+  //       </div>
+  //     );
+  //   }
+  //   render(
+  //     <Menu anchorEl={document.createElement('div')} open>
+  //       <MenuItem>one</MenuItem>
+  //     </Menu>,
+  //   );
 
-    expect(screen.getByRole('menuitem')).to.have.attribute('data-autofocus', 'true');
-  });
+  //   expect(screen.getByRole('menuitem')).to.have.attribute('data-autofocus', 'true');
+  // });
 
   it('should not focus list if autoFocus=false', () => {
     render(
@@ -250,7 +254,7 @@ describe('<Menu />', () => {
     expect(onEnteringSpy.callCount).to.equal(1);
   });
 
-  it.skip('should call onClose on tab', () => {
+  it('should call onClose on tab', () => {
     function MenuItem(props) {
       const { autoFocus, children } = props;
 
@@ -274,6 +278,9 @@ describe('<Menu />', () => {
       </Menu>,
     );
 
+    act(() => {
+      screen.getByRole('menuitem').focus();
+    });
     fireEvent.keyDown(screen.getByRole('menuitem'), { key: 'Tab' });
 
     expect(onCloseSpy.callCount).to.equal(1);
@@ -545,10 +552,13 @@ describe('<Menu />', () => {
       });
     });
 
-    it.skip('should pass onClose prop to Popover', () => {
+    it('should pass onClose prop to Popover', () => {
       const handleClose = spy();
       render(<ContextMenu anchorEl={document.createElement('div')} open onClose={handleClose} />);
 
+      act(() => {
+        screen.getByRole('menu').focus();
+      });
       fireEvent.keyDown(screen.getByRole('menu'), { key: 'Escape' });
 
       expect(handleClose.callCount).to.equal(1);
@@ -578,23 +588,24 @@ describe('<Menu />', () => {
       });
     });
 
-    it.skip('should open during the initial mount', () => {
-      function MenuItem(props) {
-        const { autoFocus, children } = props;
-        return (
-          <div role="menuitem" tabIndex={-1} data-autofocus={autoFocus}>
-            {children}
-          </div>
-        );
-      }
-      render(
-        <ContextMenu anchorEl={document.createElement('div')} open>
-          <MenuItem>one</MenuItem>
-        </ContextMenu>,
-      );
+    // TODO: This test is failing
+    // it('should open during the initial mount', () => {
+    //   function MenuItem(props) {
+    //     const { autoFocus, children } = props;
+    //     return (
+    //       <div role="menuitem" tabIndex={-1} data-autofocus={autoFocus}>
+    //         {children}
+    //       </div>
+    //     );
+    //   }
+    //   render(
+    //     <ContextMenu anchorEl={document.createElement('div')} open>
+    //       <MenuItem>one</MenuItem>
+    //     </ContextMenu>,
+    //   );
 
-      expect(screen.getByRole('menuitem')).to.have.attribute('data-autofocus', 'true');
-    });
+    //   expect(screen.getByRole('menuitem')).to.have.attribute('data-autofocus', 'true');
+    // });
 
     it('should not focus list if autoFocus=false', () => {
       render(
@@ -633,7 +644,7 @@ describe('<Menu />', () => {
       expect(onEnteringSpy.callCount).to.equal(1);
     });
 
-    it.skip('should call onClose on tab', () => {
+    it('should call onClose on tab', () => {
       function MenuItem(props) {
         const { autoFocus, children } = props;
 
@@ -657,6 +668,9 @@ describe('<Menu />', () => {
         </ContextMenu>,
       );
 
+      act(() => {
+        screen.getByRole('menuitem').focus();
+      });
       fireEvent.keyDown(screen.getByRole('menuitem'), { key: 'Tab' });
 
       expect(onCloseSpy.callCount).to.equal(1);
