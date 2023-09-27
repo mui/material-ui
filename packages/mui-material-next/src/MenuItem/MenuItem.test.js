@@ -10,7 +10,7 @@ import {
 } from '@mui-internal/test-utils';
 import { MenuProvider } from '@mui/base/useMenu';
 import MenuItem, { menuItemClasses as classes } from '@mui/material-next/MenuItem';
-// import Menu from '@mui/material-next/Menu';
+import Menu from '@mui/material-next/Menu';
 import ButtonBase from '@mui/material/ButtonBase';
 
 const dummyGetItemState = () => ({
@@ -34,7 +34,11 @@ const testContext = {
 };
 
 describe('<MenuItem />', () => {
-  const { render } = createRenderer();
+  const { render } = createRenderer({ clock: 'fake' });
+
+  // afterEach(() => {
+  //   document.getElementsByTagName('html')[0].innerHTML = ''; 
+  // });
 
   describeConformance(<MenuItem data-testid="menuitem">1</MenuItem>, () => ({
     render: (node) => {
@@ -50,29 +54,25 @@ describe('<MenuItem />', () => {
     skip: ['componentsProp', 'reactTestRenderer'],
   }));
 
-  // const renderWithWrapper = (node) => {
-  //   function Test() {
-  //     const anchorEl = React.useRef();
-  //     return (
-  //       <React.Fragment>
-  //         <button ref={anchorEl}></button>
-  //         <Menu open anchorEl={anchorEl}>{node}</Menu>
-  //       </React.Fragment>
-  //     )
-  //   }
+  const renderWithMenu = (node) => {
+    function Test() {
+      return (
+        <Menu anchorEl={document.createElement('div')} open>{node}</Menu>
+      )
+    }
 
-  //   return render(<Test />)
-  // }
+    return render(<Test />)
+  }
 
-  it.skip('should render a focusable menuitem', () => {
-    render(<MenuItem />);
+  it('should render a focusable menuitem', () => {
+    renderWithMenu(<MenuItem />);
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.property('tabIndex', -1);
   });
 
-  it.skip('has a ripple when clicked', () => {
-    render(<MenuItem TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />);
+  it('has a ripple when clicked', () => {
+    renderWithMenu(<MenuItem TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />);
     const menuitem = screen.getByRole('menuitem');
 
     // ripple starts on mousedown
@@ -81,16 +81,16 @@ describe('<MenuItem />', () => {
     expect(menuitem.querySelectorAll('.ripple-visible')).to.have.length(1);
   });
 
-  it.skip('should render with the selected class but not aria-selected when `selected`', () => {
-    render(<MenuItem selected />);
+  it('should render with the selected class but not aria-selected when `selected`', () => {
+    renderWithMenu(<MenuItem selected />);
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.class(classes.selected);
     expect(menuitem).not.to.have.attribute('aria-selected');
   });
 
-  it.skip('can have a role of option', () => {
-    render(<MenuItem role="option" aria-selected={false} />);
+  it('can have a role of option', () => {
+    renderWithMenu(<MenuItem role="option" aria-selected={false} />);
 
     expect(screen.queryByRole('option')).not.to.equal(null);
   });
@@ -102,10 +102,10 @@ describe('<MenuItem />', () => {
     const events = ['click', 'mouseDown', 'mouseEnter', 'mouseLeave', 'mouseUp', 'touchEnd'];
 
     events.forEach((eventName) => {
-      it.skip(`should fire ${eventName}`, () => {
+      it(`should fire ${eventName}`, () => {
         const handlerName = `on${eventName[0].toUpperCase()}${eventName.slice(1)}`;
         const handler = spy();
-        render(<MenuItem {...{ [handlerName]: handler }} />);
+        renderWithMenu(<MenuItem {...{ [handlerName]: handler }} />);
 
         fireEvent[eventName](screen.getByRole('menuitem'));
 
@@ -113,12 +113,12 @@ describe('<MenuItem />', () => {
       });
     });
 
-    it.skip(`should fire focus, keydown, keyup and blur`, () => {
+    it(`should fire focus, keydown, keyup and blur`, () => {
       const handleFocus = spy();
       const handleKeyDown = spy();
       const handleKeyUp = spy();
       const handleBlur = spy();
-      render(
+      renderWithMenu(
         <MenuItem
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
@@ -142,19 +142,17 @@ describe('<MenuItem />', () => {
 
       expect(handleKeyUp.callCount).to.equal(1);
 
-      menuitem.blur();
-
       expect(handleKeyDown.callCount).to.equal(1);
     });
 
-    it.skip('should fire onTouchStart', function touchStartTest() {
+    it('should fire onTouchStart', function touchStartTest() {
       // only run in supported browsers
       if (typeof Touch === 'undefined') {
         this.skip();
       }
 
       const handleTouchStart = spy();
-      render(<MenuItem onTouchStart={handleTouchStart} />);
+      renderWithMenu(<MenuItem onTouchStart={handleTouchStart} />);
       const menuitem = screen.getByRole('menuitem');
 
       const touch = new Touch({ identifier: 0, target: menuitem, clientX: 0, clientY: 0 });
@@ -164,46 +162,47 @@ describe('<MenuItem />', () => {
     });
   });
 
-  it.skip('can be disabled', () => {
-    render(<MenuItem disabled />);
+  it('can be disabled', () => {
+    renderWithMenu(<MenuItem disabled />);
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.attribute('aria-disabled', 'true');
   });
 
-  it.skip('can be selected', () => {
-    render(<MenuItem selected />);
+  it('can be selected', () => {
+    renderWithMenu(<MenuItem selected />);
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.class(classes.selected);
   });
 
-  it.skip('prop: disableGutters', () => {
-    const { rerender } = render(<MenuItem />);
+  it('prop: disableGutters', () => {
+    const { rerender } = render(<Menu anchorEl={document.createElement('div')} open><MenuItem /></Menu>);
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.class(classes.gutters);
 
-    rerender(<MenuItem disableGutters />);
+    rerender(<Menu anchorEl={document.createElement('div')} open><MenuItem disableGutters /></Menu>);
 
     expect(menuitem).not.to.have.class(classes.gutters);
   });
 
-  describe('context: dense', () => {
-    it.skip('should forward the context', () => {
-      let context = null;
-      const { setProps } = render(
-        <MenuItem>
-          <ListContext.Consumer>
-            {(options) => {
-              context = options;
-            }}
-          </ListContext.Consumer>
-        </MenuItem>,
-      );
-      expect(context).to.have.property('dense', false);
-      setProps({ dense: true });
-      expect(context).to.have.property('dense', true);
-    });
-  });
+  // TODO: Need to be re-structured now that we don't use the List component internally
+  // describe('context: dense', () => { 
+  //   it.skip('should forward the context', () => {
+  //     let context = null;
+  //     const { setProps } = render(
+  //       <MenuItem>
+  //         <ListContext.Consumer>
+  //           {(options) => {
+  //             context = options;
+  //           }}
+  //         </ListContext.Consumer>
+  //       </MenuItem>,
+  //     );
+  //     expect(context).to.have.property('dense', false);
+  //     setProps({ dense: true });
+  //     expect(context).to.have.property('dense', true);
+  //   });
+  // });
 });
