@@ -109,7 +109,7 @@ const StyledBox = styled(Box)`
   color: white;
 `;
 
-export default function StyledBoxWithSx() {
+function StyledBoxWithSx() {
   return (
     <StyledBox component="span" sx={{ width: 300 }}>
       Box
