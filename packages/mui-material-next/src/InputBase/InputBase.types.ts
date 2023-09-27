@@ -261,7 +261,9 @@ export interface InputBaseTypeMap<
 export type InputBaseProps<
   RootComponentType extends React.ElementType = InputBaseTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<InputBaseTypeMap<AdditionalProps, RootComponentType>, RootComponentType>;
+> = OverrideProps<InputBaseTypeMap<AdditionalProps, RootComponentType>, RootComponentType> & {
+  inputComponent?: React.ElementType;
+};
 
 export type InputBaseOwnerState = Simplify<
   InputBaseOwnProps & {

@@ -16,7 +16,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import { OverrideProps } from '@mui/types';
 import FormControlContext from '@mui/material-next/FormControl/FormControlContext';
 import useFormControl from '@mui/material-next/FormControl/useFormControl';
 import styled from '../styles/styled';
@@ -264,6 +264,7 @@ const InputBase = React.forwardRef(function InputBase<
     error: errorProp,
     fullWidth = false,
     id,
+    inputComponent: inputComponentProp = 'input',
     inputRef: inputRefProp,
     margin,
     maxRows,
@@ -433,6 +434,11 @@ const InputBase = React.forwardRef(function InputBase<
     type,
   };
 
+  let InputComponent = inputComponentProp;
+  if (multiline && InputComponent === 'input') {
+    InputComponent = TextareaAutosize;
+  }
+
   const Root = slots.root || InputBaseRoot;
   const rootProps: WithOptionalOwnerState<InputBaseRootSlotProps> = useSlotProps({
     elementType: Root,
@@ -446,15 +452,13 @@ const InputBase = React.forwardRef(function InputBase<
     className: [classes.root, className],
   });
 
-  const InputComponent = multiline
-    ? slots.textarea ?? TextareaAutosize
-    : slots.input ?? InputBaseInput;
+  const Input = multiline ? slots.textarea ?? TextareaAutosize : slots.input ?? InputBaseInput;
 
   const inputProps: WithOptionalOwnerState<InputBaseInputSlotProps> = useSlotProps({
     // TextareaAutosize doesn't support ownerState, we manually change the
     // elementType so ownerState is excluded from the return value (this doesn't
     // affect other returned props)
-    elementType: InputComponent === TextareaAutosize ? 'textarea' : InputComponent,
+    elementType: Input === TextareaAutosize ? 'textarea' : Input,
     getSlotProps: (otherHandlers: EventHandlers) => {
       return getInputProps({
         ...propsToForwardToInputSlot,
@@ -463,9 +467,10 @@ const InputBase = React.forwardRef(function InputBase<
     },
     externalSlotProps: slotProps.input,
     additionalProps: {
+      as: InputComponent,
       rows: multiline ? rows : undefined,
       ...(multiline &&
-        !isHostComponent(InputComponent) && {
+        !isHostComponent(Input) && {
           minRows: rows || minRows,
           maxRows: rows || maxRows,
         }),
@@ -504,7 +509,7 @@ const InputBase = React.forwardRef(function InputBase<
       <Root {...rootProps}>
         {startAdornment}
         <FormControlContext.Provider value={undefined}>
-          <InputComponent onAnimationStart={handleAutoFill} rows={rows} {...inputProps} />
+          <Input onAnimationStart={handleAutoFill} rows={rows} {...inputProps} />
         </FormControlContext.Provider>
         {endAdornment}
         {renderSuffix
@@ -522,7 +527,20 @@ const InputBase = React.forwardRef(function InputBase<
       </Root>
     </React.Fragment>
   );
-}) as OverridableComponent<InputBaseTypeMap>;
+}) as InputBaseComponent;
+
+interface InputBaseComponent {
+  <C extends React.ElementType>(
+    props: {
+      /**
+       * The component used for the input node.
+       * Either a string to use a HTML element or a component.
+       */
+      inputComponent?: C;
+    } & OverrideProps<InputBaseTypeMap, C>,
+  ): JSX.Element | null;
+  propTypes?: any;
+}
 
 InputBase.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

@@ -134,17 +134,6 @@ This is to ensure that default is prevented when the `ButtonBase` root is not a 
 
 ## InputBase
 
-### Removed the `inputComponent` prop
-
-The `inputComponent` is deprecated in favor of `slots.input`:
-
-```diff
- <InputBase
--    inputComponent="textarea"
-+    slots={{ input: 'textarea' }}
- />
-```
-
 ### Removed `inputProps`
 
 `inputProps` are deprecated in favor of `slotProps.input`:

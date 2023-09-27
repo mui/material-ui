@@ -221,7 +221,17 @@ describe('<InputBase />', () => {
     });
   });
 
-  describe('prop: slots', () => {
+  describe('prop: inputComponent', () => {
+    it('should accept any html component', () => {
+      const { getByTestId } = render(
+        <InputBase
+          inputComponent="span"
+          slotProps={{ input: { 'data-testid': 'input-component' } }}
+        />,
+      );
+      expect(getByTestId('input-component')).to.have.property('nodeName', 'SPAN');
+    });
+
     it('should inject onBlur and onFocus', () => {
       let injectedProps;
       const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
@@ -230,7 +240,7 @@ describe('<InputBase />', () => {
         return <input ref={ref} {...other} />;
       });
 
-      render(<InputBase slots={{ input: MyInputBase }} />);
+      render(<InputBase inputComponent={MyInputBase} />);
 
       expect(typeof injectedProps.onBlur).to.equal('function');
       expect(typeof injectedProps.onFocus).to.equal('function');
@@ -257,11 +267,7 @@ describe('<InputBase />', () => {
         const { getByRole, getByTestId } = render(
           <FormControl>
             <FilledState data-testid="filled" />
-            <InputBase
-              slots={{
-                input: MockedValue,
-              }}
-            />
+            <InputBase inputComponent={MockedValue} />
           </FormControl>,
         );
         expect(getByTestId('filled')).to.have.text('filled: false');
@@ -284,11 +290,7 @@ describe('<InputBase />', () => {
         const { getByRole, getByTestId } = render(
           <FormControl>
             <FilledState data-testid="filled" />
-            <InputBase
-              slots={{
-                input: FullTarget,
-              }}
-            />
+            <InputBase inputComponent={FullTarget} />
           </FormControl>,
         );
         expect(getByTestId('filled')).to.have.text('filled: false');
