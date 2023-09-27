@@ -1,24 +1,17 @@
 import * as React from 'react';
 import { unstable_useId as useId } from '@mui/utils';
-import { ListAction, ListContext, ListContextValue, ListItemState } from '../useList';
+import { ListContext, ListContextValue, ListItemState } from '../useList';
 import { MenuItemProps } from './MenuItem.types';
 
-export type MenuItemUnwrappedContextProps = Pick<ListItemState, 'focusable' | 'highlighted'> & {
-  dispatch: React.Dispatch<ListAction<string>>;
-};
-
-type WrapperComponentProps<Wrapped> = Omit<Wrapped, keyof MenuItemUnwrappedContextProps>;
-
 /**
- * Wraps a given MenuItem-like component with another component that observes the parent ListContext
- * and prevents the wrapped component from being rerendered unnecessarily.
- * The wrapped component must be memoized (using React.memo) for this to work.
- * The inner comoonent will receive the following props: `highlighted`, `focusable`, `dispatch`.
+ * Creates an intermediary component that wraps the MenuItem and prevents it
+ * from rendering when its state (taken from ListContext) doesn't change.
  *
+ * @param Component MenuItem component to wrap
  */
 export function unwrapMenuItemContext<WrappedComponentProps extends { id?: string }>(
   Component: React.ComponentType<WrappedComponentProps>,
-): React.ComponentType<WrapperComponentProps<WrappedComponentProps>> {
+): React.ComponentType<WrappedComponentProps> {
   const MenuItemWrapper = React.forwardRef(function MenuItemWrapper<
     RootComponentType extends React.ElementType,
   >(
@@ -26,6 +19,7 @@ export function unwrapMenuItemContext<WrappedComponentProps extends { id?: strin
     forwardedRef: React.ForwardedRef<Element>,
   ): React.ReactElement {
     const listContext = React.useContext(ListContext as React.Context<ListContextValue<string>>);
+
     if (!listContext) {
       throw new Error('MenuItem: ListContext was not found.');
     }
@@ -33,34 +27,57 @@ export function unwrapMenuItemContext<WrappedComponentProps extends { id?: strin
     const { id: idProp } = props;
     const id = useId(idProp);
 
-    if (id === undefined) {
-      // id will be undefined during SSR on React 17.
-      // TODO: use idGenerator from useMenuItem instead?
-      return (
-        <Component
-          {...props}
-          highlighted={false}
-          focusable={false}
-          dispatch={() => {}}
-          ref={forwardedRef}
-        />
-      );
+    const { getItemState, dispatch } = listContext;
+
+    let itemState: ListItemState;
+    if (id != null) {
+      itemState = getItemState(id);
+    } else {
+      itemState = { focusable: true, highlighted: false, selected: false };
     }
 
-    const { getItemState, dispatch } = listContext;
-    const { highlighted, focusable } = getItemState(id);
+    const { highlighted, selected, focusable } = itemState;
+
+    // The local version of getItemState can be only called with the current Option's value.
+    // It doesn't make much sense to render an Option depending on other Options' state anyway.
+    const localGetItemState = React.useCallback(
+      (itemValue: string) => {
+        if (itemValue !== id) {
+          throw new Error(
+            [
+              'Base UI MenuItem: Tried to access the state of another MenuItem.',
+              `itemValue: ${itemValue} | id: ${id}`,
+              'This is unsupported when the MenuItem uses unwrapMenuItemContext as a performance optimization.',
+            ].join('/n'),
+          );
+        }
+
+        return {
+          highlighted,
+          selected,
+          focusable,
+        };
+      },
+      [highlighted, selected, focusable, id],
+    );
+
+    // Create a local (per MenuItem) instance of the ListContext that changes only when
+    // the getItemState's return value changes.
+    // This makes MenuItems re-render only when their state actually change, not when any MenuItem's state changes.
+    const localContextValue = React.useMemo(
+      () => ({
+        dispatch,
+        getItemState: localGetItemState,
+      }),
+      [dispatch, localGetItemState],
+    );
 
     return (
-      <Component
-        {...props}
-        id={id}
-        highlighted={highlighted}
-        focusable={focusable}
-        dispatch={dispatch}
-        ref={forwardedRef}
-      />
+      <ListContext.Provider value={localContextValue}>
+        <Component {...props} id={id} ref={forwardedRef} />
+      </ListContext.Provider>
     );
-  }) as React.FC<WrapperComponentProps<WrappedComponentProps>>;
+  }) as React.FC<WrappedComponentProps>;
 
   return MenuItemWrapper;
 }

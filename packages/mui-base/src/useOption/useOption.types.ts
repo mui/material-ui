@@ -1,4 +1,4 @@
-import { ListAction, UseListItemRootSlotProps } from '../useList';
+import { UseListItemRootSlotProps } from '../useList';
 
 export interface SelectOption<Value> {
   value: Value;
@@ -10,25 +10,21 @@ export interface SelectOption<Value> {
 
 export interface UseOptionParameters<Value> {
   disabled: boolean;
-  /**
-   * @ignore
-   */
-  dispatch: React.Dispatch<ListAction<Value>>;
-  /**
-   * @ignore
-   */
-  highlighted: boolean;
   id?: string;
   label: string | React.ReactNode;
   rootRef?: React.Ref<Element>;
-  /**
-   * @ignore
-   */
-  selected: boolean;
   value: Value;
 }
 
 export interface UseOptionReturnValue {
+  /**
+   * If `true`, the option is selected.
+   */
+  selected: boolean;
+  /**
+   * If `true`, the option is highlighted.
+   */
+  highlighted: boolean;
   index: number;
   /**
    * Resolver for the root slot's props.

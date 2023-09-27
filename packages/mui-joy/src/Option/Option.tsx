@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useOption } from '@mui/base/useOption';
-import { unwrapOptionContext, OptionUnwrappedContextProps } from '@mui/base/Option';
+import { unwrapOptionContext } from '@mui/base/Option';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import useSlot from '../utils/useSlot';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
@@ -47,10 +47,7 @@ const OptionRoot = styled(StyledListItemButton as unknown as 'li', {
  */
 const Option = unwrapOptionContext(
   React.memo(
-    React.forwardRef(function Option(
-      inProps: OptionProps & OptionUnwrappedContextProps<any>,
-      ref: React.ForwardedRef<HTMLLIElement>,
-    ) {
+    React.forwardRef(function Option(inProps: OptionProps, ref: React.ForwardedRef<HTMLLIElement>) {
       const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
         props: inProps,
         name: 'JoyOption',
@@ -60,9 +57,6 @@ const Option = unwrapOptionContext(
         component = 'li',
         children,
         disabled = false,
-        dispatch,
-        selected,
-        highlighted,
         value,
         label,
         variant: variantProp = 'plain',
@@ -85,9 +79,6 @@ const Option = unwrapOptionContext(
 
       const { getRootProps, selected, highlighted, index } = useOption({
         disabled,
-        dispatch,
-        selected,
-        highlighted,
         label: computedLabel,
         value,
         rootRef: combinedRef,

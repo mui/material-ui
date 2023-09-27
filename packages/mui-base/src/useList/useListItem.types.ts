@@ -1,5 +1,3 @@
-import { ListAction } from './listActions.types';
-
 export interface UseListItemParameters<ItemValue> {
   /**
    * If `true`, the list item will dispatch the `itemHover` action on pointer over.
@@ -12,21 +10,12 @@ export interface UseListItemParameters<ItemValue> {
   /**
    * The list item.
    */
-  item: ItemValue | undefined;
-  /**
-   * A ref to the list item's DOM element.
-   */
-  rootRef?: React.Ref<Element>;
-  dispatch: React.Dispatch<ListAction<ItemValue>>;
-  highlighted: boolean;
-  focusable: boolean;
+  item: ItemValue;
 }
 
 interface UseListItemRootSlotOwnProps {
-  id?: string;
   onClick: React.MouseEventHandler;
   onPointerOver: React.PointerEventHandler | undefined;
-  ref: React.RefCallback<Element> | null;
   tabIndex?: number;
 }
 
@@ -43,7 +32,11 @@ export interface UseListItemReturnValue {
     externalProps?: ExternalProps,
   ) => UseListItemRootSlotProps<ExternalProps>;
   /**
-   * The ref to the root element.
+   * If `true`, the current item is highlighted.
    */
-  rootRef: React.RefCallback<Element> | null;
+  highlighted: boolean;
+  /**
+   * If `true`, the current item is selected.
+   */
+  selected: boolean;
 }

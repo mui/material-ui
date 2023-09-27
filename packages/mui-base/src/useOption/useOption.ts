@@ -4,7 +4,7 @@ import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui
 import { SelectOption, UseOptionParameters, UseOptionReturnValue } from './useOption.types';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { useListItem } from '../useList';
-import { useCompoundItem } from '../utils/useCompoundItem';
+import { useCompoundItem } from '../useCompound';
 
 /**
  *
@@ -17,21 +17,13 @@ import { useCompoundItem } from '../utils/useCompoundItem';
  * - [useOption API](https://mui.com/base-ui/react-select/hooks-api/#use-option)
  */
 export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionReturnValue {
-  const {
-    value,
-    label,
-    disabled,
-    rootRef: optionRefParam,
-    id: idParam,
-    dispatch,
-    selected,
-    highlighted,
-  } = params;
+  const { value, label, disabled, rootRef: optionRefParam, id: idParam } = params;
 
-  const { getRootProps: getListItemProps, rootRef: listItemRefHandler } = useListItem({
-    dispatch,
-    focusable: false,
+  const {
+    getRootProps: getListItemProps,
     highlighted,
+    selected,
+  } = useListItem({
     item: value,
   });
 
@@ -52,7 +44,7 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
 
   const { index } = useCompoundItem<Value, SelectOption<Value>>(value, selectOption);
 
-  const handleRef = useForkRef(optionRefParam, optionRef, listItemRefHandler)!;
+  const handleRef = useForkRef(optionRefParam, optionRef)!;
 
   return {
     getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
@@ -68,7 +60,9 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
         'aria-selected': selected,
       };
     },
+    highlighted,
     index,
+    selected,
     rootRef: handleRef,
   };
 }

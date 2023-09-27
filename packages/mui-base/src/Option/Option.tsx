@@ -8,7 +8,7 @@ import { getOptionUtilityClass } from './optionClasses';
 import { useSlotProps } from '../utils';
 import { useOption } from '../useOption';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { OptionUnwrappedContextProps, unwrapOptionContext } from './unwrapOptionContext';
+import { unwrapOptionContext } from './unwrapOptionContext';
 
 function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue>) {
   const { disabled, highlighted, selected } = ownerState;
@@ -34,17 +34,13 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
 const Option = unwrapOptionContext(
   React.memo(
     React.forwardRef(function Option<OptionValue, RootComponentType extends React.ElementType>(
-      props: OptionProps<OptionValue, RootComponentType> & OptionUnwrappedContextProps<OptionValue>,
+      props: OptionProps<OptionValue, RootComponentType>,
       forwardedRef: React.ForwardedRef<Element>,
     ) {
       const {
         children,
         disabled = false,
-        dispatch,
-        focusable,
-        highlighted,
         label,
-        selected,
         slotProps = {},
         slots = {},
         value,
@@ -61,11 +57,8 @@ const Option = unwrapOptionContext(
       const computedLabel =
         label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
 
-      const { getRootProps, index } = useOption({
+      const { getRootProps, selected, highlighted, index } = useOption({
         disabled,
-        dispatch,
-        selected,
-        highlighted,
         label: computedLabel,
         rootRef: combinedRef,
         value,

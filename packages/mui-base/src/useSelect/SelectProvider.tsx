@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { ListContext, ListContextValue } from '../useList/ListContext';
 import { SelectOption } from '../useOption';
-import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
+import { CompoundComponentContext, CompoundComponentContextValue } from '../useCompound';
 
 export type SelectProviderValue<Value> = CompoundComponentContextValue<Value, SelectOption<Value>> &
   ListContextValue<Value>;

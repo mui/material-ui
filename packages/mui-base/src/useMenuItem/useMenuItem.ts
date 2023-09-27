@@ -12,7 +12,7 @@ import { useListItem } from '../useList';
 import { DropdownActionTypes } from '../useDropdown';
 import { DropdownContext, DropdownContextValue } from '../useDropdown/DropdownContext';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
-import { useCompoundItem } from '../utils/useCompoundItem';
+import { useCompoundItem } from '../useCompound';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { EventHandlers } from '../utils/types';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
@@ -41,15 +41,7 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
  * - [useMenuItem API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu-item)
  */
 export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnValue {
-  const {
-    disabled = false,
-    id: idParam,
-    rootRef: externalRef,
-    label,
-    highlighted,
-    dispatch: listActionDispatch,
-    focusable,
-  } = params;
+  const { disabled = false, id: idParam, rootRef: externalRef, label } = params;
 
   const id = useId(idParam);
   const itemRef = React.useRef<HTMLElement>(null);
@@ -61,11 +53,8 @@ export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnVal
 
   const { dispatch } = React.useContext(DropdownContext) ?? FALLBACK_MENU_CONTEXT;
 
-  const { getRootProps: getListRootProps, rootRef: listItemRefHandler } = useListItem({
+  const { getRootProps: getListRootProps, highlighted } = useListItem({
     item: id,
-    highlighted,
-    dispatch: listActionDispatch,
-    focusable,
   });
 
   const { index, totalItemCount } = useCompoundItem(id ?? idGenerator, itemMetadata);
@@ -79,7 +68,7 @@ export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnVal
     focusableWhenDisabled: true,
   });
 
-  const handleRef = useForkRef(listItemRefHandler, buttonRefHandler, externalRef, itemRef);
+  const handleRef = useForkRef(buttonRefHandler, externalRef, itemRef);
 
   React.useDebugValue({ id, highlighted, disabled, label });
 

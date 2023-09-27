@@ -19,6 +19,7 @@
       },
       "required": true
     },
+    "highlighted": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "index": { "type": { "name": "number", "description": "number" }, "required": true },
     "rootRef": {
       "type": {
@@ -26,7 +27,8 @@
         "description": "React.RefCallback&lt;Element&gt; | null"
       },
       "required": true
-    }
+    },
+    "selected": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
   },
   "name": "useOption",
   "filename": "/packages/mui-base/src/useOption/useOption.ts",

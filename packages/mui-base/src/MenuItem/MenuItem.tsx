@@ -8,7 +8,7 @@ import { useMenuItem } from '../useMenuItem';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useSlotProps } from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { MenuItemUnwrappedContextProps, unwrapMenuItemContext } from './unwrapMenuItemContext';
+import { unwrapMenuItemContext } from './unwrapMenuItemContext';
 
 function useUtilityClasses(ownerState: MenuItemOwnerState) {
   const { disabled, focusVisible } = ownerState;
@@ -32,28 +32,22 @@ function useUtilityClasses(ownerState: MenuItemOwnerState) {
 const MenuItem = unwrapMenuItemContext(
   React.memo(
     React.forwardRef(function MenuItem<RootComponentType extends React.ElementType>(
-      props: MenuItemProps<RootComponentType> & MenuItemUnwrappedContextProps,
+      props: MenuItemProps<RootComponentType>,
       forwardedRef: React.ForwardedRef<Element>,
     ) {
       const {
         children,
         disabled: disabledProp = false,
-        dispatch,
-        focusable,
-        highlighted,
-        id,
         label,
+        id,
         slotProps = {},
         slots = {},
         ...other
       } = props;
 
-      const { getRootProps, disabled, focusVisible } = useMenuItem({
-        disabled: disabledProp,
-        dispatch,
-        highlighted,
+      const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({
         id,
-        focusable,
+        disabled: disabledProp,
         rootRef: forwardedRef,
         label,
       });

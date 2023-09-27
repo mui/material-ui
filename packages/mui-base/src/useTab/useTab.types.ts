@@ -1,29 +1,13 @@
 import * as React from 'react';
 import { UseButtonRootSlotProps } from '../useButton';
-import { ListAction } from '../useList';
 
 export interface UseTabParameters {
   /**
-   * @ignore
+   * The value of the tab.
+   * It's used to associate the tab with a tab panel(s) with the same value.
+   * If the value is not provided, it falls back to the position index.
    */
-  dispatch: React.Dispatch<ListAction<string | number>>;
-  /**
-   * If `true`, the tab will be disabled.
-   */
-  disabled?: boolean;
-  /**
-   * @ignore
-   */
-  focusable: boolean;
-  /**
-   * The id of the tab.
-   * If not provided, it will be automatically generated.
-   */
-  id?: string;
-  /**
-   * @ignore
-   */
-  highlighted: boolean;
+  value?: number | string;
   /**
    * If `true`, the tab will be disabled.
    */
@@ -33,19 +17,18 @@ export interface UseTabParameters {
    */
   onClick?: React.MouseEventHandler;
   /**
+   * If `true`, the tab will be disabled.
+   */
+  disabled?: boolean;
+  /**
+   * The id of the tab.
+   * If not provided, it will be automatically generated.
+   */
+  id?: string;
+  /**
    * Ref to the root slot's DOM element.
    */
   rootRef?: React.Ref<Element>;
-  /**
-   * @ignore
-   */
-  selected: boolean;
-  /**
-   * The value of the tab.
-   * It's used to associate the tab with a tab panel(s) with the same value.
-   * If the value is not provided, it falls back to the position index.
-   */
-  value?: number | string;
 }
 
 export type UseTabRootSlotProps<ExternalProps = {}> = UseButtonRootSlotProps<ExternalProps> & {

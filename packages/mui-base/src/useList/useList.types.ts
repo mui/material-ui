@@ -227,10 +227,6 @@ export interface ListItemState {
    */
   highlighted: boolean;
   /**
-   * The 0-based index of the item.
-   */
-  /* index: number; */
-  /**
    * If `true` the item is selected.
    */
   selected: boolean;

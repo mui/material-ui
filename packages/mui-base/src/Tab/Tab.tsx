@@ -8,7 +8,6 @@ import { TabProps, TabTypeMap, TabRootSlotProps, TabOwnerState } from './Tab.typ
 import { useTab } from '../useTab';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { ListContext } from '../useList';
 
 const useUtilityClasses = (ownerState: TabOwnerState) => {
   const { selected, disabled } = ownerState;
@@ -36,7 +35,6 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
   const {
     action,
     children,
-    value: valueProp,
     disabled = false,
     onChange,
     onClick,
@@ -50,23 +48,10 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
   const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
   const handleRef = useForkRef(tabRef, forwardedRef);
 
-  const listContext = React.useContext(ListContext);
-  if (!listContext) {
-    throw new Error('Tab: ListContext was not found.');
-  }
-
-  // TODO: handle undefined value
-
-  const { getItemState, dispatch } = listContext;
-  const { highlighted, selected, focusable } = getItemState(value);
-
-  const { active, getRootProps } = useTab({
+  const { active, highlighted, selected, getRootProps } = useTab({
     ...props,
-    dispatch,
-    focusable,
-    highlighted,
     rootRef: handleRef,
-    selected,
+    value,
   });
 
   const ownerState: TabOwnerState = {

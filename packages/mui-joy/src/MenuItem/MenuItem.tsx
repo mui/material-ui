@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useMenuItem } from '@mui/base/useMenuItem';
-import { unwrapMenuItemContext, MenuItemUnwrappedContextProps } from '@mui/base/MenuItem';
+import { unwrapMenuItemContext } from '@mui/base/MenuItem';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useVariantColor } from '../styles/variantColorInheritance';
@@ -55,10 +55,7 @@ const MenuItemRoot = styled(StyledListItemButton, {
  */
 const MenuItem = unwrapMenuItemContext(
   React.memo(
-    React.forwardRef(function MenuItem(
-      inProps: MenuItemProps & MenuItemUnwrappedContextProps,
-      ref: React.ForwardedRef<Element>,
-    ) {
+    React.forwardRef(function MenuItem(inProps: MenuItemProps, ref: React.ForwardedRef<Element>) {
       const props = useThemeProps({
         props: inProps,
         name: 'JoyMenuItem',
@@ -69,16 +66,14 @@ const MenuItem = unwrapMenuItemContext(
       const {
         children,
         disabled: disabledProp = false,
-        dispatch,
         component = 'li',
-        highlighted,
-        focusable,
         selected = false,
         color: colorProp = 'neutral',
         orientation = 'horizontal',
         variant: variantProp = 'plain',
         slots = {},
         slotProps = {},
+        id,
         ...other
       } = props;
       const { variant = variantProp, color = colorProp } = useVariantColor(
@@ -87,10 +82,8 @@ const MenuItem = unwrapMenuItemContext(
       );
 
       const { getRootProps, disabled, focusVisible } = useMenuItem({
+        id,
         disabled: disabledProp,
-        dispatch,
-        highlighted,
-        focusable,
         rootRef: ref,
       });
 
@@ -152,6 +145,10 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
   /**
    * The content direction flow.
    * @default 'horizontal'

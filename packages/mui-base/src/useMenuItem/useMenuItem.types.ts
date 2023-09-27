@@ -1,6 +1,5 @@
 import { UseButtonRootSlotProps } from '../useButton';
 import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
-import { ListAction } from '../useList';
 
 interface UseMenuItemRootSlotOwnProps {
   id: string | undefined;
@@ -23,18 +22,6 @@ export type UseMenuItemRootSlotProps<ExternalProps = {}> = ExternalProps &
 
 export interface UseMenuItemParameters {
   disabled?: boolean;
-  /**
-   * @ignore
-   */
-  dispatch: React.Dispatch<ListAction<string>>;
-  /**
-   * @ignore
-   */
-  focusable: boolean;
-  /**
-   * @ignore
-   */
-  highlighted: boolean;
   id?: string;
   label?: string;
   onClick?: React.MouseEventHandler<any>;

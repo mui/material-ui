@@ -4,4 +4,4 @@ export * from './MenuItem.types';
 
 export * from './menuItemClasses';
 
-export { unwrapMenuItemContext, MenuItemUnwrappedContextProps } from './unwrapMenuItemContext';
+export { unwrapMenuItemContext } from './unwrapMenuItemContext';
