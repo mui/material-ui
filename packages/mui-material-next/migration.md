@@ -143,6 +143,10 @@ The `FormControlState` interface was renamed to `FormControlContextValue`:
 +import { FormControlContextValue } from '@mui/material-next';
 ```
 
+### Removed the `standard` variant
+
+The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
+
 ## InputBase
 
 ### Removed `inputProps`
