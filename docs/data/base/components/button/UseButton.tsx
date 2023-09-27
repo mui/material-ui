@@ -63,7 +63,6 @@ const CustomButtonRoot = styled('button')(
     theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
   }, inset 0 1.5px 1px ${blue[400]}, inset 0 -2px 1px ${blue[600]};
 
-
   &:hover {
     background-color: ${blue[600]};
   }
