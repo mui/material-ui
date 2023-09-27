@@ -202,7 +202,7 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      expect(getByRole('button')).toHaveAccessibleName('Release: Stable');
+      expect(getByRole('combobox')).toHaveAccessibleName('Release:');
     });
 
     it('creates an input[hidden] that has no accessible properties', () => {
@@ -224,7 +224,7 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      expect(getByRole('button')).toHaveAccessibleDescription('Foo bar');
+      expect(getByRole('combobox')).toHaveAccessibleDescription('Foo bar');
     });
   });
 
