@@ -1,6 +1,9 @@
 {
   "hookDescription": "",
   "parametersDescriptions": {
+    "disabledItemsFocusable": {
+      "description": "If <code>true</code>, it will be possible to highlight disabled items."
+    },
     "id": { "description": "The id of the menu. If not provided, it will be generated." },
     "listboxRef": { "description": "The ref to the menu&#39;s listbox node." },
     "onItemsChange": { "description": "Callback fired when the menu items change." }
