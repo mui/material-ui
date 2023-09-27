@@ -28,6 +28,14 @@ Here's an example of the change using the Badge component:
  </Badge>
 ```
 
+### Remove composed CSS classes and `styleOverrides` keys
+
+Classes composed of two or more existing classes are removed in v6.
+For example, the `MuiChip-filledPrimary` class is removed in favor of the `MuiChip-filled` and `MuiChip-colorPrimary` classes.
+Composed `styleOverrides` keys are also removed.
+Following the example above, the chip component's `filledPrimary` `styleOverrides` key is removed.
+The specific classes and keys removed are listed in each component's section, as well as instructions on how to replace them.
+
 ## Badge
 
 ### Changed default color
@@ -153,6 +161,146 @@ The `inputComponent` is deprecated in favor of `slots.input`:
  <InputBase
 -    inputProps={{ className: 'my-input' }}
 +    slotProps={{ input: { className: 'my-input' } }}
+ />
+```
+
+## Chip
+
+### Removed the "default" color option
+
+The `"default"` option is no longer accepted for the color prop.
+
+### Removed combined styleOverrides keys
+
+The following `styleOverrides` `MuiChip` keys were removed:
+
+- `clickableColorPrimary`
+- `clickableColorSecondary`
+- `deletableColorPrimary`
+- `deletableColorSecondary`
+- `outlinedPrimary`
+- `outlinedSecondary`
+- `filledPrimary`
+- `filledSecondary`
+- `avatarSmall`
+- `avatarMedium`
+- `avatarColorPrimary`
+- `avatarColorSecondary`
+- `iconSmall`
+- `iconMedium`
+- `iconColorPrimary`
+- `iconColorSecondary`
+- `labelSmall`
+- `labelMedium`
+- `deleteIconSmall`
+- `deleteIconMedium`
+- `deleteIconColorPrimary`
+- `deleteIconColorSecondary`
+- `deleteIconOutlinedColorPrimary`
+- `deleteIconOutlinedColorSecondary`
+- `deleteIconFilledColorPrimary`
+- `deleteIconFilledColorSecondary`
+
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `filledPrimary` with the variants API:
+
+```diff
+ const theme = extendTheme({
+   components: {
+     MuiBadge: {
+-      styleOverrides: {
+-       filledPrimary: {
+-            background: "fuchsia"
+-          }
+-        }
++      variants: [
++        {
++          props: { variant: 'filled', color: 'primary' },
++          style: {
++            background: "fuchsia"
++          },
++        },
++      ],
+     }
+   }
+ });
+```
+
+### Removed combined classes
+
+The following classes were removed:
+
+- `MuiChip-clickableColorPrimary`
+- `MuiChip-clickableColorSecondary`
+- `MuiChip-deletableColorPrimary`
+- `MuiChip-deletableColorSecondary`
+- `MuiChip-outlinedPrimary`
+- `MuiChip-outlinedSecondary`
+- `MuiChip-filledPrimary`
+- `MuiChip-filledSecondary`
+- `MuiChip-avatarSmall`
+- `MuiChip-avatarMedium`
+- `MuiChip-avatarColorPrimary`
+- `MuiChip-avatarColorSecondary`
+- `MuiChip-iconSmall`
+- `MuiChip-iconMedium`
+- `MuiChip-iconColorPrimary`
+- `MuiChip-iconColorSecondary`
+- `MuiChip-labelSmall`
+- `MuiChip-labelMedium`
+- `MuiChip-deleteIconSmall`
+- `MuiChip-deleteIconMedium`
+- `MuiChip-deleteIconColorPrimary`
+- `MuiChip-deleteIconColorSecondary`
+- `MuiChip-deleteIconOutlinedColorPrimary`
+- `MuiChip-deleteIconOutlinedColorSecondary`
+- `MuiChip-deleteIconFilledColorPrimary`
+- `MuiChip-deleteIconFilledColorSecondary`
+
+You can replace them by combining classes with a CSS selector.
+The following example replaces the `MuiChip-filledPrimary` class using `MuiChip-filled` and `MuiChip-colorPrimary`:
+
+```diff
+- .MuiChip-filledPrimary
++ .MuiChip-filled.MuiChip-colorPrimary
+```
+
+### `skipFocusWhenDisabled` replaced with `focusableWhenDisabled`
+
+The `skipFocusWhenDisabled` prop was replaced with `focusableWhenDisabled`, which is `false` by default.
+Because of this, the default behavior changed:
+
+- In v5, disabled chips were focusable by default
+- In v6, disabled chips are not focusable by default
+
+If you were using the `skipFocusWhenDisabled` prop to make disabled chips not focusable (which is v6's default behavior), then you can remove the prop as follows:
+
+```diff
+ <Chip
+   label="Clickable"
+   onClick={handleClick}
+-  skipFocusWhenDisabled={true}
+ />
+```
+
+If you wish to maintain v5's default behavior, then you can achieve that as follows:
+
+```diff
+ <Chip
+   label="Clickable"
+   onClick={handleClick}
++  focusableWhenDisabled={true}
+ />
+```
+
+If you were using the `skipFocusWhenDisabled` prop to explicitly make disabled chips focusable, then you can replace it with `focusableWhenDisabled` as follows:
+
+```diff
+ <Chip
+   label="Clickable"
+   onClick={handleClick}
+-  skipFocusWhenDisabled={false}
++  focusableWhenDisabled={true}
  />
 ```
 

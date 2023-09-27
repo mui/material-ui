@@ -14,7 +14,7 @@ githubLabel: 'component: card'
 The Joy UI Card component includes several complementary utility components to handle various use cases:
 
 - [Card](#basics): a surface-level container for grouping related components.
-- [Card Overflow](#overflow): a supplemental wrapper that expands a Card's contents to fill all edges.
+- [Card Overflow](#expand-to-fill): a supplemental wrapper that expands a Card's contents to fill all edges.
 - [Card Cover](#card-layers): an optional container for displaying background images and gradient layers behind the Card Content.
 - [Card Content](#card-layers): an optional wrapper that brings content to the front (commonly but not always used with the Card Cover).
 - [Card Actions](#actions): an optional wrapper that groups a set of buttons.

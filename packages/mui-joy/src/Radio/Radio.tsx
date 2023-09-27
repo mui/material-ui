@@ -65,19 +65,19 @@ const RadioRoot = styled('span', {
         // --FormHelperText-margin is equal to --Radio-size + --Radio-gap but we can't use calc() with CSS variables because the FormHelperText is a sibling element
         '& ~ *': { '--FormHelperText-margin': '0 0 0 1.5rem' },
         fontSize: theme.vars.fontSize.sm,
-        gap: '0.5rem',
+        gap: 'var(--Radio-gap, 0.5rem)',
       }),
       ...(ownerState.size === 'md' && {
         '--Radio-size': '1.25rem',
         '& ~ *': { '--FormHelperText-margin': '0.25rem 0 0 1.875rem' },
         fontSize: theme.vars.fontSize.md,
-        gap: '0.625rem',
+        gap: 'var(--Radio-gap, 0.625rem)',
       }),
       ...(ownerState.size === 'lg' && {
         '--Radio-size': '1.5rem',
         '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.25rem' },
         fontSize: theme.vars.fontSize.lg,
-        gap: '0.75rem',
+        gap: 'var(--Radio-gap, 0.75rem)',
       }),
       position: ownerState.overlay ? 'initial' : 'relative',
       display: 'inline-flex',

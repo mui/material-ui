@@ -47,6 +47,9 @@ export default function ExampleFilterMemberCheckbox() {
               flexDirection: 'row-reverse',
               gap: 1.5,
             },
+            '& li': {
+              gap: 1.25,
+            },
           }}
         >
           <ListItem>

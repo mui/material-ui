@@ -61,7 +61,7 @@ export function zeroVitePlugin(options: ZeroVitePluginOptions): PluginOption {
 
   function intermediateBabelPlugin(): PluginOption {
     return {
-      name: 'vite-intermediate-plugin',
+      name: 'vite-mui-zero-intermediate-plugin',
       async transform(code, id) {
         const [filename] = id.split('?');
         if (!extensions.some((ext) => filename.endsWith(ext))) {

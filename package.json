@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "5.14.10",
+  "version": "5.14.11",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -32,7 +32,7 @@
     "docs:typescript:check": "yarn workspace docs typescript",
     "docs:typescript:formatted": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/formattedTSDemos",
     "docs:mdicons:synonyms": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js,.mjs\" ./docs/scripts/updateIconSynonyms && yarn prettier",
-    "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true lerna run --parallel build:modern",
+    "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true lerna run --concurrency 8 build:modern",
     "rsc:build": "ts-node ./packages/rsc-builder/buildRsc.ts",
     "template:screenshot": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/generateTemplateScreenshots",
     "install:codesandbox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn install --ignore-engines",
@@ -74,7 +74,7 @@
     "generate-codeowners": "node scripts/generateCodeowners.mjs"
   },
   "devDependencies": {
-    "@argos-ci/core": "^0.9.0",
+    "@argos-ci/core": "^0.12.0",
     "@babel/cli": "^7.22.15",
     "@babel/core": "^7.22.20",
     "@babel/node": "^7.22.19",
@@ -94,11 +94,11 @@
     "@playwright/test": "1.37.1",
     "@slack/bolt": "^3.13.3",
     "@slack/web-api": "^6.9.0",
-    "@types/enzyme": "^3.10.13",
+    "@types/enzyme": "^3.10.14",
     "@types/fs-extra": "^11.0.2",
-    "@types/lodash": "^4.14.198",
+    "@types/lodash": "^4.14.199",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.17.18",
+    "@types/node": "^18.18.0",
     "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.21",
     "@types/yargs": "^17.0.24",
@@ -144,7 +144,7 @@
     "karma-mocha": "^2.0.1",
     "karma-sourcemap-loader": "^0.4.0",
     "karma-webpack": "^5.0.0",
-    "lerna": "^7.3.0",
+    "lerna": "7.2.0",
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.9.2",
     "mocha": "^10.2.0",
@@ -188,7 +188,7 @@
     "**/@definitelytyped/header-parser": "^0.0.178",
     "**/@definitelytyped/typescript-versions": "^0.0.178",
     "**/@definitelytyped/utils": "^0.0.178",
-    "**/@types/node": "^18.17.18",
+    "**/@types/node": "^18.18.0",
     "**/@types/react": "^18.2.21",
     "**/cross-fetch": "^4.0.0"
   },

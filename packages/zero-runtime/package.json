@@ -1,6 +1,6 @@
 {
   "name": "@mui/zero-runtime",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-alpha.0",
   "private": true,
   "author": "MUI Team",
   "description": "Linaria tag processors for custom styled implementation.",
@@ -44,7 +44,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.6",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.17.18",
+    "@types/node": "^18.18.0",
     "@types/react": "^18.2.21",
     "react": "^18.2.0"
   },
