@@ -108,7 +108,7 @@ We will review your PR and either merge it, request changes to it, or close it w
 
 ### Trying changes on the documentation site
 
-The documentation site is built with MUI and contains examples of all of the components.
+The documentation site is built with Material UI and contains examples of all of the components.
 This is the best place to experiment with your changes—it's the local development environment used by the maintainers.
 
 To get started, run:
