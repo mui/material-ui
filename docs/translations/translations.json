@@ -520,6 +520,7 @@
     "/joy-ui/customization/using-css-variables": "Using CSS variables",
     "/joy-ui/customization/creating-themed-components": "Creating themed components",
     "/joy-ui/customization/overriding-component-structure": "Overriding the component structure",
+    "/joy-ui/customization/right-to-left": "Right-to-left",
     "Tools": "Tools",
     "/joy-ui/customization/default-theme-viewer": "Default theme viewer",
     "/joy-ui/customization/theme-builder": "Theme builder",
