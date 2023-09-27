@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-imports */
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { MenuOwnerState, SlotComponentProps, MenuActions } from '@mui/base';
