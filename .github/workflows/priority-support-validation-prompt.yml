@@ -35,7 +35,7 @@ jobs:
 
             Do not share your support key in this issue!
 
-            Priority support is only provided to verified customers. Once you have verified your support key, we will remove the `support: unknown` label and add the `support: priority` label to this issue. Only then the time for the SLA will start counting.
+            Priority Support is only provided to verified customers. Once you have verified your support key, we will remove the `support: unknown` label and add the `support: priority` label to this issue. Only then the time for the SLA will start counting.
 
       - name: Update comment
         if: ${{ steps.findComment.outputs.comment-id != '' && contains(github.event.label.name, 'priority') }}
