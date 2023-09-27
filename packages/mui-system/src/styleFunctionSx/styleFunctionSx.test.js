@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import createMixins from '@mui/material/styles/createMixins';
 import createTypography from '@mui/material/styles/createTypography';
+import sinon from 'sinon';
 import createBreakpoints from '../createTheme/createBreakpoints';
 import styleFunctionSx from './styleFunctionSx';
 
@@ -93,10 +94,15 @@ describe('styleFunctionSx', () => {
     });
 
     it('resolves system typography', () => {
+      const consoleWarnStub = sinon.stub(console, 'warn');
+
       const result = styleFunctionSx({
         theme,
         sx: { typography: ['body2', 'body1'] },
       });
+
+      sinon.assert.calledTwice(consoleWarnStub);
+      consoleWarnStub.restore();
 
       expect(result).to.deep.equal({
         '@media (min-width:0px)': {

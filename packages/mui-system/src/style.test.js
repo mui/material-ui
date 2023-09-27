@@ -258,12 +258,13 @@ describe('style', () => {
         opacity: 0.5,
       });
     });
-
-    it('should warn', () => {
+  });
+  describe('getStyleValue', () => {
+    it('should warn on acceptable object', () => {
       const round = (value) => Math.round(value * 1e5) / 1e5;
       const consoleWarnStub = sinon.stub(console, 'warn');
 
-      getStyleValue(
+      const output = getStyleValue(
         {
           body1: {
             fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -279,10 +280,45 @@ describe('style', () => {
 
       sinon.assert.calledWith(
         consoleWarnStub,
-        'MUI: Invalid value found in theme for prop: "body1". It should be a string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
+        'MUI: The value found in theme for prop: "body1" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
       );
 
       consoleWarnStub.restore();
+
+      expect(output).to.deep.equal({
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        fontSize: '1rem',
+        letterSpacing: `${round(0.15 / 16)}em`,
+        fontWeight: 400,
+        lineHeight: 1.5,
+      });
+    });
+
+    it('should warn on unacceptable object', () => {
+      const theme = {
+        palette: {
+          grey: { 100: '#f5f5f5' },
+        },
+      };
+
+      const paletteTransform = (value, userValue) => {
+        if (userValue === 'grey') {
+          return userValue;
+        }
+        return value;
+      };
+      const consoleWarnStub = sinon.stub(console, 'warn');
+
+      const output = getStyleValue(theme.palette, paletteTransform, 'grey');
+
+      sinon.assert.calledWith(
+        consoleWarnStub,
+        'MUI: The value found in theme for prop: "grey" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
+      );
+
+      consoleWarnStub.restore();
+
+      expect(output).to.be.equal('grey');
     });
   });
 });

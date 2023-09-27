@@ -38,10 +38,9 @@ export function getStyleValue(themeMapping, transform, propValueFinal, userValue
   if (typeof value === 'object') {
     if (process.env.NODE_ENV !== 'production') {
       console.warn(
-        `MUI: Invalid value found in theme for prop: "${propValueFinal}". It should be a string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".`,
+        `MUI: The value found in theme for prop: "${propValueFinal}" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".`,
       );
     }
-    value = userValue;
   }
 
   if (transform) {
