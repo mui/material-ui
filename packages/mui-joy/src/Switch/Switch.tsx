@@ -68,21 +68,21 @@ const SwitchRoot = styled('div', {
       '--Switch-trackWidth': '32px',
       '--Switch-trackHeight': '16px',
       '--Switch-thumbSize': '8px',
-      '--Switch-gap': '6px',
       fontSize: theme.vars.fontSize.sm,
+      gap: 'var(--Switch-gap, 6px)',
     }),
     ...(ownerState.size === 'md' && {
       '--Switch-trackWidth': '40px',
       '--Switch-trackHeight': '20px',
       '--Switch-thumbSize': '12px',
-      '--Switch-gap': '8px',
       fontSize: theme.vars.fontSize.md,
+      gap: 'var(--Switch-gap, 8px)',
     }),
     ...(ownerState.size === 'lg' && {
       '--Switch-trackWidth': '48px',
       '--Switch-trackHeight': '24px',
       '--Switch-thumbSize': '16px',
-      '--Switch-gap': '12px',
+      gap: 'var(--Switch-gap, 12px)',
     }),
     '--unstable_paddingBlock': `max((var(--Switch-trackHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumbSize)) / 2, 0px)`,
     '--Switch-thumbRadius': `max(var(--Switch-trackRadius) - var(--unstable_paddingBlock), min(var(--unstable_paddingBlock) / 2, var(--Switch-trackRadius) / 2))`,
@@ -203,7 +203,6 @@ const SwitchStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: SwitchOwnerState }>({
   display: 'inline-flex',
-  marginInlineEnd: 'var(--Switch-gap)',
 });
 
 const SwitchEndDecorator = styled('span', {
@@ -212,7 +211,6 @@ const SwitchEndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: SwitchOwnerState }>({
   display: 'inline-flex',
-  marginInlineStart: 'var(--Switch-gap)',
 });
 /**
  *
