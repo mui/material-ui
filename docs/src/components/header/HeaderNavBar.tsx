@@ -1,18 +1,17 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip';
 import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
-import Divider from '@mui/material/Divider';
-import { unstable_debounce as debounce } from '@mui/utils';
 import Fade from '@mui/material/Fade';
-import Typography from '@mui/material/Typography';
+import { unstable_debounce as debounce } from '@mui/utils';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
-import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
-import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+// import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
 const Navigation = styled('nav')(({ theme }) => [
   {
@@ -27,7 +26,7 @@ const Navigation = styled('nav')(({ theme }) => [
       fontWeight: theme.typography.fontWeightBold,
       color: (theme.vars || theme).palette.text.primary,
       '& > a, & > div': {
-        padding: theme.spacing('6px', 1.2),
+        padding: theme.spacing(1, 1.2),
         display: 'flex',
         alignItems: 'center',
         color: 'inherit',
@@ -49,7 +48,6 @@ const Navigation = styled('nav')(({ theme }) => [
       },
       '& > div': {
         cursor: 'default',
-        paddingRight: '4px',
         gap: 4,
       },
     },
@@ -72,8 +70,8 @@ const Navigation = styled('nav')(({ theme }) => [
 
 const PopperContainer = styled(Paper)(({ theme }) => [
   {
-    marginTop: 8,
-    paddingBottom: 8,
+    marginTop: 6,
+    paddingBottom: 14,
     minWidth: 498,
     overflow: 'hidden',
     boxShadow: `0px 4px 20px ${alpha(theme.palette.grey[300], 0.5)}`,
@@ -125,53 +123,34 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         component={Link}
         href={href}
         ref={ref}
-        sx={[
-          (theme) => ({
-            display: 'flex',
-            alignItems: 'center',
-            gap: 1.5,
-            p: 1,
-            mx: 1,
-            borderRadius: (theme.vars || theme).shape.borderRadius,
-            border: '1px solid',
-            borderColor: 'transparent',
+        sx={(theme) => ({
+          display: 'flex',
+          alignItems: 'center',
+          gap: 2,
+          p: 1.5,
+          mx: 1.5,
+          borderRadius: (theme.vars || theme).shape.borderRadius,
+          border: '1px solid',
+          borderColor: 'transparent',
+          '&:hover, &:focus': {
+            borderColor: 'divider',
+            backgroundColor: (theme.vars || theme).palette.grey[50],
+            outline: 0,
+            '@media (hover: none)': {
+              backgroundColor: 'initial',
+              outline: 'initial',
+            },
+          },
+          ...theme.applyDarkStyles({
             '&:hover, &:focus': {
               borderColor: 'divider',
-              backgroundColor: (theme.vars || theme).palette.grey[50],
-              outline: 0,
-              '@media (hover: none)': {
-                backgroundColor: 'initial',
-                outline: 'initial',
-              },
+              backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
             },
           }),
-          (theme) =>
-            theme.applyDarkStyles({
-              '&:hover, &:focus': {
-                borderColor: 'divider',
-                backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-              },
-            }),
-        ]}
-        {...props}
+          ...props,
+        })}
       >
-        <Box
-          sx={[
-            (theme) => ({
-              '& circle': {
-                fill: (theme.vars || theme).palette.grey[100],
-              },
-            }),
-            (theme) =>
-              theme.applyDarkStyles({
-                '& circle': {
-                  fill: (theme.vars || theme).palette.primaryDark[700],
-                },
-              }),
-          ]}
-        >
-          {icon}
-        </Box>
+        {icon}
         <Box sx={{ flexGrow: 1 }}>
           <Typography color="text.primary" variant="body2" fontWeight="bold">
             {name}
@@ -201,7 +180,7 @@ export default function HeaderNavBar() {
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
   const navRef = React.useRef<HTMLUListElement | null>(null);
   const productsMenuRef = React.useRef<HTMLDivElement | null>(null);
-  const docsMenuRef = React.useRef<HTMLDivElement | null>(null);
+  // const docsMenuRef = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
     if (typeof subMenuIndex === 'number') {
       document.getElementById(PRODUCT_IDS[subMenuIndex])?.focus();
@@ -314,7 +293,6 @@ export default function HeaderNavBar() {
             onKeyDown={handleKeyDown}
           >
             Products
-            <ExpandMoreRoundedIcon sx={{ fontSize: 18 }} />
           </Box>
           <Popper
             open={subMenuOpen === 'products'}
@@ -337,10 +315,10 @@ export default function HeaderNavBar() {
                       <ProductSubMenu
                         id={PRODUCT_IDS[0]}
                         role="menuitem"
-                        href={ROUTES.productCore}
-                        icon={<IconImage name="product-material" />}
+                        href={ROUTES.materialDocs}
+                        icon={<IconImage height={30} width={28} name="product-material" />}
                         name="Material UI"
-                        description="React components implementing Google’s Material Design."
+                        description="React components implementing Google's Material Design."
                         onKeyDown={handleKeyDown}
                       />
                     </li>
@@ -348,8 +326,8 @@ export default function HeaderNavBar() {
                       <ProductSubMenu
                         id={PRODUCT_IDS[0]}
                         role="menuitem"
-                        href={ROUTES.productCore}
-                        icon={<IconImage name="product-base" />}
+                        href={ROUTES.baseDocs}
+                        icon={<IconImage height={30} width={30} name="product-base" />}
                         name="Base UI"
                         description="Unstyled React UI components and low-level hooks."
                         onKeyDown={handleKeyDown}
@@ -359,21 +337,10 @@ export default function HeaderNavBar() {
                       <ProductSubMenu
                         id={PRODUCT_IDS[0]}
                         role="menuitem"
-                        href={ROUTES.productCore}
-                        icon={<IconImage name="product-base" />}
+                        href={ROUTES.joyDocs}
+                        icon={<IconImage height={30} width={30} name="product-joy" />}
                         name="Joy UI"
-                        description="Unstyled React UI components and low-level hooks."
-                        onKeyDown={handleKeyDown}
-                      />
-                    </li>
-                    <li role="none">
-                      <ProductSubMenu
-                        id={PRODUCT_IDS[0]}
-                        role="menuitem"
-                        href={ROUTES.productCore}
-                        icon={<IconImage name="product-base" />}
-                        name="System"
-                        description="Unstyled React UI components and low-level hooks."
+                        description="React UI components that spark joy."
                         onKeyDown={handleKeyDown}
                       />
                     </li>
@@ -409,8 +376,8 @@ export default function HeaderNavBar() {
                       <ProductSubMenu
                         id={PRODUCT_IDS[1]}
                         role="menuitem"
-                        href={ROUTES.productAdvanced}
-                        icon={<IconImage name="product-advanced" />}
+                        href={ROUTES.advancedComponents}
+                        icon={<IconImage height={30} width={30} name="product-advanced" />}
                         name="MUI X"
                         description="Advanced and powerful components for complex use cases."
                         onKeyDown={handleKeyDown}
@@ -420,12 +387,10 @@ export default function HeaderNavBar() {
                       <ProductSubMenu
                         id={PRODUCT_IDS[4]}
                         role="menuitem"
-                        href={ROUTES.productToolpad}
-                        icon={<IconImage name="product-toolpad" />}
-                        name="MUI Toolpad"
-                        chip={
-                          <Chip label="Alpha" size="small" color="primary" variant="outlined" />
-                        }
+                        href={ROUTES.toolpadDocs}
+                        icon={<IconImage height={30} width={30} name="product-toolpad" />}
+                        name="Toolpad"
+                        chip={<Chip label="Alpha" size="small" color="primary" />}
                         description="Low-code admin builder."
                         onKeyDown={handleKeyDown}
                       />
@@ -436,7 +401,7 @@ export default function HeaderNavBar() {
             )}
           </Popper>
         </li>
-        <li
+        {/* <li
           role="none"
           onMouseEnter={() => setSubMenuOpenUndebounce('docs')}
           onFocus={() => setSubMenuOpenUndebounce('docs')}
@@ -470,7 +435,7 @@ export default function HeaderNavBar() {
               </Fade>
             )}
           </Popper>
-        </li>
+        </li> */}
         <li role="none">
           <Link role="menuitem" href={ROUTES.pricing}>
             Pricing

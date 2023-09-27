@@ -11,7 +11,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 import { alpha } from '@mui/material/styles';
-import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
+import SvgMuiOrgFullLogo from 'docs/src/icons/SvgMuiOrgFullLogo';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
 import DiscordIcon from 'docs/src/icons/DiscordIcon';
@@ -154,14 +154,14 @@ export default function AppFooter(props: AppFooterProps) {
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
             alignItems: { xs: 'start', sm: 'center' },
-            gap: 1.5,
+            gap: 1,
           }}
         >
           <Link href="/" aria-label="Go to homepage">
-            <SvgMuiLogotype height={28} width={91} />
+            <SvgMuiOrgFullLogo height={24} width={105} />
           </Link>
           <Typography color="text.tertiary" variant="caption" fontWeight={400}>
-            Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
+            Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI Co.
           </Typography>
         </Box>
         <Box sx={{ mt: { xs: 3, sm: 0 } }}>

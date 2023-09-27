@@ -10,6 +10,8 @@ export type IconImageProps = {
     | 'product-toolpad'
     | 'product-templates'
     | 'product-designkits'
+    | 'product-base'
+    | 'product-joy'
     | 'pricing/x-plan-pro'
     | 'pricing/x-plan-premium'
     | 'pricing/x-plan-community'

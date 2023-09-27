@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import SvgMuiOrgFullLogo from 'docs/src/icons/SvgMuiOrgFullLogo';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
@@ -52,8 +52,8 @@ export default function AppHeader(props: AppHeaderProps) {
         }}
       />
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: HEIGHT }}>
-        <Box component={Link} href="/" aria-label="Go to homepage" sx={{ lineHeight: 0, mr: 2 }}>
-          <SvgMuiLogomark width={30} />
+        <Box component={Link} href="/" aria-label="Go to homepage" sx={{ lineHeight: 0, mr: 1 }}>
+          <SvgMuiOrgFullLogo height={24} width={105} />
         </Box>
         <Box sx={{ display: { xs: 'none', md: 'initial' } }}>
           <HeaderNavBar />

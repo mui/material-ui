@@ -8,19 +8,20 @@ import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import IconImage from 'docs/src/components/icon/IconImage';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
+import { Chip } from '@mui/material';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
 function transitionTheme(theme) {
@@ -57,30 +58,13 @@ function ProductDrawerButton(props) {
   return (
     <React.Fragment>
       <Button
+        size="medium"
         id="mui-product-selector"
         aria-haspopup="true"
         aria-controls={open ? 'drawer-open-button' : undefined}
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
-        sx={(theme) => ({
-          py: 0.1,
-          minWidth: 0,
-          fontSize: theme.typography.pxToRem(13),
-          fontWeight: theme.typography.fontWeightMedium,
-          color: (theme.vars || theme).palette.primary[600],
-          '& svg': {
-            ml: -0.6,
-            width: 18,
-            height: 18,
-          },
-          '& > span': {
-            ml: '4px',
-          },
-          ...theme.applyDarkStyles({
-            color: (theme.vars || theme).palette.primary[300],
-          }),
-        })}
       >
         {props.productName}
       </Button>
@@ -109,31 +93,17 @@ ProductDrawerButton.propTypes = {
 };
 
 function ProductIdentifier(props) {
-  const { name, metadata, versionSelector } = props;
+  const { name, versionSelector } = props;
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Typography
-        sx={(theme) => ({
-          ml: 1,
-          color: (theme.vars || theme).palette.grey[600],
-          fontSize: theme.typography.pxToRem(11),
-          fontWeight: 700,
-          textTransform: 'uppercase',
-          letterSpacing: '.08rem',
-        })}
-      >
-        {metadata}
-      </Typography>
-      <Box sx={{ display: 'flex' }}>
-        <ProductDrawerButton productName={name} />
-        {versionSelector}
-      </Box>
-    </Box>
+    <React.Fragment>
+      <ProductDrawerButton productName={name} />
+      {versionSelector}
+    </React.Fragment>
   );
 }
 
 ProductIdentifier.propTypes = {
-  metadata: PropTypes.string,
+  // metadata: PropTypes.string,
   name: PropTypes.string.isRequired,
   versionSelector: PropTypes.element.isRequired,
 };
@@ -183,9 +153,7 @@ const ToolbarDiv = styled('div')(({ theme }) => ({
   height: 'var(--MuiDocs-header-height)',
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
-  flexDirection: 'row',
   alignItems: 'center',
-  justifyContent: 'space-between',
 }));
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
@@ -328,37 +296,25 @@ export default function AppNavDrawer(props) {
       const currentVersion = versions.find((version) => version.current) || versions[0];
       return (
         <React.Fragment>
-          <Button
+          <Chip
             id="mui-version-selector"
+            size="small"
+            variant="outlined"
+            clickable
+            label={currentVersion.text}
             onClick={(event) => {
               setAnchorEl(event.currentTarget);
             }}
-            endIcon={
-              versions.length > 1 ? (
-                <ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />
-              ) : null
-            }
             sx={[
               (theme) => ({
-                py: 0.1,
-                minWidth: 0,
-                fontSize: theme.typography.pxToRem(13),
-                fontWeight: 500,
-                color: (theme.vars || theme).palette.primary[600],
-                '& svg': {
-                  ml: -0.6,
-                  width: 18,
-                  height: 18,
-                },
-                ...theme.applyDarkStyles({
-                  color: (theme.vars || theme).palette.primary[300],
-                }),
+                flexDirection: 'row-reverse',
+                color: (theme.vars || theme).palette.primary.main,
+                ...theme.applyDarkStyles({}),
               }),
               ...(Array.isArray(sx) ? sx : [sx]),
             ]}
-          >
-            {currentVersion.text}
-          </Button>
+          />
+
           <Menu
             id="mui-version-menu"
             anchorEl={anchorEl}
@@ -402,18 +358,8 @@ export default function AppNavDrawer(props) {
       <React.Fragment>
         <ToolbarDiv>
           <NextLink href="/" passHref legacyBehavior>
-            <Box
-              component="a"
-              onClick={onClose}
-              aria-label={t('goToHome')}
-              sx={{
-                pr: '12px',
-                mr: '4px',
-                borderRight: '1px solid',
-                borderColor: 'divider',
-              }}
-            >
-              <SvgMuiLogomark width={30} />
+            <Box component="a" onClick={onClose} aria-label={t('goToHome')}>
+              <IconImage height={30} width={30} name="product-base" />
             </Box>
           </NextLink>
           <ProductIdentifier
