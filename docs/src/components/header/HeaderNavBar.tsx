@@ -68,6 +68,17 @@ const Navigation = styled('nav')(({ theme }) => [
   }),
 ]);
 
+const CategoryLabelDivider = styled(Typography)(({ theme }) => [
+  {
+    padding: theme.spacing(2, 2.5, 1, 2.5),
+    fontSize: theme.typography.pxToRem(11),
+    fontWeight: theme.typography.fontWeightBold,
+    textTransform: 'uppercase',
+    letterSpacing: '.08rem',
+    color: (theme.vars || theme).palette.grey[600],
+  },
+]);
+
 const PRODUCT_IDS = [
   'product-core',
   'product-advanced',
@@ -319,22 +330,10 @@ export default function HeaderNavBar() {
                     }),
                   ]}
                 >
-                  <Typography
-                    sx={[
-                      (theme) => ({
-                        p: 1.5,
-                        fontSize: theme.typography.pxToRem(11),
-                        fontWeight: theme.typography.fontWeightBold,
-                        textTransform: 'uppercase',
-                        letterSpacing: '.08rem',
-                        color: theme.palette.grey[600],
-                      }),
-                    ]}
-                  >
-                    Core products
-                  </Typography>
-
                   <ul role="menu">
+                    <li role="none">
+                      <CategoryLabelDivider>Core products</CategoryLabelDivider>
+                    </li>
                     <li role="none">
                       <ProductSubMenu
                         id={PRODUCT_IDS[0]}
@@ -353,6 +352,28 @@ export default function HeaderNavBar() {
                         href={ROUTES.productCore}
                         icon={<IconImage name="product-base" />}
                         name="Base UI"
+                        description="Unstyled React UI components and low-level hooks."
+                        onKeyDown={handleKeyDown}
+                      />
+                    </li>
+                    <li role="none">
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[0]}
+                        role="menuitem"
+                        href={ROUTES.productCore}
+                        icon={<IconImage name="product-base" />}
+                        name="Joy UI"
+                        description="Unstyled React UI components and low-level hooks."
+                        onKeyDown={handleKeyDown}
+                      />
+                    </li>
+                    <li role="none">
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[0]}
+                        role="menuitem"
+                        href={ROUTES.productCore}
+                        icon={<IconImage name="product-base" />}
+                        name="System"
                         description="Unstyled React UI components and low-level hooks."
                         onKeyDown={handleKeyDown}
                       />
@@ -383,22 +404,7 @@ export default function HeaderNavBar() {
                       <Divider sx={{ mt: 1 }} />
                     </li>
                     <li role="none">
-                      <Typography
-                        sx={[
-                          (theme) => ({
-                            pt: 2,
-                            pb: 1,
-                            px: 2,
-                            fontSize: theme.typography.pxToRem(11),
-                            fontWeight: theme.typography.fontWeightBold,
-                            textTransform: 'uppercase',
-                            letterSpacing: '.08rem',
-                            color: theme.palette.grey[600],
-                          }),
-                        ]}
-                      >
-                        Advanced products
-                      </Typography>
+                      <CategoryLabelDivider>Advanced products</CategoryLabelDivider>
                     </li>
                     <li role="none">
                       <ProductSubMenu
