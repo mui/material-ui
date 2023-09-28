@@ -37,7 +37,7 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
 }
 
 interface InfoCardProps {
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   title: string;
   description: string;
   link?: string;
@@ -61,13 +61,13 @@ export default function InfoCard({ icon, title, description, link }: InfoCardPro
         }),
       })}
     >
-      <GlowingIconContainer icon={icon} />
+      {icon && <GlowingIconContainer icon={icon} />}
       <Typography
         fontWeight="bold"
         component="h3"
         color="text.primary"
         variant="body2"
-        mt={2}
+        mt={icon ? 2 : 0}
         mb={0.5}
       >
         {title}
