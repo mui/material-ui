@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import Divider, { dividerClasses as classes } from '@mui/material/Divider';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<Divider />', () => {
   const { render } = createRenderer();

@@ -2,7 +2,6 @@ import * as React from 'react';
 import Divider from '@mui/material-next/Divider';
 import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDemo';
 import {
-  Box,
   Avatar,
   List,
   ListItem,
