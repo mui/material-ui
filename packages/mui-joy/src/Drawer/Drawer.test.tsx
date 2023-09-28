@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from '@mui-internal/test-utils';
-import { ThemeProvider } from '@mui/joy/styles';
+import { ThemeProvider, CssVarsProvider } from '@mui/joy/styles';
 import Drawer, { drawerClasses as classes } from '@mui/joy/Drawer';
 
 describe('<Drawer />', () => {
@@ -64,6 +64,37 @@ describe('<Drawer />', () => {
       );
 
       expect(getByTestId('content').getAttribute('tabIndex')).to.equal('0');
+    });
+
+    it('should apply content theme styles for content slot', function test(){
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const { getByTestId } = render(
+        <CssVarsProvider>
+          <ThemeProvider
+            theme={{
+              components: {
+                JoyDrawer: {
+                  styleOverrides: {
+                    content: {
+                      backgroundColor: 'var(--joy-palette-primary-500)',
+                    },
+                  },
+                },
+              },
+            }}
+          >
+            <Drawer open slotProps={{ content: { 'data-testid': 'content' } }}>
+              <span>test</span>
+            </Drawer>
+          </ThemeProvider>
+        </CssVarsProvider>,
+      );
+
+      expect(getByTestId('content')).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 105, 217)',
+      });
     });
   });
 });

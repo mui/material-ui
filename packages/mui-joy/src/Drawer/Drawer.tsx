@@ -85,7 +85,7 @@ const DrawerBackdrop = styled(StyledModalBackdrop as unknown as 'div', {
 const DrawerContent = styled('div', {
   name: 'JoyDrawer',
   slot: 'Content',
-  overridesResolver: (props, styles) => styles.root,
+  overridesResolver: (props, styles) => styles.content,
 })<{ ownerState: DrawerOwnerState }>(({ theme, ownerState }) => ({
   ...theme.typography[`body-${ownerState.size!}`],
   boxShadow: theme.shadow.md,
