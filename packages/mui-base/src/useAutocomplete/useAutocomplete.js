@@ -545,6 +545,17 @@ export function useAutocomplete(props) {
         isOptionEqualToValue(optionItem, valueItem),
       );
       if (itemIndex === -1) {
+        if (filterSelectedOptions && filteredOptions.length > 1) {
+          const nextItemToHighlightIndex = Math.min(
+            highlightedIndexRef.current,
+            filteredOptions.length - 1,
+          );
+          setHighlightedIndex({
+            index: nextItemToHighlightIndex,
+            reason: 'adjust-highlight-for-filterSelectionOptions',
+          });
+          return;
+        }
         changeHighlightedIndex({ diff: 'reset' });
       } else {
         setHighlightedIndex({ index: itemIndex });
