@@ -21,6 +21,9 @@ export * from './FormControl';
 export { default as FormLabel } from './FormLabel';
 export * from './FormLabel';
 
+export { default as InputAdornment } from './InputAdornment';
+export * from './InputAdornment';
+
 export { default as InputBase } from './InputBase';
 export * from './InputBase';
 
