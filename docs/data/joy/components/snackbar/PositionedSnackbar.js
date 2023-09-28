@@ -85,6 +85,7 @@ export default function PositionedSnackbar() {
         variant="solid"
         color="success"
         size="lg"
+        key={vertical + horizontal}
       >
         I love snacks
       </Snackbar>

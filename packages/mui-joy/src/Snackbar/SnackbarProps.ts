@@ -68,6 +68,13 @@ export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       invertedColors?: boolean;
       /**
+       * When displaying multiple consecutive snackbars using a single parent-rendered
+       * `<Snackbar/>`, add the `key` prop to ensure independent treatment of each message.
+       * For instance, use `<Snackbar key={message} />`. Otherwise, messages might update
+       * in place, and features like `autoHideDuration` could be affected.
+       */
+      key?: any;
+      /**
        * The size of the component.
        * @default 'md'
        */
