@@ -101,7 +101,12 @@ export default function PersistentDrawerRight() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Main open={open}>
+      <Main
+        open={open}
+        sx={{
+          position: 'relative',
+        }}
+      >
         <DrawerHeader />
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -135,7 +140,6 @@ export default function PersistentDrawerRight() {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          zIndex: !open ? -10 : null,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
           },
