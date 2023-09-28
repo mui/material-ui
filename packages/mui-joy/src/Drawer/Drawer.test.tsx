@@ -66,7 +66,7 @@ describe('<Drawer />', () => {
       expect(getByTestId('content').getAttribute('tabIndex')).to.equal('0');
     });
 
-    it('should apply content theme styles for content slot', function test(){
+    it('should apply content theme styles for content slot', function test() {
       if (!/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
