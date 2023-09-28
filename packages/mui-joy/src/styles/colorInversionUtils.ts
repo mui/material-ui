@@ -18,7 +18,7 @@ const createPrefixVar = (cssVarPrefix: string | undefined | null) => {
 
 export const INVERTED_COLORS_ATTR = 'data-skip-inverted-colors';
 
-export const INVERTED_COLORS_SELECTOR = `& :not([${INVERTED_COLORS_ATTR}]):not([${INVERTED_COLORS_ATTR}] *)`;
+export const INVERTED_COLORS_SELECTOR = `& :not([${INVERTED_COLORS_ATTR}], [${INVERTED_COLORS_ATTR}] *)`;
 
 // Apply cyclic variables to the component to use fallback values.
 // Color inversion variables from the parent will be neglected.
@@ -144,7 +144,7 @@ export const applySolidInversion = (color: ColorPaletteProp) => (theme: ThemeFra
     [INVERTED_COLORS_SELECTOR]: {
       '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
       '--Icon-color': 'currentColor',
-      [`&, ${theme.getColorSchemeSelector('light')}, ${theme.getColorSchemeSelector('dark')}`]: {
+      [`${theme.getColorSchemeSelector('light')}, ${theme.getColorSchemeSelector('dark')}`]: {
         colorScheme: 'dark',
         [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-200`),
         [prefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
