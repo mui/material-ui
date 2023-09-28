@@ -20,32 +20,10 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref
   return (
     <StyledInputRoot {...getRootProps()} className={focused ? 'focused' : null}>
       <StyledStepperButton {...getIncrementButtonProps()} className="increment">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24"
-          viewBox="0 0 24 24"
-          width="24"
-        >
-          <path d="M0 0h24v24H0z" fill="none" />
-          <path
-            d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
-            fill="currentColor"
-          />
-        </svg>
+        ▴
       </StyledStepperButton>
       <StyledStepperButton {...getDecrementButtonProps()} className="decrement">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24"
-          viewBox="0 0 24 24"
-          width="24"
-        >
-          <path d="M0 0h24v24H0V0z" fill="none" />
-          <path
-            d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-            fill="currentColor"
-          />
-        </svg>
+        ▾
       </StyledStepperButton>
       <StyledInputElement {...inputProps} />
     </StyledInputRoot>
@@ -64,6 +42,7 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  900: '#003A75',
 };
 
 const grey = {
@@ -81,71 +60,78 @@ const grey = {
 
 const StyledInputRoot = styled('div')(
   ({ theme }) => `
-    font-family: IBM Plex Sans, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5;
-
-    display: grid;
-    grid-template-columns: 24px 1fr;
-    grid-template-rows: 1fr 1fr;
-    column-gap: 8px;
-    padding: 8px;
-
-    border-radius: 8px;
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    border-width: 1px;
-
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-
-    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 400;
+  border-radius: 8px;
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  display: grid;
+  grid-template-columns: 1fr 19px;
+  grid-template-rows: 1fr 1fr;
+  overflow: hidden;
+  column-gap: 8px;
+  padding: 4px;
 
     &.focused {
-      outline: 0;
       border-color: ${blue[400]};
       box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
 
       & button:hover {
         background: ${blue[400]};
       }
+      // firefox
+      &:focus-visible {
+        outline: 0;
     }
   `,
 );
 
-const StyledInputElement = styled('input')`
-  grid-column: 2/3;
+const StyledInputElement = styled('input')(
+  ({ theme }) => `
+  font-size: 0.875rem;
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+  grid-column: 1/2;
   grid-row: 1/3;
-  background: none;
-  border: 0;
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  background: inherit;
+  border: none;
+  border-radius: inherit;
+  padding: 8px 12px;
   outline: 0;
-  padding: 0;
-`;
+`,
+);
 
 const StyledStepperButton = styled('button')(
   ({ theme }) => `
-    width: 1.5rem;
-    height: 1rem;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.875rem;
-    box-sizing: border-box;
-    border: 1px solid;
-    padding: 0;
-
-    & > svg {
-      transform: scale(0.8);
-    }
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  appearance: none;
+  padding: 0;
+  width: 19px;
+  height: 19px;
+  font-family: system-ui, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1;
+  box-sizing: border-box;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 0;
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 120ms;
 
     &.increment,
     &.decrement {
       &:hover {
+        background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+        border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
         cursor: pointer;
-        background: ${blue[400]};
-        color: ${grey[50]};
       }
 
     border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
@@ -155,18 +141,36 @@ const StyledStepperButton = styled('button')(
     }
 
     &.increment {
-      grid-column: 1/2;
+      grid-column: 2/3;
       grid-row: 1/2;
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
+      border: 1px solid;
       border-bottom: 0;
+      &:hover {
+        cursor: pointer;
+        background: ${blue[400]};
+        color: ${grey[50]};
+      }
+      border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+      background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+      color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
     }
 
     &.decrement {
-      grid-column: 1/2;
+      grid-column: 2/3;
       grid-row: 2/3;
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
-    }
+      border: 1px solid;
+      &:hover {
+        cursor: pointer;
+        background: ${blue[400]};
+        color: ${grey[50]};
+      }
+      border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+      background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+      color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  }
   `,
 );

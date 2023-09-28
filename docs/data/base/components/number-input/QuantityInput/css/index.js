@@ -90,8 +90,9 @@ function Styles() {
         color: ${isDarkMode ? grey[300] : grey[900]};
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
-        border-radius: 4px;
-        margin: 0 4px;
+        box-shadow: 0px 2px 2px ${isDarkMode ? grey[900] : grey[50]};
+        border-radius: 8px;
+        margin: 0 8px;
         padding: 10px 12px;
         outline: 0;
         min-width: 0;
@@ -117,26 +118,26 @@ function Styles() {
         font-size: 0.875rem;
         box-sizing: border-box;
         line-height: 1.5;
-        border: 0;
+        border: 1px solid;
         border-radius: 999px;
-        color: ${isDarkMode ? cyan[300] : cyan[600]};
-        background: transparent;
-
-        width: 40px;
-        height: 40px;
+        border-color: ${isDarkMode ? grey[800] : grey[200]};
+        background: ${isDarkMode ? grey[900] : grey[50]};
+        color: ${isDarkMode ? grey[200] : grey[900]};
+        width: 32px;
+        height: 32px;
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
         align-items: center;
-
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 120ms;
       }
 
       .QuantityInput .btn:hover {
-        background: ${isDarkMode ? cyan[800] : cyan[100]};
         cursor: pointer;
+        background: ${cyan[400]};
+        color: ${grey[50]};
       }
 
       .QuantityInput .btn:focus-visible {
