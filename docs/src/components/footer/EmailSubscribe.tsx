@@ -24,13 +24,7 @@ function searchParams(params: any) {
     .join('&');
 }
 
-export default function EmailSubscribe({
-  sx,
-  fullWidth,
-}: {
-  sx?: SxProps<Theme>;
-  fullWidth?: Boolean;
-}) {
+export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
   const [form, setForm] = React.useState<{
     email: string;
     status: 'initial' | 'loading' | 'failure' | 'sent';
@@ -88,10 +82,10 @@ export default function EmailSubscribe({
         }}
       >
         <AlertTitle sx={{ typography: 'body2', fontWeight: 700 }}>
-          Thanks! Check your email.
+          Thanks for subscribing!
         </AlertTitle>
-        You should get a <strong>confirmation email</strong> soon. Open it up and confirm your email
-        address so that we can keep you up to date.
+        Go to your email and open the <strong>confirmation email</strong> to confirm your
+        subscription.
       </Alert>
     );
   }
@@ -109,7 +103,7 @@ export default function EmailSubscribe({
           mt: 1,
           gap: 1.5,
           width: { xs: '100%', sm: 'auto' },
-          maxWidth: fullWidth ? '100%' : 320,
+          maxWidth: 320,
         }}
       >
         <InputBase
@@ -122,7 +116,6 @@ export default function EmailSubscribe({
           inputProps={{ required: true }}
           sx={[
             (theme) => ({
-              width: fullWidth ? '100%' : 'auto',
               minWidth: 220,
               borderRadius: 1,
               border: '1px solid',
@@ -212,7 +205,7 @@ export default function EmailSubscribe({
             }),
           })}
         >
-          Oops! something went wrong, please try again later.
+          Oops! Something went wrong, please try again later.
         </FormHelperText>
       )}
     </Form>
