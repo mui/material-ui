@@ -61,6 +61,23 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 4px;
 ```
 
+- input: `string` & theme: `function`: the function is called with the prop value.
+
+```jsx
+const spacing = {
+  sm: 2,
+  md: 4,
+  lg: 8,
+}
+
+const theme = {
+  spacing: value => spacing[value],
+}
+
+<Box sx={{ m: 'sm' }} /> // margin: 2px;
+<Box sx={{ m: 'md' }} /> // margin: 4px;
+```
+
 - input: `string`: the prop value is passed as raw CSS value.
 
 ```jsx

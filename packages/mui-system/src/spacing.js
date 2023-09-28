@@ -162,22 +162,25 @@ export function createUnarySpacing(theme) {
 }
 
 export function getValue(transformer, propValue) {
-  if (typeof propValue === 'string' || propValue == null) {
-    return propValue;
+  if (typeof propValue === 'string') {
+    return transformer(propValue) || propValue;
   }
 
-  const abs = Math.abs(propValue);
-  const transformed = transformer(abs);
+  if (typeof propValue === 'number') {
+    const abs = Math.abs(propValue);
+    const transformed = transformer(abs);
 
-  if (propValue >= 0) {
-    return transformed;
+    if (propValue >= 0) {
+      return transformed;
+    }
+
+    if (typeof transformed === 'number') {
+      return -transformed;
+    }
+
+    return `-${transformed}`;
   }
-
-  if (typeof transformed === 'number') {
-    return -transformed;
-  }
-
-  return `-${transformed}`;
+  return propValue;
 }
 
 export function getStyleFromPropValue(cssProperties, transformer) {
