@@ -262,6 +262,20 @@ module.exports = {
         ],
       },
     },
+    // Next.js plugin
+    {
+      files: ['docs/**/*'],
+      extends: ['plugin:@next/next/recommended'],
+      settings: {
+        next: {
+          rootDir: 'docs',
+        },
+      },
+      rules: {
+        // We're not using the Image component at the moment
+        '@next/next/no-img-element': 'off',
+      },
+    },
     // Next.js entry points pages
     {
       files: ['docs/pages/**/*.js'],
