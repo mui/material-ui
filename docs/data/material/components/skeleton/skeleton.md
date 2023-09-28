@@ -30,27 +30,19 @@ For instance:
       src={item.src}
     />
   ) : (
-    <Skeleton shape="rectangular" size="box" width={210} height={118} />
+    <Skeleton variant="rectangular" width={210} height={118} />
   );
 }
 ```
 
-## Shapes
+## Variants
 
-The component supports 3 shapes:
-
-- `circular`, `rectangular`, and `rounded`: come with different border radius to let you take control of the shape.
-
-{{"demo": "Shapes.js"}}
-
-## Sizes
-
-You can use the following values to specify the size of the component:
+The component supports 4 shape variants:
 
 - `text` (default): represents a single line of text (you can adjust the height via font size).
-- `box`: scale the component to the size of the bounding box.
+- `circular`, `rectangular`, and `rounded`: come with different border radius to let you take control of the size.
 
-{{"demo": "Sizes.js"}}
+{{"demo": "Variants.js"}}
 
 ## Animations
 
@@ -84,7 +76,7 @@ infer its width and height from them.
 
 ```jsx
 loading ? (
-  <Skeleton shape="circular" size="box">
+  <Skeleton variant="circular">
     <Avatar />
   </Skeleton>
 ) : (

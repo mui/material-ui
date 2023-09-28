@@ -11,7 +11,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "types": ["react"],
+    "types": ["react", "vitest/globals"],
     "incremental": true
   },
   "exclude": ["node_modules"],

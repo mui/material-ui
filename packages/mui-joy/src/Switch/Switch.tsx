@@ -57,38 +57,42 @@ const SwitchRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchOwnerState }>(({ theme, ownerState }) => {
   const getColorVariables = switchColorVariables({ theme, ownerState });
-  return [
-    {
-      '--Icon-color': 'currentColor',
-      '--variant-borderWidth':
-        theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
-      '--Switch-trackRadius': theme.vars.radius.xl,
-      '--Switch-thumbShadow':
-        ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-trackBackground)', // create border-like if the thumb is bigger than the track
-      ...(ownerState.size === 'sm' && {
-        '--Switch-trackWidth': '32px',
-        '--Switch-trackHeight': '16px',
-        '--Switch-thumbSize': '8px',
-        '--Switch-gap': '6px',
-        fontSize: theme.vars.fontSize.sm,
-      }),
-      ...(ownerState.size === 'md' && {
-        '--Switch-trackWidth': '40px',
-        '--Switch-trackHeight': '20px',
-        '--Switch-thumbSize': '12px',
-        '--Switch-gap': '8px',
-        fontSize: theme.vars.fontSize.md,
-      }),
-      ...(ownerState.size === 'lg' && {
-        '--Switch-trackWidth': '48px',
-        '--Switch-trackHeight': '24px',
-        '--Switch-thumbSize': '16px',
-        '--Switch-gap': '12px',
-      }),
-      '--unstable_paddingBlock': `max((var(--Switch-trackHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumbSize)) / 2, 0px)`,
-      '--Switch-thumbRadius': `max(var(--Switch-trackRadius) - var(--unstable_paddingBlock), min(var(--unstable_paddingBlock) / 2, var(--Switch-trackRadius) / 2))`,
-      '--Switch-thumbWidth': 'var(--Switch-thumbSize)',
-      '--Switch-thumbOffset': `max((var(--Switch-trackHeight) - var(--Switch-thumbSize)) / 2, 0px)`,
+  return {
+    '--Icon-color': 'currentColor',
+    '--variant-borderWidth':
+      theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
+    '--Switch-trackRadius': theme.vars.radius.xl,
+    '--Switch-thumbShadow':
+      ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-trackBackground)', // create border-like if the thumb is bigger than the track
+    ...(ownerState.size === 'sm' && {
+      '--Switch-trackWidth': '32px',
+      '--Switch-trackHeight': '16px',
+      '--Switch-thumbSize': '8px',
+      fontSize: theme.vars.fontSize.sm,
+      gap: 'var(--Switch-gap, 6px)',
+    }),
+    ...(ownerState.size === 'md' && {
+      '--Switch-trackWidth': '40px',
+      '--Switch-trackHeight': '20px',
+      '--Switch-thumbSize': '12px',
+      fontSize: theme.vars.fontSize.md,
+      gap: 'var(--Switch-gap, 8px)',
+    }),
+    ...(ownerState.size === 'lg' && {
+      '--Switch-trackWidth': '48px',
+      '--Switch-trackHeight': '24px',
+      '--Switch-thumbSize': '16px',
+      gap: 'var(--Switch-gap, 12px)',
+    }),
+    '--unstable_paddingBlock': `max((var(--Switch-trackHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumbSize)) / 2, 0px)`,
+    '--Switch-thumbRadius': `max(var(--Switch-trackRadius) - var(--unstable_paddingBlock), min(var(--unstable_paddingBlock) / 2, var(--Switch-trackRadius) / 2))`,
+    '--Switch-thumbWidth': 'var(--Switch-thumbSize)',
+    '--Switch-thumbOffset': `max((var(--Switch-trackHeight) - var(--Switch-thumbSize)) / 2, 0px)`,
+    ...getColorVariables(),
+    '&:hover': {
+      ...getColorVariables({ state: 'Hover' }),
+    },
+    [`&.${switchClasses.checked}`]: {
       ...getColorVariables(),
       '&:hover': {
         ...getColorVariables({ state: 'Hover' }),
@@ -115,7 +119,7 @@ const SwitchRoot = styled('div', {
       border: 'none',
       margin: 'var(--unstable_Switch-margin)',
     } as const,
-  ];
+  };
 });
 
 const SwitchAction = styled('div', {
@@ -205,7 +209,6 @@ const SwitchStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: SwitchOwnerState }>({
   display: 'inline-flex',
-  marginInlineEnd: 'var(--Switch-gap)',
 });
 
 const SwitchEndDecorator = styled('span', {
@@ -214,7 +217,6 @@ const SwitchEndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: SwitchOwnerState }>({
   display: 'inline-flex',
-  marginInlineStart: 'var(--Switch-gap)',
 });
 /**
  *
