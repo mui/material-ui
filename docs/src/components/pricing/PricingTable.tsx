@@ -665,12 +665,19 @@ const pending = <IconImage name="pricing/time" title="Work in progress" />;
 const no = <IconImage name="pricing/no" title="Not included" />;
 const toBeDefined = (
   <Typography
-    component="a"
+    component={Link}
     href="https://forms.gle/19vN87eBvmXPjBVp6"
-    sx={{ display: 'inline-block' }}
-    title="Take part to this feature shaping"
+    target="_blank"
+    variant="body2"
+    sx={{
+      '&:hover > svg': { color: 'primary.main', opacity: 1 },
+      fontWeight: 500,
+      pl: '16px',
+    }}
+    title="To be determined"
   >
-    To define
+    TBD
+    <LaunchRounded color="primary" sx={{ fontSize: 14, ml: 0.5, opacity: 0, transition: '0.3s' }} />
   </Typography>
 );
 
