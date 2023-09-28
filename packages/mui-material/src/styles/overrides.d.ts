@@ -34,6 +34,7 @@ import { DialogClassKey } from '../Dialog';
 import { DialogContentClassKey } from '../DialogContent';
 import { DialogContentTextClassKey } from '../DialogContentText';
 import { DialogTitleClassKey } from '../DialogTitle';
+import { DivClassKey } from '../Div';
 import { DividerClassKey } from '../Divider';
 import { DrawerClassKey } from '../Drawer';
 import { FabClassKey } from '../Fab';
@@ -170,6 +171,7 @@ export interface ComponentNameToClassKey {
   MuiDialogContent: DialogContentClassKey;
   MuiDialogContentText: DialogContentTextClassKey;
   MuiDialogTitle: DialogTitleClassKey;
+  MuiDiv: DivClassKey;
   MuiDivider: DividerClassKey;
   MuiDrawer: DrawerClassKey;
   MuiAccordion: AccordionClassKey;

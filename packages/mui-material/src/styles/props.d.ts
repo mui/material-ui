@@ -29,6 +29,7 @@ import { DialogContentProps } from '../DialogContent';
 import { DialogContentTextProps } from '../DialogContentText';
 import { DialogProps } from '../Dialog';
 import { DialogTitleProps } from '../DialogTitle';
+import { DivProps } from '../Div';
 import { DividerProps } from '../Divider';
 import { DrawerProps } from '../Drawer';
 import { AccordionActionsProps } from '../AccordionActions';
@@ -154,6 +155,7 @@ export interface ComponentsPropsList {
   MuiDialogContent: DialogContentProps;
   MuiDialogContentText: DialogContentTextProps;
   MuiDialogTitle: DialogTitleProps;
+  MuiDiv: DivProps;
   MuiDivider: DividerProps;
   MuiDrawer: DrawerProps;
   MuiAccordion: AccordionProps;

@@ -49,6 +49,7 @@
     "@mui/types": "^7.2.4",
     "@mui/utils": "^5.14.11",
     "@types/react-transition-group": "^4.4.6",
+    "chalk": "^5.3.0",
     "clsx": "^2.0.0",
     "csstype": "^3.1.2",
     "prop-types": "^15.8.1",

@@ -158,6 +158,11 @@ export interface Components<Theme = unknown> {
     styleOverrides?: ComponentsOverrides<Theme>['MuiDialogTitle'];
     variants?: ComponentsVariants['MuiDialogTitle'];
   };
+  MuiDiv?: {
+    defaultProps?: ComponentsProps['MuiDiv'];
+    styleOverrides?: ComponentsOverrides<Theme>['MuiDiv'];
+    variants?: ComponentsVariants['MuiDiv'];
+  };
   MuiDivider?: {
     defaultProps?: ComponentsProps['MuiDivider'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiDivider'];
