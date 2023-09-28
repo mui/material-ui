@@ -4,8 +4,6 @@ import Section from 'docs/src/layouts/Section';
 import InfoCard from 'docs/src/components/action/InfoCard';
 import IconImage from 'docs/src/components/icon/IconImage';
 
-// Note: All of the commented code will be put back in once logos for each Core product are done.
-
 const content = [
   {
     icon: <IconImage height={30} width={28} name="product-material" />,
@@ -26,6 +24,12 @@ const content = [
     description:
       "A library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.",
     link: '/base-ui/',
+  },
+  {
+    icon: <IconImage height={30} width={30} name="product-base" />,
+    title: 'MUI System',
+    description: 'A set of CSS utilities to help you build custom designs more efficiently.',
+    link: '/system/getting-started/',
   },
 ];
 
