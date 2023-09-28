@@ -5,6 +5,8 @@ import {
 } from '@mui/base/unstable_useNumberInput';
 import { useTheme } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
 const CompactNumberInput = React.forwardRef(function CompactNumberInput(
   props: Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> &
@@ -25,32 +27,10 @@ const CompactNumberInput = React.forwardRef(function CompactNumberInput(
   return (
     <div {...getRootProps()} className="CompactNumberInput">
       <button type="button" className="btn decrement" {...getDecrementButtonProps()}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24"
-          viewBox="0 0 24 24"
-          width="24"
-        >
-          <path d="M0 0h24v24H0V0z" fill="none" />
-          <path
-            d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-            fill="currentColor"
-          />
-        </svg>
+        <ArrowDropDownRoundedIcon />
       </button>
       <button type="button" className="btn increment" {...getIncrementButtonProps()}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24"
-          viewBox="0 0 24 24"
-          width="24"
-        >
-          <path d="M0 0h24v24H0z" fill="none" />
-          <path
-            d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
-            fill="currentColor"
-          />
-        </svg>
+        <ArrowDropUpRoundedIcon />
       </button>
       <input className="input" {...inputProps} />
     </div>
@@ -118,7 +98,7 @@ function Styles() {
       {`
       .CompactNumberInput {
         display: grid;
-        grid-template-columns: 2.5rem;
+        grid-template-columns: 2rem;
         grid-template-rows: 2rem 2rem;
         grid-template-areas:
           "increment"
@@ -147,10 +127,10 @@ function Styles() {
         flex-flow: nowrap;
         justify-content: center;
         align-items: center;
-
         font-size: 0.875rem;
         box-sizing: border-box;
         border: 0;
+        padding: 0;
         color: inherit;
         background: ${isDarkMode ? grey[900] : grey[50]};
       }
@@ -163,8 +143,7 @@ function Styles() {
 
       .CompactNumberInput .btn:focus-visible {
         outline: 0;
-        background: ${cyan[500]};
-        color: ${isDarkMode ? grey[300] : grey[50]};
+        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
       }
 
       .CompactNumberInput .btn.increment {
@@ -183,7 +162,7 @@ function Styles() {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
-        column-gap: 2rem;
+        column-gap: 1rem;
       }
       `}
     </style>

@@ -82,8 +82,9 @@ const StyledInput = styled('input')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  border-radius: 4px;
-  margin: 0 4px;
+  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  border-radius: 8px;
+  margin: 0 8px;
   padding: 10px 12px;
   outline: 0;
   min-width: 0;
@@ -111,12 +112,13 @@ const StyledButton = styled('button')(
   font-size: 0.875rem;
   box-sizing: border-box;
   line-height: 1.5;
-  border: 0;
+  border: 1px solid;
   border-radius: 999px;
-  color: ${theme.palette.mode === 'dark' ? blue[300] : blue[600]};
-  background: transparent;
-  width: 40px;
-  height: 40px;
+  border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  width: 32px;
+  height: 32px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -126,8 +128,9 @@ const StyledButton = styled('button')(
   transition-duration: 120ms;
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? blue[800] : blue[100]};
     cursor: pointer;
+    background: ${blue[400]};
+    color: ${grey[50]};
   }
 
   &:focus-visible {

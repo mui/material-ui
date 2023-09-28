@@ -5,6 +5,8 @@ import {
 } from '@mui/base/unstable_useNumberInput';
 import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
 const CompactNumberInput = React.forwardRef(function CompactNumberInput(
   props: Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> &
@@ -24,33 +26,11 @@ const CompactNumberInput = React.forwardRef(function CompactNumberInput(
 
   return (
     <StyledInputRoot {...getRootProps()}>
-      <StyledStepperButton className="decrement" {...getDecrementButtonProps()}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24"
-          viewBox="0 0 24 24"
-          width="24"
-        >
-          <path d="M0 0h24v24H0V0z" fill="none" />
-          <path
-            d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-            fill="currentColor"
-          />
-        </svg>
-      </StyledStepperButton>
       <StyledStepperButton className="increment" {...getIncrementButtonProps()}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24"
-          viewBox="0 0 24 24"
-          width="24"
-        >
-          <path d="M0 0h24v24H0z" fill="none" />
-          <path
-            d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
-            fill="currentColor"
-          />
-        </svg>
+        <ArrowDropUpRoundedIcon />
+      </StyledStepperButton>
+      <StyledStepperButton className="decrement" {...getDecrementButtonProps()}>
+        <ArrowDropDownRoundedIcon />
       </StyledStepperButton>
       <HiddenInput {...inputProps} />
     </StyledInputRoot>
@@ -99,7 +79,7 @@ const grey = {
 const StyledInputRoot = styled('div')(
   ({ theme }) => `
     display: grid;
-    grid-template-columns: 2.5rem;
+    grid-template-columns: 2rem;
     grid-template-rows: 2rem 2rem;
     grid-template-areas:
       "increment"
@@ -112,10 +92,6 @@ const StyledInputRoot = styled('div')(
     background: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     overflow: auto;
-
-    &:hover {
-      border-color: ${blue[500]};
-    }
   `,
 );
 
@@ -130,7 +106,6 @@ const StyledStepperButton = styled('button')(
   flex-flow: nowrap;
   justify-content: center;
   align-items: center;
-
   font-size: 0.875rem;
   box-sizing: border-box;
   border: 0;
@@ -146,7 +121,6 @@ const StyledStepperButton = styled('button')(
 
   &:focus-visible {
     outline: 0;
-    border-color: ${blue[400]};
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
@@ -168,5 +142,5 @@ const Layout = styled('div')`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  column-gap: 2rem;
+  column-gap: 1rem;
 `;
