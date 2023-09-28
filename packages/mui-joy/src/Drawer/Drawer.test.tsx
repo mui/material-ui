@@ -67,7 +67,7 @@ describe('<Drawer />', () => {
     });
 
     it('should apply content theme styles for content slot', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
 
@@ -92,7 +92,7 @@ describe('<Drawer />', () => {
       );
 
       expect(getByTestId('content')).toHaveComputedStyle({
-        backgroundColor: 'rgb(0, 105, 217)',
+        backgroundColor: 'rgb(11, 107, 203)',
       });
     });
   });
