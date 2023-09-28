@@ -9,13 +9,18 @@ import {
   fireEvent,
   screen,
 } from '@mui-internal/test-utils';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
-// TODO v6: replace @mui/material with @mui/material-next when components are available
-import ListSubheader from '@mui/material/ListSubheader';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
 import { nativeSelectClasses } from '@mui/material/NativeSelect';
+// TODO v6: replace with material-next's extendTheme and provider when implementing Material You design
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+// TODO v6: replace with material-next Menu components when available https://github.com/mui/material-ui/pull/38934
+import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
+// TODO v6: replace with material-next ListSubheader when available
+import ListSubheader from '@mui/material/ListSubheader';
+// TODO v6: replace with material-next OutlinedInput when available
+import OutlinedInput from '@mui/material/OutlinedInput';
+// TODO v6: replace with material-next InputLabel when available
+import InputLabel from '@mui/material/InputLabel';
+// TODO v6: replace with material-next Divider when available
 import Divider from '@mui/material/Divider';
 import Select from '@mui/material-next/Select';
 import classes from './selectClasses';

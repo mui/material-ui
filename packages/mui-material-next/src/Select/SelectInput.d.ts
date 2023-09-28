@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-// TODO v6: replace @mui/material with @mui/material-next when Menu component is available
+// TODO v6: replace with material-next MenuProps when available https://github.com/mui/material-ui/pull/38934
 import { MenuProps } from '@mui/material/Menu';
 import { Theme } from '..';
 

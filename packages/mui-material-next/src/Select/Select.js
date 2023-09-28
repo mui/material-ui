@@ -3,10 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge, unstable_useForkRef as useForkRef } from '@mui/utils';
-// TODO v6: replace @mui/material with @mui/material-next when components are available
-import Input from '@mui/material/Input';
 import NativeSelectInput from '@mui/material/NativeSelect/NativeSelectInput';
+// TODO v6: Remove Input component after implementing Material You design
+import Input from '@mui/material/Input';
+// TODO v6: replace with material-next FilledInput when available https://github.com/mui/material-ui/issues/39052
 import FilledInput from '@mui/material/FilledInput';
+// TODO v6: replace with material-next OutlinedInput when available
 import OutlinedInput from '@mui/material/OutlinedInput';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
