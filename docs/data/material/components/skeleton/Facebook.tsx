@@ -21,13 +21,7 @@ function Media(props: MediaProps) {
       <CardHeader
         avatar={
           loading ? (
-            <Skeleton
-              animation="wave"
-              size="box"
-              shape="circular"
-              width={40}
-              height={40}
-            />
+            <Skeleton animation="wave" variant="circular" width={40} height={40} />
           ) : (
             <Avatar
               alt="Ted talk"
@@ -63,12 +57,7 @@ function Media(props: MediaProps) {
         }
       />
       {loading ? (
-        <Skeleton
-          sx={{ height: 190 }}
-          animation="wave"
-          size="box"
-          shape="rectangular"
-        />
+        <Skeleton sx={{ height: 190 }} animation="wave" variant="rectangular" />
       ) : (
         <CardMedia
           component="img"

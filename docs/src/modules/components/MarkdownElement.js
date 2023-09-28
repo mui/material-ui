@@ -280,6 +280,11 @@ const Root = styled('div')(
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
+      '&>code': {
+        height: 'fit-content',
+        backgroundColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
+        borderColor: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
+      },
       '& .MuiCallout-content': {
         minWidth: 0, // Allows content to shrink. Useful when callout contains code block
         flexGrow: 1,
@@ -610,6 +615,11 @@ const Root = styled('div')(
       },
       '& .MuiCallout-root': {
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
+        '&>code': {
+          height: 'fit-content',
+          backgroundColor: `var(--muidocs-palette-primaryDark-600, ${lightTheme.palette.primaryDark[600]})`,
+          borderColor: `var(--muidocs-palette-primaryDark-500, ${lightTheme.palette.primaryDark[500]})`,
+        },
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
           backgroundColor: alpha(darkTheme.palette.error[700], 0.2),
