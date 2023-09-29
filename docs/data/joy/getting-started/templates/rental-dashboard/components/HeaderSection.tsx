@@ -8,7 +8,7 @@ export default function HeaderSection() {
     <Stack sx={{ mb: 2 }}>
       <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
         <Typography level="h2">Rental properties</Typography>
-        <ColorSchemeToggle id={undefined} sx={{ alignSelf: 'center' }} />
+        <ColorSchemeToggle sx={{ alignSelf: 'center' }} />
       </Stack>
 
       <Typography level="body-md" color="neutral">
