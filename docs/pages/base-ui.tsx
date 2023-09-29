@@ -21,6 +21,7 @@ export default function Core() {
         You can style them with any CSS solutions like PostCSS or Tailwind CSS.`}
         card="/static/blog/introducing-base-ui/card.png"
       >
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
           rel="stylesheet"

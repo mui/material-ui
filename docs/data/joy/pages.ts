@@ -11,6 +11,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/joy-ui/getting-started/usage' },
       { pathname: '/joy-ui/getting-started/tutorial' },
       { pathname: '/joy-ui/getting-started/templates' },
+      { pathname: '/joy-ui/getting-started/roadmap' },
       {
         pathname: '/joy-ui/main-features',
         subheader: 'main-features',
