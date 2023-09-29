@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { OverrideProps, DefaultComponentProps } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { Popper, PopperProps } from '@mui/base/Popper';
-import { useSelect, SelectProvider } from '@mui/base/useSelect';
+import { useSelect, SelectProvider, SelectValue } from '@mui/base/useSelect';
 import { SelectOption } from '@mui/base/useOption';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
@@ -22,10 +22,15 @@ import { ListOwnerState } from '../List';
 import FormControlContext from '../FormControl/FormControlContext';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
 
-function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
-  return selectedOption?.label ?? '';
-}
+function defaultRenderValue<OptionValue>(
+  selectedOptions: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
+) {
+  if (Array.isArray(selectedOptions)) {
+    return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
+  }
 
+  return selectedOptions?.label ?? '';
+}
 const defaultModifiers: PopperProps['modifiers'] = [
   {
     name: 'offset',
@@ -311,8 +316,8 @@ const SelectIndicator = styled('span', {
  *
  * - [Select API](https://mui.com/joy-ui/api/select/)
  */
-const Select = React.forwardRef(function Select<TValue extends {}>(
-  inProps: SelectOwnProps<TValue>,
+const Select = React.forwardRef(function Select<TValue extends {}, Multiple extends boolean>(
+  inProps: SelectOwnProps<TValue, Multiple>,
   ref: React.ForwardedRef<any>,
 ) {
   const props = useThemeProps({
@@ -383,7 +388,9 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     formControl?.error ? 'danger' : formControl?.color ?? colorProp,
   );
 
-  const renderValue = renderValueProp ?? defaultRenderSingleValue;
+  const renderValue: (option: SelectValue<SelectOption<TValue>, Multiple>) => React.ReactNode =
+    renderValueProp ?? defaultRenderValue;
+
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
   const rootRef = React.useRef<HTMLElement>(null);
@@ -440,7 +447,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     disabled: disabledProp,
     getSerializedValue,
     listboxId,
-    multiple: false,
+    multiple: false as Multiple,
     name,
     required,
     onChange,
@@ -467,9 +474,12 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const externalForwardedProps = { ...other, slots, slotProps };
 
   const selectedOption = React.useMemo(
-    () => getOptionMetadata(value as TValue) ?? null,
+    () =>
+      (getOptionMetadata(value as TValue) ?? null) as SelectValue<SelectOption<TValue>, Multiple>,
     [getOptionMetadata, value],
   );
+
+  //  SelectValue<SelectOption<TValue>, Multiple>
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref: handleRef,
@@ -512,7 +522,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       nesting: false,
       row: false,
       wrap: false,
-    } as SelectOwnerState<any> & ListOwnerState,
+    } as SelectOwnerState<any, Multiple> & ListOwnerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
       variant: mergedProps.variant || variant,

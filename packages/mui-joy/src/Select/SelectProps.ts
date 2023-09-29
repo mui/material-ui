@@ -177,7 +177,7 @@ export type SelectOwnProps<OptionValue extends {}, Multiple extends boolean> = S
      * so that the selected value can be posted with a form.
      */
     getSerializedValue?: (
-      option: SelectValue<SelectOption<OptionValue>, Multiple>,
+      option: SelectValue<SelectOption<OptionValue | null>, Multiple>,
     ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
     /**
      * Callback fired when an option is selected.
