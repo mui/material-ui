@@ -4,6 +4,7 @@ import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Stack from '@mui/joy/Stack';
 
+import NavBar from './components/NavBar';
 import RentalCard from './components/RentalCard';
 import HeaderSection from './components/HeaderSection';
 import Search from './components/Search';
@@ -14,6 +15,7 @@ export default function RentalDashboard() {
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
+      <NavBar />
       <Box
         sx={{
           height: '100dvh',
