@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { getDivUtilityClass } from './divClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -16,7 +17,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getDivUtilityClass, classes);
 };
 
-const DivRoot = styled(Paper, {
+const DivRoot = styled('div', {
   name: 'MuiDiv',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
