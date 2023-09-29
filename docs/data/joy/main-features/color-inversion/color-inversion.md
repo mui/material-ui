@@ -114,14 +114,14 @@ Example usage for `sx` prop and `styled` API:
   import { styled } from '@mui/joy/styles';
   import { applySoftInversion } from '@mui/joy/colorInversion';
 
-  const StyledBox = styled(Box)([
+  const StyledBox = styled(Box)(
     ({ theme }) => ({
       display: 'flex',
       alignItems: 'center',
       ...theme.variants.soft.primary,
     }),
     applySoftInversion('primary'),
-  ]);
+  );
   ```
 
 ## How it works
