@@ -170,7 +170,7 @@ export type SelectOwnProps<OptionValue extends {}, Multiple extends boolean> = S
     /**
      * The default selected value. Use when the component is not controlled.
      */
-    defaultValue?: SelectValue<OptionValue | null, Multiple>;
+    defaultValue?: SelectValue<OptionValue, Multiple>;
     /**
      * A function to convert the currently selected value to a string.
      * Used to set a value of a hidden input associated with the select,
@@ -178,14 +178,14 @@ export type SelectOwnProps<OptionValue extends {}, Multiple extends boolean> = S
      */
     multiple?: Multiple;
     getSerializedValue?: (
-      option: SelectValue<SelectOption<OptionValue | null>, Multiple>,
+      option: SelectValue<SelectOption<OptionValue>, Multiple>,
     ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
     /**
      * Callback fired when an option is selected.
      */
     onChange?: (
       event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-      value: SelectValue<OptionValue | null, Multiple>,
+      value: SelectValue<OptionValue, Multiple>,
     ) => void;
     /**
      * Function that customizes the rendering of the selected value.
@@ -195,7 +195,7 @@ export type SelectOwnProps<OptionValue extends {}, Multiple extends boolean> = S
      * The selected value.
      * Set to `null` to deselect all options.
      */
-    value?: SelectValue<OptionValue | null, Multiple>;
+    value?: SelectValue<OptionValue, Multiple>;
   };
 
 export interface SelectOwnerState<OptionValue extends {}, Multiple extends boolean>
