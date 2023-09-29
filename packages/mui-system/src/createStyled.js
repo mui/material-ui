@@ -129,31 +129,6 @@ const muiStyledFunctionResolver = ({ styledArg, props, defaultTheme, themeId }) 
   return resolvedStyles;
 };
 
-const transformStyleArg = (stylesArg) => {
-  let transformedStylesArg = stylesArg;
-  let styledArgVariants;
-
-  if (stylesArg && stylesArg.variants) {
-    styledArgVariants = stylesArg.variants;
-    delete transformedStylesArg.variants;
-
-    transformedStylesArg = (props) => {
-      let result = stylesArg;
-      const variantStyles = variantsResolver(
-        props,
-        transformVariants(styledArgVariants),
-        styledArgVariants,
-      );
-      variantStyles.forEach((variantStyle) => {
-        result = deepmerge(result, variantStyle);
-      });
-
-      return result;
-    };
-  }
-  return transformedStylesArg;
-};
-
 export default function createStyled(input = {}) {
   const {
     themeId,
@@ -232,7 +207,28 @@ export default function createStyled(input = {}) {
                 muiStyledFunctionResolver({ styledArg: stylesArg, props, defaultTheme, themeId });
             }
             if (isPlainObject(stylesArg)) {
-              return transformStyleArg(styleArg);
+              let transformedStylesArg = stylesArg;
+              let styledArgVariants;
+
+              if (stylesArg && stylesArg.variants) {
+                styledArgVariants = stylesArg.variants;
+                delete transformedStylesArg.variants;
+
+                transformedStylesArg = (props) => {
+                  let result = stylesArg;
+                  const variantStyles = variantsResolver(
+                    props,
+                    transformVariants(styledArgVariants),
+                    styledArgVariants,
+                  );
+                  variantStyles.forEach((variantStyle) => {
+                    result = deepmerge(result, variantStyle);
+                  });
+
+                  return result;
+                };
+              }
+              return transformedStylesArg;
             }
             return stylesArg;
           })
@@ -241,7 +237,25 @@ export default function createStyled(input = {}) {
       let transformedStyleArg = styleArg;
 
       if (isPlainObject(styleArg)) {
-        transformedStyleArg = transformStyleArg(styleArg);
+        let styledArgVariants;
+        if (styleArg && styleArg.variants) {
+          styledArgVariants = styleArg.variants;
+          delete transformedStyleArg.variants;
+
+          transformedStyleArg = (props) => {
+            let result = styleArg;
+            const variantStyles = variantsResolver(
+              props,
+              transformVariants(styledArgVariants),
+              styledArgVariants,
+            );
+            variantStyles.forEach((variantStyle) => {
+              result = deepmerge(result, variantStyle);
+            });
+
+            return result;
+          };
+        }
       } else if (
         typeof styleArg === 'function' &&
         // On the server Emotion doesn't use React.forwardRef for creating components, so the created

@@ -482,21 +482,21 @@ describe('createStyled', () => {
     });
 
     it('should accept variants in arrays', () => {
-      const styled = createStyled({});
+      const styled = createStyled({ defaultTheme: { colors: { blue: 'rgb(0, 0, 255)' } } });
 
       const Test = styled('div')(
-        () => ({
+        ({ theme }) => ({
           variants: [
             {
               props: { color: 'blue', variant: 'filled' },
               style: {
-                backgroundColor: 'rgb(0,0,255)',
+                backgroundColor: theme.colors.blue,
               },
             },
             {
               props: { color: 'blue', variant: 'text' },
               style: {
-                color: 'rgb(0,0,255)',
+                color: theme.colors.blue,
               },
             },
           ],
