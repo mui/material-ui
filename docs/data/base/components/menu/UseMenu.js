@@ -4,9 +4,10 @@ import clsx from 'clsx';
 import { useMenu, MenuProvider } from '@mui/base/useMenu';
 import { useMenuItem } from '@mui/base/useMenuItem';
 import { Popper } from '@mui/base/Popper';
-import { GlobalStyles } from '@mui/system';
+
 import { useDropdown, DropdownContext } from '@mui/base/useDropdown';
 import { useMenuButton } from '@mui/base/useMenuButton';
+import { useTheme } from '@mui/system';
 
 const Menu = React.forwardRef(function Menu(props, ref) {
   const { children, ...other } = props;
@@ -74,7 +75,6 @@ export default function UseMenu() {
 
   return (
     <React.Fragment>
-      <GlobalStyles styles={styles} />
       <DropdownContext.Provider value={dropdownContextValue}>
         <MenuButton>Theme</MenuButton>
         <Menu id="hooks-menu">
@@ -85,6 +85,7 @@ export default function UseMenu() {
           <MenuItem onClick={createHandleMenuClick('Dark')}>Dark</MenuItem>
         </Menu>
       </DropdownContext.Provider>
+      <Styles />
     </React.Fragment>
   );
 }
@@ -115,7 +116,16 @@ const grey = {
   900: '#1C2025',
 };
 
-const styles = `
+function useIsDarkMode() {
+  const theme = useTheme();
+  return theme.palette.mode === 'dark';
+}
+
+function Styles() {
+  // Replace this with your app logic for determining dark mode
+  const isDarkMode = useIsDarkMode();
+  return (
+    <style>{`
   .menu-root {
     font-family: IBM Plex Sans, sans-serif;
     font-size: 0.875rem;
@@ -185,19 +195,19 @@ const styles = `
     font-weight: 600;
     font-size: 0.875rem;
     line-height: 1.5;
-    background-color: ${blue[500]};
     padding: 8px 16px;
     border-radius: 8px;
     color: white;
     transition: all 150ms ease;
     cursor: pointer;
-    border: 1px solid ${blue[500]};
-    box-shadow: 0 2px 1px ${'rgba(0, 0, 0, 0.5)'}, 
-    inset 0 1.5px 1px ${blue[400]}, 
-    inset 0 -2px 1px ${blue[600]};
+    background: ${isDarkMode ? grey[900] : '#fff'};
+    border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+    color: ${isDarkMode ? grey[200] : grey[900]};
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   
     &:hover {
-      background-color: ${blue[600]};
+      background: ${isDarkMode ? grey[800] : grey[50]};
+      border-color: ${isDarkMode ? grey[600] : grey[300]};
     }
   
     &.active {
@@ -206,8 +216,10 @@ const styles = `
     }
   
     &.focusVisible {
-      box-shadow: 0 0 0 4px ${blue[300]};
+      box-shadow: 0 0 0 4px ${isDarkMode ? blue[300] : blue[200]};
       outline: none;
     }
   }
-`;
+  `}</style>
+  );
+}

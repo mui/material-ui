@@ -4,9 +4,11 @@ import { Select, selectClasses } from '@mui/base/Select';
 import { Option, optionClasses } from '@mui/base/Option';
 import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectControlled() {
   const [value, setValue] = React.useState(10);
+
   return (
     <div>
       <CustomSelect value={value} onChange={(_, newValue) => setValue(newValue)}>
@@ -66,7 +68,31 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledButton = styled('button')(
+const CustomButton = React.forwardRef(function CustomButton(props, ref) {
+  const { ownerState, ...other } = props;
+  return (
+    <button
+      type="button"
+      {...other}
+      ref={ref}
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}
+    >
+      <span>{other.children}</span>
+      <UnfoldMoreRoundedIcon />
+    </button>
+  );
+});
+
+CustomButton.propTypes = {
+  children: PropTypes.node,
+  ownerState: PropTypes.object.isRequired,
+};
+
+const StyledButton = styled(CustomButton, { shouldForwardProp: () => true })(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -98,15 +124,9 @@ const StyledButton = styled('button')(
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
-  &.${selectClasses.expanded} {
-    &::after {
-      content: '▴';
-    }
-  }
-
-  &::after {
-    content: '▾';
-    float: right;
+  & > svg {
+    font-size: 1rem;
+    vertical-align: middle;
   }
   `,
 );
