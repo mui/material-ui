@@ -37,12 +37,10 @@ export type BaseCreateCSSProperties<Props extends object = {}> = {
 
 export interface CreateCSSProperties<Props extends object = {}>
   extends BaseCreateCSSProperties<Props> {
-  variants?: Array<{ props: Props; style: CSSProperties }>;
   // Allow pseudo selectors and media queries
   [k: string]:
     | BaseCreateCSSProperties<Props>[keyof BaseCreateCSSProperties<Props>]
-    | CreateCSSProperties<Props>
-    | Array<{ props: Props; style: CSSProperties }>;
+    | CreateCSSProperties<Props>;
 }
 
 /**

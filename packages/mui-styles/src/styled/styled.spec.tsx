@@ -104,33 +104,3 @@ function acceptanceTest() {
     </React.Fragment>
   );
 }
-
-function variantsAPI() {
-  const ObjectSyntax = styled('div')<{}, { foo?: string; bar?: number }>({
-    variants: [
-      {
-        props: { foo: 'a' },
-        style: { color: 'blue' },
-      },
-    ],
-  });
-
-  const FunctionSyntax = styled('div')<{}, { foo?: string; bar?: number }>(() => ({
-    variants: [
-      {
-        props: { foo: 'a' },
-        style: { color: 'blue' },
-      },
-    ],
-  }));
-
-  const WrongUsage = styled('div')<{}, { foo?: string; bar?: number }>({
-    color: [
-      // @ts-expect-error the API is not valid for CSS properties
-      {
-        props: { foo: 'a' },
-        style: { color: 'blue' },
-      },
-    ],
-  });
-}
