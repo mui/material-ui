@@ -29,27 +29,19 @@ githubLabel: 'component: skeleton'
       src={item.src}
     />
   ) : (
-    <Skeleton shape="rectangular" width={210} height={118} />
+    <Skeleton variant="rectangular" width={210} height={118} />
   );
 }
 ```
 
-## 形状
+## 变体
 
-组件支持 3 种形状:
+The component supports 4 shape variants:
 
-- `circular`, `rectangular`, 和 `rounded`: 带有不同的边界半径，让您控制形状
+- `text` (default): represents a single line of text (you can adjust the height via font size).
+- `circular`, `rectangular`, and `rounded`: come with different border radius to let you take control of the size.
 
-{{"demo": "Shapes.js"}}
-
-## 尺寸
-
-您可以使用以下值来指定组件的大小:
-
-- `text` （默认值）：表示一行文本（您可以通过字体大小调整高度）。
-- `box`: 将组件扩展到边界框的大小。
-
-{{"demo": "Sizes.js"}}
+{{"demo": "Variants.js"}}
 
 ## 动画
 
@@ -81,7 +73,7 @@ githubLabel: 'component: skeleton'
 
 ```jsx
 loading ? (
-  <Skeleton shape="circular">
+  <Skeleton variant="circular">
     <Avatar />
   </Skeleton>
 ) : (
