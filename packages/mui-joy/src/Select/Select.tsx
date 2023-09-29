@@ -354,6 +354,7 @@ const Select = React.forwardRef(function Select<TValue extends {}, Multiple exte
     'aria-labelledby': ariaLabelledby,
     id,
     name,
+    multiple = false as Multiple,
     slots = {},
     slotProps = {},
     ...other
@@ -447,7 +448,7 @@ const Select = React.forwardRef(function Select<TValue extends {}, Multiple exte
     disabled: disabledProp,
     getSerializedValue,
     listboxId,
-    multiple: false as Multiple,
+    multiple,
     name,
     required,
     onChange,
@@ -456,7 +457,7 @@ const Select = React.forwardRef(function Select<TValue extends {}, Multiple exte
     value: valueProp,
   });
 
-  const ownerState = {
+  const ownerState: SelectOwnerState<TValue, Multiple> = {
     ...props,
     active: buttonActive,
     defaultListboxOpen,
@@ -478,8 +479,6 @@ const Select = React.forwardRef(function Select<TValue extends {}, Multiple exte
       (getOptionMetadata(value as TValue) ?? null) as SelectValue<SelectOption<TValue>, Multiple>,
     [getOptionMetadata, value],
   );
-
-  //  SelectValue<SelectOption<TValue>, Multiple>
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref: handleRef,

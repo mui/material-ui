@@ -105,37 +105,37 @@ interface Value {
 <Select
   slotProps={{
     root: (ownerState) => {
-      expectType<SelectOwnerState<any>, typeof ownerState>(ownerState);
+      expectType<SelectOwnerState<any, false>, typeof ownerState>(ownerState);
       return {
         'data-testid': 'test',
       };
     },
     button: (ownerState) => {
-      expectType<SelectOwnerState<any>, typeof ownerState>(ownerState);
+      expectType<SelectOwnerState<any, false>, typeof ownerState>(ownerState);
       return {
         'data-testid': 'test',
       };
     },
     startDecorator: (ownerState) => {
-      expectType<SelectOwnerState<any>, typeof ownerState>(ownerState);
+      expectType<SelectOwnerState<any, false>, typeof ownerState>(ownerState);
       return {
         'data-testid': 'test',
       };
     },
     endDecorator: (ownerState) => {
-      expectType<SelectOwnerState<any>, typeof ownerState>(ownerState);
+      expectType<SelectOwnerState<any, false>, typeof ownerState>(ownerState);
       return {
         'data-testid': 'test',
       };
     },
     indicator: (ownerState) => {
-      expectType<SelectOwnerState<any>, typeof ownerState>(ownerState);
+      expectType<SelectOwnerState<any, false>, typeof ownerState>(ownerState);
       return {
         'data-testid': 'test',
       };
     },
     listbox: (ownerState) => {
-      expectType<SelectOwnerState<any>, typeof ownerState>(ownerState);
+      expectType<SelectOwnerState<any, false>, typeof ownerState>(ownerState);
       return {
         'data-testid': 'test',
       };

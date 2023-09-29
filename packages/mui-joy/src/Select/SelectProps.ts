@@ -176,8 +176,9 @@ export type SelectOwnProps<OptionValue extends {}, Multiple extends boolean> = S
      * Used to set a value of a hidden input associated with the select,
      * so that the selected value can be posted with a form.
      */
+    multiple?: Multiple;
     getSerializedValue?: (
-      option: SelectValue<SelectOption<OptionValue>, Multiple>,
+      option: SelectValue<SelectOption<OptionValue | null>, Multiple>,
     ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
     /**
      * Callback fired when an option is selected.
