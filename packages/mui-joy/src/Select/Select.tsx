@@ -51,7 +51,7 @@ const defaultModifiers: PopperProps['modifiers'] = [
 ];
 
 const useUtilityClasses = (ownerState: SelectOwnerState<any, boolean>) => {
-  const { color, disabled, focusVisible, size, variant, open } = ownerState;
+  const { color, disabled, focusVisible, size, variant, open, multiple } = ownerState;
 
   const slots = {
     root: [
@@ -62,6 +62,7 @@ const useUtilityClasses = (ownerState: SelectOwnerState<any, boolean>) => {
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
+      multiple && 'multiple',
     ],
     button: ['button'],
     startDecorator: ['startDecorator'],
