@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import createMixins from '@mui/material/styles/createMixins';
 import createTypography from '@mui/material/styles/createTypography';
-import sinon from 'sinon';
 import createBreakpoints from '../createTheme/createBreakpoints';
 import styleFunctionSx from './styleFunctionSx';
 
@@ -94,15 +93,17 @@ describe('styleFunctionSx', () => {
     });
 
     it('resolves system typography', () => {
-      const consoleWarnStub = sinon.stub(console, 'warn');
+      let result;
 
-      const result = styleFunctionSx({
-        theme,
-        sx: { typography: ['body2', 'body1'] },
-      });
-
-      sinon.assert.calledTwice(consoleWarnStub);
-      consoleWarnStub.restore();
+      expect(() => {
+        result = styleFunctionSx({
+          theme,
+          sx: { typography: ['body2', 'body1'] },
+        });
+      }).toWarnDev([
+        'MUI: The value found in theme for prop: "body2" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
+        'MUI: The value found in theme for prop: "body1" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
+      ]);
 
       expect(result).to.deep.equal({
         '@media (min-width:0px)': {

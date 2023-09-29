@@ -3,7 +3,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import Typography, { typographyClasses as classes } from '@mui/material/Typography';
-import sinon from 'sinon';
 
 describe('<Typography />', () => {
   const { render } = createRenderer();
@@ -115,20 +114,15 @@ describe('<Typography />', () => {
 
   describe('prop: color', () => {
     it('should check for invalid color value', () => {
-      const consoleWarnStub = sinon.stub(console, 'warn');
-
-      render(
-        <Typography variant="h6" color="background">
-          Hello
-        </Typography>,
-      );
-
-      sinon.assert.calledWith(
-        consoleWarnStub,
-        'MUI: The value found in theme for prop: "background" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
-      );
-
-      consoleWarnStub.restore();
+      const msg =
+        'MUI: The value found in theme for prop: "background" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".';
+      expect(() => {
+        render(
+          <Typography variant="h6" color="background">
+            Hello
+          </Typography>,
+        );
+      }).toWarnDev([msg, msg]);
     });
   });
 

@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import sinon from 'sinon';
 import style, { getStyleValue } from './style';
 
 describe('style', () => {
@@ -262,28 +261,25 @@ describe('style', () => {
   describe('getStyleValue', () => {
     it('should warn on acceptable object', () => {
       const round = (value) => Math.round(value * 1e5) / 1e5;
-      const consoleWarnStub = sinon.stub(console, 'warn');
+      let output;
 
-      const output = getStyleValue(
-        {
-          body1: {
-            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-            fontSize: '1rem',
-            letterSpacing: `${round(0.15 / 16)}em`,
-            fontWeight: 400,
-            lineHeight: 1.5,
+      expect(() => {
+        output = getStyleValue(
+          {
+            body1: {
+              fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+              fontSize: '1rem',
+              letterSpacing: `${round(0.15 / 16)}em`,
+              fontWeight: 400,
+              lineHeight: 1.5,
+            },
           },
-        },
-        null,
-        'body1',
-      );
-
-      sinon.assert.calledWith(
-        consoleWarnStub,
+          null,
+          'body1',
+        );
+      }).toWarnDev(
         'MUI: The value found in theme for prop: "body1" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
       );
-
-      consoleWarnStub.restore();
 
       expect(output).to.deep.equal({
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -307,16 +303,13 @@ describe('style', () => {
         }
         return value;
       };
-      const consoleWarnStub = sinon.stub(console, 'warn');
+      let output;
 
-      const output = getStyleValue(theme.palette, paletteTransform, 'grey');
-
-      sinon.assert.calledWith(
-        consoleWarnStub,
+      expect(() => {
+        output = getStyleValue(theme.palette, paletteTransform, 'grey');
+      }).toWarnDev(
         'MUI: The value found in theme for prop: "grey" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
       );
-
-      consoleWarnStub.restore();
 
       expect(output).to.be.equal('grey');
     });
