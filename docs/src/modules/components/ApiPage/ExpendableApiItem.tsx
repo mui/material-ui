@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { alpha, styled } from '@mui/material/styles';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Divider, Box, IconButton, SxProps } from '@mui/material';
+import { Divider, IconButton, SxProps } from '@mui/material';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
@@ -14,18 +14,15 @@ type DescriptionType = 'props' | 'classes' | 'CSS' | 'slots';
 
 const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
   ({ theme }) => ({
-    ...theme.typography.caption,
-    fontSize: 13,
-    fontFamily: theme.typography.fontFamilyCode,
     position: 'relative',
-    marginBottom: 8,
-    fontWeight: theme.typography.fontWeightRegular,
-    lineHeight: 1.6,
-
+    marginBottom: 12,
     '& .MuiApi-item-header': {
+      minHeight: 26,
       display: 'flex',
-      alignItems: 'flex-start',
-      marginLeft: -40,
+      alignItems: 'center',
+      marginLeft: -38,
+      marginBottom: 8,
+      lineHeight: 1.5,
     },
     '& .MuiApi-item-link-visual': {
       display: 'none',
@@ -37,7 +34,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       height: 26,
       width: 26,
       textAlign: 'center',
-      lineHeight: '30px',
+      lineHeight: '26px',
       '& svg': {
         fill: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
         height: '14px',
@@ -45,15 +42,19 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       },
     },
     '& .MuiApi-item-title': {
-      flexShrink: 0,
-      padding: '2px 6px',
       marginLeft: 32,
+      padding: '2px 6px',
+      flexShrink: 0,
+      flexGrow: 1,
       fontWeight: theme.typography.fontWeightSemiBold,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontSize: theme.typography.pxToRem(13),
+      color: `var(--muidocs-palette-primary-700, ${darkTheme.palette.primary[700]})`,
     },
     '& .MuiApi-item-content': {
       verticalAlign: 'top',
-      paddingBottom: theme.spacing(1.5),
-      p: { marginBottom: theme.spacing(0.5) },
+      paddingBottom: theme.spacing(2),
+      p: { marginBottom: theme.spacing(1.5) },
     },
     '& .MuiApi-item-note': {
       fontSize: 11,
@@ -124,7 +125,9 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         '&>span, &>div': {
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
         },
-
+        '& .MuiApi-item-title': {
+          color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+        },
         '& .MuiApi-item-link-visual': {
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
           backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
@@ -227,22 +230,22 @@ function ApiItem(props: ApiItemProps) {
           {title}
         </span>
         {note && <span className="MuiApi-item-note">{note}</span>}
-        <Box sx={{ flexGrow: 1 }} />
         {isExtendable && (
           <IconButton
             onClick={() => setIsExtended((prev) => !prev)}
             className="MuiApi-expend-button"
             size="small"
+            sx={{ p: 0 }}
           >
             {isExtended ? (
-              <KeyboardArrowDownIcon color="primary" />
+              <KeyboardArrowDownIcon sx={{ color: 'grey.500' }} />
             ) : (
-              <KeyboardArrowUpIcon color="primary" />
+              <KeyboardArrowUpIcon sx={{ color: 'grey.500' }} />
             )}
           </IconButton>
         )}
       </div>
-      <div className={`MuiApi-item-content`}>{isExtended && children}</div>
+      {isExtended && <div className={`MuiApi-item-content`}>{isExtended && children}</div>}
       <Divider />
     </Root>
   );

@@ -26,10 +26,11 @@ const StyledApiItem = styled(ExpendableApiItem)(
       },
       '& .prop-list-title': {
         ...theme.typography.body2,
+        fontWeight: theme.typography.fontWeightSemiBold,
+        color: theme.palette.text.primary,
         paddingRight: 5,
         whiteSpace: 'nowrap',
         margin: 0,
-        fontWeight: theme.typography.fontWeightSemiBold,
       },
     },
     '& .prop-list-default-props': {
