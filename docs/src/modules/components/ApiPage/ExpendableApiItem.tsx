@@ -45,11 +45,10 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       marginLeft: 32,
       padding: '2px 6px',
       flexShrink: 0,
-      flexGrow: 1,
       fontWeight: theme.typography.fontWeightSemiBold,
       fontFamily: theme.typography.fontFamilyCode,
       fontSize: theme.typography.pxToRem(13),
-      color: `var(--muidocs-palette-primary-700, ${darkTheme.palette.primary[700]})`,
+      color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
     },
     '& .MuiApi-item-content': {
       verticalAlign: 'top',
@@ -235,7 +234,7 @@ function ApiItem(props: ApiItemProps) {
             onClick={() => setIsExtended((prev) => !prev)}
             className="MuiApi-expend-button"
             size="small"
-            sx={{ p: 0 }}
+            sx={{ p: 0, ml: 'auto' }}
           >
             {isExtended ? (
               <KeyboardArrowDownIcon sx={{ color: 'grey.500' }} />

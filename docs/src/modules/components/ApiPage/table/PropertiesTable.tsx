@@ -1,9 +1,60 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { styled, alpha } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
+import {
+  brandingDarkTheme as darkTheme,
+  brandingLightTheme as lightTheme,
+} from 'docs/src/modules/brandingTheme';
 import { PropDescriptionParams } from '../list/PropertiesList';
+
+const StyledTable = styled('table')(
+  ({ theme }) => ({
+    '& .table-headers': {
+      paddingTop: 8,
+      paddingBottom: 8,
+      textAlign: 'left',
+      fontWeight: theme.typography.fontWeightSemiBold,
+      fontSize: theme.typography.pxToRem(14),
+    },
+    '& .MuiApi-table-item-title': {
+      fontWeight: theme.typography.fontWeightSemiBold,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontSize: theme.typography.pxToRem(13),
+      color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
+    },
+    '& .MuiApi-table-item-type': {
+      padding: '0 4px',
+      borderRadius: 5,
+      color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
+      border: '1px solid',
+      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+      ...theme.typography.caption,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightRegular,
+    },
+    '& .MuiApi-table-item-default': {
+      padding: '0 4px',
+      borderRadius: 5,
+      border: '1px solid',
+      borderColor: alpha(darkTheme.palette.primary[100], 0.5),
+      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+      ...theme.typography.caption,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightRegular,
+    },
+  }),
+  ({ theme }) => ({
+    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+      '& .MuiApi-table-item-title': {
+        color: `var(--muidocs-palette-primary-700, ${darkTheme.palette.primary[700]})`,
+      },
+    },
+  }),
+);
 
 function PropDescription({ description }: { description: string }) {
   const isUlPresent = description.includes('<ul>');
@@ -35,13 +86,13 @@ export default function PropertiesTable(props: PropertiesTableProps) {
   const { properties } = props;
   const t = useTranslate();
   return (
-    <table>
+    <StyledTable>
       <thead>
         <tr>
-          <th align="left">Name</th>
-          <th align="left">Type</th>
-          <th align="left">Default</th>
-          <th align="left">Description</th>
+          <th className="table-headers">Name</th>
+          <th className="table-headers">Type</th>
+          <th className="table-headers">Default</th>
+          <th className="table-headers">Description</th>
         </tr>
       </thead>
       <tbody>
@@ -65,7 +116,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
 
           return (
             <tr key={propName} id={getHash({ componentName, propName })}>
-              <td>
+              <td className="MuiApi-table-item-title">
                 {propName}
                 {isRequired ? '*' : ''}
                 {isOptional ? '?' : ''}
@@ -73,16 +124,18 @@ export default function PropertiesTable(props: PropertiesTableProps) {
               <td>
                 {
                   <span
+                    className="MuiApi-table-item-type"
                     dangerouslySetInnerHTML={{
                       __html: typeName,
                     }}
                   />
                 }
               </td>
-              <td>{propDefault}</td>
+              <td>
+                <span className="MuiApi-table-item-default">{propDefault}</span>
+              </td>
               <td>
                 {description && <PropDescription description={description} />}
-
                 {requiresRef && (
                   <Alert
                     severity="warning"
@@ -107,7 +160,6 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                     />
                   </Alert>
                 )}
-
                 {additionalInfo.map((key) => (
                   <p
                     className="prop-list-additional-description  MuiApi-collapsible"
@@ -149,7 +201,6 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                     )}
                   </Alert>
                 )}
-
                 {signature && (
                   <div className="prop-list-signature MuiApi-collapsible">
                     <span className="prop-list-title">{t('api-docs.signature')}:</span>
@@ -193,6 +244,6 @@ export default function PropertiesTable(props: PropertiesTableProps) {
           );
         })}
       </tbody>
-    </table>
+    </StyledTable>
   );
 }
