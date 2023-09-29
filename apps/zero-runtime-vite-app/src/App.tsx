@@ -91,7 +91,7 @@ export default function App({ isRed }: any) {
       </div>
       <div>
         <HalfWidth
-          sx={({ theme }: any) => ({
+          sx={({ theme }) => ({
             color: theme.palette.primary.main,
             fontSize: isRed ? 'h1.fontSize' : 'h2.fontSize',
             ':hover': {
