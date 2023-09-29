@@ -14,7 +14,12 @@ import GroupListContext from '../List/GroupListContext';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
-import { SelectOwnProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
+import {
+  SelectOwnProps,
+  SelectOwnerState,
+  SelectSlotsAndSlotProps,
+  SelectTypeMap,
+} from './SelectProps';
 import { resolveSxValue } from '../styles/styleUtils';
 import useSlot from '../utils/useSlot';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
@@ -473,7 +478,11 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, slots, slotProps };
+  const externalForwardedProps = {
+    ...other,
+    slots,
+    slotProps,
+  } as SelectSlotsAndSlotProps<boolean> & typeof other;
 
   const selectedOption = React.useMemo(
     () =>
@@ -489,7 +498,7 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
     className: classes.root,
     elementType: SelectRoot,
     externalForwardedProps,
-    ownerState,
+    ownerState: ownerState as SelectOwnerState<any, boolean>,
   });
 
   const [SlotButton, buttonProps] = useSlot('button', {
@@ -505,7 +514,7 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
     elementType: SelectButton,
     externalForwardedProps,
     getSlotProps: getButtonProps,
-    ownerState,
+    ownerState: ownerState as SelectOwnerState<any, boolean>,
   });
 
   const [SlotListbox, listboxProps] = useSlot('listbox', {
@@ -525,7 +534,7 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
       nesting: false,
       row: false,
       wrap: false,
-    } as SelectOwnerState<any, Multiple> & ListOwnerState,
+    } as SelectOwnerState<any, boolean> & ListOwnerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
       variant: mergedProps.variant || variant,
@@ -538,21 +547,21 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
     className: classes.startDecorator,
     elementType: SelectStartDecorator,
     externalForwardedProps,
-    ownerState,
+    ownerState: ownerState as SelectOwnerState<any, boolean>,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: SelectEndDecorator,
     externalForwardedProps,
-    ownerState,
+    ownerState: ownerState as SelectOwnerState<any, boolean>,
   });
 
   const [SlotIndicator, indicatorProps] = useSlot('indicator', {
     className: classes.indicator,
     elementType: SelectIndicator,
     externalForwardedProps,
-    ownerState,
+    ownerState: ownerState as SelectOwnerState<any, boolean>,
   });
 
   // Wait for `listboxProps` because `slotProps.listbox` could be a function.
