@@ -1,7 +1,8 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
-import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
+import CardOverflow from '@mui/joy/CardOverflow';
 import Chip from '@mui/joy/Chip';
 import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
@@ -32,44 +33,35 @@ export default function RentalCard({
   const [isLiked, setIsLiked] = React.useState(liked);
   return (
     <Card
-      variant="soft"
+      variant="outlined"
       orientation="horizontal"
       sx={{
+        bgcolor: 'neutral.softBg',
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'row' },
-        p: 0,
-        overflow: 'hidden',
-        border: '1px solid',
-        borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
         '&:hover': {
           boxShadow: 'lg',
           borderColor: 'var(--joy-palette-neutral-outlinedDisabledBorder)',
         },
       }}
     >
-      <Box
+      <CardOverflow
         sx={{
-          height: { xs: 200, sm: 'auto' },
-          width: {
-            xs: '100%',
-            sm: 200,
+          mr: { xs: 'var(--CardOverflow-offset)', sm: 0 },
+          mb: { xs: 0, sm: 'var(--CardOverflow-offset)' },
+          '--AspectRatio-radius': {
+            xs: 'calc(var(--CardOverflow-radius) - var(--variant-borderWidth, 0px)) calc(var(--CardOverflow-radius) - var(--variant-borderWidth, 0px)) 0 0',
+            sm: 'calc(var(--CardOverflow-radius) - var(--variant-borderWidth, 0px)) 0 0 calc(var(--CardOverflow-radius) - var(--variant-borderWidth, 0px))',
           },
-          position: 'relative',
-          overflow: { xs: 'hidden', sm: 'initial' },
         }}
       >
         <AspectRatio
           ratio="1"
-          sx={(theme) => ({
-            borderRadius: 'ms',
-            borderTopRightRadius: 0,
-            borderBottomRightRadius: 0,
-            maxHeight: 4,
-            [theme.breakpoints.down('sm')]: {
-              borderBottomLeftRadius: 0,
-              borderBottomRightRadius: 0,
-            },
-          })}
+          flex
+          sx={{
+            minWidth: { sm: 120, md: 160 },
+            '--AspectRatio-maxHeight': { xs: '160px', sm: '9999px' },
+          }}
         >
           <img alt="" src={image} />
           <Stack
@@ -103,14 +95,8 @@ export default function RentalCard({
             </IconButton>
           </Stack>
         </AspectRatio>
-      </Box>
-      <Stack
-        sx={{
-          p: 2,
-        }}
-        spacing={1.5}
-        flex={1}
-      >
+      </CardOverflow>
+      <CardContent>
         <Stack
           spacing={1}
           direction="row"
@@ -144,7 +130,13 @@ export default function RentalCard({
           </IconButton>
         </Stack>
 
-        <Stack spacing={2} direction="row">
+        <Stack
+          spacing="0.25rem 1rem"
+          direction="row"
+          useFlexGap
+          flexWrap="wrap"
+          sx={{ my: 0.25 }}
+        >
           <Typography level="body-xs" startDecorator={<FmdGoodRoundedIcon />}>
             Collingwood VIC
           </Typography>
@@ -155,7 +147,7 @@ export default function RentalCard({
             Wi-Fi
           </Typography>
         </Stack>
-        <Stack direction="row">
+        <Stack direction="row" sx={{ mt: 'auto' }}>
           <Typography
             level="title-sm"
             startDecorator={
@@ -175,7 +167,7 @@ export default function RentalCard({
             <strong>$540</strong> <Typography level="body-md">total</Typography>
           </Typography>
         </Stack>
-      </Stack>
+      </CardContent>
     </Card>
   );
 }

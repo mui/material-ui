@@ -11,7 +11,12 @@ export default function Pagination() {
     <div>
       <Box
         className="Pagination-mobile"
-        sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', m: 2 }}
+        sx={{
+          display: { xs: 'flex', md: 'none' },
+          alignItems: 'center',
+          mx: 2,
+          my: 1,
+        }}
       >
         <IconButton
           aria-label="previous page"
@@ -36,14 +41,14 @@ export default function Pagination() {
       <Box
         className="Pagination-laptopUp"
         sx={{
-          pt: 0.5,
           gap: 1,
           [`& .${iconButtonClasses.root}`]: { borderRadius: '50%' },
           display: {
             xs: 'none',
             md: 'flex',
           },
-          m: 4,
+          mx: 4,
+          my: 2,
         }}
       >
         <Button

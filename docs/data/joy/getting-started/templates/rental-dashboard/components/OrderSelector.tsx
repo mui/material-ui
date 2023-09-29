@@ -6,47 +6,20 @@ import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import Dropdown from '@mui/joy/Dropdown';
 
 export default function OrderSelector() {
-  const SIZES = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large'];
-  const [size, setSize] = React.useState('Medium');
-
   return (
     <Dropdown>
       <MenuButton
         variant="plain"
         color="primary"
         endDecorator={<ArrowDropDown />}
-        sx={{ flexWrap: 'nowrap' }}
+        sx={{ whiteSpace: 'nowrap' }}
       >
         Order by
       </MenuButton>
-      <Menu sx={{ pr: 4 }}>
-        <MenuItem
-          onClick={() => {
-            const nextIndex = SIZES.indexOf(size) - 1;
-            const value = nextIndex < 0 ? SIZES[SIZES.length - 1] : SIZES[nextIndex];
-            setSize(value);
-          }}
-        >
-          Price
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            const nextIndex = SIZES.indexOf(size) + 1;
-            const value = nextIndex > SIZES.length - 1 ? SIZES[0] : SIZES[nextIndex];
-            setSize(value);
-          }}
-        >
-          Date
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            const nextIndex = SIZES.indexOf(size) + 1;
-            const value = nextIndex > SIZES.length - 1 ? SIZES[0] : SIZES[nextIndex];
-            setSize(value);
-          }}
-        >
-          Rating
-        </MenuItem>
+      <Menu sx={{ minWidth: 120 }}>
+        <MenuItem>Price</MenuItem>
+        <MenuItem>Date</MenuItem>
+        <MenuItem>Rating</MenuItem>
       </Menu>
     </Dropdown>
   );
