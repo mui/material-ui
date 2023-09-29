@@ -50,13 +50,7 @@ The color inversion feature is only available for `soft` and `solid` variants be
 
 Surface components, including the Alert, Card, Drawer, ModalDialog, Menu, and Sheet, have the `invertedColors` prop to enable color inversion for `solid` and `soft` variants.
 
-For example, to enable color inversion on the Card component:
-
-```js
-<Card variant="solid" invertedColors>
-  …
-</Card>
-```
+{{"demo": "ColorInversionSurface.js"}}
 
 ### Portal popup
 
@@ -98,6 +92,8 @@ Example usage for `sx` prop and `styled` API:
 - `sx` prop
 
   ```js
+  import { applySolidInversion } from '@mui/joy/colorInversion';
+
   <Box
     sx={[
       (theme) => ({
@@ -109,22 +105,22 @@ Example usage for `sx` prop and `styled` API:
     ]}
   >
     …
-  </Box>
+  </Box>;
   ```
 
 - `styled` API
 
   ```js
   import { styled } from '@mui/joy/styles';
-  import { applySolidInversion } from '@mui/joy/colorInversion';
+  import { applySoftInversion } from '@mui/joy/colorInversion';
 
   const StyledBox = styled(Box)([
     ({ theme }) => ({
       display: 'flex',
       alignItems: 'center',
-      background: theme.vars.palette.neutral[900],
+      ...theme.variants.soft.primary,
     }),
-    applySolidInversion('neutral'),
+    applySoftInversion('primary'),
   ]);
   ```
 
@@ -132,12 +128,10 @@ Example usage for `sx` prop and `styled` API:
 
 When `invertedColors` is set to true or the utility is used on the parent component, a set of CSS variables is applied to it.
 
-All of the children will use these CSS variables instead of the theme.
-
 ```jsx
 <Sheet invertedColors variant="solid" color="neutral">
 
-// The component style sheet
+// The parent's style sheet
 {
   // the values of these variables depends on the parent's variant and color.
   --variant-softColor: …;
@@ -154,7 +148,21 @@ All of the children will use these CSS variables instead of the theme.
 }
 ```
 
+As a result, the children will use those CSS variables instead of the theme.
+
+```jsx
+// The children style sheet
+// The values of these variables are inherited from the parent.
+{
+  color: var(--joy-palette-text-primary);
+  background: var(--joy-palette-background-surface);
+  …
+}
+```
+
+:::info
 Color inversion is done by and only by CSS so it works with both client-side and server-side rendering.
+:::
 
 ## Common examples
 
