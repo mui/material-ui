@@ -39,7 +39,8 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "clsx": "^2.0.0"
+    "clsx": "^2.0.0",
+    "csstype": "^3.1.2"
   },
   "devDependencies": {
     "@types/chai": "^4.3.8",
