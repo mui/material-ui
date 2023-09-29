@@ -235,7 +235,7 @@ Object.assign(Divider, { muiSkipListHighlight: true });
 Divider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * Absolutely position the element.
@@ -252,11 +252,6 @@ Divider.propTypes /* remove-proptypes */ = {
   classes: PropTypes.object,
   /**
    * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
@@ -275,10 +270,6 @@ Divider.propTypes /* remove-proptypes */ = {
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-  /**
-   * @ignore
-   */
-  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -300,6 +291,6 @@ Divider.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
     PropTypes.string,
   ]),
-};
+} as any;
 
 export default Divider;
