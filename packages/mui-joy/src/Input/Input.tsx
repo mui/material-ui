@@ -9,7 +9,7 @@ import useSlot from '../utils/useSlot';
 import { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import useForwardedInput from './useForwardedInput';
-import { INVERTED_COLORS_ATTR } from '../styles/colorInversionUtils';
+import { INVERTED_COLORS_ATTR } from '../colorInversion/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: InputOwnerState) => {
   const { disabled, fullWidth, variant, color, size } = ownerState;

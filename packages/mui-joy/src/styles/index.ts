@@ -84,4 +84,3 @@ export { default as useThemeProps } from './useThemeProps';
 export { default as extendTheme, createGetCssVar } from './extendTheme';
 export type { CssVarsThemeOptions } from './extendTheme';
 export { default as StyledEngineProvider } from './StyledEngineProvider';
-export { applySolidInversion, applySoftInversion } from './colorInversionUtils';

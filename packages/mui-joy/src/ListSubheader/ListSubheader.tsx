@@ -10,7 +10,7 @@ import { ListSubheaderOwnerState, ListSubheaderTypeMap } from './ListSubheaderPr
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 import ListSubheaderDispatch from './ListSubheaderContext';
 import useSlot from '../utils/useSlot';
-import { INVERTED_COLORS_ATTR } from '../styles/colorInversionUtils';
+import { INVERTED_COLORS_ATTR } from '../colorInversion/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: ListSubheaderOwnerState) => {
   const { variant, color, sticky } = ownerState;

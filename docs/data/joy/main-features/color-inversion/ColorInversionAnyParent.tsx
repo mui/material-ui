@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { applySolidInversion } from '@mui/joy/styles';
+import { applySolidInversion } from '@mui/joy/colorInversion';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';

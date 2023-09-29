@@ -76,24 +76,27 @@ To skip color inversion on a specific child, set `data-skip-inverted-colors` att
 {{"demo": "ColorInversionSkip.js"}}
 
 :::info
-All children of the component with `data-skip-inverted-colors` attribute will also be excluded from the color inversion.
+The component with `data-skip-inverted-colors` and its children will be excluded from the color inversion.
 :::
 
 ### Apply color inversion to any parent
 
-Use `applySolidInversion` or `applySoftInversion` utilities to apply color inversion to any parent component. The utility accept a color prop as an argument. These functions are used by the surface components when `invertedColors` prop is set to true.
+Use `applySolidInversion` or `applySoftInversion` utilities to apply color inversion to any parent component.
 
 ```js
 import { applySolidInversion, applySoftInversion } from '@mui/joy/colorInversion';
 ```
 
+:::info
+Those functions are used internally by the surface components when `invertedColors` prop is set to true.
+:::
+
 {{"demo": "ColorInversionAnyParent.js"}}
 
-:::success
+Example usage for `sx` prop and `styled` API:
 
-Example usage with `sx` prop and `styled` API:
+- `sx` prop
 
-- `sx` prop as an array.
   ```js
   <Box
     sx={[
@@ -108,10 +111,12 @@ Example usage with `sx` prop and `styled` API:
     …
   </Box>
   ```
-- `styled` function.
+
+- `styled` API
 
   ```js
   import { styled } from '@mui/joy/styles';
+  import { applySolidInversion } from '@mui/joy/colorInversion';
 
   const StyledBox = styled(Box)([
     ({ theme }) => ({
@@ -122,8 +127,6 @@ Example usage with `sx` prop and `styled` API:
     applySolidInversion('neutral'),
   ]);
   ```
-
-  :::
 
 ## How it works
 

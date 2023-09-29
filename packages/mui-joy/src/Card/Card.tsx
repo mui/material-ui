@@ -8,7 +8,8 @@ import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
-import { useThemeProps, applySolidInversion, applySoftInversion } from '../styles';
+import { useThemeProps } from '../styles';
+import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import styled from '../styles/styled';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
