@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Tooltip from '@mui/material/Tooltip';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import CalendarViewDayRoundedIcon from '@mui/icons-material/CalendarViewDayRounded';
@@ -72,12 +73,12 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
       aria-label="API display option"
       sx={{
         '& .MuiSvgIcon-root': {
-          height: '0.8em',
-          width: '0.8em',
+          height: '18px',
+          width: '18px',
         },
         '&.MuiToggleButtonGroup-root .MuiToggleButton-root': {
-          padding: '0.15rem 0.3rem',
-          borderRadius: '10px',
+          padding: '4px 6px',
+          borderRadius: '6px',
           '&.MuiToggleButtonGroup-grouped:not(:last-of-type)': {
             borderTopRightRadius: 0,
             borderBottomRightRadius: 0,
@@ -89,17 +90,21 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         },
       }}
     >
-      <ToggleButton value="collapsed" aria-label="colapsed list">
-        <ReorderRoundedIcon size="small" />
-      </ToggleButton>
-
-      <ToggleButton value="expended" aria-label="expended list">
-        <CalendarViewDayRoundedIcon />
-      </ToggleButton>
-
-      <ToggleButton value="table" aria-label="table">
-        <TableChartRoundedIcon />
-      </ToggleButton>
+      <Tooltip title="Collapse list view">
+        <ToggleButton value="collapsed" aria-label="colapsed list">
+          <ReorderRoundedIcon size="small" />
+        </ToggleButton>
+      </Tooltip>
+      <Tooltip title="Expand list view">
+        <ToggleButton value="expended" aria-label="expended list">
+          <CalendarViewDayRoundedIcon />
+        </ToggleButton>
+      </Tooltip>
+      <Tooltip title="Table view">
+        <ToggleButton value="table" aria-label="table">
+          <TableChartRoundedIcon />
+        </ToggleButton>
+      </Tooltip>
     </ToggleButtonGroup>
   );
 }
