@@ -1,5 +1,6 @@
 {
   "props": {
+    "open": { "type": { "name": "bool" }, "required": true },
     "anchorOrigin": {
       "type": {
         "name": "shape",
@@ -7,6 +8,7 @@
       },
       "default": "{ vertical: 'bottom', horizontal: 'left' }"
     },
+    "animationDuration": { "type": { "name": "number" }, "default": "500" },
     "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
     "ClickAwayListenerProps": { "type": { "name": "object" } },
     "color": {
@@ -28,7 +30,6 @@
         "describedArgs": ["event", "reason"]
       }
     },
-    "open": { "type": { "name": "bool" } },
     "resumeHideDuration": { "type": { "name": "number" } },
     "size": {
       "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },

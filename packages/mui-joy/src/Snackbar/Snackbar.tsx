@@ -7,6 +7,7 @@ import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { useSnackbar } from '@mui/base/useSnackbar';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
+import { keyframes } from '@mui/system';
 import { ColorInversionProvider } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
@@ -32,6 +33,50 @@ const useUtilityClasses = (ownerState: SnackbarOwnerState) => {
 
   return composeClasses(slots, getSnackbarUtilityClass, {});
 };
+
+const inAnimationVerticalTop = keyframes`
+  0% {
+    transform: translateY(-24px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const outAnimationVerticalTop = keyframes`
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-24px);
+    opacity: 0;
+  }
+`;
+
+const inAnimationVerticalBottom = keyframes`
+  0% {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const outAnimationVerticalBottom = keyframes`
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+`;
 
 const SnackbarRoot = styled('div', {
   name: 'JoySnackbar',
@@ -60,7 +105,7 @@ const SnackbarRoot = styled('div', {
         ...(ownerState.anchorOrigin!.horizontal === 'center' && {
           left: '50%',
           right: 'auto',
-          transform: 'translateX(-50%)',
+          marginLeft: -150,
         }),
         ...(ownerState.anchorOrigin!.horizontal === 'left' && {
           left: 24,
@@ -71,6 +116,20 @@ const SnackbarRoot = styled('div', {
           left: 'auto',
         }),
       },
+      ...(ownerState.open && {
+        animation: `${
+          ownerState.anchorOrigin!.vertical === 'top'
+            ? inAnimationVerticalTop
+            : inAnimationVerticalBottom
+        } ${ownerState.animationDuration}ms`,
+      }),
+      ...(!ownerState.open && {
+        animation: `${
+          ownerState.anchorOrigin!.vertical === 'top'
+            ? outAnimationVerticalTop
+            : outAnimationVerticalBottom
+        } ${ownerState.animationDuration}ms`,
+      }),
       '--Snackbar-radius': theme.vars.radius.sm,
       '--Snackbar-decoratorChildRadius':
         'max((var(--Snackbar-radius) - var(--variant-borderWidth, 0px)) - var(--Snackbar-padding), min(var(--Snackbar-padding) + var(--variant-borderWidth, 0px), var(--Snackbar-radius) / 2))',
@@ -132,6 +191,22 @@ const SnackbarEndDecorator = styled('span', {
   flex: 'none',
   marginLeft: 'auto',
 });
+
+function useDelayUnmount(isMounted: boolean, delayTime: number) {
+  const [shouldRender, setShouldRender] = React.useState(false);
+
+  React.useEffect(() => {
+    let timeoutId: number;
+    if (isMounted && !shouldRender) {
+      setShouldRender(true);
+    } else if (!isMounted && shouldRender) {
+      timeoutId = window.setTimeout(() => setShouldRender(false), delayTime);
+    }
+    return () => window.clearTimeout(timeoutId);
+  }, [isMounted, delayTime, shouldRender]);
+  return shouldRender;
+}
+
 /**
  *
  * Demos:
@@ -150,6 +225,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
 
   const {
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
+    animationDuration = 500,
     autoHideDuration = null,
     color = 'neutral',
     children,
@@ -177,6 +253,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     anchorOrigin: { vertical, horizontal },
     autoHideDuration,
     color,
+    animationDuration,
     disableWindowBlurListener,
     invertedColors,
     size,
@@ -186,6 +263,8 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const { getRootProps, onClickAway } = useSnackbar({ ...ownerState });
+
+  const shouldRender = useDelayUnmount(open, animationDuration);
 
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
@@ -212,7 +291,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     ownerState,
   });
 
-  if (!open) {
+  if (!shouldRender) {
     return null;
   }
 
@@ -257,6 +336,15 @@ Snackbar.propTypes /* remove-proptypes */ = {
     horizontal: PropTypes.oneOf(['center', 'left', 'right']).isRequired,
     vertical: PropTypes.oneOf(['bottom', 'top']).isRequired,
   }),
+  /**
+   * The duration of the animation in milliseconds. This value is used to control
+   * the length of time it takes for an animation to complete one cycle. It is also
+   * utilized for delaying the unmount of the component.
+   * Provide this value if you have your own animation so that we can precisely
+   * time the component's unmount to match your custom animation.
+   * @default 500
+   */
+  animationDuration: PropTypes.number,
   /**
    * The number of milliseconds to wait before automatically calling the
    * `onClose` function. `onClose` should then set the state of the `open`
@@ -334,7 +422,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is shown.
    */
-  open: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
   /**
    * The number of milliseconds to wait before dismissing after user interaction.
    * If `autoHideDuration` prop isn't specified, it does nothing.

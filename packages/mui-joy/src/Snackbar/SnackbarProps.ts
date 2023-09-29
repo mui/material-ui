@@ -5,6 +5,8 @@ import { UseSnackbarParameters } from '@mui/base/useSnackbar';
 import { ColorPaletteProp, VariantProp, ApplyColorInversion, SxProps } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
+export type SnackbarSlot = 'root' | 'startDecorator' | 'endDecorator';
+
 export interface SnackbarSlots {
   /**
    * The component that renders the root.
@@ -45,7 +47,7 @@ export type { SnackbarCloseReason } from '@mui/base/useSnackbar';
 
 export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    UseSnackbarParameters & {
+    Omit<UseSnackbarParameters, 'open'> & {
       /**
        * The anchor of the `Snackbar`.
        * On smaller screens, the component grows to occupy all the available width,
@@ -53,6 +55,15 @@ export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default { vertical: 'bottom', horizontal: 'left' }
        */
       anchorOrigin?: SnackbarOrigin;
+      /**
+       * The duration of the animation in milliseconds. This value is used to control
+       * the length of time it takes for an animation to complete one cycle. It is also
+       * utilized for delaying the unmount of the component.
+       * Provide this value if you have your own animation so that we can precisely
+       * time the component's unmount to match your custom animation.
+       * @default 500
+       */
+      animationDuration?: number;
       /**
        * Props applied to the `ClickAwayListener` element.
        */
@@ -74,6 +85,10 @@ export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * in place, and features like `autoHideDuration` could be affected.
        */
       key?: any;
+      /**
+       * If `true`, the component is shown.
+       */
+      open: boolean;
       /**
        * The size of the component.
        * @default 'md'

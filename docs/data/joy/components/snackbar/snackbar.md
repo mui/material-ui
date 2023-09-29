@@ -42,3 +42,9 @@ When the Snackbar's variant is `soft` or `solid`, you can use the `invertedColor
 To learn more about this, check out [Color Inversion](/joy-ui/main-features/color-inversion/) feature.
 
 {{"demo": "SnackbarInvertedColors.js"}}
+
+### Custom Animation
+
+You can apply your custom animation, as demonstrated below, when opening and closing the snackbar. To ensure precise unmount timing, please provide the animationDuration, which we'll use to match the component's unmount animation accurately.
+
+{{"demo": "CustomAnimatedSnackbar.js"}}

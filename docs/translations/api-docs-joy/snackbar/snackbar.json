@@ -4,6 +4,9 @@
     "anchorOrigin": {
       "description": "The anchor of the <code>Snackbar</code>. On smaller screens, the component grows to occupy all the available width, the horizontal alignment is ignored."
     },
+    "animationDuration": {
+      "description": "The duration of the animation in milliseconds. This value is used to control the length of time it takes for an animation to complete one cycle. It is also utilized for delaying the unmount of the component. Provide this value if you have your own animation so that we can precisely time the component&#39;s unmount to match your custom animation."
+    },
     "autoHideDuration": {
       "description": "The number of milliseconds to wait before automatically calling the <code>onClose</code> function. <code>onClose</code> should then set the state of the <code>open</code> prop to hide the Snackbar. This behavior is disabled by default with the <code>null</code> value."
     },
