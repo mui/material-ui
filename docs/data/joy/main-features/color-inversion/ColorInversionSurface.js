@@ -63,6 +63,7 @@ export default function ColorInversionSurface() {
       </CardContent>
     </Card>
   );
+
   return (
     <Box sx={{ display: 'flex', gap: 2 }}>
       {creditCard}
