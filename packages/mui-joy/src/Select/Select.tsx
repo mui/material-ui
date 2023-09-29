@@ -316,8 +316,8 @@ const SelectIndicator = styled('span', {
  *
  * - [Select API](https://mui.com/joy-ui/api/select/)
  */
-const Select = React.forwardRef(function Select<TValue extends {}, Multiple extends boolean>(
-  inProps: SelectOwnProps<TValue, Multiple>,
+const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple extends boolean>(
+  inProps: SelectOwnProps<OptionValue, Multiple>,
   ref: React.ForwardedRef<any>,
 ) {
   const props = useThemeProps({
@@ -389,7 +389,7 @@ const Select = React.forwardRef(function Select<TValue extends {}, Multiple exte
     formControl?.error ? 'danger' : formControl?.color ?? colorProp,
   );
 
-  const renderValue: (option: SelectValue<SelectOption<TValue>, Multiple>) => React.ReactNode =
+  const renderValue: (option: SelectValue<SelectOption<OptionValue>, Multiple>) => React.ReactNode =
     renderValueProp ?? defaultRenderValue;
 
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -457,7 +457,7 @@ const Select = React.forwardRef(function Select<TValue extends {}, Multiple exte
     value: valueProp,
   });
 
-  const ownerState: SelectOwnerState<TValue, Multiple> = {
+  const ownerState: SelectOwnerState<OptionValue, Multiple> = {
     ...props,
     active: buttonActive,
     defaultListboxOpen,
@@ -476,7 +476,7 @@ const Select = React.forwardRef(function Select<TValue extends {}, Multiple exte
 
   const selectedOption = React.useMemo(
     () =>
-      (getOptionMetadata(value as TValue) ?? null) as SelectValue<SelectOption<TValue>, Multiple>,
+      (getOptionMetadata(value as OptionValue) ?? null) as SelectValue<SelectOption<OptionValue>, Multiple>,
     [getOptionMetadata, value],
   );
 
@@ -613,16 +613,16 @@ const Select = React.forwardRef(function Select<TValue extends {}, Multiple exte
 }) as SelectComponent;
 
 interface SelectComponent {
-  <TValue extends {}, C extends React.ElementType>(
+  <OptionValue extends {}, C extends React.ElementType>(
     props: {
       /**
        * The component used for the root node.
        * Either a string to use a HTML element or a component.
        */
       component: C;
-    } & OverrideProps<SelectTypeMap<TValue>, C>,
+    } & OverrideProps<SelectTypeMap<OptionValue>, C>,
   ): JSX.Element | null;
-  <TValue extends {}>(props: DefaultComponentProps<SelectTypeMap<TValue>>): JSX.Element | null;
+  <OptionValue extends {}>(props: DefaultComponentProps<SelectTypeMap<OptionValue>>): JSX.Element | null;
   propTypes?: any;
 }
 
