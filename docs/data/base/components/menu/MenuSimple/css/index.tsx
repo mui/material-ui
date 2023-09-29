@@ -133,30 +133,30 @@ function Styles() {
       font-weight: 600;
       font-size: 0.875rem;
       line-height: 1.5;
-      background-color: ${cyan[500]};
       padding: 8px 16px;
       border-radius: 8px;
       color: white;
       transition: all 150ms ease;
       cursor: pointer;
-      border: 1px solid ${cyan[500]};
-      box-shadow: 0 2px 1px ${
-        isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
-      }, inset 0 1.5px 1px ${cyan[400]}, inset 0 -2px 1px ${cyan[600]};
-
+      background: ${isDarkMode ? grey[900] : '#fff'};
+      border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+      color: ${isDarkMode ? grey[200] : grey[900]};
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    
+      &:hover {
+        background: ${isDarkMode ? grey[800] : grey[50]};
+        border-color: ${isDarkMode ? grey[600] : grey[300]};
+      }
+    
       &.active {
         background-color: ${cyan[700]};
         box-shadow: none;
       }
-
-      &:hover {
-        background-color: ${cyan[600]};
-      }
-
-      &:focus-visible {
+    
+      &.focusVisible {
         box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
         outline: none;
-        }
+      }
       }
 
 
