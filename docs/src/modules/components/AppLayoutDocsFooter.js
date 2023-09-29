@@ -35,12 +35,6 @@ import EditPage from 'docs/src/modules/components/EditPage';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 
-const PageLinkButton = styled(Button)(({ theme }) => ({
-  ...theme.applyDarkStyles({
-    color: (theme.vars || theme).palette.primary[300],
-  }),
-}));
-
 const FooterLink = styled(Typography)(({ theme }) => {
   return {
     ...theme.typography.body2,
@@ -501,22 +495,24 @@ export default function AppLayoutDocsFooter(props) {
         {hidePagePagination ? null : (
           <Stack direction="row" justifyContent="space-between" sx={{ my: 2 }}>
             {prevPage !== null ? (
-              <PageLinkButton
+              <Button
+                size="small"
                 component={Link}
                 noLinkStyle
                 prefetch={false}
                 href={prevPage.pathname}
                 {...prevPage.linkProps}
                 startIcon={<ChevronLeftIcon />}
-                sx={{ '& > span': { marginLeft: 0 } }}
+                sx={{ '& > span': { ml: -1, mr: 0.5 } }}
               >
                 {pageToTitleI18n(prevPage, t)}
-              </PageLinkButton>
+              </Button>
             ) : (
               <div />
             )}
             {nextPage !== null ? (
-              <PageLinkButton
+              <Button
+                size="small"
                 component={Link}
                 noLinkStyle
                 prefetch={false}
@@ -525,7 +521,7 @@ export default function AppLayoutDocsFooter(props) {
                 endIcon={<ChevronRightIcon />}
               >
                 {pageToTitleI18n(nextPage, t)}
-              </PageLinkButton>
+              </Button>
             ) : null}
           </Stack>
         )}
@@ -538,23 +534,23 @@ export default function AppLayoutDocsFooter(props) {
           <Stack direction="row" alignItems="center" spacing={1} sx={{ flexGrow: 1 }}>
             <Link href={ROUTES.blog}>
               <FooterLink>
-                Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 16 }} />
+                Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
             </Link>
-            <Typography color="grey.500" variant="caption">
+            <Typography color="grey.500" fontSize={13}>
               &bull;
             </Typography>
             <Link href={ROUTES.store}>
               <FooterLink>
-                Store <ArrowOutwardRoundedIcon sx={{ fontSize: 16 }} />
+                Store <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
             </Link>
-            <Typography color="grey.500" variant="caption">
+            <Typography color="grey.500" fontSize={13}>
               &bull;
             </Typography>
             <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
               <FooterLink>
-                Contact us <ArrowOutwardRoundedIcon sx={{ fontSize: 16 }} />
+                Contact us <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
             </Link>
           </Stack>
@@ -567,7 +563,7 @@ export default function AppLayoutDocsFooter(props) {
               title="RSS Feed"
               size="small"
             >
-              <RssFeedIcon fontSize="small" />
+              <RssFeedIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
             <IconButton
               target="_blank"
@@ -577,7 +573,7 @@ export default function AppLayoutDocsFooter(props) {
               title="Twitter"
               size="small"
             >
-              <TwitterIcon fontSize="small" />
+              <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
             <IconButton
               target="_blank"
@@ -587,7 +583,7 @@ export default function AppLayoutDocsFooter(props) {
               title="LinkedIn"
               size="small"
             >
-              <LinkedInIcon fontSize="small" />
+              <LinkedInIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
             <IconButton
               target="_blank"
@@ -597,7 +593,7 @@ export default function AppLayoutDocsFooter(props) {
               title="YouTube"
               size="small"
             >
-              <YouTubeIcon fontSize="small" />
+              <YouTubeIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
             <IconButton
               target="_blank"
@@ -607,7 +603,7 @@ export default function AppLayoutDocsFooter(props) {
               title="Discord"
               size="small"
             >
-              <DiscordIcon fontSize="small" />
+              <DiscordIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
           </Stack>
         </Stack>
