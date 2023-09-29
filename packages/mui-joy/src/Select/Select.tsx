@@ -50,7 +50,7 @@ const defaultModifiers: PopperProps['modifiers'] = [
   },
 ];
 
-const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
+const useUtilityClasses = (ownerState: SelectOwnerState<any, boolean>) => {
   const { color, disabled, focusVisible, size, variant, open } = ownerState;
 
   const slots = {
@@ -77,7 +77,7 @@ const SelectRoot = styled('div', {
   name: 'JoySelect',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
+})<{ ownerState: SelectOwnerState<any, boolean> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   const { borderRadius } = resolveSxValue({ theme, ownerState }, ['borderRadius']);
   return [
@@ -186,7 +186,7 @@ const SelectButton = styled('button', {
   name: 'JoySelect',
   slot: 'Button',
   overridesResolver: (props, styles) => styles.button,
-})<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
+})<{ ownerState: SelectOwnerState<any, boolean> }>(({ ownerState }) => ({
   // reset user-agent button style
   border: 0,
   outline: 0,
@@ -223,7 +223,7 @@ const SelectListbox = styled(StyledList, {
   name: 'JoySelect',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
+})<{ ownerState: SelectOwnerState<any, boolean> }>(({ theme, ownerState }) => {
   const variantStyle =
     ownerState.color === 'context'
       ? undefined
@@ -254,7 +254,7 @@ const SelectStartDecorator = styled('span', {
   name: 'JoySelect',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: SelectOwnerState<any> }>({
+})<{ ownerState: SelectOwnerState<any, boolean> }>({
   '--Button-margin': '0 0 0 calc(var(--Select-decoratorChildOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Select-decoratorChildOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Select-paddingInline) / -4)',
@@ -268,7 +268,7 @@ const SelectEndDecorator = styled('span', {
   name: 'JoySelect',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: SelectOwnerState<any> }>({
+})<{ ownerState: SelectOwnerState<any, boolean> }>({
   '--Button-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
   '--IconButton-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
   '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
@@ -281,7 +281,7 @@ const SelectEndDecorator = styled('span', {
 const SelectIndicator = styled('span', {
   name: 'JoySelect',
   slot: 'Indicator',
-})<{ ownerState: SelectOwnerState<any> }>(({ ownerState, theme }) => ({
+})<{ ownerState: SelectOwnerState<any, boolean> }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
     '--Icon-fontSize': theme.vars.fontSize.lg,
   }),
