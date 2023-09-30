@@ -162,9 +162,13 @@ export default function GitHubLabel() {
                     border: 'none',
                     borderBottom: '1px solid',
                     borderColor: 'divider',
+                    backgroundColor: '#fff',
                     '&[aria-selected="true"]': {
                       fontWeight: 'normal',
-                      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                      backgroundColor: 'rgba(0, 0, 0, 0.03)',
+                    },
+                    '&:hover': {
+                      backgroundColor: 'rgba(0, 0, 0, 0.03)',
                     },
                     '&:first-of-type': {
                       borderTop: '1px solid',
