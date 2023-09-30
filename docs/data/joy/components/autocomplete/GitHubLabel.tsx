@@ -27,6 +27,7 @@ const Listbox = React.forwardRef<HTMLUListElement, any>((props, ref) => (
       '--ListItem-paddingY': '8px',
       minWidth: '100%',
       backgroundColor: '#fff',
+      marginTop: '0.75rem',
     }}
   />
 ));
@@ -164,6 +165,10 @@ export default function GitHubLabel() {
                     '&[aria-selected="true"]': {
                       fontWeight: 'normal',
                       backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                    },
+                    '&:first-of-type': {
+                      borderTop: '1px solid',
+                      borderColor: 'divider',
                     },
                   }}
                 >
