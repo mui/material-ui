@@ -111,6 +111,8 @@ export default function GitHubLabel() {
               boxShadow: 'md',
               borderRadius: '6px',
               overflow: 'hidden',
+              '--joy-palette-neutral-plainBg': '#fff',
+              '--joy-palette-background-surface': '#fff',
             }}
           >
             <Typography
@@ -118,6 +120,8 @@ export default function GitHubLabel() {
               fontWeight={600}
               sx={{
                 padding: '8px 10px',
+                borderBottom: '1px solid',
+                borderColor: 'divider',
               }}
             >
               Apply labels to this pull request
@@ -129,6 +133,7 @@ export default function GitHubLabel() {
               size="sm"
               placeholder="Filter labels"
               slots={{ listbox: Listbox }}
+              slotProps={{ input: { sx: { margin: '0' } } }}
               onClose={(event, reason) => {
                 if (reason === 'escape') {
                   handleClose();
@@ -156,10 +161,17 @@ export default function GitHubLabel() {
                   color="neutral"
                   sx={{
                     alignItems: 'flex-start',
+                    border: 'none',
                     borderBottom: '1px solid',
                     borderColor: 'divider',
+                    '--joy-palette-neutral-plainHoverBg': 'rgba(0, 0, 0, 0.03)',
                     '&[aria-selected="true"]': {
                       fontWeight: 'normal',
+                      backgroundColor: 'rgba(0, 0, 0, 0.03)',
+                    },
+                    '&:first-of-type': {
+                      borderTop: '1px solid',
+                      borderColor: 'divider',
                     },
                   }}
                 >
@@ -199,6 +211,7 @@ export default function GitHubLabel() {
                 borderBottom: '1px solid',
                 borderColor: 'divider',
                 '--Input-radius': '4px',
+                margin: '0.75rem 0.5rem',
               }}
             />
           </Sheet>
