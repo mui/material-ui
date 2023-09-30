@@ -171,8 +171,8 @@ export default function GitHubLabel() {
                     '--joy-palette-neutral-plainHoverBg': 'rgba(0, 0, 0, 0.03)',
                     '--joy-palette-neutral-plainActiveBg': 'rgba(0, 0, 0, 0.03)',
                     [theme.getColorSchemeSelector('dark')]: {
-                      '--joy-palette-neutral-plainHoverBg': colors.grey[700],
-                      '--joy-palette-neutral-plainActiveBg': colors.grey[700],
+                      '--joy-palette-neutral-plainHoverBg': colors.grey[800],
+                      '--joy-palette-neutral-plainActiveBg': colors.grey[800],
                     },
                     '&[aria-selected="true"]': {
                       fontWeight: 'normal',
