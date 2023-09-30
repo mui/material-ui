@@ -26,7 +26,6 @@ const Listbox = React.forwardRef<HTMLUListElement, any>((props, ref) => (
       '--ListItem-paddingX': '8px',
       '--ListItem-paddingY': '8px',
       minWidth: '100%',
-      backgroundColor: '#fff',
     }}
   />
 ));
@@ -112,7 +111,8 @@ export default function GitHubLabel() {
               boxShadow: 'md',
               borderRadius: '6px',
               overflow: 'hidden',
-              backgroundColor: '#fff',
+              '--joy-palette-neutral-plainBg': '#fff',
+              '--joy-palette-background-surface': '#fff',
             }}
           >
             <Typography
@@ -164,7 +164,7 @@ export default function GitHubLabel() {
                     border: 'none',
                     borderBottom: '1px solid',
                     borderColor: 'divider',
-                    backgroundColor: '#fff',
+
                     '&[aria-selected="true"]': {
                       fontWeight: 'normal',
                       backgroundColor: 'rgba(0, 0, 0, 0.03)',
@@ -212,7 +212,7 @@ export default function GitHubLabel() {
                 borderBottom: '1px solid',
                 borderColor: 'divider',
                 '--Input-radius': '4px',
-                margin:"0.75rem 0.5rem"
+                margin: '0.75rem 0.5rem',
               }}
             />
           </Sheet>
