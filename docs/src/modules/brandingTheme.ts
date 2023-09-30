@@ -479,13 +479,24 @@ export function getThemedComponents(): ThemeOptions {
               '&:hover > span': { transform: 'translateX(2px)' },
             }),
             ...(ownerState.size === 'small' && {
-              padding: theme.spacing(0.5, 1),
+              padding: theme.spacing('6px', 1),
               fontFamily: theme.typography.fontFamily,
               fontSize: defaultTheme.typography.pxToRem(13),
               fontWeight: theme.typography.fontWeightSemiBold,
               borderRadius: 8,
-              '& > span': { transition: '0.2s', marginLeft: 4 },
-              '&:hover > span': { transform: 'translateX(2px)' },
+              '& .MuiButton-startIcon': {
+                transition: '0.15s',
+                marginRight: 4,
+                marginLeft: -1,
+              },
+              '& .MuiButton-endIcon': {
+                transition: '0.15s',
+                marginLeft: 4,
+              },
+              '&:hover': {
+                '& .MuiButton-startIcon': { transform: 'translateX(-2px)' },
+                '& .MuiButton-endIcon': { transform: 'translateX(2px)' },
+              },
             }),
             ...(ownerState.variant === 'outlined' &&
               ownerState.color === 'secondary' && {

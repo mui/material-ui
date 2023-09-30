@@ -503,7 +503,6 @@ export default function AppLayoutDocsFooter(props) {
                 href={prevPage.pathname}
                 {...prevPage.linkProps}
                 startIcon={<ChevronLeftIcon />}
-                sx={{ '& > span': { ml: -1, mr: 0.5 } }}
               >
                 {pageToTitleI18n(prevPage, t)}
               </Button>
@@ -548,9 +547,9 @@ export default function AppLayoutDocsFooter(props) {
             <Typography color="grey.500" fontSize={13}>
               &bull;
             </Typography>
-            <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
+            <Link href={ROUTES.careers}>
               <FooterLink>
-                Contact us <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
+                Careers <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
             </Link>
           </Stack>
