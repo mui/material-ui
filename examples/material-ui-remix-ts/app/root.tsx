@@ -65,8 +65,8 @@ const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCa
   );
 });
 
-// https://remix.run/api/conventions#default-export
-// https://remix.run/api/conventions#route-filenames
+// https://remix.run/docs/en/main/route/component
+// https://remix.run/docs/en/main/file-conventions/routes
 export default function App() {
   return (
     <Document>

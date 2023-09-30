@@ -12,7 +12,7 @@ export const meta: MetaFunction = () => {
   };
 };
 
-// https://remix.run/guides/routing#index-routes
+// https://remix.run/docs/en/main/file-conventions/routes#basic-routes
 export default function Index() {
   return (
     <React.Fragment>
