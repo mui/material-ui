@@ -169,9 +169,7 @@ export default function GitHubLabel() {
                       fontWeight: 'normal',
                       backgroundColor: 'rgba(0, 0, 0, 0.03)',
                     },
-                    '&:hover': {
-                      backgroundColor: 'rgba(0, 0, 0, 0.03)',
-                    },
+                    '--joy-palette-neutral-plainHoverBg': 'rgba(0, 0, 0, 0.03)',
                     '&:first-of-type': {
                       borderTop: '1px solid',
                       borderColor: 'divider',
