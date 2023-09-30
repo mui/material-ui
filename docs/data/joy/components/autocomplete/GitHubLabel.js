@@ -133,7 +133,7 @@ export default function GitHubLabel() {
               size="sm"
               placeholder="Filter labels"
               slots={{ listbox: Listbox }}
-              slotProps={{ input: { sx: { margin: '0' } } }}
+              slotProps={{ input: { sx: { m: '0' } } }}
               onClose={(event, reason) => {
                 if (reason === 'escape') {
                   handleClose();
@@ -206,12 +206,12 @@ export default function GitHubLabel() {
               })}
               getOptionLabel={(option) => option.name}
               sx={{
-                p: '10px',
+                p: '4px 2px',
                 borderTop: '1px solid',
                 borderBottom: '1px solid',
                 borderColor: 'divider',
                 '--Input-radius': '4px',
-                margin: '0.75rem 0.5rem',
+                m: '0.75rem 0.5rem',
               }}
             />
           </Sheet>
