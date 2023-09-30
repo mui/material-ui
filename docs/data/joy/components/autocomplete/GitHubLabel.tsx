@@ -163,7 +163,7 @@ export default function GitHubLabel() {
                 <AutocompleteOption
                   {...props}
                   color="neutral"
-                  sx={(theme)=>({
+                  sx={(theme) => ({
                     alignItems: 'flex-start',
                     border: 'none',
                     borderBottom: '1px solid',
