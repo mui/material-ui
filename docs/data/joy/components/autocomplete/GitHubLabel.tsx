@@ -106,14 +106,18 @@ export default function GitHubLabel() {
         <ClickAwayListener onClickAway={handleClose}>
           <Sheet
             variant="outlined"
-            sx={{
+            sx={(theme) => ({
               width: 300,
               boxShadow: 'md',
               borderRadius: '6px',
               overflow: 'hidden',
               '--joy-palette-neutral-plainBg': '#fff',
               '--joy-palette-background-surface': '#fff',
-            }}
+              [theme.getColorSchemeSelector('dark')]: {
+                '--joy-palette-neutral-plainBg': '#000',
+                '--joy-palette-background-surface': '#000',
+              },
+            })}
           >
             <Typography
               fontSize="sm"
