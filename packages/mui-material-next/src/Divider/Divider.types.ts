@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent, OverridableStringUnion, OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { DividerClasses } from './dividerClasses';
@@ -63,24 +63,9 @@ export interface DividerTypeMap<
   defaultComponent: RootComponent;
 }
 
-/**
- *
- * Demos:
- *
- * - [Divider](https://mui.com/material-ui/react-divider/)
- * - [Lists](https://mui.com/material-ui/react-list/)
- *
- * API:
- *
- * - [Divider API](https://mui.com/material-ui/api/divider/)
- */
-declare const Divider: OverridableComponent<DividerTypeMap>;
-
 export type DividerProps<
   RootComponent extends React.ElementType = DividerTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<DividerTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
 };
-
-export default Divider;

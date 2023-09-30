@@ -1,7 +1,10 @@
-import { ColorSchemeGenerator } from './types';
+import { MD3Palettes } from './Theme.types';
 
 // convert all these values to CSS vars
-const createDarkColorScheme: ColorSchemeGenerator = (getCssVar, palette) => ({
+const createDarkColorScheme = (
+  getCssVar: (cssVar: string, defaultVal: string) => string,
+  palette: MD3Palettes,
+) => ({
   surfaceTint: getCssVar('ref-palette-primary-40', palette.primary[40]),
   onErrorContainer: getCssVar('ref-palette-error-90', palette.error[90]),
   onError: getCssVar('ref-palette-error-20', palette.error[20]),

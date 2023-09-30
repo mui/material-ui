@@ -20,8 +20,8 @@ import {
 import defaultSxConfig from './sxConfig';
 import { Theme, MD3Palettes, MD3ColorSchemeTokens, CssVarsThemeOptions } from './Theme.types';
 import md3CommonPalette from './palette';
-import createMd3LightColorScheme from './colorSchemeUtils/createLightColorScheme';
-import createMd3DarkColorScheme from './colorSchemeUtils/createDarkColorScheme';
+import createMd3LightColorScheme from './createLightColorScheme';
+import createMd3DarkColorScheme from './createDarkColorScheme';
 import md3Typescale from './typescale';
 import md3Typeface from './typeface';
 import md3State from './state';

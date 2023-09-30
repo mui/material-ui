@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha } from '@mui/system';
+import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDividerUtilityClass } from './dividerClasses';
@@ -21,8 +22,7 @@ const useUtilityClasses = (ownerState: DividerOwnerState) => {
       light && 'light',
       orientation === 'vertical' && 'vertical',
       flexItem && 'flexItem',
-      // TODO: Check next line with maintainers
-      ...(children ? ['withChildren', orientation === 'vertical' && 'withChildrenVertical'] : []),
+      !!children && 'withChildren',
       textAlign === 'right' && orientation !== 'vertical' && 'textAlignRight',
       textAlign === 'left' && orientation !== 'vertical' && 'textAlignLeft',
     ],
@@ -65,7 +65,7 @@ const DividerRoot = styled('div', {
       borderWidth: 0,
       borderStyle: 'solid',
       borderColor: tokens.sys.color.outlineVariant,
-      borderBottomWidth: 'thin',
+      borderBottomWidth: '1px',
       ...(ownerState.absolute && {
         position: 'absolute',
         bottom: 0,
@@ -77,23 +77,28 @@ const DividerRoot = styled('div', {
           ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
           : alpha(theme.palette.divider, 0.08),
       }),
-      ...(ownerState.variant === 'inset' && {
-        marginLeft: 72,
-      }),
+      ...(ownerState.variant === 'inset' &&
+        ownerState.orientation === 'horizontal' && {
+          marginLeft: '16px',
+        }),
+      ...(ownerState.variant === 'inset' &&
+        ownerState.orientation === 'vertical' && {
+          marginTop: '16px',
+        }),
       ...(ownerState.variant === 'middle' &&
         ownerState.orientation === 'horizontal' && {
-          marginLeft: theme.spacing(2),
-          marginRight: theme.spacing(2),
+          marginLeft: '16px',
+          marginRight: '16px',
         }),
       ...(ownerState.variant === 'middle' &&
         ownerState.orientation === 'vertical' && {
-          marginTop: theme.spacing(1),
-          marginBottom: theme.spacing(1),
+          marginTop: '16px',
+          marginBottom: '16px',
         }),
       ...(ownerState.orientation === 'vertical' && {
         height: '100%',
         borderBottomWidth: 0,
-        borderRightWidth: 'thin',
+        borderRightWidth: '1px',
       }),
       ...(ownerState.flexItem && {
         alignSelf: 'stretch',
@@ -118,7 +123,7 @@ const DividerRoot = styled('div', {
       ownerState.orientation !== 'vertical' && {
         '&::before, &::after': {
           width: '100%',
-          borderTop: `thin solid ${tokens.sys.color.outlineVariant}`,
+          borderTop: `1px solid ${tokens.sys.color.outlineVariant}`,
         },
       }),
   }),
@@ -128,7 +133,7 @@ const DividerRoot = styled('div', {
         flexDirection: 'column',
         '&::before, &::after': {
           height: '100%',
-          borderLeft: `thin solid ${tokens.sys.color.outlineVariant}`,
+          borderLeft: `1px solid ${tokens.sys.color.outlineVariant}`,
         },
       }),
   }),
@@ -172,6 +177,18 @@ const DividerWrapper = styled('span', {
   }),
 }));
 
+/**
+ * Dividers separate content into clear groups.
+ *
+ * Demos:
+ *
+ * - [Divider](https://mui.com/material-ui/react-divider/)
+ * - [Lists](https://mui.com/material-ui/react-list/)
+ *
+ * API:
+ *
+ * - [Divider API](https://mui.com/material-ui/api/divider/)
+ */
 const Divider = React.forwardRef(function Divider<
   BaseComponentType extends React.ElementType = DividerTypeMap['defaultComponent'],
 >(inProps: DividerProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
@@ -224,13 +241,14 @@ const Divider = React.forwardRef(function Divider<
       ) : null}
     </DividerRoot>
   );
-});
+}) as OverridableComponent<DividerTypeMap>;
 
 /**
  * The following flag is used to ensure that this component isn't tabbable i.e.
  * does not get highlight/focus inside of MUI List.
  */
-Object.assign(Divider, { muiSkipListHighlight: true });
+// @ts-ignore internal logic
+Divider.muiSkipListHighlight = true;
 
 Divider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -253,6 +271,11 @@ Divider.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
   component: PropTypes.elementType,
   /**
    * If `true`, a vertical divider will have the correct height when used in flex container.
@@ -270,6 +293,10 @@ Divider.propTypes /* remove-proptypes */ = {
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * @ignore
+   */
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

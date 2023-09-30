@@ -1,6 +1,9 @@
-import { ColorSchemeGenerator } from './types';
+import { MD3Palettes } from './Theme.types';
 
-const createLightColorScheme: ColorSchemeGenerator = (getCssVar, palette) => ({
+const createLightColorScheme = (
+  getCssVar: (cssVar: string, defaultVal: string) => string,
+  palette: MD3Palettes,
+) => ({
   surfaceTint: getCssVar('ref-palette-primary-40', palette.primary[40]),
   onErrorContainer: getCssVar('ref-palette-error-10', palette.error[10]),
   onError: getCssVar('ref-palette-error-100', palette.error[100]),
