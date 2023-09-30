@@ -27,7 +27,6 @@ const Listbox = React.forwardRef<HTMLUListElement, any>((props, ref) => (
       '--ListItem-paddingY': '8px',
       minWidth: '100%',
       backgroundColor: '#fff',
-      marginTop: '0.75rem',
     }}
   />
 ));
@@ -121,6 +120,8 @@ export default function GitHubLabel() {
               fontWeight={600}
               sx={{
                 padding: '8px 10px',
+                borderBottom: '1px solid',
+                borderColor: 'divider',
               }}
             >
               Apply labels to this pull request
@@ -132,6 +133,7 @@ export default function GitHubLabel() {
               size="sm"
               placeholder="Filter labels"
               slots={{ listbox: Listbox }}
+              slotProps={{ input: { sx: { margin: '0' } } }}
               onClose={(event, reason) => {
                 if (reason === 'escape') {
                   handleClose();
@@ -212,6 +214,7 @@ export default function GitHubLabel() {
                 borderBottom: '1px solid',
                 borderColor: 'divider',
                 '--Input-radius': '4px',
+                margin:"0.75rem 0.5rem"
               }}
             />
           </Sheet>
