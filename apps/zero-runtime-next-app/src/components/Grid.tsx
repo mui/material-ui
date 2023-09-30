@@ -1,6 +1,16 @@
 import { styled } from '@mui/zero-runtime';
+import type { Theme } from '@mui/material';
 
-const Grid = styled('div')(({ theme }: any) => ({
+declare module '@mui/zero-runtime' {
+  interface ThemeArgs {
+    theme: Theme & {
+      applyDarkStyles<T>(obj: T): Record<string, T>;
+      vars?: Theme;
+    };
+  }
+}
+
+const Grid = styled('div')(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(4, minmax(25%, auto))',
   maxWidth: '100%',

@@ -7,16 +7,14 @@ import { HalfWidth } from './Grid';
 const Button = styled('button', {
   name: 'MuiButton',
   slot: 'Root',
-})(
-  'color:red',
-  ({ theme }: any) => ({
+})<{ isRed?: boolean }>(
+  ({ theme }) => ({
     fontFamily: 'sans-serif',
     backgroundColor: [theme.palette.primary.main, 'text.primary', 'background.paper'],
   }),
   {
     fontFamily: 'sans-serif',
-    // p: (props: any) => (props.isRed ? 10 : 20),
-    color: (props: any) => (props.isRed ? 'primary.main' : 'secondary.main'),
+    color: (props) => (props.isRed ? 'primary.main' : 'secondary.main'),
   },
 );
 
@@ -26,7 +24,7 @@ const ShowCaseDiv = styled('div')({
   },
 });
 
-export default function SliderWrapper() {
+export default function SliderWrapper({ isRed }: { isRed?: boolean }) {
   const [count, setCount] = React.useState(0);
   const [value, setValue] = React.useState(50);
   const [isColorPrimary, setIsColorPrimary] = React.useState(true);
@@ -99,17 +97,17 @@ export default function SliderWrapper() {
       </div>
       <div>
         <HalfWidth
-        // sx={({ theme }: any) => ({
-        //   color: theme.palette.primary.main,
-        //   fontSize: isRed ? 'h1.fontSize' : 'h2.fontSize',
-        //   ':hover': {
-        //     backgroundColor: ['primary.dark', 'secondary.main'],
-        //     color: {
-        //       sm: 'primary.dark',
-        //       md: 'secondary.main',
-        //     },
-        //   },
-        // })}
+          sx={({ theme }) => ({
+            color: theme.palette.primary.main,
+            fontSize: isRed ? 'h1.fontSize' : 'h2.fontSize',
+            ':hover': {
+              backgroundColor: ['primary.dark', 'secondary.main'],
+              color: {
+                sm: 'primary.dark',
+                md: 'secondary.main',
+              },
+            },
+          })}
         >
           <Slider
             aria-label="Small steps"
