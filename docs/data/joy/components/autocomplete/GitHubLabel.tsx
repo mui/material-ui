@@ -168,9 +168,9 @@ export default function GitHubLabel() {
                     borderBottom: '1px solid',
                     borderColor: 'divider',
                     '--joy-palette-neutral-plainHoverBg': 'rgba(0, 0, 0, 0.03)',
+                    '--joy-palette-neutral-plainActiveBg': 'rgba(0, 0, 0, 0.03)',
                     '&[aria-selected="true"]': {
                       fontWeight: 'normal',
-                      backgroundColor: 'rgba(0, 0, 0, 0.03)',
                     },
                     '&:first-of-type': {
                       borderTop: '1px solid',
