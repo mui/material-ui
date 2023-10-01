@@ -386,7 +386,6 @@ export interface Components<Theme = unknown> {
   MuiPopover?: {
     defaultProps?: ComponentsProps['MuiPopover'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiPopover'];
-    variants?: ComponentsVariants['MuiPopover'];
   };
   MuiRadio?: {
     defaultProps?: ComponentsProps['MuiRadio'];
