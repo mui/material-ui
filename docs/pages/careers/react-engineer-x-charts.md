@@ -28,16 +28,19 @@ For additional details about the MUI team and culture, you can check our [career
 ## Why we're hiring
 
 The charts team (part of MUI X) needs your help.
-The component is off to [a great start](https://npm-stat.com/charts.html?package=%40mui%2Fx-charts&from=2021-06-01&to=2023-09-13), however we have only started to scratch the surface for the potential of this component. There is x10 more to build.
+The component is off to [a great start](https://npm-stat.com/charts.html?package=%40mui%2Fx-charts&from=2021-06-01), however we have only started to scratch the surface for the potential of this component. There is x10 more to build.
 
 To be more specific in what we are aiming to achieve in the short to mid-term:
 
-- A tighter integration with the rest of the MUI libraries including Material UI and the Data Grid
+- A tighter integration with the rest of the MUI libraries including Material UI and MUI X Data Grid
 - Faster iteration cycles compared to popular open-source alternatives such as chart.js and Recharts
 
 This should allow us to reach 30% of the downloads of alternative React charting libraries, considering benchmark data in the short term. Developers value having a single touch point, but also one they trust, and one that integrates well into the rest of their application.
 
-In the mid-term, we aspired for this charting library to become a standard in the React ecosystem, outgrowing Material UI or any other UI library. We believe we can achieve this with an open-core model. We will match the features available in the alternative open-source projects, licensed as MIT in MUI X Charts. We will then provide extra paid features so developers can use a single charting library, without the need to go to paid alternatives as they do today.
+In the mid-term, we aspired for this charting library to become a standard in the React ecosystem, outgrowing Material UI or any other UI library.
+We believe we can achieve this with an open-core model.
+We will at least match the features available in the alternative open-source projects, licensed as MIT in MUI X Charts.
+We will then provide extra paid features so developers can use a single charting library, without the need to juggle with paid alternatives as they do today.
 
 In the long term, we envision using the pro-code charting API as a distribution channel for building more abstract charting primitives, using low-code and AI.
 
