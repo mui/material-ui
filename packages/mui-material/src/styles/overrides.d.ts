@@ -114,6 +114,7 @@ import { ToolbarClassKey } from '../Toolbar';
 import { TooltipClassKey } from '../Tooltip';
 import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography';
+import { PopperClassKey } from '@mui/base';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -123,12 +124,12 @@ export type OverridesStyleRules<
   ClassKey,
   | CSSInterpolation
   | ((
-      // Record<string, unknown> is for other props that the slot receive internally
-      // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
-      props: (ComponentName extends keyof ComponentsPropsList
-        ? { ownerState: ComponentsPropsList[ComponentName] & Record<string, unknown> }
-        : {}) & { theme: Theme } & Record<string, unknown>,
-    ) => CSSInterpolation)
+    // Record<string, unknown> is for other props that the slot receive internally
+    // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
+    props: (ComponentName extends keyof ComponentsPropsList
+      ? { ownerState: ComponentsPropsList[ComponentName] & Record<string, unknown> }
+      : {}) & { theme: Theme } & Record<string, unknown>,
+  ) => CSSInterpolation)
 >;
 
 export type ComponentsOverrides<Theme = unknown> = {
@@ -214,6 +215,7 @@ export interface ComponentNameToClassKey {
   MuiPagination: PaginationClassKey;
   MuiPaginationItem: PaginationItemClassKey;
   MuiPaper: PaperClassKey;
+  MuiPopper: PopperClassKey;
   MuiPopover: PopoverClassKey;
   MuiRadio: RadioClassKey;
   MuiRating: RatingClassKey;
