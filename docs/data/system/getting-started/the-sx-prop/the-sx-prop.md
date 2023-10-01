@@ -295,6 +295,30 @@ export default function App() {
 }
 ```
 
+To fix and avoid typescript errors while accessing the custom properties from theme using `sx` prop callback, you can extend the `Theme` type from the `@mui/system` library:
+
+```ts
+declare module '@mui/system' {
+  interface Theme {
+    propertyKey: {
+      nestedPropertyKey: Type;
+    };
+  }
+}
+
+export default function App() {
+  return (
+    <Box
+      sx={(theme) => ({
+        bgcolor: theme.propertyKey.nestedPropertyKey,
+      })}
+    >
+      Example
+    </Box>
+  );
+}
+```
+
 ## Performance
 
 To learn more about the performance tradeoffs of the `sx` prop, check out [Usage–Performance tradeoffs](/system/getting-started/usage/#performance-tradeoffs).
