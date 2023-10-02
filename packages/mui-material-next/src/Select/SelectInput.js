@@ -23,6 +23,7 @@ import Menu from '@mui/material/Menu/Menu';
 import { isFilled } from '../InputBase/utils';
 import styled from '../styles/styled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
+import { useSelect } from '@mui/base';
 
 const SelectSelect = styled('div', {
   name: 'MuiSelect',
@@ -114,7 +115,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     className,
     defaultOpen,
     defaultValue,
-    disabled,
+    disabled: disabledProp,
     displayEmpty,
     error = false,
     IconComponent,
@@ -158,6 +159,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
   const handleRef = useForkRef(ref, inputRefProp);
 
+  const listboxId = useId();
+
   const handleDisplayRef = React.useCallback((node) => {
     displayRef.current = node;
 
@@ -165,6 +168,15 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       setDisplayNode(node);
     }
   }, []);
+
+  const { disabled, getButtonProps, getHiddenInputProps, getListboxProps } = useSelect({
+    buttonRef: handleDisplayRef,
+    defaultOpen,
+    disabled: disabledProp,
+    listboxId,
+    open: openState,
+    name,
+  });
 
   const anchorElement = displayNode?.parentNode;
 
@@ -492,17 +504,31 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     ...MenuProps.slotProps?.paper,
   };
 
-  const listboxId = useId();
+  const {
+    ref: basedButtonRef,
+    role: basedButtonRole,
+    'aria-controls': basedButtonAriaControls,
+    'aria-disabled': basedButtonAriaDisabled,
+    'aria-expanded': basedButtonAriaExpanded,
+  } = getButtonProps();
+
+  const { id: basedListboxId } = getListboxProps();
+
+  const {
+    'aria-hidden': basedHiddenInputAriaHidden,
+    tabIndex: basedHiddenInputTabIndex,
+    name: basedHiddenInputName,
+  } = getHiddenInputProps();
 
   return (
     <React.Fragment>
       <SelectSelect
-        ref={handleDisplayRef}
+        ref={basedButtonRef}
         tabIndex={tabIndex}
-        role="combobox"
-        aria-controls={listboxId}
-        aria-disabled={disabled ? 'true' : undefined}
-        aria-expanded={open ? 'true' : 'false'}
+        role={basedButtonRole}
+        aria-controls={basedButtonAriaControls}
+        aria-disabled={basedButtonAriaDisabled}
+        aria-expanded={basedButtonAriaExpanded}
         aria-haspopup="listbox"
         aria-label={ariaLabel}
         aria-labelledby={[labelId, buttonId].filter(Boolean).join(' ') || undefined}
@@ -528,11 +554,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <SelectNativeInput
         aria-invalid={error}
         value={Array.isArray(value) ? value.join(',') : value}
-        name={name}
+        name={basedHiddenInputName}
         ref={inputRef}
-        aria-hidden
+        aria-hidden={basedHiddenInputAriaHidden}
         onChange={handleChange}
-        tabIndex={-1}
+        tabIndex={basedHiddenInputTabIndex}
         disabled={disabled}
         className={classes.nativeInput}
         autoFocus={autoFocus}
@@ -559,7 +585,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           role: 'listbox',
           'aria-multiselectable': multiple ? 'true' : undefined,
           disableListWrap: true,
-          id: listboxId,
+          id: basedListboxId,
           ...MenuProps.MenuListProps,
         }}
         slotProps={{

@@ -96,14 +96,26 @@ describe('<Select />', () => {
     }),
   );
 
-  it('should have an input with [aria-hidden] by default', () => {
-    const { container } = render(
-      <Select value="10">
-        <MenuItem value="10">Ten</MenuItem>
-      </Select>,
-    );
+  describe('hidden input', () => {
+    it('should have [aria-hidden] by default', () => {
+      const { container } = render(
+        <Select value="10">
+          <MenuItem value="10">Ten</MenuItem>
+        </Select>,
+      );
 
-    expect(container.querySelector('input')).to.have.attribute('aria-hidden', 'true');
+      expect(container.querySelector('input')).to.have.attribute('aria-hidden', 'true');
+    });
+
+    it('should have tabIndex -1', () => {
+      const { container } = render(
+        <Select value="10">
+          <MenuItem value="10">Ten</MenuItem>
+        </Select>,
+      );
+
+      expect(container.querySelector('input')).to.have.attribute('tabindex', '-1');
+    });
   });
 
   it('should ignore onBlur when the menu opens', () => {
