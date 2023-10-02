@@ -1,13 +1,18 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Select, selectClasses } from '@mui/base/Select';
 import { Option, optionClasses } from '@mui/base/Option';
 import { useTheme } from '@mui/system';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectBasic() {
   return (
     <React.Fragment>
       <Select
         className="CustomSelect"
+        slots={{
+          root: Button,
+        }}
         slotProps={{
           listbox: { className: 'CustomSelect-listbox' },
           popper: { className: 'CustomSelect-popper' },
@@ -55,6 +60,21 @@ const grey = {
   900: '#24292f',
 };
 
+const Button = React.forwardRef(function Button(props, ref) {
+  const { ownerState, ...other } = props;
+  return (
+    <button type="button" {...other} ref={ref}>
+      {other.children}
+      <UnfoldMoreRoundedIcon />
+    </button>
+  );
+});
+
+Button.propTypes = {
+  children: PropTypes.node,
+  ownerState: PropTypes.object.isRequired,
+};
+
 function useIsDarkMode() {
   const theme = useTheme();
   return theme.palette.mode === 'dark';
@@ -68,6 +88,7 @@ function Styles() {
     <style>
       {`
       .CustomSelect {
+        position: relative;
         font-family: IBM Plex Sans, sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
@@ -82,8 +103,6 @@ function Styles() {
         box-shadow: 0px 4px 6px ${
           isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
         };
-
-
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 120ms;
@@ -98,16 +117,13 @@ function Styles() {
           border-color: ${cyan[400]};
           box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
         }
-
-        &.${selectClasses.expanded} {
-          &::after {
-            content: '▴';
-          }
-        }
-
-        &::after {
-          content: '▾';
-          float: right;
+        
+        & > svg {
+          font-size: 1rem;
+          position: absolute;
+          height: 100%;
+          top: 0;
+          right: 10px;
         }
       }
       .CustomSelect-listbox {

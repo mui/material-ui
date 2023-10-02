@@ -81,12 +81,10 @@ Button.propTypes = {
 
 const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   ({ theme }) => `
-  position: relative;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-width: 320px;
-  min-height: 38px;
   padding: 8px 12px;
   border-radius: 8px;
   text-align: left;
@@ -94,9 +92,8 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 2px 6px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
-  };
+  position: relative;
+  box-shadow: 0px 2px 24px ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

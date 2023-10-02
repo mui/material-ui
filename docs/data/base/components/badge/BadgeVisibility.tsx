@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Badge, badgeClasses } from '@mui/base/Badge';
-// Demo auxiliary components
+// Auxiliary demo components
 import { styled, Stack } from '@mui/system';
 import { Button, buttonClasses } from '@mui/base/Button';
 import { Switch, switchClasses } from '@mui/base/Switch';
+import Divider from '@mui/material/Divider';
 // Icons
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -14,7 +15,15 @@ const blue = {
 };
 
 const grey = {
+  50: '#f6f8fa',
+  100: '#eaeef2',
+  200: '#d0d7de',
   300: '#afb8c1',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
+  700: '#424a53',
+  800: '#32383f',
   900: '#24292f',
 };
 
@@ -59,6 +68,103 @@ const StyledBadge = styled(Badge)(
   `,
 );
 
+const StyledButton = styled(Button)(
+  ({ theme }) => `
+  cursor: pointer;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  transition: all 150ms ease;
+  background-color: transparent;
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+
+  &:hover {
+    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+  }
+
+  &.${buttonClasses.active} {
+    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
+  }
+
+  &.${buttonClasses.focusVisible} {
+    box-shadow: 0 3px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 4px rgba(0, 127, 255, 0.5);
+    outline: none;
+  }
+  `,
+);
+
+const Root = styled('span')(
+  ({ theme }) => `
+  position: relative;
+  display: inline-block;
+  width: 32px;
+  height: 20px;
+  cursor: pointer;
+
+
+  & .${switchClasses.track} {
+    background: ${theme.palette.mode === 'dark' ? grey[600] : grey[400]};
+    border-radius: 16px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+
+  & .${switchClasses.thumb} {
+    position: relative;
+    display: block;
+    width: 14px;
+    height: 14px;
+    top: 3px;
+    left: 3px;
+    border-radius: 16px;
+    background-color: #fff;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 120ms;
+  }
+
+  &.${switchClasses.focusVisible} .${switchClasses.thumb} {
+    background-color: ${grey[500]};
+    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+  }
+
+  &.${switchClasses.checked} {
+    .${switchClasses.thumb} {
+      left: 15px;
+      top: 3px;
+      background-color: #fff;
+    }
+
+    .${switchClasses.track} {
+      background: ${blue[500]};
+    }
+  }
+
+  & .${switchClasses.input} {
+    cursor: inherit;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+    margin: 0;
+  }
+  `,
+);
+
+const StyledLabel = styled('label')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  `,
+);
+
 export default function BadgeVisibility() {
   const [count, setCount] = React.useState(1);
   const [invisible, setInvisible] = React.useState(false);
@@ -72,26 +178,41 @@ export default function BadgeVisibility() {
       <StyledBadge badgeContent={count} invisible={invisible}>
         <MailIcon />
       </StyledBadge>
-      <Stack direction="row" justifyContent="center" gap={1} useFlexGap>
-        <Button
+      <Divider sx={{ my: 2 }} />
+      <Stack
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        gap={1}
+        useFlexGap
+      >
+        <StyledButton
           aria-label="decrease"
           onClick={() => {
             setCount(Math.max(count - 1, 0));
           }}
         >
-          <RemoveIcon fontSize="small" />
-        </Button>
-        <Button
+          <RemoveIcon fontSize="small" color="primary" />
+        </StyledButton>
+        <StyledButton
           aria-label="increase"
           onClick={() => {
             setCount(count + 1);
           }}
         >
-          <AddIcon fontSize="small" />
-        </Button>
-        <div>
-          <Switch size="sm" checked={!invisible} onChange={handleBadgeVisibility} />
-        </div>
+          <AddIcon fontSize="small" color="primary" />
+        </StyledButton>
+        <Divider orientation="vertical" />
+        <Stack direction="row" spacing={1} useFlexGap>
+          <StyledLabel>Show badge</StyledLabel>
+          <Switch
+            slots={{
+              root: Root,
+            }}
+            checked={!invisible}
+            onChange={handleBadgeVisibility}
+          />
+        </Stack>
       </Stack>
     </Stack>
   );

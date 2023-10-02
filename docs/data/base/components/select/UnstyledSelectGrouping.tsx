@@ -1,9 +1,15 @@
 import * as React from 'react';
-import { Select, SelectProps, selectClasses } from '@mui/base/Select';
+import {
+  Select,
+  SelectProps,
+  selectClasses,
+  SelectRootSlotProps,
+} from '@mui/base/Select';
 import { Option, optionClasses } from '@mui/base/Option';
 import { OptionGroup, OptionGroupProps } from '@mui/base/OptionGroup';
 import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectGrouping() {
   return (
@@ -69,8 +75,25 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledButton = styled('button')(
+const Button = React.forwardRef(function Button<
+  TValue extends {},
+  Multiple extends boolean,
+>(
+  props: SelectRootSlotProps<TValue, Multiple>,
+  ref: React.ForwardedRef<HTMLButtonElement>,
+) {
+  const { ownerState, ...other } = props;
+  return (
+    <button type="button" {...other} ref={ref}>
+      {other.children}
+      <UnfoldMoreRoundedIcon />
+    </button>
+  );
+});
+
+const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   ({ theme }) => `
+  position: relative;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
@@ -101,15 +124,12 @@ const StyledButton = styled('button')(
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
-  &.${selectClasses.expanded} {
-    &::after {
-      content: '▴';
-    }
-  }
-
-  &::after {
-    content: '▾';
-    float: right;
+  & > svg {
+    font-size: 1rem;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 10px;
   }
   `,
 );
