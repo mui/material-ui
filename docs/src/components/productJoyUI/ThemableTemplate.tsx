@@ -176,7 +176,7 @@ function PalettePreview({ range }: { range: Record<string | number, string> }) {
     <Box
       key={key}
       sx={{
-        mr: -1,
+        mr: -1.625,
         width: 16,
         height: 16,
         borderRadius: '50%',
@@ -567,7 +567,7 @@ export default function ThemableTemplate() {
               transformOrigin: 'center 160px',
               overflow: 'auto hidden',
               backgroundColor: 'var(--template-palette-background-body)',
-              '& > div': {
+              '& > div, & > main': {
                 '--screen-height': 'var(--_preview-height)',
               },
             },

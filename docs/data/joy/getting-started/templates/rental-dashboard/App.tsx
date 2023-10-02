@@ -11,16 +11,24 @@ import Search from './components/Search';
 import Filters from './components/Filters';
 import Pagination from './components/Pagination';
 
-export default function RentalDashboard() {
+type PropsOf<T> = T extends React.ComponentType<infer P> ? P : never;
+
+export default function RentalDashboard({
+  disableCssReset = false,
+  ...props
+}: {
+  disableCssReset?: boolean;
+} & PropsOf<typeof CssVarsProvider>) {
   return (
-    <CssVarsProvider disableTransitionOnChange>
-      <CssBaseline />
+    <CssVarsProvider disableTransitionOnChange {...props}>
+      {!disableCssReset && <CssBaseline />}
       <NavBar />
       <Box
         component="main"
         sx={{
-          height: 'calc(100vh - 55px)', // 55px is the height of the NavBar
+          '--screen-height': '100dvh',
           display: 'grid',
+          height: 'calc(var(--screen-height) - 55px)', // 55px is the height of the NavBar
           gridTemplateColumns: { xs: 'auto', md: '60% 40%' },
           gridTemplateRows: 'auto 1fr auto',
         }}
