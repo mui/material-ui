@@ -12,7 +12,7 @@ import Link from 'docs/src/modules/components/Link';
 
 const additionalTestimonials = [
   {
-    testimonial: `“Joy UI is a game-changer for our large-scale internal tool. It lets us focus on our complex system, not UI components. Even in alpha, it became our go-to library, thanks to the trust and expertise we have in the MUI team. The documentation is comprehensive, with many practical examples. Joy UI's support is outstanding; they respond quickly and pay attention to detail in UI/UX and DX. It's a must-have for developers and companies looking to boost productivity and streamline their UI development.”`,
+    testimonial: `“Joy UI is a game-changer for our large-scale internal tool. It lets us focus on our complex system, not UI components. Even in alpha, it became our go-to library, thanks to the trust and expertise we have in the MUI team. They respond quickly and pay attention to detail in UI/UX and DX. It's a must-have for developers and companies looking to boost productivity.”`,
     author: 'Marc Pacheco',
     workTitle: 'Lead Frontend Developer',
     avatar: '/static/branding/joy-ui/marcpacheco.jpeg',
@@ -26,7 +26,7 @@ const additionalTestimonials = [
     companyLogo: undefined,
   },
   {
-    testimonial: `“Migrating my website from Material UI to Joy UI was a breeze. The transition was seamless, and the library's intuitive nature made it easy to pick up. With its prebuilt components and default design system, Joy UI offers an excellent out-of-the-box experience. I can quickly develop features without getting caught up in styling and design. The customizable default theme system is a plus, allowing me to introduce custom design tokens with type-safe support. Joy UI has transformed my development process, making it enjoyable and efficient. I highly recommend it for React projects.”`,
+    testimonial: `“Migrating my website from Material UI to Joy UI was a breeze. The transition was seamless, and the library's intuitive nature made it easy to pick up. The customizable default theme system is a plus, allowing me to introduce custom design tokens with type-safe support. Joy UI has transformed my development process, making it enjoyable and efficient. I highly recommend it for React projects.”`,
     author: 'Matthew Kwong',
     workTitle: 'Frontend Engineer',
     avatar: '/static/branding/joy-ui/mwskwong.png',
