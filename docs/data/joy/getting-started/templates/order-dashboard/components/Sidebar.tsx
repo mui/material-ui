@@ -169,11 +169,7 @@ export default function Sidebar() {
           </ListItem>
 
           <ListItem>
-            <ListItemButton
-              role="menuitem"
-              component="a"
-              href="/joy-ui/getting-started/templates/order-dashboard/"
-            >
+            <ListItemButton selected>
               <ShoppingCartRoundedIcon />
               <ListItemContent>
                 <Typography level="title-sm">Orders</Typography>
@@ -230,7 +226,6 @@ export default function Sidebar() {
 
           <ListItem nested>
             <Toggler
-              defaultExpanded
               renderToggle={({ open, setOpen }) => (
                 <ListItemButton onClick={() => setOpen(!open)}>
                   <GroupRoundedIcon />
@@ -245,7 +240,13 @@ export default function Sidebar() {
             >
               <List sx={{ gap: 0.5 }}>
                 <ListItem sx={{ mt: 0.5 }}>
-                  <ListItemButton selected>My profile</ListItemButton>
+                  <ListItemButton
+                    role="menuitem"
+                    component="a"
+                    href="/joy-ui/getting-started/templates/profile-dashboard/"
+                  >
+                    My profile
+                  </ListItemButton>
                 </ListItem>
                 <ListItem>
                   <ListItemButton>Create a new user</ListItemButton>
