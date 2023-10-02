@@ -9,9 +9,10 @@ title: 9+ Free React Templates
 
 <!-- #default-branch-switch -->
 
-Our curated collection of Material UI templates includes dashboards, sign-in and sign-up pages, a blog, a checkout flow, and more.
+## Free templates
 
-The templates can be combined with one of the [example projects](https://github.com/mui/material-ui/tree/master/examples) to form a complete starter.
+Our curated collection of free Material UI templates includes dashboards, sign-in and sign-up pages, a blog, a checkout flow, and more.
+They can be combined with one of the [example projects](/material-ui/getting-started/example-projects/) to form a complete starter.
 
 Sections of each layout are clearly defined either by comments or use of separate files,
 making it simple to extract parts of a page (such as a "hero unit", or footer, for example)
@@ -28,4 +29,6 @@ Please feel free to open an [issue](https://github.com/mui/material-ui/issues/ne
 
 Looking for something more? You can find complete templates and themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">premium template section</a>.
 
-<a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store"><img src="/static/images/themes-light.jpg" alt="react templates" width="2278" height="1358" /></a>
+<a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">
+<img src="/static/images/themes-display.png" alt="react templates" width="2280" height="1200" />
+</a>
