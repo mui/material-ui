@@ -2,6 +2,7 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import Masonry from '@mui/lab/Masonry';
 import Grid from '@mui/material/Unstable_Grid2';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
@@ -11,17 +12,17 @@ import Link from 'docs/src/modules/components/Link';
 
 const additionalTestimonials = [
   {
-    testimonial: `“Joy UI brings the best bits from Material UI, with a cleaner and fresher look out of the box. The variants approach covers almost all of your UI edge cases, while the flexible theme configuration provides plenty of room for customization. I think that with the right approach, Joy UI should cater to all your front-end development needs.”`,
-    author: 'Badal Saibo',
-    workTitle: 'Frontend Engineer ',
-    avatar: '/static/branding/joy-ui/badalsaibo.jpeg',
-    companyLogo: undefined,
-  },
-  {
     testimonial: `“Joy UI is a game-changer for our large-scale internal tool. It lets us focus on our complex system, not UI components. Even in alpha, it became our go-to library, thanks to the trust and expertise we have in the MUI team. The documentation is comprehensive, with many practical examples. Joy UI's support is outstanding; they respond quickly and pay attention to detail in UI/UX and DX. It's a must-have for developers and companies looking to boost productivity and streamline their UI development.”`,
     author: 'Marc Pacheco',
     workTitle: 'Lead Frontend Developer',
     avatar: '/static/branding/joy-ui/marcpacheco.jpeg',
+    companyLogo: undefined,
+  },
+  {
+    testimonial: `“Joy UI brings the best bits from Material UI, with a cleaner and fresher look out of the box. The variants approach covers almost all of your UI edge cases, while the flexible theme configuration provides plenty of room for customization. I think that with the right approach, Joy UI should cater to all your front-end development needs.”`,
+    author: 'Badal Saibo',
+    workTitle: 'Frontend Engineer ',
+    avatar: '/static/branding/joy-ui/badalsaibo.jpeg',
     companyLogo: undefined,
   },
   {
@@ -68,7 +69,7 @@ export function TestimonialAuthor({
 export default function BaseUITestimonial() {
   return (
     <Section>
-      <Grid container alignItems="center" spacing={{ xs: 6, sm: 10 }} mb={6}>
+      <Grid container alignItems="center" spacing={{ xs: 6, sm: 10 }} mb={3}>
         <Grid xs={12} sm={6}>
           <Box
             sx={(theme) => ({
@@ -128,12 +129,12 @@ export default function BaseUITestimonial() {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={3}>
+      <Masonry columns={3} spacing={3}>
         {additionalTestimonials.map(({ testimonial, author, workTitle, avatar, companyLogo }) => (
-          <Grid key={author} xs={12} md={4}>
+          <div key={author}>
             <Paper
               variant="outlined"
-              sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 3, height: '100%' }}
+              sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 2.5 }}
             >
               <Typography color="text.secondary" variant="body2" sx={{ flexGrow: 1 }}>
                 {testimonial}
@@ -145,9 +146,9 @@ export default function BaseUITestimonial() {
                 companyLogo={companyLogo}
               />
             </Paper>
-          </Grid>
+          </div>
         ))}
-      </Grid>
+      </Masonry>
     </Section>
   );
 }
