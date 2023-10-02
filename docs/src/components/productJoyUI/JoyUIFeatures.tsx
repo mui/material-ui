@@ -634,7 +634,7 @@ export default function JoyUIFeatures() {
             }
             description="Joy UI is built to ensure you ship great products to your users with an amazing developer experience."
           />
-          <Group sx={{ mt: 4 }}>
+          <Group sx={{ mt: 3 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
                 icon={<AutoAwesomeRoundedIcon color="warning" />}

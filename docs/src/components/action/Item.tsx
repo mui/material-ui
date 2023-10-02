@@ -92,27 +92,20 @@ export default function Item({
         ...props.sx,
       }}
     >
-      <Box component="span" sx={{ mr: 2, lineHeight: 0 }}>
+      <Box component="span" sx={{ mr: 1.5, lineHeight: 0 }}>
         {icon}
       </Box>
       <span>
         <Typography
-          component="span"
           color="text.primary"
           variant="body2"
           fontWeight="bold"
-          sx={{ display: 'block', mr: 2 }}
+          sx={{ display: 'block' }}
         >
           {title}
         </Typography>
         {description && (
-          <Typography
-            component="span"
-            color="text.secondary"
-            variant="body2"
-            fontWeight="regular"
-            sx={{ mt: 0.5 }}
-          >
+          <Typography color="text.secondary" variant="body2" fontWeight="regular" sx={{ mt: 0.5 }}>
             {description}
           </Typography>
         )}

@@ -41,7 +41,7 @@ export default function ButtonUsage(inProps) {
         { propName: 'onClick', defaultValue: () => {} },
       ]}
       renderDemo={(props) => (
-        <Box sx={{ display: 'flex', gap: 2 }}>
+        <Box sx={{ display: 'flex', gap: 1 }}>
           <Button startDecorator={<FavoriteBorder />} {...props}>
             Hello world
           </Button>

@@ -333,7 +333,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             p: 3,
             display: 'flex',
             flexDirection: 'column',
-            gap: 3,
+            gap: 2.5,
             [`& .${formLabelClasses.root}`]: {
               fontWeight: 'lg',
             },
@@ -363,7 +363,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         }))
                       }
                       sx={{
-                        '--Switch-trackWidth': '32px',
+                        '--Switch-trackWidth': '26px',
                         '--Switch-trackBackground': (theme) =>
                           `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
                         '&:hover': {

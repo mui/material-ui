@@ -4,7 +4,6 @@ import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
-import Apps from '@mui/icons-material/Apps';
 
 export default function TabsUsage(inProps) {
   const [index, setIndex] = React.useState(0);
@@ -41,7 +40,7 @@ export default function TabsUsage(inProps) {
           defaultValue: 'horizontal',
         },
         {
-          formLabel: 'Disable TabList underline',
+          formLabel: 'Disable Tab List underline',
           propName: 'disableUnderline',
           knob: 'switch',
           defaultValue: false,
@@ -110,7 +109,6 @@ export default function TabsUsage(inProps) {
               disableIndicator={disableIndicator}
               {...(index === 0 && { color, variant })}
             >
-              <Apps />
               Tab A
             </Tab>
             <Tab
@@ -128,9 +126,9 @@ export default function TabsUsage(inProps) {
               Tab C
             </Tab>
           </TabList>
-          <TabPanel value={0}>Content of Tab A</TabPanel>
-          <TabPanel value={1}>Content of Tab B</TabPanel>
-          <TabPanel value={2}>Content of Tab C</TabPanel>
+          <TabPanel value={0}>Tab A</TabPanel>
+          <TabPanel value={1}>Tab B</TabPanel>
+          <TabPanel value={2}>Tab C</TabPanel>
         </Tabs>
       )}
     />
