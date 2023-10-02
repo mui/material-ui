@@ -1519,6 +1519,8 @@ export default function PricingTable({
         {divider}
         {renderNestedRow('charts/treemap')}
         {divider}
+        {renderNestedRow('charts/heatmap')}
+        {divider}
         {renderNestedRow('charts/radar')}
         {divider}
         {renderNestedRow('charts/funnel')}
