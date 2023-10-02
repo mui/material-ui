@@ -83,19 +83,17 @@ Depending on the underline and selected indicator placement, you may need to cha
 
 ### Sticky
 
-In a long content scenario, use the `sticky="top"` prop on the Tab List component to keep the tabs visible while scrolling.
+Use the `sticky` prop to place the Tab List component at the top or bottom in a long content scenario.
 
 {{"demo": "TabsSticky.js"}}
-
-To stick the Tab List component at the bottom, use the `sticky="bottom"` prop instead and put it below the Tabs component.
 
 ### Tab flex
 
 Use the `tabFlex` prop on the Tab List component to make the Tab elements fill the available space as shown in the example below.
 
-In the first demo, the Tab elements fill the available space using `tabFlex={1}`.
+- In the first demo, the Tab elements fill the available space using `tabFlex={1}`.
 
-In the second demo, the Tab elements fill the available space equally using `tabFlex="auto"`, but the width of each one of them is based on the content.
+- In the second demo, the Tab elements fill the available space equally using `tabFlex="auto"`, but the width of each one of them is based on the content.
 
 {{"demo": "TabsFlex.js"}}
 
