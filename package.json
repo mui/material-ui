@@ -9,7 +9,7 @@
     "build": "lerna run --parallel --scope \"@mui/*\" build",
     "build:codesandbox": "NODE_OPTIONS=\"–max_old_space_size=4096\" lerna run --concurrency 8 --scope \"@mui/*\" build",
     "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --force-publish=@mui/core-downloads-tracker",
-    "release:build": "lerna run --parallel --scope \"@mui/*\" build --skip-nx-cache",
+    "release:build": "lerna run --concurrency 8 --scope \"@mui/*\" build --skip-nx-cache",
     "release:changelog": "node scripts/releaseChangelog.mjs",
     "release:publish": "lerna publish from-package --dist-tag latest --contents build",
     "release:publish:dry-run": "lerna publish from-package --dist-tag latest --contents build --registry=\"http://localhost:4873/\"",
