@@ -480,8 +480,8 @@ export default function ThemableTemplate() {
     [primary, neutral, radius, bgSwap, family],
   );
   return (
-    <Box sx={{ mt: 3, position: 'relative' }}>
-      <Tabs sx={{ bgcolor: 'transparent' }}>
+    <React.Fragment>
+      <Tabs sx={{ bgcolor: 'transparent', mt: 3 }}>
         <List
           variant="outlined"
           component="div"
@@ -642,29 +642,22 @@ export default function ThemableTemplate() {
       <Sheet
         variant="outlined"
         sx={(theme) => ({
-          [theme.breakpoints.up(800)]: {
-            minWidth: 700,
-          },
           p: 1.5,
           mt: 4,
           mx: 'auto',
           width: 'max-content',
           maxWidth: '80vw',
-          // position: 'absolute',
-          // left: '50%',
-          // transform: 'translateX(-50%)',
-          // right: '4rem',
-          // bottom: '-2rem',
           zIndex: 1,
           bgcolor: 'primary.50',
           borderColor: 'primary.200',
           borderRadius: 'xl',
-          // boxShadow: 'xl',
           boxShadow: `0 2px 4px ${theme.palette.primary[100]}`,
-          // boxShadow: `0 8px 0 8px ${theme.palette.primary[100]}`,
           display: 'flex',
           flexWrap: 'wrap',
           gap: 1,
+          [theme.breakpoints.up(800)]: {
+            minWidth: 700,
+          },
           [theme.getColorSchemeSelector('dark')]: {
             bgcolor: 'primary.900',
             borderColor: 'rgba(var(--template-palette-neutral-darkChannel) / 0.5  )',
@@ -718,6 +711,6 @@ export default function ThemableTemplate() {
         {renderFamily()}
         {renderRadius()}
       </Sheet>
-    </Box>
+    </React.Fragment>
   );
 }
