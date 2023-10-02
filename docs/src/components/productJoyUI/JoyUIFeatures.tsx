@@ -260,7 +260,6 @@ function ColorInversionDemo() {
     >
       <Frame.Demo
         sx={{
-          bgcolor: 'background.paper',
           overflow: 'auto',
           flexGrow: 1,
           display: 'flex',
@@ -275,33 +274,28 @@ function ColorInversionDemo() {
         }}
       >
         <CardDemo />
-        <Box
+        <Frame.Info
+          data-mui-color-scheme="dark"
           sx={{
-            p: 2,
-            minWidth: 350,
-            borderRadius: '12px',
+            width: '100%',
             position: 'absolute',
             left: '50%',
-            bottom: '1rem',
+            bottom: 0,
             transform: 'translateX(-50%)',
-            bgcolor: 'common.black',
             lineHeight: 0,
+            border: 0,
           }}
         >
           <HighlightedCode
             copyButtonHidden
             component={MarkdownElement}
-            code={`<Card
-  variant="solid"
-  color="primary"
->`}
+            code={`<Card variant="solid" color="primary">`}
             language="jsx"
           />
-        </Box>
+        </Frame.Info>
       </Frame.Demo>
       <Frame.Demo
         sx={{
-          bgcolor: 'background.paper',
           overflow: 'auto',
           flexGrow: 1,
           display: 'flex',
@@ -316,29 +310,25 @@ function ColorInversionDemo() {
         }}
       >
         <CardDemo invertedColors />
-        <Box
+        <Frame.Info
+          data-mui-color-scheme="dark"
           sx={{
-            p: 2,
-            minWidth: 350,
-            borderRadius: '12px',
+            width: '100%',
             position: 'absolute',
             left: '50%',
-            bottom: '1rem',
+            bottom: 0,
             transform: 'translateX(-50%)',
-            bgcolor: 'common.black',
             lineHeight: 0,
+            border: 0,
           }}
         >
           <HighlightedCode
             copyButtonHidden
             component={MarkdownElement}
-            code={`<Card
-  variant="solid"
-  color="primary" 
-  invertedColors>`}
+            code={`<Card variant="solid" color="primary" invertedColors>`}
             language="jsx"
           />
-        </Box>
+        </Frame.Info>
       </Frame.Demo>
       <Box
         {...getDragHandlers()}
@@ -363,8 +353,8 @@ function ColorInversionDemo() {
         <Box
           sx={{
             position: 'absolute',
-            width: 48,
-            height: 48,
+            width: 42,
+            height: 42,
             borderRadius: '50%',
             border: '1px solid',
             borderColor: 'divider',
