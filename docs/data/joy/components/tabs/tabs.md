@@ -159,6 +159,14 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 ## Common examples
 
+### Scrollable tabs
+
+To make the tabs scrollable, use the `sx` prop on the `TabList` component and set `overflow: auto` to the `TabList`.
+
+In this example, the scrollbar is hidden by setting display `none` to `::-webkit-scrollbar` and is snapped to the edge by setting [CSS scroll snap](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll_snap) properties.
+
+{{"demo": "TabsScrollable.js"}}
+
 ### Segmented controls
 
 To mimic the iOS segmented controls, add the border-radius to the `sx` prop of the TabList and set the selected Tab's background to `background.surface`.
