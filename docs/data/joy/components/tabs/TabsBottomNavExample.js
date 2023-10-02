@@ -4,7 +4,7 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab, { tabClasses } from '@mui/joy/Tab';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import HomeOutlined from '@mui/icons-material/HomeOutlined';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Search from '@mui/icons-material/Search';
 import Person from '@mui/icons-material/Person';
@@ -17,7 +17,8 @@ export default function TabsBottomNavExample() {
       sx={{
         flexGrow: 1,
         m: -3,
-        p: 4,
+        p: 3,
+        py: 5,
         borderTopLeftRadius: '12px',
         borderTopRightRadius: '12px',
         bgcolor: `${colors[index]}.500`,
@@ -30,37 +31,30 @@ export default function TabsBottomNavExample() {
         onChange={(event, value) => setIndex(value)}
         sx={(theme) => ({
           p: 1,
-          borderRadius: 16,
+          borderRadius: '24px',
           maxWidth: 400,
           mx: 'auto',
           boxShadow: theme.shadow.sm,
           '--joy-shadowChannel': theme.vars.palette[colors[index]].darkChannel,
           [`& .${tabClasses.root}`]: {
-            paddingY: 1,
-            flex: 1,
             whiteSpace: 'nowrap',
             transition: '0.3s',
-            fontSize: 'md',
             fontWeight: 'md',
+            flex: 1,
             [`&:not(.${tabClasses.selected}):not(:hover)`]: {
               opacity: 0.72,
             },
           },
         })}
       >
-        <TabList
-          variant="plain"
-          size="small"
-          disableUnderline
-          sx={{ borderRadius: 'lg', p: 0 }}
-        >
+        <TabList variant="plain" disableUnderline sx={{ borderRadius: 'xl', p: 0 }}>
           <Tab
             disableIndicator
             orientation="vertical"
             {...(index === 0 && { color: colors[0] })}
           >
             <ListItemDecorator>
-              <HomeRoundedIcon />
+              <HomeOutlined />
             </ListItemDecorator>
             Home
           </Tab>
@@ -85,7 +79,6 @@ export default function TabsBottomNavExample() {
             Search
           </Tab>
           <Tab
-            size="small"
             disableIndicator
             orientation="vertical"
             {...(index === 3 && { color: colors[3] })}
