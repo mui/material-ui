@@ -175,16 +175,8 @@ function GlobalVariantDemo() {
           code={`
           <Chip size="sm">A new UI library</Chip>
 <Switch />
-<Radio
-  checked={selectedValue === 'a'}
-  onChange={handleChange}
-  value="a"
-/>
-<Radio
-  checked={selectedValue === 'b'}
-  onChange={handleChange}
-  value="b"
-/>
+<Radio value="a" />
+<Radio value="b" />
 <Checkbox />
 <Alert startDecorator={<PlaylistAddCheckCircleRoundedIcon />}>
   Your component library has been installed successfully!
