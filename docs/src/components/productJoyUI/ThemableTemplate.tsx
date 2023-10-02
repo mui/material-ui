@@ -150,11 +150,11 @@ const radiusOptions = {
     xl: '0px',
   },
   smooth: {
-    xs: '3px',
-    sm: '5px',
-    md: '7px',
-    lg: '11px',
-    xl: '15px',
+    xs: '4px',
+    sm: '6px',
+    md: '8px',
+    lg: '12px',
+    xl: '16px',
   },
   round: {
     xs: '20px',
