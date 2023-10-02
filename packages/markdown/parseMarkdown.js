@@ -302,9 +302,9 @@ function createRender(context) {
       }
 
       // Remove links to avoid nested links in the TOCs
-      let headingText = headingHtml.replace(/<a\b[^>]*>/i, '').replace(/<\/a>/i, '');
+      let headingText = headingHtml.replace(/<a\b[^>]*>/gi, '').replace(/<\/a>/gi, '');
       // Remove `code` tags
-      headingText = headingText.replace(/<code\b[^>]*>/i, '').replace(/<\/code>/i, '');
+      headingText = headingText.replace(/<code\b[^>]*>/gi, '').replace(/<\/code>/gi, '');
 
       // Standardizes the hash from the default location (en) to different locations
       // Need english.md file parsed first

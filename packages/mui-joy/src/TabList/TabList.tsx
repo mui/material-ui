@@ -42,6 +42,7 @@ const TabListRoot = styled(StyledList, {
     '--List-gap': '0px',
     '--ListDivider-gap': '0px',
     '--ListItem-paddingX': 'var(--Tabs-spacing)',
+    '--ListItem-gap': '0.375rem',
     // the `var(--unknown,)` is a workaround because emotion does not support space toggle.
     '--unstable_TabList-hasUnderline': ownerState.disableUnderline ? 'var(--unknown,)' : 'initial',
     ...scopedVariables,

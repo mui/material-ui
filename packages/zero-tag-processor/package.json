@@ -1,6 +1,6 @@
 {
   "name": "@mui/zero-tag-processor",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-alpha.0",
   "private": true,
   "author": "MUI Team",
   "description": "Linaria tag processors for custom styled implementation.",
@@ -39,26 +39,26 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/core": "^7.22.20",
+    "@babel/core": "^7.23.0",
     "@babel/helper-module-imports": "^7.22.15",
     "@babel/helper-plugin-utils": "^7.22.5",
-    "@babel/parser": "^7.22.16",
-    "@babel/types": "^7.22.19",
+    "@babel/parser": "^7.23.0",
+    "@babel/types": "^7.23.0",
     "@emotion/css": "^11.11.2",
     "@linaria/tags": "^4.5.4",
     "@linaria/utils": "^4.5.3",
-    "@mui/system": "^5.14.10",
+    "@mui/system": "^5.14.11",
     "lodash.get": "^4.4.2"
   },
   "devDependencies": {
-    "@mui/material": "^5.14.10",
+    "@mui/material": "^5.14.11",
     "@types/babel__core": "^7.20.2",
     "@types/babel__helper-module-imports": "^7.18.1",
-    "@types/babel__helper-plugin-utils": "^7.10.0",
+    "@types/babel__helper-plugin-utils": "^7.10.1",
     "@types/chai": "^4.3.6",
     "@types/lodash.get": "^4.4.7",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.17.18"
+    "@types/node": "^18.18.0"
   },
   "sideEffects": false,
   "publishConfig": {

@@ -1,4 +1,0 @@
-{/* For size="text", adjust the height via font-size */}
-<Skeleton size="text" sx={{ fontSize: '1rem' }} />
-{/* For size="box", adjust height based on bounding box */}
-<Skeleton size="box" height={40} />
