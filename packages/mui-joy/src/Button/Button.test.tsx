@@ -138,6 +138,32 @@ describe('Joy <Button />', () => {
     });
   });
 
+  describe('prop:disabled', () => {
+    it('should apply disabled styles when button is disabled', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const { getByRole } = render(<Button disabled />);
+
+      expect(getByRole('button')).toHaveComputedStyle({
+        color: 'rgb(159, 166, 173)',
+        backgroundColor: 'rgb(240, 244, 248)',
+      });
+    });
+
+    it('should apply disabled styles when button is disabled and when component prop is provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const { getByRole } = render(<Button disabled component="a" />);
+
+      expect(getByRole('button')).toHaveComputedStyle({
+        color: 'rgb(159, 166, 173)',
+        backgroundColor: 'rgb(240, 244, 248)',
+      });
+    });
+  });
+
   describe('prop: loadingIndicator', () => {
     it('is not rendered by default', () => {
       const { getByRole } = render(<Button loadingIndicator="loading">Test</Button>);

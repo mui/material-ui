@@ -1,5 +1,6 @@
 import type { Plugin, PluginOption } from 'vite';
 import { generateCss } from '@mui/zero-tag-processor/generateCss';
+import { preprocessor } from '@mui/zero-tag-processor/preprocessor';
 import { transformAsync } from '@babel/core';
 import baseLinaria from '@linaria/vite';
 
@@ -26,7 +27,10 @@ type LinariaWrapperOptions = Exclude<ZeroVitePluginOptions, 'theme'> & {
 };
 
 const linaria = (options: LinariaWrapperOptions): Plugin => {
-  return baseLinaria(options);
+  return baseLinaria({
+    preprocessor,
+    ...options,
+  });
 };
 
 export function zeroVitePlugin(options: ZeroVitePluginOptions): PluginOption {
@@ -61,7 +65,7 @@ export function zeroVitePlugin(options: ZeroVitePluginOptions): PluginOption {
 
   function intermediateBabelPlugin(): PluginOption {
     return {
-      name: 'vite-intermediate-plugin',
+      name: 'vite-mui-zero-intermediate-plugin',
       async transform(code, id) {
         const [filename] = id.split('?');
         if (!extensions.some((ext) => filename.endsWith(ext))) {

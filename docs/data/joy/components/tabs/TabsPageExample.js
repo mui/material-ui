@@ -53,7 +53,6 @@ export default function TabsPageExample() {
               size="sm"
               variant="soft"
               color={index === 0 ? 'primary' : 'neutral'}
-              sx={{ ml: 1 }}
             >
               14
             </Chip>
@@ -64,7 +63,6 @@ export default function TabsPageExample() {
               size="sm"
               variant="soft"
               color={index === 1 ? 'primary' : 'neutral'}
-              sx={{ ml: 1 }}
             >
               24
             </Chip>

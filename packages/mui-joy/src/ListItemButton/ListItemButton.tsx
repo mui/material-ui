@@ -56,6 +56,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'stretch', // always stretch itself to fill the parent (List|ListItem)
+    gap: 'var(--ListItem-gap)',
     ...(ownerState.orientation === 'vertical' && {
       flexDirection: 'column',
       justifyContent: 'center',
@@ -90,6 +91,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       zIndex: 1, // to be above of the next element. For example, the first Tab item should be above the second so that the outline is above the second Tab.
     },
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
     [`.${listItemClasses.root} > &`]: {
       '--unstable_ListItem-flex': '1 0 0%', // grow to fill the available space of ListItem
     },

@@ -1,6 +1,6 @@
 {
   "name": "@mui/zero-next-plugin",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.0",
   "private": true,
   "author": "MUI Team",
   "description": "Vite plugin for MUI zero styled implementation.",
@@ -39,11 +39,11 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/core": "^7.22.20",
+    "@babel/core": "^7.23.0",
     "@babel/plugin-syntax-jsx": "^7.22.5",
-    "@babel/preset-typescript": "^7.22.15",
+    "@babel/preset-typescript": "^7.23.0",
     "@linaria/babel-preset": "^4.5.4",
-    "@mui/zero-tag-processor": "0.0.1-alpha.4",
+    "@mui/zero-tag-processor": "0.0.1-alpha.0",
     "file-system-cache": "2.0.2"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "5.14.10",
+  "version": "5.14.11",
   "private": false,
   "author": "MUI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
@@ -40,7 +40,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.15",
+    "@babel/runtime": "^7.23.1",
     "@mui/private-theming": "workspace:^",
     "@mui/styled-engine": "workspace:^",
     "@mui/types": "workspace:^",
@@ -52,14 +52,14 @@
   "devDependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui-internal/test-utils": "workspace:^",
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/material-next": "workspace:*",
     "@mui/system": "workspace:*",
-    "@mui-internal/test-utils": "workspace:^",
     "@types/chai": "^4.3.6",
-    "@types/prop-types": "^15.7.5",
-    "@types/react": "^18.2.21",
+    "@types/prop-types": "^15.7.7",
+    "@types/react": "^18.2.23",
     "@types/sinon": "^10.0.16",
     "@types/styled-components": "^5.1.27",
     "chai": "^4.3.8",

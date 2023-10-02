@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-beta.16",
+  "version": "5.0.0-beta.17",
   "private": false,
   "author": "MUI Team",
   "description": "A library of headless ('unstyled') React UI components and low-level hooks.",
@@ -41,7 +41,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.15",
+    "@babel/runtime": "^7.23.1",
     "@floating-ui/react-dom": "^2.0.2",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
@@ -50,14 +50,14 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
+    "@mui-internal/test-utils": "workspace:^",
     "@mui/base": "workspace:*",
     "@mui/material": "workspace:^",
-    "@mui-internal/test-utils": "workspace:^",
     "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3",
+    "@testing-library/user-event": "^14.5.1",
     "@types/chai": "^4.3.6",
-    "@types/prop-types": "^15.7.5",
-    "@types/react": "18.2.21",
+    "@types/prop-types": "^15.7.7",
+    "@types/react": "18.2.23",
     "@types/react-dom": "18.2.7",
     "@types/sinon": "^10.0.16",
     "chai": "^4.3.8",

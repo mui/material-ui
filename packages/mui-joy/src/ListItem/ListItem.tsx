@@ -46,6 +46,7 @@ export const StyledListItem = styled('li')<{ ownerState: ListItemOwnerState }>(
         '--ListItemButton-marginInline': `calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))`,
         '--ListItemButton-marginBlock': 'calc(-1 * var(--ListItem-paddingY))',
         alignItems: 'center',
+        gap: 'var(--ListItem-gap)',
         marginInline: 'var(--ListItem-marginInline)',
       } as const),
     ownerState.nested &&
@@ -74,7 +75,8 @@ export const StyledListItem = styled('li')<{ ownerState: ListItemOwnerState }>(
       }),
       boxSizing: 'border-box',
       borderRadius: 'var(--ListItem-radius)',
-      display: 'flex',
+      display: 'var(--_ListItem-display)',
+      '&:not([hidden])': { '--_ListItem-display': 'flex' },
       flex: 'none', // prevent children from shrinking when the List's height is limited.
       position: 'relative',
       paddingBlockStart: ownerState.nested ? 0 : 'var(--ListItem-paddingY)',

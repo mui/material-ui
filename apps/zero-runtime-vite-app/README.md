@@ -24,3 +24,10 @@ After building, you can run the project by changing into the directory and then
 3. Build the code using `pnpm build`
 
 Optionally, before running the dev server, you can run `pnpm vite optimize --force` if it logged some error during `pnpm vite`.
+
+### Testing
+
+This demo app has been configured to run tests using both vitest or jest.
+
+1. Vitest - You can run `pnpm test` to run the tests using vitest
+2. Jest - You can run `pnpm jest` to run the tests using jest

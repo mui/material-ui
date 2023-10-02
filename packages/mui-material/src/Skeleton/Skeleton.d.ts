@@ -7,10 +7,6 @@ import { SkeletonClasses } from './skeletonClasses';
 
 export interface SkeletonPropsVariantOverrides {}
 
-export interface SkeletonPropsSizeOverrides {}
-
-export interface SkeletonPropsShapeOverrides {}
-
 export interface SkeletonOwnProps {
   /**
    * The animation.
@@ -32,24 +28,12 @@ export interface SkeletonOwnProps {
    */
   height?: number | string;
   /**
-   * The shape of the skeleton.
-   */
-  shape?: OverridableStringUnion<
-    'rectangular' | 'rounded' | 'circular',
-    SkeletonPropsShapeOverrides
-  >;
-  /**
-   * Determines whether the skeleton should scale to the element's text or bounding box.
-   */
-  size?: OverridableStringUnion<'text' | 'box', SkeletonPropsSizeOverrides>;
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
   /**
    * The type of content that will be rendered.
    * @default 'text'
-   * @deprecated Use `shape` prop to set the shape of the skeleton and `size` prop to set the scale adaptation.
    */
   variant?: OverridableStringUnion<
     'text' | 'rectangular' | 'rounded' | 'circular',
