@@ -36,6 +36,7 @@ export default function UnstyledSelectObjectValuesForm() {
               name="character"
               id="object-value-default-button"
               aria-labelledby="object-value-default-label object-value-default-button"
+              placeholder="Choose a character…"
             >
               {characters.map((character) => (
                 <StyledOption key={character.name} value={character}>
@@ -63,6 +64,7 @@ export default function UnstyledSelectObjectValuesForm() {
               name="character"
               id="object-value-serialize-button"
               aria-labelledby="object-value-serialize-label object-value-serialize-button"
+              placeholder="Choose a character…"
             >
               {characters.map((character) => (
                 <StyledOption key={character.name} value={character}>

@@ -237,7 +237,7 @@ export default function MaterialHero() {
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-core" />{' '}
+            <IconImage loading="eager" width={28} height={28} name="product-core" />{' '}
             <Link href={ROUTES.productCore}>MUI Core</Link>{' '}
             <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
               /

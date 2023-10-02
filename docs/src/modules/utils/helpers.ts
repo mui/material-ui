@@ -100,7 +100,14 @@ export function pathnameToLanguage(pathname: string): {
   // Remove hash as it's never sent to the server
   // https://github.com/vercel/next.js/issues/25202
   const canonicalAsServer = canonicalAs.replace(/#(.*)$/, '');
-  const canonicalPathname = canonicalAsServer.replace(/^\/api/, '/api-docs').replace(/\/$/, '');
+
+  let canonicalPathname = canonicalAsServer.replace(/^\/api/, '/api-docs');
+
+  // Remove trailing slash as Next.js doesn't expect it here
+  // https://nextjs.org/docs/pages/api-reference/functions/use-router#router-object
+  if (canonicalPathname !== '/') {
+    canonicalPathname = canonicalPathname.replace(/\/$/, '');
+  }
 
   return {
     userLanguage,

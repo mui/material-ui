@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import {
+  createRenderer,
+  describeConformance,
+  describeJoyColorInversion,
+} from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import AccordionGroup, { accordionGroupClasses as classes } from '@mui/joy/AccordionGroup';
 
@@ -75,5 +79,12 @@ describe('<AccordionGroup />', () => {
     });
 
     describeJoyColorInversion(<AccordionGroup />, { muiName: 'JoyAccordionGroup', classes });
+  });
+
+  it('should not warn when using custom color, variant, size', () => {
+    expect(() => {
+      // @ts-expect-error as `custom` color, varaint, size is not part of the type system
+      render(<AccordionGroup color="custom" variant="custom" size="custom" />);
+    }).not.toErrorDev();
   });
 });

@@ -6,7 +6,7 @@ import {
   createRenderer,
   act,
   fireEvent,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ListItemButton, { listItemButtonClasses as classes } from '@mui/joy/ListItemButton';
 

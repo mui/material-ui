@@ -292,6 +292,7 @@ const customPalette = {
     '90': '#ebe0e1',
     '92': '#f1e5e6',
     '95': '#faeef0',
+    '96': '#f7f2fa',
     '99': '#fffbff',
     '100': '#ffffff',
   },
