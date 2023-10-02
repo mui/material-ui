@@ -9,7 +9,7 @@ import {
   userEvent,
   act,
   screen,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { Select, SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
 import { useOption, SelectOption } from '@mui/base/useOption';
 import { Option, OptionProps, optionClasses } from '@mui/base/Option';
