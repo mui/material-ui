@@ -21,50 +21,69 @@ export default function BadgeVisibility() {
   return (
     <Box
       sx={{
-        color: 'action.active',
         display: 'flex',
         flexDirection: 'column',
-        '& > *': {
-          marginBottom: 2,
-        },
-        [`& .${badgeClasses.root}`]: {
-          marginRight: 4,
-        },
+        justifyContent: 'center',
+        gap: 1,
       }}
     >
-      <div>
-        <StyledBadge badgeContent={count}>
-          <MailIcon />
-        </StyledBadge>
-        <ButtonGroup>
-          <Button
-            aria-label="reduce"
-            onClick={() => {
-              setCount(Math.max(count - 1, 0));
-            }}
-          >
-            <RemoveIcon fontSize="small" />
-          </Button>
-          <Button
-            aria-label="increase"
-            onClick={() => {
-              setCount(count + 1);
-            }}
-          >
-            <AddIcon fontSize="small" />
-          </Button>
-        </ButtonGroup>
-      </div>
-      <div>
+      <Box
+        sx={{
+          display: 'flex',
+          alignSelf: 'center',
+        }}
+      >
         <StyledBadge badgeContent={count} invisible={invisible}>
           <MailIcon />
         </StyledBadge>
-        <FormControlLabel
-          sx={{ color: 'text.primary' }}
-          control={<Switch checked={!invisible} onChange={handleBadgeVisibility} />}
-          label="Show Badge"
-        />
-      </div>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          gap: 1,
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 3,
+          }}
+        >
+          <ButtonGroup size="small" color="primary">
+            <Button
+              aria-label="reduce"
+              onClick={() => {
+                setCount(Math.max(count - 1, 0));
+              }}
+            >
+              <RemoveIcon fontSize="small" />
+            </Button>
+            <Button
+              aria-label="increase"
+              onClick={() => {
+                setCount(count + 1);
+              }}
+            >
+              <AddIcon fontSize="small" />
+            </Button>
+          </ButtonGroup>
+
+          <FormControlLabel
+            sx={{ color: 'primary' }}
+            control={
+              <Switch
+                size="small"
+                checked={!invisible}
+                onChange={handleBadgeVisibility}
+              />
+            }
+            label="Show badge"
+          />
+        </Box>
+      </Box>
     </Box>
   );
 }
