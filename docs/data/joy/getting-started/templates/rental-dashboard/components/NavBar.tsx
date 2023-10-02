@@ -2,10 +2,8 @@ import * as React from 'react';
 import { Box, IconButton } from '@mui/joy';
 import Typography from '@mui/joy/Typography';
 import Avatar from '@mui/joy/Avatar';
-
-import ColorSchemeToggle from './ColorSchemeToggle';
-
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
+import ColorSchemeToggle from './ColorSchemeToggle';
 
 export default function HeaderSection() {
   return (
@@ -23,10 +21,7 @@ export default function HeaderSection() {
         backgroundColor: 'background.body',
         borderBottom: '1px solid',
         borderColor: 'divider',
-        position: {
-          xs: 'fixed',
-          md: 'sticky',
-        },
+        position: 'sticky',
       }}
     >
       <Box

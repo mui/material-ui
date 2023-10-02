@@ -17,10 +17,12 @@ export default function RentalDashboard() {
       <CssBaseline />
       <NavBar />
       <Box
+        component="main"
         sx={{
-          height: '100dvh',
+          height: 'calc(100vh - 55px)', // 55px is the height of the NavBar
           display: 'grid',
           gridTemplateColumns: { xs: 'auto', md: '60% 40%' },
+          gridTemplateRows: 'auto 1fr auto',
         }}
       >
         <Stack
@@ -39,7 +41,7 @@ export default function RentalDashboard() {
         <Box
           sx={{
             gridRow: 'span 3',
-            display: { xs: 'none', sm: 'flex' },
+            display: { xs: 'none', md: 'flex' },
             backgroundColor: 'background.level1',
             backgroundSize: 'cover',
             backgroundImage:
@@ -71,6 +73,21 @@ export default function RentalDashboard() {
               title="Magnificent apartment next to public transport"
               category="Entire apartment rental in Collingwood"
               image="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=400"
+            />
+            <RentalCard
+              title="Next to shoppng mall and public transport"
+              category="Entire apartment rental in Collingwood"
+              image="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=400"
+            />
+            <RentalCard
+              title="Endless ocean view"
+              category="A private room in a shared apartment in Docklands"
+              image="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=400"
+            />
+            <RentalCard
+              title="A Stylish Apt, 5 min walk to Queen Victoria Market"
+              category="one bedroom apartment in Collingwood"
+              image="https://images.unsplash.com/photo-1481437156560-3205f6a55735?auto=format&fit=crop&w=400"
             />
           </Stack>
         </Stack>
