@@ -66,6 +66,7 @@ CustomButton.propTypes = {
 
 const StyledButton = styled(CustomButton, { shouldForwardProp: () => true })(
   ({ theme }) => `
+  position: relative;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
