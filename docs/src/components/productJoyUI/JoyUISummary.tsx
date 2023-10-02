@@ -56,7 +56,7 @@ export default function JoyUISummary() {
         }
         description="Joy UI components were extracted from Material UI, featuring the same robust engineering, and quickly trusted by many community members."
       />
-      <Grid container spacing={3} mt={2}>
+      <Grid container spacing={{ xs: 2, sm: 3 }} mt={2}>
         {content.map(({ icon, title, description, link }) => (
           <Grid key={title} item xs={12} md={3}>
             <InfoCard link={link} title={title} icon={icon} description={description} />
@@ -67,11 +67,11 @@ export default function JoyUISummary() {
         variant="caption"
         fontWeight="semiBold"
         textAlign="center"
-        sx={{ width: '100%', mt: 8, mb: 2 }}
+        sx={{ width: '100%', mt: { xs: 6, sm: 8 }, mb: 2 }}
       >
         Alternative to libraries such as:
       </Typography>
-      <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center' }}>
         <Box
           sx={(theme) => ({
             background: 'url(/static/branding/joy-ui/chakra.svg)',
@@ -82,7 +82,6 @@ export default function JoyUISummary() {
           width={87}
           height={37}
         />
-
         <Box
           sx={(theme) => ({
             background: 'url(/static/branding/joy-ui/mantine.svg)',
@@ -93,7 +92,6 @@ export default function JoyUISummary() {
           width={86}
           height={37}
         />
-
         <Box
           sx={(theme) => ({
             background: 'url(/static/branding/joy-ui/ant-design.svg)',
@@ -104,7 +102,6 @@ export default function JoyUISummary() {
           width={115}
           height={37}
         />
-
         <Box
           sx={(theme) => ({
             background: 'url(/static/branding/joy-ui/material-ui.svg)',

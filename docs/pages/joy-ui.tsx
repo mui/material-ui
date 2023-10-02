@@ -84,6 +84,7 @@ export default function Core() {
         <ModeObserver />
         <main id="main-content">
           <JoyUIHero />
+          <Divider sx={{ opacity: { xs: 1, sm: 0 } }} />
           <JoyUISummary />
           <Divider />
           <Box sx={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' }}>

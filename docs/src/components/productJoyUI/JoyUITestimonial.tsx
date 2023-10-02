@@ -129,7 +129,7 @@ export default function BaseUITestimonial() {
           />
         </Grid>
       </Grid>
-      <Masonry columns={3} spacing={3}>
+      <Masonry columns={{ xs: 1, sm: 3 }} spacing={3} sx={{ m: 0 }}>
         {additionalTestimonials.map(({ testimonial, author, workTitle, avatar, companyLogo }) => (
           <div key={author}>
             <Paper

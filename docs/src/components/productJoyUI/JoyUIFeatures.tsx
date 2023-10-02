@@ -433,7 +433,7 @@ function AutomaticAdjustment() {
             Reset
           </JoyButton>
         </Box>
-        <Box sx={{ placeSelf: 'center', backgroundColor: 'background.paper' }}>
+        <Box sx={{ placeSelf: 'center', py: { xs: 4, sm: 0 } }}>
           <JoySwitch
             sx={{
               ...(joyTrack.width && { '--Switch-trackWidth': `${joyTrack.width}px` }),
