@@ -146,7 +146,7 @@ This example removes the background of the selected Tab by targeting the `aria-s
 
 {{"demo": "TabsPricingExample.js"}}
 
-### With counter chips
+### Centralized tabs
 
 To make each Tab component centralized in the Tab List, add the `flex: initial` property to override the default `flex-grow` behavior.
 Then, on the list, add `justifyContent: center`.
