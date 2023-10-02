@@ -16,7 +16,6 @@ import Sidebar from './components/Sidebar';
 import OrderTable from './components/OrderTable';
 import OrderList from './components/OrderList';
 import Header from './components/Header';
-import ColorSchemeToggle from './components/ColorSchemeToggle';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -93,9 +92,6 @@ export default function JoyOrderDashboardTemplate() {
                 Orders
               </Typography>
             </Breadcrumbs>
-            <ColorSchemeToggle
-              sx={{ ml: 'auto', display: { xs: 'none', md: 'inline-flex' } }}
-            />
           </Box>
           <Box
             sx={{
