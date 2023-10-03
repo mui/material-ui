@@ -470,7 +470,6 @@ function AutomaticAdjustment() {
             <JoyTypography level="title-sm" fontWeight="xl" sx={{ fontFamily: 'IBM Plex Sans' }}>
               Track
             </JoyTypography>
-
             <JoyFormControl size="sm" orientation="horizontal">
               <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Width: </JoyFormLabel>
               <JoySlider
@@ -485,7 +484,6 @@ function AutomaticAdjustment() {
                 }}
               />
             </JoyFormControl>
-
             <JoyFormControl size="sm" orientation="horizontal">
               <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Height: </JoyFormLabel>
               <JoySlider
@@ -494,12 +492,12 @@ function AutomaticAdjustment() {
                 min={16}
                 max={64}
                 valueLabelDisplay="auto"
+                valueLabelFormat={(value) => `${value}px`}
                 onChange={(_, value) => {
                   setJoyTrack((prev) => ({ ...prev, height: value as number }));
                 }}
               />
             </JoyFormControl>
-
             <JoyFormControl size="sm" orientation="horizontal">
               <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Radius: </JoyFormLabel>
               <JoySlider
@@ -508,6 +506,7 @@ function AutomaticAdjustment() {
                 min={0}
                 max={20}
                 valueLabelDisplay="auto"
+                valueLabelFormat={(value) => `${value}px`}
                 onChange={(_, value) => {
                   setJoyTrack((prev) => ({ ...prev, radius: value as number }));
                 }}
