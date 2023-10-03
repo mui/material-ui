@@ -3,12 +3,11 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';
-import Grid from '@mui/material/Unstable_Grid2';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-import ArrowForward from '@mui/icons-material/ArrowForward';
 import Section from 'docs/src/layouts/Section';
-import Link from 'docs/src/modules/components/Link';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import GradientText from 'docs/src/components/typography/GradientText';
 
 const additionalTestimonials = [
   {
@@ -76,75 +75,25 @@ export function TestimonialAuthor({
 export default function BaseUITestimonial() {
   return (
     <Section cozy>
-      {/* <Grid container alignItems="center" spacing={{ xs: 6, sm: 10 }} mb={3}>
-        <Grid xs={12} sm={6}>
-          <Box
-            sx={(theme) => ({
-              pt: 3,
-              pl: 3,
-              border: '1px solid',
-              borderColor: 'divider',
-              borderRadius: 1,
-              background: 'linear-gradient(49deg, #F3F6F9 0%, #F0F7FF 92.71%)',
-              backgroundClip: 'padding-box',
-              overflow: 'hidden',
-              '& img': {
-                borderTop: '1px solid',
-                borderLeft: '1px solid',
-                borderColor: 'divider',
-                width: '100%',
-                borderTopLeftRadius: '12px',
-                display: 'block',
-              },
-              ...theme.applyDarkStyles({
-                borderColor: 'divider',
-                background: 'linear-gradient(49deg, #101418 0%, #001933 92.71%)',
-              }),
-            })}
-          >
-            <img
-              src="/static/branding/joy-ui/big-agi-cover.jpg"
-              srcSet="/static/branding/joy-ui/big-agi-cover.jpg 1x, /static/branding/joy-ui/big-agi-cover-2x.jpg 2x "
-              alt="Screenshot displaying part of the Big-AGI home page that's built with Joy UI."
-              loading="lazy"
-              width="570px"
-            />
-          </Box>
-          <Typography variant="body2" sx={{ mt: 2 }}>
-            big-AGI&apos;s AI web interface, powered by Joy UI &nbsp;&nbsp;
-            <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
-              /
-            </Typography>
-            &nbsp;&nbsp;
-            <Link href="https://big-agi.com/" target="_blank">
-              View it live <ArrowForward fontSize="small" />
-            </Link>
+      <SectionHeadline
+        alwaysCenter
+        overline="Early adopters"
+        title={
+          <Typography variant="h2" sx={{ mt: 1, maxWidth: 600, mx: 'auto' }}>
+            Friends that <GradientText>found joy</GradientText>
           </Typography>
-        </Grid>
-        <Grid xs={12} sm={6} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-          <Typography>
-            “Joy UI played a pivotal role in shaping the success of big-AGI. It turns heads with its
-            stunning looks and makes other devs envious with its responsiveness, lightweight
-            footprint, comprehensive documentation, and polished API. Using Joy UI is a delight, and
-            the optimal React frontend choice.”
-          </Typography>
-          <TestimonialAuthor
-            author="Enrico Ros"
-            workTitle="Director of Product Management"
-            avatar="/static/branding/joy-ui/enricoros.png"
-            companyLogo="/static/branding/joy-ui/big-agi-logo.svg"
-          />
-        </Grid>
-      </Grid> */}
-      {/* Will add something here soon */}
-      <Masonry columns={{ xs: 1, sm: 2 }} spacing={3} sx={{ m: 0 }}>
+        }
+        description="Join an engaged community of developers and designers that found joy while using Joy UI in projects of all shapes and forms."
+      />
+      {/* The copy above will be refined! */}
+      <Masonry columns={{ xs: 1, sm: 2 }} spacing={3} sx={{ m: 0, mt: 4 }}>
         {additionalTestimonials.map(({ testimonial, author, workTitle, avatar, companyLogo }) => (
           <div key={author}>
             <Paper
               variant="outlined"
               sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 2.5 }}
             >
-              <Typography color="text.secondary" variant="body2" sx={{ flexGrow: 1 }}>
+              <Typography color="text.secondary" sx={{ flexGrow: 1 }}>
                 {testimonial}
               </Typography>
               <TestimonialAuthor
