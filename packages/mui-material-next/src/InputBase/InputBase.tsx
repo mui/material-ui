@@ -11,12 +11,13 @@ import {
   WithOptionalOwnerState,
 } from '@mui/base';
 import { useInput } from '@mui/base/useInput';
+import { CSSInterpolation } from '@mui/system';
+import { OverrideProps } from '@mui/types';
 import {
   refType,
   unstable_capitalize as capitalize,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
-import { OverrideProps } from '@mui/types';
 import FormControlContext from '@mui/material-next/FormControl/FormControlContext';
 import useFormControl from '@mui/material-next/FormControl/useFormControl';
 import styled from '../styles/styled';
@@ -80,25 +81,30 @@ const useUtilityClasses = (ownerState: InputBaseOwnerState) => {
   return composeClasses(slots, getInputBaseUtilityClass, classes);
 };
 
+export function rootOverridesResolver(
+  props: InputBaseRootSlotProps,
+  styles: Record<string, CSSInterpolation>,
+) {
+  const { ownerState } = props;
+
+  return [
+    styles.root,
+    ownerState.formControl && styles.formControl,
+    ownerState.startAdornment && styles.adornedStart,
+    ownerState.endAdornment && styles.adornedEnd,
+    ownerState.error && styles.error,
+    ownerState.size === 'small' && styles.sizeSmall,
+    ownerState.multiline && styles.multiline,
+    ownerState.color && styles[`color${capitalize(ownerState.color)}`],
+    ownerState.fullWidth && styles.fullWidth,
+    ownerState.hiddenLabel && styles.hiddenLabel,
+  ];
+}
+
 export const InputBaseRoot = styled('div', {
   name: 'MuiInputBase',
   slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.root,
-      ownerState.formControl && styles.formControl,
-      ownerState.startAdornment && styles.adornedStart,
-      ownerState.endAdornment && styles.adornedEnd,
-      ownerState.error && styles.error,
-      ownerState.size === 'small' && styles.sizeSmall,
-      ownerState.multiline && styles.multiline,
-      ownerState.color && styles[`color${capitalize(ownerState.color)}`],
-      ownerState.fullWidth && styles.fullWidth,
-      ownerState.hiddenLabel && styles.hiddenLabel,
-    ];
-  },
+  overridesResolver: rootOverridesResolver,
 })<{ ownerState: InputBaseOwnerState }>(({ theme, ownerState }) => {
   const { vars: tokens } = theme;
 
@@ -129,22 +135,27 @@ export const InputBaseRoot = styled('div', {
   };
 });
 
+export function inputOverridesResolver(
+  props: InputBaseInputSlotProps,
+  styles: Record<string, CSSInterpolation>,
+) {
+  const { ownerState } = props;
+
+  return [
+    styles.input,
+    ownerState.size === 'small' && styles.inputSizeSmall,
+    ownerState.multiline && styles.inputMultiline,
+    ownerState.type === 'search' && styles.inputTypeSearch,
+    ownerState.startAdornment && styles.inputAdornedStart,
+    ownerState.endAdornment && styles.inputAdornedEnd,
+    ownerState.hiddenLabel && styles.inputHiddenLabel,
+  ];
+}
+
 export const InputBaseInput = styled('input', {
   name: 'MuiInputBase',
   slot: 'Input',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.input,
-      ownerState.size === 'small' && styles.inputSizeSmall,
-      ownerState.multiline && styles.inputMultiline,
-      ownerState.type === 'search' && styles.inputTypeSearch,
-      ownerState.startAdornment && styles.inputAdornedStart,
-      ownerState.endAdornment && styles.inputAdornedEnd,
-      ownerState.hiddenLabel && styles.inputHiddenLabel,
-    ];
-  },
+  overridesResolver: inputOverridesResolver,
 })<{ ownerState: InputBaseOwnerState }>(({ theme, ownerState }) => {
   const { vars: tokens } = theme;
 

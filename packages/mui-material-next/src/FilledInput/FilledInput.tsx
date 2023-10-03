@@ -1,20 +1,20 @@
 'use client';
 import * as React from 'react';
-import { refType, deepmerge } from '@mui/utils';
+import { refType } from '@mui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-// TODO v6: use material-next/InputBase
-import {
+import { OverrideProps } from '@mui/types';
+import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
-} from '@mui/material/InputBase/InputBase';
-import InputBase from '../InputBase';
+} from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import { InputBaseRoot, InputBaseInput } from '../InputBase/InputBase';
+import { FilledInputOwnerState, FilledInputProps, FilledInputTypeMap } from './FilledInput.types';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: FilledInputOwnerState) => {
   const { classes, disableUnderline } = ownerState;
 
   const slots = {
@@ -41,7 +41,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       !ownerState.disableUnderline && styles.underline,
     ];
   },
-})(({ theme, ownerState }) => {
+})<{ ownerState: FilledInputOwnerState }>(({ theme, ownerState }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
@@ -145,20 +145,22 @@ const FilledInputInput = styled(InputBaseInput, {
   name: 'MuiFilledInput',
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
-})(({ theme, ownerState }) => ({
+})<{ ownerState: FilledInputOwnerState }>(({ theme, ownerState }) => ({
   paddingTop: 25,
   paddingRight: 12,
   paddingBottom: 8,
   paddingLeft: 12,
-  ...(!theme.vars && {
-    '&:-webkit-autofill': {
-      WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
-      WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
-      caretColor: theme.palette.mode === 'light' ? null : '#fff',
-      borderTopLeftRadius: 'inherit',
-      borderTopRightRadius: 'inherit',
-    },
-  }),
+  ...(!theme.vars
+    ? {
+        '&:-webkit-autofill': {
+          WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
+          WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
+          caretColor: theme.palette.mode === 'light' ? null : '#fff',
+          borderTopLeftRadius: 'inherit',
+          borderTopRightRadius: 'inherit',
+        },
+      }
+    : {}),
   ...(theme.vars && {
     '&:-webkit-autofill': {
       borderTopLeftRadius: 'inherit',
@@ -199,13 +201,13 @@ const FilledInputInput = styled(InputBaseInput, {
     }),
 }));
 
-const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
+const FilledInput = React.forwardRef(function FilledInput<
+  RootComponentType extends React.ElementType,
+>(inProps: FilledInputProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const props = useThemeProps({ props: inProps, name: 'MuiFilledInput' });
 
   const {
     disableUnderline,
-    components = {},
-    componentsProps: componentsPropsProp,
     fullWidth = false,
     hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
@@ -218,37 +220,58 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 
   const ownerState = {
     ...props,
+    disableUnderline,
     fullWidth,
     inputComponent,
     multiline,
     type,
   };
 
-  const classes = useUtilityClasses(props);
-  const filledInputComponentsProps = { root: { ownerState }, input: { ownerState } };
+  const classes = useUtilityClasses(ownerState);
 
-  const componentsProps =
-    slotProps ?? componentsPropsProp
-      ? deepmerge(slotProps ?? componentsPropsProp, filledInputComponentsProps)
-      : filledInputComponentsProps;
+  const RootSlot = slots.root ?? FilledInputRoot;
+  const InputSlot = slots.input ?? FilledInputInput;
 
-  const RootSlot = slots.root ?? components.Root ?? FilledInputRoot;
-  const InputSlot = slots.input ?? components.Input ?? FilledInputInput;
+  if (multiline) {
+    return (
+      <InputBase
+        slots={{ root: RootSlot, input: InputSlot }}
+        fullWidth={fullWidth}
+        inputComponent={inputComponent}
+        multiline
+        ref={forwardedRef}
+        {...other}
+        classes={classes}
+      />
+    );
+  }
 
   return (
     <InputBase
       slots={{ root: RootSlot, input: InputSlot }}
-      componentsProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
-      multiline={multiline}
-      ref={ref}
+      ref={forwardedRef}
       type={type}
+      multiline={false}
       {...other}
       classes={classes}
     />
   );
-});
+}) as FilledInputComponent;
+
+interface FilledInputComponent {
+  <C extends React.ElementType>(
+    props: {
+      /**
+       * The component used for the input node.
+       * Either a string to use a HTML element or a component.
+       */
+      inputComponent?: C;
+    } & OverrideProps<FilledInputTypeMap, C>,
+  ): JSX.Element | null;
+  propTypes?: any;
+}
 
 FilledInput.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -451,6 +474,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
+// @ts-ignore - internal logic to integrate with FormControl
 FilledInput.muiName = 'Input';
 
 export default FilledInput;
