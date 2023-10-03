@@ -1,23 +1,31 @@
 import * as React from 'react';
+// Material UI components for the page
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import JoyBox from '@mui/joy/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+// Joy UI components imports
 import { ColorPaletteProp, VariantProp } from '@mui/joy/styles';
 import JoyFormControl from '@mui/joy/FormControl';
 import JoyFormLabel from '@mui/joy/FormLabel';
 import JoySlider, { sliderClasses as joySliderClasses } from '@mui/joy/Slider';
 import JoyButton from '@mui/joy/Button';
 import JoyCard from '@mui/joy/Card';
+import JoySheet from '@mui/joy/Sheet';
 import JoyChip from '@mui/joy/Chip';
 import JoyIconButton from '@mui/joy/IconButton';
 import JoyTypography from '@mui/joy/Typography';
 import JoySwitch from '@mui/joy/Switch';
+import JoyAvatar from '@mui/joy/Avatar';
 import JoyAlert from '@mui/joy/Alert';
-import JoyRadio from '@mui/joy/Radio';
-import JoyCheckbox from '@mui/joy/Checkbox';
+import JoyRadio, { radioClasses } from '@mui/joy/Radio';
+import JoyRadioGroup from '@mui/joy/RadioGroup';
+import JoyBreadcrumbs from '@mui/joy/Breadcrumbs';
+import JoyLink from '@mui/joy/Link';
+// Icons
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import PlaylistAddCheckCircleRoundedIcon from '@mui/icons-material/PlaylistAddCheckCircleRounded';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
@@ -26,6 +34,8 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+// Website components
 import Section from 'docs/src/layouts/Section';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Item, { Group } from 'docs/src/components/action/Item';
@@ -80,113 +90,144 @@ function GlobalVariantDemo() {
           gap: 2,
         }}
       >
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <JoyChip variant={variant} color={color} size="sm">
-            A new UI library
-          </JoyChip>
-          <JoySwitch variant={variant} color={color} />
-          <JoyRadio
+        <JoyCard sx={{ boxShadow: 'md' }}>
+          <JoyBreadcrumbs aria-label="breadcrumbs" sx={{ p: 0 }}>
+            {['MUI the company', 'UI libraries'].map((item) => (
+              <JoyLink fontSize="sm" key={item} color="neutral" href="#basics">
+                {item}
+              </JoyLink>
+            ))}
+            <JoyTypography fontSize="sm" fontWeight="lg">
+              Joy UI
+            </JoyTypography>
+          </JoyBreadcrumbs>
+          <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2}>
+            <div>
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <JoyTypography fontWeight="lg" textColor="text.primary">
+                  Component settings
+                </JoyTypography>
+                <JoyChip variant={variant} color={color} size="sm">
+                  Chip
+                </JoyChip>
+              </Stack>
+              <JoyTypography fontSize="sm" mt={0.5}>
+                The styles of each variant in Joy UI is defined globally to ensure design
+                consistency.
+              </JoyTypography>
+            </div>
+            <JoySwitch variant={variant} color={color} />
+          </Stack>
+          <JoyRadioGroup
+            aria-label="platform"
+            defaultValue="Website"
+            overlay
+            name="platform"
+            sx={{
+              flexDirection: 'row',
+              gap: 2,
+              [`& .${radioClasses.checked}`]: {
+                [`& .${radioClasses.action}`]: {
+                  inset: -1,
+                  border: '2px solid',
+                  borderColor: `${color}`,
+                },
+              },
+              [`& .${radioClasses.radio}`]: {
+                display: 'contents',
+                '& > svg': {
+                  zIndex: 2,
+                  position: 'absolute',
+                  top: '-8px',
+                  right: '-8px',
+                  bgcolor: 'background.surface',
+                  borderRadius: '50%',
+                },
+              },
+            }}
+          >
+            {['Website', 'Documents', 'Social Account'].map((value) => (
+              <JoySheet
+                key={value}
+                variant="outlined"
+                color={color}
+                sx={{
+                  borderRadius: 'md',
+                  boxShadow: 'sm',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 1.5,
+                  p: 1,
+                  width: '100%',
+                }}
+              >
+                <JoyRadio
+                  variant={variant}
+                  color={color}
+                  id={value}
+                  value={value}
+                  checkedIcon={<CheckCircleRoundedIcon color={color} />}
+                />
+                <JoyAvatar variant="soft" size="sm" />
+                <JoyFormLabel htmlFor={value} sx={{ fontSize: 'xs' }}>
+                  {value}
+                </JoyFormLabel>
+              </JoySheet>
+            ))}
+          </JoyRadioGroup>
+          <JoyAlert
             variant={variant}
             color={color}
-            checked={selectedValue === 'a'}
-            onChange={handleChange}
-            value="a"
-            name="radio-buttons"
-            slotProps={{ input: { 'aria-label': 'A' } }}
-          />
-          <JoyRadio
-            variant={variant}
-            color={color}
-            checked={selectedValue === 'b'}
-            onChange={handleChange}
-            value="b"
-            name="radio-buttons"
-            slotProps={{ input: { 'aria-label': 'B' } }}
-          />
-          <JoyCheckbox label="That's Joy UI!" variant={variant} color={color} />
-        </Box>
-        <JoyAlert
-          variant={variant}
-          color={color}
-          startDecorator={<PlaylistAddCheckCircleRoundedIcon />}
-        >
-          Your component library has been installed successfully!
-        </JoyAlert>
-        <Box sx={{ display: 'flex', gap: 2 }}>
+            startDecorator={<PlaylistAddCheckCircleRoundedIcon />}
+          >
+            Your component library has been installed successfully!
+          </JoyAlert>
           <JoyButton variant={variant} color={color} fullWidth>
-            View all components
+            View all button
           </JoyButton>
-          <JoyButton variant={variant} color={color} loading fullWidth>
-            View all components
-          </JoyButton>
-        </Box>
+        </JoyCard>
       </Frame.Demo>
       <Frame.Info
         data-mui-color-scheme="dark"
         sx={{
-          maxHeight: 450,
-          overflow: 'auto',
+          display: 'flex',
+          justifyContent: 'space-between',
         }}
       >
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            mb: 2,
-          }}
-        >
-          <Box sx={{ display: 'flex', gap: 0.5 }}>
-            {(['plain', 'outlined', 'soft', 'solid'] as const).map((item) => (
-              <StyledButton
-                variant={item === variant ? 'outlined' : 'text'}
-                key={item}
-                onClick={() => setVariant(item)}
-              >
-                {item}
-              </StyledButton>
-            ))}
-          </Box>
-          <Box sx={{ display: 'flex', gap: 1, '& > button': { minWidth: 'initial' } }}>
-            {(['primary', 'neutral', 'danger', 'warning', 'success'] as const).map((item) => (
-              <StyledButton
-                aria-label={`${item} color`}
-                variant={item === color ? 'outlined' : 'text'}
-                key={item}
-                onClick={() => setColor(item)}
-                sx={{ p: '5px' }}
-              >
-                <JoyBox
-                  sx={{
-                    borderRadius: '50%',
-                    width: 12,
-                    height: 12,
-                    bgcolor: `${item}.solidBg`,
-                    border: '1px solid',
-                    borderColor: item === color ? 'rgba(255 255 255 / 0.6)' : 'transparent',
-                  }}
-                />
-              </StyledButton>
-            ))}
-          </Box>
+        <Stack spacing={0.5} direction="row" useFlexGap>
+          {(['plain', 'outlined', 'soft', 'solid'] as const).map((item) => (
+            <StyledButton
+              variant={item === variant ? 'outlined' : 'text'}
+              key={item}
+              onClick={() => setVariant(item)}
+            >
+              {item}
+            </StyledButton>
+          ))}
+        </Stack>
+        <Box sx={{ display: 'flex', gap: 1, '& > button': { minWidth: 'initial' } }}>
+          {(['primary', 'neutral', 'danger', 'warning', 'success'] as const).map((item) => (
+            <StyledButton
+              aria-label={`${item} color`}
+              variant={item === color ? 'outlined' : 'text'}
+              key={item}
+              onClick={() => setColor(item)}
+              sx={{ p: '5px' }}
+            >
+              <JoyBox
+                sx={{
+                  borderRadius: '50%',
+                  width: 12,
+                  height: 12,
+                  bgcolor: `${item}.solidBg`,
+                  border: '1px solid',
+                  borderColor: item === color ? 'rgba(255 255 255 / 0.6)' : 'transparent',
+                }}
+              />
+            </StyledButton>
+          ))}
         </Box>
-        <HighlightedCode
-          copyButtonHidden
-          component={MarkdownElement}
-          code={`
-          <Chip size="sm">A new UI library</Chip>
-<Switch />
-<Radio value="a" />
-<Radio value="b" />
-<Checkbox />
-<Alert startDecorator={<PlaylistAddCheckCircleRoundedIcon />}>
-  Your component library has been installed successfully!
-</Alert>
-<Button fullWidth>View all components</Button>
-<Button loading fullWidth>View all components</Button>
-          `}
-          language="jsx"
-        />
       </Frame.Info>
     </Frame>
   );
