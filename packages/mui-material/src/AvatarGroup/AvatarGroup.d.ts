@@ -45,7 +45,7 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    * @param {number} surplus number of extra avatars
    * @returns {React.ReactElement} custom element to display
    */
-  renderSurplus: (surplus: number) => React.ReactElement;
+  renderSurplus?: (surplus: number) => React.ReactElement;
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.

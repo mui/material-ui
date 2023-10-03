@@ -214,7 +214,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * @param {number} surplus number of extra avatars
    * @returns {React.ReactElement} custom element to display
    */
-  renderSurplus: PropTypes.func.isRequired,
+  renderSurplus: PropTypes.func,
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
