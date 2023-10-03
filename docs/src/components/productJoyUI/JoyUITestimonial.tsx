@@ -12,6 +12,13 @@ import Link from 'docs/src/modules/components/Link';
 
 const additionalTestimonials = [
   {
+    testimonial: `“Joy UI played a pivotal role in shaping the success of big-AGI. It turns heads with its stunning looks and makes other devs envious with its responsiveness, lightweight footprint, comprehensive documentation, and polished API. Using Joy UI is a delight, and the optimal React frontend choice.”`,
+    author: 'Enrico Ros',
+    workTitle: 'Director of Product Management',
+    avatar: '/static/branding/joy-ui/enricoros.png',
+    companyLogo: undefined,
+  },
+  {
     testimonial: `“Joy UI is a game-changer for our large-scale internal tool. It lets us focus on our complex system, not UI components. Even in alpha, it became our go-to library, thanks to the trust and expertise we have in the MUI team. They respond quickly and pay attention to detail in UI/UX and DX. It's a must-have for developers and companies looking to boost productivity.”`,
     author: 'Marc Pacheco',
     workTitle: 'Lead Frontend Developer',
@@ -68,8 +75,8 @@ export function TestimonialAuthor({
 
 export default function BaseUITestimonial() {
   return (
-    <Section>
-      <Grid container alignItems="center" spacing={{ xs: 6, sm: 10 }} mb={3}>
+    <Section cozy>
+      {/* <Grid container alignItems="center" spacing={{ xs: 6, sm: 10 }} mb={3}>
         <Grid xs={12} sm={6}>
           <Box
             sx={(theme) => ({
@@ -128,8 +135,9 @@ export default function BaseUITestimonial() {
             companyLogo="/static/branding/joy-ui/big-agi-logo.svg"
           />
         </Grid>
-      </Grid>
-      <Masonry columns={{ xs: 1, sm: 3 }} spacing={3} sx={{ m: 0 }}>
+      </Grid> */}
+      {/* Will add something here soon */}
+      <Masonry columns={{ xs: 1, sm: 2 }} spacing={3} sx={{ m: 0 }}>
         {additionalTestimonials.map(({ testimonial, author, workTitle, avatar, companyLogo }) => (
           <div key={author}>
             <Paper
