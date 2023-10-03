@@ -270,7 +270,7 @@ function renderFAQItem(index: number, defaultExpanded?: boolean) {
           component="div"
           variant="body2"
           color="text.secondary"
-          sx={{ '& ul': { pl: 2 } }}
+          sx={{ '& ul': { pl: 1 } }}
         >
           {faq.detail}
         </Typography>
@@ -503,11 +503,11 @@ function CareersContent() {
           Frequently asked questions
         </Typography>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={12}>
             {renderFAQItem(0, true)}
             {renderFAQItem(1)}
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={12}>
             {renderFAQItem(2)}
             <Paper
               variant="outlined"
