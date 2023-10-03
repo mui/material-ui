@@ -611,7 +611,8 @@ export default function JoyUIFeatures() {
             overline="Features"
             title={
               <Typography variant="h2">
-                Powerful features to <GradientText>customize every piece</GradientText>
+                Powerful features to
+                <br /> <GradientText>customize every piece</GradientText>
               </Typography>
             }
             description="Joy UI is built to ensure you ship great products to your users with an amazing developer experience."

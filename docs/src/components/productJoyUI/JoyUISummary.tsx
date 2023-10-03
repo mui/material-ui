@@ -56,7 +56,7 @@ export default function JoyUISummary() {
         }
         description="Joy UI components were extracted from Material UI, featuring the same robust engineering, and quickly trusted by many community members."
       />
-      <Grid container spacing={{ xs: 2, sm: 3 }} mt={2}>
+      <Grid container spacing={{ xs: 2, sm: 3 }} sx={{ pt: 3, pb: 6 }}>
         {content.map(({ icon, title, description, link }) => (
           <Grid key={title} item xs={12} md={3}>
             <InfoCard link={link} title={title} icon={icon} description={description} />
@@ -67,7 +67,8 @@ export default function JoyUISummary() {
         variant="caption"
         fontWeight="semiBold"
         textAlign="center"
-        sx={{ width: '100%', mt: { xs: 6, sm: 8 }, mb: 2 }}
+        mb={2}
+        sx={{ width: '100%' }}
       >
         Alternative to libraries such as:
       </Typography>

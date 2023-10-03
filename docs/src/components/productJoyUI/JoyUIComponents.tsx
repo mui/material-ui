@@ -8,6 +8,7 @@ import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded';
 import SelectAllRoundedIcon from '@mui/icons-material/SelectAllRounded';
 import LinearScaleRoundedIcon from '@mui/icons-material/LinearScaleRounded';
 import TabUnselectedRoundedIcon from '@mui/icons-material/TabUnselectedRounded';
+import CampaignRoundedIcon from '@mui/icons-material/CampaignRounded';
 // Component imports
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
@@ -26,15 +27,15 @@ import AlertUsage from 'docs/data/joy/components/alert/AlertUsage';
 import Frame from 'docs/src/components/action/Frame';
 import ROUTES from 'docs/src/route';
 
-const DEMOS = ['Tabs', 'Radio', 'Menu', 'Select', 'Slider', 'Button', 'Alert'] as const;
+const DEMOS = ['Select', 'Radio', 'Alert', 'Menu', 'Slider', 'Button', 'Tabs'] as const;
 const icons = {
-  [DEMOS[0]]: <TabUnselectedRoundedIcon fontSize="small" />,
+  [DEMOS[0]]: <SelectAllRoundedIcon fontSize="small" />,
   [DEMOS[1]]: <RadioButtonCheckedRoundedIcon fontSize="small" />,
-  [DEMOS[2]]: <MenuOpenRoundedIcon fontSize="small" />,
-  [DEMOS[3]]: <SelectAllRoundedIcon fontSize="small" />,
+  [DEMOS[2]]: <CampaignRoundedIcon fontSize="small" />,
+  [DEMOS[3]]: <MenuOpenRoundedIcon fontSize="small" />,
   [DEMOS[4]]: <LinearScaleRoundedIcon fontSize="small" />,
   [DEMOS[5]]: <SmartButtonRoundedIcon fontSize="small" />,
-  [DEMOS[6]]: <LinearScaleRoundedIcon fontSize="small" />,
+  [DEMOS[6]]: <TabUnselectedRoundedIcon fontSize="small" />,
 };
 
 export default function JoyUIComponents() {
@@ -68,13 +69,13 @@ export default function JoyUIComponents() {
           >
             {
               {
-                [DEMOS[0]]: <TabsUsage disableCodeBlock disableTitle />,
+                [DEMOS[0]]: <SelectUsage disableCodeBlock disableTitle />,
                 [DEMOS[1]]: <RadioUsage disableCodeBlock disableTitle />,
-                [DEMOS[2]]: <MenuUsage disableCodeBlock disableTitle />,
-                [DEMOS[3]]: <SelectUsage disableCodeBlock disableTitle />,
+                [DEMOS[2]]: <AlertUsage disableCodeBlock disableTitle />,
+                [DEMOS[3]]: <MenuUsage disableCodeBlock disableTitle />,
                 [DEMOS[4]]: <SliderUsage disableCodeBlock disableTitle />,
                 [DEMOS[5]]: <ButtonUsage disableCodeBlock disableTitle />,
-                [DEMOS[6]]: <AlertUsage disableCodeBlock disableTitle />,
+                [DEMOS[6]]: <TabsUsage disableCodeBlock disableTitle />,
               }[demo]
             }
           </Frame.Demo>
