@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
 import Textarea from '@mui/joy/Textarea';
 import { useRef } from 'react';
 
@@ -11,10 +12,9 @@ export default function TextareaRef() {
   };
 
   return (
-    <Box>
+    <Box sx={{display: 'flex', flexDirection: 'row', gap: 1}}>
       <Textarea ref={textareaRef} placeholder="Textarea" />
-      <button onClick={handleTextareaFocus}>Focus Textarea</button>
+      <Button onClick={handleTextareaFocus}>Focus Textarea</Button>
     </Box>
   );
 }
-
