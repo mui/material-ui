@@ -141,6 +141,7 @@ export function AdCarbonInline(props) {
           link: ad.link,
           img: ad.image,
           name: ad.company,
+          callToAction: ad.callToAction,
           description: ad.description,
           call: ad.call,
           poweredby: ad.poweredby,

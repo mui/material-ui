@@ -6,15 +6,19 @@ import { adShape } from 'docs/src/modules/components/AdManager';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
 
 const Root = styled('span', { shouldForwardProp: (prop) => prop !== 'shape' })(
-  ({ theme, shape }) => {
+  ({ theme, shape, callToAction }) => {
     const styles = adStylesObject[`body-${shape}`](theme);
 
+    const description = styles.description;
+    if (callToAction) {
+      description['&:after'].content = `"${callToAction}"`;
+    }
     return {
       ...styles.root,
       '& img': styles.img,
       '& a, & a:hover': styles.a,
       '& .AdDisplay-imageWrapper': styles.imgWrapper,
-      '& .AdDisplay-description': styles.description,
+      '& .AdDisplay-description': description,
       '& .AdDisplay-poweredby': styles.poweredby,
     };
   },
@@ -25,7 +29,7 @@ export default function AdDisplay(props) {
 
   /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
   return (
-    <Root shape={shape === 'inline' ? 'inline' : adShape} className={className}>
+    <Root shape={shape === 'inline' ? 'inline' : adShape} callToAction={ad.callToAction} className={className}>
       <a
         href={ad.link}
         target="_blank"
