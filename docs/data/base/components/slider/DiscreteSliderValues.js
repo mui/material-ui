@@ -113,7 +113,7 @@ const StyledSlider = styled(Slider)(
     border-radius: 50%;
     outline: 0;
     border: 3px solid currentColor;
-    background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
+    background-color: #fff;
 
     :hover,
     &.${sliderClasses.focusVisible} {

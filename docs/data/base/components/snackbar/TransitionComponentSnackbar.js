@@ -103,7 +103,7 @@ const TriggerButton = styled('button')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
-  box-shadow: 0 2px 4px ${
+  box-shadow: 0 1px 2px ${
     theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.15)'
   };
 
