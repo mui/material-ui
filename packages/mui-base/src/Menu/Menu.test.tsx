@@ -409,4 +409,68 @@ describe('<Menu />', () => {
       expect(handleItemsChange.callCount).to.equal(2);
     });
   });
+
+  describe('prop: anchor', () => {
+    it('should be placed near the specified element', async () => {
+      function TestComponent() {
+        const [anchor, setAnchor] = React.useState<HTMLElement | null>(null);
+
+        return (
+          <div>
+            <DropdownContext.Provider value={testContext}>
+              <Menu
+                anchor={anchor}
+                slotProps={{ root: { 'data-testid': 'popup', placement: 'bottom-start' } }}
+              >
+                <MenuItem>1</MenuItem>
+                <MenuItem>2</MenuItem>
+              </Menu>
+            </DropdownContext.Provider>
+            <div data-testid="anchor" style={{ marginTop: '100px' }} ref={setAnchor} />
+          </div>
+        );
+      }
+
+      const { getByTestId } = render(<TestComponent />);
+
+      const popup = getByTestId('popup');
+      const anchor = getByTestId('anchor');
+
+      const anchorPosition = anchor.getBoundingClientRect();
+
+      expect(popup.style.getPropertyValue('transform')).to.equal(
+        `translate(${anchorPosition.left}px, ${anchorPosition.bottom}px)`,
+      );
+    });
+
+    it('should be placed at the specified position', async () => {
+      const boundingRect = {
+        x: 200,
+        y: 100,
+        top: 100,
+        left: 200,
+        bottom: 100,
+        right: 200,
+        height: 0,
+        width: 0,
+        toJSON: () => {},
+      };
+
+      const virtualElement = { getBoundingClientRect: () => boundingRect };
+
+      const { getByTestId } = render(
+        <DropdownContext.Provider value={testContext}>
+          <Menu
+            anchor={virtualElement}
+            slotProps={{ root: { 'data-testid': 'popup', placement: 'bottom-start' } }}
+          >
+            <MenuItem>1</MenuItem>
+            <MenuItem>2</MenuItem>
+          </Menu>
+        </DropdownContext.Provider>,
+      );
+      const popup = getByTestId('popup');
+      expect(popup.style.getPropertyValue('transform')).to.equal(`translate(200px, 100px)`);
+    });
+  });
 });
