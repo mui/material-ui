@@ -48,28 +48,28 @@ Use the `disabled` prop to disable interaction and focus.
 
 ### Variants
 
-The Tab List and Tab components accept the global `variant` prop values.
+The `<TabList />` and `<Tab />` components accept the global `variant` prop values.
 
 :::info
-The selected Tab won't apply the `:hover` and `:active` styles defined globally.
+When a Tab is selected, it _won't_ apply globally defined `:hover` and `:active` styles.
 :::
 
 {{"demo": "TabsVariants.js"}}
 
-:::info
+:::warning
 To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 :::
 
 ### Vertical
 
-Use the `orientation="vertical"` prop on the Tabs component to make it vertical.
+Use the `orientation="vertical"` prop on the `<Tabs />` component to make it vertical.
 Keyboard navigation using arrow keys adapts automatically.
 
 {{"demo": "TabsVertical.js"}}
 
 ### Indicator placement
 
-Use the `underlinePlacement` prop on the Tab List component to change the Tabs' underline border placement.
+Use the `underlinePlacement` prop on the Tab List component to change the placement of the underline border on the Tabs.
 
 {{"demo": "TabsUnderlinePlacement.js"}}
 
@@ -77,23 +77,23 @@ Control the selected Tab indicator independently using the `indicatorPlacement` 
 
 {{"demo": "TabsIndicatorPlacement.js"}}
 
-Depending on the underline and selected indicator placement, you may need to change the Tabs component flex-direction.
+Depending on the placement of the underline and the selected indicator, you may need to change the flex direction of the Tabs component.
 
 {{"demo": "TabsFlexPlacement.js"}}
 
 ### Sticky
 
-Use the `sticky` prop to place the Tab List component at the top or bottom in a long content scenario.
+Use the `sticky` prop to anchor the Tab List component at the top or bottom.
+This is ideal for use cases that involve longer content.
 
 {{"demo": "TabsSticky.js"}}
 
 ### Tab flex
 
-Use the `tabFlex` prop on the Tab List component to make the Tab elements fill the available space as shown in the example below.
+Use the `tabFlex` prop on the Tab List component to make the Tab elements fill the available space, as shown in the example below.
 
 - In the first demo, the Tab elements fill the available space using `tabFlex={1}`.
-
-- In the second demo, the Tab elements fill the available space equally using `tabFlex="auto"`, but the width of each one of them is based on the content.
+- In the second demo, the Tab elements fill the available space equally using `tabFlex="auto"`, but the width of each respective element is based on its content.
 
 {{"demo": "TabsFlex.js"}}
 
@@ -103,7 +103,7 @@ The value of the `tabFlex` prop can be any [valid CSS flex value](https://develo
 
 ### Icon
 
-Since the Tab List component uses the same style as the [List](/joy-ui/react-list/) component, you can use the icon directly as a child or use List Item Decorator with a text.
+Since the Tab List component uses the same style as the [List](/joy-ui/react-list/) component, you can use the icon directly as a child, or use List Item Decorator with text.
 
 {{"demo": "TabsIcon.js"}}
 
@@ -113,7 +113,7 @@ Since the Tab List component uses the same style as the [List](/joy-ui/react-lis
 
 Add the `overflow: auto` property to the Tab List component to make the tabs scrollable.
 
-Polish it further by making the scrollbar hidden with `'&::-webkit-scrollbar': { display: 'none' }` and snapping the scroll to the edge of the Tab List component with [CSS scroll snap properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll_snap).
+Polish it further by hiding the scrollbar with `'&::-webkit-scrollbar': { display: 'none' }`, and snapping the scroll to the edge of the Tab List component with [CSS scroll snap properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll_snap).
 
 {{"demo": "TabsScrollable.js"}}
 
@@ -129,7 +129,7 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 ### Segmented controls
 
-To mimic the iOS segmented controls, add a border-radius to the Tab List component and set the selected Tab background to `background.surface`.
+To mimic the segmented controls of iOS, add a border-radius to the Tab List component and set the selected Tab background to `background.surface`.
 
 {{"demo": "TabsSegmentedControls.js"}}
 
@@ -146,28 +146,28 @@ This example removes the background of the selected Tab by targeting the `aria-s
 
 {{"demo": "TabsPricingExample.js"}}
 
-### Centralized tabs
+### Centered tabs
 
-To make each Tab component centralized in the Tab List, add the `flex: initial` property to override the default `flex-grow` behavior.
+To center the Tab components in the Tab List, add the `flex: initial` property to override the default `flex-grow` behavior.
 Then, on the list, add `justifyContent: center`.
 
 {{"demo": "TabsPageExample.js"}}
 
 ### Mobile bottom navigation
 
-In this example, each Tab is painted with a color from the theme when it is selected.
+In this example, each Tab is painted with a color from the theme when selected.
 
 {{"demo": "TabsBottomNavExample.js"}}
 
 ## Accessibility
 
-To ensure proper accessibility, [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#wai-aria-roles-states-and-properties-22) recommends to associate a label to the Tabs component.
-There are two options to do that:
+To ensure proper accessibility, the [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#wai-aria-roles-states-and-properties-22) recommends associating a label with the Tabs component.
+There are two options to accomplish this:
 
 ### Using the id attribute
 
 Add a text element close to the tabs with the `id` attribute.
-Then, on the Tabs component, add the `aria-labelledby` attribute.
+Then add the `aria-labelledby` attribute to the Tabs component.
 Make sure to use meaningful labels for both.
 
 ```js
