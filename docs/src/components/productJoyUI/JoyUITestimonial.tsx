@@ -28,15 +28,15 @@ const additionalTestimonials = [
   {
     testimonial: `“Joy UI brings the best bits from Material UI, with a cleaner and fresher look out of the box. The variants approach covers almost all of your UI edge cases, while the flexible theme configuration provides plenty of room for customization. I think that with the right approach, Joy UI should cater to all your front-end development needs.”`,
     author: 'Badal Saibo',
-    workTitle: 'Frontend Engineer ',
+    workTitle: 'Frontend Engineer',
     avatar: '/static/branding/joy-ui/badalsaibo.jpeg',
     companyLogo: undefined,
   },
   {
     testimonial: `“Migrating my website from Material UI to Joy UI was a breeze. The transition was seamless, and the library's intuitive nature made it easy to pick up. The customizable default theme system is a plus, allowing me to introduce custom design tokens with type-safe support. Joy UI has transformed my development process, making it enjoyable and efficient. I highly recommend it for React projects.”`,
     author: 'Matthew Kwong',
-    workTitle: 'Frontend Engineer',
-    avatar: '/static/branding/joy-ui/mwskwong.png',
+    workTitle: 'Senior Web Engineer',
+    avatar: '/static/branding/joy-ui/matthew-kwong.jpeg',
     companyLogo: undefined,
   },
 ];
