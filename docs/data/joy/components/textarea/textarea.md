@@ -115,6 +115,20 @@ It's usually more common to see textarea components using decorators at the top 
 
 {{"demo": "TextareaDecorators.js"}}
 
+### Textarea ref
+`useRef` in React is typically used to reference a DOM element or a component. In the case of form inputs like Input or TextArea in Joy UI, you can use useRef to access and interact with the underlying DOM node directly without causing re-renders.
+
+{{"demo": "TextareauseRef.js"}}
+
+Input:
+```js
+<Input slotProps={{ input: { ref } }} />
+```
+Textarea:
+```js
+<Textarea slotProps={{ input: { ref } }} />
+```
+
 ## Accessibility
 
 In order for the textarea to be accessible, **it should be linked to a label**.
