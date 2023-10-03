@@ -74,7 +74,7 @@ The demo below shows you how to do that.
 
 {{"demo": "FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
-## Complementary projects
+## Third-party intergrations
 
 ### notistack
 
