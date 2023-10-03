@@ -10,9 +10,7 @@ const theme = createTheme();
 // @ts-ignore
 theme.applyDarkStyles = function applyDarkStyles(obj) {
   return {
-    // @TODO - Use custom stylis plugin as in docs/src/createEmotionCache.ts
-    // so that we don't need to use *
-    '* :where([data-mui-color-scheme="dark"]) &': obj,
+    ':where([data-mui-color-scheme="dark"]) &': obj,
   };
 };
 
