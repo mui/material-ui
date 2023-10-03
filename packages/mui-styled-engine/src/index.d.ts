@@ -106,6 +106,11 @@ export interface FilteringStyledOptions<Props, ForwardedProps extends keyof Prop
   target?: string;
 }
 
+export type OverriddableForwardProps<
+  C extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>,
+  RootComponent extends React.ElementType = React.ElementType,
+> = React.ComponentProps<C> & { component: RootComponent };
+
 /**
  * @typeparam ComponentProps  Props which will be included when withComponent is called
  * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
@@ -179,11 +184,21 @@ export interface CreateMUIStyled<
 
   <
     C extends React.JSXElementConstructor<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
+    RootComponent extends React.ElementType = React.ElementType,
+    ForwardedProps extends keyof OverriddableForwardProps<
+      C,
+      RootComponent
+    > = keyof OverriddableForwardProps<C, RootComponent>,
   >(
     component: C,
-    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
-  ): CreateStyledComponent<Pick<PropsOf<C>, ForwardedProps> & MUIStyledCommonProps, {}, {}, Theme>;
+    options: FilteringStyledOptions<OverriddableForwardProps<C, RootComponent>, ForwardedProps> &
+      MuiStyledOptions,
+  ): CreateStyledComponent<
+    Pick<PropsOf<C> & { component?: RootComponent }, ForwardedProps> & MUIStyledCommonProps,
+    {},
+    {},
+    Theme
+  >;
 
   <C extends React.JSXElementConstructor<React.ComponentProps<C>>>(
     component: C,
