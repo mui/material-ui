@@ -29,7 +29,11 @@ export default function AdDisplay(props) {
 
   /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
   return (
-    <Root shape={shape === 'inline' ? 'inline' : adShape} callToAction={ad.callToAction} className={className}>
+    <Root
+      shape={shape === 'inline' ? 'inline' : adShape}
+      callToAction={ad.callToAction}
+      className={className}
+    >
       <a
         href={ad.link}
         target="_blank"
