@@ -25,6 +25,7 @@ import JoyRadio, { radioClasses } from '@mui/joy/Radio';
 import JoyRadioGroup from '@mui/joy/RadioGroup';
 import JoyBreadcrumbs from '@mui/joy/Breadcrumbs';
 import JoyLink from '@mui/joy/Link';
+import JoyInput from '@mui/joy/Input';
 // Icons
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import PlaylistAddCheckCircleRoundedIcon from '@mui/icons-material/PlaylistAddCheckCircleRounded';
@@ -35,6 +36,7 @@ import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import MailIcon from '@mui/icons-material/Mail';
 // Website components
 import Section from 'docs/src/layouts/Section';
 import Highlighter from 'docs/src/components/action/Highlighter';
@@ -85,20 +87,20 @@ function GlobalVariantDemo() {
           gap: 2,
         }}
       >
-        <JoyCard sx={{ boxShadow: 'md' }}>
-          <JoyBreadcrumbs aria-label="breadcrumbs" sx={{ p: 0 }}>
-            {['MUI the company', 'UI libraries'].map((item) => (
-              <JoyLink fontSize="sm" key={item} color="neutral" href="#basics">
-                {item}
-              </JoyLink>
-            ))}
-            <JoyTypography fontSize="sm" fontWeight="lg">
-              Joy UI
-            </JoyTypography>
-          </JoyBreadcrumbs>
+        <JoyCard sx={{ boxShadow: 'md', display: 'flex', flexDirection: 'column', gap: 3 }}>
           <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2}>
             <div>
-              <Stack direction="row" alignItems="center" spacing={1}>
+              <JoyBreadcrumbs aria-label="breadcrumbs" sx={{ p: 0 }}>
+                {['MUI the company', 'UI libraries'].map((item) => (
+                  <JoyLink fontSize="sm" key={item} color="neutral" href="#basics">
+                    {item}
+                  </JoyLink>
+                ))}
+                <JoyTypography fontSize="sm" fontWeight="lg">
+                  Joy UI
+                </JoyTypography>
+              </JoyBreadcrumbs>
+              <Stack direction="row" alignItems="center" spacing={1} mt={1} mb={0.5}>
                 <JoyTypography fontWeight="lg" textColor="text.primary">
                   Component settings
                 </JoyTypography>
@@ -106,7 +108,7 @@ function GlobalVariantDemo() {
                   Chip
                 </JoyChip>
               </Stack>
-              <JoyTypography fontSize="sm" mt={0.5}>
+              <JoyTypography fontSize="sm">
                 The styles of each variant in Joy UI is defined globally to ensure design
                 consistency.
               </JoyTypography>
@@ -412,7 +414,7 @@ function ColorInversionDemo() {
   );
 }
 
-function AutomaticAdjustment() {
+function CSSvars() {
   const defaultJoyTrack = {
     width: 48,
     height: 24,
@@ -633,6 +635,38 @@ function AutomaticAdjustment() {
   );
 }
 
+function AutomaticAdjustment() {
+  // To complete this part
+  return (
+    <Frame sx={{ height: '100%' }}>
+      <Frame.Demo
+        sx={{
+          minHeight: { xs: 'auto', sm: 202 },
+          p: { xs: 2, sm: 4 },
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2,
+        }}
+      >
+        <JoyInput
+          startDecorator={<MailIcon />}
+          endDecorator={<JoyButton>Message</JoyButton>}
+          placeholder="Type in here…"
+        />
+      </Frame.Demo>
+      <Frame.Info
+        data-mui-color-scheme="dark"
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          gap: 2,
+          justifyContent: 'space-between',
+        }}
+      ></Frame.Info>
+    </Frame>
+  );
+}
+
 export default function JoyUIFeatures() {
   const [index, setIndex] = React.useState(0);
   function getSelectedProps(i: number) {
@@ -660,7 +694,7 @@ export default function JoyUIFeatures() {
               <Item
                 icon={<AutoAwesomeRoundedIcon color="warning" />}
                 title="Global variants"
-                description="Pull their styles from a single source, helping you to ensure a consistent look and feel across both pre-built Joy UI components and any custom components you build."
+                description="Pull their styles from a single source, helping you to ensure a consistent look and feel."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(1)} onClick={() => setIndex(1)}>
@@ -678,12 +712,21 @@ export default function JoyUIFeatures() {
               />
               {/* To update/improve the copy above */}
             </Highlighter>
+            <Highlighter disableBorder {...getSelectedProps(3)} onClick={() => setIndex(3)}>
+              <Item
+                icon={<AutoAwesomeRoundedIcon color="warning" />}
+                title="Automatic adjustment"
+                description="Every Joy UI component is filled with custom CSS variables for fine-tune adjustments, saving you time for micro tweaks."
+              />
+              {/* To update/improve the copy above */}
+            </Highlighter>
           </Group>
         </Grid>
         <Grid xs={12} md={6}>
           {index === 0 && <GlobalVariantDemo />}
           {index === 1 && <ColorInversionDemo />}
-          {index === 2 && <AutomaticAdjustment />}
+          {index === 2 && <CSSvars />}
+          {index === 3 && <AutomaticAdjustment />}
         </Grid>
       </Grid>
     </Section>
