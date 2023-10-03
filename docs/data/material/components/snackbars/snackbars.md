@@ -9,109 +9,91 @@ waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 
 # Snackbar
 
-<p class="description">Snackbars provide brief notifications. The component is also known as a toast.</p>
-
-Snackbars inform users of a process that an app has performed or will perform. They appear temporarily, towards the bottom of the screen. They shouldn't interrupt the user experience, and they don't require user input to disappear.
-
-Snackbars contain a single line of text directly related to the operation performed.
-They may contain a text action, but no icons. You can use them to display notifications.
+<p class="description">Also known as a toast, snackbars are used for brief notifications of a process that has been performed or will perform.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-**Frequency**: Only one snackbar may be displayed at a time.
+## Basics
 
-## Simple snackbars
+```jsx
+import Snackbar from '@mui/material/Snackbar';
+```
 
-A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
+Inspired by Google Keep, the demo below shows a basic snackbar with a text element and two actions.
 
 {{"demo": "SimpleSnackbar.js"}}
 
 ## Customization
 
-Here are some examples of customizing the component.
-You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
+### Position
 
-{{"demo": "CustomizedSnackbars.js"}}
-
-## Positioned snackbars
-
-In wide layouts, snackbars can be left-aligned or center-aligned if they are consistently placed on the same spot at the bottom of the screen, however there may be circumstances where the placement of the snackbar needs to be more flexible.
-You can control the position of the snackbar by specifying the `anchorOrigin` prop.
+Use the `anchorOrigin` prop to control the snackbar position on the screen.
 
 {{"demo": "PositionedSnackbar.js"}}
 
-## Message Length
+### Content
 
-Some snackbars with varying message length.
+```jsx
+import SnackbarContent from '@mui/material/SnackbarContent';
+```
+
+Use the Snackbar Content component for adding text and actions to the snackbar.
 
 {{"demo": "LongTextSnackbar.js"}}
 
-## Transitions
+### Usage with Alerts
 
-### Consecutive Snackbars
+Use the Alert component inside a Snackbar for messages that communicate a certain severity.
 
-When multiple snackbar updates are necessary, they should appear one at a time.
+{{"demo": "CustomizedSnackbars.js"}}
 
-{{"demo": "ConsecutiveSnackbars.js"}}
+### Transitions
 
-### Snackbars and floating action buttons (FABs)
-
-Snackbars should appear above FABs (on mobile).
-
-{{"demo": "FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
-
-### Change transition
-
-[Grow](/material-ui/transitions/#grow) is the default transition but you can use a different one.
+Combined with the [Grow](/material-ui/transitions/#grow) (default) and [Slide](/material-ui/transitions/#slide) transition components, use the `TransitionComponent` prop to add transitions to the Snackbar.
 
 {{"demo": "TransitionsSnackbar.js"}}
 
-### Control Slide direction
+#### Using the Slide transition
 
-You can change the direction of the [Slide](/material-ui/transitions/#slide) transition.
-
-Example of making the slide transition to the left:
-
-```jsx
-import Slide from '@mui/material/Slide';
-
-function TransitionLeft(props) {
-  return <Slide {...props} direction="left" />;
-}
-
-export default function MyComponent() {
-  return <Snackbar TransitionComponent={TransitionLeft} />;
-}
-```
-
-Other examples:
+The demo below shows how to use the Slide transition.
 
 {{"demo": "DirectionSnackbar.js"}}
 
-## Complementary projects
+## Common examples
 
-For more advanced use cases you might be able to take advantage of:
+### Consecutive snackbars
+
+The demo below shows how to show multiple snackbars without stacking them, using a consecutive animation.
+
+{{"demo": "ConsecutiveSnackbars.js"}}
+
+### Usage with a FAB
+
+If you're using a [Floating Action Button](/material-ui/react-floating-action-button/) on mobile, Material Design recommends positioning any snackbar right above it.
+The demo below shows you how to do that.
+
+{{"demo": "FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
+
+## Complementary projects
 
 ### notistack
 
 ![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Star)
 ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
-This example demonstrates how to use [notistack](https://github.com/iamhosseindhv/notistack).
-notistack has an **imperative API** that makes it easy to display snackbars, without having to handle their open/close state.
-It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design guidelines).
+With an imperative API, [notistack](https://github.com/iamhosseindhv/notistack) allows you to vertically stack multiple Snackbars without having to handle their open and close states.
+Even though this is discouraged by Material Design, it is still a common pattern found across many other apps.
 
 {{"demo": "IntegrationNotistack.js", "defaultCodeOpen": false}}
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
+Here are a few tips to make sure you have an accessible Snackbar component:
 
-By default, the snackbar won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended to give the user [sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) to respond.
+- Based on the [WAI-ARIA guidelines](https://www.w3.org/TR/wai-aria-1.1/#alert), the Snackbar won't auto-hide by default.
+  If you use the `autoHideDuration` prop, make sure to [sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) for the user to process the information displayed on it.
 
-When open, **every** `Snackbar` will be dismissed if <kbd class="key">Escape</kbd> is pressed.
-Unless you don't handle `onClose` with the `"escapeKeyDown"` reason.
-If you want to limit this behavior to only dismiss the oldest currently open Snackbar call `event.preventDefault` in `onClose`.
+- All Snackbars are automatically dismissed by pressing <kbd class="key">Escape</kbd>. If you have multiple instances appearing at the same time and want <kbd class="key">Escape</kbd> to dismiss only the oldest currently open, call `event.preventDefault` in the `onClose` prop.
 
 ```jsx
 export default function MyComponent() {
