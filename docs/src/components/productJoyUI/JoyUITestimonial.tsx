@@ -3,12 +3,9 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';
-import Grid from '@mui/material/Unstable_Grid2';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-import ArrowForward from '@mui/icons-material/ArrowForward';
 import Section from 'docs/src/layouts/Section';
-import Link from 'docs/src/modules/components/Link';
 
 const additionalTestimonials = [
   {
@@ -35,8 +32,8 @@ const additionalTestimonials = [
   {
     testimonial: `“Migrating my website from Material UI to Joy UI was a breeze. The transition was seamless, and the library's intuitive nature made it easy to pick up. The customizable default theme system is a plus, allowing me to introduce custom design tokens with type-safe support. Joy UI has transformed my development process, making it enjoyable and efficient. I highly recommend it for React projects.”`,
     author: 'Matthew Kwong',
-    workTitle: 'Frontend Engineer',
-    avatar: '/static/branding/joy-ui/mwskwong.png',
+    workTitle: 'Senior Web Engineer',
+    avatar: '/static/branding/joy-ui/mwskwong.jpeg',
     companyLogo: undefined,
   },
 ];
