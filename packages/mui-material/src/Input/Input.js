@@ -50,7 +50,7 @@ const InputRoot = styled(InputBaseRoot, {
   }
   return {
     position: 'relative',
-    ...(ownerState.formControl && {
+    ...(typeof window !== 'undefined' && {
       'label + &': {
         marginTop: 16,
       },
