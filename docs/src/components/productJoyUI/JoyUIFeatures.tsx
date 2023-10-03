@@ -290,7 +290,7 @@ function ColorInversionDemo() {
           <HighlightedCode
             copyButtonHidden
             component={MarkdownElement}
-            code={`<Card variant="solid" color="primary">`}
+            code={`<Card variant="solid" color="primary">{...}</Card>`}
             language="jsx"
           />
         </Frame.Info>
@@ -326,7 +326,7 @@ function ColorInversionDemo() {
           <HighlightedCode
             copyButtonHidden
             component={MarkdownElement}
-            code={`<Card variant="solid" color="primary" invertedColors>`}
+            code={`<Card variant="solid" color="primary" invertedColors>{...}</Card>`}
             language="jsx"
           />
         </Frame.Info>
@@ -635,9 +635,10 @@ export default function JoyUIFeatures() {
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
                 icon={<AutoAwesomeRoundedIcon color="warning" />}
-                title="Automatic adjustment"
-                description="All Joy UI components work together to ensure consistency and save your time with micro CSS tweaks."
+                title="CSS variables"
+                description="Every Joy UI component is filled with custom CSS variables for fine-tune adjustments, saving you time for micro tweaks."
               />
+              {/* To update/improve the copy above */}
             </Highlighter>
           </Group>
         </Grid>

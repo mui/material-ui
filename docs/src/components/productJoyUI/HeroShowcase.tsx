@@ -37,24 +37,20 @@ export function Desktop() {
         overflow: 'hidden',
         borderRadius: '1rem',
         transformOrigin: '0px 0px',
-        transform: 'scale(0.68) translate(var(--_translate-start))',
+        transform: 'scale(0.6) translate(var(--_translate-start))',
         boxShadow:
-          '0px 0px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 0px 0px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
+          '0px 0px 0 8px rgba(var(--joy-palette-primary-mainChannel) / 0.4), 0px 4px 16px rgba(var(--joy-palette-neutral-mainChannel) / 0.4)',
+        animation: 'rotate-left 0.8s ease forwards',
+        animationDelay: '0.5s',
         '@keyframes rotate-left': {
           '0%': {
             transform: 'scale(0.68) translate(var(--_translate-start))',
-            boxShadow:
-              '0px 0px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 0px 0px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
           },
           '100%': {
             transform:
               'scale(0.72) translate(var(--_translate-end)) rotateX(8deg) rotateY(-5deg) rotateZ(2deg)',
-            boxShadow:
-              '1px 1px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 1px 1px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
           },
         },
-        animation: 'rotate-left 1s ease forwards',
-        animationDelay: '0.5s',
       }}
     >
       <OrderDashboardApp disableCssReset />
@@ -81,30 +77,29 @@ export function Mobile() {
         width: { xs: 320, xl: 400 },
         height: {
           xs: 'clamp(0px, 80vh, 700px)',
-          xl: 'clamp(0px, 80vh, 960px)',
+          xl: 'clamp(0px, 80vh, 850px)',
         },
         overflow: 'auto',
-        borderRadius: '1rem',
+        borderRadius: '12px',
         bgcolor: 'background.body',
         transformOrigin: '0px 0px',
-        transform: 'scale(0.68) translate(var(--_translate-start))',
+        transform: 'scale(0.6) translate(var(--_translate-start))',
         boxShadow:
-          '0px 0px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 0px 0px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
+          '0px 0px 0 8px rgba(var(--joy-palette-primary-mainChannel) / 0.4), 0px 4px 16px rgba(var(--joy-palette-neutral-mainChannel) / 0.4)',
+        animation: 'rotate-right 0.8s ease forwards',
+        animationDelay: '0.5s',
         '@keyframes rotate-right': {
           '0%': {
             transform: 'scale(0.68) translate(var(--_translate-start))',
-            boxShadow:
-              '0px 0px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), 0px 0px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
           },
           '100%': {
             transform:
               'scale(0.72) translate(var(--_translate-end)) rotateX(4deg) rotateY(16deg) rotateZ(-4deg)',
-            boxShadow:
-              '-1px 1px 0 6px rgba(var(--joy-palette-primary-mainChannel) / 0.5), -1px 1px 0 10px rgba(var(--joy-palette-primary-lightChannel) / 0.2)',
           },
         },
-        animation: 'rotate-right 1s ease forwards',
-        animationDelay: '0.5s',
+        '&:hover': {
+          transform: 'none', // this isn't working yet
+        },
       }}
     >
       <JoySheet
@@ -115,8 +110,7 @@ export function Mobile() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          px: 2,
-          py: 1,
+          p: 1.5,
           gap: 1,
           borderBottom: '1px solid',
           borderColor: 'background.level1',
