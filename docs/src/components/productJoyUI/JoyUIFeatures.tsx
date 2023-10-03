@@ -73,6 +73,7 @@ function GlobalVariantDemo() {
     <Frame sx={{ height: '100%' }}>
       <Frame.Demo
         sx={{
+          minHeight: { xs: 'auto', sm: 202 },
           p: 4,
           display: 'flex',
           flexDirection: 'column',
