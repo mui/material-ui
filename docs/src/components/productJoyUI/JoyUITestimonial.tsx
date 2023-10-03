@@ -57,7 +57,17 @@ export function TestimonialAuthor({
     <React.Fragment>
       <Divider />
       <Box sx={{ display: 'flex', gap: 1.5 }}>
-        <Avatar alt="" src={avatar} />
+        <Avatar
+          alt=""
+          src={avatar}
+          sx={(theme) => ({
+            border: '1px solid',
+            borderColor: 'grey.200',
+            ...theme.applyDarkStyles({
+              borderColor: 'primaryDark.800',
+            }),
+          })}
+        />
         <div>
           <Typography variant="body2" fontWeight="semiBold" color="text.primary">
             {author}
@@ -91,9 +101,20 @@ export default function BaseUITestimonial() {
           <div key={author}>
             <Paper
               variant="outlined"
-              sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 2.5 }}
+              sx={(theme) => ({
+                p: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2.5,
+                background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+                ...theme.applyDarkStyles({
+                  bgcolor: 'primaryDark.900',
+                  background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+                  borderColor: 'primaryDark.700',
+                }),
+              })}
             >
-              <Typography color="text.secondary" sx={{ flexGrow: 1 }}>
+              <Typography color="text.primary" sx={{ flexGrow: 1 }}>
                 {testimonial}
               </Typography>
               <TestimonialAuthor
