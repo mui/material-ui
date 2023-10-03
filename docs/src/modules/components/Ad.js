@@ -36,7 +36,7 @@ function PleaseDisableAdblock(props) {
 
 const disableAd =
   process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD_IN_DEV_MODE !== 'true';
-const inHouseAds = [
+export const inHouseAds = [
   {
     name: 'scaffoldhub',
     link: 'https://scaffoldhub.io/?partner=1',

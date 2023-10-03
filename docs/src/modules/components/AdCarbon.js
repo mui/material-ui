@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
 import AdDisplay from 'docs/src/modules/components/AdDisplay';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
+import { inHouseAds } from 'docs/src/modules/components/Ad';
 
 const CarbonRoot = styled('span')(({ theme }) => {
   const styles = adStylesObject['body-image'](theme);
@@ -90,7 +91,24 @@ export function AdCarbonInline(props) {
       }
       const sanitizedAd = await tryFetch();
       if (active) {
-        setAd(sanitizedAd);
+        setAd(() => {
+          if (sanitizedAd) {
+            return {
+              ...sanitizedAd,
+              // Format ad for the AddDisplay component
+              link: sanitizedAd.statlink,
+              description: `<strong>${sanitizedAd.company}</strong> - ${sanitizedAd.description}`,
+              poweredby: 'Carbon',
+            };
+          }
+          // Falback on inHouse ad
+          const inHouseAd = inHouseAds[Math.floor(inHouseAds.length * Math.random())];
+          return {
+            ...inHouseAd,
+            label: `in-house-${inHouseAd.name}`,
+            poweredby: 'MUI',
+          };
+        });
       }
     })();
 
@@ -120,11 +138,13 @@ export function AdCarbonInline(props) {
         className="carbonads"
         shape="inline"
         ad={{
-          link: ad.statlink,
+          link: ad.link,
           img: ad.image,
           name: ad.company,
-          description: `<strong>${ad.company}</strong> - ${ad.description}`,
-          poweredby: 'Carbon',
+          description: ad.description,
+          call: ad.call,
+          poweredby: ad.poweredby,
+          label: ad.label,
         }}
       />
     </React.Fragment>
