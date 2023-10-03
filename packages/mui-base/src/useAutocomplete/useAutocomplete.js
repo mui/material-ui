@@ -300,22 +300,23 @@ export function useAutocomplete(props) {
     let nextFocus = index;
 
     while (true) {
-      // Out of range
-      if (
-        (direction === 'next' && nextFocus === filteredOptions.length) ||
-        (direction === 'previous' && nextFocus === -1)
-      ) {
-        return -1;
-      }
-
       const option = listboxRef.current.querySelector(`[data-option-index="${nextFocus}"]`);
 
-      // Same logic as MenuList.js
       const nextFocusDisabled = disabledItemsFocusable
         ? false
         : !option || option.disabled || option.getAttribute('aria-disabled') === 'true';
 
-      if ((option && !option.hasAttribute('tabindex')) || nextFocusDisabled) {
+      if (direction === 'next' && nextFocus === filteredOptions.length) {
+        if (!nextFocusDisabled) {
+          return -1;
+        }
+        nextFocus = 0;
+      } else if (direction === 'previous' && nextFocus === -1) {
+        if (!nextFocusDisabled) {
+          return -1;
+        }
+        nextFocus = filteredOptions.length;
+      } else if ((option && !option.hasAttribute('tabindex')) || nextFocusDisabled) {
         // Move to the next element.
         nextFocus += direction === 'next' ? 1 : -1;
       } else {
