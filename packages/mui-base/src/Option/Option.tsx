@@ -3,9 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
-import { OptionProps, OptionOwnerState, OptionType } from './Option.types';
+import { OptionProps, OptionOwnerState, OptionType, OptionRootSlotProps } from './Option.types';
 import { getOptionUtilityClass } from './optionClasses';
-import { useSlotProps } from '../utils';
+import { WithOptionalOwnerState, useSlotProps } from '../utils';
 import { useOption } from '../useOption';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { unwrapOptionContext } from './unwrapOptionContext';
@@ -74,7 +74,7 @@ const Option = unwrapOptionContext(
 
       const classes = useUtilityClasses(ownerState);
 
-      const rootProps = useSlotProps({
+      const rootProps: WithOptionalOwnerState<OptionRootSlotProps<OptionValue>> = useSlotProps({
         getSlotProps: getRootProps,
         elementType: Root,
         externalSlotProps: slotProps.root,

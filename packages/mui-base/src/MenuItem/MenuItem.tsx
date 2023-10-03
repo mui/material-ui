@@ -2,13 +2,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import { MenuItemOwnerState, MenuItemProps, MenuItemTypeMap } from './MenuItem.types';
+import {
+  MenuItemOwnerState,
+  MenuItemProps,
+  MenuItemRootSlotProps,
+  MenuItemTypeMap,
+} from './MenuItem.types';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import { useMenuItem } from '../useMenuItem';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useSlotProps } from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { unwrapMenuItemContext } from './unwrapMenuItemContext';
+import { WithOptionalOwnerState } from '../utils';
 
 function useUtilityClasses(ownerState: MenuItemOwnerState) {
   const { disabled, focusVisible } = ownerState;
@@ -57,7 +63,7 @@ const MenuItem = unwrapMenuItemContext(
       const classes = useUtilityClasses(ownerState);
 
       const Root = slots.root ?? 'li';
-      const rootProps = useSlotProps({
+      const rootProps: WithOptionalOwnerState<MenuItemRootSlotProps> = useSlotProps({
         elementType: Root,
         getSlotProps: getRootProps,
         externalSlotProps: slotProps.root,
