@@ -73,18 +73,13 @@ const StyledButton = styled(Button)(({ theme }) => ({
 function GlobalVariantDemo() {
   const [variant, setVariant] = React.useState<VariantProp>('outlined');
   const [color, setColor] = React.useState<ColorPaletteProp>('neutral');
-  const [selectedValue, setSelectedValue] = React.useState('a');
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value);
-  };
 
   return (
     <Frame sx={{ height: '100%' }}>
       <Frame.Demo
         sx={{
           minHeight: { xs: 'auto', sm: 202 },
-          p: 4,
+          p: { xs: 2, sm: 4 },
           display: 'flex',
           flexDirection: 'column',
           gap: 2,
@@ -192,6 +187,8 @@ function GlobalVariantDemo() {
         data-mui-color-scheme="dark"
         sx={{
           display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          gap: 2,
           justifyContent: 'space-between',
         }}
       >

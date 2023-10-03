@@ -14,7 +14,7 @@ export function Group({
       {...props}
       sx={{
         maxWidth: rowLayout ? 'none' : { md: 500 },
-        // overflow: 'auto',
+        overflow: { xs: 'auto', sm: 'visible' },
         display: { xs: 'grid', sm: rowLayout ? 'flex' : 'grid' },
         justifyContent: { xs: 'start', sm: rowLayout ? 'center' : null },
         gap: 1,
