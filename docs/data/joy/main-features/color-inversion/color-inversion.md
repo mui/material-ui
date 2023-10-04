@@ -4,24 +4,19 @@
 
 ## Motivation
 
-[Global variants](/joy-ui/main-features/global-variants/) provide a consistent `variant` prop that lets you control the hierarchy of importance within a group of Joy UI components. However, they are not working as expected when global variants are used in multiple layers.
-
-The example below (on your right-hand side) shows the problem when the interface has more than one layer that applies the global variants:
+The Joy UI [global variants feature](/joy-ui/main-features/global-variants/) provides a consistent set of values for the `variant` prop.
+However, depending on the design, they may not fit perfectly, like in the right-hand side example, where the Card parent variant overlaps with its child components.
 
 {{"demo": "ColorInversionMotivation.js"}}
 
-On the **left**, the Button's variant is `solid`, which is the highest emphasis level compared to other components.
-This conforms to the visual appearance on the screen.
+- On the left, the Button variant is `solid`. Given the Card wrapper hasn't a specifically defined variant value, it renders its default one, which is `outlined`, making the design work well.
+- On the right, the Card uses `solid`, disrupting the design's hierarchy and contrast.
 
-On the **right**, the problem arises when the container's variant becomes `solid`.
-The Button is no longer the highest emphasis element because it has the same background as the container.
-Also, the text and the icon button don't contrast enough with the parent's background.
-
-The color inversion is implemented to solve this issue, keeping the global variants meaningful when multiple layers of global variants are composed together.
+The color inversion feature tackles precisely this type of situation conveniently, preserving the meaningfulness of each global variant.
 
 ## Overview
 
-When color inversion is enabled on the parent component, all of Joy UI children will invert their styles regardless of its color prop to match the parent's background by keeping the same hierarchy of importance based on their variants.
+When color inversion is enabled on the parent component, all children components will invert their styles regardless of their color prop to match the parent's background by keeping the same hierarchy of importance based on their variants.
 
 {{"demo": "ColorInversionOverview.js"}}
 
@@ -41,88 +36,64 @@ The color inversion feature is only available for `soft` and `solid` variants be
 
 ### Trade-offs
 
-- If the surface component contains just a few components, the style sheet size of the CSS variables might be **bigger** than customizing the styles of each individual child.
+- If the surface component contains just a few components, the style sheet size of the CSS variables might be bigger than customizing the styles of each child.
 - It doesn't work with browsers that don't support [CSS variables](https://caniuse.com/css-variables).
 
 ## Usage
 
-### Surface components
+### Supported components
 
-Surface components, including the Alert, Card, Drawer, ModalDialog, Menu, and Sheet, have the `invertedColors` prop to enable color inversion for `solid` and `soft` variants.
+All the surface components, including others like the Alert, Card, Drawer, Modal Dialog, Menu, and Sheet, accept the `invertedColors` prop for their `solid` and `soft` variants.
 
 {{"demo": "ColorInversionSurface.js"}}
 
 ### Portal popup
 
-By default, color inversion has no effect on the popup slot of the Autocomplete, Menu, and Tooltip components.
-To enable it, set `disablePortal` to true on the `slotProps`.
-
-:::info
-The popup slot of the Select component has `disablePortal` set to true by default.
-:::
+Color inversion does not affect the popup slot of the Autocomplete, Menu, and Tooltip components by default.
+To enable it, on the `slotProps` prop of these components, set `disablePortal` to true.
 
 {{"demo": "ColorInversionPopup.js"}}
 
-### Skip color inversion on a child
+### Turning it off on a specific child
 
-To skip color inversion on a specific child, set `data-skip-inverted-colors` attribute to the component.
-
-The component with `data-skip-inverted-colors` and its children will be excluded from the color inversion.
+Add the `data-skip-inverted-colors` attribute to the child component you want to turn color inversion off within an inverted container.
 
 {{"demo": "ColorInversionSkip.js"}}
 
 ### Apply color inversion to any parent
 
-Use `applySolidInversion` or `applySoftInversion` utilities to apply color inversion to any parent component.
-
-They are used internally by the surface components, e.g. [Card](/joy-ui/react-card/#inverted-colors), when `invertedColors` prop is set to true.
-
 ```js
 import { applySolidInversion, applySoftInversion } from '@mui/joy/colorInversion';
 ```
 
-Example usage for `sx` prop and `styled` API:
+Use the `applySolidInversion` or `applySoftInversion` utilities to add color inversion to any parent component.
+The Card component, for example, already uses it internally if containing the `invertedColors` prop.
 
-- `sx` prop
+The examples below show how to use it with either the `sx` prop or the `styled` API:
 
-  ```js
-  import { applySolidInversion } from '@mui/joy/colorInversion';
-
-  <Box
-    sx={[
-      (theme) => ({
-        display: 'flex',
-        alignItems: 'center',
-        background: theme.vars.palette.neutral[900],
-      }),
-      applySolidInversion('neutral'),
-    ]}
-  >
-    …
-  </Box>;
-  ```
-
-- `styled` API
-
-  ```js
-  import { styled } from '@mui/joy/styles';
-  import { applySoftInversion } from '@mui/joy/colorInversion';
-
-  const StyledBox = styled(Box)(
-    ({ theme }) => ({
-      display: 'flex',
-      alignItems: 'center',
-      ...theme.variants.soft.primary,
-    }),
-    applySoftInversion('primary'),
-  );
-  ```
+#### With the sx prop
 
 {{"demo": "ColorInversionAnyParent.js"}}
 
+#### With the styled API
+
+```js
+import { styled } from '@mui/joy/styles';
+import { applySoftInversion } from '@mui/joy/colorInversion';
+
+const StyledBox = styled(Box)(
+  ({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    ...theme.variants.soft.primary,
+  }),
+  applySoftInversion('primary'),
+);
+```
+
 ## How it works
 
-When `invertedColors` is set to true or the utility is used on the parent component, a set of CSS variables is applied to it. There is no [React context](https://react.dev/learn/passing-data-deeply-with-context) involved in this feature.
+Color inversion adds CSS variables to the component using the `invertedColors` prop or the apply utilities. There's no [React context](https://react.dev/learn/passing-data-deeply-with-context) involved in this feature.
 
 ```jsx
 <Sheet invertedColors variant="solid" color="neutral">
@@ -144,7 +115,7 @@ When `invertedColors` is set to true or the utility is used on the parent compon
 }
 ```
 
-As a result, the children will use those CSS variables instead of the theme.
+As a result, the children will use these CSS variables instead of the theme:
 
 ```jsx
 // The children style sheet
