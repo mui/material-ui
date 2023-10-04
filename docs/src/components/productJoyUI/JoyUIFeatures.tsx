@@ -6,6 +6,7 @@ import JoyBox from '@mui/joy/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 // Joy UI components imports
 import { ColorPaletteProp, VariantProp } from '@mui/joy/styles';
@@ -44,6 +45,7 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import GradientText from 'docs/src/components/typography/GradientText';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Frame from 'docs/src/components/action/Frame';
+import MoreInfo from 'docs/src/components/action/MoreInfo';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import useResizeHandle from 'docs/src/modules/utils/useResizeHandle';
@@ -189,44 +191,55 @@ function GlobalVariantDemo() {
         data-mui-color-scheme="dark"
         sx={{
           display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          gap: 2,
-          justifyContent: 'space-between',
+          flexDirection: 'column',
+          gap: 1.5,
         }}
       >
-        <Stack spacing={0.5} direction="row" useFlexGap>
-          {(['plain', 'outlined', 'soft', 'solid'] as const).map((item) => (
-            <StyledButton
-              variant={item === variant ? 'outlined' : 'text'}
-              key={item}
-              onClick={() => setVariant(item)}
-            >
-              {item}
-            </StyledButton>
-          ))}
-        </Stack>
-        <Box sx={{ display: 'flex', gap: 1, '& > button': { minWidth: 'initial' } }}>
-          {(['primary', 'neutral', 'danger', 'warning', 'success'] as const).map((item) => (
-            <StyledButton
-              aria-label={`${item} color`}
-              variant={item === color ? 'outlined' : 'text'}
-              key={item}
-              onClick={() => setColor(item)}
-              sx={{ p: '5px' }}
-            >
-              <JoyBox
-                sx={{
-                  borderRadius: '50%',
-                  width: 12,
-                  height: 12,
-                  bgcolor: `${item}.solidBg`,
-                  border: '1px solid',
-                  borderColor: item === color ? 'rgba(255 255 255 / 0.6)' : 'transparent',
-                }}
-              />
-            </StyledButton>
-          ))}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            gap: 2,
+            justifyContent: 'space-between',
+            mb: 0.5,
+          }}
+        >
+          <Stack spacing={0.5} direction="row" useFlexGap>
+            {(['plain', 'outlined', 'soft', 'solid'] as const).map((item) => (
+              <StyledButton
+                variant={item === variant ? 'outlined' : 'text'}
+                key={item}
+                onClick={() => setVariant(item)}
+              >
+                {item}
+              </StyledButton>
+            ))}
+          </Stack>
+          <Box sx={{ display: 'flex', gap: 1, '& > button': { minWidth: 'initial' } }}>
+            {(['primary', 'neutral', 'danger', 'warning', 'success'] as const).map((item) => (
+              <StyledButton
+                aria-label={`${item} color`}
+                variant={item === color ? 'outlined' : 'text'}
+                key={item}
+                onClick={() => setColor(item)}
+                sx={{ p: '5px' }}
+              >
+                <JoyBox
+                  sx={{
+                    borderRadius: '50%',
+                    width: 12,
+                    height: 12,
+                    bgcolor: `${item}.solidBg`,
+                    border: '1px solid',
+                    borderColor: item === color ? 'rgba(255 255 255 / 0.6)' : 'transparent',
+                  }}
+                />
+              </StyledButton>
+            ))}
+          </Box>
         </Box>
+        <Divider />
+        <MoreInfo subject="global variants" link="/joy-ui/main-features/global-variants/" />
       </Frame.Info>
     </Frame>
   );
@@ -318,6 +331,9 @@ function ColorInversionDemo() {
         <Frame.Info
           data-mui-color-scheme="dark"
           sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1.5,
             width: '100%',
             position: 'absolute',
             left: '50%',
@@ -333,6 +349,8 @@ function ColorInversionDemo() {
             code={`<Card variant="solid" color="primary">{...}</Card>`}
             language="jsx"
           />
+          <Divider />
+          <MoreInfo subject="color inversion" link="/joy-ui/main-features/color-inversion/" />
         </Frame.Info>
       </Frame.Demo>
       <Frame.Demo
@@ -354,6 +372,9 @@ function ColorInversionDemo() {
         <Frame.Info
           data-mui-color-scheme="dark"
           sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1.5,
             width: '100%',
             position: 'absolute',
             left: '50%',
@@ -369,6 +390,8 @@ function ColorInversionDemo() {
             code={`<Card variant="solid" color="primary" invertedColors>{...}</Card>`}
             language="jsx"
           />
+          <Divider />
+          <MoreInfo subject="color inversion" link="/joy-ui/main-features/color-inversion/" />
         </Frame.Info>
       </Frame.Demo>
       <Box
@@ -608,6 +631,9 @@ function CSSvars() {
           minHeight: 220,
           maxHeight: 450,
           overflow: 'auto',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 1.5,
         }}
       >
         <HighlightedCode
@@ -629,6 +655,11 @@ function CSSvars() {
           }
             `}
           language="jsx"
+        />
+        <Divider />
+        <MoreInfo
+          subject="Joy UI's CSS variable use"
+          link="/joy-ui/customization/using-css-variables/"
         />
       </Frame.Info>
     </Frame>
