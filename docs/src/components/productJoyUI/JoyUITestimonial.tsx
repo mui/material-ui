@@ -93,7 +93,7 @@ export default function BaseUITestimonial() {
             Friends that <GradientText>found joy</GradientText>
           </Typography>
         }
-        description="Join an engaged community of developers and designers that found joy while using Joy UI in projects of all shapes and forms."
+        description="Join a joyful community of developers and designers that are using Joy UI in projects of all shapes and forms."
       />
       {/* The copy above will be refined! */}
       <Masonry columns={{ xs: 1, sm: 2 }} spacing={3} sx={{ m: 0, mt: 4 }}>
