@@ -97,28 +97,22 @@ const SwitchRoot = styled('div', {
       '&:hover': {
         ...getColorVariables({ state: 'Hover' }),
       },
-      [`&.${switchClasses.checked}`]: {
-        ...getColorVariables(),
-        '&:hover': {
-          ...getColorVariables({ state: 'Hover' }),
-        },
-      },
-      [`&.${switchClasses.disabled}`]: {
-        pointerEvents: 'none',
-        color: theme.vars.palette.text.tertiary,
-        ...getColorVariables({ state: 'Disabled' }),
-      },
-      display: 'inline-flex',
-      alignItems: 'center',
-      alignSelf: 'center',
-      fontFamily: theme.vars.fontFamily.body,
-      position: 'relative',
-      padding:
-        'calc((var(--Switch-thumbSize) / 2) - (var(--Switch-trackHeight) / 2)) calc(-1 * var(--Switch-thumbOffset))',
-      backgroundColor: 'initial', // clear background in case `outlined` variant contain background.
-      border: 'none',
-      margin: 'var(--unstable_Switch-margin)',
-    } as const,
+    },
+    [`&.${switchClasses.disabled}`]: {
+      pointerEvents: 'none',
+      color: theme.vars.palette.text.tertiary,
+      ...getColorVariables({ state: 'Disabled' }),
+    },
+    display: 'inline-flex',
+    alignItems: 'center',
+    alignSelf: 'center',
+    fontFamily: theme.vars.fontFamily.body,
+    position: 'relative',
+    padding:
+      'calc((var(--Switch-thumbSize) / 2) - (var(--Switch-trackHeight) / 2)) calc(-1 * var(--Switch-thumbOffset))',
+    backgroundColor: 'initial', // clear background in case `outlined` variant contain background.
+    border: 'none',
+    margin: 'var(--unstable_Switch-margin)',
   };
 });
 
