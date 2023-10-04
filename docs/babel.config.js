@@ -11,8 +11,8 @@ const alias = {
   '@mui/styles': '../packages/mui-styles/src',
   '@mui/styled-engine-sc': '../packages/mui-styled-engine-sc/src',
   // Swap the comments on the next two lines for using the styled-components as style engine
-  // '@mui/styled-engine': '../packages/mui-styled-engine/src',
-  '@mui/styled-engine': '../packages/mui-styled-engine-sc/src',
+  '@mui/styled-engine': '../packages/mui-styled-engine/src',
+  // '@mui/styled-engine': '../packages/mui-styled-engine-sc/src',
   '@mui/system': '../packages/mui-system/src',
   '@mui/private-theming': '../packages/mui-private-theming/src',
   '@mui/utils': '../packages/mui-utils/src',

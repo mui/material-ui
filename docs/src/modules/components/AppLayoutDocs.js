@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import { exactProp } from '@mui/utils';
-import { createGlobalStyle } from 'styled-components';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import NoSsr from '@mui/material/NoSsr';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import EditPage from 'docs/src/modules/components/EditPage';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import AdManager from 'docs/src/modules/components/AdManager';
@@ -87,21 +86,6 @@ const StyledAppContainer = styled(AppContainer, {
   };
 });
 
-const ActionsDiv = styled('div')(({ theme }) => ({
-  display: 'flex',
-  marginTop: -10,
-  marginBottom: -15,
-  [theme.breakpoints.up('lg')]: {
-    justifyContent: 'flex-end',
-  },
-}));
-
-const GlobalStyles = createGlobalStyle({
-  ':root': {
-    '--MuiDocs-navDrawer-width': '300px',
-  },
-});
-
 export default function AppLayoutDocs(props) {
   const router = useRouter();
   const {
@@ -144,7 +128,13 @@ export default function AppLayoutDocs(props) {
 
   return (
     <Layout {...layoutProps}>
-      <GlobalStyles />
+      <GlobalStyles
+        styles={{
+          ':root': {
+            '--MuiDocs-navDrawer-width': '300px',
+          },
+        }}
+      />
       <AdManager {...(hasTabs && { classSelector: '.component-tabs' })}>
         <Head
           title={`${title} - ${productName}`}
@@ -158,12 +148,9 @@ export default function AppLayoutDocs(props) {
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
           <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs} disableToc={disableToc}>
-            <ActionsDiv>
-              <EditPage sourceLocation={location} />
-            </ActionsDiv>
             {children}
             <NoSsr>
-              <AppLayoutDocsFooter tableOfContents={toc} />
+              <AppLayoutDocsFooter tableOfContents={toc} location={location} />
             </NoSsr>
           </StyledAppContainer>
           {disableToc ? null : <AppTableOfContents toc={toc} />}
