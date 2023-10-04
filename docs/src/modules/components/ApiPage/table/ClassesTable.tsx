@@ -8,7 +8,10 @@ import {
 //   brandingDarkTheme as darkTheme,
 //   brandingLightTheme as lightTheme,
 // } from 'docs/src/modules/brandingTheme';
-import { ClassesFormatedParams, getHash } from 'docs/src/modules/components/ApiPage/list/ClassesList';
+import {
+  ClassesFormatedParams,
+  getHash,
+} from 'docs/src/modules/components/ApiPage/list/ClassesList';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
