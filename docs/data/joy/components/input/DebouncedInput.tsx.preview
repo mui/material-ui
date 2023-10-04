@@ -1,0 +1,5 @@
+<DebounceInput
+  placeholder="Type in here…"
+  debounceTimeout={1000}
+  handleDebounce={handleDebounce}
+/>
