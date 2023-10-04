@@ -8,8 +8,8 @@ import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
 } from '../InputBase';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useThemeProps, styled } from '../styles';
+import { rootShouldForwardProp } from '../styles/styled';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import { InputBaseRoot, InputBaseInput } from '../InputBase/InputBase';
 import { FilledInputOwnerState, FilledInputProps, FilledInputTypeMap } from './FilledInput.types';
@@ -42,38 +42,51 @@ const FilledInputRoot = styled(InputBaseRoot, {
     ];
   },
 })<{ ownerState: FilledInputOwnerState }>(({ theme, ownerState }) => {
-  const light = theme.palette.mode === 'light';
-  const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
-  const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
-  const hoverBackground = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.13)';
-  const disabledBackground = light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)';
+  const { vars: tokens } = theme;
+
   return {
+    '--md-comp-filled-input-container-color': tokens.sys.color.surfaceContainerHighest,
+
+    '--md-comp-filled-input-active-indicator-color': tokens.sys.color.onSurfaceVariant,
+    '--md-comp-filled-input-hover-active-indicator-color': tokens.sys.color.onSurface,
+    '--md-comp-filled-input-focus-active-indicator-color':
+      tokens.sys.color[ownerState.color ?? 'primary'],
+
+    '--md-comp-filled-input-error-active-indicator-color': tokens.sys.color.error,
+    '--md-comp-filled-input-error-hover-active-indicator-color': tokens.sys.color.onErrorContainer,
+    '--md-comp-filled-input-error-focus-active-indicator-color': tokens.sys.color.error,
+
+    '--md-comp-filled-input-disabled-container-color': tokens.sys.color.onSurface,
+    '--md-comp-filled-input-disabled-container-opacity': 0.04,
+
     position: 'relative',
-    backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
-    borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-    borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+    backgroundColor: 'var(--md-comp-filled-input-container-color)',
+    borderTopLeftRadius: tokens.shape.borderRadius,
+    borderTopRightRadius: tokens.shape.borderRadius,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shorter,
       easing: theme.transitions.easing.easeOut,
     }),
     '&:hover': {
-      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.hoverBg : hoverBackground,
+      backgroundColor: `color-mix(in srgb, ${tokens.sys.color.onSurface} calc(${tokens.sys.state.hover.stateLayerOpacity} * 100%), var(--md-comp-filled-input-container-color))`,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
+        backgroundColor: 'var(--md-comp-filled-input-container-color)',
       },
     },
     [`&.${filledInputClasses.focused}`]: {
-      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
+      backgroundColor: 'var(--md-comp-filled-input-container-color)',
+      '&:after': {
+        borderColor: 'var(--md-comp-filled-input-focus-active-indicator-color)',
+      },
     },
     [`&.${filledInputClasses.disabled}`]: {
-      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.disabledBg : disabledBackground,
+      backgroundColor:
+        'color-mix(in srgb, var(--md-comp-filled-input-disabled-container-color) var(--md-comp-filled-input-disabled-container-opacity), var(--md-comp-filled-input-container-color))',
     },
     ...(!ownerState.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${
-          (theme.vars || theme).palette[ownerState.color || 'primary']?.main
-        }`,
+        borderBottom: '2px solid var(--md-comp-filled-input-active-indicator-color)',
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -94,15 +107,11 @@ const FilledInputRoot = styled(InputBaseRoot, {
       },
       [`&.${filledInputClasses.error}`]: {
         '&:before, &:after': {
-          borderBottomColor: (theme.vars || theme).palette.error.main,
+          borderBottomColor: tokens.sys.color.errorContainer,
         },
       },
       '&:before': {
-        borderBottom: `1px solid ${
-          theme.vars
-            ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
-            : bottomLineColor
-        }`,
+        borderBottom: '1px solid var(--md-comp-filled-input-active-indicator-color)',
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -115,7 +124,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
         pointerEvents: 'none', // Transparent to the hover style.
       },
       [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
-        borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
+        borderBottom: '1px solid var(--md-comp-filled-input-active-indicator-color)',
       },
       [`&.${filledInputClasses.disabled}:before`]: {
         borderBottomStyle: 'dotted',
@@ -145,61 +154,79 @@ const FilledInputInput = styled(InputBaseInput, {
   name: 'MuiFilledInput',
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
-})<{ ownerState: FilledInputOwnerState }>(({ theme, ownerState }) => ({
-  paddingTop: 25,
-  paddingRight: 12,
-  paddingBottom: 8,
-  paddingLeft: 12,
-  ...(!theme.vars
-    ? {
-        '&:-webkit-autofill': {
-          WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
-          WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
-          caretColor: theme.palette.mode === 'light' ? null : '#fff',
-          borderTopLeftRadius: 'inherit',
-          borderTopRightRadius: 'inherit',
-        },
-      }
-    : {}),
-  ...(theme.vars && {
-    '&:-webkit-autofill': {
-      borderTopLeftRadius: 'inherit',
-      borderTopRightRadius: 'inherit',
-    },
-    [theme.getColorSchemeSelector('dark')]: {
+})<{ ownerState: FilledInputOwnerState }>(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+
+  return {
+    paddingTop: 25,
+    paddingRight: 12,
+    paddingBottom: 8,
+    paddingLeft: 12,
+    ...(!tokens
+      ? {
+          [theme.getColorSchemeSelector('light')]: {
+            '&:-webkit-autofill': {
+              WebkitBoxShadow: null,
+              WebkitTextFillColor: null,
+              caretColor: null,
+              borderTopLeftRadius: 'inherit',
+              borderTopRightRadius: 'inherit',
+            },
+          },
+          [theme.getColorSchemeSelector('dark')]: {
+            '&:-webkit-autofill': {
+              WebkitBoxShadow: '0 0 0 100px #266798 inset',
+              WebkitTextFillColor: '#fff',
+              caretColor: '#fff',
+              borderTopLeftRadius: 'inherit',
+              borderTopRightRadius: 'inherit',
+            },
+          },
+        }
+      : {}),
+    ...(tokens && {
       '&:-webkit-autofill': {
-        WebkitBoxShadow: '0 0 0 100px #266798 inset',
-        WebkitTextFillColor: '#fff',
-        caretColor: '#fff',
+        borderTopLeftRadius: 'inherit',
+        borderTopRightRadius: 'inherit',
       },
-    },
-  }),
-  ...(ownerState.size === 'small' && {
-    paddingTop: 21,
-    paddingBottom: 4,
-  }),
-  ...(ownerState.hiddenLabel && {
-    paddingTop: 16,
-    paddingBottom: 17,
-  }),
-  ...(ownerState.multiline && {
-    paddingTop: 0,
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-  }),
-  ...(ownerState.startAdornment && {
-    paddingLeft: 0,
-  }),
-  ...(ownerState.endAdornment && {
-    paddingRight: 0,
-  }),
-  ...(ownerState.hiddenLabel &&
-    ownerState.size === 'small' && {
-      paddingTop: 8,
-      paddingBottom: 9,
     }),
-}));
+    // TODO: investigate why describeConformance dies without this check
+    ...(typeof theme.getColorSchemeSelector === 'function' && {
+      [theme.getColorSchemeSelector('dark')]: {
+        '&:-webkit-autofill': {
+          WebkitBoxShadow: '0 0 0 100px #266798 inset',
+          WebkitTextFillColor: '#fff',
+          caretColor: '#fff',
+        },
+      },
+    }),
+    ...(ownerState.size === 'small' && {
+      paddingTop: 21,
+      paddingBottom: 4,
+    }),
+    ...(ownerState.hiddenLabel && {
+      paddingTop: 16,
+      paddingBottom: 17,
+    }),
+    ...(ownerState.multiline && {
+      paddingTop: 0,
+      paddingBottom: 0,
+      paddingLeft: 0,
+      paddingRight: 0,
+    }),
+    ...(ownerState.startAdornment && {
+      paddingLeft: 0,
+    }),
+    ...(ownerState.endAdornment && {
+      paddingRight: 0,
+    }),
+    ...(ownerState.hiddenLabel &&
+      ownerState.size === 'small' && {
+        paddingTop: 8,
+        paddingBottom: 9,
+      }),
+  };
+});
 
 const FilledInput = React.forwardRef(function FilledInput<
   RootComponentType extends React.ElementType,
