@@ -19,7 +19,7 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
 import CSSSection, { getCssToC } from './ApiPage/CssSection';
-import ClassesList from './ApiPage/ClassesList';
+import ClassesSection from './ApiPage/ClassesSection';
 import SlotsList from './ApiPage/SlotsList';
 
 export function getTranslatedHeader(t, header) {
@@ -337,14 +337,12 @@ export default function ApiPage(props) {
             <Divider />
           </React.Fragment>
         ) : null}
-        {hasClasses ? (
-          <ClassesList
-            componentClasses={componentClasses}
-            componentName={pageContent.name}
-            classDescriptions={classDescriptions}
-            spreadHint={t('api-docs.classesDescription')}
-          />
-        ) : null}
+        <ClassesSection
+          componentClasses={componentClasses}
+          componentName={pageContent.name}
+          classDescriptions={classDescriptions}
+          spreadHint={t('api-docs.classesDescription')}
+        />
         <DesignInfo />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">

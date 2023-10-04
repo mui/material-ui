@@ -10,7 +10,7 @@ import PropertiesTable from 'docs/src/modules/components/ApiPage/PropertiesSecti
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CSSSection from './ApiPage/CssSection';
-import ClassesList from './ApiPage/ClassesList';
+import ClassesSection from './ApiPage/ClassesSection';
 import SlotsList from './ApiPage/SlotsList';
 
 function getTranslatedHeader(t, header, text) {
@@ -236,17 +236,14 @@ export default function ComponentsApiContent(props) {
               />
             </React.Fragment>
           ) : null}
-          {componentClasses?.classes?.length ||
-          Object.keys(componentClasses?.classes?.globalClasses || {}).length ? (
-            <ClassesList
-              componentClasses={componentClasses}
-              componentName={pageContent.name}
-              classDescriptions={classDescriptions}
-              spreadHint={t('api-docs.classesDescription')}
-              titleHash={`${componentNameKebabCase}-classes`}
-              level="h3"
-            />
-          ) : null}
+          <ClassesSection
+            componentClasses={componentClasses}
+            componentName={pageContent.name}
+            classDescriptions={classDescriptions}
+            spreadHint={t('api-docs.classesDescription')}
+            titleHash={`${componentNameKebabCase}-classes`}
+            level="h3"
+          />
         </MarkdownElement>
         <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
           <symbol id="anchor-link-icon" viewBox="0 0 16 16">
