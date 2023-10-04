@@ -18,7 +18,11 @@ import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import InputBase, { inputBaseClasses as classes } from '@mui/material-next/InputBase';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
-import { InputBaseInputSlotPropsOverrides, InputBaseOwnerState, InputBaseProps } from './InputBase.types';
+import {
+  InputBaseInputSlotPropsOverrides,
+  InputBaseOwnerState,
+  InputBaseProps,
+} from './InputBase.types';
 
 describe('<InputBase />', () => {
   const { render } = createRenderer();
@@ -186,9 +190,12 @@ describe('<InputBase />', () => {
        *
        * A ref is exposed to trigger a change event instead of using fireEvent.change
        */
-      const BadInputComponent = React.forwardRef(function BadInputComponent(props: {
-        onChange: (arg: Record<string, unknown>) => void,
-      }, ref) {
+      const BadInputComponent = React.forwardRef(function BadInputComponent(
+        props: {
+          onChange: (arg: Record<string, unknown>) => void;
+        },
+        ref,
+      ) {
         const { onChange } = props;
 
         // simulates const handleChange = () => onChange({}) and passing that
@@ -231,7 +238,9 @@ describe('<InputBase />', () => {
       const { getByTestId } = render(
         <InputBase
           inputComponent="span"
-          slotProps={{ input: { 'data-testid': 'input-component' } as InputBaseInputSlotPropsOverrides }}
+          slotProps={{
+            input: { 'data-testid': 'input-component' } as InputBaseInputSlotPropsOverrides,
+          }}
         />,
       );
       expect(getByTestId('input-component')).to.have.property('nodeName', 'SPAN');
@@ -239,7 +248,10 @@ describe('<InputBase />', () => {
 
     it('should inject onBlur and onFocus', () => {
       let injectedProps: any = {};
-      const MyInputBase = React.forwardRef(function MyInputBase(props: any, ref: React.ForwardedRef<any>) {
+      const MyInputBase = React.forwardRef(function MyInputBase(
+        props: any,
+        ref: React.ForwardedRef<any>,
+      ) {
         injectedProps = props;
         const { ownerState, ...other } = props;
         return <input ref={ref} {...other} />;
@@ -255,13 +267,18 @@ describe('<InputBase />', () => {
 
     describe('target mock implementations', () => {
       it('can just mock the value', () => {
-        const MockedValue = React.forwardRef(function MockedValue(props: {
-          onChange: React.ChangeEventHandler<HTMLInputElement>,
-        }, ref: React.ForwardedRef<HTMLInputElement>) {
+        const MockedValue = React.forwardRef(function MockedValue(
+          props: {
+            onChange: React.ChangeEventHandler<HTMLInputElement>;
+          },
+          ref: React.ForwardedRef<HTMLInputElement>,
+        ) {
           const { onChange } = props;
 
           const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-            onChange({ target: { value: event.target.value } } as React.ChangeEvent<HTMLInputElement>);
+            onChange({
+              target: { value: event.target.value },
+            } as React.ChangeEvent<HTMLInputElement>);
           };
 
           return <input ref={ref} onChange={handleChange} />;
@@ -286,7 +303,10 @@ describe('<InputBase />', () => {
       });
 
       it("can expose the input component's ref through the inputComponent prop", () => {
-        const FullTarget = React.forwardRef(function FullTarget(props: any, ref: React.ForwardedRef<HTMLInputElement>) {
+        const FullTarget = React.forwardRef(function FullTarget(
+          props: any,
+          ref: React.ForwardedRef<HTMLInputElement>,
+        ) {
           const { ownerState, ...otherProps } = props;
           return <input ref={ref} {...otherProps} />;
         });
@@ -406,9 +426,9 @@ describe('<InputBase />', () => {
     });
 
     type TestFormController = {
-      onFocus: () => {},
-      onBlur: () => {},
-    }
+      onFocus: () => {};
+      onBlur: () => {};
+    };
 
     describe('focused', () => {
       it('prioritizes context focus', () => {
@@ -583,10 +603,13 @@ describe('<InputBase />', () => {
       const INPUT_VALUE = 'material';
       const OUTPUT_VALUE = 'test';
 
-      const MyInputBase = React.forwardRef(function MyInputBase(props: {
-        onChange: (...args: string[]) => void,
-        ownerState: InputBaseOwnerState
-      }, ref: React.ForwardedRef<any>) {
+      const MyInputBase = React.forwardRef(function MyInputBase(
+        props: {
+          onChange: (...args: string[]) => void;
+          ownerState: InputBaseOwnerState;
+        },
+        ref: React.ForwardedRef<any>,
+      ) {
         const { onChange, ownerState, ...other } = props;
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
