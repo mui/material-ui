@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Tooltip from '@mui/material/Tooltip';
+import PropTypes from 'prop-types';
+import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
 import CalendarViewDayRoundedIcon from '@mui/icons-material/CalendarViewDayRounded';
 import TableChartRoundedIcon from '@mui/icons-material/TableChartRounded';
 import ReorderRoundedIcon from '@mui/icons-material/ReorderRounded';
@@ -47,10 +48,40 @@ export function useApiPageOption(
   return [option, updateOption];
 }
 
+// Fix Toggle buton highlight (taken from https://github.com/mui/material-ui/issues/18091)
+type TooltipToggleButtonProps = ToggleButtonProps & {
+  /**
+   * The title passed to the Tooltip
+   */
+  title: string;
+  TooltipProps?: Omit<TooltipProps, 'children' | 'title'>;
+};
+
+// Catch props and forward to ToggleButton
+const TooltipToggleButton: React.FC<TooltipToggleButtonProps> = React.forwardRef(
+  ({ title, TooltipProps: tooltipProps, ...props }, ref) => {
+    return (
+      <Tooltip {...tooltipProps} title={title}>
+        <ToggleButton ref={ref} {...props} />
+      </Tooltip>
+    );
+  },
+);
+
+TooltipToggleButton.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  title: PropTypes.string.isRequired,
+  TooltipProps: PropTypes.object,
+};
+
 interface ToggleDisplayOptionProps {
   displayOption: ApiDisplayOptions;
   setDisplayOption: (newValue: ApiDisplayOptions) => void;
 }
+
 export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
   const { displayOption, setDisplayOption } = props;
 
@@ -90,21 +121,15 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         },
       }}
     >
-      <Tooltip title="Collapse list view">
-        <ToggleButton value="collapsed" aria-label="colapsed list">
-          <ReorderRoundedIcon size="small" />
-        </ToggleButton>
-      </Tooltip>
-      <Tooltip title="Expand list view">
-        <ToggleButton value="expended" aria-label="expended list">
-          <CalendarViewDayRoundedIcon />
-        </ToggleButton>
-      </Tooltip>
-      <Tooltip title="Table view">
-        <ToggleButton value="table" aria-label="table">
-          <TableChartRoundedIcon />
-        </ToggleButton>
-      </Tooltip>
+      <TooltipToggleButton value="collapsed" aria-label="colapsed list" title="Collapse list view">
+        <ReorderRoundedIcon size="small" />
+      </TooltipToggleButton>
+      <TooltipToggleButton value="expended" aria-label="expended list" title="Expand list view">
+        <CalendarViewDayRoundedIcon />
+      </TooltipToggleButton>
+      <TooltipToggleButton value="table" aria-label="table" title="Table view">
+        <TableChartRoundedIcon />
+      </TooltipToggleButton>
     </ToggleButtonGroup>
   );
 }
