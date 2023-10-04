@@ -51,7 +51,7 @@ export default function JoyUIComponents() {
                 Simple, <GradientText>good looking</GradientText>,<br /> and reliable components
               </Typography>
             }
-            description="Foundational pre-built components that look beautiful by default, building off of years from the Material UI experience."
+            description="Foundational pre-built components that look beautiful by default, building on years of experience with Material UI."
           />
           <Group desktopColumns={2} sx={{ mt: 3 }}>
             {DEMOS.map((name) => (
