@@ -10,7 +10,7 @@ import {
 } from '@mui-internal/test-utils';
 import MenuItem, { menuItemClasses as classes } from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
-import ListContext from '../List/ListContext';
+import ListContext from '@mui/material/List/ListContext';
 
 describe('<MenuItem />', () => {
   const { render } = createRenderer();
