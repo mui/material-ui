@@ -31,25 +31,26 @@ describe('<FilledInput />', () => {
     ],
   }));
 
-  it.skip('should have the underline class', () => {
-    const { container } = render(<FilledInput />);
-    const root = container.firstChild;
+  it('should have the underline class', () => {
+    const { getByTestId } = render(<FilledInput data-testid="test-input" />);
+    const root = getByTestId('test-input');
     expect(root).not.to.equal(null);
+    expect(root).to.have.class(classes.underline);
   });
 
-  it.skip('color={undefined} should not result in crash', () => {
+  it('color={undefined} should not result in crash', () => {
     expect(() => {
       render(<FilledInput color={undefined} />);
     }).not.toErrorDev();
   });
 
-  it.skip('can disable the underline', () => {
-    const { container } = render(<FilledInput disableUnderline />);
-    const root = container.firstChild;
+  it('can disable the underline', () => {
+    const { getByTestId } = render(<FilledInput data-testid="test-input" disableUnderline />);
+    const root = getByTestId('test-input');
     expect(root).not.to.have.class(classes.underline);
   });
 
-  it.skip('should forward classes to InputBase', () => {
+  it('should forward classes to InputBase', () => {
     render(<FilledInput error classes={{ error: 'error' }} />);
     expect(document.querySelector('.error')).not.to.equal(null);
   });
@@ -60,14 +61,15 @@ describe('<FilledInput />', () => {
     expect(document.querySelector('[data-test=test]')).not.to.equal(null);
   });
 
-  it.skip('should respect the classes coming from InputBase', () => {
-    render(
+  it('should respect the classes coming from InputBase', () => {
+    const { getByTestId } = render(
       <FilledInput
-        data-test="test"
+        data-testid="test-input"
         multiline
         sx={{ [`&.${classes.multiline}`]: { mt: '10px' } }}
       />,
     );
-    expect(document.querySelector('[data-test=test]')).toHaveComputedStyle({ marginTop: '10px' });
+    const root = getByTestId('test-input');
+    expect(root).toHaveComputedStyle({ marginTop: '10px' });
   });
 });
