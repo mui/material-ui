@@ -8,6 +8,7 @@ export type {
   FormControlRootSlotPropsOverrides,
   FormControlState,
   UseFormControlContextReturnValue,
+  FormControlOwnProps,
 } from './FormControl.types';
 
 export * from './formControlClasses';
