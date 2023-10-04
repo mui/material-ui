@@ -153,7 +153,7 @@ export default function ComponentsApiContent(props) {
             componentName={componentName}
             spreadHint={spreadHint}
             level="h3"
-            headHash={`${componentNameKebabCase}-props`}
+            titleHash={`${componentNameKebabCase}-props`}
           />
 
           <br />
