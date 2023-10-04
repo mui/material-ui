@@ -341,6 +341,9 @@ function ColorInversionDemo() {
             transform: 'translateX(-50%)',
             lineHeight: 0,
             border: 0,
+            '> pre': {
+              backgroundColor: 'transparent',
+            },
           }}
         >
           <HighlightedCode
@@ -382,6 +385,9 @@ function ColorInversionDemo() {
             transform: 'translateX(-50%)',
             lineHeight: 0,
             border: 0,
+            '> pre': {
+              backgroundColor: 'transparent',
+            },
           }}
         >
           <HighlightedCode
@@ -634,6 +640,9 @@ function CSSvars() {
           display: 'flex',
           flexDirection: 'column',
           gap: 1.5,
+          '> pre': {
+            backgroundColor: 'transparent',
+          },
         }}
       >
         <HighlightedCode
