@@ -215,7 +215,7 @@ function usePrimarySelector() {
           </React.Fragment>
         )}
         {...props}
-        sx={{ minWidth: { xs: 'auto', sm: 140 }, borderRadius: 'lg' }}
+        sx={{ minWidth: { xs: 'auto', sm: 140 }, borderRadius: 'lg', fontFamily: 'IBM Plex Sans' }}
       >
         <Option value="default">
           <PalettePreview range={colors.blue} />
@@ -263,7 +263,7 @@ function useNeutralSelector() {
           </React.Fragment>
         )}
         {...props}
-        sx={{ minWidth: { xs: 'auto', sm: 140 }, borderRadius: 'lg' }}
+        sx={{ minWidth: { xs: 'auto', sm: 140 }, borderRadius: 'lg', fontFamily: 'IBM Plex Sans' }}
       >
         <Option value="default">
           <PalettePreview range={colors.grey} />
@@ -370,10 +370,10 @@ function useRadiusSelector() {
           </React.Fragment>
         )}
         {...props}
-        sx={{ minWidth: { xs: 'auto', sm: 140 }, borderRadius: 'lg' }}
+        sx={{ minWidth: { xs: 'auto', sm: 140 }, borderRadius: 'lg', fontFamily: 'IBM Plex Sans' }}
       >
         {Object.keys(radiusOptions).map((item) => (
-          <Option key={item} value={item}>
+          <Option key={item} value={item} sx={{ fontFamily: 'IBM Plex Sans' }}>
             {item}
           </Option>
         ))}
@@ -513,7 +513,14 @@ export default function ThemableTemplate() {
           },
         })}
       >
-        <Tooltip size="sm" title="Cast magic">
+        <Tooltip
+          size="sm"
+          variant="outlined"
+          color="primary"
+          title="Cast magic"
+          arrow
+          sx={{ fontFamily: 'IBM Plex Sans' }}
+        >
           <IconButton
             size="sm"
             variant="outlined"
@@ -583,6 +590,11 @@ export default function ThemableTemplate() {
               gap: 0.2,
               borderRadius: 'xl',
               flex: 'none',
+              [`& .${tabClasses.root}`]: {
+                '&:hover': {
+                  bgcolor: 'primary.100',
+                },
+              },
               [`& .${tabClasses.root}[aria-selected="true"]`]: {
                 ...theme.variants.solid.neutral,
                 bgcolor: 'primary.50',
@@ -593,10 +605,9 @@ export default function ThemableTemplate() {
               [theme.getColorSchemeSelector('dark')]: {
                 [`& .${tabClasses.root}`]: {
                   '&:hover': {
-                    bgcolor: 'neutral.700',
+                    bgcolor: 'primary.800',
                   },
                 },
-
                 [`& .${tabClasses.root}[aria-selected="true"]`]: {
                   bgcolor: 'primary.800',
                   color: 'primary.200',
