@@ -32,7 +32,7 @@ const additionalTestimonials = [
     companyLogo: undefined,
   },
   {
-    testimonial: `“Migrating my website from Material UI to Joy UI was a breeze. The transition was seamless, and the library's intuitive nature made it easy to pick up. The customizable default theme system is a plus, allowing me to introduce custom design tokens with type-safe support. Joy UI has transformed my development process, making it enjoyable and efficient. I highly recommend it for React projects.”`,
+    testimonial: `“Migrating my website from Material UI to Joy UI was a breeze. The transition was seamless, and the library's intuitive nature made it easy to pick up. The customizable default theme system is a plus, allowing me to introduce custom design tokens with type-safe support. Joy UI has transformed my development process, making it enjoyable and efficient.”`,
     author: 'Matthew Kwong',
     workTitle: 'Senior Web Engineer',
     avatar: '/static/branding/joy-ui/matthew-kwong.jpeg',
@@ -114,7 +114,7 @@ export default function BaseUITestimonial() {
                 }),
               })}
             >
-              <Typography color="text.primary" sx={{ flexGrow: 1 }}>
+              <Typography color="text.secondary" sx={{ flexGrow: 1 }}>
                 {testimonial}
               </Typography>
               <TestimonialAuthor

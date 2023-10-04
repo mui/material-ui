@@ -569,7 +569,7 @@ export default function ThemableTemplate() {
           variant="outlined"
           component="div"
           orientation="horizontal"
-          sx={{
+          sx={(theme) => ({
             mt: 4,
             borderRadius: 'xl',
             fontWeight: 'lg',
@@ -577,7 +577,11 @@ export default function ThemableTemplate() {
             mx: 'auto',
             overflow: 'auto',
             maxWidth: '100%',
-          }}
+            borderColor: 'primary.200',
+            [theme.getColorSchemeSelector('dark')]: {
+              borderColor: 'rgba(var(--joy-palette-primary-lightChannel) / 0.15)',
+            },
+          })}
         >
           <TabList
             variant="plain"
@@ -597,10 +601,10 @@ export default function ThemableTemplate() {
               },
               [`& .${tabClasses.root}[aria-selected="true"]`]: {
                 ...theme.variants.solid.neutral,
-                bgcolor: 'primary.50',
+                bgcolor: 'primary.100',
                 color: 'primary.500',
                 border: '1px solid',
-                borderColor: 'primary.200',
+                borderColor: 'primary.300',
               },
               [theme.getColorSchemeSelector('dark')]: {
                 [`& .${tabClasses.root}`]: {
@@ -647,7 +651,7 @@ export default function ThemableTemplate() {
               p: 0,
               border: '1px solid',
               borderColor: theme.palette.neutral[200],
-              boxShadow: `0 0 0 4px ${theme.palette.primary[100]}`,
+              boxShadow: '0 0 0 6px rgba(141 206 255 / 0.2)',
               borderRadius: 'var(--template-radius-lg)',
               height: 'var(--_preview-height)',
               transform: 'scale(var(--_scale))',
@@ -660,8 +664,8 @@ export default function ThemableTemplate() {
             },
             [theme.getColorSchemeSelector('dark')]: {
               '& [role="tabpanel"]': {
-                borderColor: theme.palette.neutral[800],
-                boxShadow: `0 0 0 4px ${theme.palette.primary[800]}`,
+                borderColor: theme.palette.primary[800],
+                boxShadow: '0 0 0 6px rgba(0 127 255 / 0.2)',
               },
             },
           })}

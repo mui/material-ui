@@ -49,7 +49,7 @@ export function Desktop() {
         transformOrigin: '0px 0px',
         transform: 'scale(0.6) translate(var(--_translate-start))',
         boxShadow:
-          '0px 0px 0 10px rgba(141 206 255 / 0.7), 0px 4px 16px rgba(var(--joy-palette-neutral-mainChannel) / 0.4)',
+          '0 0 0 8px rgba(141 206 255 / 0.4), 0px 4px 16px rgba(var(--joy-palette-neutral-mainChannel) / 0.4)',
         animation: 'rotate-left 0.8s ease forwards',
         animationDelay: '0.6s',
         border: '1px solid',
@@ -57,7 +57,7 @@ export function Desktop() {
         [theme.getColorSchemeSelector('dark')]: {
           borderColor: 'primary.700',
           boxShadow:
-            '0px 0px 0 10px rgba(0 114 229 / 0.4), 0px 4px 16px rgba(var(--joy-palette-neutral-darkChannel) / 0.8)',
+            '0 0 0 8px rgba(0 114 229 / 0.3), 0px 4px 16px rgba(var(--joy-palette-neutral-darkChannel) / 0.8)',
         },
       })}
     >
@@ -104,14 +104,14 @@ export function Mobile() {
         transformOrigin: '0px 0px',
         transform: 'scale(0.6) translate(var(--_translate-start))',
         boxShadow:
-          '0px 0px 0 10px rgba(141 206 255 / 0.7), 0px 4px 16px rgba(var(--joy-palette-neutral-mainChannel) / 0.4)',
+          '0 0 0 8px rgba(141 206 255 / 0.4), 0px 4px 16px rgba(var(--joy-palette-neutral-mainChannel) / 0.4)',
         animation: 'rotate-right 0.6s ease forwards',
         animationDelay: '0.6s',
         transition: 'transform 0.15s ease',
         [theme.getColorSchemeSelector('dark')]: {
           borderColor: 'primary.600',
           boxShadow:
-            '0px 0px 0 10px rgba(0 114 229 / 0.4), 0px 4px 16px rgba(var(--joy-palette-neutral-darkChannel) / 0.8)',
+            '0 0 0 8px rgba(0 114 229 / 0.3), 0px 4px 16px rgba(var(--joy-palette-neutral-darkChannel) / 0.8)',
         },
       })}
     >
