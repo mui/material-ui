@@ -9,7 +9,7 @@ waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 
 # Snackbar
 
-<p class="description">Also known as a toast, snackbars are used for brief notifications of a process that has been performed or will perform.</p>
+<p class="description">Also known as a toast, snackbars are used for brief notifications of a process that has been performed or will be performed.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -19,7 +19,7 @@ waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 import Snackbar from '@mui/material/Snackbar';
 ```
 
-Inspired by Google Keep, the demo below shows a basic snackbar with a text element and two actions.
+Inspired by Google Keep, this demo shows a basic snackbar with a text element and two actions.
 
 {{"demo": "SimpleSnackbar.js"}}
 
@@ -41,15 +41,15 @@ Use the Snackbar Content component for adding text and actions to the snackbar.
 
 {{"demo": "LongTextSnackbar.js"}}
 
-### Usage with Alerts
+### Use with alerts
 
-Use the Alert component inside a Snackbar for messages that communicate a certain severity.
+Use an alert inside a snackbar for messages that communicate a certain severity.
 
 {{"demo": "CustomizedSnackbars.js"}}
 
 ### Transitions
 
-Combined with the [Grow](/material-ui/transitions/#grow) (default) and [Slide](/material-ui/transitions/#slide) transition components, use the `TransitionComponent` prop to add transitions to the Snackbar.
+You can use the `TransitionComponent` prop to change the transition of the Snackbar from [Grow](/material-ui/transitions/#grow) (the default) to others such as [Slide](/material-ui/transitions/#slide).
 
 {{"demo": "TransitionsSnackbar.js"}}
 
@@ -63,7 +63,7 @@ The demo below shows how to use the Slide transition.
 
 ### Consecutive snackbars
 
-The demo below shows how to show multiple snackbars without stacking them, using a consecutive animation.
+This demo shows how to show multiple snackbars without stacking them by using a consecutive animation.
 
 {{"demo": "ConsecutiveSnackbars.js"}}
 
@@ -82,7 +82,7 @@ The demo below shows you how to do that.
 ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
 With an imperative API, [notistack](https://github.com/iamhosseindhv/notistack) allows you to vertically stack multiple Snackbars without having to handle their open and close states.
-Even though this is discouraged by Material Design, it is still a common pattern found across many other apps.
+Even though this is discouraged in the Material Design guidelines, it is still a common pattern.
 
 {{"demo": "IntegrationNotistack.js", "defaultCodeOpen": false}}
 
@@ -90,10 +90,10 @@ Even though this is discouraged by Material Design, it is still a common pattern
 
 Here are a few tips to make sure you have an accessible Snackbar component:
 
-- Based on the [WAI-ARIA guidelines](https://www.w3.org/TR/wai-aria-1.1/#alert), the Snackbar won't auto-hide by default.
-  If you use the `autoHideDuration` prop, make sure to [sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) for the user to process the information displayed on it.
+- Based on the [WAI-ARIA guidelines](https://www.w3.org/TR/wai-aria-1.1/#alert), the Snackbar doesn't auto-hide by default.
+  If you use the `autoHideDuration` prop, make sure to [provide sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) for the user to process the information displayed on it.
 
-- All Snackbars are automatically dismissed by pressing <kbd class="key">Escape</kbd>. If you have multiple instances appearing at the same time and want <kbd class="key">Escape</kbd> to dismiss only the oldest currently open, call `event.preventDefault` in the `onClose` prop.
+- All Snackbars are automatically dismissed by pressing <kbd class="key">Escape</kbd>. If you have multiple instances appearing at the same time and want <kbd class="key">Escape</kbd> to dismiss only the oldest currently open one, call `event.preventDefault` in the `onClose` prop.
 
 ```jsx
 export default function MyComponent() {
