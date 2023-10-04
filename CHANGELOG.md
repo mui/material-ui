@@ -8,9 +8,8 @@ _Oct 3, 2023_
 
 A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
-- 🚀 Introduced color inversion utilities to Joy UI (#38916) @siriwatknp
+- 🎨 Introduced color inversion utilities to Joy UI (#38916) @siriwatknp
 - 🚀 Added Chip and related TextField components to Material You @DiegoAndai, @mj12albert
-- 🔋 Added keyframes and TypeScript support to the zero-runtime packages @brijeshb42
 
 ### `@mui/material@5.14.12`
 
@@ -48,12 +47,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [Drawer] Apply content styles from theme to content slot (#39199) @sai6855
 - [List] Add gap and missing active styles (#39146) @siriwatknp
 - [Switch] Slight adjustments to the design (#39276) @danilo-leal
-
-### `@mui/zero-tag-processor@0.0.1-alpha.0`
-
-- [zero][system] Add ts reference to base package (#39211) @brijeshb42
-- [zero][system] Add support for keyframes (#39155) @brijeshb42
-- [zero][system] Create jest transformer to test styled components (#39062) @brijeshb42
 
 ### Docs
 
