@@ -58,4 +58,21 @@ function genericValueTest() {
       },
     },
   });
+
+  // tests deep slot prop forwarding up to the modal backdrop
+  <Select
+    MenuProps={{
+      slotProps: {
+        root: {
+          slotProps: {
+            backdrop: {
+              style: {
+                backgroundColor: 'transparent',
+              },
+            },
+          },
+        },
+      },
+    }}
+  />;
 }

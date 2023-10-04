@@ -2,8 +2,17 @@ import fs from 'fs/promises';
 import path from 'path';
 import { chromium } from 'playwright';
 
+/**
+ * Usage:
+ * - `yarn screenshot` to generate all screenshots
+ * - `yarn screenshot order-dashboard` to generate screenshots for `docs/pages/joy-ui/getting-started/templates/order-dashboard.tsx`
+ * - `yarn screenshot [...templates]` to generate screenshots for the templates in `docs/pages/joy-ui/getting-started/templates/*`
+ */
+
 const host = process.env.DEPLOY_PREVIEW || 'http://localhost:3000';
 const directory = 'docs/public/static/screenshots';
+
+const names = new Set(process.argv.slice(2));
 
 (async () => {
   // eslint-disable-next-line no-console
@@ -15,7 +24,11 @@ const directory = 'docs/public/static/screenshots';
     path.join(process.cwd(), 'docs/pages/joy-ui/getting-started/templates'),
   );
   const urls = files
-    .filter((file) => !file.startsWith('index'))
+    .filter(
+      (file) =>
+        !file.startsWith('index') &&
+        (names.size === 0 || names.has(file.replace(/\.(js|tsx)$/, ''))),
+    )
     .map((file) => `/joy-ui/getting-started/templates/${file.replace(/\.(js|tsx)$/, '/')}`);
 
   try {
