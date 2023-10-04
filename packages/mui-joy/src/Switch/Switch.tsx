@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps, Theme } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import useSlot from '../utils/useSlot';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
@@ -265,11 +265,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   }
 
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(
-    inProps.color,
-    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
-  );
+  const color = inProps.color ?? (formControl?.error ? 'danger' : formControl?.color ?? colorProp);
 
   const useSwitchProps = {
     disabled: inProps.disabled ?? formControl?.disabled ?? disabledExternalProp,
