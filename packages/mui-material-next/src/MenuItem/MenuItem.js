@@ -8,7 +8,7 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import { ListContext } from '@mui/material/List';
+import ListContext from '@mui/material/List/ListContext';
 import ButtonBase from '@mui/material/ButtonBase';
 import { listItemIconClasses } from '@mui/material/ListItemIcon';
 import { listItemTextClasses } from '@mui/material/ListItemText';

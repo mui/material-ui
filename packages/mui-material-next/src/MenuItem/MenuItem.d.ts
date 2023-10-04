@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverrideProps } from '@mui/types';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '@mui/material/ButtonBase';
-import { Theme } from '../styles';
+import { Theme } from '@mui/material/styles';
 import { MenuItemClasses } from './menuItemClasses';
 
 export interface MenuItemOwnProps {
