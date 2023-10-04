@@ -2,13 +2,20 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
-import FormControl, { FormControlClasses, formControlClasses as classes } from '@mui/material-next/FormControl';
-// TODO v6: replace with material-next/FilledInput
+import FormControl, { formControlClasses as classes } from '@mui/material-next/FormControl';
+import FilledInput from '@mui/material-next/FilledInput';
 import InputBase from '@mui/material-next/InputBase';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 // TODO v6: replace with material-next/Select
 import Select from '@mui/material/Select';
 import useFormControl from './useFormControl';
+
+type TestFormControlledComponent = {
+  onFilled: () => {};
+  onEmpty: () => {};
+  onFocus: () => {};
+  onBlur: () => {};
+};
 
 describe('<FormControl />', () => {
   const { render } = createRenderer();
@@ -51,7 +58,7 @@ describe('<FormControl />', () => {
       const root = container.firstChild;
 
       expect(root).not.to.have.class(classes.marginNormal);
-      expect(root).not.to.have.class((classes as FormControlClasses & { sizeSmall: string }).sizeSmall);
+      expect(root).not.to.have.class('MuiFormControl-sizeSmall');
     });
 
     it('can have the margin normal class', () => {
@@ -59,7 +66,7 @@ describe('<FormControl />', () => {
       const root = container.firstChild;
 
       expect(root).to.have.class(classes.marginNormal);
-      expect(root).not.to.have.class((classes as FormControlClasses & { sizeSmall: string }).sizeSmall);
+      expect(root).not.to.have.class('MuiFormControl-sizeSmall');
     });
 
     it('can have the margin dense class', () => {
@@ -205,27 +212,24 @@ describe('<FormControl />', () => {
     });
   });
 
-  // TODO v6: needs FilledInput + FormControl integrated
-  // eslint-disable-next-line mocha/no-skipped-tests
-  describe.skip('input', () => {
+  describe('input', () => {
     it('should be filled when a value is set', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO v6: use material-next/FilledInput */}
-          <InputBase value="bar" />
+          <FilledInput value="bar" />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
       expect(readContext.args[0][0]).to.have.property('filled', true);
     });
 
-    it('should be filled when a value is set through inputProps', () => {
+    // eslint-disable-next-line mocha/no-skipped-tests
+    it.skip('should be filled when a value is set through inputProps', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO v6: use material-next/FilledInput */}
-          <InputBase inputProps={{ value: 'bar' }} />
+          <FilledInput inputProps={{ value: 'bar' }} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
@@ -236,8 +240,7 @@ describe('<FormControl />', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO v6: use material-next/FilledInput */}
-          <InputBase defaultValue="bar" />
+          <FilledInput defaultValue="bar" />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
@@ -248,8 +251,7 @@ describe('<FormControl />', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO v6: use material-next/FilledInput */}
-          <InputBase endAdornment={<div />} />
+          <FilledInput endAdornment={<div />} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
@@ -260,8 +262,7 @@ describe('<FormControl />', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO v6: use material-next/FilledInput */}
-          <InputBase startAdornment={<div />} />
+          <FilledInput startAdornment={<div />} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
@@ -351,13 +352,6 @@ describe('<FormControl />', () => {
         expect(formControlRef.current).to.have.property('fullWidth', true);
       });
     });
-
-    type TestFormControlledComponent = {
-      onFilled: () => {},
-      onEmpty: () => {},
-      onFocus: () => {},
-      onBlur: () => {},
-    }
 
     describe('callbacks', () => {
       describe('onFilled', () => {
