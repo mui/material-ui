@@ -446,13 +446,13 @@ function CSSvars() {
             startDecorator={<AutoFixHighIcon />}
             onClick={() => {
               setJoyTrack({
-                width: Math.floor(Math.random() * (48 - 64 + 1)) + 64,
+                width: Math.floor(Math.random() * (64 + 1)) + 24,
                 height: Math.floor(Math.random() * (32 - 24 + 1)) + 24,
                 radius: Math.floor(Math.random() * (20 - 0 + 1)) + 0,
               });
               setJoyThumb({
-                width: Math.floor(Math.random() * (24 - 20 + 1)) + 20,
-                size: Math.floor(Math.random() * (24 - 48 + 1)) + 48,
+                width: Math.floor(Math.random() * (24 - 20 + 1)) + 12,
+                size: Math.floor(Math.random() * (24 - 48 + 1)) + 32,
                 radius: undefined,
               });
             }}
