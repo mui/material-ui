@@ -75,7 +75,7 @@ export default function JoyUIHero() {
         perspective: '1500px',
         overflow: 'initial',
       }}
-      disableRightBackdrop
+      altLinearGradient
       right={
         <React.Fragment>
           <DesktopShowcase />

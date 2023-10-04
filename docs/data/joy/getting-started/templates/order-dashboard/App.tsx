@@ -40,6 +40,7 @@ export default function JoyOrderDashboardTemplate({
           component="main"
           className="MainContent"
           sx={{
+            backgroundColor: 'background.body',
             px: {
               xs: 2,
               md: 6,

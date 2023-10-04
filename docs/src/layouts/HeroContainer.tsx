@@ -11,6 +11,7 @@ interface HeroContainerProps {
   disableRightBackdrop?: boolean;
   left: React.ReactElement;
   linearGradient?: boolean;
+  altLinearGradient?: boolean;
   right: React.ReactElement;
   rightSx?: BoxProps['sx'];
 }
@@ -22,6 +23,7 @@ export default function HeroContainer(props: HeroContainerProps) {
     disableRightBackdrop = false,
     left,
     linearGradient,
+    altLinearGradient,
     right,
     rightSx,
   } = props;
@@ -75,6 +77,13 @@ export default function HeroContainer(props: HeroContainerProps) {
                 (theme.vars || theme).palette.grey[50]
               } 0%, ${(theme.vars || theme).palette.primary[50]} 100%)`,
             }),
+            ...(altLinearGradient && {
+              border: 'none',
+              background: `radial-gradient(farthest-corner circle at 100% 30%, ${alpha(
+                theme.palette.primary[100],
+                0.4,
+              )} 0%, #FFF 100%)`,
+            }),
             ...theme.applyDarkStyles({
               background: 'primaryDark.900',
               borderColor: 'primaryDark.700',
@@ -83,6 +92,13 @@ export default function HeroContainer(props: HeroContainerProps) {
                   theme.palette.primary[900],
                   0.3,
                 )} 0%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
+              }),
+              ...(altLinearGradient && {
+                border: 'none',
+                background: `radial-gradient(farthest-corner circle at 100% 30%, ${alpha(
+                  theme.palette.primary[900],
+                  0.3,
+                )} 0%, transparent 100%)`,
               }),
             }),
           })),
