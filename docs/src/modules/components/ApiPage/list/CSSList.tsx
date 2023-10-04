@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ExpendableApiItem, {
   ApiItemContaier,
-} from 'docs/src/modules/components/ApiPage/ExpendableApiItem';
+} from 'docs/src/modules/components/ApiPage/list/ExpendableApiItem';
 
 const StyledApiItem = styled(ExpendableApiItem)({
   '& p': {

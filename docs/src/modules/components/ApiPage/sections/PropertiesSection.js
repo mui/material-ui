@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ToggleDisplayOption, {
   useApiPageOption,
-} from 'docs/src/modules/components/ApiPage/ToggleDisplayOption';
+} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import PropertiesList, { getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
 

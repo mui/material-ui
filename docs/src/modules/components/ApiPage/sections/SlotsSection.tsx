@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ToggleDisplayOption, {
   useApiPageOption,
-} from 'docs/src/modules/components/ApiPage/ToggleDisplayOption';
+} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import SlotsList from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import SlotsTable from 'docs/src/modules/components/ApiPage/table/SlotsTable';
 

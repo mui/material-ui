@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ToggleDisplayOption, {
   useApiPageOption,
-} from 'docs/src/modules/components/ApiPage/ToggleDisplayOption';
+} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import CSSList, { getHash } from 'docs/src/modules/components/ApiPage/list/CSSList';
 import CSSTable from 'docs/src/modules/components/ApiPage/table/CSSTable';
 

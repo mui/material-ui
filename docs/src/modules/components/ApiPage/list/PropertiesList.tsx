@@ -10,7 +10,7 @@ import {
 } from 'docs/src/modules/brandingTheme';
 import ExpendableApiItem, {
   ApiItemContaier,
-} from 'docs/src/modules/components/ApiPage/ExpendableApiItem';
+} from 'docs/src/modules/components/ApiPage/list/ExpendableApiItem';
 
 const StyledApiItem = styled(ExpendableApiItem)(
   ({ theme }) => ({

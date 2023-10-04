@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ExpendableApiItem, {
   ApiItemContaier,
-} from 'docs/src/modules/components/ApiPage/ExpendableApiItem';
+} from 'docs/src/modules/components/ApiPage/list/ExpendableApiItem';
 
 export type ClassesFormatedParams = {
   className: string;
