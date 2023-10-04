@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { refType } from '@mui/utils';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import { OverrideProps } from '@mui/types';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -239,13 +239,13 @@ const FilledInput = React.forwardRef(function FilledInput<
     hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
     multiline = false,
-    slotProps,
-    slots = {},
     type = 'text',
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
-  const ownerState = {
+  const ownerState: FilledInputOwnerState = {
     ...props,
     disableUnderline,
     fullWidth,
@@ -256,33 +256,71 @@ const FilledInput = React.forwardRef(function FilledInput<
 
   const classes = useUtilityClasses(ownerState);
 
-  const RootSlot = slots.root ?? FilledInputRoot;
-  const InputSlot = slots.input ?? FilledInputInput;
+  const Root = slots.root ?? FilledInputRoot;
+  const Input = slots.input ?? FilledInputInput;
+
+  const rootProps = useSlotProps({
+    elementType: Root,
+    externalSlotProps: slotProps.root,
+    ownerState: {
+      ...ownerState,
+      maxRows: undefined,
+      minRows: undefined,
+      rows: undefined,
+      'aria-describedby': undefined,
+      autoComplete: undefined,
+      formControl: undefined,
+      focused: false,
+    },
+    className: [classes.root],
+  });
+
+  const inputProps = useSlotProps({
+    elementType: Input,
+    externalSlotProps: slotProps.input,
+    ownerState: {
+      ...ownerState,
+      maxRows: undefined,
+      minRows: undefined,
+      rows: undefined,
+      'aria-describedby': undefined,
+      autoComplete: undefined,
+      formControl: undefined,
+      focused: false,
+    },
+    className: [classes.input],
+  });
 
   if (multiline) {
     return (
       <InputBase
-        slots={{ root: RootSlot, input: InputSlot }}
+        slots={{ root: Root, textarea: Input }}
+        slotProps={{
+          root: rootProps,
+          input: inputProps,
+        }}
         fullWidth={fullWidth}
         inputComponent={inputComponent}
         multiline
         ref={forwardedRef}
         {...other}
-        classes={classes}
       />
     );
   }
 
   return (
     <InputBase
-      slots={{ root: RootSlot, input: InputSlot }}
+      slots={{ root: Root, input: Input }}
+      slotProps={{
+        root: rootProps,
+        input: inputProps,
+      }}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       ref={forwardedRef}
       type={type}
       multiline={false}
       {...other}
-      classes={classes}
     />
   );
 }) as FilledInputComponent;
