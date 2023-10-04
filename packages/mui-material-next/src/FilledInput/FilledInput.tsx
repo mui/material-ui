@@ -3,7 +3,7 @@ import * as React from 'react';
 import { refType } from '@mui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
-import { OverrideProps } from '@mui/types';
+import { DefaultComponentProps, OverrideProps } from '@mui/types';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -46,19 +46,15 @@ const FilledInputRoot = styled(InputBaseRoot, {
 
   return {
     '--md-comp-filled-input-container-color': tokens.sys.color.surfaceContainerHighest,
-
     '--md-comp-filled-input-active-indicator-color': tokens.sys.color.onSurfaceVariant,
     '--md-comp-filled-input-hover-active-indicator-color': tokens.sys.color.onSurface,
     '--md-comp-filled-input-focus-active-indicator-color':
       tokens.sys.color[ownerState.color ?? 'primary'],
-
     '--md-comp-filled-input-error-active-indicator-color': tokens.sys.color.error,
     '--md-comp-filled-input-error-hover-active-indicator-color': tokens.sys.color.onErrorContainer,
     '--md-comp-filled-input-error-focus-active-indicator-color': tokens.sys.color.error,
-
     '--md-comp-filled-input-disabled-container-color': tokens.sys.color.onSurface,
     '--md-comp-filled-input-disabled-container-opacity': 0.04,
-
     position: 'relative',
     backgroundColor: 'var(--md-comp-filled-input-container-color)',
     borderTopLeftRadius: tokens.shape.borderRadius,
@@ -341,7 +337,7 @@ interface FilledInputComponent {
 FilledInput.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
@@ -353,6 +349,10 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    */
@@ -367,31 +367,6 @@ FilledInput.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
-  /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    root: PropTypes.object,
-  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -431,16 +406,10 @@ FilledInput.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * The component used for the `input` element.
+   * The component used for the input node.
    * Either a string to use a HTML element or a component.
-   * @default 'input'
    */
-  inputComponent: PropTypes.elementType,
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   * @default {}
-   */
-  inputProps: PropTypes.object,
+  inputComponent: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Pass a ref to the `input` element.
    */
@@ -454,13 +423,13 @@ FilledInput.propTypes /* remove-proptypes */ = {
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
-  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  maxRows: PropTypes.number,
   /**
    * Minimum number of rows to display when multiline option is set to true.
    */
-  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  minRows: PropTypes.number,
   /**
-   * If `true`, a [TextareaAutosize](/material-ui/react-textarea-autosize/) element is rendered.
+   * If `true`, a `textarea` element is rendered.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -492,29 +461,24 @@ FilledInput.propTypes /* remove-proptypes */ = {
   /**
    * Number of rows to display when multiline option is set to true.
    */
-  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rows: PropTypes.number,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
+   * The props used for each slot inside the Input.
    * @default {}
    */
   slotProps: PropTypes.shape({
-    input: PropTypes.object,
-    root: PropTypes.object,
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
    * @default {}
    */
   slots: PropTypes.shape({
     input: PropTypes.elementType,
     root: PropTypes.elementType,
+    textarea: PropTypes.elementType,
   }),
   /**
    * Start `InputAdornment` for this component.
@@ -532,12 +496,35 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
    */
-  type: PropTypes.string,
+  type: PropTypes /* @typescript-to-proptypes-ignore */.oneOf([
+    'button',
+    'checkbox',
+    'color',
+    'date',
+    'datetime-local',
+    'email',
+    'file',
+    'hidden',
+    'image',
+    'month',
+    'number',
+    'password',
+    'radio',
+    'range',
+    'reset',
+    'search',
+    'submit',
+    'tel',
+    'text',
+    'time',
+    'url',
+    'week',
+  ]),
   /**
    * The value of the `input` element, required for a controlled component.
    */
   value: PropTypes.any,
-};
+} as any;
 
 // @ts-ignore - internal logic to integrate with FormControl
 FilledInput.muiName = 'Input';
