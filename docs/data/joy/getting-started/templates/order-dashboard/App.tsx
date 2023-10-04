@@ -11,12 +11,10 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 
-import FirstSidebar from './components/FirstSidebar';
-import SecondSidebar from './components/SecondSidebar';
+import Sidebar from './components/Sidebar';
 import OrderTable from './components/OrderTable';
 import OrderList from './components/OrderList';
 import Header from './components/Header';
-import ColorSchemeToggle from './components/ColorSchemeToggle';
 
 type PropsOf<T> = T extends React.ComponentType<infer P> ? P : never;
 
@@ -37,8 +35,7 @@ export default function JoyOrderDashboardTemplate({
         }}
       >
         <Header />
-        <FirstSidebar />
-        <SecondSidebar />
+        <Sidebar />
         <Box
           component="main"
           className="MainContent"
@@ -93,9 +90,6 @@ export default function JoyOrderDashboardTemplate({
                 Orders
               </Typography>
             </Breadcrumbs>
-            <ColorSchemeToggle
-              sx={{ ml: 'auto', display: { xs: 'none', md: 'inline-flex' } }}
-            />
           </Box>
           <Box
             sx={{

@@ -80,7 +80,7 @@ export default function Sidebar() {
         },
         transition: 'transform 0.4s, width 0.4s',
         zIndex: 10000,
-        height: '100%',
+        height: '100dvh',
         width: 'var(--Sidebar-width)',
         top: 0,
         p: 2,
@@ -110,8 +110,8 @@ export default function Sidebar() {
           top: 0,
           left: 0,
           width: '100vw',
-          height: '100%',
-          opacity: 'calc(var(--SideNavigation-slideIn, 0) - 0.2)',
+          height: '100vh',
+          opacity: 'var(--SideNavigation-slideIn)',
           backgroundColor: 'var(--joy-palette-background-backdrop)',
           transition: 'opacity 0.4s',
           transform: {
@@ -142,11 +142,12 @@ export default function Sidebar() {
         }}
       >
         <List
-          sx={(theme) => ({
-            '--List-gap': '8px',
+          size="sm"
+          sx={{
+            gap: 1,
             '--List-nestedInsetStart': '30px',
-            '--ListItem-radius': theme.vars.radius.sm,
-          })}
+            '--ListItem-radius': (theme) => theme.vars.radius.sm,
+          }}
         >
           <ListItem>
             <ListItemButton>
@@ -167,11 +168,7 @@ export default function Sidebar() {
           </ListItem>
 
           <ListItem>
-            <ListItemButton
-              role="menuitem"
-              component="a"
-              href="/joy-ui/getting-started/templates/order-dashboard/"
-            >
+            <ListItemButton selected>
               <ShoppingCartRoundedIcon />
               <ListItemContent>
                 <Typography level="title-sm">Orders</Typography>
@@ -228,7 +225,6 @@ export default function Sidebar() {
 
           <ListItem nested>
             <Toggler
-              defaultExpanded
               renderToggle={({ open, setOpen }) => (
                 <ListItemButton onClick={() => setOpen(!open)}>
                   <GroupRoundedIcon />
@@ -243,7 +239,13 @@ export default function Sidebar() {
             >
               <List sx={{ gap: 0.5 }}>
                 <ListItem sx={{ mt: 0.5 }}>
-                  <ListItemButton selected>My profile</ListItemButton>
+                  <ListItemButton
+                    role="menuitem"
+                    component="a"
+                    href="/joy-ui/getting-started/templates/profile-dashboard/"
+                  >
+                    My profile
+                  </ListItemButton>
                 </ListItem>
                 <ListItem>
                   <ListItemButton>Create a new user</ListItemButton>
@@ -257,13 +259,14 @@ export default function Sidebar() {
         </List>
 
         <List
-          sx={(theme) => ({
+          size="sm"
+          sx={{
             mt: 'auto',
-            mb: 2,
             flexGrow: 0,
-            '--ListItem-radius': theme.vars.radius.sm,
+            '--ListItem-radius': (theme) => theme.vars.radius.sm,
             '--List-gap': '8px',
-          })}
+            mb: 2,
+          }}
         >
           <ListItem>
             <ListItemButton>
