@@ -53,6 +53,11 @@ const blue = {
   700: '#0066CC',
 };
 
+const grey = {
+  200: '#d0d7de',
+  700: '#424a53',
+};
+
 const CustomButtonRoot = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
@@ -85,11 +90,13 @@ const CustomButtonRoot = styled('button')(
   }
 
   &.disabled {
-    opacity: 0.4;
+    background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]}};
+    border: none;
     cursor: not-allowed;
     box-shadow: none;
     &:hover {
-      background-color: ${blue[500]};
+      background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     }
   }
 `,

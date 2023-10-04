@@ -30,6 +30,11 @@ const cyan = {
   900: '#022127',
 };
 
+const grey = {
+  200: '#d0d7de',
+  700: '#424a53',
+};
+
 function useIsDarkMode() {
   const theme = useTheme();
   return theme.palette.mode === 'dark';
@@ -69,11 +74,13 @@ function Styles() {
     outline: none;
   }
   .${buttonClasses.disabled} {
-    opacity: 0.4;
+    background-color: ${isDarkMode ? grey[700] : grey[200]};
+    color: ${isDarkMode ? grey[200] : grey[700]}};
+    border: 0;
     cursor: not-allowed;
     box-shadow: none;
     &:hover {
-      background-color: ${cyan[500]};
+      background-color: ${isDarkMode ? grey[700] : grey[200]};
     }
   }
   `}</style>
