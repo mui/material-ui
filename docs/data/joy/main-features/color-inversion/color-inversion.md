@@ -67,25 +67,19 @@ The popup slot of the Select component has `disablePortal` set to true by defaul
 
 To skip color inversion on a specific child, set `data-skip-inverted-colors` attribute to the component.
 
-{{"demo": "ColorInversionSkip.js"}}
-
-:::info
 The component with `data-skip-inverted-colors` and its children will be excluded from the color inversion.
-:::
+
+{{"demo": "ColorInversionSkip.js"}}
 
 ### Apply color inversion to any parent
 
 Use `applySolidInversion` or `applySoftInversion` utilities to apply color inversion to any parent component.
 
+They are used internally by the surface components, e.g. [Card](/joy-ui/react-card/#inverted-colors), when `invertedColors` prop is set to true.
+
 ```js
 import { applySolidInversion, applySoftInversion } from '@mui/joy/colorInversion';
 ```
-
-:::info
-Those functions are used internally by the surface components when `invertedColors` prop is set to true.
-:::
-
-{{"demo": "ColorInversionAnyParent.js"}}
 
 Example usage for `sx` prop and `styled` API:
 
@@ -124,9 +118,11 @@ Example usage for `sx` prop and `styled` API:
   );
   ```
 
+{{"demo": "ColorInversionAnyParent.js"}}
+
 ## How it works
 
-When `invertedColors` is set to true or the utility is used on the parent component, a set of CSS variables is applied to it.
+When `invertedColors` is set to true or the utility is used on the parent component, a set of CSS variables is applied to it. There is no [React context](https://react.dev/learn/passing-data-deeply-with-context) involved in this feature.
 
 ```jsx
 <Sheet invertedColors variant="solid" color="neutral">
@@ -159,10 +155,6 @@ As a result, the children will use those CSS variables instead of the theme.
   …
 }
 ```
-
-:::info
-Color inversion is done by and only by CSS so it works with both client-side and server-side rendering.
-:::
 
 ## Common examples
 
