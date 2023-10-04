@@ -22,18 +22,15 @@ export default function MoreInfo({ subject, link }: MoreInfoProps) {
         }}
       />
       Head over to the docs to{' '}
-      <Link href={link}>
-        <Typography
-          variant="body2"
-          fontWeight="semiBold"
-          sx={{
-            '& > svg': { transition: '0.2s' },
-            '&:hover > svg': { transform: 'translateX(2px)' },
-          }}
-        >
-          learn more about {subject}
-          <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle', mb: 0.2 }} />
-        </Typography>
+      <Link
+        href={link}
+        sx={{
+          '& > svg': { transition: '0.2s' },
+          '&:hover > svg': { transform: 'translateX(2px)' },
+        }}
+      >
+        learn more about {subject}
+        <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle', mt: 0.2 }} />
       </Link>
     </Typography>
   );
