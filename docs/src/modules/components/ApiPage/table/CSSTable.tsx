@@ -8,7 +8,7 @@ import {
 //   brandingDarkTheme as darkTheme,
 //   brandingLightTheme as lightTheme,
 // } from 'docs/src/modules/brandingTheme';
-import { CSSFormatedParams, getHash } from '../list/CSSList';
+import { CSSFormatedParams, getHash } from 'docs/src/modules/components/ApiPage/list/CSSList';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({

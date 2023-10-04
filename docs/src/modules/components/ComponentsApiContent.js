@@ -6,12 +6,12 @@ import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import Divider from 'docs/src/modules/components/ApiDivider';
-import PropertiesTable from 'docs/src/modules/components/ApiPage/PropertiesSection';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import CSSSection from './ApiPage/CssSection';
-import ClassesSection from './ApiPage/ClassesSection';
-import SlotsSection from './ApiPage/sections/SlotsSection';
+import PropertiesTable from 'docs/src/modules/components/ApiPage/PropertiesSection';
+import CSSSection from 'docs/src/modules/components/ApiPage/sections/CssSection';
+import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
+import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 
 function getTranslatedHeader(t, header, text) {
   const translations = {

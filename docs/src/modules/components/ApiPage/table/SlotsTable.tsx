@@ -8,7 +8,7 @@ import {
 //   brandingDarkTheme as darkTheme,
 //   brandingLightTheme as lightTheme,
 // } from 'docs/src/modules/brandingTheme';
-import { SlotsFormatedParams, getHash } from '../list/SlotsList';
+import { SlotsFormatedParams, getHash } from 'docs/src/modules/components/ApiPage/list/SlotsList';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({

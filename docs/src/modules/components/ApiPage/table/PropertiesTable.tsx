@@ -8,7 +8,7 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
-import { PropDescriptionParams } from '../list/PropertiesList';
+import { PropDescriptionParams } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({

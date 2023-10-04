@@ -11,16 +11,17 @@ import AlertTitle from '@mui/material/AlertTitle';
 import ReviewsRoundedIcon from '@mui/icons-material/ReviewsRounded';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import PropertiesSection, {
-  getPropsToC,
-} from 'docs/src/modules/components/ApiPage/PropertiesSection';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-import CSSSection, { getCssToC } from './ApiPage/CssSection';
-import ClassesSection from './ApiPage/ClassesSection';
-import SlotsSection from './ApiPage/sections/SlotsSection';
+
+import PropertiesSection, {
+  getPropsToC,
+} from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
+import CSSSection, { getCssToC } from 'docs/src/modules/components/ApiPage/sections/CssSection';
+import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
+import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 
 export function getTranslatedHeader(t, header) {
   const translations = {

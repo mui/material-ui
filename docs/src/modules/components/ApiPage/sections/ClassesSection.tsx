@@ -4,8 +4,8 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ToggleDisplayOption, {
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/ToggleDisplayOption';
-import ClassesList from '../list/ClassesList';
-import ClassesTable from '../table/ClassesTable';
+import ClassesList from 'docs/src/modules/components/ApiPage/list/ClassesList';
+import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable';
 
 type ComponentClasses = {
   classes: string[];

@@ -4,8 +4,8 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ToggleDisplayOption, {
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/ToggleDisplayOption';
-import SlotsList from '../list/SlotsList';
-import SlotsTable from '../table/SlotsTable';
+import SlotsList from 'docs/src/modules/components/ApiPage/list/SlotsList';
+import SlotsTable from 'docs/src/modules/components/ApiPage/table/SlotsTable';
 
 export type SlotsSectionProps = {
   componentSlots: { class: string; name: string; default: string }[];
