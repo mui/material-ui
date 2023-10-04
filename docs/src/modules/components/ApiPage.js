@@ -18,7 +18,7 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-import CSSList, { getCssToC } from './ApiPage/CSSList';
+import CSSSection, { getCssToC } from './ApiPage/CssSection';
 import ClassesList from './ApiPage/ClassesList';
 import SlotsList from './ApiPage/SlotsList';
 
@@ -304,25 +304,15 @@ export default function ApiPage(props) {
             <Divider sx={{ 'hr&&': { mb: 0 } }} />
           </React.Fragment>
         )}
-        {Object.keys(componentStyles.classes).length ? (
-          <React.Fragment>
-            <CSSList
-              componentStyles={componentStyles}
-              classDescriptions={classDescriptions}
-              componentName={pageContent.name}
-              spreadHint={t('api-docs.cssDescription')}
-            />
-            <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
-            <span
-              dangerouslySetInnerHTML={{
-                __html: t('api-docs.overrideStylesStyledComponent').replace(
-                  /{{styleOverridesLink}}/,
-                  styleOverridesLink,
-                ),
-              }}
-            />
-          </React.Fragment>
-        ) : null}
+
+        <CSSSection
+          componentStyles={componentStyles}
+          classDescriptions={classDescriptions}
+          componentName={pageContent.name}
+          spreadHint={t('api-docs.cssDescription')}
+          styleOverridesLink={styleOverridesLink}
+        />
+
         {componentSlots?.length > 0 ? (
           <React.Fragment>
             <SlotsList

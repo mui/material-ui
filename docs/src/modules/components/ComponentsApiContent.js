@@ -9,7 +9,7 @@ import Divider from 'docs/src/modules/components/ApiDivider';
 import PropertiesTable from 'docs/src/modules/components/ApiPage/PropertiesSection';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import CSSList from './ApiPage/CSSList';
+import CSSSection from './ApiPage/CssSection';
 import ClassesList from './ApiPage/ClassesList';
 import SlotsList from './ApiPage/SlotsList';
 
@@ -201,27 +201,16 @@ export default function ComponentsApiContent(props) {
               />
             </React.Fragment>
           )}
-          {Object.keys(componentStyles.classes).length ? (
-            <React.Fragment>
-              <CSSList
-                componentStyles={componentStyles}
-                classDescriptions={classDescriptions}
-                componentName={componentName}
-                titleHash={`${componentName}-css`}
-                level="h3"
-              />
-              <br />
-              <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.overrideStylesStyledComponent').replace(
-                    /{{styleOverridesLink}}/,
-                    styleOverridesLink,
-                  ),
-                }}
-              />
-            </React.Fragment>
-          ) : null}
+
+          <CSSSection
+            componentStyles={componentStyles}
+            classDescriptions={classDescriptions}
+            componentName={componentName}
+            styleOverridesLink={styleOverridesLink}
+            titleHash={`${componentName}-css`}
+            level="h3"
+          />
+
           {componentSlots?.length ? (
             <React.Fragment>
               <SlotsList
