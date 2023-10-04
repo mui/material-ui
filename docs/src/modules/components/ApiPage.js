@@ -11,7 +11,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import ReviewsRoundedIcon from '@mui/icons-material/ReviewsRounded';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import PropertiesTable, {
+import PropertiesSection, {
   getPropsToC,
 } from 'docs/src/modules/components/ApiPage/PropertiesSection';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -254,12 +254,14 @@ export default function ApiPage(props) {
             />
           </React.Fragment>
         ) : null}
-        <PropertiesTable
+
+        <PropertiesSection
           properties={componentProps}
           propertiesDescriptions={propDescriptions}
           componentName={pageContent.name}
           spreadHint={spreadHint}
         />
+
         {cssComponent && (
           <React.Fragment>
             <span
@@ -271,11 +273,14 @@ export default function ApiPage(props) {
             <br />
           </React.Fragment>
         )}
+
         <div
           className="MuiCallout-root MuiCallout-info"
           dangerouslySetInnerHTML={{ __html: refHint }}
         />
+
         <Divider />
+
         {inheritance && (
           <React.Fragment>
             <Heading hash="inheritance" level="h3" />
@@ -291,6 +296,7 @@ export default function ApiPage(props) {
             <Divider />
           </React.Fragment>
         )}
+
         {pageContent.themeDefaultProps && (
           <React.Fragment>
             <Heading hash="theme-default-props" level="h3" />
@@ -329,6 +335,7 @@ export default function ApiPage(props) {
           classDescriptions={classDescriptions}
           spreadHint={t('api-docs.classesDescription')}
         />
+
         <DesignInfo />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">

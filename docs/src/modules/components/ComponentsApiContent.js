@@ -146,6 +146,7 @@ export default function ComponentsApiContent(props) {
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+
           <PropertiesTable
             properties={componentProps}
             propertiesDescriptions={propDescriptions}
@@ -154,7 +155,9 @@ export default function ComponentsApiContent(props) {
             level="h3"
             headHash={`${componentNameKebabCase}-props`}
           />
+
           <br />
+
           {cssComponent && (
             <React.Fragment>
               <span
@@ -166,7 +169,9 @@ export default function ComponentsApiContent(props) {
               <br />
             </React.Fragment>
           )}
+
           <span dangerouslySetInnerHTML={{ __html: refHint }} />
+
           {inheritance && (
             <React.Fragment>
               <Heading
@@ -185,6 +190,7 @@ export default function ComponentsApiContent(props) {
               />
             </React.Fragment>
           )}
+
           {pageContent.themeDefaultProps && (
             <React.Fragment>
               <Heading
