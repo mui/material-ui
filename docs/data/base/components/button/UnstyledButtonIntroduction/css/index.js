@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, buttonClasses } from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 import { useTheme } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
@@ -61,27 +61,26 @@ function Styles() {
     box-shadow: 0 2px 4px ${
       isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(13, 84, 99, 0.5)'
     }, inset 0 1.5px 1px ${cyan[400]}, inset 0 -2px 1px ${cyan[600]};
-  
   }
   .CustomButton:hover {
     background-color: ${cyan[600]};
   }
-  .${buttonClasses.active} {
+  .CustomButton:active {
     background-color: ${cyan[700]};
   }
-  .${buttonClasses.focusVisible} {
+  .CustomButton:focusVisible {
     box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
     outline: none;
   }
-  .${buttonClasses.disabled} {
+  .CustomButton:disabled {
     background-color: ${isDarkMode ? grey[700] : grey[200]};
-    color: ${isDarkMode ? grey[200] : grey[700]}};
+    color: ${isDarkMode ? grey[200] : grey[700]};
     border: 0;
     cursor: not-allowed;
     box-shadow: none;
-    &:hover {
-      background-color: ${isDarkMode ? grey[700] : grey[200]};
-    }
+  }
+  .CustomButton:disabled:hover {
+    background-color: ${isDarkMode ? grey[700] : grey[200]};
   }
   `}</style>
   );

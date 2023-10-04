@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Button, buttonClasses, ButtonTypeMap } from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
-import { PolymorphicComponent } from '@mui/base/utils';
 
 export default function UnstyledButtonsSpan() {
   return (
@@ -50,25 +49,26 @@ const CustomButton = styled(Button)(
     background-color: ${blue[600]};
   }
 
-  &.${buttonClasses.active} {
+  &:active {
     background-color: ${blue[700]};
     box-shadow: none;
   }
 
-  &.${buttonClasses.focusVisible} {
+  &:focus-visible {
     box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
     outline: none;
   }
 
-  &.${buttonClasses.disabled} {
+  &.Mui-disabled {
     background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]}};
-    border: 0;
+    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     cursor: not-allowed;
     box-shadow: none;
-    &:hover {
-      background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    }
+  }
+
+  &.Mui-disabled:hover {
+    background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   }
 `,
-) as PolymorphicComponent<ButtonTypeMap>;
+);
