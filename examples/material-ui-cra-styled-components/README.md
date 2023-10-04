@@ -32,6 +32,10 @@ The following link leverages this demo: https://mui.com/guides/interoperability/
 
 This example demonstrates how to set up Material UI with [Create React App](https://github.com/facebookincubator/create-react-app), using [styled-components](https://styled-components.com/) as a style engine for your application.
 
+## Versions compatibility
+
+Note, the version 5 of `@mui/styled-engine-sc` is compatible with version 5 of `styled-components`, while the version 6 of `@mui/styled-engine-sc` (currently in alpha), is compatible with v6 of `styled-components`. When incorporating these dependencies into your project, consider this compatibility requirement. In this example application, both libraries are using version 6.
+
 ## What's next?
 
 <!-- #default-branch-switch -->
