@@ -42,6 +42,10 @@ export default function ClassesSection(props: ClassesSectionProps) {
 
   const [displayOption, setDisplayOption] = useApiPageOption('api-page-props');
 
+  if (!componentClasses?.classes || componentClasses.classes.length === 0) {
+    return null;
+  }
+
   const formatedClasses = componentClasses.classes
     .map((classKey) => {
       const className =
@@ -59,10 +63,6 @@ export default function ClassesSection(props: ClassesSectionProps) {
       return { className, isGlobalStateClass, cssClassName, description, componentName };
     })
     .sort((a, b) => a.className.localeCompare(b.className));
-
-  if (formatedClasses.length === 0) {
-    return null;
-  }
 
   return (
     <React.Fragment>

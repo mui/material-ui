@@ -70,6 +70,10 @@ export default function CSSSection(props: CSSSectionProps) {
 
   const [displayOption, setDisplayOption] = useApiPageOption('api-page-props');
 
+  if (!componentStyles?.classes || componentStyles.classes.length === 0) {
+    return null;
+  }
+
   const formatedClasses = componentStyles.classes.map((className) => {
     const isGlobalStateClass = !!componentStyles.globalClasses[className];
     const selector = `.${
@@ -89,10 +93,6 @@ export default function CSSSection(props: CSSSectionProps) {
       description,
     };
   });
-
-  if (formatedClasses.length === 0) {
-    return null;
-  }
 
   return (
     <React.Fragment>

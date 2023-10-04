@@ -31,7 +31,11 @@ export default function SlotsSection(props: SlotsSectionProps) {
 
   const [displayOption, setDisplayOption] = useApiPageOption('api-page-slots');
 
-  const formatedSlots = componentSlots.map(({ class: className, name, default: defaultValue }) => {
+  if (!componentSlots || componentSlots.length === 0) {
+    return null;
+  }
+
+  const formatedSlots = componentSlots?.map(({ class: className, name, default: defaultValue }) => {
     const description = slotDescriptions[name];
     return {
       description,
