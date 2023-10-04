@@ -11,7 +11,7 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CSSSection from './ApiPage/CssSection';
 import ClassesSection from './ApiPage/ClassesSection';
-import SlotsList from './ApiPage/SlotsList';
+import SlotsSection from './ApiPage/SlotsSection';
 
 function getTranslatedHeader(t, header, text) {
   const translations = {
@@ -211,31 +211,18 @@ export default function ComponentsApiContent(props) {
             level="h3"
           />
 
-          {componentSlots?.length ? (
-            <React.Fragment>
-              <SlotsList
-                componentSlots={componentSlots}
-                slotDescriptions={slotDescriptions}
-                componentName={componentName}
-                titleHash={`${componentNameKebabCase}-slots`}
-                level="h3"
-                spreadHint={
-                  slotGuideLink &&
-                  t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
-                }
-              />
-              <br />
-              <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.overrideStylesStyledComponent').replace(
-                    /{{styleOverridesLink}}/,
-                    styleOverridesLink,
-                  ),
-                }}
-              />
-            </React.Fragment>
-          ) : null}
+          <SlotsSection
+            componentSlots={componentSlots}
+            slotDescriptions={slotDescriptions}
+            componentName={componentName}
+            titleHash={`${componentNameKebabCase}-slots`}
+            level="h3"
+            spreadHint={
+              slotGuideLink &&
+              t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
+            }
+          />
+
           <ClassesSection
             componentClasses={componentClasses}
             componentName={pageContent.name}

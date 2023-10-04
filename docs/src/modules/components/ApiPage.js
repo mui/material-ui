@@ -20,7 +20,7 @@ import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
 import CSSSection, { getCssToC } from './ApiPage/CssSection';
 import ClassesSection from './ApiPage/ClassesSection';
-import SlotsList from './ApiPage/SlotsList';
+import SlotsSection from './ApiPage/SlotsSection';
 
 export function getTranslatedHeader(t, header) {
   const translations = {
@@ -313,30 +313,16 @@ export default function ApiPage(props) {
           styleOverridesLink={styleOverridesLink}
         />
 
-        {componentSlots?.length > 0 ? (
-          <React.Fragment>
-            <SlotsList
-              componentSlots={componentSlots}
-              slotDescriptions={slotDescriptions}
-              componentName={pageContent.name}
-              spreadHint={
-                slotGuideLink &&
-                t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
-              }
-            />
-            <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
-            <span
-              dangerouslySetInnerHTML={{
-                __html: t('api-docs.overrideStylesStyledComponent').replace(
-                  /{{styleOverridesLink}}/,
-                  styleOverridesLink,
-                ),
-              }}
-            />
+        <SlotsSection
+          componentSlots={componentSlots}
+          slotDescriptions={slotDescriptions}
+          componentName={pageContent.name}
+          spreadHint={
+            slotGuideLink &&
+            t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
+          }
+        />
 
-            <Divider />
-          </React.Fragment>
-        ) : null}
         <ClassesSection
           componentClasses={componentClasses}
           componentName={pageContent.name}
