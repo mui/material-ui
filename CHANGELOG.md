@@ -10,6 +10,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 - 🎨 Introduced color inversion utilities to Joy UI (#38916) @siriwatknp
 - 🚀 Added Chip and related TextField components to Material You @DiegoAndai, @mj12albert
+- 🏗️ Improve the Select's component a11y by adding the combobox role and aria-controls attribute (#38785) @xulingzhihou. If your tests require selecting the trigger element by the "button" role, then you'll have to change it to use the "combobox" role instead
 
 ### `@mui/material@5.14.12`
 
