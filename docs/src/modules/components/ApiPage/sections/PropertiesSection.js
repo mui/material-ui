@@ -5,8 +5,8 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ToggleDisplayOption, {
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/ToggleDisplayOption';
-import PropertiesList, { getHash } from './list/PropertiesList';
-import PropertiesTable from './table/PropertiesTable';
+import PropertiesList, { getHash } from '../list/PropertiesList';
+import PropertiesTable from '../table/PropertiesTable';
 
 export const getPropsToC = ({
   componentName,

@@ -4,8 +4,8 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ToggleDisplayOption, {
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/ToggleDisplayOption';
-import CSSList, { getHash } from './list/CSSList';
-import CSSTable from './table/CSSTable';
+import CSSList, { getHash } from '../list/CSSList';
+import CSSTable from '../table/CSSTable';
 
 type ComponentStyles = {
   classes: string[];

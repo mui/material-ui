@@ -20,7 +20,7 @@ import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
 import CSSSection, { getCssToC } from './ApiPage/CssSection';
 import ClassesSection from './ApiPage/ClassesSection';
-import SlotsSection from './ApiPage/SlotsSection';
+import SlotsSection from './ApiPage/sections/SlotsSection';
 
 export function getTranslatedHeader(t, header) {
   const translations = {

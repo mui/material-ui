@@ -11,7 +11,7 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CSSSection from './ApiPage/CssSection';
 import ClassesSection from './ApiPage/ClassesSection';
-import SlotsSection from './ApiPage/SlotsSection';
+import SlotsSection from './ApiPage/sections/SlotsSection';
 
 function getTranslatedHeader(t, header, text) {
   const translations = {
