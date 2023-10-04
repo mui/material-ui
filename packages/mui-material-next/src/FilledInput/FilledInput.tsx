@@ -3,7 +3,7 @@ import * as React from 'react';
 import { refType } from '@mui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
-import { DefaultComponentProps, OverrideProps } from '@mui/types';
+import { OverrideProps } from '@mui/types';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
