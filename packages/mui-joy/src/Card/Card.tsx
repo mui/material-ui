@@ -9,8 +9,8 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { useThemeProps } from '../styles';
+import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import styled from '../styles/styled';
-import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
@@ -83,11 +83,16 @@ export const StyledCardRoot = styled('div')<{ ownerState: CardOwnerState }>(
         display: 'flex',
         flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
         ...theme.typography[`body-${ownerState.size!}`],
+        ...(ownerState.variant === 'solid' &&
+          ownerState.color &&
+          ownerState.invertedColors &&
+          applySolidInversion(ownerState.color)(theme)),
+        ...(ownerState.variant === 'soft' &&
+          ownerState.color &&
+          ownerState.invertedColors &&
+          applySoftInversion(ownerState.color)(theme)),
         ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       } as const,
-      ownerState.color !== 'context' &&
-        ownerState.invertedColors &&
-        theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
       p !== undefined && { '--Card-padding': p },
       padding !== undefined && { '--Card-padding': padding },
       borderRadius !== undefined && { '--Card-radius': borderRadius },
@@ -99,7 +104,7 @@ const CardRoot = styled(StyledCardRoot, {
   name: 'JoyCard',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({});
+})<{ ownerState: CardOwnerState }>({});
 
 /**
  *
@@ -119,7 +124,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const {
     className,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     component = 'div',
     invertedColors = false,
     size = 'md',
@@ -130,8 +135,6 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -140,6 +143,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     orientation,
     size,
     variant,
+    invertedColors,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -153,7 +157,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     ownerState,
   });
 
-  const result = (
+  return (
     <SlotRoot {...rootProps}>
       {React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) {
@@ -185,11 +189,6 @@ const Card = React.forwardRef(function Card(inProps, ref) {
       })}
     </SlotRoot>
   );
-
-  if (invertedColors) {
-    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
-  }
-  return result;
 }) as OverridableComponent<CardTypeMap>;
 
 Card.propTypes /* remove-proptypes */ = {
