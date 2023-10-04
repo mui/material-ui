@@ -58,7 +58,7 @@ If there has been no activity on the issue for 7 to 14 days, then it's safe to a
 
 ## Sending a pull request
 
-MUI is a community project, so pull requests are always welcome, but before working on a large change, it's best to open an issue first to discuss it with the maintainers.
+MUI Core projects are community-driven, so pull requests are always welcome, but before working on a large change, it's best to open an issue first to discuss it with the maintainers.
 
 When in doubt, keep your pull requests small.
 For the best chances of being accepted, don't bundle more than one feature or bug fix per PR.
@@ -268,7 +268,7 @@ $ yarn docs:api
 ### Coding style
 
 Please follow the coding style of the project.
-MUI uses prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
+MUI Core projects use prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
 
 - `yarn prettier` reformats the code.
 - `yarn eslint` runs the linting rules.
@@ -291,7 +291,7 @@ docs/src/pages/components/buttons/
 
 ### 2. Write the demo code
 
-MUI uses TypeScript to document our components.
+MUI Core uses TypeScript to document our components.
 We prefer demos written in TS (using the `.tsx` file format).
 
 After creating a TypeScript demo, run `yarn docs:typescript:formatted` to automatically create the JavaScript version, which is also required.
