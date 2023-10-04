@@ -26,16 +26,6 @@ function Stat({ description, value, sx, ...props }) {
 
 Stat.propTypes = {
   description: PropTypes.node,
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-    ),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
   value: PropTypes.node,
 };
 
@@ -49,7 +39,7 @@ export default function ColorInversionAnyParent() {
           alignItems: 'center',
           rowGap: 2,
           columnGap: 8,
-          p: 2,
+          p: 4,
           background: (theme) =>
             `linear-gradient(45deg, ${theme.vars.palette.neutral[800]}, ${theme.vars.palette.neutral[600]})`,
           borderRadius: 'sm',
@@ -58,15 +48,11 @@ export default function ColorInversionAnyParent() {
       ]}
     >
       <div>
-        <Typography sx={{ my: 2 }}>
+        <Typography sx={{ mb: 2 }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat.
+          tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
-        <Button variant="soft" sx={{ mt: 1 }}>
-          Learn more
-        </Button>
+        <Button variant="soft">Learn more</Button>
       </div>
       <Box
         sx={{

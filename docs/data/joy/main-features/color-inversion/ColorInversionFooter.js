@@ -98,9 +98,7 @@ export default function ColorInversionFooter() {
           </AspectRatio>
           <CardContent>
             <Typography level="body-sm">Intro to the MUI ecosystem</Typography>
-            <Typography level="body-xs" sx={{ mb: 0.5 }}>
-              MUI blog
-            </Typography>
+            <Typography level="body-xs">Blog post</Typography>
           </CardContent>
         </Card>
         <List
@@ -110,7 +108,7 @@ export default function ColorInversionFooter() {
           sx={{ flexGrow: 0, '--ListItem-radius': '8px', '--ListItem-gap': '0px' }}
         >
           <ListItem nested sx={{ width: { xs: '50%', md: 140 } }}>
-            <ListSubheader>Sitemap</ListSubheader>
+            <ListSubheader sx={{ fontWeight: 'xl' }}>Sitemap</ListSubheader>
             <List>
               <ListItem>
                 <ListItemButton>Services</ListItemButton>
@@ -124,7 +122,7 @@ export default function ColorInversionFooter() {
             </List>
           </ListItem>
           <ListItem nested sx={{ width: { xs: '50%', md: 180 } }}>
-            <ListSubheader>Product</ListSubheader>
+            <ListSubheader sx={{ fontWeight: 'xl' }}>Products</ListSubheader>
             <List sx={{ '--ListItemDecorator-size': '32px' }}>
               <ListItem>
                 <ListItemButton>
@@ -163,34 +161,15 @@ export default function ColorInversionFooter() {
                   <Chip
                     variant="soft"
                     size="sm"
-                    sx={{ minHeight: 20, fontSize: 'xs2', ml: 'auto' }}
+                    sx={{
+                      minHeight: 20,
+                      fontSize: 'xs2',
+                      fontWeight: 'lg',
+                      ml: 'auto',
+                    }}
                   >
-                    BETA
+                    Beta
                   </Chip>
-                </ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/static/branding/product-designkits-dark.svg"
-                      width="24"
-                    />
-                  </ListItemDecorator>
-                  Design kits
-                </ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/static/branding/product-templates-dark.svg"
-                      width="24"
-                    />
-                  </ListItemDecorator>
-                  Templates
                 </ListItemButton>
               </ListItem>
             </List>

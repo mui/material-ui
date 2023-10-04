@@ -77,19 +77,7 @@ The examples below show how to use it with either the `sx` prop or the `styled` 
 
 #### With the styled API
 
-```js
-import { styled } from '@mui/joy/styles';
-import { applySoftInversion } from '@mui/joy/colorInversion';
-
-const StyledBox = styled(Box)(
-  ({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    ...theme.variants.soft.primary,
-  }),
-  applySoftInversion('primary'),
-);
-```
+{{"demo": "ColorInversionAnyParentStyled.js"}}
 
 ## How it works
 
