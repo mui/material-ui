@@ -13,17 +13,24 @@ waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basics
+## Introduction
+
+The Snackbar provides users updates on an app's processes, temporarily appearing on the screen.
+Inspired by Google Keep, this demo shows a basic snackbar with a text element and two actions.
+
+{{"demo": "SimpleSnackbar.js"}}
+
+## Component
+
+### Usage
 
 ```jsx
 import Snackbar from '@mui/material/Snackbar';
 ```
 
-Inspired by Google Keep, this demo shows a basic snackbar with a text element and two actions.
+### Anatomy
 
-{{"demo": "SimpleSnackbar.js"}}
-
-## Customization
+The Snackbar component is composed of... (to-do)
 
 ### Position
 
