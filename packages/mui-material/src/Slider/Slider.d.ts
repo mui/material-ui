@@ -42,7 +42,7 @@ export interface SliderOwnProps {
   color?: OverridableStringUnion<
     'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
     SliderPropsColorOverrides
-  >
+  >;
   /**
    * The components used for each slot inside.
    *
@@ -50,7 +50,7 @@ export interface SliderOwnProps {
    * It's recommended to use the `slots` prop instead.
    *
    * @default {}
-   */;
+   */
   components?: {
     Root?: React.ElementType;
     Track?: React.ElementType;
