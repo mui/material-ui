@@ -4,6 +4,7 @@
     "actions": {
       "description": "A ref with imperative actions that can be performed on the menu."
     },
+    "anchor": { "description": "The element based on which the menu is positioned." },
     "onItemsChange": {
       "description": "Function called when the items displayed in the menu change."
     },
