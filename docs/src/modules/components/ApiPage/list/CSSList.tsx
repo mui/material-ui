@@ -5,12 +5,30 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ExpendableApiItem, {
   ApiItemContaier,
 } from 'docs/src/modules/components/ApiPage/list/ExpendableApiItem';
+import { brandingDarkTheme as darkTheme } from 'docs/src/modules/brandingTheme';
 
-const StyledApiItem = styled(ExpendableApiItem)({
-  '& p': {
-    margin: 0,
-  },
-});
+const StyledApiItem = styled(ExpendableApiItem)(
+  ({ theme }) => ({
+    '& p': {
+      margin: 0,
+    },
+    '& .prop-list-title': {
+      ...theme.typography.body2,
+      fontWeight: theme.typography.fontWeightSemiBold,
+      color: theme.palette.text.primary,
+      paddingRight: 5,
+      whiteSpace: 'nowrap',
+      margin: 0,
+    },
+  }),
+  ({ theme }) => ({
+    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+      '& .prop-list-title': {
+        color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
+      },
+    },
+  }),
+);
 
 type HashParams = { componentName?: string; className: string };
 
