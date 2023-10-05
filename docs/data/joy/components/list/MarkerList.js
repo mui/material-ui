@@ -3,11 +3,12 @@ import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import Button from '@mui/joy/Button';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
+import Stack from '@mui/joy/Stack';
 
 export default function MarkerList() {
   const [type, setType] = React.useState('disc');
   return (
-    <div>
+    <Stack spacing={2}>
       <ToggleButtonGroup
         value={type}
         onChange={(event, newValue) => setType(newValue)}
@@ -31,6 +32,6 @@ export default function MarkerList() {
         <ListItem>The Lord of the Rings: The Two Towers</ListItem>
         <ListItem>Star Wars: Episode IV - A New Hope</ListItem>
       </List>
-    </div>
+    </Stack>
   );
 }
