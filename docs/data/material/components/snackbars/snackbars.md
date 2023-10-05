@@ -30,7 +30,13 @@ import Snackbar from '@mui/material/Snackbar';
 
 ### Anatomy
 
-The Snackbar component is composed of... (to-do)
+The Snackbar component is composed of a root <div> that ... to complement:
+
+```html
+<div class="MuiSnackbar-root">
+  <!-- snackbar content goes here -->
+</div>
+```
 
 ### Position
 
