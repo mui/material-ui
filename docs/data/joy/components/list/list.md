@@ -94,6 +94,16 @@ The List Item component is optional in this case.
 If used, it will automatically change the semantic element from the default `<li>` to `<div>`.
 :::
 
+### Markers
+
+To add markers to each of the list items, change their CSS display to `display: "list-item"`.
+
+It is recommended to set min-height of the list item to `auto` because the display `list-item` will no longer align the items vertically.
+
+{{"demo": "MarkerList.js"}}
+
+To see all the markers, check out the [MDN — list style type](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type#values) page.
+
 ### Ellipsis content
 
 ```jsx
