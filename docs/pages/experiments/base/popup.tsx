@@ -3,7 +3,8 @@ import { Unstable_Popup as BasePopup, PopupProps } from '@mui/base/Unstable_Popu
 import Button from '@mui/joy/Button';
 import { CssVarsProvider } from '@mui/joy/styles';
 import { styled } from '@mui/system';
-import Fade from '@mui/material/Fade';
+import { useTransition, TransitionContext } from '@mui/base/useTransition';
+import { Fade } from '@mui/material';
 
 const StyledPopup = styled(BasePopup)`
   width: max-content;
@@ -24,32 +25,35 @@ const Section = styled('div')`
   width: 150px;
 `;
 
-function Animated(
-  props: React.PropsWithChildren<{
-    className?: string;
-    requestOpen: boolean;
-    onExited: () => void;
-    onEnter: () => void;
-  }>,
-) {
-  const { requestOpen, onEnter, onExited, children, className } = props;
+function Animated(props: React.PropsWithChildren<{ className?: string }>) {
+  const { className, children } = props;
+  const transitionContext = React.useContext(TransitionContext);
+  if (!transitionContext) {
+    throw new Error('Missing transition context');
+  }
 
-  const handleAnimationEnd = React.useCallback(() => {
-    if (!requestOpen) {
-      onExited();
-    }
-  }, [onExited, requestOpen]);
+  const { requestedEnter, onEntering, onEntered, onExiting, onExited, hasExited } = useTransition();
 
   React.useEffect(() => {
-    if (requestOpen) {
-      onEnter();
+    if (requestedEnter && !hasExited) {
+      onEntering();
+    } else if (!requestedEnter && hasExited) {
+      onExiting();
     }
-  }, [onEnter, requestOpen]);
+  }, [onEntering, onExiting, requestedEnter, hasExited]);
+
+  const handleAnimationEnd = React.useCallback(() => {
+    if (!requestedEnter) {
+      onExited();
+    } else {
+      onEntered();
+    }
+  }, [onExited, onEntered, requestedEnter]);
 
   return (
     <div
       onAnimationEnd={handleAnimationEnd}
-      className={className + (requestOpen ? ' open' : ' close')}
+      className={className + (requestedEnter ? ' open' : ' close')}
     >
       {children}
     </div>
@@ -89,7 +93,7 @@ const PopAnimation = styled(Animated)`
   }
 
   &.open {
-    animation: open-animation 0.2s ease-out forwards;
+    animation: open-animation 0.2s ease-out both;
   }
 
   &.close {
@@ -115,6 +119,17 @@ function PopupWithTrigger(props: PopupProps & { label: string }) {
   );
 }
 
+function MaterialUITransitionAdapter(props: { children: React.ReactElement }) {
+  const { requestedEnter, onEntering, onExited } = useTransition();
+  const { children } = props;
+
+  return React.cloneElement(children, {
+    in: requestedEnter,
+    onExited,
+    onEnter: onEntering,
+  });
+}
+
 const Container = styled('div')`
   display: flex;
   flex-wrap: wrap;
@@ -129,20 +144,17 @@ export default function PopupPlayground() {
         <PopupWithTrigger label="always mounted" keepMounted />
         <PopupWithTrigger label="non-portaled" disablePortal />
         <PopupWithTrigger label="with offset" offset={20} />
-        <PopupWithTrigger label="with Material UI transition" withTransition>
-          {({ requestOpen, onExited, onEnter }) => (
-            <Fade in={requestOpen} onExited={onExited} onEnter={onEnter} timeout={250}>
+        <PopupWithTrigger label="with Material UI transition">
+          <MaterialUITransitionAdapter>
+            <Fade timeout={250}>
               <PopupBody>This is an animated popup</PopupBody>
             </Fade>
-          )}
+          </MaterialUITransitionAdapter>
         </PopupWithTrigger>
-
-        <PopupWithTrigger label="with custom transition" withTransition>
-          {({ requestOpen: open, onExited, onEnter }) => (
-            <PopAnimation requestOpen={open} onExited={onExited} onEnter={onEnter}>
-              <PopupBody>This is an animated popup</PopupBody>
-            </PopAnimation>
-          )}
+        <PopupWithTrigger label="with context-based transition">
+          <PopAnimation>
+            <PopupBody>This is an animated popup</PopupBody>
+          </PopAnimation>
         </PopupWithTrigger>
       </Container>
     </CssVarsProvider>

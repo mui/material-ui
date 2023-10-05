@@ -1,0 +1,11 @@
+{
+  "parameters": {},
+  "returnValue": {},
+  "name": "useTransition",
+  "filename": "/packages/mui-base/src/useTransition/useTransition.ts",
+  "imports": [
+    "import { useTransition } from '@mui/base/useTransition';",
+    "import { useTransition } from '@mui/base';"
+  ],
+  "demos": "<ul></ul>"
+}

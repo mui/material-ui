@@ -124,9 +124,6 @@ export interface PopupSlots {
 
 export interface PopupChildrenProps {
   placement: PopupPlacement;
-  requestOpen: boolean;
-  onExited: () => void;
-  onEnter: () => void;
 }
 
 export interface PopupTypeMap<

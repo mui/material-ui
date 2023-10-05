@@ -13,6 +13,7 @@ import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getPopupUtilityClass } from './popupClasses';
 import { PopupChildrenProps, PopupOwnerState, PopupProps } from './Popup.types';
+import { useTransitionableElement, TransitionContext } from '../useTransition';
 
 function useUtilityClasses(ownerState: PopupOwnerState) {
   const { open } = ownerState;
@@ -84,15 +85,6 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
   });
 
   const handleRef = useForkRef(refs.setFloating, forwardedRef);
-  const [exited, setExited] = React.useState(true);
-
-  const handleEntering = () => {
-    setExited(false);
-  };
-
-  const handleExited = () => {
-    setExited(true);
-  };
 
   useEnhancedEffect(() => {
     if (keepMounted && open && elements.reference && elements.floating) {
@@ -115,8 +107,9 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     withTransition,
   };
 
-  const display = !open && keepMounted && (!withTransition || exited) ? 'none' : undefined;
+  const { contextValue, hasExited: hasTransitionExited } = useTransitionableElement(open);
 
+  const visibility = keepMounted && hasTransitionExited ? 'hidden' : undefined;
   const classes = useUtilityClasses(ownerState);
 
   const Root = slots?.root ?? 'div';
@@ -129,26 +122,26 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     additionalProps: {
       ref: handleRef,
       role: 'tooltip',
-      style: { ...floatingStyles, display },
+      style: { ...floatingStyles, visibility },
     },
   });
 
-  const shouldRender = open || keepMounted || (withTransition && !exited);
-
+  const shouldRender = keepMounted || !hasTransitionExited;
   if (!shouldRender) {
     return null;
   }
 
   const childProps: PopupChildrenProps = {
     placement: finalPlacement,
-    requestOpen: open,
-    onExited: handleExited,
-    onEnter: handleEntering,
   };
 
   return (
     <Portal disablePortal={disablePortal} container={container}>
-      <Root {...rootProps}>{typeof children === 'function' ? children(childProps) : children}</Root>
+      <TransitionContext.Provider value={contextValue}>
+        <Root {...rootProps}>
+          {typeof children === 'function' ? children(childProps) : children}
+        </Root>
+      </TransitionContext.Provider>
     </Portal>
   );
 });
