@@ -71,16 +71,6 @@ import { TooltipOwnerState } from '@mui/joy/Tooltip';
 import { TypographyOwnerState } from '@mui/joy/Typography';
 
 extendTheme({
-  colorInversion: (theme) => ({
-    soft: {
-      primary: {
-        '--variant-plainColor': `rgba(${theme.getCssVar('palette-primary-darkChannel')} / 0.4)`,
-        [theme.getColorSchemeSelector('dark')]: {
-          '--variant-plainColor': `rgba(${theme.getCssVar('palette-primary-lightChannel')} / 0.4)`,
-        },
-      },
-    },
-  }),
   components: {
     JoyAccordion: {
       defaultProps: {

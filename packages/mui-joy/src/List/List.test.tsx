@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  describeConformance,
-  createRenderer,
-  screen,
-  describeJoyColorInversion,
-} from '@mui-internal/test-utils';
+import { describeConformance, createRenderer, screen } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import List, { listClasses as classes } from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -33,8 +28,6 @@ describe('Joy <List />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<List />, { muiName: 'JoyList', classes });
 
   it('should have root className', () => {
     const { container } = render(<List />);

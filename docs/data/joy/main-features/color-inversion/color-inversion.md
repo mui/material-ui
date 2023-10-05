@@ -21,21 +21,13 @@ The color inversion is implemented to solve this issue, keeping the global varia
 
 ## Overview
 
-When color inversion is enabled on the parent component, the children with implicit color will invert their styles to match the parent's background by keeping the same hierarchy of importance based on their variants.
+When color inversion is enabled on the parent component, all of Joy UI children will invert their styles regardless of its color prop to match the parent's background by keeping the same hierarchy of importance based on their variants.
 
 {{"demo": "ColorInversionOverview.js"}}
 
-**Implicit** color refers to components that don't have the `color` prop specified.
-
-Color inversion has no effect on children that have an **explicit** `color` prop.
-
-```js
-// implicit color. The styles change when color inversion is enabled.
-<Chip variant="soft">…</Chip>
-
-// explicit color. Color inversion has no effect.
-<Chip variant="soft" color="primary">…</Chip>
-```
+:::info
+The color inversion feature is only available for `soft` and `solid` variants because the rest of the global variants don't have background by default.
+:::
 
 ### Benefits
 
@@ -45,7 +37,7 @@ Color inversion has no effect on children that have an **explicit** `color` prop
 - It works for both light and dark mode.
 - It can be disabled at any time without impacting the structure of the components.
 - It is an opt-in feature. If you don't use it, the extra CSS variables won't be included in the production style sheet.
-- It doesn't alter the styles of the children if you explicitly specify the `color` prop on them.
+- Some children can be excluded from the color inversion, see ["skip color inversion on a child"](#skip-color-inversion-on-a-child) section.
 
 ### Trade-offs
 
@@ -54,13 +46,11 @@ Color inversion has no effect on children that have an **explicit** `color` prop
 
 ## Usage
 
-To enable color inversion, use the `invertedColors` prop. Note that this prop only works when the components have the `solid` or `soft` global variant applied.
+### Surface components
 
-```js
-<Card variant="solid" invertedColors>…</Card>
+Surface components, including the Alert, Card, Drawer, ModalDialog, Menu, and Sheet, have the `invertedColors` prop to enable color inversion for `solid` and `soft` variants.
 
-<Sheet variant="soft" invertedColors>…</Sheet>
-```
+{{"demo": "ColorInversionSurface.js"}}
 
 ### Portal popup
 
@@ -73,18 +63,71 @@ The popup slot of the Select component has `disablePortal` set to true by defaul
 
 {{"demo": "ColorInversionPopup.js"}}
 
+### Skip color inversion on a child
+
+To skip color inversion on a specific child, set `data-skip-inverted-colors` attribute to the component.
+
+The component with `data-skip-inverted-colors` and its children will be excluded from the color inversion.
+
+{{"demo": "ColorInversionSkip.js"}}
+
+### Apply color inversion to any parent
+
+Use `applySolidInversion` or `applySoftInversion` utilities to apply color inversion to any parent component.
+
+They are used internally by the surface components, e.g. [Card](/joy-ui/react-card/#inverted-colors), when `invertedColors` prop is set to true.
+
+```js
+import { applySolidInversion, applySoftInversion } from '@mui/joy/colorInversion';
+```
+
+Example usage for `sx` prop and `styled` API:
+
+- `sx` prop
+
+  ```js
+  import { applySolidInversion } from '@mui/joy/colorInversion';
+
+  <Box
+    sx={[
+      (theme) => ({
+        display: 'flex',
+        alignItems: 'center',
+        background: theme.vars.palette.neutral[900],
+      }),
+      applySolidInversion('neutral'),
+    ]}
+  >
+    …
+  </Box>;
+  ```
+
+- `styled` API
+
+  ```js
+  import { styled } from '@mui/joy/styles';
+  import { applySoftInversion } from '@mui/joy/colorInversion';
+
+  const StyledBox = styled(Box)(
+    ({ theme }) => ({
+      display: 'flex',
+      alignItems: 'center',
+      ...theme.variants.soft.primary,
+    }),
+    applySoftInversion('primary'),
+  );
+  ```
+
+{{"demo": "ColorInversionAnyParent.js"}}
+
 ## How it works
 
-### Parent component
-
-When `invertedColors` is set to true on the surface component, a set of CSS variables is applied to it.
-The values of those variables come from `theme.colorInversion[variant][color]`, where `variant` and `color` are the component's props.
-The surface component also creates a React context to tell the children to update their styles.
+When `invertedColors` is set to true or the utility is used on the parent component, a set of CSS variables is applied to it. There is no [React context](https://react.dev/learn/passing-data-deeply-with-context) involved in this feature.
 
 ```jsx
 <Sheet invertedColors variant="solid" color="neutral">
 
-// The component style sheet
+// The parent's style sheet
 {
   // the values of these variables depends on the parent's variant and color.
   --variant-softColor: …;
@@ -93,28 +136,25 @@ The surface component also creates a React context to tell the children to updat
   --variant-softHoverBg: …;
   --variant-softActiveBg: …;
   … // other variants
+  --joy-palette-text-primary: …;
+  --joy-palette-text-secondary: …;
+  --joy-palette-text-tertiary: …;
+  --joy-palette-background-surface: …;
+  … // other theme palette tokens
 }
 ```
 
-### Child component
-
-All Joy UI components that support global variants check the React context that contains the color inversion flag.
-If the flag is true and the child has an implicit color, the internal `color` value will switch to `context` and apply the styles from `theme.variants[variant].context`.
-
-The styles will match the `--variant-*` variables that the parent has.
+As a result, the children will use those CSS variables instead of the theme.
 
 ```jsx
-<Chip variant="soft">
-
-// Component style sheet
+// The children style sheet
+// The values of these variables are inherited from the parent.
 {
-  background-color: var(--variant-softBg);
-  color: var(--variant-softColor);
+  color: var(--joy-palette-text-primary);
+  background: var(--joy-palette-background-surface);
+  …
 }
 ```
-
-In summary, the parent creates a React context to tell the children that the feature is enabled, and generates CSS variables that will be used by the children.
-The children with an implicit color switch their default color value to `context` to get the styles from the theme.
 
 ## Common examples
 
