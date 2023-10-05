@@ -19,7 +19,14 @@ const StyledTable = styled('table')(
       fontWeight: theme.typography.fontWeightSemiBold,
       fontSize: theme.typography.pxToRem(14),
     },
+    '& .type-column': {
+      minWidth: '20%',
+    },
+    '& .default-column': {
+      minWidth: '20%',
+    },
     '& .MuiApi-table-item-title': {
+      minWidth: '20%',
       fontWeight: theme.typography.fontWeightSemiBold,
       fontFamily: theme.typography.fontFamilyCode,
       fontSize: theme.typography.pxToRem(13),
@@ -47,7 +54,7 @@ const StyledTable = styled('table')(
       fontWeight: theme.typography.fontWeightRegular,
     },
     '& .MuiPropTable-description-column': {
-      width: '40%',
+      // width: '40%',
       paddingRight: 8,
       '& .prop-list-description': {
         marginBottom: 0,
@@ -157,7 +164,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 {isRequired ? '*' : ''}
                 {isOptional ? '?' : ''}
               </td>
-              <td>
+              <td className="type-column">
                 {
                   <span
                     className="MuiApi-table-item-type"
@@ -167,7 +174,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                   />
                 }
               </td>
-              <td>
+              <td className="default-column">
                 <span className="MuiApi-table-item-default">{propDefault}</span>
               </td>
               <td className="MuiPropTable-description-column">
