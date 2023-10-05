@@ -1,14 +1,20 @@
-/* eslint-disable mocha/no-skipped-tests */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
-import { ThemeProvider } from '@emotion/react';
-import FormControl, { useFormControl } from '@mui/material/FormControl';
+import {
+  describeConformance,
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+} from '@mui-internal/test-utils';
+import FormControl, { useFormControl } from '@mui/material-next/FormControl';
+// TODO v6: replace with material-next/InputAdornment
 import InputAdornment from '@mui/material/InputAdornment';
+// TODO v6: replace with material-next/TextField
 import TextField from '@mui/material/TextField';
-import { createTheme } from '@mui/material/styles';
+// TODO v6: replace with material-next/Select
 import Select from '@mui/material/Select';
 import InputBase, { inputBaseClasses as classes } from '@mui/material-next/InputBase';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
@@ -106,7 +112,7 @@ describe('<InputBase />', () => {
       setProps({ disabled: true });
 
       expect(handleBlur.callCount).to.equal(1);
-      // // check if focus not initiated again
+      // check if focus not initiated again
       expect(handleFocus.callCount).to.equal(1);
     });
   });
@@ -138,8 +144,8 @@ describe('<InputBase />', () => {
     );
     const input = getByRole('textbox');
 
+    // TODO v6: refactor this test with @testing-library/user-event
     // simulating user input: gain focus, key input (keydown, (input), change, keyup), blur
-
     act(() => {
       input.focus();
     });
@@ -215,11 +221,15 @@ describe('<InputBase />', () => {
     });
   });
 
-  describe('prop: slots', () => {
-    // TODO: delete, covered by describeConformance
-    xit('should accept any html component', () => {
+  // for InputBase, the `component` prop is called `inputComponent` so it's skipped
+  // in describeConformance and manually tested here
+  describe('prop: inputComponent', () => {
+    it('should accept any html component', () => {
       const { getByTestId } = render(
-        <InputBase inputComponent="span" inputProps={{ 'data-testid': 'input-component' }} />,
+        <InputBase
+          inputComponent="span"
+          slotProps={{ input: { 'data-testid': 'input-component' } }}
+        />,
       );
       expect(getByTestId('input-component')).to.have.property('nodeName', 'SPAN');
     });
@@ -232,14 +242,13 @@ describe('<InputBase />', () => {
         return <input ref={ref} {...other} />;
       });
 
-      render(<InputBase slots={{ input: MyInputBase }} />);
+      render(<InputBase inputComponent={MyInputBase} />);
 
       expect(typeof injectedProps.onBlur).to.equal('function');
       expect(typeof injectedProps.onFocus).to.equal('function');
     });
 
-    // TODO: requires material-next/FormControl
-    describe.skip('target mock implementations', () => {
+    describe('target mock implementations', () => {
       it('can just mock the value', () => {
         const MockedValue = React.forwardRef(function MockedValue(props, ref) {
           const { onChange } = props;
@@ -271,7 +280,8 @@ describe('<InputBase />', () => {
 
       it("can expose the input component's ref through the inputComponent prop", () => {
         const FullTarget = React.forwardRef(function FullTarget(props, ref) {
-          return <input ref={ref} {...props} />;
+          const { ownerState, ...otherProps } = props;
+          return <input ref={ref} {...otherProps} />;
         });
 
         function FilledState(props) {
@@ -293,9 +303,7 @@ describe('<InputBase />', () => {
     });
   });
 
-  // TODO: unskip and refactor when integrating material-next/FormControl
-
-  describe.skip('with FormControl', () => {
+  describe('with FormControl', () => {
     it('should have the formControl class', () => {
       const { getByTestId } = render(
         <FormControl>
@@ -630,7 +638,7 @@ describe('<InputBase />', () => {
       expect(getByTestId('adornment')).not.to.equal(null);
     });
 
-    // TODO: use material-next/Select
+    // TODO v6: use material-next/Select
     it('should allow a Select as an adornment', () => {
       render(
         <InputBase
@@ -662,23 +670,31 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: focused', () => {
-    it.skip('should render correct border color with `ThemeProvider` imported from `@emotion/react`', function test() {
+    // TODO v6: requires material-next/OutlinedInput
+    // eslint-disable-next-line mocha/no-skipped-tests
+    it.skip('should render correct border color with a customized primary color supplied to CssVarsProvider', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const theme = createTheme({
-        palette: {
-          mode: 'light',
-          primary: {
-            main: 'rgb(0, 191, 165)',
+      const theme = extendTheme({
+        colorSchemes: {
+          light: {
+            palette: {
+              primary: {
+                main: 'rgb(0, 191, 165)',
+              },
+            },
           },
         },
       });
       const { getByRole } = render(
-        <ThemeProvider theme={theme}>
+        <CssVarsProvider theme={theme}>
+          {/* TODO v6: use material-next/TextField or OutlinedInput */}
           <TextField focused label="Your email" />
-        </ThemeProvider>,
+        </CssVarsProvider>,
       );
+
+      // this `fieldset` is the (internal) NotchedOutline component
       const fieldset = getByRole('textbox').nextSibling;
       expect(fieldset).toHaveComputedStyle({
         borderTopColor: 'rgb(0, 191, 165)',

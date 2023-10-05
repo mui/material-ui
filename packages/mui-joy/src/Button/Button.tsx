@@ -6,7 +6,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { Interpolation } from '@mui/system';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, Theme, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
@@ -157,7 +156,8 @@ export const getButtonStyles = ({
       },
       '&:active, &[aria-pressed="true"]':
         theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-      '&:disabled': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      [`&.${buttonClasses.disabled}`]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       ...(ownerState.loadingPosition === 'center' && {
         // this has to come after the variant styles to take effect.
         [`&.${buttonClasses.loading}`]: {
@@ -213,8 +213,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, buttonGroup.color || colorProp);
+  const color = inProps.color || buttonGroup.color || colorProp;
   const disabled =
     (inProps.disabled || inProps.loading) ?? (buttonGroup.disabled || disabledProp || loading);
 
@@ -228,10 +227,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress
-      {...(color !== 'context' && { color })}
-      thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3}
-    />
+    <CircularProgress color={color} thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3} />
   );
 
   React.useImperativeHandle(

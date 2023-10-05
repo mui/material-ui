@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import { pink } from '@mui/material/colors';
 import SvgIcon from '@mui/material/SvgIcon';
 
@@ -13,13 +13,7 @@ function HomeIcon(props) {
 
 export default function SvgIconsColor() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': {
-          m: 2,
-        },
-      }}
-    >
+    <Stack direction="row" spacing={3}>
       <HomeIcon />
       <HomeIcon color="primary" />
       <HomeIcon color="secondary" />
@@ -27,6 +21,6 @@ export default function SvgIconsColor() {
       <HomeIcon color="action" />
       <HomeIcon color="disabled" />
       <HomeIcon sx={{ color: pink[500] }} />
-    </Box>
+    </Stack>
   );
 }

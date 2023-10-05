@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-beta.16",
+  "version": "5.0.0-beta.18",
   "private": false,
   "author": "MUI Team",
   "description": "A library of headless ('unstyled') React UI components and low-level hooks.",
@@ -41,30 +41,30 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.15",
+    "@babel/runtime": "^7.23.1",
     "@floating-ui/react-dom": "^2.0.2",
-    "@mui/types": "^7.2.4",
-    "@mui/utils": "^5.14.10",
+    "@mui/types": "^7.2.5",
+    "@mui/utils": "^5.14.12",
     "@popperjs/core": "^2.11.8",
     "clsx": "^2.0.0",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui/material": "^5.14.10",
+    "@mui-internal/test-utils": "^1.0.0",
+    "@mui/material": "^5.14.12",
     "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3",
-    "@types/chai": "^4.3.5",
-    "@types/prop-types": "^15.7.5",
-    "@types/react": "18.2.21",
+    "@testing-library/user-event": "^14.5.1",
+    "@types/chai": "^4.3.6",
+    "@types/prop-types": "^15.7.7",
+    "@types/react": "18.2.23",
     "@types/react-dom": "18.2.7",
     "@types/sinon": "^10.0.16",
-    "chai": "^4.3.7",
+    "chai": "^4.3.8",
     "fast-glob": "^3.3.1",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sinon": "^15.2.0",
-    "test": "^5.0.0"
+    "sinon": "^15.2.0"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",

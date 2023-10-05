@@ -25,8 +25,8 @@
     },
     "getListboxProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers&gt;(otherHandlers?: TOther) =&gt; UseMenuListboxSlotProps",
-        "description": "&lt;TOther extends EventHandlers&gt;(otherHandlers?: TOther) =&gt; UseMenuListboxSlotProps"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseMenuListboxSlotProps",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseMenuListboxSlotProps"
       },
       "required": true
     },

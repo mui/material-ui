@@ -111,17 +111,19 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       },
     },
     '& .MuiAlert-standardWarning': {
-      padding: '6px 12px',
-      fontWeight: theme.typography.fontWeightMedium,
+      display: 'flex',
+      alignItems: 'baseline',
+      fontSize: theme.typography.pxToRem(16),
+      padding: '6px 16px',
       border: '1px solid',
-      borderColor: `var(--muidocs-palette-warning-300, ${lightTheme.palette.warning[300]})`,
-      borderRadius: 8,
-      backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
-      color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
+      color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
+      backgroundColor: alpha(lightTheme.palette.warning[50], 0.5),
+      borderColor: `var(--muidocs-palette-warning-200, ${lightTheme.palette.warning[200]})`,
+      borderRadius: `var(--muidocs-shape-borderRadius, ${
+        theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
+      }px)`,
       marginBottom: 16,
       '.MuiAlert-icon': {
-        display: 'flex',
-        alignItems: 'center',
         fill: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
       },
     },
@@ -172,9 +174,9 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         },
       },
       '& .MuiAlert-standardWarning': {
-        borderColor: alpha(darkTheme.palette.warning[800], 0.3),
-        backgroundColor: alpha(darkTheme.palette.warning[800], 0.2),
-        color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
+        color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
+        backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
+        borderColor: alpha(darkTheme.palette.warning[600], 0.3),
         '.MuiAlert-icon svg': {
           fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
         },
@@ -196,7 +198,7 @@ export type ApiItemProps = {
   children: React.ReactNode;
 };
 
-function ApiItem(props: ApiItemProps) {
+export default function ApiItem(props: ApiItemProps) {
   const { title, description, note, children, type, id, ...other } = props;
   const descriptionRef = React.useRef<HTMLSpanElement>(null);
   const [isOverflow, setIsOverflow] = React.useState(false);
@@ -221,26 +223,16 @@ function ApiItem(props: ApiItemProps) {
   return (
     <Root ownerState={{ type }} {...other}>
       <div id={id} className="MuiApi-item-header">
-        <a
-          className="MuiApi-item-link-visual"
-          href={`#${id}`}
-          onClick={() => {
-            navigator.clipboard.writeText(
-              `${window.location.origin}${window.location.pathname}#${id}`,
-            );
-          }}
-        >
+        <a className="MuiApi-item-link-visual" href={`#${id}`}>
           <svg>
             <use xlinkHref="#anchor-link-icon" />
           </svg>
         </a>
-
         <span
           className="MuiApi-item-title" // This className is used by Algolia
         >
           {title}
         </span>
-
         <span
           className={`MuiApi-item-description${
             isExtended ? ' MuiApi-item-description-extended' : ''
@@ -278,5 +270,3 @@ ApiItem.propTypes = {
   note: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
-
-export default ApiItem;

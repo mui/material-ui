@@ -7,7 +7,6 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import { getCardOverflowUtilityClass } from './cardOverflowClasses';
 import {
   CardOverflowProps,
@@ -128,14 +127,12 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     className,
     component = 'div',
     children,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'plain',
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
