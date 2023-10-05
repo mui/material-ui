@@ -4,14 +4,16 @@ import { refType } from '@mui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import { OverrideProps } from '@mui/types';
-import InputBase, {
-  rootOverridesResolver as inputBaseRootOverridesResolver,
-  inputOverridesResolver as inputBaseInputOverridesResolver,
-} from '../InputBase';
 import { useThemeProps, styled } from '../styles';
 import { rootShouldForwardProp } from '../styles/styled';
+import {
+  InputBaseRoot,
+  InputBaseInput,
+  rootOverridesResolver as inputBaseRootOverridesResolver,
+  inputOverridesResolver as inputBaseInputOverridesResolver,
+} from '../InputBase/InputBase';
+import InputBase from '../InputBase';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
-import { InputBaseRoot, InputBaseInput } from '../InputBase/InputBase';
 import { FilledInputOwnerState, FilledInputProps, FilledInputTypeMap } from './FilledInput.types';
 
 const useUtilityClasses = (ownerState: FilledInputOwnerState) => {
@@ -36,6 +38,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
+
     return [
       ...inputBaseRootOverridesResolver(props, styles),
       !ownerState.disableUnderline && styles.underline,
