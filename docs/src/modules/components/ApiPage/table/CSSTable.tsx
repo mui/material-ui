@@ -1,13 +1,10 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
+import { styled, alpha } from '@mui/material/styles';
 import {
-  styled,
-  // alpha
-} from '@mui/material/styles';
-// import {
-//   brandingDarkTheme as darkTheme,
-//   brandingLightTheme as lightTheme,
-// } from 'docs/src/modules/brandingTheme';
+  brandingDarkTheme as darkTheme,
+  brandingLightTheme as lightTheme,
+} from 'docs/src/modules/brandingTheme';
 import { CSSFormatedParams, getHash } from 'docs/src/modules/components/ApiPage/list/CSSList';
 
 const StyledTable = styled('table')(
@@ -20,37 +17,44 @@ const StyledTable = styled('table')(
       fontSize: theme.typography.pxToRem(14),
     },
     '& .MuiApi-table-rule-name': {
-      //   fontWeight: theme.typography.fontWeightSemiBold,
-      //   fontFamily: theme.typography.fontFamilyCode,
-      //   fontSize: theme.typography.pxToRem(13),
-      //   color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
+      fontWeight: theme.typography.fontWeightSemiBold,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontSize: theme.typography.pxToRem(13),
+      color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
+    },
+    '& .MuiApi-table-className': {
+      padding: '0 4px',
+      borderRadius: 5,
+      color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
+      border: '1px solid',
+      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+      ...theme.typography.caption,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightRegular,
     },
     '& .MuiApi-table-global-class': {
-      //   padding: '0 4px',
-      //   borderRadius: 5,
-      //   color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-      //   backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
-      //   border: '1px solid',
-      //   borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
-      //   ...theme.typography.caption,
-      //   fontFamily: theme.typography.fontFamilyCode,
-      //   fontWeight: theme.typography.fontWeightRegular,
-    },
-    '& .MuiApi-table-description': {
-      //   padding: '0 4px',
-      //   borderRadius: 5,
-      //   border: '1px solid',
-      //   borderColor: alpha(darkTheme.palette.primary[100], 0.5),
-      //   backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
-      //   ...theme.typography.caption,
-      //   fontFamily: theme.typography.fontFamilyCode,
-      //   fontWeight: theme.typography.fontWeightRegular,
+      padding: '0 4px',
+      borderRadius: 5,
+      border: '1px solid',
+      borderColor: alpha(darkTheme.palette.primary[100], 0.5),
+      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+      ...theme.typography.caption,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightRegular,
     },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
-      '& .MuiApi-table-rule-name': {
-        // color: `var(--muidocs-palette-primary-700, ${darkTheme.palette.primary[700]})`,
+      '& .MuiApi-table-className': {
+        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+        backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
+        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+      },
+      '& .MuiApi-table-global-class': {
+        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
       },
     },
   }),
@@ -77,10 +81,13 @@ export default function CSSTable(props: CSSTableProps) {
 
           return (
             <tr key={className} id={getHash({ componentName, className })}>
-              <td className="MuiApi-table-global-class">{className}</td>
+              <td>
+                <span className="MuiApi-table-className">{className}</span>
+              </td>
               <td>
                 {
                   <span
+                    className="MuiApi-table-global-class"
                     dangerouslySetInnerHTML={{
                       __html: selector || '',
                     }}
