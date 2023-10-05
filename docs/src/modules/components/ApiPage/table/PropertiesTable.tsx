@@ -46,6 +46,27 @@ const StyledTable = styled('table')(
       fontFamily: theme.typography.fontFamilyCode,
       fontWeight: theme.typography.fontWeightRegular,
     },
+    '& .MuiPropTable-description-column': {
+      width: '40%',
+      paddingRight: 8,
+      '& .prop-list-description': {
+        marginBottom: 0,
+      },
+      '& .prop-list-additional-description': {
+        marginTop: 12,
+        marginBottom: 0,
+      },
+    },
+    '& .prop-list-signature': {
+      marginTop: 12,
+      marginBottom: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 16,
+      '& .prop-list-title': {
+        fontWeight: theme.typography.fontWeightMedium,
+      },
+    },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
@@ -61,6 +82,11 @@ const StyledTable = styled('table')(
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
         backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
+      },
+      '& .prop-list-signature': {
+        '& .prop-list-title': {
+          color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+        },
       },
     },
   }),
@@ -144,7 +170,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
               <td>
                 <span className="MuiApi-table-item-default">{propDefault}</span>
               </td>
-              <td>
+              <td className="MuiPropTable-description-column">
                 {description && <PropDescription description={description} />}
                 {requiresRef && (
                   <Alert
@@ -172,7 +198,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 )}
                 {additionalInfo.map((key) => (
                   <p
-                    className="prop-list-additional-description  MuiApi-collapsible"
+                    className="prop-list-additional-description"
                     key={key}
                     dangerouslySetInnerHTML={{
                       __html: t(`api-docs.additional-info.${key}`),
@@ -212,41 +238,40 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                   </Alert>
                 )}
                 {signature && (
-                  <div className="prop-list-signature MuiApi-collapsible">
+                  <div className="prop-list-signature">
                     <span className="prop-list-title">{t('api-docs.signature')}:</span>
 
-                    <div className="prop-list-content">
-                      <code
-                        dangerouslySetInnerHTML={{
-                          __html: signature,
-                        }}
-                      />
+                    <code
+                      dangerouslySetInnerHTML={{
+                        __html: signature,
+                      }}
+                    />
 
-                      {signatureArgs && (
-                        <div>
-                          <ul>
-                            {signatureArgs.map(({ argName, argDescription }) => (
-                              <li
-                                key={argName}
-                                dangerouslySetInnerHTML={{
-                                  __html: `<code>${argName}</code> ${argDescription}`,
-                                }}
-                              />
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      {signatureReturnDescription && (
-                        <p>
-                          {t('api-docs.returns')}
-                          <span
-                            dangerouslySetInnerHTML={{
-                              __html: signatureReturnDescription,
-                            }}
-                          />
-                        </p>
-                      )}
-                    </div>
+                    {signatureArgs && (
+                      <div>
+                        <ul>
+                          {signatureArgs.map(({ argName, argDescription }) => (
+                            <li
+                              className="prop-signature-list"
+                              key={argName}
+                              dangerouslySetInnerHTML={{
+                                __html: `<code>${argName}</code> ${argDescription}`,
+                              }}
+                            />
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {signatureReturnDescription && (
+                      <p>
+                        {t('api-docs.returns')}
+                        <span
+                          dangerouslySetInnerHTML={{
+                            __html: signatureReturnDescription,
+                          }}
+                        />
+                      </p>
+                    )}
                   </div>
                 )}
               </td>

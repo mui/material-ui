@@ -43,6 +43,10 @@ const StyledTable = styled('table')(
       fontFamily: theme.typography.fontFamilyCode,
       fontWeight: theme.typography.fontWeightRegular,
     },
+    '& .MuiCssTable-description-column': {
+      width: '50%',
+      paddingRight: 8,
+    },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
@@ -94,7 +98,7 @@ export default function CSSTable(props: CSSTableProps) {
                   />
                 }
               </td>
-              <td>
+              <td className="MuiCssTable-description-column">
                 <span
                   className="MuiApi-table-description"
                   dangerouslySetInnerHTML={{
