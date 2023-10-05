@@ -13,6 +13,7 @@ import {
   inputOverridesResolver as inputBaseInputOverridesResolver,
 } from '../InputBase/InputBase';
 import InputBase from '../InputBase';
+import { InputBaseOwnerState } from '../InputBase/InputBase.types';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import { FilledInputOwnerState, FilledInputProps, FilledInputTypeMap } from './FilledInput.types';
 
@@ -261,32 +262,20 @@ const FilledInput = React.forwardRef(function FilledInput<
   const rootProps = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
-    ownerState: {
-      ...ownerState,
-      maxRows: undefined,
-      minRows: undefined,
-      rows: undefined,
-      'aria-describedby': undefined,
-      autoComplete: undefined,
-      formControl: undefined,
-      focused: false,
+    additionalProps: {
+      ref: forwardedRef,
+      fullWidth,
+      inputComponent,
     },
+    externalForwardedProps: other,
+    ownerState: ownerState as FilledInputOwnerState & InputBaseOwnerState,
     className: [classes.root],
   });
 
   const inputProps = useSlotProps({
     elementType: Input,
     externalSlotProps: slotProps.input,
-    ownerState: {
-      ...ownerState,
-      maxRows: undefined,
-      minRows: undefined,
-      rows: undefined,
-      'aria-describedby': undefined,
-      autoComplete: undefined,
-      formControl: undefined,
-      focused: false,
-    },
+    ownerState: ownerState as FilledInputOwnerState & InputBaseOwnerState,
     className: [classes.input],
   });
 
@@ -295,14 +284,10 @@ const FilledInput = React.forwardRef(function FilledInput<
       <InputBase
         slots={{ root: Root, textarea: Input }}
         slotProps={{
-          root: rootProps,
           input: inputProps,
         }}
-        fullWidth={fullWidth}
-        inputComponent={inputComponent}
         multiline
-        ref={forwardedRef}
-        {...other}
+        {...rootProps}
       />
     );
   }
@@ -311,15 +296,10 @@ const FilledInput = React.forwardRef(function FilledInput<
     <InputBase
       slots={{ root: Root, input: Input }}
       slotProps={{
-        root: rootProps,
         input: inputProps,
       }}
-      fullWidth={fullWidth}
-      inputComponent={inputComponent}
-      ref={forwardedRef}
       type={type}
-      multiline={false}
-      {...other}
+      {...rootProps}
     />
   );
 }) as FilledInputComponent;
