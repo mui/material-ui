@@ -40,13 +40,13 @@ export default function CustomAnimatedSnackbar() {
 
   return (
     <div>
-      <Button onClick={handleClick}>Show Snackbar</Button>
+      <Button variant="outlined" color="neutral" onClick={handleClick}>
+        Show Snackbar
+      </Button>
       <Snackbar
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         open={open}
         onClose={handleClose}
-        variant="solid"
-        color="danger"
         autoHideDuration={4000}
         animationDuration={animationDuration}
         sx={{

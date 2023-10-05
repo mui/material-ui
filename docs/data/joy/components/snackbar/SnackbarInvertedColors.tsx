@@ -53,27 +53,18 @@ export default function SnackbarInvertedColors() {
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen}>Show Snackbar</Button>
+      <Button variant="outlined" color="neutral" onClick={handleOpen}>
+        Show Snackbar
+      </Button>
       <Snackbar
         open={open}
         onClose={handleClose}
         autoHideDuration={5000}
-        size="lg"
-        color="success"
         variant="solid"
         invertedColors
-        slots={{
-          startDecorator: SnackbarStartDecorator,
-          endDecorator: SnackbarEndDecorator,
-        }}
-        slotProps={{
-          endDecorator: {
-            onClose: handleClose,
-          },
-        }}
-        sx={{ alignItems: 'center', overflow: 'hidden' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
-        <Typography level="body-sm">Your message was sent successfully.</Typography>
+        I love snacks
       </Snackbar>
     </React.Fragment>
   );
