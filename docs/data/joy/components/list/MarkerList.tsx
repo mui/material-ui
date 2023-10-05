@@ -4,7 +4,7 @@ import Button from '@mui/joy/Button';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 
-export default function BasicList() {
+export default function MarkerList() {
   const [type, setType] = React.useState<string | null>('disc');
   return (
     <div>
