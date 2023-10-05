@@ -226,7 +226,8 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                       '& .MuiAlert-icon': {
                         height: 'fit-content',
                         p: 0,
-                        mb: 0.5,
+                        mr: 1,
+                        mb: 0.3,
                       },
                     }}
                   >
