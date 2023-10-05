@@ -1,5 +1,7 @@
 import * as React from 'react';
 import Input, { InputProps } from '@mui/joy/Input';
+import Typography from '@mui/joy/Typography';
+import Box from '@mui/joy/Box';
 
 type DebounceProps = {
   handleDebounce: (value: string) => void;
@@ -25,14 +27,18 @@ function DebounceInput(props: InputProps & DebounceProps) {
 }
 
 export default function DebouncedInput() {
-  const handleDebounce = () => {
-    alert('This function is called after 1 second of typing');
+  const [debouncedValue, setDebouncedValue] = React.useState('');
+  const handleDebounce = (value: string) => {
+    setDebouncedValue(value);
   };
   return (
-    <DebounceInput
-      placeholder="Type in here…"
-      debounceTimeout={1000}
-      handleDebounce={handleDebounce}
-    />
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+      <DebounceInput
+        placeholder="Type in here…"
+        debounceTimeout={1000}
+        handleDebounce={handleDebounce}
+      />
+      <Typography>Debounced input: {debouncedValue}</Typography>
+    </Box>
   );
 }
