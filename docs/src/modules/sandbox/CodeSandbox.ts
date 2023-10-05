@@ -41,10 +41,10 @@ const createReactApp = (demoData: DemoData) => {
     'public/index.html': {
       content: CRA.getHtml(demoData),
     },
-    [`index.${ext}`]: {
+    [`src/index.${ext}`]: {
       content: CRA.getRootIndex(demoData),
     },
-    [`Demo.${ext}`]: {
+    [`src/Demo.${ext}`]: {
       content: demoData.raw,
     },
     ...(demoData.codeVariant === 'TS' && {
