@@ -7,7 +7,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
@@ -184,14 +184,12 @@ const List = React.forwardRef(function List(inProps, ref) {
     orientation = 'vertical',
     wrap = false,
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     role: roleProp,
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
   const size = sizeProp || (inProps.size ?? 'md');
 
   let role;

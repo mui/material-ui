@@ -140,18 +140,22 @@ If you need to prevent default on a `key-up` and/or `key-down` event, then besid
 
 This is to ensure that default is prevented when the `ButtonBase` root is not a native button, for example, when the root element used is a `span`.
 
-## InputBase
+## FormControl
 
-### Removed the `inputComponent` prop
+### Renamed `FormControlState`
 
-The `inputComponent` is deprecated in favor of `slots.input`:
+The `FormControlState` interface was renamed to `FormControlContextValue`:
 
 ```diff
- <InputBase
--    inputComponent="textarea"
-+    slots={{ input: 'textarea' }}
- />
+-import { FormControlState } from '@mui/material';
++import { FormControlContextValue } from '@mui/material-next';
 ```
+
+### Removed the `standard` variant
+
+The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
+
+## InputBase
 
 ### Removed `inputProps`
 
