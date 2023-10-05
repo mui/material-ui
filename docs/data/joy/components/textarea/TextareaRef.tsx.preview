@@ -1,0 +1,2 @@
+<Textarea ref={textareaRef} placeholder="Textarea" />
+<Button onClick={handleTextareaFocus}>Focus Textarea</Button>

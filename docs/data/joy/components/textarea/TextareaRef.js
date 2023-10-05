@@ -12,10 +12,9 @@ export default function TextareaRef() {
   };
 
   return (
-    <Box sx={{display: 'flex', flexDirection: 'row', gap: 1}}>
+    <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
       <Textarea ref={textareaRef} placeholder="Textarea" />
       <Button onClick={handleTextareaFocus}>Focus Textarea</Button>
     </Box>
   );
 }
-
