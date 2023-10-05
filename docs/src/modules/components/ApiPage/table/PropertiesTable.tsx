@@ -50,7 +50,17 @@ const StyledTable = styled('table')(
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .MuiApi-table-item-title': {
-        color: `var(--muidocs-palette-primary-700, ${darkTheme.palette.primary[700]})`,
+        color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+      },
+      '& .MuiApi-table-item-type': {
+        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+        backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
+        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+      },
+      '& .MuiApi-table-item-default': {
+        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
       },
     },
   }),
