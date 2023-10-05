@@ -83,7 +83,7 @@ const createReactApp = (demoData: DemoData) => {
      * @description should start with `/`, e.g. `/Demo.tsx`. If the extension is not provided,
      * it will be appended based on the code variant.
      */
-    openSandbox: (initialFile: string = `/Demo.${ext}`) =>
+    openSandbox: (initialFile: string = `/src/Demo.${ext}`) =>
       openSandbox({ files, codeVariant: demoData.codeVariant, initialFile }),
   };
 };
