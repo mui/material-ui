@@ -12,12 +12,10 @@ import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 
 import useScript from './useScript';
-import FirstSidebar from './components/FirstSidebar';
-import SecondSidebar from './components/SecondSidebar';
+import Sidebar from './components/Sidebar';
 import OrderTable from './components/OrderTable';
 import OrderList from './components/OrderList';
 import Header from './components/Header';
-import ColorSchemeToggle from './components/ColorSchemeToggle';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -39,8 +37,7 @@ export default function JoyOrderDashboardTemplate() {
       <CssBaseline />
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
         <Header />
-        <FirstSidebar />
-        <SecondSidebar />
+        <Sidebar />
         <Box
           component="main"
           className="MainContent"
@@ -95,9 +92,6 @@ export default function JoyOrderDashboardTemplate() {
                 Orders
               </Typography>
             </Breadcrumbs>
-            <ColorSchemeToggle
-              sx={{ ml: 'auto', display: { xs: 'none', md: 'inline-flex' } }}
-            />
           </Box>
           <Box
             sx={{
