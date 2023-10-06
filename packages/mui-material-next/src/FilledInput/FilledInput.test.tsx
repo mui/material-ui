@@ -55,12 +55,6 @@ describe('<FilledInput />', () => {
     expect(document.querySelector('.error')).not.to.equal(null);
   });
 
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('should respects the componentsProps if passed', () => {
-    render(<FilledInput componentsProps={{ root: { 'data-test': 'test' } }} />);
-    expect(document.querySelector('[data-test=test]')).not.to.equal(null);
-  });
-
   it('should respect the classes coming from InputBase', () => {
     const { getByTestId } = render(
       <FilledInput
