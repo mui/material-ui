@@ -8,9 +8,10 @@ import {
   fireEvent,
   screen,
 } from '@mui-internal/test-utils';
-import MenuItem, { menuItemClasses as classes } from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 import ListContext from '@mui/material/List/ListContext';
+import MenuItem from './MenuItem';
+import classes from './menuItemClasses';
 
 describe('<MenuItem />', () => {
   const { render } = createRenderer();

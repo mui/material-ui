@@ -9,10 +9,10 @@ import {
   fireEvent,
   strictModeDoubleLoggingSuppressed,
 } from '@mui-internal/test-utils';
-import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { MenuPaper } from './Menu';
+import Menu, { MenuPaper } from './Menu';
+import classes from './menuClasses';
 
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
