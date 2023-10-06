@@ -10,9 +10,6 @@
     "autoHideDuration": {
       "description": "The number of milliseconds to wait before automatically calling the <code>onClose</code> function. <code>onClose</code> should then set the state of the <code>open</code> prop to hide the Snackbar. This behavior is disabled by default with the <code>null</code> value."
     },
-    "ClickAwayListenerProps": {
-      "description": "Props applied to the <code>ClickAwayListener</code> element."
-    },
     "color": {
       "description": "The color of the component. It supports those theme colors that make sense for this component."
     },
@@ -22,6 +19,7 @@
     "disableWindowBlurListener": {
       "description": "If <code>true</code>, the <code>autoHideDuration</code> timer will expire even if the window is not focused."
     },
+    "endDecorator": { "description": "Element placed after the children." },
     "invertedColors": {
       "description": "If <code>true</code>, the children with an implicit color prop invert their colors to match the component&#39;s variant and color."
     },
@@ -42,6 +40,7 @@
     "size": { "description": "The size of the component." },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
+    "startDecorator": { "description": "Element placed before the children." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -155,6 +154,7 @@
   "slotDescriptions": {
     "root": "The component that renders the root.",
     "startDecorator": "The component that renders the start decorator.",
-    "endDecorator": "The component that renders the end decorator."
+    "endDecorator": "The component that renders the end decorator.",
+    "clickAway": "The component that renders the click away."
   }
 }

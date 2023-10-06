@@ -1,16 +1,14 @@
 {
   "props": {
-    "open": { "type": { "name": "bool" }, "required": true },
     "anchorOrigin": {
       "type": {
         "name": "shape",
         "description": "{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
       },
-      "default": "{ vertical: 'bottom', horizontal: 'left' }"
+      "default": "{ vertical: 'bottom', horizontal: 'center' }"
     },
-    "animationDuration": { "type": { "name": "number" }, "default": "500" },
+    "animationDuration": { "type": { "name": "number" }, "default": "300" },
     "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
-    "ClickAwayListenerProps": { "type": { "name": "object" } },
     "color": {
       "type": {
         "name": "enum",
@@ -21,6 +19,7 @@
     },
     "component": { "type": { "name": "elementType" } },
     "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
+    "endDecorator": { "type": { "name": "node" } },
     "invertedColors": { "type": { "name": "bool" }, "default": "false" },
     "key": { "type": { "name": "custom", "description": "any" } },
     "onClose": {
@@ -30,6 +29,7 @@
         "describedArgs": ["event", "reason"]
       }
     },
+    "open": { "type": { "name": "bool" } },
     "resumeHideDuration": { "type": { "name": "number" } },
     "size": {
       "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },
@@ -39,18 +39,19 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ endDecorator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
+        "description": "{ clickAway?: func<br>&#124;&nbsp;{ children: element, disableReactTree?: bool, mouseEvent?: 'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;'onPointerDown'<br>&#124;&nbsp;'onPointerUp'<br>&#124;&nbsp;false, onClickAway: func, touchEvent?: 'onTouchEnd'<br>&#124;&nbsp;'onTouchStart'<br>&#124;&nbsp;false }, endDecorator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ endDecorator?: elementType, root?: elementType, startDecorator?: elementType }"
+        "description": "{ clickAway?: elementType, endDecorator?: elementType, root?: elementType, startDecorator?: elementType }"
       },
       "default": "{}",
       "additionalInfo": { "slotsApi": true }
     },
+    "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",
@@ -88,6 +89,12 @@
       "description": "The component that renders the end decorator.",
       "default": "'span'",
       "class": ".MuiSnackbar-endDecorator"
+    },
+    {
+      "name": "clickAway",
+      "description": "The component that renders the click away.",
+      "default": "ClickAwayListener",
+      "class": null
     }
   ],
   "classes": {
@@ -114,8 +121,9 @@
     "globalClasses": {}
   },
   "spread": true,
-  "themeDefaultProps": null,
+  "themeDefaultProps": true,
   "muiName": "JoySnackbar",
+  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Snackbar/Snackbar.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-snackbar/\">Snackbar</a></li></ul>",
