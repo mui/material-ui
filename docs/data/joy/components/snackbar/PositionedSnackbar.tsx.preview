@@ -3,9 +3,6 @@
   anchorOrigin={{ vertical, horizontal }}
   open={open}
   onClose={handleClose}
-  variant="solid"
-  color="success"
-  size="lg"
   key={vertical + horizontal}
 >
   I love snacks

@@ -10,8 +10,8 @@ interface CloseButtonProps {
 function CloseButton(props: CloseButtonProps) {
   const { onClose } = props;
   return (
-    <Button onClick={onClose} size="sm" variant="solid" color="success">
-      Close
+    <Button onClick={onClose} size="sm" variant="plain" color="neutral">
+      Dismiss
     </Button>
   );
 }
@@ -25,12 +25,15 @@ export default function SnackbarWithDecorators() {
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen}>Show Snackbar</Button>
+      <Button variant="outlined" color="neutral" onClick={handleOpen}>
+        Show Snackbar
+      </Button>
       <Snackbar
-        variant="soft"
+        variant="outlined"
         color="success"
         open={open}
         onClose={handleClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         slots={{
           startDecorator: PlaylistAddCheckCircleRoundedIcon,
           endDecorator: CloseButton,

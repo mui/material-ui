@@ -31,7 +31,7 @@ export default function PositionedSnackbar() {
           variant="plain"
           onClick={handleClick({ vertical: 'top', horizontal: 'center' })}
         >
-          TOP-CENTER
+          Top-center
         </Button>
       </Box>
       <Grid container justifyContent="center">
@@ -40,15 +40,15 @@ export default function PositionedSnackbar() {
             variant="plain"
             onClick={handleClick({ vertical: 'top', horizontal: 'left' })}
           >
-            TOP-LEFT
+            Top-left
           </Button>
         </Grid>
-        <Grid xs={6} textAlign="right">
+        <Grid xs={6} textAlign="right" sx={{ mb: 2 }}>
           <Button
             variant="plain"
             onClick={handleClick({ vertical: 'top', horizontal: 'right' })}
           >
-            TOP-RIGHT
+            Top-right
           </Button>
         </Grid>
         <Grid xs={6}>
@@ -56,7 +56,7 @@ export default function PositionedSnackbar() {
             variant="plain"
             onClick={handleClick({ vertical: 'bottom', horizontal: 'left' })}
           >
-            BOTTOM-LEFT
+            Bottom-left
           </Button>
         </Grid>
         <Grid xs={6} textAlign="right">
@@ -64,7 +64,7 @@ export default function PositionedSnackbar() {
             variant="plain"
             onClick={handleClick({ vertical: 'bottom', horizontal: 'right' })}
           >
-            BOTTOM-RIGHT
+            Bottom-right
           </Button>
         </Grid>
       </Grid>
@@ -73,7 +73,7 @@ export default function PositionedSnackbar() {
           variant="plain"
           onClick={handleClick({ vertical: 'bottom', horizontal: 'center' })}
         >
-          BOTTOM-CENTER
+          Bottom-center
         </Button>
       </Box>
     </React.Fragment>
@@ -86,9 +86,6 @@ export default function PositionedSnackbar() {
         anchorOrigin={{ vertical, horizontal }}
         open={open}
         onClose={handleClose}
-        variant="solid"
-        color="success"
-        size="lg"
         key={vertical + horizontal}
       >
         I love snacks
