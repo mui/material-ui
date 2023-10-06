@@ -49,16 +49,17 @@ const FilledInputRoot = styled(InputBaseRoot, {
   const { vars: tokens } = theme;
 
   return {
-    '--md-comp-filled-input-container-color': tokens.sys.color.surfaceContainerHighest,
     '--md-comp-filled-input-active-indicator-color': tokens.sys.color.onSurfaceVariant,
-    '--md-comp-filled-input-hover-active-indicator-color': tokens.sys.color.onSurface,
-    '--md-comp-filled-input-focus-active-indicator-color':
-      tokens.sys.color[ownerState.color ?? 'primary'],
-    '--md-comp-filled-input-error-active-indicator-color': tokens.sys.color.error,
-    '--md-comp-filled-input-error-hover-active-indicator-color': tokens.sys.color.onErrorContainer,
-    '--md-comp-filled-input-error-focus-active-indicator-color': tokens.sys.color.error,
+    '--md-comp-filled-input-container-color': tokens.sys.color.surfaceContainerHighest,
     '--md-comp-filled-input-disabled-container-color': tokens.sys.color.onSurface,
     '--md-comp-filled-input-disabled-container-opacity': 0.04,
+    '--md-comp-filled-input-error-active-indicator-color': tokens.sys.color.error,
+    '--md-comp-filled-input-error-hover-active-indicator-color': tokens.sys.color.onErrorContainer,
+    '--md-comp-filled-input-focus-active-indicator-color':
+      tokens.sys.color[ownerState.color ?? 'primary'],
+    '--md-comp-filled-input-hover-active-indicator-color': tokens.sys.color.onSurface,
+    '--md-comp-filled-input-hover-state-layer-opacity': tokens.sys.state.hover.stateLayerOpacity,
+
     position: 'relative',
     backgroundColor: 'var(--md-comp-filled-input-container-color)',
     borderTopLeftRadius: tokens.shape.borderRadius,
@@ -68,7 +69,8 @@ const FilledInputRoot = styled(InputBaseRoot, {
       easing: theme.transitions.easing.easeOut,
     }),
     '&:hover': {
-      backgroundColor: `color-mix(in srgb, ${tokens.sys.color.onSurface} calc(${tokens.sys.state.hover.stateLayerOpacity} * 100%), var(--md-comp-filled-input-container-color))`,
+      backgroundColor:
+        'color-mix(in srgb, var(--md-comp-filled-input-hover-active-indicator-color) calc(var(--md-comp-filled-input-hover-state-layer-opacity) * 100%), var(--md-comp-filled-input-container-color))',
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'var(--md-comp-filled-input-container-color)',
@@ -107,7 +109,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       },
       [`&.${filledInputClasses.error}`]: {
         '&:before, &:after': {
-          borderBottomColor: tokens.sys.color.errorContainer,
+          borderBottomColor: 'var(--md-comp-filled-input-error-active-indicator-color)',
         },
       },
       '&:before': {
@@ -183,23 +185,22 @@ const FilledInputInput = styled(InputBaseInput, {
             },
           },
         }
-      : {}),
-    ...(tokens && {
-      '&:-webkit-autofill': {
-        borderTopLeftRadius: 'inherit',
-        borderTopRightRadius: 'inherit',
-      },
-    }),
-    // TODO: investigate why describeConformance dies without this check
-    ...(typeof theme.getColorSchemeSelector === 'function' && {
-      [theme.getColorSchemeSelector('dark')]: {
-        '&:-webkit-autofill': {
-          WebkitBoxShadow: '0 0 0 100px #266798 inset',
-          WebkitTextFillColor: '#fff',
-          caretColor: '#fff',
-        },
-      },
-    }),
+      : {
+          '&:-webkit-autofill': {
+            borderTopLeftRadius: 'inherit',
+            borderTopRightRadius: 'inherit',
+          },
+          // this could be undefined in unit tests
+          ...(theme.getColorSchemeSelector && {
+            [theme.getColorSchemeSelector('dark')]: {
+              '&:-webkit-autofill': {
+                WebkitBoxShadow: '0 0 0 100px #266798 inset',
+                WebkitTextFillColor: '#fff',
+                caretColor: '#fff',
+              },
+            },
+          }),
+        }),
     ...(ownerState.size === 'small' && {
       paddingTop: 21,
       paddingBottom: 4,
