@@ -20,6 +20,9 @@ const StyledApiItem = styled(ExpendableApiItem)(
       whiteSpace: 'nowrap',
       margin: 0,
     },
+    '& .prop-list-class': {
+      margin: 0,
+    },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
@@ -73,7 +76,7 @@ export default function CSSList(props: CSSListProps) {
               />
             )}
             {className && (
-              <p className="prop-list-default-props">
+              <p className="prop-list-class">
                 <span className="prop-list-title">{'className'}:</span>
                 <code className="Api-code">{className}</code>
               </p>
