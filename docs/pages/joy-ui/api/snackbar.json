@@ -121,7 +121,7 @@
     ],
     "globalClasses": {}
   },
-  "spread": true,
+  "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoySnackbar",
   "forwardsRefTo": "HTMLDivElement",

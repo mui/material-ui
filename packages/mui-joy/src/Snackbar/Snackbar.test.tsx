@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { expect } from 'chai';
-import { spy } from 'sinon';
-import { describeConformance, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/joy/Snackbar';
 import { ThemeProvider } from '@mui/joy/styles';
 
@@ -18,6 +16,7 @@ describe('Joy <Snackbar />', () => {
       ThemeProvider,
       muiName: 'JoySnackbar',
       refInstanceof: window.HTMLDivElement,
+      testVariantProps: { variant: 'solid' },
       slots: {
         root: { expectedClassName: classes.root },
         startDecorator: { expectedClassName: classes.startDecorator },
