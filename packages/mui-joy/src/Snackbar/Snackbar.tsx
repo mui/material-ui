@@ -214,6 +214,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
         clearTimeout(timer);
       };
     }
+    return undefined;
   }, [open, animationDuration]);
 
   const ownerState = {
