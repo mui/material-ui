@@ -5,18 +5,21 @@
 ## Motivation
 
 The Joy UI [global variants feature](/joy-ui/main-features/global-variants/) provides a consistent set of values for the `variant` prop.
-However, depending on the design, they may not fit perfectly, like in the right-hand side example, where the Card parent variant overlaps with its child components.
+But these variants can sometimes cause quirks when the same styles are applied to both parent and child components.
+Check out the two demo cards below to see how things can go wrong:
 
 {{"demo": "ColorInversionMotivation.js"}}
 
-- On the left, the Button variant is `solid`. Given the Card wrapper hasn't a specifically defined variant value, it renders its default one, which is `outlined`, making the design work well.
-- On the right, the Card uses `solid`, disrupting the design's hierarchy and contrast.
+- On the left, the Button variant is `solid`, while its parent Card is the default `outlined`, so the design works well.
+- On the right, the `solid` variant is applied to both the Button and the Card, disrupting the design's hierarchy and contrast.
 
-The color inversion feature tackles precisely this type of situation conveniently, preserving the meaningfulness of each global variant.
+Joy UI's color inversion feature prevents this kind of situation from occurring, while still preserving the hiearchical meaning of the global variants themselves.
 
 ## Overview
 
-When color inversion is enabled on the parent component, all children components will invert their styles regardless of their color prop to match the parent's background by keeping the same hierarchy of importance based on their variants.
+When color inversion is enabled on a parent component, all children components invert their styles (regardless of their respective color props) to match the parent's background.
+The inverted styles maintain the semantic meaning of their corresponding global variants—in the example below, the Button is still `solid` even though it's been inverted to contrast with its container.
+If you change the Button's variant to `outlined`, you'll see that the design still works; but try removing the `invertedColors` prop from the parent Card, and you'll see how the design falls apart (and thus, why this feature is so useful):
 
 {{"demo": "ColorInversionOverview.js"}}
 
@@ -36,27 +39,38 @@ The color inversion feature is only available for `soft` and `solid` variants be
 
 ### Trade-offs
 
-- If the surface component contains just a few components, the style sheet size of the CSS variables might be bigger than customizing the styles of each child.
+- If the parent component contains just a few children, the size of the stylesheet generated may be significantly larger than it would be if you customized each child individually. (This may be inconsequential for overall performance.)
 - It doesn't work with browsers that don't support [CSS variables](https://caniuse.com/css-variables).
 
 ## Usage
 
 ### Supported components
 
-All the surface components, including others like the Alert, Card, Drawer, Modal Dialog, Menu, and Sheet, accept the `invertedColors` prop for their `solid` and `soft` variants.
+The following components accept the `invertedColors` prop when applied in conjunction with the `solid` or `soft` variants:
+
+- Alert
+- Card
+- Drawer
+- Modal Dialog
+- Menu
+- Sheet
 
 {{"demo": "ColorInversionSurface.js"}}
 
-### Portal popup
+### Exceptions
 
-Color inversion does not affect the popup slot of the Autocomplete, Menu, and Tooltip components by default.
-To enable it, on the `slotProps` prop of these components, set `disablePortal` to true.
+Color inversion does not affect the popup slot of the Autocomplete, Menu, or Tooltip components by default.
+To enable it, set `disablePortal` to `"true"` using `slotProps` on the respective child component, as demonstrated below:
+
+:::info
+To learn more about the concept of component slots and slot props, visit the [Overriding component structure](/joy-ui/customization/overriding-component-structure/) guide.
+:::
 
 {{"demo": "ColorInversionPopup.js"}}
 
-### Turning it off on a specific child
+### Skip inversion on a child
 
-Add the `data-skip-inverted-colors` attribute to the child component you want to turn color inversion off within an inverted container.
+When `invertedColors` is applied to a parent, you can add the `data-skip-inverted-colors` attribute to a child to prevent that child from being inverted.
 
 {{"demo": "ColorInversionSkip.js"}}
 
@@ -66,10 +80,10 @@ Add the `data-skip-inverted-colors` attribute to the child component you want to
 import { applySolidInversion, applySoftInversion } from '@mui/joy/colorInversion';
 ```
 
-Use the `applySolidInversion` or `applySoftInversion` utilities to add color inversion to any parent component.
-The Card component, for example, already uses it internally if containing the `invertedColors` prop.
+If you need color inversion for a parent component that isn't [supported by default](#supported-components), you can use the `applySolidInversion` or `applySoftInversion` utilities to add it to any component that contains children.
+(This is what the supported components use behind the scenes when the `invertedColors` prop is applied.)
 
-The examples below show how to use it with either the `sx` prop or the `styled` API:
+The examples below show how to use these utilities with both the `sx` prop and the `styled` API:
 
 #### With the sx prop
 
