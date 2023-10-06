@@ -22,8 +22,16 @@ export default function SnackbarVariants() {
       setLeft(duration);
       countdown();
     } else {
-      setLeft(undefined);
+      setLeft(0);
       window.clearInterval(timer.current);
+
+      // account for the animation delay (~300ms)
+      const timeout = setTimeout(() => {
+        setLeft(undefined);
+      }, 300);
+      return () => {
+        clearTimeout(timeout);
+      };
     }
   }, [open]);
   const handlePause = () => {

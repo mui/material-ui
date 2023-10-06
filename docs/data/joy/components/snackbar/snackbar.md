@@ -85,7 +85,7 @@ You can access the value from the second argument of the `onClose` callback.
 }}>
 ```
 
-<!-- {{"demo": "SnackbarCloseReason.js"}} -->
+{{"demo": "SnackbarCloseReason.js"}}
 
 #### Ignore clickaway
 
