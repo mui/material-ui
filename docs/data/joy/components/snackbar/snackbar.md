@@ -50,7 +50,7 @@ Note that you lose the global variants when you add custom variants.
 
 The Snackbar component comes in three sizes: `sm`, `md` (default), and `lg`.
 
-<!-- {{"demo": "SnackbarSizes.js"}} -->
+{{"demo": "SnackbarSizes.js"}}
 
 :::info
 To learn how to add custom sizes to the component, check out [Themed componentsâ€”Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
@@ -61,7 +61,7 @@ To learn how to add custom sizes to the component, check out [Themed componentsâ
 Every palette included in the theme is available via the `color` prop.
 Play around combining different colors with different variants.
 
-<!-- {{"demo": "SnackbarColors.js"}} -->
+{{"demo": "SnackbarColors.js"}}
 
 ### Hide duration
 
