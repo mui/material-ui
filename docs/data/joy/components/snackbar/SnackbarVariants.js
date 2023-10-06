@@ -1,8 +1,7 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
-import Snackbar, { SnackbarOrigin } from '@mui/joy/Snackbar';
+import Snackbar from '@mui/joy/Snackbar';
 
 export default function SnackbarVariants() {
   const [open, setOpen] = React.useState(false);

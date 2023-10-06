@@ -298,7 +298,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * The anchor of the `Snackbar`.
    * On smaller screens, the component grows to occupy all the available width,
    * the horizontal alignment is ignored.
-   * @default { vertical: 'bottom', horizontal: 'left' }
+   * @default { vertical: 'bottom', horizontal: 'center' }
    */
   anchorOrigin: PropTypes.shape({
     horizontal: PropTypes.oneOf(['center', 'left', 'right']).isRequired,
@@ -310,7 +310,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * utilized for delaying the unmount of the component.
    * Provide this value if you have your own animation so that we can precisely
    * time the component's unmount to match your custom animation.
-   * @default 500
+   * @default 300
    */
   animationDuration: PropTypes.number,
   /**
@@ -330,10 +330,6 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * Props applied to the `ClickAwayListener` element.
-   */
-  ClickAwayListenerProps: PropTypes.object,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
@@ -348,6 +344,10 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableWindowBlurListener: PropTypes.bool,
+  /**
+   * Element placed after the children.
+   */
+  endDecorator: PropTypes.node,
   /**
    * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
    * @default false
@@ -388,9 +388,13 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   onMouseLeave: PropTypes.func,
   /**
+   * A callback fired when the component is about to be unmounted.
+   */
+  onUnmount: PropTypes.func,
+  /**
    * If `true`, the component is shown.
    */
-  open: PropTypes.bool.isRequired,
+  open: PropTypes.bool,
   /**
    * The number of milliseconds to wait before dismissing after user interaction.
    * If `autoHideDuration` prop isn't specified, it does nothing.
@@ -408,6 +412,23 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    clickAway: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        children: PropTypes.element.isRequired,
+        disableReactTree: PropTypes.bool,
+        mouseEvent: PropTypes.oneOf([
+          'onClick',
+          'onMouseDown',
+          'onMouseUp',
+          'onPointerDown',
+          'onPointerUp',
+          false,
+        ]),
+        onClickAway: PropTypes.func.isRequired,
+        touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
+      }),
+    ]),
     endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -417,10 +438,15 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    clickAway: PropTypes.elementType,
     endDecorator: PropTypes.elementType,
     root: PropTypes.elementType,
     startDecorator: PropTypes.elementType,
   }),
+  /**
+   * Element placed before the children.
+   */
+  startDecorator: PropTypes.node,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

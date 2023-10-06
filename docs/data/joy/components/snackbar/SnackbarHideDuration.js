@@ -1,37 +1,28 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Stack from '@mui/joy/Stack';
-import Snackbar, { SnackbarOrigin } from '@mui/joy/Snackbar';
+import Snackbar from '@mui/joy/Snackbar';
 
-export default function SnackbarVariants() {
+export default function SnackbarHideDuration() {
   const [open, setOpen] = React.useState(false);
   const [duration, setDuration] = React.useState();
   const [left, setLeft] = React.useState();
   const timer = React.useRef();
   const countdown = () => {
-    timer.current = setInterval(() => {
-      setLeft((prev) => prev - 16);
+    timer.current = window.setInterval(() => {
+      setLeft((prev) => (prev === undefined ? prev : prev - 16));
     }, 16); // 60fps = 16ms / frame
   };
   React.useEffect(() => {
-    if (open && duration > 0) {
+    if (open && duration !== undefined && duration > 0) {
       setLeft(duration);
       countdown();
     } else {
       setLeft(0);
       window.clearInterval(timer.current);
-
-      // account for the animation delay (~300ms)
-      const timeout = setTimeout(() => {
-        setLeft(undefined);
-      }, 300);
-      return () => {
-        clearTimeout(timeout);
-      };
     }
   }, [open]);
   const handlePause = () => {
@@ -71,6 +62,7 @@ export default function SnackbarVariants() {
         onMouseLeave={handleResume}
         onFocus={handlePause}
         onBlur={handleResume}
+        onUnmount={() => setLeft(undefined)}
         open={open}
         onClose={() => {
           setOpen(false);
