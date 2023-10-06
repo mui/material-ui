@@ -121,7 +121,6 @@ export default function DiamondSponsors() {
           />
         </StyledAnchor>
         <Link
-          // eslint-disable-next-line material-ui/no-hardcoded-labels
           aria-label={t('diamondSponsors')}
           rel="noopener noreferrer"
           href="/material-ui/discover-more/backers/#diamond"
@@ -156,6 +155,7 @@ export default function DiamondSponsors() {
               },
             }),
           })}
+          // eslint-disable-next-line material-ui/no-hardcoded-labels
         >
           <Typography variant="caption" fontWeight="semiBold" textAlign="center">
             Become a diamond sponsor!
