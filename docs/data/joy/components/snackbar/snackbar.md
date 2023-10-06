@@ -39,7 +39,7 @@ You can control the position of the snackbar by specifying the `anchorOrigin` pr
 
 The Snackbar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `solid`, `soft`, and `plain`.
 
-<!-- {{"demo": "SnackbarVariants.js"}} -->
+{{"demo": "SnackbarVariants.js"}}
 
 :::info
 To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
