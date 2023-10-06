@@ -15,28 +15,16 @@ waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 
 ## Introduction
 
+```jsx
+import Snackbar from '@mui/material/Snackbar';
+```
+
 The Snackbar provides users updates on an app's processes, temporarily appearing on the screen.
 Inspired by Google Keep, this demo shows a basic snackbar with a text element and two actions.
 
 {{"demo": "SimpleSnackbar.js"}}
 
-## Component
-
-### Usage
-
-```jsx
-import Snackbar from '@mui/material/Snackbar';
-```
-
-### Anatomy
-
-The Snackbar component is composed of a root <div> that ... to complement:
-
-```html
-<div class="MuiSnackbar-root">
-  <!-- snackbar content goes here -->
-</div>
-```
+## Basics
 
 ### Position
 
@@ -54,38 +42,34 @@ Use the Snackbar Content component for adding text and actions to the snackbar.
 
 {{"demo": "LongTextSnackbar.js"}}
 
-### Use with alerts
-
-Use an alert inside a snackbar for messages that communicate a certain severity.
-
-{{"demo": "CustomizedSnackbars.js"}}
-
 ### Transitions
 
 You can use the `TransitionComponent` prop to change the transition of the Snackbar from [Grow](/material-ui/transitions/#grow) (the default) to others such as [Slide](/material-ui/transitions/#slide).
 
 {{"demo": "TransitionsSnackbar.js"}}
 
-#### Using the Slide transition
+## Customization
 
-The demo below shows how to use the Slide transition.
+### Use with Alerts
 
-{{"demo": "DirectionSnackbar.js"}}
+Use an alert inside a snackbar for messages that communicate a certain severity.
 
-## Common examples
+{{"demo": "CustomizedSnackbars.js"}}
 
-### Consecutive snackbars
-
-This demo shows how to show multiple snackbars without stacking them by using a consecutive animation.
-
-{{"demo": "ConsecutiveSnackbars.js"}}
-
-### Usage with a FAB
+### Use with Floating Action Buttons
 
 If you're using a [Floating Action Button](/material-ui/react-floating-action-button/) on mobile, Material Design recommends positioning any snackbar right above it.
 The demo below shows you how to do that.
 
 {{"demo": "FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
+
+## Common examples
+
+### Consecutive Snackbars
+
+This demo shows how to show multiple snackbars without stacking them by using a consecutive animation.
+
+{{"demo": "ConsecutiveSnackbars.js"}}
 
 ## Third-party intergrations
 
@@ -126,4 +110,14 @@ export default function MyComponent() {
     </React.Fragment>
   );
 }
+```
+
+## Anatomy
+
+The Snackbar component is composed of a root <div> that ... to complement:
+
+```html
+<div class="MuiSnackbar-root">
+  <!-- snackbar content goes here -->
+</div>
 ```
