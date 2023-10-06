@@ -67,7 +67,7 @@ Play around combining different colors with different variants.
 
 Use `autoHideDuration` prop to control how long the Snackbar is displayed. If it is not provided, the Snackbar will be displayed until the user dismisses it.
 
-<!-- {{"demo": "SnackbarHideDuration.js"}} -->
+{{"demo": "SnackbarHideDuration.js"}}
 
 ### Close reason
 
