@@ -24,7 +24,7 @@ export default function SnackbarHideDuration() {
       setLeft(0);
       window.clearInterval(timer.current);
     }
-  }, [open]);
+  }, [open, duration]);
   const handlePause = () => {
     window.clearInterval(timer.current);
   };

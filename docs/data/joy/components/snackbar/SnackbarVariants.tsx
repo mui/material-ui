@@ -56,7 +56,7 @@ export default function SnackbarVariants() {
           if (reason === 'clickaway') {
             return;
           }
-          return setOpen(false);
+          setOpen(false);
         }}
       >
         A snackbar with {variant} variant.

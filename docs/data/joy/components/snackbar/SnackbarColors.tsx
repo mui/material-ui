@@ -9,17 +9,17 @@ export default function SnackbarColors() {
   return (
     <Stack spacing={2} direction="row">
       {(['primary', 'neutral', 'danger', 'success', 'warning'] as const).map(
-        (color) => (
+        (currentColor) => (
           <Button
-            key={color}
+            key={currentColor}
             variant="outlined"
-            color={color}
+            color={currentColor}
             onClick={() => {
               setOpen(true);
-              setColor(color);
+              setColor(currentColor);
             }}
           >
-            {color}
+            {currentColor}
           </Button>
         ),
       )}
@@ -44,7 +44,7 @@ export default function SnackbarColors() {
             if (reason === 'clickaway') {
               return;
             }
-            return setOpen(false);
+            setOpen(false);
           }}
         >
           {variant} snackbar with {color} color.

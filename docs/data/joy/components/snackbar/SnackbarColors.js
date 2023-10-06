@@ -8,17 +8,17 @@ export default function SnackbarColors() {
   const [color, setColor] = React.useState('neutral');
   return (
     <Stack spacing={2} direction="row">
-      {['primary', 'neutral', 'danger', 'success', 'warning'].map((color) => (
+      {['primary', 'neutral', 'danger', 'success', 'warning'].map((currentColor) => (
         <Button
-          key={color}
+          key={currentColor}
           variant="outlined"
-          color={color}
+          color={currentColor}
           onClick={() => {
             setOpen(true);
-            setColor(color);
+            setColor(currentColor);
           }}
         >
-          {color}
+          {currentColor}
         </Button>
       ))}
       {['plain', 'outlined', 'soft', 'solid'].map((variant, index) => (
@@ -40,7 +40,7 @@ export default function SnackbarColors() {
             if (reason === 'clickaway') {
               return;
             }
-            return setOpen(false);
+            setOpen(false);
           }}
         >
           {variant} snackbar with {color} color.

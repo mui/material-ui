@@ -49,7 +49,7 @@ export default function SnackbarSizes() {
           if (reason === 'clickaway') {
             return;
           }
-          return setOpen(false);
+          setOpen(false);
         }}
       >
         A snackbar with {size} size.
