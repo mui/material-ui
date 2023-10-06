@@ -461,7 +461,6 @@ FilledInput.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     input: PropTypes.elementType,
     root: PropTypes.elementType,
-    textarea: PropTypes.elementType,
   }),
   /**
    * Start `InputAdornment` for this component.

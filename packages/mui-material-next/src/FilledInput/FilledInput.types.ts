@@ -7,7 +7,7 @@ import { Theme } from '../styles/Theme.types';
 import { InputBaseProps } from '../InputBase/InputBase.types';
 import { FilledInputClasses } from './filledInputClasses';
 
-export type FilledInputOwnProps = StandardProps<InputBaseProps> & {
+export type FilledInputOwnProps = StandardProps<Omit<InputBaseProps, 'slots'>> & {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -24,10 +24,29 @@ export type FilledInputOwnProps = StandardProps<InputBaseProps> & {
    */
   disableUnderline?: boolean;
   /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: FilledInputSlots;
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
 };
+
+export interface FilledInputSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
+}
 
 export interface FilledInputTypeMap<
   AdditionalProps = {},
