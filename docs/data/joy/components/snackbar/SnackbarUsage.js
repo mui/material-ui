@@ -1,34 +1,14 @@
 import * as React from 'react';
 import Snackbar from '@mui/joy/Snackbar';
 import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
+import Typography from '@mui/joy/Typography';
+import Close from '@mui/icons-material/Close';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-function SimpleSnackbar(props) {
+export default function SnackbarUsage() {
   const [open, setOpen] = React.useState(false);
 
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  return (
-    <React.Fragment>
-      <Button onClick={handleClick}>Show Snackbar</Button>
-      <Snackbar autoHideDuration={6000} open={open} onClose={handleClose} {...props}>
-        Hello World
-      </Snackbar>
-    </React.Fragment>
-  );
-}
-
-export default function SnackbarUsage() {
   return (
     <JoyUsageDemo
       componentName="Snackbar"
@@ -50,8 +30,47 @@ export default function SnackbarUsage() {
           options: ['sm', 'md', 'lg'],
           defaultValue: 'md',
         },
+        {
+          propName: 'autoHideDuration',
+          helperText: 'The duration to be shown (in ms)',
+          knob: 'number',
+        },
+        {
+          propName: 'invertedColors',
+          knob: 'switch',
+          helperText: 'To invert children colors',
+        },
       ]}
-      renderDemo={(props) => <SimpleSnackbar {...props} />}
+      renderDemo={(props) => (
+        <React.Fragment>
+          <Button variant="outlined" color="neutral" onClick={() => setOpen(true)}>
+            Show Snackbar
+          </Button>
+          <Snackbar
+            open={open}
+            onClose={(event, reason) => {
+              if (reason === 'clickaway') {
+                return;
+              }
+
+              setOpen(false);
+            }}
+            endDecorator={
+              <IconButton onClick={() => setOpen(false)}>
+                <Close />
+              </IconButton>
+            }
+            {...props}
+          >
+            <div>
+              <Typography level="title-md">Notification alert</Typography>
+              <Typography level="body-sm">
+                102 unread messages since last month.
+              </Typography>
+            </div>
+          </Snackbar>
+        </React.Fragment>
+      )}
     />
   );
 }

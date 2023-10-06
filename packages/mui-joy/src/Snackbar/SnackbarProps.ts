@@ -5,7 +5,7 @@ import { UseSnackbarParameters } from '@mui/base/useSnackbar';
 import { ColorPaletteProp, VariantProp, ApplyColorInversion, SxProps } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
-export type SnackbarSlot = 'root' | 'startDecorator' | 'endDecorator';
+export type SnackbarSlot = 'root' | 'startDecorator' | 'endDecorator' | 'clickAway';
 
 export interface SnackbarSlots {
   /**
@@ -23,6 +23,11 @@ export interface SnackbarSlots {
    * @default 'span'
    */
   endDecorator?: React.ElementType;
+  /**
+   * The component that renders the click away.
+   * @default ClickAwayListener
+   */
+  clickAway?: React.ElementType;
 }
 
 export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -31,6 +36,9 @@ export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
     root: SlotProps<'div', {}, SnackbarOwnerState>;
     startDecorator: SlotProps<'span', {}, SnackbarOwnerState>;
     endDecorator: SlotProps<'span', {}, SnackbarOwnerState>;
+    clickAway:
+      | ClickAwayListenerProps
+      | ((ownerState: SnackbarOwnerState) => ClickAwayListenerProps);
   }
 >;
 
@@ -47,12 +55,12 @@ export type { SnackbarCloseReason } from '@mui/base/useSnackbar';
 
 export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    Omit<UseSnackbarParameters, 'open'> & {
+    UseSnackbarParameters & {
       /**
        * The anchor of the `Snackbar`.
        * On smaller screens, the component grows to occupy all the available width,
        * the horizontal alignment is ignored.
-       * @default { vertical: 'bottom', horizontal: 'left' }
+       * @default { vertical: 'bottom', horizontal: 'center' }
        */
       anchorOrigin?: SnackbarOrigin;
       /**
@@ -61,18 +69,18 @@ export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * utilized for delaying the unmount of the component.
        * Provide this value if you have your own animation so that we can precisely
        * time the component's unmount to match your custom animation.
-       * @default 500
+       * @default 300
        */
       animationDuration?: number;
-      /**
-       * Props applied to the `ClickAwayListener` element.
-       */
-      ClickAwayListenerProps?: Partial<ClickAwayListenerProps>;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, SnackbarPropsColorOverrides>;
+      /**
+       * Element placed after the children.
+       */
+      endDecorator?: React.ReactNode;
       /**
        * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
        * @default false
@@ -86,14 +94,14 @@ export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       key?: any;
       /**
-       * If `true`, the component is shown.
-       */
-      open: boolean;
-      /**
        * The size of the component.
        * @default 'md'
        */
       size?: OverridableStringUnion<'sm' | 'md' | 'lg', SnackbarPropsSizeOverrides>;
+      /**
+       * Element placed before the children.
+       */
+      startDecorator?: React.ReactNode;
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */

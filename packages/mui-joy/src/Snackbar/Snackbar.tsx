@@ -8,11 +8,11 @@ import { useSnackbar } from '@mui/base/useSnackbar';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { keyframes } from '@mui/system';
-import { ColorInversionProvider } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';
+import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import { SnackbarProps, SnackbarOwnerState, SnackbarTypeMap } from './SnackbarProps';
 import { getSnackbarUtilityClass } from './snackbarClasses';
 
@@ -34,46 +34,26 @@ const useUtilityClasses = (ownerState: SnackbarOwnerState) => {
   return composeClasses(slots, getSnackbarUtilityClass, {});
 };
 
-const inAnimationVerticalTop = keyframes`
+const enterAnimation = keyframes`
   0% {
-    transform: translateY(-24px);
+    transform: translateX(var(--Snackbar-translateX, 0px)) translateY(calc(var(--_Snackbar-anchorBottom, 1) * (50% + var(--Snackbar-inset))));
     opacity: 0;
   }
-  100% {
-    transform: translateY(0);
+  50% {
     opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--Snackbar-translateX, 0px)) translateY(0);
   }
 `;
 
-const outAnimationVerticalTop = keyframes`
+const exitAnimation = keyframes`
   0% {
-    transform: translateY(0);
+    transform: translateX(var(--Snackbar-translateX, 0px)) translateY(0);
     opacity: 1;
   }
   100% {
-    transform: translateY(-24px);
-    opacity: 0;
-  }
-`;
-
-const inAnimationVerticalBottom = keyframes`
-  0% {
-    transform: translateY(24px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
-
-const outAnimationVerticalBottom = keyframes`
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(24px);
+    transform: translateX(var(--Snackbar-translateX, 0px)) translateY(calc(var(--_Snackbar-anchorBottom, 1) * (50% + var(--Snackbar-inset))));
     opacity: 0;
   }
 `;
@@ -91,45 +71,6 @@ const SnackbarRoot = styled('div', {
 
   return [
     {
-      zIndex: theme.vars.zIndex.snackbar,
-      position: 'fixed',
-      display: 'flex',
-      left: 8,
-      right: 8,
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      minWidth: 300,
-      ...(ownerState.anchorOrigin!.vertical === 'top' ? { top: 8 } : { bottom: 8 }),
-      [theme.breakpoints.up('sm')]: {
-        ...(ownerState.anchorOrigin!.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
-        ...(ownerState.anchorOrigin!.horizontal === 'center' && {
-          left: '50%',
-          right: 'auto',
-          marginLeft: -150,
-        }),
-        ...(ownerState.anchorOrigin!.horizontal === 'left' && {
-          left: 24,
-          right: 'auto',
-        }),
-        ...(ownerState.anchorOrigin!.horizontal === 'right' && {
-          right: 24,
-          left: 'auto',
-        }),
-      },
-      ...(ownerState.open && {
-        animation: `${
-          ownerState.anchorOrigin!.vertical === 'top'
-            ? inAnimationVerticalTop
-            : inAnimationVerticalBottom
-        } ${ownerState.animationDuration}ms`,
-      }),
-      ...(!ownerState.open && {
-        animation: `${
-          ownerState.anchorOrigin!.vertical === 'top'
-            ? outAnimationVerticalTop
-            : outAnimationVerticalBottom
-        } ${ownerState.animationDuration}ms`,
-      }),
       '--Snackbar-radius': theme.vars.radius.sm,
       '--Snackbar-decoratorChildRadius':
         'max((var(--Snackbar-radius) - var(--variant-borderWidth, 0px)) - var(--Snackbar-padding), min(var(--Snackbar-padding) + var(--variant-borderWidth, 0px), var(--Snackbar-radius) / 2))',
@@ -139,34 +80,63 @@ const SnackbarRoot = styled('div', {
       '--IconButton-radius': 'var(--Snackbar-decoratorChildRadius)',
       '--Icon-color': 'currentColor',
       ...(ownerState.size === 'sm' && {
-        '--Snackbar-padding': '0.5rem',
+        '--Snackbar-padding': '0.75rem',
+        '--Snackbar-inset': '0.5rem',
         '--Snackbar-decoratorChildHeight': '1.5rem',
         '--Icon-fontSize': theme.vars.fontSize.xl,
         gap: '0.5rem',
       }),
       ...(ownerState.size === 'md' && {
-        '--Snackbar-padding': '0.75rem',
+        '--Snackbar-padding': '1rem',
+        '--Snackbar-inset': '0.75rem', // the spacing between Snackbar and the viewport
         '--Snackbar-decoratorChildHeight': '2rem',
         '--Icon-fontSize': theme.vars.fontSize.xl,
         gap: '0.625rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Snackbar-padding': '1rem',
+        '--Snackbar-padding': '1.25rem',
+        '--Snackbar-inset': '1rem',
         '--Snackbar-decoratorChildHeight': '2.375rem',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
         gap: '0.875rem',
       }),
-      boxShadow: theme.vars.shadow.md,
+      zIndex: theme.vars.zIndex.snackbar,
+      position: 'fixed',
+      display: 'flex',
+      alignItems: 'center',
+      minWidth: 300,
+      top: ownerState.anchorOrigin?.vertical === 'top' ? 'var(--Snackbar-inset)' : undefined,
+      left: ownerState.anchorOrigin?.horizontal === 'left' ? 'var(--Snackbar-inset)' : undefined,
+      bottom: ownerState.anchorOrigin?.vertical === 'bottom' ? 'var(--Snackbar-inset)' : undefined,
+      right: ownerState.anchorOrigin?.horizontal === 'right' ? 'var(--Snackbar-inset)' : undefined,
+      ...(ownerState.anchorOrigin?.horizontal === 'center' && {
+        '--Snackbar-translateX': '-50%',
+        left: '50%',
+        transform: 'translateX(var(--Snackbar-translateX))',
+      }),
+      ...(ownerState.anchorOrigin?.vertical === 'top' && {
+        '--_Snackbar-anchorBottom': '-1',
+      }),
+      animation: `${enterAnimation} ${ownerState.animationDuration}ms forwards`,
+      ...(!ownerState.open && {
+        animationName: exitAnimation,
+      }),
+      boxShadow: theme.vars.shadow.lg,
       backgroundColor: theme.vars.palette.background.surface,
       padding: `var(--Snackbar-padding)`,
       borderRadius: 'var(--Snackbar-radius)',
       ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
-      fontWeight: theme.vars.fontWeight.md,
+      ...(ownerState.variant === 'solid' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySolidInversion(ownerState.color)(theme)),
+      ...(ownerState.variant === 'soft' &&
+        ownerState.color &&
+        ownerState.invertedColors &&
+        applySoftInversion(ownerState.color)(theme)),
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     } as const,
-    ownerState.color !== 'context' &&
-      ownerState.invertedColors &&
-      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
     p !== undefined && { '--Snackbar-padding': p },
     padding !== undefined && { '--Snackbar-padding': padding },
     borderRadius !== undefined && { '--Snackbar-radius': borderRadius },
@@ -192,21 +162,6 @@ const SnackbarEndDecorator = styled('span', {
   marginLeft: 'auto',
 });
 
-function useDelayUnmount(isMounted: boolean, delayTime: number) {
-  const [shouldRender, setShouldRender] = React.useState(false);
-
-  React.useEffect(() => {
-    let timeoutId: number;
-    if (isMounted && !shouldRender) {
-      setShouldRender(true);
-    } else if (!isMounted && shouldRender) {
-      timeoutId = window.setTimeout(() => setShouldRender(false), delayTime);
-    }
-    return () => window.clearTimeout(timeoutId);
-  }, [isMounted, delayTime, shouldRender]);
-  return shouldRender;
-}
-
 /**
  *
  * Demos:
@@ -224,15 +179,15 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   });
 
   const {
-    anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
-    animationDuration = 500,
+    anchorOrigin = { vertical: 'bottom', horizontal: 'center' },
+    animationDuration = 300,
     autoHideDuration = null,
     color = 'neutral',
     children,
     className,
-    ClickAwayListenerProps,
     component,
     disableWindowBlurListener = false,
+    endDecorator,
     invertedColors = false,
     onBlur,
     onClose,
@@ -244,13 +199,27 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     size = 'md',
     slots = {},
     slotProps,
+    startDecorator,
     variant = 'outlined',
     ...other
   } = props;
+  const [exited, setExited] = React.useState(true);
+  React.useEffect(() => {
+    if (open) {
+      setExited(false);
+    } else {
+      const timer = setTimeout(() => {
+        setExited(true);
+      }, animationDuration);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [open, animationDuration]);
 
   const ownerState = {
     ...props,
-    anchorOrigin: { vertical, horizontal },
+    anchorOrigin,
     autoHideDuration,
     color,
     animationDuration,
@@ -262,9 +231,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const { getRootProps, onClickAway } = useSnackbar({ ...ownerState });
-
-  const shouldRender = useDelayUnmount(open, animationDuration);
+  const { getRootProps, onClickAway } = useSnackbar(ownerState);
 
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
@@ -291,33 +258,29 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     ownerState,
   });
 
-  if (!shouldRender) {
+  const SlotClickAway = slots.clickAway || ClickAwayListener;
+
+  // So we only render active snackbars.
+  if (!open && exited) {
     return null;
   }
 
-  const result = (
-    <React.Fragment>
-      {slots.startDecorator && (
-        <SlotStartDecorator {...startDecoratorProps}>{<slots.startDecorator />}</SlotStartDecorator>
-      )}
-
-      {children}
-      {slots.endDecorator && (
-        <SlotEndDecorator {...endDecoratorProps}>{<slots.endDecorator />}</SlotEndDecorator>
-      )}
-    </React.Fragment>
-  );
-
   return (
-    <ClickAwayListener onClickAway={onClickAway} {...ClickAwayListenerProps}>
+    <SlotClickAway
+      onClickAway={onClickAway}
+      {...(typeof slotProps?.clickAway === 'function'
+        ? slotProps.clickAway(ownerState)
+        : slotProps?.clickAway)}
+    >
       <SlotRoot {...rootProps}>
-        {invertedColors ? (
-          <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>
-        ) : (
-          result
+        {startDecorator && (
+          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
+
+        {children}
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
       </SlotRoot>
-    </ClickAwayListener>
+    </SlotClickAway>
   );
 }) as OverridableComponent<SnackbarTypeMap>;
 
