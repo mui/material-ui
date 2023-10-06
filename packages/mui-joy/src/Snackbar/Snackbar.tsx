@@ -193,6 +193,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     onFocus,
     onMouseEnter,
     onMouseLeave,
+    onUnmount,
     open,
     resumeHideDuration,
     size = 'md',
@@ -203,12 +204,15 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     ...other
   } = props;
   const [exited, setExited] = React.useState(true);
+  const unmountRef = React.useRef(onUnmount);
+  unmountRef.current = onUnmount;
   React.useEffect(() => {
     if (open) {
       setExited(false);
     } else {
       const timer = setTimeout(() => {
         setExited(true);
+        unmountRef.current?.();
       }, animationDuration);
       return () => {
         clearTimeout(timer);
@@ -228,6 +232,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     size,
     variant,
   };
+  delete ownerState.onUnmount; // `on*` are considered as event handler which does not work with ClickAwayListener
 
   const classes = useUtilityClasses(ownerState);
 
@@ -382,6 +387,10 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onMouseLeave: PropTypes.func,
+  /**
+   * A callback fired when the component is about to be unmounted.
+   */
+  onUnmount: PropTypes.func,
   /**
    * If `true`, the component is shown.
    */

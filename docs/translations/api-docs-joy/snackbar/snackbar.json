@@ -33,6 +33,7 @@
         "reason": "Can be: <code>&quot;timeout&quot;</code> (<code>autoHideDuration</code> expired), <code>&quot;clickaway&quot;</code>, or <code>&quot;escapeKeyDown&quot;</code>."
       }
     },
+    "onUnmount": { "description": "A callback fired when the component is about to be unmounted." },
     "open": { "description": "If <code>true</code>, the component is shown." },
     "resumeHideDuration": {
       "description": "The number of milliseconds to wait before dismissing after user interaction. If <code>autoHideDuration</code> prop isn&#39;t specified, it does nothing. If <code>autoHideDuration</code> prop is specified but <code>resumeHideDuration</code> isn&#39;t, we default to <code>autoHideDuration / 2</code> ms."

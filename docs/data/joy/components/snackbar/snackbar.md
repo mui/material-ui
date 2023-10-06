@@ -39,7 +39,7 @@ You can control the position of the snackbar by specifying the `anchorOrigin` pr
 
 The Snackbar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `solid`, `soft`, and `plain`.
 
-<!-- {{"demo": "SnackbarVariants.js"}} -->
+{{"demo": "SnackbarVariants.js"}}
 
 :::info
 To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
@@ -50,7 +50,7 @@ Note that you lose the global variants when you add custom variants.
 
 The Snackbar component comes in three sizes: `sm`, `md` (default), and `lg`.
 
-<!-- {{"demo": "SnackbarSizes.js"}} -->
+{{"demo": "SnackbarSizes.js"}}
 
 :::info
 To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
@@ -61,13 +61,13 @@ To learn how to add custom sizes to the component, check out [Themed components�
 Every palette included in the theme is available via the `color` prop.
 Play around combining different colors with different variants.
 
-<!-- {{"demo": "SnackbarColors.js"}} -->
+{{"demo": "SnackbarColors.js"}}
 
 ### Hide duration
 
 Use `autoHideDuration` prop to control how long the Snackbar is displayed. If it is not provided, the Snackbar will be displayed until the user dismisses it.
 
-<!-- {{"demo": "SnackbarHideDuration.js"}} -->
+{{"demo": "SnackbarHideDuration.js"}}
 
 ### Close reason
 
@@ -85,7 +85,7 @@ You can access the value from the second argument of the `onClose` callback.
 }}>
 ```
 
-<!-- {{"demo": "SnackbarCloseReason.js"}} -->
+{{"demo": "SnackbarCloseReason.js"}}
 
 #### Ignore clickaway
 

@@ -29,6 +29,7 @@
         "describedArgs": ["event", "reason"]
       }
     },
+    "onUnmount": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } },
     "resumeHideDuration": { "type": { "name": "number" } },
     "size": {
