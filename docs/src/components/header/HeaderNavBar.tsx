@@ -390,7 +390,7 @@ export default function HeaderNavBar() {
                         href={ROUTES.toolpadDocs}
                         icon={<IconImage height={30} width={30} name="product-toolpad" />}
                         name="Toolpad"
-                        chip={<Chip label="Alpha" size="small" color="primary" />}
+                        chip={<Chip label="Beta" size="small" color="primary" />}
                         description="Low-code admin builder."
                         onKeyDown={handleKeyDown}
                       />
