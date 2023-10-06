@@ -4,13 +4,15 @@ import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
-import Snackbar, { SnackbarCloseReason } from '@mui/joy/Snackbar';
+import Snackbar, {
+  SnackbarCloseReason as SnackbarCloseReasonType,
+} from '@mui/joy/Snackbar';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 export default function SnackbarCloseReason() {
   const [open, setOpen] = React.useState(false);
-  const [reasons, setReasons] = React.useState<SnackbarCloseReason[]>([]);
+  const [reasons, setReasons] = React.useState<SnackbarCloseReasonType[]>([]);
   React.useEffect(() => {
     if (
       (['timeout', 'clickaway', 'escapeKeyDown'] as const).every((item) =>

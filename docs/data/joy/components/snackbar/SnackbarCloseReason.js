@@ -1,21 +1,16 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
-import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
-import Snackbar, { SnackbarOrigin } from '@mui/joy/Snackbar';
+import Snackbar from '@mui/joy/Snackbar';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
-export default function SnackbarVariants() {
+export default function SnackbarCloseReason() {
   const [open, setOpen] = React.useState(false);
   const [reasons, setReasons] = React.useState([]);
-  console.log('reasons', reasons);
   React.useEffect(() => {
     if (
       ['timeout', 'clickaway', 'escapeKeyDown'].every((item) =>
