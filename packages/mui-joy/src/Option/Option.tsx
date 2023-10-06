@@ -7,7 +7,6 @@ import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import useSlot from '../utils/useSlot';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import { useVariantColor } from '../styles/variantColorInheritance';
 import { OptionOwnerState, ExtendOption, OptionTypeMap } from './OptionProps';
 import optionClasses, { getOptionUtilityClass } from './optionClasses';
@@ -65,7 +64,7 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
   } = props;
 
   const row = React.useContext(RowListContext);
-  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor(
+  const { variant = variantProp, color = colorProp } = useVariantColor(
     inProps.variant,
     inProps.color,
   );
@@ -81,9 +80,6 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
     value,
     rootRef: combinedRef,
   });
-
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, inheritedColor);
 
   const ownerState: OptionOwnerState = {
     ...props,
