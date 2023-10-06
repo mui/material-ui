@@ -135,7 +135,6 @@ const SnackbarRoot = styled('div', {
         ownerState.invertedColors &&
         applySoftInversion(ownerState.color)(theme)),
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     } as const,
     p !== undefined && { '--Snackbar-padding': p },
     padding !== undefined && { '--Snackbar-padding': padding },
