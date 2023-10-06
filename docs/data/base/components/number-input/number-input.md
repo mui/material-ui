@@ -3,7 +3,7 @@ productId: base-ui
 title: React Number Input component and hook
 components: NumberInput
 hooks: useNumberInput
-githubLabel: 'component: NumberInput'
+githubLabel: 'component: number input'
 ---
 
 # Number Input
