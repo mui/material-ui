@@ -48,12 +48,12 @@ The color inversion feature is only available for `soft` and `solid` variants be
 
 The following components accept the `invertedColors` prop when applied in conjunction with the `solid` or `soft` variants:
 
-- Alert
-- Card
-- Drawer
-- Modal Dialog
-- Menu
-- Sheet
+- [Alert](/joy-ui/react-alert/)
+- [Card](/joy-ui/react-card/)
+- [Drawer](/joy-ui/react-drawer/)
+- [Modal Dialog](/joy-ui/react-modal/#modal-dialog)
+- [Menu](/joy-ui/react-menu/)
+- [Sheet](/joy-ui/react-sheet/)
 
 {{"demo": "ColorInversionSurface.js"}}
 
@@ -62,11 +62,11 @@ The following components accept the `invertedColors` prop when applied in conjun
 Color inversion does not affect the popup slot of the Autocomplete, Menu, or Tooltip components by default.
 To enable it, set `disablePortal` to `"true"` using `slotProps` on the respective child component, as demonstrated below:
 
+{{"demo": "ColorInversionPopup.js"}}
+
 :::info
 To learn more about the concept of component slots and slot props, visit the [Overriding component structure](/joy-ui/customization/overriding-component-structure/) guide.
 :::
-
-{{"demo": "ColorInversionPopup.js"}}
 
 ### Skip inversion on a child
 
