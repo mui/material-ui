@@ -155,12 +155,13 @@ export default function DiamondSponsors() {
               },
             }),
           })}
-          // eslint-disable-next-line material-ui/no-hardcoded-labels
         >
           <Typography variant="caption" fontWeight="semiBold" textAlign="center">
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
             Become a diamond sponsor!
           </Typography>
           <Typography variant="caption" fontWeight="regular" color="text.secondary">
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
             1/3 spots left
           </Typography>
         </Link>
