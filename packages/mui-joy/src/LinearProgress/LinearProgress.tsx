@@ -8,7 +8,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { css, keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 import {
   LinearProgressOwnerState,
@@ -167,7 +166,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     children,
     className,
     component,
-    color: colorProp = 'primary',
+    color = 'primary',
     size = 'md',
     variant = 'soft',
     thickness,
@@ -178,8 +177,6 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

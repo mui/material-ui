@@ -100,6 +100,26 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
+    "colorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"error\"</code>"
+    },
+    "colorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
     "marked": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -172,6 +192,26 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "thumbColorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb element",
+      "conditions": "<code>color=\"error\"</code>"
+    },
+    "thumbColorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "thumbColorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "thumbColorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb element",
+      "conditions": "<code>color=\"warning\"</code>"
     },
     "thumbSizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

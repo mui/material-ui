@@ -112,6 +112,20 @@ describe('<Typography />', () => {
     });
   });
 
+  describe('prop: color', () => {
+    it('should check for invalid color value', () => {
+      const msg =
+        'MUI: The value found in theme for prop: "background" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".';
+      expect(() => {
+        render(
+          <Typography variant="h6" color="background">
+            Hello
+          </Typography>,
+        );
+      }).toWarnDev([msg, msg]);
+    });
+  });
+
   it('combines system properties with the sx prop', () => {
     const { container } = render(<Typography mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
 
