@@ -32,7 +32,7 @@ export const ButtonBaseRoot = styled('button', {
   name: 'MuiButtonBase',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ ownerState }) => ({
+})({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -53,22 +53,24 @@ export const ButtonBaseRoot = styled('button', {
   textDecoration: 'none',
   // So we take precedent over the style of a native <a /> element.
   color: 'inherit',
-  '&:active': {
+  // userSelect: 'text' to overcome Firefox's default behavior
+  userSelect: 'text',
+  // Only apply userSelect: none when focused so
+  // selection from dragging from outside the element is possible
+  '&:focus': {
     userSelect: 'none',
   },
   '&::-moz-focus-inner': {
     borderStyle: 'none', // Remove Firefox dotted outline.
   },
   [`&.${buttonBaseClasses.disabled}`]: {
+    pointerEvents: 'none', // Disable interactions
     cursor: 'default',
-    ...(!ownerState.isButton && {
-      pointerEvents: 'none', // Disable link interactions
-    }),
   },
   '@media print': {
     colorAdjust: 'exact',
   },
-}));
+});
 
 /**
  * `ButtonBase` contains as few styles as possible.
@@ -332,7 +334,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     ...props,
     centerRipple,
     component,
-    isButton: ComponentProp === 'button',
     disabled,
     disableRipple,
     disableTouchRipple,

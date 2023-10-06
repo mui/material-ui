@@ -127,10 +127,6 @@ export type ButtonBaseProps<
 
 export interface ButtonBaseOwnerState extends ButtonBaseProps {
   /**
-   * If `true`, the DOM element is button.
-   */
-  isButton: boolean;
-  /**
    * If `true`, the button is active.
    */
   active?: boolean;

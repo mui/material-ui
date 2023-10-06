@@ -42,7 +42,7 @@ export const ButtonBaseRoot = styled('button', {
   slot: 'Root',
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) && prop !== 'touchRippleRef',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ButtonBaseOwnerState }>(({ ownerState }) => ({
+})({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -57,7 +57,11 @@ export const ButtonBaseRoot = styled('button', {
   borderRadius: 0,
   padding: 0, // Remove the padding in Firefox
   cursor: 'pointer',
-  '&:active': {
+  // userSelect: 'text' to overcome Firefox's default behavior
+  userSelect: 'text',
+  // only apply userSelect: none when focused so
+  // selection from dragging from outside the element is possible
+  '&:focus': {
     userSelect: 'none',
   },
   verticalAlign: 'middle',
@@ -70,15 +74,13 @@ export const ButtonBaseRoot = styled('button', {
     borderStyle: 'none', // Remove Firefox dotted outline.
   },
   [`&.${buttonBaseClasses.disabled}`]: {
-    ...(!ownerState.isButton && {
-      pointerEvents: 'none', // Disable link interactions
-    }),
+    pointerEvents: 'none', // Disable interactions
     cursor: 'default',
   },
   '@media print': {
     colorAdjust: 'exact',
   },
-})) as React.ElementType<any>;
+}) as React.ElementType<any>;
 
 /**
  * `ButtonBase` contains as few styles as possible.
@@ -160,7 +162,6 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     disableTouchRipple,
     focusVisible,
     active,
-    isButton: ComponentProp === 'button',
   };
 
   const classes = useUtilityClasses(ownerState);

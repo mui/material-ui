@@ -60,7 +60,11 @@ const LinkRoot = styled(Typography, {
         textDecorationColor: 'inherit',
       },
     }),
-    '&:active': {
+    // userSelect: 'text' to overcome Firefox's default behavior
+    userSelect: 'text',
+    // Only apply userSelect: none when focused so
+    // selection from dragging from outside the element is possible
+    '&:focus': {
       userSelect: 'none',
     },
     // Same reset as ButtonBase.root
