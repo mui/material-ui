@@ -44,7 +44,7 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
   name: 'JoyDrawer',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: DrawerOwnerState }>(({ ownerState, theme }) => ({
+})<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
   '--Drawer-transitionDuration': '0.3s',
   '--Drawer-transitionFunction': 'ease',
   '--ModalClose-radius':
