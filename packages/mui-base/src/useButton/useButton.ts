@@ -172,7 +172,8 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     };
 
   const updateHostElementName = React.useCallback((instance: HTMLElement | null) => {
-    setHostElementName(instance?.tagName ?? '');
+    // Set a default hostname for initial server rendering to ensure consistency with client-side HTML. 
+    setHostElementName(typeof window !== 'undefined' ? instance?.tagName ?? '' : 'BUTTON');
   }, []);
 
   const handleRef = useForkRef(updateHostElementName, externalRef, focusVisibleRef, buttonRef);
@@ -207,11 +208,6 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
       buttonProps['aria-disabled'] = disabled as boolean;
       buttonProps.tabIndex = focusableWhenDisabled ? tabIndex ?? 0 : -1;
     }
-  } else {
-    // Determining the host element name on the server side is not feasible, preventing us from
-    // setting the correct 'disabled' prop. As a fallback, we set the 'disabled' property when
-    // host element is not available.
-    buttonProps[focusableWhenDisabled ? 'aria-disabled' : 'disabled'] = disabled;
   }
 
   const getRootProps = <ExternalProps extends Record<string, any> = {}>(
