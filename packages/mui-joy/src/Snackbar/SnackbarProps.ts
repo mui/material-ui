@@ -94,6 +94,10 @@ export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       key?: any;
       /**
+       * A callback fired when the component is about to be unmounted.
+       */
+      onUnmount?: () => void;
+      /**
        * The size of the component.
        * @default 'md'
        */
