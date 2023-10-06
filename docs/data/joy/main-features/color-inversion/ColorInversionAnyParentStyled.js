@@ -6,19 +6,17 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
 
-const StyledBox = styled(Box)(
-  ({ theme }) => ({
-    padding: 32,
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    alignItems: 'center',
-    rowGap: 2,
-    columnGap: 8,
-    borderRadius: 8,
-    background: `linear-gradient(45deg, ${theme.vars.palette.neutral[800]}, ${theme.vars.palette.neutral[600]})`,
-  }),
-  applySolidInversion('neutral'),
-);
+const StyledBox = styled(Box)(({ theme }) => ({
+  padding: 32,
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  alignItems: 'center',
+  rowGap: 2,
+  columnGap: 8,
+  borderRadius: 8,
+  background: `linear-gradient(45deg, ${theme.vars.palette.neutral[800]}, ${theme.vars.palette.neutral[600]})`,
+  ...applySolidInversion('neutral'),
+}));
 
 function Stat({ description, value }) {
   return (
