@@ -1120,6 +1120,10 @@ extendTheme({
           expectType<SnackbarOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
+        clickAway: ({ ownerState }) => {
+          expectType<SnackbarOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
       },
     },
     JoyStack: {
