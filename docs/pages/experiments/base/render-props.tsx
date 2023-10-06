@@ -50,13 +50,16 @@ function WithSlotsAndSlotProps() {
   );
 }
 
-function MenuIconButton(props: MenuButtonRootSlotProps) {
+const MenuIconButton = React.forwardRef(function MenuIconButton(
+  props: MenuButtonRootSlotProps,
+  ref: React.ForwardedRef<HTMLButtonElement>,
+) {
   return (
-    <IconButton data-testid="hamburger-menu" {...props}>
+    <IconButton data-testid="hamburger-menu" {...props} ref={ref}>
       {props.children}
     </IconButton>
   );
-}
+});
 
 function WithSlots() {
   return (
