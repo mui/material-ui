@@ -8,7 +8,7 @@ import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
-import { renderInline as renderMarkdownInline } from '@mui/markdown';
+import { renderMarkdown } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
 import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
 import {
@@ -50,6 +50,10 @@ export interface ReactApi extends ReactDocgenApi {
    */
   name: string;
   description: string;
+  /**
+   * Different ways to import components
+   */
+  imports: string[];
   /**
    * result of path.readFileSync from the `filename` in utf-8
    */
@@ -324,8 +328,7 @@ const attachTable = (
           // undefined values are not serialized => saving some bytes
           required: requiredProp || undefined,
           deprecated: !!deprecation || undefined,
-          deprecationInfo:
-            renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
+          deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
         },
       };
     })
@@ -347,7 +350,7 @@ const attachTable = (
 };
 
 const generateTranslationDescription = (description: string) => {
-  return renderMarkdownInline(description.replace(/\n@default.*$/, ''));
+  return renderMarkdown(description.replace(/\n@default.*$/, ''));
 };
 
 const attachTranslations = (reactApi: ReactApi) => {
@@ -365,7 +368,7 @@ const attachTranslations = (reactApi: ReactApi) => {
       const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
       if (deprecation !== null) {
         translations.parametersDescriptions[propName].deprecated =
-          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+          renderMarkdown(deprecation?.groups?.info || '').trim() || undefined;
       }
     }
   });
@@ -378,7 +381,7 @@ const attachTranslations = (reactApi: ReactApi) => {
       const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
       if (deprecation !== null) {
         translations.parametersDescriptions[propName].deprecated =
-          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+          renderMarkdown(deprecation?.groups?.info || '').trim() || undefined;
       }
     }
   });
@@ -416,6 +419,7 @@ const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
     ),
     name: reactApi.name,
     filename: toGitHubPath(reactApi.filename),
+    imports: reactApi.imports,
     demos: `<ul>${reactApi.demos
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
@@ -496,6 +500,42 @@ const extractInfoFromType = (typeName: string, project: TypeScriptProject): Pars
   return result;
 };
 
+/**
+ * Helper to get the import options
+ * @param name The name of the hook
+ * @param filename The filename where its defined (to infer the package)
+ * @returns an array of import command
+ */
+const getHookImports = (name: string, filename: string) => {
+  const githubPath = toGitHubPath(filename);
+  const rootImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/.*/,
+    (match, pkg) => `@mui/${pkg}`,
+  );
+
+  const subdirectoryImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/([^\\/]+)\/.*/,
+    (match, pkg, directory) => `@mui/${pkg}/${directory}`,
+  );
+
+  let namedImportName = name;
+  const defaultImportName = name;
+
+  if (/unstable_/.test(githubPath)) {
+    namedImportName = `unstable_${name} as ${name}`;
+  }
+
+  const useNamedImports = rootImportPath === '@mui/base';
+
+  const subpathImport = useNamedImports
+    ? `import { ${namedImportName} } from '${subdirectoryImportPath}';`
+    : `import ${defaultImportName} from '${subdirectoryImportPath}';`;
+
+  const rootImport = `import { ${namedImportName} } from '${rootImportPath}';`;
+
+  return [subpathImport, rootImport];
+};
+
 export default async function generateHookApi(hooksInfo: HookInfo, project: TypeScriptProject) {
   const { filename, name, apiPathname, apiPagesDirectory, getDemos, readFile, skipApiGeneration } =
     hooksInfo;
@@ -534,6 +574,7 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
   }
   reactApi.filename = filename;
   reactApi.name = name;
+  reactApi.imports = getHookImports(name, filename);
   reactApi.apiPathname = apiPathname;
   reactApi.EOL = EOL;
   reactApi.demos = getDemos();

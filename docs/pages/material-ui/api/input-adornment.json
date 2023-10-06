@@ -24,6 +24,10 @@
     }
   },
   "name": "InputAdornment",
+  "imports": [
+    "import InputAdornment from '@mui/material/InputAdornment';",
+    "import { InputAdornment } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

@@ -1,30 +1,28 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
 import Input from '@mui/joy/Input';
 import Stack from '@mui/joy/Stack';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import Typography from '@mui/joy/Typography';
 
 export default function Search() {
   return (
-    <Stack spacing={1.5} direction="row">
-      <FormControl sx={{ flex: 1 }}>
-        <Input
-          placeholder="Search"
-          startDecorator={<i data-feather="search" />}
-          aria-label="Search"
-        />
-      </FormControl>
-      <Box display={{ xs: 'none', sm: 'block' }}>
-        <Button variant="outlined" color="neutral">
-          Clear
-        </Button>
-      </Box>
-      <Box display={{ xs: 'none', sm: 'block' }}>
+    <div>
+      <Stack spacing={1} direction="row" sx={{ mb: 2 }}>
+        <FormControl sx={{ flex: 1 }}>
+          <Input
+            placeholder="Search"
+            value={'Melbourne'}
+            startDecorator={<SearchRoundedIcon />}
+            aria-label="Search"
+          />
+        </FormControl>
         <Button variant="solid" color="primary">
           Search
         </Button>
-      </Box>
-    </Stack>
+      </Stack>
+      <Typography level="body-sm">232 stays in Melbourne, Australia</Typography>
+    </div>
   );
 }

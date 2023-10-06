@@ -11,6 +11,10 @@
     }
   },
   "name": "AccordionDetails",
+  "imports": [
+    "import AccordionDetails from '@mui/material/AccordionDetails';",
+    "import { AccordionDetails } from '@mui/material';"
+  ],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAccordionDetails" },
   "spread": true,
   "themeDefaultProps": true,

@@ -46,7 +46,7 @@ function withDocsInfra(nextConfig) {
       DEPLOY_ENV,
       ...nextConfig.env,
       // https://docs.netlify.com/configure-builds/environment-variables/#git-metadata
-      // reference ID (also known as “SHA” or “hash”) of the commit we’re building.
+      // reference ID (also known as "SHA" or "hash") of the commit we're building.
       COMMIT_REF: process.env.COMMIT_REF,
       // ID of the PR and the Deploy Preview it generated (for example, 1211)
       PULL_REQUEST_ID: process.env.REVIEW_ID,

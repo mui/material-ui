@@ -10,6 +10,5 @@
   renderOption={(props, option, state) =>
     [props, option, state.index] as React.ReactNode
   }
-  // TODO: Post React 18 update - validate this conversion, look like a hidden bug
-  renderGroup={(params) => params as unknown as React.ReactNode}
+  renderGroup={(params) => params as any}
 />

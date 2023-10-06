@@ -33,6 +33,10 @@
     }
   },
   "name": "Divider",
+  "imports": [
+    "import Divider from '@mui/material/Divider';",
+    "import { Divider } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

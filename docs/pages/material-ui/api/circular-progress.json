@@ -28,6 +28,10 @@
     }
   },
   "name": "CircularProgress",
+  "imports": [
+    "import CircularProgress from '@mui/material/CircularProgress';",
+    "import { CircularProgress } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

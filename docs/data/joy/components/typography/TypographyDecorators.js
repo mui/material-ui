@@ -1,12 +1,11 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import Chip from '@mui/joy/Chip';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 
 export default function TypographyDecorators() {
   return (
-    <Box>
+    <div>
       <Typography startDecorator={<InfoOutlined />} mb={2}>
         The icon automatically adjusts to the scale
       </Typography>
@@ -21,6 +20,6 @@ export default function TypographyDecorators() {
       >
         The display also changes to flexbox
       </Typography>
-    </Box>
+    </div>
   );
 }

@@ -7,7 +7,6 @@ import { OverridableComponent } from '@mui/types';
 import { useTabsList, TabsListProvider } from '@mui/base/useTabsList';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
@@ -42,6 +41,7 @@ const TabListRoot = styled(StyledList, {
     '--List-gap': '0px',
     '--ListDivider-gap': '0px',
     '--ListItem-paddingX': 'var(--Tabs-spacing)',
+    '--ListItem-gap': '0.375rem',
     // the `var(--unknown,)` is a workaround because emotion does not support space toggle.
     '--unstable_TabList-hasUnderline': ownerState.disableUnderline ? 'var(--unknown,)' : 'initial',
     ...scopedVariables,
@@ -113,17 +113,16 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     component = 'div',
     children,
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     size: sizeProp,
     disableUnderline = false,
     underlinePlacement = orientation === 'horizontal' ? 'bottom' : 'right',
+    tabFlex,
     sticky,
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const size = sizeProp ?? tabsSize;
 
@@ -135,6 +134,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     color,
     size,
     sticky,
+    tabFlex,
     nesting: false,
     disableUnderline,
     underlinePlacement,

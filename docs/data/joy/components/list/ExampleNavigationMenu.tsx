@@ -130,7 +130,7 @@ const AboutMenu = React.forwardRef(
     const id = open ? 'about-popper' : undefined;
     return (
       <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-        <Box onMouseLeave={() => setAnchorEl(null)}>
+        <div onMouseLeave={() => setAnchorEl(null)}>
           <ListItemButton
             aria-haspopup
             aria-expanded={open ? 'true' : 'false'}
@@ -200,7 +200,7 @@ const AboutMenu = React.forwardRef(
               </ListItem>
             </List>
           </Popper>
-        </Box>
+        </div>
       </ClickAwayListener>
     );
   },
@@ -247,7 +247,7 @@ const AdmissionsMenu = React.forwardRef(
     const id = open ? 'admissions-popper' : undefined;
     return (
       <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-        <Box onMouseLeave={() => setAnchorEl(null)}>
+        <div onMouseLeave={() => setAnchorEl(null)}>
           <ListItemButton
             aria-haspopup
             aria-expanded={open ? 'true' : 'false'}
@@ -319,7 +319,7 @@ const AdmissionsMenu = React.forwardRef(
               </ListItem>
             </List>
           </Popper>
-        </Box>
+        </div>
       </ClickAwayListener>
     );
   },
@@ -337,6 +337,7 @@ export default function ExampleNavigationMenu() {
           '--List-radius': '8px',
           '--List-padding': '4px',
           '--List-gap': '8px',
+          '--ListItem-gap': '0px',
         }}
       >
         <ListItem role="none">

@@ -12,6 +12,10 @@
     }
   },
   "name": "CardContent",
+  "imports": [
+    "import CardContent from '@mui/material/CardContent';",
+    "import { CardContent } from '@mui/material';"
+  ],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiCardContent" },
   "spread": true,
   "themeDefaultProps": true,

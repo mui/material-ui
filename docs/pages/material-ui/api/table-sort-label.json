@@ -18,6 +18,10 @@
     }
   },
   "name": "TableSortLabel",
+  "imports": [
+    "import TableSortLabel from '@mui/material/TableSortLabel';",
+    "import { TableSortLabel } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "active", "icon", "iconDirectionDesc", "iconDirectionAsc"],
     "globalClasses": { "active": "Mui-active" },

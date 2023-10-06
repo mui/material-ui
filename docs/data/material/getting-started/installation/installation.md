@@ -2,14 +2,6 @@
 
 <p class="description">Install Material UI, the world's most popular React UI framework.</p>
 
-:::warning
-We are currently working on supporting React Server Components in Material UI.
-
-All components and hooks are exported as [Client Components](https://nextjs.org/docs/getting-started/react-essentials#client-components) with the `"use client"` directive.
-If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](/material-ui/guides/next-js-app-router/).
-
-:::
-
 ## Default installation
 
 Run one of the following commands to add Material UI to your project:
@@ -51,8 +43,12 @@ pnpm add @mui/material @mui/styled-engine-sc styled-components
 
 </codeblock>
 
-:::warning
-Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more information about how to configure styled-components.
+:::error
+As of late 2021, [styled-components](https://github.com/styled-components/styled-components) is **not compatible** with server-rendered Material UI projects.
+This is because `babel-plugin-styled-components` isn't able to work with the `styled()` utility inside `@mui` packages.
+See [this GitHub issue](https://github.com/mui/material-ui/issues/29742) for more details.
+
+We **strongly recommend** using Emotion for SSR projects.
 :::
 
 ## Peer dependencies
@@ -70,9 +66,8 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ## Roboto font
 
-Material UI is designed to use the [Roboto](https://fonts.google.com/specimen/Roboto)
-font by default.
-You may add it to your project with npm via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
+Material UI uses the [Roboto](https://fonts.google.com/specimen/Roboto) font by default.
+Add it to your project via Fontsource, or with the Google Fonts CDN.
 
 <codeblock storageKey="package-manager">
 
@@ -105,12 +100,14 @@ Fontsource can be configured to load specific subsets, weights and styles. Mater
 
 ### Google Web Fonts
 
-To install the Roboto font in your project using the Google Web Fonts CDN, add the following code snippet inside your project's `<head />` tag:
+To install Roboto through the Google Web Fonts CDN, add the following code inside your project's <head /> tag:
 
 ```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
 />
 ```
 

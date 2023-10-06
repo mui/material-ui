@@ -24,35 +24,16 @@ Tabs are implemented using a collection of related components:
 - `<TabPanel />` - the card that hosts the content associated with a tab.
 - `<Tabs />` - the top-level component that wraps the Tabs List and Tab Panel components so that tabs and their panels can communicate with one another.
 
-{{"demo": "UnstyledTabsIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledTabsIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Components
-
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import { Tab } from '@mui/base/Tab';
 import { TabsList } from '@mui/base/TabsList';
 import { TabPanel } from '@mui/base/TabPanel';
 import { Tabs } from '@mui/base/Tabs';
-
-export default function MyApp() {
-  return (
-    <Tabs>
-      <TabsList>
-        <Tab>{/* tab one */}</Tab>
-        <Tab>{/* tab two */}</Tab>
-      </TabsList>
-      <TabPanel>{/* panel one */}</TabPanel>
-      <TabPanel>{/* panel two */}</TabPanel>
-    </Tabs>
-  );
-}
 ```
-
-### Basics
 
 By default, Tab components and their corresponding panels are **zero-indexed** (i.e. the first tab has a `value` of `0`, then `1`, `2`, etc.).
 Clicking on a given Tab opens the panel with the same `value`, which corresponds to the order in which each component is nested within its container.
@@ -111,7 +92,8 @@ When vertical, you must set `orientation="vertical"` on the `<Tabs />` component
 
 ### Usage with TypeScript
 
-In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component.
+This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
 <Tab<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />

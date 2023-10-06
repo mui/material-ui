@@ -4,14 +4,17 @@ const pages: readonly MuiPage[] = [
   {
     pathname: '/experiments/docs/writing',
     title: 'Writing',
-    children: [{ pathname: '/experiments/docs/headers' }],
+    children: [
+      { pathname: '/experiments/docs/headers' },
+      { pathname: '/experiments/docs/markdown' },
+    ],
   },
   {
     pathname: '/experiments/docs/components',
     children: [
       { pathname: '/experiments/docs/callouts' },
-      { pathname: '/experiments/docs/demos' },
       { pathname: '/experiments/docs/codeblock' },
+      { pathname: '/experiments/docs/demos' },
     ],
   },
   {

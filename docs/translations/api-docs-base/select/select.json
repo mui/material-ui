@@ -32,8 +32,12 @@
     "onListboxOpenChange": {
       "description": "Callback fired when the component requests to be opened. Use in controlled mode (see listboxOpen)."
     },
+    "placeholder": { "description": "Text to show when there is no selected value." },
     "renderValue": {
       "description": "Function that customizes the rendering of the selected value."
+    },
+    "required": {
+      "description": "If <code>true</code>, the Select cannot be empty when submitting form."
     },
     "slotProps": { "description": "The props used for each slot inside the Input." },
     "slots": {

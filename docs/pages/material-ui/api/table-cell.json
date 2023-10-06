@@ -41,6 +41,10 @@
     }
   },
   "name": "TableCell",
+  "imports": [
+    "import TableCell from '@mui/material/TableCell';",
+    "import { TableCell } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

@@ -1,7 +1,7 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import Typography, { typographyClasses as classes } from '@mui/material/Typography';
 
 describe('<Typography />', () => {
@@ -109,6 +109,20 @@ describe('<Typography />', () => {
       );
 
       expect(getByText(/hello/i).tagName).to.equal('H6');
+    });
+  });
+
+  describe('prop: color', () => {
+    it('should check for invalid color value', () => {
+      const msg =
+        'MUI: The value found in theme for prop: "background" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".';
+      expect(() => {
+        render(
+          <Typography variant="h6" color="background">
+            Hello
+          </Typography>,
+        );
+      }).toWarnDev([msg, msg]);
     });
   });
 

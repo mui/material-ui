@@ -2,6 +2,7 @@
   "props": {
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
+    "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "id": { "type": { "name": "string" } },
     "max": { "type": { "name": "number" } },
@@ -38,11 +39,59 @@
       "default": "{}",
       "additionalInfo": { "slotsApi": true }
     },
+    "startAdornment": { "type": { "name": "node" } },
     "step": { "type": { "name": "number" } },
     "value": { "type": { "name": "any" } }
   },
   "name": "NumberInput",
+  "imports": [
+    "import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';",
+    "import { Unstable_NumberInput as NumberInput } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiNumberInput-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": ".MuiNumberInput-input"
+    },
+    {
+      "name": "incrementButton",
+      "description": "The component that renders the increment button.",
+      "default": "'button'",
+      "class": ".MuiNumberInput-incrementButton"
+    },
+    {
+      "name": "decrementButton",
+      "description": "The component that renders the decrement button.",
+      "default": "'button'",
+      "class": ".MuiNumberInput-decrementButton"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "adornedEnd",
+      "adornedStart",
+      "disabled",
+      "error",
+      "focused",
+      "formControl",
+      "readOnly"
+    ],
+    "globalClasses": {
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "readOnly": "Mui-readOnly",
+      "error": "Mui-error"
+    }
+  },
   "spread": true,
   "muiName": "MuiNumberInput",
   "forwardsRefTo": "HTMLDivElement",

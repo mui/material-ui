@@ -1,53 +1,71 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
-import { alpha, styled } from '@mui/material/styles';
-import { shouldForwardProp } from '@mui/system';
+import { alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import { LineChart } from '@mui/x-charts/LineChart';
+import { BarChart } from '@mui/x-charts/BarChart';
+import { mangoFusionPalette } from '@mui/x-charts';
 import Frame from 'docs/src/components/action/Frame';
-
-const AspectRatioImage = styled('div', {
-  shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',
-})<{ ratio: number; src: string }>(({ src, ratio, theme }) => ({
-  height: 0,
-  backgroundImage: `url(${src})`,
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: 'contain',
-  paddingBottom: `${(1 / ratio) * 100}%`,
-  margin: 'auto',
-  ...theme.applyDarkStyles({
-    backgroundImage: `url(${src.replace('-light', '-dark')})`,
-  }),
-}));
 
 export default function XChartsDemo() {
   return (
     <Frame sx={{ height: '100%' }}>
       <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
-        <Grid container spacing={1} justifyContent="center">
-          <Grid item xs={6}>
-            <Box sx={{ width: { xs: 200, sm: '100%' }, maxWidth: '100%', ml: 'auto' }}>
-              <AspectRatioImage src="/static/branding/mui-x/chart-light1.png" ratio={219 / 120} />
-            </Box>
-          </Grid>
-          <Grid item xs={6}>
-            <Box sx={{ width: { xs: 200, sm: '100%' }, maxWidth: '100%', mr: 'auto' }}>
-              <AspectRatioImage src="/static/branding/mui-x/chart-light2.png" ratio={219 / 120} />
-            </Box>
-          </Grid>
-          <Grid item xs={6}>
-            <Box sx={{ width: { xs: 200, sm: '100%' }, maxWidth: '100%', ml: 'auto' }}>
-              <AspectRatioImage src="/static/branding/mui-x/chart-light3.png" ratio={219 / 120} />
-            </Box>
-          </Grid>
-          <Grid item xs={6}>
-            <Box sx={{ width: { xs: 200, sm: '100%' }, maxWidth: '100%', mr: 'auto' }}>
-              <AspectRatioImage src="/static/branding/mui-x/chart-light4.png" ratio={219 / 120} />
-            </Box>
-          </Grid>
-        </Grid>
+        <Paper
+          variant="outlined"
+          sx={[
+            {
+              '& > div': {
+                borderRadius: 1,
+                bgcolor: '#fff',
+              },
+            },
+            (theme) =>
+              theme.applyDarkStyles({
+                '& > div': {
+                  bgcolor: 'primaryDark.900',
+                },
+              }),
+          ]}
+        >
+          <Box sx={{ py: 1 }}>
+            <LineChart
+              sx={{
+                '& .MuiMarkElement-root': { display: 'none' },
+                '& .MuiMarkElement-root.MuiMarkElement-highlighted': { display: 'block' },
+              }}
+              margin={{ top: 10, bottom: 50, left: 40, right: 20 }}
+              series={[
+                { data: [35, 44, 24, 34], stack: 'total', area: true },
+                { data: [51, 6, 49, 30], stack: 'total', area: true },
+                { data: [5, 15, 30, 50], stack: 'total', area: true },
+                { data: [60, 50, 15, 10], stack: 'total', area: true },
+              ]}
+              xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'point' }]}
+              colors={mangoFusionPalette}
+              height={250}
+            />
+            <BarChart
+              sx={{
+                '& .MuiMarkElement-root': { display: 'none' },
+                '& .MuiMarkElement-root.MuiMarkElement-highlighted': { display: 'block' },
+              }}
+              margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
+              series={[
+                { data: [35, 44, 24, 34] },
+                { data: [51, 6, 49, 30] },
+                { data: [15, 25, 30, 50] },
+                { data: [60, 50, 15, 25] },
+              ]}
+              xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
+              height={200}
+              colors={mangoFusionPalette}
+            />
+          </Box>
+        </Paper>
       </Frame.Demo>
       <Frame.Info data-mui-color-scheme="dark">
         <Box

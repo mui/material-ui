@@ -14,6 +14,10 @@ export interface NumberInputStepperButtonSlotPropsOverrides {}
 
 export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
   /**
+   * Trailing adornment for this input.
+   */
+  endAdornment?: React.ReactNode;
+  /**
    * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
    */
   error?: boolean;
@@ -44,13 +48,35 @@ export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    input?: React.ElementType;
-    incrementButton?: React.ElementType;
-    decrementButton?: React.ElementType;
-  };
+  slots?: NumberInputSlots;
+  /**
+   * Leading adornment for this input.
+   */
+  startAdornment?: React.ReactNode;
 };
+
+export interface NumberInputSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
+  /**
+   * The component that renders the increment button.
+   * @default 'button'
+   */
+  incrementButton?: React.ElementType;
+  /**
+   * The component that renders the decrement button.
+   * @default 'button'
+   */
+  decrementButton?: React.ElementType;
+}
 
 export interface NumberInputTypeMap<
   AdditionalProps = {},

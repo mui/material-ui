@@ -458,10 +458,10 @@ export default function TeamExample() {
                     srcSet="https://i.pravatar.cc/80?img=6 2x"
                     sx={{ borderRadius: 'sm' }}
                   />
-                  <Box>
+                  <div>
                     <Typography>Andrew Smith</Typography>
                     <Typography level="body-xs">UI Designer</Typography>
-                  </Box>
+                  </div>
                 </Box>
                 <Divider component="div" sx={{ my: 2 }} />
                 <List sx={{ '--ListItemDecorator-size': '48px' }}>

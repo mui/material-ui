@@ -1,6 +1,12 @@
 {
   "props": {
     "actions": { "type": { "name": "custom", "description": "ref" } },
+    "anchor": {
+      "type": {
+        "name": "union",
+        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
+      }
+    },
     "onItemsChange": { "type": { "name": "func" } },
     "slotProps": {
       "type": {
@@ -16,6 +22,7 @@
     }
   },
   "name": "Menu",
+  "imports": ["import { Menu } from '@mui/base/Menu';", "import { Menu } from '@mui/base';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

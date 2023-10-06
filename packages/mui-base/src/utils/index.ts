@@ -7,5 +7,6 @@ export { isHostComponent } from './isHostComponent';
 export { resolveComponentProps } from './resolveComponentProps';
 export { useSlotProps } from './useSlotProps';
 export { mergeSlotProps } from './mergeSlotProps';
+export { prepareForSlot } from './prepareForSlot';
 export * from './PolymorphicComponent';
 export * from './types';

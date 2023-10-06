@@ -31,7 +31,7 @@ export default function AnimationSkeleton() {
             />
           </Skeleton>
         </AspectRatio>
-        <Typography>
+        <Typography sx={{ overflow: 'hidden' }}>
           <Skeleton animation="wave">
             Lorem ipsum is placeholder text commonly used in the graphic, print, and
             publishing industries.

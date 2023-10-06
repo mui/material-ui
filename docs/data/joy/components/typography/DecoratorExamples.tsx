@@ -56,28 +56,24 @@ export default function DecoratorExamples() {
         Simple alert using only Typography.
       </Typography>
 
-      <Typography
-        color="success"
-        startDecorator={
-          <SvgIcon fontSize="md" color="inherit">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"
-              />
-            </svg>
-          </SvgIcon>
-        }
-      >
-        +8.2%{' '}
-        <Typography level="body-xs" sx={{ alignSelf: 'last baseline', ml: 1 }}>
+      <Typography color="success">
+        <SvgIcon fontSize="md" sx={{ m: '-2px', mr: '2px' }}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"
+            />
+          </svg>
+        </SvgIcon>
+        +8.2%
+        <Typography level="body-xs" sx={{ ml: 1 }}>
           Since last month
         </Typography>
       </Typography>

@@ -127,7 +127,7 @@ export default function ApiPage(props) {
     : '/material-ui/customization/theme-components/#theme-style-overrides';
   let slotGuideLink = '';
   if (isJoyComponent) {
-    slotGuideLink = '/joy-ui/guides/overriding-component-structure/';
+    slotGuideLink = '/joy-ui/customization/overriding-component-structure/';
   } else if (isBaseComponent) {
     slotGuideLink = '/base-ui/guides/overriding-component-structure/';
   }
@@ -140,11 +140,6 @@ export default function ApiPage(props) {
     slotDescriptions,
   } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, pageContent.name);
-
-  const source = filename
-    .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
-    // convert things like `/Table/Table.js` to ``
-    .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
   const apiSourceLocation = filename.replace('.js', '.d.ts');
@@ -240,10 +235,9 @@ export default function ApiPage(props) {
         />
         <Heading hash="import" />
         <HighlightedCode
-          code={`
-import ${pageContent.name} from '${source}/${pageContent.name}';
+          code={pageContent.imports.join(`
 // ${t('or')}
-import { ${pageContent.name} } from '${source}';`}
+`)}
           language="jsx"
         />
         <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
@@ -281,10 +275,11 @@ import { ${pageContent.name} } from '${source}';`}
           className="MuiCallout-root MuiCallout-info"
           dangerouslySetInnerHTML={{ __html: refHint }}
         />
+        <Divider />
         {inheritance && (
           <React.Fragment>
             <Heading hash="inheritance" level="h3" />
-            <span
+            <p
               dangerouslySetInnerHTML={{
                 __html: t('api-docs.inheritanceDescription')
                   .replace(/{{component}}/, inheritance.component)
