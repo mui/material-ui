@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { refType } from '@mui/utils';
+import { HTMLElementType, refType } from '@mui/utils';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { MenuOwnerState, MenuProps, MenuRootSlotProps, MenuTypeMap } from './Menu.types';
 import { getMenuUtilityClass } from './menuClasses';
@@ -38,11 +38,21 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
   props: MenuProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<Element>,
 ) {
-  const { actions, children, onItemsChange, slotProps = {}, slots = {}, ...other } = props;
+  const {
+    actions,
+    anchor: anchorProp,
+    children,
+    onItemsChange,
+    slotProps = {},
+    slots = {},
+    ...other
+  } = props;
 
   const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     onItemsChange,
   });
+
+  const anchor = anchorProp ?? triggerElement;
 
   React.useImperativeHandle(
     actions,
@@ -79,7 +89,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
     ownerState,
   });
 
-  if (open === true && triggerElement == null) {
+  if (open === true && anchor == null) {
     return (
       <Root {...rootProps}>
         <Listbox {...listboxProps}>
@@ -90,7 +100,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
   }
 
   return (
-    <Popper {...rootProps} open={open} anchorEl={triggerElement} slots={{ root: Root }}>
+    <Popper {...rootProps} open={open} anchorEl={anchor} slots={{ root: Root }}>
       <Listbox {...listboxProps}>
         <MenuProvider value={contextValue}>{children}</MenuProvider>
       </Listbox>
@@ -107,6 +117,14 @@ Menu.propTypes /* remove-proptypes */ = {
    * A ref with imperative actions that can be performed on the menu.
    */
   actions: refType,
+  /**
+   * The element based on which the menu is positioned.
+   */
+  anchor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    HTMLElementType,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
   /**
    * @ignore
    */
