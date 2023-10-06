@@ -13,7 +13,7 @@ Check out the two demo cards below to see how things can go wrong:
 - On the left, the Button variant is `solid`, while its parent Card is the default `outlined`, so the design works well.
 - On the right, the `solid` variant is applied to both the Button and the Card, disrupting the design's hierarchy and contrast.
 
-Joy UI's color inversion feature prevents this kind of situation from occurring, while still preserving the hiearchical meaning of the global variants themselves.
+Joy UI's color inversion feature prevents this kind of situation from occurring, while still preserving the hierarchical meaning of the global variants themselves.
 
 ## Overview
 
