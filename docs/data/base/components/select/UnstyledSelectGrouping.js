@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { OptionGroup as BaseOptionGroup } from '@mui/base/OptionGroup';
-import { Popper } from '@mui/base/Popper';
+import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 export default function UnstyledSelectGrouping() {
@@ -25,9 +25,9 @@ export default function UnstyledSelectGrouping() {
 
 function Select(props) {
   const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    root: Button,
+    listbox: Listbox,
+    popper: Popper,
     ...props.slots,
   };
 
@@ -49,9 +49,9 @@ Select.propTypes = {
 
 const OptionGroup = React.forwardRef(function CustomOptionGroup(props, ref) {
   const slots = {
-    root: StyledGroupRoot,
-    label: StyledGroupHeader,
-    list: StyledGroupOptions,
+    root: GroupRoot,
+    label: GroupHeader,
+    list: GroupOptions,
     ...props.slots,
   };
 
@@ -93,7 +93,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledButton = styled('button')(
+const Button = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -137,7 +137,7 @@ const StyledButton = styled('button')(
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -194,11 +194,11 @@ const Option = styled(BaseOption)(
   `,
 );
 
-const StyledGroupRoot = styled('li')`
+const GroupRoot = styled('li')`
   list-style: none;
 `;
 
-const StyledGroupHeader = styled('span')`
+const GroupHeader = styled('span')`
   display: block;
   padding: 15px 0 5px 10px;
   font-size: 0.75em;
@@ -208,7 +208,7 @@ const StyledGroupHeader = styled('span')`
   color: ${grey[600]};
 `;
 
-const StyledGroupOptions = styled('ul')`
+const GroupOptions = styled('ul')`
   list-style: none;
   margin-left: 0;
   padding: 0;
@@ -218,6 +218,6 @@ const StyledGroupOptions = styled('ul')`
   }
 `;
 
-const StyledPopper = styled(Popper)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;

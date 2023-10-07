@@ -8,7 +8,7 @@ const Input = React.forwardRef(function CustomInput(
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   return (
-    <Input
+    <BaseInput
       slots={{
         root: StyledRootDiv,
         input: StyledInputElement,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Select as BaseSelect, SelectProps, selectClasses } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
-import { Popper } from '@mui/base/Popper';
+import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 export default function UnstyledSelectObjectValues() {
@@ -28,9 +28,9 @@ function Select<TValue extends {}, Multiple extends boolean = false>(
   props: SelectProps<TValue, Multiple>,
 ) {
   const slots: SelectProps<TValue, Multiple>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    root: Button,
+    listbox: Listbox,
+    popper: Popper,
     ...props.slots,
   };
 
@@ -72,7 +72,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledButton = styled('button')(
+const Button = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -116,7 +116,7 @@ const StyledButton = styled('button')(
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -173,7 +173,7 @@ const Option = styled(BaseOption)(
   `,
 );
 
-const StyledPopper = styled(Popper)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;
 

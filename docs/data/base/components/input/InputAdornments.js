@@ -12,8 +12,8 @@ const Input = React.forwardRef(function CustomInput(props, ref) {
   return (
     <BaseInput
       slots={{
-        root: StyledInputRoot,
-        input: StyledInputElement,
+        root: InputRoot,
+        input: InputElement,
         ...slots,
       }}
       {...other}
@@ -113,7 +113,7 @@ const grey = {
   900: '#1A2027',
 };
 
-const StyledInputRoot = styled('div')(
+const InputRoot = styled('div')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
@@ -143,7 +143,7 @@ const StyledInputRoot = styled('div')(
 `,
 );
 
-const StyledInputElement = styled('input')(
+const InputElement = styled('input')(
   ({ theme }) => `
   font-size: 0.875rem;
   font-family: inherit;

@@ -4,7 +4,7 @@ import { styled } from '@mui/system';
 
 const Input = React.forwardRef(function CustomInput(props, ref) {
   return (
-    <Input
+    <BaseInput
       slots={{
         root: StyledRootDiv,
         input: StyledInputElement,

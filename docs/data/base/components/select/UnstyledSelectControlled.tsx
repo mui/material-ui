@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Select as BaseSelect, SelectProps, selectClasses } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
-import { Popper } from '@mui/base/Popper';
+import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 export default function UnstyledSelectControlled() {
@@ -22,8 +22,8 @@ export default function UnstyledSelectControlled() {
 function Select(props: SelectProps<number, false>) {
   const slots: SelectProps<number, false>['slots'] = {
     root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    listbox: Listbox,
+    popper: Popper,
     ...props.slots,
   };
 
@@ -96,7 +96,7 @@ const StyledButton = styled('button')(
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -153,7 +153,7 @@ const Option = styled(BaseOption)(
   `,
 );
 
-const StyledPopper = styled(Popper)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;
 
