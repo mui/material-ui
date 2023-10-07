@@ -61,7 +61,7 @@ describe('<AvatarGroup />', () => {
 
   it('should display custom surplus element if renderSurplus prop is passed', () => {
     const { container } = render(
-      <AvatarGroup renderSurplus={(num) => `%${num}`} max={3}>
+      <AvatarGroup renderSurplus={(num) => <span>%{num}</span>} max={3}>
         <Avatar src="/fake.png" />
         <Avatar src="/fake.png" />
         <Avatar src="/fake.png" />
