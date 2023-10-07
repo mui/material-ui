@@ -1,14 +1,5 @@
 {
   "props": {
-    "renderSurplus": {
-      "type": { "name": "func" },
-      "required": true,
-      "signature": {
-        "type": "function(surplus: number) => React.ReactElement",
-        "describedArgs": ["surplus"],
-        "returned": "React.ReactElement"
-      }
-    },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
@@ -17,6 +8,14 @@
       "default": "{}"
     },
     "max": { "type": { "name": "custom", "description": "number" }, "default": "5" },
+    "renderSurplus": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(surplus: number) => React.ReactElement",
+        "describedArgs": ["surplus"],
+        "returned": "React.ReactElement"
+      }
+    },
     "slotProps": {
       "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
       "default": "{}"
