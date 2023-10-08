@@ -3978,10 +3978,10 @@
     "@types/react" "*"
     "@types/react-swipeable-views" "*"
 
-"@types/react-swipeable-views@*", "@types/react-swipeable-views@^0.13.2":
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/@types/react-swipeable-views/-/react-swipeable-views-0.13.2.tgz#c37cc8978ae60ab0dff209ef3eb1f77185aef330"
-  integrity sha512-FiszBm9M0JicAgzO/IwDqpfHQRUEjPZA88UexYsVD6qHJBf5LrbGjR5Mw4+yZbf8ZxJneNqOsZbe4WGjOYG7iQ==
+"@types/react-swipeable-views@*", "@types/react-swipeable-views@^0.13.3":
+  version "0.13.3"
+  resolved "https://registry.yarnpkg.com/@types/react-swipeable-views/-/react-swipeable-views-0.13.3.tgz#a4c545b7b722c2622806e5853a96ec5826b0bafb"
+  integrity sha512-gVAQb5AxZTSLVTrJ/Fxwsk0axdBqGzXC8NxAD8MNwEf+qZynsb+15KL9TpNCaGGk4SCE2iyU/JNi6nGNB61AyA==
   dependencies:
     "@types/react" "*"
 
