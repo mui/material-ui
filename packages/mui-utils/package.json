@@ -58,7 +58,7 @@
     "@types/sinon": "^10.0.19",
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-tester": "^11.0.4",
-    "chai": "^4.3.8",
+    "chai": "^4.3.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sinon": "^15.2.0"

@@ -21,7 +21,7 @@
     "@testing-library/dom": "^9.3.3",
     "@types/chai": "^4.3.6",
     "@types/react": "^18.2.23",
-    "chai": "^4.3.8",
+    "chai": "^4.3.10",
     "docs": "^5.0.0",
     "fast-glob": "^3.3.1",
     "fs-extra": "^11.1.1",

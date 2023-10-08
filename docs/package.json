@@ -134,7 +134,7 @@
     "@types/react-window": "^1.8.5",
     "@types/styled-components": "5.1.27",
     "@types/stylis": "^4.2.0",
-    "chai": "^4.3.8",
+    "chai": "^4.3.10",
     "cross-fetch": "^4.0.0",
     "gm": "^1.25.0",
     "marked": "^5.1.2",
