@@ -361,7 +361,7 @@ describe('<TablePagination />', () => {
             <TableRow>
               <TablePagination
                 disabled
-                count={11}
+                count={30}
                 page={1}
                 onPageChange={noop}
                 onRowsPerPageChange={noop}
