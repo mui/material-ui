@@ -130,7 +130,7 @@
     "@types/react-dom": "^18.2.7",
     "@types/react-swipeable-views": "^0.13.3",
     "@types/react-swipeable-views-utils": "^0.13.5",
-    "@types/react-transition-group": "^4.4.6",
+    "@types/react-transition-group": "^4.4.7",
     "@types/react-window": "^1.8.5",
     "@types/styled-components": "5.1.27",
     "@types/stylis": "^4.2.0",
