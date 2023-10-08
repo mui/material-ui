@@ -824,7 +824,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
     });
 
-    it('Should skip disabled options when navigatin via keyboard', () => {
+    it('Should skip disabled options when navigating via keyboard', () => {
       const { getByRole } = render(
         <Autocomplete
           getOptionDisabled={(option) => option === 'two'}
@@ -846,7 +846,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'one');
     });
 
-    it('Should skip disabled options at the end of the list when navigatin via keyboard', () => {
+    it('Should skip disabled options at the end of the list when navigating via keyboard', () => {
       const { getByRole } = render(
         <Autocomplete
           getOptionDisabled={(option) => option === 'three' || option === 'four'}
@@ -868,7 +868,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'one');
     });
 
-    it('Should skip the first disabled option and disabled options at the end of the list when navigatin via keyboard', () => {
+    it('Should skip the first disabled option and disabled options at the end of the list when navigating via keyboard', () => {
       const { getByRole } = render(
         <Autocomplete
           getOptionDisabled={(option) => option === 'one' || option === 'five'}
