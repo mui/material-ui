@@ -823,6 +823,95 @@ describe('<Autocomplete />', () => {
       expect(handleSubmit.callCount).to.equal(0);
       expect(handleChange.callCount).to.equal(1);
     });
+
+    it('Should skip disabled options when navigatin via keyboard', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          getOptionDisabled={(option) => option === 'two'}
+          openOnFocus
+          options={['one', 'two', 'three']}
+        />,
+      );
+      const textbox = getByRole('combobox');
+
+      act(() => {
+        textbox.focus();
+      });
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'one');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'three');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'one');
+    });
+
+    it('Should skip disabled options at the end of the list when navigatin via keyboard', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          getOptionDisabled={(option) => option === 'three' || option === 'four'}
+          openOnFocus
+          options={['one', 'two', 'three', 'four']}
+        />,
+      );
+      const textbox = getByRole('combobox');
+
+      act(() => {
+        textbox.focus();
+      });
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'one');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'two');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'one');
+    });
+
+    it('Should skip the first disabled option and disabled options at the end of the list when navigatin via keyboard', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          getOptionDisabled={(option) => option === 'one' || option === 'five'}
+          openOnFocus
+          options={['one', 'two', 'three', 'four', 'five']}
+        />,
+      );
+      const textbox = getByRole('combobox');
+
+      act(() => {
+        textbox.focus();
+      });
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'two');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'four');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'two');
+      fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+      checkHighlightIs(getByRole('listbox'), 'four');
+    });
+
+    it("Shouldn't focus any option when all options are disabled", () => {
+      const { getByRole } = render(
+        <Autocomplete
+          getOptionDisabled={() => true}
+          openOnFocus
+          options={['one', 'two', 'three']}
+        />,
+      );
+      const textbox = getByRole('combobox');
+
+      act(() => {
+        textbox.focus();
+      });
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), null);
+      fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+      checkHighlightIs(getByRole('listbox'), null);
+    });
   });
 
   describe('WAI-ARIA conforming markup', () => {
