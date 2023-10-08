@@ -49,7 +49,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       {showFirstButton && (
         <IconButton
           onClick={handleFirstPageButtonClick}
-          disabled={dislabed || page === 0}
+          disabled={disabled || page === 0}
           aria-label={getItemAriaLabel('first', page)}
           title={getItemAriaLabel('first', page)}
         >
@@ -58,7 +58,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       )}
       <IconButton
         onClick={handleBackButtonClick}
-        disabled={dislabed || page === 0}
+        disabled={disabled || page === 0}
         color="inherit"
         aria-label={getItemAriaLabel('previous', page)}
         title={getItemAriaLabel('previous', page)}
@@ -68,7 +68,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
-        disabled={dislabed || (count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false)}
+        disabled={disabled || (count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false)}
         color="inherit"
         aria-label={getItemAriaLabel('next', page)}
         title={getItemAriaLabel('next', page)}
@@ -79,7 +79,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       {showLastButton && (
         <IconButton
           onClick={handleLastPageButtonClick}
-          disabled={dislabed || page >= Math.ceil(count / rowsPerPage) - 1}
+          disabled={disabled || page >= Math.ceil(count / rowsPerPage) - 1}
           aria-label={getItemAriaLabel('last', page)}
           title={getItemAriaLabel('last', page)}
         >
