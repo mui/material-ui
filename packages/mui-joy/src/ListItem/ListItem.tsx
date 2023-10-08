@@ -9,7 +9,7 @@ import {
 import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import useSlot from '../utils/useSlot';
 import { ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
 import { getListItemUtilityClass } from './listItemClasses';
@@ -46,6 +46,7 @@ export const StyledListItem = styled('li')<{ ownerState: ListItemOwnerState }>(
         '--ListItemButton-marginInline': `calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))`,
         '--ListItemButton-marginBlock': 'calc(-1 * var(--ListItem-paddingY))',
         alignItems: 'center',
+        gap: 'var(--ListItem-gap)',
         marginInline: 'var(--ListItem-marginInline)',
       } as const),
     ownerState.nested &&
@@ -64,7 +65,7 @@ export const StyledListItem = styled('li')<{ ownerState: ListItemOwnerState }>(
       } as const),
     // Base styles
     {
-      // Integration with control elements, eg. Checkbox, Radio.
+      // Integration with control elements, e.g. Checkbox, Radio.
       '--unstable_actionRadius': 'calc(var(--ListItem-radius) - var(--variant-borderWidth, 0px))',
       ...(ownerState.startAction && {
         '--unstable_startActionWidth': '2rem', // to add sufficient padding-left on ListItemButton
@@ -74,7 +75,8 @@ export const StyledListItem = styled('li')<{ ownerState: ListItemOwnerState }>(
       }),
       boxSizing: 'border-box',
       borderRadius: 'var(--ListItem-radius)',
-      display: 'flex',
+      display: 'var(--_ListItem-display)',
+      '&:not([hidden])': { '--_ListItem-display': 'flex' },
       flex: 'none', // prevent children from shrinking when the List's height is limited.
       position: 'relative',
       paddingBlockStart: ownerState.nested ? 0 : 'var(--ListItem-paddingY)',
@@ -168,7 +170,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     nested = false,
     sticky = false,
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     startAction,
     endAction,
     role: roleProp,
@@ -176,8 +178,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const [subheaderId, setSubheaderId] = React.useState('');
 

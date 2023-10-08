@@ -290,7 +290,8 @@ export default function GlobalCssSliderDeep() {
 
 ### Alterar o motor de estilo padrão
 
-By default, MUI components come with Emotion as their style engine. If, however, you would like to use `styled-components`, you can configure your app by following the [styled engine guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components) or starting with one of the example projects:
+By default, Material UI components come with Emotion as their style engine. 
+If, however, you would like to use styled-components, you can configure your app by following the [styled-components guide](/material-ui/guides/styled-components/) or starting with one of the example projects:
 
 <!-- #default-branch-switch -->
 
@@ -861,6 +862,6 @@ There is [an ESLint plugin](https://docs.tss-react.dev/detecting-unused-classes)
 :::
 
 :::warning
-For [Storybook](https://storybook.js.org): At the time of this writing, Storybook still uses Emotion 10 by default.  
+For [Storybook](https://storybook.js.org): At the time of this writing, Storybook still uses Emotion 10 by default.
 Material UI and TSS use Emotion 11, so you must make [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32) to `.storybook/main.js` in order to use Storybook with Material UI.
 :::

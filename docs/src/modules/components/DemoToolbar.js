@@ -85,22 +85,34 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
 
 const Button = styled(MDButton)(({ theme }) => ({
   height: 24,
+  padding: '5px 8px 6px 8px', // the one-off 5px is for visually centering the text on the button's container
   flexShrink: 0,
   borderRadius: 999,
-  border: 'none',
+  border: '1px solid',
+  borderColor: alpha(theme.palette.primary[100], 0.6),
   fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
-  color: theme.palette.text.secondary,
+  color: theme.palette.primary.main,
+  '& .MuiSvgIcon-root': {
+    color: theme.palette.primary.main,
+  },
   '&:hover': {
-    backgroundColor: theme.palette.grey[50],
+    backgroundColor: theme.palette.primary[50],
+    borderColor: theme.palette.primary[200],
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',
     },
   },
   ...theme.applyDarkStyles({
+    color: theme.palette.primary[300],
+    borderColor: alpha(theme.palette.primary[300], 0.2),
+    '& .MuiSvgIcon-root': {
+      color: theme.palette.primary[300],
+    },
     '&:hover': {
-      backgroundColor: theme.palette.primaryDark[700],
+      borderColor: alpha(theme.palette.primary[300], 0.5),
+      backgroundColor: alpha(theme.palette.primary[500], 0.2),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -531,6 +543,7 @@ export default function DemoToolbar(props) {
             data-ga-event-action="expand"
             onClick={onCodeOpenChange}
             {...getControlProps(3)}
+            sx={{ mr: 0.5 }}
           >
             {showCodeLabel}
           </Button>

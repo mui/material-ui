@@ -55,7 +55,7 @@ export default function BaseUIHero() {
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-core" />{' '}
+            <IconImage width={28} height={28} loading="eager" name="product-core" />{' '}
             <Link href={ROUTES.productCore}>MUI Core</Link>{' '}
             <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
               /

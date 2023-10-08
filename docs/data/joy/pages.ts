@@ -11,6 +11,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/joy-ui/getting-started/usage' },
       { pathname: '/joy-ui/getting-started/tutorial' },
       { pathname: '/joy-ui/getting-started/templates' },
+      { pathname: '/joy-ui/getting-started/roadmap' },
       {
         pathname: '/joy-ui/main-features',
         subheader: 'main-features',
@@ -90,7 +91,7 @@ const pages: readonly MuiPage[] = [
         subheader: 'navigation',
         children: [
           { pathname: '/joy-ui/react-breadcrumbs' },
-          { pathname: '/joy-ui/react-drawer', planned: true },
+          { pathname: '/joy-ui/react-drawer', newFeature: true },
           { pathname: '/joy-ui/react-link' },
           { pathname: '/joy-ui/react-menu' },
           { pathname: '/joy-ui/react-tabs' },

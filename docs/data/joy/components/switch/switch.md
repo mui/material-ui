@@ -92,15 +92,9 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 ## Common examples
 
-### Material Design
-
-You can also find the Material Design switch design, out of the box, in [Material UI's documentation](/material-ui/react-switch/).
-
-{{"demo": "ExampleMaterialSwitch.js"}}
-
 ### Fluent UI
 
-Here's how you'd customize Joy UI's switch to make it look like [Microsoft's Fluent UI](https://developer.microsoft.com/en-us/fluentui#/controls/web/toggle):
+Here's how you'd customize Joy UI's Switch to make it look like [Microsoft's Fluent UI](https://developer.microsoft.com/en-us/fluentui#/controls/web/toggle):
 
 - Unchecked state: `outlined` variant and `neutral` color.
 - Checked state: `solid` variant and `primary` color.

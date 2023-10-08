@@ -1,12 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  describeJoyColorInversion,
-} from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import Radio, { radioClasses as classes } from '@mui/joy/Radio';
 import { ThemeProvider } from '@mui/joy/styles';
 
@@ -32,8 +26,6 @@ describe('<Radio />', () => {
     },
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread'],
   }));
-
-  describeJoyColorInversion(<Radio />, { muiName: 'JoyRadio', classes });
 
   it('should have the classes required for Radio', () => {
     expect(classes).to.include.all.keys(['root', 'checked', 'disabled']);

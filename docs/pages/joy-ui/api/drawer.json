@@ -1,0 +1,115 @@
+{
+  "props": {
+    "open": { "type": { "name": "bool" }, "required": true },
+    "anchor": {
+      "type": {
+        "name": "enum",
+        "description": "'bottom'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top'"
+      },
+      "default": "'left'"
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'danger'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
+      },
+      "default": "'neutral'",
+      "additionalInfo": { "joy-color": true }
+    },
+    "component": { "type": { "name": "elementType" } },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
+    "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
+    "invertedColors": { "type": { "name": "bool" }, "default": "false" },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
+    "size": {
+      "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },
+      "default": "'md'",
+      "additionalInfo": { "joy-size": true }
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, content?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: elementType, content?: elementType, root?: elementType }"
+      },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'"
+      },
+      "default": "'plain'",
+      "additionalInfo": { "joy-variant": true }
+    }
+  },
+  "name": "Drawer",
+  "imports": ["import Drawer from '@mui/joy/Drawer';", "import { Drawer } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiDrawer" },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiDrawer-root"
+    },
+    {
+      "name": "backdrop",
+      "description": "The component that renders the backdrop.",
+      "default": "'div'",
+      "class": ".MuiDrawer-backdrop"
+    },
+    {
+      "name": "content",
+      "description": "The component that renders the content of the drawer.",
+      "default": "'div'",
+      "class": ".MuiDrawer-content"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "hidden",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
+  "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "JoyDrawer",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/Drawer/Drawer.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-drawer/\">Drawer</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@4.0
+  aws-cli: circleci/aws-cli@4.1
   aws-s3: circleci/aws-s3@4.0
 
 parameters:
@@ -45,7 +45,7 @@ defaults: &defaults
     AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:18.17
+    - image: cimg/node:18.18
 
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
@@ -690,8 +690,8 @@ jobs:
           steps:
             - aws-cli/setup:
                 aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                region: AWS_REGION_ARTIFACTS
                 aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                region: ${AWS_REGION_ARTIFACTS}
             # Upload distributables to S3
             - aws-s3/copy:
                 from: mui-material.tgz
@@ -719,8 +719,8 @@ jobs:
           steps:
             - aws-cli/setup:
                 aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                region: AWS_REGION_ARTIFACTS
                 aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                region: ${AWS_REGION_ARTIFACTS}
             # persist size snapshot on S3
             - aws-s3/copy:
                 arguments: --content-type application/json

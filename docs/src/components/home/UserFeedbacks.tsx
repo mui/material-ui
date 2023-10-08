@@ -26,8 +26,8 @@ function Feedback({
       </Typography>
       <Box sx={{ display: 'flex' }}>
         <Avatar
-          src={profile.avatarSrc}
           srcSet={profile.avatarSrcSet}
+          src={profile.avatarSrc}
           alt={`Picture of ${profile.name}`}
           imgProps={{ loading: 'lazy' }}
           sx={{

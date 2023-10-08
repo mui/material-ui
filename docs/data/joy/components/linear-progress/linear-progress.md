@@ -69,6 +69,14 @@ Provides a number to `thickness` prop to control the bar's stroke width.
 
 {{"demo": "LinearProgressThickness.js"}}
 
+## 3rd-party integration
+
+### use-count-up
+
+Using the [use-count-up](https://www.npmjs.com/package/use-count-up) package, you can create a counting animation by providing `start`, `end`, and `duration` values.
+
+{{"demo": "LinearProgressCountUp.js"}}
+
 ## CSS variables playground
 
 Play around with all the CSS variables available on the component to see how the design changes.

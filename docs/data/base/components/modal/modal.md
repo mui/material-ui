@@ -20,14 +20,6 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 Modal is a utility component that renders its children in front of a backdrop.
 This lets you create an element that your users must interact with before continuing in the parent application.
 
-### Features
-
-- 🥞 Manages modal stacking when more than one is needed
-- 🪟 Creates a backdrop to disable interaction with the rest of the app
-- 🔐 Disables page scrolling while open
-- ⌨️ Manages focus correctly between the modal and its parent app
-- ♿️ Adds the appropriate ARIA roles automatically
-
 :::info
 The term "modal" is sometimes used interchangeably with "dialog," but this is incorrect.
 A dialog may be _modal_ or _nonmodal (modeless)_.
@@ -48,19 +40,9 @@ Modal is a lower-level construct that is used in the following Material UI compo
 
 ## Component
 
-### Usage
-
-After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
 import { Modal } from '@mui/base/Modal';
-
-export default function MyApp() {
-  return <Modal>{/* the modal's content */}</Modal>;
-}
 ```
-
-### Basics
 
 The following demo shows how to create and style a basic modal.
 Click **Open modal** to see how it behaves:
@@ -85,12 +67,12 @@ The following demo shows how to nest one Modal within another:
 
 You can animate the open and close states of a Modal using a transition component, as long as that component fulfills the following requirements:
 
-- Is a direct child descendant of the modal
+- Is a direct child descendant of the Modal
 - Has an `in` prop—this corresponds to the open/close state
 - Calls the `onEnter` callback prop when the enter transition starts
 - Calls the `onExited` callback prop when the exit transition is completed
   :::info
-  The `onEnter` and `onExited` callbacks tell the modal to unmount the child content when closed and fully transitioned.
+  The `onEnter` and `onExited` callbacks tell the Modal to unmount the child content when closed and fully transitioned.
   :::
 
 Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group):
@@ -103,12 +85,12 @@ You can also use [react-spring](https://github.com/pmndrs/react-spring) with Mod
 
 ### Performance
 
-The Modal's content is unmounted when it is not open.
-This means that it will need to be re-mounted each time it is opened.
+The Modal's content is unmounted when it's not open.
+This means that it will need to be re-mounted each time it's opened.
 
-If you are rendering expensive component trees inside your Modal, and you want to optimize for interaction responsiveness, you can change this default behavior by enabling the `keepMounted` prop.
+If you're rendering expensive component trees inside your Modal, and you want to optimize for interaction responsiveness, you can change this default behavior by enabling the `keepMounted` prop.
 
-You can also use the `keepMounted` prop if you want to make the content of the modal available to search engines (even when the modal is closed).
+You can also use the `keepMounted` prop if you want to make the content of the Modal available to search engines (even when the Modal is closed).
 
 The following demo shows how to apply this prop to keep the Modal mounted:
 
@@ -133,11 +115,11 @@ In order to display a Modal rendered on the server, you need to disable the port
 
 ### Overflow layout shift
 
-The modal disables the page scrolling while open by setting `overflow: hidden` as inline-style on the relevant scroll container, this hides the scrollbar and hence impacts the page layout.
-To compensate for this offset and avoid a layout shift, the modal also set a padding property on the scroll container (~15px under normal conditions).
+The Modal disables the page scrolling while open by setting `overflow: hidden` as inline-style on the relevant scroll container, this hides the scrollbar and hence impacts the page layout.
+To compensate for this offset and avoid a layout shift, the Modal also set a padding property on the scroll container (~15px under normal conditions).
 
 This can create a layout shift with `position: fixed` and `position: sticky` elements.
-You need to add the `.mui-fixed` class name on these elements so the modal can add a CSS padding property when the scroll is disabled.
+You need to add the `.mui-fixed` class name on these elements so the Modal can add a CSS padding property when the scroll is disabled.
 
 ```jsx
 <Box sx={{ position: 'sticky', right: 0, top: 0, left: 0 }} className="mui-fixed">
@@ -149,7 +131,7 @@ Modal moves the focus back to the body of the component if the focus tries to es
 
 This is done for accessibility purposes, but it can potentially create issues for your users.
 
-If the user needs to interact with another part of the page—for example, to interact with a chatbot window while a modal is open in the parent app—you can disable the default behavior with the `disableEnforceFocus` prop.
+If the user needs to interact with another part of the page—for example, to interact with a chatbot window while a Modal is open in the parent app—you can disable the default behavior with the `disableEnforceFocus` prop.
 
 ## Hook
 
@@ -157,10 +139,10 @@ If the user needs to interact with another part of the page—for example, to in
 import useModal from '@mui/base/unstable_useModal';
 ```
 
-The `useModal` hook lets you apply the functionality of a modal to a fully custom component.
+The `useModal` hook lets you apply the functionality of a Modal to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
-Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+Hooks _do not_ support [slot props](#custom-structure), but they do support [customization props](#customization).
 
 :::info
 Hooks give you the most room for customization, but require more work to implement.
@@ -169,7 +151,7 @@ With hooks, you can take full control over how your component is rendered, and d
 You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
-The following demo shows how to build the same modal as the one found in the section above, but with the `useModal` hook:
+The following demo shows how to build the same Modal as the one found in the [Component](#component) section above, but with the `useModal` hook:
 
 {{"demo": "UseModal.js", "defaultCodeOpen": true}}
 

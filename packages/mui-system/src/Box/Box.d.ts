@@ -105,6 +105,12 @@ export declare const spacing: SimpleStyleFunction<
   | 'marginLeft'
   | 'marginX'
   | 'marginY'
+  | 'marginInline'
+  | 'marginInlineStart'
+  | 'marginInlineEnd'
+  | 'marginBlock'
+  | 'marginBlockStart'
+  | 'marginBlockEnd'
   | 'padding'
   | 'paddingTop'
   | 'paddingRight'
@@ -112,6 +118,12 @@ export declare const spacing: SimpleStyleFunction<
   | 'paddingLeft'
   | 'paddingX'
   | 'paddingY'
+  | 'paddingInline'
+  | 'paddingInlineStart'
+  | 'paddingInlineEnd'
+  | 'paddingBlock'
+  | 'paddingBlockStart'
+  | 'paddingBlockEnd'
 >;
 
 export declare const typography: SimpleStyleFunction<

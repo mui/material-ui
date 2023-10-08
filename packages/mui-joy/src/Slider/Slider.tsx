@@ -10,7 +10,6 @@ import { OverridableComponent } from '@mui/types';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderTypeMap, SliderOwnerState } from './SliderProps';
@@ -232,9 +231,7 @@ const SliderThumb = styled('span', {
     ...theme.focus.default,
     outlineOffset: 0,
     outlineWidth: 'max(4px, var(--Slider-thumbSize) / 3.6)',
-    ...(ownerState.color !== 'context' && {
-      outlineColor: `rgba(${theme.vars.palette?.[ownerState.color!]?.mainChannel} / 0.32)`,
-    }),
+    outlineColor: `rgba(${theme.vars.palette?.[ownerState.color!]?.mainChannel} / 0.32)`,
   },
   ...(ownerState.orientation === 'horizontal' && {
     top: '50%',
@@ -430,7 +427,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     isRtl = false,
-    color: colorProp = 'primary',
+    color = 'primary',
     size = 'md',
     variant = 'solid',
     component,
@@ -438,8 +435,6 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion('solid');
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

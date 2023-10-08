@@ -242,12 +242,12 @@ const Root = styled('div')(
     }),
 );
 
-function TopLayoutBlog(props) {
+export default function TopLayoutBlog(props) {
   const { className, docs } = props;
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
   const router = useRouter();
-  const slug = router.pathname.replace(/\/blog\//, '');
+  const slug = router.pathname.replace(/(.*)\/(.*)/, '$2');
   const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const card =
     headers.card === 'true'
@@ -331,6 +331,11 @@ function TopLayoutBlog(props) {
           </Link>
           {headers.title ? (
             <React.Fragment>
+              {/*
+                Depending on the timezone, the display date can change from one day to another.
+                e.g. Sunday vs. Monday
+                TODO: Move the date formating to the server.
+              */}
               <time dateTime={headers.date} className={classes.time}>
                 {new Intl.DateTimeFormat('en', {
                   weekday: 'long',
@@ -392,5 +397,3 @@ TopLayoutBlog.propTypes = {
 if (process.env.NODE_ENV !== 'production') {
   TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
-
-export default TopLayoutBlog;

@@ -67,13 +67,6 @@ module.exports = {
       {
         patterns: [
           '@mui/*/*/*',
-          // Begin block: Packages with files instead of packages in the top level
-          // Importing from the top level pulls in CommonJS instead of ES modules
-          // Allowing /icons as to reduce cold-start of dev builds significantly.
-          // There's nothing to tree-shake when importing from /icons this way:
-          // '@mui/icons-material/*/',
-          '@mui/utils/*',
-          // End block
           // Macros are fine since their import path is transpiled away
           '!@mui/utils/macros',
           '@mui/utils/macros/*',
@@ -81,6 +74,7 @@ module.exports = {
         ],
       },
     ],
+    'no-continue': 'off',
     'no-constant-condition': 'error',
     // Use the proptype inheritance chain
     'no-prototype-builtins': 'off',
@@ -89,6 +83,16 @@ module.exports = {
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     // Destructuring harm grep potential.
     'prefer-destructuring': 'off',
+
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      {
+        functions: false,
+        classes: true,
+        variables: true,
+      },
+    ],
+    'no-use-before-define': 'off',
 
     // disabled type-aware linting due to performance considerations
     '@typescript-eslint/dot-notation': 'off',
@@ -126,6 +130,7 @@ module.exports = {
     'material-ui/docgen-ignore-before-comment': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
     'material-ui/no-empty-box': 'error',
+    'material-ui/straight-quotes': 'error',
 
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
     'react-hooks/rules-of-hooks': 'error',
@@ -218,15 +223,6 @@ module.exports = {
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
-        'no-restricted-imports': [
-          'error',
-          {
-            // Use named import from `test/utils` instead.
-            // The other files are private.
-            patterns: ['test/utils/*'],
-          },
-        ],
-
         'material-ui/disallow-active-element-as-key-event-target': 'error',
 
         // upgraded level from recommended
@@ -275,6 +271,20 @@ module.exports = {
           'error',
           { allow: ['MUI', 'Twitter', 'GitHub', 'Stack Overflow'] },
         ],
+      },
+    },
+    // Next.js plugin
+    {
+      files: ['docs/**/*'],
+      extends: ['plugin:@next/next/recommended'],
+      settings: {
+        next: {
+          rootDir: 'docs',
+        },
+      },
+      rules: {
+        // We're not using the Image component at the moment
+        '@next/next/no-img-element': 'off',
       },
     },
     // Next.js entry points pages
@@ -333,7 +343,7 @@ module.exports = {
           'error',
           {
             patterns: [
-              // Allow deeper imports for TypeScript types. TODO?
+              // Allow deeper imports for TypeScript types. TODO remove
               '@mui/*/*/*/*',
               // Macros are fine since they're transpiled into something else
               '!@mui/utils/macros/*.macro',

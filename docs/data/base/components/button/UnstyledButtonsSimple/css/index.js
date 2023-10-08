@@ -54,12 +54,11 @@ function Styles() {
       .CustomButton:active:not(.${buttonClasses.disabled}) {
         background-color: ${cyan[700]};
       }
-      
+
       .${buttonClasses.disabled} {
         opacity: 0.5;
         cursor: not-allowed;
-
-
+      }
       `}
     </style>
   );

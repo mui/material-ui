@@ -7,7 +7,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
@@ -45,8 +45,9 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       return {
         '--ListDivider-gap': '0.25rem',
         '--ListItem-minHeight': '2rem',
-        '--ListItem-paddingY': '0.25rem',
+        '--ListItem-paddingY': '3px',
         '--ListItem-paddingX': '0.5rem',
+        '--ListItem-gap': '0.5rem',
         '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
         '--Icon-fontSize': theme.vars.fontSize.lg,
       };
@@ -54,9 +55,10 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
     if (size === 'md') {
       return {
         '--ListDivider-gap': '0.375rem',
-        '--ListItem-minHeight': '2.5rem',
-        '--ListItem-paddingY': '0.375rem',
+        '--ListItem-minHeight': '2.25rem',
+        '--ListItem-paddingY': '0.25rem',
         '--ListItem-paddingX': '0.75rem',
+        '--ListItem-gap': '0.625rem',
         '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
         '--Icon-fontSize': theme.vars.fontSize.xl,
       };
@@ -64,9 +66,10 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
     if (size === 'lg') {
       return {
         '--ListDivider-gap': '0.5rem',
-        '--ListItem-minHeight': '3rem',
-        '--ListItem-paddingY': '0.5rem',
+        '--ListItem-minHeight': '2.75rem',
+        '--ListItem-paddingY': '0.375rem',
         '--ListItem-paddingX': '1rem',
+        '--ListItem-gap': '0.75rem',
         '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
       };
@@ -181,14 +184,12 @@ const List = React.forwardRef(function List(inProps, ref) {
     orientation = 'vertical',
     wrap = false,
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     role: roleProp,
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
   const size = sizeProp || (inProps.size ?? 'md');
 
   let role;

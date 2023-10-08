@@ -2,17 +2,17 @@
 
 <p class="description">Learn how to use Base UI with the Next.js App Router.</p>
 
-:::info
+## Example
+
 Starting fresh on a new App Router-based project?
 
-Jump right into the code with [this example: Base UI - Next.js App Router with Tailwind CSS example in TypeScript](https://github.com/mui/material-ui/tree/master/examples/base-ui-nextjs-tailwind-ts).
-:::
+Jump right into the code with [this example: Base UI - Next.js App Router with Tailwind CSS in TypeScript](https://github.com/mui/material-ui/tree/master/examples/base-ui-nextjs-tailwind-ts).
 
 ## Next.js and React Server Components
 
 The Next.js App Router implements React Server Components, [an upcoming feature for React](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md).
 
-To support the App Router, currently all components and hooks from Base UI and other MUI libraries are exported with the `"use client"` directive.
+To support the App Router, the components and hooks from Base UI that need access to browser APIs are exported with the `"use client"` directive.
 
 :::warning
 React Server Components should not be conflated with the concept of server-side rendering (SSR).
@@ -36,7 +36,6 @@ module.exports = {
   content: [
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}'
-
     // or if not using the `src` directory:
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
@@ -195,5 +194,5 @@ export default function Page() {
 }
 ```
 
-Unfortunately, **this does not work in a Server Component** since function props are [non-serializable](https://nextjs.org/docs/getting-started/react-essentials#passing-props-from-server-to-client-components-serialization).
-Instead, the Next.js team recommend moving components like these ["to the leaves"](https://nextjs.org/docs/getting-started/react-essentials#moving-client-components-to-the-leaves) to avoid this issue and improve overall performance.
+Unfortunately, **this does not work in a Server Component** since function props are [non-serializable](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#passing-props-from-server-to-client-components-serialization).
+Instead, the Next.js team recommend moving components like these ["down the tree"](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree) to avoid this issue and improve overall performance.
