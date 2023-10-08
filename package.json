@@ -91,7 +91,7 @@
     "@googleapis/sheets": "^5.0.4",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
     "@next/eslint-plugin-next": "^13.5.3",
-    "@octokit/rest": "^20.0.1",
+    "@octokit/rest": "^20.0.2",
     "@playwright/test": "1.37.1",
     "@slack/bolt": "^3.14.0",
     "@slack/web-api": "^6.9.0",
