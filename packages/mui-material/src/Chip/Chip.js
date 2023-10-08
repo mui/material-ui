@@ -309,10 +309,19 @@ const ChipLabel = styled('span', {
   paddingLeft: 12,
   paddingRight: 12,
   whiteSpace: 'nowrap',
+  ...(ownerState.variant === 'outlined' && {
+    paddingLeft: 11,
+    paddingRight: 11,
+  }),
   ...(ownerState.size === 'small' && {
     paddingLeft: 8,
     paddingRight: 8,
   }),
+  ...(ownerState.size === 'small' &&
+    ownerState.variant === 'outlined' && {
+      paddingLeft: 7,
+      paddingRight: 7,
+    }),
 }));
 
 function isDeleteKeyboardEvent(keyboardEvent) {
