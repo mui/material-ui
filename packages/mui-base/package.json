@@ -57,7 +57,7 @@
     "@types/chai": "^4.3.6",
     "@types/prop-types": "^15.7.7",
     "@types/react": "18.2.23",
-    "@types/react-dom": "18.2.7",
+    "@types/react-dom": "18.2.11",
     "@types/sinon": "^10.0.19",
     "chai": "^4.3.8",
     "fast-glob": "^3.3.1",
