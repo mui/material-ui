@@ -15,6 +15,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
   const {
     backIconButtonProps,
     count,
+    disabled = false,
     getItemAriaLabel,
     nextIconButtonProps,
     onPageChange,
@@ -48,7 +49,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       {showFirstButton && (
         <IconButton
           onClick={handleFirstPageButtonClick}
-          disabled={page === 0}
+          disabled={page === 0 || dislabed}
           aria-label={getItemAriaLabel('first', page)}
           title={getItemAriaLabel('first', page)}
         >
@@ -57,7 +58,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       )}
       <IconButton
         onClick={handleBackButtonClick}
-        disabled={page === 0}
+        disabled={page === 0 || dislabed}
         color="inherit"
         aria-label={getItemAriaLabel('previous', page)}
         title={getItemAriaLabel('previous', page)}
@@ -67,7 +68,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
-        disabled={count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false}
+        disabled={(count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false) || dislabed}
         color="inherit"
         aria-label={getItemAriaLabel('next', page)}
         title={getItemAriaLabel('next', page)}
@@ -78,7 +79,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       {showLastButton && (
         <IconButton
           onClick={handleLastPageButtonClick}
-          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          disabled={page >= Math.ceil(count / rowsPerPage) - 1 || dislabed}
           aria-label={getItemAriaLabel('last', page)}
           title={getItemAriaLabel('last', page)}
         >
@@ -98,6 +99,11 @@ TablePaginationActions.propTypes = {
    * The total number of rows.
    */
   count: PropTypes.number.isRequired,
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    *

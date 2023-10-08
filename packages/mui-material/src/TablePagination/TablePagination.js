@@ -145,6 +145,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     colSpan: colSpanProp,
     component = TableCell,
     count,
+    disabled = false,
     getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
     labelRowsPerPage = 'Rows per page:',
@@ -249,6 +250,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           showFirstButton={showFirstButton}
           showLastButton={showLastButton}
           getItemAriaLabel={getItemAriaLabel}
+          disabled={disabled}
         />
       </TablePaginationToolbar>
     </TablePaginationRoot>
@@ -293,6 +295,11 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * To enable server side pagination for an unknown number of items, provide -1.
    */
   count: integerPropType.isRequired,
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.

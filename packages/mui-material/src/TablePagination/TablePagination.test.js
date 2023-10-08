@@ -353,6 +353,36 @@ describe('<TablePagination />', () => {
     });
   });
 
+  describe('prop: disabled', () => {
+    it('should disable the first, last, next, and back buttons', () => {
+      const { getByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                disabled
+                count={11}
+                page={1}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
+                rowsPerPage={10}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      const firstButton = getByRole('button', { name: 'Go to first page' });
+      const lastButton = getByRole('button', { name: 'Go to last page' });
+      const nextButton = getByRole('button', { name: 'Go to next page' });
+      const backButton = getByRole('button', { name: 'Go to previous page' });
+      expect(firstButton).to.have.property('disabled', true);
+      expect(lastButton).to.have.property('disabled', true);
+      expect(nextButton).to.have.property('disabled', true);
+      expect(backButton).to.have.property('disabled', true);
+    });
+  });
+
   describe('warnings', () => {
     beforeEach(() => {
       PropTypes.resetWarningCache();
