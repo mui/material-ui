@@ -702,7 +702,12 @@ function AutomaticAdjustment() {
           gap: 2,
           justifyContent: 'space-between',
         }}
-      ></Frame.Info>
+      >
+        <MoreInfo
+          subject="automatic adjustment"
+          link="/joy-ui/main-features/automatic-adjustment/"
+        />
+      </Frame.Info>
     </Frame>
   );
 }
