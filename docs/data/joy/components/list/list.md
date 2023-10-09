@@ -96,12 +96,12 @@ If used, it will automatically change the semantic element from the default `<li
 
 ### Marker
 
-Use `marker` prop to add a marker to the list items. The value can be any valid [list-style-type](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type) CSS property.
+Use the `marker` prop with any valid [list-style-type](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type) value, to add a marker to the list items.
 
 {{"demo": "MarkerList.js"}}
 
 :::success
-For [numbered list](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol), you should render the ordered list of items by setting `component="ol"` prop on the List component.
+For [numbered lists](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol), change the List component to ` component="ol"`. 
 
 ```js
 <List component="ol" marker="decimal">

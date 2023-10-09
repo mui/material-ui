@@ -21,7 +21,7 @@ export default function MarkerList() {
       <List marker={type}>
         <ListItem>The Shawshank Redemption</ListItem>
         <ListItem nested>
-          <ListItem>Star wars</ListItem>
+          <ListItem>Star Wars</ListItem>
           <List marker="circle">
             <ListItem>Episode I – The Phantom Menace</ListItem>
             <ListItem>Episode II – Attack of the Clones</ListItem>
