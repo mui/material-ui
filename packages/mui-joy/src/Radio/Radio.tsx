@@ -6,7 +6,6 @@ import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import { RadioOwnerState, RadioTypeMap } from './RadioProps';
@@ -266,7 +265,6 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
 
   const formControl = React.useContext(FormControlContext);
 
@@ -311,7 +309,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(useRadioProps);
 
-  const color = getColor(inProps.color, checked ? activeColor : inactiveColor);
+  const color = inProps.color ?? (checked ? activeColor : inactiveColor);
 
   const ownerState = {
     ...props,

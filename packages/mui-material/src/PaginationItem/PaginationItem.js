@@ -126,7 +126,7 @@ const PaginationItemPage = styled(ButtonBase, {
       backgroundColor: (theme.vars || theme).palette.action.selected,
       '&:hover': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selected} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -138,7 +138,7 @@ const PaginationItemPage = styled(ButtonBase, {
       },
       [`&.${paginationItemClasses.focusVisible}`]: {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selected} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,

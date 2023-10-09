@@ -1,6 +1,12 @@
 {
   "props": {
     "actions": { "type": { "name": "custom", "description": "ref" } },
+    "anchor": {
+      "type": {
+        "name": "union",
+        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
+      }
+    },
     "onItemsChange": { "type": { "name": "func" } },
     "slotProps": {
       "type": {
