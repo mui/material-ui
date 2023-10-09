@@ -132,6 +132,7 @@ export const getButtonStyles = ({
         paddingInline: '1.5rem',
       }),
       WebkitTapHighlightColor: 'transparent',
+      boxSizing: 'border-box',
       borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, e.g. Input
       margin: `var(--Button-margin)`, // to be controlled by other components, e.g. Input
       border: 'none',
