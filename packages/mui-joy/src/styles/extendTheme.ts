@@ -212,13 +212,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         icon: getCssVarColor('palette-neutral-500'),
       },
       background: {
-        body: getCssVarColor('palette-common-white'),
-        surface: getCssVarColor('palette-neutral-50'),
-        popup: getCssVarColor('palette-common-white'),
-        level1: getCssVarColor('palette-neutral-100'),
-        level2: getCssVarColor('palette-neutral-200'),
-        level3: getCssVarColor('palette-neutral-300'),
-        tooltip: getCssVarColor('palette-neutral-500'),
+        level0: getCssVarColor('palette-common-white'), //Former body and also intended to be used for popup
+        level1: getCssVarColor('palette-neutral-50'), //Former surface
+        level2: getCssVarColor('palette-neutral-100'), //Former level1
+        level3: getCssVarColor('palette-neutral-200'), //Former level2
+        level4: getCssVarColor('palette-neutral-300'), //Former level3 and also intended to be used for tooltip
         backdrop: `rgba(${getCssVar(
           'palette-neutral-darkChannel',
           colorChannel(defaultColors.neutral[900]), // should be the same index as in `attachColorChannels`
@@ -270,13 +268,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         icon: getCssVarColor('palette-neutral-400'),
       },
       background: {
-        body: getCssVarColor('palette-common-black'),
-        surface: getCssVarColor('palette-neutral-900'),
-        popup: getCssVarColor('palette-common-black'),
-        level1: getCssVarColor('palette-neutral-800'),
-        level2: getCssVarColor('palette-neutral-700'),
-        level3: getCssVarColor('palette-neutral-600'),
-        tooltip: getCssVarColor('palette-neutral-600'),
+        level0: getCssVarColor('palette-common-black'), //Former body and also intended to be used for popup
+        level1: getCssVarColor('palette-neutral-900'), //Former surface
+        level2: getCssVarColor('palette-neutral-800'), //Former level1
+        level3: getCssVarColor('palette-neutral-700'), //Former level2
+        level4: getCssVarColor('palette-neutral-600'), //Former level3 and also intended to be used for tooltip
         backdrop: `rgba(${getCssVar(
           'palette-neutral-darkChannel',
           colorChannel(defaultColors.neutral[50]), // should be the same index as in `attachColorChannels`
