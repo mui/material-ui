@@ -210,7 +210,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
         flexGrow: 1,
         maxWidth: '100%',
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: '1fr max-content',
         containerType: 'inline-size',
         '& .markdown-body pre': {
           margin: 0,
