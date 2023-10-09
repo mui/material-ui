@@ -2,9 +2,9 @@
 
 <p class="description">Be more efficient designing and developing with the same library.</p>
 
-## Official design kits
+## Official kits
 
-Pick your favorite design tool to enjoy and use Material UI components.
+Pick your favorite design tool to enjoy and use the Material UI components.
 
 {{"component": "modules/components/MaterialUIDesignResources.js"}}
 
