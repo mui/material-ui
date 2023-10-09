@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/straight-quotes */
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -106,7 +107,7 @@ export default function BaseUITestimonial() {
       />
       {/* The copy above will be refined! */}
       <Masonry columns={{ xs: 1, sm: 2 }} spacing={3} sx={{ m: 0, mt: 4 }}>
-        {additionalTestimonials.map(({ testimonial, author, workTitle, avatar, companyLogo }) => (
+        {additionalTestimonials.map(({ testimonial, author, workTitle, avatar }) => (
           <div key={author}>
             <Paper
               variant="outlined"
@@ -126,12 +127,7 @@ export default function BaseUITestimonial() {
               <Typography color="text.secondary" sx={{ flexGrow: 1 }}>
                 {testimonial}
               </Typography>
-              <TestimonialAuthor
-                author={author}
-                workTitle={workTitle}
-                avatar={avatar}
-                companyLogo={companyLogo}
-              />
+              <TestimonialAuthor author={author} workTitle={workTitle} avatar={avatar} />
             </Paper>
           </div>
         ))}
