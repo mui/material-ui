@@ -1,16 +1,24 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
+import { styled } from '@mui/joy/styles';
 import { applySolidInversion } from '@mui/joy/colorInversion';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
 
-function Stat({
-  description,
-  value,
-}: {
-  description: React.ReactNode;
-  value: React.ReactNode;
-}) {
+const StyledBox = styled(Box)(({ theme }) => ({
+  padding: 32,
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  alignItems: 'center',
+  rowGap: 16,
+  columnGap: 64,
+  borderRadius: 8,
+  background: `linear-gradient(45deg, ${theme.vars.palette.neutral[800]}, ${theme.vars.palette.neutral[600]})`,
+  ...applySolidInversion('neutral'),
+}));
+
+function Stat({ description, value }) {
   return (
     <Box sx={{ borderLeft: 3, borderColor: 'divider', px: 2, py: 0.5 }}>
       <Typography level="h3" component="div">
@@ -23,24 +31,14 @@ function Stat({
   );
 }
 
-export default function ColorInversionAnyParent() {
+Stat.propTypes = {
+  description: PropTypes.node,
+  value: PropTypes.node,
+};
+
+export default function ColorInversionAnyParentStyled() {
   return (
-    <Box
-      sx={[
-        {
-          display: 'grid',
-          gridTemplateColumns: { sm: '1fr 1fr' },
-          alignItems: 'center',
-          rowGap: 2,
-          columnGap: 8,
-          p: 4,
-          borderRadius: 'sm',
-          background: (theme) =>
-            `linear-gradient(45deg, ${theme.vars.palette.neutral[800]}, ${theme.vars.palette.neutral[600]})`,
-        },
-        applySolidInversion('neutral'),
-      ]}
-    >
+    <StyledBox>
       <div>
         <Typography sx={{ mb: 2 }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -63,6 +61,6 @@ export default function ColorInversionAnyParent() {
         <Stat value="2.7k" description="Open source contributors" />
         <Stat value="18.4k" description="Followers on Twitter" />
       </Box>
-    </Box>
+    </StyledBox>
   );
 }
