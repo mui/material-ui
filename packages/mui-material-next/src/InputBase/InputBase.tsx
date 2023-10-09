@@ -546,6 +546,7 @@ interface InputBaseComponent {
       /**
        * The component used for the input node.
        * Either a string to use a HTML element or a component.
+       * @default 'input'
        */
       inputComponent?: C;
     } & OverrideProps<InputBaseTypeMap, C>,
@@ -627,6 +628,7 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the input node.
    * Either a string to use a HTML element or a component.
+   * @default 'input'
    */
   inputComponent: PropTypes.elementType,
   /**

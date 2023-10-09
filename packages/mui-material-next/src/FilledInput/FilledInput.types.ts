@@ -2,13 +2,12 @@ import { SxProps } from '@mui/system';
 // TODO v6: port to material-next
 // eslint-disable-next-line no-restricted-imports
 import { InternalStandardProps as StandardProps } from '@mui/material';
-import { PolymorphicProps } from '@mui/base/utils';
-import { Simplify } from '@mui/types';
+import { OverrideProps, Simplify } from '@mui/types';
 import { Theme } from '../styles/Theme.types';
 import { InputBaseProps } from '../InputBase/InputBase.types';
 import { FilledInputClasses } from './filledInputClasses';
 
-export type FilledInputOwnProps = StandardProps<Omit<InputBaseProps, 'slots'>> & {
+export type FilledInputOwnProps = StandardProps<Omit<InputBaseProps, 'children' | 'slots'>> & {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -59,7 +58,10 @@ export interface FilledInputTypeMap<
 
 export type FilledInputProps<
   RootComponentType extends React.ElementType = FilledInputTypeMap['defaultComponent'],
-> = PolymorphicProps<FilledInputTypeMap<{}, RootComponentType>, RootComponentType>;
+  AdditionalProps = {},
+> = OverrideProps<FilledInputTypeMap<AdditionalProps, RootComponentType>, RootComponentType> & {
+  inputComponent?: React.ElementType;
+};
 
 export type FilledInputOwnerState = Simplify<
   FilledInputOwnProps & {

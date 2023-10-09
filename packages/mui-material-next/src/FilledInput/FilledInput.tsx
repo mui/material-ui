@@ -310,11 +310,13 @@ interface FilledInputComponent {
       /**
        * The component used for the input node.
        * Either a string to use a HTML element or a component.
+       * @default 'input'
        */
       inputComponent?: C;
     } & OverrideProps<FilledInputTypeMap, C>,
   ): JSX.Element | null;
   propTypes?: any;
+  muiName?: string;
 }
 
 FilledInput.propTypes /* remove-proptypes */ = {
@@ -332,10 +334,6 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    */
@@ -391,6 +389,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the input node.
    * Either a string to use a HTML element or a component.
+   * @default 'input'
    */
   inputComponent: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
@@ -508,7 +507,6 @@ FilledInput.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-// @ts-ignore - internal logic to integrate with FormControl
 FilledInput.muiName = 'Input';
 
 export default FilledInput;
