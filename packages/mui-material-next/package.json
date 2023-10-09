@@ -46,7 +46,7 @@
     "@mui/system": "^5.14.12",
     "@mui/types": "^7.2.5",
     "@mui/utils": "^5.14.12",
-    "@types/react-transition-group": "^4.4.6",
+    "@types/react-transition-group": "^4.4.7",
     "clsx": "^2.0.0",
     "prop-types": "^15.8.1",
     "react-transition-group": "^4.4.5"
@@ -58,7 +58,7 @@
     "@types/prop-types": "^15.7.7",
     "@types/react": "^18.2.23",
     "@types/react-dom": "^18.2.7",
-    "@types/sinon": "^10.0.16",
+    "@types/sinon": "^10.0.19",
     "chai": "^4.3.8",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
