@@ -73,17 +73,13 @@ export default function ChatBubble({
               borderRadius: 'lg',
               borderTopRightRadius: isSent ? 0 : 'lg',
               borderTopLeftRadius: isSent ? 'lg' : 0,
-              backgroundColor: isSent
-                ? 'var(--joy-palette-primary-solidBg)'
-                : 'background.body',
+              backgroundColor: isSent ? 'primary.solidBg' : 'background.body',
             }}
           >
             <Typography
               level="body-sm"
               sx={{
-                color: isSent
-                  ? 'var(--joy-palette-common-white)'
-                  : 'var(--joy-palette-text-primary)',
+                color: isSent ? 'common.white' : 'text.primary',
               }}
             >
               {content}
