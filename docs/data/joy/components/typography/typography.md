@@ -41,8 +41,6 @@ The `title-*` and `body-*` are commonly used in components.
 
 We recommend to combine the title and body with the same or lower size when using them together. For example, `title-lg` and `body-lg` or `title-md` and `body-sm`.
 
-Each level are designed to fit perfectly with the same size of the `SvgIcon` component.
-
 {{"demo": "TypographyTitleBody.js"}}
 
 ### Nested Typography
