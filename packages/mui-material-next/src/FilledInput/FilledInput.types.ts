@@ -1,4 +1,5 @@
 import { SxProps } from '@mui/system';
+// TODO v6: port to material-next
 // eslint-disable-next-line no-restricted-imports
 import { InternalStandardProps as StandardProps } from '@mui/material';
 import { PolymorphicProps } from '@mui/base/utils';

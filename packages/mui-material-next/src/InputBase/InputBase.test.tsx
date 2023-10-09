@@ -708,7 +708,7 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: focused', () => {
-    // TODO v6: requires material-next/OutlinedInput
+    // TODO v6: requires material-next/TextField
     // eslint-disable-next-line mocha/no-skipped-tests
     it.skip('should render correct border color with a customized primary color supplied to CssVarsProvider', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
@@ -727,7 +727,7 @@ describe('<InputBase />', () => {
       });
       const { getByRole } = render(
         <CssVarsProvider theme={theme}>
-          {/* TODO v6: use material-next/TextField or OutlinedInput */}
+          {/* TODO v6: use material-next/TextField */}
           <TextField focused label="Your email" />
         </CssVarsProvider>,
       );
