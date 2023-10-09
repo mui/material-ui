@@ -35,7 +35,7 @@
     "@types/mocha": "^10.0.2",
     "@types/node": "^18.18.0",
     "@types/sinon": "^10.0.19",
-    "chai": "^4.3.8",
+    "chai": "^4.3.10",
     "sinon": "^15.2.0",
     "typescript": "^5.1.6"
   }
