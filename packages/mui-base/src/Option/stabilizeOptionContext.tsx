@@ -6,9 +6,11 @@ import { OptionProps } from './Option.types';
  * Creates an intermediary component that wraps the Option and prevents it
  * from rendering when its state (taken from ListContext) doesn't change.
  *
+ * This is a performance optimization that prevents Options from re-rendering unnecessarily.
+ *
  * @param Component Option component to wrap
  */
-export function unwrapOptionContext<
+export function stabilizeOptionContext<
   OptionValue,
   WrappedComponentProps extends { value: OptionValue },
 >(
@@ -41,7 +43,7 @@ export function unwrapOptionContext<
           throw new Error(
             [
               'Base UI Option: Tried to access the state of another Option.',
-              'This is unsupported when the Option uses unwrapOptionContext as a performance optimization.',
+              'This is unsupported when the Option uses stabilizeOptionContext as a performance optimization.',
             ].join('/n'),
           );
         }

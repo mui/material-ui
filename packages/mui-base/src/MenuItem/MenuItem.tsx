@@ -13,7 +13,7 @@ import { useMenuItem } from '../useMenuItem';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useSlotProps } from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { unwrapMenuItemContext } from './unwrapMenuItemContext';
+import { stabilizeMenuItemContext } from './stabilizeMenuItemContext';
 import { WithOptionalOwnerState } from '../utils';
 
 function useUtilityClasses(ownerState: MenuItemOwnerState) {
@@ -35,7 +35,7 @@ function useUtilityClasses(ownerState: MenuItemOwnerState) {
  *
  * - [MenuItem API](https://mui.com/base-ui/react-menu/components-api/#menu-item)
  */
-const MenuItem = unwrapMenuItemContext(
+const MenuItem = stabilizeMenuItemContext(
   React.memo(
     React.forwardRef(function MenuItem<RootComponentType extends React.ElementType>(
       props: MenuItemProps<RootComponentType>,

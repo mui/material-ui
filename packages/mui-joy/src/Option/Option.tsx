@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useOption } from '@mui/base/useOption';
-import { unwrapOptionContext } from '@mui/base/Option';
+import { stabilizeOptionContext } from '@mui/base/Option';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import useSlot from '../utils/useSlot';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
@@ -45,7 +45,7 @@ const OptionRoot = styled(StyledListItemButton as unknown as 'li', {
  *
  * - [Option API](https://mui.com/joy-ui/api/option/)
  */
-const Option = unwrapOptionContext(
+const Option = stabilizeOptionContext(
   React.memo(
     React.forwardRef(function Option(inProps: OptionProps, ref: React.ForwardedRef<HTMLLIElement>) {
       const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({

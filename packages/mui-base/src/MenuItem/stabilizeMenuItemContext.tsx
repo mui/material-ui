@@ -7,9 +7,11 @@ import { MenuItemProps } from './MenuItem.types';
  * Creates an intermediary component that wraps the MenuItem and prevents it
  * from rendering when its state (taken from ListContext) doesn't change.
  *
+ * This is a performance optimization that prevents MenuItems from re-rendering unnecessarily.
+ *
  * @param Component MenuItem component to wrap
  */
-export function unwrapMenuItemContext<WrappedComponentProps extends { id?: string }>(
+export function stabilizeMenuItemContext<WrappedComponentProps extends { id?: string }>(
   Component: React.ComponentType<WrappedComponentProps>,
 ): React.ComponentType<WrappedComponentProps> {
   const MenuItemWrapper = React.forwardRef(function MenuItemWrapper<
@@ -47,7 +49,7 @@ export function unwrapMenuItemContext<WrappedComponentProps extends { id?: strin
             [
               'Base UI MenuItem: Tried to access the state of another MenuItem.',
               `itemValue: ${itemValue} | id: ${id}`,
-              'This is unsupported when the MenuItem uses unwrapMenuItemContext as a performance optimization.',
+              'This is unsupported when the MenuItem uses stabilizeMenuItemContext as a performance optimization.',
             ].join('/n'),
           );
         }

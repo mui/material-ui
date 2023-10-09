@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useMenuItem } from '@mui/base/useMenuItem';
-import { unwrapMenuItemContext } from '@mui/base/MenuItem';
+import { stabilizeMenuItemContext } from '@mui/base/MenuItem';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useVariantColor } from '../styles/variantColorInheritance';
@@ -53,7 +53,7 @@ const MenuItemRoot = styled(StyledListItemButton, {
  * - [MenuItem API](https://mui.com/joy-ui/api/menu-item/)
  * - inherits [ListItemButton API](https://mui.com/joy-ui/api/list-item-button/)
  */
-const MenuItem = unwrapMenuItemContext(
+const MenuItem = stabilizeMenuItemContext(
   React.memo(
     React.forwardRef(function MenuItem(inProps: MenuItemProps, ref: React.ForwardedRef<Element>) {
       const props = useThemeProps({

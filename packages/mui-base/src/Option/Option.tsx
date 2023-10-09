@@ -8,7 +8,7 @@ import { getOptionUtilityClass } from './optionClasses';
 import { WithOptionalOwnerState, useSlotProps } from '../utils';
 import { useOption } from '../useOption';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { unwrapOptionContext } from './unwrapOptionContext';
+import { stabilizeOptionContext } from './stabilizeOptionContext';
 
 function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue>) {
   const { disabled, highlighted, selected } = ownerState;
@@ -31,7 +31,7 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
  *
  * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
  */
-const Option = unwrapOptionContext(
+const Option = stabilizeOptionContext(
   React.memo(
     React.forwardRef(function Option<OptionValue, RootComponentType extends React.ElementType>(
       props: OptionProps<OptionValue, RootComponentType>,
