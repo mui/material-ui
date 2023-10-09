@@ -124,7 +124,7 @@
     "@types/css-mediaquery": "^0.1.2",
     "@types/json2mq": "^0.2.0",
     "@types/markdown-to-jsx": "^7.0.1",
-    "@types/node": "^18.18.0",
+    "@types/node": "^18.18.4",
     "@types/prop-types": "^15.7.7",
     "@types/react": "^18.2.23",
     "@types/react-dom": "^18.2.11",
