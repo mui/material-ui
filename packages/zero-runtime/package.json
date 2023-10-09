@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.3.6",
-    "@types/mocha": "^10.0.1",
+    "@types/mocha": "^10.0.2",
     "@types/node": "^18.18.0",
     "@types/react": "^18.2.23",
     "react": "^18.2.0"
