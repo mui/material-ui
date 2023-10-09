@@ -27,11 +27,11 @@ export default function AlertUsage(props) {
           defaultValue: 'md',
         },
       ]}
-      renderDemo={(props) => (
+      renderDemo={
         <Alert {...props} startDecorator={<Diamond />}>
           This is a Joy UI Alert — check it out!
         </Alert>
-      )}
+      }
     />
   );
 }

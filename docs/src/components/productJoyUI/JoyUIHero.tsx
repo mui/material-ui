@@ -60,8 +60,8 @@ export default function JoyUIHero() {
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             Joy UI is for those that appreciate the comprehensiveness and reliability of Material
-            UI, but don't want Material Design. It's design agnostic and built to be tailored to
-            your specific design language.
+            UI, but don&apos;t want Material Design. It&apos;s design agnostic and built to be
+            tailored to your specific design language.
           </Typography>
           <GetStartedButtons
             primaryUrl={ROUTES.joyDocs}
