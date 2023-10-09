@@ -36,7 +36,7 @@ export default function TypographyTitleBody() {
                 level="title-lg"
                 textColor="var(--joy-palette-success-plainColor)"
               >
-                // title-lg
+                <i>title-lg</i>
               </Typography>
             </Typography>
             <Typography level="body-md">
@@ -46,7 +46,7 @@ export default function TypographyTitleBody() {
                 level="body-md"
                 textColor="var(--joy-palette-success-plainColor)"
               >
-                // body-md
+                <i>body-md</i>
               </Typography>
             </Typography>
           </div>
@@ -76,7 +76,7 @@ export default function TypographyTitleBody() {
                 level="title-md"
                 textColor="var(--joy-palette-success-plainColor)"
               >
-                // title-md
+                <i>title-md</i>
               </Typography>
             </Typography>
             <Typography level="body-md">
@@ -86,7 +86,7 @@ export default function TypographyTitleBody() {
                 level="body-md"
                 textColor="var(--joy-palette-success-plainColor)"
               >
-                // body-md
+                <i>body-md</i>
               </Typography>
             </Typography>
             <Typography level="body-sm">
@@ -95,7 +95,7 @@ export default function TypographyTitleBody() {
                 level="body-sm"
                 textColor="var(--joy-palette-success-plainColor)"
               >
-                // body-sm
+                <i>body-sm</i>
               </Typography>
             </Typography>
           </div>
@@ -125,7 +125,7 @@ export default function TypographyTitleBody() {
                 level="title-sm"
                 textColor="var(--joy-palette-success-plainColor)"
               >
-                // title-sm
+                <i>title-sm</i>
               </Typography>
             </Typography>
             <Typography level="body-sm">
@@ -135,7 +135,7 @@ export default function TypographyTitleBody() {
                 level="body-sm"
                 textColor="var(--joy-palette-success-plainColor)"
               >
-                // body-sm
+                <i>body-sm</i>
               </Typography>
             </Typography>
             <Typography level="body-xs">
@@ -144,7 +144,7 @@ export default function TypographyTitleBody() {
                 level="body-xs"
                 textColor="var(--joy-palette-success-plainColor)"
               >
-                // body-xs
+                <i>body-xs</i>
               </Typography>
             </Typography>
           </div>
