@@ -102,7 +102,7 @@
     "@types/node": "^18.18.4",
     "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.23",
-    "@types/yargs": "^17.0.24",
+    "@types/yargs": "^17.0.28",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
     "babel-loader": "^9.1.3",
