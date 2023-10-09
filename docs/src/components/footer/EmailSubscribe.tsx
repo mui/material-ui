@@ -82,10 +82,10 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
         }}
       >
         <AlertTitle sx={{ typography: 'body2', fontWeight: 700 }}>
-          Thanks! Check your email.
+          Thanks for subscribing!
         </AlertTitle>
-        You should get a <strong>confirmation email</strong> soon. Open it up and confirm your email
-        address so that we can keep you up to date.
+        Go to your email and open the <strong>confirmation email</strong> to confirm your
+        subscription.
       </Alert>
     );
   }
@@ -93,14 +93,15 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     <Form onSubmit={handleSubmit} sx={sx}>
       <FormLabel
         htmlFor="email-subscribe"
-        sx={{ typography: 'caption', mb: 0.5, color: 'text.secondary', fontWeight: 500 }}
+        sx={{ typography: 'caption', color: 'text.secondary', fontWeight: 500 }}
       >
         Enter your email:
       </FormLabel>
       <Box
         sx={{
           display: 'flex',
-          gap: 1,
+          mt: 1,
+          gap: 1.5,
           width: { xs: '100%', sm: 'auto' },
           maxWidth: 320,
         }}
@@ -204,7 +205,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
             }),
           })}
         >
-          Oops! something went wrong, please try again later.
+          Oops! Something went wrong, please try again later.
         </FormHelperText>
       )}
     </Form>
