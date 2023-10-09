@@ -68,6 +68,14 @@ If you need to control the total number of avatars not shown, you can use the `t
 
 {{"demo": "TotalAvatars.js"}}
 
+### Custom surplus
+
+Set `renderSurplus` prop as a callback to customize the surplus avatar. The callback will receive one argument which is the number of surpluses based on the children and `max` prop.
+
+This is useful when you need to render the surplus based on the data sent from the server.
+
+{{"demo": "CustomSurplusAvatars.js"}}
+
 ## With badge
 
 {{"demo": "BadgeAvatars.js"}}
