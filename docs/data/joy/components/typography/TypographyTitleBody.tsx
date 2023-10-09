@@ -41,7 +41,7 @@ export default function TypographyTitleBody() {
             </Typography>
             <Typography level="body-md">
               This is the description of the component that contain some information
-              of it. Title of the component{' '}
+              of it.{' '}
               <Typography
                 level="body-md"
                 textColor="var(--joy-palette-success-plainColor)"
