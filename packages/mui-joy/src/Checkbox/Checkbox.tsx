@@ -6,7 +6,6 @@ import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { CheckboxOwnerState, CheckboxTypeMap } from './CheckboxProps';
@@ -270,11 +269,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const activeVariant = variantProp || 'solid';
   const inactiveVariant = variantProp || 'outlined';
   const variant = isCheckboxActive ? activeVariant : inactiveVariant;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(
-    inProps.color,
-    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
-  );
+  const color = inProps.color || (formControl?.error ? 'danger' : formControl?.color ?? colorProp);
 
   const activeColor = color || 'primary';
   const inactiveColor = color || 'neutral';

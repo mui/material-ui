@@ -1,8 +1,9 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useSlotProps } from '@mui/base';
+import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
@@ -11,9 +12,10 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import FormControlContext from './FormControlContext';
+import { FormControlTypeMap, FormControlOwnerState, FormControlProps } from './FormControl.types';
 import { getFormControlUtilityClasses } from './formControlClasses';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: FormControlOwnerState) => {
   const { classes, margin, fullWidth } = ownerState;
   const slots = {
     root: ['root', margin !== 'none' && `margin${capitalize(margin)}`, fullWidth && 'fullWidth'],
@@ -26,13 +28,13 @@ const FormControlRoot = styled('div', {
   name: 'MuiFormControl',
   slot: 'Root',
   overridesResolver: ({ ownerState }, styles) => {
-    return {
-      ...styles.root,
-      ...styles[`margin${capitalize(ownerState.margin)}`],
-      ...(ownerState.fullWidth && styles.fullWidth),
-    };
+    return [
+      styles.root,
+      styles[`margin${capitalize(ownerState.margin)}`],
+      ownerState.fullWidth && styles.fullWidth,
+    ];
   },
-})(({ ownerState }) => ({
+})<{ ownerState: FormControlOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
   position: 'relative',
@@ -79,13 +81,15 @@ const FormControlRoot = styled('div', {
  * ⚠️ Only one `InputBase` can be used within a FormControl because it creates visual inconsistencies.
  * For instance, only one input can be focused at the same time, the state shouldn't be shared.
  */
-const FormControl = React.forwardRef(function FormControl(inProps, ref) {
+const FormControl = React.forwardRef(function FormControl<
+  RootComponentType extends React.ElementType = FormControlTypeMap['defaultComponent'],
+>(inProps: FormControlProps<RootComponentType>, forwardedRef: React.ForwardedRef<any>) {
   const props = useThemeProps({ props: inProps, name: 'MuiFormControl' });
   const {
     children,
-    className,
+    classes: classesProp = {},
     color = 'primary',
-    component = 'div',
+    component: componentProp,
     disabled = false,
     error = false,
     focused: visuallyFocused,
@@ -94,25 +98,11 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     margin = 'none',
     required = false,
     size = 'medium',
+    slotProps = {},
+    slots = {},
     variant = 'outlined',
     ...other
   } = props;
-
-  const ownerState = {
-    ...props,
-    color,
-    component,
-    disabled,
-    error,
-    fullWidth,
-    hiddenLabel,
-    margin,
-    required,
-    size,
-    variant,
-  };
-
-  const classes = useUtilityClasses(ownerState);
 
   const [adornedStart, setAdornedStart] = React.useState(() => {
     // We need to iterate through the children and find the Input in order
@@ -125,7 +115,10 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
           return;
         }
 
-        const input = isMuiElement(child, ['Select']) ? child.props.input : child;
+        const input =
+          React.isValidElement(child) && isMuiElement(child, ['Select'])
+            ? child.props.input
+            : child;
 
         if (input && isAdornedStart(input.props)) {
           initialAdornedStart = true;
@@ -146,7 +139,10 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
           return;
         }
 
-        if (isFilled(child.props, true) || isFilled(child.props.inputProps, true)) {
+        if (
+          React.isValidElement(child) &&
+          (isFilled(child.props, true) || isFilled(child.props.inputProps, true))
+        ) {
           initialFilled = true;
         }
       });
@@ -162,7 +158,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
 
   const focused = visuallyFocused !== undefined && !disabled ? visuallyFocused : focusedState;
 
-  let registerEffect;
+  let registerEffect: undefined | (() => () => void);
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const registeredInput = React.useRef(false);
@@ -182,6 +178,25 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
       };
     };
   }
+
+  const ownerState = {
+    ...props,
+    classes: classesProp,
+    color,
+    component: componentProp,
+    disabled,
+    error,
+    filled,
+    focused,
+    fullWidth,
+    hiddenLabel,
+    margin,
+    required,
+    size,
+    variant,
+  };
+
+  const classes = useUtilityClasses(ownerState);
 
   const childContext = React.useMemo(() => {
     return {
@@ -226,25 +241,30 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     variant,
   ]);
 
+  const Root = slots.root ?? FormControlRoot;
+  const rootProps = useSlotProps({
+    elementType: Root,
+    externalSlotProps: slotProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref: forwardedRef,
+      as: componentProp,
+    },
+    ownerState,
+    className: classes.root,
+  });
+
   return (
     <FormControlContext.Provider value={childContext}>
-      <FormControlRoot
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        {...other}
-      >
-        {children}
-      </FormControlRoot>
+      <Root {...rootProps}>{children}</Root>
     </FormControlContext.Provider>
   );
-});
+}) as OverridableComponent<FormControlTypeMap>;
 
 FormControl.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The content of the component.
@@ -254,10 +274,6 @@ FormControl.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
@@ -318,6 +334,21 @@ FormControl.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside the FormControl.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the FormControl.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -329,7 +360,7 @@ FormControl.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'outlined'
    */
-  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
-};
+  variant: PropTypes.oneOf(['filled', 'outlined']),
+} as any;
 
 export default FormControl;

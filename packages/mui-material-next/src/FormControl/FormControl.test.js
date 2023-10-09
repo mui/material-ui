@@ -1,12 +1,12 @@
-/* eslint-disable mocha/no-skipped-tests */
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer } from '@mui-internal/test-utils';
+import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import FormControl, { formControlClasses as classes } from '@mui/material-next/FormControl';
-// TODO: replace with material-next/OutlinedInput
+// TODO v6: replace with material-next/FilledInput
 import InputBase from '@mui/material-next/InputBase';
-// TODO: replace with material-next/Select
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
+// TODO v6: replace with material-next/Select
 import Select from '@mui/material/Select';
 import useFormControl from './useFormControl';
 
@@ -24,10 +24,19 @@ describe('<FormControl />', () => {
   describeConformance(<FormControl />, () => ({
     classes,
     inheritComponent: 'div',
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
     render,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'fieldset',
     muiName: 'MuiFormControl',
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithElement: 'fieldset',
+      },
+    },
+    testRootOverrides: { slotName: 'root', slotClassName: classes.root },
+    testComponentPropWith: 'fieldset',
     testVariantProps: { margin: 'dense' },
     skip: ['componentsProp'],
   }));
@@ -85,8 +94,7 @@ describe('<FormControl />', () => {
     });
   });
 
-  // TODO: needs InputBase + FormControl integrated
-  describe.skip('prop: disabled', () => {
+  describe('prop: disabled', () => {
     it('will be unfocused if it gets disabled', () => {
       const readContext = spy();
       const { container, setProps } = render(
@@ -134,12 +142,73 @@ describe('<FormControl />', () => {
     });
   });
 
-  describe('input', () => {
-    // TODO: needs InputBase + FormControl integrated
-    it.skip('should be filled when a value is set', () => {
+  describe('registering input', () => {
+    it("should warn if more than one input is rendered regardless how it's nested", () => {
+      expect(() => {
+        render(
+          <FormControl>
+            <InputBase />
+            <div>
+              {/* should work regardless how it's nested */}
+              <InputBase />
+            </div>
+          </FormControl>,
+        );
+      }).toErrorDev([
+        'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
+        // React 18 Strict Effects run mount effects twice
+        React.version.startsWith('18') &&
+          'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
+      ]);
+    });
+
+    it('should not warn if only one input is rendered', () => {
+      expect(() => {
+        render(
+          <FormControl>
+            <InputBase />
+          </FormControl>,
+        );
+      }).not.toErrorDev();
+    });
+
+    it('should not warn when toggling between inputs', () => {
+      // this will ensure that deregistering was called during unmount
+      function ToggleFormInputs() {
+        const [flag, setFlag] = React.useState(true);
+
+        return (
+          <FormControl>
+            {flag ? (
+              <InputBase />
+            ) : (
+              // TODO v6: use material-next/Select
+              <Select native>
+                <option value="">empty</option>
+              </Select>
+            )}
+            <button type="button" onClick={() => setFlag(!flag)}>
+              toggle
+            </button>
+          </FormControl>
+        );
+      }
+
+      const { getByText } = render(<ToggleFormInputs />);
+      expect(() => {
+        fireEvent.click(getByText('toggle'));
+      }).not.toErrorDev();
+    });
+  });
+
+  // TODO v6: needs FilledInput + FormControl integrated
+  // eslint-disable-next-line mocha/no-skipped-tests
+  describe.skip('input', () => {
+    it('should be filled when a value is set', () => {
       const readContext = spy();
       render(
         <FormControl>
+          {/* TODO v6: use material-next/FilledInput */}
           <InputBase value="bar" />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -147,11 +216,11 @@ describe('<FormControl />', () => {
       expect(readContext.args[0][0]).to.have.property('filled', true);
     });
 
-    // TODO: needs InputBase + FormControl integrated
-    it.skip('should be filled when a value is set through inputProps', () => {
+    it('should be filled when a value is set through inputProps', () => {
       const readContext = spy();
       render(
         <FormControl>
+          {/* TODO v6: use material-next/FilledInput */}
           <InputBase inputProps={{ value: 'bar' }} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -159,11 +228,11 @@ describe('<FormControl />', () => {
       expect(readContext.args[0][0]).to.have.property('filled', true);
     });
 
-    // TODO: needs InputBase + FormControl integrated
-    it.skip('should be filled when a defaultValue is set', () => {
+    it('should be filled when a defaultValue is set', () => {
       const readContext = spy();
       render(
         <FormControl>
+          {/* TODO v6: use material-next/FilledInput */}
           <InputBase defaultValue="bar" />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -175,6 +244,7 @@ describe('<FormControl />', () => {
       const readContext = spy();
       render(
         <FormControl>
+          {/* TODO v6: use material-next/FilledInput */}
           <InputBase endAdornment={<div />} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -182,11 +252,11 @@ describe('<FormControl />', () => {
       expect(readContext.args[0][0]).to.have.property('adornedStart', false);
     });
 
-    // TODO: needs InputBase + FormControl integrated
-    it.skip('should be adornedStart with a startAdornment', () => {
+    it('should be adornedStart with a startAdornment', () => {
       const readContext = spy();
       render(
         <FormControl>
+          {/* TODO v6: use material-next/FilledInput */}
           <InputBase startAdornment={<div />} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
@@ -195,7 +265,8 @@ describe('<FormControl />', () => {
     });
   });
 
-  // TODO: unskip and refactor when integrating material-next/Select
+  // TODO v6: needs material-next/Select + FormControl integrated
+  // eslint-disable-next-line mocha/no-skipped-tests
   describe.skip('select', () => {
     it('should not be adorned without a startAdornment', () => {
       const readContext = spy();

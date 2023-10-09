@@ -6,7 +6,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import { getDialogTitleUtilityClass } from './dialogTitleClasses';
 import { DialogTitleProps, DialogTitleOwnerState, DialogTitleTypeMap } from './DialogTitleProps';
 import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
@@ -89,8 +88,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     ...other
   } = props;
 
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, variant ? colorProp ?? 'neutral' : colorProp);
+  const color = inProps.color || (variant ? colorProp ?? 'neutral' : colorProp);
 
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
