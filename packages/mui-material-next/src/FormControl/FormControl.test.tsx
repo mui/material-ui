@@ -224,12 +224,11 @@ describe('<FormControl />', () => {
       expect(readContext.args[0][0]).to.have.property('filled', true);
     });
 
-    // eslint-disable-next-line mocha/no-skipped-tests
-    it.skip('should be filled when a value is set through inputProps', () => {
+    it('should be filled when a value is set through slotProps.input', () => {
       const readContext = spy();
       render(
         <FormControl>
-          <FilledInput inputProps={{ value: 'bar' }} />
+          <FilledInput slotProps={{ input: { value: 'bar' } }} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
