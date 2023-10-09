@@ -5,13 +5,11 @@ import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
-import Chip from '@mui/joy/Chip';
 import Divider from '@mui/joy/Divider';
 import Input from '@mui/joy/Input';
 import List from '@mui/joy/List';
 import ListSubheader from '@mui/joy/ListSubheader';
 import ListItem from '@mui/joy/ListItem';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
@@ -122,7 +120,7 @@ export default function ColorInversionFooter() {
                 <ListItemButton>Blog</ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton>Contact us</ListItemButton>
+                <ListItemButton>About</ListItemButton>
               </ListItem>
             </List>
           </ListItem>
@@ -130,52 +128,13 @@ export default function ColorInversionFooter() {
             <ListSubheader sx={{ fontWeight: 'xl' }}>Products</ListSubheader>
             <List sx={{ '--ListItemDecorator-size': '32px' }}>
               <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/static/branding/product-core-dark.svg"
-                      width="24"
-                    />
-                  </ListItemDecorator>
-                  MUI Core
-                </ListItemButton>
+                <ListItemButton>Joy UI</ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/static/branding/product-advanced-dark.svg"
-                      width="24"
-                    />
-                  </ListItemDecorator>
-                  MUI X
-                </ListItemButton>
+                <ListItemButton>Base UI</ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/static/branding/product-toolpad-dark.svg"
-                      width="24"
-                    />
-                  </ListItemDecorator>
-                  MUI Toolpad
-                  <Chip
-                    variant="soft"
-                    size="sm"
-                    sx={{
-                      minHeight: 20,
-                      fontSize: 'xs2',
-                      fontWeight: 'lg',
-                      ml: 'auto',
-                    }}
-                  >
-                    Beta
-                  </Chip>
-                </ListItemButton>
+                <ListItemButton>Material UI</ListItemButton>
               </ListItem>
             </List>
           </ListItem>
