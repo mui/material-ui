@@ -9,6 +9,11 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   classes?: {};
   count: number;
   /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled?: boolean;
+  /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
