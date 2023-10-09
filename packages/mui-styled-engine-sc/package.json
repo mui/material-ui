@@ -46,7 +46,7 @@
     "@mui-internal/test-utils": "^1.0.0",
     "@types/chai": "^4.3.6",
     "@types/react": "^18.2.23",
-    "@types/styled-components": "^5.1.27",
+    "@types/styled-components": "^5.1.28",
     "chai": "^4.3.10",
     "react": "^18.2.0",
     "styled-components": "^5.3.11"

@@ -4069,10 +4069,10 @@
   resolved "https://registry.yarnpkg.com/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
   integrity sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==
 
-"@types/styled-components@5.1.27", "@types/styled-components@^5.1.27":
-  version "5.1.27"
-  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.27.tgz#1915eedba0d52f26ba5a383fccb7fe50e2e71106"
-  integrity sha512-oY9c1SdztRRF0QDQdwXEenfAjGN4WGUkaMpx5hvdTbYYqw01qoY2GrHi+kAR6SVofynzD6KbGoF5ITP0zh5pvg==
+"@types/styled-components@5.1.28", "@types/styled-components@^5.1.28":
+  version "5.1.28"
+  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.28.tgz#3b86c4d373924ff6976de788843cab445d9ab15b"
+  integrity sha512-nu0VKNybkjvUqJAXWtRqKd7j3iRUl8GbYSTvZNuIBJcw/HUp1Y4QUXNLlj7gcnRV/t784JnHAlvRnSnE3nPbJA==
   dependencies:
     "@types/hoist-non-react-statics" "*"
     "@types/react" "*"
