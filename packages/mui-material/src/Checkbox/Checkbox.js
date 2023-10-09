@@ -55,7 +55,7 @@ const CheckboxRoot = styled(SwitchBase, {
         ? `rgba(${
             ownerState.color === 'default'
               ? theme.vars.palette.action.activeChannel
-              : theme.vars.palette.primary.mainChannel
+              : theme.vars.palette[ownerState.color].mainChannel
           } / ${theme.vars.palette.action.hoverOpacity})`
         : alpha(
             ownerState.color === 'default'

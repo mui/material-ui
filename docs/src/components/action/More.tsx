@@ -51,7 +51,7 @@ export default (function More(props: ButtonBaseProps) {
             },
           },
           ...theme.applyDarkStyles({
-            borderColor: 'primaryDark.600',
+            borderColor: `${alpha(theme.palette.primaryDark[400], 0.3)}`,
             '&:hover, &:focus': {
               bgcolor: alpha(theme.palette.primary[900], 0.4),
             },
