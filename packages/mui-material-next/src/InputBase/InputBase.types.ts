@@ -132,11 +132,6 @@ export type InputBaseOwnProps = (SingleLineInputProps | MultiLineInputProps) & {
    */
   margin?: 'dense' | 'none';
   /**
-   * If `true`, a [TextareaAutosize](/material-ui/react-textarea-autosize/) element is rendered.
-   * @default false
-   */
-  multiline?: boolean;
-  /**
    * Name attribute of the `input` element.
    */
   name?: string;
@@ -184,18 +179,6 @@ export type InputBaseOwnProps = (SingleLineInputProps | MultiLineInputProps) & {
     startAdornment?: React.ReactNode;
   }) => React.ReactNode;
   /**
-   * Number of rows to display when multiline option is set to true.
-   */
-  rows?: string | number;
-  /**
-   * Maximum number of rows to display when multiline option is set to true.
-   */
-  maxRows?: string | number;
-  /**
-   * Minimum number of rows to display when multiline option is set to true.
-   */
-  minRows?: string | number;
-  /**
    * The size of the component.
    */
   size?: OverridableStringUnion<'small' | 'medium', InputBasePropsSizeOverrides>;
@@ -221,11 +204,6 @@ export type InputBaseOwnProps = (SingleLineInputProps | MultiLineInputProps) & {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
-  /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   * @default 'text'
-   */
-  type?: string;
   /**
    * The value of the `input` element, required for a controlled component.
    */
