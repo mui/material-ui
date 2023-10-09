@@ -215,6 +215,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
               // TODO v5 remove `selectIcon`
               icon: clsx(classes.selectIcon, (SelectProps.classes || {}).icon),
             }}
+            readOnly={disabled}
           >
             {rowsPerPageOptions.map((rowsPerPageOption) => (
               <MenuItemComponent

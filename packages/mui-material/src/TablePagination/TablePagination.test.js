@@ -383,6 +383,29 @@ describe('<TablePagination />', () => {
       expect(nextButton).to.have.property('disabled', true);
       expect(backButton).to.have.property('disabled', true);
     });
+
+    it('should apply "readOnly" to TablePaginationSelect', () => {
+      const { getByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                disabled
+                count={10}
+                page={0}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
+                rowsPerPage={10}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      const combobox = getByRole('combobox');
+      const comboboxContainer = combobox.parentElement;
+      expect(comboboxContainer).to.have.property('readOnly', true);
+    });
   });
 
   describe('warnings', () => {
