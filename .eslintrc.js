@@ -276,6 +276,7 @@ module.exports = {
     // Next.js plugin
     {
       files: ['docs/**/*'],
+      excludedFiles: ['docs/data/**/*'],
       extends: ['plugin:@next/next/recommended'],
       settings: {
         next: {
