@@ -20,7 +20,7 @@ Joy UI's textarea component is built on top of the Base UI [`TextareaAutoSize`](
 
 ### HTML textarea ref
 
-Use `slotProps.textarea` to pass props to the `ref` and other [supported attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attributes) to HTML textarea element.
+Use the `slotProps.textarea` attribute to pass props to the `ref` and other [supported HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attributes) to the textarea element.
 
 {{"demo": "TextareaRef.js"}}
 
