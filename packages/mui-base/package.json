@@ -59,7 +59,7 @@
     "@types/react": "18.2.23",
     "@types/react-dom": "18.2.11",
     "@types/sinon": "^10.0.19",
-    "chai": "^4.3.8",
+    "chai": "^4.3.10",
     "fast-glob": "^3.3.1",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
