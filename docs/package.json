@@ -127,7 +127,7 @@
     "@types/node": "^18.18.0",
     "@types/prop-types": "^15.7.7",
     "@types/react": "^18.2.23",
-    "@types/react-dom": "^18.2.7",
+    "@types/react-dom": "^18.2.11",
     "@types/react-swipeable-views": "^0.13.3",
     "@types/react-swipeable-views-utils": "^0.13.5",
     "@types/react-transition-group": "^4.4.7",
