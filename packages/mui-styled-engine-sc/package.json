@@ -46,19 +46,13 @@
     "@mui-internal/test-utils": "^1.0.0",
     "@types/chai": "^4.3.6",
     "@types/react": "^18.2.23",
-    "@types/styled-components": "^5.1.28",
     "chai": "^4.3.10",
+    "hoist-non-react-statics": "^3.3.2",
     "react": "^18.2.0",
-    "styled-components": "^5.3.11"
+    "styled-components": "^6.0.0"
   },
   "peerDependencies": {
-    "@types/styled-components": "^5.1.14",
-    "styled-components": "^5.3.1"
-  },
-  "peerDependenciesMeta": {
-    "@types/styled-components": {
-      "optional": true
-    }
+    "styled-components": "^6.0.0"
   },
   "sideEffects": false,
   "publishConfig": {
