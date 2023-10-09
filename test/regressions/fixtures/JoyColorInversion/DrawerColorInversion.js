@@ -14,6 +14,7 @@ export default function DrawerColorInversion() {
   return (
     <CssVarsProvider>
       <CssBaseline />
+      <Box sx={{ width: '100vw', height: '100vh', bgcolor: 'background.body' }} />
       <Drawer open color="primary" variant="solid" invertedColors>
         <Box role="presentation">
           <List>
