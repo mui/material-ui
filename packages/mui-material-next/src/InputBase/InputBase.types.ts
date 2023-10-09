@@ -85,7 +85,7 @@ export type InputBaseOwnProps = (SingleLineInputProps | MultiLineInputProps) & {
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    'primary' | 'secondary' | 'tertiary' | 'error' | 'info' | 'success' | 'warning',
     InputBasePropsColorOverrides
   >;
   /**

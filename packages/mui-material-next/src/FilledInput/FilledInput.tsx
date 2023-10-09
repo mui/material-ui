@@ -59,7 +59,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
       tokens.sys.color[ownerState.color ?? 'primary'],
     '--md-comp-filled-input-hover-active-indicator-color': tokens.sys.color.onSurface,
     '--md-comp-filled-input-hover-state-layer-opacity': tokens.sys.state.hover.stateLayerOpacity,
-
     position: 'relative',
     backgroundColor: 'var(--md-comp-filled-input-container-color)',
     borderTopLeftRadius: tokens.shape.borderRadius,
@@ -348,7 +347,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'tertiary', 'warning']),
     PropTypes.string,
   ]),
   /**

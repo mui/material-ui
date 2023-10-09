@@ -582,7 +582,15 @@ InputBase.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
+  color: PropTypes.oneOf([
+    'error',
+    'info',
+    'primary',
+    'secondary',
+    'success',
+    'tertiary',
+    'warning',
+  ]),
   /**
    * The default value. Use when the component is not controlled.
    */
