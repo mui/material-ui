@@ -403,7 +403,7 @@ describe('<TablePagination />', () => {
       );
 
       const combobox = getByRole('combobox');
-      expect(combobox.parentElement).to.have.property('disabled', true);
+      expect(combobox.parentElement).to.have.class(inputClasses.disabled);
     });
   });
 
