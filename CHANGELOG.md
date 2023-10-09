@@ -1,5 +1,86 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.12
+
+<!-- generated comparing v5.14.11..master -->
+
+_Oct 3, 2023_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- 🎨 Introduced color inversion utilities to Joy UI (#38916) @siriwatknp
+- 🚀 Added Chip and related TextField components to Material You @DiegoAndai, @mj12albert
+
+### `@mui/material@5.14.12`
+
+- [DialogActions] Apply margin-left when children is not of `button` type (#39189) @sai6855
+- [Select] Improve a11y by adding combobox role and aria-controls attribute (#38785) @xulingzhihou
+- [Select] Fix MenuProps slotProps forwarding (#39177) @DiegoAndai
+- [TextField] Polish types in Textfield demo (#39140) @sai6855
+- [ButtonGroup] Fix rendering with conditional elements (#38989) @ZeeshanTamboli
+
+### `@mui/system@5.14.12`
+
+- [system] Add support for `variants` in the styled() util (#39073) @mnajdova
+- [Box] Add missing logical spacing property types (#39169) @Semigradsky
+
+### `@mui/base@5.0.0-beta.18`
+
+- [useSlider] Align externalProps handling (#38854) @mj12albert
+- [useTabs] Align external props handling for useTab/useTabPanel/useTabsList (#39037) @mj12albert
+- [test] Fix import paths in useTab tests (#39291) @mj12albert
+
+### `@mui/material-next@6.0.0-alpha.104`
+
+- [Chip] Add Material You Chip component (#38927) @DiegoAndai
+- [Divider] Copy v5 Divider (#39197) @mj12albert
+- [FilledInput] Copy v5 FilledInput (#39040) @mj12albert
+- [FormControl] Add FormControl component (#39032) @mj12albert
+- [Select] Copy Select files from v5 (#39188) @DiegoAndai
+- [TextField] Copy v5 TextField's inner components (#39166) @mj12albert
+
+### `@mui/joy@5.0.0-beta.9`
+
+- Introduce color inversion utilities (#38916) @siriwatknp
+- Replace margin with `gap` property (#39147) @siriwatknp
+- [CssBaseline] use Joy `GlobalStyles` (#39278) @siriwatknp
+- [Drawer] Apply content styles from theme to content slot (#39199) @sai6855
+- [List] Add gap and missing active styles (#39146) @siriwatknp
+- [Switch] Slight adjustments to the design (#39276) @danilo-leal
+
+### Docs
+
+- [docs] Update Autocomplete demo for React 18 (#39162) @oliviertassinari
+- [docs-infra] Tweak feedback footer section design (#36556) @danilo-leal
+- [docs-infra] Improve code syntax highlight (#39181) @oliviertassinari
+- [docs][base] Add Tailwind CSS + plain CSS demo on the TextArea page (#39046) @alisasanib
+- [docs][base-ui] Fix style for root div of multiline input (#39182) @ttlpta
+- [docs][base-ui] Improve Select's country select demo (#38983) @oliviertassinari
+- [docs][joy-ui] Add scrollable tabs example (#39260) @siriwatknp
+- [docs][joy-ui] Match `Autocomplete` github label demo to actual github label dropdown (#39228) @sai6855
+- [docs][joy-ui] Refine the Rental dashboard template (#39059) @zanivan
+- [docs][joy-ui] Removed incomplete sentence in the Aspect Ratio page (#39227) @Erik-McKelvey
+- [docs][joy-ui] Fix typo in the Accordion page (#39226) @Erik-McKelvey
+- [docs][joy-ui] Update and standardize template Sidemenus (#39271) @zanivan
+- [docs][joy-ui] Add a roadmap page (#39163) @danilo-leal
+- [docs][material-ui] Replace `Box` with `Stack` in applicable demos (#39174) @sai6855
+- [docs][material-ui] Add small polish to the Templates page (#39224) @danilo-leal
+- [docs][material-ui] Small revision to the Icons page (#38840) @danilo-leal
+
+### Core
+
+- Add next lint config to eslint (#39183) @Janpot
+- [core] Update eslint rules (#39178) @romgrk
+- [core] Fix Greg GitHub slug @oliviertassinari
+- [core] Priority Support casing normalization @oliviertassinari
+- [website] Add Heat map in pricing page (#39269) @oliviertassinari
+- [website] Update `React Engineer - xCharts` Ashby link (#39172) @DanailH
+- [website] Add Charts to the pricing table (#38680) @alexfauquette
+- [website] Polish career experience @oliviertassinari
+- [website] Simplify the Core products file (#39194) @danilo-leal
+
+All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @DanailH, @danilo-leal, @DiegoAndai, @Erik-McKelvey, @Janpot, @mj12albert, @mnajdova, @oliviertassinari, @romgrk, @sai6855, @Semigradsky, @siriwatknp, @xulingzhihou, @zanivan, @ZeeshanTamboli
+
 ## 5.14.11
 
 <!-- generated comparing v5.14.10..master -->

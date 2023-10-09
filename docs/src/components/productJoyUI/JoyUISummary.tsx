@@ -75,6 +75,26 @@ export default function JoyUISummary() {
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center' }}>
         <Box
           sx={(theme) => ({
+            background: 'url(/static/branding/joy-ui/material-ui.svg)',
+            ...theme.applyDarkStyles({
+              background: 'url(/static/branding/joy-ui/material-ui-dark.svg)',
+            }),
+          })}
+          width={121}
+          height={37}
+        />
+        <Box
+          sx={(theme) => ({
+            background: 'url(/static/branding/joy-ui/ant-design.svg)',
+            ...theme.applyDarkStyles({
+              background: 'url(/static/branding/joy-ui/ant-design-dark.svg)',
+            }),
+          })}
+          width={115}
+          height={37}
+        />
+        <Box
+          sx={(theme) => ({
             background: 'url(/static/branding/joy-ui/chakra.svg)',
             ...theme.applyDarkStyles({
               background: 'url(/static/branding/joy-ui/chakra-dark.svg)',
@@ -91,26 +111,6 @@ export default function JoyUISummary() {
             }),
           })}
           width={86}
-          height={37}
-        />
-        <Box
-          sx={(theme) => ({
-            background: 'url(/static/branding/joy-ui/ant-design.svg)',
-            ...theme.applyDarkStyles({
-              background: 'url(/static/branding/joy-ui/ant-design-dark.svg)',
-            }),
-          })}
-          width={115}
-          height={37}
-        />
-        <Box
-          sx={(theme) => ({
-            background: 'url(/static/branding/joy-ui/material-ui.svg)',
-            ...theme.applyDarkStyles({
-              background: 'url(/static/branding/joy-ui/material-ui-dark.svg)',
-            }),
-          })}
-          width={121}
           height={37}
         />
       </Box>

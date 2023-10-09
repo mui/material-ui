@@ -215,7 +215,7 @@ function usePrimarySelector() {
           </React.Fragment>
         )}
         {...props}
-        sx={{ minWidth: { xs: 'auto', sm: 140 } }}
+        sx={{ minWidth: { xs: 'auto', sm: 140 }, borderRadius: 'lg', fontFamily: 'IBM Plex Sans' }}
       >
         <Option value="default">
           <PalettePreview range={colors.blue} />
@@ -263,7 +263,7 @@ function useNeutralSelector() {
           </React.Fragment>
         )}
         {...props}
-        sx={{ minWidth: { xs: 'auto', sm: 140 } }}
+        sx={{ minWidth: { xs: 'auto', sm: 140 }, borderRadius: 'lg', fontFamily: 'IBM Plex Sans' }}
       >
         <Option value="default">
           <PalettePreview range={colors.grey} />
@@ -290,7 +290,10 @@ function useBgSwap() {
         value={bgSwap ? '1' : '0'}
         onChange={(event, newValue) => setBgSwap(Boolean(Number(newValue)))}
         {...props}
-        sx={[{ bgcolor: 'background.surface' }, ...(Array.isArray(sx) ? sx : [])]}
+        sx={[
+          { bgcolor: 'background.surface', borderRadius: 'lg' },
+          ...(Array.isArray(sx) ? sx : []),
+        ]}
       >
         <IconButton aria-label="use brighter surface" value="0">
           <SvgIcon>
@@ -367,10 +370,10 @@ function useRadiusSelector() {
           </React.Fragment>
         )}
         {...props}
-        sx={{ minWidth: { xs: 'auto', sm: 140 } }}
+        sx={{ minWidth: { xs: 'auto', sm: 140 }, borderRadius: 'lg', fontFamily: 'IBM Plex Sans' }}
       >
         {Object.keys(radiusOptions).map((item) => (
-          <Option key={item} value={item}>
+          <Option key={item} value={item} sx={{ fontFamily: 'IBM Plex Sans' }}>
             {item}
           </Option>
         ))}
@@ -398,7 +401,7 @@ function useFamilySelector() {
           </React.Fragment>
         )}
         {...props}
-        sx={{ minWidth: { xs: 'auto', sm: 160 } }}
+        sx={{ minWidth: { xs: 'auto', sm: 160 }, borderRadius: 'lg' }}
       >
         {familyOptions.map((item) => (
           <Option key={item} value={item} sx={{ fontFamily: item }}>
@@ -481,19 +484,104 @@ export default function ThemableTemplate() {
   );
   return (
     <React.Fragment>
-      <Tabs sx={{ bgcolor: 'transparent', mt: 3 }}>
+      <Sheet
+        variant="outlined"
+        sx={(theme) => ({
+          p: 1,
+          my: 4,
+          mx: 'auto',
+          width: 'max-content',
+          maxWidth: '80vw',
+          zIndex: 1,
+          bgcolor: 'rgba(var(--template-palette-primary-lightChannel) / 0.2 )',
+          borderColor: 'rgba(var(--template-palette-primary-lightChannel) / 0.6 )',
+          borderRadius: 'xl',
+          boxShadow: `0 2px 2px ${theme.palette.primary[50]}`,
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 1,
+          [theme.breakpoints.up(800)]: {
+            minWidth: 700,
+          },
+          [theme.getColorSchemeSelector('dark')]: {
+            bgcolor: 'rgba(var(--template-palette-primary-darkChannel) / 0.1 )',
+            borderColor: 'rgba(var(--template-palette-neutral-darkChannel) / 0.5 )',
+            boxShadow: `0 2px 2px ${theme.palette.common.black}`,
+          },
+          [`& .${selectClasses.root}`]: {
+            flex: 'auto',
+          },
+        })}
+      >
+        <Tooltip
+          size="sm"
+          variant="outlined"
+          color="primary"
+          title="Cast magic"
+          arrow
+          sx={{ fontFamily: 'IBM Plex Sans' }}
+        >
+          <IconButton
+            size="sm"
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              randomPrimary();
+              randomNeutral();
+              randomBgSwap();
+              randomRadius();
+              randomFamily();
+            }}
+            sx={{ borderRadius: 'lg' }}
+          >
+            <SvgIcon>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z" />
+                <path d="m14 7 3 3" />
+                <path d="M5 6v4" />
+                <path d="M19 14v4" />
+                <path d="M10 2v2" />
+                <path d="M7 8H3" />
+                <path d="M21 16h-4" />
+                <path d="M11 3H9" />
+              </svg>
+            </SvgIcon>
+          </IconButton>
+        </Tooltip>
+        {renderPrimary()}
+        {renderNeutral()}
+        {renderBgSwap()}
+        {renderFamily()}
+        {renderRadius()}
+      </Sheet>
+      <Tabs sx={{ bgcolor: 'transparent', display: 'flex', flexDirection: 'column-reverse' }}>
         <List
           variant="outlined"
           component="div"
           orientation="horizontal"
-          sx={{
+          sx={(theme) => ({
+            mt: 4,
             borderRadius: 'xl',
             fontWeight: 'lg',
             px: 0,
             mx: 'auto',
             overflow: 'auto',
             maxWidth: '100%',
-          }}
+            borderColor: 'primary.200',
+            [theme.getColorSchemeSelector('dark')]: {
+              borderColor: 'rgba(var(--joy-palette-primary-lightChannel) / 0.15)',
+            },
+          })}
         >
           <TabList
             variant="plain"
@@ -506,20 +594,24 @@ export default function ThemableTemplate() {
               gap: 0.2,
               borderRadius: 'xl',
               flex: 'none',
+              [`& .${tabClasses.root}`]: {
+                '&:hover': {
+                  bgcolor: 'primary.100',
+                },
+              },
               [`& .${tabClasses.root}[aria-selected="true"]`]: {
                 ...theme.variants.solid.neutral,
-                bgcolor: 'primary.50',
+                bgcolor: 'primary.100',
                 color: 'primary.500',
                 border: '1px solid',
-                borderColor: 'primary.200',
+                borderColor: 'primary.300',
               },
               [theme.getColorSchemeSelector('dark')]: {
                 [`& .${tabClasses.root}`]: {
                   '&:hover': {
-                    bgcolor: 'neutral.700',
+                    bgcolor: 'primary.800',
                   },
                 },
-
                 [`& .${tabClasses.root}[aria-selected="true"]`]: {
                   bgcolor: 'primary.800',
                   color: 'primary.200',
@@ -534,7 +626,7 @@ export default function ThemableTemplate() {
             <Tab disableIndicator>Sign-in</Tab>
             <Tab disableIndicator>Rental</Tab>
           </TabList>
-          <ListDivider sx={{ mx: 0 }} />
+          <ListDivider />
           <ListItem sx={{ px: 0.5 }}>
             <Button
               component={Link}
@@ -557,10 +649,9 @@ export default function ThemableTemplate() {
               '--_scale': '1',
               '--_preview-height': 'clamp(500px / var(--_scale), 80vh, 600px / var(--_scale))',
               p: 0,
-              mt: 4,
               border: '1px solid',
               borderColor: theme.palette.neutral[200],
-              boxShadow: `0 0 0 4px ${theme.palette.primary[100]}`,
+              boxShadow: '0 0 0 6px rgba(141 206 255 / 0.2)',
               borderRadius: 'var(--template-radius-lg)',
               height: 'var(--_preview-height)',
               transform: 'scale(var(--_scale))',
@@ -573,8 +664,8 @@ export default function ThemableTemplate() {
             },
             [theme.getColorSchemeSelector('dark')]: {
               '& [role="tabpanel"]': {
-                borderColor: theme.palette.neutral[800],
-                boxShadow: `0 0 0 4px ${theme.palette.primary[800]}`,
+                borderColor: theme.palette.primary[800],
+                boxShadow: '0 0 0 6px rgba(0 127 255 / 0.2)',
               },
             },
           })}
@@ -639,78 +730,6 @@ export default function ThemableTemplate() {
           </TabPanel>
         </Box>
       </Tabs>
-      <Sheet
-        variant="outlined"
-        sx={(theme) => ({
-          p: 1.5,
-          mt: 4,
-          mx: 'auto',
-          width: 'max-content',
-          maxWidth: '80vw',
-          zIndex: 1,
-          bgcolor: 'primary.50',
-          borderColor: 'primary.200',
-          borderRadius: 'xl',
-          boxShadow: `0 2px 4px ${theme.palette.primary[100]}`,
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: 1,
-          [theme.breakpoints.up(800)]: {
-            minWidth: 700,
-          },
-          [theme.getColorSchemeSelector('dark')]: {
-            bgcolor: 'primary.900',
-            borderColor: 'rgba(var(--template-palette-neutral-darkChannel) / 0.5  )',
-            boxShadow: `0 2px 4px ${theme.palette.common.black}`,
-          },
-          [`& .${selectClasses.root}`]: {
-            flex: 'auto',
-          },
-        })}
-      >
-        <Tooltip size="sm" title="Cast magic">
-          <IconButton
-            size="sm"
-            variant="outlined"
-            color="primary"
-            onClick={() => {
-              randomPrimary();
-              randomNeutral();
-              randomBgSwap();
-              randomRadius();
-              randomFamily();
-            }}
-          >
-            <SvgIcon>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z" />
-                <path d="m14 7 3 3" />
-                <path d="M5 6v4" />
-                <path d="M19 14v4" />
-                <path d="M10 2v2" />
-                <path d="M7 8H3" />
-                <path d="M21 16h-4" />
-                <path d="M11 3H9" />
-              </svg>
-            </SvgIcon>
-          </IconButton>
-        </Tooltip>
-        {renderPrimary()}
-        {renderNeutral()}
-        {renderBgSwap()}
-        {renderFamily()}
-        {renderRadius()}
-      </Sheet>
     </React.Fragment>
   );
 }
