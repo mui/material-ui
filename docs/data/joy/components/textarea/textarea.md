@@ -18,7 +18,13 @@ Joy UI's textarea component is built on top of the Base UI [`TextareaAutoSize`](
 
 {{"demo": "TextareaUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-## Component
+### HTML textarea ref
+
+Use `slotProps.textarea` to pass props to the `ref` and other [supported attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attributes) to HTML textarea element.
+
+{{"demo": "TextareaRef.js"}}
+
+## Customization
 
 After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -114,12 +120,6 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons or 
 It's usually more common to see textarea components using decorators at the top and bottom.
 
 {{"demo": "TextareaDecorators.js"}}
-
-### Using the useRef hook
-
-Use the [`useRef`](https://react.dev/reference/react/useRef) hook to directly access and interact with the underlying Textarea DOM node without causing re-renders.
-
-{{"demo": "TextareaRef.js"}}
 
 ## Accessibility
 
