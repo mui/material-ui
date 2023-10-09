@@ -361,6 +361,8 @@ describe('<TablePagination />', () => {
             <TableRow>
               <TablePagination
                 disabled
+                showFirstButton
+                showLastButton
                 count={30}
                 page={1}
                 onPageChange={noop}
