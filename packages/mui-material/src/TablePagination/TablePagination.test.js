@@ -384,7 +384,7 @@ describe('<TablePagination />', () => {
       expect(backButton).to.have.property('disabled', true);
     });
 
-    it('should apply "readOnly" to TablePaginationSelect', () => {
+    it('should disable TablePaginationSelect', () => {
       const { getByRole } = render(
         <table>
           <TableFooter>
@@ -404,7 +404,7 @@ describe('<TablePagination />', () => {
 
       const combobox = getByRole('combobox');
       const comboboxContainer = combobox.parentElement;
-      expect(comboboxContainer).to.have.property('readOnly', true);
+      expect(comboboxContainer).to.have.property('disabled', true);
     });
   });
 
