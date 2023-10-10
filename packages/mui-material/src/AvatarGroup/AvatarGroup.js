@@ -212,7 +212,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
   /**
    * custom renderer of extraAvatars
    * @param {number} surplus number of extra avatars
-   * @returns {React.ReactElement} custom element to display
+   * @returns {React.ReactNode} custom element to display
    */
   renderSurplus: PropTypes.func,
   /**
