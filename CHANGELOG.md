@@ -41,17 +41,17 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 
 ### Docs
 
-- &#8203;<!-- 26 -->[docs] Rename the Data Grid "Quick filter" to "Search" (#37724) @alexfauquette
-- &#8203;<!-- 25 -->[docs] Remove obsolete translations (#39221) @mbrookes
-- &#8203;<!-- 24 -->[docs] Update link to add custom color in palette (#39359) @ZeeshanTamboli
-- &#8203;<!-- 23 -->[docs] Denser code demo @oliviertassinari
-- &#8203;<!-- 22 -->[docs] Set up MD3 experiments pages (#39323) @mj12albert
-- &#8203;<!-- 18 -->[docs][Drawer] Fix right anchored persistent drawer intercepts click when it is closed (#39318) @ZeeshanTamboli
-- &#8203;<!-- 17 -->[docs][joy-ui] Revise the Color Inversion page (#39306) @danilo-leal
-- &#8203;<!-- 16 -->[docs][joy-ui] Remove redundant `error` prop from input validation demo (#39280) @sai6855
-- &#8203;<!-- 15 -->[docs][material-ui] Rename themed components doc, fix typos (#39368) @samuelsycamore
-- &#8203;<!-- 14 -->[docs][material-ui] Adjust the Material You Chip section (#39325) @danilo-leal
-- &#8203;<!-- 13 -->[docs][system] Add documentation on how to augment custom theme types for the `sx` prop callback (#39259) @3xp10it3r
+- &#8203;<!-- 26 -->Rename the Data Grid "Quick filter" to "Search" (#37724) @alexfauquette
+- &#8203;<!-- 25 -->Remove obsolete translations (#39221) @mbrookes
+- &#8203;<!-- 24 -->Update link to add custom color in palette (#39359) @ZeeshanTamboli
+- &#8203;<!-- 23 -->Denser code demo @oliviertassinari
+- &#8203;<!-- 22 -->Set up MD3 experiments pages (#39323) @mj12albert
+- &#8203;<!-- 18 -->[Drawer] Fix right anchored persistent drawer intercepts click when it is closed (#39318) @ZeeshanTamboli
+- &#8203;<!-- 17 -->[joy-ui] Revise the Color Inversion page (#39306) @danilo-leal
+- &#8203;<!-- 16 -->[joy-ui] Remove redundant `error` prop from input validation demo (#39280) @sai6855
+- &#8203;<!-- 15 -->[material-ui] Rename themed components doc, fix typos (#39368) @samuelsycamore
+- &#8203;<!-- 14 -->[material-ui] Adjust the Material You Chip section (#39325) @danilo-leal
+- &#8203;<!-- 13 -->[system] Add documentation on how to augment custom theme types for the `sx` prop callback (#39259) @3xp10it3r
 - &#8203;<!-- 11 -->[joy-ui][Input] Add debounce input demo (#39300) @sai6855
 
 ### Core
