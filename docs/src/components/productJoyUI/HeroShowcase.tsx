@@ -126,7 +126,7 @@ export function Mobile() {
           justifyContent: 'space-between',
           gap: 1,
           borderBottom: '1px solid',
-          borderColor: 'background.level3',
+          borderColor: 'divider',
           zIndex: 1000,
         }}
       >
