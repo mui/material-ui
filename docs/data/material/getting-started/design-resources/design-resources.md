@@ -4,7 +4,7 @@
 
 ## Official kits
 
-Pick your favorite design tool to enjoy and use the Material UI components.
+Pick your favorite design tool to enjoy and use the Material UI component inventory, including over 1,500 unique elements with their full range of states and variations.
 
 {{"component": "modules/components/MaterialUIDesignResources.js"}}
 
