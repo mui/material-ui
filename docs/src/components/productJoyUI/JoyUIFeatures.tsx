@@ -405,7 +405,7 @@ function ColorInversionDemo() {
         sx={{
           position: 'absolute',
           top: 0,
-          bottom: 0,
+          bottom: 54,
           width: 20,
           left: 'var(--split-point)',
           transform: 'translateX(-50%)',
@@ -667,7 +667,7 @@ function CSSvars() {
         />
         <Divider />
         <MoreInfo
-          subject="Joy UI's CSS variable use"
+          subject="Joy UI's CSS variables use"
           link="/joy-ui/customization/using-css-variables/"
         />
       </Frame.Info>
