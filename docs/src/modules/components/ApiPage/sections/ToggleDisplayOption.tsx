@@ -76,7 +76,7 @@ export function useApiPageOption(
 export function getApiPageLayout() {
   const rep: { [key: string]: string } = {};
 
-  Object.entries(API_LAYOUT_STORAGE_KEYS).map(([key, localStorageKey]) => {
+  Object.values(API_LAYOUT_STORAGE_KEYS).forEach((localStorageKey) => {
     try {
       const savedOption = localStorage.getItem(localStorageKey);
       rep[localStorageKey] = savedOption || 'none';
