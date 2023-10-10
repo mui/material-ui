@@ -9,12 +9,12 @@ import {
   MenuItemTypeMap,
 } from './MenuItem.types';
 import { getMenuItemUtilityClass } from './menuItemClasses';
-import { useMenuItem } from '../useMenuItem';
+import { useMenuItem, useMenuItemContextStabilizer } from '../useMenuItem';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useSlotProps } from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { stabilizeMenuItemContext } from './stabilizeMenuItemContext';
 import { WithOptionalOwnerState } from '../utils';
+import { ListContext } from '../useList';
 
 function useUtilityClasses(ownerState: MenuItemOwnerState) {
   const { disabled, focusVisible } = ownerState;
@@ -25,7 +25,49 @@ function useUtilityClasses(ownerState: MenuItemOwnerState) {
 
   return composeClasses(slots, useClassNamesOverride(getMenuItemUtilityClass));
 }
+
+const MenuItem = React.memo(
+  React.forwardRef(function MenuItem<RootComponentType extends React.ElementType>(
+    props: MenuItemProps<RootComponentType>,
+    forwardedRef: React.ForwardedRef<Element>,
+  ) {
+    const {
+      children,
+      disabled: disabledProp = false,
+      label,
+      id,
+      slotProps = {},
+      slots = {},
+      ...other
+    } = props;
+
+    const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({
+      id,
+      disabled: disabledProp,
+      rootRef: forwardedRef,
+      label,
+    });
+
+    const ownerState: MenuItemOwnerState = { ...props, disabled, focusVisible, highlighted };
+
+    const classes = useUtilityClasses(ownerState);
+
+    const Root = slots.root ?? 'li';
+    const rootProps: WithOptionalOwnerState<MenuItemRootSlotProps> = useSlotProps({
+      elementType: Root,
+      getSlotProps: getRootProps,
+      externalSlotProps: slotProps.root,
+      externalForwardedProps: other,
+      className: classes.root,
+      ownerState,
+    });
+
+    return <Root {...rootProps}>{children}</Root>;
+  }),
+);
+
 /**
+ * An unstyled menu item to be used within a Menu.
  *
  * Demos:
  *
@@ -35,63 +77,29 @@ function useUtilityClasses(ownerState: MenuItemOwnerState) {
  *
  * - [MenuItem API](https://mui.com/base-ui/react-menu/components-api/#menu-item)
  */
-const MenuItem = stabilizeMenuItemContext(
-  React.memo(
-    React.forwardRef(function MenuItem<RootComponentType extends React.ElementType>(
-      props: MenuItemProps<RootComponentType>,
-      forwardedRef: React.ForwardedRef<Element>,
-    ) {
-      const {
-        children,
-        disabled: disabledProp = false,
-        label,
-        id,
-        slotProps = {},
-        slots = {},
-        ...other
-      } = props;
+const StableMenuItem = React.forwardRef(function StableMenuItem(
+  props: MenuItemProps,
+  ref: React.ForwardedRef<Element>,
+) {
+  const { contextValue, id } = useMenuItemContextStabilizer(props.id);
 
-      const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({
-        id,
-        disabled: disabledProp,
-        rootRef: forwardedRef,
-        label,
-      });
+  return (
+    <ListContext.Provider value={contextValue}>
+      <MenuItem {...props} id={id} ref={ref} />
+    </ListContext.Provider>
+  );
+}) as PolymorphicComponent<MenuItemTypeMap>;
 
-      const ownerState: MenuItemOwnerState = { ...props, disabled, focusVisible, highlighted };
-
-      const classes = useUtilityClasses(ownerState);
-
-      const Root = slots.root ?? 'li';
-      const rootProps: WithOptionalOwnerState<MenuItemRootSlotProps> = useSlotProps({
-        elementType: Root,
-        getSlotProps: getRootProps,
-        externalSlotProps: slotProps.root,
-        externalForwardedProps: other,
-        className: classes.root,
-        ownerState,
-      });
-
-      return <Root {...rootProps}>{children}</Root>;
-    }),
-  ),
-) as PolymorphicComponent<MenuItemTypeMap>;
-
-MenuItem.propTypes /* remove-proptypes */ = {
+StableMenuItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
   /**
-   * @ignore
+   * If `true`, the menu item will be disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -99,9 +107,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * Used for keyboard text navigation matching.
    */
   label: PropTypes.string,
-  /**
-   * @ignore
-   */
   onClick: PropTypes.func,
   /**
    * The props used for each slot inside the MenuItem.
@@ -120,4 +125,15 @@ MenuItem.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export { MenuItem };
+/**
+ * An unstyled menu item to be used within a Menu.
+ *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/base-ui/react-menu/)
+ *
+ * API:
+ *
+ * - [MenuItem API](https://mui.com/base-ui/react-menu/components-api/#menu-item)
+ */
+export { StableMenuItem as MenuItem };
