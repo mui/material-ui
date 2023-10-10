@@ -110,19 +110,19 @@ const TriggerButton = styled(MenuButton)(
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
-  background-color: ${blue[500]};
   padding: 8px 16px;
   border-radius: 8px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
-  border: 1px solid ${blue[500]};
-  box-shadow: 0 2px 4px ${
-    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 127, 255, 0.5)'
-  }, inset 0 1.5px 1px ${blue[400]}, inset 0 -2px 1px ${blue[600]};
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
   &:hover {
-    background-color: ${blue[600]};
+    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
   &.active {
