@@ -6,7 +6,10 @@ import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useNoSsrCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import { useApiPageOption } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+import {
+  useApiPageOption,
+  getApiPageLayout,
+} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 // So we can write code like:
 //
@@ -139,12 +142,13 @@ function GoogleAnalytics() {
     });
   }, [codeStylingVariant]);
 
-  const [apiPropsLayout] = useApiPageOption('api-page-props');
+  const apiPageLayout = getApiPageLayout();
+
   React.useEffect(() => {
     window.gtag('set', 'user_properties', {
-      apiPropsLayout,
+      ...apiPageLayout,
     });
-  }, [apiPropsLayout]);
+  }, []);
 
   return null;
 }

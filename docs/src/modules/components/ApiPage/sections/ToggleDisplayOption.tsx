@@ -19,6 +19,24 @@ export const API_LAYOUT_STORAGE_KEYS = {
   classes: 'api-page-classes',
 } as const;
 
+const getRandomOption = () => {
+  // A default layout is saved in localstorage at first render to make sure all section start with the same layout.
+  const savedDefaultOption = localStorage.getItem(
+    API_LAYOUT_STORAGE_KEYS.default,
+  ) as null | ApiDisplayOptions;
+
+  if (savedDefaultOption !== null && options.includes(savedDefaultOption)) {
+    return savedDefaultOption;
+  }
+
+  const randomOption = options[Math.floor(options.length * Math.random())];
+  try {
+    localStorage.setItem(API_LAYOUT_STORAGE_KEYS.default, randomOption);
+  } catch (error) {
+    // Do nothing
+  }
+  return randomOption;
+};
 
 export function useApiPageOption(
   storageKey: string,
@@ -53,6 +71,20 @@ export function useApiPageOption(
   }, [storageKey, updateOption]);
 
   return [option, updateOption];
+}
+
+export function getApiPageLayout() {
+  const rep: { [key: string]: string } = {};
+
+  Object.entries(API_LAYOUT_STORAGE_KEYS).map(([key, localStorageKey]) => {
+    try {
+      const savedOption = localStorage.getItem(localStorageKey);
+      rep[`api-layout-${key}`] = savedOption || 'none';
+    } catch {
+      rep[`api-layout-${key}`] = 'none';
+    }
+  });
+  return rep;
 }
 
 // Fix Toggle buton highlight (taken from https://github.com/mui/material-ui/issues/18091)
