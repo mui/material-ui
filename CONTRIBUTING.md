@@ -8,7 +8,6 @@ Here are a few guidelines that will help you along the way.
 
 - [Code of conduct](#code-of-conduct)
 - [A large spectrum of contributions](#a-large-spectrum-of-contributions)
-  - [Translations](#translations)
 - [Your first pull request](#your-first-pull-request)
 - [Sending a pull request](#sending-a-pull-request)
   - [Trying changes on the documentation site](#trying-changes-on-the-documentation-site)
@@ -30,8 +29,7 @@ Please read [the full text](https://github.com/mui/.github/blob/master/CODE_OF_C
 ## A large spectrum of contributions
 
 There are [many ways](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) to contribute to MUI, and writing code is only one part of the story—documentation improvements can be just as important as code changes.
-
-**Please do not open new issues or pull requests for these files.**
+If you have an idea for an improvement to the code or the docs, we encourage you to open an issue as a first step, to discuss your proposed changes with the maintainers before proceeding.
 
 ## Your first pull request
 
