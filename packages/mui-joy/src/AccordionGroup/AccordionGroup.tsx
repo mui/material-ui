@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { useColorInversion, useThemeProps } from '../styles';
+import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAccordionGroupUtilityClass } from './accordionGroupClasses';
 import {
@@ -84,7 +84,7 @@ const AccordionGroup = React.forwardRef(function AccordionGroup(inProps, ref) {
 
   const {
     component = 'div',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     children,
     disableDivider = false,
     variant = 'plain',
@@ -96,9 +96,6 @@ const AccordionGroup = React.forwardRef(function AccordionGroup(inProps, ref) {
   } = props;
 
   const externalForwardedProps = { ...other, component, slots, slotProps };
-
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

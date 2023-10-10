@@ -1,4 +1,5 @@
 import { CSSObject, CSSInterpolation } from '@mui/system';
+import { PopperClassKey } from '@mui/base/Popper';
 import { ComponentsPropsList } from './props';
 import { AccordionActionsClassKey } from '../AccordionActions';
 import { AccordionClassKey } from '../Accordion';
@@ -215,6 +216,7 @@ export interface ComponentNameToClassKey {
   MuiPaginationItem: PaginationItemClassKey;
   MuiPaper: PaperClassKey;
   MuiPopover: PopoverClassKey;
+  MuiPopper: PopperClassKey;
   MuiRadio: RadioClassKey;
   MuiRating: RatingClassKey;
   MuiScopedCssBaseline: ScopedCssBaselineClassKey;

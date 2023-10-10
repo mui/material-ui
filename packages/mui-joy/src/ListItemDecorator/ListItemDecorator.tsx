@@ -31,10 +31,12 @@ const ListItemDecoratorRoot = styled('span', {
   ...(ownerState.parentOrientation === 'horizontal'
     ? {
         minInlineSize: 'var(--ListItemDecorator-size)',
+        marginInlineEnd: 'calc(-1 * var(--ListItem-gap))',
       }
     : {
         minBlockSize: 'var(--ListItemDecorator-size)',
         justifyContent: 'center',
+        marginBlockEnd: 'calc(-1 * var(--ListItem-gap))',
       }),
 }));
 /**

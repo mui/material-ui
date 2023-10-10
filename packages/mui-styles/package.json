@@ -1,6 +1,6 @@
 {
   "name": "@mui/styles",
-  "version": "5.14.10",
+  "version": "5.14.12",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Styles - The legacy JSS-based styling solution of Material UI.",
@@ -38,11 +38,11 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.15",
+    "@babel/runtime": "^7.23.1",
     "@emotion/hash": "^0.9.1",
-    "@mui/private-theming": "^5.14.10",
-    "@mui/types": "^7.2.4",
-    "@mui/utils": "^5.14.10",
+    "@mui/private-theming": "^5.14.12",
+    "@mui/types": "^7.2.5",
+    "@mui/utils": "^5.14.12",
     "clsx": "^2.0.0",
     "csstype": "^3.1.2",
     "hoist-non-react-statics": "^3.3.2",
@@ -57,14 +57,14 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui/joy": "5.0.0-beta.7",
-    "@mui/material": "^5.14.10",
     "@mui-internal/test-utils": "^1.0.0",
+    "@mui/joy": "5.0.0-beta.9",
+    "@mui/material": "^5.14.12",
     "@types/chai": "^4.3.6",
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
-    "@types/sinon": "^10.0.16",
-    "chai": "^4.3.8",
+    "@types/react": "^18.2.23",
+    "@types/react-dom": "^18.2.11",
+    "@types/sinon": "^10.0.19",
+    "chai": "^4.3.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sinon": "^15.2.0"

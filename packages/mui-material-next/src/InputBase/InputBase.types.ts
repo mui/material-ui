@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SlotComponentProps } from '@mui/base';
-import { FormControlState } from '@mui/material/FormControl';
+import { FormControlContextValue } from '@mui/material-next/FormControl/FormControlContext';
 import { UseInputRootSlotProps } from '@mui/base/useInput';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, OverrideProps, Simplify } from '@mui/types';
@@ -81,7 +81,7 @@ export type InputBaseOwnProps = (SingleLineInputProps | MultiLineInputProps) & {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color?: OverridableStringUnion<
@@ -261,11 +261,13 @@ export interface InputBaseTypeMap<
 export type InputBaseProps<
   RootComponentType extends React.ElementType = InputBaseTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<InputBaseTypeMap<AdditionalProps, RootComponentType>, RootComponentType>;
+> = OverrideProps<InputBaseTypeMap<AdditionalProps, RootComponentType>, RootComponentType> & {
+  inputComponent?: React.ElementType;
+};
 
 export type InputBaseOwnerState = Simplify<
   InputBaseOwnProps & {
-    formControl: FormControlState | undefined;
+    formControl: FormControlContextValue | undefined;
     hiddenLabel?: boolean;
     focused: boolean;
     type: React.InputHTMLAttributes<HTMLInputElement>['type'] | undefined;

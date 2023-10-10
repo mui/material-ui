@@ -211,13 +211,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List>
-      {pages.reduce(
-        // eslint-disable-next-line @typescript-eslint/no-use-before-define
-        (items, page) => reduceChildRoutes({ items, page, ...params }),
-        [],
-      )}
-    </List>
+    <List>{pages.reduce((items, page) => reduceChildRoutes({ items, page, ...params }), [])}</List>
   );
 }
 
