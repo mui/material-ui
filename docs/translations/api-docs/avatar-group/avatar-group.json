@@ -14,7 +14,7 @@
       "description": "custom renderer of extraAvatars",
       "typeDescriptions": {
         "surplus": "number of extra avatars",
-        "React.ReactElement": "custom element to display"
+        "React.ReactNode": "custom element to display"
       }
     },
     "slotProps": {

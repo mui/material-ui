@@ -70,9 +70,9 @@ If you need to control the total number of avatars not shown, you can use the `t
 
 ### Custom surplus
 
-Set `renderSurplus` prop as a callback to customize the surplus avatar. The callback will receive one argument which is the number of surpluses based on the children and `max` prop.
+Set the `renderSurplus` prop as a callback to customize the surplus avatar. The callback will receive the surplus number as an argument based on the children and the `max` prop.
 
-This is useful when you need to render the surplus based on the data sent from the server.
+The `renderSurplus` prop is useful when you need to render the surplus based on the data sent from the server.
 
 {{"demo": "CustomSurplusAvatars.js"}}
 

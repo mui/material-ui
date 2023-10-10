@@ -11,9 +11,9 @@
     "renderSurplus": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(surplus: number) => React.ReactElement",
+        "type": "function(surplus: number) => React.ReactNode",
         "describedArgs": ["surplus"],
-        "returned": "React.ReactElement"
+        "returned": "React.ReactNode"
       }
     },
     "slotProps": {
