@@ -27,10 +27,9 @@ const StyledTable = styled('table')(
     '& .rule-name': {
       padding: '0 4px',
       borderRadius: 5,
-      color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
       border: '1px solid',
-      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+      borderColor: alpha(darkTheme.palette.primary[100], 0.5),
+      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
       ...theme.typography.caption,
       fontFamily: theme.typography.fontFamilyCode,
       fontWeight: theme.typography.fontWeightRegular,
@@ -45,8 +44,8 @@ const StyledTable = styled('table')(
       },
       '& .rule-name': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
-        backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
       },
     },
   }),
