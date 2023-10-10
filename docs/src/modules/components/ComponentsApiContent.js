@@ -8,7 +8,7 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import Divider from 'docs/src/modules/components/ApiDivider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import PropertiesTable from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
+import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import CSSSection from 'docs/src/modules/components/ApiPage/sections/CssSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
@@ -147,7 +147,7 @@ export default function ComponentsApiContent(props) {
           <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
 
-          <PropertiesTable
+          <PropertiesSection
             properties={componentProps}
             propertiesDescriptions={propDescriptions}
             componentName={componentName}
