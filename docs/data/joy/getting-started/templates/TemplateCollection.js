@@ -112,11 +112,7 @@ export default function TemplateCollection() {
             component="li"
             variant="outlined"
             key={template.name}
-            sx={(theme) => ({
-              bgcolor: 'initial',
-              overflow: 'auto',
-              borderRadius: 12,
-            })}
+            sx={{ bgcolor: 'initial', overflow: 'auto', borderRadius: 12 }}
           >
             <CardOverflow>
               <AspectRatio
