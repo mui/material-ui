@@ -31,7 +31,6 @@ Please read [the full text](https://github.com/mui/.github/blob/master/CODE_OF_C
 
 There are [many ways](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) to contribute to MUI, and writing code is only one part of the story—documentation improvements can be just as important as code changes.
 
-
 **Please do not open new issues or pull requests for these files.**
 
 ## Your first pull request
