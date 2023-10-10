@@ -43,10 +43,10 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 26 -->Rename the Data Grid "Quick filter" to "Search" (#37724) @alexfauquette
 - &#8203;<!-- 25 -->Remove obsolete translations (#39221) @mbrookes
-- &#8203;<!-- 24 -->Update link to add custom color in palette (#39359) @ZeeshanTamboli
+- &#8203;<!-- 24 -->[material-ui] Update link to add custom color in palette (#39359) @ZeeshanTamboli
 - &#8203;<!-- 23 -->Denser code demo @oliviertassinari
 - &#8203;<!-- 22 -->Set up MD3 experiments pages (#39323) @mj12albert
-- &#8203;<!-- 18 -->[Drawer] Fix right anchored persistent drawer intercepts click when it is closed (#39318) @ZeeshanTamboli
+- &#8203;<!-- 18 -->[material-ui][Drawer] Fix right anchored persistent drawer intercepts click when it is closed (#39318) @ZeeshanTamboli
 - &#8203;<!-- 17 -->[joy-ui] Revise the Color Inversion page (#39306) @danilo-leal
 - &#8203;<!-- 16 -->[joy-ui] Remove redundant `error` prop from input validation demo (#39280) @sai6855
 - &#8203;<!-- 15 -->[material-ui] Rename themed components doc, fix typos (#39368) @samuelsycamore
