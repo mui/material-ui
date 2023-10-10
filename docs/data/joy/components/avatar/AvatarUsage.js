@@ -19,6 +19,12 @@ export default function AvatarUsage() {
           knob: 'color',
           defaultValue: 'neutral',
         },
+        {
+          propName: 'size',
+          knob: 'radio',
+          options: ['sm', 'md', 'lg'],
+          defaultValue: 'md',
+        },
       ]}
       renderDemo={(props) => (
         <Box
@@ -29,6 +35,7 @@ export default function AvatarUsage() {
         >
           <Avatar src="/static/images/avatar/1.jpg" {...props} />
           <Avatar {...props}>M</Avatar>
+          <Avatar {...props} />
         </Box>
       )}
     />

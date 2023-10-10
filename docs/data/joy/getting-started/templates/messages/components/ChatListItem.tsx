@@ -36,34 +36,39 @@ export default function ChatListItem({
             setSelectedChat({ id, sender, messages });
           }}
           selected={selected}
-          variant={selected ? 'soft' : 'plain'}
           color="neutral"
           sx={{
             flexDirection: 'column',
             alignItems: 'initial',
             gap: 1,
-            fontWeight: 'normal',
           }}
         >
           <Stack direction="row" spacing={1.5}>
             <AvatarWithStatus online={sender.online} src={sender.avatar} />
             <Box sx={{ flex: 1 }}>
-              <Typography fontSize="sm" fontWeight="lg">
-                {sender.name}
-              </Typography>
-              <Typography level="body2">{sender.username}</Typography>
+              <Typography level="title-sm">{sender.name}</Typography>
+              <Typography level="body-sm">{sender.username}</Typography>
             </Box>
-            <Box sx={{ lineHeight: 1, textAlign: 'right' }}>
-              <Typography level="body2" display={{ xs: 'none', md: 'block' }} noWrap>
+            <Box
+              sx={{
+                lineHeight: 1.5,
+                textAlign: 'right',
+              }}
+            >
+              {messages[0].unread && (
+                <CircleIcon sx={{ fontSize: 12 }} color="primary" />
+              )}
+              <Typography
+                level="body-xs"
+                display={{ xs: 'none', md: 'block' }}
+                noWrap
+              >
                 5 mins ago
               </Typography>
-              {messages[0].unread && (
-                <CircleIcon sx={{ fontSize: 10 }} color="primary" />
-              )}
             </Box>
           </Stack>
           <Typography
-            level="body2"
+            level="body-sm"
             sx={{
               display: '-webkit-box',
               WebkitLineClamp: '2',

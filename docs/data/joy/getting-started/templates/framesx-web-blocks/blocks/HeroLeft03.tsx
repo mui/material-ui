@@ -64,7 +64,7 @@ export default function HeroLeft03() {
       </Box>
 
       <Typography
-        level="body3"
+        level="body-xs"
         sx={{
           position: 'absolute',
           top: '2rem',

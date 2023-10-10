@@ -1,31 +1,31 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import useMenu, { MenuProvider } from '@mui/base/useMenu';
-import useMenuItem from '@mui/base/useMenuItem';
-import Popper from '@mui/base/Popper';
+import { useMenu, MenuProvider } from '@mui/base/useMenu';
+import { useMenuItem } from '@mui/base/useMenuItem';
+import { Popper } from '@mui/base/Popper';
 import { GlobalStyles } from '@mui/system';
+import { useDropdown, DropdownContext } from '@mui/base/useDropdown';
+import { useMenuButton } from '@mui/base/useMenuButton';
 
 const Menu = React.forwardRef(function Menu(props, ref) {
-  const { children, onOpenChange, open, ...other } = props;
+  const { children, ...other } = props;
 
-  const { contextValue, getListboxProps } = useMenu({
+  const { open, triggerElement, contextValue, getListboxProps } = useMenu({
     listboxRef: ref,
-    onOpenChange,
-    open,
   });
 
   return (
-    <ul className="menu-root" {...other} {...getListboxProps()}>
-      <MenuProvider value={contextValue}>{children}</MenuProvider>
-    </ul>
+    <Popper open={open} anchorEl={triggerElement}>
+      <ul className="menu-root" {...other} {...getListboxProps()}>
+        <MenuProvider value={contextValue}>{children}</MenuProvider>
+      </ul>
+    </Popper>
   );
 });
 
 Menu.propTypes = {
   children: PropTypes.node,
-  onOpenChange: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
 };
 
 const MenuItem = React.forwardRef(function MenuItem(props, ref) {
@@ -41,9 +41,9 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
 
   return (
     <li
-      className={clsx(classes)}
       {...other}
       {...getRootProps({ onClick: onClick ?? (() => {}) })}
+      className={clsx(classes)}
     >
       {children}
     </li>
@@ -55,77 +55,36 @@ MenuItem.propTypes = {
   onClick: PropTypes.func,
 };
 
+const MenuButton = React.forwardRef(function MenuButton(props, forwardedRef) {
+  const { getRootProps: getButtonProps } = useMenuButton({ rootRef: forwardedRef });
+
+  return (
+    <button type="button" {...props} {...getButtonProps()} className="button" />
+  );
+});
+
 export default function UseMenu() {
-  const [buttonElement, setButtonElement] = React.useState(null);
-  const [isOpen, setOpen] = React.useState(false);
-  const preventReopen = React.useRef(false);
-
-  const updateAnchor = React.useCallback((node) => {
-    setButtonElement(node);
-  }, []);
-
-  const handleOnClick = (event) => {
-    if (preventReopen.current) {
-      event.preventDefault();
-      preventReopen.current = false;
-      return;
-    }
-
-    setOpen((open) => !open);
-  };
-
-  const handleButtonMouseDown = () => {
-    if (isOpen) {
-      // Prevents the menu from reopening right after closing
-      // when clicking the button.
-      preventReopen.current = true;
-    }
-  };
-
-  const handleButtonKeyDown = (event) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setOpen(true);
-    }
-  };
+  const { contextValue: dropdownContextValue } = useDropdown();
 
   const createHandleMenuClick = (menuItem) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
-      setOpen(false);
-      buttonElement?.focus();
     };
   };
 
   return (
     <React.Fragment>
       <GlobalStyles styles={styles} />
-      <button
-        type="button"
-        className="button"
-        onClick={handleOnClick}
-        onMouseDown={handleButtonMouseDown}
-        onKeyDown={handleButtonKeyDown}
-        ref={updateAnchor}
-        aria-controls="hooks-menu"
-        aria-expanded={isOpen || undefined}
-        aria-haspopup="menu"
-      >
-        Commands
-      </button>
-      <Popper open={isOpen} anchorEl={buttonElement}>
-        <Menu
-          onOpenChange={(open) => {
-            setOpen(open);
-          }}
-          open={isOpen}
-          id="hooks-menu"
-        >
-          <MenuItem onClick={createHandleMenuClick('Cut')}>Cut</MenuItem>
-          <MenuItem onClick={createHandleMenuClick('Copy')}>Copy</MenuItem>
-          <MenuItem onClick={createHandleMenuClick('Paste')}>Paste</MenuItem>
+      <DropdownContext.Provider value={dropdownContextValue}>
+        <MenuButton>Theme</MenuButton>
+        <Menu id="hooks-menu">
+          <MenuItem onClick={createHandleMenuClick('OS Default')}>
+            OS default
+          </MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Light')}>Light</MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Dark')}>Dark</MenuItem>
         </Menu>
-      </Popper>
+      </DropdownContext.Provider>
     </React.Fragment>
   );
 }
@@ -229,16 +188,15 @@ const styles = `
     border: 1px solid ${grey[200]};
     color: ${grey[900]};
     cursor: pointer;
-  
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 120ms;
-  
+
     &:hover {
       background: ${grey[50]};
       border-color: ${grey[300]};
     }
-  
+
     &:focus-visible {
       border-color: ${blue[400]};
       outline: 3px solid ${blue[200]};

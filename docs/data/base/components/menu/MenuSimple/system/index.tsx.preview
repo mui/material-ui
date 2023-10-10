@@ -1,0 +1,14 @@
+<Dropdown>
+  <TriggerButton>Dashboard</TriggerButton>
+  <Menu slots={{ listbox: StyledListbox }}>
+    <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
+      Profile
+    </StyledMenuItem>
+    <StyledMenuItem onClick={createHandleMenuClick('My account')}>
+      My account
+    </StyledMenuItem>
+    <StyledMenuItem onClick={createHandleMenuClick('Log out')}>
+      Log out
+    </StyledMenuItem>
+  </Menu>
+</Dropdown>

@@ -1,44 +1,17 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
 import Skeleton from '@mui/joy/Skeleton';
-import Stack from '@mui/joy/Stack';
-import Switch from '@mui/joy/Switch';
 
 export default function GeometrySkeleton() {
-  const [loading, setLoading] = React.useState(true);
   return (
-    <Stack spacing={2} useFlexGap>
+    <div>
       <Box sx={{ m: 'auto', display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Skeleton loading={loading} variant="circular" width={48} height={48} />
-        <Box>
-          <Skeleton
-            loading={loading}
-            variant="rectangular"
-            width={200}
-            height="1em"
-            sx={{ mb: 1 }}
-          />
-          <Skeleton
-            loading={loading}
-            variant="rectangular"
-            width={140}
-            height="1em"
-          />
-        </Box>
+        <Skeleton variant="circular" width={48} height={48} />
+        <div>
+          <Skeleton variant="rectangular" width={200} height="1em" sx={{ mb: 1 }} />
+          <Skeleton variant="rectangular" width={140} height="1em" />
+        </div>
       </Box>
-      <FormControl
-        orientation="horizontal"
-        sx={{ gap: 1, justifyContent: 'center' }}
-      >
-        <Switch
-          size="sm"
-          checked={loading}
-          onChange={(event) => setLoading(event.target.checked)}
-        />
-        <FormLabel>Loading</FormLabel>
-      </FormControl>
-    </Stack>
+    </div>
   );
 }

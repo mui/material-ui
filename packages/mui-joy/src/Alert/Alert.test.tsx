@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import {
+  createRenderer,
+  describeConformance,
+  describeJoyColorInversion,
+} from '@mui-internal/test-utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Alert, { AlertClassKey, alertClasses as classes } from '@mui/joy/Alert';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<Alert />', () => {
   const { render } = createRenderer();
@@ -35,7 +39,7 @@ describe('<Alert />', () => {
       expect(getByRole('alert')).to.have.class(classes.variantSoft);
     });
 
-    (['outlined', 'soft', 'solid'] as const).forEach((variant) => {
+    (['plain', 'outlined', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByRole } = render(<Alert variant={variant} />);
 
@@ -50,10 +54,10 @@ describe('<Alert />', () => {
     it('adds a primary class by default', () => {
       const { getByRole } = render(<Alert />);
 
-      expect(getByRole('alert')).to.have.class(classes.colorPrimary);
+      expect(getByRole('alert')).to.have.class(classes.colorNeutral);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByRole } = render(<Alert color={color} />);
 

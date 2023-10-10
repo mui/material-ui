@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SimpleCodeEditor from 'react-simple-code-editor';
 import Box from '@mui/material/Box';
-import NoSsr from '@mui/base/NoSsr';
+import { NoSsr } from '@mui/base/NoSsr';
 import { styled, useTheme } from '@mui/material/styles';
 import prism from '@mui/markdown/prism';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
@@ -81,8 +81,8 @@ export default function DemoEditor(props: DemoEditorProps) {
   const { language, value, onChange, copyButtonProps, children, id, ...other } = props;
   const t = useTranslate();
   const contextTheme = useTheme();
-  const wrapperRef = React.useRef<HTMLElement | null>(null);
-  const enterRef = React.useRef<HTMLElement | null>(null);
+  const wrapperRef = React.useRef<HTMLElement>(null);
+  const enterRef = React.useRef<HTMLElement>(null);
   const handlers = useCodeCopy();
 
   React.useEffect(() => {

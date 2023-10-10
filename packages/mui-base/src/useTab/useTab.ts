@@ -6,7 +6,7 @@ import { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useT
 import { EventHandlers } from '../utils';
 import { useCompoundItem } from '../utils/useCompoundItem';
 import { useListItem } from '../useList';
-import useButton from '../useButton';
+import { useButton } from '../useButton';
 import { TabMetadata } from '../useTabs';
 
 function tabValueGenerator(otherTabValues: Set<string | number>) {
@@ -102,4 +102,4 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
   };
 }
 
-export default useTab;
+export { useTab };

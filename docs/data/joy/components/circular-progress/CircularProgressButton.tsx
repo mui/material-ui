@@ -8,23 +8,15 @@ import CircularProgress from '@mui/joy/CircularProgress';
 export default function CircularProgressButton() {
   return (
     <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
-      <Button startDecorator={<CircularProgress variant="solid" thickness={2} />}>
-        Loading…
-      </Button>
+      <Button startDecorator={<CircularProgress variant="solid" />}>Loading…</Button>
       <IconButton>
-        <CircularProgress thickness={2} />
+        <CircularProgress />
       </IconButton>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <Link
         component="button"
-        variant="outlined"
-        startDecorator={
-          <CircularProgress
-            variant="plain"
-            thickness={2}
-            sx={{ '--CircularProgress-size': '16px' }}
-          />
-        }
+        variant="plain"
+        startDecorator={<CircularProgress />}
         sx={{ p: 1 }}
       >
         Submitting...

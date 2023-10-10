@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Select, { selectClasses } from '@mui/base/Select';
+import { Select, selectClasses } from '@mui/base/Select';
 
-import Option, { optionClasses } from '@mui/base/Option';
-import Popper from '@mui/base/Popper';
+import { Option, optionClasses } from '@mui/base/Option';
+import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import Box from '@mui/system/Box';
 
@@ -37,6 +37,7 @@ export default function UnstyledSelectObjectValuesForm() {
               name="character"
               id="object-value-default-button"
               aria-labelledby="object-value-default-label object-value-default-button"
+              placeholder="Choose a character…"
             >
               {characters.map((character) => (
                 <StyledOption key={character.name} value={character}>
@@ -64,6 +65,7 @@ export default function UnstyledSelectObjectValuesForm() {
               name="character"
               id="object-value-serialize-button"
               aria-labelledby="object-value-serialize-label object-value-serialize-button"
+              placeholder="Choose a character…"
             >
               {characters.map((character) => (
                 <StyledOption key={character.name} value={character}>

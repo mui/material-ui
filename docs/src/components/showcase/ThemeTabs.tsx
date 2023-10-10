@@ -19,8 +19,9 @@ export default function ThemeTabs() {
         variant="fullWidth"
         sx={[
           {
-            bgcolor: 'primary.500',
-            borderRadius: '10px',
+            background:
+              'linear-gradient(180deg, var(--muidocs-palette-primary-500) 0%, var(--muidocs-palette-primary-600) 100%)',
+            borderRadius: 1,
             boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
             [`& .${tabsClasses.indicator}`]: {
               backgroundColor: 'transparent',
@@ -38,7 +39,6 @@ export default function ThemeTabs() {
               minHeight: 48,
               margin: 0,
               color: 'primary.100',
-              fontSize: '1rem',
               '&:hover': {
                 backgroundColor: 'transparent',
               },
@@ -49,16 +49,15 @@ export default function ThemeTabs() {
           },
           (theme) =>
             theme.applyDarkStyles({
-              bgcolor: 'primary.700',
               [`& .${tabClasses.root}`]: {
                 color: 'primary.200',
               },
             }),
         ]}
       >
-        <Tab label="Yesterday" />
-        <Tab label="Today" />
-        <Tab label="Tomorrow" />
+        <Tab label="Material UI" />
+        <Tab label="Base UI" />
+        <Tab label="Joy UI" />
       </Tabs>
     </Fade>
   );

@@ -50,11 +50,20 @@ export interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation;
 }
 
-export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
+// Omit variants as a key, because we have a special handling for it
+export interface CSSObject
+  extends CSSPropertiesWithMultiValues,
+    CSSPseudos,
+    Omit<CSSOthersObject, 'variants'> {}
+
+interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
+  variants: Array<{ props: Props; variants: CSSObject }>;
+}
 
 export type FalseyValue = undefined | null | false;
 export type Interpolation<P> =
   | InterpolationValue
+  | CSSObjectWithVariants<P>
   | InterpolationFunction<P>
   | FlattenInterpolation<P>;
 // cannot be made a self-referential interface, breaks WithPropNested

@@ -85,6 +85,14 @@ To create a responsive spacing scale, the `<value>` can be an object or an array
 
 ## Common examples
 
+### Figma-like toggle group
+
+Use the CSS variable `--ButtonGroup-connected` to control when border radius of the buttons in-between should be removed.
+
+To create a Figma-like button group where the buttons are connected when users hover on any of the buttons, set the `--ButtonGroup-connected` to `0` and change to `1` on hover.
+
+{{"demo": "FigmaButtonGroup.js"}}
+
 ### Editor toolbar
 
 {{"demo": "ToggleGroupToolbar.js"}}

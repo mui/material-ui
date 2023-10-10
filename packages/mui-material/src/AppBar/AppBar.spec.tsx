@@ -1,6 +1,6 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import { expectType } from '@mui/types';
+import AppBar from '@mui/material/AppBar';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
   function CustomComponent() {

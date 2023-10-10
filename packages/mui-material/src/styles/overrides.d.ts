@@ -86,6 +86,7 @@ import { SnackbarContentClassKey } from '../SnackbarContent';
 import { SpeedDialClassKey } from '../SpeedDial';
 import { SpeedDialActionClassKey } from '../SpeedDialAction';
 import { SpeedDialIconClassKey } from '../SpeedDialIcon';
+import { StackClassKey } from '../Stack';
 import { StepButtonClasskey } from '../StepButton';
 import { StepClasskey } from '../Step';
 import { StepConnectorClasskey } from '../StepConnector';
@@ -225,6 +226,7 @@ export interface ComponentNameToClassKey {
   MuiSpeedDial: SpeedDialClassKey;
   MuiSpeedDialAction: SpeedDialActionClassKey;
   MuiSpeedDialIcon: SpeedDialIconClassKey;
+  MuiStack: StackClassKey;
   MuiStep: StepClasskey;
   MuiStepButton: StepButtonClasskey;
   MuiStepConnector: StepConnectorClasskey;

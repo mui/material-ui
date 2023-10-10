@@ -1,13 +1,13 @@
 import * as React from 'react';
-import Paper, { PaperProps } from '@mui/material/Paper';
 import { expectType } from '@mui/types';
+import Paper, { PaperProps } from '@mui/material/Paper';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
   function CustomComponent() {
     return <div />;
   };
 
-const props: PaperProps<'div'> = {
+const props1: PaperProps<'div'> = {
   component: 'div',
   onChange: (event) => {
     expectType<React.FormEvent<HTMLDivElement>, typeof event>(event);
@@ -20,27 +20,22 @@ const props2: PaperProps = {
   },
 };
 
-const props3: PaperProps<'span'> = {
-  // @ts-expect-error
-  component: 'div',
+const props3: PaperProps<typeof CustomComponent> = {
+  component: CustomComponent,
+  stringProp: '2',
+  numberProp: 2,
 };
 
 const props4: PaperProps<typeof CustomComponent> = {
   component: CustomComponent,
   stringProp: '2',
   numberProp: 2,
+  // @ts-expect-error CustomComponent does not accept incorrectProp
+  incorrectProp: 3,
 };
 
+// @ts-expect-error missing props
 const props5: PaperProps<typeof CustomComponent> = {
-  component: CustomComponent,
-  stringProp: '2',
-  numberProp: 2,
-  // @ts-expect-error
-  inCorrectProp: 3,
-};
-
-// @ts-expect-error
-const props6: PaperProps<typeof CustomComponent> = {
   component: CustomComponent,
 };
 
@@ -51,7 +46,7 @@ function PaperTest() {
       <Paper component="a" href="test" />
 
       <Paper component={CustomComponent} stringProp="test" numberProp={0} />
-      {/* @ts-expect-error */}
+      {/* @ts-expect-error missing props */}
       <Paper component={CustomComponent} />
     </div>
   );

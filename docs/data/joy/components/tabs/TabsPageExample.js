@@ -14,7 +14,6 @@ export default function TabsPageExample() {
   return (
     <Box
       sx={{
-        bgcolor: 'background.body',
         flexGrow: 1,
         m: -3,
         overflowX: 'hidden',
@@ -25,33 +24,20 @@ export default function TabsPageExample() {
         aria-label="Pipeline"
         value={index}
         onChange={(event, value) => setIndex(value)}
-        sx={{ '--Tabs-gap': '0px' }}
       >
         <TabList
-          variant="plain"
           sx={{
-            width: '100%',
-            maxWidth: 400,
-            mx: 'auto',
             pt: 2,
-            alignSelf: 'flex-start',
-            [`& .${tabClasses.root}`]: {
+            justifyContent: 'center',
+            [`&& .${tabClasses.root}`]: {
+              flex: 'initial',
               bgcolor: 'transparent',
-              boxShadow: 'none',
               '&:hover': {
                 bgcolor: 'transparent',
               },
               [`&.${tabClasses.selected}`]: {
                 color: 'primary.plainColor',
-                fontWeight: 'lg',
-                '&:before': {
-                  content: '""',
-                  display: 'block',
-                  position: 'absolute',
-                  zIndex: 1,
-                  bottom: '-1px',
-                  left: 'var(--ListItem-paddingLeft)',
-                  right: 'var(--ListItem-paddingRight)',
+                '&::after': {
                   height: '3px',
                   borderTopLeftRadius: '3px',
                   borderTopRightRadius: '3px',
@@ -61,47 +47,34 @@ export default function TabsPageExample() {
             },
           }}
         >
-          <Tab>
+          <Tab indicatorInset>
             Deals{' '}
             <Chip
               size="sm"
               variant="soft"
               color={index === 0 ? 'primary' : 'neutral'}
-              sx={{ ml: 1 }}
             >
               14
             </Chip>
           </Tab>
-          <Tab>
+          <Tab indicatorInset>
             Library{' '}
             <Chip
               size="sm"
               variant="soft"
               color={index === 1 ? 'primary' : 'neutral'}
-              sx={{ ml: 1 }}
             >
               24
             </Chip>
           </Tab>
-          <Tab>Search library</Tab>
+          <Tab indicatorInset>Search library</Tab>
         </TabList>
-        <Box
-          sx={(theme) => ({
-            '--bg': theme.vars.palette.background.level3,
-            height: '1px',
-            background: 'var(--bg)',
-            boxShadow: '0 0 0 100vmax var(--bg)',
-            clipPath: 'inset(0 -100vmax)',
-          })}
-        />
         <Box
           sx={(theme) => ({
             '--bg': theme.vars.palette.background.surface,
             background: 'var(--bg)',
             boxShadow: '0 0 0 100vmax var(--bg)',
             clipPath: 'inset(0 -100vmax)',
-            px: 4,
-            py: 2,
           })}
         >
           <TabPanel value={0}>
@@ -109,7 +82,6 @@ export default function TabsPageExample() {
               level="h2"
               component="div"
               fontSize="lg"
-              mb={2}
               textColor="text.primary"
             >
               Deals panel
@@ -120,7 +92,6 @@ export default function TabsPageExample() {
               level="h2"
               component="div"
               fontSize="lg"
-              mb={2}
               textColor="text.primary"
             >
               Library panel

@@ -1,19 +1,19 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
+import Divider from '@mui/joy/Divider';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
-import ListDivider from '@mui/joy/ListDivider';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Input, { inputClasses } from '@mui/joy/Input';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import BrandingProvider from 'docs/src/BrandingProvider';
 
 interface DataItem {
   var: string;
@@ -48,9 +48,7 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
         aria-controls={`section-${slot}`}
         component="button"
         underline="none"
-        fontSize="xs"
-        letterSpacing="md"
-        textTransform="uppercase"
+        fontSize="sm"
         fontWeight="lg"
         endDecorator={
           <KeyboardArrowDown
@@ -58,7 +56,11 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
           />
         }
         onClick={() => setOpen(!open)}
-        sx={{ justifyContent: 'space-between', color: open ? 'text.primary' : 'text.tertiary' }}
+        sx={{
+          pb: 1,
+          justifyContent: 'space-between',
+          color: open ? 'text.primary' : 'text.tertiary',
+        }}
       >
         {slot}
       </Link>
@@ -70,9 +72,9 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
           id={`section-${slot}`}
           sx={{
             display: 'flex',
+            flexDirection: 'column',
             flexWrap: 'wrap',
-            gap: 2,
-            '& > *': { flex: 1 },
+            gap: 1,
           }}
         >
           {data.map((item) => renderField(item))}
@@ -94,28 +96,36 @@ export default function JoyVariablesDemo(props: {
   return (
     <Box
       sx={{
-        m: 0,
-        mt: 2,
         flexGrow: 1,
-        maxWidth: 'calc(100% + 24px)',
+        maxWidth: '100%',
         display: 'flex',
-        flexDirection: { xs: 'column', sm: 'row' },
-        flexWrap: 'wrap',
-        gap: 2,
+        flexDirection: { xs: 'column', md: 'row' },
         '& .markdown-body pre': {
           margin: 0,
-          borderRadius: 'sm',
+          borderRadius: 'md',
         },
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 999 }}>
+      <Box
+        sx={(theme) => ({
+          display: 'flex',
+          flexDirection: 'column',
+          flexGrow: 999,
+          minWidth: 0,
+          p: 3,
+          gap: 3,
+          bgcolor: '#FFF',
+          [theme.getColorSchemeSelector('dark')]: {
+            backgroundColor: theme.palette.neutral[900],
+          },
+        })}
+      >
         <Box
           sx={{
             flexGrow: 1,
             m: 'auto',
             display: 'flex',
             alignItems: 'center',
-            p: 2,
           }}
         >
           {props.renderDemo(sx)}
@@ -128,29 +138,39 @@ export default function JoyVariablesDemo(props: {
                 : `<${componentName} ${formatSx(sx)}${childrenAccepted ? '>' : '/>'}`
             }
             language="jsx"
-            sx={{ display: { xs: 'none', md: 'initial' } }}
+            sx={{ display: { xs: 'none', md: 'block' } }}
           />
         </BrandingProvider>
       </Box>
       <Sheet
-        variant="outlined"
-        sx={{
-          minWidth: 0,
-          flexBasis: 240,
-          flexGrow: 1,
-          borderRadius: 'sm',
-          boxShadow: 'sm',
-        }}
+        sx={(theme) => ({
+          flexShrink: 0,
+          gap: 2,
+          borderLeft: '1px solid',
+          borderColor: `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+          background: `rgba(${theme.vars.palette.primary.mainChannel} / 0.02)`,
+          backdropFilter: 'blur(8px)',
+          minWidth: '280px',
+        })}
       >
-        <List component="div" sx={{ '--List-padding': '1rem', '--ListDivider-gap': '0px' }}>
+        <List component="div">
           <Box
-            sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+            sx={{
+              px: 3,
+              pt: 1,
+              pb: 2,
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
           >
-            <Typography fontWeight="lg">CSS Variables</Typography>
+            <Typography fontWeight="lg" sx={{ fontFamily: 'General Sans' }}>
+              CSS variables
+            </Typography>
             <IconButton
               aria-label="Reset all"
               variant="outlined"
-              color="neutral"
+              color="primary"
               size="sm"
               onClick={() => setSx({})}
               sx={{
@@ -161,11 +181,13 @@ export default function JoyVariablesDemo(props: {
               <ReplayRoundedIcon />
             </IconButton>
           </Box>
+          <Divider sx={{ opacity: 0.5 }} />
           <Box
             sx={{
+              p: 3,
               display: 'flex',
               flexDirection: 'column',
-              gap: 2,
+              gap: 1,
             }}
           >
             {data.map((dataItem) => {
@@ -174,7 +196,11 @@ export default function JoyVariablesDemo(props: {
                 const resolvedInputAttributes = item.inputAttributes || {};
                 return (
                   <FormControl key={item.var}>
-                    <FormLabel>{item.var}</FormLabel>
+                    <FormLabel
+                      sx={{ fontFamily: 'Menlo, Consolas', '--FormLabel-fontSize': '0.75rem' }}
+                    >
+                      {item.var}
+                    </FormLabel>
                     <Input
                       size="sm"
                       variant="outlined"
@@ -184,28 +210,27 @@ export default function JoyVariablesDemo(props: {
                       }}
                       endDecorator={
                         <React.Fragment>
-                          {typeof resolvedValue === 'string' ? (
-                            <Typography level="body3" mr={0.5}>
+                          {typeof resolvedValue === 'string' && (
+                            <Typography level="body-xs" mr={0.5}>
                               px
                             </Typography>
-                          ) : null}
-                          {sx[item.var] && sx[item.var] !== item.defaultValue ? (
-                            <IconButton
-                              tabIndex={-1}
-                              variant="plain"
-                              color="neutral"
-                              size="sm"
-                              onClick={() =>
-                                setSx((prevSx) => {
-                                  const newSx = { ...prevSx };
-                                  delete newSx[item.var];
-                                  return newSx;
-                                })
-                              }
-                            >
-                              <ReplayRoundedIcon fontSize="sm" />
-                            </IconButton>
-                          ) : null}
+                          )}
+                          <IconButton
+                            tabIndex={-1}
+                            variant="plain"
+                            color="neutral"
+                            size="sm"
+                            disabled={!sx[item.var] && sx[item.var] !== item.defaultValue}
+                            onClick={() =>
+                              setSx((prevSx) => {
+                                const newSx = { ...prevSx };
+                                delete newSx[item.var];
+                                return newSx;
+                              })
+                            }
+                          >
+                            <ReplayRoundedIcon fontSize="sm" />
+                          </IconButton>
                         </React.Fragment>
                       }
                       type="number"
@@ -241,14 +266,15 @@ export default function JoyVariablesDemo(props: {
                         [`& .${inputClasses.endDecorator}`]: { alignItems: 'center' },
                       }}
                     />
-                    <FormHelperText>{item.helperText}</FormHelperText>
+                    <FormHelperText sx={{ mb: 1, '--FormHelperText-fontSize': '0.75rem' }}>
+                      {item.helperText}
+                    </FormHelperText>
                   </FormControl>
                 );
               }
               if (Array.isArray(dataItem)) {
                 const [slot, slotData, options] = dataItem;
                 return [
-                  <ListDivider key="divider" />,
                   <SlotVariables
                     key="variables"
                     slot={slot}

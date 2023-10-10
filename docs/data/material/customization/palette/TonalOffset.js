@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import { Box, Stack } from '@mui/system';
@@ -69,9 +70,14 @@ function ColorShowcase({ title, color }) {
   );
 }
 
+ColorShowcase.propTypes = {
+  color: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
+
 export default function TonalOffset() {
   return (
-    <Stack direction="row" gap={8}>
+    <Stack direction={{ xs: 'column', sm: 'row' }} gap={8}>
       <ThemeProvider theme={defaultTonalOffsetTheme}>
         <ColorShowcase title="Default tonal offset" color="primary" />
       </ThemeProvider>

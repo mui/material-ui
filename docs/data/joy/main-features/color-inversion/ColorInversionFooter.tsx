@@ -45,7 +45,6 @@ export default function ColorInversionFooter() {
               'primary',
               'neutral',
               'danger',
-              'info',
               'success',
               'warning',
             ];
@@ -103,8 +102,8 @@ export default function ColorInversionFooter() {
             <img alt="" src="/static/blog/mui-product-comparison/ecosystem.png" />
           </AspectRatio>
           <CardContent>
-            <Typography level="body2">Intro to the MUI ecosystem</Typography>
-            <Typography level="body3" sx={{ mb: 0.5 }}>
+            <Typography level="body-sm">Intro to the MUI ecosystem</Typography>
+            <Typography level="body-xs" sx={{ mb: 0.5 }}>
               MUI blog
             </Typography>
           </CardContent>
@@ -113,7 +112,7 @@ export default function ColorInversionFooter() {
           size="sm"
           orientation="horizontal"
           wrap
-          sx={{ flexGrow: 0, '--ListItem-radius': '8px' }}
+          sx={{ flexGrow: 0, '--ListItem-radius': '8px', '--ListItem-gap': '0px' }}
         >
           <ListItem nested sx={{ width: { xs: '50%', md: 140 } }}>
             <ListSubheader>Sitemap</ListSubheader>

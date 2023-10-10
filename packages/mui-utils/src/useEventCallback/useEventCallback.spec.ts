@@ -1,5 +1,5 @@
-import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
 import { expectType } from '@mui/types';
+import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
 
 function InferenceTest() {
   useEventCallback((event) => {

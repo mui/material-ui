@@ -6,42 +6,43 @@ import { Theme } from '../styles';
 import { TypographyOwnProps } from '../Typography';
 import { LinkClasses } from './linkClasses';
 
-export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
-  props: P &
-    LinkBaseProps & {
-      /**
-       * The content of the component.
-       */
-      children?: React.ReactNode;
-      /**
-       * Override or extend the styles applied to the component.
-       */
-      classes?: Partial<LinkClasses>;
-      /**
-       * The color of the link.
-       * @default 'primary'
-       */
-      color?: TypographyOwnProps['color'];
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps<Theme>;
-      /**
-       * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
-       */
-      TypographyClasses?: TypographyOwnProps['classes'];
-      /**
-       * Controls when the link should have an underline.
-       * @default 'always'
-       */
-      underline?: 'none' | 'hover' | 'always';
-      /**
-       * Applies the theme typography styles.
-       * @default 'inherit'
-       */
-      variant?: TypographyOwnProps['variant'];
-    };
-  defaultComponent: D;
+export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes'> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<LinkClasses>;
+  /**
+   * The color of the link.
+   * @default 'primary'
+   */
+  color?: TypographyOwnProps['color'];
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
+   * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
+   */
+  TypographyClasses?: TypographyOwnProps['classes'];
+  /**
+   * Controls when the link should have an underline.
+   * @default 'always'
+   */
+  underline?: 'none' | 'hover' | 'always';
+  /**
+   * Applies the theme typography styles.
+   * @default 'inherit'
+   */
+  variant?: TypographyOwnProps['variant'];
+}
+
+export interface LinkTypeMap<AdditionalProps = {}, RootComponent extends React.ElementType = 'a'> {
+  props: AdditionalProps & LinkOwnProps;
+  defaultComponent: RootComponent;
 }
 
 /**
@@ -64,8 +65,10 @@ export type LinkBaseProps = DistributiveOmit<
 >;
 
 export type LinkProps<
-  D extends React.ElementType = LinkTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<LinkTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = LinkTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<LinkTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Link;

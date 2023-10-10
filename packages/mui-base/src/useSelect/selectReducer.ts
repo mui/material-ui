@@ -8,7 +8,7 @@ import {
 import { ActionWithContext } from '../utils/useControllableReducer.types';
 import { SelectAction, SelectActionTypes, SelectInternalState } from './useSelect.types';
 
-export default function selectReducer<OptionValue>(
+export function selectReducer<OptionValue>(
   state: SelectInternalState<OptionValue>,
   action: ActionWithContext<ListAction<OptionValue> | SelectAction, ListActionContext<OptionValue>>,
 ) {

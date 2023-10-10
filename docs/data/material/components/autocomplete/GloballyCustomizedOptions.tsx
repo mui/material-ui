@@ -26,7 +26,7 @@ const customTheme = (outerTheme: Theme) =>
               component="li"
               {...props}
             >
-              {ownerState.getOptionLabel?.(option)}
+              {ownerState.getOptionLabel(option)}
             </Box>
           ),
         },

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { useTheme } from '@mui/system';
 
 export default function UnstyledTextareaAutosize() {
@@ -75,10 +75,10 @@ function Styles() {
         box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
         outline: none;
       }
-      
+
       // firefox
       .CustomTextarea:focus-visible {
-      outline: 0;
+        outline: 0;
       }
     `}
     </style>

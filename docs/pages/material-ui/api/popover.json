@@ -21,8 +21,9 @@
       "default": "'anchorEl'"
     },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
     "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
     "marginThreshold": { "type": { "name": "number" }, "default": "16" },
     "onClose": { "type": { "name": "func" } },
@@ -48,7 +49,7 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "transformOrigin": {
       "type": {
@@ -68,6 +69,10 @@
     "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
   },
   "name": "Popover",
+  "imports": [
+    "import Popover from '@mui/material/Popover';",
+    "import { Popover } from '@mui/material';"
+  ],
   "styles": { "classes": ["root", "paper"], "globalClasses": {}, "name": "MuiPopover" },
   "spread": true,
   "themeDefaultProps": false,

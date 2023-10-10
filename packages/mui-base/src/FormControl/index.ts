@@ -1,16 +1,16 @@
 'use client';
-export { default } from './FormControl';
+export { FormControl } from './FormControl';
 
-export { default as FormControlContext } from './FormControlContext';
+export { FormControlContext } from './FormControlContext';
 
 export type {
   FormControlProps,
   FormControlRootSlotPropsOverrides,
   FormControlState,
   UseFormControlContextReturnValue,
+  FormControlOwnProps,
 } from './FormControl.types';
 
-export { default as formControlClasses } from './formControlClasses';
 export * from './formControlClasses';
 
-export { default as useFormControlContext } from './useFormControlContext';
+export { useFormControlContext } from './useFormControlContext';

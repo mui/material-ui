@@ -2,7 +2,7 @@ import * as React from 'react';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
 import { faInfo } from '@fortawesome/free-solid-svg-icons/faInfo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import SvgIcon from '@mui/material/SvgIcon';
@@ -42,13 +42,7 @@ const FontAwesomeSvgIcon = React.forwardRef<SVGSVGElement, FontAwesomeSvgIconPro
 
 export default function FontAwesomeSvgIconDemo() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': {
-          m: 1,
-        },
-      }}
-    >
+    <Stack direction="row" spacing={2}>
       <IconButton aria-label="Example">
         <FontAwesomeIcon icon={faEllipsisV} />
       </IconButton>
@@ -61,6 +55,6 @@ export default function FontAwesomeSvgIconDemo() {
       <Button variant="contained" startIcon={<FontAwesomeSvgIcon icon={faInfo} />}>
         Example
       </Button>
-    </Box>
+    </Stack>
   );
 }

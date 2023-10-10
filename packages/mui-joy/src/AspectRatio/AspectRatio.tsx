@@ -30,7 +30,7 @@ const AspectRatioRoot = styled('div', {
   name: 'JoyAspectRatio',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AspectRatioOwnerState }>(({ ownerState }) => {
+})<{ ownerState: AspectRatioOwnerState }>(({ ownerState, theme }) => {
   const minHeight =
     typeof ownerState.minHeight === 'number' ? `${ownerState.minHeight}px` : ownerState.minHeight;
   const maxHeight =
@@ -40,7 +40,13 @@ const AspectRatioRoot = styled('div', {
     '--AspectRatio-paddingBottom': `clamp(var(--AspectRatio-minHeight), calc(100% / (${ownerState.ratio})), var(--AspectRatio-maxHeight))`,
     '--AspectRatio-maxHeight': maxHeight || '9999px',
     '--AspectRatio-minHeight': minHeight || '0px',
+    '--Icon-color':
+      ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+        ? 'currentColor'
+        : theme.vars.palette.text.icon,
     borderRadius: 'var(--AspectRatio-radius)',
+    display: ownerState.flex ? 'flex' : 'block',
+    flex: ownerState.flex ? 1 : 'initial',
     flexDirection: 'column',
     margin: 'var(--AspectRatio-margin)',
   };
@@ -50,38 +56,37 @@ const AspectRatioContent = styled('div', {
   name: 'JoyAspectRatio',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,
-})<{ ownerState: AspectRatioOwnerState }>(({ theme, ownerState }) => [
-  {
-    flex: 1,
-    position: 'relative',
-    borderRadius: 'inherit',
-    height: 0,
-    paddingBottom: 'calc(var(--AspectRatio-paddingBottom) - 2 * var(--variant-borderWidth, 0px))',
-    overflow: 'hidden',
-    transition: 'inherit', // makes it easy to add transition to the content
-    // use data-attribute instead of :first-child to support zero config SSR (emotion)
-    // use nested selector for integrating with nextjs image `fill` layout (spans are inserted on top of the img)
-    '& [data-first-child]': {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      boxSizing: 'border-box',
-      position: 'absolute',
+})<{ ownerState: AspectRatioOwnerState }>(({ theme, ownerState }) => ({
+  flex: 1,
+  position: 'relative',
+  borderRadius: 'inherit',
+  height: 0,
+  paddingBottom: 'calc(var(--AspectRatio-paddingBottom) - 2 * var(--variant-borderWidth, 0px))',
+  overflow: 'hidden',
+  transition: 'inherit', // makes it easy to add transition to the content
+  // use data-attribute instead of :first-child to support zero config SSR (emotion)
+  // use nested selector for integrating with nextjs image `fill` layout (spans are inserted on top of the img)
+  '& [data-first-child]': {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    objectFit: ownerState.objectFit,
+    margin: 0,
+    padding: 0,
+    '& > img': {
+      // support art-direction that uses <picture><img /></picture>
       width: '100%',
       height: '100%',
       objectFit: ownerState.objectFit,
-      margin: 0,
-      padding: 0,
-      '& > img': {
-        // support art-direction that uses <picture><img /></picture>
-        width: '100%',
-        height: '100%',
-        objectFit: ownerState.objectFit,
-      },
     },
   },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-]);
+  ...theme.typography['body-md'],
+  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+}));
 
 /**
  *
@@ -109,6 +114,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     color: colorProp = 'neutral',
     variant = 'soft',
     component,
+    flex = false,
     slots = {},
     slotProps = {},
     ...other
@@ -118,6 +124,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
 
   const ownerState = {
     ...props,
+    flex,
     minHeight,
     maxHeight,
     objectFit,
@@ -171,12 +178,18 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * By default, the AspectRatio will maintain the aspect ratio of its content.
+   * Set this prop to `true` when the container is a flex row and you want the AspectRatio to fill the height of its container.
+   * @default false
+   */
+  flex: PropTypes.bool,
   /**
    * The maximum calculated height of the element (not the CSS height).
    */

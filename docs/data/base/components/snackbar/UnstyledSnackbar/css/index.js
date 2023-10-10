@@ -1,6 +1,6 @@
 import * as React from 'react';
-import useSnackbar from '@mui/base/useSnackbar';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { useSnackbar } from '@mui/base/useSnackbar';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { useTheme } from '@mui/system';
 
 export default function UseSnackbar() {
@@ -77,7 +77,7 @@ function Styles() {
       from {
         transform: translateX(100%);
       }
-    
+
       to {
         transform: translateX(0);
       }

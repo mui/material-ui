@@ -9,7 +9,7 @@ githubLabel: 'component: snackbar'
 <p class="description">The Snackbar, also commonly referred to as Toast, component informs users that an action has been or will be performed by the app.</p>
 
 :::info
-💡 The Joy UI Snackbar component is still in development.
+The Joy UI Snackbar component is still in development.
 If you're in need of it, please upvote [**this GitHub issue**](https://github.com/mui/material-ui/issues/36603) to help us prioritize the next batch of new components.
 :::
 
@@ -31,8 +31,8 @@ Radix will enhance the functionalities by preserving the styles of Joy UI compon
 Animation is created by targeting `data-*` attributes injected by Radix UI's `Toast.Root` component.
 In this demo, it uses `@mui/system` keyframes API, same as emotion's keyframes, to build the animation stylesheet.
 
-- [Install Radix UI's Toast](https://www.radix-ui.com/docs/primitives/components/toast#installation)
-- [Toast component documentation](https://www.radix-ui.com/docs/primitives/components/toast)
+- [Install Radix UI's Toast](https://www.radix-ui.com/primitives/docs/components/toast#installation)
+- [Toast component documentation](https://www.radix-ui.com/primitives/docs/components/toast)
 
 <iframe src="https://codesandbox.io/embed/snackbar-joy-ui-feat-radix-v8e7qw?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
      style="width:100%; height:360px; border:2; border-radius: 8px; overflow:hidden;"

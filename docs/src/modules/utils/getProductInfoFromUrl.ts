@@ -6,6 +6,8 @@ export type MuiProductId =
   | 'material-ui'
   | 'joy-ui'
   | 'system'
+  | 'docs-infra'
+  | 'docs'
   | 'x-data-grid'
   | 'x-date-pickers'
   | 'x-charts';
@@ -49,8 +51,17 @@ export default function getProductInfoFromUrl(asPath: string): MuiProductInfo {
     }
   }
 
-  if (firstFolder === 'toolpad') {
-    productId = 'toolpad';
+  if (firstFolder === 'toolpad' || firstFolder === 'docs') {
+    productId = firstFolder;
+  }
+
+  // TODO remove, legacy
+  if (firstFolder === 'versions' || firstFolder === 'production-error') {
+    productId = 'docs';
+  }
+
+  if (asPathWithoutLang.startsWith('/experiments/docs/')) {
+    productId = 'docs-infra';
   }
 
   return {

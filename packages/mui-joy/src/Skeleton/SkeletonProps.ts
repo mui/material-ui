@@ -45,7 +45,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
     height?: ResponsiveStyleValue<number | string>;
     /**
      * Applies the theme typography styles.
-     * @default variant === 'text' ? 'body1' : 'inherit'
+     * @default variant === 'text' ? 'body-md' : 'inherit'
      */
     level?: keyof TypographySystem | 'inherit';
     /**

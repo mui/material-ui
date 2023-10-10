@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@mui/types';
-import { Theme } from '../createTheme';
+import { Theme as SystemTheme } from '../createTheme';
 import {
   SxProps,
   AllSystemCSSProperties,
@@ -105,6 +105,12 @@ export declare const spacing: SimpleStyleFunction<
   | 'marginLeft'
   | 'marginX'
   | 'marginY'
+  | 'marginInline'
+  | 'marginInlineStart'
+  | 'marginInlineEnd'
+  | 'marginBlock'
+  | 'marginBlockStart'
+  | 'marginBlockEnd'
   | 'padding'
   | 'paddingTop'
   | 'paddingRight'
@@ -112,6 +118,12 @@ export declare const spacing: SimpleStyleFunction<
   | 'paddingLeft'
   | 'paddingX'
   | 'paddingY'
+  | 'paddingInline'
+  | 'paddingInlineStart'
+  | 'paddingInlineEnd'
+  | 'paddingBlock'
+  | 'paddingBlockStart'
+  | 'paddingBlockEnd'
 >;
 
 export declare const typography: SimpleStyleFunction<
@@ -170,23 +182,29 @@ export type SystemProps<Theme extends object = {}> = {
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>);
 };
 
-export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div', T extends object = Theme> {
-  props: P &
-    SystemProps<T> & {
-      children?: React.ReactNode;
-      /**
-       * The component used for the root node.
-       * Either a string to use a HTML element or a component.
-       */
-      component?: React.ElementType;
-      ref?: React.Ref<unknown>;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps<T>;
-    };
-  defaultComponent: D;
+export interface BoxOwnProps<Theme extends object = SystemTheme> extends SystemProps<SystemTheme> {
+  children?: React.ReactNode;
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component?: React.ElementType;
+  ref?: React.Ref<unknown>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
+
+export interface BoxTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+  Theme extends object = SystemTheme,
+> {
+  props: AdditionalProps & BoxOwnProps<Theme>;
+  defaultComponent: RootComponent;
+}
+
 /**
  *
  * Demos:
@@ -201,8 +219,10 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div', T exten
 declare const Box: OverridableComponent<BoxTypeMap>;
 
 export type BoxProps<
-  D extends React.ElementType = BoxTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BoxTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = BoxTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BoxTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Box;
