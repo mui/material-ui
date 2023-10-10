@@ -1,13 +1,10 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
+import { styled, alpha } from '@mui/material/styles';
 import {
-  styled,
-  // alpha
-} from '@mui/material/styles';
-// import {
-//   brandingDarkTheme as darkTheme,
-//   brandingLightTheme as lightTheme,
-// } from 'docs/src/modules/brandingTheme';
+  brandingDarkTheme as darkTheme,
+  brandingLightTheme as lightTheme,
+} from 'docs/src/modules/brandingTheme';
 import { SlotsFormatedParams, getHash } from 'docs/src/modules/components/ApiPage/list/SlotsList';
 
 const StyledTable = styled('table')(
@@ -19,38 +16,62 @@ const StyledTable = styled('table')(
       fontWeight: theme.typography.fontWeightSemiBold,
       fontSize: theme.typography.pxToRem(14),
     },
-    '& .MuiApi-table-rule-name': {
-      //   fontWeight: theme.typography.fontWeightSemiBold,
-      //   fontFamily: theme.typography.fontFamilyCode,
-      //   fontSize: theme.typography.pxToRem(13),
-      //   color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
+    '& tr': {
+      '&:hover': {
+        backgroundColor: alpha(darkTheme.palette.grey[50], 0.5),
+      },
     },
-    '& .MuiApi-table-global-class': {
-      //   padding: '0 4px',
-      //   borderRadius: 5,
-      //   color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-      //   backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
-      //   border: '1px solid',
-      //   borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
-      //   ...theme.typography.caption,
-      //   fontFamily: theme.typography.fontFamilyCode,
-      //   fontWeight: theme.typography.fontWeightRegular,
+    '& .slot-name': {
+      fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightSemiBold,
+      fontSize: theme.typography.pxToRem(13),
+      color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
     },
-    '& .MuiApi-table-description': {
-      //   padding: '0 4px',
-      //   borderRadius: 5,
-      //   border: '1px solid',
-      //   borderColor: alpha(darkTheme.palette.primary[100], 0.5),
-      //   backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
-      //   ...theme.typography.caption,
-      //   fontFamily: theme.typography.fontFamilyCode,
-      //   fontWeight: theme.typography.fontWeightRegular,
+    '& .class-name': {
+      padding: '0 4px',
+      borderRadius: 5,
+      color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
+      border: '1px solid',
+      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+      ...theme.typography.caption,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightRegular,
+    },
+    '& .item-default': {
+      padding: '0 4px',
+      borderRadius: 5,
+      border: '1px solid',
+      borderColor: alpha(darkTheme.palette.primary[100], 0.5),
+      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+      ...theme.typography.caption,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightRegular,
+    },
+    '& .description-column': {
+      width: '40%',
+      paddingRight: 8,
     },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
-      '& .MuiApi-table-rule-name': {
-        // color: `var(--muidocs-palette-primary-700, ${darkTheme.palette.primary[700]})`,
+      '& tr': {
+        '&:hover': {
+          backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.5),
+        },
+      },
+      '& .slot-name': {
+        color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+      },
+      '& .class-name': {
+        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+        backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
+        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+      },
+      '& .item-default': {
+        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
       },
     },
   }),
@@ -78,14 +99,13 @@ export default function SlotsTable(props: SlotsTableProps) {
 
           return (
             <tr key={className} id={getHash({ componentName, className })}>
-              <td className="MuiApi-table-slot-name">{name}</td>
-              <td className="MuiApi-table-class-name">{className}</td>
-              <td className="MuiApi-table-default-value">
-                {defaultValue && <code>{defaultValue}</code>}
+              <td className="slot-name">{name}</td>
+              <td className="MuiApi-table-class-name">
+                <span className="class-name">{className}</span>
               </td>
-              <td>
+              <td>{defaultValue && <code className="item-default">{defaultValue}</code>}</td>
+              <td className="description-column">
                 <span
-                  className="MuiApi-table-description"
                   dangerouslySetInnerHTML={{
                     __html: description || '',
                   }}

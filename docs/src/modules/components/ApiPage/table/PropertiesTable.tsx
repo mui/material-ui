@@ -33,8 +33,8 @@ const StyledTable = styled('table')(
     },
     '& .MuiApi-table-item-title': {
       minWidth: '20%',
-      fontWeight: theme.typography.fontWeightSemiBold,
       fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightSemiBold,
       fontSize: theme.typography.pxToRem(13),
       color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
     },
