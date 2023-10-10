@@ -155,6 +155,13 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     ownerState,
     className: classes.rail,
   });
+  let adjustedTrackOffset = trackOffset;
+  let adjustedTrackLeap = trackLeap;
+
+  if (track === 'inverted') {
+    adjustedTrackLeap = 100 - trackOffset - trackLeap;
+    adjustedTrackOffset = 100 - adjustedTrackLeap;
+  }
 
   const Track = slots.track ?? 'span';
   const trackProps = useSlotProps({
@@ -162,8 +169,8 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     externalSlotProps: slotProps.track,
     additionalProps: {
       style: {
-        ...axisProps[axis].offset(trackOffset),
-        ...axisProps[axis].leap(trackLeap),
+        ...axisProps[axis].offset(adjustedTrackOffset),
+        ...axisProps[axis].leap(adjustedTrackLeap),
       },
     },
     ownerState,

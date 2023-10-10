@@ -40,6 +40,13 @@ describe('<Slider />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
+  it('should apply the correct classes when track="inverted"', () => {
+    render(<Slider track="inverted" value={50} />);
+
+    const slider = screen.getByRole('slider');
+    expect(slider).to.have.class('trackInverted');
+  });
+
   describeConformanceUnstyled(<Slider value={0} />, () => ({
     classes,
     inheritComponent: 'span',
