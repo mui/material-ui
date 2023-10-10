@@ -158,6 +158,17 @@ const openRolesData = [
       },
     ],
   },
+  {
+    title: 'Design',
+    roles: [
+      {
+        title: 'Design Engineer - xGrid',
+        description:
+          'You will focus on design to implement great product experience for the MUI X Data Grid.',
+        url: '/careers/design-engineer-x-grid/',
+      },
+    ],
+  },
 ];
 
 const nextRolesData = [
