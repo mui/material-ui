@@ -100,7 +100,7 @@ function Styles() {
           isDarkMode ? `0 4px 8px rgb(0 0 0 / 0.7)` : `0 4px 8px rgb(0 0 0 / 0.1)`
         };
         padding: 0.75rem;
-        color: ${isDarkMode ? cyan[100] : cyan[700]};
+        color: ${isDarkMode ? grey[100] : grey[700]};
         font-size: 0.875rem;
         font-family: 'IBM Plex Sans', sans-serif;
         font-weight: 500;
