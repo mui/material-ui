@@ -1132,10 +1132,12 @@ export function useAutocomplete(props) {
     }),
     getClearProps: () => ({
       tabIndex: -1,
+      type: 'button',
       onClick: handleClear,
     }),
     getPopupIndicatorProps: () => ({
       tabIndex: -1,
+      type: 'button',
       onClick: handlePopupIndicator,
     }),
     getTagProps: ({ index }) => ({

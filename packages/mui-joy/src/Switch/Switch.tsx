@@ -13,7 +13,7 @@ import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
 import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: SwitchOwnerState) => {
-  const { checked, disabled, focusVisible, readOnly, color, variant } = ownerState;
+  const { checked, disabled, focusVisible, readOnly, color, variant, size } = ownerState;
 
   const slots = {
     root: [
@@ -24,6 +24,7 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
       readOnly && 'readOnly',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
     ],
     thumb: ['thumb', checked && 'checked'],
     track: ['track', checked && 'checked'],
