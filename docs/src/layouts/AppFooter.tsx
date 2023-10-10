@@ -143,10 +143,12 @@ export default function AppFooter(props: AppFooterProps) {
       <Divider />
       <Box
         sx={{
-          my: 6,
-          display: { xs: 'block', sm: 'flex' },
+          my: 4,
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
           alignItems: { sm: 'center' },
           justifyContent: { sm: 'space-between' },
+          gap: { xs: 2, sm: 1 },
         }}
       >
         <Box
@@ -164,7 +166,7 @@ export default function AppFooter(props: AppFooterProps) {
             Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
           </Typography>
         </Box>
-        <Stack spacing={2} direction="row" sx={{ mt: { xs: 3, sm: 0 } }}>
+        <Stack spacing={1} direction="row" flexWrap="wrap" useFlexGap>
           <IconButton
             target="_blank"
             rel="noopener noreferrer"
