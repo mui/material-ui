@@ -134,7 +134,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
         <Box sx={{ mt: -0.5, mr: -0.5, ml: 'auto' }}>
           {props.github && (
             <IconButton
-              aria-label={`${props.name} github`}
+              aria-label={`${props.name} GitHub profile`}
               component="a"
               href={`https://github.com/${props.github}`}
               target="_blank"
