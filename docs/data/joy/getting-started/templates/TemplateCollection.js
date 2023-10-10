@@ -172,7 +172,11 @@ export default function TemplateCollection() {
                     ]}
                   >
                     <Visibility />
-                    <Typography fontWeight="bold" fontFamily="IBM Plex Sans">
+                    <Typography
+                      fontWeight="bold"
+                      fontFamily="IBM Plex Sans"
+                      textColor="text.primary"
+                    >
                       View live preview
                     </Typography>
                   </Link>
