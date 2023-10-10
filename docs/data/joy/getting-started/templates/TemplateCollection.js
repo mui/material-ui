@@ -12,6 +12,7 @@ import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 import Visibility from '@mui/icons-material/Visibility';
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
 
@@ -252,7 +253,7 @@ export default function TemplateCollection() {
                 }}
               >
                 <NextLink
-                  href={`/joy-ui/getting-started/templates/${template.name}/`}
+                  href={`https://github.com/mui/material-ui/tree/master/docs/data/joy/getting-started/templates/${template.name}`}
                   passHref
                   legacyBehavior
                 >
@@ -261,14 +262,14 @@ export default function TemplateCollection() {
                     variant="outlined"
                     color="neutral"
                     fullWidth
-                    startDecorator={<Visibility />}
+                    startDecorator={<CodeRoundedIcon />}
                     aria-label="See live preview"
                     data-ga-event-category="joy-template"
                     data-ga-event-label={template.name}
                     data-ga-event-action="preview"
                     sx={{ fontFamily: 'IBM Plex Sans' }}
                   >
-                    Preview
+                    Source code
                   </Button>
                 </NextLink>
                 <Button
