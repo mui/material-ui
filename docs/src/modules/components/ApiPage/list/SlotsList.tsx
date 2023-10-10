@@ -1,7 +1,10 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import { brandingDarkTheme as darkTheme } from 'docs/src/modules/brandingTheme';
+import { styled, alpha } from '@mui/material/styles';
+import {
+  brandingLightTheme as lightTheme,
+  brandingDarkTheme as darkTheme,
+} from 'docs/src/modules/brandingTheme';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ExpendableApiItem, {
   ApiItemContaier,
@@ -10,15 +13,34 @@ import ExpendableApiItem, {
 const StyledApiItem = styled(ExpendableApiItem)(
   ({ theme }) => ({
     '.slot-classname, .slot-default-element': {
-      ...theme.typography.body2,
-      fontWeight: theme.typography.fontWeightSemiBold,
+      '& .prop-list-title': {
+        ...theme.typography.body2,
+        fontWeight: theme.typography.fontWeightSemiBold,
+        color: theme.palette.text.primary,
+      },
       marginBottom: 8,
+    },
+    '& .default-slot-value': {
+      ...theme.typography.caption,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightRegular,
+      borderColor: alpha(darkTheme.palette.primary[100], 0.5),
+      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+    },
+    '& .global-class-value': {
+      ...theme.typography.caption,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightRegular,
     },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .slot-classname': {
         color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
+      },
+      '& .default-slot-value': {
+        borderColor: alpha(darkTheme.palette.primary[400], 0.1),
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
       },
     },
   }),
@@ -70,16 +92,19 @@ export default function SlotsList(props: SlotsListProps) {
                 }}
               />
             )}
-            {defaultValue && (
-              <p className="slot-default-element">
-                <span>{t('api-docs.default')}:</span>{' '}
-                <code className="Api-code">{defaultValue}</code>
+            {className && (
+              <p className="slot-classname">
+                <span className="prop-list-title">{t('api-docs.globalClass')}:</span>{' '}
+                <code
+                  dangerouslySetInnerHTML={{ __html: className }}
+                  className="global-class-value"
+                />
               </p>
             )}
-            {className && (
-              <p className="slot-classname MuiApi-collapsible">
-                <span>{t('api-docs.globalClass')}:</span>{' '}
-                <code dangerouslySetInnerHTML={{ __html: className }} className="Api-code" />
+            {defaultValue && (
+              <p className="slot-default-element">
+                <span className="prop-list-title">{t('api-docs.default')}:</span>{' '}
+                <code className="default-slot-value">{defaultValue}</code>
               </p>
             )}
           </StyledApiItem>

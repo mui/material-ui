@@ -16,6 +16,11 @@ const StyledTable = styled('table')(
       fontWeight: theme.typography.fontWeightSemiBold,
       fontSize: theme.typography.pxToRem(14),
     },
+    '& tr': {
+      '&:hover': {
+        backgroundColor: alpha(darkTheme.palette.grey[50], 0.5),
+      },
+    },
     '& .MuiApi-table-rule-name': {
       fontWeight: theme.typography.fontWeightSemiBold,
       fontFamily: theme.typography.fontFamilyCode,
@@ -50,6 +55,11 @@ const StyledTable = styled('table')(
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+      '& tr': {
+        '&:hover': {
+          backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.5),
+        },
+      },
       '& .MuiApi-table-className': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,

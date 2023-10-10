@@ -20,6 +20,11 @@ const StyledTable = styled('table')(
       fontWeight: theme.typography.fontWeightSemiBold,
       fontSize: theme.typography.pxToRem(14),
     },
+    '& tr': {
+      '&:hover': {
+        backgroundColor: alpha(darkTheme.palette.grey[50], 0.5),
+      },
+    },
     '& .type-column': {
       minWidth: '20%',
     },
@@ -28,18 +33,17 @@ const StyledTable = styled('table')(
     },
     '& .MuiApi-table-item-title': {
       minWidth: '20%',
-      fontWeight: theme.typography.fontWeightSemiBold,
       fontFamily: theme.typography.fontFamilyCode,
+      fontWeight: theme.typography.fontWeightSemiBold,
       fontSize: theme.typography.pxToRem(13),
       color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
     },
     '& .MuiApi-table-item-type': {
       padding: '0 4px',
       borderRadius: 5,
-      color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
       border: '1px solid',
-      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+      borderColor: alpha(darkTheme.palette.primary[100], 0.5),
+      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
       ...theme.typography.caption,
       fontFamily: theme.typography.fontFamilyCode,
       fontWeight: theme.typography.fontWeightRegular,
@@ -47,9 +51,10 @@ const StyledTable = styled('table')(
     '& .MuiApi-table-item-default': {
       padding: '0 4px',
       borderRadius: 5,
+      color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
       border: '1px solid',
-      borderColor: alpha(darkTheme.palette.primary[100], 0.5),
-      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       ...theme.typography.caption,
       fontFamily: theme.typography.fontFamilyCode,
       fontWeight: theme.typography.fontWeightRegular,
@@ -98,18 +103,23 @@ const StyledTable = styled('table')(
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+      '& tr': {
+        '&:hover': {
+          backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.5),
+        },
+      },
       '& .MuiApi-table-item-title': {
         color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
       },
       '& .MuiApi-table-item-type': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
-        backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
       },
       '& .MuiApi-table-item-default': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+        backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-        backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
       },
       '& .prop-list-signature': {
         '& .prop-list-title': {

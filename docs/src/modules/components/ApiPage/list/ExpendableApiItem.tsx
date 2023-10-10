@@ -48,7 +48,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       fontWeight: theme.typography.fontWeightSemiBold,
       fontFamily: theme.typography.fontFamilyCode,
       fontSize: theme.typography.pxToRem(13),
-      color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
+      color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
     },
     '& .MuiApi-item-content': {
       verticalAlign: 'top',
