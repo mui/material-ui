@@ -49,7 +49,15 @@ export interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation;
 }
 
-export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
+// Omit variants as a key, because we have a special handling for it
+export interface CSSObject
+  extends CSSPropertiesWithMultiValues,
+    CSSPseudos,
+    Omit<CSSOthersObject, 'variants'> {}
+
+interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
+  variants: Array<{ props: Props; variants: CSSObject }>;
+}
 
 export interface ComponentSelector {
   __emotion_styles: any;
@@ -85,6 +93,7 @@ export interface ArrayInterpolation<Props> extends Array<Interpolation<Props>> {
 
 export type Interpolation<Props> =
   | InterpolationPrimitive
+  | CSSObjectWithVariants<Props>
   | ArrayInterpolation<Props>
   | FunctionInterpolation<Props>;
 

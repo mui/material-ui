@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0-alpha.146",
+  "version": "5.0.0-alpha.147",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -41,11 +41,11 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.15",
-    "@mui/base": "5.0.0-beta.17",
-    "@mui/system": "^5.14.11",
-    "@mui/types": "^7.2.4",
-    "@mui/utils": "^5.14.11",
+    "@babel/runtime": "^7.23.1",
+    "@mui/base": "5.0.0-beta.18",
+    "@mui/system": "^5.14.12",
+    "@mui/types": "^7.2.5",
+    "@mui/utils": "^5.14.12",
     "@mui/x-tree-view": "6.0.0-alpha.1",
     "clsx": "^2.0.0",
     "prop-types": "^15.8.1"
@@ -54,10 +54,10 @@
     "@mui-internal/test-utils": "^1.0.0",
     "@types/chai": "^4.3.6",
     "@types/prop-types": "^15.7.7",
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
-    "@types/sinon": "^10.0.16",
-    "chai": "^4.3.8",
+    "@types/react": "^18.2.23",
+    "@types/react-dom": "^18.2.11",
+    "@types/sinon": "^10.0.19",
+    "chai": "^4.3.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sinon": "^15.2.0"

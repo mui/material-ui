@@ -66,6 +66,13 @@ const theme = createTheme();
 {
   createTheme({
     components: {
+      MuiPopper: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'red',
+          },
+        },
+      },
       MuiFormControlLabel: {
         styleOverrides: {
           root: {

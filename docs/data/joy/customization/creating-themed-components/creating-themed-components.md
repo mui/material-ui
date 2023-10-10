@@ -1,6 +1,6 @@
 # Creating themed components
 
-<p class="description">Create your own themeable component with Joy UI theming feature.</p>
+<p class="description">Learn how to create fully custom components that accept your app's theme.</p>
 
 ## Introduction
 
