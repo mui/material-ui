@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ToggleDisplayOption, {
+  API_LAYOUT_STORAGE_KEYS,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import CSSList, { getHash } from 'docs/src/modules/components/ApiPage/list/CSSList';
@@ -68,7 +69,7 @@ export default function CSSSection(props: CSSSectionProps) {
   } = props;
   const t = useTranslate();
 
-  const [displayOption, setDisplayOption] = useApiPageOption('api-page-props');
+  const [displayOption, setDisplayOption] = useApiPageOption(API_LAYOUT_STORAGE_KEYS.css);
 
   if (!componentStyles?.classes || componentStyles.classes.length === 0) {
     return null;

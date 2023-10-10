@@ -48,7 +48,7 @@ export default function PropertiesSection(props) {
   } = props;
   const t = useTranslate();
 
-  const [displayOption, setDisplayOption] = useApiPageOption('api-page-props');
+  const [displayOption, setDisplayOption] = useApiPageOption(API_LAYOUT_STORAGE_KEYS.props);
   const formatedProperties = Object.entries(properties)
     .filter(([, propData]) => propData.description !== '@ignore')
     .map(([propName, propData]) => {
