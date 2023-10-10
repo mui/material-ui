@@ -1,7 +1,7 @@
 # Contributing to MUI
 
 If you're reading this, you're awesome!
-Thank you for being a part of the MUI community and helping us make this project great.
+Thank you for being a part of the MUI community and helping us make these projects great.
 Here are a few guidelines that will help you along the way.
 
 ## Summary
@@ -296,9 +296,6 @@ If you're not familiar with TypeScript, you can write the demo in JavaScript, an
 
 The Markdown file in the component's respective folder—in this case, `/buttons/buttons.md`—is the source of content for the document.
 Any changes you make there will be reflected on the website.
-
-Note that you should only edit the English version of this doc—do not edit `buttons-pt.md` or `buttons-zh.md`.
-See [Translations](#translations) for more details.
 
 Add a header and a brief description of the demo and its use case, along with the `"demo"` code snippet to inject it into the page:
 
