@@ -158,7 +158,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
   let adjustedTrackOffset = trackOffset;
   let adjustedTrackLeap = trackLeap;
 
-  if (track === "inverted") {
+  if (track === 'inverted') {
     adjustedTrackLeap = 100 - trackOffset - trackLeap;
     adjustedTrackOffset = 100 - adjustedTrackLeap;
   }
