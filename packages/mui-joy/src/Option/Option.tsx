@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { useOption } from '@mui/base/useOption';
-import { stabilizeOptionContext } from '@mui/base/Option';
+import { useOption, useOptionContextStabilizer } from '@mui/base/useOption';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import { ListContext } from '@mui/base/useList';
 import useSlot from '../utils/useSlot';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
@@ -35,6 +35,73 @@ const OptionRoot = styled(StyledListItemButton as unknown as 'li', {
     },
   };
 });
+
+const Option = React.memo(
+  React.forwardRef(function Option(inProps: OptionProps, ref: React.ForwardedRef<HTMLLIElement>) {
+    const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+      props: inProps,
+      name: 'JoyOption',
+    });
+
+    const {
+      component = 'li',
+      children,
+      disabled = false,
+      value,
+      label,
+      variant: variantProp = 'plain',
+      color: colorProp = 'neutral',
+      slots = {},
+      slotProps = {},
+      ...other
+    } = props;
+
+    const row = React.useContext(RowListContext);
+    const { variant = variantProp, color = colorProp } = useVariantColor(
+      inProps.variant,
+      inProps.color,
+    );
+    const optionRef = React.useRef<HTMLLIElement>(null);
+    const combinedRef = useForkRef(optionRef, ref);
+
+    const computedLabel =
+      label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
+
+    const { getRootProps, selected, highlighted, index } = useOption({
+      disabled,
+      label: computedLabel,
+      value,
+      rootRef: combinedRef,
+    });
+
+    const ownerState: OptionOwnerState = {
+      ...props,
+      disabled,
+      selected,
+      highlighted,
+      index,
+      component,
+      variant,
+      color,
+      row,
+    };
+
+    const classes = useUtilityClasses(ownerState);
+    const externalForwardedProps = { ...other, component, slots, slotProps };
+
+    const [SlotRoot, rootProps] = useSlot('root', {
+      ref,
+      getSlotProps: getRootProps,
+      elementType: OptionRoot,
+      externalForwardedProps,
+      className: classes.root,
+      ownerState,
+    });
+
+    return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  }),
+);
+
 /**
  *
  * Demos:
@@ -45,75 +112,20 @@ const OptionRoot = styled(StyledListItemButton as unknown as 'li', {
  *
  * - [Option API](https://mui.com/joy-ui/api/option/)
  */
-const Option = stabilizeOptionContext(
-  React.memo(
-    React.forwardRef(function Option(inProps: OptionProps, ref: React.ForwardedRef<HTMLLIElement>) {
-      const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
-        props: inProps,
-        name: 'JoyOption',
-      });
+const StableOption = React.forwardRef(function StableOption(
+  props: OptionProps,
+  ref: React.ForwardedRef<HTMLLIElement>,
+) {
+  const { contextValue } = useOptionContextStabilizer(props.value);
 
-      const {
-        component = 'li',
-        children,
-        disabled = false,
-        value,
-        label,
-        variant: variantProp = 'plain',
-        color: colorProp = 'neutral',
-        slots = {},
-        slotProps = {},
-        ...other
-      } = props;
+  return (
+    <ListContext.Provider value={contextValue}>
+      <Option {...props} ref={ref} />
+    </ListContext.Provider>
+  );
+}) as ExtendOption<OptionTypeMap>;
 
-      const row = React.useContext(RowListContext);
-      const { variant = variantProp, color = colorProp } = useVariantColor(
-        inProps.variant,
-        inProps.color,
-      );
-      const optionRef = React.useRef<HTMLLIElement>(null);
-      const combinedRef = useForkRef(optionRef, ref);
-
-      const computedLabel =
-        label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
-
-      const { getRootProps, selected, highlighted, index } = useOption({
-        disabled,
-        label: computedLabel,
-        value,
-        rootRef: combinedRef,
-      });
-
-      const ownerState: OptionOwnerState = {
-        ...props,
-        disabled,
-        selected,
-        highlighted,
-        index,
-        component,
-        variant,
-        color,
-        row,
-      };
-
-      const classes = useUtilityClasses(ownerState);
-      const externalForwardedProps = { ...other, component, slots, slotProps };
-
-      const [SlotRoot, rootProps] = useSlot('root', {
-        ref,
-        getSlotProps: getRootProps,
-        elementType: OptionRoot,
-        externalForwardedProps,
-        className: classes.root,
-        ownerState,
-      });
-
-      return <SlotRoot {...rootProps}>{children}</SlotRoot>;
-    }),
-  ),
-) as ExtendOption<OptionTypeMap>;
-
-Option.propTypes /* remove-proptypes */ = {
+StableOption.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -131,11 +143,6 @@ Option.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -145,20 +152,6 @@ Option.propTypes /* remove-proptypes */ = {
    * Used for keyboard text navigation matching.
    */
   label: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
-   * The components used for each slot inside.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    root: PropTypes.elementType,
-  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -181,4 +174,4 @@ Option.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export default Option;
+export default StableOption;

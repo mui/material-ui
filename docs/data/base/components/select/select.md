@@ -228,7 +228,7 @@ const Option = stabilizeOptionContext(function Option(props: OptionProps) {
   });
 
   const classes = {
-    'option': true,
+    option: true,
     disabled,
     highlighted,
     className,
