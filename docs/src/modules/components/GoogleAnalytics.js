@@ -142,11 +142,9 @@ function GoogleAnalytics() {
     });
   }, [codeStylingVariant]);
 
-  const apiPageLayout = getApiPageLayout();
-
   React.useEffect(() => {
     window.gtag('set', 'user_properties', {
-      ...apiPageLayout,
+      ...getApiPageLayout(),
     });
   }, []);
 

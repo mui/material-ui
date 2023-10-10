@@ -79,9 +79,9 @@ export function getApiPageLayout() {
   Object.entries(API_LAYOUT_STORAGE_KEYS).map(([key, localStorageKey]) => {
     try {
       const savedOption = localStorage.getItem(localStorageKey);
-      rep[`api-layout-${key}`] = savedOption || 'none';
+      rep[localStorageKey] = savedOption || 'none';
     } catch {
-      rep[`api-layout-${key}`] = 'none';
+      rep[localStorageKey] = 'none';
     }
   });
   return rep;
