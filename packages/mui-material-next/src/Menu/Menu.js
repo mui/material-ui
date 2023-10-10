@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useMenu, MenuProvider } from '@mui/base/useMenu';
+import { useDropdown, DropdownContext } from '@mui/base/useDropdown';
 import { useSlotProps } from '@mui/base/utils';
 import { ListActionTypes } from '@mui/base/useList';
 import { HTMLElementType } from '@mui/utils';
@@ -66,7 +67,7 @@ const MenuListbox = styled('ul', {
   outline: 0,
 });
 
-const Menu = React.forwardRef(function Menu(inProps, ref) {
+const MenuInner = React.forwardRef(function Menu(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiMenu' });
 
   const {
@@ -77,7 +78,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     disableAutoFocusItem = false,
     MenuListProps = {},
     onClose,
-    open: openProp,
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
@@ -107,7 +107,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     // onItemsChange,
     disabledItemsFocusable: Boolean(MenuListProps.disabledItemsFocusable),
-    open: openProp,
   });
 
   React.useImperativeHandle(
@@ -253,6 +252,25 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
         <Listbox {...listboxProps}>{children}</Listbox>
       </MenuProvider>
     </MenuRoot>
+  );
+});
+
+const Menu = React.forwardRef(function Menu(inProps, ref) {
+  const { open, anchorEl, ...other } = inProps;
+  const upperDropdownContext = React.useContext(DropdownContext);
+
+  const { contextValue: dropdownContextValue } = useDropdown({
+    open,
+    anchorEl,
+  });
+
+  const Wrapper = !upperDropdownContext ? DropdownContext.Provider : React.Fragment;
+  const wrapperProps = !upperDropdownContext ? { value: dropdownContextValue } : {};
+
+  return (
+    <Wrapper {...wrapperProps}>
+      <MenuInner ref={ref} {...inProps} />
+    </Wrapper>
   );
 });
 

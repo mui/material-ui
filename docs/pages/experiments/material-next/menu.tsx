@@ -95,7 +95,7 @@ function LegacyUsage(props: MenuProps) {
   );
 }
 
-function StableComponentUsage(props: MenuProps) {
+function StableComponentUsage(props: { MenuListProps?: { disabledItemsFocusable?: boolean } }) {
   const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent) => {

@@ -21,7 +21,6 @@ export interface UseMenuParameters {
    * The ref to the menu's listbox node.
    */
   listboxRef?: React.Ref<Element>;
-  open?: boolean;
 }
 
 export interface UseMenuReturnValue {
