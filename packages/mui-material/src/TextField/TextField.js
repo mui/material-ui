@@ -141,7 +141,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   if (select) {
     // unset defaults from textbox inputs
     if (!SelectProps || !SelectProps.native) {
-      InputMore.id = undefined;
+      InputMore.id = useId();
     }
     InputMore['aria-describedby'] = undefined;
   }
@@ -190,7 +190,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       {...other}
     >
       {label != null && label !== '' && (
-        <InputLabel htmlFor={id} id={inputLabelId} {...InputLabelProps}>
+        <InputLabel htmlFor={select ? InputMore.id : id} id={inputLabelId} {...InputLabelProps}>
           {label}
         </InputLabel>
       )}
