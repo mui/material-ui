@@ -31,10 +31,7 @@ Please read [the full text](https://github.com/mui/.github/blob/master/CODE_OF_C
 
 There are [many ways](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) to contribute to MUI, and writing code is only one part of the story—documentation improvements can be just as important as code changes.
 
-### Translations
 
-While we welcome any and all improvements to the docs, we will not be accepting new pull requests related to the Portuguese (`*-pt.md`) or Chinese (`*-zh.md`) translations at this time.
-We are no longer able to keep up with maintaining these translations, but we have kept the infrastructure for doing so, in the event that we are able to invest more time into them in the future.
 **Please do not open new issues or pull requests for these files.**
 
 ## Your first pull request
