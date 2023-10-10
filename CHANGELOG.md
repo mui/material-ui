@@ -1,5 +1,69 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.13
+
+<!-- generated comparing v5.14.12..master -->
+
+_Oct 10, 2023_
+
+A big thanks to the 22 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added support for `styled-components` v6 (#39042) @mnajdova
+
+### `@mui/material@5.14.13`
+
+- &#8203;<!-- 28 -->[Checkbox] Fix checkbox hover bg with extendTheme (#39319) @brijeshb42
+- &#8203;<!-- 27 -->[Chip] Outlined Chip variant is wider than the Filled counterpart (#39342) @chirag3003
+- &#8203;<!-- 08 -->[Select] Add notice about select's a11y improvement on v5.14.12 changelog (#39310) @DiegoAndai
+- &#8203;<!-- 07 -->[Typography] Color prop check for primitive type (#39071) @DarhkVoyd
+- &#8203;<!-- 06 -->[Pagination] Fix background color on hover and keyboard focus when using CSS theme variables (#39220) @ValkonX33
+- &#8203;<!-- 05 -->[Popper] Add missing `styleOverrides` Popper type in theme (#39154) @axelbostrom
+- &#8203;<!-- 04 -->[Slider] Support all default palette colors in TypeScript (#39058) @gugudwt
+
+### `@mui/base@5.0.0-beta.19`
+
+- &#8203;<!-- 30 -->[Menu] Add the anchor prop (#39297) @michaldudak
+
+### `@mui/material-next@6.0.0-alpha.105`
+
+- &#8203;<!-- 09 -->[Menu] Copy v5 Menu components (#39301) @mnajdova
+
+### `@mui/joy@5.0.0-beta.10`
+
+- &#8203;<!-- 31 -->[Autocomplete] Add `type=button` to clear button (#39263) @brijeshb42
+- &#8203;<!-- 29 -->[Button] Fix the text wrap issue (#38696) @atharva3333
+- &#8203;<!-- 12 -->[Drawer] Apply color inversion to content slot instead (#39312) @siriwatknp
+- &#8203;<!-- 10 -->[Switch] Fix missing class name (#39327) @Bestwebdesign
+
+### `@mui/styled-engine-sc@6.0.0-alpha.1`
+
+- &#8203;<!-- 03 -->[system] Add support for `styled-components` v6 (#39042) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 26 -->[docs] Rename the Data Grid "Quick filter" to "Search" (#37724) @alexfauquette
+- &#8203;<!-- 25 -->[docs] Remove obsolete translations (#39221) @mbrookes
+- &#8203;<!-- 24 -->[docs] Update link to add custom color in palette (#39359) @ZeeshanTamboli
+- &#8203;<!-- 23 -->[docs] Denser code demo @oliviertassinari
+- &#8203;<!-- 22 -->[docs] Set up MD3 experiments pages (#39323) @mj12albert
+- &#8203;<!-- 18 -->[docs][Drawer] Fix right anchored persistent drawer intercepts click when it is closed (#39318) @ZeeshanTamboli
+- &#8203;<!-- 17 -->[docs][joy-ui] Revise the Color Inversion page (#39306) @danilo-leal
+- &#8203;<!-- 16 -->[docs][joy-ui] Remove redundant `error` prop from input validation demo (#39280) @sai6855
+- &#8203;<!-- 15 -->[docs][material-ui] Rename themed components doc, fix typos (#39368) @samuelsycamore
+- &#8203;<!-- 14 -->[docs][material-ui] Adjust the Material You Chip section (#39325) @danilo-leal
+- &#8203;<!-- 13 -->[docs][system] Add documentation on how to augment custom theme types for the `sx` prop callback (#39259) @3xp10it3r
+- &#8203;<!-- 11 -->[joy-ui][Input] Add debounce input demo (#39300) @sai6855
+
+### Core
+
+- &#8203;<!-- 21 -->[docs-infra] Improve the open diamond sponsor spot callout (#39332) @danilo-leal
+- &#8203;<!-- 20 -->[docs-infra] Fix Code Sandbox download issue (#39317) @ARJ2160
+- &#8203;<!-- 19 -->[docs-infra] Remove overflow: hidden for demo gradient bg (#39225) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Fix footer responsiveness (#39355) @danilo-leal
+- &#8203;<!-- 01 -->[website] Host Figma redirections in the store for now @oliviertassinari
+
+All contributors of this release in alphabetical order: @3xp10it3r, @alexfauquette, @ARJ2160, @atharva3333, @axelbostrom, @Bestwebdesign, @brijeshb42, @chirag3003, @danilo-leal, @DarhkVoyd, @DiegoAndai, @gugudwt, @mbrookes, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ValkonX33, @ZeeshanTamboli
+
 ## 5.14.12
 
 <!-- generated comparing v5.14.11..master -->
