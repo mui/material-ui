@@ -1,6 +1,6 @@
 # Creating themed components
 
-<p class="description">Learn how to create a fully custom component than can consume your app's theme.</p>
+<p class="description">Learn how to create a fully custom component that accepts your app's theme.</p>
 
 ## Introduction
 
