@@ -75,6 +75,14 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
+const StyledTopLabel = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography.pxToRem(12),
+  fontWeight: theme.typography.fontWeightBold,
+  textTransform: 'uppercase',
+  letterSpacing: '.08rem',
+  color: theme.palette.grey[600],
+}));
+
 function GlobalVariantDemo() {
   const [variant, setVariant] = React.useState<VariantProp>('outlined');
   const [color, setColor] = React.useState<ColorPaletteProp>('neutral');
@@ -447,7 +455,7 @@ function ColorInversionDemo() {
 
 function CSSvars() {
   const defaultJoyTrack = {
-    width: 48,
+    width: 40,
     height: 24,
     radius: 16,
   };
@@ -521,26 +529,21 @@ function CSSvars() {
           sx={{
             borderTop: '1px solid',
             borderColor: 'divider',
-            display: 'grid',
-            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+            display: 'flex',
+            gap: 2,
             px: 2,
             pt: 1.5,
             pb: 0.5,
-            rowGap: 2,
-            columnGap: 4,
-            alignItems: 'flex-start',
             [`& label`]: {
               minWidth: 48,
             },
             [`& .${joySliderClasses.root}`]: {
-              '--Slider-size': '36px',
+              '--Slider-size': '32px',
             },
           }}
         >
-          <div>
-            <JoyTypography level="title-sm" fontWeight="xl" sx={{ fontFamily: 'IBM Plex Sans' }}>
-              Track
-            </JoyTypography>
+          <Box sx={{ width: '100%' }}>
+            <StyledTopLabel>Track</StyledTopLabel>
             <JoyFormControl size="sm" orientation="horizontal">
               <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Width: </JoyFormLabel>
               <JoySlider
@@ -583,11 +586,10 @@ function CSSvars() {
                 }}
               />
             </JoyFormControl>
-          </div>
-          <div>
-            <JoyTypography level="title-sm" fontWeight="xl" sx={{ fontFamily: 'IBM Plex Sans' }}>
-              Thumb
-            </JoyTypography>
+          </Box>
+          <Divider orientation="vertical" />
+          <Box sx={{ width: '100%' }}>
+            <StyledTopLabel>Thumb</StyledTopLabel>
             <JoyFormControl size="sm" orientation="horizontal">
               <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Width: </JoyFormLabel>
               <JoySlider
@@ -630,7 +632,7 @@ function CSSvars() {
                 }}
               />
             </JoyFormControl>
-          </div>
+          </Box>
         </Box>
       </Frame.Demo>
       <Frame.Info
@@ -855,7 +857,7 @@ export default function JoyUIFeatures() {
               <Item
                 icon={<AutoAwesomeRoundedIcon color="warning" />}
                 title="CSS variables"
-                description="Every Joy UI component is filled with custom CSS variables for fine-tune adjustments, saving you time for micro tweaks."
+                description="Every Joy UI component is filled with CSS variables for fine-tune design adjustments."
               />
               {/* To update/improve the copy above */}
             </Highlighter>
@@ -863,7 +865,7 @@ export default function JoyUIFeatures() {
               <Item
                 icon={<AutoAwesomeRoundedIcon color="warning" />}
                 title="Automatic adjustment"
-                description="Every Joy UI component is filled with custom CSS variables for fine-tune adjustments, saving you time for micro tweaks."
+                description="Joy UI components adapt to one another to ensure consistency across your app without the need to micromanage your CSS."
               />
               {/* To update/improve the copy above */}
             </Highlighter>
