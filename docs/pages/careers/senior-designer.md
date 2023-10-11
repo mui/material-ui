@@ -108,7 +108,7 @@ So, if you're this designer, either already able to code or growing in this dire
 
 We are ready to pay competitive, top market rates, for a person that can cleary exceed the role's expectations.
 Therefore, we consider profile and location.
-You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-amp-benefits) page.
+You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## Interview steps
 

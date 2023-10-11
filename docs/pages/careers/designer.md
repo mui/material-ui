@@ -75,7 +75,7 @@ Previous experience with design systems would be great but is not required.
 
 We offer competitive compensation, aligned with your profile and location.
 We're ready to pay top market rates for a designer that can significantly push the mission forward.
-Other perks are described on [the careers page](https://mui.com/careers/#perks-amp-benefits/).
+Other perks are described on [the careers page](https://mui.com/careers/#perks-and-benefits/).
 
 ## How to apply?
 
