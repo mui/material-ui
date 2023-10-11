@@ -689,7 +689,9 @@ function AutomaticAdjustment() {
   const [changed, setChanged] = React.useState(false);
   return (
     <Frame sx={{ height: '100%' }}>
-      <Frame.Demo sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Frame.Demo
+        sx={{ display: 'flex', flexGrow: 1, flexDirection: 'column', alignItems: 'center' }}
+      >
         <div>
           <JoyButton
             variant="plain"
@@ -705,7 +707,7 @@ function AutomaticAdjustment() {
             Reset
           </JoyButton>
         </div>
-        <Box sx={{ minHeight: 100, display: 'grid', placeItems: 'center' }}>
+        <Box sx={{ minHeight: 100, display: 'grid', placeItems: 'center', flexGrow: 1 }}>
           <JoyInput
             startDecorator={<MailIcon />}
             endDecorator={<JoyButton>Message</JoyButton>}
