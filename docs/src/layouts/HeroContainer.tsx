@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box, { BoxProps } from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import {Grid,useMediaQuery} from '@mui/material';
+import { Grid, useMediaQuery } from '@mui/material';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { alpha, useTheme } from '@mui/material/styles';
 
@@ -24,7 +24,7 @@ export default function HeroContainer(props: HeroContainerProps) {
     rightSx,
   } = props;
   const frame = React.useRef<HTMLDivElement>(null);
-  const globalTheme = useTheme()
+  const globalTheme = useTheme();
   const isMdUp = useMediaQuery(globalTheme.breakpoints.up('md'));
 
   useEnhancedEffect(() => {
@@ -147,7 +147,7 @@ export default function HeroContainer(props: HeroContainerProps) {
         }}
       >
         <Grid container alignItems="center" wrap="nowrap" sx={{ height: '100%', mx: 'auto' }}>
-          <Grid item sx={{ m: isMdUp? '':'auto' }}>
+          <Grid item sx={{ m: isMdUp ? '' : 'auto' }}>
             {left}
           </Grid>
           <Grid
