@@ -13,9 +13,6 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    * @default false
    */
   disabled?: boolean;
-  /**
-   * Props applied to the first arrow [`IconButton`](/material-ui/api/icon-button/) component.
-   */
   firstIconButtonProps?: Partial<IconButtonProps>;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
@@ -26,9 +23,6 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    * @returns {string}
    */
   getItemAriaLabel: (type: 'first' | 'last' | 'next' | 'previous') => string;
-  /**
-   * Props applied to the last arrow [`IconButton`](/material-ui/api/icon-button/) component.
-   */
   lastIconButtonProps?: Partial<IconButtonProps>;
   nextIconButtonProps?: Partial<IconButtonProps>;
   onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
