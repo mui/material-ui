@@ -10,7 +10,7 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 // Joy UI components imports
 import { ColorPaletteProp, VariantProp } from '@mui/joy/styles';
-import JoyFormControl from '@mui/joy/FormControl';
+import JoyFormControl, { formControlClasses } from '@mui/joy/FormControl';
 import JoyFormLabel from '@mui/joy/FormLabel';
 import JoySlider, { sliderClasses as joySliderClasses } from '@mui/joy/Slider';
 import JoyButton from '@mui/joy/Button';
@@ -27,6 +27,7 @@ import JoyRadioGroup from '@mui/joy/RadioGroup';
 import JoyBreadcrumbs from '@mui/joy/Breadcrumbs';
 import JoyLink from '@mui/joy/Link';
 import JoyInput from '@mui/joy/Input';
+import JoyTooltip from '@mui/joy/Tooltip';
 // Icons
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import PlaylistAddCheckCircleRoundedIcon from '@mui/icons-material/PlaylistAddCheckCircleRounded';
@@ -677,9 +678,15 @@ function CSSvars() {
 }
 
 function AutomaticAdjustment() {
-  // To complete this part
+  const defaultStyles = {
+    height: 44,
+    padding: 12,
+    radius: 6,
+  };
+  const [styles, setStyles] = React.useState(defaultStyles);
+  const [changed, setChanged] = React.useState(false);
   return (
-    <Frame sx={{ height: '100%' }}>
+    <Frame sx={{ height: '100%', mt: { md: '192px' } }}>
       <Frame.Demo
         sx={{
           minHeight: { xs: 'auto', sm: 202 },
@@ -689,11 +696,105 @@ function AutomaticAdjustment() {
           gap: 2,
         }}
       >
-        <JoyInput
-          startDecorator={<MailIcon />}
-          endDecorator={<JoyButton>Message</JoyButton>}
-          placeholder="Type in here…"
-        />
+        <Box sx={{ minHeight: 100, display: 'grid', placeItems: 'center' }}>
+          <JoyInput
+            startDecorator={<MailIcon />}
+            endDecorator={<JoyButton>Message</JoyButton>}
+            placeholder="Type in here…"
+            sx={{
+              '--Input-minHeight': `${styles.height}px`,
+              '--Input-radius': `${styles.radius}px`,
+              '--Input-paddingInline': `${styles.padding}px`,
+              '--Input-decoratorChildHeight': '36px',
+            }}
+          />
+        </Box>
+        <Box
+          sx={{
+            borderTop: 1,
+            borderColor: 'divider',
+            mt: 2,
+            mx: { xs: -2, sm: -4 },
+            mb: { xs: -2, sm: -4 },
+            py: 2,
+            px: 3,
+            display: 'grid',
+            gridTemplateColumns: 'max-content 1fr',
+            [`& > .${formControlClasses.root}`]: {
+              display: 'contents',
+            },
+          }}
+        >
+          <JoyTypography
+            level="body-xs"
+            textColor="text.icon"
+            sx={{ mb: 1, fontWeight: 'lg', letterSpacing: '0.025em' }}
+          >
+            INPUT STYLE
+          </JoyTypography>
+          <JoyTooltip title="Reset" placement="top">
+            <JoyIconButton
+              onClick={() => {
+                setStyles(defaultStyles);
+                setChanged(false);
+              }}
+              sx={{
+                '--IconButton-size': '26px',
+                visibility: changed ? 'visible' : 'hidden',
+                p: 0,
+                placeSelf: 'flex-end',
+                alignSelf: 'flex-start',
+              }}
+            >
+              <RestartAltIcon />
+            </JoyIconButton>
+          </JoyTooltip>
+          <JoyFormControl orientation="horizontal">
+            <JoyFormLabel>Height:</JoyFormLabel>
+            <JoySlider
+              size="sm"
+              value={styles.height}
+              min={36}
+              max={64}
+              valueLabelDisplay="auto"
+              valueLabelFormat={(value) => `${value}px`}
+              onChange={(_, value) => {
+                setStyles((prev) => ({ ...prev, height: value as number }));
+                setChanged(true);
+              }}
+            />
+          </JoyFormControl>
+          <JoyFormControl orientation="horizontal">
+            <JoyFormLabel>Radius:</JoyFormLabel>
+            <JoySlider
+              size="sm"
+              value={styles.radius}
+              min={0}
+              max={40}
+              valueLabelDisplay="auto"
+              valueLabelFormat={(value) => `${value}px`}
+              onChange={(_, value) => {
+                setStyles((prev) => ({ ...prev, radius: value as number }));
+                setChanged(true);
+              }}
+            />
+          </JoyFormControl>
+          <JoyFormControl orientation="horizontal">
+            <JoyFormLabel>Padding Inline:</JoyFormLabel>
+            <JoySlider
+              size="sm"
+              value={styles.padding}
+              min={8}
+              max={24}
+              valueLabelDisplay="auto"
+              valueLabelFormat={(value) => `${value}px`}
+              onChange={(_, value) => {
+                setStyles((prev) => ({ ...prev, padding: value as number }));
+                setChanged(true);
+              }}
+            />
+          </JoyFormControl>
+        </Box>
       </Frame.Demo>
       <Frame.Info
         data-mui-color-scheme="dark"
