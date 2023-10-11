@@ -14,6 +14,10 @@ export interface ListOwnProps {
    */
   classes?: Partial<ListClasses>;
   /**
+   * Custom tag you want to use.
+   */
+  component?: React.ElementType;
+  /**
    * If `true`, compact vertical padding designed for keyboard and mouse input is used for
    * the list and list items.
    * The prop is available to descendant components as the `dense` context.
