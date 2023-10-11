@@ -10,7 +10,7 @@ unstyled: /base-ui/react-button/
 
 # Button
 
-<p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
+<p class="description">Buttons allow users to take actions, and make choices, with a single tap</p>
 
 Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
 
