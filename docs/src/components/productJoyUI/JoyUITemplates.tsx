@@ -13,9 +13,10 @@ function Placeholder() {
       {/* placeholder for Tabs */}
       <Box
         sx={(theme) => ({
+          my: 4,
           mx: 'auto',
-          width: 538,
-          height: 42,
+          width: { xs: '100%', md: 733 },
+          height: { xs: 90, md: 50 },
           borderRadius: '16px',
           bgcolor: 'grey.100',
           ...theme.applyDarkStyles({
@@ -31,7 +32,7 @@ function Placeholder() {
           '--_preview-height': 'clamp(500px / var(--_scale), 80vh, 600px / var(--_scale))',
           boxShadow: '0 0 0 6px rgba(var(--joy-palette-neutral-mainChannel) / 0.12)',
           borderRadius: '11px',
-          height: 'var(--_preview-height)',
+          height: 'calc(var(--_preview-height) + 74px)',
           transform: 'scale(var(--_scale))',
           transformOrigin: 'center 160px',
           bgcolor: 'grey.100',

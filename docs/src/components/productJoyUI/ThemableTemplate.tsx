@@ -491,7 +491,7 @@ export default function ThemableTemplate() {
           my: 4,
           mx: 'auto',
           width: 'max-content',
-          maxWidth: '80vw',
+          maxWidth: { xs: '100%', md: '80vw' },
           zIndex: 1,
           bgcolor: 'rgba(var(--template-palette-primary-lightChannel) / 0.2 )',
           borderColor: 'rgba(var(--template-palette-primary-lightChannel) / 0.6 )',
