@@ -37,6 +37,5 @@ https://spec.commonmark.org/0.30/#links
 
 ## kbd tag
 
-**In isolation:** <kbd class="key">caps lock</kbd>
-
-**In context:** The following demo shows how the `focusableWhenDisabled` prop works—use the <kbd>Tab</kbd> key to navigate within this document to see that only the second Button accepts the focus:
+Make sure to include the `class="key"` in each individual `kbd` element.
+That's because when referring to two keys that should be pressed together－for example, <kbd><kbd class="key">Ctrl</kbd>+<kbd class="key">N</kbd></kbd>－all the individual `kbd` elements should be wrapped by a parent `kbd`, and we don't add styles to just the tag.

@@ -416,7 +416,7 @@ const Root = styled('div')(
       flexShrink: 0,
       backgroundColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
     },
-    '& kbd': {
+    '& kbd.key': {
       padding: 6,
       display: 'inline-block',
       whiteSpace: 'nowrap',
@@ -681,7 +681,7 @@ const Root = styled('div')(
       '& a code': {
         color: `var(--muidocs-palette-primary-light, ${darkTheme.palette.primary.light})`,
       },
-      '& kbd': {
+      '& kbd.key': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         backgroundColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[800]})`,
         border: `1px solid var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
