@@ -103,6 +103,133 @@ describe('<NumberInput />', () => {
     }
   });
 
+  describe('prop: onClick', () => {
+    it('registers `onClick` on the root slot', () => {
+      const handleClick = spy((event) => event.currentTarget);
+
+      const { getByTestId, getByRole } = render(
+        <NumberInput
+          defaultValue={10}
+          data-testid="root"
+          onClick={handleClick}
+          slotProps={
+            {
+              input: {
+                'data-testid': 'input',
+              },
+            } as any
+          }
+        />,
+      );
+
+      const input = getByRole('textbox');
+
+      const root = getByTestId('root');
+
+      fireEvent.click(input);
+
+      expect(handleClick.callCount).to.equal(1);
+      // return value is event.currentTarget
+      expect(handleClick.returned(root)).to.equal(true);
+    });
+
+    it('works when passed through slotProps', () => {
+      const handleClick = spy((event) => event.currentTarget);
+      const slotPropsHandleClick = spy((event) => event.currentTarget);
+
+      const { getByTestId, getByRole } = render(
+        <NumberInput
+          defaultValue={10}
+          data-testid="root"
+          onClick={handleClick}
+          slotProps={
+            {
+              root: {
+                onClick: slotPropsHandleClick,
+              },
+            } as any
+          }
+        />,
+      );
+
+      const input = getByRole('textbox');
+
+      const root = getByTestId('root');
+
+      fireEvent.click(input);
+
+      expect(handleClick.callCount).to.equal(0);
+      expect(slotPropsHandleClick.callCount).to.equal(1);
+      // return value is event.currentTarget
+      expect(slotPropsHandleClick.returned(root)).to.equal(true);
+    });
+  });
+
+  describe('prop: onInputChange', () => {
+    it('should fire on keyboard input in the textbox instead of onChange', async () => {
+      const handleInputChange = spy((event) => event.currentTarget);
+      const handleChange = spy();
+
+      const { getByRole } = render(
+        <NumberInput
+          defaultValue={10}
+          data-testid="root"
+          onChange={handleChange}
+          onInputChange={handleInputChange}
+          slotProps={
+            {
+              input: {
+                'data-testid': 'input',
+              },
+            } as any
+          }
+        />,
+      );
+
+      const input = getByRole('textbox');
+
+      await userEvent.click(input);
+
+      await userEvent.keyboard('3');
+
+      expect(handleChange.callCount).to.equal(0);
+      expect(handleInputChange.callCount).to.equal(1);
+      // return value is event.currentTarget
+      expect(handleInputChange.returned(input)).to.equal(true);
+    });
+
+    it('works when passed through slotProps', async () => {
+      const handleInputChange = spy((event) => event.currentTarget);
+      const handleChange = spy();
+
+      const { getByRole } = render(
+        <NumberInput
+          defaultValue={10}
+          data-testid="root"
+          slotProps={
+            {
+              input: {
+                onChange: handleChange,
+                onInputChange: handleInputChange,
+              },
+            } as any
+          }
+        />,
+      );
+
+      const input = getByRole('textbox');
+
+      await userEvent.click(input);
+
+      await userEvent.keyboard('3');
+
+      expect(handleChange.callCount).to.equal(0);
+      expect(handleInputChange.callCount).to.equal(1);
+      // return value is event.currentTarget
+      expect(handleInputChange.returned(input)).to.equal(true);
+    });
+  });
+
   describe('step buttons', () => {
     it('clicking the increment and decrement buttons changes the value', async () => {
       const handleChange = spy();
