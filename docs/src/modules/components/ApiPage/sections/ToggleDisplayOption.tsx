@@ -12,11 +12,11 @@ export type ApiDisplayOptions = 'collapsed' | 'expended' | 'table';
 const options: ApiDisplayOptions[] = ['collapsed', 'expended', 'table'];
 
 export const API_LAYOUT_STORAGE_KEYS = {
-  default: 'api-page-default',
-  slots: 'api-page-slots',
-  props: 'api-page-props',
-  css: 'api-page-css',
-  classes: 'api-page-classes',
+  default: 'apiPage_default',
+  slots: 'apiPage_slots',
+  props: 'apiPage_props',
+  css: 'apiPage_css',
+  classes: 'apiPage_classes',
 } as const;
 
 const getRandomOption = () => {
