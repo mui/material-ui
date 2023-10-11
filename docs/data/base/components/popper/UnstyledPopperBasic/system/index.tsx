@@ -71,12 +71,12 @@ const TriggerButton = styled('button')(
     background-color: ${blue[600]};
   }
 
-  &.active {
+  &:active {
     background-color: ${blue[700]};
     box-shadow: none;
   }
 
-  &.focusVisible {
+  &:focus-visible {
     box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
     outline: none;
   }
