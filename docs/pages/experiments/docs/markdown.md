@@ -34,3 +34,9 @@ https://spec.commonmark.org/0.30/#loose
 https://spec.commonmark.org/0.30/#links
 
 - Link [with a title](#link 'Stay on the same page').
+
+## kbd tag
+
+**In isolation:** <kbd class="key">caps lock</kbd>
+
+**In context:** The following demo shows how the `focusableWhenDisabled` prop works—use the <kbd>Tab</kbd> key to navigate within this document to see that only the second Button accepts the focus:
