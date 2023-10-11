@@ -163,9 +163,8 @@ function Styles() {
         border-color: ${isDarkMode ? grey[600] : grey[300]};
       }
     
-      &.active {
-        background-color: ${cyan[700]};
-        box-shadow: none;
+      &:active {
+        background: ${isDarkMode ? grey[700] : grey[100]};
       }
     
       &:focus-visible {

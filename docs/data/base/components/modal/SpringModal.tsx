@@ -178,9 +178,8 @@ const TriggerButton = styled(Button)(
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
-  &.active {
-    background-color: ${blue[700]};
-    box-shadow: none;
+  &:active {
+    background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
   }
 
   &:focus-visible {

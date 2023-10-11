@@ -223,9 +223,8 @@ const ModalButton = styled(Button)(
     background-color: ${blue[600]};
   }
 
-  &.active {
-    background-color: ${blue[700]};
-    box-shadow: none;
+  &:active {
+    background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
   }
 
   &:focus-visible {

@@ -288,7 +288,7 @@ const SubmitButton = styled('button')(
     background-color: ${blue[600]};
   }
 
-  &.active {
+  &:active {
     background-color: ${blue[700]};
     box-shadow: none;
   }
