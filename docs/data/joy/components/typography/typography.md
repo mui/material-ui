@@ -37,9 +37,11 @@ The `h5` and `h6` levels are not provided by default given that they are not com
 
 ### Title and body
 
-The `title-*` and `body-*` are commonly used in components.
+Aside from the heading typographic levels, the Typography component provides `title-*` and `body-*` type levels.
 
-We recommend to combine the title and body with the same or lower size when using them together. For example, `title-lg` and `body-lg` or `title-md` and `body-sm`.
+To ensure a good UI balance and information hierarchy, we recommend combining them using the same size or a lower one.
+
+For example, using `title-lg` with `body-lg` or `title-md` with `body-sm`.
 
 {{"demo": "TypographyTitleBody.js"}}
 
