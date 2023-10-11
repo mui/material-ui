@@ -3,10 +3,10 @@ import Alert from '@mui/joy/Alert';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Diamond from '@mui/icons-material/Diamond';
 
-export default function AlertUsage(props) {
+export default function AlertUsage(inProps) {
   return (
     <JoyUsageDemo
-      {...props}
+      {...inProps}
       componentName="Alert"
       data={[
         {
@@ -27,11 +27,11 @@ export default function AlertUsage(props) {
           defaultValue: 'md',
         },
       ]}
-      renderDemo={
+      renderDemo={(props) => (
         <Alert {...props} startDecorator={<Diamond />}>
           This is a Joy UI Alert — check it out!
         </Alert>
-      }
+      )}
     />
   );
 }
