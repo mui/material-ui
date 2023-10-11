@@ -37,5 +37,6 @@ https://spec.commonmark.org/0.30/#links
 
 ## kbd tag
 
-Make sure to include the `class="key"` in each individual `kbd` element.
-That's because when referring to two keys that should be pressed together－for example, <kbd><kbd class="key">Ctrl</kbd>+<kbd class="key">N</kbd></kbd>－all the individual `kbd` elements should be wrapped by a parent `kbd`, and we don't add styles to just the tag.
+Make sure to include the `class="key"` declaration in each individual `kbd` element.
+
+That's because when referring to two keys that should be pressed together－for example, <kbd><kbd class="key">Ctrl</kbd>+<kbd class="key">N</kbd></kbd>－the `kbd` elements are wrapped by a parent `kbd`, and we don't add styles to just the tag.
