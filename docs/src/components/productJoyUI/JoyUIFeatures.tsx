@@ -611,7 +611,7 @@ function CSSvars() {
                 valueLabelDisplay="auto"
                 valueLabelFormat={(value) => `${value}px`}
                 onChange={(_, value) => {
-                  setJoyThumb((prev) => ({ ...prev, height: value as number }));
+                  setJoyThumb((prev) => ({ ...prev, size: value as number }));
                 }}
               />
             </JoyFormControl>
