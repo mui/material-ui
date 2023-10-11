@@ -6,7 +6,7 @@ const Input = React.forwardRef(function CustomInput(
   props: React.InputHTMLAttributes<HTMLInputElement>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  return <BaseInput slots={{ input: StyledInputElement }} {...props} ref={ref} />;
+  return <BaseInput slots={{ input: InputElement }} {...props} ref={ref} />;
 });
 
 export default function UnstyledInputIntroduction() {
@@ -35,7 +35,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledInputElement = styled('input')(
+const InputElement = styled('input')(
   ({ theme }) => `
   width: 320px;
   font-family: IBM Plex Sans, sans-serif;

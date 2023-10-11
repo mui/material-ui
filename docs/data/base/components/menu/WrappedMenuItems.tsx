@@ -24,7 +24,7 @@ export default function WrappedMenuItems() {
   return (
     <Dropdown>
       <MenuButton>Options</MenuButton>
-      <Menu slots={{ listbox: StyledListbox }}>
+      <Menu slots={{ listbox: Listbox }}>
         <MenuSection label="Navigation">
           <MenuItem onClick={createHandleMenuClick('Back')}>Back</MenuItem>
           <MenuItem onClick={createHandleMenuClick('Forward')} disabled>
@@ -70,7 +70,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;

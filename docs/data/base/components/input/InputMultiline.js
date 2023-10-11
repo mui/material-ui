@@ -6,9 +6,9 @@ const Input = React.forwardRef(function CustomInput(props, ref) {
   return (
     <BaseInput
       slots={{
-        root: StyledRootDiv,
-        input: StyledInputElement,
-        textarea: StyledTextareaElement,
+        root: RootDiv,
+        input: InputElement,
+        textarea: TextareaElement,
       }}
       {...props}
       ref={ref}
@@ -41,12 +41,12 @@ const grey = {
   900: '#1A2027',
 };
 
-const StyledRootDiv = styled('div')`
+const RootDiv = styled('div')`
   display: flex;
   max-width: 100%;
 `;
 
-const StyledInputElement = styled('input')(
+const InputElement = styled('input')(
   ({ theme }) => `
   width: 320px;
   font-family: IBM Plex Sans, sans-serif;
@@ -76,7 +76,7 @@ const StyledInputElement = styled('input')(
 `,
 );
 
-const StyledTextareaElement = styled('textarea', {
+const TextareaElement = styled('textarea', {
   shouldForwardProp: (prop) =>
     !['ownerState', 'minRows', 'maxRows'].includes(prop.toString()),
 })(

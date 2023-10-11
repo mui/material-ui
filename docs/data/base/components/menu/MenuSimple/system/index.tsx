@@ -15,7 +15,7 @@ export default function MenuSimple() {
   return (
     <Dropdown>
       <MenuButton>Dashboard</MenuButton>
-      <Menu slots={{ listbox: StyledListbox }}>
+      <Menu slots={{ listbox: Listbox }}>
         <MenuItem onClick={createHandleMenuClick('Profile')}>Profile</MenuItem>
         <MenuItem onClick={createHandleMenuClick('My account')}>My account</MenuItem>
         <MenuItem onClick={createHandleMenuClick('Log out')}>Log out</MenuItem>
@@ -48,7 +48,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
