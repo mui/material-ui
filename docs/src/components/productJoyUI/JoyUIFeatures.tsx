@@ -94,7 +94,7 @@ function GlobalVariantDemo() {
           <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2}>
             <div>
               <JoyBreadcrumbs aria-label="breadcrumbs" sx={{ p: 0 }}>
-                {['MUI the company', 'UI libraries'].map((item) => (
+                {['MUI', 'Styled libraries'].map((item) => (
                   <JoyLink fontSize="sm" key={item} color="neutral" href="#basics">
                     {item}
                   </JoyLink>
@@ -105,10 +105,10 @@ function GlobalVariantDemo() {
               </JoyBreadcrumbs>
               <Stack direction="row" alignItems="center" spacing={1} mt={1} mb={0.5}>
                 <JoyTypography fontWeight="lg" textColor="text.primary">
-                  Component settings
+                  Component variants
                 </JoyTypography>
                 <JoyChip variant={variant} color={color} size="sm">
-                  Chip
+                  Global
                 </JoyChip>
               </Stack>
               <JoyTypography fontSize="sm">
