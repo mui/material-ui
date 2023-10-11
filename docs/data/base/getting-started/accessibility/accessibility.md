@@ -26,7 +26,7 @@ Read the [WCAG guidelines on focus appearance](https://www.w3.org/WAI/WCAG22/Und
 ## Color contrast
 
 Since Base UI components are unstyled, it's up to you to implement the appropriate amount of color contrast between text and background.
-You can use [C. Liam Brown's Color Contrast Tool](https://cliambrown.com/contrast/) to measure contrast between colors in your design and ensure that they meet the minimum requirements. 
+You can use [C. Liam Brown's Color Contrast Tool](https://cliambrown.com/contrast/) to measure contrast between colors in your design and ensure that they meet the minimum requirements.
 (Note that this tool uses the [APCA algorithm](https://ruitina.com/apca-accessible-colour-contrast/), which is slated to become the new standard in WCAG 3.)
 
 ## Accessible labels
