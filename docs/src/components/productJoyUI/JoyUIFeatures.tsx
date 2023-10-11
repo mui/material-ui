@@ -148,8 +148,9 @@ function GlobalVariantDemo() {
             {['Website', 'Documents', 'Social Account'].map((value) => (
               <JoySheet
                 key={value}
-                variant="outlined"
+                variant={variant}
                 color={color}
+                invertedColors={variant === 'solid' || variant === 'soft'}
                 sx={{
                   borderRadius: 'md',
                   boxShadow: 'sm',
@@ -166,7 +167,7 @@ function GlobalVariantDemo() {
                   color={color}
                   id={value}
                   value={value}
-                  checkedIcon={<CheckCircleRoundedIcon color={color} />}
+                  checkedIcon={<CheckCircleRoundedIcon data-skip-inverted-colors color={color} />}
                 />
                 <JoyAvatar variant="soft" size="sm" />
                 <JoyFormLabel htmlFor={value} sx={{ fontSize: 'xs' }}>
