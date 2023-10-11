@@ -15,13 +15,13 @@ export default function MenuUsage(inProps) {
       data={[
         {
           propName: 'menuButtonVariant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'menuVariant',
-          knob: 'select',
+          knob: 'radio',
           defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
