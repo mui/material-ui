@@ -131,6 +131,7 @@ const SkeletonRoot = styled('span', {
         '--unstable_pulse-bg': theme.vars.palette.background.level1,
         overflow: 'hidden',
         cursor: 'default',
+        color: 'transparent',
         '& *': {
           visibility: 'hidden',
         },
