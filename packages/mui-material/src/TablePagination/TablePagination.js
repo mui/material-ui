@@ -146,9 +146,11 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     component = TableCell,
     count,
     disabled = false,
+    firstIconButtonProps,
     getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
     labelRowsPerPage = 'Rows per page:',
+    lastIconButtonProps,
     nextIconButtonProps,
     onPageChange,
     onRowsPerPageChange,
@@ -244,6 +246,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           className={classes.actions}
           backIconButtonProps={backIconButtonProps}
           count={count}
+          firstIconButtonProps={firstIconButtonProps}
+          lastIconButtonProps={lastIconButtonProps}
           nextIconButtonProps={nextIconButtonProps}
           onPageChange={onPageChange}
           page={page}
@@ -302,6 +306,10 @@ TablePagination.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * Props applied to the first arrow [`IconButton`](/material-ui/api/icon-button/) component.
+   */
+  firstIconButtonProps: PropTypes.object,
+  /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
@@ -330,6 +338,10 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * @default 'Rows per page:'
    */
   labelRowsPerPage: PropTypes.node,
+  /**
+   * Props applied to the last arrow [`IconButton`](/material-ui/api/icon-button/) component.
+   */
+  lastIconButtonProps: PropTypes.object,
   /**
    * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
    */

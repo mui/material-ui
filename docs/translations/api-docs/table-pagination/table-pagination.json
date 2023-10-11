@@ -15,6 +15,9 @@
       "description": "The total number of rows.<br>To enable server side pagination for an unknown number of items, provide -1."
     },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
+    "firstIconButtonProps": {
+      "description": "Props applied to the first arrow <a href=\"/material-ui/api/icon-button/\"><code>IconButton</code></a> component."
+    },
     "getItemAriaLabel": {
       "description": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
       "typeDescriptions": {
@@ -26,6 +29,9 @@
     },
     "labelRowsPerPage": {
       "description": "Customize the rows per page label.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>."
+    },
+    "lastIconButtonProps": {
+      "description": "Props applied to the last arrow <a href=\"/material-ui/api/icon-button/\"><code>IconButton</code></a> component."
     },
     "nextIconButtonProps": {
       "description": "Props applied to the next arrow <a href=\"/material-ui/api/icon-button/\"><code>IconButton</code></a> element."

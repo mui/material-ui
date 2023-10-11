@@ -16,7 +16,9 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     backIconButtonProps,
     count,
     disabled = false,
+    firstIconButtonProps,
     getItemAriaLabel,
+    lastIconButtonProps,
     nextIconButtonProps,
     onPageChange,
     page,
@@ -52,6 +54,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           disabled={disabled || page === 0}
           aria-label={getItemAriaLabel('first', page)}
           title={getItemAriaLabel('first', page)}
+          {...firstIconButtonProps}
         >
           {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
         </IconButton>
@@ -82,6 +85,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           disabled={disabled || page >= Math.ceil(count / rowsPerPage) - 1}
           aria-label={getItemAriaLabel('last', page)}
           title={getItemAriaLabel('last', page)}
+          {...lastIconButtonProps}
         >
           {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
         </IconButton>

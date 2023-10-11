@@ -47,6 +47,10 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   disabled?: boolean;
   /**
+   * Props applied to the first arrow [`IconButton`](/material-ui/api/icon-button/) component.
+   */
+  firstIconButtonProps?: Partial<IconButtonProps>;
+  /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
@@ -75,6 +79,10 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * @default 'Rows per page:'
    */
   labelRowsPerPage?: React.ReactNode;
+  /**
+   * Props applied to the last arrow [`IconButton`](/material-ui/api/icon-button/) component.
+   */
+  lastIconButtonProps?: Partial<IconButtonProps>;
   /**
    * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
    */

@@ -16,6 +16,7 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "firstIconButtonProps": { "type": { "name": "object" } },
     "getItemAriaLabel": {
       "type": { "name": "func" },
       "default": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}",
@@ -26,6 +27,7 @@
       "default": "function defaultLabelDisplayedRows({ from, to, count }) {\n  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
     },
     "labelRowsPerPage": { "type": { "name": "node" }, "default": "'Rows per page:'" },
+    "lastIconButtonProps": { "type": { "name": "object" } },
     "nextIconButtonProps": { "type": { "name": "object" } },
     "onRowsPerPageChange": {
       "type": { "name": "func" },
