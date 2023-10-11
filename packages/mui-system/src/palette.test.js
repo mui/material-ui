@@ -9,10 +9,16 @@ const theme = {
 
 describe('palette', () => {
   it('should treat grey as CSS color', () => {
-    const output = palette({
-      theme,
-      backgroundColor: 'grey',
-    });
+    let output;
+    expect(() => {
+      output = palette({
+        theme,
+        backgroundColor: 'grey',
+      });
+    }).toWarnDev(
+      'MUI: The value found in theme for prop: "grey" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
+    );
+
     expect(output).to.deep.equal({
       backgroundColor: 'grey',
     });
