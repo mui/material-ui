@@ -214,7 +214,7 @@ function Styles() {
       box-shadow: none;
     }
   
-    &.focusVisible {
+    &:focus-visible {
       box-shadow: 0 0 0 4px ${isDarkMode ? blue[300] : blue[200]};
       outline: none;
     }

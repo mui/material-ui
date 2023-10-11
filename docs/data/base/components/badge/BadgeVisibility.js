@@ -11,6 +11,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import MailIcon from '@mui/icons-material/Mail';
 
 const blue = {
+  200: '#99CCF3',
   500: '#007FFF',
 };
 
@@ -126,9 +127,8 @@ const Root = styled('span')(
     transition-duration: 120ms;
   }
 
-  &.${switchClasses.focusVisible} .${switchClasses.thumb} {
-    background-color: ${grey[500]};
-    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+  &.${switchClasses.focusVisible} .${switchClasses.track} {
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? grey[700] : blue[200]};
   }
 
   &.${switchClasses.checked} {

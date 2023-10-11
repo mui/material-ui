@@ -83,7 +83,7 @@ function Styles() {
             background-color: ${cyan[600]};
           }
     
-          &.active {
+          &:active {
             background-color: ${cyan[700]};
             box-shadow: none;
           }
