@@ -19,7 +19,10 @@ export interface AppBarOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color?: OverridableStringUnion<PropTypes.Color | 'transparent', AppBarPropsColorOverrides>;
+  color?: OverridableStringUnion<
+    PropTypes.Color | 'transparent' | 'error' | 'info' | 'success' | 'warning',
+    AppBarPropsColorOverrides
+  >;
   /**
    * If true, the `color` prop is applied in dark mode.
    * @default false
