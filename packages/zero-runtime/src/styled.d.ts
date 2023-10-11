@@ -1,5 +1,6 @@
 import type * as React from 'react';
-import type { CSSObject, ThemeArgs } from './base';
+import type { CSSObject } from './base';
+import type { ThemeArgs } from './theme';
 import type { SxProp } from './sx';
 
 /**

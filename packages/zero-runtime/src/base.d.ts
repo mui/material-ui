@@ -1,7 +1,5 @@
 import type * as CSS from 'csstype';
 
-export interface ThemeArgs {}
-
 export type CSSProperties = CSS.PropertiesFallback<number | string>;
 
 export type CSSPropertiesWithMultiValues = {

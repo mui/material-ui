@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { styled } from '@mui/zero-runtime';
 
-declare module '@mui/zero-runtime' {
+declare module '@mui/zero-runtime/theme' {
   interface ThemeArgs {
     theme: {
       palette: {
