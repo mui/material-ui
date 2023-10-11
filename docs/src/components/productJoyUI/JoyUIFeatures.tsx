@@ -27,7 +27,6 @@ import JoyRadioGroup from '@mui/joy/RadioGroup';
 import JoyBreadcrumbs from '@mui/joy/Breadcrumbs';
 import JoyLink from '@mui/joy/Link';
 import JoyInput from '@mui/joy/Input';
-import JoyTooltip from '@mui/joy/Tooltip';
 // Icons
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import PlaylistAddCheckCircleRoundedIcon from '@mui/icons-material/PlaylistAddCheckCircleRounded';
@@ -76,6 +75,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 const StyledTopLabel = styled(Typography)(({ theme }) => ({
+  marginBottom: 4,
   fontSize: theme.typography.pxToRem(12),
   fontWeight: theme.typography.fontWeightBold,
   textTransform: 'uppercase',
@@ -688,16 +688,23 @@ function AutomaticAdjustment() {
   const [styles, setStyles] = React.useState(defaultStyles);
   const [changed, setChanged] = React.useState(false);
   return (
-    <Frame sx={{ height: '100%', mt: { md: '192px' } }}>
-      <Frame.Demo
-        sx={{
-          minHeight: { xs: 'auto', sm: 202 },
-          p: { xs: 2, sm: 4 },
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 2,
-        }}
-      >
+    <Frame sx={{ height: '100%' }}>
+      <Frame.Demo sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div>
+          <JoyButton
+            variant="plain"
+            color="neutral"
+            size="sm"
+            startDecorator={<RestartAltIcon />}
+            onClick={() => {
+              setStyles(defaultStyles);
+              setChanged(false);
+            }}
+            sx={{ fontFamily: 'IBM Plex Sans', mt: 1.5 }}
+          >
+            Reset
+          </JoyButton>
+        </div>
         <Box sx={{ minHeight: 100, display: 'grid', placeItems: 'center' }}>
           <JoyInput
             startDecorator={<MailIcon />}
@@ -713,46 +720,23 @@ function AutomaticAdjustment() {
         </Box>
         <Box
           sx={{
-            borderTop: 1,
+            width: '100%',
+            borderTop: '1px solid',
             borderColor: 'divider',
-            mt: 2,
-            mx: { xs: -2, sm: -4 },
-            mb: { xs: -2, sm: -4 },
-            py: 2,
-            px: 3,
-            display: 'grid',
-            gridTemplateColumns: 'max-content 1fr',
-            [`& > .${formControlClasses.root}`]: {
-              display: 'contents',
+            px: 2,
+            pt: 1.5,
+            pb: 1,
+            [`& label`]: {
+              minWidth: 52,
+            },
+            [`& .${joySliderClasses.root}`]: {
+              '--Slider-size': '32px',
             },
           }}
         >
-          <JoyTypography
-            level="body-xs"
-            textColor="text.icon"
-            sx={{ mb: 1, fontWeight: 'lg', letterSpacing: '0.025em' }}
-          >
-            INPUT STYLE
-          </JoyTypography>
-          <JoyTooltip title="Reset" placement="top">
-            <JoyIconButton
-              onClick={() => {
-                setStyles(defaultStyles);
-                setChanged(false);
-              }}
-              sx={{
-                '--IconButton-size': '26px',
-                visibility: changed ? 'visible' : 'hidden',
-                p: 0,
-                placeSelf: 'flex-end',
-                alignSelf: 'flex-start',
-              }}
-            >
-              <RestartAltIcon />
-            </JoyIconButton>
-          </JoyTooltip>
-          <JoyFormControl orientation="horizontal">
-            <JoyFormLabel>Height:</JoyFormLabel>
+          <StyledTopLabel>Input style</StyledTopLabel>
+          <JoyFormControl size="sm" orientation="horizontal">
+            <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Height:</JoyFormLabel>
             <JoySlider
               size="sm"
               value={styles.height}
@@ -766,8 +750,8 @@ function AutomaticAdjustment() {
               }}
             />
           </JoyFormControl>
-          <JoyFormControl orientation="horizontal">
-            <JoyFormLabel>Radius:</JoyFormLabel>
+          <JoyFormControl size="sm" orientation="horizontal">
+            <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Radius:</JoyFormLabel>
             <JoySlider
               size="sm"
               value={styles.radius}
@@ -781,8 +765,8 @@ function AutomaticAdjustment() {
               }}
             />
           </JoyFormControl>
-          <JoyFormControl orientation="horizontal">
-            <JoyFormLabel>Padding Inline:</JoyFormLabel>
+          <JoyFormControl size="sm" orientation="horizontal">
+            <JoyFormLabel sx={{ fontFamily: 'IBM Plex Sans' }}>Padding:</JoyFormLabel>
             <JoySlider
               size="sm"
               value={styles.padding}
@@ -801,12 +785,34 @@ function AutomaticAdjustment() {
       <Frame.Info
         data-mui-color-scheme="dark"
         sx={{
+          minHeight: 200,
+          maxHeight: 450,
+          overflow: 'auto',
           display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          gap: 2,
-          justifyContent: 'space-between',
+          flexDirection: 'column',
+          gap: 1.5,
+          '> pre': {
+            backgroundColor: 'transparent',
+          },
         }}
       >
+        <HighlightedCode
+          copyButtonHidden
+          component={MarkdownElement}
+          code={`<Input${
+            Object.keys({ ...styles }).length
+              ? `
+  sx={{${styles.height ? `\n    '--Input-minHeight': '${styles.height}px',` : ''}${
+                  styles.radius ? `\n    '--Input-radius': '${styles.radius}px',` : ''
+                }${styles.padding ? `\n    '--Input-paddingInline': '${styles.padding}px',` : ''}
+  }}
+/>`
+              : ' />'
+          }
+            `}
+          language="jsx"
+        />
+        <Divider />
         <MoreInfo
           subject="automatic adjustment"
           link="/joy-ui/main-features/automatic-adjustment/"
