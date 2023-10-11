@@ -50,7 +50,7 @@ export default function Highlighter({
             borderColor: 'grey.100',
           }),
           ...(selected && {
-            bgcolor: `${alpha(theme.palette.primary[50], 0.5)}`,
+            bgcolor: alpha(theme.palette.primary[50], 0.5),
             borderColor: 'primary.300',
             boxShadow: `0px 1px 4px ${
               (theme.vars || theme).palette.primary[200]

@@ -89,12 +89,11 @@ export default function Item({
         p: 2,
         display: 'flex',
         alignItems: 'center',
+        gap: 2,
         ...props.sx,
       }}
     >
-      <Box component="span" sx={{ mr: 1.5, lineHeight: 0 }}>
-        {icon}
-      </Box>
+      {icon}
       <span>
         <Typography
           color="text.primary"

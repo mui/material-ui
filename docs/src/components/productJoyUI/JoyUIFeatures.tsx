@@ -1,6 +1,6 @@
 import * as React from 'react';
 // Material UI components for the page
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import JoyBox from '@mui/joy/Box';
 import Button from '@mui/material/Button';
@@ -10,7 +10,7 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 // Joy UI components imports
 import { ColorPaletteProp, VariantProp } from '@mui/joy/styles';
-import JoyFormControl, { formControlClasses } from '@mui/joy/FormControl';
+import JoyFormControl from '@mui/joy/FormControl';
 import JoyFormLabel from '@mui/joy/FormLabel';
 import JoySlider, { sliderClasses as joySliderClasses } from '@mui/joy/Slider';
 import JoyButton from '@mui/joy/Button';
@@ -314,7 +314,7 @@ function ColorInversionDemo() {
       style={{ touchAction: dragging ? 'none' : 'auto' }}
       sx={{
         height: '100%',
-        minHeight: 400,
+        minHeight: { xs: 500, sm: 400 },
         position: 'relative',
         '--split-point': '50%',
         '& > *': {
@@ -327,6 +327,7 @@ function ColorInversionDemo() {
           overflow: 'auto',
           flexGrow: 1,
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
           position: 'absolute',
@@ -351,7 +352,7 @@ function ColorInversionDemo() {
             transform: 'translateX(-50%)',
             lineHeight: 0,
             border: 0,
-            '> pre': {
+            '> * pre': {
               backgroundColor: 'transparent',
             },
           }}
@@ -371,6 +372,7 @@ function ColorInversionDemo() {
           overflow: 'auto',
           flexGrow: 1,
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
           position: 'absolute',
@@ -393,9 +395,8 @@ function ColorInversionDemo() {
             left: '50%',
             bottom: 0,
             transform: 'translateX(-50%)',
-            lineHeight: 0,
             border: 0,
-            '> pre': {
+            '> * pre': {
               backgroundColor: 'transparent',
             },
           }}
@@ -412,7 +413,7 @@ function ColorInversionDemo() {
       </Frame.Demo>
       <Box
         {...getDragHandlers()}
-        sx={{
+        sx={(theme) => ({
           position: 'absolute',
           top: 0,
           bottom: 54,
@@ -420,18 +421,36 @@ function ColorInversionDemo() {
           left: 'var(--split-point)',
           transform: 'translateX(-50%)',
           cursor: 'col-resize',
-        }}
+          '&:hover': {
+            '& .handleButton': {
+              bgcolor: 'primary.50',
+              borderColor: 'primary.300',
+            },
+          },
+          ...theme.applyDarkStyles({
+            '&:hover': {
+              '& .handleButton': {
+                bgcolor: 'primary.900',
+                borderColor: 'primary.400',
+              },
+            },
+          }),
+        })}
       >
         <Box
-          sx={{
+          sx={(theme) => ({
             margin: '0 auto',
             width: 2,
-            bgcolor: 'divider',
+            bgcolor: alpha(theme.palette.grey[200], 0.5),
             height: '100%',
-          }}
+            ...theme.applyDarkStyles({
+              bgcolor: 'divider',
+            }),
+          })}
         />
         <Box
-          sx={{
+          className="handleButton"
+          sx={(theme) => ({
             position: 'absolute',
             width: 42,
             height: 42,
@@ -441,10 +460,15 @@ function ColorInversionDemo() {
             bgcolor: 'background.paper',
             display: 'grid',
             placeItems: 'center',
-            top: '10%',
+            top: { xs: '10%', sm: '20%' },
             left: '50%',
             transform: 'translateX(-50%) rotate(90deg)',
-          }}
+            transition: '0.15s',
+            boxShadow: `2px 0 2px ${(theme.vars || theme).palette.grey[200]}`,
+            ...theme.applyDarkStyles({
+              boxShadow: `2px 0 2px ${(theme.vars || theme).palette.common.black}`,
+            }),
+          })}
         >
           <UnfoldMoreIcon />
         </Box>
@@ -644,7 +668,7 @@ function CSSvars() {
           display: 'flex',
           flexDirection: 'column',
           gap: 1.5,
-          '> pre': {
+          '> * pre': {
             backgroundColor: 'transparent',
           },
         }}
@@ -702,7 +726,11 @@ function AutomaticAdjustment() {
               setStyles(defaultStyles);
               setChanged(false);
             }}
-            sx={{ fontFamily: 'IBM Plex Sans', mt: 1.5 }}
+            disabled={!changed}
+            sx={{
+              fontFamily: 'IBM Plex Sans',
+              mt: 1.5,
+            }}
           >
             Reset
           </JoyButton>
@@ -846,7 +874,7 @@ export default function JoyUIFeatures() {
             }
             description="Joy UI is built to ensure you ship great products to your users with an amazing developer experience."
           />
-          <Group sx={{ mt: 3 }}>
+          <Group sx={{ mt: 1 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
                 icon={<AutoAwesomeRoundedIcon color="warning" />}
