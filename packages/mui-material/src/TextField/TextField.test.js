@@ -213,7 +213,7 @@ describe('<TextField />', () => {
       );
 
       const input = container.querySelector('input[aria-hidden]');
-      expect(input).not.to.have.attribute('id');
+      expect(input).to.have.attribute('id');
       expect(input).not.to.have.attribute('aria-describedby');
     });
 
