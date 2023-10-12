@@ -18,12 +18,10 @@ declare module '@mui/zero-runtime/theme' {
   }
 }
 
-const B = styled.a<{ isRed?: boolean }>({
-  color(props) {
-    return props.isRed ? 'red' : 'blue';
-  },
-  backgroundColor: ['red', 'black', 'blue'],
-  ':enabled': {
+const B = styled.a<{ isRed?: boolean }>(({ theme }) => ({
+  color: (props) => (props.isRed ? 'red' : 'blue'),
+  backgroundColor: theme.palette.primary,
+  '&:enabled': {
     color: 'beige',
   },
   '@media()': {},
@@ -36,8 +34,17 @@ const B = styled.a<{ isRed?: boolean }>({
         color: ({ isRed }) => (isRed ? 'red' : 'blue'),
       },
     },
+    {
+      props: {
+        // @ts-expect-error Wrong Props
+        isBlue: true,
+      },
+      style: {
+        color: ({ isRed }) => (isRed ? 'red' : 'blue'),
+      },
+    },
   ],
-});
+}));
 
 const A = styled(B)<{ isBlue?: boolean }>({
   color: 'red',

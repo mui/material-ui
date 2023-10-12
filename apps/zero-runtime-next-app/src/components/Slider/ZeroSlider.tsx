@@ -16,15 +16,6 @@ import SliderValueLabel from '@mui/material/Slider/SliderValueLabel';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { alpha, lighten, darken } from '../utils/colorManipulator';
 
-declare module '@mui/material' {
-  interface Palette {
-    Slider: Record<string, string>;
-  }
-  interface PaletteColor {
-    mainChannel: string;
-  }
-}
-
 const shouldSpreadAdditionalProps = (Slot?: React.ElementType) => {
   return !Slot || !isHostComponent(Slot);
 };
