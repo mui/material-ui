@@ -64,7 +64,7 @@ Depending on the day, you'll:
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location of up to $20/h.
-You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-amp-benefits) page.
+You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply?
 
