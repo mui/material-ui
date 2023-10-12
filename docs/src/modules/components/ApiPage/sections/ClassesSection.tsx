@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import Box from '@mui/material/Box';
 import ToggleDisplayOption, {
   API_LAYOUT_STORAGE_KEYS,
   useApiPageOption,
@@ -67,12 +68,7 @@ export default function ClassesSection(props: ClassesSectionProps) {
 
   return (
     <React.Fragment>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'baseline',
-        }}
-      >
+      <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 2 }}>
         <Level id={titleHash} style={{ flexGrow: 1 }}>
           {t(title)}
           <a
@@ -86,9 +82,8 @@ export default function ClassesSection(props: ClassesSectionProps) {
             </svg>
           </a>
         </Level>
-
         <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} />
-      </div>
+      </Box>
 
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
 

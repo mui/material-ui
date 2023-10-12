@@ -1,5 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ToggleDisplayOption, {
   API_LAYOUT_STORAGE_KEYS,
@@ -49,12 +50,7 @@ export default function SlotsSection(props: SlotsSectionProps) {
 
   return (
     <React.Fragment>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'baseline',
-        }}
-      >
+      <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 2 }}>
         <Level id={titleHash} style={{ flexGrow: 1 }}>
           {t(title)}
           <a
@@ -68,9 +64,8 @@ export default function SlotsSection(props: SlotsSectionProps) {
             </svg>
           </a>
         </Level>
-
         <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} />
-      </div>
+      </Box>
 
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
 
