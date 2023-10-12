@@ -99,7 +99,9 @@ export default function SlotsTable(props: SlotsTableProps) {
 
           return (
             <tr key={className} id={getHash({ componentName, className })}>
-              <td className="slot-name">{name}</td>
+              <td className="slot-name" style={{ fontWeight: '600' }}>
+                {name}
+              </td>
               <td className="MuiApi-table-class-name">
                 <span className="class-name">{className}</span>
               </td>
