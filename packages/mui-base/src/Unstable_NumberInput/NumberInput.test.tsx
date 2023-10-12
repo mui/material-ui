@@ -194,13 +194,12 @@ describe('<NumberInput />', () => {
           data-testid="root"
           onChange={handleChange}
           onInputChange={handleInputChange}
-          slotProps={
-            {
-              input: {
-                'data-testid': 'input',
-              },
-            } as any
-          }
+          slotProps={{
+            input: {
+              // @ts-ignore
+              'data-testid': 'input',
+            },
+          }}
         />,
       );
 
@@ -224,14 +223,12 @@ describe('<NumberInput />', () => {
         <NumberInput
           defaultValue={10}
           data-testid="root"
-          slotProps={
-            {
-              input: {
-                onChange: handleChange,
-                onInputChange: handleInputChange,
-              },
-            } as any
-          }
+          slotProps={{
+            input: {
+              onChange: handleChange,
+              onInputChange: handleInputChange,
+            },
+          }}
         />,
       );
 
