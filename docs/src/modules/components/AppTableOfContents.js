@@ -29,9 +29,7 @@ const Nav = styled('nav')(({ theme }) => ({
 }));
 
 const NavLabel = styled(Typography)(({ theme }) => ({
-  marginTop: theme.spacing(2),
-  marginBottom: theme.spacing(1),
-  paddingLeft: theme.spacing(1.4),
+  padding: theme.spacing(1, 0, 1, 1.4),
   fontSize: theme.typography.pxToRem(11),
   fontWeight: theme.typography.fontWeightBold,
   textTransform: 'uppercase',
@@ -67,12 +65,13 @@ const NavItem = styled(Link, {
 
   return [
     {
+      display: 'block',
       fontSize: theme.typography.pxToRem(13),
-      padding: theme.spacing(0, 1, 0, secondary ? 2.5 : '10px'),
-      margin: theme.spacing(0.5, 0, 1, 0),
+      fontWeight: theme.typography.fontWeightMedium,
+      overflowWrap: 'break-word',
+      padding: theme.spacing('6px', 0, '6px', secondary ? 3 : '12px'),
       borderLeft: `1px solid transparent`,
       boxSizing: 'border-box',
-      fontWeight: 500,
       '&:hover': {
         borderLeftColor: (theme.vars || theme).palette.grey[400],
         color: (theme.vars || theme).palette.grey[600],
@@ -86,7 +85,7 @@ const NavItem = styled(Link, {
     },
     theme.applyDarkStyles({
       '&:hover': {
-        borderLeftColor: (theme.vars || theme).palette.grey[600],
+        borderLeftColor: (theme.vars || theme).palette.grey[500],
         color: (theme.vars || theme).palette.grey[200],
       },
       ...(!active && {
@@ -334,7 +333,7 @@ export default function AppTableOfContents(props) {
       </NoSsr>
       {toc.length > 0 ? (
         <React.Fragment>
-          <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>
+          <NavLabel>{t('tableOfContents')}</NavLabel>
           <NavList component="ul">
             {toc.map((item) => (
               <li key={item.text}>
