@@ -12,8 +12,6 @@ export interface DividerClasses {
   inset: string;
   /** Styles applied to the root element if `variant="fullWidth"`. */
   fullWidth: string;
-  /** Styles applied to the root element if `light={true}`. */
-  light: string;
   /** Styles applied to the root element if `variant="middle"`. */
   middle: string;
   /** Styles applied to the root element if `orientation="vertical"`. */
@@ -47,7 +45,6 @@ const dividerClasses: DividerClasses = generateUtilityClasses('MuiDivider', [
   'inset',
   'middle',
   'flexItem',
-  'light',
   'vertical',
   'withChildren',
   'withChildrenVertical',

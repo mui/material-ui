@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -11,15 +10,13 @@ import { getDividerUtilityClass } from './dividerClasses';
 import { DividerOwnerState, DividerProps, DividerTypeMap } from './Divider.types';
 
 const useUtilityClasses = (ownerState: DividerOwnerState) => {
-  const { absolute, children, classes, flexItem, light, orientation, textAlign, variant } =
-    ownerState;
+  const { absolute, children, classes, flexItem, orientation, textAlign, variant } = ownerState;
 
   const slots = {
     root: [
       'root',
       absolute && 'absolute',
       variant,
-      light && 'light',
       orientation === 'vertical' && 'vertical',
       flexItem && 'flexItem',
       !!children && 'withChildren',
@@ -42,7 +39,6 @@ const DividerRoot = styled('div', {
       styles.root,
       ownerState.absolute && styles.absolute,
       styles[ownerState.variant],
-      ownerState.light && styles.light,
       ownerState.orientation === 'vertical' && styles.vertical,
       ownerState.flexItem && styles.flexItem,
       ownerState.children && styles.withChildren,
@@ -71,11 +67,6 @@ const DividerRoot = styled('div', {
         bottom: 0,
         left: 0,
         width: '100%',
-      }),
-      ...(ownerState.light && {
-        borderColor: theme.vars
-          ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
-          : alpha(theme.palette.divider, 0.08),
       }),
       ...(ownerState.variant === 'inset' &&
         ownerState.orientation === 'horizontal' && {
@@ -203,7 +194,6 @@ const Divider = React.forwardRef(function Divider<
     className,
     component = children ? 'div' : 'hr',
     flexItem = false,
-    light = false,
     orientation = 'horizontal',
     role = component !== 'hr' ? 'separator' : undefined,
     textAlign = 'center',
@@ -216,7 +206,6 @@ const Divider = React.forwardRef(function Divider<
     absolute,
     component,
     flexItem,
-    light,
     orientation,
     role,
     textAlign,
@@ -283,11 +272,6 @@ Divider.propTypes /* remove-proptypes */ = {
    * @default false
    */
   flexItem: PropTypes.bool,
-  /**
-   * If `true`, the divider will have a lighter color.
-   * @default false
-   */
-  light: PropTypes.bool,
   /**
    * The component orientation.
    * @default 'horizontal'

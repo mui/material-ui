@@ -33,11 +33,6 @@ export interface DividerTypeMap<
      */
     flexItem?: boolean;
     /**
-     * If `true`, the divider will have a lighter color.
-     * @default false
-     */
-    light?: boolean;
-    /**
      * The component orientation.
      * @default 'horizontal'
      */

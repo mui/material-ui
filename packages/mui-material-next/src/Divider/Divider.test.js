@@ -25,11 +25,6 @@ describe('<Divider />', () => {
     expect(container.firstChild).to.have.class(classes.absolute);
   });
 
-  it('should set the light class', () => {
-    const { container } = render(<Divider light />);
-    expect(container.firstChild).to.have.class(classes.light);
-  });
-
   it('should set the flexItem class', () => {
     const { container } = render(<Divider flexItem />);
     expect(container.firstChild).to.have.class(classes.flexItem);
