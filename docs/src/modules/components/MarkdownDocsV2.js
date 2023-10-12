@@ -83,9 +83,9 @@ export default function MarkdownDocsV2(props) {
   // Generate the TOC based on the tab
   const demosToc = localizedDoc.toc.filter((item) => item.text !== 'API');
 
-  function createHookTocEntry(hookName, sectionName, descriptions = {}) {
+  function createHookTocEntry(hookName, sectionName, hookProps = {}) {
     const hookPropToc = [];
-    Object.keys(descriptions).forEach((propName) => {
+    Object.keys(hookProps).forEach((propName) => {
       hookPropToc.push({
         text: propName,
         hash: `${hookName}-${sectionName}-${propName}`,
@@ -103,18 +103,14 @@ export default function MarkdownDocsV2(props) {
   const hooksToc = [];
   if (hooksApiPageContents) {
     Object.keys(hooksApiPageContents).forEach((key) => {
-      const {
-        parametersDescriptions = {},
-        returnValueDescriptions = {},
-      } = hooksApiDescriptions[key][userLanguage];
-      const { name: hookName } = hooksApiPageContents[key];
+      const { name: hookName, parameters = {}, returnValue = {} } = hooksApiPageContents[key];
 
       const hookNameKebabCase = kebabCase(hookName);
 
       const hookToc = [
         createHookTocEntry(hookNameKebabCase, 'import'),
-        createHookTocEntry(hookNameKebabCase, 'parameters', parametersDescriptions),
-        createHookTocEntry(hookNameKebabCase, 'return-value', returnValueDescriptions),
+        createHookTocEntry(hookNameKebabCase, 'parameters', parameters),
+        createHookTocEntry(hookNameKebabCase, 'return-value', returnValue),
       ].filter(Boolean);
 
       hooksToc.push({
