@@ -6,6 +6,7 @@ import {
   unstable_useId as useId,
   unstable_useControlled as useControlled,
 } from '@mui/utils';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { FormControlState, useFormControlContext } from '../FormControl';
 import {
   UseNumberInputParameters,
@@ -16,7 +17,6 @@ import {
   UseNumberInputReturnValue,
 } from './useNumberInput.types';
 import { clamp, isNumber } from './utils';
-import { extractEventHandlers } from '../utils/extractEventHandlers';
 
 type StepDirection = 'up' | 'down';
 
@@ -264,13 +264,17 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     externalProps: TOther = {} as TOther,
   ): UseNumberInputRootSlotProps<TOther> => {
     const propsEventHandlers = extractEventHandlers(parameters, [
+      // these are handled by the input slot
       'onBlur',
       'onInputChange',
       'onFocus',
       'onChange',
     ]);
 
-    const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
+    const externalEventHandlers = {
+      ...propsEventHandlers,
+      ...extractEventHandlers(externalProps),
+    };
 
     return {
       ...externalProps,
@@ -282,24 +286,40 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
   const getInputProps = <TOther extends Record<string, any> = {}>(
     externalProps: TOther = {} as TOther,
   ): UseNumberInputInputSlotProps<TOther> => {
-    const externalEventHandlers = {
+    const propsEventHandlers = {
       onBlur,
       onFocus,
-      ...extractEventHandlers(externalProps, ['onInputChange']),
+      onInputChange,
+    };
+
+    const externalEventHandlers = {
+      ...propsEventHandlers,
+      ...extractEventHandlers(externalProps, [
+        // onClick is handled by the root slot
+        'onClick',
+        'onChange',
+      ]),
     };
 
     const mergedEventHandlers = {
-      ...externalProps,
-      ...externalEventHandlers,
+      ...extractEventHandlers(externalEventHandlers, [
+        // exclude onInputChange to prevent it from entering the DOM
+        'onInputChange',
+      ]),
       onFocus: handleFocus(externalEventHandlers),
-      onChange: handleInputChange({ ...externalEventHandlers, onInputChange }),
+      // the onInputChange prop is passed to createHandleInputChange and effectively renamed to onChange
+      onChange: handleInputChange(externalEventHandlers),
       onBlur: handleBlur(externalEventHandlers),
       onKeyDown: handleKeyDown(externalEventHandlers),
     };
 
     const displayValue = (focused ? dirtyValue : value) ?? '';
 
+    // get rid of onInputChange here to prevent it from entering the DOM
+    delete externalProps.onInputChange;
+
     return {
+      ...externalProps,
       ...mergedEventHandlers,
       type: 'text',
       id: inputId,
