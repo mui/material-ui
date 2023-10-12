@@ -112,7 +112,7 @@ export const getPropsToC = ({
       .filter(([, propData]) => propData.description !== '@ignore')
       .map(([propName]) => ({
         text: propName,
-        hash: getHash({ propName, componentName }),
+        hash: getHash({ propName, targetName: componentName }),
         children: [],
       })),
     ...(inheritance

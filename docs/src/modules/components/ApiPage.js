@@ -258,7 +258,7 @@ export default function ApiPage(props) {
         <PropertiesTable
           properties={componentProps}
           propertiesDescriptions={propDescriptions}
-          componentName={pageContent.name}
+          targetName={pageContent.name}
         />
         {cssComponent && (
           <React.Fragment>
