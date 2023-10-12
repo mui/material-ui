@@ -109,12 +109,6 @@ export const NumberInputBaseRoot = styled('div', {
       color: tokens.palette.text.disabled,
       cursor: 'default',
     },
-    ...(ownerState.multiline && {
-      padding: '4px 0 5px',
-      ...(ownerState.size === 'small' && {
-        paddingTop: 1,
-      }),
-    }),
     ...(ownerState.fullWidth && {
       width: '100%',
     }),
@@ -207,12 +201,6 @@ export const NumberInputBaseInput = styled('input', {
     },
     ...(ownerState.size === 'small' && {
       paddingTop: 1,
-    }),
-    ...(ownerState.multiline && {
-      height: 'auto',
-      resize: 'none',
-      padding: 0,
-      paddingTop: 0,
     }),
     ...(ownerState.type === 'search' && {
       // Improve type search style.
@@ -588,19 +576,6 @@ NumberInputBase.propTypes /* remove-proptypes */ = {
    */
   margin: PropTypes.oneOf(['dense', 'none']),
   /**
-   * Maximum number of rows to display when multiline option is set to true.
-   */
-  maxRows: PropTypes.any,
-  /**
-   * Minimum number of rows to display when multiline option is set to true.
-   */
-  minRows: PropTypes.any,
-  /**
-   * If `true`, a [TextareaAutosize](/material-ui/react-textarea-autosize/) element is rendered.
-   * @default false
-   */
-  multiline: PropTypes.bool,
-  /**
    * Name attribute of the `input` element.
    */
   name: PropTypes.string,
@@ -662,10 +637,6 @@ NumberInputBase.propTypes /* remove-proptypes */ = {
    */
   required: PropTypes.bool,
   /**
-   * Number of rows to display when multiline option is set to true.
-   */
-  rows: PropTypes.any,
-  /**
    * The size of the component.
    */
   size: PropTypes.oneOf(['small', 'medium']),
@@ -702,7 +673,30 @@ NumberInputBase.propTypes /* remove-proptypes */ = {
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
    */
-  type: PropTypes.string,
+  type: PropTypes /* @typescript-to-proptypes-ignore */.oneOf([
+    'button',
+    'checkbox',
+    'color',
+    'date',
+    'datetime-local',
+    'email',
+    'file',
+    'hidden',
+    'image',
+    'month',
+    'number',
+    'password',
+    'radio',
+    'range',
+    'reset',
+    'search',
+    'submit',
+    'tel',
+    'text',
+    'time',
+    'url',
+    'week',
+  ]),
   /**
    * The value of the `input` element, required for a controlled component.
    */

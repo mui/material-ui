@@ -12,34 +12,7 @@ export interface NumberInputBasePropsColorOverrides {}
 export interface NumberInputBaseRootSlotPropsOverrides {}
 export interface NumberInputBaseInputSlotPropsOverrides {}
 
-export interface SingleLineInputProps {}
-
-export interface MultiLineInputProps {
-  /**
-   * Maximum number of rows to display when multiline option is set to true.
-   */
-  maxRows?: number;
-  /**
-   * Minimum number of rows to display when multiline option is set to true.
-   */
-  minRows?: number;
-  /**
-   * If `true`, a `textarea` element is rendered.
-   * @default false
-   */
-  multiline: true;
-  /**
-   * Number of rows to display when multiline option is set to true.
-   */
-  rows?: number;
-  /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   * @default 'text'
-   */
-  type?: undefined;
-}
-
-export type NumberInputBaseOwnProps = (SingleLineInputProps | MultiLineInputProps) & {
+export type NumberInputBaseOwnProps = {
   'aria-describedby'?: string;
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
@@ -108,11 +81,6 @@ export type NumberInputBaseOwnProps = (SingleLineInputProps | MultiLineInputProp
    * The prop defaults to the value (`'none'`) inherited from the parent FormControl component.
    */
   margin?: 'dense' | 'none';
-  /**
-   * If `true`, a [TextareaAutosize](/material-ui/react-textarea-autosize/) element is rendered.
-   * @default false
-   */
-  multiline?: boolean;
   /**
    * Name attribute of the `input` element.
    */
@@ -191,7 +159,9 @@ export type NumberInputBaseOwnProps = (SingleLineInputProps | MultiLineInputProp
       'input',
       NumberInputBaseInputSlotPropsOverrides,
       NumberInputBaseOwnerState
-    >;
+    > & {
+      onInputChange?: React.ChangeEventHandler<HTMLInputElement>;
+    };
   };
   /**
    * The components used for each slot inside the NumberInputBase.
@@ -211,7 +181,7 @@ export type NumberInputBaseOwnProps = (SingleLineInputProps | MultiLineInputProp
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
    */
-  type?: string;
+  type?: React.HTMLInputTypeAttribute;
   /**
    * The value of the `input` element, required for a controlled component.
    */
