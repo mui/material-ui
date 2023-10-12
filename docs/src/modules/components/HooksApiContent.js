@@ -48,9 +48,8 @@ export default function HooksApiContent(props) {
   const t = useTranslate();
 
   const hooks = Object.keys(pagesContents);
-  const numberOfHooks = hooks.length;
 
-  return hooks.map((key, idx) => {
+  return hooks.map((key) => {
     const { name: hookName, parameters, returnValue, imports } = pagesContents[key];
 
     const { parametersDescriptions, returnValueDescriptions } = descriptions[key][userLanguage];
