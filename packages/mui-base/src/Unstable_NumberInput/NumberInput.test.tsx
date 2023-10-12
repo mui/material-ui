@@ -166,6 +166,24 @@ describe('<NumberInput />', () => {
   });
 
   describe('prop: onInputChange', () => {
+    it('should not cause an "unknown event handler" error by entering the DOM', () => {
+      expect(() => {
+        render(
+          <React.Fragment>
+            <NumberInput defaultValue={10} onInputChange={() => {}} />
+            <NumberInput
+              defaultValue={10}
+              slotProps={{
+                input: {
+                  onInputChange: () => {},
+                },
+              }}
+            />
+          </React.Fragment>,
+        );
+      }).not.toErrorDev();
+    });
+
     it('should fire on keyboard input in the textbox instead of onChange', async () => {
       const handleInputChange = spy((event) => event.currentTarget);
       const handleChange = spy();
