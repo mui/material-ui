@@ -13,12 +13,12 @@ import ExpendableApiItem, {
 const StyledApiItem = styled(ExpendableApiItem)(
   ({ theme }) => ({
     '.slot-classname, .slot-default-element': {
+      marginBottom: 8,
       '& .prop-list-title': {
         ...theme.typography.body2,
         fontWeight: theme.typography.fontWeightSemiBold,
         color: theme.palette.text.primary,
       },
-      marginBottom: 8,
     },
     '& .default-slot-value': {
       ...theme.typography.caption,

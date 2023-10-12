@@ -25,7 +25,7 @@ const StyledTable = styled('table')(
       fontFamily: theme.typography.fontFamilyCode,
       fontWeight: theme.typography.fontWeightSemiBold,
       fontSize: theme.typography.pxToRem(13),
-      color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
+      color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
     },
     '& .class-name': {
       padding: '0 4px',
