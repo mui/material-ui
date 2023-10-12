@@ -353,7 +353,7 @@ export default function AppTableOfContents(props) {
                     {item.children.map((subitem) => (
                       <li key={subitem.text}>
                         {itemLink(subitem, true)}
-                        {subitem.children.length > 0 ? (
+                        {subitem.children?.length > 0 ? (
                           <NavList as="ul">
                             {subitem.children.map((nestedSubItem) => (
                               <li key={nestedSubItem.text}>{itemLink(nestedSubItem, false, true)}</li>
