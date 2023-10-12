@@ -174,7 +174,7 @@ export default function ComponentsApiContent(props) {
             className="MuiCallout-root MuiCallout-info"
             dangerouslySetInnerHTML={{ __html: refHint }}
             style={{
-              alignItems: 'center',
+              alignItems: 'baseline',
               gap: '4px',
               marginTop: 0,
             }}
