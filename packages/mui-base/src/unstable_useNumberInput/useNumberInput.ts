@@ -7,6 +7,7 @@ import {
   unstable_useControlled as useControlled,
 } from '@mui/utils';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { EventHandlers } from '../utils/types';
 import { FormControlState, useFormControlContext } from '../FormControl';
 import {
   UseNumberInputParameters,
@@ -104,9 +105,8 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     }
   }, [formControlContext, disabledProp, focused, onBlur]);
 
-  const handleFocus =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.FocusEvent<HTMLInputElement>) => {
+  const createHandleFocus =
+    (otherHandlers: Partial<EventHandlers>) => (event: React.FocusEvent<HTMLInputElement>) => {
       otherHandlers.onFocus?.(event);
 
       if (event.defaultPrevented) {
@@ -144,9 +144,8 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       }
     };
 
-  const handleInputChange =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+  const createHandleInputChange =
+    (otherHandlers: Partial<EventHandlers>) => (event: React.ChangeEvent<HTMLInputElement>) => {
       if (!isControlled && event.target === null) {
         throw new MuiError(
           'MUI: Expected valid input target. ' +
@@ -172,9 +171,8 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       }
     };
 
-  const handleBlur =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.FocusEvent<HTMLInputElement>) => {
+  const createHandleBlur =
+    (otherHandlers: Partial<EventHandlers>) => (event: React.FocusEvent<HTMLInputElement>) => {
       const val = parseInput(event.currentTarget.value);
 
       otherHandlers.onBlur?.(event);
@@ -192,9 +190,8 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       setFocused(false);
     };
 
-  const handleClick =
-    (otherHandlers: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent<HTMLInputElement>) => {
+  const createHandleClick =
+    (otherHandlers: Partial<EventHandlers>) => (event: React.MouseEvent<HTMLInputElement>) => {
       if (inputRef.current && event.currentTarget === event.target) {
         inputRef.current.focus();
       }
@@ -227,9 +224,8 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       handleValueChange()(event, newValue);
     };
 
-  const handleKeyDown =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const createHandleKeyDown =
+    (otherHandlers: Partial<EventHandlers>) => (event: React.KeyboardEvent<HTMLInputElement>) => {
       otherHandlers.onKeyDown?.(event);
 
       if (event.defaultPrevented) {
@@ -260,9 +256,9 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       }
     };
 
-  const getRootProps = <TOther extends Record<string, any> = {}>(
-    externalProps: TOther = {} as TOther,
-  ): UseNumberInputRootSlotProps<TOther> => {
+  const getRootProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseNumberInputRootSlotProps<ExternalProps> => {
     const propsEventHandlers = extractEventHandlers(parameters, [
       // these are handled by the input slot
       'onBlur',
@@ -279,13 +275,13 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     return {
       ...externalProps,
       ...externalEventHandlers,
-      onClick: handleClick(externalEventHandlers),
+      onClick: createHandleClick(externalEventHandlers),
     };
   };
 
-  const getInputProps = <TOther extends Record<string, any> = {}>(
-    externalProps: TOther = {} as TOther,
-  ): UseNumberInputInputSlotProps<TOther> => {
+  const getInputProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseNumberInputInputSlotProps<ExternalProps> => {
     const propsEventHandlers = {
       onBlur,
       onFocus,
@@ -306,26 +302,23 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
         // exclude onInputChange to prevent it from entering the DOM
         'onInputChange',
       ]),
-      onFocus: handleFocus(externalEventHandlers),
+      onFocus: createHandleFocus(externalEventHandlers),
       // the onInputChange prop is passed to createHandleInputChange and effectively renamed to onChange
-      onChange: handleInputChange(externalEventHandlers),
-      onBlur: handleBlur(externalEventHandlers),
-      onKeyDown: handleKeyDown(externalEventHandlers),
+      onChange: createHandleInputChange(externalEventHandlers),
+      onBlur: createHandleBlur(externalEventHandlers),
+      onKeyDown: createHandleKeyDown(externalEventHandlers),
     };
 
     const displayValue = (focused ? dirtyValue : value) ?? '';
 
-    // get rid of onInputChange here to prevent it from entering the DOM
+    // get rid of slotProps.input.onInputChange before returning to prevent it from entering the DOM
     delete externalProps.onInputChange;
 
     return {
-      ...externalProps,
-      ...mergedEventHandlers,
       type: 'text',
       id: inputId,
       'aria-invalid': errorProp || undefined,
       defaultValue: undefined,
-      ref: handleInputRef,
       value: displayValue as number | undefined,
       'aria-valuenow': displayValue as number | undefined,
       'aria-valuetext': String(displayValue),
@@ -338,6 +331,9 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       readOnly: readOnlyProp,
       'aria-disabled': disabledProp,
       disabled: disabledProp,
+      ...externalProps,
+      ref: handleInputRef,
+      ...mergedEventHandlers,
     };
   };
 
@@ -357,9 +353,9 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
   const isIncrementDisabled =
     disabledProp || (isNumber(value) ? value >= (max ?? Number.MAX_SAFE_INTEGER) : false);
 
-  const getIncrementButtonProps = <TOther extends Record<string, any> = {}>(
-    externalProps: TOther = {} as TOther,
-  ): UseNumberInputIncrementButtonSlotProps<TOther> => {
+  const getIncrementButtonProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseNumberInputIncrementButtonSlotProps<ExternalProps> => {
     return {
       ...externalProps,
       ...stepperButtonCommonProps,
@@ -373,9 +369,9 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
   const isDecrementDisabled =
     disabledProp || (isNumber(value) ? value <= (min ?? Number.MIN_SAFE_INTEGER) : false);
 
-  const getDecrementButtonProps = <TOther extends Record<string, any> = {}>(
-    externalProps: TOther = {} as TOther,
-  ): UseNumberInputDecrementButtonSlotProps<TOther> => {
+  const getDecrementButtonProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseNumberInputDecrementButtonSlotProps<ExternalProps> => {
     return {
       ...externalProps,
       ...stepperButtonCommonProps,
