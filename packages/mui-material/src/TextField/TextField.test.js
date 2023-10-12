@@ -226,6 +226,17 @@ describe('<TextField />', () => {
 
       expect(getByRole('combobox')).toHaveAccessibleDescription('Foo bar');
     });
+
+    it('associates the label htmlFor with the input id', () => {
+      const { container } = render(
+        <TextField label="Select" select value="Option 1">
+          <MenuItem value="Option 1">Option 1</MenuItem>
+          <MenuItem value="Option 2">Option 2</MenuItem>
+        </TextField>,
+      );
+
+      expect(container.querySelector('input')).to.have.id(container.querySelector('label').htmlFor);
+    });
   });
 
   describe('event: click', () => {
