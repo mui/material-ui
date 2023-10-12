@@ -1,32 +1,30 @@
-# Right-to-left
+# Right-to-left language support
 
-<p class="description">Learn how to make Joy UI components support right-to-left languages such as Arabic, Persian, Hebrew, and others.</p>
+<p class="description">Learn how to implement right-to-left (RTL) text with Material UI to support languages such as Arabic, Persian, and Hebrew.</p>
 
-## Introduction
-
-Following the guide below, you'll learn how to turn text-based components in Joy UI to right-to-left.
+This guide outlines the three steps necessary to change the direction of text-based components in Joy UI to support RTL languages, as shown in the demo below:
 
 <!-- {{"demo": "Direction.js"}} -->
 
-## Basic setup
+## 1. Set the HTML direction
 
-### Global approach
+### Globally
 
-Set the `dir` attribute on the `html` tag to `rtl` as the first step to support right-to-left languages.
+Add `dir="rtl"` to the app's root `<html>` to set the global text direction:
 
 ```html
 <html dir="rtl"></html>
 ```
 
-If your React app doesn't control the root HTML element and you want to change the text direction at runtime, use the JavaScript API.
+If your React app doesn't control the root `<html>` and you need to change the text direction at runtime, use the JavaScript API instead:
 
 ```js
 document.dir = 'rtl';
 ```
 
-### Local approach
+### Locally
 
-To only make part of your app support right-to-left, use the `dir` attribute in that part's specific wrapper as an alternative to the global approach above.
+Add the `dir="rtl"` attribute to any other HTML element or React component if you need limit the scope of the text direction to that element and its children.
 
 :::warning
 This won't work with portaled elements, such as Dialogs, as they render outside of the element with the `dir` attribute.
@@ -41,14 +39,21 @@ To fix it, make sure to add the `dir` attribute directly to them:
 
 :::
 
-## Third-party plugin
+## 2. Set the theme direction
 
-To pull right-to-left entirely, you need to use the [`stylis-plugin-rtl`](https://github.com/styled-components/stylis-plugin-rtl), to help flip the text direction.
-Its usage varies slightly depending if you're using Emotion or styled-components as your styled engine.
+Use the `createTheme` API to set the theme direction to `'rtl'`:
 
-### Installation
+```js
+import { createTheme } from '@mui/material/styles';
 
-Run one of the following commands to add `stylis-plugin-rtl` to your project:
+const theme = createTheme({
+  direction: 'rtl',
+});
+```
+
+## 3. Configure RTL style plugin
+
+Install the [`stylis-plugin-rtl`](https://github.com/styled-components/stylis-plugin-rtl) using one of the commands below:
 
 <codeblock storageKey="package-manager">
 
@@ -69,38 +74,33 @@ pnpm add stylis stylis-plugin-rtl
 :::warning
 Only Emotion is compatible with version 2 of the plugin.
 styled-components requires version 1.
-If you're using [styled-components instead of Emotion](/joy-ui/customization/styled-components-setup/), make sure to install the correct version.
+If you're using [styled-components instead of Emotion](/material-ui/guides/styled-components/), make sure to install the correct version.
 :::
 
-### Emotion setup
+### With Emotion
 
-If you're using Emotion, use the [CacheProvider](https://emotion.sh/docs/cache-provider) to create a new cache instance that uses the `stylis-plugin-rtl` (also include the default `prefixer` plugin to retain vendor prefixing) and add that to the top of your application tree.
+If you're using Emotion, use the [CacheProvider](https://emotion.sh/docs/cache-provider) to create a new cache instance that uses `rtlPlugin` from `stylis-plugin-rtl` and add that to the top of your application tree:
 
 ```jsx
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
-import { CssVarsProvider } from "@mui/joy/styles";
 
 // Create rtl cache
 const cacheRtl = createCache({
-  key: "joy-ui-rtl",
+  key: 'muirtl',
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
 function RTL(props) {
-    return (
-    <CssVarsProvider>
-      <CacheProvider value={cacheRtl}>{props.children}</CacheProvider>;
-    </StyleSheetManager>
-  );
+  return <CacheProvider value={cacheRtl}>{props.children}</CacheProvider>;
 }
 ```
 
-### styled-components setup
+### With styled-components
 
-If you're using styled-components, use the [StyleSheetManager](https://styled-components.com/docs/api#stylesheetmanager) and provide the stylis-plugin-rtl as an item to the `stylisPlugins` property.
+If you're using styled-components, use the [StyleSheetManager](https://styled-components.com/docs/api#stylesheetmanager) and provide `rtlPlugin` to the `stylisPlugins` property:
 
 ```jsx
 import { StyleSheetManager } from 'styled-components';
@@ -115,19 +115,13 @@ function RTL(props) {
 }
 ```
 
-## Locally opting out of rtl
+### Opting out of RTL locally
 
-Use the template literal syntax and add the `/* @noflip */` directive before the rule or property for which you want to turn off the right-to-left styles.
+To turn off RTL on specific components, use the template literal syntax and add the `/* @noflip */` directive:
 
-```jsx
-const AffectedText = styled('div')`
-  text-align: left;
-`;
-
-const UnaffectedText = styled('div')`
+```js
+const LeftToRightTextInRtlApp = styled('div')`
   /* @noflip */
   text-align: left;
 `;
 ```
-
-<!-- {{"demo": "RtlOptOutStylis.js", "hideToolbar": true}} -->

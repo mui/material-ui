@@ -1,7 +1,7 @@
 <CacheProvider value={cacheRtl}>
   <ThemeProvider theme={theme}>
     <div dir="rtl">
-      <TextField label="Name" variant="outlined" />
+      <TextField label="بطاطا" variant="outlined" />
     </div>
   </ThemeProvider>
 </CacheProvider>

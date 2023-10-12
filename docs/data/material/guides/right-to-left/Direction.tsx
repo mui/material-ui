@@ -7,9 +7,9 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 const theme = createTheme({
-  direction: 'rtl', // Both here and <body dir="rtl">
+  direction: 'rtl',
 });
-// Create rtl cache
+
 const cacheRtl = createCache({
   key: 'muirtl',
   stylisPlugins: [prefixer, rtlPlugin],
@@ -20,7 +20,7 @@ export default function Direction() {
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme}>
         <div dir="rtl">
-          <TextField label="Name" variant="outlined" />
+          <TextField label="بطاطا" variant="outlined" />
         </div>
       </ThemeProvider>
     </CacheProvider>
