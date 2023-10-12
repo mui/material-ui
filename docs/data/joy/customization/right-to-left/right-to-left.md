@@ -10,7 +10,7 @@ This guide outlines the three steps necessary to change the direction of text-ba
 
 ### Globally
 
-Add `dir="rtl"` to the app's root `<html>` to set the global text direction:
+Add `dir="rtl"` to the app's root `<html>` tag to set the global text direction:
 
 ```html
 <html dir="rtl"></html>
