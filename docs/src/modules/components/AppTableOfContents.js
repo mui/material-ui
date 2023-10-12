@@ -46,8 +46,9 @@ const NavList = styled(Typography)({
 });
 
 const NavItem = styled(Link, {
-  shouldForwardProp: (prop) => prop !== 'active' && prop !== 'secondary',
-})(({ active, secondary, theme }) => {
+  shouldForwardProp: (prop) =>
+    prop !== 'active' && prop !== 'secondary' && prop !== 'secondarySubItem',
+})(({ active, secondary, secondarySubItem, theme }) => {
   const activeStyles = {
     borderLeftColor: (theme.vars || theme).palette.primary[200],
     color: (theme.vars || theme).palette.primary[600],
@@ -64,11 +65,18 @@ const NavItem = styled(Link, {
       color: (theme.vars || theme).palette.primary[400],
     },
   };
+  let padding = '10px';
+  if (secondary) {
+    padding = 2.5;
+  }
+  if (secondarySubItem) {
+    padding = 5;
+  }
 
   return [
     {
       fontSize: theme.typography.pxToRem(13),
-      padding: theme.spacing(0, 1, 0, secondary ? 2.5 : '10px'),
+      padding: theme.spacing(0, 1, 0, padding),
       margin: theme.spacing(0.5, 0, 1, 0),
       borderLeft: `1px solid transparent`,
       boxSizing: 'border-box',
@@ -220,7 +228,7 @@ export default function AppTableOfContents(props) {
     [],
   );
 
-  const itemLink = (item, secondary) => (
+  const itemLink = (item, secondary, secondarySubItem) => (
     <NavItem
       display="block"
       href={`#${item.hash}`}
@@ -228,6 +236,7 @@ export default function AppTableOfContents(props) {
       onClick={handleClick(item.hash)}
       active={activeState === item.hash}
       secondary={secondary}
+      secondarySubItem={secondarySubItem}
     >
       <span dangerouslySetInnerHTML={{ __html: item.text }} />
     </NavItem>
@@ -342,7 +351,16 @@ export default function AppTableOfContents(props) {
                 {item.children.length > 0 ? (
                   <NavList as="ul">
                     {item.children.map((subitem) => (
-                      <li key={subitem.text}>{itemLink(subitem, true)}</li>
+                      <li key={subitem.text}>
+                        {itemLink(subitem, true)}
+                        {subitem.children.length > 0 ? (
+                          <NavList as="ul">
+                            {subitem.children.map((nestedItem) => (
+                              <li key={nestedItem.text}>{itemLink(nestedItem, false, true)}</li>
+                            ))}
+                          </NavList>
+                        ) : null}
+                      </li>
                     ))}
                   </NavList>
                 ) : null}

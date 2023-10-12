@@ -83,27 +83,40 @@ export default function MarkdownDocsV2(props) {
   // Generate the TOC based on the tab
   const demosToc = localizedDoc.toc.filter((item) => item.text !== 'API');
 
-  function createHookTocEntry(hookName, sectionName) {
+  function createHookTocEntry(hookName, sectionName, descriptions = {}) {
+    const childrenToc = [];
+    Object.keys(descriptions).forEach((key) => {
+      childrenToc.push({
+        text: key,
+        hash: `${hookName}-${sectionName}-${key}`,
+        children: [],
+      });
+    });
+
     return {
       text: getHookTranslatedHeader(t, sectionName),
       hash: `${hookName}-${sectionName}`,
-      children: [],
+      children: childrenToc,
     };
   }
 
   const hooksToc = [];
   if (hooksApiPageContents) {
     Object.keys(hooksApiPageContents).forEach((key) => {
-      const { hookDescriptionToc = [] } = hooksApiDescriptions[key][userLanguage];
+      const {
+        hookDescription,
+        parametersDescriptions = {},
+        returnValueDescriptions = {},
+      } = hooksApiDescriptions[key][userLanguage];
       const { name: hookName } = hooksApiPageContents[key];
 
       const hookNameKebabCase = kebabCase(hookName);
 
       const hookToc = [
         createHookTocEntry(hookNameKebabCase, 'import'),
-        ...hookDescriptionToc,
-        createHookTocEntry(hookNameKebabCase, 'parameters'),
-        createHookTocEntry(hookNameKebabCase, 'return-value'),
+        ...hookDescription,
+        createHookTocEntry(hookNameKebabCase, 'parameters', parametersDescriptions),
+        createHookTocEntry(hookNameKebabCase, 'return-value', returnValueDescriptions),
       ].filter(Boolean);
 
       hooksToc.push({

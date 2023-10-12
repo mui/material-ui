@@ -87,8 +87,15 @@ const StyledApiItem = styled(ApiItem)(
   }),
 );
 
-const getHash = ({ componentName, propName }) =>
-  `${componentName ? `${componentName}-` : ''}prop-${propName}`;
+const getHash = ({ componentName, propName, hooksParameters, hooksReturnValue }) => {
+  let name = 'prop';
+  if (hooksParameters) {
+    name = 'parameters';
+  } else if (hooksReturnValue) {
+    name = 'return-value';
+  }
+  return `${componentName ? `${componentName}-` : ''}${name}-${propName}`;
+};
 
 export const getPropsToC = ({
   componentName,
@@ -142,6 +149,8 @@ export default function PropertiesTable(props) {
     propertiesDescriptions,
     componentName = '',
     showOptionalAbbr = false,
+    hooksParameters = false,
+    hooksReturnValue = false,
   } = props;
   const t = useTranslate();
 
@@ -159,7 +168,7 @@ export default function PropertiesTable(props) {
           return (
             <StyledApiItem
               key={propName}
-              id={getHash({ componentName, propName })}
+              id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
               title={propName}
               note={
                 (propData.required && !showOptionalAbbr && 'Required') ||
@@ -312,6 +321,8 @@ export default function PropertiesTable(props) {
 
 PropertiesTable.propTypes = {
   componentName: PropTypes.string,
+  hooksParameters: PropTypes.bool,
+  hooksReturnValue: PropTypes.bool,
   properties: PropTypes.object.isRequired,
   propertiesDescriptions: PropTypes.object.isRequired,
   showOptionalAbbr: PropTypes.bool,
