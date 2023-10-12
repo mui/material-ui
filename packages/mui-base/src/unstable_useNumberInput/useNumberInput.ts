@@ -7,6 +7,7 @@ import {
   unstable_useControlled as useControlled,
 } from '@mui/utils';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { EventHandlers } from '../utils/types';
 import { FormControlState, useFormControlContext } from '../FormControl';
 import {
@@ -106,10 +107,11 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
   }, [formControlContext, disabledProp, focused, onBlur]);
 
   const createHandleFocus =
-    (otherHandlers: Partial<EventHandlers>) => (event: React.FocusEvent<HTMLInputElement>) => {
+    (otherHandlers: Partial<EventHandlers>) =>
+    (event: React.FocusEvent<HTMLInputElement> & MuiCancellableEvent) => {
       otherHandlers.onFocus?.(event);
 
-      if (event.defaultPrevented) {
+      if (event.defaultMuiPrevented || event.defaultPrevented) {
         return;
       }
 
@@ -145,7 +147,8 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     };
 
   const createHandleInputChange =
-    (otherHandlers: Partial<EventHandlers>) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    (otherHandlers: Partial<EventHandlers>) =>
+    (event: React.ChangeEvent<HTMLInputElement> & MuiCancellableEvent) => {
       if (!isControlled && event.target === null) {
         throw new MuiError(
           'MUI: Expected valid input target. ' +
@@ -157,6 +160,10 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       formControlContext?.onChange?.(event);
 
       otherHandlers.onInputChange?.(event);
+
+      if (event.defaultMuiPrevented || event.defaultPrevented) {
+        return;
+      }
 
       const val = parseInput(event.currentTarget.value);
 
@@ -172,10 +179,15 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     };
 
   const createHandleBlur =
-    (otherHandlers: Partial<EventHandlers>) => (event: React.FocusEvent<HTMLInputElement>) => {
-      const val = parseInput(event.currentTarget.value);
-
+    (otherHandlers: Partial<EventHandlers>) =>
+    (event: React.FocusEvent<HTMLInputElement> & MuiCancellableEvent) => {
       otherHandlers.onBlur?.(event);
+
+      if (event.defaultMuiPrevented || event.defaultPrevented) {
+        return;
+      }
+
+      const val = parseInput(event.currentTarget.value);
 
       if (val === '' || val === '-') {
         handleValueChange()(event, undefined);
@@ -191,12 +203,17 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     };
 
   const createHandleClick =
-    (otherHandlers: Partial<EventHandlers>) => (event: React.MouseEvent<HTMLInputElement>) => {
+    (otherHandlers: Partial<EventHandlers>) =>
+    (event: React.MouseEvent<HTMLInputElement> & MuiCancellableEvent) => {
+      otherHandlers.onClick?.(event);
+
+      if (event.defaultMuiPrevented || event.defaultPrevented) {
+        return;
+      }
+
       if (inputRef.current && event.currentTarget === event.target) {
         inputRef.current.focus();
       }
-
-      otherHandlers.onClick?.(event);
     };
 
   const handleStep =
@@ -225,8 +242,13 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     };
 
   const createHandleKeyDown =
-    (otherHandlers: Partial<EventHandlers>) => (event: React.KeyboardEvent<HTMLInputElement>) => {
+    (otherHandlers: Partial<EventHandlers>) =>
+    (event: React.KeyboardEvent<HTMLInputElement> & MuiCancellableEvent) => {
       otherHandlers.onKeyDown?.(event);
+
+      if (event.defaultMuiPrevented || event.defaultPrevented) {
+        return;
+      }
 
       if (event.defaultPrevented) {
         return;
