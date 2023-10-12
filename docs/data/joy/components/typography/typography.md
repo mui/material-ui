@@ -37,11 +37,9 @@ The `h5` and `h6` levels are not provided by default given that they are not com
 
 ### Title and body
 
-Aside from the heading typographic levels, the Typography component provides `title-*` and `body-*` type levels.
+Aside from the heading typographic levels, the Typography component also provides the `title-*` and `body-*` type levels.
 
-To ensure a good UI balance and information hierarchy, we recommend combining them using the same size or a lower one.
-
-For example, using `title-lg` with `body-lg` or `title-md` with `body-sm`.
+To ensure proper information hierarchy, we recommend combining them using either the same size or a lower one. For example, using `title-lg` with `body-lg` or `title-md` with `body-sm`.
 
 {{"demo": "TypographyTitleBody.js"}}
 
