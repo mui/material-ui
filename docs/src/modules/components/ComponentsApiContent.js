@@ -5,7 +5,6 @@ import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import Divider from 'docs/src/modules/components/ApiDivider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
@@ -74,9 +73,8 @@ export default function ComponentsApiContent(props) {
   }, [router]);
 
   const components = Object.keys(pageContents);
-  const numberOfComponents = components.length;
 
-  return components.map((key, idx) => {
+  return components.map((key) => {
     const pageContent = pageContents[key];
     const {
       cssComponent,
