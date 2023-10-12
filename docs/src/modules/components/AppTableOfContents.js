@@ -65,18 +65,18 @@ const NavItem = styled(Link, {
       color: (theme.vars || theme).palette.primary[400],
     },
   };
-  let padding = '10px';
+  let paddingLeft = '10px';
   if (secondary) {
-    padding = 2.5;
+    paddingLeft = 2.5;
   }
   if (secondarySubItem) {
-    padding = 5;
+    paddingLeft = 5;
   }
 
   return [
     {
       fontSize: theme.typography.pxToRem(13),
-      padding: theme.spacing(0, 1, 0, padding),
+      padding: theme.spacing(0, 1, 0, paddingLeft),
       margin: theme.spacing(0.5, 0, 1, 0),
       borderLeft: `1px solid transparent`,
       boxSizing: 'border-box',
@@ -355,8 +355,8 @@ export default function AppTableOfContents(props) {
                         {itemLink(subitem, true)}
                         {subitem.children.length > 0 ? (
                           <NavList as="ul">
-                            {subitem.children.map((nestedItem) => (
-                              <li key={nestedItem.text}>{itemLink(nestedItem, false, true)}</li>
+                            {subitem.children.map((nestedSubItem) => (
+                              <li key={nestedSubItem.text}>{itemLink(nestedSubItem, false, true)}</li>
                             ))}
                           </NavList>
                         ) : null}

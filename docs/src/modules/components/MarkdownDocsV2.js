@@ -84,11 +84,11 @@ export default function MarkdownDocsV2(props) {
   const demosToc = localizedDoc.toc.filter((item) => item.text !== 'API');
 
   function createHookTocEntry(hookName, sectionName, descriptions = {}) {
-    const childrenToc = [];
-    Object.keys(descriptions).forEach((key) => {
-      childrenToc.push({
-        text: key,
-        hash: `${hookName}-${sectionName}-${key}`,
+    const hookPropToc = [];
+    Object.keys(descriptions).forEach((propName) => {
+      hookPropToc.push({
+        text: propName,
+        hash: `${hookName}-${sectionName}-${propName}`,
         children: [],
       });
     });
@@ -96,7 +96,7 @@ export default function MarkdownDocsV2(props) {
     return {
       text: getHookTranslatedHeader(t, sectionName),
       hash: `${hookName}-${sectionName}`,
-      children: childrenToc,
+      children: hookPropToc,
     };
   }
 
@@ -104,7 +104,7 @@ export default function MarkdownDocsV2(props) {
   if (hooksApiPageContents) {
     Object.keys(hooksApiPageContents).forEach((key) => {
       const {
-        hookDescription,
+        hookDescription = '',
         parametersDescriptions = {},
         returnValueDescriptions = {},
       } = hooksApiDescriptions[key][userLanguage];

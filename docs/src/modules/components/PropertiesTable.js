@@ -87,14 +87,14 @@ const StyledApiItem = styled(ApiItem)(
   }),
 );
 
-const getHash = ({ componentName, propName, hooksParameters, hooksReturnValue }) => {
-  let name = 'prop';
+const getHash = ({ targetName, propName, hooksParameters, hooksReturnValue }) => {
+  let sectionName = 'prop';
   if (hooksParameters) {
-    name = 'parameters';
+    sectionName = 'parameters';
   } else if (hooksReturnValue) {
-    name = 'return-value';
+    sectionName = 'return-value';
   }
-  return `${componentName ? `${componentName}-` : ''}${name}-${propName}`;
+  return `${targetName ? `${targetName}-` : ''}${sectionName}-${propName}`;
 };
 
 export const getPropsToC = ({
@@ -147,7 +147,7 @@ export default function PropertiesTable(props) {
   const {
     properties,
     propertiesDescriptions,
-    componentName = '',
+    targetName = '',
     showOptionalAbbr = false,
     hooksParameters = false,
     hooksReturnValue = false,
@@ -168,7 +168,7 @@ export default function PropertiesTable(props) {
           return (
             <StyledApiItem
               key={propName}
-              id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
+              id={getHash({ targetName, propName, hooksParameters, hooksReturnValue })}
               title={propName}
               note={
                 (propData.required && !showOptionalAbbr && 'Required') ||
@@ -320,10 +320,10 @@ export default function PropertiesTable(props) {
 }
 
 PropertiesTable.propTypes = {
-  componentName: PropTypes.string,
   hooksParameters: PropTypes.bool,
   hooksReturnValue: PropTypes.bool,
   properties: PropTypes.object.isRequired,
   propertiesDescriptions: PropTypes.object.isRequired,
   showOptionalAbbr: PropTypes.bool,
+  targetName: PropTypes.string,
 };

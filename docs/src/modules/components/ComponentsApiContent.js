@@ -151,7 +151,7 @@ export default function ComponentsApiContent(props) {
           <PropertiesTable
             properties={componentProps}
             propertiesDescriptions={propDescriptions}
-            componentName={componentNameKebabCase}
+            targetName={componentNameKebabCase}
           />
           <br />
           {cssComponent && (

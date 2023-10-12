@@ -73,7 +73,7 @@ export default function HooksApiContent(props) {
           {Object.keys(parameters).length > 0 ? (
             <PropertiesTable
               properties={parameters}
-              componentName={hookNameKebabCase}
+              targetName={hookNameKebabCase}
               hooksParameters
               propertiesDescriptions={parametersDescriptions}
             />
@@ -84,7 +84,7 @@ export default function HooksApiContent(props) {
           <PropertiesTable
             showOptionalAbbr
             properties={returnValue}
-            componentName={hookNameKebabCase}
+            targetName={hookNameKebabCase}
             hooksReturnValue
             propertiesDescriptions={returnValueDescriptions}
           />
