@@ -285,8 +285,6 @@ export default function ApiPage(props) {
           }}
         />
 
-        <Divider />
-
         {inheritance && (
           <React.Fragment>
             <Heading hash="inheritance" level="h3" />

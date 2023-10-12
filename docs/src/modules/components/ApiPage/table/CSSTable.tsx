@@ -27,18 +27,7 @@ const StyledTable = styled('table')(
       fontSize: theme.typography.pxToRem(13),
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
     },
-    '& .MuiApi-table-className': {
-      padding: '0 4px',
-      borderRadius: 5,
-      color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
-      border: '1px solid',
-      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
-      ...theme.typography.caption,
-      fontFamily: theme.typography.fontFamilyCode,
-      fontWeight: theme.typography.fontWeightRegular,
-    },
-    '& .MuiApi-table-global-class': {
+    '& .MuiApi-table-ruleName': {
       padding: '0 4px',
       borderRadius: 5,
       border: '1px solid',
@@ -47,6 +36,13 @@ const StyledTable = styled('table')(
       ...theme.typography.caption,
       fontFamily: theme.typography.fontFamilyCode,
       fontWeight: theme.typography.fontWeightRegular,
+      color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+    },
+    '& .MuiApi-table-global-class': {
+      fontWeight: theme.typography.fontWeightSemiBold,
+      fontFamily: theme.typography.fontFamilyCode,
+      fontSize: theme.typography.pxToRem(13),
+      color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
     },
     '& .MuiCssTable-description-column': {
       width: '50%',
@@ -60,15 +56,13 @@ const StyledTable = styled('table')(
           backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.5),
         },
       },
-      '& .MuiApi-table-className': {
+      '& .MuiApi-table-ruleName': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
-        backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
-        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
+        borderColor: alpha(darkTheme.palette.primary[400], 0.1),
+        backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
       },
       '& .MuiApi-table-global-class': {
-        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
-        borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
-        backgroundColor: alpha(darkTheme.palette.primary[900], 0.5),
+        color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
       },
     },
   }),
@@ -84,8 +78,8 @@ export default function CSSTable(props: CSSTableProps) {
     <StyledTable>
       <thead>
         <tr>
-          <th className="table-headers">Rule name</th>
           <th className="table-headers">Global class</th>
+          <th className="table-headers">Rule name</th>
           <th className="table-headers">Description</th>
         </tr>
       </thead>
@@ -96,9 +90,6 @@ export default function CSSTable(props: CSSTableProps) {
           return (
             <tr key={className} id={getHash({ componentName, className })}>
               <td>
-                <span className="MuiApi-table-className">{className}</span>
-              </td>
-              <td>
                 {
                   <span
                     className="MuiApi-table-global-class"
@@ -108,6 +99,10 @@ export default function CSSTable(props: CSSTableProps) {
                   />
                 }
               </td>
+              <td>
+                <span className="MuiApi-table-ruleName">{className}</span>
+              </td>
+
               <td className="MuiCssTable-description-column">
                 <span
                   className="MuiApi-table-description"

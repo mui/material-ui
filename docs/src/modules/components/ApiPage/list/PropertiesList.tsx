@@ -33,6 +33,9 @@ const StyledApiItem = styled(ExpendableApiItem)(
         whiteSpace: 'nowrap',
         margin: 0,
       },
+      '& .default-value': {
+        fontSize: theme.typography.pxToRem(12),
+      },
     },
     '& .prop-list-default-props': {
       ...theme.typography.body2,
@@ -215,6 +218,7 @@ export default function PropertiesList(props: PropertiesListProps) {
                 <p className="prop-list-type MuiApi-collapsible">
                   <span className="prop-list-title">{t('api-docs.type')}:</span>
                   <code
+                    className="Api-code"
                     dangerouslySetInnerHTML={{
                       __html: typeName.replace(/<br>&#124;/g, ' |'),
                     }}
@@ -224,7 +228,7 @@ export default function PropertiesList(props: PropertiesListProps) {
               {propDefault && (
                 <p className="prop-list-default-props MuiApi-collapsible">
                   <span className="prop-list-title">{t('api-docs.default')}:</span>
-                  <code className="Api-code">{propDefault}</code>
+                  <code className="default-value">{propDefault}</code>
                 </p>
               )}
               {signature && (

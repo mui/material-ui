@@ -77,7 +77,7 @@ export default function CSSList(props: CSSListProps) {
             )}
             {className && (
               <p className="prop-list-class">
-                <span className="prop-list-title">{'className'}:</span>
+                <span className="prop-list-title">{'Rule name'}:</span>
                 <code className="Api-code">{className}</code>
               </p>
             )}
