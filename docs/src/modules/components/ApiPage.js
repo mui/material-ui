@@ -278,6 +278,11 @@ export default function ApiPage(props) {
         <div
           className="MuiCallout-root MuiCallout-info"
           dangerouslySetInnerHTML={{ __html: refHint }}
+          style={{
+            alignItems: 'center',
+            gap: '4px',
+            marginTop: 0,
+          }}
         />
 
         <Divider />
