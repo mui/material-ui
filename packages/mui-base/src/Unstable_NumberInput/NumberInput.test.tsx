@@ -112,13 +112,12 @@ describe('<NumberInput />', () => {
           defaultValue={10}
           data-testid="root"
           onClick={handleClick}
-          slotProps={
-            {
-              input: {
-                'data-testid': 'input',
-              },
-            } as any
-          }
+          slotProps={{
+            input: {
+              // @ts-ignore
+              'data-testid': 'input',
+            },
+          }}
         />,
       );
 
@@ -142,13 +141,11 @@ describe('<NumberInput />', () => {
           defaultValue={10}
           data-testid="root"
           onClick={handleClick}
-          slotProps={
-            {
-              root: {
-                onClick: slotPropsHandleClick,
-              },
-            } as any
-          }
+          slotProps={{
+            root: {
+              onClick: slotPropsHandleClick,
+            },
+          }}
         />,
       );
 
@@ -373,7 +370,12 @@ describe('<NumberInput />', () => {
         <NumberInput
           defaultValue={10}
           onChange={handleChange}
-          slotProps={{ input: { 'data-testid': 'input' } } as any}
+          slotProps={{
+            input: {
+              // @ts-ignore
+              'data-testid': 'input',
+            },
+          }}
         />,
       );
 
@@ -401,7 +403,12 @@ describe('<NumberInput />', () => {
           defaultValue={10}
           step={5}
           onChange={handleChange}
-          slotProps={{ input: { 'data-testid': 'input' } } as any}
+          slotProps={{
+            input: {
+              // @ts-ignore
+              'data-testid': 'input',
+            },
+          }}
         />,
       );
 
@@ -428,7 +435,12 @@ describe('<NumberInput />', () => {
           defaultValue={20}
           shiftMultiplier={5}
           onChange={handleChange}
-          slotProps={{ input: { 'data-testid': 'input' } } as any}
+          slotProps={{
+            input: {
+              // @ts-ignore
+              'data-testid': 'input',
+            },
+          }}
         />,
       );
 
@@ -455,7 +467,12 @@ describe('<NumberInput />', () => {
           defaultValue={20}
           shiftMultiplier={5}
           onChange={handleChange}
-          slotProps={{ input: { 'data-testid': 'input' } } as any}
+          slotProps={{
+            input: {
+              // @ts-ignore
+              'data-testid': 'input',
+            },
+          }}
         />,
       );
 
@@ -481,7 +498,12 @@ describe('<NumberInput />', () => {
           defaultValue={10}
           max={50}
           onChange={handleChange}
-          slotProps={{ input: { 'data-testid': 'input' } } as any}
+          slotProps={{
+            input: {
+              // @ts-ignore
+              'data-testid': 'input',
+            },
+          }}
         />,
       );
 
@@ -502,7 +524,12 @@ describe('<NumberInput />', () => {
           defaultValue={10}
           min={1}
           onChange={handleChange}
-          slotProps={{ input: { 'data-testid': 'input' } } as any}
+          slotProps={{
+            input: {
+              // @ts-ignore
+              'data-testid': 'input',
+            },
+          }}
         />,
       );
 
@@ -522,7 +549,12 @@ describe('<NumberInput />', () => {
         <NumberInput
           min={5}
           onChange={handleChange}
-          slotProps={{ input: { 'data-testid': 'input' } } as any}
+          slotProps={{
+            input: {
+              // @ts-ignore
+              'data-testid': 'input',
+            },
+          }}
         />,
       );
 
@@ -542,7 +574,12 @@ describe('<NumberInput />', () => {
         <NumberInput
           max={9}
           onChange={handleChange}
-          slotProps={{ input: { 'data-testid': 'input' } } as any}
+          slotProps={{
+            input: {
+              // @ts-ignore
+              'data-testid': 'input',
+            },
+          }}
         />,
       );
 
@@ -557,7 +594,14 @@ describe('<NumberInput />', () => {
 
     it('only includes the input element in the tab order', async () => {
       const { getByTestId } = render(
-        <NumberInput slotProps={{ input: { 'data-testid': 'input' } } as any} />,
+        <NumberInput
+          slotProps={{
+            input: {
+              // @ts-ignore
+              'data-testid': 'input',
+            },
+          }}
+        />,
       );
 
       const input = getByTestId('input') as HTMLInputElement;
