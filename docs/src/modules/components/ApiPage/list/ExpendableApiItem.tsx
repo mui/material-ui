@@ -234,7 +234,7 @@ function ApiItem(props: ApiItemProps) {
             onClick={() => setIsExtended((prev) => !prev)}
             className="MuiApi-expend-button"
             size="small"
-            sx={{ p: 0, ml: 'auto' }}
+            sx={{ p: 0, ml: 'auto', borderRadius: '6px' }}
           >
             {isExtended ? (
               <KeyboardArrowUpIcon sx={{ color: 'grey.500' }} />
