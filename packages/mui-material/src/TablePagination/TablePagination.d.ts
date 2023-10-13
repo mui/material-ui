@@ -30,8 +30,8 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   /**
    * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.
    *
-   * This prop is an alias for `slotProps.backIconButton` and will be overriden by it if both are used.
-   * @deprecated Use `slotProps.backIconButton` instead.
+   * This prop is an alias for `slotProps.previousIconButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.previousIconButton` instead.
    */
   backIconButtonProps?: Partial<IconButtonProps>;
   /**
@@ -142,7 +142,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
     firstIconButton?: Partial<IconButtonProps>;
     lastIconButton?: Partial<IconButtonProps>;
     nextIconButton?: Partial<IconButtonProps>;
-    backIconButton?: Partial<IconButtonProps>;
+    previousIconButton?: Partial<IconButtonProps>;
     select?: Partial<SelectProps>;
   };
   /**

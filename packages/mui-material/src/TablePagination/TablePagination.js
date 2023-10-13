@@ -245,7 +245,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
         </TablePaginationDisplayedRows>
         <ActionsComponent
           className={classes.actions}
-          backIconButtonProps={slotProps?.backIconButton ?? backIconButtonProps}
+          backIconButtonProps={slotProps?.previousIconButton ?? backIconButtonProps}
           count={count}
           firstIconButtonProps={slotProps?.firstIconButton}
           lastIconButtonProps={slotProps?.lastIconButton}
@@ -277,8 +277,8 @@ TablePagination.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.
    *
-   * This prop is an alias for `slotProps.backIconButton` and will be overriden by it if both are used.
-   * @deprecated Use `slotProps.backIconButton` instead.
+   * This prop is an alias for `slotProps.previousIconButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.previousIconButton` instead.
    */
   backIconButtonProps: PropTypes.object,
   /**
@@ -422,10 +422,10 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    backIconButton: PropTypes.object,
     firstIconButton: PropTypes.object,
     lastIconButton: PropTypes.object,
     nextIconButton: PropTypes.object,
+    previousIconButton: PropTypes.object,
     select: PropTypes.object,
   }),
   /**

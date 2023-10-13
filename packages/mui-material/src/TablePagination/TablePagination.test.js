@@ -513,7 +513,7 @@ describe('<TablePagination />', () => {
   });
 
   describe('prop: slotProps', () => {
-    describe('backIconButton', () => {
+    describe('previousIconButton', () => {
       it('should override backIconButtonProps', () => {
         const slotPropsDisabled = false;
         const backIconButtonPropsDisabled = true;
@@ -524,7 +524,7 @@ describe('<TablePagination />', () => {
               <TableRow>
                 <TablePagination
                   backIconButtonProps={{ disabled: backIconButtonPropsDisabled }}
-                  slotProps={{ backIconButton: { disabled: slotPropsDisabled } }}
+                  slotProps={{ previousIconButton: { disabled: slotPropsDisabled } }}
                   count={1}
                   page={0}
                   onPageChange={noop}

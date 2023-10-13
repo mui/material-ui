@@ -15,7 +15,7 @@
     "backIconButtonProps": {
       "type": { "name": "object" },
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.backIconButton</code> instead."
+      "deprecationInfo": "Use <code>slotProps.previousIconButton</code> instead."
     },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
@@ -60,7 +60,7 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ backIconButton?: object, firstIconButton?: object, lastIconButton?: object, nextIconButton?: object, select?: object }"
+        "description": "{ firstIconButton?: object, lastIconButton?: object, nextIconButton?: object, previousIconButton?: object, select?: object }"
       },
       "default": "{}"
     },
