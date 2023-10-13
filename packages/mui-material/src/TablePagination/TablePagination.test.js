@@ -512,6 +512,66 @@ describe('<TablePagination />', () => {
     });
   });
 
+  describe('prop: slotProps', () => {
+    describe('backIconButton', () => {
+      it('should override backIconButtonProps', () => {
+        const slotPropsDisabled = false;
+        const backIconButtonPropsDisabled = true;
+
+        const { getByRole } = render(
+          <table>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  backIconButtonProps={{ disabled: backIconButtonPropsDisabled }}
+                  slotProps={{ backIconButton: { disabled: slotPropsDisabled } }}
+                  count={1}
+                  page={0}
+                  onPageChange={noop}
+                  onRowsPerPageChange={noop}
+                  rowsPerPage={10}
+                />
+              </TableRow>
+            </TableFooter>
+          </table>,
+        );
+
+        const backButton = getByRole('button', { name: 'Go to previous page' });
+        expect(slotPropsDisabled).not.to.equal(backIconButtonPropsDisabled);
+        expect(backButton).to.have.property('disabled', slotPropsDisabled);
+      });
+    });
+
+    describe('nextIconButton', () => {
+      it('should override nextIconButtonProps', () => {
+        const slotPropsDisabled = false;
+        const nextIconButtonPropsDisabled = true;
+
+        const { getByRole } = render(
+          <table>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  nextIconButtonProps={{ disabled: nextIconButtonPropsDisabled }}
+                  slotProps={{ nextIconButton: { disabled: slotPropsDisabled } }}
+                  count={1}
+                  page={0}
+                  onPageChange={noop}
+                  onRowsPerPageChange={noop}
+                  rowsPerPage={10}
+                />
+              </TableRow>
+            </TableFooter>
+          </table>,
+        );
+
+        const nextButton = getByRole('button', { name: 'Go to next page' });
+        expect(slotPropsDisabled).not.to.equal(nextIconButtonPropsDisabled);
+        expect(nextButton).to.have.property('disabled', slotPropsDisabled);
+      });
+    });
+  });
+
   describe('duplicated keys', () => {
     it('should not raise a warning due to duplicated keys', () => {
       render(

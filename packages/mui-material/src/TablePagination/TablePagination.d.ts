@@ -28,7 +28,10 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
   /**
-   * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.
+   * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.   
+   *
+   * This prop is an alias for `slotProps.backIconButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.backIconButton` instead.
    */
   backIconButtonProps?: Partial<IconButtonProps>;
   /**
@@ -46,10 +49,6 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * @default false
    */
   disabled?: boolean;
-  /**
-   * Props applied to the first arrow [`IconButton`](/material-ui/api/icon-button/) component.
-   */
-  firstIconButtonProps?: Partial<IconButtonProps>;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
@@ -80,11 +79,10 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   labelRowsPerPage?: React.ReactNode;
   /**
-   * Props applied to the last arrow [`IconButton`](/material-ui/api/icon-button/) component.
-   */
-  lastIconButtonProps?: Partial<IconButtonProps>;
-  /**
    * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
+   * 
+   * This prop is an alias for `slotProps.nextIconButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.nextIconButton` instead.
    */
   nextIconButtonProps?: Partial<IconButtonProps>;
   /**

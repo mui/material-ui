@@ -146,11 +146,9 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     component = TableCell,
     count,
     disabled = false,
-    firstIconButtonProps,
     getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
     labelRowsPerPage = 'Rows per page:',
-    lastIconButtonProps,
     nextIconButtonProps,
     onPageChange,
     onRowsPerPageChange,
@@ -160,6 +158,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     SelectProps = {},
     showFirstButton = false,
     showLastButton = false,
+    slotProps,
     ...other
   } = props;
 
@@ -244,11 +243,11 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
         </TablePaginationDisplayedRows>
         <ActionsComponent
           className={classes.actions}
-          backIconButtonProps={backIconButtonProps}
+          backIconButtonProps={slotProps?.backIconButton ?? backIconButtonProps}
           count={count}
-          firstIconButtonProps={firstIconButtonProps}
-          lastIconButtonProps={lastIconButtonProps}
-          nextIconButtonProps={nextIconButtonProps}
+          firstIconButtonProps={slotProps?.firstIconButton}
+          lastIconButtonProps={slotProps?.lastIconButton}
+          nextIconButtonProps={slotProps?.nextIconButton ?? nextIconButtonProps}
           onPageChange={onPageChange}
           page={page}
           rowsPerPage={rowsPerPage}
@@ -275,6 +274,9 @@ TablePagination.propTypes /* remove-proptypes */ = {
   ActionsComponent: PropTypes.elementType,
   /**
    * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.
+   *
+   * This prop is an alias for `slotProps.backIconButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.backIconButton` instead.
    */
   backIconButtonProps: PropTypes.object,
   /**
@@ -306,10 +308,6 @@ TablePagination.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * Props applied to the first arrow [`IconButton`](/material-ui/api/icon-button/) component.
-   */
-  firstIconButtonProps: PropTypes.object,
-  /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
@@ -339,11 +337,10 @@ TablePagination.propTypes /* remove-proptypes */ = {
    */
   labelRowsPerPage: PropTypes.node,
   /**
-   * Props applied to the last arrow [`IconButton`](/material-ui/api/icon-button/) component.
-   */
-  lastIconButtonProps: PropTypes.object,
-  /**
    * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
+   *
+   * This prop is an alias for `slotProps.nextIconButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.nextIconButton` instead.
    */
   nextIconButtonProps: PropTypes.object,
   /**
