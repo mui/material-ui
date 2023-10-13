@@ -596,9 +596,7 @@ describe('<TablePagination />', () => {
 
         const combobox = getByRole('combobox');
         expect(slotPropsDisabled).not.to.equal(SelectPropsDisabled);
-        expect(combobox.parentElement)
-          .to.have.class(inputClasses.disabled)
-          .to.equal(slotPropsDisabled);
+        expect(combobox.parentElement).not.to.have.class(inputClasses.disabled);
       });
     });
   });
