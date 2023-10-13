@@ -28,7 +28,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
   /**
-   * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.   
+   * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.
    *
    * This prop is an alias for `slotProps.backIconButton` and will be overriden by it if both are used.
    * @deprecated Use `slotProps.backIconButton` instead.
@@ -80,7 +80,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   labelRowsPerPage?: React.ReactNode;
   /**
    * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
-   * 
+   *
    * This prop is an alias for `slotProps.nextIconButton` and will be overriden by it if both are used.
    * @deprecated Use `slotProps.nextIconButton` instead.
    */
@@ -117,10 +117,10 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   rowsPerPageOptions?: Array<number | { value: number; label: string }>;
   /**
    * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.
-   * 
+   *
    * This prop is an alias for `slotProps.select` and will be overriden by it if both are used.
    * @deprecated Use `slotProps.select` instead.
-   * 
+   *
    * @default {}
    */
   SelectProps?: Partial<SelectProps>;
