@@ -19,7 +19,6 @@ describe('<FilledInput />', () => {
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'contained', fullWidth: true },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
-    testLegacyComponentsProp: false,
     slots: {
       root: { expectedClassName: classes.root },
       input: { expectedClassName: classes.input, testWithElement: 'input' },

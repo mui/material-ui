@@ -144,7 +144,7 @@ This is to ensure that default is prevented when the `ButtonBase` root is not a 
 
 ### Removed `inputProps`
 
-`inputProps` are deprecated in favor of `slotProps.input`:
+`inputProps` are removed in favor of `slotProps.input`:
 
 ```diff
  <FilledInput
