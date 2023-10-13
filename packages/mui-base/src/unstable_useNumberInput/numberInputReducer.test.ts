@@ -210,7 +210,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.increment,
-        shiftKey: false,
+        applyMultiplier: false,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           shiftMultiplier: 10,
@@ -231,7 +231,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.increment,
-        shiftKey: false,
+        applyMultiplier: false,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           shiftMultiplier: 10,
@@ -253,7 +253,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.increment,
-        shiftKey: true,
+        applyMultiplier: true,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           shiftMultiplier: 10,
@@ -277,7 +277,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.decrement,
-        shiftKey: false,
+        applyMultiplier: false,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           shiftMultiplier: 10,
@@ -298,7 +298,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.decrement,
-        shiftKey: false,
+        applyMultiplier: false,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           shiftMultiplier: 10,
@@ -320,7 +320,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.decrement,
-        shiftKey: true,
+        applyMultiplier: true,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           shiftMultiplier: 10,

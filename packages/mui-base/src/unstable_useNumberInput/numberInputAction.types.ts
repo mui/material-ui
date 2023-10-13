@@ -19,12 +19,12 @@ interface NumberInputInputChangeAction {
 
 interface NumberInputIncrementAction {
   type: typeof NumberInputActionTypes.increment;
-  shiftKey: boolean;
+  applyMultiplier: boolean;
 }
 
 interface NumberInputDecrementAction {
   type: typeof NumberInputActionTypes.decrement;
-  shiftKey: boolean;
+  applyMultiplier: boolean;
 }
 
 interface NumberInputIncrementToMaxAction {

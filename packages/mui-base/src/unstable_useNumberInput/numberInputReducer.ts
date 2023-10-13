@@ -91,15 +91,15 @@ function handleInputChange<State extends NumberInputState>(
   return state;
 }
 
-// use this for ArrowUp, ArrowDown
-// use this with shiftKey: true for PageUp, PageDown
+// use this for ArrowUp, ArrowDown, button clicks
+// use this with applyMultiplier: true for PageUp, PageDown, button shift-clicks
 function handleStep<State extends NumberInputState>(
   state: State,
   context: NumberInputActionContext,
-  shiftKey: boolean,
+  applyMultiplier: boolean,
   direction: StepDirection,
 ) {
-  const multiplier = shiftKey ? context.shiftMultiplier : 1;
+  const multiplier = applyMultiplier ? context.shiftMultiplier : 1;
 
   const newValue = stepValue(state, context, direction, multiplier);
 
@@ -141,9 +141,9 @@ export function numberInputReducer(
     case NumberInputActionTypes.inputChange:
       return handleInputChange(state, context, action.inputValue);
     case NumberInputActionTypes.increment:
-      return handleStep(state, context, action.shiftKey, 'up');
+      return handleStep(state, context, action.applyMultiplier, 'up');
     case NumberInputActionTypes.decrement:
-      return handleStep(state, context, action.shiftKey, 'down');
+      return handleStep(state, context, action.applyMultiplier, 'down');
     case NumberInputActionTypes.incrementToMax:
       return handleToMinOrMax(state, context, 'max');
     case NumberInputActionTypes.decrementToMin:
