@@ -601,6 +601,7 @@ describe('<InputBase />', () => {
   describe('prop: slots and slotProps', () => {
     // e.g. integration of react-select with InputBase
     // https://github.com/mui/material-ui/issues/18130
+    // react-select has a custom onChange that is essentially "(string, string) => void"
     it('should call slotProps.input.onChange callback with all params sent from custom inputComponent', () => {
       const INPUT_VALUE = 'material';
       const OUTPUT_VALUE = 'test';
@@ -608,11 +609,10 @@ describe('<InputBase />', () => {
       const MyInputBase = React.forwardRef(function MyInputBase(
         props: {
           onChange: (...args: string[]) => void;
-          ownerState: InputBaseOwnerState;
         },
         ref: React.ForwardedRef<HTMLInputElement>,
       ) {
-        const { onChange, ownerState, ...other } = props;
+        const { onChange, ...other } = props;
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           onChange(e.target.value, OUTPUT_VALUE);
@@ -635,7 +635,7 @@ describe('<InputBase />', () => {
           inputComponent={MyInputBase}
           slotProps={{
             input: {
-              onChange: parentHandleChange as (string, string) => void,
+              onChange: parentHandleChange as unknown as React.ChangeEventHandler<HTMLInputElement>,
             },
           }}
         />,
