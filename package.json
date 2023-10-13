@@ -42,7 +42,7 @@
     "stylelint": "stylelint --reportInvalidScopeDisables --reportNeedlessDisables \"docs/**/*.{js,ts,tsx}\"",
     "markdownlint": "markdownlint-cli2 \"**/*.md\"",
     "list-changed-files": "node ./scripts/listChangedFiles.mjs",
-    "prettier": "node ./scripts/prettier.mjs --mode=write-changed",
+    "prettier": "node ./scripts/prettier.mjs",
     "prettier:all": "node ./scripts/prettier.mjs --mode=write",
     "size:snapshot": "node --max-old-space-size=4096 ./scripts/sizeSnapshot/create",
     "size:why": "yarn size:snapshot --analyze",
