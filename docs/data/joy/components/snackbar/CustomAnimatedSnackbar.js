@@ -51,10 +51,10 @@ export default function CustomAnimatedSnackbar() {
         animationDuration={animationDuration}
         sx={{
           ...(open && {
-            animation: `${inAnimation} ${animationDuration}ms`,
+            animation: `${inAnimation} ${animationDuration}ms forwards`,
           }),
           ...(!open && {
-            animation: `${outAnimation} ${animationDuration}ms`,
+            animation: `${outAnimation} ${animationDuration}ms forwards`,
           }),
         }}
       >

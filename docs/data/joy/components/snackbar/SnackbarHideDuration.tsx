@@ -13,7 +13,7 @@ export default function SnackbarHideDuration() {
   const timer = React.useRef<undefined | number>();
   const countdown = () => {
     timer.current = window.setInterval(() => {
-      setLeft((prev) => (prev === undefined ? prev : prev - 16));
+      setLeft((prev) => (prev === undefined ? prev : Math.max(0, prev - 16)));
     }, 16); // 60fps = 16ms / frame
   };
   React.useEffect(() => {
@@ -21,7 +21,6 @@ export default function SnackbarHideDuration() {
       setLeft(duration);
       countdown();
     } else {
-      setLeft(0);
       window.clearInterval(timer.current);
     }
   }, [open, duration]);
@@ -32,27 +31,31 @@ export default function SnackbarHideDuration() {
     countdown();
   };
   return (
-    <Stack spacing={2} direction="row" alignItems="center">
-      <FormControl disabled={open} sx={{ display: 'grid', columnGap: 1 }}>
-        <FormLabel sx={{ gridColumn: 'span 2' }}>Auto Hide Duration (ms)</FormLabel>
-        <Input
-          type="number"
-          value={duration || ''}
-          onChange={(event) => {
-            setDuration(event.target.valueAsNumber || undefined);
-          }}
-        />
-        <Button
-          disabled={open}
-          variant="outlined"
-          color="neutral"
-          onClick={() => {
-            setOpen(true);
-          }}
-        >
-          Show snackbar
-        </Button>
-      </FormControl>
+    <div>
+      <Stack spacing={2} direction="row" alignItems="center">
+        <FormControl disabled={open} sx={{ display: 'grid', columnGap: 1 }}>
+          <FormLabel sx={{ gridColumn: 'span 2' }}>
+            Auto Hide Duration (ms)
+          </FormLabel>
+          <Input
+            type="number"
+            value={duration || ''}
+            onChange={(event) => {
+              setDuration(event.target.valueAsNumber || undefined);
+            }}
+          />
+          <Button
+            disabled={open}
+            variant="outlined"
+            color="neutral"
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
+            Show snackbar
+          </Button>
+        </FormControl>
+      </Stack>
       <Snackbar
         variant="solid"
         color="danger"
@@ -69,8 +72,11 @@ export default function SnackbarHideDuration() {
         }}
       >
         This snackbar will{' '}
-        {left ? `disappear in ${left}ms` : `not disappear until you click away`}.
+        {left !== undefined
+          ? `disappear in ${left}ms`
+          : `not disappear until you click away`}
+        .
       </Snackbar>
-    </Stack>
+    </div>
   );
 }
