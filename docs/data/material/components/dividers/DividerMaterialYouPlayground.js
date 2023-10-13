@@ -13,9 +13,6 @@ import ImageIcon from '@mui/icons-material/Image';
 import WorkIcon from '@mui/icons-material/Work';
 
 export default function DividerMaterialYouPlayground() {
-  const [showLabel, setShowLabel] = React.useState(false);
-  const [orientation, setOrientation] = React.useState('horizontal');
-
   return (
     <MaterialYouUsageDemo
       componentName="Divider"
@@ -31,30 +28,9 @@ export default function DividerMaterialYouPlayground() {
           knob: 'select',
           options: ['horizontal', 'vertical'],
           defaultValue: 'horizontal',
-          onChange: (e) => setOrientation(e.target.value),
         },
-        {
-          propName: 'showLabel',
-          knob: 'switch',
-          defaultValue: false,
-          onChange: () => {
-            setShowLabel((prev) => !prev);
-          },
-        },
-        ...(showLabel && orientation === 'horizontal'
-          ? [
-              {
-                propName: 'textAlign',
-                knob: 'select',
-                options: ['center', 'left', 'right'],
-                defaultValue: 'center',
-              },
-            ]
-          : []),
       ]}
       renderDemo={(props) => {
-        const label = props.showLabel && 'label';
-
         const content = (
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id
@@ -72,7 +48,7 @@ export default function DividerMaterialYouPlayground() {
               </ListItemAvatar>
               <ListItemText primary="Photos" secondary="Jan 9, 2014" />
             </ListItem>
-            <Divider {...props}>{label}</Divider>
+            <Divider {...props} />
             <ListItem>
               <ListItemAvatar>
                 <Avatar>
@@ -87,9 +63,7 @@ export default function DividerMaterialYouPlayground() {
             <Grid item xs>
               {content}
             </Grid>
-            <Divider {...props} sx={{ mx: 4 }} flexItem>
-              {label}
-            </Divider>
+            <Divider {...props} sx={{ mx: 4 }} flexItem />
             <Grid item xs>
               {content}
             </Grid>

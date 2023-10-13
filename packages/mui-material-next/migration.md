@@ -340,7 +340,7 @@ This is required in v6 as it's used to apply the overlap styles to these slots. 
 
 ## Divider
 
-### Removed the "light" prop
+### Removed the "light" prop and class
 
 The `"light"` prop is no longer accepted for the Divider component.
 
@@ -351,4 +351,17 @@ If you were using the `light` prop to create a lighter Divider (which is not sup
 -  light={true}
 +  sx={{ borderColor: '#eee' }}
  />
+```
+
+### Remove composed classes and `styleOverrides` keys
+
+The following classes were removed:
+
+- `MuiDivider-withChildrenVertical`
+
+The `MuiDivider-withChildrenVertical` class has been removed. To replace it, you can use the `MuiDivider-withChildren` class along with the `MuiDivider-vertical` class. Here's an updated example:
+
+```diff
+- .MuiDivider-withChildrenVertical
++ .MuiDivider-withChildren.MuiDivider-vertical
 ```

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer } from '@mui-internal/test-utils';
-import Divider, { dividerClasses as classes } from '@mui/material/Divider';
+import Divider, { dividerClasses as classes } from '@mui/material-next/Divider';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<Divider />', () => {
@@ -46,7 +46,6 @@ describe('<Divider />', () => {
     describe('prop: orientation', () => {
       it('should set the textVertical class', () => {
         const { container } = render(<Divider orientation="vertical">content</Divider>);
-        expect(container.querySelectorAll(`.${classes.withChildrenVertical}`).length).to.equal(1);
         expect(container.querySelectorAll(`.${classes.wrapperVertical}`).length).to.equal(1);
       });
     });
@@ -118,8 +117,8 @@ describe('<Divider />', () => {
       it('should set the middle class with marginTop & marginBottom styles', () => {
         const { container } = render(<Divider variant="middle" orientation="vertical" />);
         expect(container.firstChild).toHaveComputedStyle({
-          marginTop: '8px',
-          marginBottom: '8px',
+          marginTop: '16px',
+          marginBottom: '16px',
         });
       });
     });

@@ -42,7 +42,6 @@ const DividerRoot = styled('div', {
       ownerState.orientation === 'vertical' && styles.vertical,
       ownerState.flexItem && styles.flexItem,
       ownerState.children && styles.withChildren,
-      ownerState.children && ownerState.orientation === 'vertical' && styles.withChildrenVertical,
       ownerState.textAlign === 'right' &&
         ownerState.orientation !== 'vertical' &&
         styles.textAlignRight,
