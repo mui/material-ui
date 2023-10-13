@@ -87,9 +87,17 @@ The examples below show how to use these utilities with both the `sx` prop and t
 
 #### With the sx prop
 
+```jsx
+<Box sx={[{ ...baseStyles }, applySolidInversion('neutral')]}>...</Box>
+```
+
 {{"demo": "ColorInversionAnyParent.js"}}
 
 #### With the styled API
+
+```jsx
+const Parent = styled('div')([{ ...baseStyles }, applySolidInversion('neutral')]);
+```
 
 {{"demo": "ColorInversionAnyParentStyled.js"}}
 
