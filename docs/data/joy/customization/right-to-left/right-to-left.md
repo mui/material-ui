@@ -1,10 +1,10 @@
 # Right-to-left language support
 
-<p class="description">Learn how to implement right-to-left (RTL) text with Material UI to support languages such as Arabic, Persian, and Hebrew.</p>
+<p class="description">Learn how to implement right-to-left (RTL) text with Joy UI to support languages such as Arabic, Persian, and Hebrew.</p>
 
 This guide outlines the three steps necessary to change the direction of text-based components in Joy UI to support RTL languages, as shown in the demo below:
 
-<!-- {{"demo": "Direction.js"}} -->
+{{"demo": "RTLDemoJoy.js"}}
 
 ## 1. Set the HTML direction
 
@@ -41,12 +41,12 @@ To fix it, make sure to add the `dir` attribute directly to them:
 
 ## 2. Set the theme direction
 
-Use the `createTheme` API to set the theme direction to `'rtl'`:
+Use the `extendTheme` API to set the theme direction to `'rtl'`:
 
 ```js
-import { createTheme } from '@mui/material/styles';
+import { extendTheme } from '@mui/joy/styles';
 
-const theme = createTheme({
+const theme = extendTheme({
   direction: 'rtl',
 });
 ```
