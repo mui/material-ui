@@ -4,12 +4,9 @@
 
 // supported modes = check, check-changed, write, write-changed
 
-import util from 'util';
 import yargs from 'yargs';
-import childProcess, { spawn } from 'child_process';
+import { spawn } from 'child_process';
 import listChangedFiles from './listChangedFiles.mjs';
-
-const execFile = util.promisify(childProcess.execFile);
 
 async function run(argv) {
   const { mode, branch } = argv;
