@@ -53,6 +53,7 @@
     },
     "showFirstButton": { "description": "If <code>true</code>, show the first-page button." },
     "showLastButton": { "description": "If <code>true</code>, show the last-page button." },
+    "slotProps": { "description": "The props used for each slot inside the TablePagination." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }

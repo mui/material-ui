@@ -418,6 +418,17 @@ TablePagination.propTypes /* remove-proptypes */ = {
    */
   showLastButton: PropTypes.bool,
   /**
+   * The props used for each slot inside the TablePagination.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    backIconButton: PropTypes.object,
+    firstIconButton: PropTypes.object,
+    lastIconButton: PropTypes.object,
+    nextIconButton: PropTypes.object,
+    select: PropTypes.object,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([

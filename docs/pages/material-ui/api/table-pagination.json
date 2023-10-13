@@ -57,6 +57,13 @@
     },
     "showFirstButton": { "type": { "name": "bool" }, "default": "false" },
     "showLastButton": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ backIconButton?: object, firstIconButton?: object, lastIconButton?: object, nextIconButton?: object, select?: object }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",

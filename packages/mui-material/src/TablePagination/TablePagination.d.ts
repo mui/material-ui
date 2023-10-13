@@ -135,6 +135,17 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   showLastButton?: boolean;
   /**
+   * The props used for each slot inside the TablePagination.
+   * @default {}
+   */
+  slotProps?: {
+    firstIconButton?: Partial<IconButtonProps>;
+    lastIconButton?: Partial<IconButtonProps>;
+    nextIconButton?: Partial<IconButtonProps>;
+    backIconButton?: Partial<IconButtonProps>;
+    select?: Partial<SelectProps>;
+  };
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
