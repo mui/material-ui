@@ -1,42 +1,44 @@
 export const NumberInputActionTypes = {
-  blur: 'numberInput:blur',
+  clamp: 'numberInput:clamp',
   inputChange: 'numberInput:inputChange',
-  keyDown: 'numberInput:keyDown',
   increment: 'numberInput:increment',
   decrement: 'numberInput:decrement',
+  decrementToMin: 'numberInput:decrementToMin',
+  incrementToMax: 'numberInput:incrementToMax',
 } as const;
 
-interface NumberInputBlurAction {
-  type: typeof NumberInputActionTypes.blur;
-  event: React.FocusEvent;
+interface NumberInputClampAction {
+  type: typeof NumberInputActionTypes.clamp;
+  inputValue: string;
 }
 
 interface NumberInputInputChangeAction {
   type: typeof NumberInputActionTypes.inputChange;
-  event: React.ChangeEvent;
-}
-
-interface NumberInputKeyDownAction {
-  type: typeof NumberInputActionTypes.keyDown;
-  event: React.KeyboardEvent;
-  key: string;
+  inputValue: string;
 }
 
 interface NumberInputIncrementAction {
   type: typeof NumberInputActionTypes.increment;
-  // triggering a button with the keyboard fires a PointerEvent
-  event: React.PointerEvent;
+  shiftKey: boolean;
 }
 
 interface NumberInputDecrementAction {
   type: typeof NumberInputActionTypes.decrement;
-  // triggering a button with the keyboard fires a PointerEvent
-  event: React.PointerEvent;
+  shiftKey: boolean;
+}
+
+interface NumberInputIncrementToMaxAction {
+  type: typeof NumberInputActionTypes.incrementToMax;
+}
+
+interface NumberInputDecrementToMinAction {
+  type: typeof NumberInputActionTypes.decrementToMin;
 }
 
 export type NumberInputAction =
-  | NumberInputBlurAction
+  | NumberInputClampAction
   | NumberInputInputChangeAction
-  | NumberInputKeyDownAction
   | NumberInputIncrementAction
-  | NumberInputDecrementAction;
+  | NumberInputDecrementAction
+  | NumberInputIncrementToMaxAction
+  | NumberInputDecrementToMinAction;

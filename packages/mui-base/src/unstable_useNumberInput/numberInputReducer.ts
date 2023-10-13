@@ -43,25 +43,14 @@ function stepValue(
   }[direction];
 }
 
-function getDirection(key: string) {
-  return {
-    ArrowUp: 'up',
-    ArrowDown: 'down',
-    PageUp: 'up',
-    PageDown: 'down',
-    Home: 'up',
-    End: 'down',
-  }[key] as StepDirection;
-}
-
-function handleBlur<State extends NumberInputState>(
+function handleClamp<State extends NumberInputState>(
   state: State,
   context: NumberInputActionContext,
-  event: React.FocusEvent,
+  inputValue: string,
 ) {
   const { getInputValueAsString } = context;
 
-  const parsedValue = getInputValueAsString((event.currentTarget as HTMLInputElement).value);
+  const parsedValue = getInputValueAsString(inputValue);
 
   const intermediateValue =
     parsedValue === '' || parsedValue === '-' ? undefined : parseInt(parsedValue, 10);
@@ -77,11 +66,11 @@ function handleBlur<State extends NumberInputState>(
 function handleInputChange<State extends NumberInputState>(
   state: State,
   context: NumberInputActionContext,
-  event: React.ChangeEvent,
+  inputValue: string,
 ) {
   const { getInputValueAsString } = context;
 
-  const parsedValue = getInputValueAsString((event.currentTarget as HTMLInputElement).value);
+  const parsedValue = getInputValueAsString(inputValue);
 
   if (parsedValue === '' || parsedValue === '-') {
     return {
@@ -102,13 +91,15 @@ function handleInputChange<State extends NumberInputState>(
   return state;
 }
 
+// use this for ArrowUp, ArrowDown
+// use this with shiftKey: true for PageUp, PageDown
 function handleStep<State extends NumberInputState>(
   state: State,
   context: NumberInputActionContext,
-  event: React.PointerEvent,
+  shiftKey: boolean,
   direction: StepDirection,
 ) {
-  const multiplier = event.shiftKey ? context.shiftMultiplier : 1;
+  const multiplier = shiftKey ? context.shiftMultiplier : 1;
 
   const newValue = stepValue(state, context, direction, multiplier);
 
@@ -120,80 +111,43 @@ function handleStep<State extends NumberInputState>(
   };
 }
 
-function handleKeyDown<State extends NumberInputState>(
+function handleToMinOrMax<State extends NumberInputState>(
   state: State,
   context: NumberInputActionContext,
-  event: React.KeyboardEvent,
-  key: string,
+  to: 'min' | 'max',
 ) {
-  const { min, max, shiftMultiplier } = context;
+  const newValue = context[to];
 
-  const multiplier = event.shiftKey || key === 'PageUp' || key === 'PageDown' ? shiftMultiplier : 1;
-
-  switch (key) {
-    case 'ArrowUp':
-    case 'ArrowDown':
-    case 'PageUp':
-    case 'PageDown': {
-      const direction = getDirection(key);
-
-      const newValue = stepValue(state, context, direction, multiplier);
-
-      const clampedValues = getClampedValues(newValue, context);
-
-      return {
-        ...state,
-        ...clampedValues,
-      };
-    }
-
-    case 'Home': {
-      if (!isNumber(max)) {
-        break;
-      }
-
-      return {
-        ...state,
-        value: max,
-        inputValue: String(max),
-      };
-    }
-
-    case 'End': {
-      if (!isNumber(min)) {
-        break;
-      }
-      return {
-        ...state,
-        value: min,
-        inputValue: String(min),
-      };
-    }
-
-    default:
-      break;
+  if (!isNumber(newValue)) {
+    return state;
   }
 
-  return state;
+  return {
+    ...state,
+    value: newValue,
+    inputValue: String(newValue),
+  };
 }
 
 export function numberInputReducer(
   state: NumberInputState,
   action: NumberInputReducerAction,
 ): NumberInputState {
-  const { type, context, event } = action;
+  const { type, context } = action;
 
   switch (type) {
-    case NumberInputActionTypes.blur:
-      return handleBlur(state, context, event);
+    case NumberInputActionTypes.clamp:
+      return handleClamp(state, context, action.inputValue);
     case NumberInputActionTypes.inputChange:
-      return handleInputChange(state, context, event);
+      return handleInputChange(state, context, action.inputValue);
     case NumberInputActionTypes.increment:
-      return handleStep(state, context, event, 'up');
+      return handleStep(state, context, action.shiftKey, 'up');
     case NumberInputActionTypes.decrement:
-      return handleStep(state, context, event, 'down');
-    case NumberInputActionTypes.keyDown:
-      return handleKeyDown(state, context, event, action.key);
+      return handleStep(state, context, action.shiftKey, 'down');
+    case NumberInputActionTypes.incrementToMax:
+      return handleToMinOrMax(state, context, 'max');
+    case NumberInputActionTypes.decrementToMin:
+      return handleToMinOrMax(state, context, 'min');
     default:
       return state;
   }

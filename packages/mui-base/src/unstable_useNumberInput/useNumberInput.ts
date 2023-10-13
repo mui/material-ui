@@ -158,6 +158,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
 
       otherHandlers.onInputChange?.(event);
 
+      // TODO: event.currentTarget.value will be passed straight into the InputChange action
       const val = getInputValueAsString(event.currentTarget.value);
 
       if (val === '' || val === '-') {
@@ -174,6 +175,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
   const handleBlur =
     (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
     (event: React.FocusEvent<HTMLInputElement>) => {
+      // TODO: event.currentTarget.value will be passed straight into the Blur action, or just pass inputValue from state
       const val = getInputValueAsString(event.currentTarget.value);
 
       otherHandlers.onBlur?.(event);
