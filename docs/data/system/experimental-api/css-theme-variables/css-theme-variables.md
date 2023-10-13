@@ -39,7 +39,7 @@ The comparison described in the table above may not be applicable to large and c
 
 ## Usage
 
-The CSS variables API usage is exposed as a higher order function called `unstable_createCssVarsProvider` which can be called to create a theme provider and other utitlities to share the theme config throughout your app. This is a very low-level function and has a lot of moving parts. If you are already using [Material UI](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/) or [Joy UI](https://mui.com/joy-ui/customization/using-css-variables/), they already expose their own `CssVarsProvider` component that you can use directly without needing to configure your theme. Now that's out of the way, we can continue with how this util can be used.
+The CSS variables API usage is exposed as a higher order function called `unstable_createCssVarsProvider` which can be called to create a theme provider and other utilities to share the theme config throughout your app. This is a very low-level function and has a lot of moving parts. If you are already using [Material UI](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/) or [Joy UI](https://mui.com/joy-ui/customization/using-css-variables/), they already expose their own `CssVarsProvider` component that you can use directly without needing to configure your theme. Now that's out of the way, we can continue with how this util can be used.
 
 We'll first define a minimal theme palette for light and dark modes.
 
@@ -200,7 +200,7 @@ See the complete usage of `createVssVarsProvider` in [Material UI](https://githu
 - `defaultMode?`: Design system default mode (`light` by default)
 - `disableTransitionOnChange?`: Disable CSS transitions when switching between modes or color schemes (`false` by default)
 - `themeId?`: The design system's unique id for getting the corresponded theme when there are multiple design systems.
-- `theme`: Design system default theme. It's structure, besides the minimium requirements by `createCssVarsProvider`, is upto the design system to implement.
+- `theme`: Design system default theme. It's structure, besides the minimum requirements by `createCssVarsProvider`, is upto the design system to implement.
 - `resolveTheme(theme: Theme) => Theme`: A function to be called after the CSS variables are attached. The result of this function will be the final theme pass to `ThemeProvider`.
 
 `createCssVarsProvider` returns 3 items.
