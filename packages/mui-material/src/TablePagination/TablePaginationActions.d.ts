@@ -13,7 +13,6 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    * @default false
    */
   disabled?: boolean;
-  firstIconButtonProps?: Partial<IconButtonProps>;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
@@ -23,13 +22,18 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    * @returns {string}
    */
   getItemAriaLabel: (type: 'first' | 'last' | 'next' | 'previous') => string;
-  lastIconButtonProps?: Partial<IconButtonProps>;
   nextIconButtonProps?: Partial<IconButtonProps>;
   onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   page: number;
   rowsPerPage: number;
   showFirstButton: boolean;
   showLastButton: boolean;
+  slotProps?: {
+    firstIconButton?: Partial<IconButtonProps>;
+    lastIconButton?: Partial<IconButtonProps>;
+    nextIconButton?: Partial<IconButtonProps>;
+    previousIconButton?: Partial<IconButtonProps>;
+  };
 }
 
 declare const TablePaginationActions: React.JSXElementConstructor<TablePaginationActionsProps>;

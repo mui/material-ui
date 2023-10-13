@@ -16,15 +16,14 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     backIconButtonProps,
     count,
     disabled = false,
-    firstIconButtonProps,
     getItemAriaLabel,
-    lastIconButtonProps,
     nextIconButtonProps,
     onPageChange,
     page,
     rowsPerPage,
     showFirstButton,
     showLastButton,
+    slotProps,
     ...other
   } = props;
 
@@ -54,7 +53,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           disabled={disabled || page === 0}
           aria-label={getItemAriaLabel('first', page)}
           title={getItemAriaLabel('first', page)}
-          {...firstIconButtonProps}
+          {...(slotProps?.firstIconButton ?? {})}
         >
           {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
         </IconButton>
@@ -65,7 +64,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         color="inherit"
         aria-label={getItemAriaLabel('previous', page)}
         title={getItemAriaLabel('previous', page)}
-        {...backIconButtonProps}
+        {...(slotProps?.previousIconButton ?? backIconButtonProps)}
       >
         {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
       </IconButton>
@@ -75,7 +74,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         color="inherit"
         aria-label={getItemAriaLabel('next', page)}
         title={getItemAriaLabel('next', page)}
-        {...nextIconButtonProps}
+        {...(slotProps?.nextIconButton ?? nextIconButtonProps)}
       >
         {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
       </IconButton>
@@ -85,7 +84,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           disabled={disabled || page >= Math.ceil(count / rowsPerPage) - 1}
           aria-label={getItemAriaLabel('last', page)}
           title={getItemAriaLabel('last', page)}
-          {...lastIconButtonProps}
+          {...(slotProps?.lastIconButton ?? {})}
         >
           {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
         </IconButton>
@@ -109,10 +108,6 @@ TablePaginationActions.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Props applied to the first arrow [`IconButton`](/material-ui/api/icon-button/) component.
-   */
-  firstIconButtonProps: PropTypes.object,
-  /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    *
    * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
@@ -122,10 +117,6 @@ TablePaginationActions.propTypes = {
    * @returns {string}
    */
   getItemAriaLabel: PropTypes.func.isRequired,
-  /**
-   * Props applied to the last arrow [`IconButton`](/material-ui/api/icon-button/) component.
-   */
-  lastIconButtonProps: PropTypes.object,
   /**
    * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
    */
@@ -153,6 +144,16 @@ TablePaginationActions.propTypes = {
    * If `true`, show the last-page button.
    */
   showLastButton: PropTypes.bool.isRequired,
+  /**
+   * The props used for each slot inside the TablePaginationActions.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    firstIconButton: PropTypes.object,
+    lastIconButton: PropTypes.object,
+    nextIconButton: PropTypes.object,
+    previousIconButton: PropTypes.object,
+  }),
 };
 
 export default TablePaginationActions;
