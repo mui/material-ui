@@ -3,7 +3,7 @@ import * as React from 'react';
 import { refType } from '@mui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
-import { OverrideProps } from '@mui/types';
+import { DefaultComponentProps, OverrideProps } from '@mui/types';
 import { useThemeProps, styled } from '../styles';
 import { rootShouldForwardProp } from '../styles/styled';
 import {
@@ -315,6 +315,7 @@ interface FilledInputComponent {
       inputComponent?: C;
     } & OverrideProps<FilledInputTypeMap, C>,
   ): JSX.Element | null;
+  (props: DefaultComponentProps<FilledInputTypeMap>): JSX.Element | null;
   propTypes?: any;
   muiName?: string;
 }

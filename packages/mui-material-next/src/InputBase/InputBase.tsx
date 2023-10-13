@@ -12,7 +12,7 @@ import {
 } from '@mui/base';
 import { useInput } from '@mui/base/useInput';
 import { CSSInterpolation } from '@mui/system';
-import { OverrideProps } from '@mui/types';
+import { DefaultComponentProps, OverrideProps } from '@mui/types';
 import {
   refType,
   unstable_capitalize as capitalize,
@@ -551,6 +551,7 @@ interface InputBaseComponent {
       inputComponent?: C;
     } & OverrideProps<InputBaseTypeMap, C>,
   ): JSX.Element | null;
+  (props: DefaultComponentProps<InputBaseTypeMap>): JSX.Element | null;
   propTypes?: any;
 }
 
