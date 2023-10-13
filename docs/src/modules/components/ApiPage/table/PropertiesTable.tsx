@@ -9,7 +9,10 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
-import { PropDescriptionParams } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
+import {
+  PropDescriptionParams,
+  getHash,
+} from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
@@ -163,26 +166,6 @@ function PropDescription({ description }: { description: string }) {
 
 PropDescription.propTypes = {
   description: PropTypes.string.isRequired,
-};
-
-export const getHash = ({
-  targetName,
-  propName,
-  hooksParameters,
-  hooksReturnValue,
-}: {
-  targetName: string;
-  propName: string;
-  hooksParameters?: boolean;
-  hooksReturnValue?: boolean;
-}) => {
-  let sectionName = 'prop';
-  if (hooksParameters) {
-    sectionName = 'parameters';
-  } else if (hooksReturnValue) {
-    sectionName = 'return-value';
-  }
-  return `${targetName ? `${targetName}-` : ''}${sectionName}-${propName}`;
 };
 
 interface PropertiesTableProps {
