@@ -25,7 +25,7 @@ export const getPropsToC = ({
       .filter(([, propData]) => propData.description !== '@ignore')
       .map(([propName]) => ({
         text: propName,
-        hash: getHash({ propName, componentName }),
+        hash: getHash({ propName, targetName: componentName }),
         children: [],
       })),
     ...(inheritance
@@ -41,12 +41,14 @@ export default function PropertiesSection(props) {
   const {
     properties,
     propertiesDescriptions,
-    componentName = '',
+    targetName = '',
     showOptionalAbbr = false,
     title = 'api-docs.props',
     titleHash = 'props',
     level: Level = 'h2',
     spreadHint,
+    hooksParameters = false,
+    hooksReturnValue = false,
   } = props;
   const t = useTranslate();
 
@@ -85,13 +87,15 @@ export default function PropertiesSection(props) {
         propertiesDescriptions[propName].typeDescriptions[propData.signature.returned];
 
       return {
-        componentName,
+        targetName,
         propName,
         description: propDescription?.description,
         requiresRef: propDescription?.requiresRef,
         isOptional,
         isRequired,
         isDeprecated,
+        hooksParameters,
+        hooksReturnValue,
         deprecationInfo,
         typeName,
         propDefault,
@@ -133,12 +137,14 @@ export default function PropertiesSection(props) {
 }
 
 PropertiesSection.propTypes = {
-  componentName: PropTypes.string,
+  hooksParameters: PropTypes.bool,
+  hooksReturnValue: PropTypes.bool,
   level: PropTypes.string,
   properties: PropTypes.object.isRequired,
   propertiesDescriptions: PropTypes.object.isRequired,
   showOptionalAbbr: PropTypes.bool,
   spreadHint: PropTypes.string,
+  targetName: PropTypes.string,
   title: PropTypes.string,
   titleHash: PropTypes.string,
 };

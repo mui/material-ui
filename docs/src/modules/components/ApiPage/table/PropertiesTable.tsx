@@ -9,7 +9,10 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
-import { PropDescriptionParams } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
+import {
+  PropDescriptionParams,
+  getHash,
+} from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
@@ -165,9 +168,6 @@ PropDescription.propTypes = {
   description: PropTypes.string.isRequired,
 };
 
-export const getHash = ({ componentName, propName }: { componentName: string; propName: string }) =>
-  `${componentName ? `${componentName}-` : ''}prop-${propName}`;
-
 interface PropertiesTableProps {
   properties: PropDescriptionParams[];
 }
@@ -188,13 +188,15 @@ export default function PropertiesTable(props: PropertiesTableProps) {
       <tbody>
         {properties.map((params) => {
           const {
-            componentName,
+            targetName,
             propName,
             description,
             requiresRef,
             isOptional,
             isRequired,
             isDeprecated,
+            hooksParameters,
+            hooksReturnValue,
             deprecationInfo,
             typeName,
             propDefault,
@@ -205,7 +207,10 @@ export default function PropertiesTable(props: PropertiesTableProps) {
           } = params;
 
           return (
-            <tr key={propName} id={getHash({ componentName, propName })}>
+            <tr
+              key={propName}
+              id={getHash({ targetName, propName, hooksParameters, hooksReturnValue })}
+            >
               <td className="MuiApi-table-item-title">
                 {propName}
                 {isRequired ? '*' : ''}

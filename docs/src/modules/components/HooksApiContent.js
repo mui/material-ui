@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import PropertiesTable from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
+import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
@@ -68,8 +68,10 @@ export default function HooksApiContent(props) {
           <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           {Object.keys(parameters).length > 0 ? (
-            <PropertiesTable
+            <PropertiesSection
               properties={parameters}
+              targetName={hookNameKebabCase}
+              hooksParameters
               propertiesDescriptions={parametersDescriptions}
               level="h3"
               title="api-docs.parameters"
@@ -78,9 +80,11 @@ export default function HooksApiContent(props) {
           ) : (
             <span>{t('api-docs.hooksNoParameters')}</span>
           )}
-          <PropertiesTable
+          <PropertiesSection
             showOptionalAbbr
             properties={returnValue}
+            targetName={hookNameKebabCase}
+            hooksReturnValue
             propertiesDescriptions={returnValueDescriptions}
             level="h3"
             title="api-docs.returnValue"
