@@ -29,9 +29,7 @@ const Nav = styled('nav')(({ theme }) => ({
 }));
 
 const NavLabel = styled(Typography)(({ theme }) => ({
-  marginTop: theme.spacing(2),
-  marginBottom: theme.spacing(1),
-  paddingLeft: theme.spacing(1.4),
+  padding: theme.spacing(1, 0, 1, 1.4),
   fontSize: theme.typography.pxToRem(11),
   fontWeight: theme.typography.fontWeightBold,
   textTransform: 'uppercase',
@@ -65,22 +63,24 @@ const NavItem = styled(Link, {
       color: (theme.vars || theme).palette.primary[400],
     },
   };
-  let paddingLeft = '10px';
+  let paddingLeft = '12px';
   if (secondary) {
-    paddingLeft = 2.5;
+    paddingLeft = 3;
   }
   if (secondarySubItem) {
-    paddingLeft = 5;
+    paddingLeft = 4.5;
   }
 
   return [
     {
-      fontSize: theme.typography.pxToRem(13),
-      padding: theme.spacing(0, 1, 0, paddingLeft),
-      margin: theme.spacing(0.5, 0, 1, 0),
-      borderLeft: `1px solid transparent`,
       boxSizing: 'border-box',
-      fontWeight: 500,
+      padding: theme.spacing('6px', 0, '6px', paddingLeft),
+      borderLeft: `1px solid transparent`,
+      display: 'block',
+      fontSize: theme.typography.pxToRem(13),
+      fontWeight: theme.typography.fontWeightMedium,
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
       '&:hover': {
         borderLeftColor: (theme.vars || theme).palette.grey[400],
         color: (theme.vars || theme).palette.grey[600],
@@ -94,7 +94,7 @@ const NavItem = styled(Link, {
     },
     theme.applyDarkStyles({
       '&:hover': {
-        borderLeftColor: (theme.vars || theme).palette.grey[600],
+        borderLeftColor: (theme.vars || theme).palette.grey[500],
         color: (theme.vars || theme).palette.grey[200],
       },
       ...(!active && {
@@ -343,7 +343,7 @@ export default function AppTableOfContents(props) {
       </NoSsr>
       {toc.length > 0 ? (
         <React.Fragment>
-          <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>
+          <NavLabel>{t('tableOfContents')}</NavLabel>
           <NavList component="ul">
             {toc.map((item) => (
               <li key={item.text}>
