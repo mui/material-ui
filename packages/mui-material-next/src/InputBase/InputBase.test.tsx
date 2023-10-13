@@ -249,8 +249,8 @@ describe('<InputBase />', () => {
     it('should inject onBlur and onFocus', () => {
       let injectedProps: any = {};
       const MyInputBase = React.forwardRef(function MyInputBase(
-        props: any,
-        ref: React.ForwardedRef<any>,
+        props: { ownerState: InputBaseOwnerState } & Record<string, unknown>,
+        ref: React.ForwardedRef<HTMLInputElement>,
       ) {
         injectedProps = props;
         const { ownerState, ...other } = props;
@@ -285,7 +285,7 @@ describe('<InputBase />', () => {
         });
         MockedValue.propTypes = { onChange: PropTypes.func.isRequired };
 
-        function FilledState(props: any) {
+        function FilledState(props: { 'data-testid': string }) {
           const formControlContext = useFormControl();
           return <span {...props}>filled: {String(formControlContext?.filled)}</span>;
         }
@@ -304,14 +304,14 @@ describe('<InputBase />', () => {
 
       it("can expose the input component's ref through the inputComponent prop", () => {
         const FullTarget = React.forwardRef(function FullTarget(
-          props: any,
+          props: { ownerState: InputBaseOwnerState } & Record<string, unknown>,
           ref: React.ForwardedRef<HTMLInputElement>,
         ) {
           const { ownerState, ...otherProps } = props;
           return <input ref={ref} {...otherProps} />;
         });
 
-        function FilledState(props: any) {
+        function FilledState(props: { 'data-testid': string }) {
           const formControlContext = useFormControl();
           return <span {...props}>filled: {String(formControlContext?.filled)}</span>;
         }
@@ -466,7 +466,7 @@ describe('<InputBase />', () => {
       });
 
       it('propagates focused state', () => {
-        function FocusedStateLabel(props: any) {
+        function FocusedStateLabel(props: { 'data-testid': string; htmlFor: string }) {
           const formControlContext = useFormControl();
           return <label {...props}>focused: {String(formControlContext?.focused)}</label>;
         }
@@ -491,7 +491,7 @@ describe('<InputBase />', () => {
     });
 
     it('propagates filled state when uncontrolled', () => {
-      function FilledStateLabel(props: any) {
+      function FilledStateLabel(props: { 'data-testid': string }) {
         const formControlContext = useFormControl();
         return <label {...props}>filled: {String(formControlContext?.filled)}</label>;
       }
@@ -515,7 +515,7 @@ describe('<InputBase />', () => {
     });
 
     it('propagates filled state when controlled', () => {
-      function FilledStateLabel(props: any) {
+      function FilledStateLabel(props: { 'data-testid': string }) {
         const formControlContext = useFormControl();
         return <label {...props}>filled: {String(formControlContext?.filled)}</label>;
       }
@@ -608,7 +608,7 @@ describe('<InputBase />', () => {
           onChange: (...args: string[]) => void;
           ownerState: InputBaseOwnerState;
         },
-        ref: React.ForwardedRef<any>,
+        ref: React.ForwardedRef<HTMLInputElement>,
       ) {
         const { onChange, ownerState, ...other } = props;
 
