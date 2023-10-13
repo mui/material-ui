@@ -16,6 +16,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
   ({ theme }) => ({
     position: 'relative',
     marginBottom: 12,
+    scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
     '& .MuiApi-item-header': {
       minHeight: 26,
       display: 'flex',
