@@ -336,6 +336,10 @@ FilledInput.propTypes /* remove-proptypes */ = {
    */
   autoFocus: PropTypes.bool,
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
