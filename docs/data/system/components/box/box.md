@@ -9,22 +9,34 @@ githubLabel: 'component: Box'
 
 <p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
 
-The Box component packages [all the style functions](/system/getting-started/the-sx-prop/) that are exposed in `@mui/system`.
+## Introduction
+
+The Box component is a generic component that offers [all the style functions](/system/getting-started/the-sx-prop/) exposed in [`@mui/system`](/system/getting-started/).
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Example
+## Basics
 
-[The palette](/system/palette/) style function.
+```jsx
+import Box from '@mui/system/Box';
+```
 
-## The `sx` prop
+The Box differs slightly from other Joy UI components as it doesn't support the props you'd expect such as `variant`, `color`, and `size`.
 
-All system properties are available via the [`sx` prop](/system/getting-started/the-sx-prop/).
-In addition, the `sx` prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it:
+That's because it's a component based on the MUI System, a collection of CSS utilities for rapidly laying out custom designs.
+
+Demo here
+
+## Component
+
+### The `sx` prop
+
+The [`sx` prop](/system/getting-started/the-sx-prop/) lets you work with a superset of CSS that packages all of the style functions exposed in `@mui/system`.
+You can specify any valid CSS using this prop, as well as many theme-aware properties that are unique to MUI System.
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
-## Overriding MUI components
+### The component prop
 
 The Box component wraps your component.
 It creates a new DOM element, a `<div>` by default that can be changed with the `component` prop.
@@ -56,7 +68,7 @@ For non-MUI components, use the `component` prop.
 +<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
 ```
 
-## System props
+### System props
 
 As a CSS utility component, the `Box` also supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component.
 For instance, a margin-top:
