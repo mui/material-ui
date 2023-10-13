@@ -65,13 +65,14 @@ const NavItem = styled(Link, {
 
   return [
     {
+      boxSizing: 'border-box',
+      padding: theme.spacing('6px', 0, '6px', secondary ? 3 : '12px'),
+      borderLeft: `1px solid transparent`,
       display: 'block',
       fontSize: theme.typography.pxToRem(13),
       fontWeight: theme.typography.fontWeightMedium,
-      overflowWrap: 'break-word',
-      padding: theme.spacing('6px', 0, '6px', secondary ? 3 : '12px'),
-      borderLeft: `1px solid transparent`,
-      boxSizing: 'border-box',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
       '&:hover': {
         borderLeftColor: (theme.vars || theme).palette.grey[400],
         color: (theme.vars || theme).palette.grey[600],
