@@ -237,9 +237,9 @@ function ApiItem(props: ApiItemProps) {
             sx={{ p: 0, ml: 'auto' }}
           >
             {isExtended ? (
-              <KeyboardArrowDownIcon sx={{ color: 'grey.500' }} />
-            ) : (
               <KeyboardArrowUpIcon sx={{ color: 'grey.500' }} />
+            ) : (
+              <KeyboardArrowDownIcon sx={{ color: 'grey.500' }} />
             )}
           </IconButton>
         )}
