@@ -266,6 +266,8 @@ const FilledInput = React.forwardRef(function FilledInput<
       ref: forwardedRef,
       fullWidth,
       inputComponent,
+      multiline,
+      type,
     },
     externalForwardedProps: other,
     ownerState: ownerState as FilledInputOwnerState & InputBaseOwnerState,
@@ -285,8 +287,6 @@ const FilledInput = React.forwardRef(function FilledInput<
       slotProps={{
         input: inputProps,
       }}
-      multiline={multiline}
-      type={type}
       {...rootProps}
     />
   );
