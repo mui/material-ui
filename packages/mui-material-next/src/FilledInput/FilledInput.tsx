@@ -279,25 +279,13 @@ const FilledInput = React.forwardRef(function FilledInput<
     className: [classes.input],
   });
 
-  if (multiline) {
-    return (
-      <InputBase
-        slots={{ root: Root, textarea: Input }}
-        slotProps={{
-          input: inputProps,
-        }}
-        multiline
-        {...rootProps}
-      />
-    );
-  }
-
   return (
     <InputBase
-      slots={{ root: Root, input: Input }}
+      slots={{ root: Root, [multiline ? 'textarea' : 'input']: Input }}
       slotProps={{
         input: inputProps,
       }}
+      multiline={multiline}
       type={type}
       {...rootProps}
     />

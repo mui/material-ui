@@ -12,57 +12,7 @@ export interface InputBasePropsColorOverrides {}
 export interface InputBaseRootSlotPropsOverrides {}
 export interface InputBaseInputSlotPropsOverrides {}
 
-export interface SingleLineInputProps {
-  /**
-   * Maximum number of rows to display when multiline option is set to true.
-   */
-  maxRows?: undefined;
-  /**
-   * Minimum number of rows to display when multiline option is set to true.
-   */
-  minRows?: undefined;
-  /**
-   * If `true`, a `textarea` element is rendered.
-   * @default false
-   */
-  multiline?: false;
-  /**
-   * Number of rows to display when multiline option is set to true.
-   */
-  rows?: undefined;
-  /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   * @default 'text'
-   */
-  type?: React.HTMLInputTypeAttribute;
-}
-
-export interface MultiLineInputProps {
-  /**
-   * Maximum number of rows to display when multiline option is set to true.
-   */
-  maxRows?: number;
-  /**
-   * Minimum number of rows to display when multiline option is set to true.
-   */
-  minRows?: number;
-  /**
-   * If `true`, a `textarea` element is rendered.
-   * @default false
-   */
-  multiline: true;
-  /**
-   * Number of rows to display when multiline option is set to true.
-   */
-  rows?: number;
-  /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   * @default 'text'
-   */
-  type?: undefined;
-}
-
-export type InputBaseOwnProps = (SingleLineInputProps | MultiLineInputProps) & {
+export type InputBaseOwnProps = {
   'aria-describedby'?: string;
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
@@ -208,6 +158,28 @@ export type InputBaseOwnProps = (SingleLineInputProps | MultiLineInputProps) & {
    * The value of the `input` element, required for a controlled component.
    */
   value?: unknown;
+  /**
+   * Maximum number of rows to display when multiline option is set to true.
+   */
+  maxRows?: number;
+  /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  minRows?: number;
+  /**
+   * If `true`, a `textarea` element is rendered.
+   * @default false
+   */
+  multiline?: boolean;
+  /**
+   * Number of rows to display when multiline option is set to true.
+   */
+  rows?: number;
+  /**
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * @default 'text'
+   */
+  type?: React.HTMLInputTypeAttribute;
 };
 
 export interface InputBaseSlots {

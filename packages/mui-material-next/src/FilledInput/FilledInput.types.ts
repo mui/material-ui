@@ -7,7 +7,8 @@ import { Theme } from '../styles/Theme.types';
 import { InputBaseProps } from '../InputBase/InputBase.types';
 import { FilledInputClasses } from './filledInputClasses';
 
-export type FilledInputOwnProps = StandardProps<Omit<InputBaseProps, 'children' | 'slots'>> & {
+export interface FilledInputOwnProps
+  extends StandardProps<Omit<InputBaseProps, 'children' | 'slots'>> {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -33,7 +34,7 @@ export type FilledInputOwnProps = StandardProps<Omit<InputBaseProps, 'children' 
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
-};
+}
 
 export interface FilledInputSlots {
   /**
