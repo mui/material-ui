@@ -5,6 +5,7 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import Close from '@mui/icons-material/Close';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
+import InfoOutlined from '@mui/icons-material/InfoOutlined';
 
 export default function SnackbarUsage() {
   const [open, setOpen] = React.useState(false);
@@ -55,6 +56,7 @@ export default function SnackbarUsage() {
 
               setOpen(false);
             }}
+            startDecorator={<InfoOutlined />}
             endDecorator={
               <IconButton onClick={() => setOpen(false)}>
                 <Close />

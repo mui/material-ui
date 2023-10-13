@@ -36,7 +36,7 @@ const useUtilityClasses = (ownerState: SnackbarOwnerState) => {
 
 const enterAnimation = keyframes`
   0% {
-    transform: translateX(var(--Snackbar-translateX, 0px)) translateY(calc(var(--_Snackbar-anchorBottom, 1) * (50% + var(--Snackbar-inset))));
+    transform: translateX(var(--Snackbar-translateX, 0px)) translateY(calc(var(--_Snackbar-anchorBottom, 1) * 100%));
     opacity: 0;
   }
   50% {
@@ -53,7 +53,7 @@ const exitAnimation = keyframes`
     opacity: 1;
   }
   100% {
-    transform: translateX(var(--Snackbar-translateX, 0px)) translateY(calc(var(--_Snackbar-anchorBottom, 1) * (50% + var(--Snackbar-inset))));
+    transform: translateX(var(--Snackbar-translateX, 0px)) translateY(calc(var(--_Snackbar-anchorBottom, 1) * 100%));
     opacity: 0;
   }
 `;
@@ -203,15 +203,29 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     variant = 'outlined',
     ...other
   } = props;
+
+  // For animation
   const [exited, setExited] = React.useState(true);
+
+  // `exiting` is a state for preventing click away event during exiting
+  // because there is a case where the Snackbar is exiting and the user open a Snackbar again.
+  // Without this state, the snack will open and close immediately since click away is called immediately after the click event.
+  const [exiting, setExiting] = React.useState(false);
+
+  // To call a function when the component is about to be unmounted.
+  // Useful for preserving content in the Snackbar when undergoing exit animation.
   const unmountRef = React.useRef(onUnmount);
   unmountRef.current = onUnmount;
+
   React.useEffect(() => {
     if (open) {
+      setExiting(false);
       setExited(false);
     } else {
+      setExiting(true);
       const timer = setTimeout(() => {
         setExited(true);
+        setExiting(false);
         unmountRef.current?.();
       }, animationDuration);
       return () => {
@@ -237,6 +251,12 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const { getRootProps, onClickAway } = useSnackbar(ownerState);
+
+  const handleClickAway = (event: React.SyntheticEvent<any> | Event) => {
+    if (!exiting) {
+      onClickAway(event);
+    }
+  };
 
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
@@ -272,7 +292,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
 
   return (
     <SlotClickAway
-      onClickAway={onClickAway}
+      onClickAway={handleClickAway}
       {...(typeof slotProps?.clickAway === 'function'
         ? slotProps.clickAway(ownerState)
         : slotProps?.clickAway)}
