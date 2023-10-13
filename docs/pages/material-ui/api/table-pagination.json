@@ -49,7 +49,12 @@
       },
       "default": "[10, 25, 50, 100]"
     },
-    "SelectProps": { "type": { "name": "object" }, "default": "{}" },
+    "SelectProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.select</code> instead."
+    },
     "showFirstButton": { "type": { "name": "bool" }, "default": "false" },
     "showLastButton": { "type": { "name": "bool" }, "default": "false" },
     "sx": {

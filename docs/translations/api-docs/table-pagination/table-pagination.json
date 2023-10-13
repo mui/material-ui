@@ -49,7 +49,7 @@
       "description": "Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. Use -1 for the value with a custom label to show all the rows."
     },
     "SelectProps": {
-      "description": "Props applied to the rows per page <a href=\"/material-ui/api/select/\"><code>Select</code></a> element."
+      "description": "Props applied to the rows per page <a href=\"/material-ui/api/select/\"><code>Select</code></a> element.<br>This prop is an alias for <code>slotProps.select</code> and will be overriden by it if both are used."
     },
     "showFirstButton": { "description": "If <code>true</code>, show the first-page button." },
     "showLastButton": { "description": "If <code>true</code>, show the last-page button." },

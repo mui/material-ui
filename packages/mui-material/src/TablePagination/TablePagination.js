@@ -165,15 +165,17 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);
 
-  const MenuItemComponent = SelectProps.native ? 'option' : TablePaginationMenuItem;
+  const selectProps = slotProps?.select ?? SelectProps;
+
+  const MenuItemComponent = selectProps.native ? 'option' : TablePaginationMenuItem;
 
   let colSpan;
   if (component === TableCell || component === 'td') {
     colSpan = colSpanProp || 1000; // col-span over everything
   }
 
-  const selectId = useId(SelectProps.id);
-  const labelId = useId(SelectProps.labelId);
+  const selectId = useId(selectProps.id);
+  const labelId = useId(selectProps.labelId);
 
   const getLabelDisplayedRowsTo = () => {
     if (count === -1) {
@@ -202,19 +204,19 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
         {rowsPerPageOptions.length > 1 && (
           <TablePaginationSelect
             variant="standard"
-            {...(!SelectProps.variant && { input: <InputBase /> })}
+            {...(!selectProps.variant && { input: <InputBase /> })}
             value={rowsPerPage}
             onChange={onRowsPerPageChange}
             id={selectId}
             labelId={labelId}
-            {...SelectProps}
+            {...selectProps}
             classes={{
-              ...SelectProps.classes,
+              ...selectProps.classes,
               // TODO v5 remove `classes.input`
-              root: clsx(classes.input, classes.selectRoot, (SelectProps.classes || {}).root),
-              select: clsx(classes.select, (SelectProps.classes || {}).select),
+              root: clsx(classes.input, classes.selectRoot, (selectProps.classes || {}).root),
+              select: clsx(classes.select, (selectProps.classes || {}).select),
               // TODO v5 remove `selectIcon`
-              icon: clsx(classes.selectIcon, (SelectProps.classes || {}).icon),
+              icon: clsx(classes.selectIcon, (selectProps.classes || {}).icon),
             }}
             disabled={disabled}
           >
@@ -398,6 +400,10 @@ TablePagination.propTypes /* remove-proptypes */ = {
   ),
   /**
    * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.
+   *
+   * This prop is an alias for `slotProps.select` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.select` instead.
+   *
    * @default {}
    */
   SelectProps: PropTypes.object,

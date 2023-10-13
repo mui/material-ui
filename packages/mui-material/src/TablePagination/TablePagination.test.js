@@ -570,6 +570,37 @@ describe('<TablePagination />', () => {
         expect(nextButton).to.have.property('disabled', slotPropsDisabled);
       });
     });
+
+    describe('select', () => {
+      it('should override SelectProps', () => {
+        const slotPropsDisabled = false;
+        const SelectPropsDisabled = true;
+
+        const { getByRole } = render(
+          <table>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  SelectProps={{ disabled: SelectPropsDisabled }}
+                  slotProps={{ select: { disabled: slotPropsDisabled } }}
+                  count={1}
+                  page={0}
+                  onPageChange={noop}
+                  onRowsPerPageChange={noop}
+                  rowsPerPage={10}
+                />
+              </TableRow>
+            </TableFooter>
+          </table>,
+        );
+
+        const combobox = getByRole('combobox');
+        expect(slotPropsDisabled).not.to.equal(SelectPropsDisabled);
+        expect(combobox.parentElement)
+          .to.have.class(inputClasses.disabled)
+          .to.equal(slotPropsDisabled);
+      });
+    });
   });
 
   describe('duplicated keys', () => {
