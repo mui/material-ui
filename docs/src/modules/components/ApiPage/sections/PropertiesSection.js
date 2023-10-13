@@ -48,7 +48,7 @@ export default function PropertiesSection(props) {
     level: Level = 'h2',
     spreadHint,
     hooksParameters = false,
-    hooksReturnValue = false
+    hooksReturnValue = false,
   } = props;
   const t = useTranslate();
 
