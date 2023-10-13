@@ -22,6 +22,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
 interface Data {
+  id: number;
   calories: number;
   carbs: number;
   fat: number;
@@ -30,35 +31,37 @@ interface Data {
 }
 
 function createData(
+  id: number,
   name: string,
   calories: number,
   fat: number,
   carbs: number,
-  protein: number,
+  protein: number
 ): Data {
   return {
+    id,
     name,
     calories,
     fat,
     carbs,
-    protein,
+    protein
   };
 }
 
 const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
+  createData(1, 'Cupcake', 305, 3.7, 67, 4.3),
+  createData(2, 'Donut', 452, 25.0, 51, 4.9),
+  createData(3, 'Eclair', 262, 16.0, 24, 6.0),
+  createData(4, 'Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData(5, 'Gingerbread', 356, 16.0, 49, 3.9),
+  createData(6, 'Honeycomb', 408, 3.2, 87, 6.5),
+  createData(7, 'Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData(8, 'Jelly Bean', 375, 0.0, 94, 0.0),
+  createData(9, 'KitKat', 518, 26.0, 65, 7.0),
+  createData(10, 'Lollipop', 392, 0.2, 98, 0.0),
+  createData(11, 'Marshmallow', 318, 0, 81, 2.0),
+  createData(12, 'Nougat', 360, 19.0, 9, 37.0),
+  createData(13, 'Oreo', 437, 18.0, 63, 4.0),
 ];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -151,19 +154,19 @@ interface EnhancedTableProps {
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
+  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = 
     props;
-  const createSortHandler =
+  const createSortHandler = 
     (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
-    };
+     };
 
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        <TableCell padding='checkbox'>
           <Checkbox
-            color="primary"
+            color='primary'
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
@@ -186,7 +189,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             >
               {headCell.label}
               {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
+                <Box component='span' sx={visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </Box>
               ) : null}
@@ -219,30 +222,30 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
       {numSelected > 0 ? (
         <Typography
           sx={{ flex: '1 1 100%' }}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
+          color='inherit'
+          variant='subtitle1'
+          component='div'
         >
           {numSelected} selected
         </Typography>
       ) : (
         <Typography
           sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
+          variant='h6'
+          id='tableTitle'
+          component='div'
         >
           Nutrition
         </Typography>
       )}
       {numSelected > 0 ? (
-        <Tooltip title="Delete">
+        <Tooltip title='Delete'>
           <IconButton>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
       ) : (
-        <Tooltip title="Filter list">
+        <Tooltip title='Filter list'>
           <IconButton>
             <FilterListIcon />
           </IconButton>
@@ -251,11 +254,10 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
     </Toolbar>
   );
 }
-
 export default function EnhancedTable() {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
-  const [selected, setSelected] = React.useState<readonly string[]>([]);
+  const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -271,19 +273,19 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name);
+      const newSelected = rows.map((n) => n.id);
       setSelected(newSelected);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected: readonly string[] = [];
+  const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
+    const selectedIndex = selected.indexOf(id);
+    let newSelected: readonly number[] = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, id);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -294,7 +296,6 @@ export default function EnhancedTable() {
         selected.slice(selectedIndex + 1),
       );
     }
-
     setSelected(newSelected);
   };
 
@@ -311,7 +312,7 @@ export default function EnhancedTable() {
     setDense(event.target.checked);
   };
 
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  const isSelected = (id: number) => selected.indexOf(id) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -333,7 +334,7 @@ export default function EnhancedTable() {
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
+            aria-labelledby='tableTitle'
             size={dense ? 'small' : 'medium'}
           >
             <EnhancedTableHead
@@ -346,23 +347,23 @@ export default function EnhancedTable() {
             />
             <TableBody>
               {visibleRows.map((row, index) => {
-                const isItemSelected = isSelected(row.name);
+                const isItemSelected = isSelected(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.name)}
-                    role="checkbox"
+                    onClick={(event) => handleClick(event, row.id)}
+                    role='checkbox'
                     aria-checked={isItemSelected}
                     tabIndex={-1}
                     key={row.name}
                     selected={isItemSelected}
                     sx={{ cursor: 'pointer' }}
                   >
-                    <TableCell padding="checkbox">
+                    <TableCell padding='checkbox'>
                       <Checkbox
-                        color="primary"
+                        color='primary'
                         checked={isItemSelected}
                         inputProps={{
                           'aria-labelledby': labelId,
@@ -370,17 +371,17 @@ export default function EnhancedTable() {
                       />
                     </TableCell>
                     <TableCell
-                      component="th"
+                      component='th'
                       id={labelId}
-                      scope="row"
-                      padding="none"
+                      scope='row'
+                      padding='none'
                     >
                       {row.name}
                     </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+                    <TableCell align='right'>{row.calories}</TableCell>
+                    <TableCell align='right'>{row.fat}</TableCell>
+                    <TableCell align='right'>{row.carbs}</TableCell>
+                    <TableCell align='right'>{row.protein}</TableCell>
                   </TableRow>
                 );
               })}
@@ -398,7 +399,7 @@ export default function EnhancedTable() {
         </TableContainer>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
-          component="div"
+          component='div'
           count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
@@ -408,7 +409,7 @@ export default function EnhancedTable() {
       </Paper>
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
+        label='Dense padding'
       />
     </Box>
   );
