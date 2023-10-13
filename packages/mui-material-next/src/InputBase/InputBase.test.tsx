@@ -599,7 +599,9 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: slots and slotProps', () => {
-    it('should call onChange inputProp callback with all params sent from custom inputComponent', () => {
+    // e.g. integration of react-select with InputBase
+    // https://github.com/mui/material-ui/issues/18130
+    it('should call slotProps.input.onChange callback with all params sent from custom inputComponent', () => {
       const INPUT_VALUE = 'material';
       const OUTPUT_VALUE = 'test';
 
@@ -630,10 +632,10 @@ describe('<InputBase />', () => {
 
       const { getByRole } = render(
         <InputBase
-          slots={{ input: MyInputBase }}
+          inputComponent={MyInputBase}
           slotProps={{
             input: {
-              onChange: parentHandleChange as unknown as React.ChangeEventHandler<HTMLInputElement>,
+              onChange: parentHandleChange as (string, string) => void,
             },
           }}
         />,
