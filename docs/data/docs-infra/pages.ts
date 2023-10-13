@@ -16,7 +16,6 @@ const pages: readonly MuiPage[] = [
       { pathname: '/experiments/docs/codeblock' },
       { pathname: '/experiments/docs/demos' },
       { pathname: '/experiments/docs/data-grid-premium', title: 'API DataGridPremium' },
-      { pathname: '/experiments/docs/small-page', title: 'Small page' },
     ],
   },
   {
