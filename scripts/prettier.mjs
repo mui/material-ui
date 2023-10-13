@@ -13,11 +13,7 @@ async function run(argv) {
   const shouldWrite = mode === 'write' || mode === 'write-changed';
   const onlyChanged = mode === 'check-changed' || mode === 'write-changed';
 
-  const args = [
-    '--ignore-path=.eslintignore',
-    '--ignore-unknown',
-    '--no-error-on-unmatched-pattern',
-  ];
+  const args = ['--ignore-path=.eslintignore'];
 
   if (shouldWrite) {
     args.push('--write');
@@ -27,7 +23,7 @@ async function run(argv) {
 
   if (onlyChanged) {
     const changedFiles = await listChangedFiles({ branch });
-    args.push(...changedFiles);
+    args.push('--ignore-unknown', ...changedFiles);
   } else {
     args.push('.');
   }
