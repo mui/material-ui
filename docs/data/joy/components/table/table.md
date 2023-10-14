@@ -113,7 +113,7 @@ For example, you can use `3n` as a value to create stripes on row numbers three,
 
 ### Hover
 
-To highlight a row of the table body when hovering over it, set the `hoverAxis` prop to true.
+To highlight a row of the table body when hovering over it, set the `hoverRow` prop to true.
 
 {{"demo": "TableHover.js"}}
 
