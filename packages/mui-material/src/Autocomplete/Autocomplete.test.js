@@ -830,6 +830,7 @@ describe('<Autocomplete />', () => {
           getOptionDisabled={(option) => option === 'two'}
           openOnFocus
           options={['one', 'two', 'three']}
+          renderInput={(props) => <TextField {...props} autoFocus />}
         />,
       );
       const textbox = getByRole('combobox');
@@ -852,6 +853,7 @@ describe('<Autocomplete />', () => {
           getOptionDisabled={(option) => option === 'three' || option === 'four'}
           openOnFocus
           options={['one', 'two', 'three', 'four']}
+          renderInput={(props) => <TextField {...props} autoFocus />}
         />,
       );
       const textbox = getByRole('combobox');
@@ -874,6 +876,7 @@ describe('<Autocomplete />', () => {
           getOptionDisabled={(option) => option === 'one' || option === 'five'}
           openOnFocus
           options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(props) => <TextField {...props} autoFocus />}
         />,
       );
       const textbox = getByRole('combobox');
@@ -899,6 +902,7 @@ describe('<Autocomplete />', () => {
           getOptionDisabled={() => true}
           openOnFocus
           options={['one', 'two', 'three']}
+          renderInput={(props) => <TextField {...props} autoFocus />}
         />,
       );
       const textbox = getByRole('combobox');
