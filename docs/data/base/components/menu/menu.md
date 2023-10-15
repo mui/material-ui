@@ -2,7 +2,7 @@
 productId: base-ui
 title: React Menu components and hooks
 components: Menu, MenuItem, MenuButton, Dropdown
-hooks: useMenu, useMenuItem, useMenuButton, useDropdown
+hooks: useMenu, useMenuItem, useMenuButton, useDropdown, useMenuItemContextStabilizer
 githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 ---
@@ -133,38 +133,27 @@ Components and their corresponding hooks work interchangeably with one anotherâ€
 
 The `useMenuItem` hook listens to changes in a context that is set up by the parent Menu component.
 This context changes every time an item is highlighted.
-Usually, it shouldn't be a problem, however when your menu has hundreds of items, you may notice it's not very responsive, as every item is rerendered whenever highlight changes.
+Usually, it shouldn't be a problem, however, when your menu has hundreds of items, you may notice it's not very responsive, as every item is rerendered whenever highlight changes.
 
-To improve performance by preventing menu items from rendering unnecessarily, you can create a component that wraps the component using `useMenuItem`.
-This wrapper should read the `ListContext` value, call its `getItemState` function, memoize its result, and create another instance of this context that changes only when the item state changed.
-
-You can implement such a utility by yourself, or use a higher-order component, `stabilizeMenuItemContext` provided by Base UI.
+To improve performance by preventing menu items from rendering unnecessarily, you can create a component that wraps the menu item.
+Inside this component, call `useMenuItemContextStabilizer` and create a ListContext with the value from the hook's result:
 
 ```tsx
-const MenuItem = stabilizeMenuItemContext(
-  React.forwardRef(function MenuItem(
-    props: React.ComponentPropsWithoutRef<'li'>,
-    ref: React.Ref<any>,
-  ) {
-    const { children, onClick, className, ...other } = props;
+const StableMenuItem = React.forwardRef(function StableMenuItem(
+  props: MenuItemProps,
+  ref: React.ForwardedRef<Element>,
+) {
+  const { contextValue, id } = useMenuItemContextStabilizer(props.id);
 
-    const { getRootProps, disabled, focusVisible } = useMenuItem({ rootRef: ref });
-
-    const classes = {
-      'focus-visible': focusVisible,
-      'menu-item': true,
-      disabled,
-      className,
-    };
-
-    return (
-      <li {...other} {...getRootProps()} className={clsx(classes)}>
-        {children}
-      </li>
-    );
-  }),
-);
+  return (
+    <ListContext.Provider value={contextValue}>
+      <MenuItem {...props} id={id} ref={ref} />
+    </ListContext.Provider>
+  );
+});
 ```
+
+The `useMenuItemContextStabilizer` hook ensures that the context value changes only when the state of the menu item is updated.
 
 ## Customization
 

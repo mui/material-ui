@@ -3,7 +3,18 @@ import * as React from 'react';
 import { ListContext, ListContextValue } from '../useList';
 
 /**
- * @ignore - internal hook.
+ * Stabilizes the ListContext value for the Option component, so it doesn't change when sibling Options update.
+ *
+ * @param value The value of the Option.
+ * @returns The stable ListContext value.
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/base-ui/react-select/#hooks)
+ *
+ * API:
+ *
+ * - [useOptionContextStabilizer API](https://mui.com/base-ui/react-select/hooks-api/#use-option-context-stabilizer)
  */
 export function useOptionContextStabilizer<OptionValue>(value: OptionValue) {
   const listContext = React.useContext(ListContext as React.Context<ListContextValue<OptionValue>>);

@@ -68,19 +68,15 @@ const MenuItem = React.memo(
 
 /**
  * An unstyled menu item to be used within a Menu.
- *
- * Demos:
- *
- * - [Menu](https://mui.com/base-ui/react-menu/)
- *
- * API:
- *
- * - [MenuItem API](https://mui.com/base-ui/react-menu/components-api/#menu-item)
  */
 const StableMenuItem = React.forwardRef(function StableMenuItem(
   props: MenuItemProps,
   ref: React.ForwardedRef<Element>,
 ) {
+  // This wrapper component is used as a performance optimization.
+  // `useMenuItemContextStabilizer` ensures that the context value
+  // is stable across renders, so that the actual MenuItem re-renders
+  // only when it needs to.
   const { contextValue, id } = useMenuItemContextStabilizer(props.id);
 
   return (

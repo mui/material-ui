@@ -77,19 +77,15 @@ const Option = React.memo(
 
 /**
  * An unstyled option to be used within a Select.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base-ui/react-select/)
- *
- * API:
- *
- * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
  */
 const StableOption = React.forwardRef(function StableOption<OptionValue>(
   props: OptionProps<OptionValue>,
   ref: React.ForwardedRef<Element>,
 ) {
+  // This wrapper component is used as a performance optimization.
+  // `useOptionContextStabilizer` ensures that the context value
+  // is stable across renders, so that the actual Option re-renders
+  // only when it needs to.
   const { contextValue } = useOptionContextStabilizer(props.value);
 
   return (

@@ -2,7 +2,7 @@
 productId: base-ui
 title: React Select components and hook
 components: Select, Option, OptionGroup
-hooks: useSelect, useOption
+hooks: useSelect, useOption, useOptionContextStabilizer
 githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
 ---
@@ -211,36 +211,27 @@ The resulting HTML is much smaller compared with its prebuilt component counterp
 
 The `useOption` hook listens to changes in a context that is set up by the parent Select component.
 This context changes every time an item is highlighted.
-Usually, it shouldn't be a problem, however when your select has hundreds of options, you may notice it's not very responsive, as every option is rerendered whenever highlight changes.
+Usually, it shouldn't be a problem, however, when your select has hundreds of options, you may notice it's not very responsive, as every option is rerendered whenever highlight changes.
 
-To improve performance by preventing options from rendering unnecessarily, you can create a component that wraps the component using `useOption`.
-This wrapper should read the `ListContext` value, call its `getItemState` function, memoize its result, and create another instance of this context that changes only when the item state changed.
-
-You can implement such a utility by yourself, or use a higher-order component, `stabilizeOptionContext` provided by Base UI.
+To improve performance by preventing options from rendering unnecessarily, you can create a component that wraps the option.
+Inside this component, call `useOptionContextStabilizer` and create a ListContext with the value from the hook's result:
 
 ```tsx
-const Option = stabilizeOptionContext(function Option(props: OptionProps) {
-  const { children, value, className, disabled = false, ...other } = props;
-  const { getRootProps, highlighted } = useOption({
-    value,
-    disabled,
-    label: children,
-  });
-
-  const classes = {
-    option: true,
-    disabled,
-    highlighted,
-    className,
-  };
+const StableOption = React.forwardRef(function StableOption<OptionValue>(
+  props: OptionProps<OptionValue>,
+  ref: React.ForwardedRef<Element>,
+) {
+  const { contextValue } = useOptionContextStabilizer(props.value);
 
   return (
-    <li {...other} {...getRootProps()} className={clsx(classes)}>
-      {children}
-    </li>
+    <ListContext.Provider value={contextValue}>
+      <Option {...props} ref={ref} />
+    </ListContext.Provider>
   );
 });
 ```
+
+The `useOptionContextStabilizer` hook ensures that the context value changes only when the state of the option is updated.
 
 ## Customization
 

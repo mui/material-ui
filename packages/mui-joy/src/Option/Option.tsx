@@ -116,6 +116,10 @@ const StableOption = React.forwardRef(function StableOption(
   props: OptionProps,
   ref: React.ForwardedRef<HTMLLIElement>,
 ) {
+  // This wrapper component is used as a performance optimization.
+  // `useOptionContextStabilizer` ensures that the context value
+  // is stable across renders, so that the actual Option re-renders
+  // only when it needs to.
   const { contextValue } = useOptionContextStabilizer(props.value);
 
   return (
