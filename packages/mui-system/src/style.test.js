@@ -259,7 +259,7 @@ describe('style', () => {
     });
   });
   describe('getStyleValue', () => {
-    it('should warn on acceptable object', () => {
+    it('should not warn on acceptable object', () => {
       const round = (value) => Math.round(value * 1e5) / 1e5;
       let output;
 
@@ -277,9 +277,7 @@ describe('style', () => {
           null,
           'body1',
         );
-      }).toWarnDev(
-        'MUI: The value found in theme for prop: "body1" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
-      );
+      }).not.toWarnDev();
 
       expect(output).to.deep.equal({
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -290,7 +288,7 @@ describe('style', () => {
       });
     });
 
-    it('should warn on unacceptable object', () => {
+    it('should warn on objects that directly contain colors', () => {
       const theme = {
         palette: {
           grey: { 100: '#f5f5f5' },
@@ -308,7 +306,7 @@ describe('style', () => {
       expect(() => {
         output = getStyleValue(theme.palette, paletteTransform, 'grey');
       }).toWarnDev(
-        'MUI: The value found in theme for prop: "grey" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
+        'MUI: The value found in theme for prop: "grey" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, e.g., "background.paper" instead of "background".',
       );
 
       expect(output).to.be.equal('grey');

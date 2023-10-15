@@ -35,10 +35,10 @@ export function getStyleValue(themeMapping, transform, propValueFinal, userValue
     value = getPath(themeMapping, propValueFinal) || userValue;
   }
 
-  if (typeof value === 'object') {
-    if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
+    if (value && typeof value === 'object' && isColor(Object.values(value)[0])) {
       console.warn(
-        `MUI: The value found in theme for prop: "${propValueFinal}" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".`,
+        `MUI: The value found in theme for prop: "${propValueFinal}" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, e.g., "background.paper" instead of "background".`,
       );
     }
   }
@@ -98,6 +98,20 @@ function style(options) {
   fn.filterProps = [prop];
 
   return fn;
+}
+
+function isColor(str) {
+  // Regular expressions to match different color patterns
+  const colorPatterns = [
+    /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, // Hex color
+    /^rgb\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)$/, // RGB color
+    /^rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*0?(\.\d+)?\s*\)$/, // RGBA color
+    /^(red|green|blue|yellow|orange|purple|pink|white|black|gray|grey|transparent)$/, // CSS color keyword
+    /^\$[a-zA-Z_][a-zA-Z0-9_]*$/, // SCSS variable reference
+    /^var\(--[^)]+\)$/, // CSS variable reference (e.g., var(--main-color))
+  ];
+
+  return colorPatterns.some((pattern) => pattern.test(str));
 }
 
 export default style;

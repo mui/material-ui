@@ -100,10 +100,7 @@ describe('styleFunctionSx', () => {
           theme,
           sx: { typography: ['body2', 'body1'] },
         });
-      }).toWarnDev([
-        'MUI: The value found in theme for prop: "body2" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
-        'MUI: The value found in theme for prop: "body1" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
-      ]);
+      }).not.toWarnDev();
 
       expect(result).to.deep.equal({
         '@media (min-width:0px)': {

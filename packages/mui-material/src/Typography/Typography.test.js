@@ -115,7 +115,7 @@ describe('<Typography />', () => {
   describe('prop: color', () => {
     it('should check for invalid color value', () => {
       const msg =
-        'MUI: The value found in theme for prop: "background" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".';
+        'MUI: The value found in theme for prop: "background" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, e.g., "background.paper" instead of "background".';
       expect(() => {
         render(
           <Typography variant="h6" color="background">

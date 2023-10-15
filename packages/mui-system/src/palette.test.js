@@ -16,7 +16,7 @@ describe('palette', () => {
         backgroundColor: 'grey',
       });
     }).toWarnDev(
-      'MUI: The value found in theme for prop: "grey" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
+      'MUI: The value found in theme for prop: "grey" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, e.g., "background.paper" instead of "background".',
     );
 
     expect(output).to.deep.equal({
