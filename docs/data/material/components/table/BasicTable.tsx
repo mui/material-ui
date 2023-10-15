@@ -8,21 +8,22 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 function createData(
+  id: number,
   name: string,
   calories: number,
   fat: number,
   carbs: number,
   protein: number,
 ) {
-  return { name, calories, fat, carbs, protein };
+  return { id, name, calories, fat, carbs, protein };
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData(1, 'Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData(2, 'Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData(3, 'Eclair', 262, 16.0, 24, 6.0),
+  createData(4, 'Cupcake', 305, 3.7, 67, 4.3),
+  createData(5, 'Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
 export default function BasicTable() {
@@ -41,7 +42,7 @@ export default function BasicTable() {
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
