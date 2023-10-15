@@ -85,6 +85,9 @@
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the listbox slot"
     },
+    "multiple": {
+      "description": "Class name applied to the root slot if <code>multiple=true</code>"
+    },
     "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",

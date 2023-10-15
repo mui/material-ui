@@ -10,7 +10,21 @@ export default function SelectMultiple() {
     console.log(`You have choosen "${newValue}"`);
   };
   return (
-    <Select defaultValue={['dog']} multiple onChange={handleChange}>
+    <Select
+      defaultValue={['dog']}
+      multiple
+      onChange={handleChange}
+      sx={{
+        minWidth: '13rem',
+      }}
+      slotProps={{
+        listbox: {
+          sx: {
+            width: '100%',
+          },
+        },
+      }}
+    >
       <Option value="dog">Dog</Option>
       <Option value="cat">Cat</Option>
       <Option value="fish">Fish</Option>
