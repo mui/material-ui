@@ -264,11 +264,11 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
           }
           // if button component wrapped by react fragment
           if (typeof child.type === 'symbol') {
-            const children = child.props.children;
-            if (!React.isValidElement(children)) {
-              return children;
+            const symbolChild = child.props.children;
+            if (!React.isValidElement(symbolChild)) {
+              return symbolChild;
             }
-            return React.cloneElement(children, extraProps);
+            return React.cloneElement(symbolChild, extraProps);
           }
           return React.cloneElement(child, extraProps);
         })}
