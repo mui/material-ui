@@ -253,6 +253,23 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
               extraProps['data-last-child'] = '';
             }
           }
+          // if button component returned by custom function
+          if (typeof child.type === 'function') {
+            const childFunction = child.type as any;
+            const subChild = childFunction();
+            if (!React.isValidElement(subChild)) {
+              return subChild;
+            }
+            return React.cloneElement(subChild, extraProps);
+          }
+          // if button component wrapped by react fragment
+          if (typeof child.type === 'symbol') {
+            const children = child.props.children;
+            if (!React.isValidElement(children)) {
+              return children;
+            }
+            return React.cloneElement(children, extraProps);
+          }
           return React.cloneElement(child, extraProps);
         })}
       </ButtonGroupContext.Provider>
