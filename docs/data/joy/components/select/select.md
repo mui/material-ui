@@ -123,6 +123,15 @@ const App = () => (
 );
 ```
 
+### Multiple selections
+
+Set the `multiple` prop to let your users select multiple options from the list.
+In contrast with single-selection mode, the options popup doesn't close after an item is selected, which enables users to continue choosing more options.
+
+Note that in multiple selection mode, the `value` prop (and `defaultValue`) is an array.
+
+{{"demo": "SelectMultiple.js", "defaultCodeOpen": false}}
+
 ### Listbox
 
 #### Maximum height

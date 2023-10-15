@@ -477,14 +477,21 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
     slotProps,
   } as SelectSlotsAndSlotProps<boolean> & typeof other;
 
-  const selectedOption = React.useMemo(
-    () =>
-      (getOptionMetadata(value as OptionValue) ?? null) as SelectValue<
+  const selectedOption = React.useMemo(() => {
+    let selectedOptionsMetadata: SelectValue<SelectOption<OptionValue>, Multiple>;
+    if (multiple) {
+      selectedOptionsMetadata = (value as OptionValue[])
+        .map((v) => getOptionMetadata(v))
+        .filter((o) => o !== undefined) as SelectValue<SelectOption<OptionValue>, Multiple>;
+    } else {
+      selectedOptionsMetadata = (getOptionMetadata(value as OptionValue) ?? null) as SelectValue<
         SelectOption<OptionValue>,
         Multiple
-      >,
-    [getOptionMetadata, value],
-  );
+      >;
+    }
+
+    return selectedOptionsMetadata;
+  }, [getOptionMetadata, value, multiple]);
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref: handleRef,
@@ -615,6 +622,11 @@ interface SelectComponent {
   ): JSX.Element | null;
   <OptionValue extends {}>(
     props: DefaultComponentProps<SelectTypeMap<OptionValue>>,
+  ): JSX.Element | null;
+  <OptionValue extends {}, Multiple extends boolean>(
+    props: {
+      multiple?: Multiple;
+    } & DefaultComponentProps<SelectTypeMap<OptionValue, Multiple>>,
   ): JSX.Element | null;
   propTypes?: any;
 }

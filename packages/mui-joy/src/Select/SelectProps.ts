@@ -172,11 +172,17 @@ export type SelectOwnProps<OptionValue extends {}, Multiple extends boolean> = S
      */
     defaultValue?: SelectValue<OptionValue, Multiple>;
     /**
+     * If `true`, selecting multiple values is allowed.
+     * This affects the type of the `value`, `defaultValue`, and `onChange` props.
+     *
+     * @default false
+     */
+    multiple?: Multiple;
+    /**
      * A function to convert the currently selected value to a string.
      * Used to set a value of a hidden input associated with the select,
      * so that the selected value can be posted with a form.
      */
-    multiple?: Multiple;
     getSerializedValue?: (
       option: SelectValue<SelectOption<OptionValue>, Multiple>,
     ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
