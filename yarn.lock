@@ -1953,10 +1953,10 @@
     query-string "^6.12.1"
     xcase "^2.0.1"
 
-"@googleapis/sheets@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@googleapis/sheets/-/sheets-5.0.4.tgz#39b7eb57a4e68c4079520f06f4c75a1f8551cc04"
-  integrity sha512-FE4erog7LvgJXjhs7FDP79xbUQfiZzJP+fpNrT7zjslESnR9A7qkLlRhEMLWvK5U+tYwqGczcYsERA3Fu8nz4w==
+"@googleapis/sheets@^5.0.5":
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/@googleapis/sheets/-/sheets-5.0.5.tgz#d51fb804054ac1e1823d1e7246597af28e8937a0"
+  integrity sha512-XMoONmgAJm2jYeTYHX4054VcEkElxlgqmnHvt0wAurzEHoGJLdUHhTAJXGPLgSs4WVMPtgU8HLrmk7/U+Qlw7A==
   dependencies:
     googleapis-common "^7.0.0"
 
