@@ -47,12 +47,11 @@ export default function AboutEnd() {
         src="/static/branding/about/illustrations/team-globe-distribution-light.png"
         alt="A map illustration with pins loosely positioned where team members from MUI are located."
         loading="lazy"
-        width="1100"
-        height="690"
         sx={(theme) => ({
           mt: -8,
           display: { xs: 'none', sm: 'block' },
-          width: { sm: '100%' },
+          width: '100%',
+          aspectRatio: '231/145',
           ...theme.applyDarkStyles({
             content: 'url(/static/branding/about/illustrations/team-globe-distribution-dark.png)',
           }),

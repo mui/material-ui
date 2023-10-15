@@ -166,6 +166,6 @@ export default class SxProcessor extends BaseProcessor {
       this.collectedVariables.push(...res);
     }
 
-    return processCssObject(styleObj, themeArgs);
+    return processCssObject(styleObj, themeArgs, false);
   }
 }

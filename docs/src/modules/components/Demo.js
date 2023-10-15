@@ -198,7 +198,6 @@ const DemoRootMaterial = styled('div', {
   shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
 })(({ theme, hideToolbar, bg }) => ({
   position: 'relative',
-  outline: 0,
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
@@ -241,7 +240,7 @@ const DemoRootMaterial = styled('div', {
     padding: theme.spacing(20, 8),
     border: `1px solid`,
     borderColor: (theme.vars || theme).palette.divider,
-    overflow: 'hidden',
+    overflow: 'auto',
     backgroundColor: alpha(theme.palette.primary[50], 0.5),
     backgroundClip: 'padding-box',
     backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
@@ -276,7 +275,6 @@ const DemoRootJoy = joyStyled('div', {
   shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
 })(({ theme, hideToolbar, bg }) => ({
   position: 'relative',
-  outline: 0,
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',

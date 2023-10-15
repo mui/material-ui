@@ -46,7 +46,15 @@
     "state": "STATE",
     "styleOverrides": "The name <code>{{componentStyles.name}}</code> can be used when providing <a href={{defaultPropsLink}}>default props</a> or <a href={{styleOverridesLink}}>style overrides</a> in the theme.",
     "slotDescription": "To learn how to customize the slot, check out the <a href={{slotGuideLink}}>Overriding component structure</a> guide.",
-    "type": "Type"
+    "type": "Type",
+    "additional-info": {
+      "cssApi": "See <a href='#css'>CSS API</a> below for more details.",
+      "sx": "See the <a href='/system/getting-started/the-sx-prop/'>`sx` page</a> for more details.",
+      "slotsApi": "See <a href='#slots'>Slots API</a> below for more details.",
+      "joy-size": "To learn how to add custom sizes to the component, check out <a href='/joy-ui/customization/themed-components/#extend-sizes'>Themed components—Extend sizes</a>.",
+      "joy-color": "To learn how to add your own colors, check out <a href='/joy-ui/customization/themed-components/#extend-colors'>Themed components—Extend colors</a>.",
+      "joy-variant": "To learn how to add your own variants, check out <a href='/joy-ui/customization/themed-components/#extend-variants'>Themed components—Extend variants</a>."
+    }
   },
   "albumDescr": "A responsive album / gallery page layout with a hero unit and footer.",
   "albumTitle": "Album",
@@ -413,7 +421,7 @@
     "/material-ui/customization/how-to-customize": "How to customize",
     "/material-ui/customization/color": "Color",
     "/material-ui/guides": "How-to guides",
-    "/material-ui/guides/themeable-component": "Themeable component",
+    "/material-ui/guides/creating-themed-components": "Creating themed components",
     "/material-ui/guides/understand-mui-packages": "Understand MUI packages",
     "/material-ui/guides/typescript": "TypeScript",
     "/material-ui/guides/interoperability": "Style library interoperability",
@@ -464,6 +472,7 @@
     "/joy-ui/getting-started/usage": "Usage",
     "/joy-ui/getting-started/tutorial": "Tutorial",
     "/joy-ui/getting-started/templates": "Templates",
+    "/joy-ui/getting-started/roadmap": "Roadmap",
     "main-features": "Main features",
     "/joy-ui/main-features/global-variants": "Global variants",
     "/joy-ui/main-features/color-inversion": "Color inversion",

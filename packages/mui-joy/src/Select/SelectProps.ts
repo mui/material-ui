@@ -216,6 +216,10 @@ export interface SelectOwnerState<OptionValue extends {}, Multiple extends boole
    * If `true`, the select dropdown is open.
    */
   open: boolean;
+  /**
+   * @internal
+   */
+  instanceColor?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
 }
 
 export interface SelectTypeMap<

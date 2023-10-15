@@ -60,7 +60,6 @@ const SvgIconRoot = styled('svg', {
       color: 'inherit',
     }),
     ...(ownerState.color !== 'inherit' &&
-      ownerState.color !== 'context' &&
       theme.vars.palette[ownerState.color!] && {
         color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
       }),

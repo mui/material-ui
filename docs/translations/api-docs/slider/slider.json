@@ -10,7 +10,7 @@
     },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "color": {
-      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>."
+      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>."
     },
     "components": {
       "description": "The components used for each slot inside.<br>This prop is an alias for the <code>slots</code> prop. It&#39;s recommended to use the <code>slots</code> prop instead."
@@ -100,6 +100,26 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
+    "colorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"error\"</code>"
+    },
+    "colorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
     "marked": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -172,6 +192,26 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "thumbColorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb element",
+      "conditions": "<code>color=\"error\"</code>"
+    },
+    "thumbColorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "thumbColorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "thumbColorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb element",
+      "conditions": "<code>color=\"warning\"</code>"
     },
     "thumbSizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
