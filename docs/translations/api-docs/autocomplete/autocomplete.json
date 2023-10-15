@@ -94,6 +94,9 @@
       "description": "Used to determine if the option represents the given value. Uses strict equality by default. ⚠️ Both arguments need to be handled, an option can only match with one value.",
       "typeDescriptions": { "option": "The option to test.", "value": "The value to test against." }
     },
+    "keepSelectedOnLeave": {
+      "description": "By default, options are selected on hover and deselected when unhovered. When keepSelectedOnLeave is <code>true</code>, we preserve the last selected option if the mouse leaves the Autocomplete popover."
+    },
     "limitTags": {
       "description": "The maximum number of tags that will be visible when not focused. Set <code>-1</code> to disable the limit."
     },

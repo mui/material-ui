@@ -105,6 +105,7 @@ export function useAutocomplete(props) {
     includeInputInList = false,
     inputValue: inputValueProp,
     isOptionEqualToValue = (option, value) => option === value,
+    keepSelectedOnLeave = false,
     multiple = false,
     onChange,
     onClose,
@@ -975,6 +976,18 @@ export function useAutocomplete(props) {
     }
   };
 
+  const handleOptionMouseLeave = (event) => {
+    if (keepSelectedOnLeave) {
+      return;
+    }
+    const index = -1;
+    setHighlightedIndex({
+      event,
+      index,
+      reason: 'mouse',
+    });
+  };
+
   const handleOptionMouseMove = (event) => {
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
     if (highlightedIndexRef.current !== index) {
@@ -1170,6 +1183,7 @@ export function useAutocomplete(props) {
         onMouseMove: handleOptionMouseMove,
         onClick: handleOptionClick,
         onTouchStart: handleOptionTouchStart,
+        onMouseLeave: handleOptionMouseLeave,
         'data-option-index': index,
         'aria-disabled': disabled,
         'aria-selected': selected,

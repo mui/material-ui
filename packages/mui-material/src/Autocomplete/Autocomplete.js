@@ -418,6 +418,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
+    keepSelectedOnLeave = false,
     limitTags = -1,
     ListboxComponent = 'ul',
     ListboxProps,
@@ -936,6 +937,13 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @returns {boolean}
    */
   isOptionEqualToValue: PropTypes.func,
+  /**
+   * By default, options are selected on hover and deselected when unhovered.
+   * When keepSelectedOnLeave is `true`, we preserve the last selected option
+   * if the mouse leaves the Autocomplete popover.
+   * @default false
+   */
+  keepSelectedOnLeave: PropTypes.bool,
   /**
    * The maximum number of tags that will be visible when not focused.
    * Set `-1` to disable the limit.

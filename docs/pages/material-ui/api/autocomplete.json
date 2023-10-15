@@ -84,6 +84,7 @@
         "describedArgs": ["option", "value"]
       }
     },
+    "keepSelectedOnLeave": { "type": { "name": "bool" }, "default": "false" },
     "limitTags": { "type": { "name": "custom", "description": "integer" }, "default": "-1" },
     "ListboxComponent": { "type": { "name": "elementType" }, "default": "'ul'" },
     "ListboxProps": { "type": { "name": "object" } },

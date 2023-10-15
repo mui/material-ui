@@ -2702,6 +2702,13 @@ describe('<Autocomplete />', () => {
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[0]);
       expect(handleHighlightChange.lastCall.args[2]).to.equal('mouse');
+
+      // when leaving the option, we want to unhighlight the last selected option.
+      fireEvent.mouseLeave(firstOption);
+
+      expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
+      expect(handleHighlightChange.lastCall.args[1]).to.equal(null);
+      expect(handleHighlightChange.lastCall.args[2]).to.equal('mouse');
     });
 
     it('should pass to onHighlightChange the correct value after filtering', () => {
