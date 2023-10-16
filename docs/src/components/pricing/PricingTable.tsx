@@ -174,19 +174,24 @@ export function PlanPrice(props: PlanPriceProps) {
       <LicensingModelSwitch />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
         <Typography
-          variant="body2"
+          variant="caption"
           fontWeight="medium"
           sx={(theme) => ({
             borderRadius: 0.5,
             alignSelf: 'flex-end',
             textDecoration: 'line-through',
-            p: '2px 4px',
-            mb: '3px',
+            py: 0.5,
+            px: 1,
+            mb: 0.5,
+            fontWeight: 'medium',
             bgcolor: 'error.50',
             color: 'error.500',
+            border: '1px solid',
+            borderColor: 'error.100',
             ...theme.applyDarkStyles({
-              color: 'error.400',
+              color: 'error.300',
               bgcolor: 'error.900',
+              borderColor: 'error.800',
             }),
           })}
         >
@@ -1245,7 +1250,7 @@ export default function PricingTable({
   const renderNestedRow = (key: string) => renderMasterRow(key, nestedGridSx, plans);
 
   return (
-    <Box ref={tableRef} {...props} sx={{ pt: 8, pb: 8, ...props.sx }}>
+    <Box ref={tableRef} {...props} sx={{ pt: 8, ...props.sx }}>
       <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
       {!columnHeaderHidden && (
         <Box sx={gridSx}>
