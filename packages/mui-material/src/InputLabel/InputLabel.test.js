@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { describeConformance, act, createRenderer } from '@mui-internal/test-utils';
 import { ClassNames } from '@emotion/react';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import FormLabel from '@mui/material/FormLabel';
@@ -117,6 +118,40 @@ describe('<InputLabel />', () => {
 
         setProps({ shrink: true });
         expect(getByTestId('root')).to.have.class(classes.shrink);
+      });
+
+      it('provides ownerState.focused in styleOverrides', () => {
+        const colorRed = 'rgb(255, 0, 0)';
+
+        const theme = createTheme({
+          components: {
+            MuiInputLabel: {
+              styleOverrides: {
+                root: (props) => {
+                  return {
+                    ...(props.ownerState.focused === true && {
+                      [`&.${classes.focused}`]: {
+                        color: colorRed,
+                      },
+                    }),
+                  };
+                },
+              },
+            },
+          },
+        });
+
+        const { getByText } = render(
+          <ThemeProvider theme={theme}>
+            <FormControl focused>
+              <InputLabel>Red Test Label</InputLabel>
+            </FormControl>
+          </ThemeProvider>,
+        );
+
+        const label = getByText('Red Test Label');
+
+        expect(getComputedStyle(label).color).to.equal(colorRed);
       });
     });
   });
