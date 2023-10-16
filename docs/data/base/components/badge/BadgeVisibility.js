@@ -175,9 +175,9 @@ export default function BadgeVisibility() {
 
   return (
     <Stack direction="column" justifyContent="center" spacing={1} useFlexGap>
-      <StyledBadge badgeContent={count} invisible={invisible}>
+      <Badge badgeContent={count} invisible={invisible}>
         <MailIcon />
-      </StyledBadge>
+      </Badge>
       <Divider sx={{ my: 2 }} />
       <Stack
         direction="row"
