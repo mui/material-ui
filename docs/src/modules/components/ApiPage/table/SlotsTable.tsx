@@ -17,6 +17,7 @@ const StyledTable = styled('table')(
       fontSize: theme.typography.pxToRem(14),
     },
     '& tr': {
+      scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
       '&:hover': {
         backgroundColor: alpha(darkTheme.palette.grey[50], 0.5),
       },
