@@ -1,21 +1,21 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { Button } from '@mui/base/Button';
-import { Input, InputProps, inputClasses } from '@mui/base/Input';
+import { Input as BaseInput, InputProps, inputClasses } from '@mui/base/Input';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/system';
 
-const CustomInput = React.forwardRef(function CustomInput(
+const Input = React.forwardRef(function CustomInput(
   props: InputProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const { slots, ...other } = props;
   return (
-    <Input
+    <BaseInput
       slots={{
-        root: StyledInputRoot,
-        input: StyledInputElement,
+        root: InputRoot,
+        input: InputElement,
         ...slots,
       }}
       {...other}
@@ -65,11 +65,11 @@ export default function InputAdornments() {
         gap: 2,
       }}
     >
-      <CustomInput
+      <Input
         id="outlined-start-adornment"
         startAdornment={<InputAdornment>kg</InputAdornment>}
       />
-      <CustomInput
+      <Input
         id="outlined-adornment-password"
         type={values.showPassword ? 'text' : 'password'}
         value={values.password}
@@ -111,7 +111,7 @@ const grey = {
   900: '#1A2027',
 };
 
-const StyledInputRoot = styled('div')(
+const InputRoot = styled('div')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
@@ -141,7 +141,7 @@ const StyledInputRoot = styled('div')(
 `,
 );
 
-const StyledInputElement = styled('input')(
+const InputElement = styled('input')(
   ({ theme }) => `
   font-size: 0.875rem;
   font-family: inherit;

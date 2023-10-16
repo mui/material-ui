@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { styled } from '@mui/system';
-import { Modal } from '@mui/base/Modal';
+import { styled, Box } from '@mui/system';
+import { Modal as BaseModal } from '@mui/base/Modal';
 
 export default function KeepMountedModal() {
   const [open, setOpen] = React.useState(false);
@@ -14,7 +14,7 @@ export default function KeepMountedModal() {
       <TriggerButton type="button" onClick={handleOpen}>
         Open modal
       </TriggerButton>
-      <StyledModal
+      <Modal
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
         open={open}
@@ -22,15 +22,11 @@ export default function KeepMountedModal() {
         slots={{ backdrop: StyledBackdrop }}
         keepMounted
       >
-        <ModalContent sx={style}>
-          <h3 id="keep-mounted-modal-title" className="modal-title">
-            Text in a modal
-          </h3>
-          <p id="keep-mounted-modal-description" className="modal-description">
-            Aliquid amet deserunt earum!
-          </p>
-        </ModalContent>
-      </StyledModal>
+        <Box sx={style}>
+          <h3 id="keep-mounted-modal-title">Text in a modal</h3>
+          <p id="keep-mounted-modal-description">Aliquid amet deserunt earum!</p>
+        </Box>
+      </Modal>
     </div>
   );
 }
@@ -73,7 +69,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledModal = styled(Modal)(`
+const Modal = styled(BaseModal)(`
   position: fixed;
   z-index: 1300;
   right: 0;

@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { Button, buttonClasses, ButtonTypeMap } from '@mui/base/Button';
+import {
+  Button as BaseButton,
+  buttonClasses,
+  ButtonTypeMap,
+} from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import { PolymorphicComponent } from '@mui/base/utils';
@@ -7,10 +11,10 @@ import { PolymorphicComponent } from '@mui/base/utils';
 export default function UnstyledButtonsSpan() {
   return (
     <Stack spacing={2} direction="row">
-      <CustomButton slots={{ root: 'span' }}>Button</CustomButton>
-      <CustomButton slots={{ root: 'span' }} disabled>
+      <Button slots={{ root: 'span' }}>Button</Button>
+      <Button slots={{ root: 'span' }} disabled>
         Disabled
-      </CustomButton>
+      </Button>
     </Stack>
   );
 }
@@ -29,7 +33,7 @@ const grey = {
   700: '#424a53',
 };
 
-const CustomButton = styled(Button)(
+const Button = styled(BaseButton)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 600;

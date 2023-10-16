@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { Button } from '@mui/base/Button';
+import { Button as BaseButton, buttonClasses } from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
 export default function UnstyledButtonsSimple() {
   return (
     <Stack spacing={2} direction="row">
-      <CustomButton>Button</CustomButton>
-      <CustomButton disabled>Disabled</CustomButton>
+      <Button>Button</Button>
+      <Button disabled>Disabled</Button>
     </Stack>
   );
 }
@@ -26,7 +26,7 @@ const grey = {
   700: '#424a53',
 };
 
-const CustomButton = styled(Button)(
+const Button = styled(BaseButton)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 600;

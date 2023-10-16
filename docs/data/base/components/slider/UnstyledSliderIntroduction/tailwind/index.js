@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/system';
-import { Slider } from '@mui/base/Slider';
+import { Slider as BaseSlider } from '@mui/base/Slider';
 import clsx from 'clsx';
 
 function useIsDarkMode() {
@@ -15,17 +15,17 @@ export default function UnstyledSliderIntroduction() {
 
   return (
     <div className={isDarkMode ? 'dark' : ''} style={{ width: 320 }}>
-      <CustomSlider defaultValue={50} />
-      <CustomSlider defaultValue={10} disabled />
+      <Slider defaultValue={50} />
+      <Slider defaultValue={10} disabled />
     </div>
   );
 }
 
 const resolveSlotProps = (fn, args) => (typeof fn === 'function' ? fn(args) : fn);
 
-const CustomSlider = React.forwardRef((props, ref) => {
+const Slider = React.forwardRef((props, ref) => {
   return (
-    <Slider
+    <BaseSlider
       ref={ref}
       {...props}
       slotProps={{
@@ -94,7 +94,7 @@ const CustomSlider = React.forwardRef((props, ref) => {
   );
 });
 
-CustomSlider.propTypes = {
+Slider.propTypes = {
   /**
    * The props used for each slot inside the Slider.
    * @default {}

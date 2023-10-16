@@ -1,45 +1,43 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { Select, selectClasses } from '@mui/base/Select';
-import { Option, optionClasses } from '@mui/base/Option';
-import { Popper } from '@mui/base/Popper';
+import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
+import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled, Box } from '@mui/system';
-import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectForm() {
   return (
     <div>
       <Box sx={{ mb: 2 }}>
         <Label htmlFor="unnamed-select">Default</Label>
-        <CustomSelect defaultValue={10} id="unnamed-select">
-          <StyledOption value={10}>Ten</StyledOption>
-          <StyledOption value={20}>Twenty</StyledOption>
-          <StyledOption value={30}>Thirty</StyledOption>
-        </CustomSelect>
+        <Select defaultValue={10} id="unnamed-select">
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
+        </Select>
       </Box>
       <div>
         <Label htmlFor="named-select">
           With the <code>name</code> prop
         </Label>
-        <CustomSelect defaultValue={10} id="named-select" name="demo-select">
-          <StyledOption value={10}>Ten</StyledOption>
-          <StyledOption value={20}>Twenty</StyledOption>
-          <StyledOption value={30}>Thirty</StyledOption>
-        </CustomSelect>
+        <Select defaultValue={10} id="named-select" name="demo-select">
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
+        </Select>
       </div>
     </div>
   );
 }
 
-const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+const Select = React.forwardRef(function CustomSelect(props, ref) {
   const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    root: Button,
+    listbox: Listbox,
+    popper: Popper,
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return <BaseSelect {...props} ref={ref} slots={slots} />;
 });
 
 const blue = {
@@ -64,24 +62,8 @@ const grey = {
   900: '#24292f',
 };
 
-const Button = React.forwardRef(function Button(props, ref) {
-  const { ownerState, ...other } = props;
-  return (
-    <button type="button" {...other} ref={ref}>
-      {other.children}
-      <UnfoldMoreRoundedIcon />
-    </button>
-  );
-});
-
-Button.propTypes = {
-  children: PropTypes.node,
-  ownerState: PropTypes.object.isRequired,
-};
-
-const StyledButton = styled(Button, { shouldForwardProp: () => true })(
+const Button = styled('button')(
   ({ theme }) => `
-  position: relative;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
@@ -107,22 +89,24 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   }
 
   &.${selectClasses.focusVisible} {
-    outline: 0;
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
-  & > svg {
-    font-size: 1rem;
-    position: absolute;
-    height: 100%;
-    top: 0;
-    right: 10px;
+  &.${selectClasses.expanded} {
+    &::after {
+      content: '▴';
+    }
+  }
+
+  &::after {
+    content: '▾';
+    float: right;
   }
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -142,7 +126,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -179,7 +163,7 @@ const StyledOption = styled(Option)(
   `,
 );
 
-const StyledPopper = styled(Popper)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;
 

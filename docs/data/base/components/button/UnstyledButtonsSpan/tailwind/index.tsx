@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, ButtonProps } from '@mui/base/Button';
+import { Button as BaseButton, ButtonProps } from '@mui/base/Button';
 import Stack from '@mui/material/Stack';
 import clsx from 'clsx';
 import { useTheme } from '@mui/system';
@@ -31,7 +31,7 @@ const CustomButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const { className, disabled, ...other } = props;
     return (
-      <Button
+      <BaseButton
         ref={ref}
         className={clsx(
           'cursor-pointer transition text-sm font-sans font-semibold leading-normal rounded-lg px-4 py-2 border border-solid border-violet-500  hover:bg-violet-600 active:bg-violet-700 active:shadow-none focus-visible:shadow-[0_0_0_4px_#ddd6fe] dark:focus-visible:shadow-[0_0_0_4px_#a78bfa] focus-visible:outline-none',

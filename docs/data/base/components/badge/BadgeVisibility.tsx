@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Badge, badgeClasses } from '@mui/base/Badge';
+import { Badge as BaseBadge, badgeClasses } from '@mui/base/Badge';
 // Auxiliary demo components
 import { styled, Stack } from '@mui/system';
 import { Button, buttonClasses } from '@mui/base/Button';
@@ -28,7 +28,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledBadge = styled(Badge)(
+const Badge = styled(BaseBadge)(
   ({ theme }) => `
   box-sizing: border-box;
   position: relative;

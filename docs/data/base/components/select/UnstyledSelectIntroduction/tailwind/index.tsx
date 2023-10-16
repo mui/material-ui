@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { Select, SelectRootSlotProps, SelectProps } from '@mui/base/Select';
+import {
+  Select as BaseSelect,
+  SelectRootSlotProps,
+  SelectProps,
+} from '@mui/base/Select';
 import {
   Option as BaseOption,
   OptionProps,
@@ -20,11 +24,11 @@ export default function UnstyledSelectIntroduction() {
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
-      <CustomSelect defaultValue={10}>
+      <Select defaultValue={10}>
         <Option value={10}>Documentation</Option>
         <Option value={20}>Components</Option>
         <Option value={30}>Features</Option>
-      </CustomSelect>
+      </Select>
     </div>
   );
 }
@@ -86,7 +90,7 @@ const Button = React.forwardRef(function Button<
 const resolveSlotProps = (fn: any, args: any) =>
   typeof fn === 'function' ? fn(args) : fn;
 
-const CustomSelect = React.forwardRef(function CustomSelect<
+const Select = React.forwardRef(function CustomSelect<
   TValue extends {},
   Multiple extends boolean,
 >(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
@@ -94,7 +98,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<
   const isDarkMode = useIsDarkMode();
 
   return (
-    <Select
+    <BaseSelect
       ref={ref}
       {...props}
       slots={{

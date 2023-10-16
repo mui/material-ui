@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
-import { Slider, sliderClasses } from '@mui/base/Slider';
+import { Slider as BaseSlider, sliderClasses } from '@mui/base/Slider';
 
 export default function DiscreteSliderMarks() {
   return (
     <Box sx={{ width: 300 }}>
-      <StyledSlider
+      <Slider
         aria-label="Temperature"
         defaultValue={37}
         getAriaValueText={valuetext}
@@ -61,7 +61,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledSlider = styled(Slider)(
+const Slider = styled(BaseSlider)(
   ({ theme }) => `
   color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   height: 6px;

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
-import { MenuButton } from '@mui/base/MenuButton';
-import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
+import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
+import { MenuItem as BaseMenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
 
 export default function MenuIntroduction() {
@@ -14,17 +14,13 @@ export default function MenuIntroduction() {
 
   return (
     <Dropdown>
-      <TriggerButton>My account</TriggerButton>
-      <Menu slots={{ listbox: StyledListbox }}>
-        <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
-          Profile
-        </StyledMenuItem>
-        <StyledMenuItem onClick={createHandleMenuClick('Language settings')}>
+      <MenuButton>My account</MenuButton>
+      <Menu slots={{ listbox: Listbox }}>
+        <MenuItem onClick={createHandleMenuClick('Profile')}>Profile</MenuItem>
+        <MenuItem onClick={createHandleMenuClick('Language settings')}>
           Language settings
-        </StyledMenuItem>
-        <StyledMenuItem onClick={createHandleMenuClick('Log out')}>
-          Log out
-        </StyledMenuItem>
+        </MenuItem>
+        <MenuItem onClick={createHandleMenuClick('Log out')}>Log out</MenuItem>
       </Menu>
     </Dropdown>
   );
@@ -56,7 +52,7 @@ const grey = {
   900: '#1C2025',
 };
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -75,7 +71,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledMenuItem = styled(MenuItem)(
+const MenuItem = styled(BaseMenuItem)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -104,7 +100,7 @@ const StyledMenuItem = styled(MenuItem)(
   `,
 );
 
-const TriggerButton = styled(MenuButton)(
+const MenuButton = styled(BaseMenuButton)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 600;

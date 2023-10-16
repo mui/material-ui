@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useTheme } from '@mui/system';
-import { Slider, SliderProps } from '@mui/base/Slider';
+import { Slider as BaseSlider, SliderProps } from '@mui/base/Slider';
 import clsx from 'clsx';
 
 function useIsDarkMode() {
@@ -14,8 +14,8 @@ export default function UnstyledSliderIntroduction() {
 
   return (
     <div className={isDarkMode ? 'dark' : ''} style={{ width: 320 }}>
-      <CustomSlider defaultValue={50} />
-      <CustomSlider defaultValue={10} disabled />
+      <Slider defaultValue={50} />
+      <Slider defaultValue={10} disabled />
     </div>
   );
 }
@@ -23,9 +23,9 @@ export default function UnstyledSliderIntroduction() {
 const resolveSlotProps = (fn: any, args: any) =>
   typeof fn === 'function' ? fn(args) : fn;
 
-const CustomSlider = React.forwardRef<HTMLSpanElement, SliderProps>((props, ref) => {
+const Slider = React.forwardRef<HTMLSpanElement, SliderProps>((props, ref) => {
   return (
-    <Slider
+    <BaseSlider
       ref={ref}
       {...props}
       slotProps={{

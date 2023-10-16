@@ -1,16 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Select, selectClasses } from '@mui/base/Select';
-import { Option, optionClasses } from '@mui/base/Option';
-import { Popper } from '@mui/base/Popper';
+import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
-import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+import { Popper as BasePopper } from '@mui/base/Popper';
 
 export default function UnstyledSelectRichOptions() {
   return (
-    <CustomSelect placeholder="Select country…">
+    <Select placeholder="Select country…">
       {countries.map((country) => (
-        <StyledOption key={country.code} value={country.code} label={country.label}>
+        <Option key={country.code} value={country.code} label={country.label}>
           <img
             loading="lazy"
             width={20}
@@ -20,24 +19,24 @@ export default function UnstyledSelectRichOptions() {
             alt={`Flag of ${country.label}`}
           />
           {country.label} ({country.code}) +{country.phone}
-        </StyledOption>
+        </Option>
       ))}
-    </CustomSelect>
+    </Select>
   );
 }
 
-const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+const Select = React.forwardRef(function CustomSelect(props, ref) {
   const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    root: Button,
+    listbox: Listbox,
+    popper: Popper,
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return <BaseSelect {...props} ref={ref} slots={slots} />;
 });
 
-CustomSelect.propTypes = {
+Select.propTypes = {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
@@ -72,22 +71,7 @@ const grey = {
   900: '#24292f',
 };
 
-const Button = React.forwardRef(function Button(props, ref) {
-  const { ownerState, ...other } = props;
-  return (
-    <button type="button" {...other} ref={ref}>
-      {other.children}
-      <UnfoldMoreRoundedIcon />
-    </button>
-  );
-});
-
-Button.propTypes = {
-  children: PropTypes.node,
-  ownerState: PropTypes.object.isRequired,
-};
-
-const StyledButton = styled(Button, { shouldForwardProp: () => true })(
+const Button = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -100,8 +84,9 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  position: relative;
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -113,21 +98,24 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   }
 
   &.${selectClasses.focusVisible} {
-    outline: 0;
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
-  & > svg {
-    font-size: 1rem;
-    position: absolute;
-    height: 100%;
-    top: 0;
-    right: 10px;
+  &.${selectClasses.expanded} {
+    &::after {
+      content: '▴';
+    }
+  }
+
+  &::after {
+    content: '▾';
+    float: right;
   }
   `,
 );
-const StyledListbox = styled('ul')(
+
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -148,7 +136,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -189,7 +177,7 @@ const StyledOption = styled(Option)(
   `,
 );
 
-const StyledPopper = styled(Popper)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;
 

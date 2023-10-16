@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@mui/system';
-import { Modal } from '@mui/base/Modal';
+import { Box, styled } from '@mui/system';
+import { Modal as BaseModal } from '@mui/base/Modal';
 import Fade from '@mui/material/Fade';
 import { Button } from '@mui/base/Button';
 
@@ -13,7 +13,7 @@ export default function TransitionsModal() {
   return (
     <div>
       <TriggerButton onClick={handleOpen}>Open modal</TriggerButton>
-      <StyledModal
+      <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
@@ -31,7 +31,7 @@ export default function TransitionsModal() {
             </p>
           </ModalContent>
         </Fade>
-      </StyledModal>
+      </Modal>
     </div>
   );
 }
@@ -71,7 +71,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledModal = styled(Modal)`
+const Modal = styled(BaseModal)`
   position: fixed;
   z-index: 1300;
   inset: 0;
@@ -96,7 +96,7 @@ const style = {
   width: 400,
 };
 
-const ModalContent = styled('div')(
+const ModalContent = styled(Box)(
   ({ theme }) => `
   display: flex;
   flex-direction: column;

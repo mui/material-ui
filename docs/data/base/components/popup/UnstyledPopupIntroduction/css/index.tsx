@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
+import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import { useTheme } from '@mui/system';
 
 export default function SimplePopup() {
@@ -22,9 +22,9 @@ export default function SimplePopup() {
       >
         Toggle Popup
       </button>
-      <Popup id={id} open={open} anchor={anchor}>
+      <BasePopup id={id} open={open} anchor={anchor}>
         <div className="CustomPopup">The content of the Popup.</div>
-      </Popup>
+      </BasePopup>
       <Styles />
     </React.Fragment>
   );

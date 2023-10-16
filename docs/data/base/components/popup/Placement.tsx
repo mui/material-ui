@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { Unstable_Popup as Popup, PopupPlacement } from '@mui/base/Unstable_Popup';
+import {
+  Unstable_Popup as BasePopup,
+  PopupPlacement,
+} from '@mui/base/Unstable_Popup';
 import { styled, css, Theme } from '@mui/system';
 
 function Radio({ value, ...props }: JSX.IntrinsicElements['input']) {
@@ -95,7 +98,7 @@ export default function Placement() {
         <Anchor ref={setAnchor} aria-describedby="placement-popper">
           Anchor
         </Anchor>
-        <Popup
+        <BasePopup
           id="placement-popper"
           open={Boolean(anchor)}
           anchor={anchor}
@@ -103,7 +106,7 @@ export default function Placement() {
           offset={4}
         >
           <PopupBody>The content of the Popup.</PopupBody>
-        </Popup>
+        </BasePopup>
       </div>
     </div>
   );
