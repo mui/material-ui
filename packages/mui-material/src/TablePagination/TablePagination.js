@@ -245,14 +245,15 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
         </TablePaginationDisplayedRows>
         <ActionsComponent
           className={classes.actions}
-          backIconButtonProps={slotProps?.previousIconButton ?? backIconButtonProps}
+          backIconButtonProps={backIconButtonProps}
           count={count}
-          nextIconButtonProps={slotProps?.nextIconButton ?? nextIconButtonProps}
+          nextIconButtonProps={nextIconButtonProps}
           onPageChange={onPageChange}
           page={page}
           rowsPerPage={rowsPerPage}
           showFirstButton={showFirstButton}
           showLastButton={showLastButton}
+          slotProps={slotProps}
           getItemAriaLabel={getItemAriaLabel}
           disabled={disabled}
         />
