@@ -69,6 +69,7 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B2',
   900: '#003A75',
 };
 
@@ -93,8 +94,8 @@ const StyledAutocompleteRoot = styled('div')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 3px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
   display: flex;
   gap: 5px;
@@ -105,7 +106,7 @@ const StyledAutocompleteRoot = styled('div')(
 
   &.focused {
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
   &:hover {

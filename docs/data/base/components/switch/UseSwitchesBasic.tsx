@@ -79,7 +79,11 @@ const BasicSwitchRoot = styled('span')(
   }
 
   &.Switch-checked {
+    border: 1px solid transparent;
     background: ${blue[500]};
+    box-shadow: inset 0px 1px 1px ${
+      theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.05)'
+    };
   }
   
   `,
@@ -117,6 +121,7 @@ const BasicSwitchThumb = styled('span')(
   &.Switch-checked {
     left: 17px;
     background-color: #fff;
+    border: 1px solid transparent;
   }
 `,
 );

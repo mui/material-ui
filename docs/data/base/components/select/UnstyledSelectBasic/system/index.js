@@ -8,7 +8,7 @@ import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 const Select = React.forwardRef(function Select(props, ref) {
   const slots = {
-    root: Button,
+    root: CustomButton,
     listbox: Listbox,
     popper: Popper,
     ...props.slots,
@@ -64,7 +64,7 @@ CustomButton.propTypes = {
   ownerState: PropTypes.object.isRequired,
 };
 
-const StyledButton = styled(CustomButton, { shouldForwardProp: () => true })(
+const StyledButton = styled('button', { shouldForwardProp: () => true })(
   ({ theme }) => `
   position: relative;
   font-family: IBM Plex Sans, sans-serif;

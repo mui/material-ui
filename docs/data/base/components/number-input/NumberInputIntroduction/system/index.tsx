@@ -44,6 +44,7 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B2',
 };
 
 const grey = {
@@ -67,7 +68,9 @@ const StyledInputRoot = styled('div')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+  };
   display: grid;
   grid-template-columns: 1fr 19px;
   grid-template-rows: 1fr 1fr;
@@ -77,7 +80,7 @@ const StyledInputRoot = styled('div')(
 
   &.${numberInputClasses.focused} {
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
   &:hover {
@@ -142,15 +145,16 @@ const StyledButton = styled('button')(
     border-top-right-radius: 4px;
     border: 1px solid;
     border-bottom: 0;
+    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+
     &:hover {
       cursor: pointer;
-      background: ${blue[400]};
-      color: ${grey[50]};
+      color: #FFF;
+      background: ${theme.palette.mode === 'dark' ? blue[600] : blue[500]};
+      border-color: ${theme.palette.mode === 'dark' ? blue[400] : blue[600]};
     }
-
-  border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
   }
 
   &.${numberInputClasses.decrementButton} {
@@ -159,16 +163,22 @@ const StyledButton = styled('button')(
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     border: 1px solid;
-    &:hover {
-      cursor: pointer;
-      background: ${blue[400]};
-      color: ${grey[50]};
-    }
-
-  border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
   }
+
+  &:hover {
+    cursor: pointer;
+    color: #FFF;
+    background: ${theme.palette.mode === 'dark' ? blue[600] : blue[500]};
+    border-color: ${theme.palette.mode === 'dark' ? blue[400] : blue[600]};
+  }
+
+  & .arrow {
+    transform: translateY(-1px);
+  }
+
   & .arrow {
     transform: translateY(-1px);
   }

@@ -68,7 +68,9 @@ function Styles() {
         color: ${isDarkMode ? grey[300] : grey[900]};
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
-        box-shadow: 0px 2px 2px ${isDarkMode ? grey[900] : grey[50]};
+        box-shadow: 0px 2px 4px ${
+          isDarkMode ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+        };
         display: grid;
         grid-template-columns: 1fr 19px;
         grid-template-rows: 1fr 1fr;
@@ -83,7 +85,7 @@ function Styles() {
 
       .CustomNumberInput.${numberInputClasses.focused} {
         border-color: ${cyan[400]};
-        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
+        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
       }
 
       .CustomNumberInput .input {
@@ -139,14 +141,16 @@ function Styles() {
         border-top-right-radius: 4px;
         border: 1px solid;
         border-bottom: 0;
-        &:hover {
-          cursor: pointer;
-          background: ${cyan[400]};
-          color: ${grey[50]};
-        }
         border-color: ${isDarkMode ? grey[800] : grey[200]};
         background: ${isDarkMode ? grey[900] : grey[50]};
         color: ${isDarkMode ? grey[200] : grey[900]};
+
+          &:hover {
+            cursor: pointer;
+            color: #FFF;
+            background: ${isDarkMode ? cyan[100] : cyan[500]};
+            border-color: ${isDarkMode ? cyan[400] : cyan[600]};
+          }
       }
 
       .CustomNumberInput .btn.decrement {
@@ -155,14 +159,16 @@ function Styles() {
         border-bottom-left-radius: 4px;
         border-bottom-right-radius: 4px;
         border: 1px solid;
-        &:hover {
-          cursor: pointer;
-          background: ${cyan[400]};
-          color: ${grey[50]};
-        }
         border-color: ${isDarkMode ? grey[800] : grey[200]};
         background: ${isDarkMode ? grey[900] : grey[50]};
         color: ${isDarkMode ? grey[200] : grey[900]};
+
+          &:hover {
+            cursor: pointer;
+            color: #FFF;
+            background: ${isDarkMode ? cyan[100] : cyan[500]};
+            border-color: ${isDarkMode ? cyan[400] : cyan[600]};
+          }
         }
 
       & .arrow {

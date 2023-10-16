@@ -1,11 +1,18 @@
 import * as React from 'react';
-import { unstable_useNumberInput as useNumberInput } from '@mui/base/unstable_useNumberInput';
+import {
+  unstable_useNumberInput as useNumberInput,
+  UseNumberInputParameters,
+} from '@mui/base/unstable_useNumberInput';
 import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
-const CompactNumberInput = React.forwardRef(function CompactNumberInput(props, ref) {
+const CompactNumberInput = React.forwardRef(function CompactNumberInput(
+  props: Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> &
+    UseNumberInputParameters,
+  ref: React.ForwardedRef<HTMLInputElement>,
+) {
   const {
     getRootProps,
     getInputProps,
@@ -31,7 +38,7 @@ const CompactNumberInput = React.forwardRef(function CompactNumberInput(props, r
 });
 
 export default function UseNumberInputCompact() {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState<number | undefined>();
 
   return (
     <Layout>
@@ -42,7 +49,8 @@ export default function UseNumberInputCompact() {
         value={value}
         onChange={(event, val) => setValue(val)}
       />
-      <pre>Current value: {value ?? ' '}</pre>
+
+      <Pre>Current value: {value ?? ' '}</Pre>
     </Layout>
   );
 }
@@ -53,6 +61,7 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B2',
 };
 
 const grey = {
@@ -77,13 +86,15 @@ const StyledInputRoot = styled('div')(
       "increment"
       "decrement";
     row-gap: 1px;
-    border-radius: 0.5rem;
+    overflow: auto;
+    border-radius: 8px;
     border-style: solid;
     border-width: 1px;
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-    overflow: auto;
+    box-shadow: 0px 2px 4px ${
+      theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+    };
   `,
 );
 
@@ -107,25 +118,21 @@ const StyledStepperButton = styled('button')(
 
   &:hover {
     cursor: pointer;
-    background: ${blue[500]};
+    background: ${theme.palette.mode === 'dark' ? blue[700] : blue[500]};
     color: ${grey[50]};
   }
 
   &:focus-visible {
     outline: 0;
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
   &.increment {
     grid-area: increment;
-    border-top-left-radius: 0.35rem;
-    border-top-right-radius: 0.35rem;
   }
 
   &.decrement {
     grid-area: decrement;
-    border-bottom-left-radius: 0.35rem;
-    border-bottom-right-radius: 0.35rem;
   }
 `,
 );
@@ -135,4 +142,8 @@ const Layout = styled('div')`
   flex-flow: row nowrap;
   align-items: center;
   column-gap: 1rem;
+`;
+
+const Pre = styled('pre')`
+  font-size: 0.75rem;
 `;

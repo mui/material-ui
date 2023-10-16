@@ -44,10 +44,11 @@ export default function UseNumberInput() {
 
 const blue = {
   100: '#DAECFF',
-  200: '#b6daff',
+  200: '#B6DAFF',
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B2',
   900: '#003A75',
 };
 
@@ -72,7 +73,9 @@ const StyledInputRoot: React.ElementType = styled('div')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+  };
   display: grid;
   grid-template-columns: 1fr 19px;
   grid-template-rows: 1fr 1fr;
@@ -82,7 +85,7 @@ const StyledInputRoot: React.ElementType = styled('div')(
 
     &.focused {
       border-color: ${blue[400]};
-      box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+      box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
 
       & button:hover {
         background: ${blue[400]};
@@ -132,20 +135,6 @@ const StyledStepperButton = styled('button')(
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
 
-    &.increment,
-    &.decrement {
-      &:hover {
-        background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
-        border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
-        cursor: pointer;
-      }
-
-    border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
-      
-    }
-
     &.increment {
       grid-column: 2/3;
       grid-row: 1/2;
@@ -153,14 +142,16 @@ const StyledStepperButton = styled('button')(
       border-top-right-radius: 4px;
       border: 1px solid;
       border-bottom: 0;
-      &:hover {
-        cursor: pointer;
-        background: ${blue[400]};
-        color: ${grey[50]};
-      }
       border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
       background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
       color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+
+      &:hover {
+        cursor: pointer;
+        color: #FFF;
+        background: ${theme.palette.mode === 'dark' ? blue[600] : blue[500]};
+        border-color: ${theme.palette.mode === 'dark' ? blue[400] : blue[600]};
+      }
     }
 
     &.decrement {
@@ -169,14 +160,16 @@ const StyledStepperButton = styled('button')(
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
       border: 1px solid;
-      &:hover {
-        cursor: pointer;
-        background: ${blue[400]};
-        color: ${grey[50]};
-      }
       border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
       background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
       color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+      
+      &:hover {
+        cursor: pointer;
+        color: #FFF;
+        background: ${theme.palette.mode === 'dark' ? blue[600] : blue[500]};
+        border-color: ${theme.palette.mode === 'dark' ? blue[400] : blue[600]};
+      }
   }
   `,
 );
