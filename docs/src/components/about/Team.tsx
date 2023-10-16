@@ -136,7 +136,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
         <Box sx={{ mt: -0.5, mr: -0.5, ml: 'auto' }}>
           {props.github && (
             <IconButton
-              aria-label={`${props.name} github`}
+              aria-label={`${props.name} GitHub profile`}
               component="a"
               href={`https://github.com/${props.github}`}
               target="_blank"
@@ -147,7 +147,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
           )}
           {props.twitter && (
             <IconButton
-              aria-label={`${props.name} twitter`}
+              aria-label={`${props.name} Twitter profile`}
               component="a"
               href={`https://twitter.com/${props.twitter}`}
               target="_blank"
@@ -156,9 +156,9 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
           )}
-          {props.linkedin &&(
+          {props.linkedin && (
             <IconButton
-              aria-label={`${props.name} linkedin`}
+              aria-label={`${props.name} LinkedIn profile`}
               component="a"
               href={`https://www.linkedin.com/${props.linkedin}`}
               target="_blank"
@@ -166,9 +166,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
             >
               <LinkedInIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
-          )
-
-          }
+          )}
         </Box>
       </Box>
       <Typography variant="body2" fontWeight="bold" sx={{ mt: 2, mb: 0.5 }}>
@@ -196,7 +194,6 @@ const contributors = [
     locationCountry: 'de',
     src: 'https://avatars.githubusercontent.com/u/12292047',
     twitter: 'sebsilbermann',
-    linkedin: 'in/chhawinderpreet-singh-017277228/'
   },
   {
     name: 'Ryan Cogswell',
@@ -205,7 +202,6 @@ const contributors = [
     location: 'Minnesota, United States',
     locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/287804',
-    linkedin: 'in/chhawinderpreet-singh-017277228/'
   },
   {
     name: 'Yan Lee',
@@ -214,7 +210,6 @@ const contributors = [
     location: 'China',
     locationCountry: 'cn',
     src: 'https://avatars.githubusercontent.com/u/13300332',
-    linkedin: 'in/chhawinderpreet-singh-017277228/'
   },
   {
     name: 'Jairon Alves Lima',
@@ -251,7 +246,6 @@ const emeriti = [
     location: 'Toronto, CA',
     locationCountry: 'ca',
     src: 'https://avatars.githubusercontent.com/u/4420103',
-    linkedin: 'in/chhawinderpreet-singh-017277228/'
   },
   {
     name: 'Kevin Ross',
