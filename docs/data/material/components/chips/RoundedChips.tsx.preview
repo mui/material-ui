@@ -1,0 +1,2 @@
+<Chip label="Rounded" rounded />
+<Chip label="Rounded" rounded variant="outlined" />

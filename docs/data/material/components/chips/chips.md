@@ -67,7 +67,7 @@ Use the `avatar` prop to add an avatar or use the `icon` prop to add an icon.
 
 ## Color chip
 
-You can use the `color` prop to define a color from theme palette.
+You can use the `color` prop to define a color from theme palette. Addtionally, you can use either the theme extension or the `sx` prop to create chips with other colors.
 
 {{"demo": "ColorChips.js"}}
 
@@ -76,6 +76,12 @@ You can use the `color` prop to define a color from theme palette.
 You can use the `size` prop to define a small Chip.
 
 {{"demo": "SizesChips.js"}}
+
+## Rounded chip
+
+You can use the `rounded` prop to create a rounded Chip.
+
+{{"demo": "RoundedChips.js"}}
 
 ## Multiline chip
 

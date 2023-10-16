@@ -50,7 +50,7 @@ const ChipRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { color, iconColor, clickable, onDelete, size, variant } = ownerState;
+    const { color, iconColor, clickable, onDelete, size, variant, rounded } = ownerState;
 
     return [
       { [`& .${chipClasses.avatar}`]: styles.avatar },
@@ -66,7 +66,7 @@ const ChipRoot = styled('div', {
         [`& .${chipClasses.deleteIcon}`]:
           styles[`deleteIcon${capitalize(variant)}Color${capitalize(color)}`],
       },
-      { [`& .${chipClasses.rounded}`]: styles.rounded },
+      rounded && styles.rounded,
       styles.root,
       styles[`size${capitalize(size)}`],
       styles[`color${capitalize(color)}`],
@@ -176,7 +176,7 @@ const ChipRoot = styled('div', {
       ...(ownerState.size === 'small' && {
         height: 24,
       }),
-      ...(ownerState.rounded === true && {
+      ...(ownerState.rounded && {
         borderRadius: 32 / 4,
       }),
       ...(ownerState.color !== 'default' && {
@@ -344,7 +344,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     onDelete,
     onKeyDown,
     onKeyUp,
-    rounded,
+    rounded = false,
     size = 'medium',
     variant = 'filled',
     tabIndex,

@@ -74,7 +74,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
     /**
      * If 'true' the component will be rounded instead of circular
-     * @default true
+     * @default false
      */
     rounded?: boolean;
     /**
