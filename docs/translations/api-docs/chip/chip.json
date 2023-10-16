@@ -24,7 +24,7 @@
     "onDelete": {
       "description": "Callback fired when the delete icon is clicked. If set, the delete icon will be shown."
     },
-    "rounded": { "description": "If &#39;true&#39;, allows the chip to be rounded" },
+    "rounded": { "description": "If <code>true</code>, allows the chip to be rounded" },
     "size": { "description": "The size of the component." },
     "skipFocusWhenDisabled": {
       "description": "If <code>true</code>, allows the disabled chip to escape focus. If <code>false</code>, allows the disabled chip to receive focus."

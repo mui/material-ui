@@ -569,7 +569,7 @@ Chip.propTypes /* remove-proptypes */ = {
    */
   onKeyUp: PropTypes.func,
   /**
-   * If 'true', allows the chip to be rounded
+   * If `true`, allows the chip to be rounded
    * @default false
    */
   rounded: PropTypes.bool,
