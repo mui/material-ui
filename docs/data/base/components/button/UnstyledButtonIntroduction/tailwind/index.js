@@ -24,7 +24,7 @@ export default function UnstyledButtonsIntroduction() {
   );
 }
 
-const Button = React.forwardRef((props, ref) => {
+const CustomButton = React.forwardRef((props, ref) => {
   const { className, ...other } = props;
   return (
     <BaseButton
@@ -38,6 +38,6 @@ const Button = React.forwardRef((props, ref) => {
   );
 });
 
-Button.propTypes = {
+CustomButton.propTypes = {
   className: PropTypes.string,
 };

@@ -5,7 +5,7 @@ import {
 } from '@mui/base/Unstable_NumberInput';
 import { styled } from '@mui/system';
 
-const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
+const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
   return (
     <BaseNumberInput
       slots={{
@@ -29,7 +29,9 @@ const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
 });
 
 export default function NumberInputIntroduction() {
-  return <NumberInput aria-label="Demo number input" placeholder="Type a number…" />;
+  return (
+    <CustomNumberInput aria-label="Demo number input" placeholder="Type a number…" />
+  );
 }
 
 const blue = {

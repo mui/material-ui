@@ -1,5 +1,5 @@
 <React.Fragment>
-  <NumberInput
+  <BaseNumberInput
     slotProps={{
       root: { className: 'CustomNumberInput' },
       input: { className: 'input' },

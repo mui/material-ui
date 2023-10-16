@@ -79,7 +79,7 @@ const style = {
   height: 120,
 };
 
-const ModalContent = styled('div')(
+const ModalContent = styled(Box)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 600;

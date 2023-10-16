@@ -47,7 +47,7 @@ const CustomButton = React.forwardRef((props, ref) => {
   );
 });
 
-Button.propTypes = {
+CustomButton.propTypes = {
   className: PropTypes.string,
   /**
    * If `true`, the component is disabled.

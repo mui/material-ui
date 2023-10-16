@@ -22,10 +22,10 @@ export default function KeepMountedModal() {
         slots={{ backdrop: StyledBackdrop }}
         keepMounted
       >
-        <Box sx={style}>
-          <h3 id="keep-mounted-modal-title">Text in a modal</h3>
+        <ModalContent sx={style}>
+          <h2 id="keep-mounted-modal-title">Text in a modal</h2>
           <p id="keep-mounted-modal-description">Aliquid amet deserunt earum!</p>
-        </Box>
+        </ModalContent>
       </Modal>
     </div>
   );
@@ -96,7 +96,7 @@ const style = {
   width: 400,
 };
 
-const ModalContent = styled('div')(
+const ModalContent = styled(Box)(
   ({ theme }) => `
   width: 400,
   display: flex;

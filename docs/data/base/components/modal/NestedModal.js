@@ -50,7 +50,7 @@ function ChildModal() {
   return (
     <React.Fragment>
       <ModalButton onClick={handleOpen}>Open Child Modal</ModalButton>
-      <StyledModal
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="child-modal-title"
@@ -66,7 +66,7 @@ function ChildModal() {
           </p>
           <ModalButton onClick={handleClose}>Close Child Modal</ModalButton>
         </ModalContent>
-      </StyledModal>
+      </Modal>
     </React.Fragment>
   );
 }

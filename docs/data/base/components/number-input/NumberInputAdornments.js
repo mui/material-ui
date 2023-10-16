@@ -127,7 +127,8 @@ const InputRoot = styled('div')(
 `,
 );
 
-const InputElement = styled('input')`
+const InputElement = styled('input')(
+  ({ theme }) => `
   font-size: 0.875rem;
   font-family: inherit;
   font-weight: 400;

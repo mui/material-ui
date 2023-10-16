@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
+
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
@@ -86,7 +87,7 @@ Button.propTypes = {
   ownerState: PropTypes.object.isRequired,
 };
 
-const StyledButton = styled(Button, { shouldForwardProp: () => true })(
+const StyledButton = styled('button', { shouldForwardProp: () => true })(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
