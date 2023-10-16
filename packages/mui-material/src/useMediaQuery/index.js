@@ -1,2 +1,2 @@
 'use client';
-export { default } from './useMediaQuery';
+export { default } from '@mui/system/useMediaQuery';

@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { visuallyHidden } from '@mui/utils';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from '@mui/system/useMediaQuery';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
