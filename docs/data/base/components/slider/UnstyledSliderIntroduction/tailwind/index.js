@@ -83,7 +83,9 @@ const Slider = React.forwardRef((props, ref) => {
             ...resolvedSlotProps,
             className: clsx(
               `absolute w-4 h-4 -ml-1.5 -mt-1.5 box-border rounded-full outline-0 border-[3px] border-solid border-current bg-white hover:shadow-outline-purple ${
-                focused || active ? 'shadow-outline-purple' : ''
+                focused || active
+                  ? 'shadow-[0_0_0_4px_#ddd6fe] dark:shadow-[0_0_0_4px_#a78bfa] outline-none'
+                  : ''
               }`,
               resolvedSlotProps?.className,
             ),
