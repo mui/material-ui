@@ -41,6 +41,13 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     orientation?: 'horizontal' | 'vertical';
     /**
+     * The marker (such as a disc, character, or custom counter style) of the list items.
+     * When this prop is specified, the List Item changes the CSS display to `list-item` in order to apply the marker.
+     *
+     * To see all available options, check out the [MDN list-style-type page](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type).
+     */
+    marker?: string;
+    /**
      * The size of the component (affect other nested list* components).
      * @default 'md'
      */

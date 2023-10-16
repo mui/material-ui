@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   describeConformance,
-  describeJoyColorInversion,
   createRenderer,
   screen,
   act,
@@ -32,8 +31,6 @@ describe('Joy <Input />', () => {
     },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
-
-  describeJoyColorInversion(<Input />, { muiName: 'JoyInput', classes });
 
   it('should have placeholder', () => {
     const { getByPlaceholderText } = render(<Input placeholder="Placeholder" />);

@@ -507,7 +507,7 @@ The majority of respondents don't use any paid libraries, but those who do are m
   MUI mainly develops open-source software, and we deeply value the OSS ethos of freely sharing what we build so that others can use it and improve upon it.
   - The price of our Pro plan positions it as a product intended for use by teams at professional organizations.
     That said, many who left feedback on the price are individuals, so there might be an opportunity to expand our offerings for those not backed by their company.
-- **More features & feature fixes:** Collapsable rows, column resizing, and features for ERP apps were some of the features requested.
+- **More features & feature fixes:** Collapsible rows, column resizing, and features for ERP apps were some of the features requested.
   And regarding features to fix, the most common requests were pagination with REST APIs, backend filtering, and cell editor.
 - **Improvements to the documentation:** The data grid docs could certainly use a major overhaul—we're working on it.
 - **Improvements to the look and feel:** Data grid builders want more default design options beyond Material.

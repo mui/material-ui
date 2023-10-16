@@ -1,5 +1,152 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.13
+
+<!-- generated comparing v5.14.12..master -->
+
+_Oct 10, 2023_
+
+A big thanks to the 22 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added support for `styled-components` v6 (#39042) @mnajdova
+
+### `@mui/material@5.14.13`
+
+- [Checkbox] Fix checkbox hover bg with extendTheme (#39319) @brijeshb42
+- [Chip] Outlined Chip variant is wider than the Filled counterpart (#39342) @chirag3003
+- [Select] Add notice about select's a11y improvement on v5.14.12 changelog (#39310) @DiegoAndai
+- [Typography] Color prop check for primitive type (#39071) @DarhkVoyd
+- [Pagination] Fix background color on hover and keyboard focus when using CSS theme variables (#39220) @ValkonX33
+- [Popper] Add missing `styleOverrides` Popper type in theme (#39154) @axelbostrom
+- [Slider] Support all default palette colors in TypeScript (#39058) @gugudwt
+
+### `@mui/base@5.0.0-beta.19`
+
+- [Menu] Add the anchor prop (#39297) @michaldudak
+
+### `@mui/material-next@6.0.0-alpha.105`
+
+- [Menu] Copy v5 Menu components (#39301) @mnajdova
+
+### `@mui/joy@5.0.0-beta.10`
+
+- [Autocomplete] Add `type=button` to clear button (#39263) @brijeshb42
+- [Button] Fix the text wrap issue (#38696) @atharva3333
+- [Drawer] Apply color inversion to content slot instead (#39312) @siriwatknp
+- [Switch] Fix missing class name (#39327) @Bestwebdesign
+
+### `@mui/styled-engine-sc@6.0.0-alpha.1`
+
+- &#8203;<!-- 03 -->[system] Add support for `styled-components` v6 (#39042) @mnajdova
+
+### Docs
+
+- [joy-ui] Adjust the templates page card design (#39369) @danilo-leal
+- Rename the Data Grid "Quick filter" to "Search" (#37724) @alexfauquette
+- Remove obsolete translations (#39221) @mbrookes
+- Update link to add custom color in palette (#39359) @ZeeshanTamboli
+- Denser code demo @oliviertassinari
+- Set up MD3 experiments pages (#39323) @mj12albert
+- [Drawer] Fix right anchored persistent drawer intercepts click when it is closed (#39318) @ZeeshanTamboli
+- [joy-ui] Revise the Color Inversion page (#39306) @danilo-leal
+- [joy-ui] Remove redundant `error` prop from input validation demo (#39280) @sai6855
+- [material-ui] Rename themed components doc, fix typos (#39368) @samuelsycamore
+- [material-ui] Adjust the Material You Chip section (#39325) @danilo-leal
+- [system] Add documentation on how to augment custom theme types for the `sx` prop callback (#39259) @3xp10it3r
+- [joy-ui][Input] Add debounce input demo (#39300) @sai6855
+
+### Core
+
+- [docs-infra] Improve the open diamond sponsor spot callout (#39332) @danilo-leal
+- [docs-infra] Fix Code Sandbox download issue (#39317) @ARJ2160
+- [docs-infra] Remove overflow: hidden for demo gradient bg (#39225) @oliviertassinari
+- [website] Fix footer responsiveness (#39355) @danilo-leal
+- [website] Host Figma redirections in the store for now @oliviertassinari
+
+All contributors of this release in alphabetical order: @3xp10it3r, @alexfauquette, @ARJ2160, @atharva3333, @axelbostrom, @Bestwebdesign, @brijeshb42, @chirag3003, @danilo-leal, @DarhkVoyd, @DiegoAndai, @gugudwt, @mbrookes, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ValkonX33, @ZeeshanTamboli
+
+## 5.14.12
+
+<!-- generated comparing v5.14.11..master -->
+
+_Oct 3, 2023_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- 🎨 Introduced color inversion utilities to Joy UI (#38916) @siriwatknp
+- 🚀 Added Chip and related TextField components to Material You @DiegoAndai, @mj12albert
+- 🏗️ Improve the Select's component a11y by adding the combobox role and aria-controls attribute (#38785) @xulingzhihou. If your tests require selecting the trigger element by the "button" role, then you'll have to change it to use the "combobox" role instead
+
+### `@mui/material@5.14.12`
+
+- [DialogActions] Apply margin-left when children is not of `button` type (#39189) @sai6855
+- [Select] Improve a11y by adding combobox role and aria-controls attribute (#38785) @xulingzhihou
+- [Select] Fix MenuProps slotProps forwarding (#39177) @DiegoAndai
+- [TextField] Polish types in Textfield demo (#39140) @sai6855
+- [ButtonGroup] Fix rendering with conditional elements (#38989) @ZeeshanTamboli
+
+### `@mui/system@5.14.12`
+
+- [system] Add support for `variants` in the styled() util (#39073) @mnajdova
+- [Box] Add missing logical spacing property types (#39169) @Semigradsky
+
+### `@mui/base@5.0.0-beta.18`
+
+- [useSlider] Align externalProps handling (#38854) @mj12albert
+- [useTabs] Align external props handling for useTab/useTabPanel/useTabsList (#39037) @mj12albert
+- [test] Fix import paths in useTab tests (#39291) @mj12albert
+
+### `@mui/material-next@6.0.0-alpha.104`
+
+- [Chip] Add Material You Chip component (#38927) @DiegoAndai
+- [Divider] Copy v5 Divider (#39197) @mj12albert
+- [FilledInput] Copy v5 FilledInput (#39040) @mj12albert
+- [FormControl] Add FormControl component (#39032) @mj12albert
+- [Select] Copy Select files from v5 (#39188) @DiegoAndai
+- [TextField] Copy v5 TextField's inner components (#39166) @mj12albert
+
+### `@mui/joy@5.0.0-beta.9`
+
+- Introduce color inversion utilities (#38916) @siriwatknp
+- Replace margin with `gap` property (#39147) @siriwatknp
+- [CssBaseline] use Joy `GlobalStyles` (#39278) @siriwatknp
+- [Drawer] Apply content styles from theme to content slot (#39199) @sai6855
+- [List] Add gap and missing active styles (#39146) @siriwatknp
+- [Switch] Slight adjustments to the design (#39276) @danilo-leal
+
+### Docs
+
+- [docs] Update Autocomplete demo for React 18 (#39162) @oliviertassinari
+- [docs-infra] Tweak feedback footer section design (#36556) @danilo-leal
+- [docs-infra] Improve code syntax highlight (#39181) @oliviertassinari
+- [docs][base] Add Tailwind CSS + plain CSS demo on the TextArea page (#39046) @alisasanib
+- [docs][base-ui] Fix style for root div of multiline input (#39182) @ttlpta
+- [docs][base-ui] Improve Select's country select demo (#38983) @oliviertassinari
+- [docs][joy-ui] Add scrollable tabs example (#39260) @siriwatknp
+- [docs][joy-ui] Match `Autocomplete` github label demo to actual github label dropdown (#39228) @sai6855
+- [docs][joy-ui] Refine the Rental dashboard template (#39059) @zanivan
+- [docs][joy-ui] Removed incomplete sentence in the Aspect Ratio page (#39227) @Erik-McKelvey
+- [docs][joy-ui] Fix typo in the Accordion page (#39226) @Erik-McKelvey
+- [docs][joy-ui] Update and standardize template Sidemenus (#39271) @zanivan
+- [docs][joy-ui] Add a roadmap page (#39163) @danilo-leal
+- [docs][material-ui] Replace `Box` with `Stack` in applicable demos (#39174) @sai6855
+- [docs][material-ui] Add small polish to the Templates page (#39224) @danilo-leal
+- [docs][material-ui] Small revision to the Icons page (#38840) @danilo-leal
+
+### Core
+
+- Add next lint config to eslint (#39183) @Janpot
+- [core] Update eslint rules (#39178) @romgrk
+- [core] Fix Greg GitHub slug @oliviertassinari
+- [core] Priority Support casing normalization @oliviertassinari
+- [website] Add Heat map in pricing page (#39269) @oliviertassinari
+- [website] Update `React Engineer - xCharts` Ashby link (#39172) @DanailH
+- [website] Add Charts to the pricing table (#38680) @alexfauquette
+- [website] Polish career experience @oliviertassinari
+- [website] Simplify the Core products file (#39194) @danilo-leal
+
+All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @DanailH, @danilo-leal, @DiegoAndai, @Erik-McKelvey, @Janpot, @mj12albert, @mnajdova, @oliviertassinari, @romgrk, @sai6855, @Semigradsky, @siriwatknp, @xulingzhihou, @zanivan, @ZeeshanTamboli
+
 ## 5.14.11
 
 <!-- generated comparing v5.14.10..master -->

@@ -46,7 +46,6 @@
   "devDependencies": {
     "@jest/transform": "^29.7.0"
   },
-  "peerDependencies": {},
   "sideEffects": false,
   "publishConfig": {
     "access": "public"

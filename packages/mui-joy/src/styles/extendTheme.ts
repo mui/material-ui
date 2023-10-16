@@ -17,11 +17,11 @@ import { DefaultColorScheme, ExtendedColorScheme, SupportedColorScheme } from '.
 import { ColorSystem, ColorPaletteProp, Palette, PaletteOptions } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystemOptions, FontSize } from './types/typography';
-import { Variants, ColorInversion, ColorInversionConfig } from './types/variants';
+import { Variants } from './types/variants';
 import { Theme, ThemeCssVar, ThemeScalesOptions, SxProps, ThemeVars } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
-import { createSoftInversion, createSolidInversion, createVariant } from './variantUtils';
+import { createVariant } from './variantUtils';
 import { MergeDefault } from './types/utils';
 
 type Partial2Level<T> = {
@@ -66,10 +66,6 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
   focus?: Partial<Focus>;
   typography?: Partial<TypographySystemOptions>;
   variants?: Partial2Level<Variants>;
-  colorInversion?:
-    | Partial2Level<ColorInversion>
-    | ((theme: Theme) => Partial2Level<ColorInversion>);
-  colorInversionConfig?: ColorInversionConfig;
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
   components?: Components<Theme>;
@@ -95,7 +91,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     spacing,
     components: componentsInput,
     variants: variantsInput,
-    colorInversion: colorInversionInput,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
     ...scalesInput
   } = themeOptions || {};
@@ -549,13 +544,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
                   color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
                   ...(ownerState.color &&
                     ownerState.color !== 'inherit' &&
-                    ownerState.color !== 'context' &&
                     themeProp.vars.palette[ownerState.color!] && {
                       color: `rgba(${themeProp.vars.palette[ownerState.color]?.mainChannel} / 1)`,
                     }),
-                  ...(ownerState.color === 'context' && {
-                    color: themeProp.vars.palette.text.secondary,
-                  }),
                 }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {
@@ -571,10 +562,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     cssVarPrefix,
     getCssVar,
     spacing: createSpacing(spacing),
-    colorInversionConfig: {
-      soft: ['plain', 'outlined', 'soft', 'solid'],
-      solid: ['plain', 'outlined', 'soft', 'solid'],
-    },
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
 
   /**
@@ -673,19 +660,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
-
-  // @ts-ignore if the colorInversion is provided as callbacks, it needs to be resolved in the CssVarsProvider
-  theme.colorInversion =
-    typeof colorInversionInput === 'function'
-      ? colorInversionInput
-      : deepmerge(
-          {
-            soft: createSoftInversion(theme, true),
-            solid: createSolidInversion(theme, true),
-          },
-          colorInversionInput || {},
-          { clone: false },
-        );
 
   return theme;
 }

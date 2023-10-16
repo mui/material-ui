@@ -50,6 +50,10 @@ export default function DrawerUsage() {
           options: ['sm', 'md', 'lg'],
         },
         {
+          propName: 'invertedColors',
+          knob: 'switch',
+        },
+        {
           propName: 'children',
           defaultValue: '{/* Drawer content */}',
         },
@@ -59,12 +63,7 @@ export default function DrawerUsage() {
           <Button variant="outlined" color="neutral" onClick={toggleDrawer(true)}>
             Open drawer
           </Button>
-          <Drawer
-            open={open}
-            onClose={toggleDrawer(false)}
-            invertedColors
-            {...props}
-          >
+          <Drawer open={open} onClose={toggleDrawer(false)} {...props}>
             <Box
               role="presentation"
               onClick={toggleDrawer(false)}
