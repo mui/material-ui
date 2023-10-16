@@ -121,8 +121,6 @@ describe('<InputLabel />', () => {
       });
 
       it('provides ownerState.focused in styleOverrides', () => {
-        const colorRed = 'rgb(255, 0, 0)';
-
         const theme = createTheme({
           components: {
             MuiInputLabel: {
@@ -130,9 +128,7 @@ describe('<InputLabel />', () => {
                 root: (props) => {
                   return {
                     ...(props.ownerState.focused === true && {
-                      [`&.${classes.focused}`]: {
-                        color: colorRed,
-                      },
+                      fontWeight: '700',
                     }),
                   };
                 },
@@ -144,14 +140,14 @@ describe('<InputLabel />', () => {
         const { getByText } = render(
           <ThemeProvider theme={theme}>
             <FormControl focused>
-              <InputLabel>Red Test Label</InputLabel>
+              <InputLabel>Bold Test Label</InputLabel>
             </FormControl>
           </ThemeProvider>,
         );
 
-        const label = getByText('Red Test Label');
+        const label = getByText('Bold Test Label');
 
-        expect(getComputedStyle(label).color).to.equal(colorRed);
+        expect(getComputedStyle(label).fontWeight).to.equal('700');
       });
     });
   });
