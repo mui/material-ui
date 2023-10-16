@@ -11,6 +11,10 @@
     }
   },
   "name": "MenuList",
+  "imports": [
+    "import MenuList from '@mui/material/MenuList';",
+    "import { MenuList } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "padding", "dense", "subheader"],
     "globalClasses": {},

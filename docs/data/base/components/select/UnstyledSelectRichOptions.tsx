@@ -1,40 +1,41 @@
 import * as React from 'react';
-import Select, { SelectProps, selectClasses } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
+import { Select as BaseSelect, SelectProps, selectClasses } from '@mui/base/Select';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
-import { Popper } from '@mui/base';
+import { Popper as BasePopper } from '@mui/base/Popper';
 
 export default function UnstyledSelectRichOptions() {
   return (
-    <CustomSelect>
-      {countries.map((c) => (
-        <StyledOption key={c.code} value={c.code} label={c.label}>
+    <Select placeholder="Select country…">
+      {countries.map((country) => (
+        <Option key={country.code} value={country.code} label={country.label}>
           <img
             loading="lazy"
-            width="20"
-            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
-            srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
-            alt={`Flag of ${c.label}`}
+            width={20}
+            height={14}
+            srcSet={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png 2x`}
+            src={`https://flagcdn.com/w20/${country.code.toLowerCase()}.png`}
+            alt={`Flag of ${country.label}`}
           />
-          {c.label} ({c.code}) +{c.phone}
-        </StyledOption>
+          {country.label} ({country.code}) +{country.phone}
+        </Option>
       ))}
-    </CustomSelect>
+    </Select>
   );
 }
 
-const CustomSelect = React.forwardRef(function CustomSelect(
+const Select = React.forwardRef(function CustomSelect(
   props: SelectProps<number, false>,
   ref: React.ForwardedRef<any>,
 ) {
   const slots: SelectProps<number, false>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    root: Button,
+    listbox: Listbox,
+    popper: Popper,
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return <BaseSelect {...props} ref={ref} slots={slots} />;
 });
 
 const blue = {
@@ -59,20 +60,22 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledButton = styled('button')(
+const Button = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
   min-width: 320px;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
   text-align: left;
   line-height: 1.5;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -101,7 +104,7 @@ const StyledButton = styled('button')(
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -116,11 +119,13 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -161,7 +166,7 @@ const StyledOption = styled(Option)(
   `,
 );
 
-const StyledPopper = styled(Popper)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;
 

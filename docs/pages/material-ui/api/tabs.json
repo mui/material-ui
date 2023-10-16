@@ -6,7 +6,7 @@
     "aria-labelledby": { "type": { "name": "string" } },
     "centered": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "indicatorColor": {
       "type": {
@@ -15,7 +15,13 @@
       },
       "default": "'primary'"
     },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, value: any) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
@@ -44,7 +50,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "TabIndicatorProps": { "type": { "name": "object" }, "default": "{}" },
     "TabScrollButtonProps": { "type": { "name": "object" }, "default": "{}" },
@@ -66,6 +73,7 @@
     "visibleScrollbar": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Tabs",
+  "imports": ["import Tabs from '@mui/material/Tabs';", "import { Tabs } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",

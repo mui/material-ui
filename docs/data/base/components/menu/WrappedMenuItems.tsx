@@ -1,14 +1,13 @@
 import * as React from 'react';
-import Menu, { MenuActions } from '@mui/base/Menu';
-import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
-import Button, { buttonClasses } from '@mui/base/Button';
-import Popper from '@mui/base/Popper';
+import { Dropdown } from '@mui/base/Dropdown';
+import { Menu } from '@mui/base/Menu';
+import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
+import { MenuItem as BaseMenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
-import { ListActionTypes } from '@mui/base/useList';
 
 function MenuSection({ children, label }: MenuSectionProps) {
   return (
-    <MenuSectionRoot>
+    <MenuSectionRoot role="group">
       <MenuSectionLabel>{label}</MenuSectionLabel>
       <ul>{children}</ul>
     </MenuSectionRoot>
@@ -16,112 +15,36 @@ function MenuSection({ children, label }: MenuSectionProps) {
 }
 
 export default function WrappedMenuItems() {
-  const [buttonElement, setButtonElement] = React.useState<HTMLButtonElement | null>(
-    null,
-  );
-  const [isOpen, setOpen] = React.useState(false);
-  const menuActions = React.useRef<MenuActions>(null);
-  const preventReopen = React.useRef(false);
-
-  const updateAnchor = React.useCallback((node: HTMLButtonElement | null) => {
-    setButtonElement(node);
-  }, []);
-
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (preventReopen.current) {
-      event.preventDefault();
-      preventReopen.current = false;
-      return;
-    }
-
-    setOpen((open) => !open);
-  };
-
-  const handleButtonMouseDown = () => {
-    if (isOpen) {
-      // Prevents the menu from reopening right after closing
-      // when clicking the button.
-      preventReopen.current = true;
-    }
-  };
-
-  const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setOpen(true);
-      if (event.key === 'ArrowUp') {
-        // Focus the last item when pressing ArrowUp.
-        menuActions.current?.dispatch({
-          type: ListActionTypes.keyDown,
-          key: event.key,
-          event,
-        });
-      }
-    }
-  };
-
   const createHandleMenuClick = (menuItem: string) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
-      setOpen(false);
-      buttonElement?.focus();
     };
   };
 
   return (
-    <div>
-      <TriggerButton
-        type="button"
-        onClick={handleButtonClick}
-        onKeyDown={handleButtonKeyDown}
-        onMouseDown={handleButtonMouseDown}
-        ref={updateAnchor}
-        aria-controls={isOpen ? 'wrapped-menu' : undefined}
-        aria-expanded={isOpen || undefined}
-        aria-haspopup="menu"
-      >
-        Options
-      </TriggerButton>
-      <Menu
-        actions={menuActions}
-        open={isOpen}
-        onOpenChange={(open) => {
-          setOpen(open);
-        }}
-        anchorEl={buttonElement}
-        slots={{ root: StyledPopper, listbox: StyledListbox }}
-        slotProps={{ listbox: { id: 'simple-menu' } }}
-      >
+    <Dropdown>
+      <MenuButton>Options</MenuButton>
+      <Menu slots={{ listbox: Listbox }}>
         <MenuSection label="Navigation">
-          <StyledMenuItem onClick={createHandleMenuClick('Back')}>
-            Back
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Forward')} disabled>
+          <MenuItem onClick={createHandleMenuClick('Back')}>Back</MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Forward')} disabled>
             Forward
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Refresh')}>
-            Refresh
-          </StyledMenuItem>
+          </MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Refresh')}>Refresh</MenuItem>
         </MenuSection>
         <MenuSection label="Page">
-          <StyledMenuItem onClick={createHandleMenuClick('Save as...')}>
+          <MenuItem onClick={createHandleMenuClick('Save as...')}>
             Save as...
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Print...')}>
-            Print...
-          </StyledMenuItem>
+          </MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Print...')}>Print...</MenuItem>
         </MenuSection>
         <MenuSection label="View">
-          <StyledMenuItem onClick={createHandleMenuClick('Zoom in')}>
-            Zoom in
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Zoom out')}>
-            Zoom out
-          </StyledMenuItem>
+          <MenuItem onClick={createHandleMenuClick('Zoom in')}>Zoom in</MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Zoom out')}>Zoom out</MenuItem>
         </MenuSection>
         <li className="helper">Current zoom level: 100%</li>
       </Menu>
-    </div>
+    </Dropdown>
   );
 }
 
@@ -147,7 +70,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -162,10 +85,11 @@ const StyledListbox = styled('ul')(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   box-shadow: 0px 2px 16px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  z-index: 1;
   `,
 );
 
-const StyledMenuItem = styled(MenuItem)(
+const MenuItem = styled(BaseMenuItem)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -194,7 +118,7 @@ const StyledMenuItem = styled(MenuItem)(
   `,
 );
 
-const TriggerButton = styled(Button)(
+const MenuButton = styled(BaseMenuButton)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -216,16 +140,12 @@ const TriggerButton = styled(Button)(
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
-  &.${buttonClasses.focusVisible} {
+  &:focus-visible {
     border-color: ${blue[400]};
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
   `,
 );
-
-const StyledPopper = styled(Popper)`
-  z-index: 1;
-`;
 
 interface MenuSectionProps {
   children: React.ReactNode;

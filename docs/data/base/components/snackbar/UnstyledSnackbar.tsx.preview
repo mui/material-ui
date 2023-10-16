@@ -1,8 +1,0 @@
-<React.Fragment>
-  <TriggerButton type="button" onClick={handleClick}>
-    Open snackbar
-  </TriggerButton>
-  <StyledSnackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-    Hello World
-  </StyledSnackbar>
-</React.Fragment>

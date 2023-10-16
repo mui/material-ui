@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Select, { selectClasses } from '@mui/base/Select';
+import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
 
-import Option, { optionClasses } from '@mui/base/Option';
-import Popper from '@mui/base/Popper';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
+import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import Box from '@mui/system/Box';
 
@@ -33,17 +33,18 @@ export default function UnstyledSelectObjectValuesForm() {
             >
               Default behavior
             </Label>
-            <CustomSelect
+            <Select
               name="character"
               id="object-value-default-button"
               aria-labelledby="object-value-default-label object-value-default-button"
+              placeholder="Choose a character…"
             >
               {characters.map((character) => (
-                <StyledOption key={character.name} value={character}>
+                <Option key={character.name} value={character}>
                   {character.name}
-                </StyledOption>
+                </Option>
               ))}
-            </CustomSelect>
+            </Select>
           </div>
           <Button sx={{ ml: 1 }} type="submit">
             Submit
@@ -59,18 +60,19 @@ export default function UnstyledSelectObjectValuesForm() {
             >
               Custom getSerializedValue
             </Label>
-            <CustomSelect
+            <Select
               getSerializedValue={getSerializedValue}
               name="character"
               id="object-value-serialize-button"
               aria-labelledby="object-value-serialize-label object-value-serialize-button"
+              placeholder="Choose a character…"
             >
               {characters.map((character) => (
-                <StyledOption key={character.name} value={character}>
+                <Option key={character.name} value={character}>
                   {character.name}
-                </StyledOption>
+                </Option>
               ))}
-            </CustomSelect>
+            </Select>
           </div>
           <Button sx={{ ml: 1 }} type="submit">
             Submit
@@ -81,18 +83,18 @@ export default function UnstyledSelectObjectValuesForm() {
   );
 }
 
-function CustomSelect(props) {
+function Select(props) {
   const slots = {
     root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    listbox: Listbox,
+    popper: Popper,
     ...props.slots,
   };
 
-  return <Select {...props} slots={slots} />;
+  return <BaseSelect {...props} slots={slots} />;
 }
 
-CustomSelect.propTypes = {
+Select.propTypes = {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
@@ -140,15 +142,17 @@ const StyledButton = styled('button')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
   min-width: 320px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  border-radius: 0.75em;
-  padding: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
   text-align: left;
   line-height: 1.5;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
 
   &:hover {
     background: ${theme.palette.mode === 'dark' ? '' : grey[100]};
@@ -172,28 +176,31 @@ const StyledButton = styled('button')(
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 8px;
   margin: 10px 0;
   min-width: 320px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  border-radius: 0.75em;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   overflow: auto;
   outline: 0px;
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
-  padding: 8px;
-  border-radius: 0.45em;
+  padding: 8px 12px;
+  border-radius: 8px;
   cursor: default;
 
   &:last-of-type {
@@ -226,7 +233,7 @@ const StyledOption = styled(Option)(
   `,
 );
 
-const StyledPopper = styled(Popper)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;
 
@@ -242,17 +249,19 @@ const Label = styled('label')(
 );
 
 const Button = styled('button')`
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: bold;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
   font-size: 0.875rem;
   background-color: ${blue[500]};
-  padding: 12px 24px;
+  padding: 8px 16px;
+  line-height: 1.5;
   border-radius: 8px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
   vertical-align: middle;
+  min-height: calc(1em + 25px);
 
   &:hover {
     background-color: ${blue[600]};

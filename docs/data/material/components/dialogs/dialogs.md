@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Dialog component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
@@ -27,7 +27,7 @@ Touch mechanics:
 - Choosing an option immediately commits the option and closes the menu
 - Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
 
-{{"demo": "SimpleDialog.js"}}
+{{"demo": "SimpleDialogDemo.js"}}
 
 ## Alerts
 
@@ -107,6 +107,15 @@ For example, users can listen to multiple ringtones but only make a final select
 Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "ConfirmationDialog.js"}}
+
+## Non-modal dialog
+
+Dialogs can also be non-modal, meaning they don't interrupt user interaction behind it.
+Visit [the Nielsen Norman Group article](https://www.nngroup.com/articles/modal-nonmodal-dialog/) for more in-depth guidance about modal vs. non-modal dialog usage.
+
+The demo below shows a persistent cookie banner, a common non-modal dialog use case.
+
+{{"demo": "CookiesBanner.js", "iframe": true}}
 
 ## Draggable dialog
 

@@ -1,19 +1,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import Button from '@mui/base/Button';
-import Input, { inputClasses } from '@mui/base/Input';
+import { Button } from '@mui/base/Button';
+import { Input as BaseInput, inputClasses } from '@mui/base/Input';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/system';
 
-const CustomInput = React.forwardRef(function CustomInput(props, ref) {
+const Input = React.forwardRef(function CustomInput(props, ref) {
   const { slots, ...other } = props;
   return (
-    <Input
+    <BaseInput
       slots={{
-        root: StyledInputRoot,
-        input: StyledInputElement,
+        root: InputRoot,
+        input: InputElement,
         ...slots,
       }}
       {...other}
@@ -22,7 +22,7 @@ const CustomInput = React.forwardRef(function CustomInput(props, ref) {
   );
 });
 
-CustomInput.propTypes = {
+Input.propTypes = {
   /**
    * The components used for each slot inside the InputBase.
    * Either a string to use a HTML element or a component.
@@ -60,12 +60,18 @@ export default function InputAdornments() {
   };
 
   return (
-    <Box sx={{ display: 'flex', '& > * + *': { ml: 1 } }}>
-      <CustomInput
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
+        gap: 2,
+      }}
+    >
+      <Input
         id="outlined-start-adornment"
         startAdornment={<InputAdornment>kg</InputAdornment>}
       />
-      <CustomInput
+      <Input
         id="outlined-adornment-password"
         type={values.showPassword ? 'text' : 'password'}
         value={values.password}
@@ -107,11 +113,11 @@ const grey = {
   900: '#1A2027',
 };
 
-const StyledInputRoot = styled('div')(
+const InputRoot = styled('div')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
-  border-radius: 12px;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
@@ -137,7 +143,7 @@ const StyledInputRoot = styled('div')(
 `,
 );
 
-const StyledInputElement = styled('input')(
+const InputElement = styled('input')(
   ({ theme }) => `
   font-size: 0.875rem;
   font-family: inherit;
@@ -148,7 +154,7 @@ const StyledInputElement = styled('input')(
   background: inherit;
   border: none;
   border-radius: inherit;
-  padding: 12px 12px;
+  padding: 8px 12px;
   outline: 0;
 `,
 );

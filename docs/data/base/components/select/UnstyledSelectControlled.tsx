@@ -1,33 +1,33 @@
 import * as React from 'react';
-import Select, { SelectProps, selectClasses } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
-import Popper from '@mui/base/Popper';
+import { Select as BaseSelect, SelectProps, selectClasses } from '@mui/base/Select';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
+import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 export default function UnstyledSelectControlled() {
   const [value, setValue] = React.useState<number | null>(10);
   return (
     <div>
-      <CustomSelect value={value} onChange={(_, newValue) => setValue(newValue)}>
-        <StyledOption value={10}>Ten</StyledOption>
-        <StyledOption value={20}>Twenty</StyledOption>
-        <StyledOption value={30}>Thirty</StyledOption>
-      </CustomSelect>
+      <Select value={value} onChange={(_, newValue) => setValue(newValue)}>
+        <Option value={10}>Ten</Option>
+        <Option value={20}>Twenty</Option>
+        <Option value={30}>Thirty</Option>
+      </Select>
 
       <Paragraph>Selected value: {value}</Paragraph>
     </div>
   );
 }
 
-function CustomSelect(props: SelectProps<number, false>) {
+function Select(props: SelectProps<number, false>) {
   const slots: SelectProps<number, false>['slots'] = {
     root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    listbox: Listbox,
+    popper: Popper,
     ...props.slots,
   };
 
-  return <Select {...props} slots={slots} />;
+  return <BaseSelect {...props} slots={slots} />;
 }
 
 const blue = {
@@ -57,15 +57,17 @@ const StyledButton = styled('button')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
   min-width: 320px;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
   text-align: left;
   line-height: 1.5;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -94,7 +96,7 @@ const StyledButton = styled('button')(
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -108,11 +110,13 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -149,7 +153,7 @@ const StyledOption = styled(Option)(
   `,
 );
 
-const StyledPopper = styled(Popper)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;
 

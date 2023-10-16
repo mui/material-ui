@@ -1,12 +1,13 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import composeClasses from '@mui/base/composeClasses';
-import useOption from '@mui/base/useOption';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useOption } from '@mui/base/useOption';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import useSlot from '../utils/useSlot';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+import { useVariantColor } from '../styles/variantColorInheritance';
 import { OptionOwnerState, ExtendOption, OptionTypeMap } from './OptionProps';
 import optionClasses, { getOptionUtilityClass } from './optionClasses';
 import RowListContext from '../List/RowListContext';
@@ -28,7 +29,7 @@ const OptionRoot = styled(StyledListItemButton as unknown as 'li', {
 })<{ ownerState: OptionOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
   return {
-    [`&.${optionClasses.highlighted}`]: {
+    [`&.${optionClasses.highlighted}:not([aria-selected="true"])`]: {
       backgroundColor: variantStyle?.backgroundColor,
     },
   };
@@ -55,7 +56,7 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
     disabled = false,
     value,
     label,
-    variant = 'plain',
+    variant: variantProp = 'plain',
     color: colorProp = 'neutral',
     slots = {},
     slotProps = {},
@@ -63,6 +64,10 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
   } = props;
 
   const row = React.useContext(RowListContext);
+  const { variant = variantProp, color = colorProp } = useVariantColor(
+    inProps.variant,
+    inProps.color,
+  );
   const optionRef = React.useRef<HTMLLIElement>(null);
   const combinedRef = useForkRef(optionRef, ref);
 
@@ -75,9 +80,6 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
     value,
     rootRef: combinedRef,
   });
-
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, selected ? 'primary' : colorProp);
 
   const ownerState: OptionOwnerState = {
     ...props,
@@ -120,7 +122,7 @@ Option.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

@@ -41,14 +41,14 @@ export interface TabsContextValue {
 /**
  * @ignore - internal component.
  */
-const Context = React.createContext<TabsContextValue | null>(null);
+const TabsContext = React.createContext<TabsContextValue | null>(null);
 
 if (process.env.NODE_ENV !== 'production') {
-  Context.displayName = 'TabsContext';
+  TabsContext.displayName = 'TabsContext';
 }
 
 export function useTabsContext() {
-  const context = React.useContext(Context);
+  const context = React.useContext(TabsContext);
   if (context == null) {
     throw new Error('No TabsContext provided');
   }
@@ -56,4 +56,4 @@ export function useTabsContext() {
   return context;
 }
 
-export default Context;
+export { TabsContext };

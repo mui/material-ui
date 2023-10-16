@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, styled, Theme } from '@mui/system';
-import Modal from '@mui/base/Modal';
-import Button from '@mui/base/Button';
+import { Modal as BaseModal } from '@mui/base/Modal';
+import { Button } from '@mui/base/Button';
 import { useSpring, animated } from '@react-spring/web';
 
 export default function SpringModal() {
@@ -12,7 +12,7 @@ export default function SpringModal() {
   return (
     <div>
       <TriggerButton onClick={handleOpen}>Open modal</TriggerButton>
-      <StyledModal
+      <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
         open={open}
@@ -28,7 +28,7 @@ export default function SpringModal() {
             </span>
           </Box>
         </Fade>
-      </StyledModal>
+      </Modal>
     </div>
   );
 }
@@ -41,13 +41,10 @@ const Backdrop = React.forwardRef<
   return <Fade ref={ref} in={open} {...other} />;
 });
 
-const StyledModal = styled(Modal)`
+const Modal = styled(BaseModal)`
   position: fixed;
   z-index: 1300;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  left: 0;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,11 +53,8 @@ const StyledModal = styled(Modal)`
 const StyledBackdrop = styled(Backdrop)`
   z-index: -1;
   position: fixed;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background-color: rgb(0 0 0 / 0.5);
   -webkit-tap-highlight-color: transparent;
 `;
 

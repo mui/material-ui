@@ -14,4 +14,4 @@ const defaultOptionStringifier = <OptionValue>(option: SelectOption<OptionValue>
   return String(option);
 };
 
-export default defaultOptionStringifier;
+export { defaultOptionStringifier };

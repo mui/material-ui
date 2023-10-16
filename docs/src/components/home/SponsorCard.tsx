@@ -3,8 +3,8 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Link from 'docs/src/modules/components/Link';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
+import Link from 'docs/src/modules/components/Link';
 
 export default function SponsorCard({
   item,
@@ -32,6 +32,9 @@ export default function SponsorCard({
     <Paper
       component={Link}
       noLinkStyle
+      data-ga-event-category="sponsor"
+      data-ga-event-action="homepage"
+      data-ga-event-label={new URL(item.href).hostname}
       href={item.href}
       target="_blank"
       rel="sponsored noopener"

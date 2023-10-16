@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-next",
-  "version": "6.0.0-alpha.88",
+  "version": "6.0.0-alpha.105",
   "private": false,
   "author": "MUI Team",
   "description": "v6-alpha: React components that implement Google's Material Design",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/material-ui/getting-started/overview/",
+  "homepage": "https://mui.com/material-ui/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
@@ -38,6 +38,33 @@
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material-next/**/*.test.{js,ts,tsx}'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.23.1",
+    "@mui/base": "5.0.0-beta.19",
+    "@mui/material": "^5.14.13",
+    "@mui/system": "^5.14.13",
+    "@mui/types": "^7.2.6",
+    "@mui/utils": "^5.14.13",
+    "@types/react-transition-group": "^4.4.7",
+    "clsx": "^2.0.0",
+    "prop-types": "^15.8.1",
+    "react-transition-group": "^4.4.5"
+  },
+  "devDependencies": {
+    "@mui-internal/test-utils": "^1.0.0",
+    "@testing-library/user-event": "^14.5.1",
+    "@types/chai": "^4.3.6",
+    "@types/prop-types": "^15.7.7",
+    "@types/react": "^18.2.23",
+    "@types/react-dom": "^18.2.11",
+    "@types/sinon": "^10.0.19",
+    "chai": "^4.3.10",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "sinon": "^15.2.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
@@ -56,21 +83,6 @@
     "@emotion/styled": {
       "optional": true
     }
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.21.0",
-    "@mui/base": "5.0.0-beta.4",
-    "@mui/material": "^5.13.4",
-    "@mui/system": "^5.13.2",
-    "@mui/types": "^7.2.4",
-    "@mui/utils": "^5.13.1",
-    "@popperjs/core": "^2.11.8",
-    "@types/react-transition-group": "^4.4.6",
-    "clsx": "^1.2.1",
-    "csstype": "^3.1.2",
-    "prop-types": "^15.8.1",
-    "react-is": "^18.2.0",
-    "react-transition-group": "^4.4.5"
   },
   "sideEffects": false,
   "publishConfig": {

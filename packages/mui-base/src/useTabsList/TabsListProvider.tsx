@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { ListContextValue, ListContext } from '../useList/ListContext';
 import { TabMetadata } from '../useTabs/useTabs';
@@ -16,7 +17,7 @@ export interface TabsListProviderProps {
  *
  * @ignore - do not document.
  */
-export default function TabsListProvider(props: TabsListProviderProps) {
+export function TabsListProvider(props: TabsListProviderProps) {
   const { value, children } = props;
   const {
     dispatch,

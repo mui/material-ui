@@ -1,14 +1,16 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import useButton from '@mui/base/useButton';
-import composeClasses from '@mui/base/composeClasses';
+import { useButton } from '@mui/base/useButton';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { Interpolation } from '@mui/system';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+import { styled, Theme, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const {
@@ -84,44 +86,54 @@ const ButtonLoadingCenter = styled('span', {
   }),
 }));
 
-export const ButtonRoot = styled('button', {
-  name: 'JoyButton',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ButtonOwnerState }>(({ theme, ownerState }) => {
+export const getButtonStyles = ({
+  theme,
+  ownerState,
+}: {
+  theme: Theme;
+  ownerState: Partial<Omit<ButtonOwnerState, 'slots' | 'slotProps'>>;
+}): Interpolation<any> => {
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
+      '--Icon-color':
+        ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+          ? 'currentColor'
+          : theme.vars.palette.text.icon,
       ...(ownerState.size === 'sm' && {
-        '--Icon-fontSize': '1.25rem',
+        '--Icon-fontSize': theme.vars.fontSize.lg,
         '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '2px',
         '--Button-gap': '0.375rem',
         minHeight: 'var(--Button-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
-        paddingBlock: '2px',
+        paddingBlock: '0.25rem',
         paddingInline: '0.75rem',
       }),
       ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
-        '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--Icon-fontSize': theme.vars.fontSize.xl,
+        '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '2px',
         '--Button-gap': '0.5rem',
-        minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
+        minHeight: 'var(--Button-minHeight, 2.25rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
-        paddingBlock: '0.25rem', // the padding-block act as a minimum spacing between content and root element
+        paddingBlock: '0.375rem', // the padding-block act as a minimum spacing between content and root element
         paddingInline: '1rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': '1.75rem',
+        '--Icon-fontSize': theme.vars.fontSize.xl2,
         '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '4px',
         '--Button-gap': '0.75rem',
-        minHeight: 'var(--Button-minHeight, 3rem)',
+        minHeight: 'var(--Button-minHeight, 2.75rem)',
         fontSize: theme.vars.fontSize.md,
-        paddingBlock: '0.375rem',
+        paddingBlock: '0.5rem',
         paddingInline: '1.5rem',
       }),
       WebkitTapHighlightColor: 'transparent',
-      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
-      margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
+      boxSizing: 'border-box',
+      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, e.g. Input
+      margin: `var(--Button-margin)`, // to be controlled by other components, e.g. Input
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -132,35 +144,43 @@ export const ButtonRoot = styled('button', {
       textDecoration: 'none', // prevent user agent underline when used as anchor
       fontFamily: theme.vars.fontFamily.body,
       fontWeight: theme.vars.fontWeight.lg,
-      lineHeight: 1,
+      lineHeight: theme.vars.lineHeight.md,
       ...(ownerState.fullWidth && {
         width: '100%',
       }),
       [theme.focus.selector]: theme.focus.default,
-    },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    } as const,
     {
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       '&:hover': {
         '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
       },
-    },
-    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
-    {
+      '&:active, &[aria-pressed="true"]':
+        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
       [`&.${buttonClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       ...(ownerState.loadingPosition === 'center' && {
+        // this has to come after the variant styles to take effect.
         [`&.${buttonClasses.loading}`]: {
           color: 'transparent',
         },
       }),
     },
   ];
-});
+};
+
+const ButtonRoot = styled('button', {
+  name: 'JoyButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: ButtonOwnerState }>(getButtonStyles);
 /**
  *
  * Demos:
  *
  * - [Button](https://mui.com/joy-ui/react-button/)
+ * - [Button Group](https://mui.com/joy-ui/react-button-group/)
+ * - [Toggle Button Group](https://mui.com/joy-ui/react-toggle-button-group/)
  *
  * API:
  *
@@ -176,37 +196,39 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     children,
     action,
     color: colorProp = 'primary',
-    variant = 'solid',
-    size = 'md',
+    variant: variantProp = 'solid',
+    size: sizeProp = 'md',
     fullWidth = false,
     startDecorator,
     endDecorator,
     loading = false,
     loadingPosition = 'center',
     loadingIndicator: loadingIndicatorProp,
-    disabled,
+    disabled: disabledProp,
     component,
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const buttonGroup = React.useContext(ButtonGroupContext);
 
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const variant = inProps.variant || buttonGroup.variant || variantProp;
+  const size = inProps.size || buttonGroup.size || sizeProp;
+  const color = inProps.color || buttonGroup.color || colorProp;
+  const disabled =
+    (inProps.disabled || inProps.loading) ?? (buttonGroup.disabled || disabledProp || loading);
+
+  const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    disabled: disabled || loading,
+    disabled,
     rootRef: handleRef,
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress
-      {...(color !== 'context' && { color })}
-      thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3}
-    />
+    <CircularProgress color={color} thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3} />
   );
 
   React.useImperativeHandle(
@@ -229,7 +251,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     focusVisible,
     loading,
     loadingPosition,
-    disabled: disabled || loading,
+    disabled,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -317,7 +339,7 @@ Button.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -344,7 +366,7 @@ Button.propTypes /* remove-proptypes */ = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * If `true`, the loading indicator is shown.
+   * If `true`, the loading indicator is shown and the button becomes disabled.
    * @default false
    */
   loading: PropTypes.bool,
@@ -412,5 +434,8 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
+
+// @ts-ignore internal logic for ToggleButtonGroup
+Button.muiName = 'Button';
 
 export default Button;

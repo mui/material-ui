@@ -7,8 +7,8 @@ import {
   createMount,
   describeConformanceUnstyled,
   fireEvent,
-} from 'test/utils';
-import Snackbar, { snackbarClasses as classes } from '@mui/base/Snackbar';
+} from '@mui-internal/test-utils';
+import { Snackbar, snackbarClasses as classes } from '@mui/base/Snackbar';
 
 describe('<Snackbar />', () => {
   const { clock, render: clientRender } = createRenderer({ clock: 'fake' });

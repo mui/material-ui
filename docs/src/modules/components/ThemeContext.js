@@ -1,6 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
+import {
+  ThemeProvider as MdThemeProvider,
+  createTheme as createMdTheme,
+} from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { enUS, zhCN, ptBR } from '@mui/material/locale';
@@ -168,7 +171,13 @@ export function ThemeProvider(props) {
 
   useEnhancedEffect(() => {
     const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-    let nextPaletteMode = localStorage.getItem('mui-mode') || preferredMode; // syncing with homepage, can be removed once all pages are migrated to CSS variables
+    let nextPaletteMode = preferredMode; // syncing with homepage, can be removed once all pages are migrated to CSS variables
+    try {
+      nextPaletteMode = localStorage.getItem('mui-mode') ?? preferredMode;
+    } catch (error) {
+      // mainly thrown when cookies are disabled.
+    }
+
     if (nextPaletteMode === 'system') {
       nextPaletteMode = preferredMode;
     }
@@ -202,7 +211,7 @@ export function ThemeProvider(props) {
   const theme = React.useMemo(() => {
     const brandingDesignTokens = getDesignTokens(paletteMode);
     const nextPalette = deepmerge(brandingDesignTokens.palette, paletteColors);
-    let nextTheme = createTheme(
+    let nextTheme = createMdTheme(
       {
         direction,
         ...brandingDesignTokens,
@@ -223,6 +232,7 @@ export function ThemeProvider(props) {
         components: {
           MuiCssBaseline: {
             defaultProps: {
+              // TODO: Material UI v6, makes this the default
               enableColorScheme: true,
             },
           },
@@ -239,13 +249,14 @@ export function ThemeProvider(props) {
   React.useEffect(() => {
     // Expose the theme as a global variable so people can play with it.
     window.theme = theme;
-    window.createTheme = createTheme;
+    window.createTheme = createMdTheme;
   }, [theme]);
 
+  // TODO: remove MdThemeProvider, top level layout should render the default theme.
   return (
-    <MuiThemeProvider theme={theme}>
+    <MdThemeProvider theme={theme}>
       <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
-    </MuiThemeProvider>
+    </MdThemeProvider>
   );
 }
 

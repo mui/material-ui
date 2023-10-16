@@ -1,0 +1,4 @@
+<Button href={'https://mui.com/'}>Standard link</Button>
+<Link href={'https://mui.com/'}>
+  <Button>Next link</Button>
+</Link>

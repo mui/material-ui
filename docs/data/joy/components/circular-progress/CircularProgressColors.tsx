@@ -27,7 +27,6 @@ export default function CircularProgressColors() {
         <CircularProgress variant={variant} color="primary" />
         <CircularProgress variant={variant} color="neutral" />
         <CircularProgress variant={variant} color="danger" />
-        <CircularProgress variant={variant} color="info" />
         <CircularProgress variant={variant} color="success" />
         <CircularProgress variant={variant} color="warning" />
       </Box>
@@ -40,7 +39,7 @@ export default function CircularProgressColors() {
         }}
       >
         <Typography
-          level="body2"
+          level="body-sm"
           fontWeight="xl"
           id="variant-label"
           textColor="text.primary"

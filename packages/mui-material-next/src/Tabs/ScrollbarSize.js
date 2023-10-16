@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_debounce as debounce, unstable_ownerWindow as ownerWindow } from '@mui/utils';

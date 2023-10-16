@@ -3,5 +3,5 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import * as pageProps from 'docs/data/material/getting-started/templates/templates.md?@mui/markdown';
 
 export default function Page() {
-  return <MarkdownDocs {...pageProps} disableToc />;
+  return <MarkdownDocs {...pageProps} disableToc disableAd />;
 }

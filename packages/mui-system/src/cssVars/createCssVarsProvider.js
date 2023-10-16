@@ -18,6 +18,12 @@ export const DISABLE_CSS_TRANSITION =
 export default function createCssVarsProvider(options) {
   const {
     themeId,
+    /**
+     * This `theme` object needs to follow a certain structure to
+     * be used correctly by the finel `CssVarsProvider`. It should have a
+     * `colorSchemes` key with the light and dark (and any other) palette.
+     * It should also ideally have a vars object created using `prepareCssVars`.
+     */
     theme: defaultTheme = {},
     attribute: defaultAttribute = DEFAULT_ATTRIBUTE,
     modeStorageKey: defaultModeStorageKey = DEFAULT_MODE_STORAGE_KEY,
@@ -331,11 +337,11 @@ export default function createCssVarsProvider(options) {
      */
     disableStyleSheetGeneration: PropTypes.bool,
     /**
-     * Disable CSS transitions when switching between modes or color schemes
+     * Disable CSS transitions when switching between modes or color schemes.
      */
     disableTransitionOnChange: PropTypes.bool,
     /**
-     * The document to attach the attribute to
+     * The document to attach the attribute to.
      */
     documentNode: PropTypes.any,
     /**
@@ -343,7 +349,7 @@ export default function createCssVarsProvider(options) {
      */
     modeStorageKey: PropTypes.string,
     /**
-     * The window that attaches the 'storage' event listener
+     * The window that attaches the 'storage' event listener.
      * @default window
      */
     storageWindow: PropTypes.any,

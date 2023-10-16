@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -6,7 +7,6 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import { getCardOverflowUtilityClass } from './cardOverflowClasses';
 import {
   CardOverflowProps,
@@ -45,6 +45,7 @@ const CardOverflowRoot = styled('div', {
     alignSelf: 'stretch', // prevent shrinking if parent's align-items is not initial
     borderRadius: 'var(--CardOverflow-radius)',
     position: 'relative',
+    display: 'flex',
     ...(ownerState['data-parent'] === 'Card-horizontal' && {
       '--AspectRatio-margin': 'calc(-1 * var(--Card-padding)) 0px',
       marginTop: 'var(--CardOverflow-offset)',
@@ -75,6 +76,7 @@ const CardOverflowRoot = styled('div', {
     }),
     ...(ownerState['data-parent'] === 'Card-vertical' && {
       '--AspectRatio-margin': '0px calc(-1 * var(--Card-padding))',
+      flexDirection: 'column', // required to make AspectRatio works
       marginLeft: 'var(--CardOverflow-offset)',
       marginRight: 'var(--CardOverflow-offset)',
       padding: '0px var(--Card-padding)',
@@ -96,6 +98,7 @@ const CardOverflowRoot = styled('div', {
           '--AspectRatio-radius': childRadius,
         }),
       [`& > .${buttonClasses.root}:only-child`]: {
+        zIndex: 1, // prevent button from being covered Link overlay. This can be improved in the future with :has() selector
         width: 'calc(100% + -2 * var(--CardOverflow-offset))',
         '--Button-margin': '0 var(--CardOverflow-offset)',
         '--Button-radius': '0 0 var(--CardOverflow-radius) var(--CardOverflow-radius)',
@@ -124,14 +127,12 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     className,
     component = 'div',
     children,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'plain',
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -173,7 +174,7 @@ CardOverflow.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

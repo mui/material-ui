@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import Option, { OptionRootSlotProps } from '@mui/base/Option';
+import { Option, OptionRootSlotProps } from '@mui/base/Option';
 
 const Root = React.forwardRef(function Root<OptionValue>(
   props: OptionRootSlotProps<OptionValue>,

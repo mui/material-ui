@@ -2,7 +2,7 @@
   "props": {
     "avatar": { "type": { "name": "element" } },
     "children": { "type": { "name": "custom", "description": "unsupportedProp" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "clickable": { "type": { "name": "bool" } },
     "color": {
       "type": {
@@ -29,7 +29,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -40,6 +41,7 @@
     }
   },
   "name": "Chip",
+  "imports": ["import Chip from '@mui/material/Chip';", "import { Chip } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",

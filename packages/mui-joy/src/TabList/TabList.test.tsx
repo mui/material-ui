@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
+import { describeConformance, createRenderer, screen } from '@mui-internal/test-utils';
 import { TabsProps } from '@mui/base/Tabs';
-import useTabs, { TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
+import { useTabs, TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs from '@mui/joy/Tabs';
 import TabList, { tabListClasses as classes } from '@mui/joy/TabList';
@@ -32,12 +32,6 @@ describe('Joy <TabList />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<TabList />, {
-    muiName: 'JoyTabList',
-    classes,
-    wrapper: (node) => <TabsProvider defaultValue={0}>{node}</TabsProvider>,
-  });
 
   describe('size', () => {
     it('uses size from Tabs', () => {
