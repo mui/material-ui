@@ -1,17 +1,28 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Unstable_NumberInput as BaseNumberInput } from '@mui/base/Unstable_NumberInput';
+import { useTheme } from '@mui/system';
 import clsx from 'clsx';
+
+function useIsDarkMode() {
+  const theme = useTheme();
+  return theme.palette.mode === 'dark';
+}
 
 export default function NumberInputBasic() {
   const [value, setValue] = React.useState();
+  // Replace this with your app logic for determining dark modes
+  const isDarkMode = useIsDarkMode();
+
   return (
-    <NumberInput
-      aria-label="Demo number input"
-      placeholder="Type a number…"
-      value={value}
-      onChange={(event, val) => setValue(val)}
-    />
+    <div className={isDarkMode ? 'dark' : ''}>
+      <NumberInput
+        aria-label="Demo number input"
+        placeholder="Type a number…"
+        value={value}
+        onChange={(event, val) => setValue(val)}
+      />
+    </div>
   );
 }
 

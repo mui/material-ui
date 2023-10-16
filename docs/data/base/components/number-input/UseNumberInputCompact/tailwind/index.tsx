@@ -4,7 +4,13 @@ import {
   UseNumberInputParameters,
 } from '@mui/base/unstable_useNumberInput';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import { useTheme } from '@mui/system';
 import clsx from 'clsx';
+
+function useIsDarkMode() {
+  const theme = useTheme();
+  return theme.palette.mode === 'dark';
+}
 
 const CompactNumberInput = React.forwardRef(function CompactNumberInput(
   props: Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> &
@@ -74,9 +80,15 @@ const CompactNumberInput = React.forwardRef(function CompactNumberInput(
 
 export default function UseNumberInputCompact() {
   const [value, setValue] = React.useState<number | undefined>();
+  // Replace this with your app logic for determining dark modes
+  const isDarkMode = useIsDarkMode();
 
   return (
-    <div className="flex flex-row flex-nowrap items-center gap-x-8">
+    <div
+      className={`${
+        isDarkMode ? 'dark' : ''
+      } flex flex-row flex-nowrap items-center gap-x-8`}
+    >
       <CompactNumberInput
         aria-label="Compact number input"
         placeholder="Type a number…"
