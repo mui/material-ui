@@ -8,7 +8,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { css, keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 import {
@@ -213,7 +212,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   const {
     children,
     className,
-    color: colorProp = 'primary',
+    color = 'primary',
     size = 'md',
     variant = 'soft',
     thickness,
@@ -224,8 +223,6 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

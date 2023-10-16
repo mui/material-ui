@@ -134,7 +134,7 @@ The demo below shows how to build the Primer button using Tailwind CSS:
 
 ### Styling with MUI System
 
-[MUI System](/system/getting-started/) is a small set of CSS utilties that provide a styled-components-like API for building out designs that adhere to a theme.
+[MUI System](/system/getting-started/) is a small set of CSS utilities that provide a styled-components-like API for building out designs that adhere to a theme.
 
 MUI System's core utility is a [`styled` function](/system/styled/) that's equivalent to the `styled()` function in emotion and styled-components.
 Interpolations or arguments that are functions called by `styled` receive the `theme` from an upper `ThemeProvider`.
@@ -146,22 +146,27 @@ import { styled } from '@mui/system';
 import { Button } from '@mui/base/Button';
 
 const theme = {
-  colors: {
+  palette: {
     primary: 'green',
+    text: '#fff',
   },
 };
 
 const GitHubButton = styled(Button)(
   ({ theme }) => `
-    background-color: ${theme.colors.primary /* => 'green' */};
+    background-color: ${theme.palette.primary /* => 'green' */};
+    ${/* ... the rest of the styles */}
   `,
 );
 
-render(
-  <ThemeProvider theme={theme}>
-    <GitHubButton>Create Repository</GitHubButton>
-  </ThemeProvider>,
-);
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <GitHubButton>Create Repository</GitHubButton>
+    </ThemeProvider>
+  );
+}
+
 ```
 
 Most of the demos in the Base UI docs are styled with MUI System in this way.

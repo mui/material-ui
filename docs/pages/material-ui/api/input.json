@@ -63,6 +63,7 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "Input",
+  "imports": ["import Input from '@mui/material/Input';", "import { Input } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",

@@ -90,6 +90,7 @@
     "zeroMinWidth": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Grid",
+  "imports": ["import Grid from '@mui/material/Grid';", "import { Grid } from '@mui/material';"],
   "styles": {
     "classes": [
       "root",

@@ -24,6 +24,10 @@
     }
   },
   "name": "StepLabel",
+  "imports": [
+    "import StepLabel from '@mui/material/StepLabel';",
+    "import { StepLabel } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",

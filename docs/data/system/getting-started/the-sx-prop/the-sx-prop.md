@@ -112,7 +112,7 @@ function transform(value) {
 }
 ```
 
-If the value is between [0, 1], it's converted to a percentage.
+If the value is between (0, 1], it's converted to a percentage.
 Otherwise, it is directly set on the CSS property:
 
 ```jsx
@@ -201,6 +201,43 @@ The `sx` prop can also receive a callback when you need to get theme values that
     color: theme.palette.primary.main,
   })}
 />
+```
+
+In TypeScript, to use custom theme properties with the `sx` prop callback, extend the `Theme` type from the `@mui/system` library using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation):
+
+```tsx
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { orange } from '@mui/material/colors';
+
+declare module '@mui/system' {
+  interface Theme {
+    status: {
+      warning: string;
+    };
+  }
+}
+
+const theme = createTheme({
+  status: {
+    warning: orange[500],
+  },
+});
+
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={(theme) => ({
+          bgcolor: theme.status.warning,
+        })}
+      >
+        Example
+      </Box>
+    </ThemeProvider>
+  );
+}
 ```
 
 ## Array values

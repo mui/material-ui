@@ -8,7 +8,6 @@ import { useTab } from '@mui/base/useTab';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import { getTabUtilityClass } from './tabClasses';
 import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
@@ -142,15 +141,14 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     component = 'button',
     orientation = 'horizontal',
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     disableIndicator = false,
     indicatorPlacement = row ? 'bottom' : 'right',
+    indicatorInset = false,
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
   const handleRef = useForkRef(tabRef, ref) as React.RefCallback<Element>;
@@ -175,6 +173,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     ...props,
     disableIndicator,
     indicatorPlacement,
+    indicatorInset,
     orientation,
     row,
     active,
@@ -250,6 +249,7 @@ Tab.propTypes /* remove-proptypes */ = {
   disableIndicator: PropTypes.bool,
   /**
    * If `true`, the indicator stay within the padding based on the `Tabs` orientation.
+   * @default false
    */
   indicatorInset: PropTypes.bool,
   /**

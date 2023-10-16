@@ -17,8 +17,8 @@ import Ad from 'docs/src/modules/components/Ad';
 import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import AdGuest from 'docs/src/modules/components/AdGuest';
-import { getPropsToC } from 'docs/src/modules/components/PropertiesTable';
-import { getCssToC } from 'docs/src/modules/components/ApiPage/CSSList';
+import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
+import { getCssToC } from 'docs/src/modules/components/ApiPage/sections/CssSection';
 
 function JoyModeObserver({ mode }) {
   const { setMode } = useColorScheme();
@@ -81,30 +81,36 @@ export default function MarkdownDocsV2(props) {
 
   const localizedDoc = docs[userLanguage] || docs.en;
   // Generate the TOC based on the tab
-  const { description, location, rendered, title, toc, headers } = localizedDoc;
-  const demosToc = toc.filter((item) => item.text !== 'API');
+  const demosToc = localizedDoc.toc.filter((item) => item.text !== 'API');
 
-  function createHookTocEntry(hookName, sectionName) {
+  function createHookTocEntry(hookName, sectionName, hookProps = {}) {
+    const hookPropToc = [];
+    Object.keys(hookProps).forEach((propName) => {
+      hookPropToc.push({
+        text: propName,
+        hash: `${hookName}-${sectionName}-${propName}`,
+        children: [],
+      });
+    });
+
     return {
       text: getHookTranslatedHeader(t, sectionName),
       hash: `${hookName}-${sectionName}`,
-      children: [],
+      children: hookPropToc,
     };
   }
 
   const hooksToc = [];
   if (hooksApiPageContents) {
     Object.keys(hooksApiPageContents).forEach((key) => {
-      const { hookDescriptionToc = [] } = hooksApiDescriptions[key][userLanguage];
-      const { name: hookName } = hooksApiPageContents[key];
+      const { name: hookName, parameters = {}, returnValue = {} } = hooksApiPageContents[key];
 
       const hookNameKebabCase = kebabCase(hookName);
 
       const hookToc = [
         createHookTocEntry(hookNameKebabCase, 'import'),
-        ...hookDescriptionToc,
-        createHookTocEntry(hookNameKebabCase, 'parameters'),
-        createHookTocEntry(hookNameKebabCase, 'return-value'),
+        createHookTocEntry(hookNameKebabCase, 'parameters', parameters),
+        createHookTocEntry(hookNameKebabCase, 'return-value', returnValue),
       ].filter(Boolean);
 
       hooksToc.push({
@@ -196,8 +202,8 @@ export default function MarkdownDocsV2(props) {
   let done = false;
 
   // process the elements before the tabs component
-  while (i < rendered.length && !done) {
-    const renderedMarkdownOrDemo = rendered[i];
+  while (i < localizedDoc.rendered.length && !done) {
+    const renderedMarkdownOrDemo = localizedDoc.rendered[i];
     if (renderedMarkdownOrDemo.component && renderedMarkdownOrDemo.component.indexOf('Tabs') >= 0) {
       done = true;
     }
@@ -209,7 +215,6 @@ export default function MarkdownDocsV2(props) {
         demos={demos}
         disableAd={disableAd}
         localizedDoc={localizedDoc}
-        location={location}
         renderedMarkdownOrDemo={renderedMarkdownOrDemo}
         srcComponents={srcComponents}
         theme={theme}
@@ -230,7 +235,7 @@ export default function MarkdownDocsV2(props) {
     activeToc = componentsApiToc;
   }
 
-  const hasTabs = rendered.some((renderedMarkdownOrDemo) => {
+  const hasTabs = localizedDoc.rendered.some((renderedMarkdownOrDemo) => {
     if (
       typeof renderedMarkdownOrDemo === 'object' &&
       renderedMarkdownOrDemo.component &&
@@ -243,18 +248,20 @@ export default function MarkdownDocsV2(props) {
 
   return (
     <AppLayoutDocs
-      description={description}
+      description={localizedDoc.description}
       disableAd={disableAd}
       disableToc={disableToc}
-      location={location}
-      title={title}
-      disableLayout
+      location={localizedDoc.location}
+      title={localizedDoc.title}
       toc={activeToc}
+      disableLayout
       hasTabs={hasTabs}
     >
       <div
         style={{
-          '--MuiDocs-header-height': `${AppFrameHeight + TabsHeight}px`,
+          '--MuiDocs-header-height': hasTabs
+            ? `${AppFrameHeight + TabsHeight}px`
+            : `${AppFrameHeight}px`,
         }}
       >
         {disableAd ? null : (
@@ -268,9 +275,12 @@ export default function MarkdownDocsV2(props) {
           {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
           {commonElements}
           {activeTab === '' &&
-            rendered
+            localizedDoc.rendered
               // for the "hook only" edge case, e.g. Base UI autocomplete
-              .slice(i, rendered.length - (headers.components.length > 0 ? 1 : 0))
+              .slice(
+                i,
+                localizedDoc.rendered.length - (localizedDoc.headers.components.length > 0 ? 1 : 0),
+              )
               .map((renderedMarkdownOrDemo, index) => (
                 <RichMarkdownElement
                   key={`demos-section-${index}`}
@@ -279,7 +289,6 @@ export default function MarkdownDocsV2(props) {
                   demos={demos}
                   disableAd={disableAd}
                   localizedDoc={localizedDoc}
-                  location={location}
                   renderedMarkdownOrDemo={renderedMarkdownOrDemo}
                   srcComponents={srcComponents}
                   theme={theme}

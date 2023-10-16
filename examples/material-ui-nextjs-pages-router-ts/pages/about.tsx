@@ -22,7 +22,7 @@ export default function About() {
         <Typography variant="h4" component="h1" gutterBottom>
           Material UI - Next.js example in TypeScript
         </Typography>
-        <Box maxWidth="sm">
+        <Box sx={{ maxWidth: 'sm' }}>
           <Button variant="contained" component={Link} noLinkStyle href="/">
             Go to the home page
           </Button>

@@ -127,7 +127,7 @@ function Templates() {
               })}
             />
             <CardContent sx={{ flexGrow: 1, p: 0 }}>
-              <Typography component="h2" variant="h6" fontWeight={600} gutterBottom>
+              <Typography component="h2" fontWeight={600} gutterBottom>
                 {layout.title}
               </Typography>
               <Typography component="p" variant="body2" color="text.secondary">
@@ -135,7 +135,7 @@ function Templates() {
               </Typography>
             </CardContent>
             <CardActions sx={{ p: 0, ml: -1 }}>
-              <Button component="a" href={layout.source} size="small">
+              <Button component="a" href={layout.source}>
                 {t('sourceCode')}
               </Button>
             </CardActions>

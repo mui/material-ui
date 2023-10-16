@@ -7,7 +7,7 @@ import { OverridableComponent } from '@mui/types';
 import { useTabPanel } from '@mui/base/useTabPanel';
 import { useTabsContext } from '@mui/base/Tabs';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { TabPanelOwnerState, TabPanelTypeMap } from './TabPanelProps';
@@ -66,19 +66,18 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     children,
     value = 0,
     component,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'plain',
     size: sizeProp,
     slots = {},
     slotProps = {},
+    keepMounted = false,
     ...other
   } = props;
 
   const { hidden, getRootProps } = useTabPanel({ ...props, value });
 
   const size = sizeProp ?? tabsSize;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -106,6 +105,10 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     className: classes.root,
   });
 
+  if (keepMounted) {
+    return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  }
+
   return <SlotRoot {...rootProps}>{!hidden && children}</SlotRoot>;
 }) as OverridableComponent<TabPanelTypeMap>;
 
@@ -131,6 +134,11 @@ TabPanel.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * Always keep the children in the DOM.
+   * @default false
+   */
+  keepMounted: PropTypes.bool,
   /**
    * The size of the component.
    */

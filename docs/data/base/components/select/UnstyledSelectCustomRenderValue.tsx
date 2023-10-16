@@ -1,41 +1,38 @@
 import * as React from 'react';
-import { Select, SelectProps, selectClasses } from '@mui/base/Select';
+import { Select as BaseSelect, SelectProps, selectClasses } from '@mui/base/Select';
 import { SelectOption } from '@mui/base/useOption';
-import { Option, optionClasses } from '@mui/base/Option';
-import { Popper } from '@mui/base/Popper';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
+import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 export default function UnstyledSelectCustomRenderValue() {
   return (
-    <CustomSelect renderValue={renderValue}>
-      <StyledOption value={10}>Ten</StyledOption>
-      <StyledOption value={20}>Twenty</StyledOption>
-      <StyledOption value={30}>Thirty</StyledOption>
-    </CustomSelect>
+    <Select
+      defaultValue={10}
+      renderValue={(option: SelectOption<number> | null) => {
+        if (option == null || option.value === null) {
+          return 'Select an option…';
+        }
+        return `${option.label} (${option.value})`;
+      }}
+    >
+      <Option value={null}>None</Option>
+      <Option value={10}>Ten</Option>
+      <Option value={20}>Twenty</Option>
+      <Option value={30}>Thirty</Option>
+    </Select>
   );
 }
 
-function CustomSelect(props: SelectProps<number, false>) {
+function Select(props: SelectProps<number, false>) {
   const slots: SelectProps<number, false>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    root: Button,
+    listbox: Listbox,
+    popper: Popper,
     ...props.slots,
   };
 
-  return <Select {...props} slots={slots} />;
-}
-
-function renderValue(option: SelectOption<number> | null) {
-  if (option == null) {
-    return <span>Select an option...</span>;
-  }
-
-  return (
-    <span>
-      {option.label} ({option.value})
-    </span>
-  );
+  return <BaseSelect {...props} slots={slots} />;
 }
 
 const blue = {
@@ -60,7 +57,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledButton = styled('button')(
+const Button = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -103,7 +100,7 @@ const StyledButton = styled('button')(
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -123,7 +120,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -160,6 +157,6 @@ const StyledOption = styled(Option)(
   `,
 );
 
-const StyledPopper = styled(Popper)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;

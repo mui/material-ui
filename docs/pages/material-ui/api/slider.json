@@ -7,7 +7,7 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'primary'"
     },
@@ -124,11 +124,19 @@
     }
   },
   "name": "Slider",
+  "imports": [
+    "import Slider from '@mui/material/Slider';",
+    "import { Slider } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
       "colorPrimary",
       "colorSecondary",
+      "colorError",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
       "marked",
       "vertical",
       "disabled",
@@ -147,6 +155,10 @@
       "sizeSmall",
       "thumbColorPrimary",
       "thumbColorSecondary",
+      "thumbColorError",
+      "thumbColorInfo",
+      "thumbColorSuccess",
+      "thumbColorWarning",
       "thumbSizeSmall",
       "valueLabel",
       "valueLabelOpen",

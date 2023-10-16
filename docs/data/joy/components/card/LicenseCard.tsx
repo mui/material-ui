@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
 import CardActions from '@mui/joy/CardActions';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
@@ -37,13 +38,13 @@ export default function LicenseCard() {
           </Typography>
         </Typography>
       </div>
-      <div>
+      <CardContent>
         <Typography level="title-lg">Individual License</Typography>
         <Typography level="body-md">
           This license allows you to use the Symbol System Design with unlimited
           amount of personal and commercial projects.
         </Typography>
-      </div>
+      </CardContent>
       <CardActions>
         <Button variant="solid">Purchase Now</Button>
       </CardActions>

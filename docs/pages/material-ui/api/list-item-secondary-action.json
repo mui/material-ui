@@ -11,6 +11,10 @@
     }
   },
   "name": "ListItemSecondaryAction",
+  "imports": [
+    "import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';",
+    "import { ListItemSecondaryAction } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "disableGutters"],
     "globalClasses": {},

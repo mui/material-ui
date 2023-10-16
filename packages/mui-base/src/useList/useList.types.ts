@@ -6,7 +6,6 @@ import {
   ControllableReducerAction,
   StateChangeCallback,
 } from '../utils/useControllableReducer.types';
-import { EventHandlers } from '../utils';
 import type { ListContextValue } from './ListContext';
 import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
@@ -106,6 +105,7 @@ export interface UseListParameters<
   /**
    * The focus management strategy used by the list.
    * Controls the attributes used to set focus on the list items.
+   * @default 'activeDescendant'
    */
   focusManagement?: FocusManagementType;
   /**
@@ -248,7 +248,7 @@ interface UseListRootSlotOwnProps {
   ref: React.RefCallback<Element> | null;
 }
 
-export type UseListRootSlotProps<TOther = {}> = TOther & UseListRootSlotOwnProps;
+export type UseListRootSlotProps<ExternalProps = {}> = ExternalProps & UseListRootSlotOwnProps;
 
 export interface UseListReturnValue<
   ItemValue,
@@ -257,9 +257,14 @@ export interface UseListReturnValue<
 > {
   contextValue: ListContextValue<ItemValue>;
   dispatch: (action: CustomAction | ListAction<ItemValue>) => void;
-  getRootProps: <TOther extends EventHandlers = {}>(
-    otherHandlers?: TOther,
-  ) => UseListRootSlotProps<TOther>;
+  /**
+   * Resolver for the root slot's props.
+   * @param externalProps additional props for the root slot
+   * @returns props that should be spread on the root slot
+   */
+  getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseListRootSlotProps<ExternalProps>;
   rootRef: React.RefCallback<Element> | null;
   state: State;
 }

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, alpha, Box } from '@mui/system';
-import { Slider, sliderClasses } from '@mui/base/Slider';
+import { Slider as BaseSlider, sliderClasses } from '@mui/base/Slider';
 
 export default function LabeledValuesSlider() {
   return (
     <Box sx={{ width: 300 }}>
-      <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
+      <Slider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
     </Box>
   );
 }
@@ -46,7 +46,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledSlider = styled(Slider)(
+const Slider = styled(BaseSlider)(
   ({ theme }) => `
   color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   height: 6px;

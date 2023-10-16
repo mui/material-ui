@@ -18,6 +18,10 @@
     "titleTypographyProps": { "type": { "name": "object" } }
   },
   "name": "CardHeader",
+  "imports": [
+    "import CardHeader from '@mui/material/CardHeader';",
+    "import { CardHeader } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "avatar", "action", "content", "title", "subheader"],
     "globalClasses": {},

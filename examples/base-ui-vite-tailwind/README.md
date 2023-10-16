@@ -1,6 +1,6 @@
 # Base UI - Vite.js example with Tailwind CSS
 
-[Base UI](https://mui.com/base/getting-started/overview/) is a library of unstyled React UI components which includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
+[Base UI](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks.
 
 [Vite](https://vitejs.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects, consisting of a dev server and a build command
 
@@ -11,26 +11,21 @@
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/base-vite-tailwind
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/base-ui-vite-tailwind
 cd base-ui-vite-tailwind
 ```
 
-Install dependencies:
+Install it and run:
 
 ```bash
-yarn
+npm install
+npm start
 ```
 
-Start the dev server:
+or:
 
-```bash
-yarn start
-```
+<!-- #default-branch-switch -->
 
-[Build](https://vitejs.dev/guide/build.html) a production bundle:
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/base-ui-vite-tailwind)
 
-```bash
-yarn build
-```
-
-PS: Don't forget to [optimize](https://tailwindcss.com/docs/optimizing-for-production) Tailwind CSS for production!
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/base-ui-vite-tailwind)

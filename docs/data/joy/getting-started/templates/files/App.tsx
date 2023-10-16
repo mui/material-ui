@@ -356,7 +356,7 @@ export default function FilesExample() {
                           mt: 2,
                         }}
                       >
-                        <Box>
+                        <div>
                           <AvatarGroup
                             size="sm"
                             sx={{
@@ -381,7 +381,7 @@ export default function FilesExample() {
                               srcSet="https://i.pravatar.cc/48?img=9 2x"
                             />
                           </AvatarGroup>
-                        </Box>
+                        </div>
                         <Typography level="body-sm">21 October 2011, 3PM</Typography>
                       </Box>
                     </ListItemContent>
@@ -416,7 +416,7 @@ export default function FilesExample() {
                           mt: 2,
                         }}
                       >
-                        <Box>
+                        <div>
                           <AvatarGroup
                             size="sm"
                             sx={{
@@ -441,7 +441,7 @@ export default function FilesExample() {
                               srcSet="https://i.pravatar.cc/48?img=9 2x"
                             />
                           </AvatarGroup>
-                        </Box>
+                        </div>
                         <Typography level="body-sm">26 May 2010, 7PM</Typography>
                       </Box>
                     </ListItemContent>

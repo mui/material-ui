@@ -26,8 +26,8 @@ function Feedback({
       </Typography>
       <Box sx={{ display: 'flex' }}>
         <Avatar
-          src={profile.avatarSrc}
           srcSet={profile.avatarSrcSet}
+          src={profile.avatarSrc}
           alt={`Picture of ${profile.name}`}
           imgProps={{ loading: 'lazy' }}
           sx={{
@@ -128,7 +128,7 @@ export default function UserFeedbacks() {
           onClick={() => setSlideIndex((i) => i + 1)}
           sx={{ mr: 'auto' }}
         />
-        <Box alignSelf="center">
+        <Box sx={{ alignSelf: 'center' }}>
           {TESTIMONIALS.map((item, index) => (
             <ButtonBase
               key={index}

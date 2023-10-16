@@ -7,7 +7,6 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import { getAspectRatioUtilityClass } from './aspectRatioClasses';
 import { AspectRatioProps, AspectRatioOwnerState, AspectRatioTypeMap } from './AspectRatioProps';
 
@@ -45,6 +44,8 @@ const AspectRatioRoot = styled('div', {
         ? 'currentColor'
         : theme.vars.palette.text.icon,
     borderRadius: 'var(--AspectRatio-radius)',
+    display: ownerState.flex ? 'flex' : 'block',
+    flex: ownerState.flex ? 1 : 'initial',
     flexDirection: 'column',
     margin: 'var(--AspectRatio-margin)',
   };
@@ -109,18 +110,18 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     minHeight,
     maxHeight,
     objectFit = 'cover',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'soft',
     component,
+    flex = false,
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
+    flex,
     minHeight,
     maxHeight,
     objectFit,
@@ -180,6 +181,12 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * By default, the AspectRatio will maintain the aspect ratio of its content.
+   * Set this prop to `true` when the container is a flex row and you want the AspectRatio to fill the height of its container.
+   * @default false
+   */
+  flex: PropTypes.bool,
   /**
    * The maximum calculated height of the element (not the CSS height).
    */

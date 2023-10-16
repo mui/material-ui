@@ -7,7 +7,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
@@ -45,8 +45,9 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       return {
         '--ListDivider-gap': '0.25rem',
         '--ListItem-minHeight': '2rem',
-        '--ListItem-paddingY': '0.25rem',
-        '--ListItem-paddingX': '0.5rem',
+        '--ListItem-paddingY': '3px',
+        '--ListItem-paddingX': ownerState.marker ? '3px' : '0.5rem',
+        '--ListItem-gap': '0.5rem',
         '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
         '--Icon-fontSize': theme.vars.fontSize.lg,
       };
@@ -54,9 +55,10 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
     if (size === 'md') {
       return {
         '--ListDivider-gap': '0.375rem',
-        '--ListItem-minHeight': '2.5rem',
-        '--ListItem-paddingY': '0.375rem',
-        '--ListItem-paddingX': '0.75rem',
+        '--ListItem-minHeight': '2.25rem',
+        '--ListItem-paddingY': '0.25rem',
+        '--ListItem-paddingX': ownerState.marker ? '0.25rem' : '0.75rem',
+        '--ListItem-gap': '0.625rem',
         '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
         '--Icon-fontSize': theme.vars.fontSize.xl,
       };
@@ -64,9 +66,10 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
     if (size === 'lg') {
       return {
         '--ListDivider-gap': '0.5rem',
-        '--ListItem-minHeight': '3rem',
-        '--ListItem-paddingY': '0.5rem',
-        '--ListItem-paddingX': '1rem',
+        '--ListItem-minHeight': '2.75rem',
+        '--ListItem-paddingY': '0.375rem',
+        '--ListItem-paddingX': ownerState.marker ? '0.5rem' : '1rem',
+        '--ListItem-gap': '0.75rem',
         '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
       };
@@ -74,29 +77,36 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
     return {};
   }
   return [
-    ownerState.nesting && {
-      // instanceSize is the specified size of the rendered element <List size="sm" />
-      // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
-      ...applySizeVars(ownerState.instanceSize),
-      '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
-      '--ListItem-paddingLeft': 'var(--NestedListItem-paddingLeft)',
-      // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
-      '--ListItemButton-marginBlock': '0px',
-      '--ListItemButton-marginInline': '0px',
-      '--ListItem-marginBlock': '0px',
-      '--ListItem-marginInline': '0px',
-      padding: 0,
-      marginInlineStart: 'var(--NestedList-marginLeft)',
-      marginInlineEnd: 'var(--NestedList-marginRight)',
-      marginBlockStart: 'var(--List-gap)',
-      marginBlockEnd: 'initial', // reset user agent stylesheet.
-    },
+    ownerState.nesting &&
+      ({
+        // instanceSize is the specified size of the rendered element <List size="sm" />
+        // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
+        ...applySizeVars(ownerState.instanceSize),
+        '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
+        '--ListItem-paddingLeft': 'var(--NestedListItem-paddingLeft)',
+        // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
+        '--ListItemButton-marginBlock': '0px',
+        '--ListItemButton-marginInline': '0px',
+        '--ListItem-marginBlock': '0px',
+        '--ListItem-marginInline': '0px',
+        padding: 0,
+        ...(ownerState.marker && {
+          paddingInlineStart: 'calc(3ch - var(--_List-markerDeduct, 0px))', // the width of the marker
+        }),
+        marginInlineStart: 'var(--NestedList-marginLeft)',
+        marginInlineEnd: 'var(--NestedList-marginRight)',
+        marginBlockStart: 'var(--List-gap)',
+        marginBlockEnd: 'initial', // reset user agent stylesheet.
+      } as const),
     !ownerState.nesting && {
       ...applySizeVars(ownerState.size),
       '--List-gap': '0px',
       '--List-nestedInsetStart': '0px',
       '--ListItem-paddingLeft': 'var(--ListItem-paddingX)',
       '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
+      ...(ownerState.marker && {
+        '--_List-markerDeduct': '1ch',
+      }),
       // Automatic radius adjustment kicks in only if '--List-padding' and '--List-radius' are provided.
       '--unstable_List-childRadius':
         'calc(max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2)) - var(--variant-borderWidth, 0px))',
@@ -124,6 +134,9 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
             paddingBlock: 'var(--List-padding, var(--ListDivider-gap))',
             paddingInline: 'var(--List-padding)',
           }),
+      ...(ownerState.marker && {
+        paddingInlineStart: '3ch', // the width of the marker
+      }),
     },
     {
       boxSizing: 'border-box',
@@ -131,8 +144,14 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       listStyle: 'none',
       display: 'flex',
       flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-      ...(ownerState.wrap && {
-        flexWrap: 'wrap',
+      ...(ownerState.wrap &&
+        ({
+          flexWrap: 'wrap',
+        } as const)),
+      ...(ownerState.marker && {
+        '--_List-markerDisplay': 'list-item',
+        '--_List-markerType': ownerState.marker,
+        lineHeight: 'calc(var(--ListItem-minHeight) - 2 * var(--ListItem-paddingY))',
       }),
       flexGrow: 1,
       position: 'relative', // for sticky ListItem
@@ -143,7 +162,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       }),
       ...(p !== undefined && { '--List-padding': p }),
       ...(padding !== undefined && { '--List-padding': padding }),
-    },
+    } as const,
   ];
 });
 
@@ -179,14 +198,12 @@ const List = React.forwardRef(function List(inProps, ref) {
     orientation = 'vertical',
     wrap = false,
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     role: roleProp,
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
   const size = sizeProp || (inProps.size ?? 'md');
 
   let role;
@@ -267,6 +284,13 @@ List.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The marker (such as a disc, character, or custom counter style) of the list items.
+   * When this prop is specified, the List Item changes the CSS display to `list-item` in order to apply the marker.
+   *
+   * To see all available options, check out the [MDN list-style-type page](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type).
+   */
+  marker: PropTypes.string,
   /**
    * The component orientation.
    * @default 'vertical'

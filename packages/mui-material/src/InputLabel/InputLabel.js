@@ -7,6 +7,7 @@ import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import FormLabel, { formLabelClasses } from '../FormLabel';
 import useThemeProps from '../styles/useThemeProps';
+import capitalize from '../utils/capitalize';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
@@ -18,7 +19,7 @@ const useUtilityClasses = (ownerState) => {
       formControl && 'formControl',
       !disableAnimation && 'animated',
       shrink && 'shrink',
-      size === 'small' && 'sizeSmall',
+      size && size !== 'normal' && `size${capitalize(size)}`,
       variant,
     ],
     asterisk: [required && 'asterisk'],
@@ -187,7 +188,7 @@ InputLabel.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),

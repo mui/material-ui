@@ -14,6 +14,10 @@
     }
   },
   "name": "StepIcon",
+  "imports": [
+    "import StepIcon from '@mui/material/StepIcon';",
+    "import { StepIcon } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "text", "active", "completed", "error"],
     "globalClasses": { "active": "Mui-active", "completed": "Mui-completed", "error": "Mui-error" },

@@ -1,18 +1,18 @@
 import * as React from 'react';
 import {
-  Unstable_NumberInput as NumberInput,
+  Unstable_NumberInput as BaseNumberInput,
   NumberInputProps,
 } from '@mui/base/Unstable_NumberInput';
 import { styled } from '@mui/system';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
-const CustomNumberInput = React.forwardRef(function CustomNumberInput(
+const NumberInput = React.forwardRef(function CustomNumberInput(
   props: NumberInputProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   return (
-    <NumberInput
+    <BaseNumberInput
       slots={{
         root: StyledInputRoot,
         input: StyledInput,
@@ -35,7 +35,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(
 });
 
 export default function QuantityInput() {
-  return <CustomNumberInput aria-label="Quantity Input" min={1} max={99} />;
+  return <NumberInput aria-label="Quantity Input" min={1} max={99} />;
 }
 
 const blue = {
@@ -66,7 +66,6 @@ const StyledInputRoot = styled('div')(
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
-  
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -116,14 +115,12 @@ const StyledButton = styled('button')(
   border-radius: 999px;
   color: ${theme.palette.mode === 'dark' ? blue[300] : blue[600]};
   background: transparent;
-
   width: 40px;
   height: 40px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;

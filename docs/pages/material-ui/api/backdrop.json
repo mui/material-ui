@@ -37,6 +37,10 @@
     }
   },
   "name": "Backdrop",
+  "imports": [
+    "import Backdrop from '@mui/material/Backdrop';",
+    "import { Backdrop } from '@mui/material';"
+  ],
   "styles": { "classes": ["root", "invisible"], "globalClasses": {}, "name": "MuiBackdrop" },
   "spread": true,
   "themeDefaultProps": true,

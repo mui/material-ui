@@ -21,8 +21,8 @@
     "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseTabRootSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseTabRootSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseTabRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseTabRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
@@ -47,5 +47,6 @@
   },
   "name": "useTab",
   "filename": "/packages/mui-base/src/useTab/useTab.ts",
+  "imports": ["import { useTab } from '@mui/base/useTab';", "import { useTab } from '@mui/base';"],
   "demos": "<ul><li><a href=\"/base-ui/react-tabs/#hooks\">Tabs</a></li></ul>"
 }

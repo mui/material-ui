@@ -11,10 +11,11 @@ import { DropdownContext, DropdownContextValue } from '../useDropdown/DropdownCo
 import { useList } from '../useList';
 import { MenuItemMetadata } from '../useMenuItem';
 import { DropdownActionTypes } from '../useDropdown';
-import { EventHandlers } from '../utils';
+import { EventHandlers } from '../utils/types';
 import { useCompoundParent } from '../utils/useCompound';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 
 const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
   dispatch: () => {},
@@ -38,7 +39,7 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
 export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
   const { listboxRef: listboxRefProp, onItemsChange, id: idParam } = parameters;
 
-  const rootRef = React.useRef<HTMLElement | null>(null);
+  const rootRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(rootRef, listboxRefProp);
 
   const listboxId = useId(idParam) ?? '';
@@ -154,12 +155,15 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     onKeyDown: createHandleKeyDown(otherHandlers),
   });
 
-  const getListboxProps = <TOther extends EventHandlers>(
-    otherHandlers: TOther = {} as TOther,
+  const getListboxProps = <ExternalProps extends Record<string, unknown>>(
+    externalProps: ExternalProps = {} as ExternalProps,
   ): UseMenuListboxSlotProps => {
     const getCombinedRootProps = combineHooksSlotProps(getOwnListboxHandlers, getListRootProps);
+    const externalEventHandlers = extractEventHandlers(externalProps);
     return {
-      ...getCombinedRootProps(otherHandlers),
+      ...externalProps,
+      ...externalEventHandlers,
+      ...getCombinedRootProps(externalEventHandlers),
       id: listboxId,
       role: 'menu',
     };

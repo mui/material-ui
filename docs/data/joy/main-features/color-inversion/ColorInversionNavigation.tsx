@@ -44,10 +44,10 @@ export default function ColorInversionNavigation() {
           defaultValue="1"
           size="sm"
           placeholder={
-            <Box>
+            <div>
               <Typography level="inherit">Saleshouse</Typography>
               <Typography level="body-md">general team</Typography>
-            </Box>
+            </div>
           }
           startDecorator={
             <Sheet
@@ -86,7 +86,13 @@ export default function ColorInversionNavigation() {
               <SmsIcon />
             </ListItemDecorator>
             Chat
-            <Chip size="sm" color="warning" variant="soft" sx={{ ml: 'auto' }}>
+            <Chip
+              data-skip-inverted-colors
+              size="sm"
+              color="warning"
+              variant="soft"
+              sx={{ ml: 'auto' }}
+            >
               5
             </Chip>
           </ListItemButton>

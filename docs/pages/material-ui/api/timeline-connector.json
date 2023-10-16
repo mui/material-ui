@@ -11,6 +11,10 @@
     }
   },
   "name": "TimelineConnector",
+  "imports": [
+    "import TimelineConnector from '@mui/lab/TimelineConnector';",
+    "import { TimelineConnector } from '@mui/lab';"
+  ],
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTimelineConnector" },
   "spread": true,
   "themeDefaultProps": true,

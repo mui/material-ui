@@ -1,17 +1,17 @@
 import * as React from 'react';
 import {
-  Unstable_NumberInput as NumberInput,
+  Unstable_NumberInput as BaseNumberInput,
   NumberInputProps,
   numberInputClasses,
 } from '@mui/base/Unstable_NumberInput';
 import { styled } from '@mui/system';
 
-const CustomNumberInput = React.forwardRef(function CustomNumberInput(
+const NumberInput = React.forwardRef(function CustomNumberInput(
   props: NumberInputProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   return (
-    <NumberInput
+    <BaseNumberInput
       slots={{
         root: StyledInputRoot,
         input: StyledInputElement,
@@ -35,7 +35,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(
 export default function NumberInputBasic() {
   const [value, setValue] = React.useState<number | undefined>();
   return (
-    <CustomNumberInput
+    <NumberInput
       aria-label="Demo number input"
       placeholder="Type a number…"
       value={value}
@@ -130,7 +130,6 @@ const StyledButton = styled('button')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 0;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
@@ -145,7 +144,7 @@ const StyledButton = styled('button')(
     grid-column: 2/3;
     grid-row: 1/2;
   }
-  
+
   &.${numberInputClasses.decrementButton} {
     grid-column: 2/3;
     grid-row: 2/3;

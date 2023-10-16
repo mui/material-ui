@@ -7,8 +7,7 @@ import {
   describeConformance,
   screen,
   fireEvent,
-  describeJoyColorInversion,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { Popper as PopperUnstyled } from '@mui/base/Popper';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -59,14 +58,8 @@ describe('Joy <Menu />', () => {
     ],
   }));
 
-  describeJoyColorInversion(<Menu disablePortal data-testid="test-element" />, {
-    muiName: 'JoyMenu',
-    classes,
-    portalSlot: 'root',
-    wrapper: (node) => (
-      <DropdownContext.Provider value={testContext}>{node}</DropdownContext.Provider>
-    ),
-  });
+  const anchorEl = document.createElement('div');
+  anchorEl.setAttribute('aria-controls', 'test');
 
   it('should render with `ul` by default', () => {
     render(

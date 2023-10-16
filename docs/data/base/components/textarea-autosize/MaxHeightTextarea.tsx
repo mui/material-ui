@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 
 export default function MaxHeightTextarea() {
@@ -25,7 +25,7 @@ export default function MaxHeightTextarea() {
     900: '#24292f',
   };
 
-  const StyledTextarea = styled(TextareaAutosize)(
+  const Textarea = styled(BaseTextareaAutosize)(
     ({ theme }) => `
     width: 320px;
     font-family: IBM Plex Sans, sans-serif;
@@ -38,16 +38,16 @@ export default function MaxHeightTextarea() {
     background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  
+
     &:hover {
       border-color: ${blue[400]};
     }
-  
+
     &:focus {
       border-color: ${blue[400]};
       box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
     }
-  
+
     // firefox
     &:focus-visible {
       outline: 0;
@@ -56,7 +56,7 @@ export default function MaxHeightTextarea() {
   );
 
   return (
-    <StyledTextarea
+    <Textarea
       maxRows={4}
       aria-label="maximum height"
       placeholder="Maximum 4 rows"

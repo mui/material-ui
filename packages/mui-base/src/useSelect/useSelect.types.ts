@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
-import { EventHandlers } from '../utils/types';
 import { SelectProviderValue } from './SelectProvider';
 import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
@@ -62,6 +61,16 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    */
   multiple?: Multiple;
   /**
+   * The `name` attribute of the hidden input element.
+   * This is useful when the select is embedded in a form and you want to access the selected value in the form data.
+   */
+  name?: string;
+  /**
+   * If `true`, the select embedded in a form must have a selected value.
+   * Otherwise, the form submission will fail.
+   */
+  required?: boolean;
+  /**
    * Callback fired when an option is selected.
    */
   onChange?: (
@@ -94,6 +103,14 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    */
   options?: SelectOptionDefinition<OptionValue>[];
   /**
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
+   */
+  getSerializedValue?: (
+    option: SelectValue<SelectOption<OptionValue>, Multiple>,
+  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
+  /**
    * A function used to convert the option label to a string.
    * This is useful when labels are elements and need to be converted to plain text
    * to enable keyboard navigation with character keys.
@@ -109,7 +126,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
 }
 
 interface UseSelectButtonSlotEventHandlers {
-  onClick: MuiCancellableEventHandler<React.MouseEvent>;
+  onMouseDown: MuiCancellableEventHandler<React.MouseEvent>;
 }
 
 export type UseSelectButtonSlotProps<TOther = {}> = UseListRootSlotProps<
@@ -121,6 +138,9 @@ export type UseSelectButtonSlotProps<TOther = {}> = UseListRootSlotProps<
     role: React.HTMLAttributes<Element>['role'];
     ref: React.RefCallback<Element> | null;
   };
+
+export type UseSelectHiddenInputSlotProps<TOther = {}> =
+  React.InputHTMLAttributes<HTMLInputElement> & TOther;
 
 interface UseSelectListboxSlotEventHandlers {
   onMouseDown: React.MouseEventHandler;
@@ -161,20 +181,28 @@ export interface UseSelectReturnValue<Value, Multiple> {
   dispatch: (action: ListAction<Value> | SelectAction) => void;
   /**
    * Resolver for the button slot's props.
-   * @param otherHandlers event handlers for the button slot
+   * @param externalProps event handlers for the button slot
    * @returns props that should be spread on the button slot
    */
-  getButtonProps: <OtherHandlers extends EventHandlers = {}>(
-    otherHandlers?: OtherHandlers,
-  ) => UseSelectButtonSlotProps<OtherHandlers>;
+  getButtonProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSelectButtonSlotProps<ExternalProps>;
+  /**
+   * Resolver for the hidden input slot's props.
+   * @param externalProps event handlers for the hidden input slot
+   * @returns HTML input attributes that should be spread on the hidden input slot
+   */
+  getHiddenInputProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSelectHiddenInputSlotProps<ExternalProps>;
   /**
    * Resolver for the listbox slot's props.
-   * @param otherHandlers event handlers for the listbox slot
+   * @param externalProps event handlers for the listbox slot
    * @returns props that should be spread on the listbox slot
    */
-  getListboxProps: <OtherHandlers extends EventHandlers = {}>(
-    otherHandlers?: OtherHandlers,
-  ) => UseSelectListboxSlotProps<OtherHandlers>;
+  getListboxProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSelectListboxSlotProps<ExternalProps>;
   /**
    * A function that returns the metadata of an option with a given value.
    *

@@ -10,6 +10,7 @@
     }
   },
   "name": "Box",
+  "imports": ["import Box from '@mui/material/Box';", "import { Box } from '@mui/material';"],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "themeDefaultProps": false,

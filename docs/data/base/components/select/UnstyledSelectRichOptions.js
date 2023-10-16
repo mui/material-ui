@@ -1,41 +1,42 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Select, selectClasses } from '@mui/base/Select';
-import { Option, optionClasses } from '@mui/base/Option';
+import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
-import { Popper } from '@mui/base';
+import { Popper as BasePopper } from '@mui/base/Popper';
 
 export default function UnstyledSelectRichOptions() {
   return (
-    <CustomSelect>
-      {countries.map((c) => (
-        <StyledOption key={c.code} value={c.code} label={c.label}>
+    <Select placeholder="Select country…">
+      {countries.map((country) => (
+        <Option key={country.code} value={country.code} label={country.label}>
           <img
             loading="lazy"
-            width="20"
-            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
-            srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
-            alt={`Flag of ${c.label}`}
+            width={20}
+            height={14}
+            srcSet={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png 2x`}
+            src={`https://flagcdn.com/w20/${country.code.toLowerCase()}.png`}
+            alt={`Flag of ${country.label}`}
           />
-          {c.label} ({c.code}) +{c.phone}
-        </StyledOption>
+          {country.label} ({country.code}) +{country.phone}
+        </Option>
       ))}
-    </CustomSelect>
+    </Select>
   );
 }
 
-const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+const Select = React.forwardRef(function CustomSelect(props, ref) {
   const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    root: Button,
+    listbox: Listbox,
+    popper: Popper,
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return <BaseSelect {...props} ref={ref} slots={slots} />;
 });
 
-CustomSelect.propTypes = {
+Select.propTypes = {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
@@ -70,7 +71,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledButton = styled('button')(
+const Button = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -114,7 +115,7 @@ const StyledButton = styled('button')(
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -135,7 +136,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -176,7 +177,7 @@ const StyledOption = styled(Option)(
   `,
 );
 
-const StyledPopper = styled(Popper)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;
 

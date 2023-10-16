@@ -1,4 +1,8 @@
 import { expectType } from '@mui/types';
+import { AccordionOwnerState } from '@mui/joy/Accordion';
+import { AccordionGroupOwnerState } from '@mui/joy/AccordionGroup';
+import { AccordionSummaryOwnerState } from '@mui/joy/AccordionSummary';
+import { AccordionDetailsOwnerState } from '@mui/joy/AccordionDetails';
 import { AlertOwnerState } from '@mui/joy/Alert';
 import { AspectRatioOwnerState } from '@mui/joy/AspectRatio';
 import { AutocompleteOwnerState } from '@mui/joy/Autocomplete';
@@ -19,7 +23,11 @@ import { ChipDeleteOwnerState } from '@mui/joy/ChipDelete';
 import { CircularProgressOwnerState } from '@mui/joy/CircularProgress';
 import { ContainerProps } from '@mui/joy/Container';
 import { ScopedCssBaselineOwnerState } from '@mui/joy/ScopedCssBaseline';
+import { DialogActionsOwnerState } from '@mui/joy/DialogActions';
+import { DialogContentOwnerState } from '@mui/joy/DialogContent';
+import { DialogTitleOwnerState } from '@mui/joy/DialogTitle';
 import { DividerOwnerState } from '@mui/joy/Divider';
+import { DrawerOwnerState } from '@mui/joy/Drawer';
 import { FormControlOwnerState } from '@mui/joy/FormControl';
 import { FormHelperTextOwnerState } from '@mui/joy/FormHelperText';
 import { FormLabelOwnerState } from '@mui/joy/FormLabel';
@@ -63,17 +71,79 @@ import { TooltipOwnerState } from '@mui/joy/Tooltip';
 import { TypographyOwnerState } from '@mui/joy/Typography';
 
 extendTheme({
-  colorInversion: (theme) => ({
-    soft: {
-      primary: {
-        '--variant-plainColor': `rgba(${theme.getCssVar('palette-primary-darkChannel')} / 0.4)`,
-        [theme.getColorSchemeSelector('dark')]: {
-          '--variant-plainColor': `rgba(${theme.getCssVar('palette-primary-lightChannel')} / 0.4)`,
+  components: {
+    JoyAccordion: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
         },
       },
     },
-  }),
-  components: {
+    JoyAccordionGroup: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionGroupOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyAccordionSummary: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionSummaryOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        button: ({ ownerState }) => {
+          expectType<AccordionSummaryOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        indicator: ({ ownerState }) => {
+          expectType<AccordionSummaryOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyAccordionDetails: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AccordionDetailsOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        content: ({ ownerState }) => {
+          expectType<AccordionDetailsOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
     JoyAlert: {
       defaultProps: {
         variant: 'soft',
@@ -505,6 +575,45 @@ extendTheme({
         },
       },
     },
+    JoyDialogActions: {
+      defaultProps: {
+        buttonFlex: 1,
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<DialogActionsOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyDialogContent: {
+      defaultProps: {
+        orientation: 'horizontal',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<DialogContentOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyDialogTitle: {
+      defaultProps: {
+        level: 'title-md',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<DialogTitleOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
     JoyDivider: {
       defaultProps: {
         orientation: 'vertical',
@@ -512,6 +621,26 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<DividerOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyDrawer: {
+      defaultProps: {
+        variant: 'plain',
+        color: 'neutral',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<DrawerOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        backdrop: ({ ownerState }) => {
+          expectType<DrawerOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        content: ({ ownerState }) => {
+          expectType<DrawerOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
       },

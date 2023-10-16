@@ -8,7 +8,7 @@
   "returnValueDescriptions": {
     "contextValue": { "description": "The value to be passed into the MenuProvider." },
     "dispatch": {
-      "description": "Action dispatcher for the menu component.\nAllows to programmatically control the menu."
+      "description": "Action dispatcher for the menu component. Allows to programmatically control the menu."
     },
     "getListboxProps": { "description": "Resolver for the listbox slot&#39;s props." },
     "highlightedValue": { "description": "The highlighted option in the menu listbox." },

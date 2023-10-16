@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import styled from '../styles/styled';
 import { getTableUtilityClass } from './tableClasses';
 import { TableProps, TableOwnerState, TableTypeMap } from './TableProps';
@@ -185,7 +185,7 @@ const TableRoot = styled('table', {
           borderBottomRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
-    },
+    } as const,
     (ownerState.borderAxis?.startsWith('x') || ownerState.borderAxis?.startsWith('both')) && {
       // insert border between rows
       [tableSelector.getHeaderCell()]: {
@@ -305,7 +305,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     noWrap = false,
     size = 'md',
     variant = 'plain',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     stripe,
     stickyHeader = false,
     stickyFooter = false,
@@ -313,8 +313,6 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

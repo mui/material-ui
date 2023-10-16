@@ -10,6 +10,7 @@
       "additionalInfo": { "joy-color": true }
     },
     "component": { "type": { "name": "elementType" } },
+    "marker": { "type": { "name": "string" } },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'vertical'"
@@ -49,7 +50,8 @@
     "wrap": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "List",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import List from '@mui/joy/List';", "import { List } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiList" },
   "slots": [
     {
       "name": "root",

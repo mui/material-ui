@@ -81,6 +81,27 @@ Learn more about controlled and uncontrolled components in the [React documentat
 
 {{"demo": "ControllableStates.js"}}
 
+:::warning
+
+If you control the `value`, make sure it's referentially stable between renders.
+In other words, the reference to the value shouldn't change if the value itself doesn't change.
+
+```tsx
+// ⚠️ BAD
+return <Autocomplete multiple value={allValues.filter((v) => v.selected)} />;
+
+// 👍 GOOD
+const selectedValues = React.useMemo(
+  () => allValues.filter((v) => v.selected),
+  [allValues],
+);
+return <Autocomplete multiple value={selectedValues} />;
+```
+
+In the first example, `allValues.filter` is called and returns **a new array** every render.
+The fix includes memoizing the value, so it changes only when needed.
+:::
+
 ## Free solo
 
 Set `freeSolo` to true so the textbox can contain any arbitrary value.

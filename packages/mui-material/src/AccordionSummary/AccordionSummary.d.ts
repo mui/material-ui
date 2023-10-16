@@ -5,29 +5,31 @@ import { OverrideProps } from '../OverridableComponent';
 import { Theme } from '..';
 import { AccordionSummaryClasses } from './accordionSummaryClasses';
 
+export interface AccordionSummaryOwnProps {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<AccordionSummaryClasses>;
+  /**
+   * The icon to display as the expand indicator.
+   */
+  expandIcon?: React.ReactNode;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export type AccordionSummaryTypeMap<
   AdditionalProps = {},
-  DefaultComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'div',
 > = ExtendButtonBaseTypeMap<{
-  props: AdditionalProps & {
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<AccordionSummaryClasses>;
-    /**
-     * The icon to display as the expand indicator.
-     */
-    expandIcon?: React.ReactNode;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
-  defaultComponent: DefaultComponent;
+  props: AdditionalProps & AccordionSummaryOwnProps;
+  defaultComponent: RootComponent;
 }>;
 
 /**

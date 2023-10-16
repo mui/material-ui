@@ -11,6 +11,10 @@
     }
   },
   "name": "ListItemAvatar",
+  "imports": [
+    "import ListItemAvatar from '@mui/material/ListItemAvatar';",
+    "import { ListItemAvatar } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "alignItemsFlexStart"],
     "globalClasses": {},

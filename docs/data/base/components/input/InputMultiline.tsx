@@ -1,14 +1,18 @@
 import * as React from 'react';
-import { Input, InputProps } from '@mui/base/Input';
+import { Input as BaseInput, InputProps } from '@mui/base/Input';
 import { styled } from '@mui/system';
 
-const CustomInput = React.forwardRef(function CustomInput(
+const Input = React.forwardRef(function CustomInput(
   props: InputProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   return (
-    <Input
-      slots={{ input: StyledInputElement, textarea: StyledTextareaElement }}
+    <BaseInput
+      slots={{
+        root: RootDiv,
+        input: InputElement,
+        textarea: TextareaElement,
+      }}
       {...props}
       ref={ref}
     />
@@ -16,9 +20,7 @@ const CustomInput = React.forwardRef(function CustomInput(
 });
 
 export default function InputMultiline() {
-  return (
-    <CustomInput aria-label="Demo input" multiline placeholder="Type something…" />
-  );
+  return <Input aria-label="Demo input" multiline placeholder="Type something…" />;
 }
 
 const blue = {
@@ -42,7 +44,12 @@ const grey = {
   900: '#1A2027',
 };
 
-const StyledInputElement = styled('input')(
+const RootDiv = styled('div')`
+  display: flex;
+  max-width: 100%;
+`;
+
+const InputElement = styled('input')(
   ({ theme }) => `
   width: 320px;
   font-family: IBM Plex Sans, sans-serif;
@@ -72,7 +79,7 @@ const StyledInputElement = styled('input')(
 `,
 );
 
-const StyledTextareaElement = styled('textarea', {
+const TextareaElement = styled('textarea', {
   shouldForwardProp: (prop) =>
     !['ownerState', 'minRows', 'maxRows'].includes(prop.toString()),
 })(

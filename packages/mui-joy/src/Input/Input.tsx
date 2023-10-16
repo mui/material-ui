@@ -5,11 +5,11 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import useForwardedInput from './useForwardedInput';
+import { INVERTED_COLORS_ATTR } from '../colorInversion/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: InputOwnerState) => {
   const { disabled, fullWidth, variant, color, size } = ownerState;
@@ -43,16 +43,17 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--Input-decoratorColor': theme.vars.palette.text.icon,
         '--Input-focused': '0',
         '--Input-focusedThickness': theme.vars.focus.thickness,
-        ...(ownerState.color === 'context'
-          ? {
-              '--Input-focusedHighlight': theme.vars.palette.focusVisible,
-            }
-          : {
-              '--Input-focusedHighlight':
-                theme.vars.palette[
-                  ownerState.color === 'neutral' ? 'primary' : ownerState.color!
-                ]?.[500],
-            }),
+        '--Input-focusedHighlight':
+          theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+        [`&:not([${INVERTED_COLORS_ATTR}])`]: {
+          ...(ownerState.instanceColor && {
+            '--_Input-focusedHighlight':
+              theme.vars.palette[
+                ownerState.instanceColor === 'neutral' ? 'primary' : ownerState.instanceColor
+              ]?.[500],
+          }),
+          '--Input-focusedHighlight': `var(--_Input-focusedHighlight, ${theme.vars.palette.focusVisible})`,
+        },
         ...(ownerState.size === 'sm' && {
           '--Input-minHeight': '2rem',
           '--Input-paddingInline': '0.5rem',
@@ -60,16 +61,16 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           '--Icon-fontSize': theme.vars.fontSize.xl,
         }),
         ...(ownerState.size === 'md' && {
-          '--Input-minHeight': '2.5rem',
+          '--Input-minHeight': '2.25rem',
           '--Input-paddingInline': '0.75rem',
-          '--Input-decoratorChildHeight': 'min(2rem, var(--Input-minHeight))',
+          '--Input-decoratorChildHeight': 'min(1.75rem, var(--Input-minHeight))',
           '--Icon-fontSize': theme.vars.fontSize.xl2,
         }),
         ...(ownerState.size === 'lg' && {
-          '--Input-minHeight': '3rem',
+          '--Input-minHeight': '2.75rem',
           '--Input-paddingInline': '1rem',
           '--Input-gap': '0.75rem',
-          '--Input-decoratorChildHeight': 'min(2.375rem, var(--Input-minHeight))',
+          '--Input-decoratorChildHeight': 'min(2.25rem, var(--Input-minHeight))',
           '--Icon-fontSize': theme.vars.fontSize.xl2,
         }),
         // variables for controlling child components
@@ -84,6 +85,9 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--Button-radius': 'var(--Input-decoratorChildRadius)',
         '--IconButton-radius': 'var(--Input-decoratorChildRadius)',
         boxSizing: 'border-box',
+        ...(ownerState.variant !== 'plain' && {
+          boxShadow: theme.shadow.xs,
+        }),
         minWidth: 0,
         minHeight: 'var(--Input-minHeight)',
         ...(ownerState.fullWidth && {
@@ -112,7 +116,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
           boxShadow: `var(--Input-focusedInset, inset) 0 0 0 calc(var(--Input-focused) * var(--Input-focusedThickness)) var(--Input-focusedHighlight)`,
         },
-      },
+      } as const,
       {
         '&:hover': {
           ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
@@ -277,10 +281,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
 
   const ownerState = {
+    instanceColor: error ? 'danger' : inProps.color,
     ...props,
     fullWidth,
     color,
@@ -396,7 +400,7 @@ Input.propTypes /* remove-proptypes */ = {
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the button will take up the full width of its container.
+   * If `true`, the input will take up the full width of its container.
    * @default false
    */
   fullWidth: PropTypes.bool,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer } from 'test/utils';
+import { act, createRenderer } from '@mui-internal/test-utils';
 import { Dropdown } from '@mui/base/Dropdown';
 import { DropdownContext } from '@mui/base/useDropdown';
 import { MenuButton } from '@mui/base/MenuButton';

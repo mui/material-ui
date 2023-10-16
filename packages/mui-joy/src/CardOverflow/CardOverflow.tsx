@@ -7,7 +7,6 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useColorInversion } from '../styles/ColorInversion';
 import { getCardOverflowUtilityClass } from './cardOverflowClasses';
 import {
   CardOverflowProps,
@@ -46,6 +45,7 @@ const CardOverflowRoot = styled('div', {
     alignSelf: 'stretch', // prevent shrinking if parent's align-items is not initial
     borderRadius: 'var(--CardOverflow-radius)',
     position: 'relative',
+    display: 'flex',
     ...(ownerState['data-parent'] === 'Card-horizontal' && {
       '--AspectRatio-margin': 'calc(-1 * var(--Card-padding)) 0px',
       marginTop: 'var(--CardOverflow-offset)',
@@ -76,6 +76,7 @@ const CardOverflowRoot = styled('div', {
     }),
     ...(ownerState['data-parent'] === 'Card-vertical' && {
       '--AspectRatio-margin': '0px calc(-1 * var(--Card-padding))',
+      flexDirection: 'column', // required to make AspectRatio works
       marginLeft: 'var(--CardOverflow-offset)',
       marginRight: 'var(--CardOverflow-offset)',
       padding: '0px var(--Card-padding)',
@@ -126,14 +127,12 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     className,
     component = 'div',
     children,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'plain',
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
