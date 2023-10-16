@@ -201,21 +201,15 @@ const Paragraph = styled('p')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
-  margin: 10px 0;
-  color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
+  margin: 12px 0;
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
   `,
 );
 
 const Pre = styled('pre')(
   ({ theme }) => `
   font-family: monospace;
-  font-size: 0.875rem;
-  margin: 0px;
-  padding: 5px 10px;
-  border-radius: 10px;
-  background-color: ${
-    theme.palette.mode === 'dark' ? 'rgba(0, 30, 60, 0.5)' : grey[50]
-  };
-  color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
+  font-size: 0.75rem;
+  color: ${theme.palette.mode === 'dark' ? '#FFF' : '#000'};
   `,
 );

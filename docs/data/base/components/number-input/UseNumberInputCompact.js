@@ -42,7 +42,7 @@ export default function UseNumberInputCompact() {
         value={value}
         onChange={(event, val) => setValue(val)}
       />
-      <pre>Current value: {value ?? ' '}</pre>
+      <Pre>Current value: {value ?? ' '}</Pre>
     </Layout>
   );
 }
@@ -78,15 +78,15 @@ const StyledInputRoot = styled('div')(
       "increment"
       "decrement";
     row-gap: 1px;
+    overflow: auto;
     border-radius: 8px;
     border-style: solid;
     border-width: 1px;
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     box-shadow: 0px 2px 4px ${
       theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
     };
-    border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-    overflow: auto;
   `,
 );
 
@@ -107,7 +107,6 @@ const StyledStepperButton = styled('button')(
   padding: 0;
   color: inherit;
   background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  border-radius: 8px;
 
   &:hover {
     cursor: pointer;
@@ -135,4 +134,8 @@ const Layout = styled('div')`
   flex-flow: row nowrap;
   align-items: center;
   column-gap: 1rem;
+`;
+
+const Pre = styled('pre')`
+  font-size: 0.75rem;
 `;

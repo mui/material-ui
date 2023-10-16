@@ -62,16 +62,16 @@ const cyan = {
 };
 
 const grey = {
-  50: '#F3F6F9',
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7',
-  400: '#B2BAC2',
-  500: '#A0AAB4',
-  600: '#6F7E8C',
-  700: '#3E5060',
-  800: '#2D3843',
-  900: '#1A2027',
+  50: '#f6f8fa',
+  100: '#eaeef2',
+  200: '#d0d7de',
+  300: '#afb8c1',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
+  700: '#424a53',
+  800: '#32383f',
+  900: '#24292f',
 };
 
 function useIsDarkMode() {
@@ -109,13 +109,14 @@ function Styles() {
         height: 100%;
         width: 100%;
         position: absolute;
-           box-shadow: inset 0px 1px 1px ${
-             isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.05)'
-           };
+        box-shadow: inset 0px 1px 1px ${
+          isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.05)'
+        };
       }
 
       .CustomSwitchIntroduction:hover .CustomSwitchIntroduction-track {
         background: ${isDarkMode ? grey[800] : grey[100]};
+        border-color: ${isDarkMode ? grey[600] : grey[300]};
       }
 
       .CustomSwitchIntroduction-thumb {
@@ -126,7 +127,6 @@ function Styles() {
         left: 4px;
         border-radius: 16px;
         background-color: #FFF;
-        border: 1px solid ${isDarkMode ? grey[700] : grey[300]};
         position: relative;
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -136,19 +136,21 @@ function Styles() {
       .CustomSwitchIntroduction.${
         switchClasses.focusVisible
       } .CustomSwitchIntroduction-track {
-        box-shadow: 0 0 0 3px ${isDarkMode ? grey[700] : cyan[200]};
+        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[400] : cyan[200]};
       }
 
       .CustomSwitchIntroduction.${
         switchClasses.checked
       } .CustomSwitchIntroduction-thumb {
-        left: 17px;
+        left: 18px;
         background-color: #fff;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
       }
 
       .CustomSwitchIntroduction.${
         switchClasses.checked
       } .CustomSwitchIntroduction-track {
+        border: none;
         background: ${cyan[500]};
       }
 

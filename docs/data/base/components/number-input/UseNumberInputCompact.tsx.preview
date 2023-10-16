@@ -7,5 +7,5 @@
     onChange={(event, val) => setValue(val)}
   />
 
-  <pre>Current value: {value ?? ' '}</pre>
+  <Pre>Current value: {value ?? ' '}</Pre>
 </Layout>

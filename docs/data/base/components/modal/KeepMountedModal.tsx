@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { styled, Box, Theme } from '@mui/system';
+import { styled, Box } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
 
 export default function KeepMountedModal() {

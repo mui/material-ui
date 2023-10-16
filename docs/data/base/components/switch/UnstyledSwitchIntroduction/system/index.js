@@ -41,19 +41,20 @@ export default function UnstyledSwitchIntroduction() {
 const blue = {
   200: '#99CCF3',
   500: '#007FFF',
+  700: '#0059B2',
 };
 
 const grey = {
-  50: '#F3F6F9',
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7',
-  400: '#B2BAC2',
-  500: '#A0AAB4',
-  600: '#6F7E8C',
-  700: '#3E5060',
-  800: '#2D3843',
-  900: '#1A2027',
+  50: '#f6f8fa',
+  100: '#eaeef2',
+  200: '#d0d7de',
+  300: '#afb8c1',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
+  700: '#424a53',
+  800: '#32383f',
+  900: '#24292f',
 };
 
 const Root = styled('span')(
@@ -89,10 +90,11 @@ const Root = styled('span')(
 
   &:hover .${switchClasses.track} {
     background: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
   &.${switchClasses.focusVisible} .${switchClasses.track} {
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? grey[700] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
   & .${switchClasses.thumb} {
@@ -103,7 +105,6 @@ const Root = styled('span')(
     left: 4px;
     border-radius: 16px;
     background-color: #FFF;
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     position: relative;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -115,15 +116,19 @@ const Root = styled('span')(
 
   &.${switchClasses.checked} {
     .${switchClasses.thumb} {
-      left: 17px;
+      left: 18px;
       background-color: #fff;
-      box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     .${switchClasses.track} {
       border: none;
       background: ${blue[500]};
     }
+  }
+
+  &:hover .${switchClasses.checked} .${switchClasses.track} {
+    background: ${blue[700]};
   }
 
   & .${switchClasses.input} {
