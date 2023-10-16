@@ -2,6 +2,10 @@ import * as React from 'react';
 import { IconButtonProps } from '../IconButton/IconButton';
 
 export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * This prop is an alias for `slotProps.previousIconButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.previousIconButton` instead.
+   */
   backIconButtonProps?: Partial<IconButtonProps>;
   /**
    * Override or extend the styles applied to the component.
@@ -22,6 +26,10 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    * @returns {string}
    */
   getItemAriaLabel: (type: 'first' | 'last' | 'next' | 'previous') => string;
+  /**
+   * This prop is an alias for `slotProps.nextIconButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.nextIconButton` instead.
+   */
   nextIconButtonProps?: Partial<IconButtonProps>;
   onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   page: number;
