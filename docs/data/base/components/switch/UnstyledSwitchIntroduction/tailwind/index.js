@@ -42,7 +42,7 @@ const Switch = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `relative inline-block w-[38px] h-[24px] m-2.5 ${
+              `relative inline-block w-[38px] h-[24px] m-2.5  ${
                 ownerState.disabled
                   ? 'cursor-not-allowed opacity-40'
                   : 'cursor-pointer'
@@ -73,7 +73,7 @@ const Switch = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `absolute block w-full h-full transition rounded-full border border-solid outline-none border-slate-300 dark:border-gray-700 shadow-[inset_0_1_1_rgb(0_0_0_/_0.05)] dark:shadow-[inset_0_1_1_rgb(0_0_0_/_0.5)] focus:ring-2 
+              `absolute block w-full h-full transition rounded-full border border-solid outline-none border-slate-300 dark:border-gray-700 shadow-[inset_0_1_1_rgb(0_0_0_/_0.05)] dark:shadow-[inset_0_1_1_rgb(0_0_0_/_0.5)] focus:shadow-purple-200 dark:focus:shadow-purple-600 
               ${
                 ownerState.checked
                   ? 'bg-purple-500 border-none'
