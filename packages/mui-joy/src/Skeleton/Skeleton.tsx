@@ -261,6 +261,7 @@ const SkeletonRoot = styled('span', {
     ];
   },
 );
+
 /**
  *
  * Demos:

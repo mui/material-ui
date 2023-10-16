@@ -211,6 +211,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       resizeObserver = new ResizeObserver(
         process.env.NODE_ENV === 'test' ? rAFHandleResize : handleResize,
       );
+
       resizeObserver.observe(input);
     }
 

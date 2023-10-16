@@ -204,16 +204,7 @@ Popup.propTypes /* remove-proptypes */ = {
    *
    * @see https://floating-ui.com/docs/computePosition#middleware
    */
-  middleware: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.oneOf([false]),
-      PropTypes.shape({
-        fn: PropTypes.func.isRequired,
-        name: PropTypes.string.isRequired,
-        options: PropTypes.any,
-      }),
-    ]),
-  ),
+  middleware: PropTypes.array,
   /**
    * Distance between a popup and the trigger element.
    * This prop is ignored when custom `middleware` is provided.
@@ -221,15 +212,7 @@ Popup.propTypes /* remove-proptypes */ = {
    * @default 0
    * @see https://floating-ui.com/docs/offset
    */
-  offset: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.number,
-    PropTypes.shape({
-      alignmentAxis: PropTypes.number,
-      crossAxis: PropTypes.number,
-      mainAxis: PropTypes.number,
-    }),
-  ]),
+  offset: PropTypes.any,
   /**
    * If `true`, the popup is visible.
    *
@@ -242,20 +225,7 @@ Popup.propTypes /* remove-proptypes */ = {
    * @default 'bottom'
    * @see https://floating-ui.com/docs/computePosition#placement
    */
-  placement: PropTypes.oneOf([
-    'bottom-end',
-    'bottom-start',
-    'bottom',
-    'left-end',
-    'left-start',
-    'left',
-    'right-end',
-    'right-start',
-    'right',
-    'top-end',
-    'top-start',
-    'top',
-  ]),
+  placement: PropTypes.any,
   /**
    * The props used for each slot inside the Popup.
    *
@@ -279,7 +249,7 @@ Popup.propTypes /* remove-proptypes */ = {
    * @default 'absolute'
    * @see https://floating-ui.com/docs/computePosition#strategy
    */
-  strategy: PropTypes.oneOf(['absolute', 'fixed']),
+  strategy: PropTypes.any,
   /**
    * If `true`, the popup will not disappear immediately when it needs to be closed
    * but wait until the exit transition has finished.

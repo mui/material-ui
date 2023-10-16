@@ -45,6 +45,7 @@ export const SheetRoot = styled('div', {
     'backgroundColor',
     'background',
   ]);
+
   const resolvedBg =
     (getPath(theme, `palette.${bgcolor}`) as string) ||
     bgcolor ||

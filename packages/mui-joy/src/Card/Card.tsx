@@ -39,6 +39,7 @@ export const StyledCardRoot = styled('div')<{ ownerState: CardOwnerState }>(
       'padding',
       'borderRadius',
     ]);
+
     return [
       {
         '--Icon-color':

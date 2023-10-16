@@ -40,6 +40,7 @@ const AlertRoot = styled('div', {
     'padding',
     'borderRadius',
   ]);
+
   return [
     {
       '--Alert-radius': theme.vars.radius.sm,

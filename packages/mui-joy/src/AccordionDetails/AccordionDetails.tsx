@@ -104,6 +104,7 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
       const elements = rootRef.current.querySelectorAll(
         'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
       );
+
       elements.forEach((elm) => {
         if (expanded) {
           const prevTabIndex = elm.getAttribute('data-prev-tabindex');

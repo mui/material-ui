@@ -134,6 +134,7 @@ const LinearProgressRoot = styled('div', {
       'borderRadius',
       'height',
     ]);
+
     return {
       ...(borderRadius !== undefined && { '--LinearProgress-radius': borderRadius }),
       ...(height !== undefined && { '--LinearProgress-thickness': height }),

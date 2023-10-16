@@ -82,6 +82,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     inProps.color,
     true,
   );
+
   const color = inProps.color || inheritedColor;
   const disabled = disabledProp ?? chipContext.disabled;
 

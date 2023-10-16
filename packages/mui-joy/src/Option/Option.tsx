@@ -68,6 +68,7 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
     inProps.variant,
     inProps.color,
   );
+
   const optionRef = React.useRef<HTMLLIElement>(null);
   const combinedRef = useForkRef(optionRef, ref);
 

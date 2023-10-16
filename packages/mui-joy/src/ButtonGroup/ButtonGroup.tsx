@@ -64,6 +64,7 @@ export const StyledButtonGroup = styled('div')<{ ownerState: ButtonGroupOwnerSta
         }
       },
     );
+
     const outlinedStyle = theme.variants.outlined?.[ownerState.color!];
     const outlinedDisabledStyle = theme.variants.outlinedDisabled?.[ownerState.color!];
     const outlinedHoverStyle = theme.variants.outlinedHover?.[ownerState.color!];

@@ -40,6 +40,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
     'padding',
     'borderRadius',
   ]);
+
   function applySizeVars(size: ListProps['size']) {
     if (size === 'sm') {
       return {

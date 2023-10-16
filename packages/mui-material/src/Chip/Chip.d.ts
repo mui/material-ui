@@ -67,6 +67,11 @@ export interface ChipOwnProps {
    */
   onDelete?: React.EventHandler<any>;
   /**
+   * If 'true', allows the chip to be rounded
+   * @default false
+   */
+  rounded?: boolean;
+  /**
    * The size of the component.
    * @default 'medium'
    */

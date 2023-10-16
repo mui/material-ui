@@ -17,6 +17,7 @@
     "icon": { "type": { "name": "element" } },
     "label": { "type": { "name": "node" } },
     "onDelete": { "type": { "name": "func" } },
+    "rounded": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",
@@ -88,7 +89,8 @@
       "deleteIconOutlinedColorSecondary",
       "deleteIconFilledColorPrimary",
       "deleteIconFilledColorSecondary",
-      "focusVisible"
+      "focusVisible",
+      "rounded"
     ],
     "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
     "name": "MuiChip"

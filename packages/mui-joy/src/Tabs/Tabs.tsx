@@ -40,6 +40,7 @@ const TabsRoot = styled('div', {
     { theme, ownerState },
     ['bgcolor', 'backgroundColor', 'background', 'p', 'padding'],
   );
+
   const resolvedBg =
     (getPath(theme, `palette.${bgcolor}`) as string) ||
     bgcolor ||

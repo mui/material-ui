@@ -9,27 +9,10 @@
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "disablePortal": { "type": { "name": "bool" }, "default": "false" },
     "keepMounted": { "type": { "name": "bool" }, "default": "false" },
-    "middleware": {
-      "type": {
-        "name": "arrayOf",
-        "description": "Array&lt;false<br>&#124;&nbsp;{ fn: func, name: string, options?: any }&gt;"
-      }
-    },
-    "offset": {
-      "type": {
-        "name": "union",
-        "description": "func<br>&#124;&nbsp;number<br>&#124;&nbsp;{ alignmentAxis?: number, crossAxis?: number, mainAxis?: number }"
-      },
-      "default": "0"
-    },
+    "middleware": { "type": { "name": "array" } },
+    "offset": { "type": { "name": "any" }, "default": "0" },
     "open": { "type": { "name": "bool" }, "default": "false" },
-    "placement": {
-      "type": {
-        "name": "enum",
-        "description": "'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'"
-      },
-      "default": "'bottom'"
-    },
+    "placement": { "type": { "name": "any" }, "default": "'bottom'" },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
       "default": "{}"
@@ -39,10 +22,7 @@
       "default": "{}",
       "additionalInfo": { "slotsApi": true }
     },
-    "strategy": {
-      "type": { "name": "enum", "description": "'absolute'<br>&#124;&nbsp;'fixed'" },
-      "default": "'absolute'"
-    },
+    "strategy": { "type": { "name": "any" }, "default": "'absolute'" },
     "withTransition": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Popup",
