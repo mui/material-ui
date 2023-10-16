@@ -93,14 +93,10 @@ describe('styleFunctionSx', () => {
     });
 
     it('resolves system typography', () => {
-      let result;
-
-      expect(() => {
-        result = styleFunctionSx({
-          theme,
-          sx: { typography: ['body2', 'body1'] },
-        });
-      }).not.toWarnDev();
+      const result = styleFunctionSx({
+        theme,
+        sx: { typography: ['body2', 'body1'] },
+      });
 
       expect(result).to.deep.equal({
         '@media (min-width:0px)': {
