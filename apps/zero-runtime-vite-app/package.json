@@ -27,7 +27,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "^22.1.0",
     "vite": "4.4.11",
-    "vitest": "^0.34.4"
+    "vitest": "^0.34.6"
   },
   "resolutions": {
     "@mui/zero-tag-processor": "file:../../packages/zero-tag-processor/build"
