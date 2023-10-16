@@ -2,7 +2,7 @@
 
 <p class="description">You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.</p>
 
-## Details of the Role
+## Details of the role
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
@@ -23,7 +23,7 @@ We are building [a low-code platform](https://mui.com/toolpad/) for developers t
 We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
 Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
-For additional details about the MUI team and culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+For additional details about the culture you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
@@ -36,7 +36,7 @@ We believe that the best way to improve on these dimensions is to eliminate [80%
 
 We're in the early stages of exploring what our role could be in the currently emerging low-code space. We've assembled a team to work on a new product and plan to bring it to market in 2022. We have made our initial research and need help to accelerate the development of our MVP.
 
-## About the role
+## The role
 
 ### Why this is interesting
 
@@ -93,13 +93,13 @@ We're looking for someone with both strong front-end and back-end skills. More i
 - **You've maintained an active repository before**. Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams. Previous experience with highly active repository workflows is a definite plus for this role.
 - **You have contributed code to MUI before**. A history of contributing to MUI would be a definite plus.
 
-## Benefits & Compensation
+## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
-## How to apply?
+## How to apply
 
 [Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/4f76b45b-a18e-4bdb-8a34-8bb5a3c9c2ef/application?utm_source=ZNRrPGBkqO)
 
@@ -118,5 +118,8 @@ All these conversations will be 1:1 and over video chat. Please ask as many ques
 
 We look forward to hearing from you! ☺️
 
-Don't tick every bullet? Apply anyway! Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
-If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.
+Don't meet every requirement?
+Apply anyway!
+Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+If this role excites you, we want to hear from you.
+We'd love for you to share the unique skills, passion, and experience you could bring to MUI.
