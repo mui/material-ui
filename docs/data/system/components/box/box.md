@@ -9,77 +9,47 @@ githubLabel: 'component: Box'
 
 <p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
-The Box component is a generic component that offers [all the style functions](/system/getting-started/the-sx-prop/) exposed in [`@mui/system`](/system/getting-started/).
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+The Box component is a generic container for grouping other components.
+It's a fundamental building block when building with MUI component libraries—you can think of it as a `<div>` with special features (like access to your app's theme and the [`sx` prop](/system/getting-started/the-sx-prop/)).
 
 ## Basics
 
 ```jsx
-import Box from '@mui/system/Box';
+import { Box } from '@mui/system';
 ```
 
-The Box differs slightly from other Joy UI components as it doesn't support the props you'd expect such as `variant`, `color`, and `size`.
+The Box component render as a `<div>` by default, but you can swap in any other valid HTML tag or React component using the `component` prop.
+The demo below replaces the `<div>` with a `<section>` element:
 
-That's because it's a component based on the MUI System, a collection of CSS utilities for rapidly laying out custom designs.
+{{"demo": "BoxBasic.js", "defaultCodeOpen": true }}
 
-Demo here
+The Box component differs from other general container-like components available in packages such as Material UI and Joy UI because it is entirely agnostic. It has no usage-specific props as some of these other components might have.
 
 ## Component
 
-### The `sx` prop
+### Using the sx prop
 
-The [`sx` prop](/system/getting-started/the-sx-prop/) lets you work with a superset of CSS that packages all of the style functions exposed in `@mui/system`.
-You can specify any valid CSS using this prop, as well as many theme-aware properties that are unique to MUI System.
+Using the [`sx` prop](/system/getting-started/the-sx-prop/), you can quickly customize any Box instance using a superset of CSS with access to all the style functions and theme-aware properties exposed in the MUI System package.
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
-### The component prop
-
-The Box component wraps your component.
-It creates a new DOM element, a `<div>` by default that can be changed with the `component` prop.
-Let's say you want to use a `<span>` instead:
-
-{{"demo": "BoxComponent.js", "defaultCodeOpen": true }}
-
-This works great when the changes can be isolated to a new DOM element.
-For instance, you can change the margin this way.
-
-However, sometimes you have to target the underlying DOM element.
-As an example, you may want to change the border of the Button.
-The Button component defines its own styles. CSS inheritance doesn't help.
-To workaround the problem, you can use the [`sx`](/system/getting-started/the-sx-prop/) prop directly on the child if it is an MUI component.
-
-```diff
--<Box sx={{ border: '1px dashed grey' }}>
--  <Button>Save</Button>
--</Box>
-+<Button sx={{ border: '1px dashed grey' }}>Save</Button>
-```
-
-For non-MUI components, use the `component` prop.
-
-```diff
--<Box sx={{ border: '1px dashed grey' }}>
--  <button>Save</button>
--</Box>
-+<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
-```
-
 ### System props
 
-As a CSS utility component, the `Box` also supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component.
-For instance, a margin-top:
+As a CSS utility component, the Box supports all [MUI System properties](/system/properties/).
+You can use them as prop directly on the component.
 
 ```jsx
 <Box mt={2}>
 ```
 
-## Create your own `Box` component
+## Create your own Box component
 
-If you want to have a different default theme for the `Box` component, you can create your own version of it, using the `createBox()` utility.
+Use the `createBox()` utility to create your version of the Box component.
+That's interesting to do if you want to expose it to a theme that's different from the default theme of the library you're working with:
 
 ```js
 import { createBox, createTheme } from '@mui/system';
