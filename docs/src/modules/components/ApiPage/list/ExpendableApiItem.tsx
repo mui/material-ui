@@ -16,6 +16,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
   ({ theme }) => ({
     position: 'relative',
     marginBottom: 12,
+    scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
     '& .MuiApi-item-header': {
       minHeight: 26,
       display: 'flex',
@@ -234,12 +235,12 @@ function ApiItem(props: ApiItemProps) {
             onClick={() => setIsExtended((prev) => !prev)}
             className="MuiApi-expend-button"
             size="small"
-            sx={{ p: 0, ml: 'auto' }}
+            sx={{ p: 0, ml: 'auto', borderRadius: '6px' }}
           >
             {isExtended ? (
-              <KeyboardArrowDownIcon sx={{ color: 'grey.500' }} />
-            ) : (
               <KeyboardArrowUpIcon sx={{ color: 'grey.500' }} />
+            ) : (
+              <KeyboardArrowDownIcon sx={{ color: 'grey.500' }} />
             )}
           </IconButton>
         )}
