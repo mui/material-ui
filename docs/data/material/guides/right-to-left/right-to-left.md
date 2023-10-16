@@ -27,14 +27,17 @@ document.dir = 'rtl';
 Add the `dir="rtl"` attribute to any other HTML element or React component if you need limit the scope of the text direction to that element and its children.
 
 :::warning
-This won't work with portaled elements, such as Dialogs, as they render outside of the element with the `dir` attribute.
+Components that use React portals (like the [Dialog](/material-ui/react-dialog)) do _not_ inherit the `dir` attribute from parents, because they actually render outside of their parental DOM trees.
 
-To fix it, make sure to add the `dir` attribute directly to them:
+You must apply the `dir` attribute directly to these components if it's not [globally](#globally) defined as right-to-left:
 
 ```jsx
-<Dialog dir="rtl">
-  <MyComponent />
-</Dialog>
+<Box dir="rtl">
+  <Dialog /> // ❌ this Dialog will still be left-to-right (the default)
+</Box>
+<Box dir="rtl">
+  <Dialog dir="rtl" /> // ✅ this Dialog will be right-to-left as intended
+</Box>
 ```
 
 :::
