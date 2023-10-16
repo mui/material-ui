@@ -43,8 +43,6 @@ const visuallyHiddenStyle: React.CSSProperties = {
   bottom: 0, // to display the native browser validation error at the bottom of the Select.
 };
 
-const noop = () => {};
-
 function defaultFormValueProvider<OptionValue>(
   selectedOption: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
 ) {
@@ -268,7 +266,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   const useListParameters: UseListParameters<
     OptionValue,
     SelectInternalState<OptionValue>,
-    SelectAction,
+    SelectAction<OptionValue>,
     { multiple: boolean }
   > = {
     getInitialState: () => ({
@@ -408,18 +406,42 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
       null) as SelectValue<SelectOption<OptionValue>, Multiple>;
   }
 
+  const createHandleHiddenInputChange =
+    (externalEventHandlers?: EventHandlers) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      externalEventHandlers?.onChange?.(event);
+
+      // support autofill
+      if (options.has(event.target.value as OptionValue)) {
+        const option = options.get(event.target.value as OptionValue);
+
+        if (option === undefined) {
+          return;
+        }
+
+        const action: SelectAction<OptionValue> = {
+          type: SelectActionTypes.browserAutoFill,
+          item: option.value,
+          event,
+        };
+
+        dispatch(action);
+      }
+    };
+
   const getHiddenInputProps = <ExternalProps extends Record<string, unknown>>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSelectHiddenInputSlotProps<ExternalProps> => {
+    const externalEventHandlers = extractEventHandlers(externalProps);
+
     return {
       name,
       tabIndex: -1,
       'aria-hidden': true,
       required: required ? true : undefined,
       value: getSerializedValue(selectedOptionsMetadata),
-      onChange: noop,
       style: visuallyHiddenStyle,
       ...externalProps,
+      onChange: createHandleHiddenInputChange(externalEventHandlers),
     };
   };
 

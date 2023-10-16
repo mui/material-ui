@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { renderHook } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import { useSelect } from './useSelect';
 
 describe('useSelect', () => {
@@ -105,6 +105,47 @@ describe('useSelect', () => {
         'aria-hidden': true,
         required: true,
         value: JSON.stringify([{ name: 'a' }, { name: 'b' }]),
+      });
+    });
+
+    describe('onChange handler', () => {
+      it('calls external onChange handler', () => {
+        const externalOnChangeSpy = sinon.spy();
+
+        const { result } = renderHook(() => useSelect({}));
+
+        const { getHiddenInputProps } = result.current;
+        const { onChange: hiddenInputOnChange } = getHiddenInputProps({
+          onChange: externalOnChangeSpy,
+        });
+
+        // @ts-ignore We only need the target value for this test
+        hiddenInputOnChange({ target: { value: 'foo' } });
+        expect(externalOnChangeSpy.calledOnce).to.equal(true);
+        expect(externalOnChangeSpy.calledWith({ target: { value: 'foo' } })).to.equal(true);
+      });
+
+      it('sets reducer value when called', () => {
+        const options = [
+          { value: 'a', label: 'A' },
+          { value: 'b', label: 'B' },
+        ];
+
+        const { result } = renderHook(() => useSelect({ options }));
+
+        const { value: initialValue, getHiddenInputProps } = result.current;
+        const { onChange: hiddenInputOnChange } = getHiddenInputProps();
+
+        expect(initialValue).to.equal(null);
+
+        act(() => {
+          // @ts-ignore We only need the target value for this test
+          hiddenInputOnChange({ target: { value: 'a' } });
+        });
+
+        const { value: updatedValue } = result.current;
+
+        expect(updatedValue).to.equal('a');
       });
     });
   });
