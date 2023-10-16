@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Box, styled } from '@mui/system';
-import { Modal } from '@mui/base/Modal';
+import { Modal as BaseModal } from '@mui/base/Modal';
 import { Button } from '@mui/base/Button';
 import { useSpring, animated } from '@react-spring/web';
 
@@ -13,7 +13,7 @@ export default function SpringModal() {
   return (
     <div>
       <TriggerButton onClick={handleOpen}>Open modal</TriggerButton>
-      <StyledModal
+      <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
         open={open}
@@ -29,7 +29,7 @@ export default function SpringModal() {
             </span>
           </Box>
         </Fade>
-      </StyledModal>
+      </Modal>
     </div>
   );
 }
@@ -43,7 +43,7 @@ Backdrop.propTypes = {
   open: PropTypes.bool.isRequired,
 };
 
-const StyledModal = styled(Modal)`
+const Modal = styled(BaseModal)`
   position: fixed;
   z-index: 1300;
   inset: 0;

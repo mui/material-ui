@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
 import { Tabs } from '@mui/base/Tabs';
-import { TabsList } from '@mui/base/TabsList';
-import { TabPanel } from '@mui/base/TabPanel';
+import { TabsList as BaseTabsList } from '@mui/base/TabsList';
+import { TabPanel as BaseTabPanel } from '@mui/base/TabPanel';
 import { buttonClasses } from '@mui/base/Button';
-import { Tab, tabClasses } from '@mui/base/Tab';
+import { Tab as BaseTab, tabClasses } from '@mui/base/Tab';
 
 export default function UnstyledTabsCustomized() {
   return (
     <Tabs defaultValue={1}>
-      <StyledTabsList>
-        <StyledTab value={1}>One</StyledTab>
-        <StyledTab value={2}>Two</StyledTab>
-        <StyledTab value={3}>Three</StyledTab>
-      </StyledTabsList>
-      <StyledTabPanel value={1}>First page</StyledTabPanel>
-      <StyledTabPanel value={2}>Second page</StyledTabPanel>
-      <StyledTabPanel value={3}>Third page</StyledTabPanel>
+      <TabsList>
+        <Tab value={1}>One</Tab>
+        <Tab value={2}>Two</Tab>
+        <Tab value={3}>Three</Tab>
+      </TabsList>
+      <TabPanel value={1}>First page</TabPanel>
+      <TabPanel value={2}>Second page</TabPanel>
+      <TabPanel value={3}>Third page</TabPanel>
     </Tabs>
   );
 }
@@ -34,7 +34,7 @@ const blue = {
   900: '#003A75',
 };
 
-const StyledTab = styled(Tab)`
+const Tab = styled(BaseTab)`
   font-family: 'IBM Plex Sans', sans-serif;
   color: white;
   cursor: pointer;
@@ -70,13 +70,13 @@ const StyledTab = styled(Tab)`
   }
 `;
 
-const StyledTabPanel = styled(TabPanel)`
+const TabPanel = styled(BaseTabPanel)`
   width: 100%;
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
 `;
 
-const StyledTabsList = styled(TabsList)(
+const TabsList = styled(BaseTabsList)(
   ({ theme }) => `
   min-width: 400px;
   background-color: ${blue[500]};

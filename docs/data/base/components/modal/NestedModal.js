@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled, Box } from '@mui/system';
-import { Modal } from '@mui/base/Modal';
+import { Modal as BaseModal } from '@mui/base/Modal';
 import { Button } from '@mui/base/Button';
 
 export default function NestedModal() {
@@ -17,7 +17,7 @@ export default function NestedModal() {
   return (
     <div>
       <TriggerButton onClick={handleOpen}>Open modal</TriggerButton>
-      <StyledModal
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
@@ -31,7 +31,7 @@ export default function NestedModal() {
           </p>
           <ChildModal />
         </Box>
-      </StyledModal>
+      </Modal>
     </div>
   );
 }
@@ -48,7 +48,7 @@ function ChildModal() {
   return (
     <React.Fragment>
       <Button onClick={handleOpen}>Open Child Modal</Button>
-      <StyledModal
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="child-modal-title"
@@ -62,7 +62,7 @@ function ChildModal() {
           </p>
           <Button onClick={handleClose}>Close Child Modal</Button>
         </Box>
-      </StyledModal>
+      </Modal>
     </React.Fragment>
   );
 }
@@ -102,7 +102,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledModal = styled(Modal)`
+const Modal = styled(BaseModal)`
   position: fixed;
   z-index: 1300;
   inset: 0;

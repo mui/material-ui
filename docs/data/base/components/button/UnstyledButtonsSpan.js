@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { Button, buttonClasses } from '@mui/base/Button';
+import { Button as BaseButton, buttonClasses } from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
 export default function UnstyledButtonsSpan() {
   return (
     <Stack spacing={2} direction="row">
-      <CustomButton slots={{ root: 'span' }}>Button</CustomButton>
-      <CustomButton slots={{ root: 'span' }} disabled>
+      <Button slots={{ root: 'span' }}>Button</Button>
+      <Button slots={{ root: 'span' }} disabled>
         Disabled
-      </CustomButton>
+      </Button>
     </Stack>
   );
 }
@@ -20,7 +20,7 @@ const blue = {
   700: '#0059B2',
 };
 
-const CustomButton = styled(Button)`
+const Button = styled(BaseButton)`
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   line-height: 1.5;

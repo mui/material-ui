@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled, Box } from '@mui/system';
-import { Modal } from '@mui/base/Modal';
+import { Modal as BaseModal } from '@mui/base/Modal';
 
 export default function ModalUnstyled() {
   const [open, setOpen] = React.useState(false);
@@ -14,7 +14,7 @@ export default function ModalUnstyled() {
       <TriggerButton type="button" onClick={handleOpen}>
         Open modal
       </TriggerButton>
-      <StyledModal
+      <Modal
         aria-labelledby="unstyled-modal-title"
         aria-describedby="unstyled-modal-description"
         open={open}
@@ -25,7 +25,7 @@ export default function ModalUnstyled() {
           <h2 id="unstyled-modal-title">Text in a modal</h2>
           <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
         </Box>
-      </StyledModal>
+      </Modal>
     </div>
   );
 }
@@ -65,7 +65,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledModal = styled(Modal)`
+const Modal = styled(BaseModal)`
   position: fixed;
   z-index: 1300;
   inset: 0;

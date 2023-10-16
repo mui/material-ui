@@ -1,4 +1,4 @@
-<StyledModal
+<Modal
   disablePortal
   disableEnforceFocus
   disableAutoFocus
@@ -13,4 +13,4 @@
       If you disable JavaScript, you will still see me.
     </span>
   </Box>
-</StyledModal>
+</Modal>

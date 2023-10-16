@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled, Theme } from '@mui/system';
 import {
-  Unstable_Popup as Popup,
+  Unstable_Popup as BasePopup,
   PopupChildrenProps,
 } from '@mui/base/Unstable_Popup';
 
@@ -14,13 +14,13 @@ export default function AnimatedPopup() {
       <Button ref={setAnchor} onClick={() => setOpen((o) => !o)} type="button">
         Toggle Popup
       </Button>
-      <Popup anchor={anchor} open={open} withTransition>
+      <BasePopup anchor={anchor} open={open} withTransition>
         {(props: PopupChildrenProps) => (
           <PopAnimation {...props}>
             <PopupBody>This is an animated popup.</PopupBody>
           </PopAnimation>
         )}
-      </Popup>
+      </BasePopup>
     </div>
   );
 }

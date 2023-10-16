@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled, Box } from '@mui/system';
-import { Badge, badgeClasses } from '@mui/base/Badge';
+import { Badge as BaseBadge, badgeClasses } from '@mui/base/Badge';
 
 function BadgeContent() {
   return (
@@ -21,9 +21,9 @@ function BadgeContent() {
 
 export default function UnstyledBadge() {
   return (
-    <StyledBadge badgeContent={5}>
+    <Badge badgeContent={5}>
       <BadgeContent />
-    </StyledBadge>
+    </Badge>
   );
 }
 
@@ -37,7 +37,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledBadge = styled(Badge)(
+const Badge = styled(BaseBadge)(
   ({ theme }) => `
   box-sizing: border-box;
   margin: 0;

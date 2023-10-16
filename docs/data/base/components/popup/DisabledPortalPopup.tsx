@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Unstable_Popup as Popup, PopupProps } from '@mui/base/Unstable_Popup';
+import { Unstable_Popup as BasePopup, PopupProps } from '@mui/base/Unstable_Popup';
 import { Box, styled, Theme } from '@mui/system';
 
 export default function DisabledPortalPopup() {
@@ -45,14 +45,14 @@ function PopupWithTrigger(props: PopupProps & { buttonLabel: string }) {
       <Button aria-describedby={id} type="button" onClick={handleClick}>
         {buttonLabel}
       </Button>
-      <StyledPopup id={id} open={open} anchor={anchor} {...other}>
+      <Popup id={id} open={open} anchor={anchor} {...other}>
         <PopupBody>{buttonLabel}</PopupBody>
-      </StyledPopup>
+      </Popup>
     </div>
   );
 }
 
-const StyledPopup = styled(Popup)`
+const Popup = styled(BasePopup)`
   z-index: 1;
 `;
 
