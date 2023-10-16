@@ -14,7 +14,7 @@ Base UI components follow the [WAI-ARIA 1.2 standard](https://www.w3.org/TR/wai-
 This is important for users who have trouble using a pointing device, but also comes in handy for users who find navigating with a keyboard faster, and who expect web components to behave the same way as native operating system controls.
 
 Specifically, interactive components can be focused using the <kbd>Tab</kbd> key.
-List-like components (such as Select and Menu) can be browsed and activated using arrow keys, <kbd>Home</kbd>, <kbd>End</kbd>, <kbd>Enter</kbd>/<kbd>Return</kbd>, and <kbd>Escape</kbd>.
+List-like components (such as Select and Menu) can be browsed and activated using arrow keys, <kbd class="key">Home</kbd>, <kbd class="key">End</kbd>, <kbd class="key">Enter</kbd>/<kbd class="key">Return</kbd>, and <kbd class="key">Escape</kbd>.
 The Select and Menu also let users navigate to options that begin with a provided string by pressing alphanumeric keys.
 
 ## Focus ring
