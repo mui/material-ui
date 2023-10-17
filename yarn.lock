@@ -2301,7 +2301,7 @@
     react-test-renderer "^18.0.0"
     semver "^5.7.0"
 
-"@mui/x-charts@^6.0.0-alpha.14":
+"@mui/x-charts@6.0.0-alpha.14":
   version "6.0.0-alpha.14"
   resolved "https://registry.yarnpkg.com/@mui/x-charts/-/x-charts-6.0.0-alpha.14.tgz#6e1e694ca63d229666f8c6a0f2d13fa9dbc27dea"
   integrity sha512-p2HzfXI5FMjaR3loFmlu2c4Rfu2YbW5YL4fMU4f5eH0pQf7v6PUhhjewlFjlg2DR885LTaKDC5vd06pxVtqSWQ==
