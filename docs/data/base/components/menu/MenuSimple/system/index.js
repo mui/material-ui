@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
-import { MenuButton } from '@mui/base/MenuButton';
-import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
+import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
+import { MenuItem as BaseMenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
 
 export default function MenuSimple() {
@@ -14,17 +14,11 @@ export default function MenuSimple() {
 
   return (
     <Dropdown>
-      <TriggerButton>Dashboard</TriggerButton>
-      <Menu slots={{ listbox: StyledListbox }}>
-        <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
-          Profile
-        </StyledMenuItem>
-        <StyledMenuItem onClick={createHandleMenuClick('My account')}>
-          My account
-        </StyledMenuItem>
-        <StyledMenuItem onClick={createHandleMenuClick('Log out')}>
-          Log out
-        </StyledMenuItem>
+      <MenuButton>Dashboard</MenuButton>
+      <Menu slots={{ listbox: Listbox }}>
+        <MenuItem onClick={createHandleMenuClick('Profile')}>Profile</MenuItem>
+        <MenuItem onClick={createHandleMenuClick('My account')}>My account</MenuItem>
+        <MenuItem onClick={createHandleMenuClick('Log out')}>Log out</MenuItem>
       </Menu>
     </Dropdown>
   );
@@ -54,7 +48,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -73,7 +67,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledMenuItem = styled(MenuItem)(
+const MenuItem = styled(BaseMenuItem)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -102,7 +96,7 @@ const StyledMenuItem = styled(MenuItem)(
   `,
 );
 
-const TriggerButton = styled(MenuButton)(
+const MenuButton = styled(BaseMenuButton)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 600;

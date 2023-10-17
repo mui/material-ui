@@ -3,25 +3,23 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha } from '@mui/system';
+import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDividerUtilityClass } from './dividerClasses';
+import { DividerOwnerState, DividerProps, DividerTypeMap } from './Divider.types';
 
-const useUtilityClasses = (ownerState) => {
-  const { absolute, children, classes, flexItem, light, orientation, textAlign, variant } =
-    ownerState;
+const useUtilityClasses = (ownerState: DividerOwnerState) => {
+  const { absolute, children, classes, flexItem, orientation, textAlign, variant } = ownerState;
 
   const slots = {
     root: [
       'root',
       absolute && 'absolute',
       variant,
-      light && 'light',
       orientation === 'vertical' && 'vertical',
       flexItem && 'flexItem',
-      children && 'withChildren',
-      children && orientation === 'vertical' && 'withChildrenVertical',
+      !!children && 'withChildren',
       textAlign === 'right' && orientation !== 'vertical' && 'textAlignRight',
       textAlign === 'left' && orientation !== 'vertical' && 'textAlignLeft',
     ],
@@ -41,11 +39,9 @@ const DividerRoot = styled('div', {
       styles.root,
       ownerState.absolute && styles.absolute,
       styles[ownerState.variant],
-      ownerState.light && styles.light,
       ownerState.orientation === 'vertical' && styles.vertical,
       ownerState.flexItem && styles.flexItem,
       ownerState.children && styles.withChildren,
-      ownerState.children && ownerState.orientation === 'vertical' && styles.withChildrenVertical,
       ownerState.textAlign === 'right' &&
         ownerState.orientation !== 'vertical' &&
         styles.textAlignRight,
@@ -54,48 +50,52 @@ const DividerRoot = styled('div', {
         styles.textAlignLeft,
     ];
   },
-})(
-  ({ theme, ownerState }) => ({
-    margin: 0, // Reset browser default style.
-    flexShrink: 0,
-    borderWidth: 0,
-    borderStyle: 'solid',
-    borderColor: (theme.vars || theme).palette.divider,
-    borderBottomWidth: 'thin',
-    ...(ownerState.absolute && {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      width: '100%',
-    }),
-    ...(ownerState.light && {
-      borderColor: theme.vars
-        ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
-        : alpha(theme.palette.divider, 0.08),
-    }),
-    ...(ownerState.variant === 'inset' && {
-      marginLeft: 72,
-    }),
-    ...(ownerState.variant === 'middle' &&
-      ownerState.orientation === 'horizontal' && {
-        marginLeft: theme.spacing(2),
-        marginRight: theme.spacing(2),
+})<{ ownerState: DividerOwnerState }>(
+  ({ theme, ownerState }) => {
+    const { vars: tokens } = theme;
+
+    return {
+      margin: 0, // Reset browser default style.
+      flexShrink: 0,
+      borderWidth: 0,
+      borderStyle: 'solid',
+      borderColor: tokens.sys.color.outlineVariant,
+      borderBottomWidth: '1px',
+      ...(ownerState.absolute && {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '100%',
       }),
-    ...(ownerState.variant === 'middle' &&
-      ownerState.orientation === 'vertical' && {
-        marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(1),
+      ...(ownerState.variant === 'inset' &&
+        ownerState.orientation === 'horizontal' && {
+          marginLeft: '16px',
+        }),
+      ...(ownerState.variant === 'inset' &&
+        ownerState.orientation === 'vertical' && {
+          marginTop: '16px',
+        }),
+      ...(ownerState.variant === 'middle' &&
+        ownerState.orientation === 'horizontal' && {
+          marginLeft: '16px',
+          marginRight: '16px',
+        }),
+      ...(ownerState.variant === 'middle' &&
+        ownerState.orientation === 'vertical' && {
+          marginTop: '16px',
+          marginBottom: '16px',
+        }),
+      ...(ownerState.orientation === 'vertical' && {
+        height: '100%',
+        borderBottomWidth: 0,
+        borderRightWidth: '1px',
       }),
-    ...(ownerState.orientation === 'vertical' && {
-      height: '100%',
-      borderBottomWidth: 0,
-      borderRightWidth: 'thin',
-    }),
-    ...(ownerState.flexItem && {
-      alignSelf: 'stretch',
-      height: 'auto',
-    }),
-  }),
+      ...(ownerState.flexItem && {
+        alignSelf: 'stretch',
+        height: 'auto',
+      }),
+    };
+  },
   ({ ownerState }) => ({
     ...(ownerState.children && {
       display: 'flex',
@@ -108,22 +108,22 @@ const DividerRoot = styled('div', {
       },
     }),
   }),
-  ({ theme, ownerState }) => ({
+  ({ theme: { vars: tokens }, ownerState }) => ({
     ...(ownerState.children &&
       ownerState.orientation !== 'vertical' && {
         '&::before, &::after': {
           width: '100%',
-          borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
+          borderTop: `1px solid ${tokens.sys.color.outlineVariant}`,
         },
       }),
   }),
-  ({ theme, ownerState }) => ({
+  ({ theme: { vars: tokens }, ownerState }) => ({
     ...(ownerState.children &&
       ownerState.orientation === 'vertical' && {
         flexDirection: 'column',
         '&::before, &::after': {
           height: '100%',
-          borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
+          borderLeft: `1px solid ${tokens.sys.color.outlineVariant}`,
         },
       }),
   }),
@@ -157,7 +157,7 @@ const DividerWrapper = styled('span', {
 
     return [styles.wrapper, ownerState.orientation === 'vertical' && styles.wrapperVertical];
   },
-})(({ theme, ownerState }) => ({
+})<{ ownerState: DividerOwnerState }>(({ theme, ownerState }) => ({
   display: 'inline-block',
   paddingLeft: `calc(${theme.spacing(1)} * 1.2)`,
   paddingRight: `calc(${theme.spacing(1)} * 1.2)`,
@@ -167,15 +167,32 @@ const DividerWrapper = styled('span', {
   }),
 }));
 
-const Divider = React.forwardRef(function Divider(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDivider' });
+/**
+ * Dividers separate content into clear groups.
+ *
+ * Demos:
+ *
+ * - [Divider](https://mui.com/material-ui/react-divider/)
+ * - [Lists](https://mui.com/material-ui/react-list/)
+ *
+ * API:
+ *
+ * - [Divider API](https://mui.com/material-ui/api/divider/)
+ */
+const Divider = React.forwardRef(function Divider<
+  BaseComponentType extends React.ElementType = DividerTypeMap['defaultComponent'],
+>(inProps: DividerProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiDivider',
+  });
+
   const {
     absolute = false,
     children,
     className,
     component = children ? 'div' : 'hr',
     flexItem = false,
-    light = false,
     orientation = 'horizontal',
     role = component !== 'hr' ? 'separator' : undefined,
     textAlign = 'center',
@@ -183,12 +200,11 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     ...other
   } = props;
 
-  const ownerState = {
+  const ownerState: DividerOwnerState = {
     ...props,
     absolute,
     component,
     flexItem,
-    light,
     orientation,
     role,
     textAlign,
@@ -213,18 +229,19 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
       ) : null}
     </DividerRoot>
   );
-});
+}) as OverridableComponent<DividerTypeMap>;
 
 /**
  * The following flag is used to ensure that this component isn't tabbable i.e.
  * does not get highlight/focus inside of MUI List.
  */
+// @ts-ignore internal logic
 Divider.muiSkipListHighlight = true;
 
 Divider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * Absolutely position the element.
@@ -255,11 +272,6 @@ Divider.propTypes /* remove-proptypes */ = {
    */
   flexItem: PropTypes.bool,
   /**
-   * If `true`, the divider will have a lighter color.
-   * @default false
-   */
-  light: PropTypes.bool,
-  /**
    * The component orientation.
    * @default 'horizontal'
    */
@@ -289,6 +301,6 @@ Divider.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
     PropTypes.string,
   ]),
-};
+} as any;
 
 export default Divider;
