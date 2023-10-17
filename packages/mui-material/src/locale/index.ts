@@ -1844,7 +1844,7 @@ export const isIS: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
-       expandText: 'Sýna slóð',
+        expandText: 'Sýna slóð',
       },
     },
     MuiTablePagination: {
