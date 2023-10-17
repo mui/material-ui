@@ -352,9 +352,6 @@ function ColorInversionDemo() {
             transform: 'translateX(-50%)',
             lineHeight: 0,
             border: 0,
-            '> * pre': {
-              backgroundColor: 'transparent',
-            },
           }}
         >
           <HighlightedCode
@@ -362,6 +359,11 @@ function ColorInversionDemo() {
             component={MarkdownElement}
             code={`<Card variant="solid" color="primary">{...}</Card>`}
             language="jsx"
+            sx={{
+              '> * pre': {
+                backgroundColor: 'transparent',
+              },
+            }}
           />
           <Divider />
           <MoreInfo subject="color inversion" link="/joy-ui/main-features/color-inversion/" />
@@ -396,9 +398,6 @@ function ColorInversionDemo() {
             bottom: 0,
             transform: 'translateX(-50%)',
             border: 0,
-            '> * pre': {
-              backgroundColor: 'transparent',
-            },
           }}
         >
           <HighlightedCode
@@ -406,6 +405,11 @@ function ColorInversionDemo() {
             component={MarkdownElement}
             code={`<Card variant="solid" color="primary" invertedColors>{...}</Card>`}
             language="jsx"
+            sx={{
+              '> * pre': {
+                backgroundColor: 'transparent',
+              },
+            }}
           />
           <Divider />
           <MoreInfo subject="color inversion" link="/joy-ui/main-features/color-inversion/" />
@@ -668,9 +672,6 @@ function CSSvars() {
           display: 'flex',
           flexDirection: 'column',
           gap: 1.5,
-          '> * pre': {
-            backgroundColor: 'transparent',
-          },
         }}
       >
         <HighlightedCode
@@ -692,6 +693,11 @@ function CSSvars() {
           }
             `}
           language="jsx"
+          sx={{
+            '> * pre': {
+              backgroundColor: 'transparent',
+            },
+          }}
         />
         <Divider />
         <MoreInfo
@@ -821,9 +827,6 @@ function AutomaticAdjustment() {
           display: 'flex',
           flexDirection: 'column',
           gap: 1.5,
-          '> pre': {
-            backgroundColor: 'transparent',
-          },
         }}
       >
         <HighlightedCode
@@ -841,6 +844,11 @@ function AutomaticAdjustment() {
           }
             `}
           language="jsx"
+          sx={{
+            '> * pre': {
+              backgroundColor: 'transparent',
+            },
+          }}
         />
         <Divider />
         <MoreInfo

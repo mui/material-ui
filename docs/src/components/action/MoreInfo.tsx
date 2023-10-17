@@ -16,7 +16,7 @@ export default function MoreInfo({ subject, link }: MoreInfoProps) {
         sx={{
           verticalAlign: 'middle',
           color: 'primaryDark.400',
-          mr: 0.8,
+          mr: 1,
           fontSize: 18,
           mb: 0.6,
         }}
