@@ -15,6 +15,7 @@ import JoyUISummary from 'docs/src/components/productJoyUI/JoyUISummary';
 import JoyUIComponents from 'docs/src/components/productJoyUI/JoyUIComponents';
 import JoyUIFeatures from 'docs/src/components/productJoyUI/JoyUIFeatures';
 import JoyUITestimonial from 'docs/src/components/productJoyUI/JoyUITestimonial';
+import JoyUIDesignKit from 'docs/src/components/productJoyUI/JoyUIDesignKit';
 import JoyUIEnd from 'docs/src/components/productJoyUI/JoyUIEnd';
 
 function Loading() {
@@ -97,6 +98,10 @@ export default function Core() {
           <Divider />
           <Box sx={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' }}>
             <JoyUIFeatures />
+          </Box>
+          <Divider />
+          <Box sx={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' }}>
+            <JoyUIDesignKit />
           </Box>
           <Divider />
           <Box sx={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' }}>

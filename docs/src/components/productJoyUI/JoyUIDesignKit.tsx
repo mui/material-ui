@@ -18,7 +18,7 @@ import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
 import Link from 'docs/src/modules/components/Link';
 
-const DEMOS = ['Components', 'Branding', 'Iconography'];
+const DEMOS = ['Color & Typography', 'Components', 'Variants'];
 
 const Image = styled('img')(({ theme }) => ({
   filter: 'drop-shadow(-2px 4px 4px rgba(61, 71, 82, 0.1))',
@@ -31,11 +31,11 @@ const Image = styled('img')(({ theme }) => ({
   }),
 }));
 
-export default function MaterialDesignKits() {
+export default function JoyUIDesignKit() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
-    [DEMOS[0]]: <ToggleOnRounded fontSize="small" />,
-    [DEMOS[1]]: <TextFieldsRounded fontSize="small" />,
+    [DEMOS[0]]: <TextFieldsRounded fontSize="small" />,
+    [DEMOS[1]]: <ToggleOnRounded fontSize="small" />,
     [DEMOS[2]]: <WidgetsRounded fontSize="small" />,
   };
   return (
@@ -49,7 +49,7 @@ export default function MaterialDesignKits() {
                 Enhance your <GradientText>design workflow</GradientText>
               </Typography>
             }
-            description="The Design kits contain many of the Material UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
+            description="The Design kits contain many of the Joy UI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date release."
           />
           <Group desktopColumns={2} sx={{ mt: 4 }}>
             {DEMOS.map((name) => (
@@ -68,6 +68,7 @@ export default function MaterialDesignKits() {
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
+          {/* Still working on the images below */}
           <Frame>
             <Frame.Demo
               sx={{
@@ -76,7 +77,7 @@ export default function MaterialDesignKits() {
                 perspective: '1000px',
               }}
             >
-              <Fade in={demo === 'Components'} timeout={500}>
+              <Fade in={demo === 'Color & Typography'} timeout={500}>
                 <Box
                   sx={[
                     {
@@ -159,7 +160,7 @@ export default function MaterialDesignKits() {
                   />
                 </Box>
               </Fade>
-              <Fade in={demo === 'Branding'} timeout={500}>
+              <Fade in={demo === 'Components'} timeout={500}>
                 <Image
                   src={`/static/branding/design-kits/Colors-light.jpeg`}
                   alt=""
@@ -177,9 +178,9 @@ export default function MaterialDesignKits() {
                   })}
                 />
               </Fade>
-              <Fade in={demo === 'Iconography'} timeout={500}>
+              <Fade in={demo === 'Variants'} timeout={500}>
                 <Image
-                  src={`/static/branding/design-kits/Icons-light.jpeg`}
+                  src="/static/branding/design-kits/joy-design-states.png"
                   alt=""
                   loading="lazy"
                   width="300"
@@ -190,7 +191,7 @@ export default function MaterialDesignKits() {
                     top: 60,
                     transform: 'translate(-40%)',
                     ...theme.applyDarkStyles({
-                      content: `url(/static/branding/design-kits/Icons-dark.jpeg)`,
+                      content: `url(/static/branding/design-kits/joy-design-states.png)`,
                     }),
                   })}
                 />
