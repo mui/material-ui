@@ -142,7 +142,8 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
+  // Used in the legacy MenuList component
+  // const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
 
   const handleEntering = (element: HTMLElement, isAppearing: boolean) => {
     // adjust styles for scrollbar
