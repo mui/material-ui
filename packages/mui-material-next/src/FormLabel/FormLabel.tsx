@@ -40,11 +40,14 @@ export const FormLabelRoot = styled('label', {
 })<{ ownerState: FormLabelOwnerState }>(({ theme, ownerState }) => {
   const { vars: tokens } = theme;
 
-  const letterSpacing = `${theme.sys.typescale.body.large.tracking / 16}rem`;
+  const pxFontSize = 16;
+
+  const letterSpacing = `${theme.sys.typescale.body.large.tracking / pxFontSize}rem`;
 
   return {
     '--md-comp-form-label-color': tokens.sys.color.secondary,
     '--md-comp-form-label-font-family': tokens.sys.typescale.body.large.family,
+    '--md-comp-form-label-font-size': theme.typography.pxToRem(pxFontSize), // the pxToRem should be moved to typescale in the future,
     '--md-comp-form-label-font-weight': tokens.sys.typescale.body.large.weight,
     '--md-comp-form-label-letter-spacing': letterSpacing,
     '--md-comp-form-label-line-height': '1.5rem',
@@ -54,7 +57,7 @@ export const FormLabelRoot = styled('label', {
     '--md-comp-form-label-focus-color': tokens.sys.color[ownerState.color],
     color: 'var(--md-comp-form-label-color)',
     fontFamily: 'var(--md-comp-form-label-font-family)',
-    fontSize: theme.typography.pxToRem(theme.sys.typescale.body.large.size), // pxToRem should be moved to typescale in the future
+    fontSize: 'var(--md-comp-form-label-font-size)',
     fontWeight: 'var(--md-comp-form-label-font-weight)',
     lineHeight: 'var(--md-comp-form-label-line-height)',
     padding: 0,
