@@ -27,7 +27,7 @@ document.dir = 'rtl';
 Add the `dir="rtl"` attribute to any other HTML element or React component if you need limit the scope of the text direction to that element and its children.
 
 :::warning
-Components that use React portals (like the [Dialog](/joy-ui/react-dialog)) do _not_ inherit the `dir` attribute from parents, because they actually render outside of their parental DOM trees.
+Components that use React portals (like the [Dialog](/joy-ui/react-dialog/)) do _not_ inherit the `dir` attribute from parents, because they actually render outside of their parental DOM trees.
 
 You must apply the `dir` attribute directly to these components if it's not [globally](#globally) defined as right-to-left:
 
