@@ -42,7 +42,7 @@
     "clsx": "^2.0.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.6",
+    "@types/chai": "^4.3.8",
     "@types/mocha": "^10.0.2",
     "@types/node": "^18.18.4",
     "@types/react": "^18.2.23",

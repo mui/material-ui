@@ -56,7 +56,7 @@
     "@types/babel__core": "^7.20.2",
     "@types/babel__helper-module-imports": "^7.18.1",
     "@types/babel__helper-plugin-utils": "^7.10.1",
-    "@types/chai": "^4.3.6",
+    "@types/chai": "^4.3.8",
     "@types/lodash.get": "^4.4.7",
     "@types/mocha": "^10.0.2",
     "@types/node": "^18.18.4",

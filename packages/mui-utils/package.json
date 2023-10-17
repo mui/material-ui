@@ -49,7 +49,7 @@
     "@mui-internal/test-utils": "^1.0.0",
     "@mui/types": "^7.2.6",
     "@types/babel-plugin-macros": "^3.1.1",
-    "@types/chai": "^4.3.6",
+    "@types/chai": "^4.3.8",
     "@types/mocha": "^10.0.2",
     "@types/node": "^18.18.4",
     "@types/react": "^18.2.23",
