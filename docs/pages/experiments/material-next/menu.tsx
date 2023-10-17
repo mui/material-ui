@@ -98,7 +98,10 @@ function LegacyUsage(props: MenuProps) {
   );
 }
 
-function StableComponentUsage(props: { MenuListProps?: { disabledItemsFocusable?: boolean }; autoFocus?: boolean; }) {
+function StableComponentUsage(props: {
+  MenuListProps?: { disabledItemsFocusable?: boolean };
+  autoFocus?: boolean;
+}) {
   const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent) => {
@@ -166,11 +169,7 @@ function SelectedMenuLegacy() {
 
   return (
     <div>
-      <StableList
-        component="nav"
-        aria-label="Device settings"
-        sx={{ bgcolor: 'background.paper' }}
-      >
+      <StableList component="nav" aria-label="Device settings" sx={{ bgcolor: 'background.paper' }}>
         <StableListItem
           button
           id="lock-button"
@@ -211,6 +210,46 @@ function SelectedMenuLegacy() {
   );
 }
 
+function SelectedMenuDropdown() {
+  const { contextValue: dropdownContextValue } = useDropdown();
+
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const handleMenuItemClick = (event: React.MouseEvent, index: number) => {
+    setSelectedIndex(index);
+  };
+
+  return (
+    <DropdownContext.Provider value={dropdownContextValue}>
+      <MenuButton
+        id="basic-button"
+        // aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        // aria-expanded={open ? 'true' : undefined}
+        aria-label="Device settings"
+      >
+        {selectedMenuOptions[selectedIndex]}
+      </MenuButton>
+      <Menu
+        id="lock-menu"
+        MenuListProps={{
+          'aria-labelledby': 'lock-button',
+          role: 'listbox',
+        }}
+      >
+        {selectedMenuOptions.map((option, index) => (
+          <MenuItem
+            key={option}
+            disabled={index === 0}
+            selected={index === selectedIndex}
+            onClick={(event) => handleMenuItemClick(event, index)}
+          >
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
+    </DropdownContext.Provider>
+  );
+}
 
 function SelectedMenuStable() {
   const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
@@ -231,11 +270,7 @@ function SelectedMenuStable() {
 
   return (
     <div>
-      <StableList
-        component="nav"
-        aria-label="Device settings"
-        sx={{ bgcolor: 'background.paper' }}
-      >
+      <StableList component="nav" aria-label="Device settings" sx={{ bgcolor: 'background.paper' }}>
         <StableListItem
           button
           id="lock-button"
@@ -289,11 +324,14 @@ export default function BasicMenu() {
       {/* This is not working at this point */}
       <h4>Auto focus false</h4>
       <LegacyUsage autoFocus={false} />
-      <DropdownUsage autoFocus={false}  />
-      <StableComponentUsage autoFocus={false}  />
+      <DropdownUsage autoFocus={false} />
+      <StableComponentUsage autoFocus={false} />
       {/* This is not working at this point */}
+      <h4>Varaiant selectedMenu</h4>
       <div>Legacy</div>
       <SelectedMenuLegacy />
+      <div>Dropdown</div>
+      <SelectedMenuDropdown />
       <div>Stable</div>
       <SelectedMenuStable />
     </ThemeProvider>

@@ -114,7 +114,8 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
   const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     // onItemsChange,
     disabledItemsFocusable: Boolean(disabledItemsFocusable),
-    disableListWrap: Boolean(disableListWrap)
+    disableListWrap: Boolean(disableListWrap),
+    // autoFocus,
   });
 
   const ownerState = {
@@ -226,6 +227,8 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
     ownerState,
     className: classes.paper,
   });
+
+  const autoFocusList = autoFocus && (activeItemIndex === -1 || disableAutoFocusItem);
 
   const Listbox = slots.listbox ?? MenuListbox;
   const listboxProps = useSlotProps({
