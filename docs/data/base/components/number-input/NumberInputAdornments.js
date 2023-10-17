@@ -1,19 +1,19 @@
 import * as React from 'react';
 import {
-  Unstable_NumberInput as NumberInput,
+  Unstable_NumberInput as BaseNumberInput,
   numberInputClasses,
 } from '@mui/base/Unstable_NumberInput';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/system';
 
-const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
+const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
   return (
-    <NumberInput
+    <BaseNumberInput
       slots={{
-        root: StyledInputRoot,
-        input: StyledInputElement,
-        incrementButton: StyledButton,
-        decrementButton: StyledButton,
+        root: InputRoot,
+        input: InputElement,
+        incrementButton: Button,
+        decrementButton: Button,
       }}
       slotProps={{
         incrementButton: {
@@ -38,7 +38,7 @@ export default function NumberInputAdornments() {
         gap: 2,
       }}
     >
-      <CustomNumberInput
+      <NumberInput
         startAdornment={
           <InputAdornment>
             <svg
@@ -58,7 +58,7 @@ export default function NumberInputAdornments() {
           </InputAdornment>
         }
       />
-      <CustomNumberInput endAdornment={<InputAdornment>kg</InputAdornment>} />
+      <NumberInput endAdornment={<InputAdornment>kg</InputAdornment>} />
     </Box>
   );
 }
@@ -96,7 +96,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledInputRoot = styled('div')(
+const InputRoot = styled('div')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
@@ -126,7 +126,7 @@ const StyledInputRoot = styled('div')(
 `,
 );
 
-const StyledInputElement = styled('input')`
+const InputElement = styled('input')`
   font-size: 0.875rem;
   font-family: inherit;
   font-weight: 400;
@@ -140,7 +140,7 @@ const StyledInputElement = styled('input')`
   outline: 0;
 `;
 
-const StyledButton = styled('button')(
+const Button = styled('button')(
   ({ theme }) => `
   display: flex;
   flex-flow: row nowrap;

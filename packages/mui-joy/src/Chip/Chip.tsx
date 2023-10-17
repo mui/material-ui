@@ -9,7 +9,6 @@ import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
-import { useColorInversion } from '../styles/ColorInversion';
 import { resolveSxValue } from '../styles/styleUtils';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
@@ -224,7 +223,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const {
     children,
     className,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     onClick,
     disabled = false,
     size = 'md',
@@ -236,8 +235,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const clickable = !!onClick || !!slotProps.action;
   const ownerState: ChipOwnerState = {
@@ -313,7 +310,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   return (
     <ChipContext.Provider value={chipContextValue}>
-      <VariantColorProvider variant={variant} color={colorProp}>
+      <VariantColorProvider variant={variant} color={color}>
         <SlotRoot {...rootProps}>
           {clickable && <SlotAction {...actionProps} />}
 

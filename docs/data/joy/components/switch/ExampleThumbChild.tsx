@@ -5,6 +5,7 @@ import DarkMode from '@mui/icons-material/DarkMode';
 export default function ExampleThumbChild() {
   return (
     <Switch
+      size="lg"
       slotProps={{
         input: { 'aria-label': 'Dark mode' },
         thumb: {
@@ -12,7 +13,7 @@ export default function ExampleThumbChild() {
         },
       }}
       sx={{
-        '--Switch-thumbSize': '28px',
+        '--Switch-thumbSize': '16px',
       }}
     />
   );

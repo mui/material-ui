@@ -17,7 +17,7 @@ import {
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
 } from './useSlider.types';
-import { areArraysEqual, EventHandlers } from '../utils';
+import { areArraysEqual, EventHandlers, extractEventHandlers } from '../utils';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
@@ -282,7 +282,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   const handleRef = useForkRef(ref, handleFocusRef);
 
   const createHandleHiddenInputFocus =
-    (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
+    (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
       const index = Number(event.currentTarget.getAttribute('data-index'));
       handleFocusVisible(event);
       if (isFocusVisibleRef.current === true) {
@@ -292,7 +292,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       otherHandlers?.onFocus?.(event);
     };
   const createHandleHiddenInputBlur =
-    (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
+    (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
       handleBlurVisible(event);
       if (isFocusVisibleRef.current === false) {
         setFocusedThumbIndex(-1);
@@ -319,7 +319,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   }
 
   const createHandleHiddenInputChange =
-    (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.ChangeEvent) => {
+    (otherHandlers: EventHandlers) => (event: React.ChangeEvent) => {
       otherHandlers.onChange?.(event);
 
       const index = Number(event.currentTarget.getAttribute('data-index'));
@@ -571,8 +571,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   }, [disabled, stopListening]);
 
   const createHandleMouseDown =
-    (otherHandlers: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent<HTMLSpanElement>) => {
+    (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLSpanElement>) => {
       otherHandlers.onMouseDown?.(event);
       if (disabled) {
         return;
@@ -610,26 +609,29 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   const trackOffset = valueToPercent(range ? values[0] : min, min, max);
   const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
 
-  const getRootProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseSliderRootSlotProps<TOther> => {
+  const getRootProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseSliderRootSlotProps<ExternalProps> => {
+    const externalHandlers = extractEventHandlers(externalProps);
+
     const ownEventHandlers = {
-      onMouseDown: createHandleMouseDown(otherHandlers || {}),
+      onMouseDown: createHandleMouseDown(externalHandlers || {}),
     };
 
     const mergedEventHandlers = {
-      ...otherHandlers,
+      ...externalHandlers,
       ...ownEventHandlers,
     };
+
     return {
+      ...externalProps,
       ref: handleRef,
       ...mergedEventHandlers,
     };
   };
 
   const createHandleMouseOver =
-    (otherHandlers: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
       otherHandlers.onMouseOver?.(event);
 
       const index = Number(event.currentTarget.getAttribute('data-index'));
@@ -637,23 +639,25 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     };
 
   const createHandleMouseLeave =
-    (otherHandlers: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
       otherHandlers.onMouseLeave?.(event);
 
       setOpen(-1);
     };
 
-  const getThumbProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseSliderThumbSlotProps<TOther> => {
+  const getThumbProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseSliderThumbSlotProps<ExternalProps> => {
+    const externalHandlers = extractEventHandlers(externalProps);
+
     const ownEventHandlers = {
-      onMouseOver: createHandleMouseOver(otherHandlers || {}),
-      onMouseLeave: createHandleMouseLeave(otherHandlers || {}),
+      onMouseOver: createHandleMouseOver(externalHandlers || {}),
+      onMouseLeave: createHandleMouseLeave(externalHandlers || {}),
     };
 
     return {
-      ...otherHandlers,
+      ...externalProps,
+      ...externalHandlers,
       ...ownEventHandlers,
     };
   };
@@ -665,17 +669,19 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     };
   };
 
-  const getHiddenInputProps = <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseSliderHiddenInputProps<TOther> => {
+  const getHiddenInputProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseSliderHiddenInputProps<ExternalProps> => {
+    const externalHandlers = extractEventHandlers(externalProps);
+
     const ownEventHandlers = {
-      onChange: createHandleHiddenInputChange(otherHandlers || {}),
-      onFocus: createHandleHiddenInputFocus(otherHandlers || {}),
-      onBlur: createHandleHiddenInputBlur(otherHandlers || {}),
+      onChange: createHandleHiddenInputChange(externalHandlers || {}),
+      onFocus: createHandleHiddenInputFocus(externalHandlers || {}),
+      onBlur: createHandleHiddenInputBlur(externalHandlers || {}),
     };
 
     const mergedEventHandlers = {
-      ...otherHandlers,
+      ...externalHandlers,
       ...ownEventHandlers,
     };
 
@@ -691,6 +697,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       max: parameters.max,
       step: parameters.step === null && parameters.marks ? 'any' : parameters.step ?? undefined,
       disabled,
+      ...externalProps,
       ...mergedEventHandlers,
       style: {
         ...visuallyHidden,

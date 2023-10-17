@@ -74,6 +74,7 @@ module.exports = {
         ],
       },
     ],
+    'no-continue': 'off',
     'no-constant-condition': 'error',
     // Use the proptype inheritance chain
     'no-prototype-builtins': 'off',
@@ -82,6 +83,16 @@ module.exports = {
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     // Destructuring harm grep potential.
     'prefer-destructuring': 'off',
+
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      {
+        functions: false,
+        classes: true,
+        variables: true,
+      },
+    ],
+    'no-use-before-define': 'off',
 
     // disabled type-aware linting due to performance considerations
     '@typescript-eslint/dot-notation': 'off',
@@ -260,6 +271,20 @@ module.exports = {
           'error',
           { allow: ['MUI', 'Twitter', 'GitHub', 'Stack Overflow'] },
         ],
+      },
+    },
+    // Next.js plugin
+    {
+      files: ['docs/**/*'],
+      extends: ['plugin:@next/next/recommended'],
+      settings: {
+        next: {
+          rootDir: 'docs',
+        },
+      },
+      rules: {
+        // We're not using the Image component at the moment
+        '@next/next/no-img-element': 'off',
       },
     },
     // Next.js entry points pages

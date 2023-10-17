@@ -126,7 +126,7 @@ const PaginationItemPage = styled(ButtonBase, {
       backgroundColor: (theme.vars || theme).palette.action.selected,
       '&:hover': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selected} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -138,7 +138,7 @@ const PaginationItemPage = styled(ButtonBase, {
       },
       [`&.${paginationItemClasses.focusVisible}`]: {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selected} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -352,7 +352,7 @@ PaginationItem.propTypes /* remove-proptypes */ = {
   /**
    * The active color.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'standard'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

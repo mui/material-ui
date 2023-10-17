@@ -1,9 +1,9 @@
-<StyledBadge badgeContent={99}>
+<Badge badgeContent={99}>
   <MailIcon />
-</StyledBadge>
-<StyledBadge badgeContent={100}>
+</Badge>
+<Badge badgeContent={100}>
   <MailIcon />
-</StyledBadge>
-<StyledBadge badgeContent={1000} max={999}>
+</Badge>
+<Badge badgeContent={1000} max={999}>
   <MailIcon />
-</StyledBadge>
+</Badge>

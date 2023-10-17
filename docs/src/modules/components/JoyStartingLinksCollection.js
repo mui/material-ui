@@ -24,13 +24,28 @@ const content = [
     link: '/joy-ui/getting-started/templates/',
     icon: <WebRoundedIcon color="primary" />,
   },
+  {
+    title: 'Joy UI for Figma',
+    description:
+      'The Joy UI components, with variables, variants, and states, in your favorite design tool.',
+    link: 'https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma',
+    icon: (
+      <img
+        src={`/static/branding/design-kits/figma-logo.svg`}
+        alt="Figma logo"
+        loading="lazy"
+        width="24"
+        height="24"
+      />
+    ),
+  },
 ];
 
 export default function JoyStartingLinksCollection() {
   return (
     <Grid container spacing={2}>
       {content.map(({ icon, title, description, link }) => (
-        <Grid key={title} xs={12} sm={4}>
+        <Grid key={title} xs={12} sm={6}>
           <InfoCard link={link} title={title} icon={icon} description={description} />
         </Grid>
       ))}

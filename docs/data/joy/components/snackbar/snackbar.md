@@ -10,7 +10,7 @@ githubLabel: 'component: snackbar'
 
 :::info
 The Joy UI Snackbar component is still in development.
-If you're in need of it, please upvote [**this GitHub issue**](https://github.com/mui/material-ui/issues/36603) to help us prioritize the next batch of new components.
+If you're in need of it, please upvote **[this GitHub issue](https://github.com/mui/material-ui/issues/36603)** to help us prioritize the next batch of new components.
 :::
 
 ## Integration with headless UI libraries

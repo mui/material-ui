@@ -2,8 +2,8 @@ import * as React from 'react';
 import { styled } from '@mui/system';
 import { buttonClasses } from '@mui/base/Button';
 import { Tabs } from '@mui/base/Tabs';
-import { Tab, tabClasses } from '@mui/base/Tab';
-import { TabsList } from '@mui/base/TabsList';
+import { Tab as BaseTab, tabClasses } from '@mui/base/Tab';
+import { TabsList as BaseTabsList } from '@mui/base/TabsList';
 
 export default function KeyboardNavigation() {
   return (
@@ -14,20 +14,20 @@ export default function KeyboardNavigation() {
         aria-label="Tabs where selection follows focus"
         selectionFollowsFocus
       >
-        <StyledTabsList>
-          <StyledTab value={1}>One</StyledTab>
-          <StyledTab value={2}>Two</StyledTab>
-          <StyledTab value={3}>Three</StyledTab>
-        </StyledTabsList>
+        <TabsList>
+          <Tab value={1}>One</Tab>
+          <Tab value={2}>Two</Tab>
+          <Tab value={3}>Three</Tab>
+        </TabsList>
       </Tabs>
 
       <p>Selection independent of focus (default behavior):</p>
       <Tabs defaultValue={1} aria-label="Tabs where selection does not follow focus">
-        <StyledTabsList>
-          <StyledTab value={1}>One</StyledTab>
-          <StyledTab value={2}>Two</StyledTab>
-          <StyledTab value={3}>Three</StyledTab>
-        </StyledTabsList>
+        <TabsList>
+          <Tab value={1}>One</Tab>
+          <Tab value={2}>Two</Tab>
+          <Tab value={3}>Three</Tab>
+        </TabsList>
       </Tabs>
     </div>
   );
@@ -59,7 +59,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledTab = styled(Tab)`
+const Tab = styled(BaseTab)`
   font-family: 'IBM Plex Sans', sans-serif;
   color: white;
   cursor: pointer;
@@ -94,7 +94,7 @@ const StyledTab = styled(Tab)`
   }
 `;
 
-const StyledTabsList = styled(TabsList)(
+const TabsList = styled(BaseTabsList)(
   ({ theme }) => `
   min-width: 400px;
   background-color: ${blue[500]};

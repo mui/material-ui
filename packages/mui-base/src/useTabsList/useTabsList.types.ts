@@ -9,7 +9,7 @@ export interface UseTabsListParameters {
   rootRef: React.Ref<Element>;
 }
 
-export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
+export type UseTabsListRootSlotProps<ExternalProps = {}> = ExternalProps & {
   'aria-label'?: React.AriaAttributes['aria-label'];
   'aria-labelledby'?: React.AriaAttributes['aria-labelledby'];
   'aria-orientation'?: React.AriaAttributes['aria-orientation'];
@@ -33,9 +33,9 @@ export interface UseTabsListReturnValue {
    * @param externalProps props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: <TOther extends Record<string, any> = {}>(
-    externalProps?: TOther,
-  ) => UseTabsListRootSlotProps<TOther>;
+  getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseTabsListRootSlotProps<ExternalProps>;
   /**
    * The value of the currently highlighted tab.
    */

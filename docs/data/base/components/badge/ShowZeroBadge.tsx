@@ -1,18 +1,18 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/system';
-import { Badge, badgeClasses } from '@mui/base/Badge';
+import { Badge as BaseBadge, badgeClasses } from '@mui/base/Badge';
 import MailIcon from '@mui/icons-material/Mail';
 
 export default function ShowZeroBadge() {
   return (
     <Stack spacing={4} direction="row">
-      <StyledBadge badgeContent={0}>
+      <Badge badgeContent={0}>
         <MailIcon />
-      </StyledBadge>
-      <StyledBadge badgeContent={0} showZero>
+      </Badge>
+      <Badge badgeContent={0} showZero>
         <MailIcon />
-      </StyledBadge>
+      </Badge>
     </Stack>
   );
 }
@@ -26,7 +26,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledBadge = styled(Badge)(
+const Badge = styled(BaseBadge)(
   ({ theme }) => `
   box-sizing: border-box;
   margin: 0;
