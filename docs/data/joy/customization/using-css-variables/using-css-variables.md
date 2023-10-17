@@ -73,7 +73,21 @@ extendTheme({
 
 #### useTheme hook
 
-missing
+To access the theme object, use the `useTheme` hook. It must be used within a component that is wrapped in the `CssVarsProvider` component.
+
+```jsx
+import { useTheme } from '@mui/joy/styles';
+
+const SomeComponent = () => {
+  const theme = useTheme(); // The runtime theme.
+
+  return (
+    <div>
+      <p>{theme.vars.palette.primary[500]}</p>
+    </div>
+  );
+};
+```
 
 ### Creating new variables
 
