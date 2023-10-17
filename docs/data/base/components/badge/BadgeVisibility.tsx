@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/system';
-import { Badge, badgeClasses } from '@mui/base/Badge';
+import { Badge as BaseBadge, badgeClasses } from '@mui/base/Badge';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
@@ -33,9 +33,9 @@ export default function BadgeVisibility() {
       }}
     >
       <div>
-        <StyledBadge badgeContent={count}>
+        <Badge badgeContent={count}>
           <MailIcon />
-        </StyledBadge>
+        </Badge>
         <ButtonGroup>
           <Button
             aria-label="reduce"
@@ -56,9 +56,9 @@ export default function BadgeVisibility() {
         </ButtonGroup>
       </div>
       <div>
-        <StyledBadge badgeContent={count} invisible={invisible}>
+        <Badge badgeContent={count} invisible={invisible}>
           <MailIcon />
-        </StyledBadge>
+        </Badge>
         <FormControlLabel
           sx={{ color: 'text.primary' }}
           control={<Switch checked={!invisible} onChange={handleBadgeVisibility} />}
@@ -77,7 +77,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledBadge = styled(Badge)(
+const Badge = styled(BaseBadge)(
   ({ theme }) => `
   box-sizing: border-box;
   margin: 0;

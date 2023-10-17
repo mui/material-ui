@@ -127,14 +127,24 @@ export const skipInvertedColors = (theme: ThemeFragment) => {
   };
 };
 
+// @internal
+// to support the same usage between `sx` prop and `styled` function, need to resolve the `theme`.
+//  sx: (theme) => ...
+//  styled: ({ theme }) => ...
+function isStyledThemeProp(
+  props: ThemeFragment | { theme?: ThemeFragment },
+): props is { theme: ThemeFragment } {
+  return (props as { theme?: ThemeFragment }).theme !== undefined;
+}
+
 /**
  *
  * @param color a supported theme color palette
  * @returns (theme: ThemeFragment) => Record<DefaultColorPalette, CSSObject>
  */
 export const applySolidInversion =
-  (color: ColorPaletteProp) => (themeProp: ThemeFragment & { theme?: ThemeFragment }) => {
-    const { theme = themeProp } = themeProp;
+  (color: ColorPaletteProp) => (themeProp: ThemeFragment | { theme?: ThemeFragment }) => {
+    const theme = isStyledThemeProp(themeProp) ? themeProp.theme : (themeProp as ThemeFragment);
     const getCssVarDefault = createGetCssVar(theme.cssVarPrefix);
     const prefixVar = createPrefixVar(theme.cssVarPrefix);
     const getCssVar = (cssVar: string) => {

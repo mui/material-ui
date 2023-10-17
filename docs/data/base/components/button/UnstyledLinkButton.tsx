@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, buttonClasses } from '@mui/base/Button';
+import { Button as BaseButton, buttonClasses } from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
@@ -7,9 +7,9 @@ import Link from 'next/link';
 export default function UnstyledLinkButton() {
   return (
     <Stack spacing={2} direction="row">
-      <CustomButton href={'https://mui.com/'}>Standard link</CustomButton>
+      <Button href={'https://mui.com/'}>Standard link</Button>
       <Link href={'https://mui.com/'}>
-        <CustomButton>Next link</CustomButton>
+        <Button>Next link</Button>
       </Link>
     </Stack>
   );
@@ -27,7 +27,7 @@ const grey = {
   900: '#24292f',
 };
 
-const CustomButton = styled(Button)(
+const Button = styled(BaseButton)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: bold;

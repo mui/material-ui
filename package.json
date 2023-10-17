@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "5.14.11",
+  "version": "5.14.13",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -88,7 +88,7 @@
     "@babel/preset-env": "^7.22.20",
     "@babel/preset-react": "^7.22.15",
     "@babel/register": "^7.22.15",
-    "@googleapis/sheets": "^5.0.4",
+    "@googleapis/sheets": "^5.0.5",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
     "@next/eslint-plugin-next": "^13.5.3",
     "@octokit/rest": "^20.0.2",
