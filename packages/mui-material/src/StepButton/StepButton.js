@@ -52,7 +52,7 @@ const StepButtonRoot = styled(ButtonBase, {
 
 const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiStepButton' });
-  const { children, className, icon, optional, ...other } = props;
+  const { children, className, icon, optional, StepIconProps, StepIconComponent, ...other } = props;
 
   const { disabled, active } = React.useContext(StepContext);
   const { orientation } = React.useContext(StepperContext);
@@ -64,6 +64,8 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const childProps = {
     icon,
     optional,
+    StepIconProps,
+    StepIconComponent,
   };
 
   const child = isMuiElement(children, ['StepLabel']) ? (
@@ -113,6 +115,14 @@ StepButton.propTypes /* remove-proptypes */ = {
    * The optional node to display.
    */
   optional: PropTypes.node,
+  /**
+   * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
+   */
+  StepIconComponent: PropTypes.elementType,
+  /**
+   * Props applied to the [`StepIcon`](/material-ui/api/step-icon/) element.
+   */
+  StepIconProps: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
