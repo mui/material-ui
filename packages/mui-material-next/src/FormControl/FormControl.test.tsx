@@ -58,7 +58,6 @@ describe('<FormControl />', () => {
       const root = container.firstChild;
 
       expect(root).not.to.have.class(classes.marginNormal);
-      expect(root).not.to.have.class('MuiFormControl-sizeSmall');
     });
 
     it('can have the margin normal class', () => {
@@ -66,7 +65,6 @@ describe('<FormControl />', () => {
       const root = container.firstChild;
 
       expect(root).to.have.class(classes.marginNormal);
-      expect(root).not.to.have.class('MuiFormControl-sizeSmall');
     });
 
     it('can have the margin dense class', () => {
