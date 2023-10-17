@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SlotComponentProps } from '@mui/base';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, OverrideProps, OverridableTypeMap } from '@mui/types';
 import { Theme } from '../styles';
@@ -45,9 +46,30 @@ export interface FormLabelOwnProps {
    */
   required?: boolean;
   /**
+   * The props used for each slot inside the FormLabel.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<'label', {}, FormLabelOwnerState>;
+  };
+  /**
+   * The components used for each slot inside the FormLabel.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: FormLabelSlots;
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
+}
+
+export interface FormLabelSlots {
+  /**
+   * The component that renders the root.
+   * @default 'span'
+   */
+  root?: React.ElementType;
 }
 
 export interface FormLabelTypeMap<

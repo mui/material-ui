@@ -69,7 +69,6 @@ const FormLabel = React.forwardRef(function FormLabel<
   const props = useThemeProps({ props: inProps, name: 'MuiFormLabel' });
   const {
     children,
-    className,
     color: colorProp = 'primary',
     component = 'label',
     disabled: disabledProp,
@@ -77,30 +76,34 @@ const FormLabel = React.forwardRef(function FormLabel<
     filled: filledProp,
     focused: focusedProp,
     required: requiredProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
   const muiFormControl = useFormControl();
 
-  const required = muiFormControl?.required ?? requiredProp;
+  const required = requiredProp ?? muiFormControl?.required;
 
   const ownerState = {
     ...props,
     color: muiFormControl?.color ?? colorProp,
     component,
     disabled: muiFormControl?.disabled ?? disabledProp,
-    error: muiFormControl?.error ?? errorProp,
+    error: errorProp ?? muiFormControl?.error,
     filled: muiFormControl?.filled ?? filledProp,
-    focused: muiFormControl?.focused ?? focusedProp,
+    focused: focusedProp ?? muiFormControl?.focused,
     required,
   };
 
   const classes = useUtilityClasses(ownerState);
 
+  const RootSlot = slots?.root ?? FormLabelRoot;
+
   const rootProps = useSlotProps({
-    elementType: FormLabelRoot,
+    elementType: RootSlot,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
-    externalSlotProps: {},
     additionalProps: {
       as: component,
       ref: forwardedRef,
@@ -110,14 +113,14 @@ const FormLabel = React.forwardRef(function FormLabel<
   });
 
   return (
-    <FormLabelRoot {...rootProps}>
+    <RootSlot {...rootProps}>
       {children}
       {required && (
         <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
           &thinsp;{'*'}
         </AsteriskComponent>
       )}
-    </FormLabelRoot>
+    </RootSlot>
   );
 });
 
