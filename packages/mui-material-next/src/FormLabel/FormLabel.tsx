@@ -1,10 +1,11 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
-import useFormControl from '../FormControl/useFormControl';
+import { OverridableComponent } from '@mui/types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps, styled } from '../styles';
+import useFormControl from '../FormControl/useFormControl';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 import { FormLabelProps, FormLabelTypeMap, FormLabelOwnerState } from './FormLabel.types';
 
@@ -140,12 +141,12 @@ const FormLabel = React.forwardRef(function FormLabel<
       )}
     </RootSlot>
   );
-});
+}) as OverridableComponent<FormLabelTypeMap>;
 
 FormLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The content of the component.
@@ -194,6 +195,21 @@ FormLabel.propTypes /* remove-proptypes */ = {
    */
   required: PropTypes.bool,
   /**
+   * The props used for each slot inside the FormLabel.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the FormLabel.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -201,6 +217,6 @@ FormLabel.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default FormLabel;
