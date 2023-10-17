@@ -3,28 +3,34 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useMenu, MenuProvider } from '@mui/base/useMenu';
 import { useDropdown, DropdownContext } from '@mui/base/useDropdown';
 import { useSlotProps } from '@mui/base/utils';
 import { ListActionTypes } from '@mui/base/useList';
-import { HTMLElementType } from '@mui/utils';
-import Popover, { PopoverPaper } from '@mui/material/Popover';
+import {
+  HTMLElementType,
+  unstable_getScrollbarSize as getScrollbarSize,
+  unstable_ownerDocument as ownerDocument,
+} from '@mui/utils';
+import Popover, { PopoverPaper, PopoverOrigin } from '@mui/material/Popover';
 import { styled, useTheme, useThemeProps } from '@mui/material/styles';
 import { rootShouldForwardProp } from '@mui/material/styles/styled';
+import { MenuTypeMap, MenuOwnerState } from './Menu.types';
 import { getMenuUtilityClass } from './menuClasses';
 
-const RTL_ORIGIN = {
+const RTL_ORIGIN: PopoverOrigin = {
   vertical: 'top',
   horizontal: 'right',
 };
 
-const LTR_ORIGIN = {
+const LTR_ORIGIN: PopoverOrigin = {
   vertical: 'top',
   horizontal: 'left',
 };
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: MenuOwnerState) => {
   const { classes } = ownerState;
 
   const slots = {
@@ -37,7 +43,7 @@ const useUtilityClasses = (ownerState) => {
 };
 
 const MenuRoot = styled(Popover, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  shouldForwardProp: (prop: string) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -92,8 +98,16 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
+  const listRef = React.useRef<HTMLElement | null>(null);
+
+  const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
+    // onItemsChange,
+    disabledItemsFocusable: Boolean(MenuListProps.disabledItemsFocusable),
+  });
+
   const ownerState = {
     ...props,
+    open,
     autoFocus,
     disableAutoFocusItem,
     MenuListProps,
@@ -103,11 +117,6 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
     TransitionProps,
     variant,
   };
-
-  const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
-    // onItemsChange,
-    disabledItemsFocusable: Boolean(MenuListProps.disabledItemsFocusable),
-  });
 
   React.useImperativeHandle(
     actions,
@@ -122,11 +131,19 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
 
   const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
 
-  const menuListActionsRef = React.useRef(null);
-
-  const handleEntering = (element, isAppearing) => {
-    if (menuListActionsRef.current) {
-      menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
+  const handleEntering = (element: HTMLElement, isAppearing: boolean) => {
+    // adjust styles for scrollbar
+    if (element && listRef.current) {
+      // Let's ignore that piece of logic if users are already overriding the width
+      // of the menu.
+      const containerElement = element;
+      const noExplicitWidth = !listRef.current.style.width;
+      if (containerElement.clientHeight < listRef?.current?.clientHeight && noExplicitWidth) {
+        const scrollbarSize = `${getScrollbarSize(ownerDocument(containerElement))}px`;
+        listRef.current.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] =
+          scrollbarSize;
+        listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
+      }
     }
 
     if (onEntering) {
@@ -134,7 +151,7 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
     }
   };
 
-  const handleListKeyDown = (event) => {
+  const handleListKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Tab') {
       event.preventDefault();
 
@@ -211,10 +228,11 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
     },
     externalSlotProps: (args) => ({
       ...(typeof slotProps.listbox === 'function' ? slotProps.listbox(args) : slotProps.listbox),
-      // TOD: Make sure all previous support props still work
+      // TODO: Make sure all previous support props still work
       ...MenuListProps,
     }),
     additionalProps: {
+      ref: listRef,
       variant,
       autoFocusItem,
       autoFocus: autoFocus && (activeItemIndex === -1 || disableAutoFocusItem),
@@ -243,6 +261,7 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
       ref={ref}
       transitionDuration={transitionDuration}
       TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
+      // @ts-ignore internal usage
       ownerState={ownerState}
       anchorEl={anchorEl ?? triggerElement}
       {...other}
@@ -253,26 +272,36 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
       </MenuProvider>
     </MenuRoot>
   );
-});
+}) as OverridableComponent<MenuTypeMap>;
 
+/**
+ *
+ * Demos:
+ *
+ * - [App Bar](https://mui.com/material-ui/react-app-bar/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
+ *
+ * API:
+ *
+ * - [Menu API](https://mui.com/material-ui/api/menu/)
+ * - inherits [Popover API](https://mui.com/material-ui/api/popover/)
+ */
 const Menu = React.forwardRef(function Menu(inProps, ref) {
-  const { open, anchorEl, ...other } = inProps;
+  const { open } = inProps;
   const upperDropdownContext = React.useContext(DropdownContext);
 
   const { contextValue: dropdownContextValue } = useDropdown({
     open,
-    anchorEl,
   });
 
-  const Wrapper = !upperDropdownContext ? DropdownContext.Provider : React.Fragment;
-  const wrapperProps = !upperDropdownContext ? { value: dropdownContextValue } : {};
-
-  return (
-    <Wrapper {...wrapperProps}>
+  return !upperDropdownContext ? (
+    <DropdownContext.Provider value={dropdownContextValue}>
       <MenuInner ref={ref} {...inProps} />
-    </Wrapper>
+    </DropdownContext.Provider>
+  ) : (
+    <MenuInner ref={ref} {...inProps} />
   );
-});
+}) as OverridableComponent<MenuTypeMap>;
 
 Menu.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
