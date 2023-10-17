@@ -104,12 +104,10 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
   const {
     // autoFocus,
     // autoFocusItem,
-    // children,
+    // varaint
     className: menuListPropsClassName,
     disabledItemsFocusable,
     disableListWrap,
-    // onKeyDown,
-    // varaint
     ...otherMenuListProps
   } = MenuListProps;
 
@@ -215,11 +213,9 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
   const rootSlotProps = useSlotProps({
     elementType: slots.root,
     externalSlotProps: slotProps.root,
-    // externalForwardedProps: other,
-    // additionalProps: {
-    //   ref: forwardedRef,
-    //   role: undefined,
-    // },
+    additionalProps: {
+      role: undefined,
+    },
     ownerState,
     className: [classes.root, className],
   });
@@ -246,9 +242,10 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
     }),
     additionalProps: {
       ref: listRef,
-      variant,
-      autoFocusItem,
-      autoFocus: autoFocus && (activeItemIndex === -1 || disableAutoFocusItem),
+      // TODO: These need to be handled on the Menu component level, now that the MenuListbox is simply ul
+      // variant,
+      // autoFocusItem,
+      // autoFocus: autoFocus && (activeItemIndex === -1 || disableAutoFocusItem),
     },
     className: clsx(classes.list, menuListPropsClassName),
     ownerState,
