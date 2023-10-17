@@ -100,10 +100,23 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
 
   const listRef = React.useRef<HTMLElement | null>(null);
 
+  // TODO: Handle the rest of the props from the MenuListProps prop
+  const {
+    // autoFocus,
+    // autoFocusItem,
+    // children,
+    className: menuListPropsClassName,
+    disabledItemsFocusable,
+    disableListWrap,
+    // onKeyDown,
+    // varaint
+    ...otherMenuListProps
+  } = MenuListProps;
+
   const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     // onItemsChange,
-    disabledItemsFocusable: Boolean(MenuListProps.disabledItemsFocusable),
-    disableListWrap: Boolean(MenuListProps.disableListWrap)
+    disabledItemsFocusable: Boolean(disabledItemsFocusable),
+    disableListWrap: Boolean(disableListWrap)
   });
 
   const ownerState = {
@@ -229,8 +242,7 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
     },
     externalSlotProps: (args) => ({
       ...(typeof slotProps.listbox === 'function' ? slotProps.listbox(args) : slotProps.listbox),
-      // TODO: Make sure all previous support props still work
-      ...MenuListProps,
+      ...otherMenuListProps,
     }),
     additionalProps: {
       ref: listRef,
@@ -238,7 +250,7 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
       autoFocusItem,
       autoFocus: autoFocus && (activeItemIndex === -1 || disableAutoFocusItem),
     },
-    className: clsx(classes.list, MenuListProps.className),
+    className: clsx(classes.list, menuListPropsClassName),
     ownerState,
   });
 
