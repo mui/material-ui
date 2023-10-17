@@ -57,7 +57,7 @@
     "@mui/material": "^5.14.14",
     "@mui/material-next": "6.0.0-alpha.106",
     "@types/chai": "^4.3.8",
-    "@types/prop-types": "^15.7.7",
+    "@types/prop-types": "^15.7.8",
     "@types/react": "^18.2.23",
     "@types/sinon": "^10.0.19",
     "chai": "^4.3.10",

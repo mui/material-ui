@@ -55,7 +55,7 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.5.1",
     "@types/chai": "^4.3.8",
-    "@types/prop-types": "^15.7.7",
+    "@types/prop-types": "^15.7.8",
     "@types/react": "18.2.23",
     "@types/react-dom": "18.2.13",
     "@types/sinon": "^10.0.19",
