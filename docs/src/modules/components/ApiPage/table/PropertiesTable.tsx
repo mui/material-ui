@@ -9,7 +9,10 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
-import { PropDescriptionParams } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
+import {
+  PropDescriptionParams,
+  getHash,
+} from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
@@ -21,6 +24,7 @@ const StyledTable = styled('table')(
       fontSize: theme.typography.pxToRem(14),
     },
     '& tr': {
+      scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
       '&:hover': {
         backgroundColor: alpha(darkTheme.palette.grey[50], 0.5),
       },
@@ -165,9 +169,6 @@ PropDescription.propTypes = {
   description: PropTypes.string.isRequired,
 };
 
-export const getHash = ({ componentName, propName }: { componentName: string; propName: string }) =>
-  `${componentName ? `${componentName}-` : ''}prop-${propName}`;
-
 interface PropertiesTableProps {
   properties: PropDescriptionParams[];
 }
@@ -188,13 +189,15 @@ export default function PropertiesTable(props: PropertiesTableProps) {
       <tbody>
         {properties.map((params) => {
           const {
-            componentName,
+            targetName,
             propName,
             description,
             requiresRef,
             isOptional,
             isRequired,
             isDeprecated,
+            hooksParameters,
+            hooksReturnValue,
             deprecationInfo,
             typeName,
             propDefault,
@@ -205,7 +208,10 @@ export default function PropertiesTable(props: PropertiesTableProps) {
           } = params;
 
           return (
-            <tr key={propName} id={getHash({ componentName, propName })}>
+            <tr
+              key={propName}
+              id={getHash({ targetName, propName, hooksParameters, hooksReturnValue })}
+            >
               <td className="MuiApi-table-item-title">
                 {propName}
                 {isRequired ? '*' : ''}

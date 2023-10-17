@@ -1,40 +1,40 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Select, selectClasses } from '@mui/base/Select';
-import { Option, optionClasses } from '@mui/base/Option';
-import { OptionGroup } from '@mui/base/OptionGroup';
-import { Popper } from '@mui/base/Popper';
+import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
+import { OptionGroup as BaseOptionGroup } from '@mui/base/OptionGroup';
+import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
 export default function UnstyledSelectGrouping() {
   return (
-    <CustomSelect placeholder="Choose a character…">
-      <CustomOptionGroup label="Hobbits">
-        <StyledOption value="Frodo">Frodo</StyledOption>
-        <StyledOption value="Sam">Sam</StyledOption>
-        <StyledOption value="Merry">Merry</StyledOption>
-        <StyledOption value="Pippin">Pippin</StyledOption>
-      </CustomOptionGroup>
-      <CustomOptionGroup label="Elves">
-        <StyledOption value="Galadriel">Galadriel</StyledOption>
-        <StyledOption value="Legolas">Legolas</StyledOption>
-      </CustomOptionGroup>
-    </CustomSelect>
+    <Select placeholder="Choose a character…">
+      <OptionGroup label="Hobbits">
+        <Option value="Frodo">Frodo</Option>
+        <Option value="Sam">Sam</Option>
+        <Option value="Merry">Merry</Option>
+        <Option value="Pippin">Pippin</Option>
+      </OptionGroup>
+      <OptionGroup label="Elves">
+        <Option value="Galadriel">Galadriel</Option>
+        <Option value="Legolas">Legolas</Option>
+      </OptionGroup>
+    </Select>
   );
 }
 
-function CustomSelect(props) {
+function Select(props) {
   const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    root: Button,
+    listbox: Listbox,
+    popper: Popper,
     ...props.slots,
   };
 
-  return <Select {...props} slots={slots} />;
+  return <BaseSelect {...props} slots={slots} />;
 }
 
-CustomSelect.propTypes = {
+Select.propTypes = {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
@@ -47,18 +47,18 @@ CustomSelect.propTypes = {
   }),
 };
 
-const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(props, ref) {
+const OptionGroup = React.forwardRef(function CustomOptionGroup(props, ref) {
   const slots = {
-    root: StyledGroupRoot,
-    label: StyledGroupHeader,
-    list: StyledGroupOptions,
+    root: GroupRoot,
+    label: GroupHeader,
+    list: GroupOptions,
     ...props.slots,
   };
 
-  return <OptionGroup {...props} ref={ref} slots={slots} />;
+  return <BaseOptionGroup {...props} ref={ref} slots={slots} />;
 });
 
-CustomOptionGroup.propTypes = {
+OptionGroup.propTypes = {
   /**
    * The components used for each slot inside the OptionGroup.
    * Either a string to use a HTML element or a component.
@@ -93,7 +93,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledButton = styled('button')(
+const Button = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -137,7 +137,7 @@ const StyledButton = styled('button')(
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -157,7 +157,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -194,11 +194,11 @@ const StyledOption = styled(Option)(
   `,
 );
 
-const StyledGroupRoot = styled('li')`
+const GroupRoot = styled('li')`
   list-style: none;
 `;
 
-const StyledGroupHeader = styled('span')`
+const GroupHeader = styled('span')`
   display: block;
   padding: 15px 0 5px 10px;
   font-size: 0.75em;
@@ -208,7 +208,7 @@ const StyledGroupHeader = styled('span')`
   color: ${grey[600]};
 `;
 
-const StyledGroupOptions = styled('ul')`
+const GroupOptions = styled('ul')`
   list-style: none;
   margin-left: 0;
   padding: 0;
@@ -218,6 +218,6 @@ const StyledGroupOptions = styled('ul')`
   }
 `;
 
-const StyledPopper = styled(Popper)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;

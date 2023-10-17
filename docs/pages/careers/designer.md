@@ -2,21 +2,32 @@
 
 <p class="description">Design is critical to our success. We're looking for skills that complement those of our Lead Designer. You'll help to design the tools that enable our audience to build outstanding-looking UIs.</p>
 
-## About the company
+## The company
 
-MUI started with Material UI, the most successful React implementation of Google's Material Design.
-We have gained a large following, thanks to our focus on Material Design fidelity, our obsession with details, on offering a large number of components, our community engagement, and by carefully improving the DX.
-Today, countless teams and organizations rely on our open-source libraries to build their design system.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub, and has paved the way for the fully fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 35+ people as of late 2023, and we're growing.
 
-A couple of years ago, we started to expand our suite of products.
-We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
-We've seen rapid growth with all of them (2x per year) and we have more to come.
-We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
+## The products
 
-We are a fully distributed team, spread across multiple time zones.
-We work mainly asynchronously, relying mostly on written collaboration.
-Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
-For additional details about the MUI team and culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+We also host Design Kits and pre-built Templates.
+
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+
+We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
+
+Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/).
+
+## The culture
+
+MUI is a fully remote company with a team that spans the globe.
+The majority of our work is asynchronous, and we rely on written communication to collaborate.
+We're radically transparent: nearly all of our work happens in public.
+Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
+
+For additional details about the culture you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
@@ -37,7 +48,7 @@ Currently, we have five main projects that are not at all related to MD:
 We also know, especially due to [our annual developer survey](https://mui.com/blog/2021-developer-survey-results/), that design quality plays a huge part when developers are considering component library options.
 Therefore, we need to grow the design team to help us push these initiatives further.
 
-## About the role
+## The role
 
 Some criteria for applying to this role:
 
@@ -71,13 +82,13 @@ You'll also be the second designer of a growing design team, so we'll also need 
 
 Previous experience with design systems would be great but is not required.
 
-## Benefits & Compensation
+## Benefits and compensation
 
 We offer competitive compensation, aligned with your profile and location.
 We're ready to pay top market rates for a designer that can significantly push the mission forward.
 Other perks are described on [the careers page](https://mui.com/careers/#perks-and-benefits/).
 
-## How to apply?
+## How to apply
 
 [Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO).
 
@@ -100,5 +111,8 @@ Lastly, please note that we're unable to offer individual feedback during the in
 
 We look forward to hearing from you! ☺️
 
-Don't tick every bullet? Apply anyway! Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
-If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.
+Don't meet every requirement?
+Apply anyway!
+Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+If this role excites you, we want to hear from you.
+We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

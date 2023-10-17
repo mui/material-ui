@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { Input } from '@mui/base/Input';
+import { Input as BaseInput } from '@mui/base/Input';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 
-const CustomInput = React.forwardRef(function CustomInput(props, ref) {
+const Input = React.forwardRef(function CustomInput(props, ref) {
   return (
-    <Input
+    <BaseInput
       slots={{
-        root: StyledRootDiv,
-        input: StyledInputElement,
-        textarea: StyledTextareaElement,
+        root: RootDiv,
+        input: InputElement,
+        textarea: TextareaElement,
       }}
       {...props}
       ref={ref}
@@ -18,9 +18,7 @@ const CustomInput = React.forwardRef(function CustomInput(props, ref) {
 });
 
 export default function InputMultilineAutosize() {
-  return (
-    <CustomInput aria-label="Demo input" multiline placeholder="Type something…" />
-  );
+  return <Input aria-label="Demo input" multiline placeholder="Type something…" />;
 }
 
 const blue = {
@@ -44,12 +42,12 @@ const grey = {
   900: '#1A2027',
 };
 
-const StyledRootDiv = styled('div')`
+const RootDiv = styled('div')`
   display: flex;
   max-width: 100%;
 `;
 
-const StyledInputElement = styled('input')(
+const InputElement = styled('input')(
   ({ theme }) => `
   width: 320px;
   font-family: IBM Plex Sans, sans-serif;
@@ -79,7 +77,7 @@ const StyledInputElement = styled('input')(
 `,
 );
 
-const StyledTextareaElement = styled(TextareaAutosize)(
+const TextareaElement = styled(TextareaAutosize)(
   ({ theme }) => `
   width: 320px;
   font-family: IBM Plex Sans, sans-serif;

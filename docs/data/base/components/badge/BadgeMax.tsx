@@ -1,21 +1,21 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/system';
-import { Badge, badgeClasses } from '@mui/base/Badge';
+import { Badge as BaseBadge, badgeClasses } from '@mui/base/Badge';
 import MailIcon from '@mui/icons-material/Mail';
 
 export default function BadgeMax() {
   return (
     <Stack spacing={4} direction="row">
-      <StyledBadge badgeContent={99}>
+      <Badge badgeContent={99}>
         <MailIcon />
-      </StyledBadge>
-      <StyledBadge badgeContent={100}>
+      </Badge>
+      <Badge badgeContent={100}>
         <MailIcon />
-      </StyledBadge>
-      <StyledBadge badgeContent={1000} max={999}>
+      </Badge>
+      <Badge badgeContent={1000} max={999}>
         <MailIcon />
-      </StyledBadge>
+      </Badge>
     </Stack>
   );
 }
@@ -28,7 +28,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledBadge = styled(Badge)(
+const Badge = styled(BaseBadge)(
   ({ theme }) => `
   box-sizing: border-box;
   margin: 0;

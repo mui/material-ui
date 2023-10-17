@@ -1,18 +1,18 @@
 import * as React from 'react';
 import {
-  Unstable_NumberInput as NumberInput,
+  Unstable_NumberInput as BaseNumberInput,
   NumberInputProps,
 } from '@mui/base/Unstable_NumberInput';
 import { useTheme } from '@mui/system';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
-const CustomNumberInput = React.forwardRef(function CustomNumberInput(
+const NumberInput = React.forwardRef(function CustomNumberInput(
   props: NumberInputProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   return (
-    <NumberInput
+    <BaseNumberInput
       slotProps={{
         root: { className: 'QuantityInput' },
         input: { className: 'input' },
@@ -34,7 +34,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(
 export default function QuantityInput() {
   return (
     <React.Fragment>
-      <CustomNumberInput aria-label="Quantity Input" min={1} max={99} />
+      <NumberInput aria-label="Quantity Input" min={1} max={99} />
       <Styles />
     </React.Fragment>
   );

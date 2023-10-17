@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 
 export default function EmptyTextarea() {
@@ -25,7 +25,7 @@ export default function EmptyTextarea() {
     900: '#24292f',
   };
 
-  const StyledTextarea = styled(TextareaAutosize)(
+  const Textarea = styled(BaseTextareaAutosize)(
     ({ theme }) => `
     width: 320px;
     font-family: IBM Plex Sans, sans-serif;
@@ -55,5 +55,5 @@ export default function EmptyTextarea() {
   `,
   );
 
-  return <StyledTextarea aria-label="empty textarea" placeholder="Empty" />;
+  return <Textarea aria-label="empty textarea" placeholder="Empty" />;
 }

@@ -148,7 +148,7 @@ export default function ComponentsApiContent(props) {
           <PropertiesSection
             properties={componentProps}
             propertiesDescriptions={propDescriptions}
-            componentName={componentName}
+            targetName={componentNameKebabCase}
             spreadHint={spreadHint}
             level="h3"
             titleHash={`${componentNameKebabCase}-props`}
