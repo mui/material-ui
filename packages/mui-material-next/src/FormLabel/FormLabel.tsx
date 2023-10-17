@@ -36,30 +36,40 @@ export const FormLabelRoot = styled('label', {
       ownerState.filled && styles.filled,
     ];
   },
-})<{ ownerState: FormLabelOwnerState }>(({ theme, ownerState }) => ({
-  color: (theme.vars || theme).palette.text.secondary,
-  ...theme.typography.body1,
-  lineHeight: '1.4375em',
-  padding: 0,
-  position: 'relative',
-  [`&.${formLabelClasses.focused}`]: {
-    color: (theme.vars || theme).palette[ownerState.color].main,
-  },
-  [`&.${formLabelClasses.disabled}`]: {
-    color: (theme.vars || theme).palette.text.disabled,
-  },
-  [`&.${formLabelClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
-  },
-}));
+})<{ ownerState: FormLabelOwnerState }>(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+
+  return {
+    '--md-comp-form-label-color': tokens.sys.color.secondary,
+    '--md-comp-form-label-disabled-color': tokens.sys.color.onSurface,
+    '--md-comp-form-label-disabled-opacity': 0.38,
+    '--md-comp-form-label-error-color': tokens.sys.color.error,
+    '--md-comp-form-label-focus-color': tokens.sys.color[ownerState.color],
+    color: 'var(--md-comp-form-label-color)',
+    ...theme.typography.body1,
+    lineHeight: '1.4375em',
+    padding: 0,
+    position: 'relative',
+    [`&.${formLabelClasses.focused}`]: {
+      color: 'var(--md-comp-form-label-focus-color)',
+    },
+    [`&.${formLabelClasses.disabled}`]: {
+      color:
+        'color-mix(in srgb, var(--md-comp-form-label-disabled-color), transparent calc(var(--md-comp-form-label-disabled-opacity) * 100%))',
+    },
+    [`&.${formLabelClasses.error}`]: {
+      color: 'var(--md-comp-form-label-error-color)',
+    },
+  };
+});
 
 const AsteriskComponent = styled('span', {
   name: 'MuiFormLabel',
   slot: 'Asterisk',
-  overridesResolver: (props, styles) => styles.asterisk,
-})<{ ownerState: FormLabelOwnerState }>(({ theme }) => ({
+  overridesResolver: (_props, styles) => styles.asterisk,
+})<{ ownerState: FormLabelOwnerState }>(() => ({
   [`&.${formLabelClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
+    color: 'var(--md-comp-form-label-error-color)',
   },
 }));
 
@@ -85,7 +95,7 @@ const FormLabel = React.forwardRef(function FormLabel<
 
   const required = requiredProp ?? muiFormControl?.required;
 
-  const ownerState = {
+  const ownerState: FormLabelOwnerState = {
     ...props,
     color: muiFormControl?.color ?? colorProp,
     component,
