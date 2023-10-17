@@ -46,8 +46,8 @@
   "devDependencies": {
     "@types/babel__core": "^7.20.2",
     "@types/chai": "^4.3.6",
-    "chai": "^4.3.8",
-    "vite": "^4.4.9"
+    "chai": "^4.3.10",
+    "vite": "^4.4.11"
   },
   "peerDependencies": {
     "vite": "^4.0.0"

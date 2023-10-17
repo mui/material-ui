@@ -125,5 +125,5 @@ export interface TextareaOwnerState extends ApplyColorInversion<TextareaProps> {
   /**
    * @internal
    */
-  instanceColor?: OverridableStringUnion<ColorPaletteProp, TextareaPropsColorOverrides>;
+  instanceColor: OverridableStringUnion<ColorPaletteProp, TextareaPropsColorOverrides> | undefined;
 }

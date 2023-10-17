@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Tabs } from '@mui/base/Tabs';
-import { Tab, tabClasses } from '@mui/base/Tab';
-import { TabsList } from '@mui/base/TabsList';
+import { Tab as BaseTab, tabClasses } from '@mui/base/Tab';
+import { TabsList as BaseTabsList } from '@mui/base/TabsList';
 import {
   MemoryRouter,
   Route,
@@ -55,17 +55,17 @@ function MyTabs() {
 
   return (
     <Tabs value={currentTab}>
-      <StyledTabsList>
-        <StyledTab value="/inbox/:id" to="/inbox/1" slots={{ root: RouterLink }}>
+      <TabsList>
+        <Tab value="/inbox/:id" to="/inbox/1" slots={{ root: RouterLink }}>
           Inbox
-        </StyledTab>
-        <StyledTab value="/drafts" to="/drafts" slots={{ root: RouterLink }}>
+        </Tab>
+        <Tab value="/drafts" to="/drafts" slots={{ root: RouterLink }}>
           Drafts
-        </StyledTab>
-        <StyledTab value="/trash" to="/trash" slots={{ root: RouterLink }}>
+        </Tab>
+        <Tab value="/trash" to="/trash" slots={{ root: RouterLink }}>
           Trash
-        </StyledTab>
-      </StyledTabsList>
+        </Tab>
+      </TabsList>
     </Tabs>
   );
 }
@@ -128,7 +128,7 @@ RouterLink.propTypes = {
   ownerState: PropTypes.object.isRequired,
 };
 
-const StyledTab = styled(Tab)`
+const Tab = styled(BaseTab)`
   font-family: 'IBM Plex Sans', sans-serif;
   color: #fff;
   cursor: pointer;
@@ -159,7 +159,7 @@ const StyledTab = styled(Tab)`
   }
 `;
 
-const StyledTabsList = styled(TabsList)(
+const TabsList = styled(BaseTabsList)(
   ({ theme }) => `
   min-width: 400px;
   background-color: ${blue[500]};

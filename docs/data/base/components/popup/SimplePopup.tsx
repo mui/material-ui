@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
+import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import { styled } from '@mui/system';
 
 export default function SimplePopup() {
@@ -17,9 +17,9 @@ export default function SimplePopup() {
       <Button aria-describedby={id} type="button" onClick={handleClick}>
         Toggle Popup
       </Button>
-      <Popup id={id} open={open} anchor={anchor}>
+      <BasePopup id={id} open={open} anchor={anchor}>
         <PopupBody>The content of the Popup.</PopupBody>
-      </Popup>
+      </BasePopup>
     </div>
   );
 }

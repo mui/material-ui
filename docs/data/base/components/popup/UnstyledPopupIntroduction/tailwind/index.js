@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
+import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import { useTheme } from '@mui/system';
 
 function useIsDarkMode() {
@@ -29,7 +29,7 @@ export default function SimplePopup() {
       >
         Toggle Popup
       </button>
-      <Popup
+      <BasePopup
         id={id}
         open={open}
         anchor={anchor}
@@ -37,7 +37,7 @@ export default function SimplePopup() {
         className="z-50 rounded-lg font-sans font-medium text-sm mt-2 p-3 border border-solid border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 shadow-md text-purple-900 dark:text-purple-100"
       >
         <div>The content of the Popup.</div>
-      </Popup>
+      </BasePopup>
     </div>
   );
 }
