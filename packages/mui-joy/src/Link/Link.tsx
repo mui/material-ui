@@ -130,7 +130,7 @@ const LinkRoot = styled('a', {
               } / 0.6))`,
             },
           }),
-      userSelect: ownerState.component === 'button' && 'none',
+      userSelect: ownerState.component === 'button' ? 'none' : undefined,
       MozAppearance: 'none', // Reset
       WebkitAppearance: 'none', // Reset
       '&::-moz-focus-inner': {
