@@ -50,10 +50,12 @@ function handleClamp<State extends NumberInputState>(
 ) {
   const { getInputValueAsString } = context;
 
-  const parsedValue = getInputValueAsString(inputValue);
+  const numberValueAsString = getInputValueAsString(inputValue);
 
   const intermediateValue =
-    parsedValue === '' || parsedValue === '-' ? undefined : parseInt(parsedValue, 10);
+    numberValueAsString === '' || numberValueAsString === '-'
+      ? undefined
+      : parseInt(numberValueAsString, 10);
 
   const clampedValues = getClampedValues(intermediateValue, context);
 
@@ -70,21 +72,21 @@ function handleInputChange<State extends NumberInputState>(
 ) {
   const { getInputValueAsString } = context;
 
-  const parsedValue = getInputValueAsString(inputValue);
+  const numberValueAsString = getInputValueAsString(inputValue);
 
-  if (parsedValue === '' || parsedValue === '-') {
+  if (numberValueAsString === '' || numberValueAsString === '-') {
     return {
       ...state,
-      inputValue: parsedValue,
+      inputValue: numberValueAsString,
       value: '',
     };
   }
 
-  if (parsedValue.match(/^-?\d+?$/)) {
+  if (numberValueAsString.match(/^-?\d+?$/)) {
     return {
       ...state,
-      inputValue: parsedValue,
-      value: parseInt(parsedValue, 10),
+      inputValue: numberValueAsString,
+      value: parseInt(numberValueAsString, 10),
     };
   }
 
