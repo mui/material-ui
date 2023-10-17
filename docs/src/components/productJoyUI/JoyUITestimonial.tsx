@@ -1,5 +1,6 @@
 /* eslint-disable material-ui/straight-quotes */
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -19,6 +20,19 @@ const testimonials = [
     workTitle: 'Director of Product Management',
     avatar: '/static/branding/joy-ui/enricoros.png',
     github: 'enricoros',
+    projectLogo: '/static/branding/joy-ui/big-agi-logo.png',
+    projectLink: 'https://big-agi.com/',
+    logoWidth: 80,
+  },
+  {
+    testimonial: `“Migrating my website from Material UI to Joy UI was a breeze. The transition was seamless, and the library's intuitive nature made it easy to pick up. The customizable default theme system is a plus, allowing me to introduce custom design tokens with type-safe support. Joy UI has transformed my development process, making it enjoyable and efficient.”`,
+    author: 'Matthew Kwong',
+    workTitle: 'Senior Web Engineer',
+    avatar: '/static/branding/joy-ui/matthew-kwong.jpeg',
+    github: 'mwskwong',
+    projectLogo: '/static/branding/joy-ui/matthew-kong-logo.svg',
+    projectLink: 'https://mwskwong.com/',
+    logoWidth: 25,
   },
   {
     testimonial: `“Joy UI is a game-changer for our large-scale internal tool. It lets us focus on our complex system, not UI components. Even in alpha, it became our go-to library, thanks to the trust and expertise we have in the MUI team. They respond quickly and pay attention to detail in UI/UX and DX. It's a must-have for developers and companies looking to boost productivity.”`,
@@ -34,13 +48,6 @@ const testimonials = [
     avatar: '/static/branding/joy-ui/badalsaibo.jpeg',
     github: 'badalsaibo',
   },
-  {
-    testimonial: `“Migrating my website from Material UI to Joy UI was a breeze. The transition was seamless, and the library's intuitive nature made it easy to pick up. The customizable default theme system is a plus, allowing me to introduce custom design tokens with type-safe support. Joy UI has transformed my development process, making it enjoyable and efficient.”`,
-    author: 'Matthew Kwong',
-    workTitle: 'Senior Web Engineer',
-    avatar: '/static/branding/joy-ui/matthew-kwong.jpeg',
-    github: 'mwskwong',
-  },
 ];
 
 interface TestimonialAuthorProps {
@@ -48,9 +55,9 @@ interface TestimonialAuthorProps {
   author: string;
   workTitle: string;
   github?: string;
-  companyLogo?: string;
+  projectLogo?: string;
+  projectLink?: string;
   logoWidth?: number;
-  logoHeight?: number;
 }
 
 export function TestimonialAuthor({
@@ -58,15 +65,29 @@ export function TestimonialAuthor({
   author,
   github,
   workTitle,
-  companyLogo,
+  projectLogo,
+  projectLink,
   logoWidth,
-  logoHeight,
 }: TestimonialAuthorProps) {
   return (
     <React.Fragment>
       <Divider />
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-        <Avatar alt="" src={avatar} />
+        <Box
+          sx={(theme) => ({
+            p: 0.5,
+            bgcolor: 'primary.50',
+            border: '1px solid',
+            borderColor: 'primary.200',
+            borderRadius: 99,
+            ...theme.applyDarkStyles({
+              borderColor: 'primary.800',
+              bgcolor: alpha(theme.palette.primary[900], 0.5),
+            }),
+          })}
+        >
+          <Avatar alt={`${author}'s profile picture`} src={avatar} />
+        </Box>
         <div>
           <Typography variant="body2" fontWeight="semiBold" color="text.primary">
             {author}
@@ -75,28 +96,30 @@ export function TestimonialAuthor({
             {workTitle}
           </Typography>
         </div>
-        {companyLogo && (
-          <Box
-            width={`${logoWidth}px`}
-            height={`${logoHeight}px`}
-            component="img"
-            src={companyLogo}
-            alt=""
-            sx={{ ml: 'auto' }}
-          />
-        )}
-        {github && (
-          <IconButton
-            aria-label={`${author} GitHub profile`}
-            component="a"
-            href={`https://github.com/${github}`}
-            target="_blank"
-            rel="noreferrer noopener"
-            sx={{ width: 'fit-content', ml: 'auto' }}
-          >
-            <GitHubIcon fontSize="small" sx={{ color: 'grey.500' }} />
-          </IconButton>
-        )}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, ml: 'auto' }}>
+          {projectLogo && (
+            <Box component="a" href={projectLink} sx={{ display: 'flex' }}>
+              <Box
+                width={`${logoWidth}px`}
+                component="img"
+                src={projectLogo}
+                alt={`${author}'s project using Joy UI`}
+              />
+            </Box>
+          )}
+          {github && (
+            <IconButton
+              aria-label={`${author} GitHub profile`}
+              component="a"
+              href={`https://github.com/${github}`}
+              target="_blank"
+              rel="noreferrer noopener"
+              color="info"
+            >
+              <GitHubIcon fontSize="small" />
+            </IconButton>
+          )}
+        </Box>
       </Box>
     </React.Fragment>
   );
@@ -117,35 +140,49 @@ export default function BaseUITestimonial() {
       />
       {/* The copy above will be refined! */}
       <Masonry columns={{ xs: 1, sm: 2 }} spacing={3} sx={{ m: 0, mt: 4 }}>
-        {testimonials.map(({ testimonial, author, workTitle, avatar, github }) => (
-          <div key={author}>
-            <Paper
-              variant="outlined"
-              sx={(theme) => ({
-                p: 3,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 2.5,
-                background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
-                ...theme.applyDarkStyles({
-                  bgcolor: 'primaryDark.900',
+        {testimonials.map(
+          ({
+            testimonial,
+            author,
+            workTitle,
+            avatar,
+            github,
+            projectLogo,
+            projectLink,
+            logoWidth,
+          }) => (
+            <div key={author}>
+              <Paper
+                variant="outlined"
+                sx={(theme) => ({
+                  p: 3,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 2.5,
                   background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
-                  borderColor: 'primaryDark.700',
-                }),
-              })}
-            >
-              <Typography color="text.secondary" sx={{ flexGrow: 1 }}>
-                {testimonial}
-              </Typography>
-              <TestimonialAuthor
-                author={author}
-                workTitle={workTitle}
-                avatar={avatar}
-                github={github}
-              />
-            </Paper>
-          </div>
-        ))}
+                  ...theme.applyDarkStyles({
+                    bgcolor: 'primaryDark.900',
+                    background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+                    borderColor: 'primaryDark.700',
+                  }),
+                })}
+              >
+                <Typography color="text.secondary" sx={{ flexGrow: 1 }}>
+                  {testimonial}
+                </Typography>
+                <TestimonialAuthor
+                  author={author}
+                  workTitle={workTitle}
+                  avatar={avatar}
+                  github={github}
+                  projectLogo={projectLogo}
+                  projectLink={projectLink}
+                  logoWidth={logoWidth}
+                />
+              </Paper>
+            </div>
+          ),
+        )}
       </Masonry>
     </Section>
   );
