@@ -40,14 +40,15 @@
   "dependencies": {
     "@babel/runtime": "^7.23.1",
     "csstype": "^3.1.2",
+    "hoist-non-react-statics": "^3.3.2",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
     "@mui-internal/test-utils": "^1.0.0",
     "@types/chai": "^4.3.6",
+    "@types/hoist-non-react-statics": "^3.3.2",
     "@types/react": "^18.2.23",
     "chai": "^4.3.10",
-    "hoist-non-react-statics": "^3.3.2",
     "react": "^18.2.0",
     "styled-components": "^6.0.0"
   },
