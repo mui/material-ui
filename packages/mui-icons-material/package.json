@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@mui/internal-waterfall": "^1.0.0",
-    "@types/chai": "^4.3.6",
+    "@types/chai": "^4.3.8",
     "@types/react": "^18.2.23",
     "chai": "^4.3.10",
     "chalk": "^5.3.0",
