@@ -20,6 +20,10 @@ export const API_LAYOUT_STORAGE_KEYS = {
 } as const;
 
 const getRandomOption = () => {
+  if (/Algolia Crawler/.test(navigator.userAgent)) {
+    // When algolia crawls the page, it should not have to expand items
+    return 'expended';
+  }
   // A default layout is saved in localstorage at first render to make sure all section start with the same layout.
   const savedDefaultOption = localStorage.getItem(
     API_LAYOUT_STORAGE_KEYS.default,
