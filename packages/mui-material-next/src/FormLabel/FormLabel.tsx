@@ -1,16 +1,14 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import formControlState from '../FormControl/formControlState';
+import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import useFormControl from '../FormControl/useFormControl';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { useThemeProps, styled } from '../styles';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
+import { FormLabelProps, FormLabelTypeMap, FormLabelOwnerState } from './FormLabel.types';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: FormLabelOwnerState) => {
   const { classes, color, focused, disabled, error, filled, required } = ownerState;
   const slots = {
     root: [
@@ -32,13 +30,13 @@ export const FormLabelRoot = styled('label', {
   name: 'MuiFormLabel',
   slot: 'Root',
   overridesResolver: ({ ownerState }, styles) => {
-    return {
-      ...styles.root,
-      ...(ownerState.color === 'secondary' && styles.colorSecondary),
-      ...(ownerState.filled && styles.filled),
-    };
+    return [
+      styles.root,
+      ownerState.color === 'secondary' && styles.colorSecondary,
+      ownerState.filled && styles.filled,
+    ];
   },
-})(({ theme, ownerState }) => ({
+})<{ ownerState: FormLabelOwnerState }>(({ theme, ownerState }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   ...theme.typography.body1,
   lineHeight: '1.4375em',
@@ -59,57 +57,62 @@ const AsteriskComponent = styled('span', {
   name: 'MuiFormLabel',
   slot: 'Asterisk',
   overridesResolver: (props, styles) => styles.asterisk,
-})(({ theme }) => ({
+})<{ ownerState: FormLabelOwnerState }>(({ theme }) => ({
   [`&.${formLabelClasses.error}`]: {
     color: (theme.vars || theme).palette.error.main,
   },
 }));
 
-const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
+const FormLabel = React.forwardRef(function FormLabel<
+  RootComponentType extends React.ElementType = FormLabelTypeMap['defaultComponent'],
+>(inProps: FormLabelProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const props = useThemeProps({ props: inProps, name: 'MuiFormLabel' });
   const {
     children,
     className,
-    color,
+    color: colorProp = 'primary',
     component = 'label',
-    disabled,
-    error,
-    filled,
-    focused,
-    required,
+    disabled: disabledProp,
+    error: errorProp,
+    filled: filledProp,
+    focused: focusedProp,
+    required: requiredProp,
     ...other
   } = props;
 
   const muiFormControl = useFormControl();
-  const fcs = formControlState({
-    props,
-    muiFormControl,
-    states: ['color', 'required', 'focused', 'disabled', 'error', 'filled'],
-  });
+
+  const required = muiFormControl?.required ?? requiredProp;
 
   const ownerState = {
     ...props,
-    color: fcs.color || 'primary',
+    color: muiFormControl?.color ?? colorProp,
     component,
-    disabled: fcs.disabled,
-    error: fcs.error,
-    filled: fcs.filled,
-    focused: fcs.focused,
-    required: fcs.required,
+    disabled: muiFormControl?.disabled ?? disabledProp,
+    error: muiFormControl?.error ?? errorProp,
+    filled: muiFormControl?.filled ?? filledProp,
+    focused: muiFormControl?.focused ?? focusedProp,
+    required,
   };
 
   const classes = useUtilityClasses(ownerState);
 
+  const rootProps = useSlotProps({
+    elementType: FormLabelRoot,
+    externalForwardedProps: other,
+    externalSlotProps: {},
+    additionalProps: {
+      as: component,
+      ref: forwardedRef,
+    },
+    ownerState,
+    className: [classes.root],
+  });
+
   return (
-    <FormLabelRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
+    <FormLabelRoot {...rootProps}>
       {children}
-      {fcs.required && (
+      {required && (
         <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
           &thinsp;{'*'}
         </AsteriskComponent>

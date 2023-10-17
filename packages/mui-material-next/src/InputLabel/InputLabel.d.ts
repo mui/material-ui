@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, OverridableComponent, OverrideProps } from '@mui/types';
-import { FormLabelProps, ExtendFormLabelTypeMap } from '../FormLabel';
+import { FormLabelProps, ExtendFormLabelTypeMap } from '../FormLabel/FormLabel.types';
 import { Theme } from '../styles';
 import { InputLabelClasses } from './inputLabelClasses';
 
