@@ -47,7 +47,7 @@
     "@mui/core-downloads-tracker": "^5.14.14",
     "@mui/system": "^5.14.14",
     "@mui/types": "^7.2.6",
-    "@mui/utils": "^5.14.13",
+    "@mui/utils": "^5.14.14",
     "@types/react-transition-group": "^4.4.7",
     "clsx": "^2.0.0",
     "csstype": "^3.1.2",

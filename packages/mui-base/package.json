@@ -44,7 +44,7 @@
     "@babel/runtime": "^7.23.1",
     "@floating-ui/react-dom": "^2.0.2",
     "@mui/types": "^7.2.6",
-    "@mui/utils": "^5.14.13",
+    "@mui/utils": "^5.14.14",
     "@popperjs/core": "^2.11.8",
     "clsx": "^2.0.0",
     "prop-types": "^15.8.1"

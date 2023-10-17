@@ -43,7 +43,7 @@
     "@mui/core-downloads-tracker": "^5.14.14",
     "@mui/system": "^5.14.14",
     "@mui/types": "^7.2.6",
-    "@mui/utils": "^5.14.13",
+    "@mui/utils": "^5.14.14",
     "clsx": "^2.0.0",
     "prop-types": "^15.8.1"
   },
