@@ -7,6 +7,9 @@ import Menu, { MenuProps } from '@mui/material-next/Menu';
 import MenuItem from '@mui/material-next/MenuItem';
 import StableMenu from '@mui/material/Menu';
 import StableMenuItem from '@mui/material/MenuItem';
+import StableList from '@mui/material/List';
+import StableListItem from '@mui/material/ListItem';
+import StableListItemText from '@mui/material/ListItemText';
 import { useMenuButton } from '@mui/base/useMenuButton';
 
 const theme = createTheme();
@@ -95,7 +98,7 @@ function LegacyUsage(props: MenuProps) {
   );
 }
 
-function StableComponentUsage(props: { MenuListProps?: { disabledItemsFocusable?: boolean } }) {
+function StableComponentUsage(props: { MenuListProps?: { disabledItemsFocusable?: boolean }; autoFocus?: boolean; }) {
   const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent) => {
@@ -137,6 +140,142 @@ function StableComponentUsage(props: { MenuListProps?: { disabledItemsFocusable?
   );
 }
 
+const selectedMenuOptions = [
+  'Show some love to MUI',
+  'Show all notification content',
+  'Hide sensitive notification content',
+  'Hide all notification content',
+];
+
+function SelectedMenuLegacy() {
+  const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const open = Boolean(anchorEl);
+  const handleClickListItem = (event: React.MouseEvent) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuItemClick = (event: React.MouseEvent, index: number) => {
+    setSelectedIndex(index);
+    setAnchorEl(null);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <StableList
+        component="nav"
+        aria-label="Device settings"
+        sx={{ bgcolor: 'background.paper' }}
+      >
+        <StableListItem
+          button
+          id="lock-button"
+          aria-haspopup="listbox"
+          aria-controls="lock-menu"
+          aria-label="when device is locked"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleClickListItem}
+        >
+          <StableListItemText
+            primary="When device is locked"
+            secondary={selectedMenuOptions[selectedIndex]}
+          />
+        </StableListItem>
+      </StableList>
+      <Menu
+        id="lock-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'lock-button',
+          role: 'listbox',
+        }}
+      >
+        {selectedMenuOptions.map((option, index) => (
+          <MenuItem
+            key={option}
+            disabled={index === 0}
+            selected={index === selectedIndex}
+            onClick={(event) => handleMenuItemClick(event, index)}
+          >
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
+  );
+}
+
+
+function SelectedMenuStable() {
+  const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const open = Boolean(anchorEl);
+  const handleClickListItem = (event: React.MouseEvent) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuItemClick = (event: React.MouseEvent, index: number) => {
+    setSelectedIndex(index);
+    setAnchorEl(null);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <StableList
+        component="nav"
+        aria-label="Device settings"
+        sx={{ bgcolor: 'background.paper' }}
+      >
+        <StableListItem
+          button
+          id="lock-button"
+          aria-haspopup="listbox"
+          aria-controls="lock-menu"
+          aria-label="when device is locked"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleClickListItem}
+        >
+          <StableListItemText
+            primary="When device is locked"
+            secondary={selectedMenuOptions[selectedIndex]}
+          />
+        </StableListItem>
+      </StableList>
+      <StableMenu
+        id="lock-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'lock-button',
+          role: 'listbox',
+        }}
+      >
+        {selectedMenuOptions.map((option, index) => (
+          <StableMenuItem
+            key={option}
+            disabled={index === 0}
+            selected={index === selectedIndex}
+            onClick={(event) => handleMenuItemClick(event, index)}
+          >
+            {option}
+          </StableMenuItem>
+        ))}
+      </StableMenu>
+    </div>
+  );
+}
+
 export default function BasicMenu() {
   return (
     <ThemeProvider theme={theme}>
@@ -147,6 +286,16 @@ export default function BasicMenu() {
       <LegacyUsage MenuListProps={{ disabledItemsFocusable: true }} />
       <DropdownUsage MenuListProps={{ disabledItemsFocusable: true }} />
       <StableComponentUsage MenuListProps={{ disabledItemsFocusable: true }} />
+      {/* This is not working at this point */}
+      <h4>Auto focus false</h4>
+      <LegacyUsage autoFocus={false} />
+      <DropdownUsage autoFocus={false}  />
+      <StableComponentUsage autoFocus={false}  />
+      {/* This is not working at this point */}
+      <div>Legacy</div>
+      <SelectedMenuLegacy />
+      <div>Stable</div>
+      <SelectedMenuStable />
     </ThemeProvider>
   );
 }

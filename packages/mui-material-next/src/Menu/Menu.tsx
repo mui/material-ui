@@ -103,6 +103,7 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
   const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     // onItemsChange,
     disabledItemsFocusable: Boolean(MenuListProps.disabledItemsFocusable),
+    disableListWrap: Boolean(MenuListProps.disableListWrap)
   });
 
   const ownerState = {

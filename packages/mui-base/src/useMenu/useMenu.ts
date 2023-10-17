@@ -42,6 +42,7 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     onItemsChange,
     id: idParam,
     disabledItemsFocusable = true,
+    disableListWrap = false,
   } = parameters;
 
   const rootRef = React.useRef<HTMLElement>(null);
@@ -86,6 +87,7 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     rootRef: mergedListRef,
   } = useList({
     disabledItemsFocusable,
+    disableListWrap,
     focusManagement: 'DOM',
     getItemDomElement,
     getInitialState: () => ({
