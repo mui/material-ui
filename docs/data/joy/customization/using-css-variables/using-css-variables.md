@@ -73,7 +73,7 @@ extendTheme({
 
 #### useTheme hook
 
-To access the theme object, use the `useTheme` hook. It must be used within a component that is wrapped in the `CssVarsProvider` component.
+Note that the `useTheme` hook should be used in components wrapped by the `CssVarsProvider` component.
 
 ```jsx
 import { useTheme } from '@mui/joy/styles';
@@ -83,7 +83,7 @@ const SomeComponent = () => {
 
   return (
     <div>
-      <p>{theme.vars.palette.primary[500]}</p>
+      <p style={{ color: {theme.vars.palette.primary[500]} }}>Some text here.</p>
     </div>
   );
 };
@@ -110,7 +110,7 @@ You can't use `theme.vars` to create an inset shadow because the value refers to
 
 ### Adjust color opacity
 
-Use the automatically generated opacity channel tokens (`mainChannel`, `lightChannel` and `darkChannel`), together with the `rgba` color notation, to adjust color opacity in all [available palettes](/joy-ui/customization/theme-colors/#default-color-tokens/) in Joy UI.
+Use the automatically generated opacity channel tokens (`mainChannel`, `lightChannel` and `darkChannel`), together with the `rgba` color notation, to adjust color opacity in all [available palettes](/joy-ui/customization/theme-colors/#default-color-tokens) in Joy UI.
 
 ```js
 const Div = styled('div')(({ theme }) => ({
@@ -131,7 +131,7 @@ The format of the channel tokens uses a space as a separator (e.g., `61 131 246`
 ### Custom prefixes
 
 Every Joy UI CSS variable is prefixed with `joy` by default.
-To change it, use the `cssVarsPrefix` property inside an `extendTheme` function within the CssVarsProvider component.
+To change it, use the `cssVarPrefix` property inside an `extendTheme` function within the CssVarsProvider component.
 
 ```jsx
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -154,16 +154,14 @@ The generated CSS variables will then be:
 
 ### Removing the default prefix
 
-Use an empty value (`""`) in the `cssVarsPrefix` property to remove the default `joy` prefix from the generated CSS variables:
+Use an empty value (`""`) in the `cssVarPrefix` property to remove the default `joy` prefix from the generated CSS variables:
 
 ```jsx
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
 function App() {
   return (
-    <CssVarsProvider theme={extendTheme({ cssVarPrefix: '""' })}>
-      ...
-    </CssVarsProvider>
+    <CssVarsProvider theme={extendTheme({ cssVarPrefix: '' })}>...</CssVarsProvider>
   );
 }
 ```
