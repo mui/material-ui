@@ -824,7 +824,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
     });
 
-    it('Should skip disabled options when navigating via keyboard', () => {
+    it('should skip disabled options when navigating via keyboard', () => {
       const { getByRole } = render(
         <Autocomplete
           getOptionDisabled={(option) => option === 'two'}
@@ -835,10 +835,6 @@ describe('<Autocomplete />', () => {
       );
       const textbox = getByRole('combobox');
 
-      act(() => {
-        textbox.focus();
-      });
-
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -847,7 +843,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'one');
     });
 
-    it('Should skip disabled options at the end of the list when navigating via keyboard', () => {
+    it('should skip disabled options at the end of the list when navigating via keyboard', () => {
       const { getByRole } = render(
         <Autocomplete
           getOptionDisabled={(option) => option === 'three' || option === 'four'}
@@ -858,10 +854,6 @@ describe('<Autocomplete />', () => {
       );
       const textbox = getByRole('combobox');
 
-      act(() => {
-        textbox.focus();
-      });
-
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -870,7 +862,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'one');
     });
 
-    it('Should skip the first disabled option and disabled options at the end of the list when navigating via keyboard', () => {
+    it('should skip the first and last disabled options in the list when navigating via keyboard', () => {
       const { getByRole } = render(
         <Autocomplete
           getOptionDisabled={(option) => option === 'one' || option === 'five'}
@@ -880,10 +872,6 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = getByRole('combobox');
-
-      act(() => {
-        textbox.focus();
-      });
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       checkHighlightIs(getByRole('listbox'), 'two');
@@ -896,7 +884,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'four');
     });
 
-    it("Shouldn't focus any option when all options are disabled", () => {
+    it('should not focus any option when all the options are disabled', () => {
       const { getByRole } = render(
         <Autocomplete
           getOptionDisabled={() => true}
@@ -906,10 +894,6 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = getByRole('combobox');
-
-      act(() => {
-        textbox.focus();
-      });
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       checkHighlightIs(getByRole('listbox'), null);
