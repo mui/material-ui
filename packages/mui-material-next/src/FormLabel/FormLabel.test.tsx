@@ -7,14 +7,15 @@ import FormControl, { useFormControl } from '@mui/material-next/FormControl';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<FormLabel />', () => {
-  let originalMatchmedia; // : typeof window.matchMedia;
+  let originalMatchmedia: typeof window.matchMedia;
 
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
-    window.matchMedia = (/* as unknown as MediaQueryList */) => ({
-      addListener: () => {},
-      removeListener: () => {},
-    });
+    window.matchMedia = () =>
+      ({
+        addListener: () => {},
+        removeListener: () => {},
+      } as unknown as MediaQueryList);
   });
 
   afterEach(() => {
@@ -71,7 +72,7 @@ describe('<FormLabel />', () => {
 
   describe('with FormControl', () => {
     describe('error', () => {
-      function Wrapper(props) {
+      function Wrapper(props: { children?: React.ReactNode }) {
         return <FormControl error {...props} />;
       }
 
@@ -106,7 +107,7 @@ describe('<FormLabel />', () => {
       });
 
       it(`should have the focused class`, () => {
-        const formControlRef = React.createRef();
+        const formControlRef = React.createRef<{ onFocus: () => void }>();
         const { container } = render(
           <FormControl error>
             <FormLabel data-testid="FormLabel" />
@@ -117,14 +118,14 @@ describe('<FormLabel />', () => {
         expect(container.querySelector('label')).not.to.have.class(classes.focused);
 
         act(() => {
-          formControlRef.current.onFocus();
+          formControlRef.current?.onFocus();
         });
         expect(container.querySelector('label')).to.have.class(classes.focused);
       });
 
       it('should be overridden by props', () => {
-        const formControlRef = React.createRef();
-        function Wrapper({ children }) {
+        const formControlRef = React.createRef<{ onFocus: () => void }>();
+        function Wrapper({ children }: { children?: React.ReactNode }) {
           return (
             <FormControl error>
               {children}
@@ -137,7 +138,7 @@ describe('<FormLabel />', () => {
           wrapper: Wrapper,
         });
         act(() => {
-          formControlRef.current.onFocus();
+          formControlRef.current?.onFocus();
         });
 
         expect(container.querySelector('label')).to.have.class(classes.focused);
