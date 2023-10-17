@@ -166,7 +166,7 @@ FormLabel.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
+    PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'tertiary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

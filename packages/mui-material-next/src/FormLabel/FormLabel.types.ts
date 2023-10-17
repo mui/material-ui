@@ -26,7 +26,7 @@ export interface FormLabelOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    'primary' | 'secondary' | 'tertiary' | 'error' | 'info' | 'warning' | 'success',
     FormLabelPropsColorOverrides
   >;
   /**
