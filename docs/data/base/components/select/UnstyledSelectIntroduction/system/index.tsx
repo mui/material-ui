@@ -1,37 +1,37 @@
 import * as React from 'react';
 import {
-  Select,
+  Select as BaseSelect,
   selectClasses,
   SelectProps,
   SelectRootSlotProps,
 } from '@mui/base/Select';
-import { Option, optionClasses } from '@mui/base/Option';
-import { Popper } from '@mui/base/Popper';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
+import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectIntroduction() {
   return (
-    <CustomSelect defaultValue={10}>
-      <StyledOption value={10}>Documentation</StyledOption>
-      <StyledOption value={20}>Components</StyledOption>
-      <StyledOption value={30}>Features</StyledOption>
-    </CustomSelect>
+    <Select defaultValue={10}>
+      <Option value={10}>Documentation</Option>
+      <Option value={20}>Components</Option>
+      <Option value={30}>Features</Option>
+    </Select>
   );
 }
 
-const CustomSelect = React.forwardRef(function CustomSelect<
+const Select = React.forwardRef(function CustomSelect<
   TValue extends {},
   Multiple extends boolean,
 >(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
   const slots = {
     root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    listbox: Listbox,
+    popper: Popper,
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return <BaseSelect {...props} ref={ref} slots={slots} />;
 });
 
 const blue = {
@@ -112,7 +112,7 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -132,7 +132,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -169,6 +169,6 @@ const StyledOption = styled(Option)(
   `,
 );
 
-const StyledPopper = styled(Popper)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;

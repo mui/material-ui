@@ -1,5 +1,143 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.14
+
+<!-- generated comparing v5.14.13..master -->
+
+_Oct 17, 2023_
+
+A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.14.14`
+
+- &#8203;<!-- 29 -->[material-ui][AppBar] Support all default palette colors in TypeScript (#39389) @BreakBB
+- &#8203;<!-- 28 -->[material-ui][AvatarGroup] Add `renderSurplus` prop (#39283) @uuxxx
+- &#8203;<!-- 25 -->[material-ui][Box] Fix system properties has incorrect `Theme` interface when applied directly (#39404) @Semigradsky
+- &#8203;<!-- 04 -->[material-ui][Pagination] Update `type` parameter of `getItemAriaLabel` prop (#39390) @Simer13
+- &#8203;<!-- 06 -->[material][tab] Show/hide scroll buttons for dynamically added children (#39415) @brijeshb42
+
+### `@mui/base@5.0.0-beta.20`
+
+- &#8203;<!-- 26 -->[base-ui][Menu] Do not reopen the menu after clicking on a trigger in Safari (#39393) @michaldudak
+
+### `@mui/material-next@6.0.0-alpha.106`
+
+- &#8203;<!-- 23 -->[Divider][material-next] Add Divider component (#39179) @Best-Sardar
+
+### `@mui/joy@5.0.0-beta.11`
+
+- &#8203;<!-- 08 -->[joy-ui][List] Add the `marker` prop (#39313) @siriwatknp
+- &#8203;<!-- 07 -->[joy-ui][Skeleton] Fix semi-transparent scenario when with surface components and color inversion (#39400) @TheNatkat
+- &#8203;<!-- 06 -->[joy-ui][Textarea] Fix focus ring for error state (#39391) @vineetjk
+
+### `@mui/icons-material@5.14.14`
+
+- &#8203;<!-- 09 -->[icons] Fix VoiceChatOutlined showing the wrong icon (#39418) @devuser200
+
+### `@mui/system@5.14.14`
+
+- &#8203;<!-- 03 -->[mui-system][style] bug fix for style value check color in nullable object (#39457) @DarhkVoyd
+
+### `@mui/styled-engine-sc@6.0.0-alpha.2`
+
+- &#8203;<!-- 05 -->[styled-engine-sc] Fix TS issues because of missing types (#39395) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 27 -->[docs][base-ui] Renaming demos to BaseXxx (#39104) @christophermorin
+- &#8203;<!-- 26 -->[docs] Accessibility in Base UI (#39264) @michaldudak
+- &#8203;<!-- 22 -->[docs] Fix 301 redirection @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Improve Base UI table of contents for APIs (#39412) @ZeeshanTamboli
+- &#8203;<!-- 20 -->[docs] Adjust design kits-related content (#39367) @danilo-leal
+- &#8203;<!-- 19 -->[docs] Revise the Contributing Guide (#39190) @samuelsycamore
+- &#8203;<!-- 12 -->[docs][joy-ui] Fix row hover prop name in the Table page (#39431) @adrienbrault
+- &#8203;<!-- 11 -->[docs][joy-ui] Fix color inversion demos (#39403) @danilo-leal
+- &#8203;<!-- 10 -->[docs][material-ui] Remove irrelevant TODO from Snackbar demo (#39396) @ZeeshanTamboli
+- &#8203;<!-- 06 -->[docs][material-ui][Table] Bug in "Sorting & Selecting" demo (#39426) @codewithrabeeh
+- &#8203;<!-- 05 -->[docs][joy-ui][typography] Update docs after lineHeight changes (#39366) @zanivan
+
+### Core
+
+- &#8203;<!-- 24 -->[core] Fix multiple typos across the repo (#39422) @parikshitadhikari
+- &#8203;<!-- 18 -->[docs-infra] Add refinements to the API content design (#39425) @danilo-leal
+- &#8203;<!-- 17 -->[docs-infra] Add a min height to the layout component (#39416) @danilo-leal
+- &#8203;<!-- 16 -->[docs-infra] Prevent horizontal scroll in the TOC (#39417) @danilo-leal
+- &#8203;<!-- 15 -->[docs-infra] Add a collapsible list & table views to the API content display (#38265) @alexfauquette
+- &#8203;<!-- 14 -->[docs-infra] Adjust the `kbd` tag styles (#39397) @danilo-leal
+- &#8203;<!-- 13 -->[docs-infra] Fix strong style regression (#39384) @oliviertassinari
+- &#8203;<!-- 04 -->[website] Add the LinkedIn profile to the contributors section on the About page (#39455) @chhawinder
+- &#8203;<!-- 03 -->[website] Update new role template (#39386) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Add stray design fine-tunning to the Pricing page (#39472) @danilo-leal
+- &#8203;<!-- 01 -->[website] Fix career anchor link to perks & benefits @oliviertassinari
+
+All contributors of this release in alphabetical order: @adrienbrault, @alexfauquette, @Best-Sardar, @BreakBB, @brijeshb42, @chhawinder, @christophermorin, @codewithrabeeh, @danilo-leal, @DarhkVoyd, @devuser200, @michaldudak, @mnajdova, @oliviertassinari, @parikshitadhikari, @samuelsycamore, @Semigradsky, @Simer13, @siriwatknp, @TheNatkat, @uuxxx, @vineetjk, @zanivan, @ZeeshanTamboli
+
+## 5.14.13
+
+<!-- generated comparing v5.14.12..master -->
+
+_Oct 10, 2023_
+
+A big thanks to the 22 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added support for `styled-components` v6 (#39042) @mnajdova
+
+### `@mui/material@5.14.13`
+
+- [Checkbox] Fix checkbox hover bg with extendTheme (#39319) @brijeshb42
+- [Chip] Outlined Chip variant is wider than the Filled counterpart (#39342) @chirag3003
+- [Select] Add notice about select's a11y improvement on v5.14.12 changelog (#39310) @DiegoAndai
+- [Typography] Color prop check for primitive type (#39071) @DarhkVoyd
+- [Pagination] Fix background color on hover and keyboard focus when using CSS theme variables (#39220) @ValkonX33
+- [Popper] Add missing `styleOverrides` Popper type in theme (#39154) @axelbostrom
+- [Slider] Support all default palette colors in TypeScript (#39058) @gugudwt
+
+### `@mui/base@5.0.0-beta.19`
+
+- [Menu] Add the anchor prop (#39297) @michaldudak
+
+### `@mui/material-next@6.0.0-alpha.105`
+
+- [Menu] Copy v5 Menu components (#39301) @mnajdova
+
+### `@mui/joy@5.0.0-beta.10`
+
+- [Autocomplete] Add `type=button` to clear button (#39263) @brijeshb42
+- [Button] Fix the text wrap issue (#38696) @atharva3333
+- [Drawer] Apply color inversion to content slot instead (#39312) @siriwatknp
+- [Switch] Fix missing class name (#39327) @Bestwebdesign
+
+### `@mui/styled-engine-sc@6.0.0-alpha.1`
+
+- &#8203;<!-- 03 -->[system] Add support for `styled-components` v6 (#39042) @mnajdova
+
+### Docs
+
+- [joy-ui] Adjust the templates page card design (#39369) @danilo-leal
+- Rename the Data Grid "Quick filter" to "Search" (#37724) @alexfauquette
+- Remove obsolete translations (#39221) @mbrookes
+- Update link to add custom color in palette (#39359) @ZeeshanTamboli
+- Denser code demo @oliviertassinari
+- Set up MD3 experiments pages (#39323) @mj12albert
+- [Drawer] Fix right anchored persistent drawer intercepts click when it is closed (#39318) @ZeeshanTamboli
+- [joy-ui] Revise the Color Inversion page (#39306) @danilo-leal
+- [joy-ui] Remove redundant `error` prop from input validation demo (#39280) @sai6855
+- [material-ui] Rename themed components doc, fix typos (#39368) @samuelsycamore
+- [material-ui] Adjust the Material You Chip section (#39325) @danilo-leal
+- [system] Add documentation on how to augment custom theme types for the `sx` prop callback (#39259) @3xp10it3r
+- [joy-ui][Input] Add debounce input demo (#39300) @sai6855
+
+### Core
+
+- [docs-infra] Improve the open diamond sponsor spot callout (#39332) @danilo-leal
+- [docs-infra] Fix Code Sandbox download issue (#39317) @ARJ2160
+- [docs-infra] Remove overflow: hidden for demo gradient bg (#39225) @oliviertassinari
+- [website] Fix footer responsiveness (#39355) @danilo-leal
+- [website] Host Figma redirections in the store for now @oliviertassinari
+
+All contributors of this release in alphabetical order: @3xp10it3r, @alexfauquette, @ARJ2160, @atharva3333, @axelbostrom, @Bestwebdesign, @brijeshb42, @chirag3003, @danilo-leal, @DarhkVoyd, @DiegoAndai, @gugudwt, @mbrookes, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ValkonX33, @ZeeshanTamboli
+
 ## 5.14.12
 
 <!-- generated comparing v5.14.11..master -->

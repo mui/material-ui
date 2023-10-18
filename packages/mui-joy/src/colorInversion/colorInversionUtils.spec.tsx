@@ -21,6 +21,20 @@ import Box from '@mui/joy/Box';
 /**
  * styled API type check
  */
+const StyledBox = styled(Box)(
+  ({ theme }) => ({
+    padding: 32,
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    alignItems: 'center',
+    rowGap: 16,
+    columnGap: 64,
+    borderRadius: 8,
+    background: `linear-gradient(45deg, ${theme.vars.palette.neutral[800]}, ${theme.vars.palette.neutral[600]})`,
+  }),
+  applySolidInversion('neutral'),
+);
+
 styled('div')(({ theme }) => ({}), applySoftInversion('primary'), applySolidInversion('primary'));
 
 styled('div')(

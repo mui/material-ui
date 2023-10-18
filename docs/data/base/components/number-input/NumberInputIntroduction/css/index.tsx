@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  Unstable_NumberInput as NumberInput,
+  Unstable_NumberInput as BaseNumberInput,
   numberInputClasses,
 } from '@mui/base/Unstable_NumberInput';
 import { useTheme } from '@mui/system';
@@ -8,7 +8,7 @@ import { useTheme } from '@mui/system';
 export default function NumberInputIntroduction() {
   return (
     <React.Fragment>
-      <NumberInput
+      <BaseNumberInput
         slotProps={{
           root: { className: 'CustomNumberInput' },
           input: { className: 'CustomNumberInput-input' },
