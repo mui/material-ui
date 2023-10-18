@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -51,7 +50,7 @@ export default function TaskCard() {
           >
             <Avatar
               imgProps={{ 'aria-labelledby': 'demo-task-card-assignee-name' }}
-              src="/static/images/avatar/1-sm.jpeg"
+              src="https://i.scdn.co/image/ab67616d0000b273992e45c95fa03ee72c52a526"
             />
           </Box>
           <div>

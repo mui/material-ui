@@ -94,7 +94,7 @@ export default function Hero() {
         </Box>
       }
       rightSx={{
-        p: 3,
+        p: 4,
         ml: 2,
         minWidth: 2000,
         overflow: 'hidden', // the components in the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
