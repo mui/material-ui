@@ -44,8 +44,9 @@ export default function EmptyTextarea() {
     }
 
     &:focus {
+      outline: 0;
       border-color: ${blue[400]};
-      box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+      box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
     }
 
     // firefox

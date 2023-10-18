@@ -64,7 +64,7 @@ function Styles() {
   return (
     <style>{`
         .Button {
-          font-family: IBM Plex Sans,sans-serif;
+          font-family: IBM Plex Sans, sans-serif;
           font-weight: 600;
           font-size: 0.875rem;
           line-height: 1.5;
@@ -72,16 +72,30 @@ function Styles() {
           padding: 8px 16px;
           border-radius: 8px;
           color: white;
+          transition: all 150ms ease;
           cursor: pointer;
-          border: none;
-
+          border: 1px solid ${cyan[500]};
+          box-shadow: 0 2px 4px ${
+            isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(13, 84, 99, 0.5)'
+          }, inset 0 1.5px 1px ${cyan[400]}, inset 0 -2px 1px ${cyan[600]};
+    
           &:hover {
             background-color: ${cyan[600]};
           }
+    
+          &:active {
+            background-color: ${cyan[700]};
+            box-shadow: none;
+          }
+    
+          &:focus-visible {
+            box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
+            outline: none;
+            }
         }
 
         .CustomPopup{
-          background-color: ${isDarkMode ? grey[900] : grey[50]};
+          background-color: ${isDarkMode ? grey[900] : '#FFF'};
           border-radius: 8px;
           border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
           box-shadow: ${

@@ -1,12 +1,14 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 const Select = React.forwardRef(function Select(props, ref) {
   const slots = {
-    root: Button,
+    root: CustomButton,
     listbox: Listbox,
     popper: Popper,
     ...props.slots,
@@ -31,6 +33,7 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B2',
   900: '#003A75',
 };
 
@@ -47,8 +50,24 @@ const grey = {
   900: '#24292f',
 };
 
-const Button = styled('button')(
+const CustomButton = React.forwardRef(function CustomButton(props, ref) {
+  const { ownerState, ...other } = props;
+  return (
+    <StyledButton type="button" {...other} ref={ref}>
+      {other.children}
+      <UnfoldMoreRoundedIcon />
+    </StyledButton>
+  );
+});
+
+CustomButton.propTypes = {
+  children: PropTypes.node,
+  ownerState: PropTypes.object.isRequired,
+};
+
+const StyledButton = styled('button', { shouldForwardProp: () => true })(
   ({ theme }) => `
+  position: relative;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
@@ -60,8 +79,8 @@ const Button = styled('button')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 6px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
 
   transition-property: all;
@@ -74,19 +93,17 @@ const Button = styled('button')(
   }
 
   &.${selectClasses.focusVisible} {
+    outline: 0;
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
-  &.${selectClasses.expanded} {
-    &::after {
-      content: '▴';
-    }
-  }
-
-  &::after {
-    content: '▾';
-    float: right;
+  & > svg {
+    font-size: 1rem;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 10px;
   }
   `,
 );
@@ -105,8 +122,8 @@ const Listbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 6px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
   `,
 );

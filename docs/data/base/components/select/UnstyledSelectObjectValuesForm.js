@@ -4,8 +4,8 @@ import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
 
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
 import { Popper as BasePopper } from '@mui/base/Popper';
-import { styled } from '@mui/system';
-import Box from '@mui/system/Box';
+import { styled, Box } from '@mui/system';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectObjectValuesForm() {
   const getSerializedValue = (option) => {
@@ -46,9 +46,9 @@ export default function UnstyledSelectObjectValuesForm() {
               ))}
             </Select>
           </div>
-          <Button sx={{ ml: 1 }} type="submit">
+          <SubmitButton sx={{ ml: 1 }} type="submit">
             Submit
-          </Button>
+          </SubmitButton>
         </Box>
       </form>
       <form onSubmit={handleSubmit}>
@@ -74,9 +74,9 @@ export default function UnstyledSelectObjectValuesForm() {
               ))}
             </Select>
           </div>
-          <Button sx={{ ml: 1 }} type="submit">
+          <SubmitButton sx={{ ml: 1 }} type="submit">
             Submit
-          </Button>
+          </SubmitButton>
         </Box>
       </form>
     </div>
@@ -118,9 +118,11 @@ const characters = [
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
+  300: '#66B2FF',
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0066CC',
   900: '#003A75',
 };
 
@@ -137,41 +139,60 @@ const grey = {
   900: '#1A2027',
 };
 
-const StyledButton = styled('button')(
+const Button = React.forwardRef(function Button(props, ref) {
+  const { ownerState, ...other } = props;
+  return (
+    <button type="button" {...other} ref={ref}>
+      {other.children}
+      <UnfoldMoreRoundedIcon />
+    </button>
+  );
+});
+
+Button.propTypes = {
+  children: PropTypes.node,
+  ownerState: PropTypes.object.isRequired,
+};
+
+const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-width: 320px;
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
   padding: 8px 12px;
   border-radius: 8px;
   text-align: left;
   line-height: 1.5;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 2px 6px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  position: relative;
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
 
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 120ms;
+
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? '' : grey[100]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
+    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
   &.${selectClasses.focusVisible} {
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
+    outline: 0;
+    border-color: ${blue[400]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
-  &.${selectClasses.expanded} {
-    &::after {
-      content: '▴';
-    }
-  }
-
-  &::after {
-    content: '▾';
-    float: right;
+  & > svg {
+    font-size: 1rem;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 10px;
   }
   `,
 );
@@ -248,22 +269,44 @@ const Label = styled('label')(
   `,
 );
 
-const Button = styled('button')`
-  font-family: 'IBM Plex Sans', sans-serif;
+const SubmitButton = styled('button')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
+  line-height: 1.5;
   background-color: ${blue[500]};
   padding: 8px 16px;
-  line-height: 1.5;
   border-radius: 8px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
-  border: none;
-  vertical-align: middle;
-  min-height: calc(1em + 25px);
+  border: 1px solid ${blue[500]};
+  box-shadow: 0 2px 1px ${
+    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
+  }, inset 0 1.5px 1px ${blue[400]}, inset 0 -2px 1px ${blue[600]};
 
   &:hover {
     background-color: ${blue[600]};
   }
-`;
+
+  &:active {
+    background-color: ${blue[700]};
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+    outline: none;
+  }
+
+  &.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+    &:hover {
+      background-color: ${blue[500]};
+    }
+  }
+`,
+);

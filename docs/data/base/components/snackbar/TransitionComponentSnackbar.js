@@ -82,32 +82,42 @@ const grey = {
 
 const blue = {
   200: '#99CCF3',
+  300: '#66B2FF',
   400: '#3399FF',
   500: '#007FFF',
+  600: '#0072E5',
+  700: '#0066CC',
 };
 
 const TriggerButton = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
   font-weight: 600;
-  box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 6px 12px;
+  font-size: 0.875rem;
   line-height: 1.5;
-  background: transparent;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[100] : grey[900]};
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  transition: all 150ms ease;
+  cursor: pointer;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  box-shadow: 0 1px 2px ${
+    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.15)'
+  };
 
   &:hover {
     background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
+  &:active {
+    background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
+  }
 
   &:focus-visible {
-    border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+    outline: none;
   }
   `,
 );
@@ -122,22 +132,26 @@ const StyledSnackbar = styled(Snackbar)`
 
 const SnackbarContent = styled('div')(
   ({ theme }) => `
-  display: flex;
+  position: relative;
   overflow: hidden;
-  background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  z-index: 5500;
+  display: flex;
+  left: auto;
+  justify-content: space-between;
+  max-width: 560px;
+  min-width: 300px;
+  background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
   border-radius: 8px;
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   box-shadow: ${
     theme.palette.mode === 'dark'
-      ? `0 2px 8px rgba(0,0,0,0.5)`
+      ? `0 2px 8px rgb(0 0 0 / 0.5)`
       : `0 2px 8px ${grey[200]}`
   };
   padding: 0.75rem;
   color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: 500;
-  text-align: start;
-  position: relative;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
 
   & .snackbar-title {
     margin-right: 0.5rem;

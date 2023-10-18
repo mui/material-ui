@@ -36,8 +36,11 @@ export default function UseSnackbar() {
 
 const blue = {
   200: '#99CCF3',
+  300: '#66B2FF',
   400: '#3399FF',
   500: '#007FFF',
+  600: '#0072E5',
+  700: '#0066CC',
 };
 
 const grey = {
@@ -66,25 +69,33 @@ const snackbarInRight = keyframes`
 const TriggerButton = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
   font-weight: 600;
-  box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 6px 12px;
+  font-size: 0.875rem;
   line-height: 1.5;
-  background: transparent;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[100] : grey[900]};
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  transition: all 150ms ease;
+  cursor: pointer;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  box-shadow: 0 1px 2px ${
+    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.15)'
+  };
 
   &:hover {
     background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
+  &:active {
+    background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
+  }
+
   &:focus-visible {
-    border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+    outline: none;
   }
   `,
 );
@@ -97,10 +108,10 @@ const CustomSnackbar = styled('div')(
     right: 16px;
     bottom: 16px;
     left: auto;
-    justify-content: start;
+    justify-content: space-between;
     max-width: 560px;
     min-width: 300px;
-    background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
     border-radius: 8px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     box-shadow: ${theme.palette.mode === 'dark'

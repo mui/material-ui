@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Modal as BaseModal } from '@mui/base/Modal';
-import { Box, styled, Theme } from '@mui/system';
+import { Box, styled } from '@mui/system';
 
 export default function ServerModal() {
   const rootRef = React.useRef<HTMLDivElement>(null);
@@ -29,16 +29,37 @@ export default function ServerModal() {
         aria-describedby="server-modal-description"
         container={() => rootRef.current}
       >
-        <Box sx={style}>
-          <h2 id="server-modal-title">Server-side modal</h2>
-          <span id="server-modal-description">
+        <ModalContent sx={style}>
+          <h3 id="server-modal-title" className="modal-title">
+            Server-side modal
+          </h3>
+          <span id="server-modal-description" className="modal-description">
             If you disable JavaScript, you will still see me.
           </span>
-        </Box>
+        </ModalContent>
       </Modal>
     </Box>
   );
 }
+
+const grey = {
+  50: '#f6f8fa',
+  100: '#eaeef2',
+  200: '#d0d7de',
+  300: '#afb8c1',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
+  700: '#424a53',
+  800: '#32383f',
+  900: '#24292f',
+};
+
+const blue = {
+  200: '#99CCF3',
+  300: '#66B2FF',
+  700: '#0059B2',
+};
 
 const Modal = styled(BaseModal)`
   position: fixed;
@@ -52,11 +73,30 @@ const Modal = styled(BaseModal)`
   font-family: 'IBM Plex Sans', sans-serif;
 `;
 
-const style = (theme: Theme) => ({
+const style = {
   position: 'relative',
   width: 400,
-  borderRadius: '12px',
-  padding: '16px 32px 24px 32px',
-  backgroundColor: theme.palette.mode === 'dark' ? '#132F4C' : 'white',
-  boxShadow: `0px 2px 8px ${theme.palette.mode === 'dark' ? '#000' : '#BCBCBC'}`,
-});
+  height: 120,
+};
+
+const ModalContent = styled(Box)(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  transition: all 150ms ease;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+
+  &:focus-visible {
+    box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+    outline: none;
+  }
+  `,
+);

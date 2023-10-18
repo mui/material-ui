@@ -85,25 +85,31 @@ function Styles() {
 
     .TriggerButton {
       font-family: IBM Plex Sans, sans-serif;
-      font-size: 0.875rem;
       font-weight: 600;
-      box-sizing: border-box;
-      border-radius: 8px;
-      padding: 8px 16px;
+      font-size: 0.875rem;
       line-height: 1.5;
-      background: transparent;
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: white;
+      transition: all 150ms ease;
       cursor: pointer;
-      border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
-      color: ${isDarkMode ? cyan[300] : cyan[400]};
-
+      background: ${isDarkMode ? grey[900] : '#fff'};
+      border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
+      color: ${isDarkMode ? grey[200] : grey[900]};
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    
       &:hover {
-        background: ${isDarkMode ? grey[900] : grey[100]};
-        border-color: ${isDarkMode ? cyan[200] : cyan[400]};
+        background: ${isDarkMode ? grey[800] : grey[50]};
+        border-color: ${isDarkMode ? grey[600] : grey[300]};
       }
-
+    
+      &:active {
+        background: ${isDarkMode ? grey[700] : grey[100]};
+      }
+    
       &:focus-visible {
-        border-color: ${cyan[400]};
-        outline: 3px solid ${isDarkMode ? cyan[500] : cyan[200]};
+        box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
+        outline: none;
       }
     }
 
@@ -117,7 +123,7 @@ function Styles() {
       justify-content: start;
       max-width: 560px;
       min-width: 300px;
-      background-color: ${isDarkMode ? grey[900] : grey[50]};
+      background-color: ${isDarkMode ? grey[900] : '#FFF'};
       border-radius: 8px;
       border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
       box-shadow: ${

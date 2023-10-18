@@ -48,16 +48,16 @@ const cyan = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7',
+  400: '#B2BAC2',
+  500: '#A0AAB4',
+  600: '#6F7E8C',
+  700: '#3E5060',
+  800: '#2D3843',
+  900: '#1A2027',
 };
 
 const Button = React.forwardRef(function Button(props, ref) {
@@ -100,7 +100,9 @@ function Styles() {
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
         color: ${isDarkMode ? grey[300] : grey[900]};
         position: relative;
-        box-shadow: 0px 2px 24px ${isDarkMode ? cyan[800] : cyan[100]};
+        box-shadow: 0px 4px 6px ${
+          isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+        };
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 120ms;
@@ -111,8 +113,9 @@ function Styles() {
         }
 
         &.${selectClasses.focusVisible} {
+          outline: 0;
           border-color: ${cyan[400]};
-          outline: 3px solid ${isDarkMode ? cyan[500] : cyan[200]};
+          box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
         }
 
         & > svg {

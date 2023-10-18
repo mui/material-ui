@@ -80,7 +80,7 @@ const PopupBody = styled('div')(
   margin: 8px;
   border-radius: 8px;
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
   box-shadow: ${
     theme.palette.mode === 'dark'
       ? `0px 4px 8px rgb(0 0 0 / 0.7)`
@@ -92,23 +92,30 @@ const PopupBody = styled('div')(
 );
 
 const blue = {
+  200: '#99CCFF',
+  300: '#66B2FF',
+  400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
-  700: '#0059B2',
+  700: '#0066CC',
 };
 
-const Button = styled('button')`
-  font-family: 'IBM Plex Sans', sans-serif;
+const Button = styled('button')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
   background-color: ${blue[500]};
-  color: white;
-  border-radius: 8px;
-  font-weight: 600;
   padding: 8px 16px;
-  cursor: pointer;
+  border-radius: 8px;
+  color: white;
   transition: all 150ms ease;
-  border: none;
+  cursor: pointer;
+  border: 1px solid ${blue[500]};
+  box-shadow: 0 2px 1px ${
+    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
+  }, inset 0 1.5px 1px ${blue[400]}, inset 0 -2px 1px ${blue[600]};
 
   &:hover {
     background-color: ${blue[600]};
@@ -116,10 +123,21 @@ const Button = styled('button')`
 
   &:active {
     background-color: ${blue[700]};
+    box-shadow: none;
   }
 
   &:focus-visible {
-    box-shadow: 0 4px 20px 0 rgb(61 71 82 / 0.1), 0 0 0 5px rgb(0 127 255 / 0.5);
+    box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
     outline: none;
   }
-`;
+
+  &.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+    &:hover {
+      background-color: ${blue[500]};
+    }
+  }
+`,
+);

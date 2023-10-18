@@ -5,7 +5,7 @@ import {
 } from '@mui/base/Unstable_NumberInput';
 import { styled } from '@mui/system';
 
-const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
+const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
   return (
     <BaseNumberInput
       slots={{
@@ -16,10 +16,10 @@ const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
       }}
       slotProps={{
         incrementButton: {
-          children: <span className="arrow">▴</span>,
+          children: '▴',
         },
         decrementButton: {
-          children: <span className="arrow">▾</span>,
+          children: '▾',
         },
       }}
       {...props}
@@ -29,29 +29,31 @@ const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
 });
 
 export default function NumberInputIntroduction() {
-  return <NumberInput aria-label="Demo number input" placeholder="Type a number…" />;
+  return (
+    <CustomNumberInput aria-label="Demo number input" placeholder="Type a number…" />
+  );
 }
 
 const blue = {
   100: '#DAECFF',
-  200: '#b6daff',
+  200: '#80BFFF',
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
-  900: '#003A75',
+  700: '#0059B2',
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7',
+  400: '#B2BAC2',
+  500: '#A0AAB4',
+  600: '#6F7E8C',
+  700: '#3E5060',
+  800: '#2D3843',
+  900: '#1A2027',
 };
 
 const StyledInputRoot = styled('div')(
@@ -62,16 +64,19 @@ const StyledInputRoot = styled('div')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 24px ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+  };
   display: grid;
   grid-template-columns: 1fr 19px;
   grid-template-rows: 1fr 1fr;
   overflow: hidden;
-
+  column-gap: 8px;
+  padding: 4px;
 
   &.${numberInputClasses.focused} {
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
   &:hover {
@@ -132,11 +137,42 @@ const StyledButton = styled('button')(
   &.${numberInputClasses.incrementButton} {
     grid-column: 2/3;
     grid-row: 1/2;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border: 1px solid;
+    border-bottom: 0;
+    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+
+    &:hover {
+      cursor: pointer;
+      color: #FFF;
+      background: ${theme.palette.mode === 'dark' ? blue[600] : blue[500]};
+      border-color: ${theme.palette.mode === 'dark' ? blue[400] : blue[600]};
+    }
   }
 
   &.${numberInputClasses.decrementButton} {
     grid-column: 2/3;
     grid-row: 2/3;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border: 1px solid;
+    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: #FFF;
+    background: ${theme.palette.mode === 'dark' ? blue[600] : blue[500]};
+    border-color: ${theme.palette.mode === 'dark' ? blue[400] : blue[600]};
+  }
+
+  & .arrow {
+    transform: translateY(-1px);
   }
 
   & .arrow {

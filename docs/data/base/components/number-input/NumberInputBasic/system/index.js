@@ -74,11 +74,12 @@ const StyledInputRoot = styled('div')(
   grid-template-columns: 1fr 19px;
   grid-template-rows: 1fr 1fr;
   overflow: hidden;
-
+  column-gap: 8px;
+  padding: 4px;
 
   &.${numberInputClasses.focused} {
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
   &:hover {
@@ -121,8 +122,8 @@ const StyledButton = styled('button')(
   height: 19px;
   font-family: system-ui, sans-serif;
   font-size: 0.875rem;
+  line-height: 1;
   box-sizing: border-box;
-  line-height: 1.2;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 0;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
@@ -139,11 +140,39 @@ const StyledButton = styled('button')(
   &.${numberInputClasses.incrementButton} {
     grid-column: 2/3;
     grid-row: 1/2;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border: 1px solid;
+    border-bottom: 0;
+    &:hover {
+      cursor: pointer;
+      background: ${blue[400]};
+      color: ${grey[50]};
+    }
+
+  border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
   }
 
   &.${numberInputClasses.decrementButton} {
     grid-column: 2/3;
     grid-row: 2/3;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border: 1px solid;
+    &:hover {
+      cursor: pointer;
+      background: ${blue[400]};
+      color: ${grey[50]};
+    }
+
+  border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  }
+  & .arrow {
+    transform: translateY(-1px);
   }
 `,
 );

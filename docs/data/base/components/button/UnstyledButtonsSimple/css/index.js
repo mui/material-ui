@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Button, buttonClasses } from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
+import { useTheme } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
 export default function UnstyledButtonsSimple() {
@@ -29,35 +30,58 @@ const cyan = {
   900: '#022127',
 };
 
+const grey = {
+  200: '#d0d7de',
+  700: '#424a53',
+};
+
+function useIsDarkMode() {
+  const theme = useTheme();
+  return theme.palette.mode === 'dark';
+}
+
 function Styles() {
+  // Replace this with your app logic for determining dark mode
+  const isDarkMode = useIsDarkMode();
+
   return (
     <style>
       {`
-
       .CustomButton {
-        font-family: IBM Plex Sans,sans-serif;
+        font-family: IBM Plex Sans, sans-serif;
+        font-weight: 600;
         font-size: 0.875rem;
         line-height: 1.5;
         background-color: ${cyan[500]};
-        color: #fff;
-        border-radius: 8px;
-        font-weight: 600;
         padding: 8px 16px;
+        border-radius: 8px;
+        color: white;
+        transition: all 150ms ease;
         cursor: pointer;
-        border: none;
+        border: 1px solid ${cyan[500]};
+        box-shadow: 0 2px 4px ${
+          isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(13, 84, 99, 0.5)'
+        }, inset 0 1.5px 1px ${cyan[400]}, inset 0 -2px 1px ${cyan[600]};
       }
-
-      .CustomButton:hover:not(.${buttonClasses.disabled}) {
+      .CustomButton:hover {
         background-color: ${cyan[600]};
       }
-
-      .CustomButton:active:not(.${buttonClasses.disabled}) {
+      .CustomButton:active {
         background-color: ${cyan[700]};
       }
-
-      .${buttonClasses.disabled} {
-        opacity: 0.5;
+      .CustomButton:focusVisible {
+        box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
+        outline: none;
+      }
+      .CustomButton:disabled {
+        background-color: ${isDarkMode ? grey[700] : grey[200]};
+        color: ${isDarkMode ? grey[200] : grey[700]};
+        border: 0;
         cursor: not-allowed;
+        box-shadow: none;
+      }
+      .CustomButton:disabled:hover {
+        background-color: ${isDarkMode ? grey[700] : grey[200]};
       }
       `}
     </style>

@@ -11,15 +11,9 @@ export default function NumberInputBasic() {
       <BaseNumberInput
         slotProps={{
           root: { className: 'CustomNumberInput' },
-          input: { className: 'CustomNumberInput-input' },
-          decrementButton: {
-            className: 'CustomNumberInput-button CustomNumberInput-decrementButton',
-            children: '▾',
-          },
-          incrementButton: {
-            className: 'CustomNumberInput-button CustomNumberInput-incrementButton',
-            children: '▴',
-          },
+          input: { className: 'input' },
+          decrementButton: { className: 'btn decrement', children: '▾' },
+          incrementButton: { className: 'btn increment', children: '▴' },
         }}
         aria-label="Demo number input"
         placeholder="Type a number…"
@@ -69,9 +63,7 @@ function Styles() {
       {`
       .CustomNumberInput {
         font-family: IBM Plex Sans, sans-serif;
-        font-size: 0.875rem;
         font-weight: 400;
-        line-height: 1.5;
         border-radius: 8px;
         color: ${isDarkMode ? grey[300] : grey[900]};
         background: ${isDarkMode ? grey[900] : '#fff'};
@@ -81,6 +73,8 @@ function Styles() {
         grid-template-columns: 1fr 19px;
         grid-template-rows: 1fr 1fr;
         overflow: hidden;
+        column-gap: 8px;
+        padding: 4px;
       }
 
       .CustomNumberInput:hover {
@@ -89,30 +83,29 @@ function Styles() {
 
       .CustomNumberInput.${numberInputClasses.focused} {
         border-color: ${cyan[400]};
-        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
+        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
       }
 
-      .CustomNumberInput .CustomNumberInput-input {
+      .CustomNumberInput .input {
+        font-size: 0.875rem;
         font-family: inherit;
-        font-size: inherit;
-        font-weight: inherit;
-        line-height: inherit;
+        font-weight: 400;
         line-height: 1.5;
         grid-column: 1/2;
         grid-row: 1/3;
         color: ${isDarkMode ? grey[300] : grey[900]};
         background: inherit;
-        border: 0;
+        border: none;
         border-radius: inherit;
         padding: 8px 12px;
         outline: 0;
       }
 
-      .CustomNumberInput .CustomNumberInput-input:focus-visible {
+      .CustomNumberInput .input:focus-visible {
         outline: 0;
       }
 
-      .CustomNumberInput .CustomNumberInput-button {
+      .CustomNumberInput .btn {
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
@@ -123,31 +116,57 @@ function Styles() {
         height: 19px;
         font-family: system-ui, sans-serif;
         font-size: 0.875rem;
-        box-sizing: border-box;
         line-height: 1;
+        box-sizing: border-box;
         background: ${isDarkMode ? grey[900] : '#fff'};
-        color: ${isDarkMode ? grey[300] : grey[900]};
         border: 0;
-
+        color: ${isDarkMode ? grey[300] : grey[900]};
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 120ms;
       }
 
-      .CustomNumberInput .CustomNumberInput-button:hover {
+      .CustomNumberInput .btn:hover {
         background: ${isDarkMode ? grey[800] : grey[50]};
         border-color: ${isDarkMode ? grey[600] : grey[300]};
         cursor: pointer;
       }
 
-      .CustomNumberInput .CustomNumberInput-button.CustomNumberInput-incrementButton {
+      .CustomNumberInput .btn.increment {
         grid-column: 2/3;
         grid-row: 1/2;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        border: 1px solid;
+        border-bottom: 0;
+        &:hover {
+          cursor: pointer;
+          background: ${cyan[400]};
+          color: ${grey[50]};
+        }
+        border-color: ${isDarkMode ? grey[800] : grey[200]};
+        background: ${isDarkMode ? grey[900] : grey[50]};
+        color: ${isDarkMode ? grey[200] : grey[900]};
       }
 
-      .CustomNumberInput .CustomNumberInput-button.CustomNumberInput-decrementButton {
+      .CustomNumberInput .btn.decrement {
         grid-column: 2/3;
         grid-row: 2/3;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border: 1px solid;
+        &:hover {
+          cursor: pointer;
+          background: ${cyan[400]};
+          color: ${grey[50]};
+        }
+        border-color: ${isDarkMode ? grey[800] : grey[200]};
+        background: ${isDarkMode ? grey[900] : grey[50]};
+        color: ${isDarkMode ? grey[200] : grey[900]};
+        }
+
+      & .arrow {
+        transform: translateY(-1px);
       }
       `}
     </style>

@@ -56,6 +56,7 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B2',
   900: '#003A75',
 };
 
@@ -74,7 +75,6 @@ const grey = {
 
 const StyledAutocomplete = styled('div')`
   position: relative;
-  margin: 1.5rem 0;
 `;
 
 const StyledInputRoot = styled('div')(
@@ -85,7 +85,9 @@ const StyledInputRoot = styled('div')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+  };
   display: flex;
   gap: 5px;
   padding-right: 5px;
@@ -94,7 +96,7 @@ const StyledInputRoot = styled('div')(
 
   &.focused {
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
   &:hover {
@@ -142,7 +144,9 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 4px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
@@ -187,12 +191,16 @@ const StyledOption = styled('li')(
 const Layout = styled('div')`
   display: flex;
   flex-flow: column nowrap;
+  gap: 4px;
 `;
 
 const Pre = styled('pre')(({ theme }) => ({
   margin: '0.5rem 0',
+  fontSize: '0.75rem',
   '& code': {
-    backgroundColor: theme.palette.mode === 'light' ? '#ebebef' : '#25252d',
+    backgroundColor: theme.palette.mode === 'light' ? grey[100] : grey[900],
+    border: '1px solid',
+    borderColor: theme.palette.mode === 'light' ? grey[300] : grey[700],
     color: theme.palette.mode === 'light' ? '#000' : '#fff',
     padding: '0.125rem 0.25rem',
     borderRadius: 3,
