@@ -1,29 +1,40 @@
-# Design Engineer
+# Design Engineer - xGrid
 
 <p class="description">You will design and implement a great user and developer experience for the MUI X Data Grid.</p>
 
-## Details of the Role
+## Details of the role
 
 - **Location**: Remote (strong preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
 - **Level**: [4 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
-## About the company
+## The company
 
-MUI started with Material UI, the most successful React implementation of Google's Material Design.
-We have gained a large following, thanks to our focus on Material Design fidelity, our obsession with details, on offering a large number of components, our community engagement, and by carefully improving the DX.
-Today, countless teams and organizations rely on our open-source libraries to build their design system.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub, and has paved the way for the fully fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 35+ people as of late 2023, and we're growing.
 
-A couple of years ago, we started to expand our suite of products.
-We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
-We've seen rapid growth with all of them (2x per year) and we have more to come.
-We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
+## The products
 
-We are a fully distributed team, spread across multiple time zones.
-We work mainly asynchronously, relying mostly on written collaboration.
-Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
-For additional details about the MUI team and culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+We also host Design Kits and pre-built Templates.
+
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+
+We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
+
+Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/).
+
+## The culture
+
+MUI is a fully remote company with a team that spans the globe.
+The majority of our work is asynchronous, and we rely on written communication to collaborate.
+We're radically transparent: nearly all of our work happens in public.
+Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
+
+For additional details about the culture you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
@@ -43,7 +54,7 @@ But while we are [the leading](https://tsh.io/state-of-frontend/#over-the-past-y
 We envision a future where MUI X becomes the default toolkit for web developers to create advanced UIs.
 It's why we started Base UI, Joy UI, and MUI Toolpad. Design is key to achieving this goal.
 
-## About the role
+## The role
 
 ### What you'll do on a day-to-day basis
 
@@ -63,7 +74,8 @@ You will extend the [Design Engineer](https://mui-org.notion.site/Design-Enginee
   You'll have a real impact on the end-user experience and you'll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
 - **You'll be interacting with the users** on a regular basis, handling inbound support and feature requests (every developer helps with developer requests).
 - **Bridge the gap between design and engineering**.
-You will closely work with designers and engineers, and act as a communication conduit between the two roles to ensure efficient workflows and shared understanding of goals.
+  You will closely work with designers and engineers, and act as a communication conduit between the two roles to ensure efficient workflows and shared understanding of goals.
+
 ### The best parts of this job
 
 - **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
@@ -91,17 +103,20 @@ You will closely work with designers and engineers, and act as a communication c
 - Design taste and experience for building great and seamless user experiences.
 - A good understanding of the formal elements of design, not just limited to the web and including typography, layout, balance, and proportion.
 
-## Benefits & Compensation
+## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-amp-benefits) page.
 
-## How to apply?
+## How to apply
 
 <!-- TODO: Update the link -->
 
 [Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/c45a0b2d-aa37-4dec-8bcd-e70040f3af49/application?utm_source=ZNRrPGBkqO)
 
-Don't tick every bullet? Apply anyway! Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
-If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.
+Don't meet every requirement?
+Apply anyway!
+Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+If this role excites you, we want to hear from you.
+We'd love for you to share the unique skills, passion, and experience you could bring to MUI.
