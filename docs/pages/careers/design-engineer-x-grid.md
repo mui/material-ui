@@ -51,8 +51,8 @@ You will extend the [Design Engineer](https://mui-org.notion.site/Design-Enginee
 
 - **Contribute to deep, meaningful refactors and feature releases**.
   MUI is a complex codebase. Components we've shipped recently, such as the data grid and date pickers have required months of dedicated, careful work.
-- **Reduce friction**.
-  A large amount of the work on MUI is reducing friction and making it easier to use.
+- **Design for engineers and their end users**.
+  As an engineer yourself, you are able to understand problems developers face, and you will help them overcome those problems by delivering good DX, and enabling them to create powerful UX for their end users
   This might involve careful API design, identifying and fixing top bugs, creating easier-to-understand error messages, and writing documentation and blog posts about features you ship.
 - **Collaborate with the community**.
   Many small, as well as meaningful fixes and features, have been contributed by the community. Your role is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
