@@ -13,9 +13,9 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.22.20",
+    "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
-    "@babel/preset-typescript": "^7.23.0",
+    "@babel/preset-typescript": "^7.23.2",
     "@mui/material": "file:../../packages/mui-material/build",
     "@mui/utils": "file:../../packages/mui-utils/build",
     "@mui/zero-jest": "file:../../packages/zero-jest/build",
