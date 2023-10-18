@@ -8,6 +8,8 @@ This guide outlines the three steps necessary to change the direction of text-ba
 
 ## 1. Set the HTML direction
 
+You can set the text direction either globally (across the entire app) or locally (specific to individual components), depending on your use case.
+
 ### Globally
 
 Add `dir="rtl"` to the app's root `<html>` to set the global text direction:
