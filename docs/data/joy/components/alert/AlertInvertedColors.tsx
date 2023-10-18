@@ -55,14 +55,14 @@ export default function AlertInvertedColors() {
           </Typography>
         </div>
         <LinearProgress
-          variant="soft"
+          variant="solid"
+          color="success"
           value={40}
           sx={(theme) => ({
             position: 'absolute',
             bottom: 0,
             left: 0,
             right: 0,
-            color: `rgb(${theme.vars.palette.success.lightChannel} / 0.72)`,
             '--LinearProgress-radius': '0px',
           })}
         />
@@ -72,7 +72,7 @@ export default function AlertInvertedColors() {
         color="danger"
         invertedColors
         startDecorator={
-          <CircularProgress size="lg">
+          <CircularProgress size="lg" color="danger">
             <Warning />
           </CircularProgress>
         }
