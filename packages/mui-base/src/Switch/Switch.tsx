@@ -28,9 +28,27 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
       focusVisible && 'focusVisible',
       readOnly && 'readOnly',
     ],
-    thumb: ['thumb'],
-    input: ['input'],
-    track: ['track'],
+    thumb: [
+      'thumb',
+      checked && 'checked',
+      disabled && 'disabled',
+      focusVisible && 'focusVisible',
+      readOnly && 'readOnly',
+    ],
+    input: [
+      'input',
+      checked && 'checked',
+      disabled && 'disabled',
+      focusVisible && 'focusVisible',
+      readOnly && 'readOnly',
+    ],
+    track: [
+      'track',
+      checked && 'checked',
+      disabled && 'disabled',
+      focusVisible && 'focusVisible',
+      readOnly && 'readOnly',
+    ],
   };
 
   return composeClasses(slots, useClassNamesOverride(getSwitchUtilityClass));

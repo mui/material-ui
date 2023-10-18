@@ -76,6 +76,31 @@ export const getHtml = ({
             },
           },
         },
+        plugins: [
+          plugin(({ addVariant }) => {
+            [
+              'active',
+              'checked',
+              'completed',
+              'disabled',
+              'readOnly',
+              'error',
+              'expanded',
+              'focused',
+              'required',
+              'selected',
+            ].forEach((state) => {
+              addVariant(\`ui-\${state}\`, [\`&[class~="Mui-\${state}"]\`]);
+      
+              addVariant(\`ui-not-\${state}\`, [\`&:not([class~="Mui-\${state}"])\`]);
+            });
+      
+            // for focus-visible, use the same selector as headlessui
+            // https://github.com/tailwindlabs/headlessui/blob/main/packages/%40headlessui-tailwindcss/src/index.ts#LL35C11-L35C11
+            addVariant('ui-focus-visible, [\`&[class~="Mui-focusVisible"]\`, \`&:focus-visible\`]);
+            addVariant(ui-not-focus-visible, [\`&:not([class~="Mui-focusVisible"])\`]);
+          }),
+        ],
       }
     </script>`
         : ''
