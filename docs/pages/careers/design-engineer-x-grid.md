@@ -1,6 +1,6 @@
 # Design Engineer
 
-<p class="description">You will focus on design to implement great product experience for the MUI X Data Grid.</p>
+<p class="description">You will design and implement a great user and developer experience for the MUI X Data Grid.</p>
 
 ## Details of the Role
 
