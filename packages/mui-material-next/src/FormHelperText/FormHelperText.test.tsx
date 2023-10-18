@@ -1,10 +1,28 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from '@mui-internal/test-utils';
-import FormHelperText, { formHelperTextClasses as classes } from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
+import FormHelperText, {
+  formHelperTextClasses as classes,
+} from '@mui/material-next/FormHelperText';
+import FormControl from '@mui/material-next/FormControl';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<FormHelperText />', () => {
+  let originalMatchmedia: typeof window.matchMedia;
+
+  beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
+    window.matchMedia = () =>
+      ({
+        addListener: () => {},
+        removeListener: () => {},
+      } as unknown as MediaQueryList);
+  });
+
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
+  });
+
   const { render } = createRenderer();
 
   describeConformance(<FormHelperText />, () => ({
@@ -15,6 +33,13 @@ describe('<FormHelperText />', () => {
     testComponentPropWith: 'div',
     muiName: 'MuiFormHelperText',
     testVariantProps: { size: 'small' },
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
     skip: ['componentsProp'],
   }));
 
