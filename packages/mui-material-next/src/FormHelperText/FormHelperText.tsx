@@ -44,28 +44,47 @@ const FormHelperTextRoot = styled('p', {
       ownerState.filled && styles.filled,
     ];
   },
-})<{ ownerState: FormHelperTextOwnerState }>(({ theme, ownerState }) => ({
-  color: (theme.vars || theme).palette.text.secondary,
-  ...theme.typography.caption,
-  textAlign: 'left',
-  marginTop: 3,
-  marginRight: 0,
-  marginBottom: 0,
-  marginLeft: 0,
-  [`&.${formHelperTextClasses.disabled}`]: {
-    color: (theme.vars || theme).palette.text.disabled,
-  },
-  [`&.${formHelperTextClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
-  },
-  ...(ownerState.size === 'small' && {
-    marginTop: 4,
-  }),
-  ...(ownerState.contained && {
-    marginLeft: 14,
-    marginRight: 14,
-  }),
-}));
+})<{ ownerState: FormHelperTextOwnerState }>(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+  const pxFontSize = 12; // TODO: theme.sys.typescale.body.small.size
+  const pxLineHeight = 16; // TODO: theme.sys.typescale.body.small.lineHeight
+  const letterSpacing = `${theme.sys.typescale.body.small.tracking / pxFontSize}rem`;
+  return {
+    '--md-comp-form-helper-text-color': tokens.sys.color.secondary,
+    '--md-comp-form-helper-text-font-family': tokens.sys.typescale.body.small.family,
+    '--md-comp-form-helper-text-font-size': theme.typography.pxToRem(pxFontSize), // the pxToRem should be moved to typescale in the future,
+    '--md-comp-form-helper-text-font-weight': tokens.sys.typescale.body.small.weight,
+    '--md-comp-form-helper-text-letter-spacing': letterSpacing,
+    '--md-comp-form-helper-text-line-height': pxLineHeight,
+    '--md-comp-form-helper-text-disabled-color': tokens.sys.color.onSurface,
+    '--md-comp-form-helper-text-disabled-opacity': 0.38,
+    '--md-comp-form-helper-text-error-color': tokens.sys.color.error,
+    color: 'var(--md-comp-form-helper-text-color)',
+    fontFamily: 'var(--md-comp-form-helper-text-font-family)',
+    fontSize: 'var(--md-comp-form-helper-text-font-size)',
+    lineHeight: `calc(var(--md-comp-form-helper-text-line-height) / ${pxFontSize})`,
+    letterSpacing: 'var(--md-comp-form-helper-text-letter-spacing)',
+    textAlign: 'left',
+    marginTop: 3,
+    marginRight: 0,
+    marginBottom: 0,
+    marginLeft: 0,
+    [`&.${formHelperTextClasses.disabled}`]: {
+      color:
+        'color-mix(in srgb, var(--md-comp-form-helper-text-disabled-color), transparent calc(var(--md-comp-form-helper-text-disabled-opacity) * 100%))',
+    },
+    [`&.${formHelperTextClasses.error}`]: {
+      color: 'var(--md-comp-form-helper-text-error-color)',
+    },
+    ...(ownerState.size === 'small' && {
+      marginTop: 4,
+    }),
+    ...(ownerState.contained && {
+      marginLeft: 14,
+      marginRight: 14,
+    }),
+  };
+});
 
 const FormHelperText = React.forwardRef(function FormHelperText<
   RootComponentType extends React.ElementType = FormHelperTextTypeMap['defaultComponent'],
