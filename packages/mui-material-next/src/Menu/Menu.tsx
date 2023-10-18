@@ -229,7 +229,8 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
     className: classes.paper,
   });
 
-  const autoFocusList = autoFocus && (activeItemIndex === -1 || disableAutoFocusItem);
+  // TODO: Setting autoFocus = false is missing feature at this point
+  // const autoFocusList = autoFocus && (activeItemIndex === -1 || disableAutoFocusItem);
 
   const Listbox = slots.listbox ?? MenuListbox;
   const listboxProps = useSlotProps({
@@ -320,7 +321,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 Menu.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * A ref with imperative actions that can be performed on the menu.
@@ -335,8 +336,9 @@ Menu.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
-   * An HTML element, or a function that returns one.
-   * It's used to set the position of the menu.
+   * An HTML element, [PopoverVirtualElement](/material-ui/react-popover/#virtual-element),
+   * or a function that returns either.
+   * It's used to set the position of the popover.
    */
   anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     HTMLElementType,
@@ -347,7 +349,6 @@ Menu.propTypes /* remove-proptypes */ = {
    * children are not focusable. If you set this prop to `false` focus will be placed
    * on the parent modal container. This has severe accessibility implications
    * and should only be considered if you manage focus otherwise.
-   * @default true
    */
   autoFocus: PropTypes.bool,
   /**
@@ -358,10 +359,6 @@ Menu.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * When opening the menu will not focus the active item but the `[role="menu"]`
    * unless `autoFocus` is also set to `false`. Not using the default means not
@@ -387,10 +384,6 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool,
   /**
-   * @ignore
-   */
-  PaperProps: PropTypes.object,
-  /**
    * `classes` prop applied to the [`Popover`](/material-ui/api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
@@ -401,6 +394,7 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
@@ -410,6 +404,7 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
     paper: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
@@ -422,7 +417,7 @@ Menu.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The length of the transition in `ms`, or 'auto'
+   * Set to 'auto' to automatically calculate transition time based on height.
    * @default 'auto'
    */
   transitionDuration: PropTypes.oneOfType([
@@ -445,6 +440,6 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default 'selectedMenu'
    */
   variant: PropTypes.oneOf(['menu', 'selectedMenu']),
-};
+} as any;
 
 export default Menu;
