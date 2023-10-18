@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 # Box
 
-<p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
+<p class="description">The Box component is a generic, theme-aware container with access to MUI System's CSS utilities.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -22,12 +22,14 @@ It's a fundamental building block when building with MUI component libraries—y
 import { Box } from '@mui/system';
 ```
 
-The Box component render as a `<div>` by default, but you can swap in any other valid HTML tag or React component using the `component` prop.
+The Box component renders as a `<div>` by default, but you can swap in any other valid HTML tag or React component using the `component` prop.
 The demo below replaces the `<div>` with a `<section>` element:
 
 {{"demo": "BoxBasic.js", "defaultCodeOpen": true }}
 
-The Box component differs from other general container-like components available in packages such as Material UI and Joy UI because it is entirely agnostic. It has no usage-specific props as some of these other components might have.
+:::info
+The Box component differs from other containers available in Material UI and Joy UI because it's intended to be multipurpose—components like [Stack](/material-ui/react-stack/) and [Paper](/material-ui/react-paper), by contrast, feature usage-specific props that make them ideal for certain use cases.
+:::
 
 ## Component
 
@@ -49,7 +51,7 @@ You can use them as prop directly on the component.
 ## Create your own Box component
 
 Use the `createBox()` utility to create your version of the Box component.
-That's interesting to do if you want to expose it to a theme that's different from the default theme of the library you're working with:
+This is useful if you need to expose your container to a theme that's different from the default theme of the library you're working with:
 
 ```js
 import { createBox, createTheme } from '@mui/system';
