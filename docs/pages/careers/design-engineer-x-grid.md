@@ -62,7 +62,8 @@ You will extend the [Design Engineer](https://mui-org.notion.site/Design-Enginee
 - **Ship. Early and often**. You'll iterate and ship frequently.
   You'll have a real impact on the end-user experience and you'll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
 - **You'll be interacting with the users** on a regular basis, handling inbound support and feature requests (every developer helps with developer requests).
-
+- **Bridge the gap between design and engineering**.
+You will closely work with designers and engineers, and act as a communication conduit between the two roles to ensure efficient workflows and shared understanding of goals. 
 ### The best parts of this job
 
 - **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
