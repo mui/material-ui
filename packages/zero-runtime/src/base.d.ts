@@ -1,14 +1,15 @@
 import type * as CSS from 'csstype';
 
-export type CSSProperties = CSS.PropertiesFallback<number | string>;
+export type CSSProperties = CSS.PropertiesFallback<number | (string & {})>;
 
-export type CSSPropertiesWithMultiValues = {
+export type CSSPropertiesMultiValue = {
   [K in keyof CSSProperties]: CSSProperties[K] | Array<Extract<CSSProperties[K], string>>;
 };
 
-export type CSSPropertiesWithPropsAndCallback<Props extends {}> = {
+export type CSSPropertiesWithCallback<Props extends {}> = {
   [K in keyof CSSProperties]:
-    | CSSPropertiesWithMultiValues[K]
+    | CSSProperties[K]
+    | Array<Extract<CSSProperties[K], string>>
     | ((props: Props) => CSSProperties[K]);
 };
 
@@ -24,11 +25,11 @@ export interface CSSOthersObjectNoCallback {
 }
 
 export type CSSObject<Props extends {}> =
-  | CSSPropertiesWithPropsAndCallback<Props>
+  | CSSPropertiesWithCallback<Props>
   | CSSPseudos<Props>
   | CSSOthersObject<Props>;
 
 export type CSSObjectNoCallback =
-  | CSSPropertiesWithMultiValues
+  | CSSPropertiesMultiValue
   | CSSPseudosNoCallback
   | CSSOthersObjectNoCallback;

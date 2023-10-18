@@ -18,13 +18,18 @@ declare module '@mui/zero-runtime/theme' {
   }
 }
 
-const B = styled.a<{ isRed?: boolean }>(({ theme }) => ({
+const B = styled('a')<{ isRed?: boolean }>(({ theme }) => ({
   color: (props) => (props.isRed ? 'red' : 'blue'),
-  backgroundColor: theme.palette.primary,
+  backgroundColor: [theme.palette.primary.main, theme.palette.primary.darkMain],
   '&:enabled': {
     color: 'beige',
   },
-  '@media()': {},
+  '@layer utils': {},
+  '@media (min-width:360px)': {
+    '.globalClass': {
+      color: [theme.palette.primary.main, theme.palette.primary.darkMain],
+    },
+  },
   variants: [
     {
       props: {
@@ -36,7 +41,6 @@ const B = styled.a<{ isRed?: boolean }>(({ theme }) => ({
     },
     {
       props: {
-        // @ts-expect-error Wrong Props
         isBlue: true,
       },
       style: {
@@ -46,27 +50,18 @@ const B = styled.a<{ isRed?: boolean }>(({ theme }) => ({
   ],
 }));
 
-const A = styled(B)<{ isBlue?: boolean }>({
-  color: 'red',
-  backgroundColor(props) {
-    return props.isBlue ? 'red' : 'blue';
+const A = styled(B, {
+  overridesResolver(props) {
+    return false;
   },
+})<{ isBlue?: boolean }>({
+  color: 'red',
+  backgroundColor: (props) => (props.isBlue ? 'red' : 'blue'),
 });
 
 const Box = styled('div')(({ theme }) => ({
   color: theme.palette.primary.main,
 }));
-
-const SimpleBox = styled('div')``;
-
-// @TODO - Shorthands typing
-// function SxTestSimpleBox() {
-//   <SimpleBox sx={{ p: [2, 3, 4] }} />;
-// }
-
-// function SxTest() {
-//   <Box sx={{ p: [2, 3, 4] }} />;
-// }
 
 function WorksWithNoTheme() {
   <Box />;

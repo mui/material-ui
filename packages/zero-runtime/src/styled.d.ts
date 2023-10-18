@@ -12,7 +12,7 @@ export type PropsOf<C extends keyof JSX.IntrinsicElements | React.JSXElementCons
 
 type Falsy = false | 0 | '' | null | undefined;
 
-export interface StyledOptions<Props = Record<string, unknown>> {
+export interface StyledOptions<Props = any> {
   name?: string;
   slot?: string;
   skipSx?: boolean;
@@ -30,9 +30,7 @@ export interface StyledCommonProps {
 }
 
 export interface StyledVariants<Props extends {}> {
-  props: Partial<{
-    [K in keyof Props]: Props[K];
-  }>;
+  props: Partial<Props>;
   style: CSSObject<Props>;
 }
 
@@ -74,7 +72,7 @@ export type CreateStyledIndex = {
 export interface CreateStyled {
   <C extends React.ComponentClass<React.ComponentProps<C>>>(
     component: C,
-    options?: StyledOptions<React.ComponentProps<C>>,
+    options?: StyledOptions,
   ): CreateStyledComponent<
     PropsOf<C> & {},
     {},
@@ -83,34 +81,15 @@ export interface CreateStyled {
     }
   >;
 
-  <UserProps extends {}, C extends React.ComponentClass<React.ComponentProps<C>>>(
-    component: C,
-    options?: StyledOptions<React.ComponentProps<C> & UserProps>,
-  ): CreateStyledComponent<
-    PropsOf<C> & UserProps,
-    {},
-    {
-      ref?: React.Ref<InstanceType<C>>;
-    }
-  >;
-
   <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
-    options?: StyledOptions<React.ComponentProps<C> & {}>,
+    options?: StyledOptions,
   ): CreateStyledComponent<PropsOf<C> & {}>;
 
-  <UserProps extends {}, C extends React.ComponentType<React.ComponentProps<C>>>(
-    component: C,
-    options?: StyledOptions<React.ComponentProps<C> & UserProps>,
-  ): CreateStyledComponent<PropsOf<C> & UserProps>;
-
-  <
-    UserProps extends {} = {},
-    Tag extends keyof JSX.IntrinsicElements = keyof JSX.IntrinsicElements,
-  >(
+  <Tag extends keyof JSX.IntrinsicElements = keyof JSX.IntrinsicElements>(
     tag: Tag,
-    options?: StyledOptions<JSX.IntrinsicElements[Tag] & UserProps>,
-  ): CreateStyledComponent<JSX.IntrinsicElements[Tag] & UserProps, {}, StyledCommonProps>;
+    options?: StyledOptions,
+  ): CreateStyledComponent<JSX.IntrinsicElements[Tag], {}, StyledCommonProps>;
 }
 
 declare const styled: CreateStyled & CreateStyledIndex;
