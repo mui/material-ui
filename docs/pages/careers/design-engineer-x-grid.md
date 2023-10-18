@@ -50,7 +50,7 @@ It's why we started Base UI, Joy UI, and MUI Toolpad. Design is key to achieving
 You will extend the [Design Engineer](https://mui-org.notion.site/Design-Engineer-09e4cac2e0bb4df3b173458b4b4b5666) responsibilities. Depending on the day, you'll:
 
 - **Contribute to deep, meaningful refactors and feature releases**.
-  MUI is a complex codebase. Components we've shipped recently, such as the data grid and date pickers have required months of dedicated, careful work.
+  MUI X is a complex codebase. Components we've shipped recently, such as the data grid and date pickers have required months of dedicated, careful work.
 - **Reduce friction**.
   A large amount of the work on MUI is reducing friction and making it easier to use.
   This might involve careful API design, identifying and fixing top bugs, creating easier-to-understand error messages, and writing documentation and blog posts about features you ship.
@@ -88,9 +88,6 @@ You will extend the [Design Engineer](https://mui-org.notion.site/Design-Enginee
 - 3+ years of relevant web front-end development experience at a tech-forward, product-driven company.
 - Advanced knowledge of modern React, HTML, and CSS.
 - Experience designing and building public facing-sites that work elegantly.
-
-### What would be nice if you had, but isn't required
-
 - A good understanding of the formal elements of design, not just limited to the web and including typography, layout, balance, and proportion.
 
 ## Benefits & Compensation
