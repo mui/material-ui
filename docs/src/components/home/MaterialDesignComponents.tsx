@@ -547,7 +547,7 @@ export default function MaterialDesignComponents() {
         />
         <StyledChip
           color="primary"
-          label="Custom Theme"
+          label="Custom theme"
           size="small"
           variant={customized ? 'filled' : 'outlined'}
           onClick={() => setCustomized(true)}
