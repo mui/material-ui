@@ -1,9 +1,10 @@
-import type { Theme } from '@mui/joy/styles';
+import type { Theme } from '@mui/material/styles';
 
 declare module '@mui/zero-runtime/theme' {
   interface ThemeArgs {
     theme: Theme & {
       applyDarkStyles<T>(obj: T): Record<string, T>;
+      vars?: Theme;
     };
   }
 }

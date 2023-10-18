@@ -1,4 +1,4 @@
-import type { Theme } from '@mui/material';
+import type { Theme } from '@mui/material/styles';
 
 declare module '@mui/zero-runtime/theme' {
   interface ThemeArgs {

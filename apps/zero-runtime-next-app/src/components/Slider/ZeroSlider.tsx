@@ -28,7 +28,7 @@ type SliderNestedOwnerState = SliderOwnerState & {
   ownerState: SliderOwnerState;
 };
 
-const SliderRoot = styled<SliderNestedOwnerState>('span', {
+const SliderRoot = styled('span', {
   name: 'MuiSlider',
   slot: 'Root',
   overridesResolver(props, styles) {
@@ -43,7 +43,7 @@ const SliderRoot = styled<SliderNestedOwnerState>('span', {
       ownerState.track === false && styles.trackFalse,
     ];
   },
-})(({ theme }) => ({
+})<SliderNestedOwnerState>(({ theme }) => ({
   borderRadius: '12px',
   boxSizing: 'content-box',
   display: 'inline-block',
@@ -152,11 +152,11 @@ const SliderRoot = styled<SliderNestedOwnerState>('span', {
 
 export { SliderRoot };
 
-const SliderRail = styled<SliderNestedOwnerState>('span', {
+const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
   overridesResolver: (props, styles) => styles.rail,
-})({
+})<SliderNestedOwnerState>({
   display: 'block',
   position: 'absolute',
   borderRadius: 'inherit',
@@ -198,11 +198,11 @@ const SliderRail = styled<SliderNestedOwnerState>('span', {
 
 export { SliderRail };
 
-const SliderTrack = styled<SliderNestedOwnerState>('span', {
+const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})(({ theme }) => {
+})<SliderNestedOwnerState>(({ theme }) => {
   const lightPrimaryColor = lighten(theme.palette.primary.main, 0.62);
   const lightSecondaryColor = lighten(theme.palette.secondary.main, 0.62);
   const darkPrimaryColor = darken(theme.palette.primary.main, 0.5);
@@ -302,7 +302,7 @@ const SliderTrack = styled<SliderNestedOwnerState>('span', {
 
 export { SliderTrack };
 
-const SliderThumb = styled<SliderNestedOwnerState>('span', {
+const SliderThumb = styled('span', {
   name: 'MuiSlider',
   slot: 'Thumb',
   overridesResolver: (props, styles) => {
@@ -313,7 +313,7 @@ const SliderThumb = styled<SliderNestedOwnerState>('span', {
       ownerState.size !== 'medium' && styles[`thumbSize${capitalize(ownerState.size ?? '')}`],
     ];
   },
-})(({ theme }) => ({
+})<SliderNestedOwnerState>(({ theme }) => ({
   position: 'absolute',
   width: 20,
   height: 20,
@@ -507,7 +507,7 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
 
 export { StyledSliderValueLabel as SliderValueLabel };
 
-const SliderMark = styled<SliderOwnerState & { markActive?: boolean }>('span', {
+const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
   // @TODO - Support this in `styled` implementation
@@ -517,7 +517,7 @@ const SliderMark = styled<SliderOwnerState & { markActive?: boolean }>('span', {
 
     return [styles.mark, markActive && styles.markActive];
   },
-})(({ theme }) => ({
+})<SliderOwnerState & { markActive?: boolean }>(({ theme }) => ({
   position: 'absolute',
   width: 2,
   height: 2,
@@ -556,13 +556,13 @@ const SliderMark = styled<SliderOwnerState & { markActive?: boolean }>('span', {
 
 export { SliderMark };
 
-const SliderMarkLabel = styled<SliderOwnerState>('span', {
+const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
   // @TODO
   // shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markLabelActive',
   overridesResolver: (props, styles) => styles.markLabel,
-})(({ theme }) => ({
+})<SliderOwnerState>(({ theme }) => ({
   ...theme.typography.body2,
   color: (theme.vars || theme).palette.text.secondary,
   position: 'absolute',
@@ -683,7 +683,7 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(function Slider(pr
 
   const ownerState: SliderOwnerState = {
     ...props,
-    // @ts-expect-error
+    // @ts-expect-error  @TODO - Figure out how to support rtl/ltr with themes
     isRtl,
     max,
     min,
@@ -794,7 +794,7 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(function Slider(pr
     externalSlotProps: thumbSlotProps,
     ownerState: {
       ...ownerState,
-      // @ts-expect-error
+      // @ts-expect-error @TODO Fix type
       ...thumbSlotProps?.ownerState,
     },
     className: classes.thumb,
@@ -805,7 +805,7 @@ const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(function Slider(pr
     externalSlotProps: valueLabelSlotProps,
     ownerState: {
       ...ownerState,
-      // @ts-expect-error
+      // @ts-expect-error @TODO
       ...valueLabelSlotProps?.ownerState,
     },
     className: classes.valueLabel,
