@@ -6,7 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+
 import useSlot from '../utils/useSlot';
 import { TextareaTypeMap, TextareaProps, TextareaOwnerState } from './TextareaProps';
 import textareaClasses, { getTextareaUtilityClass } from './textareaClasses';
@@ -46,16 +46,17 @@ const TextareaRoot = styled('div', {
       '--Textarea-decoratorColor': theme.vars.palette.text.icon,
       '--Textarea-focused': '0',
       '--Textarea-focusedThickness': theme.vars.focus.thickness,
-      ...(ownerState.color === 'context'
-        ? {
-            '--Textarea-focusedHighlight': theme.vars.palette.focusVisible,
-          }
-        : {
-            '--Textarea-focusedHighlight':
-              theme.vars.palette[
-                ownerState.color === 'neutral' ? 'primary' : ownerState.color!
-              ]?.[500],
-          }),
+      '--Textarea-focusedHighlight':
+        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      '&:not([data-inverted-colors="false"])': {
+        ...(ownerState.instanceColor && {
+          '--_Textarea-focusedHighlight':
+            theme.vars.palette[
+              ownerState.instanceColor === 'neutral' ? 'primary' : ownerState.instanceColor
+            ]?.[500],
+        }),
+        '--Textarea-focusedHighlight': `var(--_Textarea-focusedHighlight, ${theme.vars.palette.focusVisible})`,
+      },
       ...(ownerState.size === 'sm' && {
         '--Textarea-minHeight': '2rem',
         '--Textarea-paddingBlock': 'calc(0.375rem - 0.5px - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
@@ -252,10 +253,10 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const disabled = inProps.disabled ?? formControl?.disabled ?? disabledProp;
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
 
   const ownerState = {
+    instanceColor: error ? 'danger' : inProps.color,
     ...props,
     color,
     disabled,

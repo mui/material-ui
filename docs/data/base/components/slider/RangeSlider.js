@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
-import { Slider, sliderClasses } from '@mui/base/Slider';
+import { Slider as BaseSlider, sliderClasses } from '@mui/base/Slider';
 
 export default function RangeSlider() {
   const [value, setValue] = React.useState([20, 37]);
@@ -12,7 +12,7 @@ export default function RangeSlider() {
   return (
     <Box sx={{ width: 300 }}>
       {/* controlled: */}
-      <StyledSlider
+      <Slider
         value={value}
         onChange={handleChange}
         getAriaLabel={() => 'Temperature range'}
@@ -21,7 +21,7 @@ export default function RangeSlider() {
         max={100}
       />
       {/* uncontrolled: */}
-      <StyledSlider
+      <Slider
         defaultValue={[20, 37]}
         getAriaLabel={() => 'Temperature range'}
         getAriaValueText={valuetext}
@@ -59,7 +59,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledSlider = styled(Slider)(
+const Slider = styled(BaseSlider)(
   ({ theme }) => `
   color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   height: 6px;

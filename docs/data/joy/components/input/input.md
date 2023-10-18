@@ -166,6 +166,10 @@ To create a floating label input, a custom component (combination of `<input>` a
 
 {{"demo": "PasswordMeterInput.js"}}
 
+### Debounced Input
+
+{{"demo": "DebouncedInput.js"}}
+
 ### Third-party formatting
 
 The Input component can be integrated with third-party formatting libraries for more complex use cases.

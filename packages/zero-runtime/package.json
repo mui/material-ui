@@ -1,6 +1,6 @@
 {
   "name": "@mui/zero-runtime",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-alpha.0",
   "private": true,
   "author": "MUI Team",
   "description": "Linaria tag processors for custom styled implementation.",
@@ -42,10 +42,10 @@
     "clsx": "^2.0.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.6",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "^18.17.18",
-    "@types/react": "^18.2.21",
+    "@types/chai": "^4.3.8",
+    "@types/mocha": "^10.0.2",
+    "@types/node": "^18.18.5",
+    "@types/react": "^18.2.23",
     "react": "^18.2.0"
   },
   "peerDependencies": {
@@ -62,7 +62,8 @@
     "tags": {
       "styled": "@mui/zero-tag-processor/styled",
       "default": "@mui/zero-tag-processor/styled",
-      "sx": "@mui/zero-tag-processor/sx"
+      "sx": "@mui/zero-tag-processor/sx",
+      "keyframes": "@mui/zero-tag-processor/keyframes"
     }
   }
 }

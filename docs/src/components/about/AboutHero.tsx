@@ -32,12 +32,12 @@ const teamPhotos = [
   {
     img: '/static/branding/about/group-photo/scuba-gear.png',
     title:
-      'MUI team members and their diving instructors pose in scuba gear before a successful scuba diving lesson.',
+      'MUI team members and their diving instructors pose in scuba gear before a scuba diving lesson.',
   },
   {
     img: '/static/branding/about/group-photo/outdoor-focus-group.png',
     title:
-      'An impromptu focus group gathered next to the pool with laptops to discuss cross-team marketing strategies.',
+      'An impromptu focus group gathered next to the pool to discuss cross-team marketing strategies.',
   },
   {
     img: '/static/branding/about/group-photo/working-table-portugal.png',
@@ -153,7 +153,7 @@ export default function AboutHero() {
         alwaysCenter
         overline="About us"
         title={
-          <Typography variant="h2" sx={{ maxWidth: 600, mx: 'auto' }}>
+          <Typography variant="h2" component="h1" sx={{ maxWidth: 600, mx: 'auto' }}>
             We&apos;re on a mission to make <br />{' '}
             <GradientText>building better UIs effortless</GradientText>
           </Typography>
