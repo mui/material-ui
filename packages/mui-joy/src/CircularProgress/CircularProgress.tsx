@@ -130,11 +130,11 @@ const CircularProgressRoot = styled('span', {
     }),
     ...(ownerState.variant === 'soft' && {
       '--CircularProgress-trackColor': 'var(--joy-palette-neutral-softBg)',
-      '--CircularProgress-progressColor': 'var(--joy-palette-primary-solidBg)',
+      '--CircularProgress-progressColor': `var(--joy-palette-${ownerState.color}-solidBg)`,
     }),
     ...(ownerState.variant === 'solid' && {
-      '--CircularProgress-trackColor': 'var(--joy-palette-primary-softBg)',
-      '--CircularProgress-progressColor': 'var(--joy-palette-primary-solidBg)',
+      '--CircularProgress-trackColor': `var(--joy-palette-${ownerState.color}-softHoverBg)`,
+      '--CircularProgress-progressColor': `var(--joy-palette-${ownerState.color}-solidBg)`,
     }),
   };
 });

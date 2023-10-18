@@ -115,11 +115,11 @@ const LinearProgressRoot = styled('div', {
     },
     ...(ownerState.variant === 'soft' && {
       backgroundColor: 'var(--joy-palette-neutral-softBg)',
-      color: 'var(--joy-palette-primary-solidBg)',
+      color: `var(--joy-palette-${ownerState.color}-solidBg)`,
     }),
     ...(ownerState.variant === 'solid' && {
-      backgroundColor: 'var(--joy-palette-primary-softBg)',
-      color: 'var(--joy-palette-primary-solidBg)',
+      backgroundColor: `var(--joy-palette-${ownerState.color}-softHoverBg)`,
+      color: `var(--joy-palette-${ownerState.color}-solidBg)`,
     }),
   }),
   ({ ownerState }) =>
