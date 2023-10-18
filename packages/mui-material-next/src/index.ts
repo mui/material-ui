@@ -41,6 +41,9 @@ export * from './Select';
 export { default as Slider } from './Slider';
 export * from './Slider';
 
+export { default as Divider } from './Divider';
+export * from './Divider';
+
 export { default as Tabs } from './Tabs';
 export * from './Tabs';
 

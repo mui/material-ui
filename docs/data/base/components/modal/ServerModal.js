@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Modal } from '@mui/base/Modal';
+import { Modal as BaseModal } from '@mui/base/Modal';
 import { Box, styled } from '@mui/system';
 
 export default function ServerModal() {
@@ -20,7 +20,7 @@ export default function ServerModal() {
       }}
       ref={rootRef}
     >
-      <StyledModal
+      <Modal
         disablePortal
         disableEnforceFocus
         disableAutoFocus
@@ -35,12 +35,12 @@ export default function ServerModal() {
             If you disable JavaScript, you will still see me.
           </span>
         </Box>
-      </StyledModal>
+      </Modal>
     </Box>
   );
 }
 
-const StyledModal = styled(Modal)`
+const Modal = styled(BaseModal)`
   position: fixed;
   z-index: 1300;
   inset: 0;
