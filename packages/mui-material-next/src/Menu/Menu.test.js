@@ -315,6 +315,9 @@ describe('<Menu />', () => {
         "MUI: The Menu component doesn't accept a Fragment as a child.",
         !strictModeDoubleLoggingSuppressed &&
           "MUI: The Menu component doesn't accept a Fragment as a child.",
+        "MUI: The Menu component doesn't accept a Fragment as a child.",
+        !strictModeDoubleLoggingSuppressed &&
+          "MUI: The Menu component doesn't accept a Fragment as a child.",
       ]);
     });
   });
