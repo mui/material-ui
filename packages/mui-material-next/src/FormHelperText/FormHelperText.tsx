@@ -1,16 +1,19 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
+import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import formControlState from '../FormControl/formControlState';
+import { useThemeProps, styled } from '../styles';
 import useFormControl from '../FormControl/useFormControl';
-import styled from '../styles/styled';
 import formHelperTextClasses, { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
-import useThemeProps from '../styles/useThemeProps';
+import {
+  FormHelperTextOwnerState,
+  FormHelperTextProps,
+  FormHelperTextTypeMap,
+} from './FormHelperText.types';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: FormHelperTextOwnerState) => {
   const { classes, contained, size, disabled, error, filled, focused, required } = ownerState;
   const slots = {
     root: [
@@ -41,7 +44,7 @@ const FormHelperTextRoot = styled('p', {
       ownerState.filled && styles.filled,
     ];
   },
-})(({ theme, ownerState }) => ({
+})<{ ownerState: FormHelperTextOwnerState }>(({ theme, ownerState }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   ...theme.typography.caption,
   textAlign: 'left',
@@ -64,66 +67,74 @@ const FormHelperTextRoot = styled('p', {
   }),
 }));
 
-const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
+const FormHelperText = React.forwardRef(function FormHelperText<
+  RootComponentType extends React.ElementType = FormHelperTextTypeMap['defaultComponent'],
+>(inProps: FormHelperTextProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const props = useThemeProps({ props: inProps, name: 'MuiFormHelperText' });
   const {
     children,
-    className,
     component = 'p',
-    disabled,
-    error,
-    filled,
-    focused,
+    disabled: disabledProp,
+    error: errorProp,
+    filled: filledProp,
+    focused: focusedProp,
     margin,
-    required,
-    variant,
+    required: requiredProp,
+    variant: variantProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
   const muiFormControl = useFormControl();
-  const fcs = formControlState({
-    props,
-    muiFormControl,
-    states: ['variant', 'size', 'disabled', 'error', 'filled', 'focused', 'required'],
-  });
 
-  const ownerState = {
+  const variant = variantProp ?? muiFormControl?.variant ?? '';
+
+  const ownerState: FormHelperTextOwnerState = {
     ...props,
     component,
-    contained: fcs.variant === 'filled' || fcs.variant === 'outlined',
-    variant: fcs.variant,
-    size: fcs.size,
-    disabled: fcs.disabled,
-    error: fcs.error,
-    filled: fcs.filled,
-    focused: fcs.focused,
-    required: fcs.required,
+    contained: variant === 'filled' || variant === 'outlined',
+    variant,
+    size: muiFormControl?.size ?? 'medium',
+    disabled: disabledProp ?? muiFormControl?.disabled,
+    error: errorProp ?? muiFormControl?.error,
+    filled: filledProp ?? muiFormControl?.filled,
+    focused: focusedProp ?? muiFormControl?.focused,
+    required: requiredProp ?? muiFormControl?.required,
   };
 
   const classes = useUtilityClasses(ownerState);
 
+  const RootSlot = slots?.root ?? FormHelperTextRoot;
+
+  const rootProps = useSlotProps({
+    elementType: RootSlot,
+    externalSlotProps: slotProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      as: component,
+      ref: forwardedRef,
+    },
+    ownerState,
+    className: [classes.root],
+  });
+
   return (
-    <FormHelperTextRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
+    <RootSlot {...rootProps}>
       {children === ' ' ? (
         // notranslate needed while Google Translate will not fix zero-width space issue
         <span className="notranslate">&#8203;</span>
       ) : (
         children
       )}
-    </FormHelperTextRoot>
+    </RootSlot>
   );
-});
+}) as OverridableComponent<FormHelperTextTypeMap>;
 
 FormHelperText.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The content of the component.
@@ -170,6 +181,21 @@ FormHelperText.propTypes /* remove-proptypes */ = {
    */
   required: PropTypes.bool,
   /**
+   * The props used for each slot inside the FormHelperText.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the FormHelperText.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -179,11 +205,12 @@ FormHelperText.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['filled', 'outlined', 'standard']),
     PropTypes.string,
   ]),
-};
+} as any;
 
 export default FormHelperText;
