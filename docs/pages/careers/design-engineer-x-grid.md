@@ -1,6 +1,6 @@
 # Design Engineer
 
-<p class="description">You will focus on design to implement great product experience for the MUI X Data Grid.</p>
+<p class="description">You will design and implement a great user and developer experience for the MUI X Data Grid.</p>
 
 ## Details of the Role
 
@@ -51,9 +51,9 @@ You will extend the [Design Engineer](https://mui-org.notion.site/Design-Enginee
 
 - **Contribute to deep, meaningful refactors and feature releases**.
   MUI X is a complex codebase. Components we've shipped recently, such as the data grid and date pickers have required months of dedicated, careful work.
-- **Reduce friction**.
-  A large amount of the work on MUI is reducing friction and making it easier to use.
-  This might involve careful API design, identifying and fixing top bugs, creating easier-to-understand error messages, and writing documentation and blog posts about features you ship.
+- **Design for engineers and their end users**.
+  As an engineer yourself, you are able to understand problems developers face, and you will help them overcome those problems by delivering good DX, and enabling them to create powerful UX for their end users
+  This might involve careful API design, identifying and fixing top bugs, creating easier-to-understand error messages, and writing documentation and blog posts about features you and your team ship.
 - **Collaborate with the community**.
   Many small, as well as meaningful fixes and features, have been contributed by the community. Your role is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
 - **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
@@ -62,7 +62,8 @@ You will extend the [Design Engineer](https://mui-org.notion.site/Design-Enginee
 - **Ship. Early and often**. You'll iterate and ship frequently.
   You'll have a real impact on the end-user experience and you'll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
 - **You'll be interacting with the users** on a regular basis, handling inbound support and feature requests (every developer helps with developer requests).
-
+- **Bridge the gap between design and engineering**.
+You will closely work with designers and engineers, and act as a communication conduit between the two roles to ensure efficient workflows and shared understanding of goals.
 ### The best parts of this job
 
 - **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
@@ -77,7 +78,7 @@ You will extend the [Design Engineer](https://mui-org.notion.site/Design-Enginee
   It's fun, rewarding work, but it can be very challenging.
 - **We move quickly but don't sacrifice quality**.
   We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue with quality should be enough for any given iteration. Our users quickly tell us when we haven't pushed a solution far enough.
-- **MUI is a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌.
+- **MUI X is a large codebase with complex features**. Understanding parts of the implementation might be tricky, but the learning process is rewarding. You may bang your head against the wall at times, but then write tests to assist future you 😌.
   The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
 - **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
 
@@ -87,7 +88,7 @@ You will extend the [Design Engineer](https://mui-org.notion.site/Design-Enginee
 
 - 3+ years of relevant web front-end development experience at a tech-forward, product-driven company.
 - Advanced knowledge of modern React, HTML, and CSS.
-- Experience designing and building public facing-sites that work elegantly.
+- Design taste and experience for building great and seamless user experiences.
 - A good understanding of the formal elements of design, not just limited to the web and including typography, layout, balance, and proportion.
 
 ## Benefits & Compensation
