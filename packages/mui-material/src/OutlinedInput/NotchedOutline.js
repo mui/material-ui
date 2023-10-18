@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import styled from '../styles/styled';
@@ -19,9 +20,11 @@ const NotchedOutlineRoot = styled('fieldset')({
   minWidth: '0%',
 });
 
-const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ ownerState, theme }) => ({
+const NotchedOutlineLegend = styled('legend')(({ ownerState, theme }) => ({
   float: 'unset', // Fix conflict with bootstrap
-  ...(ownerState.label === undefined && {
+  width: 'auto', // Fix conflict with bootstrap
+  overflow: 'hidden', // Fix Horizontal scroll when label too long
+  ...(!ownerState.withLabel && {
     padding: 0,
     lineHeight: '11px', // sync with `height` in `legend` styles
     transition: theme.transitions.create('width', {
@@ -29,9 +32,8 @@ const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ ownerState, t
       easing: theme.transitions.easing.easeOut,
     }),
   }),
-  ...(ownerState.label !== undefined && {
+  ...(ownerState.withLabel && {
     display: 'block', // Fix conflict with normalize.css and sanitize.css
-    width: 'auto', // Fix conflict with bootstrap
     padding: 0,
     height: 11, // sync with `lineHeight` in `legend` styles
     fontSize: '0.75em',
@@ -46,6 +48,8 @@ const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ ownerState, t
       paddingLeft: 5,
       paddingRight: 5,
       display: 'inline-block',
+      opacity: 0,
+      visibility: 'visible',
     },
     ...(ownerState.notched && {
       maxWidth: '100%',
@@ -63,21 +67,21 @@ const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ ownerState, t
  */
 export default function NotchedOutline(props) {
   const { children, classes, className, label, notched, ...other } = props;
+  const withLabel = label != null && label !== '';
   const ownerState = {
     ...props,
     notched,
-    label,
+    withLabel,
   };
   return (
     <NotchedOutlineRoot aria-hidden className={className} ownerState={ownerState} {...other}>
       <NotchedOutlineLegend ownerState={ownerState}>
         {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
-        {label ? (
+        {withLabel ? (
           <span>{label}</span>
         ) : (
           // notranslate needed while Google Translate will not fix zero-width space issue
-          // eslint-disable-next-line react/no-danger
-          <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+          <span className="notranslate">&#8203;</span>
         )}
       </NotchedOutlineLegend>
     </NotchedOutlineRoot>

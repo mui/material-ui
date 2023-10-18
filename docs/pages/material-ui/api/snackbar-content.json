@@ -1,0 +1,33 @@
+{
+  "props": {
+    "action": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "message": { "type": { "name": "node" } },
+    "role": { "type": { "name": "string" }, "default": "'alert'" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "SnackbarContent",
+  "imports": [
+    "import SnackbarContent from '@mui/material/SnackbarContent';",
+    "import { SnackbarContent } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": ["root", "message", "action"],
+    "globalClasses": {},
+    "name": "MuiSnackbarContent"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSnackbarContent",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/SnackbarContent/SnackbarContent.js",
+  "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-snackbar/\">Snackbar</a></li></ul>",
+  "cssComponent": false
+}

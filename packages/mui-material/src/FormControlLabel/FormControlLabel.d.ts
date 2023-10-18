@@ -21,7 +21,7 @@ export interface FormControlLabelProps
   componentsProps?: {
     /**
      * Props applied to the Typography wrapper of the passed label.
-     * This is unused if disableTpography is true.
+     * This is unused if disableTypography is true.
      * @default {}
      */
     typography?: TypographyProps;
@@ -45,7 +45,7 @@ export interface FormControlLabelProps
   /**
    * A text or an element to be used in an enclosing label element.
    */
-  label: string | number | React.ReactElement;
+  label: React.ReactNode;
   /**
    * The position of the label.
    * @default 'end'
@@ -59,6 +59,22 @@ export interface FormControlLabelProps
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange?: (event: React.SyntheticEvent, checked: boolean) => void;
+  /**
+   * If `true`, the label will indicate that the `input` is required.
+   */
+  required?: boolean;
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps?: {
+    /**
+     * Props applied to the Typography wrapper of the passed label.
+     * This is unused if disableTypography is true.
+     * @default {}
+     */
+    typography?: TypographyProps;
+  };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -75,12 +91,12 @@ export interface FormControlLabelProps
  *
  * Demos:
  *
- * - [Checkboxes](https://mui.com/components/checkboxes/)
- * - [Radio Buttons](https://mui.com/components/radio-buttons/)
- * - [Switches](https://mui.com/components/switches/)
+ * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
+ * - [Radio Group](https://mui.com/material-ui/react-radio-button/)
+ * - [Switch](https://mui.com/material-ui/react-switch/)
  *
  * API:
  *
- * - [FormControlLabel API](https://mui.com/api/form-control-label/)
+ * - [FormControlLabel API](https://mui.com/material-ui/api/form-control-label/)
  */
 export default function FormControlLabel(props: FormControlLabelProps): JSX.Element;

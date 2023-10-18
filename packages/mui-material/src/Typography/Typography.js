@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
@@ -42,7 +43,11 @@ export const TypographyRoot = styled('span', {
   },
 })(({ theme, ownerState }) => ({
   margin: 0,
-  ...(ownerState.variant && theme.typography[ownerState.variant]),
+  ...(ownerState.variant === 'inherit' && {
+    // Some elements, like <button> on Chrome have default font that doesn't inherit, reset this.
+    font: 'inherit',
+  }),
+  ...(ownerState.variant !== 'inherit' && theme.typography[ownerState.variant]),
   ...(ownerState.align !== 'inherit' && {
     textAlign: ownerState.align,
   }),
@@ -183,7 +188,7 @@ Typography.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

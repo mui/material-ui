@@ -6,13 +6,19 @@ const FrameDemo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameDemo(
     <Box
       ref={ref}
       {...props}
-      sx={{
-        position: 'relative',
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
-        border: '1px solid',
-        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200'),
-        ...props.sx,
-      }}
+      sx={[
+        (theme) => ({
+          position: 'relative',
+          border: '1px solid',
+          background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+          borderColor: 'grey.100',
+          ...theme.applyDarkStyles({
+            background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+            borderColor: 'primaryDark.700',
+          }),
+        }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
     />
   );
 });
@@ -25,35 +31,41 @@ const FrameInfo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameInfo(
       sx={{
         color: '#fff',
         p: 2,
-        bgcolor: 'primaryDark.800',
+        bgcolor: 'common.black',
         border: '1px solid',
         borderColor: 'primaryDark.700',
+        colorScheme: 'dark',
+        '* pre, code': {
+          bgcolor: 'common.black',
+        },
         ...props.sx,
       }}
     />
   );
 });
 
-const Frame = (props: BoxProps) => {
+function Frame({ sx, ...props }: BoxProps) {
   return (
     <Box
       {...props}
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        '& > div:first-of-type': {
-          borderTopLeftRadius: '10px',
-          borderTopRightRadius: '10px',
+      sx={[
+        {
+          display: 'flex',
+          flexDirection: 'column',
+          '& > div:first-of-type': {
+            borderTopLeftRadius: '12px',
+            borderTopRightRadius: '12px',
+          },
+          '& > div:last-of-type': {
+            borderBottomLeftRadius: '12px',
+            borderBottomRightRadius: '12px',
+          },
         },
-        '& > div:last-of-type': {
-          borderBottomLeftRadius: '10px',
-          borderBottomRightRadius: '10px',
-        },
-        ...props.sx,
-      }}
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     />
   );
-};
+}
 
 Frame.Demo = FrameDemo;
 Frame.Info = FrameInfo;

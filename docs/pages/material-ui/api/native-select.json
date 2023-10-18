@@ -1,0 +1,67 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "additionalInfo": { "cssApi": true }
+    },
+    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
+    "input": { "type": { "name": "element" }, "default": "<Input />" },
+    "inputProps": { "type": { "name": "object" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLSelectElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "value": { "type": { "name": "any" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+      }
+    }
+  },
+  "name": "NativeSelect",
+  "imports": [
+    "import NativeSelect from '@mui/material/NativeSelect';",
+    "import { NativeSelect } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": [
+      "root",
+      "select",
+      "multiple",
+      "filled",
+      "outlined",
+      "standard",
+      "disabled",
+      "icon",
+      "iconOpen",
+      "iconFilled",
+      "iconOutlined",
+      "iconStandard",
+      "nativeInput",
+      "error"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error" },
+    "name": "MuiNativeSelect"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiNativeSelect",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/NativeSelect/NativeSelect.js",
+  "inheritance": { "component": "Input", "pathname": "/material-ui/api/input/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-select/\">Select</a></li></ul>",
+  "cssComponent": false
+}

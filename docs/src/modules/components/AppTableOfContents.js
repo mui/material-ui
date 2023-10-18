@@ -4,38 +4,38 @@ import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
-import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
+import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
+import featureToggle from 'docs/src/featureToggle';
+import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 
-const Nav = styled('nav')(({ theme }) => {
-  return {
-    top: 70,
-    // Fix IE11 position sticky issue.
-    marginTop: 70,
-    width: 210,
-    flexShrink: 0,
-    position: 'sticky',
-    height: 'calc(100vh - 70px)',
-    overflowY: 'auto',
-    padding: theme.spacing(2, 4, 2, 0),
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  };
-});
+const Nav = styled('nav')(({ theme }) => ({
+  top: 'var(--MuiDocs-header-height)',
+  marginTop: 'var(--MuiDocs-header-height)',
+  paddingLeft: 2, // Fix truncated focus outline style
+  position: 'sticky',
+  height: 'calc(100vh - var(--MuiDocs-header-height))',
+  overflowY: 'auto',
+  paddingTop: theme.spacing(4),
+  paddingBottom: theme.spacing(4),
+  paddingRight: theme.spacing(4), // We can't use `padding` as stylis-plugin-rtl doesn't swap it
+  display: 'none',
+  [theme.breakpoints.up('md')]: {
+    display: 'block',
+  },
+}));
 
-const NavLabel = styled(Typography)(({ theme }) => {
-  return {
-    marginTop: theme.spacing(2),
-    paddingLeft: theme.spacing(1.5),
-    fontSize: theme.typography.pxToRem(12),
-    fontWeight: theme.typography.fontWeightBold,
-    color:
-      theme.palette.mode === 'dark' ? alpha(theme.palette.grey[500], 0.5) : theme.palette.grey[500],
-  };
-});
+const NavLabel = styled(Typography)(({ theme }) => ({
+  padding: theme.spacing(1, 0, 1, 1.4),
+  fontSize: theme.typography.pxToRem(11),
+  fontWeight: theme.typography.fontWeightBold,
+  textTransform: 'uppercase',
+  letterSpacing: '.08rem',
+  color: theme.palette.grey[600],
+}));
 
 const NavList = styled(Typography)({
   padding: 0,
@@ -44,35 +44,66 @@ const NavList = styled(Typography)({
 });
 
 const NavItem = styled(Link, {
-  shouldForwardProp: (prop) => prop !== 'active' && prop !== 'secondary',
-})(({ active, secondary, theme }) => {
+  shouldForwardProp: (prop) =>
+    prop !== 'active' && prop !== 'secondary' && prop !== 'secondarySubItem',
+})(({ active, secondary, secondarySubItem, theme }) => {
   const activeStyles = {
-    borderLeftColor:
-      theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[600],
-    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
-  };
-
-  return {
-    fontSize: theme.typography.pxToRem(13),
-    padding: theme.spacing(0, 1, 0, secondary ? 3 : '10px'),
-    margin: theme.spacing(0.5, 0, 1, 0),
-    borderLeft: `2px solid transparent`,
-    boxSizing: 'border-box',
-    fontWeight: theme.typography.fontWeightMedium,
+    borderLeftColor: (theme.vars || theme).palette.primary[200],
+    color: (theme.vars || theme).palette.primary[600],
     '&:hover': {
-      borderLeftColor:
-        theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[700],
-      color:
-        theme.palette.mode === 'light' ? theme.palette.primary[500] : theme.palette.primary[400],
+      borderLeftColor: (theme.vars || theme).palette.primary[600],
+      color: (theme.vars || theme).palette.primary[600],
     },
-    ...(!active && {
-      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
-    }),
-    // TODO: We probably want `aria-current="location"` instead.
-    // If so, are we sure "current" and "active" states should have the same styles?
-    ...(active && activeStyles),
-    '&:active': activeStyles,
   };
+  const activeDarkStyles = {
+    borderLeftColor: (theme.vars || theme).palette.primary[600],
+    color: (theme.vars || theme).palette.primary[300],
+    '&:hover': {
+      borderLeftColor: (theme.vars || theme).palette.primary[400],
+      color: (theme.vars || theme).palette.primary[400],
+    },
+  };
+  let paddingLeft = '12px';
+  if (secondary) {
+    paddingLeft = 3;
+  }
+  if (secondarySubItem) {
+    paddingLeft = 4.5;
+  }
+
+  return [
+    {
+      boxSizing: 'border-box',
+      padding: theme.spacing('6px', 0, '6px', paddingLeft),
+      borderLeft: `1px solid transparent`,
+      display: 'block',
+      fontSize: theme.typography.pxToRem(13),
+      fontWeight: theme.typography.fontWeightMedium,
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      '&:hover': {
+        borderLeftColor: (theme.vars || theme).palette.grey[400],
+        color: (theme.vars || theme).palette.grey[600],
+      },
+      ...(!active && {
+        color: (theme.vars || theme).palette.text.primary,
+      }),
+      // TODO: We probably want `aria-current="location"` instead.
+      ...(active && activeStyles),
+      '&:active': activeStyles,
+    },
+    theme.applyDarkStyles({
+      '&:hover': {
+        borderLeftColor: (theme.vars || theme).palette.grey[500],
+        color: (theme.vars || theme).palette.grey[200],
+      },
+      ...(!active && {
+        color: (theme.vars || theme).palette.grey[500],
+      }),
+      ...(active && activeDarkStyles),
+      '&:active': activeDarkStyles,
+    }),
+  ];
 });
 
 const noop = () => {};
@@ -111,13 +142,24 @@ function flatten(headings) {
   return itemsWithNode;
 }
 
+function shouldShowJobAd() {
+  const date = new Date();
+  const timeZoneOffset = date.getTimezoneOffset();
+  // Hide for time zones UT+5.5 - UTC+14 & UTC-8 - UTC-12
+  if (timeZoneOffset <= -5.5 * 60 || timeZoneOffset >= 8 * 60) {
+    return false;
+  }
+  return true;
+}
+
+const showSurveyBanner = false;
+const showJobAd = featureToggle.enable_job_banner && shouldShowJobAd();
+
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
 
   const items = React.useMemo(() => flatten(toc), [toc]);
-
-  const { activePage } = React.useContext(PageContext);
   const [activeState, setActiveState] = React.useState(null);
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef(null);
@@ -164,14 +206,7 @@ export default function AppTableOfContents(props) {
 
   const handleClick = (hash) => (event) => {
     // Ignore click for new tab/new window behavior
-    if (
-      event.defaultPrevented ||
-      event.button !== 0 || // ignore everything but left-click
-      event.metaKey ||
-      event.ctrlKey ||
-      event.altKey ||
-      event.shiftKey
-    ) {
+    if (samePageLinkNavigation(event)) {
       return;
     }
 
@@ -193,14 +228,15 @@ export default function AppTableOfContents(props) {
     [],
   );
 
-  const itemLink = (item, secondary) => (
+  const itemLink = (item, secondary, secondarySubItem) => (
     <NavItem
       display="block"
-      href={`${activePage.linkProps?.linkAs ?? activePage.pathname}#${item.hash}`}
+      href={`#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       active={activeState === item.hash}
       secondary={secondary}
+      secondarySubItem={secondarySubItem}
     >
       <span dangerouslySetInnerHTML={{ __html: item.text }} />
     </NavItem>
@@ -208,9 +244,106 @@ export default function AppTableOfContents(props) {
 
   return (
     <Nav aria-label={t('pageTOC')}>
+      <TableOfContentsBanner />
+      <NoSsr>
+        {showSurveyBanner && (
+          <Link
+            href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=docs"
+            target="_blank"
+            sx={[
+              (theme) => ({
+                mb: 2,
+                p: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                backgroundColor: alpha(theme.palette.grey[50], 0.4),
+                border: '1px solid',
+                borderColor: (theme.vars || theme).palette.grey[200],
+                borderRadius: 1,
+                transitionProperty: 'all',
+                transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                transitionDuration: '150ms',
+                '&:hover, &:focus-visible': {
+                  borderColor: (theme.vars || theme).palette.primary[200],
+                },
+              }),
+              (theme) =>
+                theme.applyDarkStyles({
+                  backgroundColor: alpha(theme.palette.primary[900], 0.2),
+                  borderColor: (theme.vars || theme).palette.primaryDark[700],
+                  '&:hover, &:focus-visible': {
+                    borderColor: (theme.vars || theme).palette.primaryDark[500],
+                  },
+                }),
+            ]}
+          >
+            <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+              {'📫 MUI Developer survey 2022 is live!'}
+            </Typography>
+            <Typography
+              component="span"
+              variant="caption"
+              fontWeight="normal"
+              color="text.secondary"
+              sx={{ mt: 0.5 }}
+            >
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              {'Influence the future of MUI. Help define the roadmap for 2023!'}
+            </Typography>
+          </Link>
+        )}
+        {!showSurveyBanner && showJobAd && (
+          <Link
+            href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
+            target="_blank"
+            sx={[
+              (theme) => ({
+                mb: 2,
+                p: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                backgroundColor: alpha(theme.palette.grey[50], 0.4),
+                border: '1px solid',
+                borderColor: (theme.vars || theme).palette.grey[200],
+                borderRadius: 1,
+                transitionProperty: 'all',
+                transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                transitionDuration: '150ms',
+                '&:hover, &:focus-visible': {
+                  borderColor: (theme.vars || theme).palette.primary[200],
+                },
+              }),
+              (theme) =>
+                theme.applyDarkStyles({
+                  backgroundColor: alpha(theme.palette.primary[900], 0.2),
+                  borderColor: (theme.vars || theme).palette.primaryDark[700],
+                  '&:hover, &:focus-visible': {
+                    borderColor: (theme.vars || theme).palette.primaryDark[500],
+                  },
+                }),
+            ]}
+          >
+            <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+              {'🚀 Join the MUI team!'}
+            </Typography>
+            <Typography
+              component="span"
+              variant="caption"
+              fontWeight="normal"
+              color="text.secondary"
+              sx={{ mt: 0.5 }}
+            >
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              {"We're looking for React Engineers and other amazing roles－come find out more!"}
+            </Typography>
+          </Link>
+        )}
+      </NoSsr>
       {toc.length > 0 ? (
         <React.Fragment>
-          <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>
+          <NavLabel>{t('tableOfContents')}</NavLabel>
           <NavList component="ul">
             {toc.map((item) => (
               <li key={item.text}>
@@ -218,7 +351,18 @@ export default function AppTableOfContents(props) {
                 {item.children.length > 0 ? (
                   <NavList as="ul">
                     {item.children.map((subitem) => (
-                      <li key={subitem.text}>{itemLink(subitem, true)}</li>
+                      <li key={subitem.text}>
+                        {itemLink(subitem, true)}
+                        {subitem.children?.length > 0 ? (
+                          <NavList as="ul">
+                            {subitem.children.map((nestedSubItem) => (
+                              <li key={nestedSubItem.text}>
+                                {itemLink(nestedSubItem, false, true)}
+                              </li>
+                            ))}
+                          </NavList>
+                        ) : null}
+                      </li>
                     ))}
                   </NavList>
                 ) : null}
@@ -227,6 +371,7 @@ export default function AppTableOfContents(props) {
           </NavList>
         </React.Fragment>
       ) : null}
+      <DiamondSponsors />
     </Nav>
   );
 }

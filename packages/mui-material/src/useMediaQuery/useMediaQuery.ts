@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { getThemeProps, useThemeWithoutDefault as useTheme } from '@mui/system';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -23,15 +24,29 @@ export interface MuiMediaQueryList {
  */
 export type MuiMediaQueryListListener = (event: MuiMediaQueryListEvent) => void;
 
-export interface Options {
+export interface UseMediaQueryOptions {
+  /**
+   * As `window.matchMedia()` is unavailable on the server,
+   * it returns a default matches during the first mount.
+   * @default false
+   */
   defaultMatches?: boolean;
+  /**
+   * You can provide your own implementation of matchMedia.
+   * This can be used for handling an iframe content window.
+   */
   matchMedia?: typeof window.matchMedia;
   /**
-   * This option is kept for backwards compatibility and has no longer any effect.
-   * It's previous behavior is now handled automatically.
+   * To perform the server-side hydration, the hook needs to render twice.
+   * A first time with `defaultMatches`, the value of the server, and a second time with the resolved value.
+   * This double pass rendering cycle comes with a drawback: it's slower.
+   * You can set this option to `true` if you use the returned value **only** client-side.
+   * @default false
    */
-  // TODO: Deprecate for v6
   noSsr?: boolean;
+  /**
+   * You can provide your own implementation of `matchMedia`, it's used when rendering server-side.
+   */
   ssrMatchMedia?: (query: string) => { matches: boolean };
 }
 
@@ -40,13 +55,10 @@ function useMediaQueryOld(
   defaultMatches: boolean,
   matchMedia: typeof window.matchMedia | null,
   ssrMatchMedia: ((query: string) => { matches: boolean }) | null,
-  noSsr: boolean | undefined,
+  noSsr: boolean,
 ): boolean {
-  const supportMatchMedia =
-    typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
-
   const [match, setMatch] = React.useState(() => {
-    if (noSsr && supportMatchMedia) {
+    if (noSsr && matchMedia) {
       return matchMedia!(query).matches;
     }
     if (ssrMatchMedia) {
@@ -61,7 +73,7 @@ function useMediaQueryOld(
   useEnhancedEffect(() => {
     let active = true;
 
-    if (!supportMatchMedia) {
+    if (!matchMedia) {
       return undefined;
     }
 
@@ -69,7 +81,7 @@ function useMediaQueryOld(
     const updateMatch = () => {
       // Workaround Safari wrong implementation of matchMedia
       // TODO can we remove it?
-      // https://github.com/mui-org/material-ui/pull/17315#issuecomment-528286677
+      // https://github.com/mui/material-ui/pull/17315#issuecomment-528286677
       if (active) {
         setMatch(queryList.matches);
       }
@@ -81,25 +93,33 @@ function useMediaQueryOld(
       active = false;
       queryList.removeListener(updateMatch);
     };
-  }, [query, matchMedia, supportMatchMedia]);
+  }, [query, matchMedia]);
 
   return match;
 }
+
+// eslint-disable-next-line no-useless-concat -- Workaround for https://github.com/webpack/webpack/issues/14814
+const maybeReactUseSyncExternalStore: undefined | any = (React as any)['useSyncExternalStore' + ''];
 
 function useMediaQueryNew(
   query: string,
   defaultMatches: boolean,
   matchMedia: typeof window.matchMedia | null,
   ssrMatchMedia: ((query: string) => { matches: boolean }) | null,
+  noSsr: boolean,
 ): boolean {
   const getDefaultSnapshot = React.useCallback(() => defaultMatches, [defaultMatches]);
   const getServerSnapshot = React.useMemo(() => {
+    if (noSsr && matchMedia) {
+      return () => matchMedia!(query).matches;
+    }
+
     if (ssrMatchMedia !== null) {
       const { matches } = ssrMatchMedia(query);
       return () => matches;
     }
     return getDefaultSnapshot;
-  }, [getDefaultSnapshot, query, ssrMatchMedia]);
+  }, [getDefaultSnapshot, query, ssrMatchMedia, noSsr, matchMedia]);
   const [getSnapshot, subscribe] = React.useMemo(() => {
     if (matchMedia === null) {
       return [getDefaultSnapshot, () => () => {}];
@@ -118,14 +138,14 @@ function useMediaQueryNew(
       },
     ];
   }, [getDefaultSnapshot, matchMedia, query]);
-  const match = (React as any).useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const match = maybeReactUseSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   return match;
 }
 
 export default function useMediaQuery<Theme = unknown>(
   queryInput: string | ((theme: Theme) => string),
-  options: Options = {},
+  options: UseMediaQueryOptions = {},
 ): boolean {
   const theme = useTheme<Theme>();
   // Wait for jsdom to support the match media feature.
@@ -138,7 +158,7 @@ export default function useMediaQuery<Theme = unknown>(
     defaultMatches = false,
     matchMedia = supportMatchMedia ? window.matchMedia : null,
     ssrMatchMedia = null,
-    noSsr,
+    noSsr = false,
   } = getThemeProps({ name: 'MuiUseMediaQuery', props: options, theme });
 
   if (process.env.NODE_ENV !== 'production') {
@@ -158,7 +178,7 @@ export default function useMediaQuery<Theme = unknown>(
 
   // TODO: Drop `useMediaQueryOld` and use  `use-sync-external-store` shim in `useMediaQueryNew` once the package is stable
   const useMediaQueryImplementation =
-    (React as any).useSyncExternalStore !== undefined ? useMediaQueryNew : useMediaQueryOld;
+    maybeReactUseSyncExternalStore !== undefined ? useMediaQueryNew : useMediaQueryOld;
   const match = useMediaQueryImplementation(
     query,
     defaultMatches,

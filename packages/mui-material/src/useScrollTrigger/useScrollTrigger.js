@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 
 function defaultTrigger(store, options) {
@@ -31,9 +32,9 @@ export default function useScrollTrigger(options = {}) {
     };
 
     handleScroll(); // Re-evaluate trigger when dependencies change
-    target.addEventListener('scroll', handleScroll);
+    target.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      target.removeEventListener('scroll', handleScroll);
+      target.removeEventListener('scroll', handleScroll, { passive: true });
     };
     // See Option 3. https://github.com/facebook/react/issues/14476#issuecomment-471199055
     // eslint-disable-next-line react-hooks/exhaustive-deps

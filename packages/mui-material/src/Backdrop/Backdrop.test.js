@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import Backdrop, { backdropClasses as classes } from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
 
@@ -15,11 +15,18 @@ describe('<Backdrop />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiBackdrop',
     testVariantProps: { invisible: true },
+    testLegacyComponentsProp: true,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
     skip: [
       'componentProp',
       'componentsProp',
       // react-transition-group issue
       'reactTestRenderer',
+      'slotPropsCallback', // not supported yet
     ],
   }));
 

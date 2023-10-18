@@ -1,9 +1,9 @@
-import * as fse from 'fs-extra';
 import * as path from 'path';
+import * as fse from 'fs-extra';
 import * as playwright from 'playwright';
 
 async function main() {
-  const baseUrl = 'http://localhost:3000';
+  const baseUrl = 'http://localhost:5001';
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
 
   const browser = await playwright.chromium.launch({
@@ -27,7 +27,7 @@ async function main() {
   });
 
   // Wait for all requests to finish.
-  // This should load shared ressources such as fonts.
+  // This should load shared resources such as fonts.
   await page.goto(`${baseUrl}#no-dev`, { waitUntil: 'networkidle0' });
   // If we still get flaky fonts after awaiting this try `document.fonts.ready`
   await page.waitForSelector('[data-webfontloader="active"]', { state: 'attached' });
@@ -77,6 +77,12 @@ async function main() {
   await fse.emptyDir(screenshotDir);
 
   describe('visual regressions', () => {
+    beforeEach(async () => {
+      await page.evaluate(() => {
+        localStorage.clear();
+      });
+    });
+
     after(async () => {
       await browser.close();
     });
@@ -114,29 +120,6 @@ async function main() {
         await takeScreenshot({ testcase, route: '/regression-Rating/PreciseFocusVisibleRating2' });
         await page.keyboard.press('ArrowRight');
         await takeScreenshot({ testcase, route: '/regression-Rating/PreciseFocusVisibleRating3' });
-      });
-    });
-
-    describe('DateTimePicker', () => {
-      it('should handle change in pointer correctly', async () => {
-        const index = routes.findIndex(
-          (route) => route === '/regression-pickers/UncontrolledDateTimePicker',
-        );
-        const testcase = await renderFixture(index);
-
-        await page.click('[aria-label="Choose date"]');
-        await page.click('[aria-label*="switch to year view"]');
-        await takeScreenshot({
-          testcase: await page.waitForSelector('[role="dialog"]'),
-          route: '/regression-pickers/UncontrolledDateTimePicker-desktop',
-        });
-        await page.evaluate(() => {
-          window.muiTogglePickerMode();
-        });
-        await takeScreenshot({
-          testcase,
-          route: '/regression-pickers/UncontrolledDateTimePicker-mobile',
-        });
       });
     });
   });

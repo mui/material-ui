@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useFakeTimers } from 'sinon';
 import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import JoyBox from '@mui/joy/Box';
+import { CssVarsProvider } from '@mui/joy/styles';
 
 function TestViewer(props) {
   const { children } = props;
@@ -69,13 +71,25 @@ function TestViewer(props) {
         }}
       />
       <React.Suspense fallback={<div aria-busy />}>
-        <Box
-          aria-busy={!ready}
-          data-testid="testcase"
-          sx={{ bgcolor: 'background.default', display: 'inline-block', p: 1 }}
-        >
-          {children}
-        </Box>
+        {window.location.pathname.startsWith('/docs-joy') ? (
+          <CssVarsProvider>
+            <JoyBox
+              aria-busy={!ready}
+              data-testid="testcase"
+              sx={{ bgcolor: 'background.body', display: 'inline-block', p: 1 }}
+            >
+              {children}
+            </JoyBox>
+          </CssVarsProvider>
+        ) : (
+          <Box
+            aria-busy={!ready}
+            data-testid="testcase"
+            sx={{ bgcolor: 'background.default', display: 'inline-block', p: 1 }}
+          >
+            {children}
+          </Box>
+        )}
       </React.Suspense>
     </React.Fragment>
   );

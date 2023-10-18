@@ -1,0 +1,70 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'inherit'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'default'"
+    },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "edge": {
+      "type": {
+        "name": "enum",
+        "description": "'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;false"
+      },
+      "default": "false"
+    },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
+      },
+      "default": "'medium'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "IconButton",
+  "imports": [
+    "import IconButton from '@mui/material/IconButton';",
+    "import { IconButton } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": [
+      "root",
+      "edgeStart",
+      "edgeEnd",
+      "colorInherit",
+      "colorPrimary",
+      "colorSecondary",
+      "colorError",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "sizeSmall",
+      "sizeMedium",
+      "sizeLarge"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled" },
+    "name": "MuiIconButton"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiIconButton",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-material/src/IconButton/IconButton.js",
+  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-button/\">Button</a></li></ul>",
+  "cssComponent": false
+}

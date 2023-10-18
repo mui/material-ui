@@ -1,7 +1,7 @@
-import pluginTester from 'babel-plugin-tester';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
+import { pluginTester } from 'babel-plugin-tester';
 import plugin from 'babel-plugin-macros';
 import { expect } from 'chai';
 
@@ -17,7 +17,7 @@ function readOutputFixtureSync(fixture, file) {
 
 pluginTester({
   plugin,
-  filename: __filename,
+  filepath: __filename,
   tests: [
     {
       title: 'literal',

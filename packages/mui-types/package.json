@@ -1,12 +1,13 @@
 {
   "name": "@mui/types",
-  "version": "7.1.0",
+  "version": "7.2.6",
   "private": false,
   "author": "MUI Team",
   "description": "Utility types for MUI.",
   "types": "./index.d.ts",
   "files": [
-    "index.d.ts"
+    "index.d.ts",
+    "OverridableComponentAugmentation.ts"
   ],
   "keywords": [
     "react",
@@ -16,17 +17,17 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git",
+    "url": "https://github.com/mui/material-ui.git",
     "directory": "packages/mui-types"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/mui-types",
+  "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-types",
   "scripts": {
-    "build": "mkdir build && cpy index.d.ts build/ && yarn build:copy-files",
-    "build:copy-files": "node ../../scripts/copy-files.js",
+    "build": "mkdir build && cpy index.d.ts build/ && cpy OverridableComponentAugmentation.ts build/ && yarn build:copy-files",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",
@@ -36,8 +37,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "devDependencies": {
+    "@types/react": "^18.2.23"
+  },
   "peerDependencies": {
-    "@types/react": "*"
+    "@types/react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {

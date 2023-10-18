@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, act, fireEvent } from 'test/utils';
+import { describeConformance, createRenderer, act, fireEvent } from '@mui-internal/test-utils';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import Icon from '@mui/material/Icon';
@@ -59,6 +59,16 @@ describe('<Fab />', () => {
     expect(button).to.have.class(classes.root);
     expect(button).not.to.have.class(classes.primary);
     expect(button).to.have.class(classes.secondary);
+  });
+  ['info', 'error', 'warning', 'success'].forEach((color) => {
+    it(`should render a ${color} floating action button`, () => {
+      const { getByRole } = render(<Fab color={color}>Fab</Fab>);
+      const button = getByRole('button');
+
+      expect(button).to.have.class(classes.root);
+      expect(button).not.to.have.class(classes.primary);
+      expect(button).to.have.class(classes[color]);
+    });
   });
 
   it('should render a small floating action button', () => {
@@ -130,6 +140,13 @@ describe('<Fab />', () => {
     });
 
     expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
+  });
+
+  it('should pass disabled class to ButtonBase', () => {
+    const disabledClassName = 'testDisabledClassName';
+    const { container } = render(<Fab disabled classes={{ disabled: disabledClassName }} />);
+
+    expect(container.querySelector('button')).to.have.class(disabledClassName);
   });
 
   it('should render Icon children with right classes', () => {

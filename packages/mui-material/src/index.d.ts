@@ -11,31 +11,31 @@ export { StyledComponentProps };
  * @deprecated will be removed in v5 for internal usage only
  */
 export type StandardProps<
-  C,
+  ComponentProps,
   ClassKey extends string,
-  Removals extends keyof C = never,
-> = DistributiveOmit<C, 'classes' | Removals> &
+  Removals extends keyof ComponentProps = never,
+> = DistributiveOmit<ComponentProps, 'classes' | Removals> &
   StyledComponentProps<ClassKey> & {
     className?: string;
-    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+    ref?: ComponentProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
     style?: React.CSSProperties;
   };
 
 /**
  * @internal
- * ONLY USE FROM WITHIN mui-org/material-ui
+ * ONLY USE FROM WITHIN mui/material-ui
  *
  * Internal helper type for conform (describeConformance) components
  * However, we don't declare classes on this type.
  * It is recommended to declare them manually with an interface so that each class can have a separate JSDoc.
  */
-export type InternalStandardProps<C, Removals extends keyof C = never> = DistributiveOmit<
-  C,
-  'classes' | Removals
-> &
+export type InternalStandardProps<
+  ComponentProps,
+  Removals extends keyof ComponentProps = never,
+> = DistributiveOmit<ComponentProps, 'classes' | Removals> &
   // each component declares it's classes in a separate interface for proper JSDoc
   StyledComponentProps<never> & {
-    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+    ref?: ComponentProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
     // TODO: Remove implicit props. Up to each component.
     className?: string;
     style?: React.CSSProperties;
@@ -73,8 +73,6 @@ export { colors };
 export * from './styles';
 
 export * from './utils';
-
-export * from '@mui/base';
 
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
@@ -226,6 +224,9 @@ export * from './FormLabel';
 export { default as Grid } from './Grid';
 export * from './Grid';
 
+export { default as Unstable_Grid2 } from './Unstable_Grid2';
+export * from './Unstable_Grid2';
+
 export { default as Grow } from './Grow';
 export * from './Grow';
 
@@ -327,6 +328,9 @@ export * from './Popover';
 
 export { default as Popper } from './Popper';
 export * from './Popper';
+
+export { default as Portal } from './Portal';
+export * from './Portal';
 
 export { default as Radio } from './Radio';
 export * from './Radio';
@@ -476,3 +480,13 @@ export * from './GlobalStyles';
  * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @mui/material/styles instead
  */
 export { StyledEngineProvider } from './styles';
+
+export { unstable_composeClasses } from '@mui/base/composeClasses';
+
+export { default as generateUtilityClass } from './generateUtilityClass';
+export * from './generateUtilityClass';
+
+export { default as generateUtilityClasses } from './generateUtilityClasses';
+
+export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
+export * from './Unstable_TrapFocus';

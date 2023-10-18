@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable import/export */
 import * as colors from './colors';
 
@@ -5,8 +6,6 @@ export { colors };
 export * from './styles';
 
 export * from './utils';
-
-export * from '@mui/base';
 
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
@@ -155,6 +154,9 @@ export * from './FormLabel';
 export { default as Grid } from './Grid';
 export * from './Grid';
 
+export { default as Unstable_Grid2 } from './Unstable_Grid2';
+export * from './Unstable_Grid2';
+
 export { default as Grow } from './Grow';
 export * from './Grow';
 
@@ -256,6 +258,9 @@ export * from './Popover';
 
 export { default as Popper } from './Popper';
 export * from './Popper';
+
+export { default as Portal } from './Portal';
+export * from './Portal';
 
 export { default as Radio } from './Radio';
 export * from './Radio';
@@ -405,3 +410,12 @@ export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
 export { StyledEngineProvider } from './styles';
+
+export { unstable_composeClasses } from '@mui/base/composeClasses';
+
+export { default as generateUtilityClass } from './generateUtilityClass';
+export * from './generateUtilityClass';
+
+export { default as generateUtilityClasses } from './generateUtilityClasses';
+
+export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';

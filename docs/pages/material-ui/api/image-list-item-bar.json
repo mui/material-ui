@@ -1,0 +1,57 @@
+{
+  "props": {
+    "actionIcon": { "type": { "name": "node" } },
+    "actionPosition": {
+      "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
+      "default": "'right'"
+    },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "position": {
+      "type": {
+        "name": "enum",
+        "description": "'below'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'top'"
+      },
+      "default": "'bottom'"
+    },
+    "subtitle": { "type": { "name": "node" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "title": { "type": { "name": "node" } }
+  },
+  "name": "ImageListItemBar",
+  "imports": [
+    "import ImageListItemBar from '@mui/material/ImageListItemBar';",
+    "import { ImageListItemBar } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": [
+      "root",
+      "positionBottom",
+      "positionTop",
+      "positionBelow",
+      "titleWrap",
+      "titleWrapBelow",
+      "titleWrapActionPosLeft",
+      "titleWrapActionPosRight",
+      "title",
+      "subtitle",
+      "actionIcon",
+      "actionIconActionPosLeft"
+    ],
+    "globalClasses": {},
+    "name": "MuiImageListItemBar"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiImageListItemBar",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/ImageListItemBar/ImageListItemBar.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-image-list/\">Image List</a></li></ul>",
+  "cssComponent": false
+}

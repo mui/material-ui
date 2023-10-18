@@ -1,0 +1,34 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "hover": { "type": { "name": "bool" }, "default": "false" },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "TableRow",
+  "imports": [
+    "import TableRow from '@mui/material/TableRow';",
+    "import { TableRow } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": ["root", "selected", "hover", "head", "footer"],
+    "globalClasses": { "selected": "Mui-selected" },
+    "name": "MuiTableRow"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTableRow",
+  "forwardsRefTo": "HTMLTableRowElement",
+  "filename": "/packages/mui-material/src/TableRow/TableRow.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",
+  "cssComponent": false
+}

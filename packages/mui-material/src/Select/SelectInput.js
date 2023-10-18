@@ -1,10 +1,11 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { refType } from '@mui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { refType, unstable_useId as useId } from '@mui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
@@ -27,6 +28,7 @@ const SelectSelect = styled('div', {
       // Win specificity over the input base
       { [`&.${selectClasses.select}`]: styles.select },
       { [`&.${selectClasses.select}`]: styles[ownerState.variant] },
+      { [`&.${selectClasses.error}`]: styles.error },
       { [`&.${selectClasses.multiple}`]: styles.multiple },
     ];
   },
@@ -83,10 +85,10 @@ function isEmpty(display) {
 }
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, disabled, multiple, open } = ownerState;
+  const { classes, variant, disabled, multiple, open, error } = ownerState;
 
   const slots = {
-    select: ['select', variant, disabled && 'disabled', multiple && 'multiple'],
+    select: ['select', variant, disabled && 'disabled', multiple && 'multiple', error && 'error'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
   };
@@ -105,9 +107,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     autoWidth,
     children,
     className,
+    defaultOpen,
     defaultValue,
     disabled,
     displayEmpty,
+    error = false,
     IconComponent,
     inputRef: inputRefProp,
     labelId,
@@ -136,13 +140,17 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     default: defaultValue,
     name: 'Select',
   });
+  const [openState, setOpenState] = useControlled({
+    controlled: openProp,
+    default: defaultOpen,
+    name: 'Select',
+  });
 
   const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
-  const [openState, setOpenState] = React.useState(false);
   const handleRef = useForkRef(ref, inputRefProp);
 
   const handleDisplayRef = React.useCallback((node) => {
@@ -152,6 +160,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       setDisplayNode(node);
     }
   }, []);
+
+  const anchorElement = displayNode?.parentNode;
 
   React.useImperativeHandle(
     handleRef,
@@ -165,6 +175,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     [value],
   );
 
+  // Resize menu on `defaultOpen` automatic toggle.
+  React.useEffect(() => {
+    if (defaultOpen && openState && displayNode && !isOpenControlled) {
+      setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
+      displayRef.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [displayNode, autoWidth]);
+  // `isOpenControlled` is ignored because the component should never switch between controlled and uncontrolled modes.
+  // `defaultOpen` and `openState` are ignored to avoid unnecessary callbacks.
   React.useEffect(() => {
     if (autoFocus) {
       displayRef.current.focus();
@@ -172,6 +192,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   }, [autoFocus]);
 
   React.useEffect(() => {
+    if (!labelId) {
+      return undefined;
+    }
     const label = ownerDocument(displayRef.current).getElementById(labelId);
     if (label) {
       const handler = () => {
@@ -197,7 +220,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     if (!isOpenControlled) {
-      setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
+      setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
       setOpenState(open);
     }
   };
@@ -222,13 +245,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   // Support autofill.
   const handleChange = (event) => {
-    const index = childrenArray.map((child) => child.props.value).indexOf(event.target.value);
+    const child = childrenArray.find((childItem) => childItem.props.value === event.target.value);
 
-    if (index === -1) {
+    if (child === undefined) {
       return;
     }
 
-    const child = childrenArray[index];
     setValueState(child.props.value);
 
     if (onChange) {
@@ -266,7 +288,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       if (onChange) {
         // Redefine target to allow name and value to be read.
         // This allows seamless integration with the most popular form libraries.
-        // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
+        // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
         // Clone the event to not override `target` of the original event.
         const nativeEvent = event.nativeEvent || event;
         const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
@@ -290,8 +312,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         ' ',
         'ArrowUp',
         'ArrowDown',
-        // The native select doesn't respond to enter on MacOS, but it's recommended by
-        // https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-collapsible.html
+        // The native select doesn't respond to enter on macOS, but it's recommended by
+        // https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
         'Enter',
       ];
 
@@ -302,7 +324,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const open = displayNode !== null && (isOpenControlled ? openProp : openState);
+  const open = displayNode !== null && openState;
 
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
@@ -418,7 +440,17 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   if (computeDisplay) {
     if (multiple) {
-      display = displayMultiple.reduce((prev, curr) => [prev, ', ', curr]);
+      if (displayMultiple.length === 0) {
+        display = null;
+      } else {
+        display = displayMultiple.reduce((output, child, index) => {
+          output.push(child);
+          if (index < displayMultiple.length - 1) {
+            output.push(', ');
+          }
+          return output;
+        }, []);
+      }
     } else {
       display = displaySingle;
     }
@@ -428,7 +460,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   let menuMinWidth = menuMinWidthState;
 
   if (!autoWidth && isOpenControlled && displayNode) {
-    menuMinWidth = displayNode.clientWidth;
+    menuMinWidth = anchorElement.clientWidth;
   }
 
   let tabIndex;
@@ -445,16 +477,25 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     variant,
     value,
     open,
+    error,
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const paperProps = {
+    ...MenuProps.PaperProps,
+    ...MenuProps.slotProps?.paper,
+  };
+
+  const listboxId = useId();
 
   return (
     <React.Fragment>
       <SelectSelect
         ref={handleDisplayRef}
         tabIndex={tabIndex}
-        role="button"
+        role="combobox"
+        aria-controls={listboxId}
         aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : 'false'}
         aria-haspopup="listbox"
@@ -467,20 +508,20 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onFocus={onFocus}
         {...SelectDisplayProps}
         ownerState={ownerState}
-        className={clsx(classes.select, className, SelectDisplayProps.className)}
+        className={clsx(SelectDisplayProps.className, classes.select, className)}
         // The id is required for proper a11y
         id={buttonId}
       >
         {/* So the vertical align positioning algorithm kicks in. */}
         {isEmpty(display) ? (
           // notranslate needed while Google Translate will not fix zero-width space issue
-          // eslint-disable-next-line react/no-danger
-          <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+          <span className="notranslate">&#8203;</span>
         ) : (
           display
         )}
       </SelectSelect>
       <SelectNativeInput
+        aria-invalid={error}
         value={Array.isArray(value) ? value.join(',') : value}
         name={name}
         ref={inputRef}
@@ -496,7 +537,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
       <Menu
         id={`menu-${name || ''}`}
-        anchorEl={displayNode}
+        anchorEl={anchorElement}
         open={open}
         onClose={handleClose}
         anchorOrigin={{
@@ -511,14 +552,19 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         MenuListProps={{
           'aria-labelledby': labelId,
           role: 'listbox',
+          'aria-multiselectable': multiple ? 'true' : undefined,
           disableListWrap: true,
+          id: listboxId,
           ...MenuProps.MenuListProps,
         }}
-        PaperProps={{
-          ...MenuProps.PaperProps,
-          style: {
-            minWidth: menuMinWidth,
-            ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
+        slotProps={{
+          ...MenuProps.slotProps,
+          paper: {
+            ...paperProps,
+            style: {
+              minWidth: menuMinWidth,
+              ...(paperProps != null ? paperProps.style : null),
+            },
           },
         }}
       >
@@ -561,6 +607,11 @@ SelectInput.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * If `true`, the component is toggled on mount. Use when the component open state is not controlled.
+   * You can only use it when the `native` prop is `false` (default).
+   */
+  defaultOpen: PropTypes.bool,
+  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
@@ -572,6 +623,10 @@ SelectInput.propTypes = {
    * If `true`, the selected item is displayed even if its value is empty.
    */
   displayEmpty: PropTypes.bool,
+  /**
+   * If `true`, the `select input` will indicate an error.
+   */
+  error: PropTypes.bool,
   /**
    * The icon that displays the arrow.
    */
@@ -587,7 +642,7 @@ SelectInput.propTypes = {
    */
   labelId: PropTypes.string,
   /**
-   * Props applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**

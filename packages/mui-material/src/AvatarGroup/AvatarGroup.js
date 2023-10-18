@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Avatar, { avatarClasses } from '../Avatar';
@@ -34,7 +35,7 @@ const AvatarGroupRoot = styled('div', {
   }),
 })(({ theme }) => ({
   [`& .${avatarClasses.root}`]: {
-    border: `2px solid ${theme.palette.background.default}`,
+    border: `2px solid ${(theme.vars || theme).palette.background.default}`,
     boxSizing: 'content-box',
     marginLeft: -8,
     '&:last-child': {
@@ -50,7 +51,7 @@ const AvatarGroupAvatar = styled(Avatar, {
   slot: 'Avatar',
   overridesResolver: (props, styles) => styles.avatar,
 })(({ theme }) => ({
-  border: `2px solid ${theme.palette.background.default}`,
+  border: `2px solid ${(theme.vars || theme).palette.background.default}`,
   boxSizing: 'content-box',
   marginLeft: -8,
   '&:last-child': {
@@ -67,17 +68,23 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const {
     children: childrenProp,
     className,
+    component = 'div',
+    componentsProps = {},
     max = 5,
+    renderSurplus,
+    slotProps = {},
     spacing = 'medium',
+    total,
     variant = 'circular',
     ...other
   } = props;
-  const clampedMax = max < 2 ? 2 : max;
+  let clampedMax = max < 2 ? 2 : max;
 
   const ownerState = {
     ...props,
     max,
     spacing,
+    component,
     variant,
   };
 
@@ -98,12 +105,25 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     return React.isValidElement(child);
   });
 
-  const extraAvatars = children.length > clampedMax ? children.length - clampedMax + 1 : 0;
+  const totalAvatars = total || children.length;
+
+  if (totalAvatars === clampedMax) {
+    clampedMax += 1;
+  }
+
+  clampedMax = Math.min(totalAvatars + 1, clampedMax);
+
+  const maxAvatars = Math.min(children.length, clampedMax - 1);
+  const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
+  const extraAvatarsElement = renderSurplus ? renderSurplus(extraAvatars) : `+${extraAvatars}`;
 
   const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
 
+  const additionalAvatarSlotProps = slotProps.additionalAvatar ?? componentsProps.additionalAvatar;
+
   return (
     <AvatarGroupRoot
+      as={component}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
@@ -112,23 +132,24 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       {extraAvatars ? (
         <AvatarGroupAvatar
           ownerState={ownerState}
-          className={classes.avatar}
-          style={{
-            marginLeft,
-          }}
           variant={variant}
+          {...additionalAvatarSlotProps}
+          className={clsx(classes.avatar, additionalAvatarSlotProps?.className)}
+          style={{ marginLeft, ...additionalAvatarSlotProps?.style }}
         >
-          +{extraAvatars}
+          {extraAvatarsElement}
         </AvatarGroupAvatar>
       ) : null}
       {children
-        .slice(0, children.length - extraAvatars)
+        .slice(0, maxAvatars)
         .reverse()
-        .map((child) => {
+        .map((child, index) => {
           return React.cloneElement(child, {
             className: clsx(child.props.className, classes.avatar),
             style: {
-              marginLeft,
+              // Consistent with "&:last-child" styling for the default spacing,
+              // we do not apply custom marginLeft spacing on the last child
+              marginLeft: index === maxAvatars - 1 ? undefined : marginLeft,
               ...child.props.style,
             },
             variant: child.props.variant || variant,
@@ -156,6 +177,23 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    additionalAvatar: PropTypes.object,
+  }),
+  /**
    * Max avatars to show before +x.
    * @default 5
    */
@@ -172,6 +210,23 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     return null;
   }),
   /**
+   * custom renderer of extraAvatars
+   * @param {number} surplus number of extra avatars
+   * @returns {React.ReactNode} custom element to display
+   */
+  renderSurplus: PropTypes.func,
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    additionalAvatar: PropTypes.object,
+  }),
+  /**
    * Spacing between avatars.
    * @default 'medium'
    */
@@ -180,10 +235,15 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The total number of avatars. Used for calculating the number of extra avatars.
+   * @default children.length
+   */
+  total: PropTypes.number,
   /**
    * The variant to use.
    * @default 'circular'

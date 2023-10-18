@@ -1,0 +1,33 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "defaultValue": { "type": { "name": "any" } },
+    "name": { "type": { "name": "string" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>, value: string) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "RadioGroup",
+  "imports": [
+    "import RadioGroup from '@mui/material/RadioGroup';",
+    "import { RadioGroup } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": ["root", "row", "error"],
+    "globalClasses": { "error": "Mui-error" },
+    "name": "MuiRadioGroup"
+  },
+  "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiRadioGroup",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/RadioGroup/RadioGroup.js",
+  "inheritance": { "component": "FormGroup", "pathname": "/material-ui/api/form-group/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-radio-button/\">Radio Group</a></li></ul>",
+  "cssComponent": false
+}

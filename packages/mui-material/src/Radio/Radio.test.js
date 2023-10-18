@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import Radio, { radioClasses as classes } from '@mui/material/Radio';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -37,6 +37,15 @@ describe('<Radio />', () => {
     it('should render a checked icon', () => {
       const { getAllByTestId } = render(<Radio checked />);
       expect(getAllByTestId('RadioButtonCheckedIcon').length).to.equal(1);
+    });
+  });
+
+  describe('prop: size', () => {
+    it('add sizeSmall class to the root element when the size prop equals "small"', () => {
+      const { getByRole } = render(<Radio size="small" />);
+      const radio = getByRole('radio');
+      const root = radio.parentElement;
+      expect(root).to.have.class(classes.sizeSmall);
     });
   });
 

@@ -1,0 +1,33 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "icon": { "type": { "name": "node" } },
+    "optional": { "type": { "name": "node" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "StepButton",
+  "imports": [
+    "import StepButton from '@mui/material/StepButton';",
+    "import { StepButton } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": ["root", "horizontal", "vertical", "touchRipple"],
+    "globalClasses": {},
+    "name": "MuiStepButton"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStepButton",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-material/src/StepButton/StepButton.js",
+  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>",
+  "cssComponent": false
+}

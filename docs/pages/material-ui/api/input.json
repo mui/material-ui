@@ -1,0 +1,97 @@
+{
+  "props": {
+    "autoComplete": { "type": { "name": "string" } },
+    "autoFocus": { "type": { "name": "bool" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      }
+    },
+    "components": {
+      "type": { "name": "shape", "description": "{ Input?: elementType, Root?: elementType }" },
+      "default": "{}"
+    },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ input?: object, root?: object }" },
+      "default": "{}"
+    },
+    "defaultValue": { "type": { "name": "any" } },
+    "disabled": { "type": { "name": "bool" } },
+    "disableUnderline": { "type": { "name": "bool" } },
+    "endAdornment": { "type": { "name": "node" } },
+    "error": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
+    "id": { "type": { "name": "string" } },
+    "inputComponent": { "type": { "name": "elementType" }, "default": "'input'" },
+    "inputProps": { "type": { "name": "object" }, "default": "{}" },
+    "inputRef": { "type": { "name": "custom", "description": "ref" } },
+    "margin": { "type": { "name": "enum", "description": "'dense'<br>&#124;&nbsp;'none'" } },
+    "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "multiline": { "type": { "name": "bool" }, "default": "false" },
+    "name": { "type": { "name": "string" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
+    "placeholder": { "type": { "name": "string" } },
+    "readOnly": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" } },
+    "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ input?: object, root?: object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ input?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
+    "startAdornment": { "type": { "name": "node" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "type": { "type": { "name": "string" }, "default": "'text'" },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "Input",
+  "imports": ["import Input from '@mui/material/Input';", "import { Input } from '@mui/material';"],
+  "styles": {
+    "classes": [
+      "root",
+      "formControl",
+      "focused",
+      "disabled",
+      "colorSecondary",
+      "underline",
+      "error",
+      "sizeSmall",
+      "multiline",
+      "fullWidth",
+      "input",
+      "inputSizeSmall",
+      "inputMultiline",
+      "inputAdornedStart",
+      "inputAdornedEnd",
+      "inputTypeSearch"
+    ],
+    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" },
+    "name": "MuiInput"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiInput",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Input/Input.js",
+  "inheritance": { "component": "InputBase", "pathname": "/material-ui/api/input-base/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
+  "cssComponent": false
+}

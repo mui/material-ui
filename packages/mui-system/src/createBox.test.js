@@ -1,6 +1,8 @@
+/* eslint-disable material-ui/no-empty-box */
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { spy } from 'sinon';
+import { createRenderer } from '@mui-internal/test-utils';
 import { createBox, ThemeProvider } from '@mui/system';
 
 describe('createBox', () => {
@@ -53,5 +55,44 @@ describe('createBox', () => {
 
     const { container } = render(<Box />);
     expect(container.firstChild).to.have.class('Box');
+  });
+
+  it('should accept sx prop', () => {
+    const Box = createBox();
+    const { container } = render(<Box sx={{ color: 'rgb(255, 0, 0)' }}>Content</Box>);
+    expect(container.firstChild).toHaveComputedStyle({ color: 'rgb(255, 0, 0)' });
+  });
+
+  it('should call styleFunctionSx once', () => {
+    const Box = createBox();
+    const spySx = spy();
+    render(<Box sx={spySx}>Content</Box>);
+    expect(spySx.callCount).to.equal(2); // React 18 renders twice in strict mode.
+  });
+
+  it('should still call styleFunctionSx once', () => {
+    const Box = createBox();
+    const spySx = spy();
+    render(
+      <Box component={Box} sx={spySx}>
+        Content
+      </Box>,
+    );
+    expect(spySx.callCount).to.equal(2); // React 18 renders twice in strict mode.
+  });
+
+  it('overridable via `component` prop', () => {
+    const Box = createBox();
+
+    const { container } = render(<Box component="span" />);
+    expect(container.firstChild).to.have.tagName('span');
+  });
+
+  it('should not have `as` and `theme` attribute spread to DOM', () => {
+    const Box = createBox();
+
+    const { container } = render(<Box component="span" />);
+    expect(container.firstChild).not.to.have.attribute('as');
+    expect(container.firstChild).not.to.have.attribute('theme');
   });
 });

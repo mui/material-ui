@@ -1,0 +1,32 @@
+{
+  "props": {
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "icon": { "type": { "name": "node" } },
+    "openIcon": { "type": { "name": "node" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "SpeedDialIcon",
+  "imports": [
+    "import SpeedDialIcon from '@mui/material/SpeedDialIcon';",
+    "import { SpeedDialIcon } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": ["root", "icon", "iconOpen", "iconWithOpenIconOpen", "openIcon", "openIconOpen"],
+    "globalClasses": {},
+    "name": "MuiSpeedDialIcon"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSpeedDialIcon",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-material/src/SpeedDialIcon/SpeedDialIcon.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-speed-dial/\">Speed Dial</a></li></ul>",
+  "cssComponent": false
+}

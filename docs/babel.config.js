@@ -1,17 +1,7 @@
-const bpmr = require('babel-plugin-module-resolver');
-const fse = require('fs-extra');
 const path = require('path');
+const fse = require('fs-extra');
 
 const errorCodesPath = path.resolve(__dirname, './public/static/error-codes.json');
-
-function resolvePath(sourcePath, currentFile, opts) {
-  if (sourcePath === 'markdown') {
-    const base = currentFile.substring(__dirname.length).slice(0, -3);
-    return `${__dirname}/docs/src/${base}/`;
-  }
-
-  return bpmr.resolvePath(sourcePath, currentFile, opts);
-}
 
 const alias = {
   '@mui/material': '../packages/mui-material/src',
@@ -44,7 +34,7 @@ module.exports = {
   //   noDocumentAll: true,
   // },
   presets: [
-    // backport of https://github.com/zeit/next.js/pull/9511
+    // backport of https://github.com/vercel/next.js/pull/9511
     [
       'next/babel',
       {
@@ -70,7 +60,6 @@ module.exports = {
       {
         alias,
         transformFunctions: ['require', 'require.context'],
-        resolvePath,
       },
     ],
   ],

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Button, { ButtonProps } from '@mui/material-next/Button';
 import { Link as ReactRouterLink, LinkProps } from 'react-router-dom';
 import { expectType } from '@mui/types';
+import Button, { ButtonProps } from '@mui/material-next/Button';
 
 const log = console.log;
 
@@ -9,16 +9,16 @@ const TestOverride = React.forwardRef<HTMLDivElement, { x?: number }>((props, re
   <div ref={ref} />
 ));
 
-const FakeIcon = () => <div>Icon</div>;
+const FakeIcon = <div>Icon</div>;
 
-const ButtonTest = () => (
+const buttonTest = () => (
   <div>
     <Button>I am a button!</Button>
-    <Button color="inherit">Contrast</Button>
+    <Button color="secondary">Secondary</Button>
     <Button disabled>Disabled</Button>
     <Button href="#link-button">Link</Button>
     <Button size="small">Small</Button>
-    <Button variant="contained">Contained</Button>
+    <Button variant="filled">Contained</Button>
     <Button variant="outlined" aria-label="add">
       Outlined
     </Button>
@@ -86,14 +86,14 @@ const ButtonTest = () => (
 );
 
 const ReactRouterLinkTest = () => {
-  const ButtonLink = (props: ButtonProps<typeof ReactRouterLink>) => (
-    <Button {...props} component={ReactRouterLink} />
-  );
+  function ButtonLink(props: ButtonProps<typeof ReactRouterLink>) {
+    return <Button {...props} component={ReactRouterLink} />;
+  }
 
   const reactRouterButtonLink1 = <ButtonLink to="/">Go Home</ButtonLink>;
 
   const MyLink = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
-    return <ReactRouterLink innerRef={ref} {...props} />;
+    return <ReactRouterLink ref={ref} {...props} />;
   });
 
   const reactRouterButtonLink2 = (

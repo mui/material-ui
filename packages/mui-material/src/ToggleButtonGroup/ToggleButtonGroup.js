@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
@@ -41,7 +42,7 @@ const ToggleButtonGroupRoot = styled('div', {
   },
 })(({ ownerState, theme }) => ({
   display: 'inline-flex',
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: (theme.vars || theme).shape.borderRadius,
   ...(ownerState.orientation === 'vertical' && {
     flexDirection: 'column',
   }),
@@ -190,7 +191,9 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of a button when it is selected.
+   * The color of the button when it is selected.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'standard'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -238,7 +241,7 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

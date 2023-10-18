@@ -1,4 +1,0 @@
-<ButtonGroup disableElevation variant="contained">
-  <Button>One</Button>
-  <Button>Two</Button>
-</ButtonGroup>

@@ -5,7 +5,7 @@ An API for converting [TypeScript](https://www.npmjs.com/package/typescript) def
 ## Support
 
 | Component type   |                    |
-| ---------------- | ------------------ |
+| :--------------- | :----------------- |
 | Class            | :heavy_check_mark: |
 | Function         | :heavy_check_mark: |
 | Const functions  | :heavy_check_mark: |

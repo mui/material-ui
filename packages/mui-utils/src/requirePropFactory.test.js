@@ -114,7 +114,9 @@ describe('requirePropFactory', () => {
       });
 
       it('should work with chained proptypes coming from the default props', () => {
-        const Test = () => null;
+        function Test() {
+          return null;
+        }
         Test.propTypes = {
           test: PropTypes.string,
         };
@@ -140,7 +142,9 @@ describe('requirePropFactory', () => {
       });
 
       it('should validate default prop types coming from the component', () => {
-        const Test = () => null;
+        function Test() {
+          return null;
+        }
         Test.propTypes = {
           test: PropTypes.string,
         };

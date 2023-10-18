@@ -2,13 +2,13 @@ import style from './style';
 import compose from './compose';
 import { handleBreakpoints, values as breakpointsValues } from './breakpoints';
 
-function transform(value) {
+export function sizingTransform(value) {
   return value <= 1 && value !== 0 ? `${value * 100}%` : value;
 }
 
 export const width = style({
   prop: 'width',
-  transform,
+  transform: sizingTransform,
 });
 
 export const maxWidth = (props) => {
@@ -16,8 +16,21 @@ export const maxWidth = (props) => {
     const styleFromPropValue = (propValue) => {
       const breakpoint =
         props.theme?.breakpoints?.values?.[propValue] || breakpointsValues[propValue];
+
+      if (!breakpoint) {
+        return {
+          maxWidth: sizingTransform(propValue),
+        };
+      }
+
+      if (props.theme?.breakpoints?.unit !== 'px') {
+        return {
+          maxWidth: `${breakpoint}${props.theme.breakpoints.unit}`,
+        };
+      }
+
       return {
-        maxWidth: breakpoint || transform(propValue),
+        maxWidth: breakpoint,
       };
     };
     return handleBreakpoints(props, props.maxWidth, styleFromPropValue);
@@ -28,34 +41,34 @@ maxWidth.filterProps = ['maxWidth'];
 
 export const minWidth = style({
   prop: 'minWidth',
-  transform,
+  transform: sizingTransform,
 });
 
 export const height = style({
   prop: 'height',
-  transform,
+  transform: sizingTransform,
 });
 
 export const maxHeight = style({
   prop: 'maxHeight',
-  transform,
+  transform: sizingTransform,
 });
 
 export const minHeight = style({
   prop: 'minHeight',
-  transform,
+  transform: sizingTransform,
 });
 
 export const sizeWidth = style({
   prop: 'size',
   cssProperty: 'width',
-  transform,
+  transform: sizingTransform,
 });
 
 export const sizeHeight = style({
   prop: 'size',
   cssProperty: 'height',
-  transform,
+  transform: sizingTransform,
 });
 
 export const boxSizing = style({

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import express from 'express';
 import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { SheetsRegistry } from 'jss';
 import { createTheme } from '@mui/material/styles';
 import {
@@ -11,7 +11,7 @@ import {
   createGenerateClassName,
 } from '@mui/styles';
 import { green, red } from '@mui/material/colors';
-import Pricing from 'docs/src/pages/getting-started/templates/pricing/Pricing';
+import Pricing from 'docs/data/material/getting-started/templates/pricing/Pricing';
 import { spacing, palette, unstable_styleFunctionSx as styleFunction } from '@mui/system';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';

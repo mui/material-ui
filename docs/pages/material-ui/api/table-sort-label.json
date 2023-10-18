@@ -1,0 +1,38 @@
+{
+  "props": {
+    "active": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "direction": {
+      "type": { "name": "enum", "description": "'asc'<br>&#124;&nbsp;'desc'" },
+      "default": "'asc'"
+    },
+    "hideSortIcon": { "type": { "name": "bool" }, "default": "false" },
+    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDownwardIcon" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "TableSortLabel",
+  "imports": [
+    "import TableSortLabel from '@mui/material/TableSortLabel';",
+    "import { TableSortLabel } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": ["root", "active", "icon", "iconDirectionDesc", "iconDirectionAsc"],
+    "globalClasses": { "active": "Mui-active" },
+    "name": "MuiTableSortLabel"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTableSortLabel",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-material/src/TableSortLabel/TableSortLabel.js",
+  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",
+  "cssComponent": false
+}

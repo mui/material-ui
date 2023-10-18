@@ -1,0 +1,104 @@
+{
+  "props": {
+    "action": { "type": { "name": "custom", "description": "ref" } },
+    "allowScrollButtonsMobile": { "type": { "name": "bool" }, "default": "false" },
+    "aria-label": { "type": { "name": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "centered": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "indicatorColor": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, value: any) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "ScrollButtonComponent": { "type": { "name": "elementType" }, "default": "TabScrollButton" },
+    "scrollButtons": {
+      "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;false<br>&#124;&nbsp;true" },
+      "default": "'auto'"
+    },
+    "selectionFollowsFocus": { "type": { "name": "bool" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ EndScrollButtonIcon?: elementType, StartScrollButtonIcon?: elementType }"
+      },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "TabIndicatorProps": { "type": { "name": "object" }, "default": "{}" },
+    "TabScrollButtonProps": { "type": { "name": "object" }, "default": "{}" },
+    "textColor": {
+      "type": {
+        "name": "enum",
+        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+      },
+      "default": "'primary'"
+    },
+    "value": { "type": { "name": "any" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'fullWidth'<br>&#124;&nbsp;'scrollable'<br>&#124;&nbsp;'standard'"
+      },
+      "default": "'standard'"
+    },
+    "visibleScrollbar": { "type": { "name": "bool" }, "default": "false" }
+  },
+  "name": "Tabs",
+  "imports": ["import Tabs from '@mui/material/Tabs';", "import { Tabs } from '@mui/material';"],
+  "styles": {
+    "classes": [
+      "root",
+      "vertical",
+      "flexContainer",
+      "flexContainerVertical",
+      "centered",
+      "scroller",
+      "fixed",
+      "scrollableX",
+      "scrollableY",
+      "hideScrollbar",
+      "scrollButtons",
+      "scrollButtonsHideMobile",
+      "indicator"
+    ],
+    "globalClasses": {},
+    "name": "MuiTabs"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTabs",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Tabs/Tabs.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-tabs/\">Tabs</a></li></ul>",
+  "cssComponent": false
+}

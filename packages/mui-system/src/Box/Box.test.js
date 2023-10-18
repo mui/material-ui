@@ -1,7 +1,8 @@
+/* eslint-disable material-ui/no-empty-box */
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
-import Box from '@mui/material/Box';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { Box, createTheme, ThemeProvider } from '@mui/system';
 
 describe('<Box />', () => {
   const { render } = createRenderer();
@@ -274,12 +275,38 @@ describe('<Box />', () => {
   });
 
   it('adds the utility mui class', () => {
-    const { getByTestId } = render(
-      <React.Fragment>
-        <Box data-testid="regular-box" />
-      </React.Fragment>,
-    );
+    const { getByTestId } = render(<Box data-testid="regular-box" />);
 
     expect(getByTestId('regular-box')).to.have.class('MuiBox-root');
+  });
+
+  describe('prop: maxWidth', () => {
+    it('should resolve breakpoints with custom units', function test() {
+      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+      if (isJSDOM) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        breakpoints: {
+          unit: 'rem',
+          values: {
+            xs: 10,
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Box maxWidth="xs" />,
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        // 10rem x 16px = 160px
+        maxWidth: '160px',
+      });
+    });
   });
 });

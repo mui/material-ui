@@ -1,0 +1,4 @@
+<FormControl defaultValue="" required>
+  <CustomInput />
+  <ControlStateDisplay />
+</FormControl>

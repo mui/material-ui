@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { elementTypeAcceptingRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { duration } from '../styles/createTransitions';
@@ -93,7 +94,7 @@ const CollapseWrapperInner = styled('div', {
 
 /**
  * The Collapse transition is used by the
- * [Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.
+ * [Vertical Stepper](/material-ui/react-stepper/#vertical-stepper) StepContent component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Collapse = React.forwardRef(function Collapse(inProps, ref) {
@@ -398,7 +399,7 @@ Collapse.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

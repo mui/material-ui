@@ -4,40 +4,42 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 const data = [
-  { title: '2.3M', metadata: 'Weekly downloads on npm' },
-  { title: '72.7k', metadata: 'Stars on GitHub' },
-  { title: '2.2k', metadata: 'Open-source contributors' },
-  { title: '15.8k', metadata: 'Followers on Twitter' },
+  { title: '4M', metadata: 'Weekly downloads on npm' },
+  { title: '87k', metadata: 'Stars on GitHub' },
+  { title: '2.7k', metadata: 'Open-source contributors' },
+  { title: '18.4k', metadata: 'Followers on Twitter' },
 ];
 
 export default function MuiStatistics() {
   return (
-    <Grid item xs={12} md={6} container spacing={2}>
+    <Grid item xs={12} md={6} container spacing={4}>
       {data.map((item) => (
         <Grid key={item.title} item xs={6}>
           <Box
-            sx={{
+            sx={(theme) => ({
               height: '100%',
-              p: 1,
               pl: 2,
-              borderLeft: '4px solid',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.600' : 'primary.100',
-            }}
+              borderLeft: '1px solid',
+              borderColor: 'primary.100',
+              ...theme.applyDarkStyles({
+                borderColor: 'primaryDark.600',
+              }),
+            })}
           >
             <Typography
               component="div"
-              variant="h3"
-              color={(theme) => (theme.palette.mode === 'dark' ? 'primary.200' : 'primary.main')}
+              variant="h4"
               fontWeight="bold"
+              sx={(theme) => ({
+                color: 'primary.main',
+                ...theme.applyDarkStyles({
+                  color: 'primary.200',
+                }),
+              })}
             >
               {item.title}
             </Typography>
-            <Typography
-              color={(theme) => (theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800')}
-            >
-              {item.metadata}
-            </Typography>
+            <Typography color="text.secondary">{item.metadata}</Typography>
           </Box>
         </Grid>
       ))}

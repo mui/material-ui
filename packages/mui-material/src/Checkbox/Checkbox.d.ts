@@ -25,7 +25,9 @@ export interface CheckboxProps
    */
   classes?: Partial<CheckboxClasses>;
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color?: OverridableStringUnion<
@@ -34,10 +36,12 @@ export interface CheckboxProps
   >;
   /**
    * If `true`, the component is disabled.
+   * @default false
    */
   disabled?: SwitchBaseProps['disabled'];
   /**
    * If `true`, the ripple effect is disabled.
+   * @default false
    */
   disableRipple?: SwitchBaseProps['disableRipple'];
   /**
@@ -79,6 +83,7 @@ export interface CheckboxProps
   onChange?: SwitchBaseProps['onChange'];
   /**
    * If `true`, the `input` element is required.
+   * @default false
    */
   required?: SwitchBaseProps['required'];
   /**
@@ -102,12 +107,12 @@ export interface CheckboxProps
  *
  * Demos:
  *
- * - [Checkboxes](https://mui.com/components/checkboxes/)
- * - [Transfer List](https://mui.com/components/transfer-list/)
+ * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
+ * - [Transfer List](https://mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *
- * - [Checkbox API](https://mui.com/api/checkbox/)
- * - inherits [ButtonBase API](https://mui.com/api/button-base/)
+ * - [Checkbox API](https://mui.com/material-ui/api/checkbox/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 export default function Checkbox(props: CheckboxProps): JSX.Element;

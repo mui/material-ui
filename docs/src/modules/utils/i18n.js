@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 function mapTranslations(req) {
   const translations = {};
   req.keys().forEach((filename) => {
-    const match = filename.match(new RegExp(`-([a-z]{2}).json$`));
+    const match = filename.match(/-([a-z]{2}).json$/);
 
     if (match) {
       translations[match[1]] = req(filename);

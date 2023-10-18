@@ -1,0 +1,6 @@
+<button aria-describedby={id} type="button" onClick={handleClick}>
+  Toggle Popper
+</button>
+<Popper id={id} open={open} anchorEl={anchorEl}>
+  <StyledPopperDiv>The content of the Popper.</StyledPopperDiv>
+</Popper>

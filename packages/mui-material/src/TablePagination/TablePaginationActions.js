@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
@@ -90,7 +91,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
 
 TablePaginationActions.propTypes = {
   /**
-   * Props applied to the back arrow [`IconButton`](/api/icon-button/) element.
+   * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) element.
    */
   backIconButtonProps: PropTypes.object,
   /**
@@ -100,7 +101,7 @@ TablePaginationActions.propTypes = {
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    *
    * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
    * @param {number} page The page number to format.
@@ -108,7 +109,7 @@ TablePaginationActions.propTypes = {
    */
   getItemAriaLabel: PropTypes.func.isRequired,
   /**
-   * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
+   * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
    */
   nextIconButtonProps: PropTypes.object,
   /**

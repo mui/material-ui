@@ -1,0 +1,31 @@
+{
+  "props": {
+    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "autoFocusItem": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
+    "disabledItemsFocusable": { "type": { "name": "bool" }, "default": "false" },
+    "disableListWrap": { "type": { "name": "bool" }, "default": "false" },
+    "variant": {
+      "type": { "name": "enum", "description": "'menu'<br>&#124;&nbsp;'selectedMenu'" },
+      "default": "'selectedMenu'"
+    }
+  },
+  "name": "MenuList",
+  "imports": [
+    "import MenuList from '@mui/material/MenuList';",
+    "import { MenuList } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": ["root", "padding", "dense", "subheader"],
+    "globalClasses": {},
+    "name": "MuiMenuList"
+  },
+  "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiMenuList",
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/mui-material/src/MenuList/MenuList.js",
+  "inheritance": { "component": "List", "pathname": "/material-ui/api/list/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

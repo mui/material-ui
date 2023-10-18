@@ -1,0 +1,73 @@
+{
+  "props": {
+    "checked": { "type": { "name": "bool" } },
+    "checkedIcon": { "type": { "name": "node" }, "default": "<CheckBoxIcon />" },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
+    "defaultChecked": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "icon": { "type": { "name": "node" }, "default": "<CheckBoxOutlineBlankIcon />" },
+    "id": { "type": { "name": "string" } },
+    "indeterminate": { "type": { "name": "bool" }, "default": "false" },
+    "indeterminateIcon": { "type": { "name": "node" }, "default": "<IndeterminateCheckBoxIcon />" },
+    "inputProps": { "type": { "name": "object" } },
+    "inputRef": { "type": { "name": "custom", "description": "ref" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
+    "required": { "type": { "name": "bool" }, "default": "false" },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
+      "default": "'medium'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "Checkbox",
+  "imports": [
+    "import Checkbox from '@mui/material/Checkbox';",
+    "import { Checkbox } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": [
+      "root",
+      "checked",
+      "disabled",
+      "indeterminate",
+      "colorPrimary",
+      "colorSecondary",
+      "sizeSmall",
+      "sizeMedium"
+    ],
+    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
+    "name": "MuiCheckbox"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiCheckbox",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-material/src/Checkbox/Checkbox.js",
+  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-checkbox/\">Checkbox</a></li>\n<li><a href=\"/material-ui/react-transfer-list/\">Transfer List</a></li></ul>",
+  "cssComponent": false
+}

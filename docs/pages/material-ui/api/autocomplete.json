@@ -1,0 +1,230 @@
+{
+  "props": {
+    "options": { "type": { "name": "array" }, "required": true },
+    "renderInput": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": { "type": "function(params: object) => ReactNode", "describedArgs": [] }
+    },
+    "autoComplete": { "type": { "name": "bool" }, "default": "false" },
+    "autoHighlight": { "type": { "name": "bool" }, "default": "false" },
+    "autoSelect": { "type": { "name": "bool" }, "default": "false" },
+    "blurOnSelect": {
+      "type": {
+        "name": "union",
+        "description": "'mouse'<br>&#124;&nbsp;'touch'<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
+    "ChipProps": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "clearIcon": { "type": { "name": "node" }, "default": "<ClearIcon fontSize=\"small\" />" },
+    "clearOnBlur": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
+    "clearOnEscape": { "type": { "name": "bool" }, "default": "false" },
+    "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
+    "closeText": { "type": { "name": "string" }, "default": "'Close'" },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
+      },
+      "default": "{}"
+    },
+    "defaultValue": {
+      "type": { "name": "custom", "description": "any" },
+      "default": "props.multiple ? [] : null"
+    },
+    "disableClearable": { "type": { "name": "bool" }, "default": "false" },
+    "disableCloseOnSelect": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disabledItemsFocusable": { "type": { "name": "bool" }, "default": "false" },
+    "disableListWrap": { "type": { "name": "bool" }, "default": "false" },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "filterOptions": {
+      "type": { "name": "func" },
+      "default": "createFilterOptions()",
+      "signature": {
+        "type": "function(options: Array<Value>, state: object) => Array<Value>",
+        "describedArgs": ["options", "state"]
+      }
+    },
+    "filterSelectedOptions": { "type": { "name": "bool" }, "default": "false" },
+    "forcePopupIcon": {
+      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;bool" },
+      "default": "'auto'"
+    },
+    "freeSolo": { "type": { "name": "bool" }, "default": "false" },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
+    "getLimitTagsText": {
+      "type": { "name": "func" },
+      "default": "(more) => `+${more}`",
+      "signature": { "type": "function(more: number) => ReactNode", "describedArgs": ["more"] }
+    },
+    "getOptionDisabled": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(option: Value) => boolean", "describedArgs": ["option"] }
+    },
+    "getOptionLabel": {
+      "type": { "name": "func" },
+      "default": "(option) => option.label ?? option",
+      "signature": { "type": "function(option: Value) => string", "describedArgs": [] }
+    },
+    "groupBy": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(options: Value) => string", "describedArgs": ["options"] }
+    },
+    "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
+    "id": { "type": { "name": "string" } },
+    "includeInputInList": { "type": { "name": "bool" }, "default": "false" },
+    "inputValue": { "type": { "name": "string" } },
+    "isOptionEqualToValue": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(option: Value, value: Value) => boolean",
+        "describedArgs": ["option", "value"]
+      }
+    },
+    "limitTags": { "type": { "name": "custom", "description": "integer" }, "default": "-1" },
+    "ListboxComponent": { "type": { "name": "elementType" }, "default": "'ul'" },
+    "ListboxProps": { "type": { "name": "object" } },
+    "loading": { "type": { "name": "bool" }, "default": "false" },
+    "loadingText": { "type": { "name": "node" }, "default": "'Loading…'" },
+    "multiple": { "type": { "name": "bool" }, "default": "false" },
+    "noOptionsText": { "type": { "name": "node" }, "default": "'No options'" },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, value: Value | Array<Value>, reason: string, details?: string) => void",
+        "describedArgs": ["event", "value", "reason"]
+      }
+    },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
+    "onHighlightChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, option: Value, reason: string) => void",
+        "describedArgs": ["event", "option", "reason"]
+      }
+    },
+    "onInputChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, value: string, reason: string) => void",
+        "describedArgs": ["event", "value", "reason"]
+      }
+    },
+    "onOpen": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent) => void",
+        "describedArgs": ["event"]
+      }
+    },
+    "open": { "type": { "name": "bool" } },
+    "openOnFocus": { "type": { "name": "bool" }, "default": "false" },
+    "openText": { "type": { "name": "string" }, "default": "'Open'" },
+    "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
+    "PopperComponent": { "type": { "name": "elementType" }, "default": "Popper" },
+    "popupIcon": { "type": { "name": "node" }, "default": "<ArrowDropDownIcon />" },
+    "readOnly": { "type": { "name": "bool" }, "default": "false" },
+    "renderGroup": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(params: AutocompleteRenderGroupParams) => ReactNode",
+        "describedArgs": ["params"]
+      }
+    },
+    "renderOption": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(props: object, option: Value, state: object, ownerState: object) => ReactNode",
+        "describedArgs": ["props", "option", "state", "ownerState"]
+      }
+    },
+    "renderTags": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: Array<Value>, getTagProps: function, ownerState: object) => ReactNode",
+        "describedArgs": ["value", "getTagProps", "ownerState"]
+      }
+    },
+    "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;string"
+      },
+      "default": "'medium'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
+      },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "value": { "type": { "name": "custom", "description": "any" } }
+  },
+  "name": "Autocomplete",
+  "imports": [
+    "import Autocomplete from '@mui/material/Autocomplete';",
+    "import { Autocomplete } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": [
+      "root",
+      "fullWidth",
+      "expanded",
+      "focused",
+      "focusVisible",
+      "tag",
+      "tagSizeSmall",
+      "tagSizeMedium",
+      "hasPopupIcon",
+      "hasClearIcon",
+      "inputRoot",
+      "input",
+      "inputFocused",
+      "endAdornment",
+      "clearIndicator",
+      "popupIndicator",
+      "popupIndicatorOpen",
+      "popper",
+      "popperDisablePortal",
+      "paper",
+      "listbox",
+      "loading",
+      "noOptions",
+      "option",
+      "groupLabel",
+      "groupUl"
+    ],
+    "globalClasses": {
+      "expanded": "Mui-expanded",
+      "focused": "Mui-focused",
+      "focusVisible": "Mui-focusVisible"
+    },
+    "name": "MuiAutocomplete"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAutocomplete",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Autocomplete/Autocomplete.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,16 +1,27 @@
 [
   {
-    "id": 35,
-    "title": "Let's translate!",
-    "text": "<a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" data-ga-event-category=\"l10n\" data-ga-event-action=\"notification\" data-ga-event-label=\"zh\" href=\"https://translate.mui.com/\">帮助 MUI 将文档翻译成中文</a>. 🇨🇳",
-    "userLanguage": "zh"
+    "id": 68,
+    "title": "<b>Check out Base UI today</b> 💥",
+    "text": "Love Material UI, but don't need Material Design? Try Base UI, the new \"unstyled\" alternative. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"introducing-base-ui\" href=\"/blog/introducing-base-ui/\">Read more in this announcement</a>."
   },
   {
-    "id": 53,
-    "text": "You can <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MaterialUI\">follow us on Twitter</a> to receive exclusive tips and updates about MUI and the React ecosystem."
+    "id": 74,
+    "title": "<b>Introducing MUI X v6.0.0</b>",
+    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v6\" href=\"/blog/mui-x-v6/\">Explore</a> what's new and what's next in the new stable version of the advanced components."
   },
   {
-    "id": 54,
-    "text": "<a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MaterialUI/status/1438518915236126723\">MUI Core v5</a> is out 🎉"
+    "id": 75,
+    "title": "<b>Try the new time picker UI now</b>",
+    "text": "The new time-picking experience is designed for desktops, and it's available in the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v6\" href=\"https://mui.com/x/react-date-pickers/time-picker/\">Time Picker</a> as well as a <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v6\" href=\"https://mui.com/x/react-date-pickers/digital-clock/\">standalone component</a>."
+  },
+  {
+    "id": 76,
+    "title": "<b>Unveiling Charts: Alpha release is live</b>",
+    "text": "We're starting with bars, lines, and scatter charts. <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-introduce-charts\" href=\"https://mui.com/x/react-charts/\">Try X Charts now</a>, and let us know what you need."
+  },
+  {
+    "id": 77,
+    "title": "<b>MUI Toolpad is now in Beta</b>",
+    "text": "Import in your codebase, connect to datasources and build your UI in minutes! Read our <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-toolpad-introduce-beta\" href=\"https://mui.com/blog/2023-toolpad-beta-announcement/\"> Beta announcement</a>, try toolpad and share your feedback."
   }
 ]

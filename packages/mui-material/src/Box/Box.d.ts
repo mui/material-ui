@@ -1,58 +1,23 @@
-import { SxProps, SystemProps } from '@mui/system';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
+import { BoxTypeMap } from '@mui/system';
+import { OverridableComponent } from '@mui/types';
+import { OverrideProps } from '../OverridableComponent';
+import { Theme as MaterialTheme } from '../styles';
 
-export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    SystemProps<Theme> & {
-      children?: React.ReactNode;
-      component?: React.ElementType;
-      ref?: React.Ref<unknown>;
-      sx?: SxProps<Theme>;
-    };
-  defaultComponent: D;
-}
 /**
  *
  * Demos:
  *
- * - [Box](https://mui.com/components/box/)
+ * - [Box](https://mui.com/material-ui/react-box/)
  *
  * API:
  *
- * - [Box API](https://mui.com/components/box/#api)
- * NOTE - As a CSS utility component, Box also supports all system props.
- * You can use them as props directly on the component.
- * Props use same syntax as `sx`. Not all props are listed in the API section.
- *
- * Example:
- *
- * // For instance, a Box with margin-top:
- * <Box mt={2}>
+ * - [Box API](https://mui.com/material-ui/api/box/)
  */
-declare const Box: OverridableComponent<BoxTypeMap>;
+declare const Box: OverridableComponent<BoxTypeMap<{}, 'div', MaterialTheme>>;
 
 export type BoxProps<
-  D extends React.ElementType = BoxTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BoxTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = BoxTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<BoxTypeMap<AdditionalProps, RootComponent, MaterialTheme>, RootComponent>;
 
-/**
- *
- * Demos:
- *
- * - [Box](https://mui.com/components/box/)
- *
- * API:
- *
- * - [Box API](https://mui.com/components/box/#api)
- * NOTE - As a CSS utility component, Box also supports all system props.
- * You can use them as props directly on the component.
- * Props use same syntax as `sx`. Not all props are listed in the API section.
- *
- * Example:
- *
- * // For instance, a Box with margin-top:
- * <Box mt={2}>
- */
 export default Box;

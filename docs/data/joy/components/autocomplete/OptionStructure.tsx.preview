@@ -1,0 +1,5 @@
+<Autocomplete
+  options={top100Films}
+  getOptionLabel={(option) => option.title}
+  sx={{ width: 300 }}
+/>

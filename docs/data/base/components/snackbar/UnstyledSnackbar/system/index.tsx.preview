@@ -1,0 +1,10 @@
+<React.Fragment>
+  <TriggerButton type="button" onClick={handleOpen}>
+    Open snackbar
+  </TriggerButton>
+  {open ? (
+    <ClickAwayListener onClickAway={onClickAway}>
+      <CustomSnackbar {...getRootProps()}>Hello World</CustomSnackbar>
+    </ClickAwayListener>
+  ) : null}
+</React.Fragment>

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import ImageList, { imageListClasses as classes } from '@mui/material/ImageList';
 
 const itemsData = [
@@ -36,12 +36,7 @@ describe('<ImageList />', () => {
   );
 
   const children = itemsData.map((item) => (
-    <span
-      key={item.title}
-      title={item.title}
-      subtitle={<span>by: {item.author}</span>}
-      data-testid="test-children"
-    >
+    <span key={item.title} title={item.title} data-testid="test-children">
       <img src={item.img} alt="foo" />
     </span>
   ));

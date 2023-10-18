@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
 import useControlled from '../utils/useControlled';
@@ -21,7 +22,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-const SwitchBaseRoot = styled(ButtonBase, { skipSx: true })(({ ownerState }) => ({
+const SwitchBaseRoot = styled(ButtonBase)(({ ownerState }) => ({
   padding: 9,
   borderRadius: '50%',
   ...(ownerState.edge === 'start' && {
@@ -32,7 +33,7 @@ const SwitchBaseRoot = styled(ButtonBase, { skipSx: true })(({ ownerState }) => 
   }),
 }));
 
-const SwitchBaseInput = styled('input', { skipSx: true })({
+const SwitchBaseInput = styled('input')({
   cursor: 'inherit',
   position: 'absolute',
   opacity: 0,
@@ -67,7 +68,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     onChange,
     onFocus,
     readOnly,
-    required,
+    required = false,
     tabIndex,
     type,
     value,
@@ -159,7 +160,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
         defaultChecked={defaultChecked}
         className={classes.input}
         disabled={disabled}
-        id={hasLabelFor && id}
+        id={hasLabelFor ? id : undefined}
         name={name}
         onChange={handleInputChange}
         readOnly={readOnly}

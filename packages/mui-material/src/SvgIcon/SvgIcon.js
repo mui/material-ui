@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
@@ -38,23 +39,25 @@ const SvgIconRoot = styled('svg', {
   width: '1em',
   height: '1em',
   display: 'inline-block',
-  fill: 'currentColor',
+  // the <svg> will define the property that has `currentColor`
+  // e.g. heroicons uses fill="none" and stroke="currentColor"
+  fill: ownerState.hasSvgAsChild ? undefined : 'currentColor',
   flexShrink: 0,
-  transition: theme.transitions.create('fill', {
-    duration: theme.transitions.duration.shorter,
+  transition: theme.transitions?.create?.('fill', {
+    duration: theme.transitions?.duration?.shorter,
   }),
   fontSize: {
     inherit: 'inherit',
-    small: theme.typography.pxToRem(20),
-    medium: theme.typography.pxToRem(24),
-    large: theme.typography.pxToRem(35),
+    small: theme.typography?.pxToRem?.(20) || '1.25rem',
+    medium: theme.typography?.pxToRem?.(24) || '1.5rem',
+    large: theme.typography?.pxToRem?.(35) || '2.1875rem',
   }[ownerState.fontSize],
   // TODO v5 deprecate, v6 remove for sx
   color:
-    theme.palette[ownerState.color]?.main ??
+    (theme.vars || theme).palette?.[ownerState.color]?.main ??
     {
-      action: theme.palette.action.active,
-      disabled: theme.palette.action.disabled,
+      action: (theme.vars || theme).palette?.action?.active,
+      disabled: (theme.vars || theme).palette?.action?.disabled,
       inherit: undefined,
     }[ownerState.color],
 }));
@@ -68,18 +71,30 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     component = 'svg',
     fontSize = 'medium',
     htmlColor,
+    inheritViewBox = false,
     titleAccess,
     viewBox = '0 0 24 24',
     ...other
   } = props;
+
+  const hasSvgAsChild = React.isValidElement(children) && children.type === 'svg';
 
   const ownerState = {
     ...props,
     color,
     component,
     fontSize,
+    instanceFontSize: inProps.fontSize,
+    inheritViewBox,
     viewBox,
+    hasSvgAsChild,
   };
+
+  const more = {};
+
+  if (!inheritViewBox) {
+    more.viewBox = viewBox;
+  }
 
   const classes = useUtilityClasses(ownerState);
 
@@ -87,16 +102,17 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     <SvgIconRoot
       as={component}
       className={clsx(classes.root, className)}
-      ownerState={ownerState}
       focusable="false"
-      viewBox={viewBox}
       color={htmlColor}
       aria-hidden={titleAccess ? undefined : true}
       role={titleAccess ? 'img' : undefined}
       ref={ref}
+      {...more}
       {...other}
+      {...(hasSvgAsChild && children.props)}
+      ownerState={ownerState}
     >
-      {children}
+      {hasSvgAsChild ? children.props.children : children}
       {titleAccess ? <title>{titleAccess}</title> : null}
     </SvgIconRoot>
   );
@@ -120,7 +136,9 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    * @default 'inherit'
    */
@@ -156,6 +174,14 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    */
   htmlColor: PropTypes.string,
   /**
+   * If `true`, the root node will inherit the custom `component`'s viewBox and the `viewBox`
+   * prop will be ignored.
+   * Useful when you want to reference a custom `component` and have `SvgIcon` pass that
+   * `component`'s viewBox to the root node.
+   * @default false
+   */
+  inheritViewBox: PropTypes.bool,
+  /**
    * The shape-rendering attribute. The behavior of the different options is described on the
    * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
    * If you are having issues with blurry icons you should investigate this prop.
@@ -165,7 +191,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

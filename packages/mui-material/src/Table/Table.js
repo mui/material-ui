@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import TableContext from './TableContext';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
@@ -33,7 +34,7 @@ const TableRoot = styled('table', {
   '& caption': {
     ...theme.typography.body2,
     padding: theme.spacing(2),
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     textAlign: 'left',
     captionSide: 'bottom',
   },
@@ -130,7 +131,7 @@ Table.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

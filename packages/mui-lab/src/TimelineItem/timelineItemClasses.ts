@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import generateUtilityClass from '@mui/material/generateUtilityClass';
+import generateUtilityClasses from '@mui/material/generateUtilityClasses';
 
 export interface TimelineItemClasses {
   /** Styles applied to the root element. */
@@ -9,6 +10,8 @@ export interface TimelineItemClasses {
   positionRight: string;
   /** Styles applied to the root element if `position="alternate"`. */
   positionAlternate: string;
+  /** Styles applied to the root element if `position="alternate-reverse"`. */
+  positionAlternateReverse: string;
   /** Styles applied to the root element if TimelineOppositeContent isn't provided. */
   missingOppositeContent: string;
 }
@@ -24,6 +27,7 @@ const timelineItemClasses: TimelineItemClasses = generateUtilityClasses('MuiTime
   'positionLeft',
   'positionRight',
   'positionAlternate',
+  'positionAlternateReverse',
   'missingOppositeContent',
 ]);
 

@@ -1,3 +1,4 @@
+export { default as THEME_ID } from './identifier';
 export {
   default as createTheme,
   default as unstable_createMuiStrictModeTheme,
@@ -6,12 +7,18 @@ export {
   Theme,
 } from './createTheme';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
+export { Shadows } from './shadows';
+export { ZIndex } from './zIndex';
 export {
+  CommonColors,
   Palette,
   PaletteColor,
   PaletteColorOptions,
   PaletteOptions,
   SimplePaletteColorOptions,
+  TypeText,
+  TypeAction,
+  TypeBackground,
 } from './createPalette';
 export { default as createStyles } from './createStyles';
 export {
@@ -29,6 +36,7 @@ export {
   duration,
   easing,
 } from './createTransitions';
+export { Mixins } from './createMixins';
 export {
   Direction,
   Breakpoint,
@@ -55,7 +63,12 @@ export {
   lighten,
   ColorFormat,
   ColorObject,
+  StyledEngineProvider,
+  SxProps,
 } from '@mui/system';
+// TODO: Remove this function in v6.
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function experimental_sx(): any;
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
@@ -69,7 +82,7 @@ export { ComponentsProps, ComponentsPropsList } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides, ComponentNameToClassKey } from './overrides';
 export { Components } from './components';
-export { StyledEngineProvider } from '@mui/system';
+export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
@@ -83,3 +96,46 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
+
+export * from './CssVarsProvider';
+
+export { default as experimental_extendTheme } from './experimental_extendTheme';
+export type {
+  ColorSchemeOverrides,
+  SupportedColorScheme,
+  ColorSystem,
+  CssVarsPalette,
+  Opacity,
+  Overlays,
+  PaletteAlert,
+  PaletteActionChannel,
+  PaletteAppBar,
+  PaletteAvatar,
+  PaletteChip,
+  PaletteColorChannel,
+  PaletteCommonChannel,
+  PaletteFilledInput,
+  PaletteLinearProgress,
+  PaletteSkeleton,
+  PaletteSlider,
+  PaletteSnackbarContent,
+  PaletteSpeedDialAction,
+  PaletteStepConnector,
+  PaletteStepContent,
+  PaletteSwitch,
+  PaletteTableCell,
+  PaletteTextChannel,
+  PaletteTooltip,
+  CssVarsThemeOptions,
+  CssVarsTheme,
+  ThemeVars,
+  ThemeCssVar,
+  ThemeCssVarOverrides,
+  ColorSystemOptions,
+} from './experimental_extendTheme';
+export { default as getOverlayAlpha } from './getOverlayAlpha';
+export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
+
+// Private methods for creating parts of the theme
+export { default as private_createTypography } from './createTypography';
+export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';

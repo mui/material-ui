@@ -1,2 +1,2 @@
-export { default } from '@mui/base/Unstable_TrapFocus';
-export * from '@mui/base/Unstable_TrapFocus';
+export { FocusTrap as default } from '@mui/base/FocusTrap';
+export { FocusTrapProps as TrapFocusProps } from '@mui/base/FocusTrap';

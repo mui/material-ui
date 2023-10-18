@@ -1,20 +1,21 @@
 import { GlobalStylesProps as StyledGlobalStylesProps } from '@mui/system';
+import { Theme } from '../styles';
 
 export interface GlobalStylesProps {
   /**
    * The styles you want to apply globally.
    */
-  styles: StyledGlobalStylesProps['styles'];
+  styles: StyledGlobalStylesProps<Theme>['styles'];
 }
 
 /**
  *
  * Demos:
  *
- * - [How To Customize](https://mui.com/customization/how-to-customize/)
+ * - [How to customize](https://mui.com/material-ui/customization/how-to-customize/)
  *
  * API:
  *
- * - [GlobalStyles API](https://mui.com/api/global-styles/)
+ * - [GlobalStyles API](https://mui.com/material-ui/api/global-styles/)
  */
 export default function GlobalStyles(props: GlobalStylesProps): React.ReactElement;

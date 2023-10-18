@@ -1,164 +1,128 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme, Theme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
 import Fade from '@mui/material/Fade';
-import IconButton from '@mui/material/IconButton';
+import IconButton, { iconButtonClasses } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FastForwardRounded from '@mui/icons-material/FastForwardRounded';
 import FastRewindRounded from '@mui/icons-material/FastRewindRounded';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
 import PauseRounded from '@mui/icons-material/PauseRounded';
+import ShuffleRoundedIcon from '@mui/icons-material/ShuffleRounded';
+import LoopRoundedIcon from '@mui/icons-material/LoopRounded';
 
-const primaryDark = {
-  50: '#E2EDF8',
-  100: '#CEE0F3',
-  200: '#91B9E3',
-  300: '#5090D3',
-  400: '#265D97',
-  500: '#1E4976',
-  600: '#173A5E',
-  700: '#132F4C',
-  800: '#001E3C',
-  900: '#0A1929',
-};
-const grey = {
-  50: '#F3F6F9',
-  100: '#EAEEF3',
-  200: '#E5E8EC',
-  300: '#D7DCE1',
-  400: '#BFC7CF',
-  500: '#AAB4BE',
-  600: '#96A3B0',
-  700: '#8796A5',
-  800: '#5A6978',
-  900: '#3D4752',
-};
-
-export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) {
+export default function PlayerCard({
+  disableTheming,
+  extraStyles,
+}: {
+  disableTheming?: boolean;
+  extraStyles?: boolean;
+}) {
   const [paused, setPaused] = React.useState(true);
-  /*
-   * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
-   *
-   * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
-   */
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-          background: {
-            paper: mode === 'dark' ? primaryDark[800] : '#fff',
-          },
-          divider: mode === 'dark' ? primaryDark[500] : grey[200],
-          ...(mode === 'light' && {
-            text: {
-              primary: grey[900],
-              secondary: grey[800],
-            },
-          }),
-          grey,
-        },
-        shape: {
-          borderRadius: 8,
-        },
-        spacing: 10,
-        typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
-        },
-        components: {
-          MuiButtonBase: {
-            defaultProps: {
-              disableTouchRipple: true,
-            },
-          },
-          MuiAvatar: {
-            styleOverrides: {
-              root: {
-                border: '1px solid',
-                borderColor: mode === 'dark' ? primaryDark[500] : '#fff',
-              },
-            },
-          },
-          MuiIconButton: {
-            defaultProps: {
-              size: 'small',
-            },
-            styleOverrides: {
-              root: {
-                border: '1px solid',
-                borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
-              },
-            },
-          },
-          MuiSvgIcon: {
-            defaultProps: {
-              fontSize: 'small',
-            },
-          },
-        },
-      }),
-    [mode],
-  );
   return (
-    <ThemeProvider theme={externalTheme || theme}>
-      <Fade in timeout={700}>
-        <Card
-          variant="outlined"
-          sx={{ p: 1, display: 'flex', flexDirection: { xs: 'column', sm: 'row' } }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              mb: { xs: 1, sm: 0 },
-              justifyContent: { xs: 'center', sm: 'flex-start' },
-            }}
-          >
-            <img
-              alt="Beside Myself album cover"
-              style={{ borderRadius: 5, objectFit: 'cover' }}
-              src="/static/images/cards/basement-beside-myself.jpeg"
-              width="124"
-              height="124"
-            />
-          </Box>
-          <Box sx={{ alignSelf: 'center', mx: 2 }}>
-            <Typography
-              variant="body1"
-              fontWeight={500}
-              sx={{ textAlign: { xs: 'center', sm: 'start' } }}
-            >
-              Ultraviolet
+    <Fade in timeout={700}>
+      <Card
+        variant="outlined"
+        sx={[
+          {
+            width: { xs: '100%', sm: 'auto' },
+            p: 2,
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: 'center',
+            borderColor: extraStyles ? 'primary.200' : 'grey.200',
+            gap: 2,
+            boxShadow: extraStyles ? '0 2px 4px rgba(0, 127, 255, 0.15)' : 'none',
+            ...(!disableTheming && {
+              [`& .${iconButtonClasses.root}`]: {
+                border: '1px solid',
+                bgcolor: 'primary.50',
+                color: 'primary.500',
+                borderColor: 'primary.200',
+                '&:hover': {
+                  bgcolor: 'primary.100',
+                },
+              },
+              [`& .${iconButtonClasses.disabled}`]: {
+                height: 'fit-content',
+                bgcolor: 'transparent',
+                border: '1px solid',
+                borderColor: 'grey.100',
+                color: 'grey.300',
+              },
+            }),
+          },
+          !disableTheming &&
+            ((theme) =>
+              theme.applyDarkStyles({
+                bgcolor: 'primaryDark.900',
+                borderColor: extraStyles ? 'primary.800' : 'primaryDark.700',
+                [`& .${iconButtonClasses.root}`]: {
+                  bgcolor: 'primary.900',
+                  color: 'primary.200',
+                  borderColor: 'primary.600',
+                  '&:hover': {
+                    bgcolor: 'primary.800',
+                  },
+                },
+                [`& .${iconButtonClasses.disabled}`]: {
+                  bgcolor: 'transparent',
+                  border: '1px solid',
+                  borderColor: 'primaryDark.600',
+                  color: 'primaryDark.400',
+                },
+              })),
+        ]}
+      >
+        <CardMedia
+          component="img"
+          width="100"
+          height="100"
+          alt="Birds of Tokyo album cover"
+          src="/static/images/cards/birds-of-tokyo.jpg"
+          sx={{
+            width: { xs: '100%', sm: 100 },
+            borderRadius: 0.6,
+          }}
+        />
+        <Stack direction="column" spacing={2} alignItems="center">
+          <Stack direction="column" spacing={0.2} alignItems="center">
+            <Typography color="text.primary" fontWeight="medium" fontSize={15}>
+              If This Ship Sinks (I Give In)
             </Typography>
             <Typography
               component="div"
               variant="caption"
               color="text.secondary"
-              sx={{ textAlign: { xs: 'center', sm: 'start' } }}
+              fontWeight="regular"
             >
-              Basement • Beside Myself
+              Birds Of Tokyo
             </Typography>
-            <Box sx={{ mt: 2 }}>
-              <IconButton aria-label="fast rewind" disabled>
-                <FastRewindRounded />
-              </IconButton>
-              <IconButton
-                aria-label={paused ? 'play' : 'pause'}
-                sx={{ mx: 2 }}
-                onClick={() => setPaused((val) => !val)}
-              >
-                {paused ? <PlayArrowRounded /> : <PauseRounded />}
-              </IconButton>
-              <IconButton aria-label="fast forward" disabled>
-                <FastForwardRounded />
-              </IconButton>
-            </Box>
-          </Box>
-        </Card>
-      </Fade>
-    </ThemeProvider>
+          </Stack>
+          <Stack direction="row" alignItems="center" spacing={1.5}>
+            <IconButton aria-label="shuffle" disabled size="small" sx={{ flexGrow: 0 }}>
+              <ShuffleRoundedIcon fontSize="small" />
+            </IconButton>
+            <IconButton aria-label="fast rewind" disabled size="small">
+              <FastRewindRounded fontSize="small" />
+            </IconButton>
+            <IconButton
+              aria-label={paused ? 'play' : 'pause'}
+              sx={{ mx: 1 }}
+              onClick={() => setPaused((val) => !val)}
+            >
+              {paused ? <PlayArrowRounded /> : <PauseRounded />}
+            </IconButton>
+            <IconButton aria-label="fast forward" disabled size="small">
+              <FastForwardRounded fontSize="small" />
+            </IconButton>
+            <IconButton aria-label="loop" disabled size="small">
+              <LoopRoundedIcon fontSize="small" />
+            </IconButton>
+          </Stack>
+        </Stack>
+      </Card>
+    </Fade>
   );
 }

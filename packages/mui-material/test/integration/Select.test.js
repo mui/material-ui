@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent } from 'test/utils';
+import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Dialog from '@mui/material/Dialog';
@@ -41,7 +41,7 @@ describe('<Select> integration', () => {
     it('should focus the selected item', () => {
       const { getByTestId, getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
-      const trigger = getByRole('button');
+      const trigger = getByRole('combobox');
       // Let's open the select component
       // in the browser user click also focuses
       fireEvent.mouseDown(trigger);
@@ -62,8 +62,8 @@ describe('<Select> integration', () => {
     it('should be able to change the selected item', () => {
       const { getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
-      const trigger = getByRole('button');
-      expect(trigger).toHaveAccessibleName('Ten');
+      const trigger = getByRole('combobox');
+      expect(trigger).toHaveAccessibleName('');
       // Let's open the select component
       // in the browser user click also focuses
       fireEvent.mouseDown(trigger);
@@ -95,7 +95,7 @@ describe('<Select> integration', () => {
         </FormControl>,
       );
 
-      expect(getByRole('button')).toHaveAccessibleName('Age Ten');
+      expect(getByRole('combobox')).toHaveAccessibleName('Age');
     });
 
     // we're somewhat abusing "focus" here. What we're actually interested in is
@@ -120,7 +120,7 @@ describe('<Select> integration', () => {
         </FormControl>,
       );
 
-      const trigger = getByRole('button');
+      const trigger = getByRole('combobox');
       act(() => {
         trigger.focus();
       });
@@ -131,7 +131,7 @@ describe('<Select> integration', () => {
     });
 
     it('does not stays in an active state if an open action did not actually open', () => {
-      // test for https://github.com/mui-org/material-ui/issues/17294
+      // test for https://github.com/mui/material-ui/issues/17294
       // we used to set a flag to stop blur propagation when we wanted to open the
       // select but never considered what happened if the select never opened
       const { container, getByRole } = render(
@@ -145,7 +145,7 @@ describe('<Select> integration', () => {
           </Select>
         </FormControl>,
       );
-      const trigger = getByRole('button');
+      const trigger = getByRole('combobox');
 
       act(() => {
         trigger.focus();

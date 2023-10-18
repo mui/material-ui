@@ -1,7 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha } from '@mui/system';
 import SwitchBase from '../internal/SwitchBase';
 import useThemeProps from '../styles/useThemeProps';
@@ -13,10 +15,10 @@ import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, color } = ownerState;
+  const { classes, color, size } = ownerState;
 
   const slots = {
-    root: ['root', `color${capitalize(color)}`],
+    root: ['root', `color${capitalize(color)}`, size !== 'medium' && `size${capitalize(size)}`],
   };
 
   return {
@@ -35,26 +37,34 @@ const RadioRoot = styled(SwitchBase, {
     return [styles.root, styles[`color${capitalize(ownerState.color)}`]];
   },
 })(({ theme, ownerState }) => ({
-  color: theme.palette.text.secondary,
-  '&:hover': {
-    backgroundColor: alpha(
-      ownerState.color === 'default'
-        ? theme.palette.action.active
-        : theme.palette[ownerState.color].main,
-      theme.palette.action.hoverOpacity,
-    ),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
+  color: (theme.vars || theme).palette.text.secondary,
+  ...(!ownerState.disableRipple && {
+    '&:hover': {
+      backgroundColor: theme.vars
+        ? `rgba(${
+            ownerState.color === 'default'
+              ? theme.vars.palette.action.activeChannel
+              : theme.vars.palette[ownerState.color].mainChannel
+          } / ${theme.vars.palette.action.hoverOpacity})`
+        : alpha(
+            ownerState.color === 'default'
+              ? theme.palette.action.active
+              : theme.palette[ownerState.color].main,
+            theme.palette.action.hoverOpacity,
+          ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
-  },
+  }),
   ...(ownerState.color !== 'default' && {
     [`&.${radioClasses.checked}`]: {
-      color: theme.palette[ownerState.color].main,
+      color: (theme.vars || theme).palette[ownerState.color].main,
     },
   }),
   [`&.${radioClasses.disabled}`]: {
-    color: theme.palette.action.disabled,
+    color: (theme.vars || theme).palette.action.disabled,
   },
 }));
 
@@ -80,6 +90,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     name: nameProp,
     onChange: onChangeProp,
     size = 'medium',
+    className,
     ...other
   } = props;
   const ownerState = {
@@ -117,6 +128,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       checked={checked}
       onChange={onChange}
       ref={ref}
+      className={clsx(classes.root, className)}
       {...other}
     />
   );
@@ -141,7 +153,13 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -154,6 +172,7 @@ Radio.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the ripple effect is disabled.
+   * @default false
    */
   disableRipple: PropTypes.bool,
   /**
@@ -187,6 +206,7 @@ Radio.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   /**
    * If `true`, the `input` element is required.
+   * @default false
    */
   required: PropTypes.bool,
   /**
@@ -202,7 +222,7 @@ Radio.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

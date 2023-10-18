@@ -11,7 +11,7 @@ describe('deepmerge', () => {
     expect({}).not.to.have.property('isAdmin');
   });
 
-  // https://github.com/mui-org/material-ui/issues/20095
+  // https://github.com/mui/material-ui/issues/20095
   it('should not merge HTML elements', () => {
     const element = document.createElement('div');
     const element2 = document.createElement('div');
@@ -21,7 +21,7 @@ describe('deepmerge', () => {
     expect(result.element).to.equal(element2);
   });
 
-  // https://github.com/mui-org/material-ui/issues/25075
+  // https://github.com/mui/material-ui/issues/25075
   it('should reset source when target is undefined', () => {
     const result = deepmerge(
       {
@@ -44,5 +44,20 @@ describe('deepmerge', () => {
       foo: { baz: 'test', bar: 'test' },
       bar: 'test',
     });
+  });
+
+  it('should deep clone source key object if target key does not exist', () => {
+    const foo = { foo: { baz: 'test' } };
+    const bar = {};
+
+    const result = deepmerge(bar, foo);
+
+    expect(result).to.deep.equal({ foo: { baz: 'test' } });
+
+    // @ts-ignore
+    result.foo.baz = 'new test';
+
+    expect(result).to.deep.equal({ foo: { baz: 'new test' } });
+    expect(foo).to.deep.equal({ foo: { baz: 'test' } });
   });
 });

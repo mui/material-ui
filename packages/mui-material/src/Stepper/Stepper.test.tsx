@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import Step, { StepProps, stepClasses } from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
@@ -22,7 +22,7 @@ describe('<Stepper />', () => {
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { variant: 'foo' },
       testStateOverrides: { prop: 'alternativeLabel', value: true, styleKey: 'alternativeLabel' },
-      skip: ['componentProp', 'componentsProp'],
+      skip: ['componentsProp'],
     }),
   );
 
@@ -111,7 +111,9 @@ describe('<Stepper />', () => {
     });
 
     it('passes index down correctly when rendering children containing arrays', () => {
-      const CustomStep = ({ index }: StepProps) => <div data-index={index} data-testid="step" />;
+      function CustomStep({ index }: StepProps) {
+        return <div data-index={index} data-testid="step" />;
+      }
 
       const { getAllByTestId } = render(
         <Stepper nonLinear>
@@ -143,7 +145,9 @@ describe('<Stepper />', () => {
     });
 
     it('should allow the developer to specify a custom step connector', () => {
-      const CustomConnector = () => <div className="CustomConnector" />;
+      function CustomConnector() {
+        return <div className="CustomConnector" />;
+      }
       const { container } = render(
         <Stepper connector={<CustomConnector />}>
           <Step />

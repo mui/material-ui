@@ -1,46 +1,22 @@
+'use client';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
-import defaultTheme, { ColorSystems, StaticTheme } from './defaultTheme';
-
-type PartialDeep<T> = {
-  [K in keyof T]?: PartialDeep<T[K]>;
-};
-
-export interface ColorSchemeOverrides {}
-
-type ExtendedColorScheme = OverridableStringUnion<never, ColorSchemeOverrides>;
-
-type ColorScheme = 'light';
-
-type JoyThemeInput = PartialDeep<Omit<StaticTheme, 'typography'>> & {
-  colorSchemes: Record<ColorScheme, PartialDeep<ColorSystems>>;
-  typography?: Partial<StaticTheme['typography']>;
-};
-
-type ApplicationThemeInput = PartialDeep<Omit<StaticTheme, 'typography'>> & {
-  colorSchemes: Record<ExtendedColorScheme, ColorSystems>;
-  typography?: Partial<StaticTheme['typography']>;
-};
-
-const { palette, ...rest } = defaultTheme;
+import defaultTheme from './defaultTheme';
+import type { DefaultColorScheme, ExtendedColorScheme } from './types';
+import THEME_ID from './identifier';
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  JoyThemeInput,
-  ColorScheme,
-  ApplicationThemeInput,
-  ExtendedColorScheme
+  DefaultColorScheme | ExtendedColorScheme,
+  typeof THEME_ID
 >({
-  theme: {
-    colorSchemes: {
-      light: {
-        palette,
-      },
-    },
-    ...rest,
+  themeId: THEME_ID,
+  theme: defaultTheme,
+  attribute: 'data-joy-color-scheme',
+  modeStorageKey: 'joy-mode',
+  colorSchemeStorageKey: 'joy-color-scheme',
+  defaultColorScheme: {
+    light: 'light',
+    dark: 'dark',
   },
-  defaultColorScheme: 'light',
-  prefix: 'joy',
-  shouldSkipGeneratingVar: (keys) => keys[0] === 'typography',
 });
 
 export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };

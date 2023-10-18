@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '../styles';
 import { StepClasses } from './stepClasses';
 
-export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface StepOwnProps {
   /**
    * Sets the step as active. Is passed to child components.
    */
@@ -46,16 +47,33 @@ export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivEle
   sx?: SxProps<Theme>;
 }
 
+export interface StepTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & StepOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type StepProps<
+  RootComponent extends React.ElementType = StepTypeMap['defaultComponent'],
+  AdditionalProps = { component?: React.ElementType },
+> = OverrideProps<StepTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
+
 export type StepClasskey = keyof NonNullable<StepProps['classes']>;
 
 /**
  *
  * Demos:
  *
- * - [Steppers](https://mui.com/components/steppers/)
+ * - [Stepper](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [Step API](https://mui.com/api/step/)
+ * - [Step API](https://mui.com/material-ui/api/step/)
  */
-export default function Step(props: StepProps): JSX.Element;
+declare const Step: OverridableComponent<StepTypeMap>;
+
+export default Step;

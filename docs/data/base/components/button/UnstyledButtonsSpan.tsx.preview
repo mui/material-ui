@@ -1,0 +1,4 @@
+<Button slots={{ root: 'span' }}>Button</Button>
+<Button slots={{ root: 'span' }} disabled>
+  Disabled
+</Button>

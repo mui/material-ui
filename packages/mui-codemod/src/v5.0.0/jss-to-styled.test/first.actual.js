@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
@@ -172,7 +172,7 @@ class AppAppBar extends React.Component {
               <Typography
                 className={classes.item}
                 component={Link}
-                to="https://material-ui.zendesk.com/hc/en-us"
+                to="https://support.mui.com/hc/en-us"
                 target="_blank"
               >
                 {'Help'}

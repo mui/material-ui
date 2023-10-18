@@ -1,0 +1,7 @@
+<MultiSelect defaultValue={[10, 20]}>
+  <Option value={10}>Ten</Option>
+  <Option value={20}>Twenty</Option>
+  <Option value={30}>Thirty</Option>
+  <Option value={40}>Forty</Option>
+  <Option value={50}>Fifty</Option>
+</MultiSelect>

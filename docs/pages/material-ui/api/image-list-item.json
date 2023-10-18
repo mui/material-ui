@@ -1,0 +1,34 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "cols": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
+    "component": { "type": { "name": "elementType" } },
+    "rows": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "ImageListItem",
+  "imports": [
+    "import ImageListItem from '@mui/material/ImageListItem';",
+    "import { ImageListItem } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": ["root", "img", "standard", "woven", "masonry", "quilted"],
+    "globalClasses": {},
+    "name": "MuiImageListItem"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiImageListItem",
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/mui-material/src/ImageListItem/ImageListItem.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-image-list/\">Image List</a></li></ul>",
+  "cssComponent": false
+}

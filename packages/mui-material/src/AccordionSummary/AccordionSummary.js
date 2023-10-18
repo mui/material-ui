@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
@@ -38,10 +39,10 @@ const AccordionSummaryRoot = styled(ButtonBase, {
     padding: theme.spacing(0, 2),
     transition: theme.transitions.create(['min-height', 'background-color'], transition),
     [`&.${accordionSummaryClasses.focusVisible}`]: {
-      backgroundColor: theme.palette.action.focus,
+      backgroundColor: (theme.vars || theme).palette.action.focus,
     },
     [`&.${accordionSummaryClasses.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity,
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
     [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
       cursor: 'pointer',
@@ -78,7 +79,7 @@ const AccordionSummaryExpandIconWrapper = styled('div', {
   overridesResolver: (props, styles) => styles.expandIconWrapper,
 })(({ theme }) => ({
   display: 'flex',
-  color: theme.palette.action.active,
+  color: (theme.vars || theme).palette.action.active,
   transform: 'rotate(0deg)',
   transition: theme.transitions.create('transform', {
     duration: theme.transitions.duration.shortest,
@@ -165,7 +166,7 @@ AccordionSummary.propTypes /* remove-proptypes */ = {
    * This prop can help identify which element has keyboard focus.
    * The class name will be applied when the element gains the focus through keyboard interaction.
    * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
-   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).
    * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
    * if needed.
    */
@@ -178,7 +179,7 @@ AccordionSummary.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

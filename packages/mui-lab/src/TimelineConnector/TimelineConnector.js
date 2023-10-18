@@ -22,7 +22,7 @@ const TimelineConnectorRoot = styled('span', {
 })(({ theme }) => {
   return {
     width: 2,
-    backgroundColor: theme.palette.grey[400],
+    backgroundColor: (theme.vars || theme).palette.grey[400],
     flexGrow: 1,
   };
 });
@@ -70,7 +70,7 @@ TimelineConnector.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

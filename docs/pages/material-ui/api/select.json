@@ -1,0 +1,92 @@
+{
+  "props": {
+    "autoWidth": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
+    "classes": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "additionalInfo": { "cssApi": true }
+    },
+    "defaultOpen": { "type": { "name": "bool" }, "default": "false" },
+    "defaultValue": { "type": { "name": "any" } },
+    "displayEmpty": { "type": { "name": "bool" }, "default": "false" },
+    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
+    "id": { "type": { "name": "string" } },
+    "input": { "type": { "name": "element" } },
+    "inputProps": { "type": { "name": "object" } },
+    "label": { "type": { "name": "node" } },
+    "labelId": { "type": { "name": "string" } },
+    "MenuProps": { "type": { "name": "object" } },
+    "multiple": { "type": { "name": "bool" }, "default": "false" },
+    "native": { "type": { "name": "bool" }, "default": "false" },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: SelectChangeEvent<Value>, child?: object) => void",
+        "describedArgs": ["event", "child"]
+      }
+    },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] }
+    },
+    "onOpen": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] }
+    },
+    "open": { "type": { "name": "bool" } },
+    "renderValue": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(value: any) => ReactNode", "describedArgs": ["value"] }
+    },
+    "SelectDisplayProps": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "value": { "type": { "name": "union", "description": "''<br>&#124;&nbsp;any" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+      },
+      "default": "'outlined'"
+    }
+  },
+  "name": "Select",
+  "imports": [
+    "import Select from '@mui/material/Select';",
+    "import { Select } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": [
+      "root",
+      "select",
+      "multiple",
+      "filled",
+      "outlined",
+      "standard",
+      "disabled",
+      "icon",
+      "iconOpen",
+      "iconFilled",
+      "iconOutlined",
+      "iconStandard",
+      "nativeInput",
+      "error"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error" },
+    "name": "MuiSelect"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSelect",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Select/Select.js",
+  "inheritance": { "component": "OutlinedInput", "pathname": "/material-ui/api/outlined-input/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-select/\">Select</a></li></ul>",
+  "cssComponent": false
+}

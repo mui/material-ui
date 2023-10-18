@@ -1,18 +1,19 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { unstable_useId as useId } from '@mui/utils';
 import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
 import Fade from '../Fade';
-import { duration } from '../styles/createTransitions';
 import Paper from '../Paper';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
+import useTheme from '../styles/useTheme';
 
 const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',
@@ -125,21 +126,22 @@ const DialogPaper = styled(Paper, {
     maxWidth:
       theme.breakpoints.unit === 'px'
         ? Math.max(theme.breakpoints.values.xs, 444)
-        : `${theme.breakpoints.values.xs}${theme.breakpoints.unit}`,
+        : `max(${theme.breakpoints.values.xs}${theme.breakpoints.unit}, 444px)`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',
       },
     },
   }),
-  ...(ownerState.maxWidth !== 'xs' && {
-    maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
-    [`&.${dialogClasses.paperScrollBody}`]: {
-      [theme.breakpoints.down(theme.breakpoints.values[ownerState.maxWidth] + 32 * 2)]: {
-        maxWidth: 'calc(100% - 64px)',
+  ...(ownerState.maxWidth &&
+    ownerState.maxWidth !== 'xs' && {
+      maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
+      [`&.${dialogClasses.paperScrollBody}`]: {
+        [theme.breakpoints.down(theme.breakpoints.values[ownerState.maxWidth] + 32 * 2)]: {
+          maxWidth: 'calc(100% - 64px)',
+        },
       },
-    },
-  }),
+    }),
   ...(ownerState.fullWidth && {
     width: 'calc(100% - 64px)',
   }),
@@ -157,12 +159,17 @@ const DialogPaper = styled(Paper, {
   }),
 }));
 
-const defaultTransitionDuration = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
 const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDialog' });
+  const theme = useTheme();
+  const defaultTransitionDuration = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
   const {
     'aria-describedby': ariaDescribedby,
     'aria-labelledby': ariaLabelledbyProp,
@@ -228,13 +235,15 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   return (
     <DialogRoot
       className={clsx(classes.root, className)}
-      BackdropProps={{
-        transitionDuration,
-        as: BackdropComponent,
-        ...BackdropProps,
-      }}
       closeAfterTransition
-      BackdropComponent={DialogBackdrop}
+      components={{ Backdrop: DialogBackdrop }}
+      componentsProps={{
+        backdrop: {
+          transitionDuration,
+          as: BackdropComponent,
+          ...BackdropProps,
+        },
+      }}
       disableEscapeKeyDown={disableEscapeKeyDown}
       onClose={onClose}
       open={open}
@@ -290,6 +299,8 @@ Dialog.propTypes /* remove-proptypes */ = {
   'aria-labelledby': PropTypes.string,
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
+   * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
+   * Use the `slots.backdrop` prop to make your application ready for the next version of Material UI.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
@@ -346,6 +357,7 @@ Dialog.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Callback fired when the backdrop is clicked.
+   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
    */
   onBackdropClick: PropTypes.func,
   /**
@@ -365,7 +377,7 @@ Dialog.propTypes /* remove-proptypes */ = {
    */
   PaperComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
   PaperProps: PropTypes.object,
@@ -378,20 +390,23 @@ Dialog.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
-   * @default { enter: duration.enteringScreen, exit: duration.leavingScreen }
+   * @default {
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
+   * }
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
@@ -403,7 +418,7 @@ Dialog.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

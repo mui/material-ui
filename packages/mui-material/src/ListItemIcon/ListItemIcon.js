@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getListItemIconUtilityClass } from './listItemIconClasses';
@@ -27,7 +28,7 @@ const ListItemIconRoot = styled('div', {
   },
 })(({ theme, ownerState }) => ({
   minWidth: 56,
-  color: theme.palette.action.active,
+  color: (theme.vars || theme).palette.action.active,
   flexShrink: 0,
   display: 'inline-flex',
   ...(ownerState.alignItems === 'flex-start' && {
@@ -81,7 +82,7 @@ ListItemIcon.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

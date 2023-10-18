@@ -1,0 +1,44 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "implementation": {
+      "type": { "name": "enum", "description": "'css'<br>&#124;&nbsp;'js'" },
+      "default": "'js'"
+    },
+    "initialWidth": {
+      "type": {
+        "name": "enum",
+        "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'"
+      }
+    },
+    "lgDown": { "type": { "name": "bool" }, "default": "false" },
+    "lgUp": { "type": { "name": "bool" }, "default": "false" },
+    "mdDown": { "type": { "name": "bool" }, "default": "false" },
+    "mdUp": { "type": { "name": "bool" }, "default": "false" },
+    "only": {
+      "type": {
+        "name": "union",
+        "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;Array&lt;'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'&gt;"
+      }
+    },
+    "smDown": { "type": { "name": "bool" }, "default": "false" },
+    "smUp": { "type": { "name": "bool" }, "default": "false" },
+    "xlDown": { "type": { "name": "bool" }, "default": "false" },
+    "xlUp": { "type": { "name": "bool" }, "default": "false" },
+    "xsDown": { "type": { "name": "bool" }, "default": "false" },
+    "xsUp": { "type": { "name": "bool" }, "default": "false" }
+  },
+  "name": "Hidden",
+  "imports": [
+    "import Hidden from '@mui/material/Hidden';",
+    "import { Hidden } from '@mui/material';"
+  ],
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "MuiHidden",
+  "filename": "/packages/mui-material/src/Hidden/Hidden.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-hidden/\">Hidden</a></li></ul>",
+  "cssComponent": false
+}

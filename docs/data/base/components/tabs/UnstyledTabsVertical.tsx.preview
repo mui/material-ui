@@ -1,0 +1,10 @@
+<Tabs defaultValue={0} orientation="vertical">
+  <TabsList>
+    <Tab>One</Tab>
+    <Tab>Two</Tab>
+    <Tab>Three</Tab>
+  </TabsList>
+  <TabPanel value={0}>First page</TabPanel>
+  <TabPanel value={1}>Second page</TabPanel>
+  <TabPanel value={2}>Third page</TabPanel>
+</Tabs>

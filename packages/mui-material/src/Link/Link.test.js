@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, describeConformance } from 'test/utils';
+import { act, createRenderer, fireEvent, describeConformance } from '@mui-internal/test-utils';
 import Link, { linkClasses as classes } from '@mui/material/Link';
 import Typography, { typographyClasses } from '@mui/material/Typography';
 
@@ -41,6 +41,16 @@ describe('<Link />', () => {
     );
     expect(container.firstChild).to.have.class(typographyClasses.body2);
     expect(container.firstChild).not.to.have.class('link-body2');
+  });
+
+  it('using sx color as a function should not crash', () => {
+    expect(() =>
+      render(
+        <Link href="/" sx={{ color: (theme) => theme.palette.primary.light }}>
+          Test
+        </Link>,
+      ),
+    ).not.to.throw();
   });
 
   describe('event callbacks', () => {

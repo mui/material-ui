@@ -1,0 +1,7 @@
+<Select value={value} onChange={(_, newValue) => setValue(newValue)}>
+  <Option value={10}>Ten</Option>
+  <Option value={20}>Twenty</Option>
+  <Option value={30}>Thirty</Option>
+</Select>
+
+<Paragraph>Selected value: {value}</Paragraph>

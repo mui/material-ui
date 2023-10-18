@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
@@ -5,7 +6,6 @@ import { elementAcceptingRef, HTMLElementType, chainPropTypes } from '@mui/utils
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import useTheme from '../styles/useTheme';
-import { duration, easing } from '../styles/createTransitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
 
@@ -79,21 +79,22 @@ export function setTranslateValue(direction, node, containerProp) {
   }
 }
 
-const defaultEasing = {
-  enter: easing.easeOut,
-  exit: easing.sharp,
-};
-
-const defaultTimeout = {
-  enter: duration.enteringScreen,
-  exit: duration.leavingScreen,
-};
-
 /**
- * The Slide transition is used by the [Drawer](/components/drawers/) component.
+ * The Slide transition is used by the [Drawer](/material-ui/react-drawer/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Slide = React.forwardRef(function Slide(props, ref) {
+  const theme = useTheme();
+  const defaultEasing = {
+    enter: theme.transitions.easing.easeOut,
+    exit: theme.transitions.easing.sharp,
+  };
+
+  const defaultTimeout = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
   const {
     addEndListener,
     appear = true,
@@ -115,10 +116,8 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     ...other
   } = props;
 
-  const theme = useTheme();
   const childrenRef = React.useRef(null);
-  const handleRefIntermediary = useForkRef(children.ref, childrenRef);
-  const handleRef = useForkRef(handleRefIntermediary, ref);
+  const handleRef = useForkRef(children.ref, childrenRef, ref);
 
   const normalizedTransitionCallback = (callback) => (isAppearing) => {
     if (callback) {
@@ -338,8 +337,8 @@ Slide.propTypes /* remove-proptypes */ = {
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
    * @default {
-   *   enter: easing.easeOut,
-   *   exit: easing.sharp,
+   *   enter: theme.transitions.easing.easeOut,
+   *   exit: theme.transitions.easing.sharp,
    * }
    */
   easing: PropTypes.oneOfType([
@@ -385,8 +384,8 @@ Slide.propTypes /* remove-proptypes */ = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   timeout: PropTypes.oneOfType([

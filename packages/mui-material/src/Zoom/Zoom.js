@@ -1,8 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { elementAcceptingRef } from '@mui/utils';
-import { duration } from '../styles/createTransitions';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
@@ -16,17 +16,18 @@ const styles = {
   },
 };
 
-const defaultTimeout = {
-  enter: duration.enteringScreen,
-  exit: duration.leavingScreen,
-};
-
 /**
  * The Zoom transition can be used for the floating variant of the
- * [Button](/components/buttons/#floating-action-buttons) component.
+ * [Button](/material-ui/react-button/#floating-action-buttons) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Zoom = React.forwardRef(function Zoom(props, ref) {
+  const theme = useTheme();
+  const defaultTimeout = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
   const {
     addEndListener,
     appear = true,
@@ -46,11 +47,8 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     ...other
   } = props;
 
-  const theme = useTheme();
-
   const nodeRef = React.useRef(null);
-  const foreignRef = useForkRef(children.ref, ref);
-  const handleRef = useForkRef(nodeRef, foreignRef);
+  const handleRef = useForkRef(nodeRef, children.ref, ref);
 
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
@@ -214,8 +212,8 @@ Zoom.propTypes /* remove-proptypes */ = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   timeout: PropTypes.oneOfType([

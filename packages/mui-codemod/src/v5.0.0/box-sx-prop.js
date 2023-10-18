@@ -89,7 +89,22 @@ export default function transformer(file, api, options) {
     quote: 'single',
   };
 
-  return propsToObject({ j, root, componentName: 'Box', propName: 'sx', props }).toSource(
-    printOptions,
-  );
+  let aliasName;
+
+  root.find(j.ImportDeclaration).forEach((path) => {
+    if (path.node.source.value.match(/^(@mui\/material|@material-ui\/core)$/)) {
+      if (path.node.specifiers[0]?.type === 'ImportNamespaceSpecifier') {
+        aliasName = path.node.specifiers[0].local.name;
+      }
+    }
+  });
+
+  return propsToObject({
+    j,
+    root,
+    aliasName,
+    componentName: 'Box',
+    propName: 'sx',
+    props,
+  }).toSource(printOptions);
 }

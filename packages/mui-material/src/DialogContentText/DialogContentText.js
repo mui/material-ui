@@ -1,6 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
@@ -30,7 +32,7 @@ const DialogContentTextRoot = styled(Typography, {
 
 const DialogContentText = React.forwardRef(function DialogContentText(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDialogContentText' });
-  const { children, ...ownerState } = props;
+  const { children, className, ...ownerState } = props;
   const classes = useUtilityClasses(ownerState);
 
   return (
@@ -40,6 +42,7 @@ const DialogContentText = React.forwardRef(function DialogContentText(inProps, r
       color="text.secondary"
       ref={ref}
       ownerState={ownerState}
+      className={clsx(classes.root, className)}
       {...props}
       classes={classes}
     />
@@ -60,10 +63,14 @@ DialogContentText.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

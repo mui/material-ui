@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import generateUtilityClass from '../generateUtilityClass';
 
 export interface FabClasses {
   /** Styles applied to the root element. */
@@ -41,6 +42,10 @@ const fabClasses: FabClasses = generateUtilityClasses('MuiFab', [
   'sizeSmall',
   'sizeMedium',
   'sizeLarge',
+  'info',
+  'error',
+  'warning',
+  'success',
 ]);
 
 export default fabClasses;

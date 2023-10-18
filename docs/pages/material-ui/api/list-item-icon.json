@@ -1,0 +1,31 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "ListItemIcon",
+  "imports": [
+    "import ListItemIcon from '@mui/material/ListItemIcon';",
+    "import { ListItemIcon } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": ["root", "alignItemsFlexStart"],
+    "globalClasses": {},
+    "name": "MuiListItemIcon"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListItemIcon",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/ListItemIcon/ListItemIcon.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",
+  "cssComponent": false
+}

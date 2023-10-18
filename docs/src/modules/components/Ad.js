@@ -34,7 +34,8 @@ function PleaseDisableAdblock(props) {
   );
 }
 
-const disable = process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD !== 'true';
+const disableAd =
+  process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD_IN_DEV_MODE !== 'true';
 const inHouseAds = [
   {
     name: 'scaffoldhub',
@@ -44,14 +45,14 @@ const inHouseAds = [
   },
   {
     name: 'templates',
-    link: 'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
+    link: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
     img: '/static/ads-in-house/themes-2.jpg',
     description:
       '<b>Premium Templates</b>. Start your project with the best templates for admins, dashboards, and more.',
   },
   {
     name: 'themes',
-    link: 'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-themes',
+    link: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-themes',
     img: '/static/ads-in-house/themes.png',
     description:
       '<b>Premium Themes</b>. Kickstart your application development with a ready-made theme.',
@@ -64,14 +65,8 @@ const inHouseAds = [
       '<b>MUI for enterprise</b>. Save time and reduce risk. Managed open source — backed by maintainers.',
   },
   {
-    name: 'sketch',
-    link: 'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
-    img: '/static/ads-in-house/sketch.png',
-    description: '<b>For Sketch</b>. A large UI kit with over 600 handcrafted MUI symbols 💎.',
-  },
-  {
     name: 'figma',
-    link: 'https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
+    link: 'https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
     img: '/static/ads-in-house/figma.png',
     description: '<b>For Figma</b>. A large UI kit with over 600 handcrafted MUI components 🎨.',
   },
@@ -93,9 +88,8 @@ class AdErrorBoundary extends React.Component {
     // send explicit `'null'`
     const eventLabel = String(this.props.eventLabel);
     // TODO: Use proper error monitoring service (e.g. Sentry) instead
-    window.ga('send', {
-      hitType: 'event',
-      eventCategory: 'ad',
+
+    window.gtag('event', 'ad', {
       eventAction: 'crash',
       eventLabel,
     });
@@ -112,7 +106,11 @@ class AdErrorBoundary extends React.Component {
   }
 }
 
-function Ad() {
+export const AD_MARGIN_TOP = 3;
+export const AD_MARGIN_BOTTOM = 3;
+export const AD_HEIGHT = 126;
+
+export default function Ad() {
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
 
@@ -122,7 +120,7 @@ function Ad() {
   let children;
   let label;
   // Hide the content to google bot to avoid its indexation.
-  if (/Googlebot/.test(navigator.userAgent) || disable) {
+  if ((typeof window !== 'undefined' && /Googlebot/.test(navigator.userAgent)) || disableAd) {
     children = <span />;
   } else if (adblock) {
     if (randomAdblock < 0.2) {
@@ -179,7 +177,7 @@ function Ad() {
   );
 
   React.useEffect(() => {
-    if (disable) {
+    if (disableAd) {
       return undefined;
     }
     checkAdblock();
@@ -196,9 +194,7 @@ function Ad() {
     }
 
     const delay = setTimeout(() => {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'ad',
+      window.gtag('event', 'ad', {
         eventAction: 'display',
         eventLabel,
       });
@@ -215,17 +211,18 @@ function Ad() {
       sx={{
         position: 'relative',
         display: 'block',
-        m: (theme) => theme.spacing(4, 0, 3),
+        mt: AD_MARGIN_TOP,
+        mb: AD_MARGIN_BOTTOM,
         ...(adShape === 'image' && {
-          minHeight: 126,
+          minHeight: AD_HEIGHT,
         }),
         ...(adShape === 'inline' && {
-          minHeight: 126,
+          minHeight: AD_HEIGHT,
           display: 'flex',
           alignItems: 'flex-end',
         }),
         ...(adShape === 'inline2' && {
-          minHeight: 126,
+          minHeight: AD_HEIGHT,
           display: 'flex',
           alignItems: 'flex-end',
         }),
@@ -238,5 +235,3 @@ function Ad() {
     </Box>
   );
 }
-
-export default Ad;

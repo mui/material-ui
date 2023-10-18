@@ -1,0 +1,40 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'dense'<br>&#124;&nbsp;'regular'<br>&#124;&nbsp;string"
+      },
+      "default": "'regular'"
+    }
+  },
+  "name": "Toolbar",
+  "imports": [
+    "import Toolbar from '@mui/material/Toolbar';",
+    "import { Toolbar } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": ["root", "gutters", "regular", "dense"],
+    "globalClasses": {},
+    "name": "MuiToolbar"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiToolbar",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Toolbar/Toolbar.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-app-bar/\">App Bar</a></li></ul>",
+  "cssComponent": false
+}

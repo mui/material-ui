@@ -1,21 +1,40 @@
+'use client';
 import * as React from 'react';
-import { deepmerge } from '@mui/utils';
 import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from '@mui/system';
-import defaultTheme, { JoyTheme } from './defaultTheme';
+import defaultTheme from './defaultTheme';
+import extendTheme from './extendTheme';
+import THEME_ID from './identifier';
+import type { Theme } from './types';
+import type { CssVarsThemeOptions } from './extendTheme';
 
-type PartialDeep<T> = {
-  [K in keyof T]?: PartialDeep<T[K]>;
-};
+export const useTheme = (): Theme => {
+  const theme = useSystemTheme(defaultTheme);
 
-export const useTheme = () => {
-  return useSystemTheme(defaultTheme);
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useDebugValue(theme);
+  }
+
+  // @ts-ignore internal logic
+  return theme[THEME_ID] || theme;
 };
 
 export default function ThemeProvider({
   children,
-  theme,
-}: React.PropsWithChildren<{ theme?: PartialDeep<Omit<JoyTheme, 'vars'>> }>) {
-  let mergedTheme = deepmerge(defaultTheme, theme);
-  mergedTheme = { ...mergedTheme, vars: mergedTheme };
-  return <SystemThemeProvider theme={mergedTheme}>{children}</SystemThemeProvider>;
+  theme: themeInput,
+}: React.PropsWithChildren<{
+  theme?: CssVarsThemeOptions | { [k in typeof THEME_ID]: CssVarsThemeOptions };
+}>) {
+  let theme = defaultTheme;
+  if (themeInput) {
+    theme = extendTheme(THEME_ID in themeInput ? themeInput[THEME_ID] : themeInput);
+  }
+  return (
+    <SystemThemeProvider
+      theme={theme}
+      themeId={themeInput && THEME_ID in themeInput ? THEME_ID : undefined}
+    >
+      {children}
+    </SystemThemeProvider>
+  );
 }

@@ -1,0 +1,28 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "disableSpacing": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "AccordionActions",
+  "imports": [
+    "import AccordionActions from '@mui/material/AccordionActions';",
+    "import { AccordionActions } from '@mui/material';"
+  ],
+  "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiAccordionActions" },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAccordionActions",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/AccordionActions/AccordionActions.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-accordion/\">Accordion</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,113 +1,214 @@
 import * as React from 'react';
-import { ThemeProvider } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import { DateRange } from '@mui/lab/DateRangePicker';
-import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import Chip from '@mui/material/Chip';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
+import { PickersShortcutsItem, PickersShortcutsProps, DateRange } from '@mui/x-date-pickers-pro';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { startOfWeek, endOfWeek, subDays } from 'date-fns';
 import Frame from 'docs/src/components/action/Frame';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const startDate = new Date();
 startDate.setDate(10);
 const endDate = new Date();
 endDate.setDate(endDate.getDate() + 28);
 
+function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Date>>) {
+  const { items, onChange, isValid } = props;
+
+  if (items == null || items.length === 0) {
+    return null;
+  }
+
+  const resolvedItems = items.map((item: PickersShortcutsItem<DateRange<Date>>) => {
+    const newValue = item.getValue({ isValid });
+
+    return {
+      label: item.label,
+      onClick: () => {
+        onChange(newValue);
+      },
+      disabled: !isValid(newValue),
+    };
+  });
+
+  return (
+    <Box
+      sx={{
+        gridRow: 1,
+        gridColumn: 2,
+      }}
+    >
+      <List
+        sx={{
+          display: 'flex',
+          p: 1.5,
+          gap: 1,
+          '& .MuiListItem-root': {
+            p: 0,
+            width: 'fit-content',
+          },
+        }}
+      >
+        {resolvedItems.map((item) => {
+          return (
+            <ListItem key={item.label}>
+              <Chip size="small" {...item} />
+            </ListItem>
+          );
+        })}
+      </List>
+      <Divider />
+    </Box>
+  );
+}
+
 export default function XDateRangeDemo() {
-  const [value, setValue] = React.useState<DateRange<Date>>([startDate, endDate]);
+  const today = new Date();
+  const shortcutsItems: PickersShortcutsItem<DateRange<Date>>[] = [
+    {
+      label: 'This Week',
+      getValue: () => {
+        return [startOfWeek(today), endOfWeek(today)];
+      },
+    },
+    {
+      label: 'Last Week',
+      getValue: () => {
+        const prevWeek = subDays(today, 7);
+        return [startOfWeek(prevWeek), endOfWeek(prevWeek)];
+      },
+    },
+    {
+      label: 'Last 7 Days',
+      getValue: () => {
+        return [subDays(today, 7), today];
+      },
+    },
+    { label: 'Reset', getValue: () => [null, null] },
+  ];
+
   return (
     <Frame>
       <Frame.Demo sx={{ p: 2 }}>
         <Paper
           variant="outlined"
-          sx={{
-            '& > div': {
-              borderRadius: 1,
-              overflow: 'auto',
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff'),
+          sx={[
+            {
+              '& > div': {
+                borderRadius: 1,
+                overflow: 'auto',
+                bgcolor: '#fff',
+              },
+              '& > div > div > div > div': {
+                flexGrow: 1,
+              },
+              '& .MuiTypography-subtitle1': {
+                fontSize: '0.875rem',
+              },
+              '& .MuiTypography-caption': {
+                width: 28,
+                height: 32,
+              },
+              '& .MuiPickersSlideTransition-root': {
+                minWidth: 258,
+                minHeight: 238,
+              },
+              '& [role="row"]': {
+                margin: '4px 0',
+              },
+              '& .MuiDateRangePickerDay-root': {
+                lineHeight: 0,
+                margin: 0,
+              },
+              '& .MuiPickersArrowSwitcher-root': {
+                padding: 0,
+                paddingTop: 0.5,
+              },
+              '& .MuiPickersDay-root': {
+                width: 28,
+                height: 28,
+                fontWeight: 400,
+              },
+              '& .MuiDateRangePickerDay-day.Mui-selected': {
+                fontWeight: 600,
+              },
+              '& .MuiDateRangePickerDay-day:not(.Mui-selected)': {
+                borderColor: 'primary.300',
+              },
             },
-            '& > div > div > div > div': {
-              flexGrow: 1,
-            },
-            '& .MuiTypography-subtitle1': {
-              fontSize: '0.875rem',
-            },
-            '& .MuiTypography-caption': {
-              width: 28,
-              height: 32,
-            },
-            '& .PrivatePickersSlideTransition-root': {
-              minWidth: 258,
-              minHeight: 238,
-            },
-            '& [role="row"]': {
-              margin: '4px 0',
-            },
-            '& .MuiDateRangePickerDay-root': {
-              lineHeight: 0,
-              margin: 0,
-            },
-            '& .MuiPickersDay-root': {
-              width: 28,
-              height: 28,
-              fontWeight: 400,
-            },
-          }}
+            (theme) =>
+              theme.applyDarkStyles({
+                '& > div': {
+                  bgcolor: 'primaryDark.900',
+                },
+                '& .MuiDateRangePickerDay-day.Mui-selected': {
+                  color: '#FFF',
+                },
+              }),
+          ]}
         >
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDateRangePicker
               displayStaticWrapperAs="desktop"
-              value={value}
-              onChange={(newValue) => {
-                setValue(newValue);
+              value={[startDate, endDate]}
+              slots={{
+                shortcuts: CustomRangeShortcuts,
               }}
-              renderInput={(startProps, endProps) => (
-                <React.Fragment>
-                  <TextField {...startProps} />
-                  <Box sx={{ mx: 2 }}> to </Box>
-                  <TextField {...endProps} />
-                </React.Fragment>
-              )}
+              slotProps={{
+                shortcuts: {
+                  items: shortcutsItems,
+                },
+              }}
             />
           </LocalizationProvider>
         </Paper>
       </Frame.Demo>
-      <ThemeProvider theme={brandingDarkTheme}>
-        <Frame.Info
+      <Frame.Info data-mui-color-scheme="dark">
+        <Box
           sx={{
-            py: 1,
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            lineHeight: 1,
+            mb: 0.5,
           }}
         >
-          <Box sx={{ flex: 1 }}>
-            <Box sx={{ width: 'max-content', mx: 'auto' }}>
-              <Typography variant="caption" color="primary.300">
-                Start
-              </Typography>
-              <Typography variant="body2" color="text.primary">
-                {value[0]?.toDateString()}
-              </Typography>
-            </Box>
-          </Box>
-          <KeyboardArrowRightRounded sx={{ mx: 2, color: 'text.secondary' }} />{' '}
-          <Box sx={{ flex: 1 }}>
-            <Box sx={{ width: 'max-content', mx: 'auto' }}>
-              <Typography variant="caption" color="primary.300">
-                End
-              </Typography>
-              <Typography variant="body2" color="text.primary">
-                {value[1]?.toDateString()}
-              </Typography>
-            </Box>
-          </Box>
-        </Frame.Info>
-      </ThemeProvider>
+          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
+            Date Range Picker now available for your project!
+          </Typography>
+          <Chip
+            variant="outlined"
+            label="Available now"
+            color="success"
+            size="small"
+            sx={(theme) => ({
+              pb: 0.2,
+              fontWeight: theme.typography.fontWeightSemiBold,
+              color: (theme.vars || theme).palette.success[300],
+              borderColor: alpha(theme.palette.success[300], 0.3),
+              background: alpha(theme.palette.success[800], 0.3),
+            })}
+          />
+        </Box>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          A thorough and advanced stable implementation of a long-requested component!
+        </Typography>
+        <Button
+          variant="outlined"
+          href="/x/react-date-pickers/date-range-picker/"
+          component="a"
+          sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300' }}
+        >
+          View the documentation
+        </Button>
+      </Frame.Info>
     </Frame>
   );
 }

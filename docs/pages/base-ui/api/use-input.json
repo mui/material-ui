@@ -1,0 +1,78 @@
+{
+  "parameters": {
+    "defaultValue": { "type": { "name": "unknown", "description": "unknown" } },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "error": { "type": { "name": "boolean", "description": "boolean" } },
+    "inputRef": {
+      "type": {
+        "name": "React.Ref&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.Ref&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
+      }
+    },
+    "onBlur": {
+      "type": {
+        "name": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
+      }
+    },
+    "onChange": {
+      "type": {
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
+      }
+    },
+    "onClick": {
+      "type": { "name": "React.MouseEventHandler", "description": "React.MouseEventHandler" }
+    },
+    "onFocus": {
+      "type": {
+        "name": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;",
+        "description": "React.FocusEventHandler&lt;HTMLInputElement | HTMLTextAreaElement&gt;"
+      }
+    },
+    "required": { "type": { "name": "boolean", "description": "boolean" } },
+    "value": { "type": { "name": "unknown", "description": "unknown" } }
+  },
+  "returnValue": {
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "error": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focused": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "formControlContext": {
+      "type": {
+        "name": "FormControlState | undefined",
+        "description": "FormControlState | undefined"
+      },
+      "required": true
+    },
+    "getInputProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputInputSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputInputSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "getRootProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, any&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseInputRootSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "inputRef": {
+      "type": {
+        "name": "React.RefCallback&lt;HTMLInputElement | HTMLTextAreaElement&gt; | null",
+        "description": "React.RefCallback&lt;HTMLInputElement | HTMLTextAreaElement&gt; | null"
+      },
+      "required": true
+    },
+    "required": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "value": { "type": { "name": "unknown", "description": "unknown" }, "required": true }
+  },
+  "name": "useInput",
+  "filename": "/packages/mui-base/src/useInput/useInput.ts",
+  "imports": [
+    "import { useInput } from '@mui/base/useInput';",
+    "import { useInput } from '@mui/base';"
+  ],
+  "demos": "<ul><li><a href=\"/base-ui/react-input/#hook\">Input</a></li></ul>"
+}

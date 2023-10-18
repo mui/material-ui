@@ -1,0 +1,60 @@
+{
+  "props": {
+    "open": { "type": { "name": "bool" }, "required": true },
+    "anchorEl": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "autoFocus": { "type": { "name": "bool" }, "default": "true" },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "disableAutoFocusItem": { "type": { "name": "bool" }, "default": "false" },
+    "MenuListProps": { "type": { "name": "object" }, "default": "{}" },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
+    "PopoverClasses": { "type": { "name": "object" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ paper?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "'auto'"
+    },
+    "TransitionProps": { "type": { "name": "object" }, "default": "{}" },
+    "variant": {
+      "type": { "name": "enum", "description": "'menu'<br>&#124;&nbsp;'selectedMenu'" },
+      "default": "'selectedMenu'"
+    }
+  },
+  "name": "Menu",
+  "imports": ["import Menu from '@mui/material/Menu';", "import { Menu } from '@mui/material';"],
+  "styles": { "classes": ["root", "paper", "list"], "globalClasses": {}, "name": "MuiMenu" },
+  "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiMenu",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Menu/Menu.js",
+  "inheritance": { "component": "Popover", "pathname": "/material-ui/api/popover/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-app-bar/\">App Bar</a></li>\n<li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

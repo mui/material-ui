@@ -1,0 +1,71 @@
+{
+  "props": {
+    "action": { "type": { "name": "node" } },
+    "anchorOrigin": {
+      "type": {
+        "name": "shape",
+        "description": "{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
+      },
+      "default": "{ vertical: 'bottom', horizontal: 'left' }"
+    },
+    "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
+    "children": { "type": { "name": "element" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "ClickAwayListenerProps": { "type": { "name": "object" } },
+    "ContentProps": { "type": { "name": "object" } },
+    "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
+    "key": { "type": { "name": "custom", "description": "any" } },
+    "message": { "type": { "name": "node" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent<any> | Event, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
+    "open": { "type": { "name": "bool" } },
+    "resumeHideDuration": { "type": { "name": "number" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
+    },
+    "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
+  },
+  "name": "Snackbar",
+  "imports": [
+    "import Snackbar from '@mui/material/Snackbar';",
+    "import { Snackbar } from '@mui/material';"
+  ],
+  "styles": {
+    "classes": [
+      "root",
+      "anchorOriginTopCenter",
+      "anchorOriginBottomCenter",
+      "anchorOriginTopRight",
+      "anchorOriginBottomRight",
+      "anchorOriginTopLeft",
+      "anchorOriginBottomLeft"
+    ],
+    "globalClasses": {},
+    "name": "MuiSnackbar"
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSnackbar",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Snackbar/Snackbar.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-snackbar/\">Snackbar</a></li></ul>",
+  "cssComponent": false
+}

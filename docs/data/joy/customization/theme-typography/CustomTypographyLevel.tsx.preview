@@ -1,0 +1,3 @@
+<CssVarsProvider theme={customTheme}>
+  <Box sx={(theme) => theme.typography.h1}>This is a gradient h1</Box>
+</CssVarsProvider>

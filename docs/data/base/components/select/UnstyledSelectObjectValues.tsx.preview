@@ -1,0 +1,12 @@
+<Select
+  value={character}
+  onChange={(event, newValue) => setCharacter(newValue)}
+>
+  {characters.map((c) => (
+    <Option key={c.name} value={c}>
+      {c.name}
+    </Option>
+  ))}
+</Select>
+<Paragraph>Selected character:</Paragraph>
+<Pre>{JSON.stringify(character, null, 2)}</Pre>

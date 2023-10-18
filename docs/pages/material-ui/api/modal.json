@@ -1,0 +1,97 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "BackdropComponent": {
+      "type": { "name": "elementType" },
+      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
+    },
+    "BackdropProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.backdrop</code> instead."
+    },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "closeAfterTransition": { "type": { "name": "bool" }, "default": "false" },
+    "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Backdrop?: elementType, Root?: elementType }" },
+      "default": "{}"
+    },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
+    "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
+    "onBackdropClick": {
+      "type": { "name": "func" },
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
+    },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
+    "onTransitionEnter": { "type": { "name": "func" } },
+    "onTransitionExited": { "type": { "name": "func" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ backdrop?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "Modal",
+  "imports": ["import Modal from '@mui/material/Modal';", "import { Modal } from '@mui/material';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiModal" },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiModal-root"
+    },
+    {
+      "name": "backdrop",
+      "description": "The component that renders the backdrop.",
+      "class": ".MuiModal-backdrop"
+    }
+  ],
+  "classes": { "classes": ["hidden"], "globalClasses": {} },
+  "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiModal",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Modal/Modal.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-modal/\">Modal</a></li></ul>",
+  "cssComponent": false
+}

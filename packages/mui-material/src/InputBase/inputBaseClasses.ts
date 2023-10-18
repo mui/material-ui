@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import generateUtilityClass from '../generateUtilityClass';
 
 export interface InputBaseClasses {
   /** Styles applied to the root element. */
@@ -25,6 +26,8 @@ export interface InputBaseClasses {
   fullWidth: string;
   /** Styles applied to the root element if `hiddenLabel={true}`. */
   hiddenLabel: string;
+  /** State class applied to the root element if `readOnly={true}`. */
+  readOnly: string;
   /** Styles applied to the input element. */
   input: string;
   /** Styles applied to the input element if `size="small"`. */
@@ -60,6 +63,7 @@ const inputBaseClasses: InputBaseClasses = generateUtilityClasses('MuiInputBase'
   'colorSecondary',
   'fullWidth',
   'hiddenLabel',
+  'readOnly',
   'input',
   'inputSizeSmall',
   'inputMultiline',

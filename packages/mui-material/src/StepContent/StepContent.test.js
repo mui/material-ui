@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { collapseClasses } from '@mui/material/Collapse';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -77,7 +77,9 @@ describe('<StepContent />', () => {
     });
 
     it('should use custom TransitionComponent', () => {
-      const TransitionComponent = () => <div data-testid="custom-transition" />;
+      function TransitionComponent() {
+        return <div data-testid="custom-transition" />;
+      }
 
       const { container, getByTestId } = render(
         <Stepper orientation="vertical">

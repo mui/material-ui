@@ -7,9 +7,7 @@ const darkTheme = createTheme({
     mode: 'dark',
   },
 });
-/**
- * how you used the components
- */
+
 export default function Demo() {
   return (
     <div style={{ backgroundColor: '#ffefd5' }}>

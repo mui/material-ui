@@ -1,0 +1,6 @@
+<Chip variant="soft" startDecorator={<Sun />}>
+  Today is sunny
+</Chip>
+<Chip variant="soft" startDecorator={<Cloud />}>
+  Tomorrow is cloudy
+</Chip>

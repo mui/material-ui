@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDialogContentUtilityClass } from './dialogContentClasses';
@@ -34,8 +35,8 @@ const DialogContentRoot = styled('div', {
   ...(ownerState.dividers
     ? {
         padding: '16px 24px',
-        borderTop: `1px solid ${theme.palette.divider}`,
-        borderBottom: `1px solid ${theme.palette.divider}`,
+        borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
+        borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
       }
     : {
         [`.${dialogTitleClasses.root} + &`]: {
@@ -90,7 +91,7 @@ DialogContent.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

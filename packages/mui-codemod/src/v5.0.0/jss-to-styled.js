@@ -272,7 +272,7 @@ export default function transformer(file, api, options) {
    * @param {string[]} rootKeys
    * @param {import('jscodeshift').ObjectExpression | import('jscodeshift').ArrowFunctionExpression | import('jscodeshift').FunctionDeclaration} prevStyleArg
    */
-  function convertToStyledArg(functionExpression, rootKeys = [], prevStyleArg) {
+  function convertToStyledArg(functionExpression, rootKeys, prevStyleArg) {
     const objectExpression = getObjectExpression(functionExpression);
 
     if (objectExpression) {

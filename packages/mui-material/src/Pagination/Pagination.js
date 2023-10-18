@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { integerPropType } from '@mui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import { getPaginationUtilityClass } from './paginationClasses';
@@ -145,6 +146,8 @@ Pagination.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The active color.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'standard'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -170,8 +173,8 @@ Pagination.propTypes /* remove-proptypes */ = {
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
-   * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous' | 'start-ellipsis' | 'end-ellipsis'). Defaults to 'page'.
    * @param {number} page The page number to format.
    * @param {bool} selected If true, the current page is selected.
    * @returns {string}
@@ -237,7 +240,7 @@ Pagination.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

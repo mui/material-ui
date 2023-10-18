@@ -1,0 +1,8 @@
+<Slider
+  aria-label="Custom marks"
+  defaultValue={20}
+  getAriaValueText={valueText}
+  step={10}
+  valueLabelDisplay="auto"
+  marks={marks}
+/>
