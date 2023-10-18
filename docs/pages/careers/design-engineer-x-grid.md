@@ -88,7 +88,7 @@ You will closely work with designers and engineers, and act as a communication c
 
 - 3+ years of relevant web front-end development experience at a tech-forward, product-driven company.
 - Advanced knowledge of modern React, HTML, and CSS.
-- Experience designing and building public facing-sites that work elegantly.
+- Design taste and experience for building great and seamless user experiences.
 
 ### What would be nice if you had, but isn't required
 
