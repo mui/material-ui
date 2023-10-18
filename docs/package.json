@@ -125,7 +125,7 @@
     "@types/markdown-to-jsx": "^7.0.1",
     "@types/node": "^18.18.5",
     "@types/prop-types": "^15.7.8",
-    "@types/react": "^18.2.23",
+    "@types/react": "^18.2.29",
     "@types/react-dom": "^18.2.13",
     "@types/react-swipeable-views": "^0.13.3",
     "@types/react-swipeable-views-utils": "^0.13.5",
