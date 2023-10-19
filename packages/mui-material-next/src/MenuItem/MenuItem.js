@@ -2,21 +2,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha } from '@mui/system';
-import { useSlotProps } from '@mui/base';
-import { rootShouldForwardProp } from '@mui/material/styles/styled';
-import { styled, useThemeProps } from '@mui/material/styles';
-import { useMenuItem } from '@mui/base/useMenuItem';
-import ListContext from '@mui/material/List/ListContext';
-import ButtonBase from '@mui/material/ButtonBase';
 import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import { dividerClasses } from '@mui/material/Divider';
+import { useSlotProps } from '@mui/base/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useMenuItem } from '@mui/base/useMenuItem';
+import ListContext from '@mui/material/List/ListContext';
 import { listItemIconClasses } from '@mui/material/ListItemIcon';
 import { listItemTextClasses } from '@mui/material/ListItemText';
+import { styled, useThemeProps, rootShouldForwardProp } from '../styles';
+import ButtonBase from '../ButtonBase';
+import { dividerClasses } from '../Divider';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
 
 export const overridesResolver = (props, styles) => {

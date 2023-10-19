@@ -15,8 +15,7 @@ import {
   unstable_ownerDocument as ownerDocument,
 } from '@mui/utils';
 import Popover, { PopoverPaper, PopoverOrigin } from '@mui/material/Popover';
-import { styled, useTheme, useThemeProps } from '@mui/material/styles';
-import { rootShouldForwardProp } from '@mui/material/styles/styled';
+import { styled, useTheme, useThemeProps, rootShouldForwardProp } from '../styles';
 import { MenuTypeMap, MenuOwnerState } from './Menu.types';
 import { getMenuUtilityClass } from './menuClasses';
 

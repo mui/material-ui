@@ -11,7 +11,7 @@ import {
 import { MenuProvider } from '@mui/base/useMenu';
 import MenuItem, { menuItemClasses as classes } from '@mui/material-next/MenuItem';
 import Menu from '@mui/material-next/Menu';
-import ButtonBase from '@mui/material/ButtonBase';
+import ButtonBase from '@mui/material-next/ButtonBase';
 
 const dummyGetItemState = () => ({
   disabled: false,
