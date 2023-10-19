@@ -121,16 +121,16 @@ function Styles() {
     }
 
     .CustomSlider-thumb:hover {
-      box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? cyan[300] : cyan[400], 0.15)};
+      box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? cyan[300] : cyan[200], 0.3)};
     }
 
     .CustomSlider-thumb:focus-visible {
-      box-shadow: 0 0 0 4px ${isDarkMode ? cyan[500] : cyan[200]};
+      box-shadow: 0 0 0 4px ${isDarkMode ? cyan[700] : cyan[200]};
       
     }
 
     .CustomSlider-thumb.${sliderClasses.active} {
-      box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? cyan[300] : cyan[200], 0.3)};
+      box-shadow: 0 0 0 4px ${isDarkMode ? cyan[700] : cyan[200]};
     }
     `}</style>
   );
