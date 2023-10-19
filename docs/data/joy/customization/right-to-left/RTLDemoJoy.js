@@ -14,7 +14,7 @@ const theme = extendTheme({
 });
 
 const cacheRtl = createCache({
-  key: 'muirtl',
+  key: 'joyrtl',
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
