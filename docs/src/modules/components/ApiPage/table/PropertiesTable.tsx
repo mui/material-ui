@@ -66,10 +66,10 @@ const StyledTable = styled('table')(
     '& .MuiPropTable-description-column': {
       width: '40%',
       paddingRight: 8,
-      '& .prop-list-description': {
+      '& .prop-table-description': {
         marginBottom: 0,
       },
-      '& .prop-list-additional-description': {
+      '& .prop-table-additional-description': {
         marginTop: 12,
         marginBottom: 0,
       },
@@ -94,13 +94,13 @@ const StyledTable = styled('table')(
         },
       },
     },
-    '& .prop-list-signature': {
+    '& .prop-table-signature': {
       marginTop: 12,
       marginBottom: 0,
       display: 'flex',
       flexDirection: 'column',
       gap: 16,
-      '& .prop-list-title': {
+      '& .prop-table-title': {
         fontWeight: theme.typography.fontWeightMedium,
       },
     },
@@ -125,8 +125,8 @@ const StyledTable = styled('table')(
         backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
       },
-      '& .prop-list-signature': {
-        '& .prop-list-title': {
+      '& .prop-table-signature': {
+        '& .prop-table-title': {
           color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         },
       },
@@ -157,7 +157,7 @@ function PropDescription({ description }: { description: string }) {
 
   return (
     <ComponentToRender
-      className="prop-list-description" // This className is used by Algolia
+      className="prop-table-description" // This className is used by Algolia
       dangerouslySetInnerHTML={{
         __html: description,
       }}
@@ -256,7 +256,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 )}
                 {additionalInfo.map((key) => (
                   <p
-                    className="prop-list-additional-description"
+                    className="prop-table-additional-description"
                     key={key}
                     dangerouslySetInnerHTML={{
                       __html: t(`api-docs.additional-info.${key}`),
@@ -296,8 +296,8 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                   </Alert>
                 )}
                 {signature && (
-                  <div className="prop-list-signature">
-                    <span className="prop-list-title">{t('api-docs.signature')}:</span>
+                  <div className="prop-table-signature">
+                    <span className="prop-table-title">{t('api-docs.signature')}:</span>
 
                     <code
                       dangerouslySetInnerHTML={{
