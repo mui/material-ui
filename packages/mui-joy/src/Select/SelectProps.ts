@@ -53,14 +53,14 @@ export interface SelectPropsVariantOverrides {}
 export interface SelectPropsColorOverrides {}
 export interface SelectPropsSizeOverrides {}
 
-export type SelectSlotsAndSlotProps<Mutiple extends boolean> = CreateSlotsAndSlotProps<
+export type SelectSlotsAndSlotProps<Multiple extends boolean> = CreateSlotsAndSlotProps<
   SelectSlots,
   {
-    root: SlotProps<'div', {}, SelectOwnerState<any, Mutiple>>;
-    button: SlotProps<'button', {}, SelectOwnerState<any, Mutiple>>;
-    startDecorator: SlotProps<'span', {}, SelectOwnerState<any, Mutiple>>;
-    endDecorator: SlotProps<'span', {}, SelectOwnerState<any, Mutiple>>;
-    indicator: SlotProps<'span', {}, SelectOwnerState<any, Mutiple>>;
+    root: SlotProps<'div', {}, SelectOwnerState<any, Multiple>>;
+    button: SlotProps<'button', {}, SelectOwnerState<any, Multiple>>;
+    startDecorator: SlotProps<'span', {}, SelectOwnerState<any, Multiple>>;
+    endDecorator: SlotProps<'span', {}, SelectOwnerState<any, Multiple>>;
+    indicator: SlotProps<'span', {}, SelectOwnerState<any, Multiple>>;
     listbox: SlotProps<
       'ul',
       {
@@ -68,7 +68,7 @@ export type SelectSlotsAndSlotProps<Mutiple extends boolean> = CreateSlotsAndSlo
         variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
         size?: OverridableStringUnion<'sm' | 'md' | 'lg', SelectPropsSizeOverrides>;
       } & Omit<PopperOwnProps, 'slots' | 'slotProps' | 'open'>,
-      SelectOwnerState<any, Mutiple>
+      SelectOwnerState<any, Multiple>
     >;
   }
 >;
