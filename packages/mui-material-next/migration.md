@@ -337,3 +337,31 @@ If you are using the `thumb` or `valueLabel` Slider slots, then make sure the co
 ```
 
 This is required in v6 as it's used to apply the overlap styles to these slots. For more info take a look into [Material You's Slider overlapping handles guidelines](https://m3.material.io/components/sliders/guidelines#ad5ceb95-a690-4ddd-8243-53a8e13bdab6).
+
+## Divider
+
+### Removed the "light" prop and class
+
+The `"light"` prop is no longer accepted for the Divider component.
+
+If you were using the `light` prop to create a lighter Divider (which is not supported in version 6), please remove the prop as shown below:
+
+```diff
+ <Divider
+-  light={true}
++  sx={{ borderColor: '#eee' }}
+ />
+```
+
+### Remove composed classes and `styleOverrides` keys
+
+The following classes were removed:
+
+- `MuiDivider-withChildrenVertical`
+
+The `MuiDivider-withChildrenVertical` class has been removed. To replace it, you can use the `MuiDivider-withChildren` class along with the `MuiDivider-vertical` class. Here's an updated example:
+
+```diff
+- .MuiDivider-withChildrenVertical
++ .MuiDivider-withChildren.MuiDivider-vertical
+```

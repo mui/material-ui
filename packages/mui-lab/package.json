@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0-alpha.148",
+  "version": "5.0.0-alpha.149",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -42,20 +42,20 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1",
-    "@mui/base": "5.0.0-beta.19",
-    "@mui/system": "^5.14.13",
+    "@mui/base": "5.0.0-beta.20",
+    "@mui/system": "^5.14.14",
     "@mui/types": "^7.2.6",
-    "@mui/utils": "^5.14.13",
+    "@mui/utils": "^5.14.14",
     "@mui/x-tree-view": "6.0.0-alpha.1",
     "clsx": "^2.0.0",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
     "@mui-internal/test-utils": "^1.0.0",
-    "@types/chai": "^4.3.6",
-    "@types/prop-types": "^15.7.7",
-    "@types/react": "^18.2.23",
-    "@types/react-dom": "^18.2.11",
+    "@types/chai": "^4.3.8",
+    "@types/prop-types": "^15.7.8",
+    "@types/react": "^18.2.29",
+    "@types/react-dom": "^18.2.13",
     "@types/sinon": "^10.0.19",
     "chai": "^4.3.10",
     "react": "^18.2.0",
@@ -65,7 +65,7 @@
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@mui/material": "^5.0.0",
+    "@mui/material": ">=5.10.11",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
