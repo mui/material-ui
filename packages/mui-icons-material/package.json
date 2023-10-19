@@ -46,7 +46,7 @@
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.1"
+    "@babel/runtime": "^7.23.2"
   },
   "devDependencies": {
     "@mui/internal-waterfall": "^1.0.0",

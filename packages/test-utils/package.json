@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.23.0",
-    "@babel/preset-typescript": "^7.23.0",
+    "@babel/preset-typescript": "^7.23.2",
     "@babel/register": "^7.22.15",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
