@@ -154,4 +154,10 @@ interface Value {
 <Select multiple value={10} />;
 
 <Select multiple value={[10]} component="button" />;
+// @ts-expect-error
+<Select multiple value={10} component="button" />;
+// @ts-expect-error
 <Select value={[10]} component="button" />;
+
+// @ts-expect-error
+<Select value={[10]} />;

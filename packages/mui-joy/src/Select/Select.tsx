@@ -611,16 +611,6 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
 }) as SelectComponent;
 
 interface SelectComponent {
-  <OptionValue extends {}, C extends React.ElementType>(
-    props: {
-      /**
-       * The component used for the root node.
-       * Either a string to use a HTML element or a component.
-       */
-      component: C;
-      multiple?: false;
-    } & OverrideProps<SelectTypeMap<OptionValue, false>, C>,
-  ): JSX.Element | null;
   <OptionValue extends {}, C extends React.ElementType, Multiple extends boolean>(
     props: {
       /**
@@ -631,8 +621,17 @@ interface SelectComponent {
       multiple: Multiple;
     } & OverrideProps<SelectTypeMap<OptionValue, Multiple>, C>,
   ): JSX.Element | null;
+  <OptionValue extends {}, C extends React.ElementType>(
+    props: {
+      /**
+       * The component used for the root node.
+       * Either a string to use a HTML element or a component.
+       */
+      component: C;
+    } & OverrideProps<SelectTypeMap<OptionValue, false>, C>,
+  ): JSX.Element | null;
   <OptionValue extends {}>(
-    props: DefaultComponentProps<SelectTypeMap<OptionValue>>,
+    props: DefaultComponentProps<SelectTypeMap<OptionValue, false>>,
   ): JSX.Element | null;
   <OptionValue extends {}, Multiple extends boolean>(
     props: {
