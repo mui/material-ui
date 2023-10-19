@@ -146,6 +146,9 @@ interface Value {
 // @ts-expect-error
 <Select<number, false> value={[10]} />;
 <Select<number, true> value={[10]} />;
+<Select<number, true> value={[10]} component="b" />;
+// @ts-expect-error
+<Select<number, false> defaultValue={[10]} />;
 <Select multiple value={[10]} />;
 <Select multiple defaultValue={[10]} />;
 // @ts-expect-error
