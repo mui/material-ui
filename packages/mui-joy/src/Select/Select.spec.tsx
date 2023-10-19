@@ -143,12 +143,47 @@ interface Value {
   }}
 />;
 
-<Select value={10} />;
-<Select<number, true> value={[10]} />;
+const handleChange = (
+  e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+  val: number | null,
+) => {};
+
+const handleMultiChange = (
+  e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+  val: number[] | null,
+) => {};
+
+<Select value={10} onChange={handleChange} />;
+<Select<number, true> value={[10]} onChange={handleMultiChange} />;
 <Select<number, 'a', true> value={[10]} component="a" />;
 <Select multiple value={[10]} component="button" />;
 <Select multiple defaultValue={[10]} />;
 <Select multiple value={[10]} />;
+
+<Select
+  value={10}
+  // @ts-expect-error
+  onChange={(event) => handleMultiChange(event)}
+/>;
+
+<Select<number, true>
+  value={[10]}
+  // @ts-expect-error
+  onChange={(event) => handleChange(event)}
+/>;
+
+<Select
+  defaultValue={10}
+  // @ts-expect-error
+  onChange={(event) => handleMultiChange(event)}
+/>;
+
+<Select<number, true>
+  defaultValue={[10]}
+  // @ts-expect-error
+  onChange={(event) => handleChange(event)}
+/>;
+
 // @ts-expect-error
 <Select<number, false> value={[10]} />;
 // @ts-expect-error
