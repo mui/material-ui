@@ -163,22 +163,26 @@ describe('<NumberInput />', () => {
   });
 
   describe('prop: onInputChange', () => {
-    it('should not cause an "unknown event handler" error by entering the DOM', () => {
+    it('should not cause an "unknown event handler" error by entering the DOM as a normal prop', () => {
+      expect(() => {
+        render(<NumberInput defaultValue={10} onInputChange={() => {}} />);
+      }).not.toErrorDev();
+    });
+
+    it('should throw an "unknown event handler" error if passed through slotProps', () => {
       expect(() => {
         render(
-          <React.Fragment>
-            <NumberInput defaultValue={10} onInputChange={() => {}} />
-            <NumberInput
-              defaultValue={10}
-              slotProps={{
-                input: {
-                  onInputChange: () => {},
-                },
-              }}
-            />
-          </React.Fragment>,
+          <NumberInput
+            defaultValue={10}
+            slotProps={{
+              input: {
+                // @ts-expect-error
+                onInputChange: () => {},
+              },
+            }}
+          />,
         );
-      }).not.toErrorDev();
+      }).toErrorDev('Warning: Unknown event handler property `onInputChange`. It will be ignored.');
     });
 
     it('should fire on keyboard input in the textbox instead of onChange', async () => {
@@ -195,35 +199,6 @@ describe('<NumberInput />', () => {
             input: {
               // @ts-ignore
               'data-testid': 'input',
-            },
-          }}
-        />,
-      );
-
-      const input = getByRole('textbox');
-
-      await userEvent.click(input);
-
-      await userEvent.keyboard('3');
-
-      expect(handleChange.callCount).to.equal(0);
-      expect(handleInputChange.callCount).to.equal(1);
-      // return value is event.currentTarget
-      expect(handleInputChange.returned(input)).to.equal(true);
-    });
-
-    it('works when passed through slotProps', async () => {
-      const handleInputChange = spy((event) => event.currentTarget);
-      const handleChange = spy();
-
-      const { getByRole } = render(
-        <NumberInput
-          defaultValue={10}
-          data-testid="root"
-          slotProps={{
-            input: {
-              onChange: handleChange,
-              onInputChange: handleInputChange,
             },
           }}
         />,

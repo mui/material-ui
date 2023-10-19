@@ -31,8 +31,7 @@ export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
    */
   slotProps?: {
     root?: SlotComponentProps<'div', NumberInputRootSlotPropsOverrides, NumberInputOwnerState>;
-    input?: SlotComponentProps<'input', NumberInputInputSlotPropsOverrides, NumberInputOwnerState> &
-      Pick<UseNumberInputParameters, 'onInputChange'>;
+    input?: SlotComponentProps<'input', NumberInputInputSlotPropsOverrides, NumberInputOwnerState>;
     incrementButton?: SlotComponentProps<
       'button',
       NumberInputStepperButtonSlotPropsOverrides,
