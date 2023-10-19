@@ -93,7 +93,7 @@ const Slider = styled(BaseSlider)(
     background-color: #fff;
     :hover,
     &.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
       outline: none;
     }
     & .label {
