@@ -2402,6 +2402,18 @@
     "@babel/runtime" "^7.22.6"
     "@mui/utils" "^5.13.7"
 
+"@mui/x-tree-view@6.0.0-alpha.1":
+  version "6.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@mui/x-tree-view/-/x-tree-view-6.0.0-alpha.1.tgz#fe499f8c43c01d28aca95cfb17491746ffcc3080"
+  integrity sha512-JUG3HmBrmGEALbCFg1b+i7h726e1dWYZs4db3syO1j+Q++E3nbvE4Lehp5yGTFm+8esH0Tny50tuJaa4WX6VSA==
+  dependencies:
+    "@babel/runtime" "^7.22.6"
+    "@mui/utils" "^5.14.3"
+    "@types/react-transition-group" "^4.4.6"
+    clsx "^2.0.0"
+    prop-types "^15.8.1"
+    react-transition-group "^4.4.5"
+
 "@mui/x-tree-view@6.0.0-beta.0":
   version "6.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/@mui/x-tree-view/-/x-tree-view-6.0.0-beta.0.tgz#39f68074c247b16b5ca3393e54799abfcf992fa6"
