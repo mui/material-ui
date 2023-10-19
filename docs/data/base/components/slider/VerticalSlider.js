@@ -17,6 +17,7 @@ const blue = {
   300: '#66B2FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B3',
   900: '#003A75',
 };
 
@@ -32,9 +33,7 @@ const Slider = styled(BaseSlider)(
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
   opacity: 0.75;
-  &:hover {
-    opacity: 1;
-  }
+
 
   & .${sliderClasses.rail} {
     display: block;
@@ -69,17 +68,21 @@ const Slider = styled(BaseSlider)(
     -ms-transform: translate(-50%, 50%);
     transform: translate(-50%, 50%);
 
-    :hover,
-    &.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-      outline: none;
-    }
-
-    &.${sliderClasses.active} {
+    &:hover{
       box-shadow: 0 0 0 0.25rem ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[300],
         0.3,
       )};
+    }
+    
+    &.${sliderClasses.focusVisible} {
+      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
+      outline: none;
+    }
+
+    &.${sliderClasses.active} {
+      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
+      outline: none;
     }
   }
 `,
