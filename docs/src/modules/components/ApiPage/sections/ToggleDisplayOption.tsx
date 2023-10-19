@@ -69,11 +69,10 @@ export function useApiPageOption(
   storageKey: string,
 ): [ApiDisplayOptions, (newOption: ApiDisplayOptions) => void] {
   const [option, setOption] = React.useState(getOption(storageKey));
+
   useEnhancedEffect(() => {
     if (neverHydrated) {
-      if (document?.location.hash) {
-        document.getElementById(document?.location.hash)?.scrollIntoView();
-      }
+      document.getElementById(document.location.hash)?.scrollIntoView();
     }
     neverHydrated = false;
   }, []);
