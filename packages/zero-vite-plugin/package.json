@@ -40,7 +40,8 @@
   },
   "dependencies": {
     "@babel/core": "^7.23.2",
-    "@linaria/vite": "^4.5.4",
+    "@linaria/logger": "^4.5.0",
+    "@linaria/utils": "^4.5.3",
     "@mui/zero-tag-processor": "0.0.1-alpha.0"
   },
   "devDependencies": {
