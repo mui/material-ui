@@ -1,10 +1,10 @@
-import {
-  ColorSystemOptions as MD2ColorSystemOptions,
-  CssVarsTheme as MD2Theme,
-  CssVarsThemeOptions as MD2CssVarsThemeOptions,
-  SupportedColorScheme,
-} from '@mui/material/styles';
 import { SxProps as SystemSxProps } from '@mui/system';
+import {
+  CssVarsTheme as MD2Theme,
+  SupportedColorScheme,
+  ColorSystemOptions as MD2ColorSystemOptions,
+  CssVarsThemeOptions as MD2CssVarsThemeOptions,
+} from '@mui/material/styles';
 
 export interface MD3Tones {
   0: string;
