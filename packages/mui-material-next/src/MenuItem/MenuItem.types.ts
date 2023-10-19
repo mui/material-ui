@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '@mui/material/ButtonBase';
+import { ExtendButtonBaseTypeMap } from '@mui/material/ButtonBase';
 import { Theme } from '@mui/material/styles';
 import { MenuItemClasses } from './menuItemClasses';
 
@@ -61,19 +61,6 @@ export type MenuItemTypeMap<
   defaultComponent: RootComponent;
 }>;
 
-/**
- *
- * Demos:
- *
- * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [MenuItem API](https://mui.com/material-ui/api/menu-item/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
- */
-declare const MenuItem: ExtendButtonBase<MenuItemTypeMap>;
-
 export type MenuItemProps<
   RootComponent extends React.ElementType = MenuItemTypeMap['defaultComponent'],
   AdditionalProps = {},
@@ -81,4 +68,4 @@ export type MenuItemProps<
   component?: React.ElementType;
 };
 
-export default MenuItem;
+export interface MenuItemOwnerState extends MenuItemProps {}

@@ -16,9 +16,13 @@ import { listItemTextClasses } from '@mui/material/ListItemText';
 import { styled, useThemeProps, rootShouldForwardProp } from '../styles';
 import ButtonBase from '../ButtonBase';
 import { dividerClasses } from '../Divider';
+import { MenuItemProps, MenuItemOwnerState } from './MenuItem.types';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
 
-export const overridesResolver = (props, styles) => {
+export const overridesResolver = (
+  props: MenuItemProps & { ownerState: MenuItemOwnerState },
+  styles: any,
+) => {
   const { ownerState } = props;
 
   return [
@@ -29,7 +33,7 @@ export const overridesResolver = (props, styles) => {
   ];
 };
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: MenuItemOwnerState) => {
   const { disabled, dense, divider, disableGutters, selected, classes } = ownerState;
   const slots = {
     root: [
@@ -51,11 +55,11 @@ const useUtilityClasses = (ownerState) => {
 };
 
 const MenuItemRoot = styled(ButtonBase, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  shouldForwardProp: (prop: string) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenuItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme, ownerState }) => ({
+})<{ ownerState: MenuItemOwnerState }>(({ theme, ownerState }) => ({
   ...theme.typography.body1,
   display: 'flex',
   justifyContent: 'flex-start',
@@ -149,7 +153,10 @@ const MenuItemRoot = styled(ButtonBase, {
   }),
 }));
 
-const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
+const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends React.ElementType>(
+  inProps: MenuItemProps<RootComponentType>,
+  ref: React.ForwardedRef<Element>,
+) {
   const props = useThemeProps({ props: inProps, name: 'MuiMenuItem' });
   const {
     autoFocus = false,
@@ -175,7 +182,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     [context.dense, dense, disableGutters],
   );
 
-  const menuItemRef = React.useRef(null);
+  const menuItemRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(menuItemRef, ref);
 
   const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({
@@ -217,7 +224,8 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const rootProps = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
-    // externalSlotProps: slotProps.root,
+    // TODO v6: Add support for slotProps.root
+    externalSlotProps: {},
     externalForwardedProps: other,
     additionalProps: {
       role,

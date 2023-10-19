@@ -54,7 +54,7 @@ describe('<MenuItem />', () => {
     skip: ['componentsProp', 'reactTestRenderer'],
   }));
 
-  const renderWithMenu = (node) => {
+  const renderWithMenu = (node: React.ReactNode) => {
     function Test() {
       return (
         <Menu anchorEl={document.createElement('div')} open>
@@ -100,10 +100,14 @@ describe('<MenuItem />', () => {
   });
 
   describe('event callbacks', () => {
-    /**
-     * @type {Array<keyof typeof fireEvent>}
-     */
-    const events = ['click', 'mouseDown', 'mouseEnter', 'mouseLeave', 'mouseUp', 'touchEnd'];
+    const events: Array<keyof typeof fireEvent> = [
+      'click',
+      'mouseDown',
+      'mouseEnter',
+      'mouseLeave',
+      'mouseUp',
+      'touchEnd',
+    ];
 
     events.forEach((eventName) => {
       it(`should fire ${eventName}`, () => {
