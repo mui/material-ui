@@ -28,7 +28,7 @@ The demo below replaces the `<div>` with a `<section>` element:
 {{"demo": "BoxBasic.js", "defaultCodeOpen": true }}
 
 :::info
-The Box component differs from other containers available in Material UI and Joy UI because it's intended to be multipurpose—components like [Stack](/material-ui/react-stack/) and [Paper](/material-ui/react-paper), by contrast, feature usage-specific props that make them ideal for certain use cases.
+The Box component differs from other containers available in Material UI and Joy UI because it's intended to be multipurpose—components like [Stack](/material-ui/react-stack/) and [Paper](/material-ui/react-paper/), by contrast, feature usage-specific props that make them ideal for certain use cases.
 :::
 
 ## Component
