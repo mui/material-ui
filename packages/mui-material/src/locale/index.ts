@@ -163,7 +163,7 @@ export const arEG: Localization = {
             return 'انتقل إلى الصفحة التالية';
           }
           // if (type === 'previous') {
-          return 'انتقل  إلى الصفحة السابقة';
+          return 'انتقل إلى الصفحة السابقة';
         },
       },
     },
