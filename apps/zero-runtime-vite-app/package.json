@@ -26,6 +26,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "^22.1.0",
+    "local-library": "file:../local-library",
     "vite": "4.4.11",
     "vitest": "^0.34.6"
   },
