@@ -307,26 +307,27 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     const propsEventHandlers = {
       onBlur,
       onFocus,
-      onInputChange,
+      // onChange from normal props is the custom onChange so we ignore it here
+      onChange: onInputChange,
     };
 
-    const externalEventHandlers = {
+    const externalEventHandlers: Partial<EventHandlers> = {
       ...propsEventHandlers,
       ...extractEventHandlers(externalProps, [
         // onClick is handled by the root slot
         'onClick',
-        'onChange',
+        // do not ignore 'onInputChange', we want slotProps.input.onInputChange to enter the DOM and throw
       ]),
     };
 
     const mergedEventHandlers = {
-      ...extractEventHandlers(externalEventHandlers, [
-        // exclude onInputChange to prevent it from entering the DOM
-        'onInputChange',
-      ]),
+      ...externalEventHandlers,
       onFocus: createHandleFocus(externalEventHandlers),
-      // the onInputChange prop is passed to createHandleInputChange and effectively renamed to onChange
-      onChange: createHandleInputChange(externalEventHandlers),
+      // slotProps.onChange is renamed to onInputChange and passed to createHandleInputChange
+      onChange: createHandleInputChange({
+        ...externalEventHandlers,
+        onInputChange: externalEventHandlers.onChange,
+      }),
       onBlur: createHandleBlur(externalEventHandlers),
       onKeyDown: createHandleKeyDown(externalEventHandlers),
     };
@@ -334,6 +335,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     const displayValue = (focused ? dirtyValue : value) ?? '';
 
     // get rid of slotProps.input.onInputChange before returning to prevent it from entering the DOM
+    // if it was passed, it will be in mergedEventHandlers and throw
     delete externalProps.onInputChange;
 
     return {
