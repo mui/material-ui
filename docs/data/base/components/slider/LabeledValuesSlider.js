@@ -129,7 +129,7 @@ const Slider = styled(BaseSlider)(
         text-align: center;
     }
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
+      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[600] : blue[300]};
       outline: none;
     }
   }
