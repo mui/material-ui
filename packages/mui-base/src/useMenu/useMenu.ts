@@ -112,7 +112,7 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
 
   React.useEffect(() => {
     if (open && highlightedValue === subitemKeys[0] && !isInitiallyOpen.current) {
-      // TODO: focus only if autoFocus is true
+      // TODO v6: focus only if autoFocus is true
       subitems.get(subitemKeys[0])?.ref?.current?.focus();
     }
   }, [open, highlightedValue, subitems, subitemKeys]);
