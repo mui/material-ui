@@ -35,7 +35,7 @@ The Box component differs from other containers available in Material UI and Joy
 
 ### Using the sx prop
 
-Using the [`sx` prop](/system/getting-started/the-sx-prop/), you can quickly customize any Box instance using a superset of CSS with access to all the style functions and theme-aware properties exposed in the MUI System package.
+Use the [`sx` prop](/system/getting-started/the-sx-prop/) to quickly customize any Box instance using a superset of CSS with access to all the style functions and theme-aware properties exposed in the MUI System package.
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
@@ -45,7 +45,7 @@ As a CSS utility component, the Box supports all [MUI System properties](/system
 You can use them as prop directly on the component.
 
 ```jsx
-<Box mt={2}>
+<Box height={20} width={20} my={4} display="flex" alignItems="center" gap={4}>
 ```
 
 ## Create your own Box component
