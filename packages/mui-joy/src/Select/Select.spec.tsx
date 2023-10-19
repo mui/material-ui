@@ -143,24 +143,23 @@ interface Value {
   }}
 />;
 
+<Select value={10} />;
+<Select<number, true> value={[10]} />;
+<Select<number, 'a', true> value={[10]} component="a" />;
+<Select multiple value={[10]} component="button" />;
+<Select multiple defaultValue={[10]} />;
+<Select multiple value={[10]} />;
 // @ts-expect-error
 <Select<number, false> value={[10]} />;
-<Select<number, true> value={[10]} />;
-<Select<number, true> value={[10]} component="b" />;
 // @ts-expect-error
 <Select<number, false> defaultValue={[10]} />;
-<Select multiple value={[10]} />;
-<Select multiple defaultValue={[10]} />;
 // @ts-expect-error
 <Select multiple defaultValue={10} />;
 // @ts-expect-error
 <Select multiple value={10} />;
-
-<Select multiple value={[10]} component="button" />;
 // @ts-expect-error
 <Select multiple value={10} component="button" />;
 // @ts-expect-error
 <Select value={[10]} component="button" />;
-
 // @ts-expect-error
 <Select value={[10]} />;
