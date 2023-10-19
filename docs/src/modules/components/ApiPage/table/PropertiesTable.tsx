@@ -73,7 +73,9 @@ const StyledTable = styled('table')(
         marginTop: 12,
         marginBottom: 0,
       },
-      '& .refAlert': {
+      '& .prop-table-deprecated': {
+        '& code ': { all: 'unset' },
+      },
         padding: '2px 12px',
         marginTop: 12,
         color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
@@ -286,9 +288,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                         {' - '}
                         <span
                           dangerouslySetInnerHTML={{
-                            __html: deprecationInfo
-                              .replace(/<code>/g, '<span>')
-                              .replace(/<\/code>/g, '</span>'),
+                            __html: deprecationInfo,
                           }}
                         />
                       </React.Fragment>
