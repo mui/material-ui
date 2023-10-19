@@ -10,6 +10,7 @@ import {
 import { useSlotProps } from '@mui/base/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useMenuItem } from '@mui/base/useMenuItem';
+// TODO v6: Replace with @mui/material-next when the List components are available
 import ListContext from '@mui/material/List/ListContext';
 import { listItemIconClasses } from '@mui/material/ListItemIcon';
 import { listItemTextClasses } from '@mui/material/ListItemText';

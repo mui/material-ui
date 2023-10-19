@@ -14,6 +14,7 @@ import {
   unstable_getScrollbarSize as getScrollbarSize,
   unstable_ownerDocument as ownerDocument,
 } from '@mui/utils';
+// TODO v6: Replace with @mui/material-next when the Popover component is available
 import Popover, { PopoverPaper, PopoverOrigin } from '@mui/material/Popover';
 import { styled, useTheme, useThemeProps, rootShouldForwardProp } from '../styles';
 import { MenuTypeMap, MenuOwnerState } from './Menu.types';
