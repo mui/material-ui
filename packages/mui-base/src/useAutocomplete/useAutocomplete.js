@@ -320,7 +320,7 @@ export function useAutocomplete(props) {
         nextFocus = (nextFocus - 1 + filteredOptions.length) % filteredOptions.length;
       }
 
-      // We end up with initial index, that means we don't have avalable options.
+      // We end up with initial index, that means we don't have available options.
       // All of them are disabled
       if (nextFocus === index) {
         return -1;
