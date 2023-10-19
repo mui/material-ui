@@ -94,10 +94,7 @@ const Slider = styled(BaseSlider)(
     }
 
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 0.25rem ${alpha(
-        theme.palette.mode === 'light' ? blue[200] : blue[300],
-        0.3,
-      )};
+      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[600] : blue[300]};
     }
   }
 `,
