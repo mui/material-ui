@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 # Box
 
-<p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
+<p class="description">The Box component is a generic, theme-aware container with access to CSS utilities from MUI System.</p>
 
 :::warning
 Please refer to the [Box](/system/react-box/) component page in the MUI System docs for demos and details on usage.
