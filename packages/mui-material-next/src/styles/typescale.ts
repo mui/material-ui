@@ -10,7 +10,8 @@ const mdSysTypescale = {
     medium: {
       family: 'Roboto',
       weight: '500',
-      // TODO: prominent weight: '700'
+      // TODO: label.medium has an alternative font weight https://m3.material.io/styles/typography/type-scale-tokens
+      // md.sys.typescale.label-medium.weight.prominent -> md.sys.typescale.label-medium.weight.prominent -> '700'
       size: 12,
       tracking: 0.5,
       lineHeight: 16,
@@ -18,7 +19,8 @@ const mdSysTypescale = {
     large: {
       family: 'Roboto',
       weight: '500',
-      // TODO: prominent weight: '700'
+      // TODO: label.large has an alternative font weight https://m3.material.io/styles/typography/type-scale-tokens
+      // md.sys.typescale.label-large.weight.prominent -> md.sys.typescale.label-large.weight.prominent -> '700'
       size: 14,
       tracking: 0.1,
       lineHeight: 20,
