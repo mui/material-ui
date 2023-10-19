@@ -1842,34 +1842,34 @@ export const idID: Localization = {
 
 export const isIS: Localization = {
   components: {
-    // MuiBreadcrumbs: {
-    //   defaultProps: {
-    //    expandText: 'Show path',
-    //   },
-    // },
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Sýna slóð',
+      },
+    },
     MuiTablePagination: {
       defaultProps: {
-        // getItemAriaLabel: (type) => {
-        //   if (type === 'first') {
-        //     return 'Go to first page';
-        //   }
-        //   if (type === 'last') {
-        //     return 'Go to last page';
-        //   }
-        //   if (type === 'next') {
-        //     return 'Go to next page';
-        //   }
-        //   // if (type === 'previous') {
-        //   return 'Go to previous page';
-        // },
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Fara á fyrstu síðu';
+          }
+          if (type === 'last') {
+            return 'Fara á síðustu síðu';
+          }
+          if (type === 'next') {
+            return 'Fara á næstu síðu';
+          }
+          // if (type === 'previous') {
+          return 'Fara á fyrri síðu';
+        },
         labelRowsPerPage: 'Raðir á síðu:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} af ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} af ${count !== -1 ? count : `fleiri enn ${to}`}`,
       },
     },
     MuiRating: {
       defaultProps: {
-        getLabelText: (value) => `${value} ${value === 1 ? 'Stjarna' : 'Stjörnur'}`,
+        getLabelText: (value) => `${value} ${value === 1 ? 'stjarna' : 'stjörnur'}`,
         emptyLabelText: 'Tómt',
       },
     },
@@ -1887,27 +1887,27 @@ export const isIS: Localization = {
         closeText: 'Loka',
       },
     },
-    // MuiPagination: {
-    //   defaultProps: {
-    //     'aria-label': 'Pagination navigation',
-    //     getItemAriaLabel: (type, page, selected) => {
-    //       if (type === 'page') {
-    //         return `${selected ? '' : 'Go to '}page ${page}`;
-    //       }
-    //       if (type === 'first') {
-    //         return 'Go to first page';
-    //       }
-    //       if (type === 'last') {
-    //         return 'Go to last page';
-    //       }
-    //       if (type === 'next') {
-    //         return 'Go to next page';
-    //       }
-    //       // if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     },
-    //   },
-    // },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Síðuflakk',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? 'Síða' : 'Fara á síðu'} ${page}`;
+          }
+          if (type === 'first') {
+            return 'Fara á fyrstu síðu';
+          }
+          if (type === 'last') {
+            return 'Fara á síðustu síðu';
+          }
+          if (type === 'next') {
+            return 'Fara á næstu síðu';
+          }
+          // if (type === 'previous') {
+          return 'Fara á fyrri síðu';
+        },
+      },
+    },
   },
 };
 
