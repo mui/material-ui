@@ -1,12 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, alpha, Box } from '@mui/system';
-import { Slider, sliderClasses } from '@mui/base/Slider';
+import { Slider as BaseSlider, sliderClasses } from '@mui/base/Slider';
 
 export default function LabeledValuesSlider() {
   return (
     <Box sx={{ width: 300 }}>
-      <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
+      <Slider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
     </Box>
   );
 }
@@ -34,19 +34,19 @@ const blue = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
-const StyledSlider = styled(Slider)(
+const Slider = styled(BaseSlider)(
   ({ theme }) => `
   color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   height: 6px;
@@ -94,10 +94,8 @@ const StyledSlider = styled(Slider)(
     background-color: #fff;
     :hover,
     &.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 0.25rem ${alpha(
-        theme.palette.mode === 'light' ? blue[400] : blue[300],
-        0.15,
-      )};
+      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+      outline: none;
     }
     & .label {
         font-family: IBM Plex Sans;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
+import { createMount, createRenderer, describeConformanceUnstyled } from '@mui-internal/test-utils';
 import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { MenuProvider } from '@mui/base/useMenu';
 

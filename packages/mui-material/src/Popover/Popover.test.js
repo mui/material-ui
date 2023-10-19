@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, match } from 'sinon';
-import { act, createMount, createRenderer, describeConformance, screen } from 'test/utils';
+import {
+  act,
+  createMount,
+  createRenderer,
+  describeConformance,
+  screen,
+} from '@mui-internal/test-utils';
 import PropTypes from 'prop-types';
 import Grow from '@mui/material/Grow';
 import Modal from '@mui/material/Modal';

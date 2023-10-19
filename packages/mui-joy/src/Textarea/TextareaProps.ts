@@ -122,4 +122,8 @@ export interface TextareaOwnerState extends ApplyColorInversion<TextareaProps> {
    * If `true`, the input is focused.
    */
   focused: boolean;
+  /**
+   * @internal
+   */
+  instanceColor: OverridableStringUnion<ColorPaletteProp, TextareaPropsColorOverrides> | undefined;
 }

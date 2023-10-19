@@ -1,12 +1,41 @@
 import * as React from 'react';
-import { styled } from '@mui/zero-runtime';
+import { styled, keyframes } from '@mui/zero-runtime';
 import Slider from './Slider/ZeroSlider';
+
+const bounce = keyframes`
+  from, 20%, 53%, 80%, to {
+    transform: translate3d(0,0,0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    transform: translate3d(0,-4px,0);
+  }
+`;
+
+const bounceAnim = keyframes({
+  'from, 20%, 53%, 80%, to': {
+    transform: 'translate3d(0,0,0)',
+  },
+  '40%, 43%': {
+    transform: 'translate3d(0, -30px, 0)',
+  },
+  '70%': {
+    transform: 'translate3d(0, -15px, 0)',
+  },
+  '90%': {
+    transform: 'translate3d(0,-4px,0)',
+  },
+});
 
 const Button = styled('button', {
   name: 'MuiButton',
   slot: 'Root',
 })(
-  'color:red',
   ({ theme }: any) => ({
     fontFamily: 'sans-serif',
     backgroundColor: [theme.palette.primary.main, 'text.primary', 'background.paper'],
@@ -30,6 +59,7 @@ const HalfWidth = styled.div({
   maxHeight: 100,
   padding: 20,
   border: '1px solid #ccc',
+  animation: [`${bounce} 1s ease infinite`, `${bounceAnim} 1s ease infinite`],
 });
 
 export default function App({ isRed }: any) {

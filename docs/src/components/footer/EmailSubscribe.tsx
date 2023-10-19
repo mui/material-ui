@@ -82,10 +82,10 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
         }}
       >
         <AlertTitle sx={{ typography: 'body2', fontWeight: 700 }}>
-          Thanks! Check your email.
+          Thanks for subscribing!
         </AlertTitle>
-        You should get a <strong>confirmation email</strong> soon. Open it up and confirm your email
-        address so that we can keep you up to date.
+        Go to your email and open the <strong>confirmation email</strong> to confirm your
+        subscription.
       </Alert>
     );
   }
@@ -93,14 +93,16 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     <Form onSubmit={handleSubmit} sx={sx}>
       <FormLabel
         htmlFor="email-subscribe"
-        sx={{ typography: 'caption', mb: 0.5, color: 'text.secondary', fontWeight: 500 }}
+        sx={{ typography: 'caption', color: 'text.secondary', fontWeight: 500 }}
       >
         Enter your email:
       </FormLabel>
       <Box
         sx={{
           display: 'flex',
-          gap: 1,
+          flexDirection: { xs: 'column', sm: 'row' },
+          mt: 1,
+          gap: 1.5,
           width: { xs: '100%', sm: 'auto' },
           maxWidth: 320,
         }}
@@ -160,38 +162,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
               }),
           ]}
         />
-        <Button
-          disabled={form.status === 'loading'}
-          type="submit"
-          sx={[
-            (theme) => ({
-              bgcolor: alpha(theme.palette.primary[100], 0.5),
-              color: 'primary.600',
-              py: 1,
-              px: 1.5,
-              border: '1px solid',
-              borderColor: 'primary.100',
-              boxShadow: `inset 0 1px 2px ${
-                (theme.vars || theme).palette.grey[50]
-              }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
-              '&:hover': {
-                bgcolor: alpha(theme.palette.primary[100], 1),
-              },
-            }),
-            (theme) =>
-              theme.applyDarkStyles({
-                bgcolor: alpha(theme.palette.primary[800], 0.3),
-                color: 'primaryDark.100',
-                borderColor: 'primary.800',
-                boxShadow: `inset 0 1px 1px ${
-                  (theme.vars || theme).palette.primary[900]
-                }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
-                '&:hover': {
-                  bgcolor: 'primary.800',
-                },
-              }),
-          ]}
-        >
+        <Button variant="outlined" disabled={form.status === 'loading'} type="submit">
           Subscribe
         </Button>
       </Box>
@@ -204,7 +175,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
             }),
           })}
         >
-          Oops! something went wrong, please try again later.
+          Oops! Something went wrong, please try again later.
         </FormHelperText>
       )}
     </Form>

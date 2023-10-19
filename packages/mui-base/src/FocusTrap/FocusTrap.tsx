@@ -283,7 +283,7 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
         doc.activeElement === sentinelStart.current ||
         doc.activeElement === sentinelEnd.current
       ) {
-        tabbable = getTabbable(rootRef.current as HTMLElement);
+        tabbable = getTabbable(rootRef.current!);
       }
 
       // one of the sentinel nodes was focused, so move the focus

@@ -1,4 +1,4 @@
-import { BaseProcessor, buildSlug, toValidCSSIdentifier, validateParams } from '@linaria/tags';
+import { validateParams } from '@linaria/tags';
 import type {
   Expression,
   Params,
@@ -7,14 +7,8 @@ import type {
   IOptions as IBaseOptions,
   WrappedNode,
 } from '@linaria/tags';
-import { ValueType, slugify } from '@linaria/utils';
-import type {
-  IVariableContext,
-  Rules,
-  Replacements,
-  ExpressionValue,
-  LazyValue,
-} from '@linaria/utils';
+import { ValueType } from '@linaria/utils';
+import type { Rules, Replacements, ExpressionValue, LazyValue } from '@linaria/utils';
 import { parseExpression } from '@babel/parser';
 import type { SourceLocation } from '@babel/types';
 import type { Theme } from '@mui/material/styles';
@@ -22,6 +16,7 @@ import type { PluginCustomOptions } from './utils/cssFnValueToVariable';
 import { cssFnValueToVariable } from './utils/cssFnValueToVariable';
 import { processCssObject } from './utils/processCssObject';
 import { valueToLiteral } from './utils/valueToLiteral';
+import BaseProcessor from './base-processor';
 
 type VariantData = {
   props: Record<string, string | number | boolean | null>;
@@ -120,11 +115,15 @@ export default class StyledProcessor extends BaseProcessor {
 
   constructor(params: Params, ...args: TailProcessorParams) {
     super(params, ...args);
-    if (params.length === 2) {
-      // no need to do any processing if it is an already transformed call.
+    if (params.length <= 2) {
+      // no need to do any processing if it is an already transformed call or just a reference.
       throw BaseProcessor.SKIP;
     }
-    validateParams(params, ['callee', ['call', 'member'], ['call', 'template']], 'Invalid params');
+    validateParams(
+      params,
+      ['callee', ['call', 'member'], ['call', 'template']],
+      `Invalid use of ${this.tagSource.imported} tag.`,
+    );
     const [call, memberOrCall, styleCall] = params;
     const [callType, componentArg, componentMetaArg] = memberOrCall;
     const [, ...styleArgs] = styleCall;
@@ -170,15 +169,14 @@ export default class StyledProcessor extends BaseProcessor {
     }
   }
 
-  getClassName(key?: string) {
-    const mapKey = key ?? 'base';
-    if (!this.counterMap.has(mapKey)) {
-      this.counterMap.set(mapKey, 0);
+  getClassName(key = 'base') {
+    if (!this.counterMap.has(key)) {
+      this.counterMap.set(key, 0);
     }
-    const currentCount = this.counterMap.get(mapKey) as number;
-    this.counterMap.set(mapKey, currentCount + 1);
+    const currentCount = this.counterMap.get(key) as number;
+    this.counterMap.set(key, currentCount + 1);
 
-    return `${this.className}${mapKey === 'base' ? '' : `-${mapKey}`}${
+    return `${this.className}${key === 'base' ? '' : `-${key}`}${
       currentCount > 0 ? `-${currentCount}` : ''
     }`;
   }
@@ -200,9 +198,9 @@ export default class StyledProcessor extends BaseProcessor {
   }
 
   /**
-   * This is called by linaria after evaluating the code. Here, we get access to
-   * the actual values of the `styled` arguments which we can use to generate our styles.
-   *
+   * This is called by linaria after evaluating the code. Here, we
+   * get access to the actual values of the `styled` arguments
+   * which we can use to generate our styles.
    * Order of processing styles -
    * 1. CSS directly declared in styled call
    * 2. CSS declared in theme object's styledOverrides
@@ -211,7 +209,7 @@ export default class StyledProcessor extends BaseProcessor {
    */
   build(values: ValueCache): void {
     // all the variant definitions are collected here so that we can
-    // variant styles after base styles for more specific targetting.
+    // apply variant styles after base styles for more specific targetting.
     const variantsAccumulator: VariantData[] = [];
     this.styleArgs.forEach((styleArg) => {
       this.processStyle(values, styleArg, variantsAccumulator);
@@ -331,7 +329,10 @@ export default class StyledProcessor extends BaseProcessor {
       );
     }
     this.replacer(
-      t.callExpression(t.identifier('styled'), [componentName, t.objectExpression(argProperties)]),
+      t.callExpression(t.addNamedImport('styled', '@mui/zero-runtime'), [
+        componentName,
+        t.objectExpression(argProperties),
+      ]),
       true,
     );
   }
@@ -422,8 +423,11 @@ export default class StyledProcessor extends BaseProcessor {
     styleArg: ExpressionValue | null,
     variantsAccumulator?: VariantData[],
   ) {
-    const { themeArgs } = this.options as IOptions;
+    const { themeArgs = {} } = this.options as IOptions;
     const styleObj = typeof styleObjOrFn === 'function' ? styleObjOrFn(themeArgs) : styleObjOrFn;
+    if (!styleObj) {
+      return '';
+    }
     if (styleObj.variants) {
       variantsAccumulator?.push(...styleObj.variants);
       delete styleObj.variants;
@@ -440,40 +444,6 @@ export default class StyledProcessor extends BaseProcessor {
       this.collectedVariables.push(...res);
     }
     return processCssObject(styleObj, themeArgs);
-  }
-
-  // Implementation taken from Linaria - https://github.com/callstack/linaria/blob/master/packages/react/src/processors/styled.ts#L284
-  protected getCustomVariableId(cssKey: string, source: string, hasUnit: boolean) {
-    const context = this.getVariableContext(cssKey, source, hasUnit);
-    const customSlugFn = this.options.variableNameSlug;
-    if (!customSlugFn) {
-      return toValidCSSIdentifier(`${this.slug}-${context.index}`);
-    }
-
-    return typeof customSlugFn === 'function'
-      ? customSlugFn(context)
-      : buildSlug(customSlugFn, context);
-  }
-
-  // Implementation taken from Linaria - https://github.com/callstack/linaria/blob/master/packages/react/src/processors/styled.ts#L362
-  protected getVariableContext(cssKey: string, source: string, hasUnit: boolean): IVariableContext {
-    const getIndex = () => {
-      // eslint-disable-next-line no-plusplus
-      return this.variableIdx++;
-    };
-
-    return {
-      componentName: this.displayName,
-      componentSlug: this.slug,
-      get index() {
-        return getIndex();
-      },
-      precedingCss: cssKey,
-      processor: this.constructor.name,
-      source: '',
-      unit: '',
-      valueSlug: slugify(`${source}${hasUnit}`),
-    };
   }
 
   public override get asSelector(): string {
