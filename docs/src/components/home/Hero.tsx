@@ -64,10 +64,6 @@ const ThemeSlider = dynamic(() => import('../showcase/ThemeSlider'), {
   ssr: false,
   loading: createLoading({ width: 400, height: 104 }),
 });
-const ThemeButton = dynamic(() => import('../showcase/ThemeButton'), {
-  ssr: false,
-  loading: createLoading({ width: 360, height: 38 }),
-});
 const ThemeAccordion = dynamic(() => import('../showcase/ThemeAccordion'), {
   ssr: false,
   loading: createLoading({ width: { md: 360, xl: 400 }, height: 231 }),
@@ -85,7 +81,7 @@ export default function Hero() {
       linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
-          <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
+          <Typography variant="h1" sx={{ mb: 2, maxWidth: 500 }}>
             <GradientText>Move faster</GradientText> <br />
             with intuitive React UI tools
           </Typography>
@@ -98,7 +94,7 @@ export default function Hero() {
         </Box>
       }
       rightSx={{
-        p: 3,
+        p: 4,
         ml: 2,
         minWidth: 2000,
         overflow: 'hidden', // the components in the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
@@ -121,21 +117,20 @@ export default function Hero() {
           {isMdUp && (
             <Stack spacing={3} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
               <TaskCard />
-              <ThemeToggleButton />
+              <ThemeChip />
               <ThemeDatePicker />
-              <ThemeButton />
-              <FolderTable />
+              <NotificationCard />
+              <ThemeAccordion />
             </Stack>
           )}
           {isMdUp && (
             <Stack spacing={3} sx={{ ml: 3, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
-              <NotificationCard />
-              <ThemeChip />
               <ThemeTimeline />
+              <ThemeToggleButton />
               <ThemeSlider />
               <ThemeTabs />
               <PlayerCard />
-              <ThemeAccordion />
+              <FolderTable />
             </Stack>
           )}
         </React.Fragment>

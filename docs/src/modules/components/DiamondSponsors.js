@@ -1,11 +1,44 @@
 import * as React from 'react';
-import { alpha } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import Link from 'docs/src/modules/components/Link';
+
+const StyledAnchor = styled('a')(({ theme }) => ({
+  boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
+  width: '100%',
+  height: 45,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: 12,
+  border: '1px solid',
+  borderColor: (theme.vars || theme).palette.divider,
+  transition: theme.transitions.create(['color', 'border-color']),
+  boxShadow: `inset 0 1px 1px ${(theme.vars || theme).palette.grey[50]}, 0 1px 2px ${alpha(
+    theme.palette.grey[100],
+    0.6,
+  )}`,
+  '&:hover': {
+    backgroundColor: (theme.vars || theme).palette.grey[50],
+  },
+  '& img': {
+    display: 'inline-block',
+  },
+  ...theme.applyDarkStyles({
+    boxShadow: `inset 0 1px 1px ${(theme.vars || theme).palette.primaryDark[900]}, 0 1px 0.5px ${
+      (theme.vars || theme).palette.common.black
+    }`,
+    '&:hover': {
+      backgroundColor: (theme.vars || theme).palette.primaryDark[800],
+      borderColor: (theme.vars || theme).palette.primaryDark[600],
+    },
+  }),
+}));
 
 export default function DiamondSponsors() {
   const t = useTranslate();
@@ -27,64 +60,21 @@ export default function DiamondSponsors() {
         target="_blank"
         rel="noopener nofollow"
         size="small"
-        startIcon={<DiamondOutlinedIcon fontSize="small" />}
-        sx={(theme) => ({
+        startIcon={<DiamondOutlinedIcon />}
+        sx={{
           width: 'fit-content',
-          fontSize: theme.typography.pxToRem(12.5),
-          fontWeight: theme.typography.fontWeightSemiBold,
-          color: (theme.vars || theme).palette.primary[600],
+          fontSize: (theme) => theme.typography.pxToRem(12.5),
           '& svg': {
-            width: 14,
-            height: 14,
+            marginRight: 0.5,
+            width: 16,
+            height: 16,
           },
-          ...theme.applyDarkStyles({
-            color: (theme.vars || theme).palette.primary[300],
-          }),
-        })}
+        }}
       >
         {t('diamondSponsors')}
       </Button>
-      <Stack
-        spacing={1}
-        sx={[
-          (theme) => ({
-            '& a': {
-              width: '100%',
-              height: 45,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '1px solid',
-              borderColor: 'divider',
-              borderRadius: '12px',
-              boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
-              transition: theme.transitions.create(['color', 'border-color']),
-              boxShadow: `inset 0 1px 2px ${
-                (theme.vars || theme).palette.grey[50]
-              }, 0 1px 0.5px ${alpha(theme.palette.grey[100], 0.6)}`,
-              '&:hover': {
-                backgroundColor: 'grey.50',
-              },
-              '& img': {
-                display: 'inline-block',
-              },
-            },
-          }),
-          (theme) =>
-            theme.applyDarkStyles({
-              '& a': {
-                boxShadow: `inset 0 1px 1px ${
-                  (theme.vars || theme).palette.primaryDark[900]
-                }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
-                '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[800],
-                  borderColor: (theme.vars || theme).palette.primaryDark[600],
-                },
-              },
-            }),
-        ]}
-      >
-        <a
+      <Stack spacing={1}>
+        <StyledAnchor
           data-ga-event-category="sponsor"
           data-ga-event-action="docs-premium"
           data-ga-event-label="octopus.com"
@@ -106,8 +96,8 @@ export default function DiamondSponsors() {
               })
             }
           />
-        </a>
-        <a
+        </StyledAnchor>
+        <StyledAnchor
           data-ga-event-category="sponsor"
           data-ga-event-action="docs-premium"
           data-ga-event-label="doit.com"
@@ -129,16 +119,51 @@ export default function DiamondSponsors() {
               })
             }
           />
-        </a>
+        </StyledAnchor>
         <Link
           aria-label={t('diamondSponsors')}
           rel="noopener noreferrer"
           href="/material-ui/discover-more/backers/#diamond"
-          fontSize={14}
-          color="text.secondary"
-          // eslint-disable-next-line material-ui/no-hardcoded-labels
+          sx={(theme) => ({
+            width: '100%',
+            p: 1.5,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 1,
+            border: '1px dashed',
+            transition: theme.transitions.create(['color', 'border-color', 'background-color']),
+            backgroundColor: alpha(theme.palette.primary[50], 0.5),
+            borderColor: (theme.vars || theme).palette.primary[200],
+            boxShadow: `inset 0 1px 1px ${
+              (theme.vars || theme).palette.grey[50]
+            }, 0 1px 2px ${alpha(theme.palette.primary[100], 0.8)}`,
+            '&:hover': {
+              backgroundColor: alpha(theme.palette.primary[100], 0.5),
+              borderColor: (theme.vars || theme).palette.primary[300],
+            },
+            ...theme.applyDarkStyles({
+              backgroundColor: alpha(theme.palette.primary[400], 0.05),
+              borderColor: alpha(theme.palette.primary[300], 0.3),
+              boxShadow: `inset 0 1px 1px ${
+                (theme.vars || theme).palette.primaryDark[800]
+              }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
+              '&:hover': {
+                backgroundColor: alpha(theme.palette.primary[400], 0.1),
+                borderColor: (theme.vars || theme).palette.primary[400],
+              },
+            }),
+          })}
         >
-          +1
+          <Typography variant="caption" fontWeight="semiBold" textAlign="center">
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+            {'Become a diamond sponsor!'}
+          </Typography>
+          <Typography variant="caption" fontWeight="regular" color="text.secondary">
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+            {'One spot left'}
+          </Typography>
         </Link>
       </Stack>
     </Stack>

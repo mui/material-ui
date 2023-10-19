@@ -139,12 +139,6 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'Product Engineer - Store',
-        description:
-          'You will lead the technical, product, and operational development of the store.',
-        url: '/careers/product-engineer/',
-      },
-      {
         title: 'React Engineer - xCharts',
         description:
           'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
@@ -305,7 +299,11 @@ function CareersContent() {
           <Grid item md={6}>
             <SectionHeadline
               overline="Working at MUI"
-              title={<Typography variant="h2">Perks & benefits</Typography>}
+              title={
+                <Typography variant="h2" id="perks-and-benefits">
+                  Perks & benefits
+                </Typography>
+              }
               description="To help you go above and beyond with us, we provide:"
             />
             {[

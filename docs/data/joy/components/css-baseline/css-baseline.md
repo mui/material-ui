@@ -70,7 +70,7 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 - The margin in all browsers is removed.
 - The default Material Design background color is applied.
   It's using `theme.palette.background.body` for standard devices and a white background for print devices.
-- The CSS [`color-scheme`](https://web.dev/color-scheme/) is applied by default. You can disable it by setting `disableColorScheme` to true on the `CssBaseline` or `ScopedCssBaseline`.
+- The CSS [`color-scheme`](https://web.dev/articles/color-scheme) is applied by default. You can disable it by setting `disableColorScheme` to true on the `CssBaseline` or `ScopedCssBaseline`.
 
 ### Layout
 
@@ -79,7 +79,7 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 ### Color scheme
 
-The CSS [`color-scheme`](https://web.dev/color-scheme/) is applied by default to render proper built-in components on the web. You can disable it by setting `disableColorScheme` to true on the `CssBaseline` or `ScopedCssBaseline`.
+The CSS [`color-scheme`](https://web.dev/articles/color-scheme) is applied by default to render proper built-in components on the web. You can disable it by setting `disableColorScheme` to true on the `CssBaseline` or `ScopedCssBaseline`.
 
 ```jsx
 <CssVarsProvider>
