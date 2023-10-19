@@ -104,7 +104,7 @@ const Div = styled('div')(({ theme }) => ({
 You can't use `theme.vars` to create an inset shadow because the value refers to the CSS variable, not the actual shadow.
 
 - `theme.vars.shadow.sm` returns `'var(--joy-shadow-sm)'`
-- `theme.shadow.sm` returns `'var(--joy-shadowRing), 0 1px 2px 0 rgba(var(--joy-shadowChannel) / 0.12)'`
+- `theme.shadow.sm` returns `'var(--joy-shadowRing), 0 1px 2px 0 rgba(var(--joy-shadowChannel) / 0.2)'`
 
 :::
 
@@ -114,7 +114,7 @@ Use the automatically generated opacity channel tokens (`mainChannel`, `lightCha
 
 ```js
 const Div = styled('div')(({ theme }) => ({
-  backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`,
+  backgroundColor: `rgba(${theme.vars.palette.primary.mainChannel} / 0.2)`,
 }));
 ```
 
@@ -122,8 +122,8 @@ const Div = styled('div')(({ theme }) => ({
 The format of the channel tokens uses a space as a separator (e.g., `61 131 246`), which means you have to use `/` to combine the channel token with an opacity value.
 
 ```js
-`rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`, ✅ correct
-`rgba(${theme.vars.palette.primary.mainChannel}, 0.12)`, 🚫 incorrect
+`rgba(${theme.vars.palette.primary.mainChannel} / 0.2)`, //  ✅ correct
+`rgba(${theme.vars.palette.primary.mainChannel}, 0.2)`, // 🚫 incorrect
 ```
 
 :::
@@ -154,7 +154,7 @@ The generated CSS variables will then be:
 
 ### Removing the default prefix
 
-Use an empty value (`""`) in the `cssVarPrefix` property to remove the default `joy` prefix from the generated CSS variables:
+Use an empty value (`''`) in the `cssVarPrefix` property to remove the default `joy` prefix from the generated CSS variables:
 
 ```jsx
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
