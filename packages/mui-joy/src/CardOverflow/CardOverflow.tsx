@@ -50,7 +50,7 @@ const CardOverflowRoot = styled('div', {
     margin: 'var(--_CardOverflow-margin)',
     borderRadius: 'var(--_CardOverflow-radius)',
     padding: 'var(--_CardOverflow-padding)',
-    [`.${cardClasses.horizontal} > &`]: {
+    [`.${cardClasses.horizontal} &`]: {
       '--AspectRatio-margin': 'calc(-1 * var(--Card-padding)) 0px',
       '--_CardOverflow-margin': 'var(--CardOverflow-offset) 0px',
       '--_CardOverflow-padding': 'var(--Card-padding) 0px',
@@ -75,7 +75,7 @@ const CardOverflowRoot = styled('div', {
         '--Button-radius': '0 var(--CardOverflow-radius) var(--CardOverflow-radius) 0',
       },
     },
-    [`.${cardClasses.vertical} > &, .${modalDialogClasses.root} > &`]: {
+    [`.${cardClasses.vertical} &, .${modalDialogClasses.root} &`]: {
       flexDirection: 'column', // required to make AspectRatio works
       '--AspectRatio-margin': '0 calc(-1 * var(--Card-padding))',
       '--_CardOverflow-margin': '0 var(--CardOverflow-offset)',
