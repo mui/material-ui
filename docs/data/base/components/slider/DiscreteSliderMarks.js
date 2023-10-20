@@ -111,19 +111,22 @@ const Slider = styled(BaseSlider)(
     background-color: #fff;
 
     &:hover{
-      box-shadow: 0 0 0 0.25rem ${alpha(
+      box-shadow: 0 0 0 4px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[300],
         0.3,
       )};
     }
-
+    
     &.${sliderClasses.focusVisible} {
       box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
       outline: none;
     }
 
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[600] : blue[300]};
+      box-shadow: 0 0 0 5px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[300],
+        0.5,
+      )};
       outline: none;
     }
   }
