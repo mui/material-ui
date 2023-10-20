@@ -140,7 +140,9 @@ Use the `renderValue` prop to customize the display of the selected options.
 
 #### Form submission
 
-Show what the value looks like after submitted a form.
+The `Select` component supports `name` and `required` props that will be used when submitting the form.
+
+{{"demo": "SelectMultipleFormSubmission.js"}}
 
 ### Listbox
 
