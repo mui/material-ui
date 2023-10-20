@@ -36,7 +36,7 @@ const RadioRoot = styled(SwitchBase, {
 
     return [
       styles.root,
-      styles[ownerState.size !== 'medium' && `size${capitalize(ownerState.size)}`],
+      ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size)}`],
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
