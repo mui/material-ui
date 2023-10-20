@@ -34,7 +34,11 @@ const RadioRoot = styled(SwitchBase, {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [styles.root, styles[`color${capitalize(ownerState.color)}`]];
+    return [
+      styles.root,
+      ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size)}`],
+      styles[`color${capitalize(ownerState.color)}`],
+    ];
   },
 })(({ theme, ownerState }) => ({
   color: (theme.vars || theme).palette.text.secondary,
