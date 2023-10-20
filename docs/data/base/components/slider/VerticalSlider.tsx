@@ -32,7 +32,6 @@ const Slider = styled(BaseSlider)(
   cursor: pointer;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
-  opacity: 0.75;
 
 
   & .${sliderClasses.rail} {
@@ -42,7 +41,7 @@ const Slider = styled(BaseSlider)(
     width: inherit;
     border-radius: 2px;
     background-color: currentColor;
-    opacity: 0.38;
+    opacity: 0.4;
   }
 
   & .${sliderClasses.track} {
@@ -69,7 +68,7 @@ const Slider = styled(BaseSlider)(
     transform: translate(-50%, 50%);
 
     &:hover{
-      box-shadow: 0 0 0 0.25rem ${alpha(
+      box-shadow: 0 0 0 4px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[300],
         0.3,
       )};
@@ -81,7 +80,10 @@ const Slider = styled(BaseSlider)(
     }
 
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[600] : blue[300]};
+      box-shadow: 0 0 0 5px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[300],
+        0.5,
+      )};
       outline: none;
     }
   }
