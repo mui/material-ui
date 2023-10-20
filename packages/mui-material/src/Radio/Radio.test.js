@@ -106,10 +106,6 @@ describe('<Radio />', () => {
         components: {
           MuiRadio: {
             styleOverrides: {
-              sizeMedium: {
-                marginTop: 40,
-                paddingLeft: 20,
-              },
               sizeSmall: {
                 marginLeft: -40,
                 paddingRight: 2,
@@ -121,15 +117,9 @@ describe('<Radio />', () => {
 
       const { container } = render(
         <ThemeProvider theme={theme}>
-          <Radio className="mediumRadio" />
           <Radio size="small" />
         </ThemeProvider>,
       );
-
-      expect(container.querySelector(`.${classes.root}.mediumRadio`)).toHaveComputedStyle({
-        marginTop: '40px',
-        paddingLeft: '20px',
-      });
 
       expect(container.querySelector(`.${classes.sizeSmall}`)).toHaveComputedStyle({
         marginLeft: '-40px',
