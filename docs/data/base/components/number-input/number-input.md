@@ -97,7 +97,14 @@ The NumberInput component provides two props - `onChange` and `onInputChange` - 
 
 #### onChange
 
-`onChange` is a custom event handler that is called with two arguments - the underlying event, and the latest "clamped" value.
+`onChange` accepts a custom event handler that is called with two arguments - the underlying event, and the latest "clamped" value:
+
+```ts
+onChange: (
+  event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent,
+  value: number | undefined,
+) => void;
+```
 
 It's called when the `<input>` element is blurred, or when the stepper buttons are clicked, after the value has been clamped based on the min, max, or step props.
 
@@ -122,7 +129,11 @@ Be aware that `onChange` can only be passed as a prop on the component, and not 
 
 #### onInputChange
 
-`onInputChange` accepts a native input event handler that is passed to the `<input>` element.
+`onInputChange` accepts a native input change handler that is passed to the `<input>` element:
+
+```ts
+onInputChange: React.ChangeEventHandler<HTMLInputElement>;
+```
 
 It's called whenever the value of the textbox changes, e.g. on every keystroke typed into it, before clamping is applied.
 
