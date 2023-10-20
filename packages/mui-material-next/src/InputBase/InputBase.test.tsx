@@ -58,6 +58,21 @@ describe('<InputBase />', () => {
   });
 
   describe('multiline', () => {
+    describe('warning if multiline related props are passed without specifying the multiline prop', () => {
+      ['rows', 'minRows', 'maxRows'].forEach((multilineProp) => {
+        it(`warns if ${multilineProp} is passed without specifying multiline`, () => {
+          const multilineErrorMessage = `MUI: You have set multiline props on an single-line input.\nSet the \`multiline\` prop if you want to render a multi-line input.\nOtherwise they will be ignored.\nIgnored props: ${multilineProp}`;
+          expect(() => {
+            render(<InputBase {...{ [multilineProp]: 1 }} />);
+          }).toErrorDev([
+            multilineErrorMessage,
+            // React 18 Strict Effects run mount effects twice
+            React.version.startsWith('18') && multilineErrorMessage,
+          ]);
+        });
+      });
+    });
+
     it('should render a `textbox` with `aria-multiline`', () => {
       render(<InputBase multiline />);
 
