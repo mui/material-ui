@@ -37,18 +37,23 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
 }
 
 interface InfoCardProps {
-  icon?: React.ReactNode;
   title: string;
-  description: string;
+  description?: string;
   link?: string;
+  icon?: React.ReactNode;
+  svg?: React.ReactNode;
 }
 
-export default function InfoCard({ icon, title, description, link }: InfoCardProps) {
+export default function InfoCard({ icon, svg, title, description, link }: InfoCardProps) {
   return (
     <Paper
       component={link ? Link : 'div'}
       href={link}
-      noLinkStyle={Boolean(link)}
+      {...(link
+        ? {
+            noLinkStyle: true,
+          }
+        : {})}
       variant="outlined"
       sx={(theme) => ({
         p: 3.5,
@@ -61,6 +66,7 @@ export default function InfoCard({ icon, title, description, link }: InfoCardPro
         }),
       })}
     >
+      {svg && svg}
       {icon && <GlowingIconContainer icon={icon} />}
       <Typography
         fontWeight="bold"
@@ -68,7 +74,7 @@ export default function InfoCard({ icon, title, description, link }: InfoCardPro
         color="text.primary"
         variant="body2"
         mt={icon ? 2 : 0}
-        mb={0.5}
+        mb={description ? 0.5 : 0}
       >
         {title}
       </Typography>
