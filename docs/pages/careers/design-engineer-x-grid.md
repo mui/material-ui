@@ -68,7 +68,7 @@ The Design Engineer role sits right at the intersection between product design a
   This might involve careful API design, identifying and fixing top bugs, creating easy-to-understand error messages, and writing documentation and blog posts about features you and your team ship.
 - **Collaborate with the open-source community**.
   The community contributes with many meaningful features and fixes. You'll guide and support them helping MUI X's growth while inspiring many others to join the ride, too.
-- **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
+- **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration from adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
 - **Take ownership of features from idea/mockup to live deployment**.
   You'll shape and guide the direction of crucial new features, including new components.
 - **Ship. Early and often**. You'll iterate and ship frequently.
