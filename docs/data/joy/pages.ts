@@ -148,7 +148,7 @@ const pages: readonly MuiPage[] = [
           },
           {
             pathname: '/joy-ui/customization/right-to-left',
-            title: 'Right-to-left language support',
+            title: 'Right-to-left support',
           },
         ],
       },
