@@ -1,2 +1,4 @@
-<Button>Button</Button>
-<Button disabled>Disabled</Button>
+<Stack spacing={2} direction="row">
+  <CustomButton>Button</CustomButton>
+  <CustomButton disabled>Disabled</CustomButton>
+</Stack>

@@ -1,5 +1,6 @@
 /* eslint-disable material-ui/straight-quotes */
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -19,19 +20,25 @@ export default function BaseUITestimonial() {
               border: '1px solid',
               borderColor: 'divider',
               borderRadius: 1,
-              pt: 3,
+              pt: 2,
               pl: 3,
               background: 'linear-gradient(260deg, #3399FF 0%, #0059B3 95%)',
               backgroundClip: 'padding-box',
               overflow: 'auto',
               '& img': {
                 width: '100%',
-                borderTopLeftRadius: '12px',
+                borderTopLeftRadius: '8px',
                 display: 'block',
               },
             }}
           >
-            <Typography variant="h4" component="h2" mb={2.5} sx={{ color: '#fff' }}>
+            <Typography
+              variant="h4"
+              component="h2"
+              mb={2.5}
+              fontWeight="medium"
+              sx={{ color: '#FFF' }}
+            >
               Nhost&apos;s dashboard
             </Typography>
             <Box
@@ -68,10 +75,24 @@ export default function BaseUITestimonial() {
           </Typography>
           <Divider />
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <Avatar
-              alt=""
-              src="https://media.licdn.com/dms/image/C4D03AQHm6cbz2UDXpw/profile-displayphoto-shrink_800_800/0/1642674447256?e=2147483647&v=beta&t=L8g2vW_8mG8AvB3lwui0CT8969_Cx9QQ0iJXIS47i0o"
-            />
+            <Box
+              sx={(theme) => ({
+                p: 0.5,
+                bgcolor: 'primary.50',
+                border: '1px solid',
+                borderColor: 'primary.200',
+                borderRadius: 99,
+                ...theme.applyDarkStyles({
+                  borderColor: 'primary.800',
+                  bgcolor: alpha(theme.palette.primary[900], 0.5),
+                }),
+              })}
+            >
+              <Avatar
+                alt="Szilárd Dóró's profile picture"
+                src="https://media.licdn.com/dms/image/C4D03AQHm6cbz2UDXpw/profile-displayphoto-shrink_800_800/0/1642674447256?e=2147483647&v=beta&t=L8g2vW_8mG8AvB3lwui0CT8969_Cx9QQ0iJXIS47i0o"
+              />
+            </Box>
             <Box sx={{ flex: 1 }}>
               <Typography variant="body2" fontWeight={600}>
                 Szilárd Dóró

@@ -1,1 +1,1 @@
-<NumberInput aria-label="Demo number input" placeholder="Type a number…" />
+<CustomNumberInput aria-label="Demo number input" placeholder="Type a number…" />

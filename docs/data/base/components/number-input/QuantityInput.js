@@ -1,16 +1,10 @@
 import * as React from 'react';
-import {
-  Unstable_NumberInput as BaseNumberInput,
-  NumberInputProps,
-} from '@mui/base/Unstable_NumberInput';
+import { Unstable_NumberInput as BaseNumberInput } from '@mui/base/Unstable_NumberInput';
 import { styled } from '@mui/system';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
-const NumberInput = React.forwardRef(function CustomNumberInput(
-  props: NumberInputProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
+const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
   return (
     <BaseNumberInput
       slots={{
@@ -21,11 +15,11 @@ const NumberInput = React.forwardRef(function CustomNumberInput(
       }}
       slotProps={{
         incrementButton: {
-          children: <AddIcon />,
+          children: <AddIcon fontSize="small" />,
           className: 'increment',
         },
         decrementButton: {
-          children: <RemoveIcon />,
+          children: <RemoveIcon fontSize="small" />,
         },
       }}
       {...props}
@@ -45,20 +39,21 @@ const blue = {
   400: '#3399ff',
   500: '#007fff',
   600: '#0072e5',
+  700: '#0059B2',
   800: '#004c99',
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
 const StyledInputRoot = styled('div')(
@@ -82,8 +77,11 @@ const StyledInput = styled('input')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  border-radius: 4px;
-  margin: 0 4px;
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+  };
+  border-radius: 8px;
+  margin: 0 8px;
   padding: 10px 12px;
   outline: 0;
   min-width: 0;
@@ -96,7 +94,7 @@ const StyledInput = styled('input')(
 
   &:focus {
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
   &:focus-visible {
@@ -111,12 +109,13 @@ const StyledButton = styled('button')(
   font-size: 0.875rem;
   box-sizing: border-box;
   line-height: 1.5;
-  border: 0;
+  border: 1px solid;
   border-radius: 999px;
-  color: ${theme.palette.mode === 'dark' ? blue[300] : blue[600]};
-  background: transparent;
-  width: 40px;
-  height: 40px;
+  border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  width: 32px;
+  height: 32px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -126,8 +125,10 @@ const StyledButton = styled('button')(
   transition-duration: 120ms;
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? blue[800] : blue[100]};
     cursor: pointer;
+    background: ${theme.palette.mode === 'dark' ? blue[700] : blue[500]};
+    border-color: ${theme.palette.mode === 'dark' ? blue[500] : blue[400]};
+    color: ${grey[50]};
   }
 
   &:focus-visible {
