@@ -91,6 +91,71 @@ The following code snippet:
 />
 ```
 
+### Events
+
+The NumberInput component provides two props - `onChange` and `onInputChange` - that accept event handlers for when the value of the component changes.
+
+#### onChange
+
+`onChange` is a custom event handler that is called with two arguments - the underlying event, and the latest "clamped" value.
+
+It's called when the `<input>` element is blurred, or when the stepper buttons are clicked, after the value has been clamped based on the min, max, or step props.
+
+Be aware that `onChange` can only be passed as a prop on the component, and not through `slotProps`.
+
+```jsx
+// ✅ Works
+<NumberInput
+  onChange={(event, newValue) => console.log(`${event.type} event: the new value is ${newValue}`)}
+/>
+
+// ❌ Doesn't work
+<NumberInput
+  slotProps={{
+    input: {
+      // expects a native input change event handler, newValue is always undefined
+      onChange: (event, newValue) => { ... },
+    },
+  }}
+/>
+```
+
+#### onInputChange
+
+`onInputChange` accepts a native input event handler that is passed to the `<input>` element.
+
+It's called whenever the value of the textbox changes, e.g. on every keystroke typed into it, before clamping is applied.
+
+In other words, it is possible for `event.target.value` to contain out-of-range values or non-numerical characters.
+
+Be aware that `onInputChange` can only be passed as a prop on the component. If you prefer to use slotProps, pass it as `slotProps.input.onChange` instead.
+
+```jsx
+// ✅ Works
+<NumberInput
+  onInputChange={(event) => console.log(`the input value is: ${event.target.value}`)}
+/>
+
+// ✅ Works
+<NumberInput
+  slotProps={{
+    input: {
+      onChange: (event) => console.log(`the input value is: ${event.target.value}`),
+    },
+  }}
+/>
+
+// ❌ Doesn't work
+<NumberInput
+  slotProps={{
+    input: {
+      // This will throw "unknown event handler"
+      onInputChange: () => {},
+    },
+  }}
+/>
+```
+
 ## Hook
 
 ```js
