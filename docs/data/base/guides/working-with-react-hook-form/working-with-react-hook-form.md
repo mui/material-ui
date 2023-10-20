@@ -200,7 +200,7 @@ TODO: Switch demo
 
 ### Slider
 
-Sliders are best used for selecting a value from a range where immediate effects of the change are apparent.
+Sliders are great for progressively enhancing a number input, especially when it's important to show the immediate effects of the change where the value is a numeric range.
 
 Base UI's Slider component provides two change handlers – `onChange` and `onChangeCommitted` – that can be used to separately update a value before writing to the form.
 
