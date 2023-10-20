@@ -515,6 +515,7 @@
     "/joy-ui/react-link": "Link",
     "/joy-ui/react-menu": "Menu",
     "/joy-ui/react-tabs": "Tabs",
+    "/joy-ui/react-box": "Box",
     "/joy-ui/react-grid": "Grid",
     "/joy-ui/react-stack": "Stack",
     "/joy-ui/react-css-baseline": "CSS Baseline",
