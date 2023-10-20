@@ -46,13 +46,14 @@ We are aiming to make high-end design accessible to the many, empowering develop
 
 ### Why this is interesting
 
-The advanced components portfolio is still small, with a million interesting and challenging problems to solve.
+Developing and designing components for advanced use cases is not an easy feat.
+It's an intricate challenge to craft customizable, feature-rich, and performative components while having them look great out of the box. 
 
-Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
+Within the MUI X team, you'll be facing this challenge head-on!
+We want to serve demanding customers by making their experience building data-heavy and complex applications much smoother with reliable, advanced React components.
 
-But while we are [the leading](https://tsh.io/state-of-frontend/#over-the-past-year-which-of-the-following-design-systems-was-your-favorite-go-to-solution) UI design system in the frontend space, the adoption of MUI is only at 25%. More importantly, the challenges of developers and designers to solve when creating UIs go way beyond the ones of design systems.
-We envision a future where MUI X becomes the default toolkit for web developers to create advanced UIs.
-It's why we started Base UI, Joy UI, and MUI Toolpad. Design is key to achieving this goal.
+There aren't a lot of benchmarks out there. 
+So, by combining top-notch engineering with sleek product design, you'll be pioneering a whole different area of UI component development.
 
 ## The role
 
