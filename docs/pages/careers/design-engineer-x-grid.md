@@ -93,12 +93,20 @@ The Design Engineer role sits right at the intersection between product design a
   The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
 - **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
 
-## About you
+## Who we're looking for
 
-### Skills you should have
+### Required
 
-- 3+ years of relevant web front-end development experience at product-driven companies.
-- Great understanding and taste for product design, including visual design fundamentals and user experience principles.
+- 3+ years of web front-end development at product-driven companies
+- Great understanding and taste for product design
+- Experience with design systems
+- You're highly empathetic
+- Fluent written and spoken English skills
+
+### Nice to have (but not required)
+
+- Experience in open-source
+- Experience with MUI products
 
 ## Benefits and compensation
 
