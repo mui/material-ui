@@ -198,6 +198,8 @@ Here's a complete demo of a Switch:
 TODO: Switch demo
 :::
 
+### Number Input
+
 ### Slider
 
 Sliders are great for progressively enhancing a number input, especially when it's important to show the immediate effects of the change where the value is a numeric range.
