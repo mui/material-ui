@@ -106,8 +106,8 @@ The example repos provide adapter components for the use of [Next.js's Link comp
 
 The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/-/examples/material-ui-nextjs-ts/src/Link.tsx) component.
 This component is unstyled and only responsible for handling the navigation.
-The prop `href` was renamed `to` to avoid a naming conflict.
-This is similar to react-router's Link component.
+The `href` prop from Next.js's Link is renamed to `to` in order to distinguish from `@mui/material/Link`'s `href` prop.
+The resulting API is similar to react-router's Link component:
 
 ```tsx
 import Button from '@mui/material/Button';
