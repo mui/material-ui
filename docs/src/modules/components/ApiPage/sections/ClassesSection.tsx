@@ -68,7 +68,7 @@ export default function ClassesSection(props: ClassesSectionProps) {
 
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 1 }}>
         <Level id={titleHash} style={{ flexGrow: 1 }}>
           {t(title)}
           <a

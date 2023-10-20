@@ -39,15 +39,15 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/core": "^7.23.0",
+    "@babel/core": "^7.23.2",
     "@babel/plugin-syntax-jsx": "^7.22.5",
-    "@babel/preset-typescript": "^7.23.0",
+    "@babel/preset-typescript": "^7.23.2",
     "@linaria/babel-preset": "^4.5.4",
     "@mui/zero-tag-processor": "0.0.1-alpha.0",
     "file-system-cache": "2.0.2"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.2",
+    "@types/babel__core": "^7.20.3",
     "@types/loader-utils": "^2.0.4",
     "next": "^13.4.19"
   },

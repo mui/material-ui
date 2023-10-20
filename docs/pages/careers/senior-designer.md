@@ -2,28 +2,39 @@
 
 <p class="description">You will be responsible for pushing MUI's component design bar higher.</p>
 
-## Details of the Role
+## Details of the role
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
 - **Level**: [3 or above](https://mui-org.notion.site/Design-levels-aa01996ca7e0481e80479ad47c8f28a4).
 - We're a **remote** company, operating mostly asynchronously (written communication over meetings).
 
-## About the company
+## The company
 
-MUI started with Material UI, the most successful React implementation of Google's Material Design.
-We have gained a large following, thanks to our focus on Material Design fidelity, our obsession with details, on offering a large number of components, our community engagement, and by carefully improving the DX.
-Today, countless teams and organizations rely on our open-source libraries to build their design system.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub, and has paved the way for the fully fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 35+ people as of late 2023, and we're growing.
 
-A couple of years ago, we started to expand our suite of products.
-We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
-We've seen rapid growth with all of them (2x per year) and we have more to come.
-We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
+## The products
 
-We are a fully distributed team, spread across multiple time zones.
-We work mainly asynchronously, relying mostly on written collaboration.
-Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
-For additional details about the MUI team and culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+We also host Design Kits and pre-built Templates.
+
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+
+We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
+
+Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/).
+
+## The culture
+
+MUI is a fully remote company with a team that spans the globe.
+The majority of our work is asynchronous, and we rely on written communication to collaborate.
+We're radically transparent: nearly all of our work happens in public.
+Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
+
+For additional details about the culture you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
@@ -44,7 +55,7 @@ We envision a future where MUI becomes the default toolkit for web developers to
 It's why we've been expanding our offering with Joy UI, Base UI, and MUI Toolpad.
 Design is foundational to achieving this goal.
 
-## About the role
+## The role
 
 Designers at MUI are essentially _team leaders_.
 That means you'll be working closely with your engineering lead counterpart to shape work and scope targeting a set of problems revolving around our component area, either on MUI Core or MUI X (to be further defined).
@@ -104,7 +115,7 @@ So, if you're this designer, either already able to code or growing in this dire
 
 - **Past experience with open-source projects.** You understand the unique dynamics of products in an open-source environment as well as common challenges that arise.
 
-## Benefits & Compensation
+## Benefits and compensation
 
 We are ready to pay competitive, top market rates, for a person that can clearly exceed the role's expectations.
 Therefore, we consider profile and location.
@@ -122,7 +133,7 @@ Here's a brief overview of how this role's process will be carried through:
 We like to encourage candidates to also see all of these conversations as opportunities for you to interview us as well.
 It's highly encouraged to bring whatever questions you see fit to make sure we are also a great role for you.
 
-## How to apply?
+## How to apply
 
 [Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/4ea9d324-3350-48d5-bfab-706ebfc23ed2/application?utm_source=ZNRrPGBkqO)
 

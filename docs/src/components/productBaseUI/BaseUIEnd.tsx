@@ -1,18 +1,16 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Grid from '@mui/material/Unstable_Grid2';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import CompareIcon from '@mui/icons-material/Compare';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import { alpha } from '@mui/material/styles';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 
 export default function BaseUIEnd() {
@@ -45,17 +43,12 @@ export default function BaseUIEnd() {
               </React.Fragment>
             }
           />
-          <Button
-            href={ROUTES.baseDocs}
-            component={Link}
-            noLinkStyle
-            size="large"
-            variant="contained"
-            endIcon={<KeyboardArrowRightRounded />}
-            sx={{ mt: 2 }}
-          >
-            Get started
-          </Button>
+          <GetStartedButtons
+            primaryUrl={ROUTES.baseDocs}
+            secondaryLabel="Learn Base UI"
+            secondaryUrl={ROUTES.baseQuickstart}
+            altInstallation="npm install @mui/base"
+          />
         </Grid>
         <Grid xs={12} sm={6}>
           <List sx={{ '& > li': { alignItems: 'flex-start' } }}>

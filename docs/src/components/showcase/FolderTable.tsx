@@ -18,6 +18,8 @@ const data = [
   { name: 'Pictures & videos', size: 134000000 },
   { name: 'Source files', size: 200000000 },
   { name: 'Dependencies', size: 44000000 },
+  { name: 'Assets & illustrations', size: 21000000 },
+  { name: 'Components', size: 11000 },
 ];
 
 type Data = typeof data extends Array<infer T> ? T : never;
