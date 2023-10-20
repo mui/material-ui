@@ -80,4 +80,8 @@ export interface AccordionSummaryOwnerState extends ApplyColorInversion<Accordio
    * The expanded state of the accordion.
    */
   expanded: boolean;
+  /**
+   * The type attribute specifies the type of button.
+   */
+   type: string;
 }
