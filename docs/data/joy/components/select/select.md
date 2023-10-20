@@ -130,7 +130,17 @@ In contrast with single-selection mode, the options popup doesn't close after an
 
 Note that in multiple selection mode, the `value` prop (and `defaultValue`) is an array.
 
-{{"demo": "SelectMultiple.js", "defaultCodeOpen": false}}
+{{"demo": "SelectMultiple.js"}}
+
+#### Selected value appearance
+
+Use the `renderValue` prop to customize the display of the selected options.
+
+{{"demo": "SelectMultipleAppearance.js"}}
+
+#### Form submission
+
+Show what the value looks like after submitted a form.
 
 ### Listbox
 
