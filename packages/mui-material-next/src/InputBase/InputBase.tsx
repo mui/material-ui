@@ -319,7 +319,7 @@ const InputBase = React.forwardRef(function InputBase<
   const onFilled = muiFormControl && muiFormControl.onFilled;
   const onEmpty = muiFormControl && muiFormControl.onEmpty;
 
-  // TODO: needs material-next/Outlined|FilledInput
+  // TODO: needs material-next/OutlinedInput
   const checkDirty = React.useCallback(
     (obj: any) => {
       if (isFilled(obj)) {

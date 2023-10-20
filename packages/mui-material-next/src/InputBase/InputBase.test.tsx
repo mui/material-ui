@@ -247,7 +247,8 @@ describe('<InputBase />', () => {
     });
 
     it('should inject onBlur and onFocus', () => {
-      let injectedProps: any = {};
+      let injectedProps: Record<string, unknown> = {};
+
       const MyInputBase = React.forwardRef(function MyInputBase(
         props: { ownerState: InputBaseOwnerState } & Record<string, unknown>,
         ref: React.ForwardedRef<HTMLInputElement>,
@@ -259,10 +260,8 @@ describe('<InputBase />', () => {
 
       render(<InputBase inputComponent={MyInputBase} />);
 
-      if (injectedProps) {
-        expect(typeof injectedProps.onBlur).to.equal('function');
-        expect(typeof injectedProps.onFocus).to.equal('function');
-      }
+      expect(typeof injectedProps.onBlur).to.equal('function');
+      expect(typeof injectedProps.onFocus).to.equal('function');
     });
 
     describe('target mock implementations', () => {
