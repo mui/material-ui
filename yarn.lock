@@ -2268,16 +2268,6 @@
     find-up "^5.0.0"
     minimatch "^9.0.3"
 
-"@linaria/vite@^4.5.4":
-  version "4.5.4"
-  resolved "https://registry.yarnpkg.com/@linaria/vite/-/vite-4.5.4.tgz#bbccbd3de67715a8b6759a578c086c1ab31ec8d2"
-  integrity sha512-YhaLgTAfE7xzRLJwxWjo0Ak/YOJ+kPWuOm3lrkziclsvf1bbTUHlecmvth+2KuJG8HEPReekuyDErnwIQoD6sA==
-  dependencies:
-    "@linaria/babel-preset" "^4.5.4"
-    "@linaria/logger" "^4.5.0"
-    "@linaria/utils" "^4.5.3"
-    "@rollup/pluginutils" "^4.1.0"
-
 "@material-ui/types@^4.0.0":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@material-ui/types/-/types-4.1.1.tgz#b65e002d926089970a3271213a3ad7a21b17f02b"
@@ -3087,14 +3077,6 @@
   dependencies:
     "@rollup/pluginutils" "^5.0.1"
     magic-string "^0.30.3"
-
-"@rollup/pluginutils@^4.1.0":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.2.1.tgz#e6c6c3aba0744edce3fb2074922d3776c0af2a6d"
-  integrity sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==
-  dependencies:
-    estree-walker "^2.0.1"
-    picomatch "^2.2.2"
 
 "@rollup/pluginutils@^5.0.1":
   version "5.0.4"
@@ -8200,7 +8182,7 @@ estree-walker@^0.6.1:
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.6.1.tgz#53049143f40c6eb918b23671d1fe3219f3a1b362"
   integrity sha512-SqmZANLWS0mnatqbSfRP5g8OXZC12Fgg1IwNtLsyHDzJizORW4khDfjPqJZsemPWBB2uqykUah5YpQ6epsqC/w==
 
-estree-walker@^2.0.1, estree-walker@^2.0.2:
+estree-walker@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
   integrity sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==
@@ -13726,7 +13708,7 @@ picocolors@^1.0.0:
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
   integrity sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==
 
-picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2, picomatch@^2.2.3, picomatch@^2.3.1:
+picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3, picomatch@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==

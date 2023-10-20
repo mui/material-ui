@@ -19,6 +19,7 @@ export default defineConfig({
     zeroVitePlugin({
       cssVariablesPrefix: 'app',
       theme,
+      transformLibraries: ['local-library'],
     }),
     reactPlugin(),
     splitVendorChunkPlugin(),
