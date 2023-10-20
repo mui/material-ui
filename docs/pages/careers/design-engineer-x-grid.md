@@ -61,8 +61,8 @@ So, by combining top-notch engineering with sleek product design, you'll be pion
 
 The Design Engineer role sits right at the intersection between product design and software engineering. So, depending on the initiative, your day can be entirely different! Here's what you'll be able to do:
 
-- **Contribute to deep, meaningful refactors and feature releases**.
-  MUI X is a complex codebase. Components we've shipped recently, such as the data grid and date pickers have required months of dedicated, careful work.
+- **Contribute to feature releases and deep refactors**.
+  MUI X is a complex codebase. Components we've shipped recently, such as the Data Grid grid and Date and Time Pickers, require months of dedicated, careful work.
 - **Design for engineers and their end users**.
   As an engineer yourself, you are able to understand problems developers face, and you will help them overcome those problems by delivering good DX, and enabling them to create powerful UX for their end users
   This might involve careful API design, identifying and fixing top bugs, creating easier-to-understand error messages, and writing documentation and blog posts about features you and your team ship.
