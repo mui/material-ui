@@ -195,12 +195,6 @@ describe('<NumberInput />', () => {
           data-testid="root"
           onChange={handleChange}
           onInputChange={handleInputChange}
-          slotProps={{
-            input: {
-              // @ts-ignore
-              'data-testid': 'input',
-            },
-          }}
         />,
       );
 
@@ -214,6 +208,35 @@ describe('<NumberInput />', () => {
       expect(handleInputChange.callCount).to.equal(1);
       // return value is event.currentTarget
       expect(handleInputChange.returned(input)).to.equal(true);
+    });
+
+    it('is overridden by slotProps.input.onChange', async () => {
+      const handleInputChange = spy();
+      const slotPropsHandleChange = spy((event) => event.currentTarget);
+
+      const { getByRole } = render(
+        <NumberInput
+          defaultValue={10}
+          data-testid="root"
+          onInputChange={handleInputChange}
+          slotProps={{
+            input: {
+              onChange: slotPropsHandleChange,
+            },
+          }}
+        />,
+      );
+
+      const input = getByRole('textbox');
+
+      await userEvent.click(input);
+
+      await userEvent.keyboard('3');
+
+      expect(handleInputChange.callCount).to.equal(0);
+      expect(slotPropsHandleChange.callCount).to.equal(1);
+      // return value is event.currentTarget
+      expect(slotPropsHandleChange.returned(input)).to.equal(true);
     });
   });
 
