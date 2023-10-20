@@ -471,7 +471,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   }
 
   const buttonId = SelectDisplayProps.id || (name ? `mui-component-select-${name}` : undefined);
-  const selectNativeInputId = SelectDisplayProps.id ? `${SelectDisplayProps.id}-input` : undefined;
 
   const ownerState = {
     ...props,
@@ -534,7 +533,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         autoFocus={autoFocus}
         ownerState={ownerState}
         {...other}
-        id={selectNativeInputId}
+        aria-labelledby={labelId}
       />
       <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
       <Menu

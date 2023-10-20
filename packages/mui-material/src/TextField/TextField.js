@@ -147,7 +147,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   }
 
   const id = useId(idOverride);
-  const htmlFor = select && (!SelectProps || !SelectProps.native) ? `${id}-input` : id;
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
   const inputLabelId = label && id ? `${id}-label` : undefined;
   const InputComponent = variantComponent[variant];
@@ -191,7 +190,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       {...other}
     >
       {label != null && label !== '' && (
-        <InputLabel htmlFor={htmlFor} id={inputLabelId} {...InputLabelProps}>
+        <InputLabel htmlFor={id} id={inputLabelId} {...InputLabelProps}>
           {label}
         </InputLabel>
       )}
