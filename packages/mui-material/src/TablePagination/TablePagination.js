@@ -253,7 +253,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           rowsPerPage={rowsPerPage}
           showFirstButton={showFirstButton}
           showLastButton={showLastButton}
-          slotProps={slotProps}
+          slotProps={slotProps?.actions?.slotProps}
           getItemAriaLabel={getItemAriaLabel}
           disabled={disabled}
         />
@@ -277,7 +277,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.
    *
    * This prop is an alias for `slotProps.previousIconButton` and will be overriden by it if both are used.
-   * @deprecated Use `slotProps.previousIconButton` instead.
+   * @deprecated Use `slotProps.actions.slotProps.previousIconButton` instead.
    */
   backIconButtonProps: PropTypes.object,
   /**
@@ -341,7 +341,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
    *
    * This prop is an alias for `slotProps.nextIconButton` and will be overriden by it if both are used.
-   * @deprecated Use `slotProps.nextIconButton` instead.
+   * @deprecated Use `slotProps.actions.slotProps.nextIconButton` instead.
    */
   nextIconButtonProps: PropTypes.object,
   /**
@@ -421,10 +421,14 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    firstIconButton: PropTypes.object,
-    lastIconButton: PropTypes.object,
-    nextIconButton: PropTypes.object,
-    previousIconButton: PropTypes.object,
+    actions: PropTypes.shape({
+      slotProps: PropTypes.shape({
+        firstIconButton: PropTypes.object,
+        lastIconButton: PropTypes.object,
+        nextIconButton: PropTypes.object,
+        previousIconButton: PropTypes.object,
+      }),
+    }),
     select: PropTypes.object,
   }),
   /**
