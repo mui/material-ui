@@ -59,7 +59,7 @@ So, by combining top-notch engineering with sleek product design, you'll be pion
 
 ### What you'll do on a day-to-day basis
 
-You will extend the [Design Engineer](https://mui-org.notion.site/Design-Engineer-09e4cac2e0bb4df3b173458b4b4b5666) responsibilities. Depending on the day, you'll:
+The Design Engineer role sits right at the intersection between product design and software engineering. So, depending on the initiative, your day can be entirely different! Here's what you'll be able to do:
 
 - **Contribute to deep, meaningful refactors and feature releases**.
   MUI X is a complex codebase. Components we've shipped recently, such as the data grid and date pickers have required months of dedicated, careful work.
