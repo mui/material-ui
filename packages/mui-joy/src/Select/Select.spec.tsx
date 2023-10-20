@@ -160,6 +160,22 @@ const handleMultiChange = (
 <Select multiple defaultValue={[10]} />;
 <Select multiple value={[10]} />;
 
+<Select multiple value={[10]} onChange={handleMultiChange} />;
+<Select value={10} onChange={handleChange} />;
+
+<Select
+  multiple
+  value={[10]}
+  // @ts-expect-error
+  onChange={handleChange}
+/>;
+
+<Select
+  value={10}
+  // @ts-expect-error
+  onChange={handleMultiChange}
+/>;
+
 <Select
   value={10}
   // @ts-expect-error
