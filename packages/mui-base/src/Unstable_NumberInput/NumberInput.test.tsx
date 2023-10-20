@@ -240,6 +240,63 @@ describe('<NumberInput />', () => {
     });
   });
 
+  describe('prop: onChange', () => {
+    it('fires when the textbox is blurred', async () => {
+      const handleChange = spy((event) => event.target);
+
+      const { getByRole } = render(
+        <NumberInput defaultValue={10} data-testid="root" onChange={handleChange} />,
+      );
+
+      const input = getByRole('textbox');
+
+      await userEvent.click(input);
+
+      await userEvent.keyboard('3');
+
+      expect(handleChange.callCount).to.equal(0);
+
+      await userEvent.keyboard('[Tab]');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.returned(input)).to.equal(true);
+    });
+
+    it('fires when changing the value with step buttons', async () => {
+      const handleChange = spy((event) => event.target);
+
+      const { getByTestId } = render(
+        <NumberInput
+          defaultValue={10}
+          data-testid="root"
+          onChange={handleChange}
+          slotProps={{
+            incrementButton: {
+              // @ts-ignore
+              'data-testid': 'increment-btn',
+            },
+            decrementButton: {
+              // @ts-ignore
+              'data-testid': 'decrement-btn',
+            },
+          }}
+        />,
+      );
+
+      const incrementButton = getByTestId('increment-btn');
+      const decrementButton = getByTestId('decrement-btn');
+
+      await userEvent.click(incrementButton);
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.returned(incrementButton)).to.equal(true);
+
+      await userEvent.click(decrementButton);
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.returned(decrementButton)).to.equal(true);
+    });
+  });
+
   describe('step buttons', () => {
     it('clicking the increment and decrement buttons changes the value', async () => {
       const handleChange = spy();
