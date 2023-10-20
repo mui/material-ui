@@ -302,6 +302,23 @@ const InputBase = React.forwardRef(function InputBase<
     ...other
   } = props;
 
+  if (process.env.NODE_ENV !== 'production') {
+    const definedMultilineProps = (['rows', 'minRows', 'maxRows'] as const).filter(
+      (multilineProp) => props[multilineProp] !== undefined,
+    );
+
+    if (!multiline && definedMultilineProps.length > 0) {
+      console.error(
+        [
+          'MUI: You have set multiline props on an single-line input.',
+          'Set the `multiline` prop if you want to render a multi-line input.',
+          'Otherwise they will be ignored.',
+          `Ignored props: ${definedMultilineProps.join(', ')}`,
+        ].join('\n'),
+      );
+    }
+  }
+
   const { current: isControlled } = React.useRef(value != null);
 
   const muiFormControl = useFormControl();
