@@ -163,26 +163,33 @@ const handleMultiChange = (
 <Select
   value={10}
   // @ts-expect-error
-  onChange={(event) => handleMultiChange(event)}
+  onChange={handleMultiChange}
 />;
 
 <Select<number, true>
   value={[10]}
   // @ts-expect-error
-  onChange={(event) => handleChange(event)}
+  onChange={handleChange}
 />;
 
 <Select
   defaultValue={10}
   // @ts-expect-error
-  onChange={(event) => handleMultiChange(event)}
+  onChange={handleMultiChange}
 />;
 
 <Select<number, true>
   defaultValue={[10]}
   // @ts-expect-error
-  onChange={(event) => handleChange(event)}
+  onChange={handleChange}
 />;
+<Select value={10} onChange={handleChange} />;
+
+<Select<number, true> onChange={handleMultiChange} value={[10]} />;
+
+<Select defaultValue={10} onChange={handleChange} />;
+
+<Select<number, true> defaultValue={[10]} onChange={handleMultiChange} />;
 
 // @ts-expect-error
 <Select<number, false> value={[10]} />;
