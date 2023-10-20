@@ -11,7 +11,7 @@ export default function SelectMultipleAppearance() {
       renderValue={(selected) => (
         <Box sx={{ display: 'flex', gap: '0.25rem' }}>
           {selected.map((selectedOption) => (
-            <Chip variant="outlined" color="success">
+            <Chip variant="soft" color="primary">
               {selectedOption.label}
             </Chip>
           ))}
