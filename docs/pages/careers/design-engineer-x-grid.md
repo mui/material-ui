@@ -71,11 +71,9 @@ The Design Engineer role sits right at the intersection between product design a
 - **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration from adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
 - **Take ownership of features from idea/mockup to live deployment**.
   You'll shape and guide the direction of crucial new features, including new components.
-- **Ship. Early and often**. You'll iterate and ship frequently.
-  You'll have a real impact on the end-user experience and you'll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
-- **You'll be interacting with the users** on a regular basis, handling inbound support and feature requests (every developer helps with developer requests).
+- **You'll be interacting with customers** regularly, handling inbound support and feature requests (every developer helps with developer requests).
 - **Bridge the gap between design and engineering**.
-  You will closely work with designers and engineers, and act as a communication conduit between the two roles to ensure efficient workflows and shared understanding of goals.
+  Sometimes, you'll be sketching new features on Figma. On other days, you'll be prototyping them in code. 
 
 ### The best parts of this job
 
@@ -99,10 +97,8 @@ The Design Engineer role sits right at the intersection between product design a
 
 ### Skills you should have
 
-- 3+ years of relevant web front-end development experience at a tech-forward, product-driven company.
-- Advanced knowledge of modern React, HTML, and CSS.
-- Design taste and experience for building great and seamless user experiences.
-- A good understanding of the formal elements of design, not just limited to the web and including typography, layout, balance, and proportion.
+- 3+ years of relevant web front-end development experience at product-driven companies.
+- Great understanding and taste for product design, including visual design fundamentals and user experience principles.
 
 ## Benefits and compensation
 
