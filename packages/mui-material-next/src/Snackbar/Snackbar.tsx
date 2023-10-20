@@ -11,8 +11,9 @@ import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import { getSnackbarUtilityClass } from './snackbarClasses';
+import { SnackbarOwnerState, SnackbarProps } from './Snackbar.types';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: SnackbarOwnerState) => {
   const { classes, anchorOrigin } = ownerState;
 
   const slots = {
@@ -40,7 +41,7 @@ const SnackbarRoot = styled('div', {
       ],
     ];
   },
-})(({ theme, ownerState }) => {
+})<{ ownerState: SnackbarOwnerState }>(({ theme, ownerState }) => {
   const center = {
     left: '50%',
     right: 'auto',
@@ -73,7 +74,21 @@ const SnackbarRoot = styled('div', {
   };
 });
 
-const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
+/**
+ * Snackbars provide brief notifications. The component is also known as a toast.
+ *
+ * Demos:
+ *
+ * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
+ *
+ * API:
+ *
+ * - [Snackbar API](https://mui.com/material-ui/api/snackbar/)
+ */
+const Snackbar = React.forwardRef(function Snackbar(
+  inProps: SnackbarProps,
+  ref: React.ForwardedRef<any>,
+) {
   const props = useThemeProps({ props: inProps, name: 'MuiSnackbar' });
   const theme = useTheme();
   const defaultTransitionDuration = {
@@ -111,7 +126,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     disableWindowBlurListener,
     TransitionComponent,
     transitionDuration,
-  };
+  } as SnackbarOwnerState;
 
   const classes = useUtilityClasses(ownerState);
 
@@ -124,26 +139,19 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     getSlotProps: getRootProps,
     externalForwardedProps: other,
     ownerState,
-    additionalProps: {
-      ref,
-    },
+    additionalProps: { ref },
     className: [classes.root, className],
+    externalSlotProps: {},
   });
 
-  const handleExited = (node) => {
+  const handleExited = (node: HTMLElement) => {
     setExited(true);
-
-    if (onExited) {
-      onExited(node);
-    }
+    onExited?.(node);
   };
 
-  const handleEnter = (node, isAppearing) => {
+  const handleEnter = (node: HTMLElement, isAppearing: boolean) => {
     setExited(false);
-
-    if (onEnter) {
-      onEnter(node, isAppearing);
-    }
+    onEnter?.(node, isAppearing);
   };
 
   // So we only render active snackbars.
@@ -158,7 +166,6 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
           appear
           in={open}
           timeout={transitionDuration}
-          direction={vertical === 'top' ? 'down' : 'up'}
           onEnter={handleEnter}
           onExited={handleExited}
           {...TransitionProps}
@@ -173,7 +180,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
 Snackbar.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
@@ -244,7 +251,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * The `reason` parameter can optionally be used to control the response to `onClose`,
    * for example ignoring `clickaway`.
    *
-   * @param {React.SyntheticEvent<any> | Event} event The event source of the callback.
+   * @param {React.SyntheticEvent<any> | Event | null} event The event source of the callback.
    * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`, or `"escapeKeyDown"`.
    */
   onClose: PropTypes.func,
@@ -307,6 +314,6 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   TransitionProps: PropTypes.object,
-};
+} as any;
 
 export default Snackbar;
