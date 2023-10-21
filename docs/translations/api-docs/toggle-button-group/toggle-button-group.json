@@ -53,6 +53,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
       "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "fullWidth": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>fullWidth={true}</code>"
     }
   }
 }

@@ -45,7 +45,15 @@
     "import { ToggleButtonGroup } from '@mui/material';"
   ],
   "styles": {
-    "classes": ["root", "vertical", "disabled", "grouped", "groupedHorizontal", "groupedVertical"],
+    "classes": [
+      "root",
+      "vertical",
+      "disabled",
+      "grouped",
+      "groupedHorizontal",
+      "groupedVertical",
+      "fullWidth"
+    ],
     "globalClasses": { "disabled": "Mui-disabled" },
     "name": "MuiToggleButtonGroup"
   },
