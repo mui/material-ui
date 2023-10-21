@@ -76,7 +76,7 @@ export default function AccordionTransition() {
 }}`
                 : `"${transition}"`
             }>`}
-          language="jsx"
+            language="jsx"
           />
         </BrandingProvider>
       </Box>

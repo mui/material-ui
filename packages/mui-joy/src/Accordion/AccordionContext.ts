@@ -8,7 +8,7 @@ const AccordionContext = React.createContext<
   Partial<{
     disabled: boolean;
     expanded: boolean;
-    type:string;
+    type: string;
     toggle: (event: React.SyntheticEvent) => void;
     accordionId: string;
   }>

@@ -102,7 +102,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     accordionId,
     disabled = false,
     expanded = false,
-    type='button',
+    type = 'button',
     toggle,
   } = React.useContext(AccordionContext);
 
@@ -115,7 +115,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     disabled,
     expanded,
     variant,
-    type
+    type,
   };
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

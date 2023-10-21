@@ -83,5 +83,5 @@ export interface AccordionSummaryOwnerState extends ApplyColorInversion<Accordio
   /**
    * The type attribute specifies the type of button.
    */
-   type: string;
+  type: string;
 }
