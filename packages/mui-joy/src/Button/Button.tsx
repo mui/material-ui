@@ -6,7 +6,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { Interpolation } from '@mui/system';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, Theme, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
@@ -108,17 +107,17 @@ export const getButtonStyles = ({
         '--Button-gap': '0.375rem',
         minHeight: 'var(--Button-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
-        paddingBlock: '2px',
+        paddingBlock: '0.25rem',
         paddingInline: '0.75rem',
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': theme.vars.fontSize.xl,
-        '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
-        '--CircularProgress-thickness': '3px',
+        '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
+        '--CircularProgress-thickness': '2px',
         '--Button-gap': '0.5rem',
-        minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
+        minHeight: 'var(--Button-minHeight, 2.25rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
-        paddingBlock: '0.25rem', // the padding-block act as a minimum spacing between content and root element
+        paddingBlock: '0.375rem', // the padding-block act as a minimum spacing between content and root element
         paddingInline: '1rem',
       }),
       ...(ownerState.size === 'lg' && {
@@ -126,14 +125,15 @@ export const getButtonStyles = ({
         '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--CircularProgress-thickness': '4px',
         '--Button-gap': '0.75rem',
-        minHeight: 'var(--Button-minHeight, 3rem)',
+        minHeight: 'var(--Button-minHeight, 2.75rem)',
         fontSize: theme.vars.fontSize.md,
-        paddingBlock: '0.375rem',
+        paddingBlock: '0.5rem',
         paddingInline: '1.5rem',
       }),
       WebkitTapHighlightColor: 'transparent',
-      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
-      margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
+      boxSizing: 'border-box',
+      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, e.g. Input
+      margin: `var(--Button-margin)`, // to be controlled by other components, e.g. Input
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -144,7 +144,7 @@ export const getButtonStyles = ({
       textDecoration: 'none', // prevent user agent underline when used as anchor
       fontFamily: theme.vars.fontFamily.body,
       fontWeight: theme.vars.fontWeight.lg,
-      lineHeight: 1,
+      lineHeight: theme.vars.lineHeight.md,
       ...(ownerState.fullWidth && {
         width: '100%',
       }),
@@ -157,7 +157,8 @@ export const getButtonStyles = ({
       },
       '&:active, &[aria-pressed="true"]':
         theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-      '&:disabled': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      [`&.${buttonClasses.disabled}`]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       ...(ownerState.loadingPosition === 'center' && {
         // this has to come after the variant styles to take effect.
         [`&.${buttonClasses.loading}`]: {
@@ -213,11 +214,11 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, buttonGroup.color || colorProp);
-  const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp || loading);
+  const color = inProps.color || buttonGroup.color || colorProp;
+  const disabled =
+    (inProps.disabled || inProps.loading) ?? (buttonGroup.disabled || disabledProp || loading);
 
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
@@ -227,10 +228,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress
-      {...(color !== 'context' && { color })}
-      thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3}
-    />
+    <CircularProgress color={color} thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3} />
   );
 
   React.useImperativeHandle(

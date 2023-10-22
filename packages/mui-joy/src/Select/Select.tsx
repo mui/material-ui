@@ -13,7 +13,6 @@ import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
-import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { SelectOwnProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
 import { resolveSxValue } from '../styles/styleUtils';
 import useSlot from '../utils/useSlot';
@@ -24,18 +23,6 @@ import { VariantColorProvider } from '../styles/variantColorInheritance';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
   return selectedOption?.label ?? '';
-}
-
-function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> | null) {
-  if (selectedOption?.value == null) {
-    return '';
-  }
-
-  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
-    return selectedOption.value;
-  }
-
-  return JSON.stringify(selectedOption.value);
 }
 
 const defaultModifiers: PopperProps['modifiers'] = [
@@ -94,16 +81,17 @@ const SelectRoot = styled('div', {
       '--Select-placeholderOpacity': 0.64,
       '--Select-decoratorColor': theme.vars.palette.text.icon,
       '--Select-focusedThickness': theme.vars.focus.thickness,
-      ...(ownerState.color === 'context'
-        ? {
-            '--Select-focusedHighlight': theme.vars.palette.focusVisible,
-          }
-        : {
-            '--Select-focusedHighlight':
-              theme.vars.palette[
-                ownerState.color === 'neutral' ? 'primary' : ownerState.color!
-              ]?.[500],
-          }),
+      '--Select-focusedHighlight':
+        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      '&:not([data-inverted-colors="false"])': {
+        ...(ownerState.instanceColor && {
+          '--_Select-focusedHighlight':
+            theme.vars.palette[
+              ownerState.instanceColor === 'neutral' ? 'primary' : ownerState.instanceColor
+            ]?.[500],
+        }),
+        '--Select-focusedHighlight': theme.vars.palette.focusVisible,
+      },
       '--Select-indicatorColor': variantStyle?.backgroundColor
         ? variantStyle?.color
         : theme.vars.palette.text.tertiary,
@@ -114,13 +102,13 @@ const SelectRoot = styled('div', {
         '--Icon-fontSize': theme.vars.fontSize.xl,
       }),
       ...(ownerState.size === 'md' && {
-        '--Select-minHeight': '2.5rem',
+        '--Select-minHeight': '2.25rem',
         '--Select-paddingInline': '0.75rem',
-        '--Select-decoratorChildHeight': 'min(2rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(1.75rem, var(--Select-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Select-minHeight': '3rem',
+        '--Select-minHeight': '2.75rem',
         '--Select-paddingInline': '1rem',
         '--Select-decoratorChildHeight': 'min(2.375rem, var(--Select-minHeight))',
         '--Icon-fontSize': theme.vars.fontSize.xl2,
@@ -137,6 +125,9 @@ const SelectRoot = styled('div', {
       '--Button-radius': 'var(--Select-decoratorChildRadius)',
       '--IconButton-radius': 'var(--Select-decoratorChildRadius)',
       boxSizing: 'border-box',
+      ...(ownerState.variant !== 'plain' && {
+        boxShadow: theme.shadow.xs,
+      }),
       minWidth: 0,
       minHeight: 'var(--Select-minHeight)',
       position: 'relative',
@@ -228,10 +219,7 @@ const SelectListbox = styled(StyledList, {
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
-  const variantStyle =
-    ownerState.color === 'context'
-      ? undefined
-      : theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--ListItem-stickyBackground':
@@ -336,7 +324,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledExternalProp,
-    getSerializedValue = defaultFormValueProvider,
+    getSerializedValue,
     placeholder,
     listboxId,
     listboxOpen: listboxOpenProp,
@@ -344,6 +332,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     onListboxOpenChange,
     onClose,
     renderValue: renderValueProp,
+    required = false,
     value: valueProp,
     size: sizeProp = 'md',
     variant = 'outlined',
@@ -385,18 +374,14 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(
-    inProps.color,
-    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
-  );
+  const color = inProps.color ?? (formControl?.error ? 'danger' : formControl?.color ?? colorProp);
 
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
-  const rootRef = React.useRef<HTMLElement | null>(null);
-  const buttonRef = React.useRef<HTMLElement | null>(null);
-  const listboxRef = React.useRef<HTMLElement | null>(null);
+  const rootRef = React.useRef<HTMLElement>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
+  const listboxRef = React.useRef<HTMLElement>(null);
 
   const handleRef = useForkRef(ref, rootRef);
 
@@ -437,6 +422,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     disabled,
     getButtonProps,
     getListboxProps,
+    getHiddenInputProps,
     getOptionMetadata,
     open: listboxOpen,
     value,
@@ -445,8 +431,11 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     defaultOpen: defaultListboxOpen,
     defaultValue,
     disabled: disabledProp,
+    getSerializedValue,
     listboxId,
     multiple: false,
+    name,
+    required,
     onChange,
     onOpenChange: handleOpenChange,
     open: listboxOpenProp,
@@ -488,6 +477,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       'aria-describedby': ariaDescribedby ?? formControl?.['aria-describedby'],
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby ?? formControl?.labelId,
+      'aria-required': required ? 'true' : undefined,
       id: id ?? formControl?.htmlFor,
       name,
     },
@@ -551,41 +541,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     [listboxProps.modifiers],
   );
 
-  let result = null;
-  if (anchorEl) {
-    result = (
-      <SlotListbox
-        {...listboxProps}
-        className={clsx(
-          listboxProps.className,
-          listboxProps.ownerState?.color === 'context' && selectClasses.colorContext,
-        )}
-        // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
-        modifiers={modifiers}
-        {...(!props.slots?.listbox && {
-          as: Popper,
-          slots: { root: listboxProps.as || 'ul' },
-        })}
-      >
-        <SelectProvider value={contextValue}>
-          <VariantColorProvider variant={variant} color={colorProp}>
-            <GroupListContext.Provider value="select">
-              {/* for building grouped options */}
-              <ListProvider nested>{children}</ListProvider>
-            </GroupListContext.Provider>
-          </VariantColorProvider>
-        </SelectProvider>
-      </SlotListbox>
-    );
-
-    if (!listboxProps.disablePortal) {
-      result = (
-        // For portal popup, the children should not inherit color inversion from the upper parent.
-        <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
-      );
-    }
-  }
-
   return (
     <React.Fragment>
       <SlotRoot {...rootProps}>
@@ -599,10 +554,29 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
 
         {indicator && <SlotIndicator {...indicatorProps}>{indicator}</SlotIndicator>}
+        <input {...getHiddenInputProps()} />
       </SlotRoot>
-      {result}
-
-      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
+      {anchorEl && (
+        <SlotListbox
+          {...listboxProps}
+          className={clsx(listboxProps.className)}
+          // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
+          modifiers={modifiers}
+          {...(!props.slots?.listbox && {
+            as: Popper,
+            slots: { root: listboxProps.as || 'ul' },
+          })}
+        >
+          <SelectProvider value={contextValue}>
+            <VariantColorProvider variant={variant} color={colorProp}>
+              <GroupListContext.Provider value="select">
+                {/* for building grouped options */}
+                <ListProvider nested>{children}</ListProvider>
+              </GroupListContext.Provider>
+            </VariantColorProvider>
+          </SelectProvider>
+        </SlotListbox>
+      )}
     </React.Fragment>
   );
 }) as SelectComponent;
@@ -730,6 +704,11 @@ Select.propTypes /* remove-proptypes */ = {
    * Function that customizes the rendering of the selected value.
    */
   renderValue: PropTypes.func,
+  /**
+   * If `true`, the Select cannot be empty when submitting form.
+   * @default false
+   */
+  required: PropTypes.bool,
   /**
    * The size of the component.
    */

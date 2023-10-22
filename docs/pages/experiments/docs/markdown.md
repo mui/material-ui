@@ -28,3 +28,23 @@ https://spec.commonmark.org/0.30/#loose
 - Rhoncus dolor purus non enim praesent. Turpis egestas sed tempus urna et pharetra pharetra massa.
 
 - Leo vel orci porta non pulvinar neque. Faucibus interdum posuere lorem ipsum dolor sit amet consectetur.
+
+## Link
+
+https://spec.commonmark.org/0.30/#links
+
+- Link [with a title](#link 'Stay on the same page').
+
+## kbd tag
+
+Make sure to include the `class="key"` declaration in each individual `kbd` element.
+
+That's because when referring to two keys that should be pressed together－for example, <kbd><kbd class="key">Ctrl</kbd>+<kbd class="key">N</kbd></kbd>－the `kbd` elements are wrapped by a parent `kbd`, and we don't add styles to just the tag.
+
+## This item is here to test a long table of contents instance
+
+### And here is another one right below it to see how it feels like one level down
+
+### Wordwithoutspaceasitwouldhappenwithapropdeclaration
+
+Table of contents word wrap test.

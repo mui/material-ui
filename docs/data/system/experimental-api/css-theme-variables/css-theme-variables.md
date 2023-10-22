@@ -27,11 +27,11 @@ You can checkout the [advantages](https://mui.com/material-ui/experimental-api/c
 
 For server-side applications, there are some trade-offs to consider:
 
-|                                                      | Compare to the default method | Reason                                                                                                       |
-| :--------------------------------------------------- | :---------------------------- | :----------------------------------------------------------------------------------------------------------- |
-| HTML size                                            | Bigger                        | CSS variables are generated for both light and dark mode at build time.                                      |
-| [First Contentful Paint (FCP)](https://web.dev/fcp/) | Larger                        | Since the HTML size is generally bigger, the time to download the HTML before showing the content is longer. |
-| [Time to Interactive (TTI)](https://web.dev/tti/)    | Smaller (for dark mode)       | Stylesheets are not regenerated between light and dark mode, so it takes less time for JavaScript to run.    |
+|                                                              | Compare to the default method | Reason                                                                                                         |
+| :----------------------------------------------------------- | :---------------------------- | :------------------------------------------------------------------------------------------------------------- |
+| HTML size                                                    | Bigger                        | CSS variables are generated for both light and dark mode at build time.                                        |
+| [First Contentful Paint (FCP)](https://web.dev/articles/fcp) | Longer                        | Since the HTML size is bigger, the time to download the HTML before showing the content is bit longer.         |
+| [Time to Interactive (TTI)](https://web.dev/articles/tti)    | Shorter (for dark mode)       | Stylesheets are not regenerated between light and dark mode, a lot less time is spent running JavaScript code. |
 
 :::warning
 The comparison described in the table above may not be applicable to large and complex applications since there are so many factors that can impact performance metrics.
@@ -39,7 +39,7 @@ The comparison described in the table above may not be applicable to large and c
 
 ## Usage
 
-The CSS variables API usage is exposed as a higher order function called `unstable_createCssVarsProvider` which can be called to create a theme provider and other utitlities to share the theme config throughout your app. This is a very low-level function and has a lot of moving parts. If you are already using [Material UI](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/) or [Joy UI](https://mui.com/joy-ui/customization/using-css-variables/), they already expose their own `CssVarsProvider` component that you can use directly without needing to configure your theme. Now that's out of the way, we can continue with how this util can be used.
+The CSS variables API usage is exposed as a higher order function called `unstable_createCssVarsProvider` which can be called to create a theme provider and other utilities to share the theme config throughout your app. This is a very low-level function and has a lot of moving parts. If you are already using [Material UI](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/) or [Joy UI](https://mui.com/joy-ui/customization/using-css-variables/), they already expose their own `CssVarsProvider` component that you can use directly without needing to configure your theme. Now that's out of the way, we can continue with how this util can be used.
 
 We'll first define a minimal theme palette for light and dark modes.
 
@@ -200,7 +200,7 @@ See the complete usage of `createVssVarsProvider` in [Material UI](https://githu
 - `defaultMode?`: Design system default mode (`light` by default)
 - `disableTransitionOnChange?`: Disable CSS transitions when switching between modes or color schemes (`false` by default)
 - `themeId?`: The design system's unique id for getting the corresponded theme when there are multiple design systems.
-- `theme`: Design system default theme. It's structure, besides the minimium requirements by `createCssVarsProvider`, is upto the design system to implement.
+- `theme`: Design system default theme. It's structure, besides the minimum requirements by `createCssVarsProvider`, is upto the design system to implement.
 - `resolveTheme(theme: Theme) => Theme`: A function to be called after the CSS variables are attached. The result of this function will be the final theme pass to `ThemeProvider`.
 
 `createCssVarsProvider` returns 3 items.
@@ -209,8 +209,6 @@ See the complete usage of `createVssVarsProvider` in [Material UI](https://githu
 
 - `defaultMode?: 'light' | 'dark' | 'system'` - Application's default mode (`light` by default)
 - `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
-- `enableColorScheme: boolean` - Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
-- `prefix: string` - CSS variable prefix
 - `theme: ThemeInput` - the theme provided to React's context
 - `modeStorageKey?: string` - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme

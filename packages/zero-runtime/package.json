@@ -34,12 +34,19 @@
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "yarn build && npm publish build",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/zero-babel-plugin/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/zero-runtime/**/*.test.{js,ts,tsx}'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
     "clsx": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.8",
+    "@types/mocha": "^10.0.2",
+    "@types/node": "^18.18.5",
+    "@types/react": "^18.2.29",
+    "react": "^18.2.0"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0"
@@ -54,7 +61,9 @@
   "linaria": {
     "tags": {
       "styled": "@mui/zero-tag-processor/styled",
-      "default": "@mui/zero-tag-processor/styled"
+      "default": "@mui/zero-tag-processor/styled",
+      "sx": "@mui/zero-tag-processor/sx",
+      "keyframes": "@mui/zero-tag-processor/keyframes"
     }
   }
 }

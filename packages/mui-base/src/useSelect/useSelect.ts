@@ -13,6 +13,7 @@ import {
   SelectInternalState,
   SelectValue,
   UseSelectButtonSlotProps,
+  UseSelectHiddenInputSlotProps,
   UseSelectListboxSlotProps,
   UseSelectParameters,
   UseSelectReturnValue,
@@ -22,10 +23,49 @@ import { EventHandlers } from '../utils/types';
 import { defaultOptionStringifier } from './defaultOptionStringifier';
 import { SelectProviderValue } from './SelectProvider';
 import { useCompoundParent } from '../utils/useCompound';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { SelectOption } from '../useOption/useOption.types';
 import { selectReducer } from './selectReducer';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+
+// visually hidden style based on https://webaim.org/techniques/css/invisiblecontent/
+const visuallyHiddenStyle: React.CSSProperties = {
+  clip: 'rect(1px, 1px, 1px, 1px)',
+  clipPath: 'inset(50%)',
+  height: '1px',
+  width: '1px',
+  margin: '-1px',
+  overflow: 'hidden',
+  padding: 0,
+  position: 'absolute',
+  left: '50%',
+  bottom: 0, // to display the native browser validation error at the bottom of the Select.
+};
+
+const noop = () => {};
+
+function defaultFormValueProvider<OptionValue>(
+  selectedOption: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
+) {
+  if (Array.isArray(selectedOption)) {
+    if (selectedOption.length === 0) {
+      return '';
+    }
+
+    return JSON.stringify(selectedOption.map((o) => o.value));
+  }
+
+  if (selectedOption?.value == null) {
+    return '';
+  }
+
+  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
+    return selectedOption.value;
+  }
+
+  return JSON.stringify(selectedOption.value);
+}
 
 function preventDefault(event: React.SyntheticEvent) {
   event.preventDefault();
@@ -53,19 +93,22 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     listboxId: listboxIdProp,
     listboxRef: listboxRefProp,
     multiple = false as Multiple,
+    name,
+    required,
     onChange,
     onHighlightChange,
     onOpenChange,
     open: openProp,
     options: optionsParam,
     getOptionAsString = defaultOptionStringifier,
+    getSerializedValue = defaultFormValueProvider,
     value: valueProp,
   } = props;
 
   const buttonRef = React.useRef<HTMLElement>(null);
   const handleButtonRef = useForkRef(buttonRefProp, buttonRef);
 
-  const listboxRef = React.useRef<HTMLElement | null>(null);
+  const listboxRef = React.useRef<HTMLElement>(null);
   const listboxId = useId(listboxIdProp);
 
   let defaultValue: OptionValue[] | undefined;
@@ -257,9 +300,8 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   } = useList(useListParameters);
 
   const createHandleButtonMouseDown =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent & MuiCancellableEvent) => {
-      otherHandlers?.onMouseDown?.(event);
+    (externalEventHandlers?: EventHandlers) => (event: React.MouseEvent & MuiCancellableEvent) => {
+      externalEventHandlers?.onMouseDown?.(event);
       if (!event.defaultMuiPrevented) {
         const action: ButtonClickAction = {
           type: SelectActionTypes.buttonClick,
@@ -278,7 +320,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         return;
       }
 
-      const listboxClientRect = (listboxRef.current as HTMLElement).getBoundingClientRect();
+      const listboxClientRect = listboxRef.current.getBoundingClientRect();
       const optionClientRect = optionRef.current.getBoundingClientRect();
 
       if (optionClientRect.top < listboxClientRect.top) {
@@ -294,8 +336,8 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     [getOptionByValue],
   );
 
-  const getSelectTriggerProps = <TOther extends EventHandlers>(
-    otherHandlers: TOther = {} as TOther,
+  const getSelectTriggerProps = <OtherHandlers extends EventHandlers>(
+    otherHandlers: OtherHandlers = {} as OtherHandlers,
   ) => {
     return {
       ...otherHandlers,
@@ -307,19 +349,23 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     };
   };
 
-  const getButtonProps = <TOther extends EventHandlers>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseSelectButtonSlotProps<TOther> => {
+  const getButtonProps = <ExternalProps extends Record<string, unknown>>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseSelectButtonSlotProps<ExternalProps> => {
+    const externalEventHandlers = extractEventHandlers(externalProps);
     const listboxAndButtonProps = combineHooksSlotProps(getButtonRootProps, getListboxRootProps);
     const combinedProps = combineHooksSlotProps(listboxAndButtonProps, getSelectTriggerProps);
-    return combinedProps(otherHandlers);
+    return {
+      ...externalProps,
+      ...combinedProps(externalEventHandlers),
+    };
   };
 
-  const getListboxProps = <TOther extends EventHandlers>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseSelectListboxSlotProps<TOther> => {
+  const getListboxProps = <ExternalProps extends Record<string, unknown>>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseSelectListboxSlotProps<ExternalProps> => {
     return {
-      ...otherHandlers,
+      ...externalProps,
       id: listboxId,
       role: 'listbox' as const,
       'aria-multiselectable': multiple ? 'true' : undefined,
@@ -352,6 +398,31 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     >;
   }
 
+  let selectedOptionsMetadata: SelectValue<SelectOption<OptionValue>, Multiple>;
+  if (multiple) {
+    selectedOptionsMetadata = (selectValue as OptionValue[])
+      .map((v) => getOptionMetadata(v))
+      .filter((o) => o !== undefined) as SelectValue<SelectOption<OptionValue>, Multiple>;
+  } else {
+    selectedOptionsMetadata = (getOptionMetadata(selectValue as OptionValue) ??
+      null) as SelectValue<SelectOption<OptionValue>, Multiple>;
+  }
+
+  const getHiddenInputProps = <ExternalProps extends Record<string, unknown>>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ): UseSelectHiddenInputSlotProps<ExternalProps> => {
+    return {
+      name,
+      tabIndex: -1,
+      'aria-hidden': true,
+      required: required ? true : undefined,
+      value: getSerializedValue(selectedOptionsMetadata),
+      onChange: noop,
+      style: visuallyHiddenStyle,
+      ...externalProps,
+    };
+  };
+
   return {
     buttonActive,
     buttonFocusVisible,
@@ -360,6 +431,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     disabled,
     dispatch,
     getButtonProps,
+    getHiddenInputProps,
     getListboxProps,
     getOptionMetadata,
     listboxRef: mergedListRootRef,

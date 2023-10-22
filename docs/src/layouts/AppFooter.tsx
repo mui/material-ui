@@ -29,7 +29,7 @@ export default function AppFooter(props: AppFooterProps) {
     <Container component="footer">
       <Box
         sx={{
-          py: 8,
+          py: { xs: 4, sm: 8 },
           display: 'grid',
           gridAutoColumns: '1fr',
           alignItems: 'flex-start',
@@ -95,7 +95,7 @@ export default function AppFooter(props: AppFooterProps) {
             <Link href={ROUTES.store}>Store</Link>
             <Link href={ROUTES.blog}>Blog</Link>
             <Link href={ROUTES.showcase}>Showcase</Link>
-            <Link href={ROUTES.roadmap}>Roadmap</Link>
+            <Link href={ROUTES.xRoadmap}>Roadmap</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
@@ -143,10 +143,12 @@ export default function AppFooter(props: AppFooterProps) {
       <Divider />
       <Box
         sx={{
-          my: 6,
-          display: { xs: 'block', sm: 'flex' },
+          my: 4,
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
           alignItems: { sm: 'center' },
           justifyContent: { sm: 'space-between' },
+          gap: { xs: 2, sm: 1 },
         }}
       >
         <Box
@@ -164,82 +166,80 @@ export default function AppFooter(props: AppFooterProps) {
             Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
           </Typography>
         </Box>
-        <Box sx={{ mt: { xs: 3, sm: 0 } }}>
-          <Stack spacing={2} direction="row">
+        <Stack spacing={1} direction="row" flexWrap="wrap" useFlexGap>
+          <IconButton
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/mui"
+            aria-label="github"
+            title="GitHub"
+            size="small"
+          >
+            <GitHubIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            target="_blank"
+            rel="noopener noreferrer"
+            href={ROUTES.rssFeed}
+            aria-label="RSS Feed"
+            title="RSS Feed"
+            size="small"
+          >
+            <RssFeedIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://twitter.com/MUI_hq"
+            aria-label="twitter"
+            title="Twitter"
+            size="small"
+          >
+            <TwitterIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.linkedin.com/company/mui/"
+            aria-label="linkedin"
+            title="LinkedIn"
+            size="small"
+          >
+            <LinkedInIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.youtube.com/@MUI_hq"
+            aria-label="YouTube"
+            title="YouTube"
+            size="small"
+          >
+            <YouTubeIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://mui.com/r/discord/"
+            aria-label="Discord"
+            title="Discord"
+            size="small"
+          >
+            <DiscordIcon fontSize="small" />
+          </IconButton>
+          {stackOverflowUrl ? (
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/mui"
-              aria-label="github"
-              title="GitHub"
+              href={stackOverflowUrl}
+              aria-label="Stack Overflow"
+              title="Stack Overflow"
               size="small"
             >
-              <GitHubIcon fontSize="small" />
+              <SvgStackOverflow fontSize="small" />
             </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href={ROUTES.rssFeed}
-              aria-label="RSS Feed"
-              title="RSS Feed"
-              size="small"
-            >
-              <RssFeedIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://twitter.com/MUI_hq"
-              aria-label="twitter"
-              title="Twitter"
-              size="small"
-            >
-              <TwitterIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.linkedin.com/company/mui/"
-              aria-label="linkedin"
-              title="LinkedIn"
-              size="small"
-            >
-              <LinkedInIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.youtube.com/@MUI_hq"
-              aria-label="YouTube"
-              title="YouTube"
-              size="small"
-            >
-              <YouTubeIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://mui.com/r/discord/"
-              aria-label="Discord"
-              title="Discord"
-              size="small"
-            >
-              <DiscordIcon fontSize="small" />
-            </IconButton>
-            {stackOverflowUrl ? (
-              <IconButton
-                target="_blank"
-                rel="noopener noreferrer"
-                href={stackOverflowUrl}
-                aria-label="Stack Overflow"
-                title="Stack Overflow"
-                size="small"
-              >
-                <SvgStackOverflow fontSize="small" />
-              </IconButton>
-            ) : null}
-          </Stack>
-        </Box>
+          ) : null}
+        </Stack>
       </Box>
     </Container>
   );

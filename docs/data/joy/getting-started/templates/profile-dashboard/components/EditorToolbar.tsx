@@ -5,6 +5,11 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import IconButton from '@mui/joy/IconButton';
 
+import FormatBoldRoundedIcon from '@mui/icons-material/FormatBoldRounded';
+import FormatItalicRoundedIcon from '@mui/icons-material/FormatItalicRounded';
+import StrikethroughSRoundedIcon from '@mui/icons-material/StrikethroughSRounded';
+import FormatListBulletedRoundedIcon from '@mui/icons-material/FormatListBulletedRounded';
+
 export default function EditorToolbar({ sx, ...props }: BoxProps) {
   return (
     <Box
@@ -14,23 +19,23 @@ export default function EditorToolbar({ sx, ...props }: BoxProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <Select defaultValue="1" sx={{ minWidth: 160 }}>
+      <Select size="sm" defaultValue="1" sx={{ minWidth: 160 }}>
         <Option value="1">Normal text</Option>
         <Option value="2" sx={{ fontFamily: 'code' }}>
           Code text
         </Option>
       </Select>
-      <IconButton variant="plain" color="neutral">
-        <i data-feather="bold" />
+      <IconButton size="sm" variant="plain" color="neutral">
+        <FormatBoldRoundedIcon />
       </IconButton>
-      <IconButton variant="plain" color="neutral">
-        <i data-feather="italic" />
+      <IconButton size="sm" variant="plain" color="neutral">
+        <FormatItalicRoundedIcon />
       </IconButton>
-      <IconButton variant="plain" color="neutral">
-        <i data-feather="link-2" />
+      <IconButton size="sm" variant="plain" color="neutral">
+        <StrikethroughSRoundedIcon />
       </IconButton>
-      <IconButton variant="plain" color="neutral">
-        <i data-feather="list" />
+      <IconButton size="sm" variant="plain" color="neutral">
+        <FormatListBulletedRoundedIcon />
       </IconButton>
     </Box>
   );

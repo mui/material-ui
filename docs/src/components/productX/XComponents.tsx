@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Grid from '@mui/material/Grid';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import TableChartRounded from '@mui/icons-material/TableChartRounded';
 import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
@@ -22,7 +23,7 @@ import More from 'docs/src/components/action/More';
 import ROUTES from 'docs/src/route';
 import IconImage from 'docs/src/components/icon/IconImage';
 
-const DEMOS = ['Data Grid', 'Date Range Picker', 'Charts', 'Tree View', 'Sparkline'];
+const DEMOS = ['Data Grid', 'Date and Time Pickers', 'Charts', 'Tree View', 'Sparkline'];
 const WIP = DEMOS.slice(4);
 
 function PrefetchImages() {
@@ -73,27 +74,27 @@ export default function XComponents() {
     <Section bg="gradient">
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
-            <SectionHeadline
-              overline="React component library"
-              title={
-                <Typography variant="h2">
-                  Powerful components for <GradientText>advanced</GradientText> use-cases
-                </Typography>
-              }
-              description="The MUI X package enables applications to have complex use-cases, supported by several advanced components."
-            />
-          </Box>
-          <Group desktopColumns={2} sx={{ mt: 4 }}>
+          <SectionHeadline
+            overline="React component library"
+            title={
+              <Typography variant="h2">
+                Powerful components for <GradientText>advanced</GradientText> use-cases
+              </Typography>
+            }
+            description="The MUI X package enables applications to have complex use-cases, supported by several advanced components."
+          />
+          <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />
                 {WIP.includes(name) && (
-                  <IconImage name="time" title="Work in progress" sx={{ ml: 'auto', mr: 2 }} />
+                  <Tooltip title="Work in progress">
+                    <IconImage name="pricing/time" sx={{ ml: 'auto', mr: 2 }} />
+                  </Tooltip>
                 )}
               </Highlighter>
             ))}
-            <More href={ROUTES.roadmap} />
+            <More href={ROUTES.xDocs} />
           </Group>
         </Grid>
         <Grid item xs={12} md={6} sx={{ position: 'relative' }}>

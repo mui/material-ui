@@ -14,11 +14,22 @@ function getVariantClasses(componentProps, variants) {
 }
 
 /**
+ * @param {string} propKey
+ * @returns {boolean}
+ */
+function defaultShouldForwardProp(propKey) {
+  return propKey !== 'sx' && propKey !== 'as' && propKey !== 'ownerState';
+}
+
+/**
+ * @typedef {typeof defaultShouldForwardProp} ShouldForwardProp
+ */
+
+/**
  * @TODO - Filter props and only pass necessary props to children
  *
  * This is the runtime `styled` function that finally renders the component
  * after transpilation through linaria. It makes sure to add the base classes, variant classes if they satisfy the prop value and also adds dynamic css variables at runtime, if any.
- *
  * @param {Object} options
  * @param {string} options.displayName Set by linaria. Mostly is same as the variable name. For this code, ```const Comp = styled(...)(...)```, `displayName` will be `Comp`.
  * @param {string[]} options.classes List of class names that reference the inline css object styles.
@@ -28,6 +39,7 @@ function getVariantClasses(componentProps, variants) {
  * @param {string} options.variants.className Classname generated for this specific variant through styled processor.
  * @param {string} options.name
  * @param {string} options.slot
+ * @param {ShouldForwardProp} options.shouldForwardProp
  * @param {Object} options.defaultProps Default props object copied over and inlined from theme object
  */
 export default function styled(tag, options = {}) {
@@ -39,6 +51,7 @@ export default function styled(tag, options = {}) {
     name,
     slot,
     defaultProps = {},
+    shouldForwardProp = defaultShouldForwardProp,
   } = options;
   let componentName = 'Component';
 
@@ -54,7 +67,7 @@ export default function styled(tag, options = {}) {
 
   const StyledComponent = React.forwardRef(function StyledComponent(
     // eslint-disable-next-line react/prop-types
-    { as, className, sx: __sx, style, ...props },
+    { as, className, sx, style, ...props },
     ref,
   ) {
     // eslint-disable-next-line react/prop-types
@@ -63,6 +76,9 @@ export default function styled(tag, options = {}) {
     const varStyles = Object.entries(cssVars).reduce(
       (acc, [cssVariable, [variableFunction, isUnitLess]]) => {
         const value = variableFunction(props);
+        if (typeof value === 'undefined') {
+          return acc;
+        }
         if (typeof value === 'string' || isUnitLess) {
           acc[`--${cssVariable}`] = value;
         } else {
@@ -72,14 +88,36 @@ export default function styled(tag, options = {}) {
       },
       {},
     );
+    // eslint-disable-next-line react/prop-types
+    const sxClass = typeof sx === 'string' ? sx : sx?.className;
+    // eslint-disable-next-line react/prop-types
+    const sxVars = sx && typeof sx !== 'string' ? sx.vars : undefined;
+
+    if (sxVars) {
+      Object.entries(sxVars).forEach(([cssVariable, [value, isUnitLess]]) => {
+        if (typeof value === 'string' || isUnitLess) {
+          varStyles[`--${cssVariable}`] = value;
+        } else {
+          varStyles[`--${cssVariable}`] = `${value}px`;
+        }
+      });
+    }
+
+    const finalClassName = clsx(classes, sxClass, className, getVariantClasses(props, variants));
+    const toPassProps = Object.keys(restProps)
+      .filter((item) => shouldForwardProp(item))
+      .reduce((acc, key) => {
+        acc[key] = restProps[key];
+        return acc;
+      }, {});
 
     // eslint-disable-next-line no-underscore-dangle
     if (!Component.__isStyled) {
       return (
         <Component
-          {...restProps}
+          {...toPassProps}
           ref={ref}
-          className={clsx(classes, className, getVariantClasses(props, variants))}
+          className={finalClassName}
           style={{
             ...style,
             ...varStyles,
@@ -90,10 +128,10 @@ export default function styled(tag, options = {}) {
 
     return (
       <Component
-        {...restProps}
+        {...toPassProps}
         ownerState={ownerState}
         ref={ref}
-        className={clsx(classes, className, getVariantClasses(props, variants))}
+        className={finalClassName}
         style={{
           ...style,
           ...varStyles,

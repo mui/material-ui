@@ -12,7 +12,13 @@ import PauseRounded from '@mui/icons-material/PauseRounded';
 import ShuffleRoundedIcon from '@mui/icons-material/ShuffleRounded';
 import LoopRoundedIcon from '@mui/icons-material/LoopRounded';
 
-export default function PlayerCard({ disableTheming }: { disableTheming?: boolean }) {
+export default function PlayerCard({
+  disableTheming,
+  extraStyles,
+}: {
+  disableTheming?: boolean;
+  extraStyles?: boolean;
+}) {
   const [paused, setPaused] = React.useState(true);
   return (
     <Fade in timeout={700}>
@@ -20,16 +26,23 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
         variant="outlined"
         sx={[
           {
+            width: { xs: '100%', sm: 'auto' },
             p: 2,
             display: 'flex',
-            flexDirection: 'column',
-            borderColor: 'grey.100',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: 'center',
+            borderColor: extraStyles ? 'primary.200' : 'grey.200',
+            gap: 2,
+            boxShadow: extraStyles ? '0 2px 4px rgba(0, 127, 255, 0.15)' : 'none',
             ...(!disableTheming && {
               [`& .${iconButtonClasses.root}`]: {
                 border: '1px solid',
                 bgcolor: 'primary.50',
                 color: 'primary.500',
                 borderColor: 'primary.200',
+                '&:hover': {
+                  bgcolor: 'primary.100',
+                },
               },
               [`& .${iconButtonClasses.disabled}`]: {
                 height: 'fit-content',
@@ -44,11 +57,14 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
             ((theme) =>
               theme.applyDarkStyles({
                 bgcolor: 'primaryDark.900',
-                borderColor: 'primaryDark.700',
+                borderColor: extraStyles ? 'primary.800' : 'primaryDark.700',
                 [`& .${iconButtonClasses.root}`]: {
                   bgcolor: 'primary.900',
                   color: 'primary.200',
                   borderColor: 'primary.600',
+                  '&:hover': {
+                    bgcolor: 'primary.800',
+                  },
                 },
                 [`& .${iconButtonClasses.disabled}`]: {
                   bgcolor: 'transparent',
@@ -61,23 +77,26 @@ export default function PlayerCard({ disableTheming }: { disableTheming?: boolea
       >
         <CardMedia
           component="img"
-          width="214"
-          height="187"
-          alt="Beside Myself album cover"
+          width="100"
+          height="100"
+          alt="Birds of Tokyo album cover"
           src="/static/images/cards/birds-of-tokyo.jpg"
           sx={{
+            width: { xs: '100%', sm: 100 },
             borderRadius: 0.6,
-            height: 100,
-            width: '100%',
-            mb: 2,
           }}
         />
         <Stack direction="column" spacing={2} alignItems="center">
           <Stack direction="column" spacing={0.2} alignItems="center">
-            <Typography color="text.primary" fontWeight={600} fontSize={15} mb={0}>
+            <Typography color="text.primary" fontWeight="medium" fontSize={15}>
               If This Ship Sinks (I Give In)
             </Typography>
-            <Typography component="div" variant="caption" color="text.secondary" fontWeight={500}>
+            <Typography
+              component="div"
+              variant="caption"
+              color="text.secondary"
+              fontWeight="regular"
+            >
               Birds Of Tokyo
             </Typography>
           </Stack>

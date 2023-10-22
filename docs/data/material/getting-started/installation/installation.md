@@ -2,14 +2,6 @@
 
 <p class="description">Install Material UI, the world's most popular React UI framework.</p>
 
-:::success
-We are currently working on supporting React Server Components in Material UI.
-
-All components and hooks are exported as [Client Components](https://nextjs.org/docs/getting-started/react-essentials#client-components) with the `"use client"` directive.
-If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](/material-ui/guides/next-js-app-router/).
-
-:::
-
 ## Default installation
 
 Run one of the following commands to add Material UI to your project:
@@ -51,7 +43,13 @@ pnpm add @mui/material @mui/styled-engine-sc styled-components
 
 </codeblock>
 
-Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more information about how to configure styled-components.
+:::error
+As of late 2021, [styled-components](https://github.com/styled-components/styled-components) is **not compatible** with server-rendered Material UI projects.
+This is because `babel-plugin-styled-components` isn't able to work with the `styled()` utility inside `@mui` packages.
+See [this GitHub issue](https://github.com/mui/material-ui/issues/29742) for more details.
+
+We **strongly recommend** using Emotion for SSR projects.
+:::
 
 ## Peer dependencies
 

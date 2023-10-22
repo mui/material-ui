@@ -18,6 +18,8 @@ const data = [
   { name: 'Pictures & videos', size: 134000000 },
   { name: 'Source files', size: 200000000 },
   { name: 'Dependencies', size: 44000000 },
+  { name: 'Assets & illustrations', size: 21000000 },
+  { name: 'Components', size: 11000 },
 ];
 
 type Data = typeof data extends Array<infer T> ? T : never;
@@ -62,7 +64,7 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
 function formatSize(size: number) {
   const kb = size / 1000;
   if (kb < 1000) {
-    return `${kb.toFixed(1)} KB`;
+    return `${kb.toFixed(1)} kB`;
   }
   return `${(kb / 1000).toFixed(0)} MB`;
 }

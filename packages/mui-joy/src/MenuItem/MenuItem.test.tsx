@@ -7,8 +7,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-  describeJoyColorInversion,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuItem, { menuItemClasses as classes } from '@mui/joy/MenuItem';
@@ -63,12 +62,6 @@ describe('Joy <MenuItem />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<MenuItem />, {
-    muiName: 'JoyMenuItem',
-    classes,
-    wrapper: (node) => <MenuProvider value={testContext}>{node}</MenuProvider>,
-  });
 
   it('should render with the variant class', () => {
     const { getByRole } = render(<MenuItem variant="outlined" />);

@@ -38,7 +38,7 @@ function ProductItem({
         gap: 2.5,
       }}
     >
-      <Box component="span">{icon}</Box>
+      <span>{icon}</span>
       <span>
         <Typography
           component="span"
@@ -74,7 +74,10 @@ function ProductItem({
             event.stopPropagation();
           }}
         >
-          <span>Learn more</span> <Box sx={visuallyHidden}>{label}</Box>
+          <span>Learn more</span>{' '}
+          <Box component="span" sx={visuallyHidden}>
+            {label}
+          </Box>
           <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
         </Link>
       </span>
@@ -82,15 +85,12 @@ function ProductItem({
   );
 }
 
-function ProductsSwitcher({
-  inView = false,
-  productIndex,
-  setProductIndex,
-}: {
+export default function ProductsSwitcher(props: {
   inView?: boolean;
   productIndex: number;
   setProductIndex: React.Dispatch<React.SetStateAction<number>>;
 }) {
+  const { inView = false, productIndex, setProductIndex } = props;
   const isBelowMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const productElements = [
     <ProductItem
@@ -104,7 +104,7 @@ function ProductsSwitcher({
       label="by going to the Advanced components page"
       icon={<IconImage name="product-advanced" />}
       name={
-        <Box component="span" display="inline-flex" alignItems="center">
+        <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center' }}>
           MUI X
         </Box>
       }
@@ -176,5 +176,3 @@ function ProductsSwitcher({
     </React.Fragment>
   );
 }
-
-export default ProductsSwitcher;

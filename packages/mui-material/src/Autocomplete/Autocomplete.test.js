@@ -8,8 +8,9 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { spy } from 'sinon';
+import userEvent from '@testing-library/user-event';
 import Box from '@mui/system/Box';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -822,6 +823,83 @@ describe('<Autocomplete />', () => {
       expect(handleSubmit.callCount).to.equal(0);
       expect(handleChange.callCount).to.equal(1);
     });
+
+    it('should skip disabled options when navigating via keyboard', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          getOptionDisabled={(option) => option === 'two'}
+          openOnFocus
+          options={['one', 'two', 'three']}
+          renderInput={(props) => <TextField {...props} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'one');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'three');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'one');
+    });
+
+    it('should skip disabled options at the end of the list when navigating via keyboard', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          getOptionDisabled={(option) => option === 'three' || option === 'four'}
+          openOnFocus
+          options={['one', 'two', 'three', 'four']}
+          renderInput={(props) => <TextField {...props} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'one');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'two');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'one');
+    });
+
+    it('should skip the first and last disabled options in the list when navigating via keyboard', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          getOptionDisabled={(option) => option === 'one' || option === 'five'}
+          openOnFocus
+          options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(props) => <TextField {...props} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'two');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'four');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'two');
+      fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+      checkHighlightIs(getByRole('listbox'), 'four');
+    });
+
+    it('should not focus any option when all the options are disabled', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          getOptionDisabled={() => true}
+          openOnFocus
+          options={['one', 'two', 'three']}
+          renderInput={(props) => <TextField {...props} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), null);
+      fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+      checkHighlightIs(getByRole('listbox'), null);
+    });
   });
 
   describe('WAI-ARIA conforming markup', () => {
@@ -1383,6 +1461,70 @@ describe('<Autocomplete />', () => {
         />,
       );
       expect(queryByTitle('Open').disabled).to.equal(true);
+    });
+
+    it('clicks should not toggle the listbox open state when disabled', () => {
+      const { getByTestId, queryByRole } = render(
+        <Autocomplete
+          disabled
+          options={['one', 'two', 'three']}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              InputProps={{
+                ...params.InputProps,
+                'data-testid': 'test-input-root',
+              }}
+            />
+          )}
+        />,
+      );
+      const textbox = queryByRole('combobox');
+      const listbox = queryByRole('listbox', { hidden: true });
+
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+      expect(listbox).to.equal(null);
+
+      const inputBase = getByTestId('test-input-root');
+      fireEvent.click(inputBase);
+
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+      expect(listbox).to.equal(null);
+    });
+
+    it('mouseup should not toggle the listbox open state when disabled', async () => {
+      const { container, queryByRole } = render(
+        <Autocomplete
+          disabled
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = queryByRole('combobox');
+      const listbox = queryByRole('listbox', { hidden: true });
+
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+      expect(listbox).to.equal(null);
+
+      // userEvent will fail at releasing MouseLeft if we target the
+      // <button> since it has "pointer-events: none"
+      const popupIndicator = container.querySelector(`.${classes.endAdornment}`);
+
+      // TODO v6: refactor using userEvent.setup() which doesn't work until we drop
+      //  iOS Safari 12.x support, see: https://github.com/mui/material-ui/pull/38325
+      await userEvent.pointer([
+        // this sequence does not work with fireEvent
+        // 1. point the cursor somewhere in the textbox and hold down MouseLeft
+        { keys: '[MouseLeft>]', target: textbox },
+        // 2. move the cursor over the popupIndicator
+        { pointerName: 'mouse', target: popupIndicator },
+        // 3. release MouseLeft
+        { keys: '[/MouseLeft]' },
+      ]);
+
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+      expect(listbox).to.equal(null);
     });
 
     it('should not render the clear button', () => {

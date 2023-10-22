@@ -1,24 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/zero-runtime';
+import { Button, bounceAnim } from 'local-library';
 import Slider from './Slider/ZeroSlider';
-
-const Button = styled('button', {
-  name: 'MuiButton',
-  slot: 'Root',
-})(
-  'color:red',
-  ({ theme }: any) => ({
-    fontFamily: 'sans-serif',
-    color: 'primary.main',
-    backgroundColor: [theme.palette.primary.main, 'text.primary', 'background.paper'],
-    fontSize: (props: any) => (props.isRed ? 'h1.fontSize' : 'h2.fontSize'),
-  }),
-  {
-    fontFamily: 'sans-serif',
-    // p: (props: any) => (props.isRed ? 10 : 20),
-    color: (props: any) => (props.isRed ? 'primary.main' : 'secondary.main'),
-  },
-);
 
 const ShowCaseDiv = styled('div')({
   [`.${Button}`]: {
@@ -32,9 +15,10 @@ const HalfWidth = styled.div({
   maxHeight: 100,
   padding: 20,
   border: '1px solid #ccc',
+  animation: `${bounceAnim} 1s ease infinite`,
 });
 
-export default function App() {
+export default function App({ isRed }: any) {
   const [count, setCount] = React.useState(0);
   const [value, setValue] = React.useState(50);
   const [isColorPrimary, setIsColorPrimary] = React.useState(true);
@@ -106,7 +90,19 @@ export default function App() {
         </div>
       </div>
       <div>
-        <HalfWidth sx={{ color: 'red' }}>
+        <HalfWidth
+          sx={({ theme }: any) => ({
+            color: theme.palette.primary.main,
+            fontSize: isRed ? 'h1.fontSize' : 'h2.fontSize',
+            ':hover': {
+              backgroundColor: ['primary.dark', 'secondary.main'],
+              color: {
+                sm: 'primary.dark',
+                md: 'secondary.main',
+              },
+            },
+          })}
+        >
           <Slider
             aria-label="Small steps"
             defaultValue={50}

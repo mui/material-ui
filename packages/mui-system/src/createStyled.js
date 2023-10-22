@@ -1,6 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
-import { getDisplayName, unstable_capitalize as capitalize } from '@mui/utils';
+import {
+  getDisplayName,
+  unstable_capitalize as capitalize,
+  isPlainObject,
+  deepmerge,
+} from '@mui/utils';
 import createTheme from './createTheme';
 import propsToClassKey from './propsToClassKey';
 import styleFunctionSx from './styleFunctionSx';
@@ -28,41 +33,51 @@ const getStyleOverrides = (name, theme) => {
   return null;
 };
 
+const transformVariants = (variants) => {
+  const variantsStyles = {};
+
+  if (variants) {
+    variants.forEach((definition) => {
+      const key = propsToClassKey(definition.props);
+      variantsStyles[key] = definition.style;
+    });
+  }
+
+  return variantsStyles;
+};
 const getVariantStyles = (name, theme) => {
   let variants = [];
   if (theme && theme.components && theme.components[name] && theme.components[name].variants) {
     variants = theme.components[name].variants;
   }
 
-  const variantsStyles = {};
-
-  variants.forEach((definition) => {
-    const key = propsToClassKey(definition.props);
-    variantsStyles[key] = definition.style;
-  });
-
-  return variantsStyles;
+  return transformVariants(variants);
 };
 
-const variantsResolver = (props, styles, theme, name) => {
+const variantsResolver = (props, styles, variants) => {
   const { ownerState = {} } = props;
   const variantsStyles = [];
-  const themeVariants = theme?.components?.[name]?.variants;
-  if (themeVariants) {
-    themeVariants.forEach((themeVariant) => {
+
+  if (variants) {
+    variants.forEach((variant) => {
       let isMatch = true;
-      Object.keys(themeVariant.props).forEach((key) => {
-        if (ownerState[key] !== themeVariant.props[key] && props[key] !== themeVariant.props[key]) {
+      Object.keys(variant.props).forEach((key) => {
+        if (ownerState[key] !== variant.props[key] && props[key] !== variant.props[key]) {
           isMatch = false;
         }
       });
       if (isMatch) {
-        variantsStyles.push(styles[propsToClassKey(themeVariant.props)]);
+        variantsStyles.push(styles[propsToClassKey(variant.props)]);
       }
     });
   }
 
   return variantsStyles;
+};
+
+const themeVariantsResolver = (props, styles, theme, name) => {
+  const themeVariants = theme?.components?.[name]?.variants;
+  return variantsResolver(props, styles, themeVariants);
 };
 
 // Update /system/styled/#api in case if this changes
@@ -89,6 +104,30 @@ function defaultOverridesResolver(slot) {
   }
   return (props, styles) => styles[slot];
 }
+
+const muiStyledFunctionResolver = ({ styledArg, props, defaultTheme, themeId }) => {
+  const resolvedStyles = styledArg({
+    ...props,
+    theme: resolveTheme({ ...props, defaultTheme, themeId }),
+  });
+
+  let optionalVariants;
+  if (resolvedStyles && resolvedStyles.variants) {
+    optionalVariants = resolvedStyles.variants;
+    delete resolvedStyles.variants;
+  }
+  if (optionalVariants) {
+    const variantsStyles = variantsResolver(
+      props,
+      transformVariants(optionalVariants),
+      optionalVariants,
+    );
+
+    return [resolvedStyles, ...variantsStyles];
+  }
+
+  return resolvedStyles;
+};
 
 export default function createStyled(input = {}) {
   const {
@@ -163,18 +202,71 @@ export default function createStyled(input = {}) {
             // On the server Emotion doesn't use React.forwardRef for creating components, so the created
             // component stays as a function. This condition makes sure that we do not interpolate functions
             // which are basically components used as a selectors.
-            return typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg
-              ? (props) => {
-                  return stylesArg({
-                    ...props,
-                    theme: resolveTheme({ ...props, defaultTheme, themeId }),
+            if (typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg) {
+              return (props) =>
+                muiStyledFunctionResolver({ styledArg: stylesArg, props, defaultTheme, themeId });
+            }
+            if (isPlainObject(stylesArg)) {
+              let transformedStylesArg = stylesArg;
+              let styledArgVariants;
+
+              if (stylesArg && stylesArg.variants) {
+                styledArgVariants = stylesArg.variants;
+                delete transformedStylesArg.variants;
+
+                transformedStylesArg = (props) => {
+                  let result = stylesArg;
+                  const variantStyles = variantsResolver(
+                    props,
+                    transformVariants(styledArgVariants),
+                    styledArgVariants,
+                  );
+                  variantStyles.forEach((variantStyle) => {
+                    result = deepmerge(result, variantStyle);
                   });
-                }
-              : stylesArg;
+
+                  return result;
+                };
+              }
+              return transformedStylesArg;
+            }
+            return stylesArg;
           })
         : [];
 
       let transformedStyleArg = styleArg;
+
+      if (isPlainObject(styleArg)) {
+        let styledArgVariants;
+        if (styleArg && styleArg.variants) {
+          styledArgVariants = styleArg.variants;
+          delete transformedStyleArg.variants;
+
+          transformedStyleArg = (props) => {
+            let result = styleArg;
+            const variantStyles = variantsResolver(
+              props,
+              transformVariants(styledArgVariants),
+              styledArgVariants,
+            );
+            variantStyles.forEach((variantStyle) => {
+              result = deepmerge(result, variantStyle);
+            });
+
+            return result;
+          };
+        }
+      } else if (
+        typeof styleArg === 'function' &&
+        // On the server Emotion doesn't use React.forwardRef for creating components, so the created
+        // component stays as a function. This condition makes sure that we do not interpolate functions
+        // which are basically components used as a selectors.
+        styleArg.__emotion_real !== styleArg
+      ) {
+        // If the type is function, we need to define the default theme.
+        transformedStyleArg = (props) =>
+          muiStyledFunctionResolver({ styledArg: styleArg, props, defaultTheme, themeId });
+      }
 
       if (componentName && overridesResolver) {
         expressionsWithDefaultTheme.push((props) => {
@@ -197,7 +289,7 @@ export default function createStyled(input = {}) {
       if (componentName && !skipVariantsResolver) {
         expressionsWithDefaultTheme.push((props) => {
           const theme = resolveTheme({ ...props, defaultTheme, themeId });
-          return variantsResolver(
+          return themeVariantsResolver(
             props,
             getVariantStyles(componentName, theme),
             theme,
@@ -217,21 +309,7 @@ export default function createStyled(input = {}) {
         // If the type is array, than we need to add placeholders in the template for the overrides, variants and the sx styles.
         transformedStyleArg = [...styleArg, ...placeholders];
         transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
-      } else if (
-        typeof styleArg === 'function' &&
-        // On the server Emotion doesn't use React.forwardRef for creating components, so the created
-        // component stays as a function. This condition makes sure that we do not interpolate functions
-        // which are basically components used as a selectors.
-        styleArg.__emotion_real !== styleArg
-      ) {
-        // If the type is function, we need to define the default theme.
-        transformedStyleArg = (props) =>
-          styleArg({
-            ...props,
-            theme: resolveTheme({ ...props, defaultTheme, themeId }),
-          });
       }
-
       const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
 
       if (process.env.NODE_ENV !== 'production') {

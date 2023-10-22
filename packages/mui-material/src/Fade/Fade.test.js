@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { Transition } from 'react-transition-group';
 import Fade from '@mui/material/Fade';
 import { ThemeProvider, createTheme } from '@mui/material/styles';

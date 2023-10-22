@@ -56,7 +56,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       >
         <input
           id={id}
-          ref={setAnchorEl}
           disabled={disabled}
           readOnly={readOnly}
           {...getInputProps()}
@@ -80,7 +79,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           />
         </Button>
       </div>
-      {anchorEl ? (
+      {anchorEl && (
         <Popper
           open={popupOpen}
           anchorEl={anchorEl}
@@ -116,7 +115,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             )}
           </ul>
         </Popper>
-      ) : null}
+      )}
     </React.Fragment>
   );
 });

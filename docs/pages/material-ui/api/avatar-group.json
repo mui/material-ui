@@ -8,6 +8,14 @@
       "default": "{}"
     },
     "max": { "type": { "name": "custom", "description": "number" }, "default": "5" },
+    "renderSurplus": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(surplus: number) => React.ReactNode",
+        "describedArgs": ["surplus"],
+        "returned": "React.ReactNode"
+      }
+    },
     "slotProps": {
       "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
       "default": "{}"
