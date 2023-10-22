@@ -212,7 +212,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ...other
   } = props;
   const buttonGroup = React.useContext(ButtonGroupContext);
-  const toggleButtonGroup = React.useContext(ToggleButtonGroupContext) as any;
+  const toggleButtonGroup = React.useContext(ToggleButtonGroupContext);
 
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
@@ -263,14 +263,15 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     slots,
     slotProps,
     onClick: toggleButtonGroup?.onClick
-      ? (event: any) => {
-          toggleButtonGroup?.onClick(event, props.value, props.onClick);
+      ? (event: React.MouseEvent<HTMLButtonElement>) => {
+          props.onClick?.(event);
+          toggleButtonGroup?.onClick?.(event, props.value);
         }
       : props.onClick,
     // eslint-disable-next-line no-nested-ternary
     'aria-pressed': toggleButtonGroup?.value
       ? Array.isArray(toggleButtonGroup?.value)
-        ? toggleButtonGroup?.value.indexOf(props.value) !== -1
+        ? toggleButtonGroup?.value.indexOf(props.value as string | number) !== -1
         : toggleButtonGroup?.value === props.value
       : props['aria-pressed'],
   };
