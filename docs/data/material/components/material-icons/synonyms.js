@@ -1758,8 +1758,7 @@ const synonyms = {
   OnDeviceTraining:
     'arrow bulb call cell contact hardware idea inprogress light loading mobile model refresh renew restore reverse rotate telephone',
   OneK: '1000 1K alphabet character digit display font letter number pixels resolution symbol text type video',
-  OneKk:
-    '10000 10K alphabet character digit display font letter number pixels resolution symbol text type video',
+  TenK: '10000 10K alphabet character digit display font letter number pixels resolution symbol text type video',
   OneKPlus:
     '+ 1000 1K alphabet character digit display font letter number pixels resolution symbol text type video',
   OnlinePrediction: 'bulb connection idea light network signal wireless',

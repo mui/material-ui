@@ -37954,34 +37954,34 @@ Object.defineProperty(exports, "OneKTwoTone", {
     return _OneKTwoTone.default;
   }
 });
-Object.defineProperty(exports, "OneKk", {
+Object.defineProperty(exports, "TenK", {
   enumerable: true,
   get: function () {
-    return _OneKk.default;
+    return _TenK.default;
   }
 });
-Object.defineProperty(exports, "OneKkOutlined", {
+Object.defineProperty(exports, "TenKOutlined", {
   enumerable: true,
   get: function () {
-    return _OneKkOutlined.default;
+    return _TenKOutlined.default;
   }
 });
-Object.defineProperty(exports, "OneKkRounded", {
+Object.defineProperty(exports, "TenKRounded", {
   enumerable: true,
   get: function () {
-    return _OneKkRounded.default;
+    return _TenKRounded.default;
   }
 });
-Object.defineProperty(exports, "OneKkSharp", {
+Object.defineProperty(exports, "TenKSharp", {
   enumerable: true,
   get: function () {
-    return _OneKkSharp.default;
+    return _TenKSharp.default;
   }
 });
-Object.defineProperty(exports, "OneKkTwoTone", {
+Object.defineProperty(exports, "TenKTwoTone", {
   enumerable: true,
   get: function () {
-    return _OneKkTwoTone.default;
+    return _TenKTwoTone.default;
   }
 });
 Object.defineProperty(exports, "OnlinePrediction", {
@@ -69989,11 +69989,11 @@ var _OneKPlusTwoTone = _interopRequireDefault(require("./OneKPlusTwoTone"));
 var _OneKRounded = _interopRequireDefault(require("./OneKRounded"));
 var _OneKSharp = _interopRequireDefault(require("./OneKSharp"));
 var _OneKTwoTone = _interopRequireDefault(require("./OneKTwoTone"));
-var _OneKk = _interopRequireDefault(require("./OneKk"));
-var _OneKkOutlined = _interopRequireDefault(require("./OneKkOutlined"));
-var _OneKkRounded = _interopRequireDefault(require("./OneKkRounded"));
-var _OneKkSharp = _interopRequireDefault(require("./OneKkSharp"));
-var _OneKkTwoTone = _interopRequireDefault(require("./OneKkTwoTone"));
+var _TenK = _interopRequireDefault(require("./TenK"));
+var _TenKOutlined = _interopRequireDefault(require("./TenKOutlined"));
+var _TenKRounded = _interopRequireDefault(require("./TenKRounded"));
+var _TenKSharp = _interopRequireDefault(require("./TenKSharp"));
+var _TenKTwoTone = _interopRequireDefault(require("./TenKTwoTone"));
 var _OnlinePrediction = _interopRequireDefault(require("./OnlinePrediction"));
 var _OnlinePredictionOutlined = _interopRequireDefault(require("./OnlinePredictionOutlined"));
 var _OnlinePredictionRounded = _interopRequireDefault(require("./OnlinePredictionRounded"));
