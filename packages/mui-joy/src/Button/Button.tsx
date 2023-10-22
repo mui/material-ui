@@ -11,6 +11,7 @@ import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
+import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const {
@@ -211,6 +212,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ...other
   } = props;
   const buttonGroup = React.useContext(ButtonGroupContext);
+  const toggleButtonGroup = React.useContext(ToggleButtonGroupContext) as any;
 
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
@@ -255,7 +257,23 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component, slots, slotProps };
+  const externalForwardedProps = {
+    ...other,
+    component,
+    slots,
+    slotProps,
+    onClick: toggleButtonGroup?.onClick
+      ? (event: any) => {
+          toggleButtonGroup?.onClick(event, props.value, props.onClick);
+        }
+      : props.onClick,
+    // eslint-disable-next-line no-nested-ternary
+    'aria-pressed': toggleButtonGroup?.value
+      ? Array.isArray(toggleButtonGroup?.value)
+        ? toggleButtonGroup?.value.indexOf(props.value) !== -1
+        : toggleButtonGroup?.value === props.value
+      : props['aria-pressed'],
+  };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
