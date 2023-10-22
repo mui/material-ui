@@ -28,27 +28,36 @@ export default function TaskCard() {
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
           <ScheduleRounded fontSize="inherit" />
-          <Typography variant="caption" fontWeight={600}>
+          <Typography variant="caption" fontWeight="semiBold">
             March 25th
           </Typography>
         </Box>
         <Box sx={{ my: 'auto' }}>
           <CodeRounded color="white" />
-          <Typography fontSize={18} component="div" fontWeight={600} sx={{ lineHeight: 1.4 }}>
+          <Typography fontSize={18} component="div" fontWeight="semiBold" sx={{ lineHeight: 1.4 }}>
             Customize every button and chip instance primary color
           </Typography>
         </Box>
-        <Box sx={{ display: 'flex', gap: 1, py: 1 }}>
-          <Avatar
-            imgProps={{ 'aria-labelledby': 'demo-task-card-assignee-name' }}
-            src="/static/images/avatar/1-sm.jpeg"
-            sx={{ border: '2px solid #FFF' }}
-          />
+        <Box sx={{ display: 'flex', gap: 1, py: 1, alignItems: 'center' }}>
+          <Box
+            sx={{
+              p: 0.5,
+              bgcolor: 'primary.400',
+              border: '1px solid',
+              borderColor: 'primary.100',
+              borderRadius: 99,
+            }}
+          >
+            <Avatar
+              imgProps={{ 'aria-labelledby': 'demo-task-card-assignee-name' }}
+              src="https://i.scdn.co/image/ab67616d0000b273992e45c95fa03ee72c52a526"
+            />
+          </Box>
           <div>
-            <Typography color="primary.200" fontWeight={600} fontSize={12}>
+            <Typography color="primary.100" fontWeight="semiBold" fontSize={12}>
               Assigned to
             </Typography>
-            <Typography id="demo-task-card-assignee-name" variant="body2" fontWeight={600}>
+            <Typography id="demo-task-card-assignee-name" variant="body2" fontWeight="semiBold">
               Michael Scott
             </Typography>
           </div>

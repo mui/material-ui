@@ -1,5 +1,1 @@
-<StyledTextarea
-  aria-label="minimum height"
-  minRows={3}
-  placeholder="Minimum 3 rows"
-/>
+<Textarea aria-label="minimum height" minRows={3} placeholder="Minimum 3 rows" />

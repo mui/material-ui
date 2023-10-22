@@ -251,8 +251,10 @@ export default function TemplateCollection() {
               </Box>
               <Box
                 sx={{
+                  mt: 'auto',
                   width: '100%',
                   display: 'flex',
+                  flexDirection: { xs: 'column', sm: 'row' },
                   gap: 1.5,
                 }}
               >
@@ -267,24 +269,24 @@ export default function TemplateCollection() {
                     color="neutral"
                     fullWidth
                     startDecorator={<CodeRoundedIcon />}
-                    aria-label="See live preview"
+                    aria-label="Source code"
                     data-ga-event-category="joy-template"
                     data-ga-event-label={template.name}
                     data-ga-event-action="preview"
                     sx={{ fontFamily: 'IBM Plex Sans' }}
                   >
-                    Source code
+                    Source
                   </Button>
                 </NextLink>
                 <Button
                   variant="outlined"
                   color="neutral"
+                  fullWidth
                   startDecorator={
                     <SvgIcon viewBox="0 0 1080 1080">
                       <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
                     </SvgIcon>
                   }
-                  fullWidth
                   aria-label="CodeSandbox playground"
                   data-ga-event-category="joy-template"
                   data-ga-event-label={template.name}
@@ -302,6 +304,7 @@ export default function TemplateCollection() {
                       })
                       .openSandbox()
                   }
+                  sx={{ fontFamily: 'IBM Plex Sans' }}
                 >
                   CodeSandbox
                 </Button>

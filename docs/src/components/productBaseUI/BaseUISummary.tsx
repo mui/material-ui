@@ -29,7 +29,7 @@ const content = [
     title: 'Accessibility',
     description:
       'We take accessibility seriously. The Base UI docs are loaded with guidelines and best practices.',
-    link: '/base-ui/getting-started/quickstart/#components-and-hooks',
+    link: '/base-ui/getting-started/accessibility/',
   },
 ];
 
