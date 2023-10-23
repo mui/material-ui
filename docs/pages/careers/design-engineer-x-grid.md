@@ -47,12 +47,12 @@ We are aiming to make high-end design accessible to the many, empowering develop
 ### Why this is interesting
 
 Developing and designing components for advanced use cases is not an easy feat.
-It's an intricate challenge to craft customizable, feature-rich, and performative components while having them look great out of the box. 
+It's an intricate challenge to craft customizable, feature-rich, and performative components while having them look great out of the box.
 
 Within the MUI X team, you'll be facing this challenge head-on!
 We want to serve demanding customers by making their experience building data-heavy and complex applications much smoother with reliable, advanced React components.
 
-There aren't a lot of benchmarks out there. 
+There aren't a lot of benchmarks out there.
 So, by combining top-notch engineering with sleek product design, you'll be pioneering a whole different area of UI component development.
 
 ## The role
@@ -73,7 +73,7 @@ The Design Engineer role sits right at the intersection between product design a
   You'll shape and guide the direction of crucial new features, including new components.
 - **You'll be interacting with customers** regularly, handling inbound support and feature requests (every developer helps with developer requests).
 - **Bridge the gap between design and engineering**.
-  Sometimes, you'll be sketching new features on Figma. On other days, you'll be prototyping them in code. 
+  Sometimes, you'll be sketching new features on Figma. On other days, you'll be prototyping them in code.
 
 ### The best parts of this job
 
