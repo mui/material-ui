@@ -149,6 +149,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
       'aria-controls': `${accordionId}-details`,
       disabled,
       type: 'button',
+      role: 'button',
       onClick: handleClick,
     },
     ownerState,
