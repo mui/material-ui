@@ -154,7 +154,7 @@ type StyledComponentPropsWithAs<
 
 export type StyledComponent<
   C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
-  T extends object,
+  T extends object = {},
   O extends object = {},
   A extends keyof any = never,
 > = // the "string" allows this to be used as an object key
@@ -166,14 +166,20 @@ export type StyledComponent<
 // any doesn't count as assignable to never in the extends clause, and we default A to never
 export type AnyStyledComponent =
   | StyledComponent<any, any, any, any>
-  | StyledComponent<any, any, any>;
+  | StyledComponent<any, any, any>
+  | React.FunctionComponent<any>
+  | React.ComponentType<any>;
 
-export type StyledComponentInnerComponent<C extends React.ComponentType<any>> =
-  C extends StyledComponent<infer I, any, any, any>
-    ? I
-    : C extends StyledComponent<infer I, any, any>
-    ? I
-    : C;
+export type StyledComponentInnerComponent<C extends AnyStyledComponent> = C extends StyledComponent<
+  infer I,
+  any,
+  any,
+  any
+>
+  ? I
+  : C extends StyledComponent<infer I, any, any>
+  ? I
+  : C;
 
 export type StyledComponentInnerOtherProps<C extends AnyStyledComponent> =
   C extends StyledComponent<any, any, infer O, any>
@@ -274,6 +280,13 @@ export interface ThemedStyledFunction<
   A extends keyof any = never,
 > extends ThemedStyledFunctionBase<C, T, O, A> {}
 
+export type CreateStyledComponent<
+  ComponentProps extends {},
+  SpecificComponentProps extends {} = {},
+  JSXProps extends {} = {},
+  T extends object = {},
+> = ThemedStyledFunction<React.ComponentType<ComponentProps>, T, SpecificComponentProps & JSXProps>;
+
 // Config to be used with withConfig
 export interface StyledConfig<O extends object = {}> {
   // TODO: Add all types from the original StyledComponentWrapperProperties
@@ -312,3 +325,22 @@ export type CreateMUIStyled<
   MuiStyledOptions extends object = {},
   T extends object = {},
 > = ThemedBaseStyledInterface<MUIStyledCommonProps, MuiStyledOptions, AnyIfEmpty<T>>;
+
+export type PropsOf<C extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>> =
+  JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>;
+
+export interface MUIStyledComponent<
+  ComponentProps extends {},
+  SpecificComponentProps extends {} = {},
+  JSXProps extends {} = {},
+> extends React.FC<ComponentProps & SpecificComponentProps & JSXProps> {
+  withComponent<C extends React.ComponentClass<React.ComponentProps<C>>>(
+    component: C,
+  ): MUIStyledComponent<ComponentProps & PropsOf<C>, {}, { ref?: React.Ref<InstanceType<C>> }>;
+  withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
+    component: C,
+  ): MUIStyledComponent<ComponentProps & PropsOf<C>>;
+  withComponent<Tag extends keyof JSX.IntrinsicElements>(
+    tag: Tag,
+  ): MUIStyledComponent<ComponentProps, JSX.IntrinsicElements[Tag]>;
+}
