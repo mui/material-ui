@@ -11,7 +11,7 @@ export default function HeroPricing() {
         alwaysCenter
         overline="Pricing"
         title={
-          <Typography variant="h2" component="h1" sx={{ mx: 'auto' }}>
+          <Typography variant="h2" component="h1">
             Start using MUI&apos;s products <GradientText>for free!</GradientText>
           </Typography>
         }

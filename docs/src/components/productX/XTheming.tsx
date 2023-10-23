@@ -8,7 +8,6 @@ import {
 import { useDemoData } from '@mui/x-data-grid-generator';
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
@@ -97,22 +96,20 @@ export default function XTheming() {
     <Section bg="gradient">
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="Theming"
-              title={
-                <Typography variant="h2">
-                  Advanced and <GradientText>beautiful</GradientText>
-                </Typography>
-              }
-              description="Use the sophisticated theming features to make the MUI X components look exactly as you want. "
-            />
-          </Box>
-          <Group sx={{ mt: 4 }}>
+          <SectionHeadline
+            overline="Theming"
+            title={
+              <Typography variant="h2">
+                Advanced and <GradientText>beautiful</GradientText>
+              </Typography>
+            }
+            description="Use the sophisticated theming features to make the MUI X components look exactly as you want."
+          />
+          <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<SvgTwinkle />}
-                title="Custom Theme"
+                title="Custom theme"
                 description="Theming allows you to use your brand's design tokens, easily making the components reflect its look and feel."
               />
             </Highlighter>

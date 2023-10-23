@@ -6,7 +6,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.23.1",
+    "@babel/runtime": "^7.23.2",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
     "@mui-internal/test-utils": "^1.0.0",
@@ -19,8 +19,8 @@
     "@mui/system": "^5.14.14",
     "@playwright/test": "1.37.1",
     "@testing-library/dom": "^9.3.3",
-    "@types/chai": "^4.3.6",
-    "@types/react": "^18.2.23",
+    "@types/chai": "^4.3.8",
+    "@types/react": "^18.2.29",
     "chai": "^4.3.10",
     "docs": "^5.0.0",
     "fast-glob": "^3.3.1",

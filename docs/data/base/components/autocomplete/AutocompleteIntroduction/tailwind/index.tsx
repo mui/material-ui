@@ -80,7 +80,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           />
         </Button>
       </div>
-      {anchorEl ? (
+      {anchorEl && (
         <Popper
           open={popupOpen}
           anchorEl={anchorEl}
@@ -116,7 +116,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             )}
           </ul>
         </Popper>
-      ) : null}
+      )}
     </React.Fragment>
   );
 });
