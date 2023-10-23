@@ -69,11 +69,26 @@ export function useApiPageOption(
   storageKey: string,
 ): [ApiDisplayOptions, (newOption: ApiDisplayOptions) => void] {
   const [option, setOption] = React.useState(getOption(storageKey));
+  const [needsScroll, setNeedsScroll] = React.useState(false);
 
   useEnhancedEffect(() => {
     neverHydrated = false;
-    setOption(getOption(storageKey));
+    const newOption = getOption(storageKey);
+    setOption(newOption);
+    setNeedsScroll(newOption !== DEFAULT_LAYOUT);
   }, [storageKey]);
+
+  React.useEffect(() => {
+    setNeedsScroll(false);
+    if (needsScroll) {
+      return () => {
+        const id = document?.location.hash.slice(1);
+        const element = document.getElementById(id);
+        element?.scrollIntoView();
+      };
+    }
+    return () => {};
+  }, [needsScroll]);
 
   const updateOption = React.useCallback(
     (newOption: ApiDisplayOptions) => {
