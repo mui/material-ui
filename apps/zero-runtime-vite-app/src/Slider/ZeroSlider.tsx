@@ -1,43 +1,47 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import clsx from 'clsx';
-import { isHostComponent, useSlotProps } from '@mui/base/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/utils';
-import { useSlider, valueToPercent } from '@mui/base/useSlider';
+import {
+  type SliderOwnerState,
+  type SliderProps,
+  sliderClasses,
+  getSliderUtilityClass,
+} from '@mui/material/Slider';
+import { isHostComponent, useSlotProps } from '@mui/base/utils';
 import { styled } from '@mui/zero-runtime';
-// eslint-disable-next-line no-restricted-imports
-import { slotShouldForwardProp } from '@mui/material/styles/styled';
 import { capitalize } from '@mui/material/utils';
-import { sliderClasses, getSliderUtilityClass } from '@mui/material/Slider';
-// eslint-disable-next-line no-restricted-imports
 import SliderValueLabel from '@mui/material/Slider/SliderValueLabel';
+import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { alpha, lighten, darken } from '../utils/colorManipulator';
 
-const shouldSpreadAdditionalProps = (Slot) => {
+const shouldSpreadAdditionalProps = (Slot?: React.ElementType) => {
   return !Slot || !isHostComponent(Slot);
 };
 
-function Identity(x) {
+function Identity<T>(x: T): T {
   return x;
 }
+
+type SliderNestedOwnerState = SliderOwnerState & {
+  ownerState: SliderOwnerState;
+};
 
 const SliderRoot = styled('span', {
   name: 'MuiSlider',
   slot: 'Root',
-  overridesResolver: (props, styles) => {
+  overridesResolver(props, styles) {
     const { ownerState } = props;
-
     return [
       styles.root,
-      styles[`color${capitalize(ownerState.color)}`],
-      ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size)}`],
+      styles[`color${capitalize(ownerState.color ?? '')}`],
+      ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size ?? '')}`],
       ownerState.marked && styles.marked,
       ownerState.orientation === 'vertical' && styles.vertical,
       ownerState.track === 'inverted' && styles.trackInverted,
       ownerState.track === false && styles.trackFalse,
     ];
   },
-})(({ theme }) => ({
+})<SliderNestedOwnerState>(({ theme }) => ({
   borderRadius: '12px',
   boxSizing: 'content-box',
   display: 'inline-block',
@@ -150,7 +154,7 @@ const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
   overridesResolver: (props, styles) => styles.rail,
-})({
+})<SliderNestedOwnerState>({
   display: 'block',
   position: 'absolute',
   borderRadius: 'inherit',
@@ -196,7 +200,7 @@ const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})(({ theme }) => {
+})<SliderNestedOwnerState>(({ theme }) => {
   const lightPrimaryColor = lighten(theme.palette.primary.main, 0.62);
   const lightSecondaryColor = lighten(theme.palette.secondary.main, 0.62);
   const darkPrimaryColor = darken(theme.palette.primary.main, 0.5);
@@ -276,8 +280,8 @@ const SliderTrack = styled('span', {
           color: 'primary',
         },
         style: {
-          backgroundColor: theme.vars ? theme.vars.palette.Slider.primaryTrack : undefined,
-          borderColor: theme.vars ? theme.vars.palette.Slider.primaryTrack : undefined,
+          backgroundColor: (theme.vars ?? theme).palette.Slider?.primaryTrack,
+          borderColor: (theme.vars ?? theme).palette.Slider?.primaryTrack,
         },
       },
       {
@@ -286,8 +290,8 @@ const SliderTrack = styled('span', {
           color: 'secondary',
         },
         style: {
-          backgroundColor: theme.vars ? theme.vars.palette.Slider.secondaryTrack : undefined,
-          borderColor: theme.vars ? theme.vars.palette.Slider.secondaryTrack : undefined,
+          backgroundColor: (theme.vars ?? theme).palette.Slider?.secondaryTrack,
+          borderColor: (theme.vars ?? theme).palette.Slider?.secondaryTrack,
         },
       },
     ],
@@ -303,11 +307,11 @@ const SliderThumb = styled('span', {
     const { ownerState } = props;
     return [
       styles.thumb,
-      styles[`thumbColor${capitalize(ownerState.color)}`],
-      ownerState.size !== 'medium' && styles[`thumbSize${capitalize(ownerState.size)}`],
+      styles[`thumbColor${capitalize(ownerState.color ?? '')}`],
+      ownerState.size !== 'medium' && styles[`thumbSize${capitalize(ownerState.size ?? '')}`],
     ];
   },
-})(({ theme }) => ({
+})<SliderNestedOwnerState>(({ theme }) => ({
   position: 'absolute',
   width: 20,
   height: 20,
@@ -414,7 +418,7 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
-})(({ theme }) => ({
+})<SliderOwnerState>(({ theme }) => ({
   zIndex: 1,
   whiteSpace: 'nowrap',
   ...theme.typography.body2,
@@ -504,13 +508,14 @@ export { StyledSliderValueLabel as SliderValueLabel };
 const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
-  shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markActive',
+  // @TODO - Support this in `styled` implementation
+  // shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markActive',
   overridesResolver: (props, styles) => {
     const { markActive } = props;
 
     return [styles.mark, markActive && styles.markActive];
   },
-})(({ theme }) => ({
+})<SliderOwnerState & { markActive?: boolean }>(({ theme }) => ({
   position: 'absolute',
   width: 2,
   height: 2,
@@ -552,9 +557,10 @@ export { SliderMark };
 const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
-  shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markLabelActive',
+  // @TODO
+  // shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markLabelActive',
   overridesResolver: (props, styles) => styles.markLabel,
-})(({ theme }) => ({
+})<SliderOwnerState>(({ theme }) => ({
   ...theme.typography.body2,
   color: (theme.vars || theme).palette.text.secondary,
   position: 'absolute',
@@ -595,9 +601,7 @@ const SliderMarkLabel = styled('span', {
   ],
 }));
 
-export { SliderMarkLabel };
-
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: SliderOwnerState) => {
   const { disabled, dragging, marked, orientation, track, classes, color, size } = ownerState;
 
   const slots = {
@@ -633,9 +637,11 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getSliderUtilityClass, classes);
 };
 
-const Forward = ({ children }) => children;
+export { SliderMarkLabel };
 
-const Slider = React.forwardRef(function Slider(props, ref) {
+const Forward = ({ children }: React.PropsWithChildren) => children;
+
+const Slider = React.forwardRef<HTMLSpanElement, SliderProps>(function Slider(props, ref) {
   // @TODO - Figure out how to persist this information
   const isRtl = false; // theme.direction === 'rtl';
 
@@ -673,8 +679,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     ...other
   } = props;
 
-  const ownerState = {
+  const ownerState: SliderOwnerState = {
     ...props,
+    // @ts-expect-error  @TODO - Figure out how to support rtl/ltr with themes
     isRtl,
     max,
     min,
@@ -708,7 +715,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     trackOffset,
     trackLeap,
     getThumbStyle,
-  } = useSlider({ ...ownerState, rootRef: ref });
+  } = useSlider({
+    ...ownerState,
+    rootRef: ref,
+  });
 
   ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
   ownerState.dragging = dragging;
@@ -716,7 +726,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  // support both `slots` and `components` for backward compatibility
   const RootSlot = slots?.root ?? components.Root ?? SliderRoot;
   const RailSlot = slots?.rail ?? components.Rail ?? SliderRail;
   const TrackSlot = slots?.track ?? components.Track ?? SliderTrack;
@@ -747,6 +756,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     },
     ownerState: {
       ...ownerState,
+      // @ts-expect-error
       ...rootSlotProps?.ownerState,
     },
     className: [classes.root, className],
@@ -770,6 +780,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     },
     ownerState: {
       ...ownerState,
+      // @ts-expect-error
       ...trackSlotProps?.ownerState,
     },
     className: classes.track,
@@ -781,6 +792,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     externalSlotProps: thumbSlotProps,
     ownerState: {
       ...ownerState,
+      // @ts-expect-error
       ...thumbSlotProps?.ownerState,
     },
     className: classes.thumb,
@@ -791,6 +803,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     externalSlotProps: valueLabelSlotProps,
     ownerState: {
       ...ownerState,
+      // @ts-expect-error
       ...valueLabelSlotProps?.ownerState,
     },
     className: classes.valueLabel,
@@ -818,7 +831,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   });
 
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <RootSlot {...rootProps}>
       <RailSlot {...railProps} />
       <TrackSlot {...trackProps} />

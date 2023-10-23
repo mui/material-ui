@@ -7,7 +7,6 @@ const theme = createTheme({
   },
 });
 // @TODO - Make this part of the main package
-// @ts-ignore
 theme.applyDarkStyles = function applyDarkStyles(obj) {
   return {
     ':where([data-mui-color-scheme="dark"]) &': obj,
@@ -18,19 +17,9 @@ theme.applyDarkStyles = function applyDarkStyles(obj) {
 const zeroPluginConfig = {
   theme,
   cssVariablesPrefix: 'app',
-  displayName: true,
-  // sourceMap: true,
 };
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // linaria: zeroPluginConfig,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-};
+const nextConfig = {};
 
 module.exports = withZero(nextConfig, zeroPluginConfig);
