@@ -20,10 +20,10 @@ import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import KeyboardArrowDown from '../internal/svg-icons/KeyboardArrowDown';
 
 const useUtilityClasses = (ownerState: AccordionSummaryOwnerState) => {
-  const { disabled, expanded, type } = ownerState;
+  const { disabled, expanded } = ownerState;
   const slots = {
     root: ['root', disabled && 'disabled', expanded && 'expanded'],
-    button: ['button', disabled && 'disabled', expanded && 'expanded', type && 'type'],
+    button: ['button', disabled && 'disabled', expanded && 'expanded'],
     indicator: ['indicator', disabled && 'disabled', expanded && 'expanded'],
   };
 
@@ -102,7 +102,6 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     accordionId,
     disabled = false,
     expanded = false,
-    type = 'button',
     toggle,
   } = React.useContext(AccordionContext);
 
@@ -115,7 +114,6 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     disabled,
     expanded,
     variant,
-    type,
   };
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -150,7 +148,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
       'aria-expanded': expanded ? 'true' : 'false',
       'aria-controls': `${accordionId}-details`,
       disabled,
-      type,
+      type: 'button',
       onClick: handleClick,
     },
     ownerState,
