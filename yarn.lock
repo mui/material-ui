@@ -3556,10 +3556,10 @@
     "@types/node" "*"
     "@types/responselike" "*"
 
-"@types/chai-dom@^1.11.1":
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/@types/chai-dom/-/chai-dom-1.11.1.tgz#5f91fb34a612ccef177c70100c7c1b98a684d696"
-  integrity sha512-q+fs4jdKZFDhXOWBehY0jDGCp8nxVe11Ia8MxqlIsJC3Y2JU149PSBYF2li2F3uxJFSAl2Rf8XeLWonHglpcGw==
+"@types/chai-dom@^1.11.2":
+  version "1.11.2"
+  resolved "https://registry.yarnpkg.com/@types/chai-dom/-/chai-dom-1.11.2.tgz#2fcca7218610f25469a335b982d2d3b521b55644"
+  integrity sha512-6ltNv5QOV7pdW5JEkhT+GMMfvziRC90Rn6zwadC8PFf6tWbXBQRRCV/uXp7nVPdiTKHbqbPTX1jDDhKbu5MW2Q==
   dependencies:
     "@types/chai" "*"
 
