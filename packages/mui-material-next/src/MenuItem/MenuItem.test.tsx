@@ -203,7 +203,7 @@ describe('<MenuItem />', () => {
     expect(menuitem).not.to.have.class(classes.gutters);
   });
 
-  // TODO: Need to be re-structured now that we don't use the List component internally
+  // TODO v6: Need to be re-structured now that we don't use the List component internally
   // describe('context: dense', () => {
   //   it.skip('should forward the context', () => {
   //     let context = null;

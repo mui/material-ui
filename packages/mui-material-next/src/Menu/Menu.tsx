@@ -100,7 +100,7 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
 
   const listRef = React.useRef<HTMLElement | null>(null);
 
-  // TODO: Handle the rest of the props from the MenuListProps prop
+  // TODO v6: Handle the rest of the props from the MenuListProps prop
   const {
     // autoFocus,
     // autoFocusItem,
@@ -229,7 +229,7 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
     className: classes.paper,
   });
 
-  // TODO: Setting autoFocus = false is missing feature at this point
+  // TODO v6: Setting autoFocus = false is missing feature at this point
   // const autoFocusList = autoFocus && (activeItemIndex === -1 || disableAutoFocusItem);
 
   const Listbox = slots.listbox ?? MenuListbox;
@@ -247,7 +247,7 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
     }),
     additionalProps: {
       ref: listRef,
-      // TODO: These need to be handled on the Menu component level, now that the MenuListbox is simply ul
+      // TODO v6: These need to be handled on the Menu component level, now that the MenuListbox is simply ul
       // variant,
       // autoFocusItem,
       // autoFocus: autoFocus && (activeItemIndex === -1 || disableAutoFocusItem),

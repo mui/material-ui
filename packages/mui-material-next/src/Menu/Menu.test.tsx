@@ -32,7 +32,7 @@ describe('<Menu />', () => {
       root: {
         expectedClassName: classes.root,
       },
-      // TODO: Enable this API
+      // TODO v6: Enable this API
       // paper: {
       //   expectedClassName: classes.paper,
       // },
@@ -594,7 +594,7 @@ describe('<Menu />', () => {
       });
     });
 
-    // TODO: This test is failing
+    // TODO v6: Opening on initial mount
     // it('should open during the initial mount', () => {
     //   function MenuItem(props) {
     //     const { autoFocus, children } = props;
