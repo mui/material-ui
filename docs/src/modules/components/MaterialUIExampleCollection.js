@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
-import Card from '@mui/material/Card';
+import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-import FilterDramaIcon from '@mui/icons-material/FilterDrama';
+import CloudRoundedIcon from '@mui/icons-material/CloudRounded';
 
 const examples = [
   {
@@ -73,7 +73,7 @@ const examples = [
     name: 'CDN',
     label: 'View JS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-via-cdn',
-    src: <FilterDramaIcon />,
+    src: <CloudRoundedIcon />,
   },
   {
     name: 'Express.js (server-rendered)',
@@ -89,70 +89,61 @@ const examples = [
   },
 ];
 
-export default function ExampleCollection() {
+export default function MaterialUIExampleCollection() {
   return (
     <Grid container spacing={2}>
       {examples.map((example) => (
         <Grid key={example.name} xs={12} sm={6}>
-          <Card
-            sx={[
-              {
-                p: 2,
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 2,
-                bgcolor: '#fff',
-                backgroundImage: 'none',
-                borderRadius: 1,
-                border: '1px solid',
-                borderColor: 'divider',
-                boxShadow: 'none',
-              },
-              (theme) =>
-                theme.applyDarkStyles({
-                  bgcolor: 'transparent',
-                  borderColor: 'divider',
-                }),
-            ]}
+          <Paper
+            variant="outlined"
+            sx={(theme) => ({
+              p: 2,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 2,
+              background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+              ...theme.applyDarkStyles({
+                bgcolor: 'primaryDark.900',
+                background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+                borderColor: 'primaryDark.700',
+              }),
+            })}
           >
             <Avatar
+              alt={example.name}
               imgProps={{
-                width: '40',
-                height: '40',
+                width: '38',
+                height: '38',
                 loading: 'lazy',
               }}
               {...(typeof example.src === 'string'
                 ? { src: example.src }
                 : { children: example.src })}
-              alt={example.name}
             />
             <div>
-              <Typography variant="body" fontWeight="semiBold">
-                {example.name}
-              </Typography>
+              <Typography fontWeight="semiBold">{example.name}</Typography>
               <Box
-                sx={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  alignItems: 'baseline',
-                }}
                 data-ga-event-category="material-ui-example"
                 data-ga-event-label={example.name}
                 data-ga-event-action="click"
+                sx={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  alignItems: 'center',
+                  mt: 0.2,
+                  gap: 0.2,
+                }}
               >
                 <Link
                   href={example.link}
                   variant="body2"
                   sx={{
-                    fontWeight: 'medium',
-                    display: 'flex',
-                    alignItems: 'center',
-                    mt: 0.5,
+                    '& > svg': { transition: '0.2s' },
+                    '&:hover > svg': { transform: 'translateX(2px)' },
                   }}
                 >
                   {example.label}
-                  <ChevronRightRoundedIcon fontSize="small" />
+                  <ChevronRightRoundedIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
                 </Link>
                 {!!example.tsLink && (
                   <React.Fragment>
@@ -164,25 +155,24 @@ export default function ExampleCollection() {
                         mr: 0.75,
                       }}
                     >
-                      /
+                      &bull;
                     </Typography>
                     <Link
                       href={example.tsLink}
                       variant="body2"
                       sx={{
-                        fontWeight: 'medium',
-                        display: 'flex',
-                        alignItems: 'center',
+                        '& > svg': { transition: '0.2s' },
+                        '&:hover > svg': { transform: 'translateX(2px)' },
                       }}
                     >
                       {example.tsLabel}
-                      <ChevronRightRoundedIcon fontSize="small" />
+                      <ChevronRightRoundedIcon fontSize="small" sx={{ verticalAlign: 'middle' }} />
                     </Link>
                   </React.Fragment>
                 )}
               </Box>
             </div>
-          </Card>
+          </Paper>
         </Grid>
       ))}
     </Grid>
