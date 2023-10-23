@@ -60,7 +60,7 @@ export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The anchor of the `Snackbar`.
        * On smaller screens, the component grows to occupy all the available width,
        * the horizontal alignment is ignored.
-       * @default { vertical: 'bottom', horizontal: 'center' }
+       * @default { vertical: 'bottom', horizontal: 'right' }
        */
       anchorOrigin?: SnackbarOrigin;
       /**

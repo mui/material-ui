@@ -1,55 +1,58 @@
 import * as React from 'react';
 import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 import Snackbar, { SnackbarProps } from '@mui/joy/Snackbar';
 
 export default function SnackbarColors() {
   const [open, setOpen] = React.useState(false);
+  const [variant, setVariant] = React.useState<SnackbarProps['variant']>('outlined');
   const [color, setColor] = React.useState<SnackbarProps['color']>('neutral');
   return (
-    <Stack spacing={2} direction="row">
-      {(['primary', 'neutral', 'danger', 'success', 'warning'] as const).map(
-        (currentColor) => (
-          <Button
-            key={currentColor}
-            variant="outlined"
-            color={currentColor}
-            onClick={() => {
-              setOpen(true);
-              setColor(currentColor);
-            }}
-          >
-            {currentColor}
-          </Button>
-        ),
-      )}
-      {(['plain', 'outlined', 'soft', 'solid'] as const).map((variant, index) => (
-        <Snackbar
-          key={variant}
-          autoHideDuration={8000}
-          open={open}
-          variant={variant}
-          color={color}
-          anchorOrigin={
-            (
-              [
-                { vertical: 'top', horizontal: 'center' },
-                { vertical: 'top', horizontal: 'right' },
-                { vertical: 'bottom', horizontal: 'center' },
-                { vertical: 'bottom', horizontal: 'right' },
-              ] as const
-            )[index]
+    <Stack spacing={2} alignItems="center">
+      <Select
+        value={variant}
+        onChange={(event, newValue) => setVariant(newValue!)}
+        sx={{ minWidth: 160 }}
+      >
+        <Option value="outlined">outlined</Option>
+        <Option value="plain">plain</Option>
+        <Option value="soft">soft</Option>
+        <Option value="solid">solid</Option>
+      </Select>
+      <Stack spacing={1} direction="row">
+        {(['primary', 'neutral', 'danger', 'success', 'warning'] as const).map(
+          (currentColor) => (
+            <Button
+              key={currentColor}
+              variant="outlined"
+              color={currentColor}
+              size="sm"
+              onClick={() => {
+                setOpen(true);
+                setColor(currentColor);
+              }}
+            >
+              {currentColor}
+            </Button>
+          ),
+        )}
+      </Stack>
+      <Snackbar
+        autoHideDuration={8000}
+        open={open}
+        variant={variant}
+        color={color}
+        onClose={(event, reason) => {
+          if (reason === 'clickaway') {
+            return;
           }
-          onClose={(event, reason) => {
-            if (reason === 'clickaway') {
-              return;
-            }
-            setOpen(false);
-          }}
-        >
-          {variant} snackbar with {color} color.
-        </Snackbar>
-      ))}
+          setOpen(false);
+        }}
+      >
+        {variant} snackbar with {color} color.
+      </Snackbar>
     </Stack>
   );
 }

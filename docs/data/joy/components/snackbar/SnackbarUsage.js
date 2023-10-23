@@ -36,11 +36,6 @@ export default function SnackbarUsage() {
           helperText: 'The duration to be shown (in ms)',
           knob: 'number',
         },
-        {
-          propName: 'invertedColors',
-          knob: 'switch',
-          helperText: 'To invert children colors',
-        },
       ]}
       renderDemo={(props) => (
         <React.Fragment>
@@ -58,15 +53,20 @@ export default function SnackbarUsage() {
             }}
             startDecorator={<InfoOutlined />}
             endDecorator={
-              <IconButton onClick={() => setOpen(false)}>
+              <IconButton
+                onClick={() => setOpen(false)}
+                sx={{ color: 'inherit', '--Icon-color': 'inherit' }}
+              >
                 <Close />
               </IconButton>
             }
             {...props}
           >
             <div>
-              <Typography level="title-md">Notification alert</Typography>
-              <Typography level="body-sm">
+              <Typography level="title-md" sx={{ color: 'inherit' }}>
+                Notification alert
+              </Typography>
+              <Typography level="body-sm" sx={{ color: 'inherit', opacity: 0.6 }}>
                 102 unread messages since last month.
               </Typography>
             </div>

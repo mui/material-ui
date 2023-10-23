@@ -161,6 +161,8 @@ const SnackbarEndDecorator = styled('span', {
   marginLeft: 'auto',
 });
 
+const defaultAnchorOrigin = { vertical: 'bottom', horizontal: 'right' } as const;
+
 /**
  *
  * Demos:
@@ -178,7 +180,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   });
 
   const {
-    anchorOrigin = { vertical: 'bottom', horizontal: 'center' },
+    anchorOrigin = defaultAnchorOrigin,
     animationDuration = 300,
     autoHideDuration = null,
     color = 'neutral',
@@ -318,7 +320,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * The anchor of the `Snackbar`.
    * On smaller screens, the component grows to occupy all the available width,
    * the horizontal alignment is ignored.
-   * @default { vertical: 'bottom', horizontal: 'center' }
+   * @default { vertical: 'bottom', horizontal: 'right' }
    */
   anchorOrigin: PropTypes.shape({
     horizontal: PropTypes.oneOf(['center', 'left', 'right']).isRequired,

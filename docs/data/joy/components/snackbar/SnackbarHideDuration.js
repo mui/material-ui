@@ -39,6 +39,7 @@ export default function SnackbarHideDuration() {
           </FormLabel>
           <Input
             type="number"
+            slotProps={{ input: { step: 100 } }}
             value={duration || ''}
             onChange={(event) => {
               setDuration(event.target.valueAsNumber || undefined);
