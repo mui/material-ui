@@ -161,6 +161,8 @@ const SnackbarEndDecorator = styled('span', {
   marginLeft: 'auto',
 });
 
+const defaultAnchorOrigin = { vertical: 'bottom', horizontal: 'right' } as const;
+
 /**
  *
  * Demos:
@@ -178,7 +180,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   });
 
   const {
-    anchorOrigin = { vertical: 'bottom', horizontal: 'center' },
+    anchorOrigin = defaultAnchorOrigin,
     animationDuration = 300,
     autoHideDuration = null,
     color = 'neutral',
