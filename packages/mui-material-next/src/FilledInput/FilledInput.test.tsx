@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from '@mui-internal/test-utils';
-import FilledInput, { filledInputClasses as classes } from '@mui/material/FilledInput';
-import InputBase from '@mui/material/InputBase';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
+import FilledInput, { filledInputClasses as classes } from '@mui/material-next/FilledInput';
+import InputBase from '@mui/material-next/InputBase';
 
 describe('<FilledInput />', () => {
   const { render } = createRenderer();
 
   describeConformance(<FilledInput open />, () => ({
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
     classes,
     inheritComponent: InputBase,
     render,
@@ -16,11 +19,9 @@ describe('<FilledInput />', () => {
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'contained', fullWidth: true },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
-    testLegacyComponentsProp: true,
     slots: {
-      // can't test with DOM element as Input places an ownerState prop on it unconditionally.
-      root: { expectedClassName: classes.root, testWithElement: null },
-      input: { expectedClassName: classes.input, testWithElement: null },
+      root: { expectedClassName: classes.root },
+      input: { expectedClassName: classes.input, testWithElement: 'input' },
     },
     skip: [
       'componentProp',
@@ -30,9 +31,10 @@ describe('<FilledInput />', () => {
   }));
 
   it('should have the underline class', () => {
-    const { container } = render(<FilledInput />);
-    const root = container.firstChild;
+    const { getByTestId } = render(<FilledInput data-testid="test-input" />);
+    const root = getByTestId('test-input');
     expect(root).not.to.equal(null);
+    expect(root).to.have.class(classes.underline);
   });
 
   it('color={undefined} should not result in crash', () => {
@@ -42,8 +44,8 @@ describe('<FilledInput />', () => {
   });
 
   it('can disable the underline', () => {
-    const { container } = render(<FilledInput disableUnderline />);
-    const root = container.firstChild;
+    const { getByTestId } = render(<FilledInput data-testid="test-input" disableUnderline />);
+    const root = getByTestId('test-input');
     expect(root).not.to.have.class(classes.underline);
   });
 
@@ -52,19 +54,15 @@ describe('<FilledInput />', () => {
     expect(document.querySelector('.error')).not.to.equal(null);
   });
 
-  it('should respects the componentsProps if passed', () => {
-    render(<FilledInput componentsProps={{ root: { 'data-test': 'test' } }} />);
-    expect(document.querySelector('[data-test=test]')).not.to.equal(null);
-  });
-
   it('should respect the classes coming from InputBase', () => {
-    render(
+    const { getByTestId } = render(
       <FilledInput
-        data-test="test"
+        data-testid="test-input"
         multiline
         sx={{ [`&.${classes.multiline}`]: { mt: '10px' } }}
       />,
     );
-    expect(document.querySelector('[data-test=test]')).toHaveComputedStyle({ marginTop: '10px' });
+    const root = getByTestId('test-input');
+    expect(root).toHaveComputedStyle({ marginTop: '10px' });
   });
 });

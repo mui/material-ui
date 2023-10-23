@@ -140,6 +140,19 @@ If you need to prevent default on a `key-up` and/or `key-down` event, then besid
 
 This is to ensure that default is prevented when the `ButtonBase` root is not a native button, for example, when the root element used is a `span`.
 
+## FilledInput
+
+### Removed `inputProps`
+
+`inputProps` are removed in favor of `slotProps.input`:
+
+```diff
+ <FilledInput
+-    inputProps={{ className: 'my-input' }}
++    slotProps={{ input: { className: 'my-input' } }}
+ />
+```
+
 ## FormControl
 
 ### Renamed `FormControlState`

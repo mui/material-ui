@@ -3,17 +3,28 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import FormControl, { formControlClasses as classes } from '@mui/material-next/FormControl';
-// TODO v6: replace with material-next/FilledInput
+import FilledInput from '@mui/material-next/FilledInput';
 import InputBase from '@mui/material-next/InputBase';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 // TODO v6: replace with material-next/Select
 import Select from '@mui/material/Select';
 import useFormControl from './useFormControl';
 
+type TestFormControlledComponent = {
+  onFilled: () => {};
+  onEmpty: () => {};
+  onFocus: () => {};
+  onBlur: () => {};
+};
+
 describe('<FormControl />', () => {
   const { render } = createRenderer();
 
-  function TestComponent(props) {
+  interface TestComponentProps {
+    contextCallback: (context: ReturnType<typeof useFormControl>) => void;
+  }
+
+  function TestComponent(props: TestComponentProps) {
     const context = useFormControl();
     React.useEffect(() => {
       props.contextCallback(context);
@@ -47,7 +58,6 @@ describe('<FormControl />', () => {
       const root = container.firstChild;
 
       expect(root).not.to.have.class(classes.marginNormal);
-      expect(root).not.to.have.class(classes.sizeSmall);
     });
 
     it('can have the margin normal class', () => {
@@ -55,7 +65,6 @@ describe('<FormControl />', () => {
       const root = container.firstChild;
 
       expect(root).to.have.class(classes.marginNormal);
-      expect(root).not.to.have.class(classes.sizeSmall);
     });
 
     it('can have the margin dense class', () => {
@@ -106,7 +115,7 @@ describe('<FormControl />', () => {
       expect(readContext.args[0][0]).to.have.property('focused', false);
 
       act(() => {
-        container.querySelector('input').focus();
+        container.querySelector('input')?.focus();
       });
       expect(readContext.lastCall.args[0]).to.have.property('focused', true);
 
@@ -126,7 +135,7 @@ describe('<FormControl />', () => {
       );
 
       expect(readContext.args[0][0]).to.have.property('focused', true);
-      container.querySelector('input').blur();
+      container.querySelector('input')?.blur();
       expect(readContext.args[0][0]).to.have.property('focused', true);
     });
 
@@ -201,27 +210,23 @@ describe('<FormControl />', () => {
     });
   });
 
-  // TODO v6: needs FilledInput + FormControl integrated
-  // eslint-disable-next-line mocha/no-skipped-tests
-  describe.skip('input', () => {
+  describe('input', () => {
     it('should be filled when a value is set', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO v6: use material-next/FilledInput */}
-          <InputBase value="bar" />
+          <FilledInput value="bar" />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
       expect(readContext.args[0][0]).to.have.property('filled', true);
     });
 
-    it('should be filled when a value is set through inputProps', () => {
+    it('should be filled when a value is set through slotProps.input', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO v6: use material-next/FilledInput */}
-          <InputBase inputProps={{ value: 'bar' }} />
+          <FilledInput slotProps={{ input: { value: 'bar' } }} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
@@ -232,8 +237,7 @@ describe('<FormControl />', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO v6: use material-next/FilledInput */}
-          <InputBase defaultValue="bar" />
+          <FilledInput defaultValue="bar" />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
@@ -244,8 +248,7 @@ describe('<FormControl />', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO v6: use material-next/FilledInput */}
-          <InputBase endAdornment={<div />} />
+          <FilledInput endAdornment={<div />} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
@@ -256,8 +259,7 @@ describe('<FormControl />', () => {
       const readContext = spy();
       render(
         <FormControl>
-          {/* TODO v6: use material-next/FilledInput */}
-          <InputBase startAdornment={<div />} />
+          <FilledInput startAdornment={<div />} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
@@ -287,7 +289,7 @@ describe('<FormControl />', () => {
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
-      expect(readContext.args[0][0].adornedStart, true);
+      expect(readContext.args[0][0].adornedStart, 'true');
     });
   });
 
@@ -308,7 +310,7 @@ describe('<FormControl />', () => {
 
     describe('from props', () => {
       it('should have the required prop from the instance', () => {
-        const formControlRef = React.createRef();
+        const formControlRef = React.createRef<TestFormControlledComponent>();
         const { setProps } = render(<FormControlled ref={formControlRef} />);
 
         expect(formControlRef.current).to.have.property('required', false);
@@ -318,7 +320,7 @@ describe('<FormControl />', () => {
       });
 
       it('should have the error prop from the instance', () => {
-        const formControlRef = React.createRef();
+        const formControlRef = React.createRef<TestFormControlledComponent>();
         const { setProps } = render(<FormControlled ref={formControlRef} />);
 
         expect(formControlRef.current).to.have.property('error', false);
@@ -328,7 +330,7 @@ describe('<FormControl />', () => {
       });
 
       it('should have the margin prop from the instance', () => {
-        const formControlRef = React.createRef();
+        const formControlRef = React.createRef<TestFormControlledComponent>();
         const { setProps } = render(<FormControlled ref={formControlRef} />);
 
         expect(formControlRef.current).to.have.property('size', 'medium');
@@ -338,7 +340,7 @@ describe('<FormControl />', () => {
       });
 
       it('should have the fullWidth prop from the instance', () => {
-        const formControlRef = React.createRef();
+        const formControlRef = React.createRef<TestFormControlledComponent>();
         const { setProps } = render(<FormControlled ref={formControlRef} />);
 
         expect(formControlRef.current).to.have.property('fullWidth', false);
@@ -351,19 +353,19 @@ describe('<FormControl />', () => {
     describe('callbacks', () => {
       describe('onFilled', () => {
         it('should set the filled state', () => {
-          const formControlRef = React.createRef();
+          const formControlRef = React.createRef<TestFormControlledComponent>();
           render(<FormControlled ref={formControlRef} />);
 
           expect(formControlRef.current).to.have.property('filled', false);
 
           act(() => {
-            formControlRef.current.onFilled();
+            formControlRef.current?.onFilled();
           });
 
           expect(formControlRef.current).to.have.property('filled', true);
 
           act(() => {
-            formControlRef.current.onFilled();
+            formControlRef.current?.onFilled();
           });
 
           expect(formControlRef.current).to.have.property('filled', true);
@@ -372,23 +374,23 @@ describe('<FormControl />', () => {
 
       describe('onEmpty', () => {
         it('should clean the filled state', () => {
-          const formControlRef = React.createRef();
+          const formControlRef = React.createRef<TestFormControlledComponent>();
           render(<FormControlled ref={formControlRef} />);
 
           act(() => {
-            formControlRef.current.onFilled();
+            formControlRef.current?.onFilled();
           });
 
           expect(formControlRef.current).to.have.property('filled', true);
 
           act(() => {
-            formControlRef.current.onEmpty();
+            formControlRef.current?.onEmpty();
           });
 
           expect(formControlRef.current).to.have.property('filled', false);
 
           act(() => {
-            formControlRef.current.onEmpty();
+            formControlRef.current?.onEmpty();
           });
 
           expect(formControlRef.current).to.have.property('filled', false);
@@ -397,18 +399,18 @@ describe('<FormControl />', () => {
 
       describe('handleFocus', () => {
         it('should set the focused state', () => {
-          const formControlRef = React.createRef();
+          const formControlRef = React.createRef<TestFormControlledComponent>();
           render(<FormControlled ref={formControlRef} />);
           expect(formControlRef.current).to.have.property('focused', false);
 
           act(() => {
-            formControlRef.current.onFocus();
+            formControlRef.current?.onFocus();
           });
 
           expect(formControlRef.current).to.have.property('focused', true);
 
           act(() => {
-            formControlRef.current.onFocus();
+            formControlRef.current?.onFocus();
           });
 
           expect(formControlRef.current).to.have.property('focused', true);
@@ -417,24 +419,24 @@ describe('<FormControl />', () => {
 
       describe('handleBlur', () => {
         it('should clear the focused state', () => {
-          const formControlRef = React.createRef();
+          const formControlRef = React.createRef<TestFormControlledComponent>();
           render(<FormControlled ref={formControlRef} />);
           expect(formControlRef.current).to.have.property('focused', false);
 
           act(() => {
-            formControlRef.current.onFocus();
+            formControlRef.current?.onFocus();
           });
 
           expect(formControlRef.current).to.have.property('focused', true);
 
           act(() => {
-            formControlRef.current.onBlur();
+            formControlRef.current?.onBlur();
           });
 
           expect(formControlRef.current).to.have.property('focused', false);
 
           act(() => {
-            formControlRef.current.onBlur();
+            formControlRef.current?.onBlur();
           });
 
           expect(formControlRef.current).to.have.property('focused', false);

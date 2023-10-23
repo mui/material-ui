@@ -18,6 +18,11 @@ import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import InputBase, { inputBaseClasses as classes } from '@mui/material-next/InputBase';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
+import {
+  InputBaseInputSlotPropsOverrides,
+  InputBaseOwnerState,
+  InputBaseProps,
+} from './InputBase.types';
 
 describe('<InputBase />', () => {
   const { render } = createRenderer();
@@ -53,6 +58,21 @@ describe('<InputBase />', () => {
   });
 
   describe('multiline', () => {
+    describe('warning if multiline related props are passed without specifying the multiline prop', () => {
+      ['rows', 'minRows', 'maxRows'].forEach((multilineProp) => {
+        it(`warns if ${multilineProp} is passed without specifying multiline`, () => {
+          const multilineErrorMessage = `MUI: You have set multiline props on an single-line input.\nSet the \`multiline\` prop if you want to render a multi-line input.\nOtherwise they will be ignored.\nIgnored props: ${multilineProp}`;
+          expect(() => {
+            render(<InputBase {...{ [multilineProp]: 1 }} />);
+          }).toErrorDev([
+            multilineErrorMessage,
+            // React 18 Strict Effects run mount effects twice
+            React.version.startsWith('18') && multilineErrorMessage,
+          ]);
+        });
+      });
+    });
+
     it('should render a `textbox` with `aria-multiline`', () => {
       render(<InputBase multiline />);
 
@@ -185,7 +205,12 @@ describe('<InputBase />', () => {
        *
        * A ref is exposed to trigger a change event instead of using fireEvent.change
        */
-      const BadInputComponent = React.forwardRef(function BadInputComponent(props, ref) {
+      const BadInputComponent = React.forwardRef(function BadInputComponent(
+        props: {
+          onChange: (arg: Record<string, unknown>) => void;
+        },
+        ref,
+      ) {
         const { onChange } = props;
 
         // simulates const handleChange = () => onChange({}) and passing that
@@ -199,7 +224,7 @@ describe('<InputBase />', () => {
         onChange: PropTypes.func.isRequired,
       };
 
-      const triggerChangeRef = React.createRef();
+      const triggerChangeRef = React.createRef<HTMLInputElement>();
 
       expect(() => {
         render(
@@ -228,15 +253,21 @@ describe('<InputBase />', () => {
       const { getByTestId } = render(
         <InputBase
           inputComponent="span"
-          slotProps={{ input: { 'data-testid': 'input-component' } }}
+          slotProps={{
+            input: { 'data-testid': 'input-component' } as InputBaseInputSlotPropsOverrides,
+          }}
         />,
       );
       expect(getByTestId('input-component')).to.have.property('nodeName', 'SPAN');
     });
 
     it('should inject onBlur and onFocus', () => {
-      let injectedProps;
-      const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
+      let injectedProps: Record<string, unknown> = {};
+
+      const MyInputBase = React.forwardRef(function MyInputBase(
+        props: { ownerState: InputBaseOwnerState } & Record<string, unknown>,
+        ref: React.ForwardedRef<HTMLInputElement>,
+      ) {
         injectedProps = props;
         const { ownerState, ...other } = props;
         return <input ref={ref} {...other} />;
@@ -250,20 +281,27 @@ describe('<InputBase />', () => {
 
     describe('target mock implementations', () => {
       it('can just mock the value', () => {
-        const MockedValue = React.forwardRef(function MockedValue(props, ref) {
+        const MockedValue = React.forwardRef(function MockedValue(
+          props: {
+            onChange: React.ChangeEventHandler<HTMLInputElement>;
+          },
+          ref: React.ForwardedRef<HTMLInputElement>,
+        ) {
           const { onChange } = props;
 
-          const handleChange = (event) => {
-            onChange({ target: { value: event.target.value } });
+          const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+            onChange({
+              target: { value: event.target.value },
+            } as React.ChangeEvent<HTMLInputElement>);
           };
 
           return <input ref={ref} onChange={handleChange} />;
         });
         MockedValue.propTypes = { onChange: PropTypes.func.isRequired };
 
-        function FilledState(props) {
-          const { filled } = useFormControl();
-          return <span {...props}>filled: {String(filled)}</span>;
+        function FilledState(props: { 'data-testid': string }) {
+          const formControlContext = useFormControl();
+          return <span {...props}>filled: {String(formControlContext?.filled)}</span>;
         }
 
         const { getByRole, getByTestId } = render(
@@ -279,14 +317,17 @@ describe('<InputBase />', () => {
       });
 
       it("can expose the input component's ref through the inputComponent prop", () => {
-        const FullTarget = React.forwardRef(function FullTarget(props, ref) {
+        const FullTarget = React.forwardRef(function FullTarget(
+          props: { ownerState: InputBaseOwnerState } & Record<string, unknown>,
+          ref: React.ForwardedRef<HTMLInputElement>,
+        ) {
           const { ownerState, ...otherProps } = props;
           return <input ref={ref} {...otherProps} />;
         });
 
-        function FilledState(props) {
-          const { filled } = useFormControl();
-          return <span {...props}>filled: {String(filled)}</span>;
+        function FilledState(props: { 'data-testid': string }) {
+          const formControlContext = useFormControl();
+          return <span {...props}>filled: {String(formControlContext?.filled)}</span>;
         }
 
         const { getByRole, getByTestId } = render(
@@ -331,7 +372,7 @@ describe('<InputBase />', () => {
 
     describe('error', () => {
       it('should be overridden by props', () => {
-        function InputBaseInErrorForm(props) {
+        function InputBaseInErrorForm(props: InputBaseProps) {
           return (
             <FormControl error>
               <InputBase data-testid="root" {...props} />
@@ -361,7 +402,7 @@ describe('<InputBase />', () => {
       });
 
       it('should be overridden by props', () => {
-        function InputBaseInFormWithMargin(props) {
+        function InputBaseInFormWithMargin(props: InputBaseProps) {
           return (
             <FormControl size="medium">
               <InputBase {...props} />
@@ -398,16 +439,21 @@ describe('<InputBase />', () => {
       });
     });
 
+    type TestFormController = {
+      onFocus: () => {};
+      onBlur: () => {};
+    };
+
     describe('focused', () => {
       it('prioritizes context focus', () => {
         const FormController = React.forwardRef((props, ref) => {
-          const { onBlur, onFocus } = useFormControl();
+          const { onBlur, onFocus } = useFormControl() ?? {};
 
           React.useImperativeHandle(ref, () => ({ onBlur, onFocus }), [onBlur, onFocus]);
 
           return null;
         });
-        const controlRef = React.createRef();
+        const controlRef = React.createRef<TestFormController>();
         const { getByRole, getByTestId } = render(
           <FormControl>
             <FormController ref={controlRef} />
@@ -421,22 +467,22 @@ describe('<InputBase />', () => {
         expect(getByTestId('root')).to.have.class(classes.focused);
 
         act(() => {
-          controlRef.current.onBlur();
+          controlRef.current?.onBlur();
         });
 
         expect(getByTestId('root')).not.to.have.class(classes.focused);
 
         act(() => {
-          controlRef.current.onFocus();
+          controlRef.current?.onFocus();
         });
 
         expect(getByTestId('root')).to.have.class(classes.focused);
       });
 
       it('propagates focused state', () => {
-        function FocusedStateLabel(props) {
-          const { focused } = useFormControl();
-          return <label {...props}>focused: {String(focused)}</label>;
+        function FocusedStateLabel(props: { 'data-testid': string; htmlFor: string }) {
+          const formControlContext = useFormControl();
+          return <label {...props}>focused: {String(formControlContext?.focused)}</label>;
         }
         const { getByRole, getByTestId } = render(
           <FormControl>
@@ -459,9 +505,9 @@ describe('<InputBase />', () => {
     });
 
     it('propagates filled state when uncontrolled', () => {
-      function FilledStateLabel(props) {
-        const { filled } = useFormControl();
-        return <label {...props}>filled: {String(filled)}</label>;
+      function FilledStateLabel(props: { 'data-testid': string }) {
+        const formControlContext = useFormControl();
+        return <label {...props}>filled: {String(formControlContext?.filled)}</label>;
       }
       const { getByRole, getByTestId } = render(
         <FormControl>
@@ -483,11 +529,11 @@ describe('<InputBase />', () => {
     });
 
     it('propagates filled state when controlled', () => {
-      function FilledStateLabel(props) {
-        const { filled } = useFormControl();
-        return <label {...props}>filled: {String(filled)}</label>;
+      function FilledStateLabel(props: { 'data-testid': string }) {
+        const formControlContext = useFormControl();
+        return <label {...props}>filled: {String(formControlContext?.filled)}</label>;
       }
-      function ControlledInputBase(props) {
+      function ControlledInputBase(props: InputBaseProps) {
         return (
           <FormControl>
             <FilledStateLabel data-testid="label" />
@@ -552,7 +598,7 @@ describe('<InputBase />', () => {
     });
 
     it('should be able to get a ref', () => {
-      const inputRef = React.createRef();
+      const inputRef = React.createRef<HTMLInputElement>();
       const { container } = render(<InputBase slotProps={{ input: { ref: inputRef } }} />);
       expect(inputRef.current).to.equal(container.querySelector('input'));
     });
@@ -560,21 +606,29 @@ describe('<InputBase />', () => {
     it('should not repeat the same classname', () => {
       const { container } = render(<InputBase slotProps={{ input: { className: 'foo' } }} />);
       const input = container.querySelector('input');
-      const matches = input.className.match(/foo/g);
+      const matches = input?.className.match(/foo/g);
       expect(input).to.have.class('foo');
       expect(matches).to.have.length(1);
     });
   });
 
   describe('prop: slots and slotProps', () => {
-    it('should call onChange inputProp callback with all params sent from custom inputComponent', () => {
+    // e.g. integration of react-select with InputBase
+    // https://github.com/mui/material-ui/issues/18130
+    // react-select has a custom onChange that is essentially "(string, string) => void"
+    it('should call slotProps.input.onChange callback with all params sent from custom inputComponent', () => {
       const INPUT_VALUE = 'material';
       const OUTPUT_VALUE = 'test';
 
-      const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
-        const { onChange, ownerState, ...other } = props;
+      const MyInputBase = React.forwardRef(function MyInputBase(
+        props: {
+          onChange: (...args: string[]) => void;
+        },
+        ref: React.ForwardedRef<HTMLInputElement>,
+      ) {
+        const { onChange, ...other } = props;
 
-        const handleChange = (e) => {
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           onChange(e.target.value, OUTPUT_VALUE);
         };
 
@@ -585,17 +639,17 @@ describe('<InputBase />', () => {
         onChange: PropTypes.func.isRequired,
       };
 
-      let outputArguments;
-      function parentHandleChange(...args) {
+      let outputArguments: string[] = [];
+      function parentHandleChange(...args: string[]) {
         outputArguments = args;
       }
 
       const { getByRole } = render(
         <InputBase
-          slots={{ input: MyInputBase }}
+          inputComponent={MyInputBase}
           slotProps={{
             input: {
-              onChange: parentHandleChange,
+              onChange: parentHandleChange as unknown as React.ChangeEventHandler<HTMLInputElement>,
             },
           }}
         />,
@@ -670,7 +724,7 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: focused', () => {
-    // TODO v6: requires material-next/OutlinedInput
+    // TODO v6: requires material-next/TextField
     // eslint-disable-next-line mocha/no-skipped-tests
     it.skip('should render correct border color with a customized primary color supplied to CssVarsProvider', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
@@ -689,7 +743,7 @@ describe('<InputBase />', () => {
       });
       const { getByRole } = render(
         <CssVarsProvider theme={theme}>
-          {/* TODO v6: use material-next/TextField or OutlinedInput */}
+          {/* TODO v6: use material-next/TextField */}
           <TextField focused label="Your email" />
         </CssVarsProvider>,
       );
