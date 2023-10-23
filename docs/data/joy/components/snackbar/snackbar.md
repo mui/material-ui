@@ -14,9 +14,11 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 ## Introduction
 
-Snackbars inform users of a process that an app has performed or will perform. They appear temporarily, towards the bottom of the screen. They shouldn't interrupt the user experience, and they don't require user input to disappear.
+Snackbars are designed to provide brief, non-intrusive notifications to users, informing them about processes an app has performed or will perform.
 
-Snackbars contain a single line of text directly related to the operation performed. They may contain a text action, but no icons. You can use them to display notifications.
+By default, the snackbar is displayed in the lower-right corner of the screen. They are designed not to disrupt the user's workflow and can be dismissed automatically without the need of any user interaction.
+
+Snackbars contain a single line of text directly related to the operation performed. They can contain text actions, but no icons.
 
 {{"demo": "SnackbarUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -28,8 +30,9 @@ import Snackbar from '@mui/joy/Snackbar';
 
 ### Position
 
-In wide layouts, snackbars can be left-aligned or center-aligned if they are consistently placed on the same spot at the bottom of the screen, however there may be circumstances where the placement of the snackbar needs to be more flexible.
-You can control the position of the snackbar by specifying the `anchorOrigin` prop.
+The position of the snackbar can be controlled by specifying the `anchorOrigin` prop.
+
+In wider layouts, snackbars can be aligned to the left or centered, especially if they are consistently positioned in a specific location at the bottom of the screen. However, in some cases, you may need more flexible positioning.
 
 {{"demo": "PositionedSnackbar.js"}}
 
@@ -37,7 +40,7 @@ You can control the position of the snackbar by specifying the `anchorOrigin` pr
 
 ### Variants
 
-The Snackbar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `solid`, `soft`, and `plain`.
+The Snackbar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain`, `outlined` (default), `soft`, and `solid`.
 
 {{"demo": "SnackbarVariants.js"}}
 
