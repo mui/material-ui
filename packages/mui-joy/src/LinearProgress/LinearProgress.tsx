@@ -114,12 +114,12 @@ const LinearProgressRoot = styled('div', {
       position: 'absolute', // required to make `left` animation works.
     },
     ...(ownerState.variant === 'soft' && {
-      backgroundColor: 'var(--joy-palette-neutral-softBg)',
-      color: `var(--joy-palette-${ownerState.color}-solidBg)`,
+      backgroundColor: theme.variants.soft.neutral.backgroundColor,
+      color: theme.variants.solid?.[ownerState.color!].backgroundColor,
     }),
     ...(ownerState.variant === 'solid' && {
-      backgroundColor: `var(--joy-palette-${ownerState.color}-softHoverBg)`,
-      color: `var(--joy-palette-${ownerState.color}-solidBg)`,
+      backgroundColor: theme.variants.softHover?.[ownerState.color!].backgroundColor,
+      color: theme.variants.solid?.[ownerState.color!].backgroundColor,
     }),
   }),
   ({ ownerState }) =>
