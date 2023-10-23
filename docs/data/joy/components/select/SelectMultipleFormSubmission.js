@@ -12,7 +12,7 @@ export default function SelectMultipleFormSubmission() {
         const formData = new FormData(event.currentTarget);
         const formJson = Object.fromEntries(formData.entries());
         const selectedPets = JSON.parse(formJson.pets);
-        alert(JSON.stringify(selectedPets, null, 2));
+        alert(JSON.stringify(selectedPets));
       }}
     >
       <Stack spacing={2} alignItems="flex-start">
