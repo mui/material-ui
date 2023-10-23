@@ -46,7 +46,7 @@ const getRandomOption = () => {
 
 let neverHydrated = true;
 
-const getOption = (storageKey: string) => () => {
+const getOption = (storageKey: string) => {
   if (neverHydrated) {
     return DEFAULT_LAYOUT;
   }
@@ -71,11 +71,9 @@ export function useApiPageOption(
   const [option, setOption] = React.useState(getOption(storageKey));
 
   useEnhancedEffect(() => {
-    if (neverHydrated) {
-      document.getElementById(document.location.hash)?.scrollIntoView();
-    }
     neverHydrated = false;
-  }, []);
+    setOption(getOption(storageKey));
+  }, [storageKey]);
 
   const updateOption = React.useCallback(
     (newOption: ApiDisplayOptions) => {
