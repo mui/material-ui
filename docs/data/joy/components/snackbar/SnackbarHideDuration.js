@@ -13,8 +13,8 @@ export default function SnackbarHideDuration() {
   const timer = React.useRef();
   const countdown = () => {
     timer.current = window.setInterval(() => {
-      setLeft((prev) => (prev === undefined ? prev : Math.max(0, prev - 16)));
-    }, 16); // 60fps = 16ms / frame
+      setLeft((prev) => (prev === undefined ? prev : Math.max(0, prev - 100)));
+    }, 100);
   };
   React.useEffect(() => {
     if (open && duration !== undefined && duration > 0) {
