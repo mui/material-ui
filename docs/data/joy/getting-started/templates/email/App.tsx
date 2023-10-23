@@ -5,6 +5,12 @@ import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
+import MenuButton from '@mui/joy/MenuButton';
+import Menu from '@mui/joy/Menu';
+import MenuItem from '@mui/joy/MenuItem';
+import Dropdown from '@mui/joy/Dropdown';
+import ListItemButton from '@mui/joy/ListItemButton';
+import ListItemContent from '@mui/joy/ListItemContent';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -17,7 +23,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
-import Menu from './components/Menu';
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
 import Mails from './components/Mails';
@@ -137,35 +142,51 @@ export default function EmailExample() {
             >
               <BookRoundedIcon />
             </IconButton>
-            <Menu
-              id="app-selector"
-              control={
-                <IconButton
-                  size="sm"
-                  variant="soft"
-                  color="neutral"
-                  aria-label="Apps"
-                >
-                  <GridViewRoundedIcon />
-                </IconButton>
-              }
-              menus={[
-                {
-                  label: 'Email',
-                  active: true,
-                  href: '/joy-ui/getting-started/templates/email/',
-                  'aria-current': 'page',
-                },
-                {
-                  label: 'Team',
-                  href: '/joy-ui/getting-started/templates/team/',
-                },
-                {
-                  label: 'Files',
-                  href: '/joy-ui/getting-started/templates/files/',
-                },
-              ]}
-            />
+            <Dropdown>
+              <MenuButton
+                size="sm"
+                slots={{ root: IconButton }}
+                slotProps={{ root: { variant: 'soft', color: 'neutral' } }}
+              >
+                <GridViewRoundedIcon />
+              </MenuButton>
+              <Menu size="sm" sx={{ zIndex: '999999' }}>
+                <MenuItem selected>
+                  <ListItemButton
+                    selected
+                    role="menuitem"
+                    component="a"
+                    href="/joy-ui/getting-started/templates/email/"
+                  >
+                    <ListItemContent>
+                      <Typography level="title-sm">Email</Typography>
+                    </ListItemContent>
+                  </ListItemButton>
+                </MenuItem>
+                <MenuItem>
+                  <ListItemButton
+                    role="menuitem"
+                    component="a"
+                    href="/joy-ui/getting-started/templates/team/"
+                  >
+                    <ListItemContent>
+                      <Typography level="title-sm">Teams</Typography>
+                    </ListItemContent>
+                  </ListItemButton>
+                </MenuItem>
+                <MenuItem>
+                  <ListItemButton
+                    role="menuitem"
+                    component="a"
+                    href="/joy-ui/getting-started/templates/files/"
+                  >
+                    <ListItemContent>
+                      <Typography level="title-sm">Files</Typography>
+                    </ListItemContent>
+                  </ListItemButton>
+                </MenuItem>
+              </Menu>
+            </Dropdown>
             <ColorSchemeToggle />
           </Box>
         </Layout.Header>
@@ -190,11 +211,7 @@ export default function EmailExample() {
             </IconButton>
           </Box>
           <Box sx={{ py: 10 }}>
-            <Typography
-              textColor="text.tertiary"
-              level="body-sm"
-              sx={{ textAlign: 'center' }}
-            >
+            <Typography level="body-sm" sx={{ textAlign: 'center', opacity: '70%' }}>
               You&apos;ve read all messages in your inbox.
             </Typography>
           </Box>

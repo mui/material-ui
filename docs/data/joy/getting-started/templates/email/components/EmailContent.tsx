@@ -40,7 +40,7 @@ export default function EmailContent() {
           <Avatar
             src="https://i.pravatar.cc/40?img=3"
             srcSet="https://i.pravatar.cc/80?img=3"
-            sx={{ borderRadius: 'sm' }}
+            sx={{ borderRadius: '50%' }}
           />
           <Box sx={{ ml: 2 }}>
             <Typography level="title-sm" textColor="text.primary" mb={0.5}>

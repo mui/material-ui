@@ -50,7 +50,7 @@ export default function EmailList() {
                   alt=""
                   srcSet={item.avatar2x}
                   src={item.avatar}
-                  sx={{ borderRadius: 'sm' }}
+                  sx={{ borderRadius: '50%' }}
                 />
               </ListItemDecorator>
               <Box sx={{ pl: 2, width: '100%' }}>

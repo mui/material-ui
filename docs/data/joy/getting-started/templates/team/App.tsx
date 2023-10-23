@@ -21,6 +21,10 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Slider from '@mui/joy/Slider';
 import Sheet from '@mui/joy/Sheet';
+import MenuButton from '@mui/joy/MenuButton';
+import Menu from '@mui/joy/Menu';
+import MenuItem from '@mui/joy/MenuItem';
+import Dropdown from '@mui/joy/Dropdown';
 
 // Icons import
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
@@ -38,7 +42,6 @@ import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
-import Menu from './components/Menu';
 import Layout from './components/Layout';
 
 function ColorSchemeToggle() {
@@ -214,35 +217,51 @@ export default function TeamExample() {
             >
               <BookRoundedIcon />
             </IconButton>
-            <Menu
-              id="app-selector"
-              control={
-                <IconButton
-                  size="sm"
-                  variant="soft"
-                  color="neutral"
-                  aria-label="Apps"
-                >
-                  <GridViewRoundedIcon />
-                </IconButton>
-              }
-              menus={[
-                {
-                  label: 'Email',
-                  href: '/joy-ui/getting-started/templates/email/',
-                },
-                {
-                  label: 'Team',
-                  active: true,
-                  href: '/joy-ui/getting-started/templates/team/',
-                  'aria-current': 'page',
-                },
-                {
-                  label: 'Files',
-                  href: '/joy-ui/getting-started/templates/files/',
-                },
-              ]}
-            />
+            <Dropdown>
+              <MenuButton
+                size="sm"
+                slots={{ root: IconButton }}
+                slotProps={{ root: { variant: 'soft', color: 'neutral' } }}
+              >
+                <GridViewRoundedIcon />
+              </MenuButton>
+              <Menu size="sm" sx={{ zIndex: '999999' }}>
+                <MenuItem>
+                  <ListItemButton
+                    role="menuitem"
+                    component="a"
+                    href="/joy-ui/getting-started/templates/email/"
+                  >
+                    <ListItemContent>
+                      <Typography level="title-sm">Email</Typography>
+                    </ListItemContent>
+                  </ListItemButton>
+                </MenuItem>
+                <MenuItem selected>
+                  <ListItemButton
+                    selected
+                    role="menuitem"
+                    component="a"
+                    href="/joy-ui/getting-started/templates/team/"
+                  >
+                    <ListItemContent>
+                      <Typography level="title-sm">Teams</Typography>
+                    </ListItemContent>
+                  </ListItemButton>
+                </MenuItem>
+                <MenuItem>
+                  <ListItemButton
+                    role="menuitem"
+                    component="a"
+                    href="/joy-ui/getting-started/templates/files/"
+                  >
+                    <ListItemContent>
+                      <Typography level="title-sm">Files</Typography>
+                    </ListItemContent>
+                  </ListItemButton>
+                </MenuItem>
+              </Menu>
+            </Dropdown>
             <ColorSchemeToggle />
           </Box>
         </Layout.Header>
