@@ -37,7 +37,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>((props, ref) => {
       slotProps={{
         root: {
           className:
-            'relative inline-block w-[38px] h-[24px] m-2.5 ui-disabled:cursor-not-allowed ui-disabledopacity-40 cursor-pointer',
+            'relative inline-block w-[38px] h-[24px] m-2.5 ui-disabled:cursor-not-allowed ui-disabled:opacity-40 cursor-pointer',
         },
         input: {
           'aria-label': ariaLabel,
