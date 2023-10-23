@@ -26,7 +26,7 @@ export default function SnackbarColors() {
           (currentColor) => (
             <Button
               key={currentColor}
-              variant="outlined"
+              variant="soft"
               color={currentColor}
               size="sm"
               onClick={() => {
@@ -40,7 +40,7 @@ export default function SnackbarColors() {
         )}
       </Stack>
       <Snackbar
-        autoHideDuration={8000}
+        autoHideDuration={4000}
         open={open}
         variant={variant}
         color={color}
