@@ -59,7 +59,8 @@
       "secondary",
       "sizeSmall",
       "sizeMedium",
-      "sizeLarge"
+      "sizeLarge",
+      "fullWidth"
     ],
     "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" },
     "name": "MuiToggleButton"

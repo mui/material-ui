@@ -39,7 +39,7 @@ const disableAd =
 const inHouseAds = [
   {
     name: 'scaffoldhub',
-    link: 'https://scaffoldhub.io/?partner=1',
+    link: 'https://www.scaffoldhub.io/?partner=1',
     img: '/static/ads-in-house/scaffoldhub.png',
     description: '<b>ScaffoldHub</b>. Automate building your full-stack MUI web-app.',
   },

@@ -228,8 +228,8 @@ const Root = styled('div')(
       ...theme.typography.body2,
       borderBottom: `1px solid var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
       paddingRight: 20,
-      paddingTop: 12,
-      paddingBottom: 12,
+      paddingTop: 16,
+      paddingBottom: 16,
       color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
     },
     '& td code': {
