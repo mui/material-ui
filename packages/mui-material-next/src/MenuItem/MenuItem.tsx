@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { OverridableComponent } from '@mui/types';
 import { alpha } from '@mui/system';
 import {
   unstable_useEnhancedEffect as useEnhancedEffect,
@@ -17,7 +18,7 @@ import { listItemTextClasses } from '@mui/material/ListItemText';
 import { styled, useThemeProps, rootShouldForwardProp } from '../styles';
 import ButtonBase from '../ButtonBase';
 import { dividerClasses } from '../Divider';
-import { MenuItemProps, MenuItemOwnerState } from './MenuItem.types';
+import { MenuItemProps, MenuItemOwnerState, MenuItemTypeMap } from './MenuItem.types';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
 
 export const overridesResolver = (
@@ -243,12 +244,12 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
       <MenuItemRoot {...rootProps} />
     </ListContext.Provider>
   );
-});
+}) as OverridableComponent<MenuItemTypeMap>;
 
 MenuItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * If `true`, the list item is focused during the first mount.
@@ -310,7 +311,130 @@ MenuItem.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  role: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'alert',
+      'alertdialog',
+      'application',
+      'article',
+      'banner',
+      'button',
+      'cell',
+      'checkbox',
+      'columnheader',
+      'combobox',
+      'complementary',
+      'contentinfo',
+      'definition',
+      'dialog',
+      'directory',
+      'document',
+      'feed',
+      'figure',
+      'form',
+      'grid',
+      'gridcell',
+      'group',
+      'heading',
+      'img',
+      'link',
+      'list',
+      'listbox',
+      'listitem',
+      'log',
+      'main',
+      'marquee',
+      'math',
+      'menu',
+      'menubar',
+      'menuitem',
+      'menuitemcheckbox',
+      'menuitemradio',
+      'navigation',
+      'none',
+      'note',
+      'option',
+      'presentation',
+      'progressbar',
+      'radio',
+      'radiogroup',
+      'region',
+      'row',
+      'rowgroup',
+      'rowheader',
+      'scrollbar',
+      'search',
+      'searchbox',
+      'separator',
+      'slider',
+      'spinbutton',
+      'status',
+      'switch',
+      'tab',
+      'table',
+      'tablist',
+      'tabpanel',
+      'term',
+      'textbox',
+      'timer',
+      'toolbar',
+      'tooltip',
+      'tree',
+      'treegrid',
+      'treeitem',
+    ]),
+    PropTypes.shape({
+      '__@iterator@42136': PropTypes.func.isRequired,
+      anchor: PropTypes.func.isRequired,
+      at: PropTypes.func.isRequired,
+      big: PropTypes.func.isRequired,
+      blink: PropTypes.func.isRequired,
+      bold: PropTypes.func.isRequired,
+      charAt: PropTypes.func.isRequired,
+      charCodeAt: PropTypes.func.isRequired,
+      codePointAt: PropTypes.func.isRequired,
+      concat: PropTypes.func.isRequired,
+      endsWith: PropTypes.func.isRequired,
+      fixed: PropTypes.func.isRequired,
+      fontcolor: PropTypes.func.isRequired,
+      fontsize: PropTypes.func.isRequired,
+      includes: PropTypes.func.isRequired,
+      indexOf: PropTypes.func.isRequired,
+      italics: PropTypes.func.isRequired,
+      lastIndexOf: PropTypes.func.isRequired,
+      length: PropTypes.number.isRequired,
+      link: PropTypes.func.isRequired,
+      localeCompare: PropTypes.func.isRequired,
+      match: PropTypes.func.isRequired,
+      matchAll: PropTypes.func.isRequired,
+      normalize: PropTypes.func.isRequired,
+      padEnd: PropTypes.func.isRequired,
+      padStart: PropTypes.func.isRequired,
+      repeat: PropTypes.func.isRequired,
+      replace: PropTypes.func.isRequired,
+      search: PropTypes.func.isRequired,
+      slice: PropTypes.func.isRequired,
+      small: PropTypes.func.isRequired,
+      split: PropTypes.func.isRequired,
+      startsWith: PropTypes.func.isRequired,
+      strike: PropTypes.func.isRequired,
+      sub: PropTypes.func.isRequired,
+      substr: PropTypes.func.isRequired,
+      substring: PropTypes.func.isRequired,
+      sup: PropTypes.func.isRequired,
+      toLocaleLowerCase: PropTypes.func.isRequired,
+      toLocaleUpperCase: PropTypes.func.isRequired,
+      toLowerCase: PropTypes.func.isRequired,
+      toString: PropTypes.func.isRequired,
+      toUpperCase: PropTypes.func.isRequired,
+      trim: PropTypes.func.isRequired,
+      trimEnd: PropTypes.func.isRequired,
+      trimLeft: PropTypes.func.isRequired,
+      trimRight: PropTypes.func.isRequired,
+      trimStart: PropTypes.func.isRequired,
+      valueOf: PropTypes.func.isRequired,
+    }),
+  ]),
   /**
    * If `true`, the component is selected.
    * @default false
@@ -328,6 +452,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.number,
-};
+} as any;
 
 export default MenuItem;
