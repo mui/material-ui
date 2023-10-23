@@ -118,7 +118,7 @@
     "@babel/preset-typescript": "^7.23.2",
     "@mui-internal/docs-utilities": "^1.0.0",
     "@mui-internal/test-utils": "^1.0.0",
-    "@types/autosuggest-highlight": "^3.2.0",
+    "@types/autosuggest-highlight": "^3.2.2",
     "@types/chai": "^4.3.8",
     "@types/css-mediaquery": "^0.1.2",
     "@types/json2mq": "^0.2.0",
