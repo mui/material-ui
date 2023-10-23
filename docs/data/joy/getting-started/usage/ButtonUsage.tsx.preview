@@ -1,1 +1,3 @@
-<Button variant="solid">Hello world</Button>
+<CssVarsProvider>
+  <Button variant="solid">Hello world</Button>{' '}
+</CssVarsProvider>
