@@ -85,6 +85,7 @@ const TextareaRoot = styled('div', {
       '--Textarea-decoratorChildRadius':
         'max(var(--Textarea-radius) - var(--variant-borderWidth, 0px) - var(--_Textarea-paddingBlock), min(var(--_Textarea-paddingBlock) + var(--variant-borderWidth, 0px), var(--Textarea-radius) / 2))',
       '--Button-minHeight': 'var(--Textarea-decoratorChildHeight)',
+      '--Button-paddingBlock': '0px', // to ensure that the height of the button is equal to --Button-minHeight
       '--IconButton-size': 'var(--Textarea-decoratorChildHeight)',
       '--Button-radius': 'var(--Textarea-decoratorChildRadius)',
       '--IconButton-radius': 'var(--Textarea-decoratorChildRadius)',

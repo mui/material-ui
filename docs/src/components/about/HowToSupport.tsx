@@ -64,7 +64,7 @@ export default function HowToSupport() {
       <SectionHeadline
         overline="Support us"
         title={
-          <Typography variant="h2" sx={{ maxWidth: 600, mb: 4 }}>
+          <Typography variant="h2" sx={{ mb: 4 }}>
             Learn how to support
             <br /> <GradientText>MUI&apos;s growth</GradientText>
           </Typography>
