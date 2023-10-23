@@ -5,7 +5,7 @@
         "name": "shape",
         "description": "{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
       },
-      "default": "{ vertical: 'bottom', horizontal: 'center' }"
+      "default": "{ vertical: 'bottom', horizontal: 'right' }"
     },
     "animationDuration": { "type": { "name": "number" }, "default": "300" },
     "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
