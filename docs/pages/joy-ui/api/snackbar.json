@@ -1,5 +1,6 @@
 {
   "props": {
+    "open": { "type": { "name": "bool" }, "required": true },
     "anchorOrigin": {
       "type": {
         "name": "shape",
@@ -30,7 +31,6 @@
       }
     },
     "onUnmount": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" } },
     "resumeHideDuration": { "type": { "name": "number" } },
     "size": {
       "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },

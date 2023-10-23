@@ -55,7 +55,7 @@ export type { SnackbarCloseReason } from '@mui/base/useSnackbar';
 
 export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    UseSnackbarParameters & {
+    Omit<UseSnackbarParameters, 'open'> & {
       /**
        * The anchor of the `Snackbar`.
        * On smaller screens, the component grows to occupy all the available width,
@@ -97,6 +97,10 @@ export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * A callback fired when the component is about to be unmounted.
        */
       onUnmount?: () => void;
+      /**
+       * If `true`, the component is shown.
+       */
+      open: boolean;
       /**
        * The size of the component.
        * @default 'md'
