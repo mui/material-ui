@@ -77,9 +77,6 @@ The Design Engineer role sits right at the intersection between product design a
 
 ### The best parts of this job
 
-- **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
-- **You'll be part of an active, open, friendly community** of developers that are excited about building awesome applications.
-- **Your role will be key to making MUI the go-to UI framework** for building applications, websites, and design systems with React.
 
 ### The worst parts of this job
 
