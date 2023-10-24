@@ -3563,10 +3563,10 @@
   dependencies:
     "@types/chai" "*"
 
-"@types/chai@*", "@types/chai@^4.3.8":
-  version "4.3.8"
-  resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.3.8.tgz#aa200a264a3bc78ccfc1718eedbd3b9d5a591270"
-  integrity sha512-yW/qTM4mRBBcsA9Xw9FbcImYtFPY7sgr+G/O5RDYVmxiy9a+pE5FyoFUi8JYCZY5nicj8atrr1pcfPiYpeNGOA==
+"@types/chai@*", "@types/chai@^4.3.9":
+  version "4.3.9"
+  resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.3.9.tgz#144d762491967db8c6dea38e03d2206c2623feec"
+  integrity sha512-69TtiDzu0bcmKQv3yg1Zx409/Kd7r0b5F1PfpYJfSHzLGtB53547V4u+9iqKYsTu/O2ai6KTb0TInNpvuQ3qmg==
 
 "@types/cheerio@*":
   version "0.22.31"

@@ -2,22 +2,29 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { OverridableComponent } from '@mui/types';
 import { alpha } from '@mui/system';
 import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
+import { useSlotProps } from '@mui/base/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useMenuItem } from '@mui/base/useMenuItem';
+// TODO v6: Replace with @mui/material-next when the List components are available
 import ListContext from '@mui/material/List/ListContext';
-import ButtonBase from '@mui/material/ButtonBase';
 import { listItemIconClasses } from '@mui/material/ListItemIcon';
 import { listItemTextClasses } from '@mui/material/ListItemText';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled, useThemeProps, rootShouldForwardProp } from '../styles';
+import ButtonBase from '../ButtonBase';
 import { dividerClasses } from '../Divider';
+import { MenuItemProps, MenuItemOwnerState, MenuItemTypeMap } from './MenuItem.types';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
 
-export const overridesResolver = (props, styles) => {
+export const overridesResolver = (
+  props: MenuItemProps & { ownerState: MenuItemOwnerState },
+  styles: any,
+) => {
   const { ownerState } = props;
 
   return [
@@ -28,7 +35,7 @@ export const overridesResolver = (props, styles) => {
   ];
 };
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: MenuItemOwnerState) => {
   const { disabled, dense, divider, disableGutters, selected, classes } = ownerState;
   const slots = {
     root: [
@@ -50,11 +57,11 @@ const useUtilityClasses = (ownerState) => {
 };
 
 const MenuItemRoot = styled(ButtonBase, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  shouldForwardProp: (prop: string) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenuItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme, ownerState }) => ({
+})<{ ownerState: MenuItemOwnerState }>(({ theme, ownerState }) => ({
   ...theme.typography.body1,
   display: 'flex',
   justifyContent: 'flex-start',
@@ -148,7 +155,10 @@ const MenuItemRoot = styled(ButtonBase, {
   }),
 }));
 
-const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
+const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends React.ElementType>(
+  inProps: MenuItemProps<RootComponentType>,
+  ref: React.ForwardedRef<Element>,
+) {
   const props = useThemeProps({ props: inProps, name: 'MuiMenuItem' });
   const {
     autoFocus = false,
@@ -160,6 +170,8 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     role = 'menuitem',
     tabIndex: tabIndexProp,
     className,
+    disabled: disabledProp,
+    label: labelProp,
     ...other
   } = props;
 
@@ -172,7 +184,15 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     [context.dense, dense, disableGutters],
   );
 
-  const menuItemRef = React.useRef(null);
+  const menuItemRef = React.useRef<HTMLElement | null>(null);
+  const handleRef = useForkRef(menuItemRef, ref);
+
+  const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({
+    disabled: disabledProp,
+    rootRef: handleRef,
+    label: labelProp,
+  });
+
   useEnhancedEffect(() => {
     if (autoFocus) {
       if (menuItemRef.current) {
@@ -190,38 +210,46 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     dense: childContext.dense,
     divider,
     disableGutters,
+    disabled,
+    focusVisible,
+    highlighted,
   };
 
   const classes = useUtilityClasses(props);
-
-  const handleRef = useForkRef(menuItemRef, ref);
 
   let tabIndex;
   if (!props.disabled) {
     tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1;
   }
 
+  const Root = /* slots.root ?? */ MenuItemRoot;
+  const rootProps = useSlotProps({
+    elementType: Root,
+    getSlotProps: getRootProps,
+    // TODO v6: Add support for slotProps.root
+    externalSlotProps: {},
+    externalForwardedProps: other,
+    additionalProps: {
+      role,
+      tabIndex,
+      component,
+      focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),
+      classes,
+    },
+    className: clsx(classes.root, className),
+    ownerState,
+  });
   return (
     <ListContext.Provider value={childContext}>
-      <MenuItemRoot
-        ref={handleRef}
-        role={role}
-        tabIndex={tabIndex}
-        component={component}
-        focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
-        className={clsx(classes.root, className)}
-        {...other}
-        ownerState={ownerState}
-        classes={classes}
-      />
+      <MenuItemRoot {...rootProps} />
     </ListContext.Provider>
   );
-});
+}) as OverridableComponent<MenuItemTypeMap>;
 
 MenuItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * If `true`, the list item is focused during the first mount.
@@ -276,6 +304,11 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
+   * A text representation of the menu item's content.
+   * Used for keyboard text navigation matching.
+   */
+  label: PropTypes.string,
+  /**
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
@@ -296,6 +329,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.number,
-};
+} as any;
 
 export default MenuItem;
