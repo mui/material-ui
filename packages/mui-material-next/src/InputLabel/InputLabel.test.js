@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { describeConformance, act, createRenderer } from '@mui-internal/test-utils';
 import { ClassNames } from '@emotion/react';
-import FormControl from '@mui/material/FormControl';
-import Input from '@mui/material/Input';
-import FormLabel from '@mui/material/FormLabel';
-import InputLabel, { inputLabelClasses as classes } from '@mui/material/InputLabel';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
+import FormControl from '@mui/material-next/FormControl';
+import FilledInput from '@mui/material-next/FilledInput';
+import FormLabel from '@mui/material-next/FormLabel';
+import InputLabel, { inputLabelClasses as classes } from '@mui/material-next/InputLabel';
 
 describe('<InputLabel />', () => {
   const { render } = createRenderer();
@@ -18,6 +19,13 @@ describe('<InputLabel />', () => {
     refInstanceof: window.HTMLLabelElement,
     muiName: 'MuiInputLabel',
     testVariantProps: { size: 'small' },
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
     skip: ['componentsProp'],
   }));
 
@@ -71,7 +79,7 @@ describe('<InputLabel />', () => {
         function Wrapper({ children }) {
           return (
             <FormControl>
-              <Input defaultValue="Dave" />
+              <FilledInput defaultValue="Dave" />
               {children}
             </FormControl>
           );
@@ -96,7 +104,7 @@ describe('<InputLabel />', () => {
         function Wrapper({ children }) {
           return (
             <FormControl>
-              <Input />
+              <FilledInput />
               {children}
             </FormControl>
           );

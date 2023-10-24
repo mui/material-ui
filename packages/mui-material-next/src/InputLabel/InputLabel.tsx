@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import FormLabel, { formLabelClasses } from '../FormLabel';
 import useThemeProps from '../styles/useThemeProps';
@@ -127,6 +126,7 @@ const InputLabel = React.forwardRef(function InputLabel<
   const {
     disableAnimation = false,
     margin,
+    focused: focusedProp,
     required: requiredProp,
     shrink: shrinkProp,
     size: sizeProp,
@@ -151,6 +151,7 @@ const InputLabel = React.forwardRef(function InputLabel<
     size: sizeProp ?? muiFormControl?.size,
     variant: variantProp ?? muiFormControl?.variant,
     required: requiredProp ?? muiFormControl?.required,
+    focused: focusedProp ?? muiFormControl?.focused,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -160,10 +161,13 @@ const InputLabel = React.forwardRef(function InputLabel<
   const rootProps = useSlotProps({
     elementType: RootSlot,
     externalSlotProps: slotProps.root,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, classes },
     additionalProps: {
       ref: forwardedRef,
       'data-shrink': shrink,
+      required: requiredProp,
+      size: sizeProp,
+      focused: focusedProp,
     },
     ownerState,
     className: [classes.root],
