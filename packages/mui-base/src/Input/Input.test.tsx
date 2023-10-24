@@ -5,6 +5,7 @@ import {
   describeConformanceUnstyled,
   fireEvent,
   screen,
+  act,
 } from '@mui-internal/test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
@@ -103,6 +104,25 @@ describe('<Input />', () => {
       );
 
       render(<Input multiline minRows={5} maxRows={10} slots={{ textarea: CustomTextarea }} />);
+    });
+
+    it('should forward the value to the textarea', () => {
+      render(<Input multiline maxRows={4} value="Hello" />);
+
+      const textarea = screen.getByRole('textbox', { hidden: false });
+      expect(textarea).to.have.value('Hello');
+    });
+
+    it('should preserve state when changing rows', () => {
+      const { setProps } = render(<Input multiline />);
+      const textarea = screen.getByRole('textbox', { hidden: false });
+      act(() => {
+        textarea.focus();
+      });
+
+      setProps({ rows: 4 });
+
+      expect(textarea).toHaveFocus();
     });
   });
 });
