@@ -56,39 +56,86 @@ describe('<Input />', () => {
     });
   });
 
-  it('should call event handlers passed in slotProps', () => {
-    const handleOnKeyDown = spy();
-    const handleOnKeyUp = spy();
-    const { getByRole } = render(
-      <Input
-        autoFocus
-        slotProps={{ input: { onKeyDown: handleOnKeyDown, onKeyUp: handleOnKeyUp } }}
-      />,
-    );
+  describe('event handlers', () => {
+    it('should call event handlers passed in slotProps', () => {
+      const handleChange = spy();
+      const handleFocus = spy();
+      const handleBlur = spy();
+      const handleKeyDown = spy();
+      const handleKeyUp = spy();
+      const { getByRole } = render(
+        <Input
+          slotProps={{
+            input: {
+              onChange: handleChange,
+              onFocus: handleFocus,
+              onBlur: handleBlur,
+              onKeyDown: handleKeyDown,
+              onKeyUp: handleKeyUp,
+            },
+          }}
+        />,
+      );
 
-    const input = getByRole('textbox');
+      const input = getByRole('textbox');
 
-    fireEvent.keyDown(input, { key: 'a' });
-    fireEvent.keyUp(input, { key: 'a' });
+      act(() => {
+        input.focus();
+      });
+      expect(handleFocus.callCount).to.equal(1);
 
-    expect(handleOnKeyDown.callCount).to.equal(1);
-    expect(handleOnKeyUp.callCount).to.equal(1);
-  });
+      fireEvent.keyDown(input, { key: 'a' });
+      expect(handleKeyDown.callCount).to.equal(1);
 
-  it('should call event handlers passed to component', () => {
-    const handleOnKeyDown = spy();
-    const handleOnKeyUp = spy();
-    const { getByRole } = render(
-      <Input onKeyDown={handleOnKeyDown} onKeyUp={handleOnKeyUp} autoFocus />,
-    );
+      fireEvent.change(input, { target: { value: 'a' } });
+      expect(handleChange.callCount).to.equal(1);
 
-    const input = getByRole('textbox');
+      fireEvent.keyUp(input, { key: 'a' });
+      expect(handleKeyUp.callCount).to.equal(1);
 
-    fireEvent.keyDown(input, { key: 'a' });
-    fireEvent.keyUp(input, { key: 'a' });
+      act(() => {
+        input.blur();
+      });
+      expect(handleBlur.callCount).to.equal(1);
+    });
 
-    expect(handleOnKeyDown.callCount).to.equal(1);
-    expect(handleOnKeyUp.callCount).to.equal(1);
+    it('should call event handlers passed to component', () => {
+      const handleChange = spy();
+      const handleFocus = spy();
+      const handleBlur = spy();
+      const handleKeyDown = spy();
+      const handleKeyUp = spy();
+      const { getByRole } = render(
+        <Input
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onKeyUp={handleKeyUp}
+          onKeyDown={handleKeyDown}
+        />,
+      );
+
+      const input = getByRole('textbox');
+
+      act(() => {
+        input.focus();
+      });
+      expect(handleFocus.callCount).to.equal(1);
+
+      fireEvent.keyDown(input, { key: 'a' });
+      expect(handleKeyDown.callCount).to.equal(1);
+
+      fireEvent.change(input, { target: { value: 'a' } });
+      expect(handleChange.callCount).to.equal(1);
+
+      fireEvent.keyUp(input, { key: 'a' });
+      expect(handleKeyUp.callCount).to.equal(1);
+
+      act(() => {
+        input.blur();
+      });
+      expect(handleBlur.callCount).to.equal(1);
+    });
   });
 
   describe('prop: multiline', () => {
