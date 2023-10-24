@@ -10,7 +10,7 @@ import {
 } from '@mui-internal/test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { Input, inputClasses } from '@mui/base/Input';
+import { Input, inputClasses, InputOwnerState } from '@mui/base/Input';
 
 describe('<Input />', () => {
   const mount = createMount();
@@ -50,7 +50,7 @@ describe('<Input />', () => {
     });
 
     it('should be able to access the native textarea of a multiline input', () => {
-      const inputRef = React.createRef();
+      const inputRef = React.createRef<HTMLInputElement>();
       const { container } = render(<Input multiline slotProps={{ input: { ref: inputRef } }} />);
       expect(inputRef.current).to.equal(container.querySelector('textarea'));
     });
@@ -150,6 +150,7 @@ describe('<Input />', () => {
       const CustomInput = React.forwardRef(function CustomInput(
         props: {
           onChange: (...args: string[]) => void;
+          ownerState: InputOwnerState;
         },
         ref: React.ForwardedRef<HTMLInputElement>,
       ) {
