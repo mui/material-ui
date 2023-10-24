@@ -4,7 +4,7 @@
 
 <!-- generated comparing v5.14.14..master -->
 
-_Oct 23, 2023_
+_Oct 24, 2023_
 
 A big thanks to the 16 contributors who made this release possible.
 
@@ -25,6 +25,7 @@ A big thanks to the 16 contributors who made this release possible.
 - &#8203;<!-- 16 -->[FilledInput] Add FilledInput component (#39307) @mj12albert
 - &#8203;<!-- 13 -->[InputAdornment] Fix unstable_capitalize import (#39510) @DiegoAndai
 - &#8203;<!-- 08 -->[Snackbar] copy files to mui-material-next (#39232) @Best-Sardar
+- &#8203;<!-- 33 -->[Menu] Use useMenu hook (#38934) @mnajdova
 
 ### `@mui/joy@5.0.0-beta.12`
 
@@ -61,6 +62,7 @@ A big thanks to the 16 contributors who made this release possible.
 - &#8203;<!-- 23 -->[core] Replace a `useCallback` by `useRef` in useEventCallback (#39078) @romgrk
 - &#8203;<!-- 21 -->[docs-infra] Prevent docs crash (#39214) @alexfauquette
 - &#8203;<!-- 20 -->[docs-infra] Fix no-op autoprefixer warning (#39385) @oliviertassinari
+- &#8203;<!-- 32 -->[docs-infra] Refine the API page design (#39520) @alexfauquette
 - &#8203;<!-- 04 -->[website] Add missing h1 on page @oliviertassinari
 - &#8203;<!-- 03 -->[website] Fix unrecognized prop warning @oliviertassinari
 - &#8203;<!-- 02 -->[website] Store Engineer role filled @oliviertassinari
