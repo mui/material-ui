@@ -58,13 +58,13 @@ export default function AlertInvertedColors() {
           variant="solid"
           color="success"
           value={40}
-          sx={(theme) => ({
+          sx={{
             position: 'absolute',
             bottom: 0,
             left: 0,
             right: 0,
-            '--LinearProgress-radius': '0px',
-          })}
+            borderRadius: 0,
+          }}
         />
       </Alert>
       <Alert
