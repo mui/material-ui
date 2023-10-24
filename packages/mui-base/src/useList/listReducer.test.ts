@@ -1142,4 +1142,32 @@ describe('listReducer', () => {
       expect(result.highlightedValue).to.equal('two');
     });
   });
+
+  describe('action: clearSelection', () => {
+    it('clears the selection', () => {
+      const state: ListState<string> = {
+        highlightedValue: null,
+        selectedValues: ['one', 'two'],
+      };
+
+      const action: ListReducerAction<string> = {
+        type: ListActionTypes.clearSelection,
+        context: {
+          items: ['one', 'two', 'three'],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          focusManagement: 'DOM',
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          getItemAsString: (option) => option,
+          orientation: 'vertical',
+          pageSize: 5,
+          selectionMode: 'none',
+        },
+      };
+
+      const result = listReducer(state, action);
+      expect(result.selectedValues).to.deep.equal([]);
+    });
+  });
 });
