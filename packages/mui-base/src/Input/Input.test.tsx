@@ -79,6 +79,7 @@ describe('<Input />', () => {
 
       const input = getByRole('textbox');
 
+      // simulating user input: gain focus, key input (keydown, (input), change, keyup), blur
       act(() => {
         input.focus();
       });
@@ -117,6 +118,7 @@ describe('<Input />', () => {
 
       const input = getByRole('textbox');
 
+      // simulating user input: gain focus, key input (keydown, (input), change, keyup), blur
       act(() => {
         input.focus();
       });
@@ -135,6 +137,58 @@ describe('<Input />', () => {
         input.blur();
       });
       expect(handleBlur.callCount).to.equal(1);
+    });
+
+    it('should call slotProps.input.onChange callback with all params sent from custom Input component', () => {
+      const INPUT_VALUE = 'base';
+      const OUTPUT_VALUE = 'test';
+      /**
+       * This component simulates the integration of react-select with Input
+       * react-select has a custom onChange that is essentially "(string, string) => void"
+       * https://github.com/mui/material-ui/issues/18130
+       */
+      const CustomInput = React.forwardRef(function CustomInput(
+        props: {
+          onChange: (...args: string[]) => void;
+        },
+        ref: React.ForwardedRef<HTMLInputElement>,
+      ) {
+        const { onChange, ownerState, ...other } = props;
+
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange(e.target.value, OUTPUT_VALUE);
+        };
+
+        return <input ref={ref} onChange={handleChange} {...other} />;
+      });
+
+      CustomInput.propTypes = {
+        onChange: PropTypes.func.isRequired,
+      };
+
+      let outputArguments: string[] = [];
+      function parentHandleChange(...args: string[]) {
+        outputArguments = args;
+      }
+
+      const { getByRole } = render(
+        <Input
+          slots={{
+            input: CustomInput,
+          }}
+          slotProps={{
+            input: {
+              onChange: parentHandleChange as unknown as React.ChangeEventHandler<HTMLInputElement>,
+            },
+          }}
+        />,
+      );
+      const textbox = getByRole('textbox');
+      fireEvent.change(textbox, { target: { value: INPUT_VALUE } });
+
+      expect(outputArguments.length).to.equal(2);
+      expect(outputArguments[0]).to.equal(INPUT_VALUE);
+      expect(outputArguments[1]).to.equal(OUTPUT_VALUE);
     });
   });
 
@@ -179,6 +233,17 @@ describe('<Input />', () => {
       setProps({ rows: 4 });
 
       expect(textarea).toHaveFocus();
+    });
+  });
+
+  describe('controlled', () => {
+    it('should considered [] as controlled', () => {
+      const { getByRole } = render(<Input value={[]} />);
+      const input = getByRole('textbox');
+
+      expect(input).to.have.property('value', '');
+      fireEvent.change(input, { target: { value: 'do not work' } });
+      expect(input).to.have.property('value', '');
     });
   });
 
