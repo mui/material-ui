@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/system/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();

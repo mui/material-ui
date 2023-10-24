@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
-import useMediaQuery from '@mui/system/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 
 function CssVarsModeToggle(props: { onChange: (checked: boolean) => void }) {

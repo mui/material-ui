@@ -6,7 +6,7 @@ import {
   useTheme,
   createTheme,
 } from '@mui/material/styles';
-import useMediaQuery from '@mui/system/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 type BreakpointOrNull = Breakpoint | null;
 
