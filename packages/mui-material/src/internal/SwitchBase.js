@@ -33,7 +33,7 @@ const SwitchBaseRoot = styled(ButtonBase)(({ ownerState }) => ({
   }),
 }));
 
-const SwitchBaseInput = styled('input')({
+const SwitchBaseInput = styled('input', { shouldForwardProp: rootShouldForwardProp })({
   cursor: 'inherit',
   position: 'absolute',
   opacity: 0,
