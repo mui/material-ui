@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import NextLink from 'next/link';
 import { alpha } from '@mui/material/styles';
