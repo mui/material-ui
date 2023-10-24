@@ -129,7 +129,11 @@ export default function FilesExample() {
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
-              <IconButton variant="outlined" color="neutral">
+              <IconButton
+                variant="outlined"
+                color="neutral"
+                sx={{ bgcolor: 'background.level1' }}
+              >
                 <Typography fontWeight="lg" fontSize="sm" textColor="text.icon">
                   ⌘ + k
                 </Typography>
@@ -224,7 +228,11 @@ export default function FilesExample() {
           >
             <Sheet
               variant="outlined"
-              sx={{ borderRadius: 'sm', gridColumn: '1/-1' }}
+              sx={{
+                borderRadius: 'sm',
+                gridColumn: '1/-1',
+                display: { xs: 'none', md: 'flex' },
+              }}
             >
               <Table
                 sx={{
@@ -510,6 +518,7 @@ export default function FilesExample() {
               sx={{
                 '--Card-radius': (theme) => theme.vars.radius.sm,
                 boxShadow: 'none',
+                minHeight: { xs: 250, md: '100%' },
               }}
             >
               <CardCover>
@@ -587,22 +596,24 @@ export default function FilesExample() {
           sx={{
             display: { xs: 'none', sm: 'initial' },
             borderLeft: '1px solid',
-            borderColor: 'neutral.outlinedBorder',
+            borderColor: 'divider',
           }}
         >
           <Box sx={{ p: 2, display: 'flex', alignItems: 'center' }}>
-            <Typography sx={{ flex: 1 }}>torres-del-paine.png</Typography>
-            <IconButton variant="outlined" color="neutral" size="sm">
+            <Typography level="title-md" sx={{ flex: 1 }}>
+              torres-del-paine.png
+            </Typography>
+            <IconButton variant="plain" color="neutral" size="sm">
               <CloseIcon />
             </IconButton>
           </Box>
           <Divider />
           <Tabs>
-            <TabList color="primary">
-              <Tab color="primary" sx={{ flexGrow: 1 }}>
+            <TabList disableUnderline>
+              <Tab disableIndicator sx={{ flexGrow: 1 }}>
                 Details
               </Tab>
-              <Tab color="primary" sx={{ flexGrow: 1 }}>
+              <Tab disableIndicator sx={{ flexGrow: 1 }}>
                 Activity
               </Tab>
             </TabList>

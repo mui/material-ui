@@ -88,7 +88,7 @@ export default function Navigation() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'primary.300',
+                    bgcolor: 'primary.500',
                   }}
                 />
               </ListItemDecorator>
@@ -103,7 +103,7 @@ export default function Navigation() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'danger.400',
+                    bgcolor: 'danger.500',
                   }}
                 />
               </ListItemDecorator>
@@ -118,7 +118,7 @@ export default function Navigation() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'warning.500',
+                    bgcolor: 'warning.400',
                   }}
                 />
               </ListItemDecorator>
