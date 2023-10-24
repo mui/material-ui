@@ -1,8 +1,8 @@
 'use client';
 import * as React from 'react';
-import getThemeProps from '../getThemeProps';
-import useTheme from '../useThemeWithoutDefault';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import { getThemeProps } from '../useThemeProps';
+import useTheme from '../useThemeWithoutDefault';
 
 /**
  * @deprecated Not used internally. Use `MediaQueryListEvent` from lib.dom.d.ts instead.
