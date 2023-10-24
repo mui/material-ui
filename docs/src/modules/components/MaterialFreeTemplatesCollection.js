@@ -1,15 +1,13 @@
 import * as React from 'react';
+import NextLink from 'next/link';
 import { alpha } from '@mui/material/styles';
-import Box from '@mui/joy/Box';
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import NextLink from 'next/link';
 import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -97,6 +95,8 @@ export default function Templates() {
               height: '100%',
               background: 'background.paper',
               borderColor: 'divider',
+              display: 'flex',
+              flexDirection: 'column',
             }}
           >
             <Box
@@ -166,12 +166,12 @@ export default function Templates() {
                 {layout.description}
               </Typography>
               <Button
+                component="a"
+                href={layout.source}
                 size="small"
                 fullWidth
                 variant="outlined"
                 color="secondary"
-                component="a"
-                href={layout.source}
                 startIcon={<CodeRoundedIcon sx={{ mr: 0.5 }} />}
                 sx={{ mt: 'auto' }}
               >
