@@ -249,7 +249,7 @@ export default function TeamExample() {
                     href="/joy-ui/getting-started/templates/team/"
                   >
                     <ListItemContent>
-                      <Typography level="title-sm">Teams</Typography>
+                      <Typography level="title-sm">Team</Typography>
                     </ListItemContent>
                   </ListItemButton>
                 </MenuItem>
@@ -480,7 +480,7 @@ export default function TeamExample() {
                     >
                       <Avatar
                         src="https://www.vectorlogo.zone/logos/dribbble/dribbble-icon.svg"
-                        sx={{ width: 24, height: 24 }}
+                        sx={{ '--Avatar-size': '24px' }}
                       />
                     </ListItemDecorator>
                     <ListItemContent>
@@ -495,8 +495,7 @@ export default function TeamExample() {
                         src="https://www.vectorlogo.zone/logos/pinterest/pinterest-icon.svg"
                         sx={{
                           backgroundColor: 'background.body',
-                          width: 24,
-                          height: 24,
+                          '--Avatar-size': '24px',
                         }}
                       />
                     </ListItemDecorator>

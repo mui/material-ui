@@ -177,7 +177,7 @@ export default function EmailExample() {
                     href="/joy-ui/getting-started/templates/team/"
                   >
                     <ListItemContent>
-                      <Typography level="title-sm">Teams</Typography>
+                      <Typography level="title-sm">Team</Typography>
                     </ListItemContent>
                   </ListItemButton>
                 </MenuItem>
