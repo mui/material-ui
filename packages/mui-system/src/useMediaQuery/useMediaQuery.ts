@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
-import { getThemeProps, useThemeWithoutDefault as useTheme } from '@mui/system';
+import getThemeProps from '../getThemeProps';
+import useTheme from '../useThemeWithoutDefault';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 
 /**
