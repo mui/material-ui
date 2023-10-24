@@ -1,17 +1,17 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import FormLabel, { formLabelClasses } from '../FormLabel';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
+import { InputLabelProps, InputLabelTypeMap, InputLabelOwnerState } from './InputLabel.types';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: InputLabelOwnerState) => {
   const { classes, formControl, size, shrink, disableAnimation, variant, required } = ownerState;
   const slots = {
     root: [
@@ -49,7 +49,7 @@ const InputLabelRoot = styled(FormLabel, {
       styles[ownerState.variant],
     ];
   },
-})(({ theme, ownerState }) => ({
+})<{ ownerState: InputLabelOwnerState }>(({ theme, ownerState }) => ({
   display: 'block',
   transformOrigin: 'top left',
   whiteSpace: 'nowrap',
@@ -120,14 +120,19 @@ const InputLabelRoot = styled(FormLabel, {
   }),
 }));
 
-const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
+const InputLabel = React.forwardRef(function InputLabel<
+  RootComponentType extends React.ElementType = InputLabelTypeMap['defaultComponent'],
+>(inProps: InputLabelProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const props = useThemeProps({ name: 'MuiInputLabel', props: inProps });
   const {
     disableAnimation = false,
     margin,
+    required: requiredProp,
     shrink: shrinkProp,
-    variant,
-    className,
+    size: sizeProp,
+    variant: variantProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -138,34 +143,33 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
     shrink = muiFormControl.filled || muiFormControl.focused || muiFormControl.adornedStart;
   }
 
-  const fcs = formControlState({
-    props,
-    muiFormControl,
-    states: ['size', 'variant', 'required'],
-  });
-
-  const ownerState = {
+  const ownerState: InputLabelOwnerState = {
     ...props,
     disableAnimation,
     formControl: muiFormControl,
     shrink,
-    size: fcs.size,
-    variant: fcs.variant,
-    required: fcs.required,
+    size: sizeProp ?? muiFormControl?.size,
+    variant: variantProp ?? muiFormControl?.variant,
+    required: requiredProp ?? muiFormControl?.required,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <InputLabelRoot
-      data-shrink={shrink}
-      ownerState={ownerState}
-      ref={ref}
-      className={clsx(classes.root, className)}
-      {...other}
-      classes={classes}
-    />
-  );
+  const RootSlot = slots?.root ?? InputLabelRoot;
+
+  const rootProps = useSlotProps({
+    elementType: RootSlot,
+    externalSlotProps: slotProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref: forwardedRef,
+      'data-shrink': shrink,
+    },
+    ownerState,
+    className: [classes.root],
+  });
+
+  return <RootSlot {...rootProps} />;
 });
 
 InputLabel.propTypes /* remove-proptypes */ = {
