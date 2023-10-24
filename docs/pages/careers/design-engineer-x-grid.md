@@ -75,7 +75,6 @@ The Design Engineer role sits right at the intersection between product design a
 - **Bridge the gap between design and engineering**.
   Sometimes, you'll be sketching new features on Figma. On other days, you'll be prototyping them in code.
 
-
 ### Challenges you'll face
 
 - **Context switching.**
