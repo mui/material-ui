@@ -24,7 +24,7 @@ export interface FormControlOwnProps extends BaseFormControlOwnProps {
    * @default 'primary'
    */
   color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    'primary' | 'secondary' | 'tertiary' | 'error' | 'info' | 'success' | 'warning',
     FormControlPropsColorOverrides
   >;
   /**
