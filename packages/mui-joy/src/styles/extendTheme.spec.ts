@@ -57,6 +57,7 @@ import { RadioGroupOwnerState } from '@mui/joy/RadioGroup';
 import { SelectOwnerState } from '@mui/joy/Select';
 import { SheetOwnerState } from '@mui/joy/Sheet';
 import { SliderOwnerState } from '@mui/joy/Slider';
+import { SnackbarOwnerState } from '@mui/joy/Snackbar';
 import { StackProps } from '@mui/joy/Stack';
 import { extendTheme } from '@mui/joy/styles';
 import { SvgIconOwnerState } from '@mui/joy/SvgIcon';
@@ -1097,6 +1098,30 @@ extendTheme({
         },
         input: ({ ownerState }) => {
           expectType<SliderOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoySnackbar: {
+      defaultProps: {
+        variant: 'plain',
+        color: 'neutral',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<SnackbarOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        startDecorator: ({ ownerState }) => {
+          expectType<SnackbarOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        endDecorator: ({ ownerState }) => {
+          expectType<SnackbarOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        clickAway: ({ ownerState }) => {
+          expectType<SnackbarOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
       },
