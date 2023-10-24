@@ -125,27 +125,75 @@ describe('useSelect', () => {
         expect(externalOnChangeSpy.calledWith({ target: { value: 'foo' } })).to.equal(true);
       });
 
-      it('sets reducer value when called', () => {
-        const options = [
-          { value: 'a', label: 'A' },
-          { value: 'b', label: 'B' },
-        ];
+      describe('browser autofill', () => {
+        it('sets reducer value when called with valid option', () => {
+          const options = [
+            { value: 'a', label: 'A' },
+            { value: 'b', label: 'B' },
+          ];
 
-        const { result } = renderHook(() => useSelect({ options }));
+          const { result } = renderHook(() => useSelect({ options }));
 
-        const { value: initialValue, getHiddenInputProps } = result.current;
-        const { onChange: hiddenInputOnChange } = getHiddenInputProps();
+          const { value: initialValue, getHiddenInputProps } = result.current;
+          const { onChange: hiddenInputOnChange } = getHiddenInputProps();
 
-        expect(initialValue).to.equal(null);
+          expect(initialValue).to.equal(null);
 
-        act(() => {
-          // @ts-ignore We only need the target value for this test
-          hiddenInputOnChange({ target: { value: 'a' } });
+          act(() => {
+            // @ts-ignore We only need the target value for this test
+            hiddenInputOnChange({ target: { value: 'a' } });
+          });
+
+          const { value: updatedValue } = result.current;
+
+          expect(updatedValue).to.equal('a');
         });
 
-        const { value: updatedValue } = result.current;
+        it('does not set reducer value when called with invalid option', () => {
+          const options = [
+            { value: 'a', label: 'A' },
+            { value: 'b', label: 'B' },
+          ];
 
-        expect(updatedValue).to.equal('a');
+          const { result } = renderHook(() => useSelect({ options }));
+
+          const { value: initialValue, getHiddenInputProps } = result.current;
+          const { onChange: hiddenInputOnChange } = getHiddenInputProps();
+
+          expect(initialValue).to.equal(null);
+
+          act(() => {
+            // @ts-ignore We only need the target value for this test
+            hiddenInputOnChange({ target: { value: 'c' } });
+          });
+
+          const { value: updatedValue } = result.current;
+
+          expect(updatedValue).to.equal(null);
+        });
+
+        it('clears reducer value when called with empty string', () => {
+          const options = [
+            { value: 'a', label: 'A' },
+            { value: 'b', label: 'B' },
+          ];
+
+          const { result } = renderHook(() => useSelect({ options, defaultValue: 'a' }));
+
+          const { value: initialValue, getHiddenInputProps } = result.current;
+          const { onChange: hiddenInputOnChange } = getHiddenInputProps();
+
+          expect(initialValue).to.equal('a');
+
+          act(() => {
+            // @ts-ignore We only need the target value for this test
+            hiddenInputOnChange({ target: { value: '' } });
+          });
+
+          const { value: updatedValue } = result.current;
+
+          expect(updatedValue).to.equal(null);
+        });
       });
     });
   });

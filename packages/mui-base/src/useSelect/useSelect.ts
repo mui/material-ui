@@ -18,7 +18,7 @@ import {
   UseSelectParameters,
   UseSelectReturnValue,
 } from './useSelect.types';
-import { useList, UseListParameters } from '../useList';
+import { ListActionTypes, useList, UseListParameters } from '../useList';
 import { EventHandlers } from '../utils/types';
 import { defaultOptionStringifier } from './defaultOptionStringifier';
 import { SelectProviderValue } from './SelectProvider';
@@ -418,13 +418,15 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
           return;
         }
 
-        const action: SelectAction<OptionValue> = {
+        dispatch({
           type: SelectActionTypes.browserAutoFill,
           item: option.value,
           event,
-        };
-
-        dispatch(action);
+        });
+      } else if (event.target.value === '') {
+        dispatch({
+          type: ListActionTypes.clearSelection,
+        });
       }
     };
 
