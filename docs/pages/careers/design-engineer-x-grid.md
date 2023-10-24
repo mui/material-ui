@@ -78,17 +78,13 @@ The Design Engineer role sits right at the intersection between product design a
 ### The best parts of this job
 
 
-### The worst parts of this job
+### Challenges you'll face
 
-- **Shifting context.**
-  You will necessarily have to shift context and dive into a different feature before the current one is done.
-  It may even be in an area of the codebase you're unfamiliar with or don't have a ton of understanding about.
-  It's fun, rewarding work, but it can be very challenging.
-- **We move quickly but don't sacrifice quality**.
-  We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue with quality should be enough for any given iteration. Our users quickly tell us when we haven't pushed a solution far enough.
-- **MUI X is a large codebase with complex features**. Understanding parts of the implementation might be tricky, but the learning process is rewarding. You may bang your head against the wall at times, but then write tests to assist future you 😌.
-  The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
-- **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
+- **Context switching.**
+  As a small team, sometimes priorities shift fast, requiring you to dive into an entirely different feature you're unfamiliar with. It's challenging to get used to but rewarding.
+- **Moving fast without sacrificing quality.**.
+  Given our product is essentially code, our users and customers are incredibly demanding. To serve them the best way possible, we need to ship incredibly high-quality code quickly. However, sometimes we need to exchange going 100% into solving an issue, to instead aim for 50 to 70%, for a faster feedback cycle.
+- **Open-source: The nonstop stream of bug reports and support requests**. You'll frequently have your attention challenged given community requests keep pouring in. It will require you to develop an intuition for when to ignore something for later vs. when to dig in immediately as it could be a valuable improvement opportunity.
 
 ## Who we're looking for
 
