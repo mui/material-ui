@@ -66,14 +66,17 @@ const StyledTable = styled('table')(
     '& .MuiPropTable-description-column': {
       width: '40%',
       paddingRight: 8,
-      '& .prop-list-description': {
+      '& .prop-table-description': {
         marginBottom: 0,
       },
-      '& .prop-list-additional-description': {
+      '& .prop-table-additional-description': {
         marginTop: 12,
         marginBottom: 0,
       },
-      '& .refAlert': {
+      '& .prop-table-deprecated': {
+        '& code ': { all: 'unset' },
+      },
+      '& .prop-table-alert': {
         padding: '2px 12px',
         marginTop: 12,
         color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
@@ -94,13 +97,13 @@ const StyledTable = styled('table')(
         },
       },
     },
-    '& .prop-list-signature': {
+    '& .prop-table-signature': {
       marginTop: 12,
       marginBottom: 0,
       display: 'flex',
       flexDirection: 'column',
       gap: 16,
-      '& .prop-list-title': {
+      '& .prop-table-title': {
         fontWeight: theme.typography.fontWeightMedium,
       },
     },
@@ -125,13 +128,13 @@ const StyledTable = styled('table')(
         backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
       },
-      '& .prop-list-signature': {
-        '& .prop-list-title': {
+      '& .prop-table-signature': {
+        '& .prop-table-title': {
           color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         },
       },
       '& .MuiPropTable-description-column': {
-        '& .refAlert': {
+        '& .prop-table-alert': {
           color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
           backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
           borderColor: alpha(darkTheme.palette.warning[600], 0.3),
@@ -157,7 +160,7 @@ function PropDescription({ description }: { description: string }) {
 
   return (
     <ComponentToRender
-      className="prop-list-description" // This className is used by Algolia
+      className="prop-table-description" // This className is used by Algolia
       dangerouslySetInnerHTML={{
         __html: description,
       }}
@@ -234,7 +237,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 {description && <PropDescription description={description} />}
                 {requiresRef && (
                   <Alert
-                    className="refAlert"
+                    className="prop-table-alert"
                     severity="warning"
                     icon={<WarningRoundedIcon fontSize="small" />}
                     sx={{
@@ -256,7 +259,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 )}
                 {additionalInfo.map((key) => (
                   <p
-                    className="prop-list-additional-description"
+                    className="prop-table-additional-description"
                     key={key}
                     dangerouslySetInnerHTML={{
                       __html: t(`api-docs.additional-info.${key}`),
@@ -266,19 +269,9 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                 {isDeprecated && (
                   <Alert
                     severity="warning"
+                    className="prop-table-alert prop-table-deprecated"
                     sx={{ mb: 1, py: 0 }}
-                    iconMapping={{
-                      warning: (
-                        <svg
-                          width="14"
-                          height="12"
-                          viewBox="0 0 14 12"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M1.98012 11.9997H12.0201C13.0468 11.9997 13.6868 10.8864 13.1735 9.99971L8.15345 1.32638C7.64012 0.43971 6.36012 0.43971 5.84679 1.32638L0.826788 9.99971C0.313455 10.8864 0.953455 11.9997 1.98012 11.9997ZM7.00012 7.33304C6.63345 7.33304 6.33345 7.03304 6.33345 6.66638V5.33304C6.33345 4.96638 6.63345 4.66638 7.00012 4.66638C7.36679 4.66638 7.66679 4.96638 7.66679 5.33304V6.66638C7.66679 7.03304 7.36679 7.33304 7.00012 7.33304ZM7.66679 9.99971H6.33345V8.66638H7.66679V9.99971Z" />
-                        </svg>
-                      ),
-                    }}
+                    icon={<WarningRoundedIcon fontSize="small" />}
                   >
                     {t('api-docs.deprecated')}
                     {deprecationInfo && (
@@ -286,9 +279,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                         {' - '}
                         <span
                           dangerouslySetInnerHTML={{
-                            __html: deprecationInfo
-                              .replace(/<code>/g, '<span>')
-                              .replace(/<\/code>/g, '</span>'),
+                            __html: deprecationInfo,
                           }}
                         />
                       </React.Fragment>
@@ -296,8 +287,8 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                   </Alert>
                 )}
                 {signature && (
-                  <div className="prop-list-signature">
-                    <span className="prop-list-title">{t('api-docs.signature')}:</span>
+                  <div className="prop-table-signature">
+                    <span className="prop-table-title">{t('api-docs.signature')}:</span>
 
                     <code
                       dangerouslySetInnerHTML={{
