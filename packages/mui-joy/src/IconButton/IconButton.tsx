@@ -268,6 +268,10 @@ IconButton.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
    * The size of the component.
    * @default 'md'
    */
@@ -301,6 +305,14 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.number,
+  /**
+   * @ignore
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'

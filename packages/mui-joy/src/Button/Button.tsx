@@ -411,6 +411,10 @@ Button.propTypes /* remove-proptypes */ = {
    */
   loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
   /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
    * The size of the component.
    * @default 'md'
    */
@@ -454,6 +458,14 @@ Button.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.number,
+  /**
+   * @ignore
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
