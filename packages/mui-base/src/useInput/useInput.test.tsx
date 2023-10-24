@@ -24,6 +24,18 @@ describe('useInput', () => {
   });
 
   describe('prop: disabled', () => {
+    it('should render a disabled <input />', () => {
+      function Input(props: { disabled: boolean }) {
+        const { getInputProps } = useInput({
+          disabled: props.disabled,
+        });
+        return <input {...getInputProps()} />;
+      }
+      const { getByRole } = render(<Input disabled />);
+      const input = getByRole('textbox');
+      expect(input).to.have.attribute('disabled');
+    });
+
     it('should reset the focused state if getting disabled', () => {
       const handleBlur = spy();
       const handleFocus = spy();
