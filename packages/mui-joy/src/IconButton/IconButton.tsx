@@ -179,23 +179,33 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (toggleButtonGroup?.onClick) {
+      props.onClick?.(event);
+      toggleButtonGroup?.onClick(event, props.value);
+    } else {
+      props.onClick?.(event);
+    }
+  };
+
+  const isAriaPressed = () => {
+    if (toggleButtonGroup?.value) {
+      if (Array.isArray(toggleButtonGroup?.value)) {
+        return toggleButtonGroup?.value.indexOf(props.value as string | number) !== -1;
+      }
+      return toggleButtonGroup?.value === props.value;
+    }
+    return props['aria-pressed'];
+  };
+
   const externalForwardedProps = {
     ...other,
     component,
     slots,
     slotProps,
-    onClick: toggleButtonGroup?.onClick
-      ? (event: React.MouseEvent<HTMLButtonElement>) => {
-          props.onClick?.(event);
-          toggleButtonGroup?.onClick?.(event, props.value);
-        }
-      : props.onClick,
-    // eslint-disable-next-line no-nested-ternary
-    'aria-pressed': toggleButtonGroup?.value
-      ? Array.isArray(toggleButtonGroup?.value)
-        ? toggleButtonGroup?.value.indexOf(props.value as string | number) !== -1
-        : toggleButtonGroup?.value === props.value
-      : props['aria-pressed'],
+    onClick: handleClick,
+    'aria-pressed': isAriaPressed(),
   };
 
   const [SlotRoot, rootProps] = useSlot('root', {
