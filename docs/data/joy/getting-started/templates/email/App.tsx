@@ -11,6 +11,8 @@ import MenuItem from '@mui/joy/MenuItem';
 import Dropdown from '@mui/joy/Dropdown';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemContent from '@mui/joy/ListItemContent';
+import Button from '@mui/joy/Button';
+import Checkbox from '@mui/joy/Checkbox';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -18,9 +20,10 @@ import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import MarkAsUnreadRoundedIcon from '@mui/icons-material/MarkAsUnreadRounded';
 import MenuIcon from '@mui/icons-material/Menu';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
+import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
 
 // custom
 import Layout from './components/Layout';
@@ -108,7 +111,11 @@ export default function EmailExample() {
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
-              <IconButton variant="outlined" color="neutral">
+              <IconButton
+                variant="outlined"
+                color="neutral"
+                sx={{ bgcolor: 'background.level1' }}
+              >
                 <Typography fontWeight="lg" fontSize="sm" textColor="text.icon">
                   ⌘ + k
                 </Typography>
@@ -197,38 +204,38 @@ export default function EmailExample() {
           <Box
             sx={{
               p: 2,
-              mb: 1,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
             }}
           >
-            <Typography level="title-sm" textColor="text.tertiary">
-              Unread
+            <Typography level="title-lg" textColor="text.tertiary">
+              My inbox
             </Typography>
-            <IconButton size="sm" variant="plain" color="primary">
-              <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-            </IconButton>
-          </Box>
-          <Box sx={{ py: 10 }}>
-            <Typography level="body-sm" sx={{ textAlign: 'center', opacity: '70%' }}>
-              You&apos;ve read all messages in your inbox.
-            </Typography>
+            <Button size="sm" startDecorator={<CreateRoundedIcon />}>
+              Write email
+            </Button>
           </Box>
           <Box
             sx={{
-              p: 2,
+              px: 2,
+              pb: 2,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
             }}
           >
-            <Typography level="title-sm" textColor="text.tertiary">
-              Everything else
-            </Typography>
-            <IconButton size="sm" variant="plain" color="primary">
-              <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-            </IconButton>
+            <Checkbox size="sm" label="Select all" />
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+              }}
+            >
+              <MarkAsUnreadRoundedIcon fontSize="small" color="neutral" />
+              <Typography level="title-sm">5 emails</Typography>
+            </Box>
           </Box>
           <Mails />
         </Layout.SidePane>

@@ -15,6 +15,7 @@ import Avatar from '@mui/joy/Avatar';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import ForwardToInboxRoundedIcon from '@mui/icons-material/ForwardToInboxRounded';
 import FolderIcon from '@mui/icons-material/Folder';
+import ReplyRoundedIcon from '@mui/icons-material/ReplyRounded';
 
 export default function EmailContent() {
   return (
@@ -54,15 +55,30 @@ export default function EmailContent() {
         <Box
           sx={{ display: 'flex', height: '32px', flexDirection: 'row', gap: 1.5 }}
         >
-          <Button variant="solid" color="primary" size="sm">
+          <Button
+            size="sm"
+            variant="plain"
+            color="primary"
+            startDecorator={<ReplyRoundedIcon />}
+          >
             Reply
           </Button>
-          <IconButton size="sm" variant="soft" color="neutral">
-            <ForwardToInboxRoundedIcon />
-          </IconButton>
-          <IconButton size="sm" variant="plain" color="danger">
-            <DeleteRoundedIcon />
-          </IconButton>
+          <Button
+            size="sm"
+            variant="plain"
+            color="primary"
+            startDecorator={<ForwardToInboxRoundedIcon />}
+          >
+            Forward
+          </Button>
+          <Button
+            size="sm"
+            variant="plain"
+            color="danger"
+            startDecorator={<DeleteRoundedIcon />}
+          >
+            Delete
+          </Button>
         </Box>
       </Box>
       <Divider sx={{ mt: 2 }} />
@@ -89,7 +105,7 @@ export default function EmailContent() {
             >
               From
             </Typography>
-            <Chip size="sm" variant="soft" onClick={() => {}}>
+            <Chip size="sm" variant="soft" color="primary" onClick={() => {}}>
               alex.jonnold@hike.com
             </Chip>
           </div>
@@ -101,7 +117,7 @@ export default function EmailContent() {
             >
               to
             </Typography>
-            <Chip size="sm" variant="soft" onClick={() => {}}>
+            <Chip size="sm" variant="soft" color="primary" onClick={() => {}}>
               steve@mail.com
             </Chip>
           </div>

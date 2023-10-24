@@ -33,6 +33,22 @@ const data = [
     title: 'Brunch this Saturday?',
     body: "Hey! I'll be around the city this weekend, how about a…",
   },
+  {
+    name: 'John Snow',
+    avatar: 'https://i.pravatar.cc/40?img=7',
+    avatar2x: 'https://i.pravatar.cc/80?img=7',
+    date: '10 May 2022',
+    title: 'Exciting News!',
+    body: 'Hello there! I have some exciting news to share with you...',
+  },
+  {
+    name: 'Michael Scott',
+    avatar: 'https://i.pravatar.cc/40?img=8',
+    avatar2x: 'https://i.pravatar.cc/80?img=8',
+    date: '13 Apr 2022',
+    title: 'Upcoming Product Launch',
+    body: 'Dear customers and supporters, I am thrilled to announc...',
+  },
 ];
 
 export default function EmailList() {
@@ -42,7 +58,10 @@ export default function EmailList() {
         <React.Fragment key={index}>
           <ListItem>
             <ListItemButton
-              {...(index === 0 && { selected: true, color: 'neutral' })}
+              {...(index === 0 && {
+                selected: true,
+                color: 'neutral',
+              })}
               sx={{ p: 2 }}
             >
               <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
