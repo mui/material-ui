@@ -183,7 +183,11 @@ export default function TeamExample() {
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
-              <IconButton variant="outlined" color="neutral">
+              <IconButton
+                variant="outlined"
+                color="neutral"
+                sx={{ bgcolor: 'background.level1' }}
+              >
                 <Typography fontWeight="lg" fontSize="sm" textColor="text.icon">
                   ⌘ + k
                 </Typography>
@@ -278,8 +282,8 @@ export default function TeamExample() {
               justifyContent: 'space-between',
             }}
           >
-            <Typography level="title-sm">Filter by</Typography>
-            <Button size="sm" variant="plain" sx={{ fontSize: 'xs', px: 1 }}>
+            <Typography level="title-md">Filter by</Typography>
+            <Button size="sm" variant="plain">
               Clear filters
             </Button>
           </Box>
@@ -291,20 +295,14 @@ export default function TeamExample() {
                 justifyContent: 'space-between',
               }}
             >
-              <Typography level="body-sm" textColor="text.primary">
-                Keywords
-              </Typography>
-              <IconButton
-                size="sm"
-                variant="plain"
-                color="primary"
-                sx={{ '--IconButton-size': '24px' }}
-              >
-                <KeyboardArrowUpRoundedIcon fontSize="small" color="primary" />
+              <Typography level="title-sm">Keywords</Typography>
+              <IconButton size="sm" variant="plain" color="primary">
+                <KeyboardArrowUpRoundedIcon />
               </IconButton>
             </Box>
             <Box sx={{ mt: 2 }}>
               <Autocomplete
+                size="sm"
                 placeholder="Position, skills, etc…"
                 options={[
                   {
@@ -340,7 +338,6 @@ export default function TeamExample() {
                   variant="soft"
                   size="sm"
                   endDecorator={<ChipDelete variant="soft" />}
-                  sx={{ '--Chip-radius': (theme) => theme.vars.radius.sm }}
                 >
                   UI designer
                 </Chip>
@@ -356,20 +353,14 @@ export default function TeamExample() {
                 justifyContent: 'space-between',
               }}
             >
-              <Typography level="body-sm" textColor="text.primary">
-                Location
-              </Typography>
-              <IconButton
-                size="sm"
-                variant="plain"
-                color="primary"
-                sx={{ '--IconButton-size': '24px' }}
-              >
-                <KeyboardArrowUpRoundedIcon fontSize="small" color="primary" />
+              <Typography level="title-sm">Location</Typography>
+              <IconButton size="sm" variant="plain" color="primary">
+                <KeyboardArrowUpRoundedIcon />
               </IconButton>
             </Box>
             <Box sx={{ mt: 2 }}>
               <Autocomplete
+                size="sm"
                 placeholder="Position, skills, etc…"
                 options={[
                   // some of Thailand provinces
@@ -389,6 +380,8 @@ export default function TeamExample() {
               />
               <Box sx={{ mt: 3, display: 'flex', gap: 1 }}>
                 <Slider
+                  size="sm"
+                  variant="solid"
                   valueLabelFormat={(value) => `${value} km`}
                   defaultValue={6}
                   step={1}
@@ -408,16 +401,9 @@ export default function TeamExample() {
                 justifyContent: 'space-between',
               }}
             >
-              <Typography level="body-sm" textColor="text.primary">
-                Education
-              </Typography>
-              <IconButton
-                size="sm"
-                variant="plain"
-                color="primary"
-                sx={{ '--IconButton-size': '24px' }}
-              >
-                <KeyboardArrowUpRoundedIcon fontSize="small" color="primary" />
+              <Typography level="title-sm">Education</Typography>
+              <IconButton size="sm" variant="plain" color="primary">
+                <KeyboardArrowUpRoundedIcon />
               </IconButton>
             </Box>
             <Box sx={{ mt: 2 }}>
@@ -438,16 +424,9 @@ export default function TeamExample() {
                 justifyContent: 'space-between',
               }}
             >
-              <Typography level="body-sm" textColor="text.primary">
-                Previous experience
-              </Typography>
-              <IconButton
-                size="sm"
-                variant="plain"
-                color="primary"
-                sx={{ '--IconButton-size': '24px' }}
-              >
-                <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
+              <Typography level="title-sm">Previous experience</Typography>
+              <IconButton size="sm" variant="plain" color="primary">
+                <KeyboardArrowDownRoundedIcon />
               </IconButton>
             </Box>
           </Box>
@@ -473,9 +452,10 @@ export default function TeamExample() {
               >
                 <Box sx={{ display: 'flex', gap: 2 }}>
                   <Avatar
-                    src="https://i.pravatar.cc/40?img=6"
-                    srcSet="https://i.pravatar.cc/80?img=6 2x"
-                    sx={{ borderRadius: 'sm' }}
+                    variant="outlined"
+                    src="https://i.pravatar.cc/40?img=7"
+                    srcSet="https://i.pravatar.cc/80?img=7 2x"
+                    sx={{ borderRadius: '50%' }}
                   />
                   <div>
                     <Typography>Andrew Smith</Typography>
@@ -483,7 +463,7 @@ export default function TeamExample() {
                   </div>
                 </Box>
                 <Divider component="div" sx={{ my: 2 }} />
-                <List sx={{ '--ListItemDecorator-size': '48px' }}>
+                <List sx={{ '--ListItemDecorator-size': '40px', gap: 2 }}>
                   <ListItem sx={{ alignItems: 'flex-start' }}>
                     <ListItemDecorator
                       sx={{
@@ -491,37 +471,40 @@ export default function TeamExample() {
                           content: '""',
                           position: 'absolute',
                           height: '100%',
-                          width: '2px',
+                          width: '1px',
                           bgcolor: 'divider',
-                          left: 'calc(var(--ListItem-paddingLeft) + 15px)',
+                          left: 'calc(var(--ListItem-paddingLeft) + 12px)',
                           top: '50%',
                         },
                       }}
                     >
                       <Avatar
-                        size="sm"
                         src="https://www.vectorlogo.zone/logos/dribbble/dribbble-icon.svg"
+                        sx={{ width: 24, height: 24 }}
                       />
                     </ListItemDecorator>
                     <ListItemContent>
-                      <Typography fontSize="sm">Senior designer</Typography>
+                      <Typography level="title-sm">Senior designer</Typography>
                       <Typography level="body-xs">Dribbble</Typography>
                     </ListItemContent>
-                    <Typography level="body-sm">2015-now</Typography>
+                    <Typography level="body-xs">2015-now</Typography>
                   </ListItem>
                   <ListItem sx={{ alignItems: 'flex-start' }}>
                     <ListItemDecorator>
                       <Avatar
-                        size="sm"
                         src="https://www.vectorlogo.zone/logos/pinterest/pinterest-icon.svg"
-                        sx={{ backgroundColor: 'background.body' }}
+                        sx={{
+                          backgroundColor: 'background.body',
+                          width: 24,
+                          height: 24,
+                        }}
                       />
                     </ListItemDecorator>
                     <ListItemContent>
-                      <Typography fontSize="sm">Designer</Typography>
+                      <Typography level="title-sm">Designer</Typography>
                       <Typography level="body-xs">Pinterest</Typography>
                     </ListItemContent>
-                    <Typography level="body-sm">2012-2015</Typography>
+                    <Typography level="body-xs">2012-2015</Typography>
                   </ListItem>
                 </List>
                 <Button
@@ -533,22 +516,12 @@ export default function TeamExample() {
                   Expand
                 </Button>
                 <Divider component="div" sx={{ my: 2 }} />
-                <Typography fontSize="sm">Skills tags:</Typography>
+                <Typography level="title-sm">Skills tags:</Typography>
                 <Box sx={{ mt: 1.5, display: 'flex', gap: 1 }}>
-                  <Chip
-                    variant="outlined"
-                    color="neutral"
-                    size="sm"
-                    sx={{ borderRadius: 'sm' }}
-                  >
+                  <Chip variant="outlined" color="neutral" size="sm">
                     UI design
                   </Chip>
-                  <Chip
-                    variant="outlined"
-                    color="neutral"
-                    size="sm"
-                    sx={{ borderRadius: 'sm' }}
-                  >
+                  <Chip variant="outlined" color="neutral" size="sm">
                     Illustration
                   </Chip>
                 </Box>
