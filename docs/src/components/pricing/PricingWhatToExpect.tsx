@@ -19,7 +19,7 @@ export default function PricingWhatToExpect() {
       <SectionHeadline
         overline="Paid plans"
         title={
-          <Typography variant="h2" sx={{ mt: 1, mb: 4, maxWidth: 600 }}>
+          <Typography variant="h2" sx={{ mt: 1, mb: 4 }}>
             Key information about
             <br /> <GradientText>the paid plans</GradientText>
           </Typography>

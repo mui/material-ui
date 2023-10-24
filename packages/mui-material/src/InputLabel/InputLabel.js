@@ -46,6 +46,7 @@ const InputLabelRoot = styled(FormLabel, {
       ownerState.size === 'small' && styles.sizeSmall,
       ownerState.shrink && styles.shrink,
       !ownerState.disableAnimation && styles.animated,
+      ownerState.focused && styles.focused,
       styles[ownerState.variant],
     ];
   },
@@ -141,7 +142,7 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['size', 'variant', 'required'],
+    states: ['size', 'variant', 'required', 'focused'],
   });
 
   const ownerState = {
@@ -152,6 +153,7 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
     size: fcs.size,
     variant: fcs.variant,
     required: fcs.required,
+    focused: fcs.focused,
   };
 
   const classes = useUtilityClasses(ownerState);

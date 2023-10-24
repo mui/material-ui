@@ -1,5 +1,4 @@
 <React.Fragment>
-  <GlobalStyles styles={styles} />
   <DropdownContext.Provider value={dropdownContextValue}>
     <MenuButton>Theme</MenuButton>
     <Menu id="hooks-menu">
@@ -10,4 +9,5 @@
       <MenuItem onClick={createHandleMenuClick('Dark')}>Dark</MenuItem>
     </Menu>
   </DropdownContext.Provider>
+  <Styles />
 </React.Fragment>

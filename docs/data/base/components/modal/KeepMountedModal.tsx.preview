@@ -9,8 +9,8 @@
   slots={{ backdrop: StyledBackdrop }}
   keepMounted
 >
-  <Box sx={style}>
+  <ModalContent sx={style}>
     <h2 id="keep-mounted-modal-title">Text in a modal</h2>
     <p id="keep-mounted-modal-description">Aliquid amet deserunt earum!</p>
-  </Box>
+  </ModalContent>
 </Modal>

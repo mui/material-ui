@@ -58,20 +58,24 @@ export default function MaterialDesignDemo(props: CardProps) {
   return (
     <Card {...props}>
       <Box sx={{ p: 2, display: 'flex' }}>
-        <Avatar variant="rounded" src="/static/images/avatar/1.jpg" alt="" />
+        <Avatar
+          variant="rounded"
+          src="https://i.scdn.co/image/ab67616d0000b273992e45c95fa03ee72c52a526"
+          alt=""
+        />
         <Stack
           spacing={0.5}
           alignItems="flex-start"
           sx={{
             mx: 2,
             flexGrow: 1,
-            '& svg': { fontSize: 20, verticalAlign: 'bottom', mr: 0.2 },
+            '& svg': { fontSize: 18, verticalAlign: 'bottom', mr: 0.5, mb: 0.1 },
           }}
         >
           <Typography fontWeight={700}>Michael Scott</Typography>
           <Typography2 variant="body2" color="text.secondary">
             <LocationOn sx={{ color: grey[500] }} />
-            Scranton, PA
+            Scranton, PA, United States
           </Typography2>
         </Stack>
         <IconButton aria-label="Edit" sx={{ alignSelf: 'flex-start' }}>

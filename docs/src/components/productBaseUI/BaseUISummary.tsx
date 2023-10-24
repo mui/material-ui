@@ -40,7 +40,7 @@ export default function BaseUISummary() {
         alwaysCenter
         overline="Why Base UI"
         title={
-          <Typography variant="h2" sx={{ mt: 1, maxWidth: 600, mx: 'auto' }}>
+          <Typography variant="h2" sx={{ mt: 1 }}>
             Essential building blocks
             <br /> for <GradientText>sleek and accessible</GradientText> UIs
           </Typography>
