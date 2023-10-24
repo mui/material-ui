@@ -19,6 +19,7 @@ A big thanks to the 16 contributors who made this release possible.
 - &#8203;<!-- 29 -->[useAutocomplete] Correct keyboard navigation with multiple disabled options (#38788) @VadimZvf
 - &#8203;<!-- 28 -->[Select] Standardize box shadow on demos (#39509) @zanivan
 - &#8203;<!-- 27 -->[Slider] Refine demos (#39526) @zanivan
+- &#8203;<!-- 34 -->[Input] Update and port additional tests from material-ui (#39584) @mj12albert
 
 ### `@mui/material-next@6.0.0-alpha.107`
 
