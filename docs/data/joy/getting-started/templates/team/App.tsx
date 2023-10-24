@@ -458,7 +458,7 @@ export default function TeamExample() {
                     sx={{ borderRadius: '50%' }}
                   />
                   <div>
-                    <Typography>Andrew Smith</Typography>
+                    <Typography level="title-md">Andrew Smith</Typography>
                     <Typography level="body-xs">UI Designer</Typography>
                   </div>
                 </Box>
