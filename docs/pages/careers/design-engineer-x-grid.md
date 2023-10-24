@@ -77,7 +77,6 @@ The Design Engineer role sits right at the intersection between product design a
 
 ### The best parts of this job
 
-
 ### Challenges you'll face
 
 - **Context switching.**
