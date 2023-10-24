@@ -407,8 +407,13 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   }
 
   const createHandleHiddenInputChange =
-    (externalEventHandlers?: EventHandlers) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    (externalEventHandlers?: EventHandlers) =>
+    (event: React.ChangeEvent<HTMLInputElement> & MuiCancellableEvent) => {
       externalEventHandlers?.onChange?.(event);
+
+      if (event.defaultMuiPrevented) {
+        return;
+      }
 
       // support autofill
       if (options.has(event.target.value as OptionValue)) {

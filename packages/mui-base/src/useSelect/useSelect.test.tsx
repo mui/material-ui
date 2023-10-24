@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import { act, renderHook } from '@testing-library/react';
 import { useSelect } from './useSelect';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 
 describe('useSelect', () => {
   describe('param: options', () => {
@@ -188,6 +189,37 @@ describe('useSelect', () => {
           act(() => {
             // @ts-ignore We only need the target value for this test
             hiddenInputOnChange({ target: { value: '' } });
+          });
+
+          const { value: updatedValue } = result.current;
+
+          expect(updatedValue).to.equal(null);
+        });
+
+        it('should be preventable', () => {
+          const options = [
+            { value: 'a', label: 'A' },
+            { value: 'b', label: 'B' },
+          ];
+
+          const onHiddenInputChange = (
+            event: React.ChangeEvent<HTMLInputElement> & MuiCancellableEvent,
+          ) => {
+            event.defaultMuiPrevented = true;
+          };
+
+          const { result } = renderHook(() => useSelect({ options }));
+
+          const { value: initialValue, getHiddenInputProps } = result.current;
+          const { onChange: hiddenInputOnChange } = getHiddenInputProps({
+            onChange: onHiddenInputChange,
+          });
+
+          expect(initialValue).to.equal(null);
+
+          act(() => {
+            // @ts-ignore We only need the target value for this test
+            hiddenInputOnChange({ target: { value: 'a' } });
           });
 
           const { value: updatedValue } = result.current;
