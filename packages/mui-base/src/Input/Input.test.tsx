@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import {
   createMount,
   createRenderer,
@@ -40,11 +41,19 @@ describe('<Input />', () => {
     expect(screen.getByRole('textbox')).to.have.tagName('textarea');
   });
 
-  it('should be able to attach input ref passed through props', () => {
-    const inputRef = React.createRef<HTMLInputElement>();
-    const { getByRole } = render(<Input slotProps={{ input: { ref: inputRef } }} />);
+  describe('prop: inputRef', () => {
+    it('should be able to attach input ref passed through slotProps', () => {
+      const inputRef = React.createRef<HTMLInputElement>();
+      const { getByRole } = render(<Input slotProps={{ input: { ref: inputRef } }} />);
 
-    expect(inputRef.current).to.deep.equal(getByRole('textbox'));
+      expect(inputRef.current).to.deep.equal(getByRole('textbox'));
+    });
+
+    it('should be able to access the native textarea of a multiline input', () => {
+      const inputRef = React.createRef();
+      const { container } = render(<Input multiline slotProps={{ input: { ref: inputRef } }} />);
+      expect(inputRef.current).to.equal(container.querySelector('textarea'));
+    });
   });
 
   it('should call event handlers passed in slotProps', () => {
@@ -123,6 +132,55 @@ describe('<Input />', () => {
       setProps({ rows: 4 });
 
       expect(textarea).toHaveFocus();
+    });
+  });
+
+  describe('errors', () => {
+    it("throws on change if the target isn't mocked", () => {
+      /**
+       * This component simulates a custom input component that hides the inner
+       * input value for security reasons e.g. react-stripe-element.
+       *
+       * A ref is exposed to trigger a change event instead of using fireEvent.change
+       */
+      const BadInputComponent = React.forwardRef(function BadInputComponent(
+        props: {
+          onChange: (arg: Record<string, unknown>) => void;
+        },
+        ref,
+      ) {
+        const { onChange } = props;
+
+        // simulates const handleChange = () => onChange({}) and passing that
+        // handler to the onChange prop of `input`
+        React.useImperativeHandle(ref, () => () => onChange({}));
+
+        return <input />;
+      });
+
+      BadInputComponent.propTypes = {
+        onChange: PropTypes.func.isRequired,
+      };
+
+      const triggerChangeRef = React.createRef<HTMLInputElement>();
+
+      expect(() => {
+        render(
+          <Input
+            slots={{ input: BadInputComponent }}
+            slotProps={{
+              input: {
+                ref: triggerChangeRef,
+              },
+            }}
+          />,
+        );
+      }).toErrorDev([
+        'MUI: You have provided a `slots.input` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
+        // React 18 Strict Effects run mount effects twice
+        React.version.startsWith('18') &&
+          'MUI: You have provided a `slots.input` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
+      ]);
     });
   });
 });
