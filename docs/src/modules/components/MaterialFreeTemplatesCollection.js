@@ -90,14 +90,11 @@ export default function Templates() {
   return (
     <Grid container spacing={2} sx={{ pt: 2, pb: 4 }}>
       {layouts(t).map((layout) => (
-        <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }} key={layout.title}>
+        <Grid item xs={12} sm={4} key={layout.title}>
           <Card
             variant="outlined"
             sx={{
               height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 2,
               background: 'background.paper',
               borderColor: 'divider',
             }}
@@ -124,7 +121,7 @@ export default function Templates() {
                 <Link
                   tabIndex={-1}
                   aria-hidden
-                  data-ga-event-category="joy-template"
+                  data-ga-event-category="material-ui-template"
                   data-ga-event-label={layout.title}
                   data-ga-event-action="preview-img"
                   sx={(theme) => ({
@@ -137,11 +134,11 @@ export default function Templates() {
                     position: 'absolute',
                     width: '100%',
                     height: '100%',
-                    opacity: 0,
                     top: 0,
                     left: 0,
                     bgcolor: alpha(theme.palette.primary[50], 0.5),
                     backdropFilter: 'blur(4px)',
+                    opacity: 0,
                     '&:hover, &:focus': {
                       opacity: 1,
                     },
@@ -151,13 +148,17 @@ export default function Templates() {
                   })}
                 >
                   <Visibility />
-                  <Typography fontWeight="bold" color="text.primary">
+                  <Typography
+                    fontWeight="bold"
+                    color="text.primary"
+                    sx={{ textDecorationLine: 'underline' }}
+                  >
                     View live preview
                   </Typography>
                 </Link>
               </NextLink>
             </Box>
-            <CardContent sx={{ pt: 0, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+            <Box sx={{ p: 2, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
               <Typography component="h3" variant="subtitle1" fontWeight="bold" gutterBottom>
                 {layout.title}
               </Typography>
@@ -176,7 +177,7 @@ export default function Templates() {
               >
                 {t('sourceCode')}
               </Button>
-            </CardContent>
+            </Box>
           </Card>
         </Grid>
       ))}
