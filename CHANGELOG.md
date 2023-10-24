@@ -65,6 +65,7 @@ A big thanks to the 17 contributors who made this release possible.
 - &#8203;<!-- 21 -->[docs-infra] Prevent docs crash (#39214) @alexfauquette
 - &#8203;<!-- 20 -->[docs-infra] Fix no-op autoprefixer warning (#39385) @oliviertassinari
 - &#8203;<!-- 32 -->[docs-infra] Refine the API page design (#39520) @alexfauquette
+- &#8203;<!-- 25 -->[docs-infra] Fix cut-off sponsors (#39572) @oliviertassinari
 - &#8203;<!-- 04 -->[website] Add missing h1 on page @oliviertassinari
 - &#8203;<!-- 03 -->[website] Fix unrecognized prop warning @oliviertassinari
 - &#8203;<!-- 02 -->[website] Store Engineer role filled @oliviertassinari
