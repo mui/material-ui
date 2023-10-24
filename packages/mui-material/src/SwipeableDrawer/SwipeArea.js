@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import styled from '../styles/styled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import capitalize from '../utils/capitalize';
 import { isHorizontal } from '../Drawer/Drawer';
 

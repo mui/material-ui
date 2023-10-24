@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { refType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import capitalize from '../utils/capitalize';
-import styled from '../styles/styled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useControlled from '../utils/useControlled';
 import useFormControl from '../FormControl/useFormControl';
 import ButtonBase from '../ButtonBase';
