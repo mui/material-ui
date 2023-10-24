@@ -6,7 +6,7 @@
 
 _Oct 24, 2023_
 
-A big thanks to the 16 contributors who made this release possible.
+A big thanks to the 17 contributors who made this release possible.
 
 ### `@mui/material@5.14.15`
 
@@ -52,6 +52,7 @@ A big thanks to the 16 contributors who made this release possible.
 - &#8203;<!-- 30 -->[base-ui] Overall demos design review (#38820) @zanivan
 - &#8203;<!-- 19 -->[joy-ui] Adjust the responsiveness of the template card (#39534) @danilo-leal
 - &#8203;<!-- 18 -->[material-ui] Typo fixes in overview page (#39540) @Evan151
+- &#8203;<!-- 35 -->[material-ui] Add stray design tweaks to the templates collection (#39583) @danilo-leal
 - &#8203;<!-- 17 -->[system] Revise the Box page (#39159) @danilo-leal
 - &#8203;<!-- 22 -->Fix git diff format @oliviertassinari
 - &#8203;<!-- 15 -->[I10n] Add Norwegian (nynorsk) (nn-NO) locale (#39481) @hjalti-lifekeys
@@ -69,7 +70,7 @@ A big thanks to the 16 contributors who made this release possible.
 - &#8203;<!-- 02 -->[website] Store Engineer role filled @oliviertassinari
 - &#8203;<!-- 01 -->[website] Add stray design adjustments (#39496) @danilo-leal
 
-All contributors of this release in alphabetical order: @alexfauquette, @Best-Sardar, @brijeshb42, @danilo-leal, @DiegoAndai, @Evan151, @gitstart, @hjalti-lifekeys, @mj12albert, @mwskwong, @oliviertassinari, @romgrk, @Semigradsky, @siriwatknp, @VadimZvf, @zanivan
+All contributors of this release in alphabetical order: @alexfauquette, @Best-Sardar, @brijeshb42, @danilo-leal, @DiegoAndai, @Evan151, @gitstart, @hjalti-lifekeys, @mj12albert, @mnajdova, @mwskwong, @oliviertassinari, @romgrk, @Semigradsky, @siriwatknp, @VadimZvf, @zanivan
 
 ## 5.14.14
 
