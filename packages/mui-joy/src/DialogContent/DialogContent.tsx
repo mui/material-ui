@@ -38,8 +38,6 @@ const DialogContentRoot = styled(StyledCardContentRoot, {
   },
 }));
 /**
- * ⚠️ DialogContent must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
- *
  * Demos:
  *
  * - [Drawer](https://mui.com/joy-ui/react-drawer/)
