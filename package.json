@@ -98,7 +98,7 @@
     "@types/enzyme": "^3.10.15",
     "@types/fs-extra": "^11.0.3",
     "@types/lodash": "^4.14.200",
-    "@types/mocha": "^10.0.2",
+    "@types/mocha": "^10.0.3",
     "@types/node": "^18.18.6",
     "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.29",
