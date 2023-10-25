@@ -62,7 +62,7 @@
     "@mui/material": "^5.14.15",
     "@types/chai": "^4.3.9",
     "@types/react": "^18.2.29",
-    "@types/react-dom": "^18.2.13",
+    "@types/react-dom": "^18.2.14",
     "@types/sinon": "^10.0.19",
     "chai": "^4.3.10",
     "react": "^18.2.0",
