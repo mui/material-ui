@@ -37,6 +37,9 @@ const StyledApiItem = styled(ExpendableApiItem)(
         fontSize: theme.typography.pxToRem(12),
       },
     },
+    '& .prop-list-deprecated': {
+      '& code ': { all: 'unset' },
+    },
     '& .prop-list-default-props': {
       ...theme.typography.body2,
       fontWeight: theme.typography.fontWeightSemiBold,
@@ -209,7 +212,7 @@ export default function PropertiesList(props: PropertiesListProps) {
             ))}
             {isDeprecated && (
               <Alert
-                className="MuiApi-collapsible"
+                className="MuiApi-collapsible prop-list-deprecated"
                 severity="warning"
                 icon={<WarningRoundedIcon fontSize="small" />}
                 sx={{
@@ -225,9 +228,7 @@ export default function PropertiesList(props: PropertiesListProps) {
                     {' - '}
                     <span
                       dangerouslySetInnerHTML={{
-                        __html: deprecationInfo
-                          .replace(/<code>/g, '<span>')
-                          .replace(/<\/code>/g, '</span>'),
+                        __html: deprecationInfo,
                       }}
                     />
                   </React.Fragment>
@@ -241,7 +242,7 @@ export default function PropertiesList(props: PropertiesListProps) {
                   <code
                     className="Api-code"
                     dangerouslySetInnerHTML={{
-                      __html: typeName.replace(/<br>&#124;/g, ' |'),
+                      __html: typeName,
                     }}
                   />
                 </p>

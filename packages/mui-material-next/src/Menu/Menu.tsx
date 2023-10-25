@@ -3,27 +3,34 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useMenu, MenuProvider } from '@mui/base/useMenu';
+import { useDropdown, DropdownContext } from '@mui/base/useDropdown';
 import { useSlotProps } from '@mui/base/utils';
-import { HTMLElementType } from '@mui/utils';
-import MenuList from '@mui/material/MenuList';
-import Popover, { PopoverPaper } from '@mui/material/Popover';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useTheme from '../styles/useTheme';
-import useThemeProps from '../styles/useThemeProps';
+import { ListActionTypes } from '@mui/base/useList';
+import {
+  HTMLElementType,
+  unstable_getScrollbarSize as getScrollbarSize,
+  unstable_ownerDocument as ownerDocument,
+} from '@mui/utils';
+// TODO v6: Replace with @mui/material-next when the Popover component is available
+import Popover, { PopoverPaper, PopoverOrigin } from '@mui/material/Popover';
+import { styled, useTheme, useThemeProps, rootShouldForwardProp } from '../styles';
+import { MenuTypeMap, MenuOwnerState } from './Menu.types';
 import { getMenuUtilityClass } from './menuClasses';
 
-const RTL_ORIGIN = {
+const RTL_ORIGIN: PopoverOrigin = {
   vertical: 'top',
   horizontal: 'right',
 };
 
-const LTR_ORIGIN = {
+const LTR_ORIGIN: PopoverOrigin = {
   vertical: 'top',
   horizontal: 'left',
 };
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: MenuOwnerState) => {
   const { classes } = ownerState;
 
   const slots = {
@@ -36,7 +43,7 @@ const useUtilityClasses = (ownerState) => {
 };
 
 const MenuRoot = styled(Popover, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  shouldForwardProp: (prop: string) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -55,26 +62,28 @@ export const MenuPaper = styled(PopoverPaper, {
   WebkitOverflowScrolling: 'touch',
 });
 
-const MenuMenuList = styled(MenuList, {
+const MenuListbox = styled('ul', {
   name: 'MuiMenu',
   slot: 'List',
   overridesResolver: (props, styles) => styles.list,
 })({
+  // reset the default padding-inline-start
+  paddingInlineStart: 0,
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
 });
 
-const Menu = React.forwardRef(function Menu(inProps, ref) {
+const MenuInner = React.forwardRef(function Menu(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiMenu' });
 
   const {
+    anchorEl,
     autoFocus = true,
     children,
     className,
     disableAutoFocusItem = false,
     MenuListProps = {},
     onClose,
-    open,
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
@@ -82,14 +91,36 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     variant = 'selectedMenu',
     slots = {},
     slotProps = {},
+    actions,
     ...other
   } = props;
 
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
+  const listRef = React.useRef<HTMLElement | null>(null);
+
+  // TODO v6: Handle the rest of the props from the MenuListProps prop
+  const {
+    // autoFocus,
+    // autoFocusItem,
+    // varaint
+    className: menuListPropsClassName,
+    disabledItemsFocusable,
+    disableListWrap,
+    ...otherMenuListProps
+  } = MenuListProps;
+
+  const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
+    // onItemsChange,
+    disabledItemsFocusable: Boolean(disabledItemsFocusable),
+    disableListWrap: Boolean(disableListWrap),
+    // autoFocus,
+  });
+
   const ownerState = {
     ...props,
+    open,
     autoFocus,
     disableAutoFocusItem,
     MenuListProps,
@@ -100,15 +131,33 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     variant,
   };
 
+  React.useImperativeHandle(
+    actions,
+    () => ({
+      dispatch,
+      resetHighlight: () => dispatch({ type: ListActionTypes.resetHighlight, event: null }),
+    }),
+    [dispatch],
+  );
+
   const classes = useUtilityClasses(ownerState);
 
-  const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
+  // Used in the legacy MenuList component
+  // const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
 
-  const menuListActionsRef = React.useRef(null);
-
-  const handleEntering = (element, isAppearing) => {
-    if (menuListActionsRef.current) {
-      menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
+  const handleEntering = (element: HTMLElement, isAppearing: boolean) => {
+    // adjust styles for scrollbar
+    if (element && listRef.current) {
+      // Let's ignore that piece of logic if users are already overriding the width
+      // of the menu.
+      const containerElement = element;
+      const noExplicitWidth = !listRef.current.style.width;
+      if (containerElement.clientHeight < listRef?.current?.clientHeight && noExplicitWidth) {
+        const scrollbarSize = `${getScrollbarSize(ownerDocument(containerElement))}px`;
+        listRef.current.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] =
+          scrollbarSize;
+        listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
+      }
     }
 
     if (onEntering) {
@@ -116,7 +165,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     }
   };
 
-  const handleListKeyDown = (event) => {
+  const handleListKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Tab') {
       event.preventDefault();
 
@@ -166,6 +215,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const rootSlotProps = useSlotProps({
     elementType: slots.root,
     externalSlotProps: slotProps.root,
+    additionalProps: {
+      role: undefined,
+    },
     ownerState,
     className: [classes.root, className],
   });
@@ -175,6 +227,33 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     externalSlotProps: paperExternalSlotProps,
     ownerState,
     className: classes.paper,
+  });
+
+  // TODO v6: Setting autoFocus = false is missing feature at this point
+  // const autoFocusList = autoFocus && (activeItemIndex === -1 || disableAutoFocusItem);
+
+  const Listbox = slots.listbox ?? MenuListbox;
+  const listboxProps = useSlotProps({
+    elementType: Listbox,
+    getSlotProps: (otherHandlers) => {
+      return getListboxProps({
+        onKeyDown: handleListKeyDown,
+        ...otherHandlers,
+      });
+    },
+    externalSlotProps: (args) => ({
+      ...(typeof slotProps.listbox === 'function' ? slotProps.listbox(args) : slotProps.listbox),
+      ...otherMenuListProps,
+    }),
+    additionalProps: {
+      ref: listRef,
+      // TODO v6: These need to be handled on the Menu component level, now that the MenuListbox is simply ul
+      // variant,
+      // autoFocusItem,
+      // autoFocus: autoFocus && (activeItemIndex === -1 || disableAutoFocusItem),
+    },
+    className: clsx(classes.list, menuListPropsClassName),
+    ownerState,
   });
 
   return (
@@ -197,33 +276,69 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       ref={ref}
       transitionDuration={transitionDuration}
       TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
+      // @ts-ignore internal usage
       ownerState={ownerState}
+      anchorEl={anchorEl ?? triggerElement}
       {...other}
       classes={PopoverClasses}
     >
-      <MenuMenuList
-        onKeyDown={handleListKeyDown}
-        actions={menuListActionsRef}
-        autoFocus={autoFocus && (activeItemIndex === -1 || disableAutoFocusItem)}
-        autoFocusItem={autoFocusItem}
-        variant={variant}
-        {...MenuListProps}
-        className={clsx(classes.list, MenuListProps.className)}
-      >
-        {children}
-      </MenuMenuList>
+      <MenuProvider value={contextValue}>
+        <Listbox {...listboxProps}>{children}</Listbox>
+      </MenuProvider>
     </MenuRoot>
   );
-});
+}) as OverridableComponent<MenuTypeMap>;
+
+/**
+ *
+ * Demos:
+ *
+ * - [App Bar](https://mui.com/material-ui/react-app-bar/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
+ *
+ * API:
+ *
+ * - [Menu API](https://mui.com/material-ui/api/menu/)
+ * - inherits [Popover API](https://mui.com/material-ui/api/popover/)
+ */
+const Menu = React.forwardRef(function Menu(inProps, ref) {
+  const { open } = inProps;
+  const upperDropdownContext = React.useContext(DropdownContext);
+
+  const { contextValue: dropdownContextValue } = useDropdown({
+    open,
+  });
+
+  return !upperDropdownContext ? (
+    <DropdownContext.Provider value={dropdownContextValue}>
+      <MenuInner ref={ref} {...inProps} />
+    </DropdownContext.Provider>
+  ) : (
+    <MenuInner ref={ref} {...inProps} />
+  );
+}) as OverridableComponent<MenuTypeMap>;
 
 Menu.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * An HTML element, or a function that returns one.
-   * It's used to set the position of the menu.
+   * A ref with imperative actions that can be performed on the menu.
+   */
+  actions: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.shape({
+        dispatch: PropTypes.func.isRequired,
+        resetHighlight: PropTypes.func.isRequired,
+      }),
+    }),
+  ]),
+  /**
+   * An HTML element, [PopoverVirtualElement](/material-ui/react-popover/#virtual-element),
+   * or a function that returns either.
+   * It's used to set the position of the popover.
    */
   anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     HTMLElementType,
@@ -234,7 +349,6 @@ Menu.propTypes /* remove-proptypes */ = {
    * children are not focusable. If you set this prop to `false` focus will be placed
    * on the parent modal container. This has severe accessibility implications
    * and should only be considered if you manage focus otherwise.
-   * @default true
    */
   autoFocus: PropTypes.bool,
   /**
@@ -245,10 +359,6 @@ Menu.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * When opening the menu will not focus the active item but the `[role="menu"]`
    * unless `autoFocus` is also set to `false`. Not using the default means not
@@ -272,11 +382,7 @@ Menu.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is shown.
    */
-  open: PropTypes.bool.isRequired,
-  /**
-   * @ignore
-   */
-  PaperProps: PropTypes.object,
+  open: PropTypes.bool,
   /**
    * `classes` prop applied to the [`Popover`](/material-ui/api/popover/) element.
    */
@@ -288,6 +394,7 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
@@ -297,6 +404,7 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
     paper: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
@@ -309,7 +417,7 @@ Menu.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The length of the transition in `ms`, or 'auto'
+   * Set to 'auto' to automatically calculate transition time based on height.
    * @default 'auto'
    */
   transitionDuration: PropTypes.oneOfType([
@@ -332,6 +440,6 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default 'selectedMenu'
    */
   variant: PropTypes.oneOf(['menu', 'selectedMenu']),
-};
+} as any;
 
 export default Menu;
