@@ -625,7 +625,7 @@ export default function FilesExample() {
             />
           </AspectRatio>
           <Box sx={{ p: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
-            <Typography level="body-sm" mr={1}>
+            <Typography level="title-sm" mr={1}>
               Shared with
             </Typography>
             <AvatarGroup size="sm" sx={{ '--Avatar-size': '24px' }}>
@@ -657,37 +657,37 @@ export default function FilesExample() {
               '& > *:nth-child(odd)': { color: 'text.secondary' },
             }}
           >
-            <Typography level="body-sm">Type</Typography>
+            <Typography level="title-sm">Type</Typography>
             <Typography level="body-sm" textColor="text.primary">
               Image
             </Typography>
 
-            <Typography level="body-sm">Size</Typography>
+            <Typography level="title-sm">Size</Typography>
             <Typography level="body-sm" textColor="text.primary">
               3,6 MB (3,258,385 bytes)
             </Typography>
 
-            <Typography level="body-sm">Storage used</Typography>
+            <Typography level="title-sm">Storage used</Typography>
             <Typography level="body-sm" textColor="text.primary">
               3,6 MB (3,258,385 bytes)
             </Typography>
 
-            <Typography level="body-sm">Location</Typography>
+            <Typography level="title-sm">Location</Typography>
             <Typography level="body-sm" textColor="text.primary">
               Travel pictures
             </Typography>
 
-            <Typography level="body-sm">Owner</Typography>
+            <Typography level="title-sm">Owner</Typography>
             <Typography level="body-sm" textColor="text.primary">
               Michael Scott
             </Typography>
 
-            <Typography level="body-sm">Modified</Typography>
+            <Typography level="title-sm">Modified</Typography>
             <Typography level="body-sm" textColor="text.primary">
               26 October 2016
             </Typography>
 
-            <Typography level="body-sm">Created</Typography>
+            <Typography level="title-sm">Created</Typography>
             <Typography level="body-sm" textColor="text.primary">
               5 August 2016
             </Typography>
