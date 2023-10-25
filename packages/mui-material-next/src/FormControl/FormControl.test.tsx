@@ -448,28 +448,34 @@ describe('<FormControl />', () => {
 
   describe('Emotion compatibility', () => {
     it('classes.root should overwrite built-in styles.', () => {
-      const { container } = render(
+      const { getByTestId } = render(
         <ClassNames>
-          {({ css }) => <FormControl classes={{ root: css({ display: 'inline' }) }} />}
+          {({ css }) => (
+            <FormControl
+              slotProps={{ root: { 'data-testid': 'root' } }}
+              classes={{ root: css({ display: 'inline' }) }}
+            />
+          )}
         </ClassNames>,
       );
-      const root = container.firstChild;
+      const root = getByTestId('root');
 
       expect(getComputedStyle(root).display).to.equal('inline');
     });
 
     it('className should overwrite classes.root and built-in styles.', () => {
-      const { container } = render(
+      const { getByTestId } = render(
         <ClassNames>
           {({ css }) => (
             <FormControl
+              slotProps={{ root: { 'data-testid': 'root' } }}
               className={css({ display: 'inline-block' })}
               classes={{ root: css({ display: 'inline' }) }}
             />
           )}
         </ClassNames>,
       );
-      const root = container.firstChild;
+      const root = getByTestId('root');
 
       expect(getComputedStyle(root).display).to.equal('inline-block');
     });
