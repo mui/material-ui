@@ -25,6 +25,14 @@ import MenuButton from '@mui/joy/MenuButton';
 import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import Dropdown from '@mui/joy/Dropdown';
+import AccordionGroup from '@mui/joy/AccordionGroup';
+import Accordion from '@mui/joy/Accordion';
+import AccordionDetails, {
+  accordionDetailsClasses,
+} from '@mui/joy/AccordionDetails';
+import AccordionSummary, {
+  accordionSummaryClasses,
+} from '@mui/joy/AccordionSummary';
 
 // Icons import
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
@@ -78,12 +86,7 @@ function TeamNav() {
       <ListItem nested>
         <ListSubheader>
           Browse
-          <IconButton
-            size="sm"
-            variant="plain"
-            color="primary"
-            sx={{ '--IconButton-size': '24px', ml: 'auto' }}
-          >
+          <IconButton size="sm" variant="plain" color="primary" sx={{ ml: 'auto' }}>
             <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
           </IconButton>
         </ListSubheader>
@@ -287,149 +290,127 @@ export default function TeamExample() {
               Clear filters
             </Button>
           </Box>
-          <Box sx={{ p: 2 }}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography level="title-sm">Keywords</Typography>
-              <IconButton size="sm" variant="plain" color="primary">
-                <KeyboardArrowUpRoundedIcon />
-              </IconButton>
-            </Box>
-            <Box sx={{ mt: 2 }}>
-              <Autocomplete
-                size="sm"
-                placeholder="Position, skills, etc…"
-                options={[
-                  {
-                    category: 'Position',
-                    title: 'Frontend engineer',
-                  },
-                  {
-                    category: 'Position',
-                    title: 'Backend engineer',
-                  },
-                  {
-                    category: 'Position',
-                    title: 'Product manager',
-                  },
-                  {
-                    category: 'Skill',
-                    title: 'JavaScript',
-                  },
-                  {
-                    category: 'Skill',
-                    title: 'TypeScript',
-                  },
-                  {
-                    category: 'Skill',
-                    title: 'Project management',
-                  },
-                ]}
-                groupBy={(option) => option.category}
-                getOptionLabel={(option) => option.title}
-              />
-              <Box sx={{ mt: 2, display: 'flex', gap: 1 }}>
-                <Chip
-                  variant="soft"
-                  size="sm"
-                  endDecorator={<ChipDelete variant="soft" />}
-                >
-                  UI designer
-                </Chip>
-              </Box>
-            </Box>
-          </Box>
-          <Divider />
-          <Box sx={{ p: 2 }}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography level="title-sm">Location</Typography>
-              <IconButton size="sm" variant="plain" color="primary">
-                <KeyboardArrowUpRoundedIcon />
-              </IconButton>
-            </Box>
-            <Box sx={{ mt: 2 }}>
-              <Autocomplete
-                size="sm"
-                placeholder="Position, skills, etc…"
-                options={[
-                  // some of Thailand provinces
-                  'Bangkok',
-                  'Amnat Charoen',
-                  'Ang Thong',
-                  'Bueng Kan',
-                  'Buriram',
-                  'Chachoengsao',
-                  'Chai Nat',
-                  'Chaiyaphum',
-                  'Chanthaburi',
-                  'Chiang Mai',
-                  'Chiang Rai',
-                  'Chonburi',
-                ]}
-              />
-              <Box sx={{ mt: 3, display: 'flex', gap: 1 }}>
-                <Slider
-                  size="sm"
-                  variant="solid"
-                  valueLabelFormat={(value) => `${value} km`}
-                  defaultValue={6}
-                  step={1}
-                  min={0}
-                  max={20}
-                  valueLabelDisplay="on"
-                />
-              </Box>
-            </Box>
-          </Box>
-          <Divider />
-          <Box sx={{ p: 2 }}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography level="title-sm">Education</Typography>
-              <IconButton size="sm" variant="plain" color="primary">
-                <KeyboardArrowUpRoundedIcon />
-              </IconButton>
-            </Box>
-            <Box sx={{ mt: 2 }}>
-              <RadioGroup name="education" defaultValue="any">
-                <Radio label="Any" value="any" size="sm" />
-                <Radio label="High School" value="high-school" size="sm" />
-                <Radio label="College" value="college" size="sm" />
-                <Radio label="Post-graduate" value="post-graduate" size="sm" />
-              </RadioGroup>
-            </Box>
-          </Box>
-          <Divider />
-          <Box sx={{ p: 2 }}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography level="title-sm">Previous experience</Typography>
-              <IconButton size="sm" variant="plain" color="primary">
-                <KeyboardArrowDownRoundedIcon />
-              </IconButton>
-            </Box>
-          </Box>
+          <AccordionGroup
+            disableDivider
+            sx={{
+              [`& .${accordionDetailsClasses.content}.${accordionDetailsClasses.expanded}`]:
+                {
+                  px: 2,
+                },
+              [`& .${accordionSummaryClasses.button}`]: {
+                px: 2,
+              },
+            }}
+          >
+            <Accordion expanded>
+              <AccordionSummary>
+                <Typography level="title-sm">Keywords</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Box sx={{ my: 2 }}>
+                  <Autocomplete
+                    size="sm"
+                    placeholder="Position, skills, etc…"
+                    options={[
+                      {
+                        category: 'Position',
+                        title: 'Frontend engineer',
+                      },
+                      {
+                        category: 'Position',
+                        title: 'Backend engineer',
+                      },
+                      {
+                        category: 'Position',
+                        title: 'Product manager',
+                      },
+                      {
+                        category: 'Skill',
+                        title: 'JavaScript',
+                      },
+                      {
+                        category: 'Skill',
+                        title: 'TypeScript',
+                      },
+                      {
+                        category: 'Skill',
+                        title: 'Project management',
+                      },
+                    ]}
+                    groupBy={(option) => option.category}
+                    getOptionLabel={(option) => option.title}
+                  />
+                  <Box sx={{ my: 2, display: 'flex', gap: 1 }}>
+                    <Chip
+                      variant="soft"
+                      size="sm"
+                      endDecorator={<ChipDelete variant="soft" />}
+                    >
+                      UI designer
+                    </Chip>
+                  </Box>
+                </Box>
+                <Divider />
+              </AccordionDetails>
+            </Accordion>
+            <Accordion expanded>
+              <AccordionSummary>
+                <Typography level="title-sm">Location</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Box sx={{ my: 2 }}>
+                  <Autocomplete
+                    size="sm"
+                    placeholder="Position, skills, etc…"
+                    options={[
+                      // some of Thailand provinces
+                      'Bangkok',
+                      'Amnat Charoen',
+                      'Ang Thong',
+                      'Bueng Kan',
+                      'Buriram',
+                      'Chachoengsao',
+                      'Chai Nat',
+                      'Chaiyaphum',
+                      'Chanthaburi',
+                      'Chiang Mai',
+                      'Chiang Rai',
+                      'Chonburi',
+                    ]}
+                  />
+                  <Box sx={{ mt: 3, display: 'flex', gap: 1 }}>
+                    <Slider
+                      size="sm"
+                      variant="solid"
+                      valueLabelFormat={(value) => `${value} km`}
+                      defaultValue={6}
+                      step={1}
+                      min={0}
+                      max={20}
+                      valueLabelDisplay="on"
+                    />
+                  </Box>
+                </Box>
+                <Divider />
+              </AccordionDetails>
+            </Accordion>
+            <Accordion expanded>
+              <AccordionSummary>
+                <Typography level="title-sm">Education</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Box sx={{ my: 2 }}>
+                  <RadioGroup name="education" defaultValue="any">
+                    <Radio label="Any" value="any" size="sm" />
+                    <Radio label="High School" value="high-school" size="sm" />
+                    <Radio label="College" value="college" size="sm" />
+                    <Radio label="Post-graduate" value="post-graduate" size="sm" />
+                  </RadioGroup>
+                </Box>
+                <Divider />
+              </AccordionDetails>
+            </Accordion>
+          </AccordionGroup>
         </Layout.SidePane>
         <Layout.Main>
           <List
