@@ -66,7 +66,7 @@ describe('useNumberInput', () => {
     function NumberInput() {
       const { getInputProps, inputRef } = useNumberInput();
       returnedInputRef = inputRef;
-      return <input {...getInputProps({})} />;
+      return <input {...getInputProps()} />;
     }
 
     const { getByRole } = render(<NumberInput />);

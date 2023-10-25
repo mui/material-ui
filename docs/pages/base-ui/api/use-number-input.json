@@ -93,6 +93,13 @@
       },
       "required": true
     },
+    "inputRef": {
+      "type": {
+        "name": "React.RefObject&lt;HTMLInputElement&gt; | null",
+        "description": "React.RefObject&lt;HTMLInputElement&gt; | null"
+      },
+      "required": true
+    },
     "inputValue": {
       "type": { "name": "string | undefined", "description": "string | undefined" },
       "required": true
@@ -112,13 +119,7 @@
       "default": "false",
       "required": true
     },
-    "value": { "type": { "name": "unknown", "description": "unknown" }, "required": true },
-    "inputRef": {
-      "type": {
-        "name": "React.Ref&lt;HTMLInputElement&gt;",
-        "description": "React.Ref&lt;HTMLInputElement&gt;"
-      }
-    }
+    "value": { "type": { "name": "unknown", "description": "unknown" }, "required": true }
   },
   "name": "useNumberInput",
   "filename": "/packages/mui-base/src/unstable_useNumberInput/useNumberInput.ts",

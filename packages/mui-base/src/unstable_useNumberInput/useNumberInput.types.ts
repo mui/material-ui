@@ -227,5 +227,5 @@ export interface UseNumberInputReturnValue {
   /**
    * The ref of the input element.
    */
-  inputRef?: React.Ref<HTMLInputElement>;
+  inputRef: React.RefObject<HTMLInputElement> | null;
 }
