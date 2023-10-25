@@ -8,7 +8,9 @@ import { UseInputParameters } from './useInput.types';
 describe('useInput', () => {
   const { render } = createRenderer();
   it('returns an inputRef to the underlying input', () => {
-    let returnedInputRef;
+    let returnedInputRef: React.RefObject<HTMLInputElement | HTMLTextAreaElement> | null = {
+      current: null,
+    };
 
     function Input() {
       const { getInputProps, inputRef } = useInput();
@@ -18,7 +20,7 @@ describe('useInput', () => {
 
     const { getByRole } = render(<Input />);
 
-    expect(returnedInputRef.current).to.deep.equal(getByRole('textbox'));
+    expect(returnedInputRef?.current).to.deep.equal(getByRole('textbox'));
   });
 
   describe('params: inputRef', () => {
