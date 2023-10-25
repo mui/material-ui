@@ -46,7 +46,7 @@
   "devDependencies": {
     "@mui-internal/test-utils": "^1.0.0",
     "@types/chai": "^4.3.9",
-    "@types/hoist-non-react-statics": "^3.3.2",
+    "@types/hoist-non-react-statics": "^3.3.4",
     "@types/react": "^18.2.29",
     "chai": "^4.3.10",
     "react": "^18.2.0",
