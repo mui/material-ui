@@ -216,7 +216,7 @@ export function useInput(parameters: UseInputParameters = {}): UseInputReturnVal
     formControlContext,
     getInputProps,
     getRootProps,
-    inputRef: handleInputRef,
+    inputRef,
     required,
     value,
   };

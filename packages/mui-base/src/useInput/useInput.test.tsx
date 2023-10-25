@@ -8,11 +8,17 @@ import { UseInputParameters } from './useInput.types';
 describe('useInput', () => {
   const { render } = createRenderer();
   it('returns an inputRef to the underlying input', () => {
-    const { getInputProps, inputRef } = useInput();
+    let returnedInputRef;
 
-    const { getByRole } = render(<input {...getInputProps()} />);
+    function Input() {
+      const { getInputProps, inputRef } = useInput();
+      returnedInputRef = inputRef;
+      return <input {...getInputProps()} />;
+    }
 
-    expect(inputRef.current).to.deep.equal(getByRole('textbox'));
+    const { getByRole } = render(<Input />);
+
+    expect(returnedInputRef.current).to.deep.equal(getByRole('textbox'));
   });
 
   describe('params: inputRef', () => {
