@@ -13,6 +13,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemContent from '@mui/joy/ListItemContent';
 import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
+import Drawer from '@mui/joy/Drawer';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -30,6 +31,7 @@ import Layout from './components/Layout';
 import Navigation from './components/Navigation';
 import Mails from './components/Mails';
 import EmailContent from './components/EmailContent';
+import WriteEmail from './components/WriteEmail';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -61,6 +63,8 @@ function ColorSchemeToggle() {
 
 export default function EmailExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
@@ -212,9 +216,33 @@ export default function EmailExample() {
             <Typography level="title-lg" textColor="text.tertiary">
               My inbox
             </Typography>
-            <Button size="sm" startDecorator={<CreateRoundedIcon />}>
+            <Button
+              size="sm"
+              startDecorator={<CreateRoundedIcon />}
+              onClick={() => setOpen(true)}
+            >
               Write email
             </Button>
+            <Drawer
+              hideBackdrop
+              variant="plain"
+              anchor="bottom"
+              open={open}
+              onClose={() => setOpen(false)}
+              slotProps={{
+                content: {
+                  sx: {
+                    p: { md: 3, sm: 0 },
+                    boxShadow: 'none',
+                    background: 'transparent',
+                  },
+                },
+              }}
+            >
+              <Box role="presentation">
+                <WriteEmail />
+              </Box>
+            </Drawer>
           </Box>
           <Box
             sx={{
