@@ -3706,10 +3706,10 @@
   resolved "https://registry.yarnpkg.com/@types/format-util/-/format-util-1.0.3.tgz#076bf463d4a08d4f0fef3a90ba293fb0bd687bb6"
   integrity sha512-Zs8j1fJtFwgidkq+ssW6sdQovx7kDBf5A1qsUf0khLjoqRVhIDNScYUjQVn8qe6WwTbI2IHVv4R1HmnIWzwYog==
 
-"@types/fs-extra@^11.0.2":
-  version "11.0.2"
-  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-11.0.2.tgz#23dc1ed7b2eba8ccd75568ac34e7a4e48aa2d087"
-  integrity sha512-c0hrgAOVYr21EX8J0jBMXGLMgJqVf/v6yxi0dLaJboW9aQPh16Id+z6w2Tx1hm+piJOLv8xPfVKZCLfjPw/IMQ==
+"@types/fs-extra@^11.0.3":
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-11.0.3.tgz#72c3a247c8dd5703c93d900c584e006476146866"
+  integrity sha512-sF59BlXtUdzEAL1u0MSvuzWd7PdZvZEtnaVkzX5mjpdWTJ8brG0jUqve3jPCzSzvAKKMHTG8F8o/WMQLtleZdQ==
   dependencies:
     "@types/jsonfile" "*"
     "@types/node" "*"
