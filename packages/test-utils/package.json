@@ -43,7 +43,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.9",
     "@types/chai-dom": "^1.11.2",
-    "@types/enzyme": "^3.10.14",
+    "@types/enzyme": "^3.10.15",
     "@types/format-util": "^1.0.2",
     "@types/prop-types": "^15.7.8",
     "@types/react": "^18.2.29",
