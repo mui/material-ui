@@ -12,7 +12,7 @@
 ## The company
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub, and has paved the way for the fully fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
 We're a company of 35+ people as of late 2023, and we're growing.
 
 ## The products
@@ -41,8 +41,8 @@ For additional details about the culture you can check our [careers](https://mui
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
-We are aiming to make high-end design accessible to the many, empowering developers that lack access to a designer as well as saving time for designers with a source they can trust.
-[According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criteria used by developers & designers to pick their next UI library.
+We are aiming to make high-end design accessible to the many, empowering developers who lack access to a designer as well as saving time for designers with a source they can trust.
+[According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criterion used by developers & designers to pick their next UI library.
 
 ### Why this is interesting
 
@@ -77,9 +77,9 @@ The Design Engineer role sits right at the intersection between product design a
 
 ### Challenges you'll face
 
-- **Context switching.**
+- **Context switching**.
   As a small team, sometimes priorities shift fast, requiring you to dive into an entirely different feature you're unfamiliar with. It's challenging to get used to but rewarding.
-- **Moving fast without sacrificing quality.**.
+- **Moving fast without sacrificing quality**.
   Given our product is essentially code, our users and customers are incredibly demanding. To serve them the best way possible, we need to ship incredibly high-quality code quickly. However, sometimes we need to exchange going 100% into solving an issue, to instead aim for 50 to 70%, for a faster feedback cycle.
 - **Open-source: The nonstop stream of bug reports and support requests**. You'll frequently have your attention challenged given community requests keep pouring in. It will require you to develop an intuition for when to ignore something for later vs. when to dig in immediately as it could be a valuable improvement opportunity.
 
@@ -88,7 +88,7 @@ The Design Engineer role sits right at the intersection between product design a
 ### Required
 
 - 3+ years of web front-end development at product-driven companies
-- Great understanding and taste for product design
+- Great understanding and taste in product design
 - Experience with design systems
 - You're highly empathetic
 - Fluent written and spoken English skills
@@ -106,9 +106,7 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 ## How to apply
 
-<!-- TODO: Update the link -->
-
-[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/c45a0b2d-aa37-4dec-8bcd-e70040f3af49/application?utm_source=ZNRrPGBkqO)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/5a1c18de-e0b5-4253-aca1-e3f261112920/application?utm_source=ZNRrPGBkqO)
 
 Don't meet every requirement?
 Apply anyway!
