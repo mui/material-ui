@@ -1493,26 +1493,26 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-3.0.0.tgz#798622546b63847e82389e473fd67f2707d82247"
   integrity sha512-hBI9tfBtuPIi885ZsZ32IMEU/5nlZH/KOVYJCOh7gyMxaVLGmLedYqFN6Ui1LXkI8JlC8IsuC0rF0btcRZKd5g==
 
-"@definitelytyped/header-parser@^0.0.178", "@definitelytyped/header-parser@latest":
-  version "0.0.178"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.178.tgz#2cfd170a33b014d686135673fa7fac837cfe5556"
-  integrity sha512-16FFuaWW2Hq+a0Abyt+9gvPAT0w/ezy4eph3RbtLSqxH3T/UHDla1jgnp1DMvfNeBWaIqHxcr+Vrr7BPquw7mw==
+"@definitelytyped/header-parser@^0.0.180", "@definitelytyped/header-parser@latest":
+  version "0.0.180"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.180.tgz#eb232f021b24c9a89ff3b3b1ee1b47234688f320"
+  integrity sha512-fCTevUtPRjolPR8SjTOsThoEHKXT0LndD4rCZQV+PWTxJc6YjkSUVCyr2iD8Btb8nOcJdSHt2JMF8xf1OEBZKA==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.178"
-    "@types/parsimmon" "^1.10.1"
-    parsimmon "^1.13.0"
+    "@definitelytyped/typescript-versions" "0.0.179"
+    "@definitelytyped/utils" "0.0.179"
+    semver "^7.3.7"
 
-"@definitelytyped/typescript-versions@^0.0.178", "@definitelytyped/typescript-versions@latest":
-  version "0.0.178"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.178.tgz#98a92f2251f18b32122e808b968ca8e009d3b123"
-  integrity sha512-pPXy3z5gE4xnVgqIRApFcQ6M6kqtRK1gnqyGx/I0Yo1CH8RAsRvumCDB/KiZmQDpCHiy//E9dOIUFdquvC5t7g==
+"@definitelytyped/typescript-versions@0.0.179", "@definitelytyped/typescript-versions@^0.0.179", "@definitelytyped/typescript-versions@latest":
+  version "0.0.179"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.179.tgz#62cd6e114b56322ea1aef7a4f3492f1b8ad50fc2"
+  integrity sha512-E0VjIZkVtOt2ozagGlmWULKJYvFZwMjS6A335QJX8dmn21idRP/0RodxRpjtMU2//ChtvCZZUuKrPZQ2D/owww==
 
-"@definitelytyped/utils@^0.0.178", "@definitelytyped/utils@latest":
-  version "0.0.178"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.178.tgz#f403be41816690246a4e0244d125a0084b16462a"
-  integrity sha512-nYg3E51XpTodS0/5w5r1wM/DhPYhyqa9BP8ili4XgB5s9j4v4mDPX9Jwjns2q24derBvyhdUpzshKDh43aqwZw==
+"@definitelytyped/utils@0.0.179", "@definitelytyped/utils@^0.0.179", "@definitelytyped/utils@latest":
+  version "0.0.179"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.179.tgz#8d3e736ddb8fbe069269ecd811f00b04720cd4d5"
+  integrity sha512-aUNyshFuHT+tDRlLH5pUd9acIzTim5CMiuOZmVHvjlIi7BzMxRBbG7MtzYkpwA5TxHQo2gwumLN2u9UfEklrkQ==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.178"
+    "@definitelytyped/typescript-versions" "0.0.179"
     "@qiwi/npm-registry-client" "^8.9.1"
     "@types/node" "^14.14.35"
     charm "^1.0.2"
@@ -3888,11 +3888,6 @@
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
-
-"@types/parsimmon@^1.10.1":
-  version "1.10.6"
-  resolved "https://registry.yarnpkg.com/@types/parsimmon/-/parsimmon-1.10.6.tgz#8fcf95990514d2a7624aa5f630c13bf2427f9cdd"
-  integrity sha512-FwAQwMRbkhx0J6YELkwIpciVzCcgEqXEbIrIn3a2P5d3kGEHQ3wVhlN3YdVepYP+bZzCYO6OjmD4o9TGOZ40rA==
 
 "@types/prettier@^2.7.3":
   version "2.7.3"
@@ -13525,11 +13520,6 @@ parseurl@~1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.3.tgz#9da19e7bee8d12dff0513ed5b76957793bc2e8d4"
   integrity sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==
-
-parsimmon@^1.13.0:
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/parsimmon/-/parsimmon-1.18.1.tgz#d8dd9c28745647d02fc6566f217690897eed7709"
-  integrity sha512-u7p959wLfGAhJpSDJVYXoyMCXWYwHia78HhRBWqk7AIbxdmlrfdp5wX0l3xv/iTSH5HvhN9K7o26hwwpgS5Nmw==
 
 pascal-case@^3.1.2:
   version "3.1.2"
