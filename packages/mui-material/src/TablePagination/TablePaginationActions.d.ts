@@ -3,8 +3,8 @@ import { IconButtonProps } from '../IconButton/IconButton';
 
 export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * This prop is an alias for `slotProps.previousIconButton` and will be overriden by it if both are used.
-   * @deprecated Use `slotProps.previousIconButton` instead.
+   * This prop is an alias for `slotProps.previousButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.previousButton` instead.
    */
   backIconButtonProps?: Partial<IconButtonProps>;
   /**
@@ -27,8 +27,8 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    */
   getItemAriaLabel: (type: 'first' | 'last' | 'next' | 'previous') => string;
   /**
-   * This prop is an alias for `slotProps.nextIconButton` and will be overriden by it if both are used.
-   * @deprecated Use `slotProps.nextIconButton` instead.
+   * This prop is an alias for `slotProps.nextButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.nextButton` instead.
    */
   nextIconButtonProps?: Partial<IconButtonProps>;
   onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
@@ -37,10 +37,10 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   showFirstButton: boolean;
   showLastButton: boolean;
   slotProps?: {
-    firstIconButton?: Partial<IconButtonProps>;
-    lastIconButton?: Partial<IconButtonProps>;
-    nextIconButton?: Partial<IconButtonProps>;
-    previousIconButton?: Partial<IconButtonProps>;
+    firstButton?: Partial<IconButtonProps>;
+    lastButton?: Partial<IconButtonProps>;
+    nextButton?: Partial<IconButtonProps>;
+    previousButton?: Partial<IconButtonProps>;
   };
 }
 

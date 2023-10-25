@@ -15,7 +15,7 @@
     "backIconButtonProps": {
       "type": { "name": "object" },
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.actions.slotProps.previousIconButton</code> instead."
+      "deprecationInfo": "Use <code>slotProps.actions.slotProps.previousButton</code> instead."
     },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
@@ -33,7 +33,7 @@
     "nextIconButtonProps": {
       "type": { "name": "object" },
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.actions.slotProps.nextIconButton</code> instead."
+      "deprecationInfo": "Use <code>slotProps.actions.slotProps.nextButton</code> instead."
     },
     "onRowsPerPageChange": {
       "type": { "name": "func" },
@@ -60,7 +60,7 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ actions?: { slotProps?: { firstIconButton?: object, lastIconButton?: object, nextIconButton?: object, previousIconButton?: object } }, select?: object }"
+        "description": "{ actions?: { slotProps?: { firstButton?: object, lastButton?: object, nextButton?: object, previousButton?: object } }, select?: object }"
       },
       "default": "{}"
     },
