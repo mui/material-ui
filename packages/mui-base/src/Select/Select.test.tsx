@@ -1289,6 +1289,31 @@ describe('<Select />', () => {
       expect(hiddenInput).to.have.value('france');
     });
 
+    it('does not set value when browser autofills invalid value', () => {
+      const onChangeHandler = spy();
+      const { container } = render(
+        <Select onChange={onChangeHandler} defaultValue="germany" autoComplete="country">
+          <Option value="france">France</Option>
+          <Option value="germany">Germany</Option>
+          <Option value="china">China</Option>
+        </Select>,
+      );
+
+      const hiddenInput = container.querySelector('[autocomplete="country"]');
+
+      expect(hiddenInput).not.to.eq(null);
+      expect(hiddenInput).to.have.value('germany');
+
+      fireEvent.change(hiddenInput!, {
+        target: {
+          value: 'portugal',
+        },
+      });
+
+      expect(onChangeHandler.called).to.equal(false);
+      expect(hiddenInput).to.have.value('germany');
+    });
+
     it('clears value and calls external onChange when browser clears autofill', () => {
       const onChangeHandler = spy();
       const { container } = render(

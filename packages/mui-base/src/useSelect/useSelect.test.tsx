@@ -1,8 +1,7 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 import { useSelect } from './useSelect';
-import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 
 describe('useSelect', () => {
   describe('param: options', () => {
@@ -124,108 +123,6 @@ describe('useSelect', () => {
         hiddenInputOnChange({ target: { value: 'foo' } });
         expect(externalOnChangeSpy.calledOnce).to.equal(true);
         expect(externalOnChangeSpy.calledWith({ target: { value: 'foo' } })).to.equal(true);
-      });
-
-      describe('browser autofill', () => {
-        it('sets reducer value when called with valid option', () => {
-          const options = [
-            { value: 'a', label: 'A' },
-            { value: 'b', label: 'B' },
-          ];
-
-          const { result } = renderHook(() => useSelect({ options }));
-
-          const { value: initialValue, getHiddenInputProps } = result.current;
-          const { onChange: hiddenInputOnChange } = getHiddenInputProps();
-
-          expect(initialValue).to.equal(null);
-
-          act(() => {
-            // @ts-ignore We only need the target value for this test
-            hiddenInputOnChange({ target: { value: 'a' } });
-          });
-
-          const { value: updatedValue } = result.current;
-
-          expect(updatedValue).to.equal('a');
-        });
-
-        it('does not set reducer value when called with invalid option', () => {
-          const options = [
-            { value: 'a', label: 'A' },
-            { value: 'b', label: 'B' },
-          ];
-
-          const { result } = renderHook(() => useSelect({ options }));
-
-          const { value: initialValue, getHiddenInputProps } = result.current;
-          const { onChange: hiddenInputOnChange } = getHiddenInputProps();
-
-          expect(initialValue).to.equal(null);
-
-          act(() => {
-            // @ts-ignore We only need the target value for this test
-            hiddenInputOnChange({ target: { value: 'c' } });
-          });
-
-          const { value: updatedValue } = result.current;
-
-          expect(updatedValue).to.equal(null);
-        });
-
-        it('clears reducer value when called with empty string', () => {
-          const options = [
-            { value: 'a', label: 'A' },
-            { value: 'b', label: 'B' },
-          ];
-
-          const { result } = renderHook(() => useSelect({ options, defaultValue: 'a' }));
-
-          const { value: initialValue, getHiddenInputProps } = result.current;
-          const { onChange: hiddenInputOnChange } = getHiddenInputProps();
-
-          expect(initialValue).to.equal('a');
-
-          act(() => {
-            // @ts-ignore We only need the target value for this test
-            hiddenInputOnChange({ target: { value: '' } });
-          });
-
-          const { value: updatedValue } = result.current;
-
-          expect(updatedValue).to.equal(null);
-        });
-
-        it('should be preventable', () => {
-          const options = [
-            { value: 'a', label: 'A' },
-            { value: 'b', label: 'B' },
-          ];
-
-          const onHiddenInputChange = (
-            event: React.ChangeEvent<HTMLInputElement> & MuiCancellableEvent,
-          ) => {
-            event.defaultMuiPrevented = true;
-          };
-
-          const { result } = renderHook(() => useSelect({ options }));
-
-          const { value: initialValue, getHiddenInputProps } = result.current;
-          const { onChange: hiddenInputOnChange } = getHiddenInputProps({
-            onChange: onHiddenInputChange,
-          });
-
-          expect(initialValue).to.equal(null);
-
-          act(() => {
-            // @ts-ignore We only need the target value for this test
-            hiddenInputOnChange({ target: { value: 'a' } });
-          });
-
-          const { value: updatedValue } = result.current;
-
-          expect(updatedValue).to.equal(null);
-        });
       });
     });
   });
