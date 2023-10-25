@@ -3778,10 +3778,10 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.12.tgz#d70faba7039d5fca54c83c7dbab41051d2b6f6cb"
   integrity sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==
 
-"@types/json2mq@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@types/json2mq/-/json2mq-0.2.0.tgz#6fd48dd2761250ecf28da0628e9830a13121828e"
-  integrity sha512-E7R0ye2fY4HGbBDwopzJzMrwPY3gFxy2dCrE1uVnyS7UEjLggfSilM3lPWYTbqf0nqJbHE87K9pIvP+V3flslA==
+"@types/json2mq@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@types/json2mq/-/json2mq-0.2.1.tgz#4a901f5d10a8bebf3fdfce2ded4b3873b92741a1"
+  integrity sha512-68qvzK5KYxoJmie01xThnyhrUWX8zuDlkGdVKUV04RNnavMBH0CK+cqRHWOcok6rzf/cdHao/Plsu4nwDhuHDA==
 
 "@types/json5@^0.0.29":
   version "0.0.29"
