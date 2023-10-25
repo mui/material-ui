@@ -7,9 +7,9 @@ import Textarea from '@mui/joy/Textarea';
 import Sheet from '@mui/joy/Sheet';
 import { IconButton, Input, Stack, Typography } from '@mui/joy';
 
-import FormatBoldRoundedIcon from '@mui/icons-material/FormatBoldRounded';
-import FormatItalicRoundedIcon from '@mui/icons-material/FormatItalicRounded';
-import StrikethroughSRoundedIcon from '@mui/icons-material/StrikethroughSRounded';
+import FormatColorTextRoundedIcon from '@mui/icons-material/FormatColorTextRounded';
+import AttachFileRoundedIcon from '@mui/icons-material/AttachFileRounded';
+import InsertPhotoRoundedIcon from '@mui/icons-material/InsertPhotoRounded';
 import FormatListBulletedRoundedIcon from '@mui/icons-material/FormatListBulletedRounded';
 
 export default function DrawerMobileNavigation() {
@@ -20,8 +20,7 @@ export default function DrawerMobileNavigation() {
         px: 1.5,
         py: 1.5,
         ml: 'auto',
-        width: 400,
-        height: 560,
+        width: { xs: '100dvw', md: 600 },
         flexGrow: 1,
         border: '1px solid',
         borderRadius: 'md',
@@ -35,7 +34,7 @@ export default function DrawerMobileNavigation() {
         <ModalClose id="close-icon" />
       </Box>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}>
         <FormControl>
           <Typography level="title-sm">To</Typography>
           <Input placeholder="email@email.com" aria-label="Message"></Input>
@@ -47,12 +46,11 @@ export default function DrawerMobileNavigation() {
 
         <Input placeholder="Subject" aria-label="Message"></Input>
 
-        <FormControl>
+        <FormControl sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           <Textarea
             placeholder="Type your message here…"
             aria-label="Message"
-            minRows={3}
-            maxRows={10}
+            minRows={8}
             endDecorator={
               <Stack
                 direction="row"
@@ -68,13 +66,13 @@ export default function DrawerMobileNavigation() {
               >
                 <div>
                   <IconButton size="sm" variant="plain" color="neutral">
-                    <FormatBoldRoundedIcon />
+                    <FormatColorTextRoundedIcon />
                   </IconButton>
                   <IconButton size="sm" variant="plain" color="neutral">
-                    <FormatItalicRoundedIcon />
+                    <AttachFileRoundedIcon />
                   </IconButton>
                   <IconButton size="sm" variant="plain" color="neutral">
-                    <StrikethroughSRoundedIcon />
+                    <InsertPhotoRoundedIcon />
                   </IconButton>
                   <IconButton size="sm" variant="plain" color="neutral">
                     <FormatListBulletedRoundedIcon />

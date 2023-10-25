@@ -213,18 +213,29 @@ export default function EmailExample() {
               justifyContent: 'space-between',
             }}
           >
-            <Typography level="title-lg" textColor="text.tertiary">
-              My inbox
-            </Typography>
+            <Box
+              sx={{
+                alignItems: 'center',
+                gap: 1,
+              }}
+            >
+              <Typography level="title-lg" textColor="text.secondary">
+                My inbox
+              </Typography>
+              <Typography level="title-sm" textColor="text.tertiary">
+                5 emails
+              </Typography>
+            </Box>
             <Button
               size="sm"
               startDecorator={<CreateRoundedIcon />}
               onClick={() => setOpen(true)}
             >
-              Write email
+              Compose email
             </Button>
             <Drawer
               hideBackdrop
+              size="lg"
               variant="plain"
               anchor="bottom"
               open={open}
@@ -239,31 +250,8 @@ export default function EmailExample() {
                 },
               }}
             >
-              <Box role="presentation">
-                <WriteEmail />
-              </Box>
+              <WriteEmail />
             </Drawer>
-          </Box>
-          <Box
-            sx={{
-              px: 2,
-              pb: 2,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Checkbox size="sm" label="Select all" />
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 1,
-              }}
-            >
-              <MarkAsUnreadRoundedIcon fontSize="small" color="neutral" />
-              <Typography level="title-sm">5 emails</Typography>
-            </Box>
           </Box>
           <Mails />
         </Layout.SidePane>
