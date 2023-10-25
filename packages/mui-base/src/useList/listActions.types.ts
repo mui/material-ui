@@ -56,7 +56,7 @@ interface ResetHighlightAction {
   event: React.SyntheticEvent | null;
 }
 
-interface ClearSelection {
+interface ClearSelectionAction {
   type: typeof ListActionTypes.clearSelection;
 }
 
@@ -72,4 +72,4 @@ export type ListAction<ItemValue> =
   | KeyDownAction
   | ResetHighlightAction
   | TextNavigationAction
-  | ClearSelection;
+  | ClearSelectionAction;
