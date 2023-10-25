@@ -60,8 +60,8 @@
     },
     "inputRef": {
       "type": {
-        "name": "React.RefCallback&lt;HTMLInputElement | HTMLTextAreaElement&gt; | null",
-        "description": "React.RefCallback&lt;HTMLInputElement | HTMLTextAreaElement&gt; | null"
+        "name": "React.RefObject&lt;HTMLInputElement | HTMLTextAreaElement&gt; | null",
+        "description": "React.RefObject&lt;HTMLInputElement | HTMLTextAreaElement&gt; | null"
       },
       "required": true
     },
