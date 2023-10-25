@@ -415,22 +415,18 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         return;
       }
 
+      const option = options.get(event.target.value as OptionValue);
+
       // support autofill
-      if (options.has(event.target.value as OptionValue)) {
-        const option = options.get(event.target.value as OptionValue);
-
-        if (option === undefined) {
-          return;
-        }
-
+      if (event.target.value === '') {
+        dispatch({
+          type: ListActionTypes.clearSelection,
+        });
+      } else if (option !== undefined) {
         dispatch({
           type: SelectActionTypes.browserAutoFill,
           item: option.value,
           event,
-        });
-      } else if (event.target.value === '') {
-        dispatch({
-          type: ListActionTypes.clearSelection,
         });
       }
     };
