@@ -9,7 +9,7 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import FormControlContext from './FormControlContext';
 import { FormControlTypeMap, FormControlOwnerState, FormControlProps } from './FormControl.types';
@@ -25,6 +25,7 @@ const useUtilityClasses = (ownerState: FormControlOwnerState) => {
 };
 
 const FormControlRoot = styled('div', {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiFormControl',
   slot: 'Root',
   overridesResolver: ({ ownerState }, styles) => {

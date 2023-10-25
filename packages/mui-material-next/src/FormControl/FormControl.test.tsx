@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { ClassNames } from '@emotion/react';
 import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import FormControl, { formControlClasses as classes } from '@mui/material-next/FormControl';
 import FilledInput from '@mui/material-next/FilledInput';
@@ -442,6 +443,35 @@ describe('<FormControl />', () => {
           expect(formControlRef.current).to.have.property('focused', false);
         });
       });
+    });
+  });
+
+  describe('Emotion compatibility', () => {
+    it('classes.root should overwrite built-in styles.', () => {
+      const { container } = render(
+        <ClassNames>
+          {({ css }) => <FormControl classes={{ root: css({ display: 'inline' }) }} />}
+        </ClassNames>,
+      );
+      const root = container.firstChild;
+
+      expect(getComputedStyle(root).display).to.equal('inline');
+    });
+
+    it('className should overwrite classes.root and built-in styles.', () => {
+      const { container } = render(
+        <ClassNames>
+          {({ css }) => (
+            <FormControl
+              className={css({ display: 'inline-block' })}
+              classes={{ root: css({ display: 'inline' }) }}
+            />
+          )}
+        </ClassNames>,
+      );
+      const root = container.firstChild;
+
+      expect(getComputedStyle(root).display).to.equal('inline-block');
     });
   });
 });
