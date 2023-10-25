@@ -58,6 +58,22 @@ describe('useNumberInput', () => {
     expect(incrementButtonProps['aria-disabled']).to.equal(true);
   });
 
+  it('returns an inputRef to the underlying input', () => {
+    let returnedInputRef: React.RefObject<HTMLInputElement> | null = {
+      current: null,
+    };
+
+    function NumberInput() {
+      const { getInputProps, inputRef } = useNumberInput();
+      returnedInputRef = inputRef;
+      return <input {...getInputProps({})} />;
+    }
+
+    const { getByRole } = render(<NumberInput />);
+
+    expect(returnedInputRef?.current).to.deep.equal(getByRole('textbox'));
+  });
+
   it('should accept defaultValue in uncontrolled mode', () => {
     const props: UseNumberInputParameters = {
       defaultValue: 100,
