@@ -5,37 +5,24 @@ import type { SxProp } from './sx';
 
 type Falsy = false | 0 | '' | null | undefined;
 
-export interface StyledOptions<Props = any> {
-  name?: string;
-  slot?: string;
-  skipSx?: boolean;
-  skipVariantsResolver?: boolean;
-  overridesResolver?: (
-    props: Props,
-    styles: Record<string, string>,
-  ) => (string | Falsy) | Array<string | Falsy>;
-}
-
-export interface StyledVariants<Props extends object> {
-  props: Partial<Props>;
-  style: CSSObject<Props>;
-}
-
-export type StyledCssArgument<Props extends object> = CSSObject<Props> & {
-  variants?: Array<StyledVariants<Props>>;
-};
-
-export type StyledCallback<Props extends object> = (
-  buildArg: ThemeArgs,
-) => StyledCssArgument<Props>;
-
-export type StyledArgument<Props extends object> = StyledCssArgument<Props> | StyledCallback<Props>;
-
 export type NoInfer<T> = [T][T extends any ? 0 : never];
 type FastOmit<T extends object, U extends string | number | symbol> = {
   [K in keyof T as K extends U ? never : K]: T[K];
 };
 export type Substitute<A extends object, B extends object> = FastOmit<A, keyof B> & B;
+
+export interface StyledVariants<Props extends {}> {
+  props: Partial<Props>;
+  style: CSSObject<Props>;
+}
+
+export type StyledCssArgument<Props extends {}> = CSSObject<Props> & {
+  variants?: Array<StyledVariants<Props>>;
+};
+
+export type StyledCallback<Props extends {}> = (buildArg: ThemeArgs) => StyledCssArgument<Props>;
+
+export type StyledArgument<Props extends {}> = StyledCssArgument<Props> | StyledCallback<Props>;
 
 export type PolymorphicComponentProps<
   BaseProps extends object,
@@ -60,16 +47,14 @@ export interface StyledComponent<Props extends object = {}> extends PolymorphicC
   toString: () => string;
 }
 
-export interface CreateStyledComponent<
-  Component extends React.ElementType,
-  OuterProps extends object,
-> {
+export interface CreateStyledComponent<Component extends React.ElementType, OuterProps extends {}> {
   /**
    * @typeparam Props: Additional props to add to the styled component
    */
-  <Props extends object = {}>(
-    ...styles: Array<StyledArgument<Substitute<OuterProps, Props>>>
-  ): StyledComponent<Substitute<OuterProps, Props>> & (Component extends string ? {} : Component);
+  <Props extends {} = {}>(...styles: Array<StyledArgument<OuterProps & Props>>): StyledComponent<
+    Substitute<OuterProps, Props>
+  > &
+    (Component extends string ? {} : Component);
 }
 
 export interface StyledOptions<Props extends object = any> {
@@ -85,9 +70,8 @@ export interface StyledOptions<Props extends object = any> {
 
 export interface CreateStyled {
   <
-    OuterProps extends object,
     TagOrComponent extends React.ElementType,
-    FinalProps extends object = OuterProps & React.ComponentPropsWithRef<TagOrComponent>,
+    FinalProps extends {} = React.ComponentPropsWithRef<TagOrComponent>,
   >(
     tag: TagOrComponent,
     options?: StyledOptions,

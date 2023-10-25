@@ -43,6 +43,15 @@ const B = styled('a')<{ isRed?: boolean }>(({ theme }) => ({
         color: ({ isRed }) => (isRed ? 'red' : 'blue'),
       },
     },
+  ],
+}));
+
+// @TODO - Fix for case with multiple variants or multiple prop keys
+// in the same styled definition
+// @ts-expect-error isBlue is not a prop
+const B1 = styled('a')<{ isRed?: boolean }>(({ theme }) => ({
+  color: (props) => (props.isRed ? 'red' : 'blue'),
+  variants: [
     {
       props: {
         isBlue: true,
@@ -179,6 +188,20 @@ InitialButton.defaultProps = {
   // @ts-expect-error href is not present in button
   href: '/about',
 };
+
+const InitialLink = styled.a<{ isActive?: boolean }>(({ theme }) => ({
+  color: 'black',
+  variants: [
+    {
+      props: {
+        isActive: true,
+      },
+      style: {
+        color: 'blue',
+      },
+    },
+  ],
+}));
 
 const WrapperComponent = styled(Component)({
   variants: [
