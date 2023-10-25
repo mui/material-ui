@@ -6,7 +6,7 @@ interface IToggleButtonGroupContext {
     event: React.MouseEvent<HTMLButtonElement>,
     childValue: readonly string[] | string | number | undefined,
   ) => void;
-  value: string | (string | number)[] | null;
+  value?: string | (string | number)[] | null;
 }
 
 /**
