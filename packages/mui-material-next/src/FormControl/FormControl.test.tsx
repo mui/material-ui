@@ -451,10 +451,7 @@ describe('<FormControl />', () => {
       const { getByTestId } = render(
         <ClassNames>
           {({ css }) => (
-            <FormControl
-              slotProps={{ root: { 'data-testid': 'root' } }}
-              classes={{ root: css({ display: 'inline' }) }}
-            />
+            <FormControl data-testid="root" classes={{ root: css({ display: 'inline' }) }} />
           )}
         </ClassNames>,
       );
@@ -468,7 +465,7 @@ describe('<FormControl />', () => {
         <ClassNames>
           {({ css }) => (
             <FormControl
-              slotProps={{ root: { 'data-testid': 'root' } }}
+              data-testid="root"
               className={css({ display: 'inline-block' })}
               classes={{ root: css({ display: 'inline' }) }}
             />
