@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { ClassNames } from '@emotion/react';
 import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import FilledInput, { filledInputClasses as classes } from '@mui/material-next/FilledInput';
@@ -64,5 +65,37 @@ describe('<FilledInput />', () => {
     );
     const root = getByTestId('test-input');
     expect(root).toHaveComputedStyle({ marginTop: '10px' });
+  });
+
+  describe('Emotion compatibility', () => {
+    it('classes.root should overwrite built-in styles.', () => {
+      const { getByTestId } = render(
+        <ClassNames>
+          {({ css }) => (
+            <FilledInput data-testid="root" classes={{ root: css({ position: 'static' }) }} />
+          )}
+        </ClassNames>,
+      );
+      const input = getByTestId('root');
+
+      expect(getComputedStyle(input).position).to.equal('static');
+    });
+
+    it('className should overwrite classes.root and built-in styles.', () => {
+      const { getByTestId } = render(
+        <ClassNames>
+          {({ css }) => (
+            <FilledInput
+              data-testid="root"
+              className={css({ position: 'sticky' })}
+              classes={{ root: css({ position: 'static' }) }}
+            />
+          )}
+        </ClassNames>,
+      );
+      const input = getByTestId('root');
+
+      expect(getComputedStyle(input).position).to.equal('sticky');
+    });
   });
 });
