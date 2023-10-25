@@ -199,14 +199,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     return props['aria-pressed'];
   };
 
-  const externalForwardedProps = {
-    ...other,
-    component,
-    slots,
-    slotProps,
-    onClick: handleClick,
-    'aria-pressed': isAriaPressed(),
-  };
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
@@ -215,6 +208,10 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     getSlotProps: getRootProps,
     externalForwardedProps,
     ownerState,
+    additionalProps: {
+      onClick: handleClick,
+      'aria-pressed': isAriaPressed(),
+    },
   });
 
   return <SlotRoot {...rootProps}>{children}</SlotRoot>;

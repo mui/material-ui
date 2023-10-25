@@ -277,14 +277,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     return props['aria-pressed'];
   };
 
-  const externalForwardedProps = {
-    ...other,
-    component,
-    slots,
-    slotProps,
-    onClick: handleClick,
-    'aria-pressed': isAriaPressed(),
-  };
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
@@ -293,6 +286,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     externalForwardedProps,
     getSlotProps: getRootProps,
     ownerState,
+    additionalProps: {
+      onClick: handleClick,
+      'aria-pressed': isAriaPressed(),
+    },
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
