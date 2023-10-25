@@ -38,6 +38,7 @@ const DialogContentRoot = styled(StyledCardContentRoot, {
   },
 }));
 /**
+ *
  * Demos:
  *
  * - [Drawer](https://mui.com/joy-ui/react-drawer/)

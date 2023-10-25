@@ -71,6 +71,7 @@ const AccordionSummaryIndicator = styled('span', {
 });
 
 /**
+ *
  * Demos:
  *
  * - [Accordion](https://mui.com/joy-ui/react-accordion/)

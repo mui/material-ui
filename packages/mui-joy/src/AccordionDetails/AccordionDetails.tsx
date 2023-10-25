@@ -68,6 +68,7 @@ const AccordionDetailsContent = styled('div', {
 });
 
 /**
+ *
  * Demos:
  *
  * - [Accordion](https://mui.com/joy-ui/react-accordion/)

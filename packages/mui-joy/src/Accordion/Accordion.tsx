@@ -56,6 +56,7 @@ const AccordionRoot = styled(StyledListItem as unknown as 'div', {
   },
 });
 /**
+ *
  * Demos:
  *
  * - [Accordion](https://mui.com/joy-ui/react-accordion/)

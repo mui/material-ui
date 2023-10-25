@@ -59,6 +59,7 @@ const DialogTitleRoot = styled('h2', {
 const sizeToLevel = { sm: 'title-md', md: 'title-lg', lg: 'h4' } as const;
 
 /**
+ *
  * Demos:
  *
  * - [Modal](https://mui.com/joy-ui/react-modal/)
