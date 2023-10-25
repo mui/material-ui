@@ -6,7 +6,7 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
-import IconButton from '@mui/joy/IconButton';
+import Snackbar from '@mui/joy/Snackbar';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
@@ -16,8 +16,23 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import ForwardToInboxRoundedIcon from '@mui/icons-material/ForwardToInboxRounded';
 import FolderIcon from '@mui/icons-material/Folder';
 import ReplyRoundedIcon from '@mui/icons-material/ReplyRounded';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 export default function EmailContent() {
+  const [open, setOpen] = React.useState([false, false, false]);
+
+  const handleSnackbarOpen = (index, message, color) => {
+    const updatedOpen = [...open];
+    updatedOpen[index] = true;
+    setOpen(updatedOpen);
+  };
+
+  const handleSnackbarClose = (index) => {
+    const updatedOpen = [...open];
+    updatedOpen[index] = false;
+    setOpen(updatedOpen);
+  };
+
   return (
     <Sheet
       variant="outlined"
@@ -58,27 +73,93 @@ export default function EmailContent() {
           <Button
             size="sm"
             variant="plain"
-            color="primary"
+            color="neutral"
             startDecorator={<ReplyRoundedIcon />}
+            onClick={() =>
+              handleSnackbarOpen(0, 'Your message was sent successfully.', 'success')
+            }
           >
             Reply
           </Button>
+          <Snackbar
+            color="success"
+            open={open[0]}
+            onClose={() => handleSnackbarClose(0)}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            startDecorator={<CheckCircleRoundedIcon />}
+            endDecorator={
+              <Button
+                onClick={() => handleSnackbarClose(0)}
+                size="sm"
+                variant="soft"
+                color="neutral"
+              >
+                Dismiss
+              </Button>
+            }
+          >
+            Your message was sent successfully.
+          </Snackbar>
           <Button
             size="sm"
             variant="plain"
-            color="primary"
+            color="neutral"
             startDecorator={<ForwardToInboxRoundedIcon />}
+            onClick={() =>
+              handleSnackbarOpen(1, 'Your message was sent successfully.', 'success')
+            }
           >
             Forward
           </Button>
+          <Snackbar
+            color="success"
+            open={open[1]}
+            onClose={() => handleSnackbarClose(1)}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            startDecorator={<CheckCircleRoundedIcon />}
+            endDecorator={
+              <Button
+                onClick={() => handleSnackbarClose(1)}
+                size="sm"
+                variant="soft"
+                color="neutral"
+              >
+                Dismiss
+              </Button>
+            }
+          >
+            Your message was forwarded successfully.
+          </Snackbar>
           <Button
             size="sm"
             variant="plain"
-            color="danger"
+            color="neutral"
             startDecorator={<DeleteRoundedIcon />}
+            onClick={() =>
+              handleSnackbarOpen(2, 'Your message was sent to trash.', 'danger')
+            }
           >
             Delete
           </Button>
+          <Snackbar
+            color="danger"
+            open={open[2]}
+            onClose={() => handleSnackbarClose(2)}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            startDecorator={<CheckCircleRoundedIcon />}
+            endDecorator={
+              <Button
+                onClick={() => handleSnackbarClose(2)}
+                size="sm"
+                variant="soft"
+                color="neutral"
+              >
+                Dismiss
+              </Button>
+            }
+          >
+            Your message was sent to trash.
+          </Snackbar>
         </Box>
       </Box>
       <Divider sx={{ mt: 2 }} />
