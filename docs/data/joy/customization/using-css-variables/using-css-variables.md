@@ -4,7 +4,7 @@
 
 ## Introduction
 
-CSS variables are created by wrapping your app with the CssVarsProvider and using the `theme.vars` notation, allowing for an efficient customization experience.
+To use CSS variables, you must wrap your app with the `<CSSVarsProvider />` utility.
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
@@ -14,13 +14,14 @@ function App() {
 }
 ```
 
-## Usage
+Then you can apply styles based on CSS variables using the `theme.vars.*` notation.
+This notation is available to all styling APIs that Joy UI supports, including the `styled()` function and the `sx` prop.
 
-### Styling APIs
+## Styling APIs
 
-Use the `theme.vars` notation with any styling APIs supported by Joy UI:
+Use the `theme.vars.*` notation with any styling APIs supported by Joy UI:
 
-#### styled function
+### styled function
 
 ```js
 const Div = styled('div')(({ theme }) => ({
@@ -29,7 +30,7 @@ const Div = styled('div')(({ theme }) => ({
 }));
 ```
 
-#### sx prop
+### sx prop
 
 ```jsx
 // Outputs 'var(--joy-shadow-sm)'
@@ -43,7 +44,7 @@ You can also use a short-hand syntax to resolve the values from the `theme.vars.
   sx={{
     border: '1px solid',
 
-    // For color related properties, lookup from `theme.vars.palette`
+    // For color properties, lookup from `theme.vars.palette`
     color: 'neutral.800', // 'var(--joy-palette-neutral-800)'
     borderColor: 'neutral.400', // 'var(--joy-palette-neutral-400)'
 
@@ -56,7 +57,7 @@ You can also use a short-hand syntax to resolve the values from the `theme.vars.
 />
 ```
 
-#### Themed components
+### Themed components
 
 ```jsx
 extendTheme({
@@ -71,9 +72,7 @@ extendTheme({
 });
 ```
 
-#### useTheme hook
-
-Note that the `useTheme` hook should be used in components wrapped by the `CssVarsProvider` component.
+### useTheme hook
 
 ```jsx
 import { useTheme } from '@mui/joy/styles';
@@ -89,7 +88,7 @@ const SomeComponent = () => {
 };
 ```
 
-### Creating new variables
+## Creating new variables
 
 To create new CSS variables, use raw theme values (`theme.*` as opposed to `theme.vars.*`). The code below shows an example of how to create a new shadow theme value:
 
@@ -108,7 +107,7 @@ You can't use `theme.vars` to create an inset shadow because the value refers to
 
 :::
 
-### Adjust color opacity
+## Adjust color opacity
 
 Use the automatically generated opacity channel tokens (`mainChannel`, `lightChannel` and `darkChannel`), together with the `rgba` color notation, to adjust color opacity in all [available palettes](/joy-ui/customization/theme-colors/#default-color-tokens) in Joy UI.
 
@@ -128,10 +127,10 @@ The format of the channel tokens uses a space as a separator (e.g., `61 131 246`
 
 :::
 
-### Custom prefixes
+## Custom prefixes
 
 Every Joy UI CSS variable is prefixed with `joy` by default.
-To change it, use the `cssVarPrefix` property inside an `extendTheme` function within the CssVarsProvider component.
+To change this prefix, use the `cssVarPrefix` property inside an `extendTheme` function on the `<CssVarsProvider />` component.
 
 ```jsx
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';

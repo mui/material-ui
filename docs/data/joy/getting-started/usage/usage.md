@@ -31,7 +31,7 @@ It fixes some inconsistencies across browsers and devices while providing resets
 
 ### CssVarsProvider
 
-Joy UI provides an optional `CssVarsProvider` component that unlocks a whole host of customization options powered by CSS variables.
+Joy UI provides an optional `<CssVarsProvider />` component that unlocks a whole host of customization options powered by CSS variables.
 Visit the [Using CSS variables](/joy-ui/customization/using-css-variables/) guide to learn more.
 
 ### Default font
