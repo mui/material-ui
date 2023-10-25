@@ -31,7 +31,7 @@
     "@types/babel__traverse": "^7.20.3",
     "@types/chai": "^4.3.9",
     "@types/doctrine": "^0.0.8",
-    "@types/mdast": "4.0.1",
+    "@types/mdast": "4.0.2",
     "@types/mocha": "^10.0.2",
     "@types/node": "^18.18.5",
     "@types/sinon": "^10.0.19",
