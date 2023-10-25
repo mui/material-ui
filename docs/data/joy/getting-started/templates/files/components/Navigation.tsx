@@ -18,12 +18,7 @@ export default function Navigation() {
   return (
     <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
       <ListItem nested>
-        <ListSubheader>
-          Browse
-          <IconButton size="sm" variant="plain" color="primary" sx={{ ml: 'auto' }}>
-            <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-          </IconButton>
-        </ListSubheader>
+        <ListSubheader>Browse</ListSubheader>
         <List
           aria-labelledby="nav-list-browse"
           sx={{
@@ -57,12 +52,7 @@ export default function Navigation() {
         </List>
       </ListItem>
       <ListItem nested sx={{ mt: 2 }}>
-        <ListSubheader>
-          Tags
-          <IconButton size="sm" variant="plain" color="primary" sx={{ ml: 'auto' }}>
-            <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-          </IconButton>
-        </ListSubheader>
+        <ListSubheader>Tags</ListSubheader>
         <List
           aria-labelledby="nav-list-tags"
           size="sm"

@@ -84,12 +84,7 @@ function TeamNav() {
   return (
     <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
       <ListItem nested>
-        <ListSubheader>
-          Browse
-          <IconButton size="sm" variant="plain" color="primary" sx={{ ml: 'auto' }}>
-            <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-          </IconButton>
-        </ListSubheader>
+        <ListSubheader>Browse</ListSubheader>
         <List
           aria-labelledby="nav-list-browse"
           sx={{
