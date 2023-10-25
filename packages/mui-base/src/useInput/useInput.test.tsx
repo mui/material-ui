@@ -7,6 +7,14 @@ import { UseInputParameters } from './useInput.types';
 
 describe('useInput', () => {
   const { render } = createRenderer();
+  it('returns an inputRef to the underlying input', () => {
+    const { getInputProps, inputRef } = useInput();
+
+    const { getByRole } = render(<input {...getInputProps()} />);
+
+    expect(inputRef.current).to.deep.equal(getByRole('textbox'));
+  });
+
   describe('params: inputRef', () => {
     it('should be able to attach input ref passed through params', () => {
       const inputRef = React.createRef<HTMLInputElement>();
