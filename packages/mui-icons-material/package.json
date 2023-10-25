@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "5.14.14",
+  "version": "5.14.15",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@mui/internal-waterfall": "^1.0.0",
-    "@types/chai": "^4.3.8",
+    "@types/chai": "^4.3.9",
     "@types/react": "^18.2.29",
     "chai": "^4.3.10",
     "chalk": "^5.3.0",

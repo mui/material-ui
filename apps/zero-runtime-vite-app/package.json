@@ -26,8 +26,10 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "^22.1.0",
+    "local-library": "file:../local-library",
     "vite": "4.4.11",
-    "vitest": "^0.34.6"
+    "vitest": "^0.34.6",
+    "typescript": "5.1.6"
   },
   "resolutions": {
     "@mui/zero-tag-processor": "file:../../packages/zero-tag-processor/build"

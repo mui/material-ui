@@ -194,6 +194,7 @@ import { SkeletonProps, SkeletonOwnerState, SkeletonSlot } from '../Skeleton/Ske
 import { SelectProps, SelectOwnerState, SelectSlot } from '../Select/SelectProps';
 import { OptionProps, OptionOwnerState, OptionSlot } from '../Option/OptionProps';
 import { SliderProps, SliderOwnerState, SliderSlot } from '../Slider/SliderProps';
+import { SnackbarProps, SnackbarOwnerState, SnackbarSlot } from '../Snackbar/SnackbarProps';
 import { StackProps, StackSlot } from '../Stack/StackProps';
 import { SvgIconProps, SvgIconOwnerState, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 import { SwitchProps, SwitchOwnerState, SwitchSlot } from '../Switch/SwitchProps';
@@ -466,6 +467,10 @@ export interface Components<Theme = unknown> {
   JoySlider?: {
     defaultProps?: Partial<SliderProps>;
     styleOverrides?: StyleOverrides<SliderSlot, SliderOwnerState, Theme>;
+  };
+  JoySnackbar?: {
+    defaultProps?: Partial<SnackbarProps>;
+    styleOverrides?: StyleOverrides<SnackbarSlot, SnackbarOwnerState, Theme>;
   };
   JoyTabs?: {
     defaultProps?: Partial<TabsProps>;

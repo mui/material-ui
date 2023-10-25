@@ -17,6 +17,7 @@ const blue = {
   300: '#66B2FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B3',
   900: '#003A75',
 };
 
@@ -31,10 +32,7 @@ const Slider = styled(BaseSlider)(
   cursor: pointer;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
-  opacity: 0.75;
-  &:hover {
-    opacity: 1;
-  }
+
 
   & .${sliderClasses.rail} {
     display: block;
@@ -43,7 +41,7 @@ const Slider = styled(BaseSlider)(
     width: inherit;
     border-radius: 2px;
     background-color: currentColor;
-    opacity: 0.38;
+    opacity: 0.4;
   }
 
   & .${sliderClasses.track} {
@@ -69,17 +67,24 @@ const Slider = styled(BaseSlider)(
     -ms-transform: translate(-50%, 50%);
     transform: translate(-50%, 50%);
 
-    :hover,
+    &:hover{
+      box-shadow: 0 0 0 4px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[300],
+        0.3,
+      )};
+    }
+    
     &.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
       outline: none;
     }
 
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 0.25rem ${alpha(
+      box-shadow: 0 0 0 5px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[300],
-        0.3,
+        0.5,
       )};
+      outline: none;
     }
   }
 `,

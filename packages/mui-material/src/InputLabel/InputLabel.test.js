@@ -128,7 +128,7 @@ describe('<InputLabel />', () => {
                 root: (props) => {
                   return {
                     ...(props.ownerState.focused === true && {
-                      fontWeight: '700',
+                      mixBlendMode: 'darken',
                     }),
                   };
                 },
@@ -140,14 +140,16 @@ describe('<InputLabel />', () => {
         const { getByText } = render(
           <ThemeProvider theme={theme}>
             <FormControl focused>
-              <InputLabel>Bold Test Label</InputLabel>
+              <InputLabel>Test Label</InputLabel>
             </FormControl>
           </ThemeProvider>,
         );
 
-        const label = getByText('Bold Test Label');
+        const label = getByText('Test Label');
 
-        expect(getComputedStyle(label).fontWeight).to.equal('700');
+        expect(label).to.toHaveComputedStyle({
+          mixBlendMode: 'darken',
+        });
       });
     });
   });

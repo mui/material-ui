@@ -35,6 +35,12 @@ export * from './InputLabel';
 
 export { default as Input } from './Input';
 
+export { default as Menu } from './Menu';
+export * from './Menu';
+
+export { default as MenuItem } from './MenuItem';
+export * from './MenuItem';
+
 export { default as Select } from './Select';
 export * from './Select';
 

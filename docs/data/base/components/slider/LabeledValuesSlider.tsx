@@ -29,6 +29,7 @@ const blue = {
   300: '#66B2FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B3',
   900: '#003A75',
 };
 
@@ -56,9 +57,7 @@ const Slider = styled(BaseSlider)(
   cursor: pointer;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
-  &:hover {
-    opacity: 1;
-  }
+
   &.${sliderClasses.disabled} {
     pointer-events: none;
     cursor: default;
@@ -91,9 +90,23 @@ const Slider = styled(BaseSlider)(
     outline: 0;
     border: 3px solid currentColor;
     background-color: #fff;
-    :hover,
+    &:hover{
+      box-shadow: 0 0 0 4px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[300],
+        0.3,
+      )};
+    }
+    
     &.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
+      outline: none;
+    }
+
+    &.${sliderClasses.active} {
+      box-shadow: 0 0 0 5px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[300],
+        0.5,
+      )};
       outline: none;
     }
     & .label {
@@ -101,7 +114,7 @@ const Slider = styled(BaseSlider)(
         font-weight: 600;
         font-size: 14px;
         background: unset;
-        background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[300]};
+        background-color: ${theme.palette.mode === 'light' ? blue[600] : blue[900]};
         width: 32px;
         height: 32px;
         padding: 0px;
@@ -124,10 +137,8 @@ const Slider = styled(BaseSlider)(
         text-align: center;
     }
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 0.25rem ${alpha(
-        theme.palette.mode === 'light' ? blue[200] : blue[300],
-        0.3,
-      )};
+      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[600] : blue[300]};
+      outline: none;
     }
   }
 `,

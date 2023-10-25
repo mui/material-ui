@@ -126,7 +126,7 @@ export default function DiamondSponsors() {
           href="/material-ui/discover-more/backers/#diamond"
           sx={(theme) => ({
             width: '100%',
-            p: 1.5,
+            p: 1,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
