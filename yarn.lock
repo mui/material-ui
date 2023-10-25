@@ -3701,10 +3701,10 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
-"@types/format-util@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@types/format-util/-/format-util-1.0.2.tgz#7d19feb1caf59b6ea99c83dfe795ffa3f06b87d7"
-  integrity sha512-9SrLCpgzWo2yHHhiMOX0WwgDh37nSbDbWUsRc1ss++o8O97E3tB6SJiyUQM21UeUsKvZNuhDCmkRaINZ4uJAfg==
+"@types/format-util@^1.0.2", "@types/format-util@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@types/format-util/-/format-util-1.0.3.tgz#076bf463d4a08d4f0fef3a90ba293fb0bd687bb6"
+  integrity sha512-Zs8j1fJtFwgidkq+ssW6sdQovx7kDBf5A1qsUf0khLjoqRVhIDNScYUjQVn8qe6WwTbI2IHVv4R1HmnIWzwYog==
 
 "@types/fs-extra@^11.0.2":
   version "11.0.2"
