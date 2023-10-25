@@ -2,16 +2,19 @@
 import * as React from 'react';
 
 interface IToggleButtonGroupContext {
-  onClick?: (
+  onClick: (
     event: React.MouseEvent<HTMLButtonElement>,
     childValue: readonly string[] | string | number | undefined,
   ) => void;
-  value?: string | (string | number)[] | null;
+  value: string | (string | number)[] | null;
 }
 
 /**
  * @ignore - internal component.
  */
-const ToggleButtonGroupContext = React.createContext<IToggleButtonGroupContext>({});
+const ToggleButtonGroupContext = React.createContext<IToggleButtonGroupContext>({
+  onClick: () => {},
+  value: null,
+});
 
 export default ToggleButtonGroupContext;

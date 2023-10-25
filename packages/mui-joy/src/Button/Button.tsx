@@ -259,20 +259,20 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (toggleButtonGroup?.onClick) {
+    if (toggleButtonGroup) {
       props.onClick?.(event);
-      toggleButtonGroup?.onClick(event, props.value);
+      toggleButtonGroup.onClick(event, props.value);
     } else {
       props.onClick?.(event);
     }
   };
 
   const isAriaPressed = () => {
-    if (toggleButtonGroup?.value) {
-      if (Array.isArray(toggleButtonGroup?.value)) {
-        return toggleButtonGroup?.value.indexOf(props.value as string | number) !== -1;
+    if (toggleButtonGroup) {
+      if (Array.isArray(toggleButtonGroup.value)) {
+        return toggleButtonGroup.value.indexOf(props.value as string | number) !== -1;
       }
-      return toggleButtonGroup?.value === props.value;
+      return toggleButtonGroup.value === props.value;
     }
     return props['aria-pressed'];
   };
