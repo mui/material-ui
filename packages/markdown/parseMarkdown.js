@@ -348,7 +348,7 @@ function createRender(context) {
 
       return [
         `<h${level} id="${hash}">`,
-        headingHtml,
+        `<a href="#${hash}" class="h2-heading">${headingHtml}</a>`,
         `<a aria-labelledby="${hash}" class="anchor-link" href="#${hash}" tabindex="-1">`,
         '<svg><use xlink:href="#anchor-link-icon" /></svg>',
         '</a>',

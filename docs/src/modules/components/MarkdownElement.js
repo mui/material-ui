@@ -85,6 +85,10 @@ const Root = styled('div')(
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
       margin: '40px 0 4px',
     },
+    '& .h2-heading': {
+      color: 'inherit',
+      textDecoration: 'none',
+    },
     '& h3': {
       ...lightTheme.typography.h6,
       fontFamily: `"General Sans", ${lightTheme.typography.fontFamilySystem}`,
