@@ -18,7 +18,7 @@ import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownR
 
 export default function EmailNav() {
   return (
-    <List size="sm" sx={{ '--ListItem-radius': '8px' }}>
+    <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
       <ListItem nested>
         <ListSubheader>
           Browse
@@ -97,7 +97,7 @@ export default function EmailNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'primary.300',
+                    bgcolor: 'primary.500',
                   }}
                 />
               </ListItemDecorator>
@@ -112,7 +112,7 @@ export default function EmailNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'danger.300',
+                    bgcolor: 'danger.500',
                   }}
                 />
               </ListItemDecorator>
@@ -127,7 +127,7 @@ export default function EmailNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'warning.300',
+                    bgcolor: 'warning.400',
                   }}
                 />
               </ListItemDecorator>
@@ -142,7 +142,7 @@ export default function EmailNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'success.300',
+                    bgcolor: 'success.400',
                   }}
                 />
               </ListItemDecorator>

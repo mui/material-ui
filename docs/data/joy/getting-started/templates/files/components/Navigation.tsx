@@ -20,12 +20,7 @@ export default function Navigation() {
       <ListItem nested>
         <ListSubheader>
           Browse
-          <IconButton
-            size="sm"
-            variant="plain"
-            color="primary"
-            sx={{ '--IconButton-size': '24px', ml: 'auto' }}
-          >
+          <IconButton size="sm" variant="plain" color="primary" sx={{ ml: 'auto' }}>
             <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
           </IconButton>
         </ListSubheader>
@@ -45,7 +40,7 @@ export default function Navigation() {
           </ListItem>
           <ListItem>
             <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+              <ListItemDecorator>
                 <ShareOutlinedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Shared files</ListItemContent>
@@ -53,7 +48,7 @@ export default function Navigation() {
           </ListItem>
           <ListItem>
             <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+              <ListItemDecorator>
                 <DeleteRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Trash</ListItemContent>
@@ -64,12 +59,7 @@ export default function Navigation() {
       <ListItem nested sx={{ mt: 2 }}>
         <ListSubheader>
           Tags
-          <IconButton
-            size="sm"
-            variant="plain"
-            color="primary"
-            sx={{ '--IconButton-size': '24px', ml: 'auto' }}
-          >
+          <IconButton size="sm" variant="plain" color="primary" sx={{ ml: 'auto' }}>
             <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
           </IconButton>
         </ListSubheader>
@@ -78,6 +68,7 @@ export default function Navigation() {
           size="sm"
           sx={{
             '--ListItemDecorator-size': '32px',
+            '& .JoyListItemButton-root': { p: '8px' },
           }}
         >
           <ListItem>
