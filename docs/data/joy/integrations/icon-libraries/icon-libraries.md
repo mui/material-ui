@@ -11,17 +11,20 @@ includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?ico
 
 This section assumes that you've already installed Joy UI in your app—see [Installation](/joy-ui/getting-started/installation/) for instructions.
 
-#### yarn
+<codeblock storageKey="package-manager">
+```bash npm
+npm install @mui/icons-material
+```
 
-```sh
+```bash yarn
 yarn add @mui/icons-material
 ```
 
-#### npm
-
-```sh
-npm install @mui/icons-material
+```bash pnpm
+pnpm add @mui/icons-material
 ```
+
+</codeblock>
 
 ### Usage
 
