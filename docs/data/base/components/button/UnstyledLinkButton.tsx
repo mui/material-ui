@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, buttonClasses } from '@mui/base/Button';
+import { Button as BaseButton } from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
@@ -7,52 +7,77 @@ import Link from 'next/link';
 export default function UnstyledLinkButton() {
   return (
     <Stack spacing={2} direction="row">
-      <CustomButton href={'https://mui.com/'}>Standard link</CustomButton>
+      <Button href={'https://mui.com/'}>Standard link</Button>
       <Link href={'https://mui.com/'}>
-        <CustomButton>Next link</CustomButton>
+        <Button>Next link</Button>
       </Link>
     </Stack>
   );
 }
 
 const blue = {
+  200: '#99CCFF',
+  300: '#66B2FF',
+  400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
-  700: '#0059B2',
+  700: '#0066CC',
 };
 
 const grey = {
-  100: '#eaeef2',
-  300: '#afb8c1',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
-const CustomButton = styled(Button)(
+const Button = styled(BaseButton)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 0.875rem;
+  line-height: 1.5;
   background-color: ${blue[500]};
   padding: 8px 16px;
   border-radius: 8px;
-  line-height: 1.5;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
-  border: none;
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
+  border: 1px solid ${blue[500]};
+  box-shadow: 0 2px 1px ${
+    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
+  }, inset 0 1.5px 1px ${blue[400]}, inset 0 -2px 1px ${blue[600]};
 
   &:hover {
     background-color: ${blue[600]};
   }
 
-  &.${buttonClasses.active} {
+  &:active {
     background-color: ${blue[700]};
+    box-shadow: none;
   }
 
-  &.${buttonClasses.focusVisible} {
-    box-shadow: 0 3px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
+  &:focus-visible {
+    box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
     outline: none;
+  }
+
+  &:disabled {
+    background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+    cursor: not-allowed;
+    box-shadow: none;
+
+    &:hover {
+      background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+    }
   }
   `,
 );

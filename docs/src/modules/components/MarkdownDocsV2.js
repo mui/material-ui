@@ -17,8 +17,8 @@ import Ad from 'docs/src/modules/components/Ad';
 import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import AdGuest from 'docs/src/modules/components/AdGuest';
-import { getPropsToC } from 'docs/src/modules/components/PropertiesTable';
-import { getCssToC } from 'docs/src/modules/components/ApiPage/CSSList';
+import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
+import { getCssToC } from 'docs/src/modules/components/ApiPage/sections/CssSection';
 
 function JoyModeObserver({ mode }) {
   const { setMode } = useColorScheme();
@@ -83,27 +83,34 @@ export default function MarkdownDocsV2(props) {
   // Generate the TOC based on the tab
   const demosToc = localizedDoc.toc.filter((item) => item.text !== 'API');
 
-  function createHookTocEntry(hookName, sectionName) {
+  function createHookTocEntry(hookName, sectionName, hookProps = {}) {
+    const hookPropToc = [];
+    Object.keys(hookProps).forEach((propName) => {
+      hookPropToc.push({
+        text: propName,
+        hash: `${hookName}-${sectionName}-${propName}`,
+        children: [],
+      });
+    });
+
     return {
       text: getHookTranslatedHeader(t, sectionName),
       hash: `${hookName}-${sectionName}`,
-      children: [],
+      children: hookPropToc,
     };
   }
 
   const hooksToc = [];
   if (hooksApiPageContents) {
     Object.keys(hooksApiPageContents).forEach((key) => {
-      const { hookDescriptionToc = [] } = hooksApiDescriptions[key][userLanguage];
-      const { name: hookName } = hooksApiPageContents[key];
+      const { name: hookName, parameters = {}, returnValue = {} } = hooksApiPageContents[key];
 
       const hookNameKebabCase = kebabCase(hookName);
 
       const hookToc = [
         createHookTocEntry(hookNameKebabCase, 'import'),
-        ...hookDescriptionToc,
-        createHookTocEntry(hookNameKebabCase, 'parameters'),
-        createHookTocEntry(hookNameKebabCase, 'return-value'),
+        createHookTocEntry(hookNameKebabCase, 'parameters', parameters),
+        createHookTocEntry(hookNameKebabCase, 'return-value', returnValue),
       ].filter(Boolean);
 
       hooksToc.push({
