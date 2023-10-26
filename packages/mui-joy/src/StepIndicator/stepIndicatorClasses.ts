@@ -1,10 +1,8 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
-export interface StepClasses {
+export interface StepIndicatorClasses {
   /** Class name applied to the root element. */
   root: string;
-  /** Class name applied to the indicator element. */
-  indicator: string;
   /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Class name applied to the root element if `size="md"`. */
@@ -15,28 +13,21 @@ export interface StepClasses {
   horizontal: string;
   /** Class name applied to the root element if `orientation="vertical"`. */
   vertical: string;
-  /** Class name applied to the root element if `active={true}`. */
-  active: string;
-  /** Class name applied to the root element if `completed={true}`. */
-  completed: string;
 }
 
-export type StepClassKey = keyof StepClasses;
+export type StepIndicatorClassKey = keyof StepIndicatorClasses;
 
-export function getStepUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiStep', slot);
+export function getStepIndicatorUtilityClass(slot: string): string {
+  return generateUtilityClass('MuiStepIndicator', slot);
 }
 
-const stepClasses: StepClasses = generateUtilityClasses('MuiStep', [
+const stepIndicatorClasses: StepIndicatorClasses = generateUtilityClasses('MuiStepIndicator', [
   'root',
-  'indicator',
   'sizeSm',
   'sizeMd',
   'sizeLg',
   'horizontal',
   'vertical',
-  'active',
-  'completed',
 ]);
 
-export default stepClasses;
+export default stepIndicatorClasses;

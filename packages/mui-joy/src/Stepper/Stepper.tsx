@@ -21,17 +21,58 @@ const useUtilityClasses = (ownerState: StepperOwnerState) => {
   return composeClasses(slots, getStepperUtilityClass, {});
 };
 
-export const StyledStepperRoot = styled('ol')<{ ownerState: StepperOwnerState }>(
-  ({ theme, ownerState }) => {
-    return {};
-  },
-);
-
-const StepperRoot = styled(StyledStepperRoot, {
+const StepperRoot = styled('ol', {
   name: 'JoyStepper',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: StepperOwnerState }>({});
+})<{ ownerState: StepperOwnerState }>(({ theme }) => {
+  return {
+    '--Step-connectorThickness': '2px',
+    boxSizing: 'border-box',
+    display: 'flex',
+    margin: 0, // Reset browser default style.
+    padding: 0, // Reset browser default style.
+    variants: [
+      { props: { orientation: 'vertical' }, style: { flexDirection: 'column' } },
+      {
+        props: { size: 'sm' },
+        style: {
+          '--Stepper-verticalGap': '0.5rem',
+          '--Step-gap': '0.375rem',
+          '--Step-connectorInset': '0.25rem',
+          '--StepIndicator-size': '1.5rem',
+          ...theme.typography['body-sm'],
+        },
+      },
+      {
+        props: { size: 'md' },
+        style: {
+          '--Stepper-verticalGap': '0.75rem',
+          '--Step-gap': '0.5rem',
+          '--Step-connectorInset': '0.375rem',
+          '--StepIndicator-size': '2rem',
+          ...theme.typography['body-sm'],
+        },
+      },
+      {
+        props: { size: 'lg' },
+        style: {
+          '--Stepper-verticalGap': '1rem',
+          '--Step-gap': '0.75rem',
+          '--Step-connectorInset': '0.5rem',
+          '--StepIndicator-size': '2.5rem',
+          ...theme.typography['body-md'],
+        },
+      },
+      {
+        props: {},
+        style: {
+          color: theme.vars.palette.text.tertiary, // must come after typography to take effect
+        },
+      },
+    ],
+  };
+});
 
 /**
  *
@@ -51,10 +92,10 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
 
   const {
     className,
-    component = 'div',
+    component = 'ol',
     size = 'md',
     children,
-    orientation = 'vertical',
+    orientation = 'horizontal',
     slots = {},
     slotProps = {},
     ...other

@@ -7,31 +7,150 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getStepUtilityClass } from './stepClasses';
+import stepClasses, { getStepUtilityClass } from './stepClasses';
 import { StepProps, StepOwnerState, StepTypeMap } from './StepProps';
 import useSlot from '../utils/useSlot';
+import stepperClasses from '../Stepper/stepperClasses';
 
 const useUtilityClasses = (ownerState: StepOwnerState) => {
   const { size, orientation } = ownerState;
 
   const slots = {
     root: ['root', orientation, size && `size${capitalize(size)}`],
+    indicator: ['indicator'],
   };
 
   return composeClasses(slots, getStepUtilityClass, {});
 };
 
-export const StyledStepRoot = styled('li')<{ ownerState: StepOwnerState }>(
-  ({ theme, ownerState }) => {
-    return {};
-  },
-);
+const THICKNESS = '2px';
+const INSET = '0.25rem';
+const SIZE = '2.5rem';
 
-const StepRoot = styled(StyledStepRoot, {
+/**
+ * CSS architecture:
+ * - The root is a flex container with direction based on the provided orientation (horizontal by default).
+ * - The indicator slot is used to render the icon or text provided in the `indicator` prop.
+ *    - It allows the connector to be shown in the middle of the indicator (because the indicator prop is dynamic and it can be different sizes between step).
+ *    - If there is no indicator prop, the indicator slot will fill the entire root so that the connector is in the middle.
+ * - The connector is a pseudo-element that is absolutely positioned relative to the step's width.
+ *    - For horizontal orientation, the connector is a pseudo-element of the root.
+ *    - For vertical orientation, the connector is a pseudo-element of the indicator.
+ * - Developers can control the CSS variables from the Stepper component.
+ */
+const StepRoot = styled('li', {
   name: 'JoyStep',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: StepOwnerState }>({});
+})<{ ownerState: StepOwnerState }>(({ theme }) => {
+  return {
+    position: 'relative',
+    display: 'flex',
+    gridTemplateColumns: 'auto 1fr', // for vertical stepper. has no effect on horizontal stepper.
+    gridAutoFlow: 'dense',
+    flex: 'var(--_Step-flex)',
+    flexDirection: 'row',
+    alignItems: 'var(--_Step-alignItems, center)',
+    justifyContent: 'var(--_Step-justify, center)',
+    gap: `var(--Step-gap, ${INSET})`,
+    padding: 'var(--_Step-padding)',
+    '& > *': { zIndex: 1, [`&:not(.${stepClasses.indicator})`]: { gridColumn: '2' } },
+    '&:not([data-last-child])': {
+      '&::after': {
+        content: '""',
+        display: 'block',
+        height: `var(--Step-connectorThickness, ${THICKNESS})`,
+        background: `var(--Step-connectorBg, ${theme.vars.palette.divider})`,
+        flex: 1,
+        marginInlineEnd: '0.5rem',
+        zIndex: 0,
+      },
+    },
+    [`.${stepperClasses.horizontal} &:not([data-last-child])`]: {
+      '--_Step-flex': 1,
+    },
+    [`.${stepperClasses.vertical} &`]: {
+      display: 'grid',
+      '--_Step-justify': 'flex-start',
+      '--_Step-padding': '0 0 var(--Stepper-verticalGap) 0',
+      '&::after': {
+        gridColumn: '1',
+        width: `var(--Step-connectorThickness, ${THICKNESS})`,
+        height: 'auto',
+        minHeight: '1rem',
+        margin: `min(0px, calc(var(--Step-connectorInset, ${THICKNESS}) - var(--Step-gap, ${INSET}))) auto min(0px, calc(var(--Step-connectorInset, ${THICKNESS}) - var(--Stepper-verticalGap)))`,
+        alignSelf: 'stretch',
+      },
+    },
+    variants: [
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          flexDirection: 'column',
+          [`.${stepperClasses.horizontal} &`]: {
+            '--_Step-flex': 1,
+            '&[data-indicator]': {
+              '--_Step-justify': 'flex-start',
+            },
+            '&::after': {
+              display: 'none !important',
+            },
+          },
+          [`.${stepperClasses.horizontal} &:not([data-last-child]) .${stepClasses.indicator}`]: {
+            '&::after': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              height: `var(--Step-connectorThickness, ${THICKNESS})`,
+              background: `var(--Step-connectorBg, ${theme.vars.palette.divider})`,
+              zIndex: 0,
+              top: `calc(var(--StepIndicator-size, ${SIZE}) / 2 - var(--Step-connectorThickness, ${THICKNESS}) / 2)`,
+              left: `calc(50% + var(--StepIndicator-size, ${SIZE}) / 2 + var(--Step-connectorInset, ${INSET}))`,
+              width: `calc(100% - var(--StepIndicator-size, ${SIZE}) - 2 * var(--Step-connectorInset, ${INSET}))`,
+            },
+            '&:empty': {
+              zIndex: 0,
+              width: '100%',
+              height: '100%',
+              '&::after': {
+                top: `calc(50% - var(--Step-connectorThickness, ${THICKNESS}) / 2)`,
+                left: '50%',
+              },
+            },
+          },
+        },
+      },
+    ],
+  };
+});
+
+const StepIndicator = styled('div', {
+  name: 'JoyStep',
+  slot: 'Indicator',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: StepOwnerState }>({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: `var(--StepIndicator-size, ${SIZE})`,
+  height: `var(--StepIndicator-size, ${SIZE})`,
+  position: 'var(--_Step-indicatorPosition, unset)' as React.CSSProperties['position'],
+  [`.${stepperClasses.horizontal} &:empty`]: {
+    '--_Step-indicatorPosition': 'absolute',
+  },
+  [`.${stepperClasses.vertical} &:empty`]: {
+    height: 'auto',
+    '&::before': {
+      content: '""',
+      display: 'block',
+      width: 6,
+      height: 6,
+      borderRadius: 6,
+      color: 'inherit',
+      background: 'currentColor',
+    },
+  },
+});
 
 /**
  *
@@ -51,10 +170,11 @@ const Step = React.forwardRef(function Step(inProps, ref) {
 
   const {
     className,
-    component = 'div',
+    component = 'li',
     size = 'md',
     children,
-    orientation = 'vertical',
+    orientation = 'horizontal',
+    indicator,
     slots = {},
     slotProps = {},
     ...other
@@ -76,9 +196,25 @@ const Step = React.forwardRef(function Step(inProps, ref) {
     elementType: StepRoot,
     externalForwardedProps,
     ownerState,
+    additionalProps: {
+      'data-indicator': indicator ? '' : undefined,
+    },
   });
 
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  const [SlotIndicator, indicatorProps] = useSlot('indicator', {
+    ref,
+    className: classes.indicator,
+    elementType: StepIndicator,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  return (
+    <SlotRoot {...rootProps}>
+      <SlotIndicator {...indicatorProps}>{indicator}</SlotIndicator>
+      {children}
+    </SlotRoot>
+  );
 }) as OverridableComponent<StepTypeMap>;
 
 Step.propTypes /* remove-proptypes */ = {

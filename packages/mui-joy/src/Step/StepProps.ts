@@ -11,12 +11,18 @@ export interface StepSlots {
    * @default 'li'
    */
   root?: React.ElementType;
+  /**
+   * The component that renders the indicator.
+   * @default 'div'
+   */
+  indicator?: React.ElementType;
 }
 
 export type StepSlotsAndSlotProps = CreateSlotsAndSlotProps<
   StepSlots,
   {
     root: SlotProps<'li', {}, StepOwnerState>;
+    indicator: SlotProps<'div', {}, StepOwnerState>;
   }
 >;
 
@@ -32,8 +38,12 @@ export interface StepTypeMap<P = {}, D extends React.ElementType = 'ol'> {
      */
     children?: React.ReactNode;
     /**
+     * The indicator to display. If provided, a wrapper element will be used.
+     */
+    indicator?: React.ReactNode;
+    /**
      * The component orientation.
-     * @default 'vertical'
+     * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';
     /**
