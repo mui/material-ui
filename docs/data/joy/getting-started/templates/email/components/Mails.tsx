@@ -5,7 +5,7 @@ import Avatar from '@mui/joy/Avatar';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
 import ListItem from '@mui/joy/ListItem';
-import ListItemButton from '@mui/joy/ListItemButton';
+import ListItemButton, { listItemButtonClasses } from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 
 const data = [
@@ -53,7 +53,14 @@ const data = [
 
 export default function EmailList() {
   return (
-    <List>
+    <List
+      sx={(theme) => ({
+        [`& .${listItemButtonClasses.root}.${listItemButtonClasses.selected}`]: {
+          backgroundColor: 'background.level1',
+          borderLeftColor: 'var(--joy-palette-primary-outlinedBorder)',
+        },
+      })}
+    >
       {data.map((item, index) => (
         <React.Fragment key={index}>
           <ListItem>
