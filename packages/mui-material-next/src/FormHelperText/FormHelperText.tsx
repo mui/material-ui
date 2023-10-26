@@ -46,16 +46,17 @@ const FormHelperTextRoot = styled('p', {
   },
 })<{ ownerState: FormHelperTextOwnerState }>(({ theme, ownerState }) => {
   const { vars: tokens } = theme;
-  const pxFontSize = 12; // TODO: theme.sys.typescale.body.small.size
-  const pxLineHeight = 16; // TODO: theme.sys.typescale.body.small.lineHeight
+
+  const pxFontSize = theme.sys.typescale.body.small.size;
   const letterSpacing = `${theme.sys.typescale.body.small.tracking / pxFontSize}rem`;
+
   return {
     '--md-comp-form-helper-text-color': tokens.sys.color.secondary,
     '--md-comp-form-helper-text-font-family': tokens.sys.typescale.body.small.family,
     '--md-comp-form-helper-text-font-size': theme.typography.pxToRem(pxFontSize), // the pxToRem should be moved to typescale in the future,
     '--md-comp-form-helper-text-font-weight': tokens.sys.typescale.body.small.weight,
     '--md-comp-form-helper-text-letter-spacing': letterSpacing,
-    '--md-comp-form-helper-text-line-height': pxLineHeight,
+    '--md-comp-form-helper-text-line-height': theme.sys.typescale.body.small.lineHeight,
     '--md-comp-form-helper-text-disabled-color': tokens.sys.color.onSurface,
     '--md-comp-form-helper-text-disabled-opacity': 0.38,
     '--md-comp-form-helper-text-error-color': tokens.sys.color.error,
@@ -92,6 +93,7 @@ const FormHelperText = React.forwardRef(function FormHelperText<
   const props = useThemeProps({ props: inProps, name: 'MuiFormHelperText' });
   const {
     children,
+    className,
     component = 'p',
     disabled: disabledProp,
     error: errorProp,
@@ -136,7 +138,7 @@ const FormHelperText = React.forwardRef(function FormHelperText<
       ref: forwardedRef,
     },
     ownerState,
-    className: [classes.root],
+    className: [classes.root, className],
   });
 
   return (
