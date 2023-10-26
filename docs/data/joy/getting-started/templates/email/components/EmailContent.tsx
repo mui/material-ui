@@ -21,13 +21,13 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 export default function EmailContent() {
   const [open, setOpen] = React.useState([false, false, false]);
 
-  const handleSnackbarOpen = (index) => {
+  const handleSnackbarOpen = (index: number) => {
     const updatedOpen = [...open];
     updatedOpen[index] = true;
     setOpen(updatedOpen);
   };
 
-  const handleSnackbarClose = (index) => {
+  const handleSnackbarClose = (index: number) => {
     const updatedOpen = [...open];
     updatedOpen[index] = false;
     setOpen(updatedOpen);
@@ -75,7 +75,7 @@ export default function EmailContent() {
             variant="plain"
             color="neutral"
             startDecorator={<ReplyRoundedIcon />}
-            onClick={() => handleSnackbarOpen('Your message has been sent.')}
+            onClick={() => handleSnackbarOpen(0)}
           >
             Reply
           </Button>
@@ -103,7 +103,7 @@ export default function EmailContent() {
             variant="plain"
             color="neutral"
             startDecorator={<ForwardToInboxRoundedIcon />}
-            onClick={() => handleSnackbarOpen('Your message has been forwarded.')}
+            onClick={() => handleSnackbarOpen(1)}
           >
             Forward
           </Button>
@@ -131,7 +131,7 @@ export default function EmailContent() {
             variant="plain"
             color="neutral"
             startDecorator={<DeleteRoundedIcon />}
-            onClick={() => handleSnackbarOpen('Your message has been deleted.')}
+            onClick={() => handleSnackbarOpen(2)}
           >
             Delete
           </Button>
