@@ -1,23 +1,16 @@
-"use strict";
 'use client';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = createSvgIcon;
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-var React = _interopRequireWildcard(require("react"));
-var _SvgIcon = _interopRequireDefault(require("./SvgIcon"));
-var _jsxRuntime = require("react/jsx-runtime");
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+import _extends from "@babel/runtime/helpers/esm/extends";
+import * as React from 'react';
+import SvgIcon from './SvgIcon';
+
 /**
  * Private module reserved for @mui packages.
  */
-function createSvgIcon(path, displayName) {
+import { jsx as _jsx } from "react/jsx-runtime";
+export default function createSvgIcon(path, displayName) {
   function Component(props, ref) {
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)(_SvgIcon.default, (0, _extends2.default)({
+    return /*#__PURE__*/_jsx(SvgIcon, _extends({
       "data-testid": `${displayName}Icon`,
       ref: ref
     }, props, {
@@ -29,6 +22,6 @@ function createSvgIcon(path, displayName) {
     // React prior to 16.14 ignores `displayName` on the wrapper.
     Component.displayName = `${displayName}Icon`;
   }
-  Component.muiName = _SvgIcon.default.muiName;
+  Component.muiName = SvgIcon.muiName;
   return /*#__PURE__*/React.memo( /*#__PURE__*/React.forwardRef(Component));
 }

@@ -1,16 +1,23 @@
+"use strict";
 'use client';
 
-import _extends from "@babel/runtime/helpers/esm/extends";
-import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+var React = _interopRequireWildcard(require("react"));
+var _propTypes = _interopRequireDefault(require("prop-types"));
+var _clsx = _interopRequireDefault(require("clsx"));
+var _utils = require("@mui/utils");
+var _system = require("@mui/system");
+var _svgIconClasses = require("./svgIconClasses");
+var _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["children", "className", "color", "component", "fontSize", "htmlColor", "inheritViewBox", "titleAccess", "viewBox", "classes"];
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { unstable_capitalize as capitalize, unstable_composeClasses as composeClasses } from '@mui/utils';
-import { styled, useThemeProps } from '@mui/system';
-import { getSvgIconUtilityClass } from './svgIconClasses';
-import { jsx as _jsx } from "react/jsx-runtime";
-import { jsxs as _jsxs } from "react/jsx-runtime";
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const useUtilityClasses = ownerState => {
   const {
     color,
@@ -18,9 +25,9 @@ const useUtilityClasses = ownerState => {
     classes
   } = ownerState;
   const slots = {
-    root: ['root', color !== 'inherit' && `color${capitalize(color)}`, `fontSize${capitalize(fontSize)}`]
+    root: ['root', color !== 'inherit' && `color${(0, _utils.unstable_capitalize)(color)}`, `fontSize${(0, _utils.unstable_capitalize)(fontSize)}`]
   };
-  return composeClasses(slots, getSvgIconUtilityClass, classes);
+  return (0, _utils.unstable_composeClasses)(slots, _svgIconClasses.getSvgIconUtilityClass, classes);
 };
 const defaultMaterialDesignColors = {
   inherit: undefined,
@@ -33,14 +40,14 @@ const defaultMaterialDesignColors = {
   success: '#2e7d32',
   warning: '#ed6c02'
 };
-const SvgIconRoot = styled('svg', {
+const SvgIconRoot = (0, _system.styled)('svg', {
   name: 'MuiSvgIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const {
       ownerState
     } = props;
-    return [styles.root, ownerState.color !== 'inherit' && styles[`color${capitalize(ownerState.color)}`], styles[`fontSize${capitalize(ownerState.fontSize)}`]];
+    return [styles.root, ownerState.color !== 'inherit' && styles[`color${(0, _utils.unstable_capitalize)(ownerState.color)}`], styles[`fontSize${(0, _utils.unstable_capitalize)(ownerState.fontSize)}`]];
   }
 })(({
   theme,
@@ -84,7 +91,7 @@ const SvgIconRoot = styled('svg', {
  * - [SvgIcon API](https://mui.com/material-ui/api/svg-icon/)
  */
 const SvgIcon = /*#__PURE__*/React.forwardRef(function SvgIcon(inProps, ref) {
-  const props = useThemeProps({
+  const props = (0, _system.useThemeProps)({
     props: inProps,
     name: 'MuiSvgIcon'
   });
@@ -100,8 +107,8 @@ const SvgIcon = /*#__PURE__*/React.forwardRef(function SvgIcon(inProps, ref) {
       viewBox = '0 0 24 24',
       classes: classesProp
     } = props,
-    other = _objectWithoutPropertiesLoose(props, _excluded);
-  const ownerState = _extends({}, props, {
+    other = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
+  const ownerState = (0, _extends2.default)({}, props, {
     classes: classesProp,
     color,
     component,
@@ -115,9 +122,9 @@ const SvgIcon = /*#__PURE__*/React.forwardRef(function SvgIcon(inProps, ref) {
     more.viewBox = viewBox;
   }
   const classes = useUtilityClasses(ownerState);
-  return /*#__PURE__*/_jsxs(SvgIconRoot, _extends({
+  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(SvgIconRoot, (0, _extends2.default)({
     as: component,
-    className: clsx(classes.root, className),
+    className: (0, _clsx.default)(classes.root, className),
     focusable: "false",
     color: htmlColor,
     "aria-hidden": titleAccess ? undefined : true,
@@ -125,7 +132,7 @@ const SvgIcon = /*#__PURE__*/React.forwardRef(function SvgIcon(inProps, ref) {
     ref: ref
   }, more, other, {
     ownerState: ownerState,
-    children: [children, titleAccess ? /*#__PURE__*/_jsx("title", {
+    children: [children, titleAccess ? /*#__PURE__*/(0, _jsxRuntime.jsx)("title", {
       children: titleAccess
     }) : null]
   }));
@@ -138,15 +145,15 @@ process.env.NODE_ENV !== "production" ? SvgIcon.propTypes /* remove-proptypes */
   /**
    * Node passed into the SVG element.
    */
-  children: PropTypes.node,
+  children: _propTypes.default.node,
   /**
    * Override or extend the styles applied to the component.
    */
-  classes: PropTypes.object,
+  classes: _propTypes.default.object,
   /**
    * @ignore
    */
-  className: PropTypes.string,
+  className: _propTypes.default.string,
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
@@ -154,21 +161,21 @@ process.env.NODE_ENV !== "production" ? SvgIcon.propTypes /* remove-proptypes */
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    * @default 'inherit'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([PropTypes.oneOf(['inherit', 'action', 'disabled', 'primary', 'secondary', 'error', 'info', 'success', 'warning']), PropTypes.string]),
+  color: _propTypes.default /* @typescript-to-proptypes-ignore */.oneOfType([_propTypes.default.oneOf(['inherit', 'action', 'disabled', 'primary', 'secondary', 'error', 'info', 'success', 'warning']), _propTypes.default.string]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: _propTypes.default.elementType,
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    * @default 'medium'
    */
-  fontSize: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([PropTypes.oneOf(['inherit', 'large', 'medium', 'small']), PropTypes.string]),
+  fontSize: _propTypes.default /* @typescript-to-proptypes-ignore */.oneOfType([_propTypes.default.oneOf(['inherit', 'large', 'medium', 'small']), _propTypes.default.string]),
   /**
    * Applies a color attribute to the SVG element.
    */
-  htmlColor: PropTypes.string,
+  htmlColor: _propTypes.default.string,
   /**
    * If `true`, the root node will inherit the custom `component`'s viewBox and the `viewBox`
    * prop will be ignored.
@@ -176,22 +183,22 @@ process.env.NODE_ENV !== "production" ? SvgIcon.propTypes /* remove-proptypes */
    * `component`'s viewBox to the root node.
    * @default false
    */
-  inheritViewBox: PropTypes.bool,
+  inheritViewBox: _propTypes.default.bool,
   /**
    * The shape-rendering attribute. The behavior of the different options is described on the
    * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
    * If you are having issues with blurry icons you should investigate this prop.
    */
-  shapeRendering: PropTypes.string,
+  shapeRendering: _propTypes.default.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])), PropTypes.func, PropTypes.object]),
+  sx: _propTypes.default.oneOfType([_propTypes.default.arrayOf(_propTypes.default.oneOfType([_propTypes.default.func, _propTypes.default.object, _propTypes.default.bool])), _propTypes.default.func, _propTypes.default.object]),
   /**
    * Provides a human-readable title for the element that contains it.
    * https://www.w3.org/TR/SVG-access/#Equivalent
    */
-  titleAccess: PropTypes.string,
+  titleAccess: _propTypes.default.string,
   /**
    * Allows you to redefine what the coordinates without units mean inside an SVG element.
    * For example, if the SVG element is 500 (width) by 200 (height),
@@ -200,7 +207,7 @@ process.env.NODE_ENV !== "production" ? SvgIcon.propTypes /* remove-proptypes */
    * to bottom right (50,20) and each unit will be worth 10px.
    * @default '0 0 24 24'
    */
-  viewBox: PropTypes.string
+  viewBox: _propTypes.default.string
 } : void 0;
 SvgIcon.muiName = 'SvgIcon';
-export default SvgIcon;
+var _default = exports.default = SvgIcon;
