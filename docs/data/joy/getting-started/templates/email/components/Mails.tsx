@@ -54,12 +54,12 @@ const data = [
 export default function EmailList() {
   return (
     <List
-      sx={(theme) => ({
+      sx={{
         [`& .${listItemButtonClasses.root}.${listItemButtonClasses.selected}`]: {
           backgroundColor: 'background.level1',
           borderLeftColor: 'var(--joy-palette-primary-outlinedBorder)',
         },
-      })}
+      }}
     >
       {data.map((item, index) => (
         <React.Fragment key={index}>

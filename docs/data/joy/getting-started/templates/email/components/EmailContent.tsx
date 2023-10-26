@@ -21,7 +21,7 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 export default function EmailContent() {
   const [open, setOpen] = React.useState([false, false, false]);
 
-  const handleSnackbarOpen = (index, message, color) => {
+  const handleSnackbarOpen = (index) => {
     const updatedOpen = [...open];
     updatedOpen[index] = true;
     setOpen(updatedOpen);
@@ -75,9 +75,7 @@ export default function EmailContent() {
             variant="plain"
             color="neutral"
             startDecorator={<ReplyRoundedIcon />}
-            onClick={() =>
-              handleSnackbarOpen(0, 'Your message was sent successfully.', 'success')
-            }
+            onClick={() => handleSnackbarOpen('Your message has been sent.')}
           >
             Reply
           </Button>
@@ -98,16 +96,14 @@ export default function EmailContent() {
               </Button>
             }
           >
-            Your message was sent successfully.
+            Your message has been sent.
           </Snackbar>
           <Button
             size="sm"
             variant="plain"
             color="neutral"
             startDecorator={<ForwardToInboxRoundedIcon />}
-            onClick={() =>
-              handleSnackbarOpen(1, 'Your message was sent successfully.', 'success')
-            }
+            onClick={() => handleSnackbarOpen('Your message has been forwarded.')}
           >
             Forward
           </Button>
@@ -128,16 +124,14 @@ export default function EmailContent() {
               </Button>
             }
           >
-            Your message was forwarded successfully.
+            Your message has been forwarded.
           </Snackbar>
           <Button
             size="sm"
             variant="plain"
             color="neutral"
             startDecorator={<DeleteRoundedIcon />}
-            onClick={() =>
-              handleSnackbarOpen(2, 'Your message was sent to trash.', 'danger')
-            }
+            onClick={() => handleSnackbarOpen('Your message has been deleted.')}
           >
             Delete
           </Button>
@@ -158,7 +152,7 @@ export default function EmailContent() {
               </Button>
             }
           >
-            Your message was sent to trash.
+            Your message has been deleted.
           </Snackbar>
         </Box>
       </Box>

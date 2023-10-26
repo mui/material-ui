@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import ListSubheader from '@mui/joy/ListSubheader';
 import ListItem from '@mui/joy/ListItem';
@@ -11,7 +10,6 @@ import ListItemContent from '@mui/joy/ListItemContent';
 // Icons import
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 export default function Navigation() {

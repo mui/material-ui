@@ -37,14 +37,14 @@ export default function DrawerMobileNavigation() {
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}>
         <FormControl>
           <Typography level="title-sm">To</Typography>
-          <Input placeholder="email@email.com" aria-label="Message"></Input>
+          <Input placeholder="email@email.com" aria-label="Message" />
         </FormControl>
         <FormControl>
           <Typography level="title-sm">CC</Typography>
-          <Input placeholder="email@email.com" aria-label="Message"></Input>
+          <Input placeholder="email@email.com" aria-label="Message" />
         </FormControl>
 
-        <Input placeholder="Subject" aria-label="Message"></Input>
+        <Input placeholder="Subject" aria-label="Message" />
 
         <FormControl sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           <Textarea
