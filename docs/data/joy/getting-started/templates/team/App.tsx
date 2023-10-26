@@ -138,7 +138,7 @@ export default function TeamExample() {
               },
             }}
           >
-            <Accordion expanded>
+            <Accordion defaultExpanded>
               <AccordionSummary>
                 <Typography level="title-sm">Keywords</Typography>
               </AccordionSummary>
@@ -189,7 +189,7 @@ export default function TeamExample() {
                 <Divider />
               </AccordionDetails>
             </Accordion>
-            <Accordion expanded>
+            <Accordion defaultExpanded>
               <AccordionSummary>
                 <Typography level="title-sm">Location</Typography>
               </AccordionSummary>
@@ -230,7 +230,7 @@ export default function TeamExample() {
                 <Divider />
               </AccordionDetails>
             </Accordion>
-            <Accordion expanded>
+            <Accordion defaultExpanded>
               <AccordionSummary>
                 <Typography level="title-sm">Education</Typography>
               </AccordionSummary>
