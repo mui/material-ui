@@ -40,7 +40,7 @@ export const FormLabelRoot = styled('label', {
 })<{ ownerState: FormLabelOwnerState }>(({ theme, ownerState }) => {
   const { vars: tokens } = theme;
 
-  const pxFontSize = 16;
+  const pxFontSize = tokens.sys.typescale.body.large.size;
 
   const letterSpacing = `${theme.sys.typescale.body.large.tracking / pxFontSize}rem`;
 
