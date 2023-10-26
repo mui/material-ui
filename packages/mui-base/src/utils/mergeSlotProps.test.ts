@@ -72,6 +72,33 @@ describe('mergeSlotProps', () => {
     );
   });
 
+  it('joins all the class names in order from internal to external without getSlotProps', () => {
+    const additionalProps = {
+      className: 'additional',
+    };
+
+    const externalForwardedProps = {
+      className: 'externalForwarded',
+    };
+
+    const externalSlotProps = {
+      className: 'externalSlot',
+    };
+
+    const className = ['class1', 'class2'];
+
+    const merged = mergeSlotProps({
+      additionalProps,
+      externalForwardedProps,
+      externalSlotProps,
+      className,
+    });
+
+    expect(merged.props.className).to.equal(
+      'additional class1 class2 externalForwarded externalSlot',
+    );
+  });
+
   it('merges the style props', () => {
     const getSlotProps = () => ({
       style: {
