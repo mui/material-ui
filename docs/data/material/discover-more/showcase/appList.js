@@ -27,7 +27,7 @@ const appList = [
     description:
       'QuintoAndar is a company that uses technology and ' +
       'design to simplify the rental of residential real estate.',
-    image: 'quintoandar.png',
+    image: 'quintoandar.jpg',
     link: 'https://www.quintoandar.com.br/',
     similarWebVisits: 8500,
     dateAdded: '2019-05-08',
@@ -47,7 +47,7 @@ const appList = [
     description:
       'OpenClassrooms is an online platform offering top quality, ' +
       'education-to-employment programs and career coaching services for students worldwide. ',
-    image: 'openclassrooms.jpg',
+    image: 'openclassrooms.png',
     link: 'https://openclassrooms.com/en/',
     similarWebVisits: 6000,
     dateAdded: '2018-01-34',
@@ -320,16 +320,6 @@ const appList = [
     dateAdded: '2018-01-23',
   },
   {
-    title: 'DropDesk',
-    description:
-      'DropDesk creates unique workspaces & experiences by converting unused space into vibrant ' +
-      'coworking spaces. Meet, work and gain a sense of community.',
-    image: 'dropdesk.jpg',
-    link: 'https://drop-desk.com/',
-    similarWebVisits: 50,
-    dateAdded: '2019-01-01',
-  },
-  {
     title: 'npm registry browser',
     description:
       'An open source web app that lets you search the npm registry ' +
@@ -440,11 +430,11 @@ const appList = [
   {
     title: 'refine FineFoods demo',
     description: 'A full-featured Admin panel app',
-    image: 'refine-finefoods.jpg',
+    image: 'refine-finefoods.png',
     link: 'https://example.mui.admin.refine.dev/',
     source:
-      'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
-    stars: 2415,
+      'https://github.com/refinedev/refine/tree/next/examples/finefoods-material-ui',
+    stars: 10646,
     dateAdded: '2022-06-21',
   },
 ];

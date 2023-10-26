@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-const fse = require('fs-extra');
 const path = require('path');
+const fse = require('fs-extra');
 
 const CACHE_OUTPUT_FILE = 'cache-output.json';
 

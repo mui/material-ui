@@ -1,93 +1,112 @@
-import * as ttp from 'typescript-to-proptypes';
+import * as ts from 'typescript';
+import { getSymbolDescription } from '../buildApiUtils';
+import { TypeScriptProject } from './createTypeScriptProject';
+import { getPropsFromComponentNode } from './getPropsFromComponentNode';
+import resolveExportSpecifier from './resolveExportSpecifier';
 
-export interface Styles {
+export interface Classes {
   classes: string[];
   globalClasses: Record<string, string>;
-  name: string | null;
   descriptions: Record<string, string>;
 }
 
-export default async function parseStyles(
-  api: { props?: any; filename: string; name: string },
-  program: ttp.ts.Program,
-): Promise<Styles> {
-  // component has no classes or no props
-  // or they're inherited from an external component and we don't want them documented on this component.
-  if (api.props?.classes === undefined) {
-    return {
-      classes: [],
-      descriptions: {},
-      globalClasses: {},
-      name: null,
-    };
-  }
+export interface Styles extends Classes {
+  name: string | null;
+}
 
-  const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
-  const proptypes = ttp.parseFromProgram(typesFilename, program, {
-    shouldResolveObject: ({ name }) => {
-      return name === 'classes';
-    },
-    checkDeclarations: true,
-  });
+const EMPTY_STYLES: Styles = {
+  classes: [],
+  descriptions: {},
+  globalClasses: {},
+  name: null,
+};
 
-  const component = proptypes.body.find((internalComponent) => {
-    return internalComponent.name === api.name;
-  });
-  if (component === undefined) {
-    return {
-      classes: [],
-      descriptions: {},
-      globalClasses: {},
-      name: null,
-    };
-    // TODO: should we throw?
-    // throw new TypeError(
-    //   `Unable to find declaration of ${api.name} in one of the ${
-    //     proptypes.body.length
-    //   } components: ${proptypes.body.map(({ name }) => name)}`,
-    // );
-  }
-
-  const classes = component.types.find((propType) => {
-    const isClassesProp = propType.name === 'classes';
-
-    return isClassesProp;
-  });
-
-  let classesPropType: ttp.InterfaceType | undefined;
-  if (classes?.propType.type === 'InterfaceNode') {
-    // classes: {}
-    classesPropType = classes.propType;
-  } else if (classes?.propType.type === 'UnionNode') {
-    // classes?: {}
-    classesPropType = classes.propType.types.find((propType): propType is ttp.InterfaceType => {
-      return propType.type === 'InterfaceNode';
+function removeUndefinedFromType(type: ts.Type) {
+  // eslint-disable-next-line no-bitwise
+  if (type.flags & ts.TypeFlags.Union) {
+    return (type as ts.UnionType).types.find((subType) => {
+      return subType.flags !== ts.TypeFlags.Undefined;
     });
   }
-  if (classesPropType === undefined) {
-    return {
-      classes: [],
-      descriptions: {},
-      globalClasses: {},
-      name: null,
-    };
+
+  return type;
+}
+
+/**
+ * Gets class names and descriptions from the {ComponentName}Classes interface.
+ */
+function extractClasses(project: TypeScriptProject, componentName: string): Styles {
+  const result: Styles = {
+    classes: [],
+    descriptions: {},
+    globalClasses: {},
+    name: null,
+  };
+
+  const classesInterfaceName = `${componentName}Classes`;
+  if (!project.exports[classesInterfaceName]) {
+    return EMPTY_STYLES;
   }
 
-  return {
-    classes: classesPropType.types.map((unionMember) => {
-      const [className] = unionMember;
-      return className;
-    }),
-    descriptions: Object.fromEntries(
-      classesPropType.types
-        .map((unionMember) => {
-          const [className, { jsDoc }] = unionMember;
+  const classesType = project.checker.getDeclaredTypeOfSymbol(
+    project.exports[classesInterfaceName],
+  );
 
-          return [className, jsDoc];
-        })
-        .filter((descriptionEntry) => {
-          return descriptionEntry[1] !== undefined;
-        }),
+  const classesTypeDeclaration = classesType?.symbol?.declarations?.[0];
+  if (classesTypeDeclaration && ts.isInterfaceDeclaration(classesTypeDeclaration)) {
+    const classesProperties = classesType.getProperties();
+    classesProperties.forEach((symbol) => {
+      result.classes.push(symbol.name);
+      result.descriptions[symbol.name] = getSymbolDescription(symbol, project);
+    });
+
+    return result;
+  }
+
+  return EMPTY_STYLES;
+}
+
+export default function parseStyles({
+  project,
+  componentName,
+}: {
+  project: TypeScriptProject;
+  componentName: string;
+}): Styles {
+  const exportedSymbol =
+    project.exports[componentName] ?? project.exports[`Unstable_${componentName}`];
+  if (!exportedSymbol) {
+    throw new Error(`No exported component for the componentName "${componentName}"`);
+  }
+
+  const localeSymbol = resolveExportSpecifier(exportedSymbol, project);
+  const declaration = localeSymbol.valueDeclaration!;
+
+  const classesProp = getPropsFromComponentNode({
+    node: declaration,
+    project,
+    shouldInclude: ({ name }) => name === 'classes',
+    checkDeclarations: true,
+  })?.props.classes;
+  if (classesProp == null) {
+    // We could not infer the type of the classes prop, so we try to extract them from the {ComponentName}Classes interface
+    return extractClasses(project, componentName);
+  }
+
+  const classes: Record<string, string> = {};
+  classesProp.signatures.forEach((propType) => {
+    const type = project.checker.getTypeAtLocation(propType.symbol.declarations?.[0]!);
+    removeUndefinedFromType(type)
+      ?.getProperties()
+      .forEach((property) => {
+        classes[property.escapedName.toString()] = getSymbolDescription(property, project);
+      });
+  });
+
+  return {
+    classes: Object.keys(classes),
+    descriptions: Object.fromEntries(
+      Object.entries(classes).filter((descriptionEntry) => !!descriptionEntry[1]),
     ),
     globalClasses: {},
     name: null,

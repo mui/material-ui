@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -6,15 +7,15 @@ import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
+  unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
-import { TypographyContext } from '../Typography/Typography';
+import { TypographyNestedContext, TypographyInheritContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: LinkOwnerState) => {
   const { level, color, variant, underline, focusVisible, disabled } = ownerState;
@@ -40,19 +41,29 @@ const StartDecorator = styled('span', {
   name: 'JoyLink',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: LinkOwnerState }>({
+})<{ ownerState: LinkOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
   marginInlineEnd: 'clamp(4px, var(--Link-gap, 0.375em), 0.75rem)',
-});
+  ...(typeof ownerState.startDecorator !== 'string' &&
+    (ownerState.alignItems === 'flex-start' ||
+      (ownerState.sx as any)?.alignItems === 'flex-start') && {
+      marginTop: '2px', // this makes the alignment perfect in most cases
+    }),
+}));
 
 const EndDecorator = styled('span', {
   name: 'JoyLink',
   slot: 'endDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: LinkOwnerState }>({
+})<{ ownerState: LinkOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
   marginInlineStart: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)', // for end decorator, 0.25em looks better.
-});
+  ...(typeof ownerState.startDecorator !== 'string' &&
+    (ownerState.alignItems === 'flex-start' ||
+      (ownerState.sx as any)?.alignItems === 'flex-start') && {
+      marginTop: '2px', // this makes the alignment perfect in most cases
+    }),
+}));
 
 const LinkRoot = styled('a', {
   name: 'JoyLink',
@@ -62,12 +73,12 @@ const LinkRoot = styled('a', {
   return [
     {
       '--Icon-fontSize': '1.25em',
-      '--CircularProgress-size': '1em',
+      '--Icon-color': 'currentColor',
+      '--CircularProgress-size': '1.25em',
+      '--CircularProgress-thickness': '3px',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
       ...(ownerState.level === 'inherit' && {
-        fontSize: 'inherit',
-        fontFamily: 'inherit',
-        lineHeight: 'inherit',
+        font: 'inherit',
       }),
       ...(ownerState.underline === 'none' && {
         textDecoration: 'none',
@@ -84,6 +95,8 @@ const LinkRoot = styled('a', {
       ...(ownerState.startDecorator && {
         verticalAlign: 'bottom', // to make the link align with the parent's content
       }),
+      textDecorationThickness: 'max(0.08em, 1px)', // steal from https://moderncss.dev/modern-css-for-dynamic-component-based-architecture/#css-reset-additions
+      textUnderlineOffset: '0.15em', // steal from https://moderncss.dev/modern-css-for-dynamic-component-based-architecture/#css-reset-additions
       display: 'inline-flex',
       alignItems: 'center',
       WebkitTapHighlightColor: 'transparent',
@@ -95,38 +108,36 @@ const LinkRoot = styled('a', {
       borderRadius: theme.vars.radius.xs,
       padding: 0, // Remove the padding in Firefox
       cursor: 'pointer',
-      ...(ownerState.color !== 'context' && {
-        textDecorationColor: `rgba(${
-          theme.vars.palette[ownerState.color!]?.mainChannel
-        } / var(--Link-underlineOpacity, 0.72))`,
-      }),
+      textDecorationColor: `var(--variant-outlinedBorder, rgba(${
+        theme.vars.palette[ownerState.color!]?.mainChannel
+      } / var(--Link-underlineOpacity, 0.72)))`,
       ...(ownerState.variant
         ? {
-            paddingBlock: 'min(0.15em, 4px)',
-            paddingInline: '0.375em', // better than left, right because it also works with writing mode.
-            ...(!ownerState.nested && {
-              marginInline: '-0.375em',
+            paddingBlock: 'min(0.1em, 4px)',
+            paddingInline: '0.25em', // better than left, right because it also works with writing mode.
+            ...(!ownerState.nesting && {
+              marginInline: '-0.25em',
             }),
           }
         : {
-            ...(ownerState.color !== 'context' && {
-              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
-            }),
+            color: `var(--variant-plainColor, rgba(${
+              theme.vars.palette[ownerState.color!]?.mainChannel
+            } / 1))`,
             [`&.${linkClasses.disabled}`]: {
               pointerEvents: 'none',
-              ...(ownerState.color !== 'context' && {
-                color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
-              }),
+              color: `var(--variant-plainDisabledColor, rgba(${
+                theme.vars.palette[ownerState.color!]?.mainChannel
+              } / 0.6))`,
             },
           }),
-      userSelect: 'none',
+      userSelect: ownerState.component === 'button' ? 'none' : undefined,
       MozAppearance: 'none', // Reset
       WebkitAppearance: 'none', // Reset
       '&::-moz-focus-inner': {
         borderStyle: 'none', // Remove Firefox dotted outline.
       },
       ...(ownerState.overlay
-        ? {
+        ? ({
             position: 'initial',
             '&::after': {
               content: '""',
@@ -136,18 +147,18 @@ const LinkRoot = styled('a', {
               left: 0,
               bottom: 0,
               right: 0,
-              borderRadius: `var(--internal-action-radius, inherit)`,
-              margin: `var(--internal-action-margin)`,
+              borderRadius: `var(--unstable_actionRadius, inherit)`,
+              margin: `var(--unstable_actionMargin)`,
             },
             [`${theme.focus.selector}`]: {
               '&::after': theme.focus.default,
             },
-          }
-        : {
+          } as const)
+        : ({
             position: 'relative',
             [theme.focus.selector]: theme.focus.default,
-          }),
-    },
+          } as const)),
+    } as const,
     ownerState.variant && {
       ...theme.variants[ownerState.variant]?.[ownerState.color!],
       '&:hover': theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
@@ -157,10 +168,19 @@ const LinkRoot = styled('a', {
     },
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Link](https://mui.com/joy-ui/react-link/)
+ *
+ * API:
+ *
+ * - [Link API](https://mui.com/joy-ui/api/link/)
+ */
 const Link = React.forwardRef(function Link(inProps, ref) {
   const {
-    color: colorProp = 'primary',
+    color = 'primary',
     textColor,
     variant,
     ...themeProps
@@ -169,9 +189,8 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     name: 'JoyLink',
   });
 
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
-  const nested = React.useContext(TypographyContext);
+  const nesting = React.useContext(TypographyNestedContext);
+  const inheriting = React.useContext(TypographyInheritContext);
 
   const props = extendSxProp({ ...themeProps, color: textColor }) as LinkProps;
 
@@ -180,15 +199,18 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     disabled = false,
     onBlur,
     onFocus,
-    level: levelProp = 'body1',
+    level: levelProp = 'body-md',
     overlay = false,
     underline = 'hover',
     endDecorator,
     startDecorator,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
-  const level = nested ? inProps.level || 'inherit' : levelProp;
+  const level = nesting || inheriting ? inProps.level || 'inherit' : levelProp;
 
   const {
     isFocusVisibleRef,
@@ -226,10 +248,11 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     variant,
     level,
     overlay,
-    nested,
+    nesting,
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
@@ -239,35 +262,39 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     ref: handleRef,
     className: classes.root,
     elementType: LinkRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: StartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: EndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   return (
-    <TypographyContext.Provider value>
+    <TypographyNestedContext.Provider value>
       <SlotRoot {...rootProps}>
         {startDecorator && (
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        {children}
+        {isMuiElement(children, ['Skeleton'])
+          ? React.cloneElement(children as React.ReactElement, {
+              variant: (children as React.ReactElement).props.variant || 'inline',
+            })
+          : children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
       </SlotRoot>
-    </TypographyContext.Provider>
+    </TypographyNestedContext.Provider>
   );
 }) as OverridableComponent<LinkTypeMap>;
 
@@ -285,9 +312,14 @@ Link.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -299,7 +331,7 @@ Link.propTypes /* remove-proptypes */ = {
   endDecorator: PropTypes.node,
   /**
    * Applies the theme typography styles.
-   * @default 'body1'
+   * @default 'body-md'
    */
   level: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['body1', 'body2', 'body3', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'inherit']),
@@ -314,11 +346,29 @@ Link.propTypes /* remove-proptypes */ = {
    */
   onFocus: PropTypes.func,
   /**
-   * If `true`, the ::after psuedo element is added to cover the area of interaction.
+   * If `true`, the ::after pseudo element is added to cover the area of interaction.
    * The parent of the overlay Link should have `relative` CSS position.
    * @default false
    */
   overlay: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    endDecorator: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+  }),
   /**
    * Element placed before the children.
    */

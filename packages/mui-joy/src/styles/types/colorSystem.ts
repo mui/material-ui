@@ -1,107 +1,88 @@
 import { OverridableStringUnion, Simplify } from '@mui/types';
+import { MergeDefault, OverridableRecord, OverridableImplicitRecord } from './utils';
 
 /**
  * ====================================================
  * Developer facing types, they can augment these types.
  * ====================================================
  */
-export interface PaletteVariant {
+interface DefaultPaletteVariant {
   plainColor: string;
-  plainBg: string;
-  plainBorder: string;
-  // hover state
-  plainHoverColor: string;
-  plainHoverBorder: string;
   plainHoverBg: string;
-  // active state
-  plainActiveColor: string;
-  plainActiveBorder: string;
   plainActiveBg: string;
-  // disabled state
   plainDisabledColor: string;
-  plainDisabledBorder: string;
-  plainDisabledBg: string;
 
   outlinedColor: string;
   outlinedBorder: string;
-  outlinedBg: string;
-  // hover state
-  outlinedHoverColor: string;
-  outlinedHoverBorder: string;
   outlinedHoverBg: string;
-  // active state
-  outlinedActiveColor: string;
-  outlinedActiveBorder: string;
+  outlinedHoverBorder: string;
   outlinedActiveBg: string;
-  // disabled state
   outlinedDisabledColor: string;
   outlinedDisabledBorder: string;
-  outlinedDisabledBg: string;
 
   softColor: string;
-  softBorder: string;
   softBg: string;
-  // hover state
-  softHoverColor: string;
-  softHoverBorder: string;
   softHoverBg: string;
-  // active state
-  softActiveColor: string;
-  softActiveBorder: string;
   softActiveBg: string;
-  // disabled state
   softDisabledColor: string;
-  softDisabledBorder: string;
   softDisabledBg: string;
 
   solidColor: string;
   solidBg: string;
-  solidBorder: string;
-  // hover state
-  solidHoverColor: string;
   solidHoverBg: string;
-  solidHoverBorder: string;
-  // active state
-  solidActiveColor: string;
   solidActiveBg: string;
-  solidActiveBorder: string;
-  // disabled state
   solidDisabledColor: string;
   solidDisabledBg: string;
-  solidDisabledBorder: string;
 }
 
+type DefaultVariant = 'plain' | 'outlined' | 'soft' | 'solid';
+type DefaultState = 'Hover' | 'Active' | 'Disabled';
+type DefaultProperty = 'Color' | 'Bg' | 'Border';
+
+export interface PaletteVariant
+  extends Record<
+    `${DefaultVariant}${DefaultProperty}` | `${DefaultVariant}${DefaultState}${DefaultProperty}`,
+    string
+  > {}
+
 export interface PaletteRangeOverrides {}
-export type ExtendedPaletteRange = OverridableStringUnion<
-  | '50'
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900'
-  | 'mainChannel'
-  | 'lightChannel'
-  | 'darkChannel',
-  PaletteRangeOverrides
->;
+export interface DefaultPaletteRange extends DefaultPaletteVariant {
+  50: string;
+  100: string;
+  200: string;
+  300: string;
+  400: string;
+  500: string;
+  600: string;
+  700: string;
+  800: string;
+  900: string;
+  mainChannel: string;
+  lightChannel: string;
+  darkChannel: string;
+}
+export interface PaletteRange
+  extends OverridableRecord<DefaultPaletteRange, PaletteRangeOverrides, string> {}
 
-export interface PaletteRange extends Record<ExtendedPaletteRange, string>, PaletteVariant {}
-
-export interface PaletteCommon {
+interface DefaultPaletteCommon {
   white: string;
   black: string;
 }
+export interface PaletteCommonOverrides {}
+export interface PaletteCommon
+  extends OverridableRecord<DefaultPaletteCommon, PaletteCommonOverrides, string> {}
 
-export interface PaletteText {
+interface DefaultPaletteText {
   primary: string;
   secondary: string;
   tertiary: string;
+  icon: string;
 }
-export interface PaletteBackground {
+export interface PaletteTextOverrides {}
+export interface PaletteText
+  extends OverridableRecord<DefaultPaletteText, PaletteTextOverrides, string> {}
+
+interface DefaultPaletteBackground {
   body: string;
   surface: string;
   popup: string;
@@ -111,10 +92,13 @@ export interface PaletteBackground {
   tooltip: string;
   backdrop: string;
 }
+export interface PaletteBackgroundOverrides {}
+export interface PaletteBackground
+  extends OverridableRecord<DefaultPaletteBackground, PaletteBackgroundOverrides, string> {}
 
 export interface ColorPalettePropOverrides {}
 
-export type DefaultColorPalette = 'primary' | 'neutral' | 'danger' | 'info' | 'success' | 'warning';
+export type DefaultColorPalette = 'primary' | 'neutral' | 'danger' | 'success' | 'warning';
 
 export type ColorPaletteProp = OverridableStringUnion<
   DefaultColorPalette,
@@ -123,27 +107,68 @@ export type ColorPaletteProp = OverridableStringUnion<
 
 // Split interfaces into multiple chunks so that they can be augmented independently
 
-export interface PalettePrimary extends PaletteRange {}
-export interface PaletteNeutral extends PaletteRange {}
-export interface PaletteDanger extends PaletteRange {}
-export interface PaletteInfo extends PaletteRange {}
-export interface PaletteSuccess extends PaletteRange {}
-export interface PaletteWarning extends PaletteRange {}
+export interface PalettePrimaryOverrides {}
 
-export interface Palette {
+export interface PalettePrimary
+  extends OverridableRecord<PaletteRange, PalettePrimaryOverrides, string> {}
+
+export interface PaletteNeutralOverrides {}
+export interface PaletteNeutral
+  extends OverridableRecord<
+    PaletteRange & {
+      plainHoverColor: string;
+      outlinedHoverColor: string;
+      softHoverColor: string;
+    },
+    PaletteNeutralOverrides,
+    string
+  > {}
+
+export interface PaletteDangerOverrides {}
+export interface PaletteDanger
+  extends OverridableRecord<PaletteRange, PaletteDangerOverrides, string> {}
+
+export interface PaletteSuccessOverrides {}
+export interface PaletteSuccess
+  extends OverridableRecord<PaletteRange, PaletteSuccessOverrides, string> {}
+
+export interface PaletteWarningOverrides {}
+export interface PaletteWarning
+  extends OverridableRecord<PaletteRange, PaletteWarningOverrides, string> {}
+
+export interface PaletteOverrides {}
+export interface Palette
+  extends OverridableImplicitRecord<
+    {
+      primary: PalettePrimary;
+      neutral: PaletteNeutral;
+      danger: PaletteDanger;
+      success: PaletteSuccess;
+      warning: PaletteWarning;
+      common: PaletteCommon;
+      text: PaletteText;
+      background: PaletteBackground;
+      divider: string;
+      focusVisible: string;
+    },
+    PaletteOverrides
+  > {
   mode: 'light' | 'dark';
-  primary: PalettePrimary;
-  neutral: PaletteNeutral;
-  danger: PaletteDanger;
-  info: PaletteInfo;
-  success: PaletteSuccess;
-  warning: PaletteWarning;
-  common: PaletteCommon;
-  text: PaletteText;
-  background: PaletteBackground;
-  divider: string;
-  focusVisible: string;
 }
+
+export type PaletteOptions = MergeDefault<
+  Palette,
+  {
+    primary: DefaultPaletteRange & PaletteVariant;
+    neutral: DefaultPaletteRange & PaletteVariant;
+    danger: DefaultPaletteRange & PaletteVariant;
+    success: DefaultPaletteRange & PaletteVariant;
+    warning: DefaultPaletteRange & PaletteVariant;
+    background: DefaultPaletteBackground;
+    common: DefaultPaletteCommon;
+    text: DefaultPaletteText;
+  }
+>;
 
 export interface ColorSystem {
   palette: Palette;
@@ -151,8 +176,4 @@ export interface ColorSystem {
   shadowChannel: string;
 }
 
-export type ApplyColorInversion<T extends { color?: ColorPaletteProp | 'inherit' }> = Simplify<
-  Omit<T, 'color'> & {
-    color: T['color'] | 'context';
-  }
->;
+export type ApplyColorInversion<T extends { color?: ColorPaletteProp | 'inherit' }> = Simplify<T>;

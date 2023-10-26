@@ -39,7 +39,7 @@ const disableAd =
 const inHouseAds = [
   {
     name: 'scaffoldhub',
-    link: 'https://scaffoldhub.io/?partner=1',
+    link: 'https://www.scaffoldhub.io/?partner=1',
     img: '/static/ads-in-house/scaffoldhub.png',
     description: '<b>ScaffoldHub</b>. Automate building your full-stack MUI web-app.',
   },
@@ -88,9 +88,8 @@ class AdErrorBoundary extends React.Component {
     // send explicit `'null'`
     const eventLabel = String(this.props.eventLabel);
     // TODO: Use proper error monitoring service (e.g. Sentry) instead
-    window.ga('send', {
-      hitType: 'event',
-      eventCategory: 'ad',
+
+    window.gtag('event', 'ad', {
       eventAction: 'crash',
       eventLabel,
     });
@@ -107,7 +106,11 @@ class AdErrorBoundary extends React.Component {
   }
 }
 
-function Ad() {
+export const AD_MARGIN_TOP = 3;
+export const AD_MARGIN_BOTTOM = 3;
+export const AD_HEIGHT = 126;
+
+export default function Ad() {
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
 
@@ -191,9 +194,7 @@ function Ad() {
     }
 
     const delay = setTimeout(() => {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'ad',
+      window.gtag('event', 'ad', {
         eventAction: 'display',
         eventLabel,
       });
@@ -210,17 +211,18 @@ function Ad() {
       sx={{
         position: 'relative',
         display: 'block',
-        m: (theme) => theme.spacing(4, 0, 3),
+        mt: AD_MARGIN_TOP,
+        mb: AD_MARGIN_BOTTOM,
         ...(adShape === 'image' && {
-          minHeight: 126,
+          minHeight: AD_HEIGHT,
         }),
         ...(adShape === 'inline' && {
-          minHeight: 126,
+          minHeight: AD_HEIGHT,
           display: 'flex',
           alignItems: 'flex-end',
         }),
         ...(adShape === 'inline2' && {
-          minHeight: 126,
+          minHeight: AD_HEIGHT,
           display: 'flex',
           alignItems: 'flex-end',
         }),
@@ -233,5 +235,3 @@ function Ad() {
     </Box>
   );
 }
-
-export default Ad;

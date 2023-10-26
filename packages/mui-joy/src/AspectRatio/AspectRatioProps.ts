@@ -5,11 +5,24 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AspectRatioSlot = 'root' | 'content';
 
+export interface AspectRatioSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the content.
+   * @default 'div'
+   */
+  content?: React.ElementType;
+}
+
 export interface AspectRatioPropsColorOverrides {}
 export interface AspectRatioPropsVariantOverrides {}
 
 export type AspectRatioSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  AspectRatioSlot,
+  AspectRatioSlots,
   {
     root: SlotProps<'div', {}, AspectRatioOwnerState>;
     content: SlotProps<'div', {}, AspectRatioOwnerState>;
@@ -30,6 +43,12 @@ export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'>
        */
       children?: React.ReactNode;
       /**
+       * By default, the AspectRatio will maintain the aspect ratio of its content.
+       * Set this prop to `true` when the container is a flex row and you want the AspectRatio to fill the height of its container.
+       * @default false
+       */
+      flex?: boolean;
+      /**
        * The minimum calculated height of the element (not the CSS height).
        */
       minHeight?: number | string;
@@ -39,6 +58,7 @@ export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'>
       maxHeight?: number | string;
       /**
        * The CSS object-fit value of the first-child.
+       * @default 'cover'
        */
       objectFit?: React.CSSProperties['objectFit'];
       /**
@@ -52,7 +72,7 @@ export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'>
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'soft'
        */
       variant?: OverridableStringUnion<VariantProp, AspectRatioPropsVariantOverrides>;

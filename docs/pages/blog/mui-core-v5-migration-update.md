@@ -28,7 +28,7 @@ Here are the top 5 reasons why you should upgrade to v5 ASAP.
 
 ### 1. React 18 support
 
-Material UI v5 is the only version that fully supports [React 18](https://reactjs.org/blog/2022/03/29/react-v18.html), so you'll need to update if you want to take advantage of the latest and greatest React features.
+Material UI v5 is the only version that fully supports [React 18](https://legacy.reactjs.org/blog/2022/03/29/react-v18.html), so you'll need to update if you want to take advantage of the latest and greatest React features.
 
 ### 2. New style engine
 
@@ -87,6 +87,6 @@ You can check out the progress on this effort [in this GitHub issue](https://git
 ## Upgrade now
 
 What are you waiting for?
-Jump into the [newly revised migration documention](/material-ui/migration/migration-v4/) and get started today.
+Jump into the [newly revised migration documentation](/material-ui/migration/migration-v4/) and get started today.
 
 Let us know if you have any questions along the way!

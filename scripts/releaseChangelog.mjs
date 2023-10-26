@@ -1,6 +1,8 @@
 /* eslint-disable no-restricted-syntax */
-import { Octokit } from '@octokit/rest';
 import childProcess from 'child_process';
+import { Octokit } from '@octokit/rest';
+import fetch from 'node-fetch';
+import chalk from 'chalk';
 import { promisify } from 'util';
 import yargs from 'yargs';
 
@@ -63,6 +65,9 @@ async function main(argv) {
   }
   const octokit = new Octokit({
     auth: githubToken,
+    request: {
+      fetch,
+    },
   });
 
   const latestTaggedVersion = await findLatestTaggedVersion();
@@ -94,10 +99,26 @@ async function main(argv) {
     commitsItems.push(...compareCommits.commits.filter(filterCommit));
   }
 
+  let warnedOnce = false;
+
+  const getAuthor = (commit) => {
+    if (!commit.author) {
+      if (!warnedOnce) {
+        console.warn(
+          `The author of the commit: ${commit.commit.tree.url} cannot be retrieved. Please add the github username manually.`,
+        );
+      }
+      warnedOnce = true;
+      return chalk.red("TODO INSERT AUTHOR'S USERNAME");
+    }
+
+    return commit.author?.login;
+  };
+
   const authors = Array.from(
     new Set(
       commitsItems.map((commitsItem) => {
-        return commitsItem.author.login;
+        return getAuthor(commitsItem);
       }),
     ),
   );
@@ -128,7 +149,7 @@ async function main(argv) {
       // i.e. we can sort the lines alphanumerically
       .padStart(Math.floor(Math.log10(commitsItemsByDateDesc.length)) + 1, '0')} -->`;
     const shortMessage = commitsItem.commit.message.split('\n')[0];
-    return `- ${dateSortMarker}${shortMessage} @${commitsItem.author.login}`;
+    return `- ${dateSortMarker}${shortMessage} @${getAuthor(commitsItem)}`;
   });
   const nowFormatted = new Date().toLocaleDateString('en-US', {
     month: 'short',

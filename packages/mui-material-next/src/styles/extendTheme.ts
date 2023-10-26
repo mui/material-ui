@@ -7,6 +7,7 @@ import {
   emphasize,
   unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_styleFunctionSx as styleFunctionSx,
+  unstable_prepareCssVars as prepareCssVars,
   SxProps,
 } from '@mui/system';
 import {
@@ -27,6 +28,7 @@ import md3State from './state';
 import { elevationLight, elevationDark } from './elevation';
 import createMotions from './motion';
 import md3shape from './shape';
+import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 
 const defaultLightOverlays: Overlays = [...Array(25)].map(() => undefined) as Overlays;
 const defaultDarkOverlays: Overlays = [...Array(25)].map((_, index) => {
@@ -49,10 +51,15 @@ function setColor(obj: any, key: string, defaultValue: any) {
   obj[key] = obj[key] || defaultValue;
 }
 
-export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
+export const createGetCssVar = (cssVarPrefix = 'md') => systemCreateGetCssVar(cssVarPrefix);
 
 export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: any[]) {
-  const { colorSchemes: colorSchemesInput = {}, cssVarPrefix = 'mui', ...input } = options;
+  const {
+    colorSchemes: colorSchemesInput = {},
+    cssVarPrefix = 'md',
+    shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    ...input
+  } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
 
   const md3LightColors = createMd3LightColorScheme(getCssVar, md3CommonPalette);
@@ -199,6 +206,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       'Alert',
       'AppBar',
       'Avatar',
+      'Button',
       'Chip',
       'FilledInput',
       'LinearProgress',
@@ -243,6 +251,8 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       setColor(palette.Alert, 'warningIconColor', getCssVar('palette-warning-light'));
       setColor(palette.AppBar, 'defaultBg', getCssVar('palette-grey-100'));
       setColor(palette.Avatar, 'defaultBg', getCssVar('palette-grey-400'));
+      setColor(palette.Button, 'inheritContainedBg', getCssVar('palette-grey-300'));
+      setColor(palette.Button, 'inheritContainedHoverBg', getCssVar('palette-grey-A100'));
       setColor(palette.Chip, 'defaultBorder', getCssVar('palette-grey-400'));
       setColor(palette.Chip, 'defaultAvatarColor', getCssVar('palette-grey-700'));
       setColor(palette.Chip, 'defaultIconColor', getCssVar('palette-grey-700'));
@@ -315,6 +325,8 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       setColor(palette.AppBar, 'darkBg', getCssVar('palette-background-paper')); // specific for dark mode
       setColor(palette.AppBar, 'darkColor', getCssVar('palette-text-primary')); // specific for dark mode
       setColor(palette.Avatar, 'defaultBg', getCssVar('palette-grey-600'));
+      setColor(palette.Button, 'inheritContainedBg', getCssVar('palette-grey-800'));
+      setColor(palette.Button, 'inheritContainedHoverBg', getCssVar('palette-grey-700'));
       setColor(palette.Chip, 'defaultBorder', getCssVar('palette-grey-700'));
       setColor(palette.Chip, 'defaultAvatarColor', getCssVar('palette-grey-300'));
       setColor(palette.Chip, 'defaultIconColor', getCssVar('palette-grey-300'));
@@ -435,6 +447,19 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   });
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
+
+  const parserConfig = {
+    prefix: cssVarPrefix,
+    shouldSkipGeneratingVar,
+  };
+
+  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, Theme['vars']>(
+    theme,
+    parserConfig,
+  );
+  theme.vars = themeVars;
+  theme.generateCssVars = generateCssVars;
+  theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
 
   theme.unstable_sxConfig = {
     ...defaultSxConfig,

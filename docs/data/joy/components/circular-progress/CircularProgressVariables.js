@@ -1,6 +1,6 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import CircularProgress from '@mui/joy/CircularProgress';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function CircularProgressVariables() {
   return (
@@ -10,13 +10,14 @@ export default function CircularProgressVariables() {
         {
           var: '--CircularProgress-size',
           defaultValue: '40px',
+          helperText: 'Supports only `px` unit',
         },
         {
-          var: '--CircularProgress-track-thickness',
+          var: '--CircularProgress-trackThickness',
           defaultValue: '6px',
         },
         {
-          var: '--CircularProgress-progress-thickness',
+          var: '--CircularProgress-progressThickness',
           defaultValue: '6px',
         },
       ]}

@@ -1,6 +1,8 @@
+'use client';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 
-export { css, keyframes, GlobalStyles, StyledEngineProvider } from '@mui/styled-engine';
+export { css, keyframes, StyledEngineProvider } from '@mui/styled-engine';
+export { default as GlobalStyles } from './GlobalStyles';
 export { default as borders } from './borders';
 export * from './borders';
 export { default as breakpoints } from './breakpoints';
@@ -58,6 +60,9 @@ export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as unstable_createCssVarsProvider } from './cssVars/createCssVarsProvider';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
+export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';
+export { default as unstable_prepareCssVars } from './cssVars/prepareCssVars';
+export { default as unstable_createCssVarsTheme } from './cssVars/createCssVarsTheme';
 export { default as responsivePropType } from './responsivePropType';
 
 /** ----------------- */

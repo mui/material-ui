@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import Box from '@mui/material/Box';
 import { Experimental_CssVarsProvider as CssVarsProvider, useTheme } from '@mui/material/styles';
 
@@ -246,7 +246,7 @@ describe('[Material UI] CssVarsProvider', () => {
       );
 
       expect(container.firstChild?.textContent).to.equal(
-        'htmlFontSize,pxToRem,fontFamily,fontSize,fontWeightLight,fontWeightRegular,fontWeightMedium,fontWeightBold,h1,h2,h3,h4,h5,h6,subtitle1,subtitle2,body1,body2,button,caption,overline',
+        'htmlFontSize,pxToRem,fontFamily,fontSize,fontWeightLight,fontWeightRegular,fontWeightMedium,fontWeightBold,h1,h2,h3,h4,h5,h6,subtitle1,subtitle2,body1,body2,button,caption,overline,inherit',
       );
     });
   });

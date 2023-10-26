@@ -1,11 +1,14 @@
 import * as React from 'react';
 import Button from '@mui/joy/Button';
-import TextField from '@mui/joy/TextField';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Input from '@mui/joy/Input';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
+import DialogTitle from '@mui/joy/DialogTitle';
+import DialogContent from '@mui/joy/DialogContent';
 import Stack from '@mui/joy/Stack';
 import Add from '@mui/icons-material/Add';
-import Typography from '@mui/joy/Typography';
 
 export default function BasicModalDialog() {
   const [open, setOpen] = React.useState(false);
@@ -20,33 +23,9 @@ export default function BasicModalDialog() {
         New project
       </Button>
       <Modal open={open} onClose={() => setOpen(false)}>
-        <ModalDialog
-          aria-labelledby="basic-modal-dialog-title"
-          aria-describedby="basic-modal-dialog-description"
-          sx={{
-            maxWidth: 500,
-            borderRadius: 'md',
-            p: 3,
-            boxShadow: 'lg',
-          }}
-        >
-          <Typography
-            id="basic-modal-dialog-title"
-            component="h2"
-            level="inherit"
-            fontSize="1.25em"
-            mb="0.25em"
-          >
-            Create new project
-          </Typography>
-          <Typography
-            id="basic-modal-dialog-description"
-            mt={0.5}
-            mb={2}
-            textColor="text.tertiary"
-          >
-            Fill in the information of the project.
-          </Typography>
+        <ModalDialog>
+          <DialogTitle>Create new project</DialogTitle>
+          <DialogContent>Fill in the information of the project.</DialogContent>
           <form
             onSubmit={(event) => {
               event.preventDefault();
@@ -54,8 +33,14 @@ export default function BasicModalDialog() {
             }}
           >
             <Stack spacing={2}>
-              <TextField label="Name" autoFocus required />
-              <TextField label="Description" required />
+              <FormControl>
+                <FormLabel>Name</FormLabel>
+                <Input autoFocus required />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Description</FormLabel>
+                <Input required />
+              </FormControl>
               <Button type="submit">Submit</Button>
             </Stack>
           </form>

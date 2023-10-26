@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -93,9 +94,12 @@ const footers = [
   },
 ];
 
-function PricingContent() {
+// TODO remove, this demo shouldn't need to reset the theme.
+const defaultTheme = createTheme();
+
+export default function Pricing() {
   return (
-    <React.Fragment>
+    <ThemeProvider theme={defaultTheme}>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
       <AppBar
@@ -254,10 +258,6 @@ function PricingContent() {
         <Copyright sx={{ mt: 5 }} />
       </Container>
       {/* End footer */}
-    </React.Fragment>
+    </ThemeProvider>
   );
-}
-
-export default function Pricing() {
-  return <PricingContent />;
 }

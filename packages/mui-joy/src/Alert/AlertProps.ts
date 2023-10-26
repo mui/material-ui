@@ -5,8 +5,26 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AlertSlot = 'root' | 'startDecorator' | 'endDecorator';
 
+export interface AlertSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'span'
+   */
+  startDecorator?: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'span'
+   */
+  endDecorator?: React.ElementType;
+}
+
 export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  AlertSlot,
+  AlertSlots,
   {
     root: SlotProps<'div', {}, AlertOwnerState>;
     startDecorator: SlotProps<'span', {}, AlertOwnerState>;
@@ -23,13 +41,18 @@ export interface AlertTypeMap<P = {}, D extends React.ElementType = 'div'> {
     AlertSlotsAndSlotProps & {
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
-       * @default 'primary'
+       * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, AlertPropsColorOverrides>;
       /**
        * Element placed after the children.
        */
       endDecorator?: React.ReactNode;
+      /**
+       * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+       * @default false
+       */
+      invertedColors?: boolean;
       /**
        * The ARIA role attribute of the element.
        * @default 'alert'
@@ -49,7 +72,7 @@ export interface AlertTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'soft'
        */
       variant?: OverridableStringUnion<VariantProp, AlertPropsVariantOverrides>;

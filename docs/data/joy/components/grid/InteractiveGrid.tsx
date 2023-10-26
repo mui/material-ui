@@ -5,9 +5,9 @@ import FormLabel from '@mui/joy/FormLabel';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Sheet from '@mui/joy/Sheet';
+import { GridDirection } from '@mui/system';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import { GridDirection } from '@mui/system';
 
 type GridItemsAlignment =
   | 'flex-start'
@@ -73,7 +73,7 @@ export default function InteractiveGrid() {
               <FormControl>
                 <FormLabel sx={{ mb: 1.5 }}>direction</FormLabel>
                 <RadioGroup
-                  row
+                  orientation="horizontal"
                   name="direction"
                   aria-label="direction"
                   value={direction}
@@ -95,7 +95,7 @@ export default function InteractiveGrid() {
               <FormControl>
                 <FormLabel sx={{ mb: 1.5 }}>justifyContent</FormLabel>
                 <RadioGroup
-                  row
+                  orientation="horizontal"
                   name="justifyContent"
                   aria-label="justifyContent"
                   value={justifyContent}
@@ -119,7 +119,7 @@ export default function InteractiveGrid() {
               <FormControl>
                 <FormLabel sx={{ mb: 1.5 }}>alignItems</FormLabel>
                 <RadioGroup
-                  row
+                  orientation="horizontal"
                   name="alignItems"
                   aria-label="align items"
                   value={alignItems}

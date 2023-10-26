@@ -120,17 +120,18 @@ With the addition of CSS variables and the removal of the `item` prop, there are
 As a bonus, a grid container automatically inherits row and column spacing values from the root grid container, unless they are specified directly on the component.
 
 ```js
-import Grid from '@mui/material/Unstable_Grid2`;
+import Grid from '@mui/material/Unstable_Grid2';
 
 // root grid container
 <Grid container spacing={2}>
   <Grid>...</Grid>
-  <Grid container> {/* inherits spacing from the root container */}
+  <Grid container>
+    {/* inherits spacing from the root container */}
     <Grid>...</Grid>
     <Grid>...</Grid>
   </Grid>
   <Grid>...</Grid>
-</Grid>
+</Grid>;
 ```
 
 ## Future plan and migration

@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -10,12 +10,12 @@
       "default": "'primary'"
     },
     "component": { "type": { "name": "elementType" } },
-    "disabled": { "type": { "name": "bool" } },
-    "disableElevation": { "type": { "name": "bool" } },
-    "disableFocusRipple": { "type": { "name": "bool" } },
-    "disableRipple": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableElevation": { "type": { "name": "bool" }, "default": "false" },
+    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "endIcon": { "type": { "name": "node" } },
-    "fullWidth": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "href": { "type": { "name": "string" } },
     "size": {
       "type": {
@@ -29,7 +29,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -40,6 +41,10 @@
     }
   },
   "name": "Button",
+  "imports": [
+    "import Button from '@mui/material/Button';",
+    "import { Button } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
@@ -94,6 +99,8 @@
     "name": "MuiButton"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/Button/Button.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { emphasize } from '@mui/system';
@@ -35,18 +36,38 @@ const BreadcrumbCollapsedIcon = styled(MoreHorizIcon)({
  * @ignore - internal component.
  */
 function BreadcrumbCollapsed(props) {
+  const { slots = {}, slotProps = {}, ...otherProps } = props;
   const ownerState = props;
 
   return (
     <li>
-      <BreadcrumbCollapsedButton focusRipple {...props} ownerState={ownerState}>
-        <BreadcrumbCollapsedIcon ownerState={ownerState} />
+      <BreadcrumbCollapsedButton focusRipple {...otherProps} ownerState={ownerState}>
+        <BreadcrumbCollapsedIcon
+          as={slots.CollapsedIcon}
+          ownerState={ownerState}
+          {...slotProps.collapsedIcon}
+        />
       </BreadcrumbCollapsedButton>
     </li>
   );
 }
 
 BreadcrumbCollapsed.propTypes = {
+  /**
+   * The props used for the CollapsedIcon slot.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    collapsedIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the BreadcumbCollapsed.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    CollapsedIcon: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

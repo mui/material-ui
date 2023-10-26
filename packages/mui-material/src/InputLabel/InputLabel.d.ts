@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps } from '..';
-import { FormLabelProps } from '../FormLabel';
+import { FormLabelProps, ExtendFormLabelTypeMap } from '../FormLabel';
 import { Theme } from '../styles';
 import { InputLabelClasses } from './inputLabelClasses';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface InputLabelPropsSizeOverrides {}
 
-export interface InputLabelProps extends StandardProps<FormLabelProps> {
+export interface InputLabelOwnProps {
   /**
    * The content of the component.
    */
@@ -63,6 +63,14 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
+export type InputLabelTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'label',
+> = ExtendFormLabelTypeMap<{
+  props: AdditionalProps & InputLabelOwnProps;
+  defaultComponent: RootComponent;
+}>;
+
 /**
  *
  * Demos:
@@ -74,4 +82,13 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
  * - [InputLabel API](https://mui.com/material-ui/api/input-label/)
  * - inherits [FormLabel API](https://mui.com/material-ui/api/form-label/)
  */
-export default function InputLabel(props: InputLabelProps): JSX.Element;
+declare const InputLabel: OverridableComponent<InputLabelTypeMap>;
+
+export type InputLabelProps<
+  RootComponent extends React.ElementType = InputLabelTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<InputLabelTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
+
+export default InputLabel;

@@ -1,6 +1,6 @@
 module.exports = {
   names: ['gitDiff'],
-  description: 'Respect the format ouput of git diff.',
+  description: 'Respect the format output of git diff.',
   tags: ['spaces'],
   function: (params, onError) => {
     params.tokens.forEach((token) => {

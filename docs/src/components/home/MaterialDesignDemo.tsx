@@ -10,8 +10,8 @@ import MuiTypography from '@mui/material/Typography';
 import MuiStack from '@mui/material/Stack';
 import MuiEdit from '@mui/icons-material/Edit';
 import MuiLocationOn from '@mui/icons-material/LocationOn';
-import { withPointer } from 'docs/src/components/home/ElementPointer';
 import { grey } from '@mui/material/colors';
+import { withPointer } from 'docs/src/components/home/ElementPointer';
 
 export const componentCode = `<Card>
   <Box sx={{ p: 2, display: 'flex' }}>
@@ -58,20 +58,24 @@ export default function MaterialDesignDemo(props: CardProps) {
   return (
     <Card {...props}>
       <Box sx={{ p: 2, display: 'flex' }}>
-        <Avatar variant="rounded" src="/static/images/avatar/1.jpg" alt="" />
+        <Avatar
+          variant="rounded"
+          src="https://i.scdn.co/image/ab67616d0000b273992e45c95fa03ee72c52a526"
+          alt=""
+        />
         <Stack
           spacing={0.5}
           alignItems="flex-start"
           sx={{
             mx: 2,
             flexGrow: 1,
-            '& svg': { fontSize: 20, verticalAlign: 'bottom', mr: 0.5 },
+            '& svg': { fontSize: 18, verticalAlign: 'bottom', mr: 0.5, mb: 0.1 },
           }}
         >
           <Typography fontWeight={700}>Michael Scott</Typography>
           <Typography2 variant="body2" color="text.secondary">
             <LocationOn sx={{ color: grey[500] }} />
-            Scranton, PA
+            Scranton, PA, United States
           </Typography2>
         </Stack>
         <IconButton aria-label="Edit" sx={{ alignSelf: 'flex-start' }}>
@@ -85,7 +89,7 @@ export default function MaterialDesignDemo(props: CardProps) {
         direction="row"
         alignItems="center"
         justifyContent="space-between"
-        sx={{ px: 2, py: 1.5, bgcolor: 'background.default' }}
+        sx={{ pl: 1.5, pr: 2, py: 1.5, bgcolor: 'background.default' }}
       >
         <Chip
           label={active ? 'Active account' : 'Inactive account'}

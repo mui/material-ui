@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
-import { act, describeConformance, createRenderer, fireEvent, screen } from 'test/utils';
+import {
+  act,
+  describeConformance,
+  createRenderer,
+  fireEvent,
+  screen,
+} from '@mui-internal/test-utils';
 import Rating, { ratingClasses as classes } from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -179,13 +185,19 @@ describe('<Rating />', () => {
 
       expect(screen.getByRole('img')).toHaveAccessibleName('Stars: 2');
     });
+
+    it('should have readOnly class applied', () => {
+      render(<Rating readOnly value={2} />);
+
+      expect(screen.getByRole('img')).to.have.class(classes.readOnly);
+    });
   });
 
   describe('<form> integration', () => {
     before(function beforeHook() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // JSDOM has issues with form validation for certain elements.
-        // We could adress them individually but that doesn't add much value if we already have a working environment.
+        // We could address them individually but that doesn't add much value if we already have a working environment.
         this.skip();
       }
     });

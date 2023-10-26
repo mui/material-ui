@@ -9,10 +9,10 @@ import { OutlinedInputProps } from '../OutlinedInput';
 
 export { SelectChangeEvent };
 
-interface CommonProps<T>
+export interface SelectProps<Value = unknown>
   extends StandardProps<InputProps, 'value' | 'onChange'>,
     Omit<OutlinedInputProps, 'value' | 'onChange'>,
-    Pick<SelectInputProps<T>, 'onChange'> {
+    Pick<SelectInputProps<Value>, 'onChange'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -40,7 +40,18 @@ interface CommonProps<T>
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: T;
+  defaultValue?: Value;
+  /**
+   * If `true`, a value is displayed even if no items are selected.
+   *
+   * In order to display a meaningful value, a function can be passed to the `renderValue` prop which
+   * returns the value to be displayed when no items are selected.
+   *
+   * ⚠️ When using this prop, make sure the label doesn't overlap with the empty displayed value.
+   * The label should either be hidden or forced to a shrunk state.
+   * @default false
+   */
+  displayEmpty?: boolean;
   /**
    * The icon that displays the arrow.
    * @default ArrowDropDownIcon
@@ -73,6 +84,11 @@ interface CommonProps<T>
    */
   MenuProps?: Partial<MenuProps>;
   /**
+   * If `true`, `value` must be an array and the menu will support multiple selections.
+   * @default false
+   */
+  multiple?: boolean;
+  /**
    * If `true`, the component uses a native `select` element.
    * @default false
    */
@@ -80,15 +96,15 @@ interface CommonProps<T>
   /**
    * Callback fired when a menu item is selected.
    *
-   * @param {SelectChangeEvent<T>} event The event source of the callback.
+   * @param {SelectChangeEvent<Value>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
    * **Warning**: This is a generic event, not a change event, unless the change event is caused by browser autofill.
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
-  onChange?: SelectInputProps<T>['onChange'];
+  onChange?: SelectInputProps<Value>['onChange'];
   /**
    * Callback fired when the component requests to be closed.
-   * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select collapes).
+   * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select collapses).
    *
    * @param {object} event The event source of the callback.
    */
@@ -106,6 +122,14 @@ interface CommonProps<T>
    */
   open?: boolean;
   /**
+   * Render the selected value.
+   * You can only use it when the `native` prop is `false` (default).
+   *
+   * @param {any} value The `value` provided to the component.
+   * @returns {ReactNode}
+   */
+  renderValue?: (value: Value) => React.ReactNode;
+  /**
    * Props applied to the clickable div element.
    */
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
@@ -120,95 +144,13 @@ interface CommonProps<T>
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
-  value?: T | '';
+  value?: Value | '';
   /**
    * The variant to use.
    * @default 'outlined'
    */
   variant?: 'standard' | 'outlined' | 'filled';
 }
-
-type ConditionalRenderValueType<T> =
-  | {
-      /**
-       * If `true`, a value is displayed even if no items are selected.
-       *
-       * In order to display a meaningful value, a function can be passed to the `renderValue` prop which
-       * returns the value to be displayed when no items are selected.
-       *
-       * ⚠️ When using this prop, make sure the label doesn't overlap with the empty displayed value.
-       * The label should either be hidden or forced to a shrunk state.
-       * @default false
-       */
-      displayEmpty?: false;
-      /**
-       * If `true`, `value` must be an array and the menu will support multiple selections.
-       * @default false
-       */
-      multiple?: boolean;
-      /**
-       * Render the selected value.
-       * You can only use it when the `native` prop is `false` (default).
-       *
-       * @param {any} value The `value` provided to the component.
-       * @returns {ReactNode}
-       */
-      renderValue?: (value: T) => React.ReactNode;
-    }
-  | {
-      /**
-       * If `true`, a value is displayed even if no items are selected.
-       *
-       * In order to display a meaningful value, a function can be passed to the `renderValue` prop which
-       * returns the value to be displayed when no items are selected.
-       *
-       * ⚠️ When using this prop, make sure the label doesn't overlap with the empty displayed value.
-       * The label should either be hidden or forced to a shrunk state.
-       * @default false
-       */
-      displayEmpty: true;
-      /**
-       * If `true`, `value` must be an array and the menu will support multiple selections.
-       * @default false
-       */
-      multiple?: false;
-      /**
-       * Render the selected value.
-       * You can only use it when the `native` prop is `false` (default).
-       *
-       * @param {any} value The `value` provided to the component.
-       * @returns {ReactNode}
-       */
-      renderValue?: (value: T | '') => React.ReactNode;
-    }
-  | {
-      /**
-       * If `true`, a value is displayed even if no items are selected.
-       *
-       * In order to display a meaningful value, a function can be passed to the `renderValue` prop which
-       * returns the value to be displayed when no items are selected.
-       *
-       * ⚠️ When using this prop, make sure the label doesn't overlap with the empty displayed value.
-       * The label should either be hidden or forced to a shrunk state.
-       * @default false
-       */
-      displayEmpty: true;
-      /**
-       * If `true`, `value` must be an array and the menu will support multiple selections.
-       * @default false
-       */
-      multiple: true;
-      /**
-       * Render the selected value.
-       * You can only use it when the `native` prop is `false` (default).
-       *
-       * @param {any} value The `value` provided to the component.
-       * @returns {ReactNode}
-       */
-      renderValue?: (value: T) => React.ReactNode;
-    };
-
-export type SelectProps<T = unknown> = CommonProps<T> & ConditionalRenderValueType<T>;
 
 /**
  *
@@ -221,7 +163,7 @@ export type SelectProps<T = unknown> = CommonProps<T> & ConditionalRenderValueTy
  * - [Select API](https://mui.com/material-ui/api/select/)
  * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
  */
-declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & {
+declare const Select: (<Value>(props: SelectProps<Value>) => JSX.Element) & {
   muiName: string;
 };
 

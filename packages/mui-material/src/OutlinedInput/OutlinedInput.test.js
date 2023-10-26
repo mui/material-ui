@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import OutlinedInput, { outlinedInputClasses as classes } from '@mui/material/OutlinedInput';
 import InputBase from '@mui/material/InputBase';
@@ -47,7 +47,7 @@ describe('<OutlinedInput />', () => {
       />,
     );
     const notchOutlined = container.querySelector('.notched-outlined legend');
-    expect(notchOutlined).to.have.text('label\xa0*');
+    expect(notchOutlined).to.have.text('label\u2009*');
   });
 
   it('should forward classes to InputBase', () => {

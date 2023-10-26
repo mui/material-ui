@@ -1,21 +1,26 @@
 import { mkdirSync } from 'fs';
-import * as fse from 'fs-extra';
 import path from 'path';
+import * as fse from 'fs-extra';
 import kebabCase from 'lodash/kebabCase';
 import * as yargs from 'yargs';
-import * as ttp from 'typescript-to-proptypes';
 import findComponents from './utils/findComponents';
+import findHooks from './utils/findHooks';
 import {
   ComponentInfo,
+  HookInfo,
   getMaterialComponentInfo,
   getBaseComponentInfo,
+  getBaseHookInfo,
   getSystemComponentInfo,
   extractApiPage,
-} from './buildApiUtils';
-import generateComponentApi, {
+  getJoyComponentInfo,
+  generateBaseUIApiPages,
   writePrettifiedFile,
-  ReactApi,
-} from './ApiBuilders/ComponentApiBuilder';
+} from './buildApiUtils';
+import generateComponentApi, { ReactApi } from './ApiBuilders/ComponentApiBuilder';
+import generateHookApi from './ApiBuilders/HookApiBuilder';
+import { createTypeScriptProjectBuilder } from './utils/createTypeScriptProject';
+import { CORE_TYPESCRIPT_PROJECTS, CoreTypeScriptProjects } from './utils/coreTypeScriptProjects';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
 
@@ -99,53 +104,52 @@ function findApiPages(relativeFolder: string) {
 }
 
 interface Settings {
-  input: {
-    /**
-     * Component directories to be used to generate API
-     */
-    libDirectory: string[];
-  };
   output: {
     /**
      * The output path of `pagesApi` generated from `input.pageDirectory`
      */
     apiManifestPath: string;
   };
+  /**
+   * Component directories to be used to generate API
+   */
+  typeScriptProjects: CoreTypeScriptProjects[];
   getApiPages: () => Array<{ pathname: string }>;
   getComponentInfo: (filename: string) => ComponentInfo;
+  getHookInfo?: (filename: string) => HookInfo;
 }
 
 const SETTINGS: Settings[] = [
   {
-    input: {
-      libDirectory: [
-        path.join(process.cwd(), 'packages/mui-material/src'),
-        path.join(process.cwd(), 'packages/mui-lab/src'),
-      ],
-    },
     output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
     },
+    typeScriptProjects: ['material', 'lab'],
     getApiPages: () => findApiPages('docs/pages/material-ui/api'),
     getComponentInfo: getMaterialComponentInfo,
   },
   {
-    input: {
-      libDirectory: [path.join(process.cwd(), 'packages/mui-base/src')],
-    },
     output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/base/pagesApi.js'),
     },
-    getApiPages: () => findApiPages('docs/pages/base/api'),
+    typeScriptProjects: ['base'],
+    getApiPages: () => findApiPages('docs/pages/base-ui/api'),
     getComponentInfo: getBaseComponentInfo,
+    getHookInfo: getBaseHookInfo,
   },
   {
-    input: {
-      libDirectory: [path.join(process.cwd(), 'packages/mui-system/src')],
+    output: {
+      apiManifestPath: path.join(process.cwd(), 'docs/data/joy/pagesApi.js'),
     },
+    typeScriptProjects: ['joy'],
+    getApiPages: () => findApiPages('docs/pages/joy-ui/api'),
+    getComponentInfo: getJoyComponentInfo,
+  },
+  {
     output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/system/pagesApi.js'),
     },
+    typeScriptProjects: ['system'],
     getApiPages: () => findApiPages('docs/pages/system/api'),
     getComponentInfo: getSystemComponentInfo,
   },
@@ -153,16 +157,14 @@ const SETTINGS: Settings[] = [
 
 type CommandOptions = { grep?: string };
 
-async function run(argv: CommandOptions) {
+async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
+  const buildTypeScriptProject = createTypeScriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
+
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
   await SETTINGS.reduce(async (resolvedPromise, setting) => {
     await resolvedPromise;
-    const workspaceRoot = path.resolve(__dirname, '../../');
-    /**
-     * @type {string[]}
-     */
-    const componentDirectories = setting.input.libDirectory;
+    const projects = setting.typeScriptProjects.map((project) => buildTypeScriptProject(project));
     const apiPagesManifestPath = setting.output.apiManifestPath;
 
     const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];
@@ -170,60 +172,71 @@ async function run(argv: CommandOptions) {
       mkdirSync(manifestDir, { recursive: true });
     }
 
-    /**
-     * components: Array<{ filename: string }>
-     * e.g.
-     * [{ filename: '/Users/user/Projects/material-ui/packages/mui-material/src/Accordion/Accordion.js'}, ...]
-     */
-    const components = componentDirectories
-      .reduce((directories, componentDirectory) => {
-        return directories.concat(findComponents(componentDirectory));
-      }, [] as ReadonlyArray<{ filename: string }>)
-      .filter((component) => {
-        if (
-          component.filename.includes('ThemeProvider') ||
-          (component.filename.includes('mui-material') &&
-            component.filename.includes('CssVarsProvider'))
-        ) {
-          return false;
-        }
+    const apiBuilds = projects.flatMap((project) => {
+      const projectComponents = findComponents(path.join(project.rootPath, 'src')).filter(
+        (component) => {
+          if (
+            component.filename.includes('ThemeProvider') ||
+            component.filename.includes('CssVarsProvider') ||
+            (component.filename.includes('mui-material') && component.filename.includes('Grid2')) ||
+            (component.filename.includes('mui-joy') &&
+              // Box's demo isn't ready
+              // Container's demo isn't ready
+              // GlobalStyles's demo isn't ready
+              // Grid has problem with react-docgen
+              component.filename.match(/(Box|Container|ColorInversion|Grid|GlobalStyles)/)) ||
+            (component.filename.includes('mui-system') && component.filename.match(/GlobalStyles/))
+          ) {
+            return false;
+          }
+          if (grep === null) {
+            return true;
+          }
+          return grep.test(component.filename);
+        },
+      );
+
+      const projectHooks = findHooks(path.join(project.rootPath, 'src')).filter((hook) => {
         if (grep === null) {
           return true;
         }
-        return grep.test(component.filename);
+        return grep.test(hook.filename);
       });
 
-    const tsconfig = ttp.loadConfig(path.resolve(workspaceRoot, './tsconfig.json'));
-    const program = ttp.createTSProgram(
-      components.map((component) => {
-        if (component.filename.endsWith('.tsx')) {
-          return component.filename;
+      const componentsBuilds = projectComponents.map(async (component) => {
+        try {
+          const { filename } = component;
+          const componentInfo = setting.getComponentInfo(filename);
+
+          mkdirSync(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
+
+          return generateComponentApi(componentInfo, project);
+        } catch (error: any) {
+          error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
+          throw error;
         }
-        if (component.filename.endsWith('.js')) {
-          return component.filename.replace(/\.js$/, '.d.ts');
+      });
+
+      const hooksBuilds = projectHooks.map(async (hook) => {
+        if (!setting.getHookInfo) {
+          return [];
         }
-        throw new TypeError(
-          `Unexpected component filename '${component.filename}'. Expected either a .tsx or .js file.`,
-        );
-      }),
-      tsconfig,
-    );
+        try {
+          const { filename } = hook;
+          const hookInfo = setting.getHookInfo(filename);
 
-    const componentBuilds = components.map(async (component) => {
-      try {
-        const { filename } = component;
-        const componentInfo = setting.getComponentInfo(filename);
+          mkdirSync(hookInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
+          return generateHookApi(hookInfo, project);
+        } catch (error: any) {
+          error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
+          throw error;
+        }
+      });
 
-        mkdirSync(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
-
-        return generateComponentApi(componentInfo, program);
-      } catch (error: any) {
-        error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
-        throw error;
-      }
+      return [...componentsBuilds, ...hooksBuilds];
     });
 
-    const builds = await Promise.allSettled(componentBuilds);
+    const builds = await Promise.allSettled(apiBuilds);
 
     const fails = builds.filter(
       (promise): promise is PromiseRejectedResult => promise.status === 'rejected',
@@ -236,12 +249,55 @@ async function run(argv: CommandOptions) {
       process.exit(1);
     }
 
+    const apiLinks: { pathname: string; title: string }[] = [];
+
+    // Generate the api links, in a format that would point to the appropriate API tab
+    // @ts-ignore there are no failed builds at this point
+    const baseBuilds = builds.filter((build) => build?.value?.filename?.indexOf('mui-base') >= 0);
+    if (baseBuilds.length >= 0) {
+      baseBuilds.forEach((build) => {
+        // @ts-ignore
+        const { value } = build;
+        const { name, demos } = value;
+        // find a potential # in the pathname
+        const hashIdx = demos.length > 0 ? demos[0].demoPathname.indexOf('#') : -1;
+
+        let pathname = null;
+
+        if (demos.length > 0) {
+          // make sure the pathname doesn't contain #
+          pathname =
+            hashIdx >= 0 ? demos[0].demoPathname.substr(0, hashIdx) : demos[0].demoPathname;
+        }
+
+        if (pathname !== null) {
+          // add the new apiLink, where pathame is in format of /react-component/components-api
+          apiLinks.push({
+            pathname: `${pathname}${
+              name.startsWith('use') ? 'hooks-api' : 'components-api'
+            }/#${kebabCase(name)}`,
+            title: name,
+          });
+        }
+      });
+    }
+
+    // @ts-ignore ignore hooks builds for now
     allBuilds = [...allBuilds, ...builds];
 
-    const source = `module.exports = ${JSON.stringify(setting.getApiPages())}`;
+    apiLinks.sort((a, b) => (a.title > b.title ? 1 : -1));
+    let source = `module.exports = ${JSON.stringify(setting.getApiPages())}`;
+    if (apiLinks.length > 0) {
+      // @ts-ignore
+      source = `module.exports = ${JSON.stringify(apiLinks)}`;
+    }
+
     writePrettifiedFile(apiPagesManifestPath, source);
     return Promise.resolve();
   }, Promise.resolve());
+
+  // update the component pages to show the API tabs
+  generateBaseUIApiPages();
 
   if (grep === null) {
     const componentApis = allBuilds
@@ -256,7 +312,7 @@ async function run(argv: CommandOptions) {
 }
 
 yargs
-  .command<CommandOptions>({
+  .command({
     command: '$0',
     describe: 'formats codebase',
     builder: (command) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import makeStyles from '@material-ui/styles/makeStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { withPrefix, navigate } from 'gatsby';

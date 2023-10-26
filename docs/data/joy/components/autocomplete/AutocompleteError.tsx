@@ -4,12 +4,12 @@ import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Autocomplete from '@mui/joy/Autocomplete';
 
-export default function InputAppearance() {
+export default function AutocompleteError() {
   return (
     <FormControl error>
       <FormLabel>Invalid</FormLabel>
       <Autocomplete placeholder="Error" options={top100Films} sx={{ width: 300 }} />
-      <FormHelperText>Opps! something went wrong.</FormHelperText>
+      <FormHelperText>Oops! something went wrong.</FormHelperText>
     </FormControl>
   );
 }

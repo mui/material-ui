@@ -8,7 +8,9 @@ import {
   unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_defaultSxConfig as defaultSxConfig,
   unstable_styleFunctionSx as styleFunctionSx,
+  unstable_prepareCssVars as prepareCssVars,
 } from '@mui/system';
+import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
 
@@ -34,6 +36,19 @@ function setColor(obj, key, defaultValue) {
   }
 }
 
+function setColorChannel(obj, key) {
+  if (!(`${key}Channel` in obj)) {
+    // custom channel token is not provided, generate one.
+    // if channel token can't be generated, show a warning.
+    obj[`${key}Channel`] = safeColorChannel(
+      obj[key],
+      `MUI: Can't create \`palette.${key}Channel\` because \`palette.${key}\` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().` +
+        '\n' +
+        `To suppress this warning, you need to explicitly provide the \`palette.${key}Channel\` as a string (in rgb format, e.g. "12 12 12") or undefined if you want to remove the channel token.`,
+    );
+  }
+}
+
 const silent = (fn) => {
   try {
     return fn();
@@ -46,7 +61,12 @@ const silent = (fn) => {
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
 export default function extendTheme(options = {}, ...args) {
-  const { colorSchemes: colorSchemesInput = {}, cssVarPrefix = 'mui', ...input } = options;
+  const {
+    colorSchemes: colorSchemesInput = {},
+    cssVarPrefix = 'mui',
+    shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    ...input
+  } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
 
   const { palette: lightPalette, ...muiTheme } = createThemeWithoutVars({
@@ -93,6 +113,13 @@ export default function extendTheme(options = {}, ...args) {
   Object.keys(theme.colorSchemes).forEach((key) => {
     const palette = theme.colorSchemes[key].palette;
 
+    const setCssVarColor = (cssVar) => {
+      const tokens = cssVar.split('-');
+      const color = tokens[1];
+      const colorToken = tokens[2];
+      return getCssVar(cssVar, palette[color][colorToken]);
+    };
+
     // attach black & white channels to common node
     if (key === 'light') {
       setColor(palette.common, 'background', '#fff');
@@ -107,6 +134,7 @@ export default function extendTheme(options = {}, ...args) {
       'Alert',
       'AppBar',
       'Avatar',
+      'Button',
       'Chip',
       'FilledInput',
       'LinearProgress',
@@ -125,10 +153,10 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Alert, 'infoColor', safeDarken(palette.info.light, 0.6));
       setColor(palette.Alert, 'successColor', safeDarken(palette.success.light, 0.6));
       setColor(palette.Alert, 'warningColor', safeDarken(palette.warning.light, 0.6));
-      setColor(palette.Alert, 'errorFilledBg', getCssVar('palette-error-main'));
-      setColor(palette.Alert, 'infoFilledBg', getCssVar('palette-info-main'));
-      setColor(palette.Alert, 'successFilledBg', getCssVar('palette-success-main'));
-      setColor(palette.Alert, 'warningFilledBg', getCssVar('palette-warning-main'));
+      setColor(palette.Alert, 'errorFilledBg', setCssVarColor('palette-error-main'));
+      setColor(palette.Alert, 'infoFilledBg', setCssVarColor('palette-info-main'));
+      setColor(palette.Alert, 'successFilledBg', setCssVarColor('palette-success-main'));
+      setColor(palette.Alert, 'warningFilledBg', setCssVarColor('palette-warning-main'));
       setColor(
         palette.Alert,
         'errorFilledColor',
@@ -153,15 +181,17 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Alert, 'infoStandardBg', safeLighten(palette.info.light, 0.9));
       setColor(palette.Alert, 'successStandardBg', safeLighten(palette.success.light, 0.9));
       setColor(palette.Alert, 'warningStandardBg', safeLighten(palette.warning.light, 0.9));
-      setColor(palette.Alert, 'errorIconColor', getCssVar('palette-error-main'));
-      setColor(palette.Alert, 'infoIconColor', getCssVar('palette-info-main'));
-      setColor(palette.Alert, 'successIconColor', getCssVar('palette-success-main'));
-      setColor(palette.Alert, 'warningIconColor', getCssVar('palette-warning-main'));
-      setColor(palette.AppBar, 'defaultBg', getCssVar('palette-grey-100'));
-      setColor(palette.Avatar, 'defaultBg', getCssVar('palette-grey-400'));
-      setColor(palette.Chip, 'defaultBorder', getCssVar('palette-grey-400'));
-      setColor(palette.Chip, 'defaultAvatarColor', getCssVar('palette-grey-700'));
-      setColor(palette.Chip, 'defaultIconColor', getCssVar('palette-grey-700'));
+      setColor(palette.Alert, 'errorIconColor', setCssVarColor('palette-error-main'));
+      setColor(palette.Alert, 'infoIconColor', setCssVarColor('palette-info-main'));
+      setColor(palette.Alert, 'successIconColor', setCssVarColor('palette-success-main'));
+      setColor(palette.Alert, 'warningIconColor', setCssVarColor('palette-warning-main'));
+      setColor(palette.AppBar, 'defaultBg', setCssVarColor('palette-grey-100'));
+      setColor(palette.Avatar, 'defaultBg', setCssVarColor('palette-grey-400'));
+      setColor(palette.Button, 'inheritContainedBg', setCssVarColor('palette-grey-300'));
+      setColor(palette.Button, 'inheritContainedHoverBg', setCssVarColor('palette-grey-A100'));
+      setColor(palette.Chip, 'defaultBorder', setCssVarColor('palette-grey-400'));
+      setColor(palette.Chip, 'defaultAvatarColor', setCssVarColor('palette-grey-700'));
+      setColor(palette.Chip, 'defaultIconColor', setCssVarColor('palette-grey-700'));
       setColor(palette.FilledInput, 'bg', 'rgba(0, 0, 0, 0.06)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(0, 0, 0, 0.09)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(0, 0, 0, 0.12)');
@@ -171,7 +201,11 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBg', safeLighten(palette.info.main, 0.62));
       setColor(palette.LinearProgress, 'successBg', safeLighten(palette.success.main, 0.62));
       setColor(palette.LinearProgress, 'warningBg', safeLighten(palette.warning.main, 0.62));
-      setColor(palette.Skeleton, 'bg', `rgba(${getCssVar('palette-text-primaryChannel')} / 0.11)`);
+      setColor(
+        palette.Skeleton,
+        'bg',
+        `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.11)`,
+      );
       setColor(palette.Slider, 'primaryTrack', safeLighten(palette.primary.main, 0.62));
       setColor(palette.Slider, 'secondaryTrack', safeLighten(palette.secondary.main, 0.62));
       setColor(palette.Slider, 'errorTrack', safeLighten(palette.error.main, 0.62));
@@ -190,10 +224,10 @@ export default function extendTheme(options = {}, ...args) {
         'fabHoverBg',
         safeEmphasize(palette.background.paper, 0.15),
       );
-      setColor(palette.StepConnector, 'border', getCssVar('palette-grey-400'));
-      setColor(palette.StepContent, 'border', getCssVar('palette-grey-400'));
-      setColor(palette.Switch, 'defaultColor', getCssVar('palette-common-white'));
-      setColor(palette.Switch, 'defaultDisabledColor', getCssVar('palette-grey-100'));
+      setColor(palette.StepConnector, 'border', setCssVarColor('palette-grey-400'));
+      setColor(palette.StepContent, 'border', setCssVarColor('palette-grey-400'));
+      setColor(palette.Switch, 'defaultColor', setCssVarColor('palette-common-white'));
+      setColor(palette.Switch, 'defaultDisabledColor', setCssVarColor('palette-grey-100'));
       setColor(palette.Switch, 'primaryDisabledColor', safeLighten(palette.primary.main, 0.62));
       setColor(palette.Switch, 'secondaryDisabledColor', safeLighten(palette.secondary.main, 0.62));
       setColor(palette.Switch, 'errorDisabledColor', safeLighten(palette.error.main, 0.62));
@@ -207,10 +241,10 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Alert, 'infoColor', safeLighten(palette.info.light, 0.6));
       setColor(palette.Alert, 'successColor', safeLighten(palette.success.light, 0.6));
       setColor(palette.Alert, 'warningColor', safeLighten(palette.warning.light, 0.6));
-      setColor(palette.Alert, 'errorFilledBg', getCssVar('palette-error-dark'));
-      setColor(palette.Alert, 'infoFilledBg', getCssVar('palette-info-dark'));
-      setColor(palette.Alert, 'successFilledBg', getCssVar('palette-success-dark'));
-      setColor(palette.Alert, 'warningFilledBg', getCssVar('palette-warning-dark'));
+      setColor(palette.Alert, 'errorFilledBg', setCssVarColor('palette-error-dark'));
+      setColor(palette.Alert, 'infoFilledBg', setCssVarColor('palette-info-dark'));
+      setColor(palette.Alert, 'successFilledBg', setCssVarColor('palette-success-dark'));
+      setColor(palette.Alert, 'warningFilledBg', setCssVarColor('palette-warning-dark'));
       setColor(
         palette.Alert,
         'errorFilledColor',
@@ -235,17 +269,19 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Alert, 'infoStandardBg', safeDarken(palette.info.light, 0.9));
       setColor(palette.Alert, 'successStandardBg', safeDarken(palette.success.light, 0.9));
       setColor(palette.Alert, 'warningStandardBg', safeDarken(palette.warning.light, 0.9));
-      setColor(palette.Alert, 'errorIconColor', getCssVar('palette-error-main'));
-      setColor(palette.Alert, 'infoIconColor', getCssVar('palette-info-main'));
-      setColor(palette.Alert, 'successIconColor', getCssVar('palette-success-main'));
-      setColor(palette.Alert, 'warningIconColor', getCssVar('palette-warning-main'));
-      setColor(palette.AppBar, 'defaultBg', getCssVar('palette-grey-900'));
-      setColor(palette.AppBar, 'darkBg', getCssVar('palette-background-paper')); // specific for dark mode
-      setColor(palette.AppBar, 'darkColor', getCssVar('palette-text-primary')); // specific for dark mode
-      setColor(palette.Avatar, 'defaultBg', getCssVar('palette-grey-600'));
-      setColor(palette.Chip, 'defaultBorder', getCssVar('palette-grey-700'));
-      setColor(palette.Chip, 'defaultAvatarColor', getCssVar('palette-grey-300'));
-      setColor(palette.Chip, 'defaultIconColor', getCssVar('palette-grey-300'));
+      setColor(palette.Alert, 'errorIconColor', setCssVarColor('palette-error-main'));
+      setColor(palette.Alert, 'infoIconColor', setCssVarColor('palette-info-main'));
+      setColor(palette.Alert, 'successIconColor', setCssVarColor('palette-success-main'));
+      setColor(palette.Alert, 'warningIconColor', setCssVarColor('palette-warning-main'));
+      setColor(palette.AppBar, 'defaultBg', setCssVarColor('palette-grey-900'));
+      setColor(palette.AppBar, 'darkBg', setCssVarColor('palette-background-paper')); // specific for dark mode
+      setColor(palette.AppBar, 'darkColor', setCssVarColor('palette-text-primary')); // specific for dark mode
+      setColor(palette.Avatar, 'defaultBg', setCssVarColor('palette-grey-600'));
+      setColor(palette.Button, 'inheritContainedBg', setCssVarColor('palette-grey-800'));
+      setColor(palette.Button, 'inheritContainedHoverBg', setCssVarColor('palette-grey-700'));
+      setColor(palette.Chip, 'defaultBorder', setCssVarColor('palette-grey-700'));
+      setColor(palette.Chip, 'defaultAvatarColor', setCssVarColor('palette-grey-300'));
+      setColor(palette.Chip, 'defaultIconColor', setCssVarColor('palette-grey-300'));
       setColor(palette.FilledInput, 'bg', 'rgba(255, 255, 255, 0.09)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(255, 255, 255, 0.13)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(255, 255, 255, 0.12)');
@@ -255,7 +291,11 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBg', safeDarken(palette.info.main, 0.5));
       setColor(palette.LinearProgress, 'successBg', safeDarken(palette.success.main, 0.5));
       setColor(palette.LinearProgress, 'warningBg', safeDarken(palette.warning.main, 0.5));
-      setColor(palette.Skeleton, 'bg', `rgba(${getCssVar('palette-text-primaryChannel')} / 0.13)`);
+      setColor(
+        palette.Skeleton,
+        'bg',
+        `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.13)`,
+      );
       setColor(palette.Slider, 'primaryTrack', safeDarken(palette.primary.main, 0.5));
       setColor(palette.Slider, 'secondaryTrack', safeDarken(palette.secondary.main, 0.5));
       setColor(palette.Slider, 'errorTrack', safeDarken(palette.error.main, 0.5));
@@ -274,10 +314,10 @@ export default function extendTheme(options = {}, ...args) {
         'fabHoverBg',
         safeEmphasize(palette.background.paper, 0.15),
       );
-      setColor(palette.StepConnector, 'border', getCssVar('palette-grey-600'));
-      setColor(palette.StepContent, 'border', getCssVar('palette-grey-600'));
-      setColor(palette.Switch, 'defaultColor', getCssVar('palette-grey-300'));
-      setColor(palette.Switch, 'defaultDisabledColor', getCssVar('palette-grey-600'));
+      setColor(palette.StepConnector, 'border', setCssVarColor('palette-grey-600'));
+      setColor(palette.StepContent, 'border', setCssVarColor('palette-grey-600'));
+      setColor(palette.Switch, 'defaultColor', setCssVarColor('palette-grey-300'));
+      setColor(palette.Switch, 'defaultDisabledColor', setCssVarColor('palette-grey-600'));
       setColor(palette.Switch, 'primaryDisabledColor', safeDarken(palette.primary.main, 0.55));
       setColor(palette.Switch, 'secondaryDisabledColor', safeDarken(palette.secondary.main, 0.55));
       setColor(palette.Switch, 'errorDisabledColor', safeDarken(palette.error.main, 0.55));
@@ -288,40 +328,13 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Tooltip, 'bg', safeAlpha(palette.grey[700], 0.92));
     }
 
-    setColor(
-      palette.background,
-      'defaultChannel',
-      safeColorChannel(
-        palette.background.default,
-        'MUI: The value of `palette.background.default` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-      ),
-    ); // MUI X - DataGrid needs this token.
+    // MUI X - DataGrid needs this token.
+    setColorChannel(palette.background, 'default');
 
-    setColor(
-      palette.common,
-      'backgroundChannel',
-      safeColorChannel(
-        palette.common.background,
-        'MUI: The value of `palette.common.background` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-      ),
-    );
-    setColor(
-      palette.common,
-      'onBackgroundChannel',
-      safeColorChannel(
-        palette.common.onBackground,
-        'MUI: The value of `palette.common.onBackground` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-      ),
-    );
+    setColorChannel(palette.common, 'background');
+    setColorChannel(palette.common, 'onBackground');
 
-    setColor(
-      palette,
-      'dividerChannel',
-      safeColorChannel(
-        palette.divider,
-        'MUI: The value of `palette.divider` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-      ),
-    );
+    setColorChannel(palette, 'divider');
 
     Object.keys(palette).forEach((color) => {
       const colors = palette[color];
@@ -345,45 +358,17 @@ export default function extendTheme(options = {}, ...args) {
 
         if (color === 'text') {
           // Text colors: text.primary, text.secondary
-          setColor(
-            palette[color],
-            'primaryChannel',
-            safeColorChannel(
-              colors.primary,
-              'MUI: The value of `palette.text.primary` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-            ),
-          );
-          setColor(
-            palette[color],
-            'secondaryChannel',
-            safeColorChannel(
-              colors.secondary,
-              'MUI: The value of `palette.text.secondary` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-            ),
-          );
+          setColorChannel(palette[color], 'primary');
+          setColorChannel(palette[color], 'secondary');
         }
 
         if (color === 'action') {
           // Action colors: action.active, action.selected
           if (colors.active) {
-            setColor(
-              palette[color],
-              'activeChannel',
-              safeColorChannel(
-                colors.active,
-                'MUI: The value of `palette.action.active` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-              ),
-            );
+            setColorChannel(palette[color], 'active');
           }
           if (colors.selected) {
-            setColor(
-              palette[color],
-              'selectedChannel',
-              safeColorChannel(
-                colors.selected,
-                'MUI: The value of `palette.action.selected` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-              ),
-            );
+            setColorChannel(palette[color], 'selected');
           }
         }
       }
@@ -392,6 +377,15 @@ export default function extendTheme(options = {}, ...args) {
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
 
+  const parserConfig = {
+    prefix: cssVarPrefix,
+    shouldSkipGeneratingVar,
+  };
+  const { vars: themeVars, generateCssVars } = prepareCssVars(theme, parserConfig);
+  theme.vars = themeVars;
+  theme.generateCssVars = generateCssVars;
+
+  theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...input?.unstable_sxConfig,

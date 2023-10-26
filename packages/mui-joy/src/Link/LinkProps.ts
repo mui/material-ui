@@ -7,17 +7,36 @@ import {
   ApplyColorInversion,
   TypographySystem,
   VariantProp,
+  TextColor,
 } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type LinkSlot = 'root' | 'startDecorator' | 'endDecorator';
+
+export interface LinkSlots {
+  /**
+   * The component that renders the root.
+   * @default 'a'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'span'
+   */
+  startDecorator?: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'span'
+   */
+  endDecorator?: React.ElementType;
+}
 
 export interface LinkPropsVariantOverrides {}
 
 export interface LinkPropsColorOverrides {}
 
 export type LinkSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  LinkSlot,
+  LinkSlots,
   {
     root: SlotProps<'a', {}, LinkOwnerState>;
     startDecorator: SlotProps<'span', {}, LinkOwnerState>;
@@ -27,7 +46,6 @@ export type LinkSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
   props: P &
-    LinkSlotsAndSlotProps &
     Omit<SystemProps, 'color'> & {
       /**
        * The content of the component.
@@ -49,11 +67,11 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       endDecorator?: React.ReactNode;
       /**
        * Applies the theme typography styles.
-       * @default 'body1'
+       * @default 'body-md'
        */
       level?: keyof TypographySystem | 'inherit';
       /**
-       * If `true`, the ::after psuedo element is added to cover the area of interaction.
+       * If `true`, the ::after pseudo element is added to cover the area of interaction.
        * The parent of the overlay Link should have `relative` CSS position.
        * @default false
        */
@@ -61,7 +79,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       /**
        * The system color.
        */
-      textColor?: SystemProps['color'];
+      textColor?: TextColor;
       /**
        * Element placed before the children.
        */
@@ -80,7 +98,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        * @default 'plain'
        */
       variant?: OverridableStringUnion<VariantProp, LinkPropsVariantOverrides>;
-    };
+    } & LinkSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -98,7 +116,8 @@ export interface LinkOwnerState extends ApplyColorInversion<LinkProps> {
    */
   focusVisible?: boolean;
   /**
-   * If `true`, the element is rendered by a Typography component.
+   * @internal
+   * If `true`, the element is rendered inside a Typography component.
    */
-  nested: boolean;
+  nesting: boolean;
 }

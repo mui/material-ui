@@ -155,11 +155,11 @@ It works with both Emotion and styled-components.
 - Runtime performance takes a hit.
 
   | Benchmark case                    | Code snippet          | Time normalized |
-  | :-------------------------------- | :-------------------- | --------------- |
-  | a. Render 1,000 primitives        | `<div className="…">` | 100ms           |
-  | b. Render 1,000 components        | `<Div>`               | 112ms           |
-  | c. Render 1,000 styled components | `<StyledDiv>`         | 181ms           |
-  | d. Render 1,000 Box               | `<Box sx={…}>`        | 296ms           |
+  | :-------------------------------- | :-------------------- | --------------: |
+  | a. Render 1,000 primitives        | `<div className="…">` |           100ms |
+  | b. Render 1,000 components        | `<Div>`               |           112ms |
+  | c. Render 1,000 styled components | `<StyledDiv>`         |           181ms |
+  | d. Render 1,000 Box               | `<Box sx={…}>`        |           296ms |
 
 <!-- #default-branch-switch -->
 

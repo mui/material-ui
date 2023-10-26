@@ -1,5 +1,5 @@
 ---
-title: Introducing MUI X v5.0
+title: Introducing MUI X v5
 description: We are excited to introduce MUI X v5.0.0!
 date: 2021-11-22T00:00:00.000Z
 authors:
@@ -198,7 +198,7 @@ We strongly recommend you migrate MUI X to v5.
 In MUI X v5 we have not only added additional features but also made significant internal improvements and performance optimizations that won't be included in v4.
 All-new `DataGrid` and `DataGridPro` features will be only available in MUI X v5.
 
-Please check [the v4 migration guide](/x/react-data-grid/migration-v4/) to accelerate the transition.
+Please check [the v4 migration guide](/x/migration/migration-data-grid-v4/) to accelerate the transition.
 
 ## What's next?
 

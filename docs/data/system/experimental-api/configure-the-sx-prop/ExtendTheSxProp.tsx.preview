@@ -2,7 +2,7 @@
   <Box
     sx={{
       size: 10,
-      border: '1px solid black',
+      border: 1,
     }}
   />
 </ThemeProvider>

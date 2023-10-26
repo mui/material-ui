@@ -5,22 +5,18 @@ import Box from '@mui/material/Box';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import LaunchRounded from '@mui/icons-material/LaunchRounded';
+import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
-import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import Link from 'docs/src/modules/components/Link';
-import DashboardRounded from '@mui/icons-material/DashboardRounded';
-import Layers from '@mui/icons-material/Layers';
-import ShoppingBag from '@mui/icons-material/ShoppingBag';
-import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import More from 'docs/src/components/action/More';
-
-const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
+import { DEMOS, icons, TEMPLATES } from 'docs/src/components/productMaterial/MaterialTemplates';
 
 function ActionArea(props: ButtonBaseProps) {
   return (
@@ -58,95 +54,23 @@ function ActionArea(props: ButtonBaseProps) {
 export default function TemplateDemo() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const [templateIndex, setTemplateIndex] = React.useState(0);
-  const icons = {
-    [DEMOS[0]]: <DashboardRounded fontSize="small" />,
-    [DEMOS[1]]: <Layers fontSize="small" />,
-    [DEMOS[2]]: <ShoppingBag fontSize="small" />,
-  };
-
-  const TEMPLATES = {
-    [DEMOS[0]]: [
-      {
-        name: 'Flexy - React Material Dashboard (CRA + Next.js)',
-        src: {
-          light: '/static/branding/store-templates/template-light4.jpeg',
-          dark: '/static/branding/store-templates/template-dark4.jpeg',
-        },
-        href: 'https://mui.com/store/items/flexy-react-admin-dashboard/',
-      },
-      {
-        name: 'Minimal - Client & Admin Dashboard',
-        src: {
-          light: '/static/branding/store-templates/template-light1.jpeg',
-          dark: '/static/branding/store-templates/template-dark1.jpeg',
-        },
-        href: 'https://mui.com/store/items/minimal-dashboard/',
-      },
-      {
-        name: 'Berry - React Material Admin Dashboard Template',
-        src: {
-          light: '/static/branding/store-templates/template-light5.jpeg',
-          dark: '/static/branding/store-templates/template-dark5.jpeg',
-        },
-        href: 'https://mui.com/store/items/berry-react-material-admin/',
-      },
-      {
-        name: 'Mira Pro - React Material Admin Dashboard',
-        src: {
-          light: '/static/branding/store-templates/template-light3.jpeg',
-          dark: '/static/branding/store-templates/template-dark3.jpeg',
-        },
-        href: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
-      },
-    ],
-    [DEMOS[1]]: [
-      {
-        name: 'theFront - Multipurpose Template + UI Kit',
-        src: {
-          light: '/static/branding/store-templates/template-light2.jpeg',
-          dark: '/static/branding/store-templates/template-dark2.jpeg',
-        },
-        href: 'https://mui.com/store/items/the-front-landing-page/',
-      },
-      {
-        name: 'Webbee - Multipurpose landing page UI Kit',
-        src: {
-          light: '/static/branding/store-templates/template-light6.jpeg',
-          dark: '/static/branding/store-templates/template-dark6.jpeg',
-        },
-        href: 'https://mui.com/store/items/webbee-landing-page/',
-      },
-    ],
-    [DEMOS[2]]: [
-      {
-        name: 'Bazar Pro - Multipurpose React Ecommerce Template',
-        src: {
-          light: '/static/branding/store-templates/template-bazar-light.jpeg',
-          dark: '/static/branding/store-templates/template-bazar-dark.jpeg',
-        },
-        href: 'https://mui.com/store/items/bazar-pro-react-ecommerce-template/',
-      },
-    ],
-  };
-
   const templates = TEMPLATES[demo];
 
   return (
-    <Section bg="comfort">
+    <Section bg="gradient">
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
-            <SectionHeadline
-              overline="Use cases"
-              title={
-                <Typography variant="h2">
-                  The right template for your <GradientText>specific need</GradientText>
-                </Typography>
-              }
-              description="A growing list of templates for multiple use-cases, all powered by MUI Core components and carefully curated by MUI's team."
-            />
-          </Box>
-          <Group desktopColumns={2} sx={{ mt: 4 }}>
+          <SectionHeadline
+            overline="Templates"
+            title={
+              <Typography variant="h2">
+                The right template for your <GradientText>specific use case</GradientText>
+              </Typography>
+            }
+            description="A collection of 4.5 average rating templates, for multiple use cases, all powered by Material UI components and carefully curated by MUI's team.
+              "
+          />
+          <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
               <Highlighter
                 key={name}
@@ -204,18 +128,16 @@ export default function TemplateDemo() {
                       sx={(theme) => ({
                         borderRadius: 1,
                         height: { xs: 200, sm: 240 },
-                        background: `url(${item.src.light})`,
+                        backgroundImage: `url(${item.src.light})`,
                         backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat',
-                        bgcolor: 'grey.400',
+                        bgcolor: 'background.paper',
                         boxShadow: '0px 4px 10px rgba(61, 71, 82, 0.25)',
                         transition: '0.6s cubic-bezier(0.15, 0.3, 0.25, 1)',
                         transform: templateIndex !== index ? 'scale(0.92)' : 'scale(1)',
                         ...theme.applyDarkStyles({
+                          backgroundImage: `url(${item.src.dark})`,
                           boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.6)',
-                          background: `url(${item.src.dark})`,
-                          backgroundSize: 'cover',
-                          backgroundRepeat: 'no-repeat',
                         }),
                       })}
                     >

@@ -6,9 +6,16 @@ import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import FontDownloadRoundedIcon from '@mui/icons-material/FontDownloadRounded';
 import Folder from '@mui/icons-material/Folder';
 
 export default function ThemeAccordion() {
+  const [expanded, setExpanded] = React.useState<string | false>('panel1');
+
+  const handleChange = (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+    setExpanded(newExpanded ? panel : false);
+  };
+
   return (
     <Fade in timeout={700}>
       <Box
@@ -47,7 +54,8 @@ export default function ThemeAccordion() {
           (theme) =>
             theme.applyDarkStyles({
               [`& .${accordionClasses.root}`]: {
-                bgcolor: 'primaryDark.800',
+                bgcolor: 'primaryDark.900',
+                borderColor: 'primaryDark.700',
               },
               [`& .${accordionSummaryClasses.root}`]: {
                 [`& .${accordionSummaryClasses.content}`]: {
@@ -59,30 +67,38 @@ export default function ThemeAccordion() {
             }),
         ]}
       >
-        <Accordion variant="outlined">
+        <Accordion
+          variant="outlined"
+          expanded={expanded === 'panel1'}
+          onChange={handleChange('panel1')}
+        >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx={{ color: 'primary.400' }} />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
             <Box sx={{ display: 'flex' }}>
-              <Folder fontSize="small" />
+              <FontDownloadRoundedIcon fontSize="small" />
               <div>
-                <Typography>Fonts</Typography>
+                <Typography fontWeight={500}>Typography</Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Typefaces used in this branding project.
+                  Fonts used in this website revamp project.
                 </Typography>
               </div>
             </Box>
           </AccordionSummary>
           <AccordionDetails>
             <Typography variant="body2" color="text.secondary">
-              Tag line headings (h1, h2) use Plus Jakarta Sans, whereas the rest of the elements use
-              IBM Plex Sans.
+              Tag line headings (h1, h2) use General Sans, whereas the rest of the website use IBM
+              Plex Sans.
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion variant="outlined">
+        <Accordion
+          variant="outlined"
+          expanded={expanded === 'panel2'}
+          onChange={handleChange('panel2')}
+        >
           <AccordionSummary
             disabled
             expandIcon={<ExpandMoreIcon />}

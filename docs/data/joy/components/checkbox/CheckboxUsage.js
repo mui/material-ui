@@ -1,6 +1,6 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Checkbox from '@mui/joy/Checkbox';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function CheckboxUsage() {
   return (
@@ -9,14 +9,14 @@ export default function CheckboxUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
-          defaultValue: 'soft',
+          knob: 'radio',
+          defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'primary',
+          defaultValue: 'neutral',
         },
         {
           propName: 'size',
