@@ -124,6 +124,7 @@ const InputLabel = React.forwardRef(function InputLabel<
 >(inProps: InputLabelProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const props = useThemeProps({ name: 'MuiInputLabel', props: inProps });
   const {
+    className,
     disableAnimation = false,
     margin,
     focused: focusedProp,
@@ -157,7 +158,6 @@ const InputLabel = React.forwardRef(function InputLabel<
   const classes = useUtilityClasses(ownerState);
 
   const RootSlot = slots?.root ?? InputLabelRoot;
-
   const rootProps = useSlotProps({
     elementType: RootSlot,
     externalSlotProps: slotProps.root,
@@ -170,7 +170,7 @@ const InputLabel = React.forwardRef(function InputLabel<
       focused: focusedProp,
     },
     ownerState,
-    className: [classes.root],
+    className: [classes.root, className],
   });
 
   return <RootSlot {...rootProps} />;

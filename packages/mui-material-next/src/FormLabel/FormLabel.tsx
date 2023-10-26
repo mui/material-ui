@@ -91,6 +91,7 @@ const FormLabel = React.forwardRef(function FormLabel<
   const props = useThemeProps({ props: inProps, name: 'MuiFormLabel' });
   const {
     children,
+    className,
     color: colorProp = 'primary',
     component = 'label',
     disabled: disabledProp,
@@ -131,7 +132,7 @@ const FormLabel = React.forwardRef(function FormLabel<
       ref: forwardedRef,
     },
     ownerState,
-    className: [classes.root],
+    className: [classes.root, className],
   });
 
   return (
