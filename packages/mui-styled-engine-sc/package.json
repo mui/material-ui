@@ -47,7 +47,7 @@
     "@mui-internal/test-utils": "^1.0.0",
     "@types/chai": "^4.3.9",
     "@types/hoist-non-react-statics": "^3.3.4",
-    "@types/react": "^18.2.29",
+    "@types/react": "^18.2.32",
     "chai": "^4.3.10",
     "react": "^18.2.0",
     "styled-components": "^6.0.0"
