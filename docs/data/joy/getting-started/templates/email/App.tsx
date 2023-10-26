@@ -37,9 +37,7 @@ export default function EmailExample() {
           }),
         }}
       >
-        <Layout.Header
-          sx={{ backgroundColor: 'var(--joy-palette-background-surface)' }}
-        >
+        <Layout.Header>
           <Header />
         </Layout.Header>
         <Layout.SideNav>

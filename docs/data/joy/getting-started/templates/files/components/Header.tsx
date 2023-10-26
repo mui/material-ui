@@ -82,7 +82,6 @@ export default function Header() {
         <Button
           variant="plain"
           color="neutral"
-          aria-pressed="true"
           component="a"
           href="/joy-ui/getting-started/templates/email/"
           size="sm"
@@ -103,6 +102,7 @@ export default function Header() {
         <Button
           variant="plain"
           color="neutral"
+          aria-pressed="true"
           component="a"
           href="/joy-ui/getting-started/templates/files/"
           size="sm"
@@ -114,23 +114,23 @@ export default function Header() {
       <Box sx={{ display: { xs: 'inline-flex', sm: 'none' } }}>
         <Dropdown>
           <MenuButton variant="plain" endDecorator={<ExpandMoreRoundedIcon />}>
-            Email
+            Files
           </MenuButton>
           <Menu
             placement="bottom-start"
             sx={{ zIndex: '99999', width: 120, justifyContent: 'center' }}
           >
-            <MenuItem
-              selected
-              component="a"
-              href="/joy-ui/getting-started/templates/email/"
-            >
+            <MenuItem component="a" href="/joy-ui/getting-started/templates/email/">
               Email
             </MenuItem>
             <MenuItem component="a" href="/joy-ui/getting-started/templates/team/">
               Team
             </MenuItem>
-            <MenuItem component="a" href="/joy-ui/getting-started/templates/files/">
+            <MenuItem
+              selected
+              component="a"
+              href="/joy-ui/getting-started/templates/files/"
+            >
               Files
             </MenuItem>
           </Menu>
