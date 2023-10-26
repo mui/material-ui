@@ -521,13 +521,13 @@ const InputBase = React.forwardRef(function InputBase<
 
   const handleAutoFill = (event: React.AnimationEvent) => {
     // Provide a fake value as Chrome might not let you access it for security reasons.
-    checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef?.current : { value: 'x' });
+    checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef : { value: 'x' });
   };
 
   // Check the input state on mount, in case it was filled by the user
   // or auto filled by the browser before the hydration (for SSR).
   React.useEffect(() => {
-    checkDirty(inputRef?.current);
+    checkDirty(inputRef);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

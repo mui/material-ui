@@ -90,7 +90,7 @@ export interface UseInputReturnValue {
   getRootProps: <ExternalProps extends Record<string, any> = {}>(
     externalProps?: ExternalProps,
   ) => UseInputRootSlotProps<ExternalProps>;
-  inputRef: React.RefObject<HTMLInputElement | HTMLTextAreaElement> | null;
+  inputRef: React.RefCallback<HTMLInputElement | HTMLTextAreaElement> | null;
   /**
    * If `true`, the `input` will indicate that it's required.
    */
