@@ -21,7 +21,7 @@
     "@mui/zero-tag-processor": "file:../../packages/zero-tag-processor/build",
     "@mui/zero-next-plugin": "file:../../packages/zero-next-plugin/build",
     "@types/node": "20.5.7",
-    "@types/react": "18.2.29",
+    "@types/react": "18.2.32",
     "@types/react-dom": "18.2.14",
     "typescript": "5.1.6"
   },

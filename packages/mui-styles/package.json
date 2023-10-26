@@ -61,7 +61,7 @@
     "@mui/joy": "5.0.0-beta.12",
     "@mui/material": "^5.14.15",
     "@types/chai": "^4.3.9",
-    "@types/react": "^18.2.29",
+    "@types/react": "^18.2.32",
     "@types/react-dom": "^18.2.14",
     "@types/sinon": "^10.0.19",
     "chai": "^4.3.10",
