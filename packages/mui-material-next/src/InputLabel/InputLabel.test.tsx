@@ -76,7 +76,7 @@ describe('<InputLabel />', () => {
 
     describe('filled', () => {
       it('applies a shrink class that can be controlled by props', () => {
-        function Wrapper({ children }) {
+        function Wrapper({ children }: { children?: React.ReactNode }) {
           return (
             <FormControl>
               <FilledInput defaultValue="Dave" />
@@ -101,7 +101,7 @@ describe('<InputLabel />', () => {
 
     describe('focused', () => {
       it('applies a shrink class that can be controlled by props', () => {
-        function Wrapper({ children }) {
+        function Wrapper({ children }: { children?: React.ReactNode }) {
           return (
             <FormControl>
               <FilledInput />
@@ -111,20 +111,24 @@ describe('<InputLabel />', () => {
         }
         Wrapper.propTypes = { children: PropTypes.node };
 
-        const { container, getByTestId, setProps } = render(<InputLabel data-testid="root" />, {
+        const { getByRole, getByTestId, setProps } = render(<InputLabel data-testid="root" />, {
           wrapper: Wrapper,
         });
+
+        const input = getByRole('textbox');
+        const label = getByTestId('root');
+
         act(() => {
-          container.querySelector('input').focus();
+          input.focus();
         });
 
-        expect(getByTestId('root')).to.have.class(classes.shrink);
+        expect(label).to.have.class(classes.shrink);
 
         setProps({ shrink: false });
-        expect(getByTestId('root')).not.to.have.class(classes.shrink);
+        expect(label).not.to.have.class(classes.shrink);
 
         setProps({ shrink: true });
-        expect(getByTestId('root')).to.have.class(classes.shrink);
+        expect(label).to.have.class(classes.shrink);
       });
     });
   });
