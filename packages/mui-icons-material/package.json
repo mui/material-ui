@@ -46,7 +46,9 @@
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.2"
+    "@babel/runtime": "^7.23.2",
+    "@mui/system": "^5.14.15",
+    "@mui/utils": "^5.14.15"
   },
   "devDependencies": {
     "@mui/internal-waterfall": "^1.0.0",
@@ -83,21 +85,6 @@
       "optional": true
     }
   },
-<<<<<<< HEAD
-  "dependencies": {
-    "@babel/runtime": "^7.20.7",
-    "@mui/system": "^5.11.2",
-    "@mui/utils": "^5.11.2"
-  },
-  "devDependencies": {
-    "fs-extra": "^10.1.0",
-    "mustache": "^4.2.0",
-    "shx": "^0.3.4",
-    "svgo": "^2.8.0",
-    "yargs": "^17.6.2"
-  },
-=======
->>>>>>> 644ccdade9338182a4180c00e937798ce0f2d891
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
