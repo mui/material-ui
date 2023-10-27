@@ -514,7 +514,7 @@ describe('<TablePagination />', () => {
 
   describe('prop: slotProps', () => {
     describe('actions', () => {
-      describe('slotProps.previousButton', () => {
+      describe('previousButton', () => {
         it('should override backIconButtonProps', () => {
           const slotPropsDisabled = false;
           const backIconButtonPropsDisabled = true;
@@ -527,7 +527,7 @@ describe('<TablePagination />', () => {
                     backIconButtonProps={{ disabled: backIconButtonPropsDisabled }}
                     slotProps={{
                       actions: {
-                        slotProps: { previousButton: { disabled: slotPropsDisabled } },
+                        previousButton: { disabled: slotPropsDisabled },
                       },
                     }}
                     count={1}
@@ -547,7 +547,7 @@ describe('<TablePagination />', () => {
         });
       });
 
-      describe('slotProps.nextButton', () => {
+      describe('nextButton', () => {
         it('should override nextIconButtonProps', () => {
           const slotPropsDisabled = false;
           const nextIconButtonPropsDisabled = true;
@@ -559,7 +559,7 @@ describe('<TablePagination />', () => {
                   <TablePagination
                     nextIconButtonProps={{ disabled: nextIconButtonPropsDisabled }}
                     slotProps={{
-                      actions: { slotProps: { nextButton: { disabled: slotPropsDisabled } } },
+                      actions: { nextButton: { disabled: slotPropsDisabled } },
                     }}
                     count={1}
                     page={0}
