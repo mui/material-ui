@@ -124,12 +124,25 @@ export type NumberInputBaseOwnProps = (SingleLineInputProps | MultiLineInputProp
    */
   onBlur?: (event?: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   /**
-   * Callback fired when the value is changed.
+   * Callback fired after the value is clamped and changes - when the `input` is blurred or when
+   * the stepper buttons are triggered.
+   * Called with `undefined` when the value is unset.
    *
-   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value` (string).
+   * @param {React.FocusEvent<HTMLInputElement>|React.PointerEvent|React.KeyboardEvent} event The event source of the callback
+   * @param {number|undefined} value The new value of the component
    */
-  onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onChange?: (
+    event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent,
+    value: number | undefined,
+  ) => void;
+  /**
+   * Callback fired when the `input` value changes after each keypress, before clamping is applied.
+   * Note that `event.target.value` may contain values that fall outside of `min` and `max` or
+   * are otherwise "invalid".
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
+   */
+  onInputChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onKeyUp?: React.KeyboardEventHandler<HTMLInputElement | HTMLTextAreaElement>;

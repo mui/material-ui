@@ -147,7 +147,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
 
   const createHandleInputChange =
     (otherHandlers: Partial<EventHandlers>) =>
-    (event: React.ChangeEvent<HTMLInputElement> & MuiCancellableEvent) => {
+    (event: React.ChangeEvent<HTMLInputElement> & MuiCancellableEvent, ...args: unknown[]) => {
       if (!isControlled && event.target === null) {
         throw new MuiError(
           'MUI: Expected valid input target. ' +
@@ -158,7 +158,9 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
 
       formControlContext?.onChange?.(event);
 
-      otherHandlers.onInputChange?.(event);
+      // TODO: figure out the actual use case for this and whether it's relevant for number inputs
+      // @ts-ignore - parity with useInput https://github.com/mui/material-ui/blob/master/packages/mui-base/src/useInput/useInput.ts#L154
+      otherHandlers.onInputChange?.(event, ...args);
 
       if (event.defaultMuiPrevented || event.defaultPrevented) {
         return;

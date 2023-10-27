@@ -258,6 +258,7 @@ const NumberInputBase = React.forwardRef(function NumberInputBase<
     name,
     onBlur,
     onChange,
+    onInputChange,
     onClick,
     onFocus,
     onKeyDown,
@@ -336,7 +337,8 @@ const NumberInputBase = React.forwardRef(function NumberInputBase<
     event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent,
     newValue: number | undefined,
   ) => {
-    if (!isControlled && event.target != null) {
+    // TODO: is this needed? probably, as it could go from "pristine" to "filled" via an arrow key or stepper button click
+    if (!isControlled && event.currentTarget != null) {
       checkDirty({
         value: newValue,
       });
@@ -344,8 +346,21 @@ const NumberInputBase = React.forwardRef(function NumberInputBase<
 
     // Perform in the willUpdate
     if (onChange) {
+      onChange(event, newValue);
+    }
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, ...args: any[]) => {
+    if (!isControlled && event.currentTarget != null) {
+      checkDirty({
+        value: event.currentTarget.value,
+      });
+    }
+
+    // Perform in the willUpdate
+    if (onInputChange) {
       // @ts-ignore
-      onChange(event, newValue, ...args);
+      onInputChange(event, ...args);
     }
   };
 
@@ -378,6 +393,7 @@ const NumberInputBase = React.forwardRef(function NumberInputBase<
     onBlur: handleBlur,
     onClick: handleClick,
     onChange: handleChange,
+    onInputChange: handleInputChange,
     onFocus: handleFocus,
     required,
     value,
