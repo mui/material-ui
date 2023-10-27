@@ -4,7 +4,7 @@
 
 ## Introduction
 
-To use CSS variables, you must wrap your app with the `<CSSVarsProvider />` utility.
+To use CSS variables, you must wrap your app with the `<CssVarsProvider />` utility.
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
@@ -20,6 +20,10 @@ This notation is available to all styling APIs that Joy UI supports, including t
 ## Styling APIs
 
 Use the `theme.vars.*` notation with any styling APIs supported by Joy UI:
+
+:::success
+Visit [the Approaches page](/joy-ui/customization/approaches/) to understand how to use the supported styling APIs by Joy UI to customize the components.
+:::
 
 ### styled function
 
