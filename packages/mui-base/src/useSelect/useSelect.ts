@@ -18,7 +18,7 @@ import {
   UseSelectParameters,
   UseSelectReturnValue,
 } from './useSelect.types';
-import { useList, UseListParameters } from '../useList';
+import { ListActionTypes, useList, UseListParameters } from '../useList';
 import { EventHandlers } from '../utils/types';
 import { defaultOptionStringifier } from './defaultOptionStringifier';
 import { SelectProviderValue } from './SelectProvider';
@@ -42,8 +42,6 @@ const visuallyHiddenStyle: React.CSSProperties = {
   left: '50%',
   bottom: 0, // to display the native browser validation error at the bottom of the Select.
 };
-
-const noop = () => {};
 
 function defaultFormValueProvider<OptionValue>(
   selectedOption: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
@@ -268,7 +266,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   const useListParameters: UseListParameters<
     OptionValue,
     SelectInternalState<OptionValue>,
-    SelectAction,
+    SelectAction<OptionValue>,
     { multiple: boolean }
   > = {
     getInitialState: () => ({
@@ -408,18 +406,45 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
       null) as SelectValue<SelectOption<OptionValue>, Multiple>;
   }
 
+  const createHandleHiddenInputChange =
+    (externalEventHandlers?: EventHandlers) =>
+    (event: React.ChangeEvent<HTMLInputElement> & MuiCancellableEvent) => {
+      externalEventHandlers?.onChange?.(event);
+
+      if (event.defaultMuiPrevented) {
+        return;
+      }
+
+      const option = options.get(event.target.value as OptionValue);
+
+      // support autofill
+      if (event.target.value === '') {
+        dispatch({
+          type: ListActionTypes.clearSelection,
+        });
+      } else if (option !== undefined) {
+        dispatch({
+          type: SelectActionTypes.browserAutoFill,
+          item: option.value,
+          event,
+        });
+      }
+    };
+
   const getHiddenInputProps = <ExternalProps extends Record<string, unknown>>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSelectHiddenInputSlotProps<ExternalProps> => {
+    const externalEventHandlers = extractEventHandlers(externalProps);
+
     return {
       name,
       tabIndex: -1,
       'aria-hidden': true,
       required: required ? true : undefined,
       value: getSerializedValue(selectedOptionsMetadata),
-      onChange: noop,
       style: visuallyHiddenStyle,
       ...externalProps,
+      onChange: createHandleHiddenInputChange(externalEventHandlers),
     };
   };
 

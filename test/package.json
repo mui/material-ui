@@ -20,7 +20,7 @@
     "@playwright/test": "1.37.1",
     "@testing-library/dom": "^9.3.3",
     "@types/chai": "^4.3.9",
-    "@types/react": "^18.2.29",
+    "@types/react": "^18.2.32",
     "chai": "^4.3.10",
     "docs": "^5.0.0",
     "fast-glob": "^3.3.1",
