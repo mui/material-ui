@@ -6,7 +6,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_composeClasses as composeClasses,
 } from '@mui/utils';
-import { styled, useThemeProps } from '@mui/system';
+import { styled, getThemeProps, useTheme } from '@mui/system';
 import { getSvgIconUtilityClass } from './svgIconClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -47,33 +47,40 @@ const SvgIconRoot = styled('svg', {
       styles[`fontSize${capitalize(ownerState.fontSize)}`],
     ];
   },
-})(({ theme, ownerState }) => ({
-  userSelect: 'none',
-  width: '1em',
-  height: '1em',
-  display: 'inline-block',
-  fill: 'currentColor',
-  flexShrink: 0,
-  transition:
-    theme.transitions?.create?.('fill', {
-      duration: theme.transitions?.duration?.shorter,
-    }) ?? 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-  fontSize: {
-    inherit: 'inherit',
-    small: theme.typography?.pxToRem?.(20) || '1.25rem',
-    medium: theme.typography?.pxToRem?.(24) || '1.5rem',
-    large: theme.typography?.pxToRem?.(35) || '2.1875rem',
-  }[ownerState.fontSize],
-  // TODO v5 deprecate, v6 remove for sx
-  color:
-    (theme.vars || theme).palette?.[ownerState.color]?.main ??
-    {
-      action: (theme.vars || theme).palette?.action?.active,
-      disabled: (theme.vars || theme).palette?.action?.disabled,
-      inherit: undefined,
-    }[ownerState.color] ??
-    defaultMaterialDesignColors[ownerState.color],
-}));
+})(({ theme: themeContext, ownerState }) => {
+  // Look for theme scoping and fallback to the root theme.
+  //
+  // Note: I don't think there will be any use case where
+  // both Material UI and Joy UI are using theme scoping so order does not matter here.
+  const theme = themeContext.$$material || themeContext.$$joy || themeContext;
+  return {
+    userSelect: 'none',
+    width: '1em',
+    height: '1em',
+    display: 'inline-block',
+    fill: 'currentColor',
+    flexShrink: 0,
+    transition:
+      theme.transitions?.create?.('fill', {
+        duration: theme.transitions?.duration?.shorter,
+      }) ?? 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    fontSize: {
+      inherit: 'inherit',
+      small: theme.typography?.pxToRem?.(20) || '1.25rem',
+      medium: theme.typography?.pxToRem?.(24) || '1.5rem',
+      large: theme.typography?.pxToRem?.(35) || '2.1875rem',
+    }[ownerState.fontSize],
+    // TODO v5 deprecate, v6 remove for sx
+    color:
+      (theme.vars || theme).palette?.[ownerState.color]?.main ??
+      {
+        action: (theme.vars || theme).palette?.action?.active,
+        disabled: (theme.vars || theme).palette?.action?.disabled,
+        inherit: undefined,
+      }[ownerState.color] ??
+      defaultMaterialDesignColors[ownerState.color],
+  };
+});
 
 /**
  *
@@ -87,7 +94,12 @@ const SvgIconRoot = styled('svg', {
  * - [SvgIcon API](https://mui.com/material-ui/api/svg-icon/)
  */
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSvgIcon' });
+  const theme = useTheme();
+  const props = getThemeProps({
+    theme: theme.$$material || theme.$$joy || theme,
+    props: inProps,
+    name: 'MuiSvgIcon',
+  });
   const {
     children,
     className,
