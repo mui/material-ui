@@ -95,7 +95,7 @@ export default function AppFooter(props: AppFooterProps) {
             <Link href={ROUTES.store}>Store</Link>
             <Link href={ROUTES.blog}>Blog</Link>
             <Link href={ROUTES.showcase}>Showcase</Link>
-            <Link href={ROUTES.xRoadmap}>Roadmap</Link>
+            <Link href={ROUTES.coreRoadmap}>Roadmap</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>

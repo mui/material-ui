@@ -26,6 +26,7 @@ const ROUTES = {
   communityHelp: '/material-ui/getting-started/support/#community-help-free',
   blog: '/blog/',
   showcase: '/material-ui/discover-more/showcase/',
+  coreRoadmap: '/material-ui/discover-more/roadmap/',
   xRoadmap: 'https://github.com/mui/mui-x/projects/1',
   vision: '/material-ui/discover-more/vision/',
   support: '/material-ui/getting-started/support/#professional-support-premium',
