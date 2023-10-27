@@ -224,20 +224,16 @@ Make sure that the input is larger than the label to display correctly.
 
 ### type="number"
 
-Inputs of type="number" have potential usability issues:
+We do not recommend using type="number" with a Text Field due to potential usability issues:
 
 - Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
 - The functionality of scrolling to increment/decrement the number can cause accidental and hard-to-notice changes
 
 and more - see [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV.UK Design System team for a more detailed explanation.
 
-For number validation, one viable alternative is to use the default input type="text" with the _pattern_ attribute, for example:
+For number validation, you can try Base UI's [Number Input](/base-ui/react-number-input/).
 
-```jsx
-<TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
-```
-
-In the future, we might provide a [number input component](https://github.com/mui/material-ui/issues/19154).
+You can also upvote [this GitHub issue](https://github.com/mui/material-ui/issues/19154) to see it arrive in Material UI sooner!
 
 ### Helper text
 
