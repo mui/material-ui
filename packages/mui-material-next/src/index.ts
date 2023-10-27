@@ -47,6 +47,9 @@ export * from './MenuItem';
 export { default as Option } from './Option';
 export * from './Option';
 
+export { default as NumberInputBase } from './NumberInputBase';
+export * from './NumberInputBase';
+
 export { default as OutlinedInput } from './OutlinedInput';
 export * from './OutlinedInput';
 
