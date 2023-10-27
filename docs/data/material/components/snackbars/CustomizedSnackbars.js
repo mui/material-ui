@@ -20,7 +20,7 @@ export default function CustomizedSnackbars() {
 
   return (
     <div>
-      <Button onClick={handleClick}>Open snackbar</Button>
+      <Button onClick={handleClick}>Open Snackbar</Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert
           onClose={handleClose}

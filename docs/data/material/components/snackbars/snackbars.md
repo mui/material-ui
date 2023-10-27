@@ -9,26 +9,32 @@ waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 
 # Snackbar
 
-<p class="description">Also known as a toast, snackbars are used for brief notifications of a process that has been performed or will be performed.</p>
+<p class="description">Snackbars (also known as toasts) are used for brief notifications of processes that have been or will be performed.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
+The Snackbar component appears temporarily and floats above the UI to provide users with (non-critical) updates on an app's processes.
+The demo below, inspired by Google Keep, shows a basic Snackbar with a text element and two actions:
+
+{{"demo": "SimpleSnackbar.js"}}
+
+:::info
+Snackbars differ from [Alerts](/material-ui/react-alert/) in that Snackbars have a fixed position and a high z-index, so they're intended to break out of the document flow; Alerts, on the other hand, are usually part of the flow—except when they're [used as children of a Snackbar](#use-with-alert).
+
+Snackbars also from differ from [Dialogs](/material-ui/react-dialog/) in that Snackbars are not intended to convey _critical_ information or block the user from interacting with the rest of the app; Dialogs, by contrast, require input from the user before they can be dismissed.
+:::
+
+## Basics
+
 ```jsx
 import Snackbar from '@mui/material/Snackbar';
 ```
 
-The Snackbar provides users updates on an app's processes, temporarily appearing on the screen.
-Inspired by Google Keep, this demo shows a basic snackbar with a text element and two actions.
-
-{{"demo": "SimpleSnackbar.js"}}
-
-## Basics
-
 ### Position
 
-Use the `anchorOrigin` prop to control the snackbar position on the screen.
+Use the `anchorOrigin` prop to control the Snackbar's position on the screen.
 
 {{"demo": "PositionedSnackbar.js"}}
 
@@ -38,7 +44,7 @@ Use the `anchorOrigin` prop to control the snackbar position on the screen.
 import SnackbarContent from '@mui/material/SnackbarContent';
 ```
 
-Use the Snackbar Content component for adding text and actions to the snackbar.
+Use the Snackbar Content component to add text and actions to the Snackbar.
 
 {{"demo": "LongTextSnackbar.js"}}
 
@@ -52,14 +58,13 @@ You can use the `TransitionComponent` prop to change the transition of the Snack
 
 ### Use with Alerts
 
-Use an alert inside a snackbar for messages that communicate a certain severity.
+Use an Alert inside a Snackbar for messages that communicate a certain severity.
 
 {{"demo": "CustomizedSnackbars.js"}}
 
 ### Use with Floating Action Buttons
 
-If you're using a [Floating Action Button](/material-ui/react-floating-action-button/) on mobile, Material Design recommends positioning any snackbar right above it.
-The demo below shows you how to do that.
+If you're using a [Floating Action Button](/material-ui/react-floating-action-button/) on mobile, Material Design recommends positioning Snackbars directly above it, as shown in the demo below:
 
 {{"demo": "FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
@@ -67,18 +72,18 @@ The demo below shows you how to do that.
 
 ### Consecutive Snackbars
 
-This demo shows how to show multiple snackbars without stacking them by using a consecutive animation.
+This demo shows how to display multiple Snackbars without stacking them by using a consecutive animation.
 
 {{"demo": "ConsecutiveSnackbars.js"}}
 
-## Third-party intergrations
+## Third-party integrations
 
 ### notistack
 
 ![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Star)
 ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
-With an imperative API, [notistack](https://github.com/iamhosseindhv/notistack) allows you to vertically stack multiple Snackbars without having to handle their open and close states.
+With an imperative API, [notistack](https://github.com/iamhosseindhv/notistack) lets you vertically stack multiple Snackbars without having to handle their open and close states.
 Even though this is discouraged in the Material Design guidelines, it is still a common pattern.
 
 {{"demo": "IntegrationNotistack.js", "defaultCodeOpen": false}}
@@ -87,10 +92,10 @@ Even though this is discouraged in the Material Design guidelines, it is still a
 
 Here are a few tips to make sure you have an accessible Snackbar component:
 
-- Based on the [WAI-ARIA guidelines](https://www.w3.org/TR/wai-aria-1.1/#alert), the Snackbar doesn't auto-hide by default.
+- According to the [WAI-ARIA guidelines](https://www.w3.org/TR/wai-aria-1.1/#alert), Snackbars shouldn't auto-hide by default.
   If you use the `autoHideDuration` prop, make sure to [provide sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) for the user to process the information displayed on it.
 
-- All Snackbars are automatically dismissed by pressing <kbd class="key">Escape</kbd>. If you have multiple instances appearing at the same time and want <kbd class="key">Escape</kbd> to dismiss only the oldest currently open one, call `event.preventDefault` in the `onClose` prop.
+- The user should be able to dismiss Snackbars by pressing <kbd class="key">Escape</kbd>. If there are multiple instances appearing at the same time and you want <kbd class="key">Escape</kbd> to dismiss only the oldest one that's currently open, call `event.preventDefault` in the `onClose` prop.
 
 ```jsx
 export default function MyComponent() {
@@ -114,10 +119,14 @@ export default function MyComponent() {
 
 ## Anatomy
 
-The Snackbar component is composed of a root <div> that ... to complement:
+The Snackbar component is composed of a root `<div>` that houses interior elements like the Snackbar Content and other optional components (such as buttons or decorators).
 
 ```html
-<div class="MuiSnackbar-root">
-  <!-- snackbar content goes here -->
+<div role="presentation" class="MuiSnackbar-root>
+  <div class="MuiPaper-root MuiSnackbarContent-root" role="alert">
+    <div class="MuiSnackbarContent-message">
+      <!-- Snackbar content goes here -->
+    </div>
+  </div>
 </div>
 ```
