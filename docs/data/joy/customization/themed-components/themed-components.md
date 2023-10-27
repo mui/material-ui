@@ -109,31 +109,31 @@ extendTheme({
 });
 ```
 
-### Change styles based on states
+### Change styles based on state
 
 Joy UI components increase the CSS specificity of the styles when they are in a given state such as `selected`, `disabled`, `focusVisible`, etc.
 
-To override the styles of a given state, use the classes selector from the component. The import is the camel-case name of the component followed by `Classes`.
+To override styles of a specific state, import the component's class selector using its name in camel-case followed by `Classes`.
 
 ```js
 import { listItemButtonClasses } from '@mui/joy/ListItemButton';
 
 extendTheme({
   components: {
-    JoyChip: {
+    JoyListItemButton: {
       styleOverrides: {
-        root: ({ theme }) => ({
+        root: {
           [`&.${listItemButtonClasses.selected}`]: {
-            color: 'rgba(255 255 255 / 0.72)',
+            color: 'rgba(255 255 255 / 0.7)',
           },
-        }),
+        },
       },
     },
   },
 });
 ```
 
-The available states are: `active`, `checked`, `completed`, `disabled`, `error`, `expanded`, `focused`, `focusVisible`, `open`, `readOnly`, `required`, `selected`.
+The available states are: `active`, `checked`, `completed`, `disabled`, `error`, `expanded`, `focused`, `focusVisible`, `readOnly`, `required`, `selected`.
 
 ### Extend colors
 
