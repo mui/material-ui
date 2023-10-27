@@ -88,6 +88,18 @@ const Root = styled('div')(
     '& .h2-heading': {
       color: 'inherit',
       textDecoration: 'none',
+      position: 'relative',
+      display: 'inline-block',
+    },
+
+    '& .h2-heading svg': {
+      display: 'none',
+      height: '0.6rem',
+      width: '2rem',
+    },
+
+    '& .h2-heading:hover svg': {
+      display: 'inline-block',
     },
     '& h3': {
       ...lightTheme.typography.h6,
