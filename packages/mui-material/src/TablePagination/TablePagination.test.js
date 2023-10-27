@@ -353,6 +353,58 @@ describe('<TablePagination />', () => {
     });
   });
 
+  describe('prop: backIconButtonProps', () => {
+    it('should should apply props to the back button', () => {
+      const backIconButtonPropsDisabled = true;
+
+      const { getByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                backIconButtonProps={{ disabled: backIconButtonPropsDisabled }}
+                count={1}
+                page={0}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
+                rowsPerPage={10}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      const backButton = getByRole('button', { name: 'Go to previous page' });
+      expect(backButton).to.have.property('disabled', backIconButtonPropsDisabled);
+    });
+  });
+
+  describe('prop: nextIconButtonProps', () => {
+    it('should should apply props to the next button', () => {
+      const nextIconButtonPropsDisabled = true;
+
+      const { getByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                nextIconButtonProps={{ disabled: nextIconButtonPropsDisabled }}
+                count={1}
+                page={0}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
+                rowsPerPage={10}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      const nextButton = getByRole('button', { name: 'Go to next page' });
+      expect(nextButton).to.have.property('disabled', nextIconButtonPropsDisabled);
+    });
+  });
+
   describe('prop: disabled', () => {
     it('should disable the first, last, next, and back buttons', () => {
       const { getByRole } = render(
