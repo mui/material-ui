@@ -31,21 +31,25 @@ const Paper = styled(MuiPaper)({
   transformOrigin: 'top right',
   backgroundImage: 'none',
 });
+
 const List = styled(MuiList)(({ theme }) => ({
   width: theme.spacing(40),
   maxHeight: 540,
   overflow: 'auto',
   padding: theme.spacing(1, 0),
 }));
+
 const ListItem = styled(MuiListItem)({
   display: 'flex',
   flexDirection: 'column',
 });
+
 const Loading = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   margin: theme.spacing(3, 0),
 }));
+
 const Divider = styled(MuiDivider)(({ theme }) => ({
   margin: theme.spacing(1, 0),
 }));
@@ -166,6 +170,7 @@ export default function Notifications() {
           ref={anchorRef}
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
+          aria-label={t('toggleNotifications')}
           onClick={handleToggle}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
