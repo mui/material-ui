@@ -13,7 +13,7 @@
 
 - [Base UI](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.
 
-- [MUI System](https://mui.com/system/getting-started/) is a collection of CSS utilities to help you rapidly lay out custom designs.
+- [MUI System](https://mui.com/system/getting-started/) is a collection of CSS utilities to help you rapidly layout custom designs.
 
 <div align="center">
 
