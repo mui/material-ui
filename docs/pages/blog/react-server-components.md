@@ -1,8 +1,13 @@
-# Understanding React Server Components
+---
+title: Understanding React Server Components
+description: Learn how RSCs relate to client-side and server-side rendering, and how component libraries like Material UI are adapting.
+date: 2023-11-30T00:00:00.000Z
+authors: ['samuelsycamore']
+card: false
+tags: ['Product']
+---
 
-<p class="description">Learn how RSCs relate to server-side and client-side rendering, and how component libraries like Material UI are adapting.</p>
-
-## Introduction
+## A new paradigm for React
 
 ## Client-side rendering
 
@@ -16,5 +21,4 @@
 
 ### Benefits of React Server Components
 
-## How Material UI is adapting
-
+## How MUI is adapting
