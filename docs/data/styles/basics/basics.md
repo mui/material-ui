@@ -13,27 +13,6 @@ This documentation remains here for those working on legacy projects, but we **s
 Please use [`@mui/system`](/system/getting-started/) instead.
 :::
 
-Material UI aims to provide a strong foundation for building dynamic UIs.
-For the sake of simplicity, **we expose the styling solution used in Material UI components** as the `@mui/styles` package.
-You can use it, but you don't have to, since Material UI is also [interoperable with](/material-ui/guides/interoperability/) all the other major styling solutions.
-
-## Why use Material UI's styling solution?
-
-In previous versions, Material UI has used [Less](https://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited.
-[A _CSS-in-JS_ solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations,
-and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
-
-Material UI's styling solution is inspired by many other styling libraries such as [styled-components](https://styled-components.com/) and [Emotion](https://emotion.sh/).
-
-- 💅 You can expect [the same advantages](https://styled-components.com/docs/basics#motivation) as styled-components.
-
-<!-- #default-branch-switch -->
-
-- 🚀 It's [blazing fast](https://github.com/mui/material-ui/tree/master/benchmark/server#material-uistyles).
-- 🧩 It's extensible via a [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
-- ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core – a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
-- 📦 Less than [15 kB gzipped](https://bundlephobia.com/package/@mui/styles); and no bundle size increase if used alongside Material UI.
-
 ## Installation
 
 To install and save in your `package.json` dependencies, run:
