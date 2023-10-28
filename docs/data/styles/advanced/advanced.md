@@ -17,7 +17,9 @@ Please use [`@mui/system`](/system/getting-started/) instead.
 
 Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Then, you can access the theme object in style functions.
 
-> This example creates a theme object for custom-built components. If you intend to use some of Material UI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/material-ui/customization/theming/) to learn how to build your custom Material UI theme.
+:::info
+This example creates a theme object for custom-built components. If you intend to use some of Material UI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/material-ui/customization/theming/) to learn how to build your custom Material UI theme.
+:::
 
 ```jsx
 import { ThemeProvider } from '@mui/styles';
@@ -232,9 +234,10 @@ Note that this doesn't support selectors, or nested rules.
 
 ## CSS injection order
 
-> It's **really important** to understand how the CSS specificity is calculated by the browser,
-> as it's one of the key elements to know when overriding styles.
-> You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+:::warning
+It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles.
+Read this section from the MDN docs for more information: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+:::
 
 By default, the style tags are injected **last** in the `<head>` element of the page.
 They gain more specificity than any other style tags on your page e.g. CSS modules, styled components.
