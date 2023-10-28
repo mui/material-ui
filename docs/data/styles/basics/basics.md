@@ -1,12 +1,17 @@
 # @mui/styles (LEGACY)
 
-<p class="description">The legacy styling solution for Material UI.</p>
+<p class="description">The legacy styling solution for Material UI, now deprecated and not recommended for use.</p>
 
-> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for Material UI.
-> It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5.
-> If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/) documentation which is the recommended alternative.
+:::error
+`@mui/styles` was deprecated in v5, which was released in late 2021.
+It depended on [JSS](https://cssinjs.org/) as a styling solution, which is no longer used in `@mui/material`.
 
-> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18.
+`@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18, and it will not be updated.
+
+This documentation remains here for those working on legacy projects, but we **strongly discourage** you from using `@mui/styles` when creating a new app with Material UI—you _will_ face unresolvable dependency issues.
+
+Please use [`@mui/system`](/system/getting-started/) instead.
+:::
 
 Material UI aims to provide a strong foundation for building dynamic UIs.
 For the sake of simplicity, **we expose the styling solution used in Material UI components** as the `@mui/styles` package.
