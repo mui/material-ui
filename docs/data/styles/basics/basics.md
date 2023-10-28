@@ -3,7 +3,7 @@
 <p class="description">The legacy styling solution for Material UI, now deprecated and not recommended for use.</p>
 
 :::error
-`@mui/styles` was deprecated in v5, which was released in late 2021.
+`@mui/styles` was deprecated with the release of MUI Core v5 in late 2021.
 It depended on [JSS](https://cssinjs.org/) as a styling solution, which is no longer used in `@mui/material`.
 
 `@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18, and it will not be updated.
