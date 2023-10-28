@@ -208,10 +208,6 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/guides/next-js-app-router',
         title: 'Next.js App Router',
       },
-      {
-        pathname: '/material-ui/guides/react-server-components',
-        title: 'React Server Components',
-      },
     ],
   },
   {
