@@ -49,7 +49,7 @@
     "@types/react": "^18.2.32",
     "@types/react-dom": "^18.2.14",
     "@types/react-test-renderer": "^18.0.3",
-    "@types/sinon": "^10.0.19",
+    "@types/sinon": "^10.0.20",
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
