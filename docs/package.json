@@ -130,7 +130,7 @@
     "@types/react-swipeable-views": "^0.13.3",
     "@types/react-swipeable-views-utils": "^0.13.5",
     "@types/react-transition-group": "^4.4.7",
-    "@types/react-window": "^1.8.6",
+    "@types/react-window": "^1.8.7",
     "@types/stylis": "^4.2.0",
     "chai": "^4.3.10",
     "cross-fetch": "^4.0.0",
