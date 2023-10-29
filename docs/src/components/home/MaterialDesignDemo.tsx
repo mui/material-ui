@@ -15,7 +15,7 @@ import { withPointer } from 'docs/src/components/home/ElementPointer';
 
 export const componentCode = `<Card>
   <Box sx={{ p: 2, display: 'flex' }}>
-    <Avatar variant="rounded" src="avatar1.jpg" />
+    <Avatar variant="rounded" src="avatar.jpg" />
     <Stack spacing={0.5}>
       <Typography fontWeight="bold">Lucas Smith</Typography>  
       <Typography variant="body2" color="text.secondary">
@@ -64,7 +64,7 @@ export default function MaterialDesignDemo(props: CardProps) {
       <Box sx={{ p: 2, display: 'flex' }}>
         <Avatar
           variant="rounded"
-          src="static/images/avatar/2.jpg"
+          src="/static/images/avatar/2.jpg"
           imgProps={{ 'aria-labelledby': 'demo-task-card-assignee-name' }}
         />
         <Stack

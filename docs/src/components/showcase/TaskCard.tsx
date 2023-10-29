@@ -50,7 +50,7 @@ export default function TaskCard() {
           >
             <Avatar
               imgProps={{ 'aria-labelledby': 'demo-task-card-assignee-name' }}
-              src="static/images/avatar/2.jpg"
+              src="/static/images/avatar/2.jpg"
             />
           </Box>
           <div>
