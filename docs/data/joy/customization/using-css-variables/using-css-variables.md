@@ -22,7 +22,7 @@ This notation is available to all styling APIs that Joy UI supports, including t
 Use the `theme.vars.*` notation with any styling APIs supported by Joy UI:
 
 :::success
-Visit [the Approaches page](/joy-ui/customization/approaches/) to understand how to use the supported styling APIs by Joy UI to customize the components.
+Visit [the Approaches page](/joy-ui/customization/approaches/) to understand how to use the supported styling APIs.
 :::
 
 ### styled function
