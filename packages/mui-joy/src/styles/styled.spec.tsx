@@ -9,14 +9,14 @@ const Basic = styled('button')({
 
 const ObjectStyle = styled('button')(({ theme }) => ({
   fontWeight: theme.vars.fontWeight.md,
-  backgroundColor: theme.vars.palette.background.body,
+  backgroundColor: theme.vars.palette.background.level0,
   ...theme.typography['body-md'],
 }));
 
 const ArrayStyle = styled('button')(({ theme }) => [
   {
     fontWeight: theme.vars.fontWeight.md,
-    backgroundColor: theme.vars.palette.background.body,
+    backgroundColor: theme.vars.palette.background.level0,
   },
   theme.typography['body-md'],
 ]);
@@ -24,7 +24,7 @@ const ArrayStyle = styled('button')(({ theme }) => [
 const FocusStyle = styled('button')(({ theme }) => [
   {
     fontWeight: theme.vars.fontWeight.md,
-    backgroundColor: theme.vars.palette.background.body,
+    backgroundColor: theme.vars.palette.background.level0,
     [theme.focus.selector]: theme.focus.default,
   },
 ]);

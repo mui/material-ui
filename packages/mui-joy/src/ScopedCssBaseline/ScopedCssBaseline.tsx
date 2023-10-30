@@ -48,7 +48,7 @@ const ScopedCssBaselineRoot = styled('div', {
     WebkitTextSizeAdjust: '100%',
     color: theme.vars.palette.text.primary,
     ...theme.typography['body-md'],
-    backgroundColor: theme.vars.palette.background.body,
+    backgroundColor: theme.vars.palette.background.level0,
     '@media print': {
       // Save printer ink.
       backgroundColor: '#fff',

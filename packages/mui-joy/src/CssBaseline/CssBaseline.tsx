@@ -59,7 +59,7 @@ function CssBaseline(props: CssBaselineProps) {
               color: theme.vars.palette.text.primary,
               fontFamily: theme.vars.fontFamily.body,
               ...(theme.typography as any)[defaultTypographyLevel],
-              backgroundColor: theme.vars.palette.background.body,
+              backgroundColor: theme.vars.palette.background.level0,
               '@media print': {
                 // Save printer ink.
                 backgroundColor: theme.vars.palette.common.white,

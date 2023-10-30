@@ -104,7 +104,7 @@ export const StyledListItem = styled('li')<{ ownerState: ListItemOwnerState }>(
           position: 'sticky',
           top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
           zIndex: 1,
-          background: `var(--ListItem-stickyBackground, ${theme.vars.palette.background.body})`,
+          background: `var(--ListItem-stickyBackground, ${theme.vars.palette.background.level0})`,
         } as const)),
     } as const,
     theme.variants[ownerState.variant!]?.[ownerState.color!],

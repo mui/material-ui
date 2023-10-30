@@ -37,7 +37,7 @@ interface Value {
     expectType<Value | null, typeof val>(val);
   }}
 />;
-<Select sx={{ bgcolor: (theme) => theme.vars.palette.background.body }} />;
+<Select sx={{ bgcolor: (theme) => theme.vars.palette.background.level0 }} />;
 <Select
   slotProps={{
     button: {
@@ -45,7 +45,7 @@ interface Value {
       'aria-describedby': 'some-id',
       onClick: () => {},
       sx: {
-        bgcolor: (theme) => theme.vars.palette.background.body,
+        bgcolor: (theme) => theme.vars.palette.background.level0,
       },
     },
     listbox: {

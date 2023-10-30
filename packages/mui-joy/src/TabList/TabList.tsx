@@ -57,7 +57,7 @@ const TabListRoot = styled(StyledList, {
       bottom: ownerState.sticky === 'bottom' ? 'calc(-1 * var(--Tabs-padding, 0px))' : 'initial',
       backgroundColor:
         variantStyle?.backgroundColor ||
-        `var(--TabList-stickyBackground, ${theme.vars.palette.background.body})`,
+        `var(--TabList-stickyBackground, ${theme.vars.palette.background.level0})`,
     }),
     ...(!ownerState.disableUnderline && {
       ...(ownerState.underlinePlacement === 'bottom' && {
