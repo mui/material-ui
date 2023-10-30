@@ -56,7 +56,6 @@ const AccordionRoot = styled(StyledListItem as unknown as 'div', {
   },
 });
 /**
- * ⚠️ Accordion must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
  * Demos:
  *
