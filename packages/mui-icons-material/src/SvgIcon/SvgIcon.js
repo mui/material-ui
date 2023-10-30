@@ -6,7 +6,8 @@ import {
   unstable_capitalize as capitalize,
   unstable_composeClasses as composeClasses,
 } from '@mui/utils';
-import { styled, getThemeProps, useTheme } from '@mui/system';
+import { getThemeProps, useTheme } from '@mui/system';
+import styled from '../utils/styled';
 import { getSvgIconUtilityClass } from './svgIconClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -21,18 +22,6 @@ const useUtilityClasses = (ownerState) => {
   };
 
   return composeClasses(slots, getSvgIconUtilityClass, classes);
-};
-
-const defaultMaterialDesignColors = {
-  inherit: undefined,
-  action: 'rgba(0, 0, 0, 0.54)',
-  disabled: 'rgba(0, 0, 0, 0.26)',
-  primary: '#1976d2',
-  secondary: '#9c27b0',
-  error: '#d32f2f',
-  info: '#0288d1',
-  success: '#2e7d32',
-  warning: '#ed6c02',
 };
 
 const SvgIconRoot = styled('svg', {
@@ -58,12 +47,13 @@ const SvgIconRoot = styled('svg', {
     width: '1em',
     height: '1em',
     display: 'inline-block',
-    fill: 'currentColor',
+    // the <svg> will define the property that has `currentColor`
+    // e.g. heroicons uses fill="none" and stroke="currentColor"
+    fill: ownerState.hasSvgAsChild ? undefined : 'currentColor',
     flexShrink: 0,
-    transition:
-      theme.transitions?.create?.('fill', {
-        duration: theme.transitions?.duration?.shorter,
-      }) ?? 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    transition: theme.transitions?.create?.('fill', {
+      duration: theme.transitions?.duration?.shorter,
+    }),
     fontSize: {
       inherit: 'inherit',
       small: theme.typography?.pxToRem?.(20) || '1.25rem',
@@ -77,8 +67,7 @@ const SvgIconRoot = styled('svg', {
         action: (theme.vars || theme).palette?.action?.active,
         disabled: (theme.vars || theme).palette?.action?.disabled,
         inherit: undefined,
-      }[ownerState.color] ??
-      defaultMaterialDesignColors[ownerState.color],
+      }[ownerState.color],
   };
 });
 
@@ -110,19 +99,20 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     inheritViewBox = false,
     titleAccess,
     viewBox = '0 0 24 24',
-    classes: classesProp,
     ...other
   } = props;
 
+  const hasSvgAsChild = React.isValidElement(children) && children.type === 'svg';
+
   const ownerState = {
     ...props,
-    classes: classesProp,
     color,
     component,
     fontSize,
     instanceFontSize: inProps.fontSize,
     inheritViewBox,
     viewBox,
+    hasSvgAsChild,
   };
 
   const more = {};
@@ -144,9 +134,10 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
       ref={ref}
       {...more}
       {...other}
+      {...(hasSvgAsChild && children.props)}
       ownerState={ownerState}
     >
-      {children}
+      {hasSvgAsChild ? children.props.children : children}
       {titleAccess ? <title>{titleAccess}</title> : null}
     </SvgIconRoot>
   );
