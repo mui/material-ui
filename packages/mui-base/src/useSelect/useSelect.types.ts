@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ListAction, ListState, UseListRootSlotProps } from '../useList';
+import { FocusManagementType, ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
 import { SelectProviderValue } from './SelectProvider';
 import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
@@ -45,6 +45,12 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    * The ref of the trigger button element.
    */
   buttonRef?: React.Ref<Element>;
+  /**
+   * The focus management strategy used by the list.
+   * Controls the attributes used to set focus on the list items.
+   * @default 'activeDescendant'
+   */
+  focusManagement?: FocusManagementType;
   /**
    * The `id` attribute of the listbox element.
    */
@@ -129,13 +135,15 @@ interface UseSelectButtonSlotEventHandlers {
   onMouseDown: MuiCancellableEventHandler<React.MouseEvent>;
 }
 
-export type UseSelectButtonSlotProps<TOther = {}> = UseListRootSlotProps<
-  Omit<TOther, keyof UseSelectButtonSlotEventHandlers>
+export type UseSelectButtonSlotProps<TOther = {}> = Omit<
+  UseListRootSlotProps<Omit<TOther, keyof UseSelectButtonSlotEventHandlers>>,
+  'tabIndex'
 > &
   UseSelectButtonSlotEventHandlers & {
     'aria-expanded': React.AriaAttributes['aria-expanded'];
     'aria-controls': React.AriaAttributes['aria-controls'];
     role: React.HTMLAttributes<Element>['role'];
+    tabIndex?: number;
     ref: React.RefCallback<Element> | null;
   };
 
@@ -148,7 +156,7 @@ export type UseSelectHiddenInputSlotProps<TOther = {}> = UseSelectHiddenInputSlo
   TOther;
 
 interface UseSelectListboxSlotEventHandlers {
-  onMouseDown: React.MouseEventHandler;
+  onMouseDown?: React.MouseEventHandler;
 }
 
 export type UseSelectListboxSlotProps<TOther = {}> = Omit<
@@ -160,6 +168,7 @@ export type UseSelectListboxSlotProps<TOther = {}> = Omit<
     id: string | undefined;
     ref: React.RefCallback<Element> | null;
     role: React.HTMLAttributes<Element>['role'];
+    tabIndex?: number;
   };
 
 export interface UseSelectReturnValue<Value, Multiple> {
@@ -228,6 +237,10 @@ export interface UseSelectReturnValue<Value, Multiple> {
    */
   listboxRef: React.RefCallback<Element> | null;
   /**
+   * Ref to the listbox root slot DOM node.
+   */
+  listboxRootRef: React.RefCallback<Element> | null;
+  /**
    * If `true`, the listbox is open.
    */
   open: boolean;
@@ -244,6 +257,7 @@ export interface UseSelectReturnValue<Value, Multiple> {
 export const SelectActionTypes = {
   buttonClick: 'buttonClick',
   browserAutoFill: 'browserAutoFill',
+  closeListbox: 'closeListbox',
 } as const;
 
 export interface ButtonClickAction {
@@ -257,7 +271,14 @@ export interface BrowserAutofillAction<OptionValue> {
   event: React.ChangeEvent;
 }
 
-export type SelectAction<OptionValue> = ButtonClickAction | BrowserAutofillAction<OptionValue>;
+export interface CloseListboxAction {
+  type: typeof SelectActionTypes.closeListbox;
+}
+
+export type SelectAction<OptionValue> =
+  | ButtonClickAction
+  | BrowserAutofillAction<OptionValue>
+  | CloseListboxAction;
 
 export interface SelectInternalState<OptionValue> extends ListState<OptionValue> {
   open: boolean;

@@ -30,7 +30,7 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
 
   const id = useId(idParam);
 
-  const optionRef = React.useRef<Element>(null);
+  const optionRef = React.useRef<HTMLElement>(null);
 
   const selectOption: SelectOption<Value> = React.useMemo(
     () => ({

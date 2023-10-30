@@ -88,6 +88,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     defaultOpen = false,
     defaultValue: defaultValueProp,
     disabled = false,
+    focusManagement = 'activeDescendant',
     listboxId: listboxIdProp,
     listboxRef: listboxRefProp,
     multiple = false as Multiple,
@@ -263,6 +264,17 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     [onOpenChange],
   );
 
+  const getItemDomElement = React.useCallback(
+    (itemId: OptionValue) => {
+      if (itemId == null) {
+        return null;
+      }
+
+      return subitems.get(itemId)?.ref.current ?? null;
+    },
+    [subitems],
+  );
+
   const useListParameters: UseListParameters<
     OptionValue,
     SelectInternalState<OptionValue>,
@@ -276,9 +288,11 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     }),
     getItemId,
     controlledProps: controlledState,
+    focusManagement,
+    getItemDomElement,
     itemComparer: areOptionsEqual,
     isItemDisabled,
-    rootRef: mergedButtonRef,
+    rootRef: focusManagement === 'activeDescendant' ? mergedButtonRef : handleListboxRef,
     onChange: handleSelectionChange,
     onHighlightChange: handleHighlightChange,
     onStateChange: handleStateChange,
@@ -312,7 +326,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
 
   useEnhancedEffect(() => {
     // Scroll to the currently highlighted option.
-    if (highlightedOption != null) {
+    if (focusManagement === 'activeDescendant' && highlightedOption != null) {
       const optionRef = getOptionByValue(highlightedOption)?.ref;
       if (!listboxRef.current || !optionRef?.current) {
         return;
@@ -327,7 +341,13 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         listboxRef.current.scrollTop += optionClientRect.bottom - listboxClientRect.bottom;
       }
     }
-  }, [highlightedOption, getOptionByValue]);
+  }, [focusManagement, highlightedOption, getOptionByValue]);
+
+  React.useEffect(() => {
+    if (focusManagement === 'DOM' && open && highlightedOption !== null) {
+      getOptionByValue(highlightedOption)?.ref?.current?.focus();
+    }
+  }, [focusManagement, open, highlightedOption, getOptionByValue]);
 
   const getOptionMetadata = React.useCallback(
     (optionValue: OptionValue) => getOptionByValue(optionValue),
@@ -340,7 +360,6 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     return {
       ...otherHandlers,
       onMouseDown: createHandleButtonMouseDown(otherHandlers),
-      ref: mergedListRootRef,
       role: 'combobox' as const,
       'aria-expanded': open,
       'aria-controls': listboxId,
@@ -351,24 +370,42 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSelectButtonSlotProps<ExternalProps> => {
     const externalEventHandlers = extractEventHandlers(externalProps);
-    const listboxAndButtonProps = combineHooksSlotProps(getButtonRootProps, getListboxRootProps);
-    const combinedProps = combineHooksSlotProps(listboxAndButtonProps, getSelectTriggerProps);
+    const propGetter =
+      focusManagement === 'activeDescendant'
+        ? combineHooksSlotProps(getButtonRootProps, getListboxRootProps)
+        : getButtonRootProps;
+
+    const combinedProps = combineHooksSlotProps(propGetter, getSelectTriggerProps);
+
     return {
       ...externalProps,
       ...combinedProps(externalEventHandlers),
     };
   };
 
+  const getActiveDescendantListboxProps = (otherHandlers: EventHandlers = {}) => {
+    return {
+      ref: handleListboxRef,
+      onMouseDown: preventDefault, // to prevent the button from losing focus when interacting with the listbox
+      ...otherHandlers,
+    };
+  };
+
   const getListboxProps = <ExternalProps extends Record<string, unknown>>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSelectListboxSlotProps<ExternalProps> => {
+    const externalEventHandlers = extractEventHandlers(externalProps);
+    const propGetter =
+      focusManagement === 'activeDescendant'
+        ? getActiveDescendantListboxProps
+        : getListboxRootProps;
+
     return {
-      ...externalProps,
       id: listboxId,
       role: 'listbox' as const,
       'aria-multiselectable': multiple ? 'true' : undefined,
-      ref: handleListboxRef,
-      onMouseDown: preventDefault, // to prevent the button from losing focus when interacting with the listbox
+      ...externalProps,
+      ...propGetter(externalEventHandlers),
     };
   };
 
@@ -459,7 +496,8 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getHiddenInputProps,
     getListboxProps,
     getOptionMetadata,
-    listboxRef: mergedListRootRef,
+    listboxRef: handleListboxRef,
+    listboxRootRef: mergedListRootRef,
     open,
     options: optionValues,
     value: selectValue,
