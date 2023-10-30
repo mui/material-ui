@@ -22,7 +22,7 @@ export const API_LAYOUT_STORAGE_KEYS = {
 } as const;
 
 const getRandomOption = () => {
-  if (/Algolia Crawler/.test(navigator.userAgent) || /Googlebot/.test(navigator.userAgent)) {
+  if (/bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
     // When crawlers visit the page, they should not have to expand items
     return DEFAULT_LAYOUT;
   }
