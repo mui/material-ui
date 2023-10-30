@@ -170,16 +170,14 @@ export default function Notifications() {
           ref={anchorRef}
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
-          aria-label={
-            (messageList
+          aria-label={`${
+            messageList
               ? messageList.reduce(
                   (count, message) => (message.id > lastSeen ? count + 1 : count),
                   0,
                 )
-              : 0) +
-            ' ' +
-            t('unreadNotifications')
-          }
+              : 0
+          } ${t('toggleNotifications')}`}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
           onClick={handleToggle}
