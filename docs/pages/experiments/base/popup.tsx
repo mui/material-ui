@@ -5,6 +5,7 @@ import { CssVarsProvider } from '@mui/joy/styles';
 import { styled } from '@mui/system';
 import { useTransition, TransitionContext } from '@mui/base/useTransition';
 import { Fade } from '@mui/material';
+import { useSpring, useSpringRef, animated } from '@react-spring/web';
 
 const StyledPopup = styled(BasePopup)`
   width: max-content;
@@ -135,6 +136,38 @@ const Container = styled('div')`
   flex-wrap: wrap;
 `;
 
+function ReactSpringTransition({ children }: React.PropsWithChildren<{}>) {
+  const { requestedEnter, onEntering, onEntered, onExiting, onExited } = useTransition();
+
+  const api = useSpringRef();
+  const springs = useSpring({
+    ref: api,
+    from: { opacity: 0, transform: 'translateY(-8px) scale(0.95)' },
+  });
+
+  React.useEffect(() => {
+    if (requestedEnter) {
+      api.start({
+        opacity: 1,
+        transform: 'translateY(0) scale(1)',
+        config: { tension: 250, friction: 10 },
+        onStart: onEntering,
+        onRest: onEntered,
+      });
+    } else {
+      api.start({
+        opacity: 0,
+        transform: 'translateY(-8px) scale(0.95)',
+        config: { tension: 170, friction: 26 },
+        onStart: onExiting,
+        onRest: onExited,
+      });
+    }
+  }, [requestedEnter, api, onEntering, onEntered, onExiting, onExited]);
+
+  return <animated.div style={springs}>{children}</animated.div>;
+}
+
 export default function PopupPlayground() {
   return (
     <CssVarsProvider>
@@ -155,6 +188,11 @@ export default function PopupPlayground() {
           <PopAnimation>
             <PopupBody>This is an animated popup</PopupBody>
           </PopAnimation>
+        </PopupWithTrigger>
+        <PopupWithTrigger label="with React Spring transition">
+          <ReactSpringTransition>
+            <PopupBody>This is an animated popup</PopupBody>
+          </ReactSpringTransition>
         </PopupWithTrigger>
       </Container>
     </CssVarsProvider>
