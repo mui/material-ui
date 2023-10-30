@@ -1,3 +1,5 @@
+'use client';
+
 import _extends from "@babel/runtime/helpers/esm/extends";
 import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
 const _excluded = ["children", "className", "color", "component", "fontSize", "htmlColor", "inheritViewBox", "titleAccess", "viewBox", "classes"];
@@ -5,7 +7,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize, unstable_composeClasses as composeClasses } from '@mui/utils';
-import { styled, useThemeProps } from '@mui/system';
+import { styled, getThemeProps, useTheme } from '@mui/system';
 import { getSvgIconUtilityClass } from './svgIconClasses';
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
@@ -41,10 +43,15 @@ const SvgIconRoot = styled('svg', {
     return [styles.root, ownerState.color !== 'inherit' && styles[`color${capitalize(ownerState.color)}`], styles[`fontSize${capitalize(ownerState.fontSize)}`]];
   }
 })(({
-  theme,
+  theme: themeContext,
   ownerState
 }) => {
-  var _theme$transitions$cr, _theme$transitions, _theme$transitions$cr2, _theme$transitions2, _theme$transitions2$d, _theme$typography, _theme$typography$pxT, _theme$typography2, _theme$typography2$px, _theme$typography3, _theme$typography3$px, _ref, _palette$ownerState$c, _palette, _palette$ownerState$c2, _palette2, _palette2$action, _palette3, _palette3$action;
+  var _theme$transitions$cr, _theme$transitions, _theme$transitions$cr2, _theme$transitions2, _theme$typography, _theme$typography$pxT, _theme$typography2, _theme$typography2$px, _theme$typography3, _theme$typography3$px, _ref, _palette$ownerState$c, _palette, _palette2, _palette3;
+  // Look for theme scoping and fallback to the root theme.
+  //
+  // Note: I don't think there will be any use case where
+  // both Material UI and Joy UI are using theme scoping so order does not matter here.
+  const theme = themeContext.$$material || themeContext.$$joy || themeContext;
   return {
     userSelect: 'none',
     width: '1em',
@@ -52,19 +59,19 @@ const SvgIconRoot = styled('svg', {
     display: 'inline-block',
     fill: 'currentColor',
     flexShrink: 0,
-    transition: (_theme$transitions$cr = (_theme$transitions = theme.transitions) == null ? void 0 : (_theme$transitions$cr2 = _theme$transitions.create) == null ? void 0 : _theme$transitions$cr2.call(_theme$transitions, 'fill', {
-      duration: (_theme$transitions2 = theme.transitions) == null ? void 0 : (_theme$transitions2$d = _theme$transitions2.duration) == null ? void 0 : _theme$transitions2$d.shorter
+    transition: (_theme$transitions$cr = (_theme$transitions = theme.transitions) == null || (_theme$transitions$cr2 = _theme$transitions.create) == null ? void 0 : _theme$transitions$cr2.call(_theme$transitions, 'fill', {
+      duration: (_theme$transitions2 = theme.transitions) == null || (_theme$transitions2 = _theme$transitions2.duration) == null ? void 0 : _theme$transitions2.shorter
     })) != null ? _theme$transitions$cr : 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     fontSize: {
       inherit: 'inherit',
-      small: ((_theme$typography = theme.typography) == null ? void 0 : (_theme$typography$pxT = _theme$typography.pxToRem) == null ? void 0 : _theme$typography$pxT.call(_theme$typography, 20)) || '1.25rem',
-      medium: ((_theme$typography2 = theme.typography) == null ? void 0 : (_theme$typography2$px = _theme$typography2.pxToRem) == null ? void 0 : _theme$typography2$px.call(_theme$typography2, 24)) || '1.5rem',
-      large: ((_theme$typography3 = theme.typography) == null ? void 0 : (_theme$typography3$px = _theme$typography3.pxToRem) == null ? void 0 : _theme$typography3$px.call(_theme$typography3, 35)) || '2.1875rem'
+      small: ((_theme$typography = theme.typography) == null || (_theme$typography$pxT = _theme$typography.pxToRem) == null ? void 0 : _theme$typography$pxT.call(_theme$typography, 20)) || '1.25rem',
+      medium: ((_theme$typography2 = theme.typography) == null || (_theme$typography2$px = _theme$typography2.pxToRem) == null ? void 0 : _theme$typography2$px.call(_theme$typography2, 24)) || '1.5rem',
+      large: ((_theme$typography3 = theme.typography) == null || (_theme$typography3$px = _theme$typography3.pxToRem) == null ? void 0 : _theme$typography3$px.call(_theme$typography3, 35)) || '2.1875rem'
     }[ownerState.fontSize],
     // TODO v5 deprecate, v6 remove for sx
-    color: (_ref = (_palette$ownerState$c = (_palette = (theme.vars || theme).palette) == null ? void 0 : (_palette$ownerState$c2 = _palette[ownerState.color]) == null ? void 0 : _palette$ownerState$c2.main) != null ? _palette$ownerState$c : {
-      action: (_palette2 = (theme.vars || theme).palette) == null ? void 0 : (_palette2$action = _palette2.action) == null ? void 0 : _palette2$action.active,
-      disabled: (_palette3 = (theme.vars || theme).palette) == null ? void 0 : (_palette3$action = _palette3.action) == null ? void 0 : _palette3$action.disabled,
+    color: (_ref = (_palette$ownerState$c = (_palette = (theme.vars || theme).palette) == null || (_palette = _palette[ownerState.color]) == null ? void 0 : _palette.main) != null ? _palette$ownerState$c : {
+      action: (_palette2 = (theme.vars || theme).palette) == null || (_palette2 = _palette2.action) == null ? void 0 : _palette2.active,
+      disabled: (_palette3 = (theme.vars || theme).palette) == null || (_palette3 = _palette3.action) == null ? void 0 : _palette3.disabled,
       inherit: undefined
     }[ownerState.color]) != null ? _ref : defaultMaterialDesignColors[ownerState.color]
   };
@@ -82,7 +89,9 @@ const SvgIconRoot = styled('svg', {
  * - [SvgIcon API](https://mui.com/material-ui/api/svg-icon/)
  */
 const SvgIcon = /*#__PURE__*/React.forwardRef(function SvgIcon(inProps, ref) {
-  const props = useThemeProps({
+  const theme = useTheme();
+  const props = getThemeProps({
+    theme: theme.$$material || theme.$$joy || theme,
     props: inProps,
     name: 'MuiSvgIcon'
   });
