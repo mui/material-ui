@@ -432,8 +432,8 @@ export interface Components<Theme = unknown> {
     styleOverrides?: StyleOverrides<RadioGroupSlot, RadioGroupOwnerState, Theme>;
   };
   JoySelect?: {
-    defaultProps?: Partial<SelectProps<any>>;
-    styleOverrides?: StyleOverrides<SelectSlot, SelectOwnerState<any>, Theme>;
+    defaultProps?: Partial<SelectProps<any, any>>;
+    styleOverrides?: StyleOverrides<SelectSlot, SelectOwnerState<any, any>, Theme>;
   };
   JoyOption?: {
     defaultProps?: Partial<OptionProps>;

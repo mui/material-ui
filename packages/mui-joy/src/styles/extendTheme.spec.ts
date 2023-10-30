@@ -1013,37 +1013,37 @@ extendTheme({
       },
       styleOverrides: {
         root: ({ ownerState }) => {
-          expectType<SelectOwnerState<any> & Record<string, unknown>, typeof ownerState>(
+          expectType<SelectOwnerState<any, any> & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};
         },
         button: ({ ownerState }) => {
-          expectType<SelectOwnerState<any> & Record<string, unknown>, typeof ownerState>(
+          expectType<SelectOwnerState<any, any> & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};
         },
         startDecorator: ({ ownerState }) => {
-          expectType<SelectOwnerState<any> & Record<string, unknown>, typeof ownerState>(
+          expectType<SelectOwnerState<any, any> & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};
         },
         endDecorator: ({ ownerState }) => {
-          expectType<SelectOwnerState<any> & Record<string, unknown>, typeof ownerState>(
+          expectType<SelectOwnerState<any, any> & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};
         },
         indicator: ({ ownerState }) => {
-          expectType<SelectOwnerState<any> & Record<string, unknown>, typeof ownerState>(
+          expectType<SelectOwnerState<any, any> & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};
         },
         listbox: ({ ownerState }) => {
-          expectType<SelectOwnerState<any> & Record<string, unknown>, typeof ownerState>(
+          expectType<SelectOwnerState<any, any> & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};
