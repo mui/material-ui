@@ -71,7 +71,6 @@ export default function XRoadmap() {
     <Section
       cozy
       data-mui-color-scheme="dark"
-      bg="gradient"
       sx={{
         color: 'text.secondary',
         background: (theme) =>
