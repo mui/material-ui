@@ -139,12 +139,6 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'Product Engineer - Store',
-        description:
-          'You will lead the technical, product, and operational development of the store.',
-        url: '/careers/product-engineer/',
-      },
-      {
         title: 'React Engineer - xCharts',
         description:
           'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
@@ -155,6 +149,17 @@ const openRolesData = [
         description:
           'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
         url: '/careers/react-engineer-x/',
+      },
+    ],
+  },
+  {
+    title: 'Design',
+    roles: [
+      {
+        title: 'Design Engineer - xGrid',
+        description:
+          'You will design and implement a great user and developer experience for the MUI X Data Grid.',
+        url: '/careers/design-engineer-x-grid/',
       },
     ],
   },
@@ -288,7 +293,7 @@ function CareersContent() {
           alwaysCenter
           overline="Join us"
           title={
-            <Typography variant="h2" sx={{ maxWidth: 600, mx: 'auto' }}>
+            <Typography variant="h2" component="h1">
               Build <GradientText>the next generation</GradientText>
               <br /> of tools for UI development
             </Typography>

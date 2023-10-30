@@ -1,5 +1,151 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.15
+
+<!-- generated comparing v5.14.14..master -->
+
+_Oct 24, 2023_
+
+A big thanks to the 17 contributors who made this release possible.
+
+### `@mui/material@5.14.15`
+
+- &#8203;<!-- 24 -->[Checkbox][Radio] Fix theme style overrides not working for different sizes (#39377) @gitstart
+- &#8203;<!-- 12 -->[InputLabel] InputLabel supports ownerState.focused for styleOverrides (#39470) @mj12albert
+- &#8203;<!-- 07 -->[ToggleButton] Add `fullWidth` to `toggleButtonClasses` and `toggleButtonGroupClasses` (#39536) @Semigradsky
+
+### `@mui/base@5.0.0-beta.21`
+
+- &#8203;<!-- 29 -->[useAutocomplete] Correct keyboard navigation with multiple disabled options (#38788) @VadimZvf
+- &#8203;<!-- 28 -->[Select] Standardize box shadow on demos (#39509) @zanivan
+- &#8203;<!-- 27 -->[Slider] Refine demos (#39526) @zanivan
+- &#8203;<!-- 34 -->[Input] Update and port additional tests from material-ui (#39584) @mj12albert
+
+### `@mui/material-next@6.0.0-alpha.107`
+
+- &#8203;<!-- 16 -->[FilledInput] Add FilledInput component (#39307) @mj12albert
+- &#8203;<!-- 13 -->[InputAdornment] Fix unstable_capitalize import (#39510) @DiegoAndai
+- &#8203;<!-- 08 -->[Snackbar] copy files to mui-material-next (#39232) @Best-Sardar
+- &#8203;<!-- 33 -->[Menu] Use useMenu hook (#38934) @mnajdova
+
+### `@mui/joy@5.0.0-beta.12`
+
+- &#8203;<!-- 26 -->[Button] Fix button size being a decorator (#39529) @siriwatknp
+- &#8203;<!-- 25 -->[CardOverflow] Remove conditional CSS to support Next.js App dir (#39101) @siriwatknp
+- &#8203;<!-- 11 -->[Link] Apply `userSelect: none` only when it's a button (#39486) @mwskwong
+
+### `@mui/lab@5.0.0-alpha.150`
+
+- &#8203;<!-- 09 -->Update peer dep of @mui/material (#39398) @brijeshb42
+
+### `@mui/zero-runtime@0.0.1-alpha.0`
+
+- &#8203;<!-- 06 -->Implement typings for public runtime API (#39215) @brijeshb42
+
+### `@mui/zero-vite-plugin@0.0.1-alpha.0`
+
+- &#8203;<!-- 05 -->Modify plugin to transform node_modules (#39517) @brijeshb42
+
+### Docs
+
+- &#8203;<!-- 31 -->[base-ui] Standardize grey palette across demos (#39504) @zanivan
+- &#8203;<!-- 30 -->[base-ui] Overall demos design review (#38820) @zanivan
+- &#8203;<!-- 19 -->[joy-ui] Adjust the responsiveness of the template card (#39534) @danilo-leal
+- &#8203;<!-- 18 -->[material-ui] Typo fixes in overview page (#39540) @Evan151
+- &#8203;<!-- 35 -->[material-ui] Add stray design tweaks to the templates collection (#39583) @danilo-leal
+- &#8203;<!-- 17 -->[system] Revise the Box page (#39159) @danilo-leal
+- &#8203;<!-- 22 -->Fix git diff format @oliviertassinari
+- &#8203;<!-- 15 -->[I10n] Add Norwegian (nynorsk) (nn-NO) locale (#39481) @hjalti-lifekeys
+- &#8203;<!-- 10 -->[l10n] Fix double space typo in ar-EG @oliviertassinari
+- &#8203;<!-- 14 -->[I10n] Additions to Icelandic (is-IS) locale (#39480) @hjalti-lifekeys
+
+### Core
+
+- &#8203;<!-- 23 -->[core] Replace a `useCallback` by `useRef` in useEventCallback (#39078) @romgrk
+- &#8203;<!-- 21 -->[docs-infra] Prevent docs crash (#39214) @alexfauquette
+- &#8203;<!-- 20 -->[docs-infra] Fix no-op autoprefixer warning (#39385) @oliviertassinari
+- &#8203;<!-- 32 -->[docs-infra] Refine the API page design (#39520) @alexfauquette
+- &#8203;<!-- 25 -->[docs-infra] Fix cut-off sponsors (#39572) @oliviertassinari
+- &#8203;<!-- 04 -->[website] Add missing h1 on page @oliviertassinari
+- &#8203;<!-- 03 -->[website] Fix unrecognized prop warning @oliviertassinari
+- &#8203;<!-- 02 -->[website] Store Engineer role filled @oliviertassinari
+- &#8203;<!-- 01 -->[website] Add stray design adjustments (#39496) @danilo-leal
+
+All contributors of this release in alphabetical order: @alexfauquette, @Best-Sardar, @brijeshb42, @danilo-leal, @DiegoAndai, @Evan151, @gitstart, @hjalti-lifekeys, @mj12albert, @mnajdova, @mwskwong, @oliviertassinari, @romgrk, @Semigradsky, @siriwatknp, @VadimZvf, @zanivan
+
+## 5.14.14
+
+<!-- generated comparing v5.14.13..master -->
+
+_Oct 17, 2023_
+
+A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.14.14`
+
+- &#8203;<!-- 29 -->[material-ui][AppBar] Support all default palette colors in TypeScript (#39389) @BreakBB
+- &#8203;<!-- 28 -->[material-ui][AvatarGroup] Add `renderSurplus` prop (#39283) @uuxxx
+- &#8203;<!-- 25 -->[material-ui][Box] Fix system properties has incorrect `Theme` interface when applied directly (#39404) @Semigradsky
+- &#8203;<!-- 04 -->[material-ui][Pagination] Update `type` parameter of `getItemAriaLabel` prop (#39390) @Simer13
+- &#8203;<!-- 06 -->[material][tab] Show/hide scroll buttons for dynamically added children (#39415) @brijeshb42
+
+### `@mui/base@5.0.0-beta.20`
+
+- &#8203;<!-- 26 -->[base-ui][Menu] Do not reopen the menu after clicking on a trigger in Safari (#39393) @michaldudak
+
+### `@mui/material-next@6.0.0-alpha.106`
+
+- &#8203;<!-- 23 -->[Divider][material-next] Add Divider component (#39179) @Best-Sardar
+
+### `@mui/joy@5.0.0-beta.11`
+
+- &#8203;<!-- 08 -->[joy-ui][List] Add the `marker` prop (#39313) @siriwatknp
+- &#8203;<!-- 07 -->[joy-ui][Skeleton] Fix semi-transparent scenario when with surface components and color inversion (#39400) @TheNatkat
+- &#8203;<!-- 06 -->[joy-ui][Textarea] Fix focus ring for error state (#39391) @vineetjk
+
+### `@mui/icons-material@5.14.14`
+
+- &#8203;<!-- 09 -->[icons] Fix VoiceChatOutlined showing the wrong icon (#39418) @devuser200
+
+### `@mui/system@5.14.14`
+
+- &#8203;<!-- 03 -->[mui-system][style] bug fix for style value check color in nullable object (#39457) @DarhkVoyd
+
+### `@mui/styled-engine-sc@6.0.0-alpha.2`
+
+- &#8203;<!-- 05 -->[styled-engine-sc] Fix TS issues because of missing types (#39395) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 27 -->[docs][base-ui] Renaming demos to BaseXxx (#39104) @christophermorin
+- &#8203;<!-- 26 -->[docs] Accessibility in Base UI (#39264) @michaldudak
+- &#8203;<!-- 22 -->[docs] Fix 301 redirection @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Improve Base UI table of contents for APIs (#39412) @ZeeshanTamboli
+- &#8203;<!-- 20 -->[docs] Adjust design kits-related content (#39367) @danilo-leal
+- &#8203;<!-- 19 -->[docs] Revise the Contributing Guide (#39190) @samuelsycamore
+- &#8203;<!-- 12 -->[docs][joy-ui] Fix row hover prop name in the Table page (#39431) @adrienbrault
+- &#8203;<!-- 11 -->[docs][joy-ui] Fix color inversion demos (#39403) @danilo-leal
+- &#8203;<!-- 10 -->[docs][material-ui] Remove irrelevant TODO from Snackbar demo (#39396) @ZeeshanTamboli
+- &#8203;<!-- 06 -->[docs][material-ui][Table] Bug in "Sorting & Selecting" demo (#39426) @codewithrabeeh
+- &#8203;<!-- 05 -->[docs][joy-ui][typography] Update docs after lineHeight changes (#39366) @zanivan
+
+### Core
+
+- &#8203;<!-- 24 -->[core] Fix multiple typos across the repo (#39422) @parikshitadhikari
+- &#8203;<!-- 18 -->[docs-infra] Add refinements to the API content design (#39425) @danilo-leal
+- &#8203;<!-- 17 -->[docs-infra] Add a min height to the layout component (#39416) @danilo-leal
+- &#8203;<!-- 16 -->[docs-infra] Prevent horizontal scroll in the TOC (#39417) @danilo-leal
+- &#8203;<!-- 15 -->[docs-infra] Add a collapsible list & table views to the API content display (#38265) @alexfauquette
+- &#8203;<!-- 14 -->[docs-infra] Adjust the `kbd` tag styles (#39397) @danilo-leal
+- &#8203;<!-- 13 -->[docs-infra] Fix strong style regression (#39384) @oliviertassinari
+- &#8203;<!-- 04 -->[website] Add the LinkedIn profile to the contributors section on the About page (#39455) @chhawinder
+- &#8203;<!-- 03 -->[website] Update new role template (#39386) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Add stray design fine-tunning to the Pricing page (#39472) @danilo-leal
+- &#8203;<!-- 01 -->[website] Fix career anchor link to perks & benefits @oliviertassinari
+
+All contributors of this release in alphabetical order: @adrienbrault, @alexfauquette, @Best-Sardar, @BreakBB, @brijeshb42, @chhawinder, @christophermorin, @codewithrabeeh, @danilo-leal, @DarhkVoyd, @devuser200, @michaldudak, @mnajdova, @oliviertassinari, @parikshitadhikari, @samuelsycamore, @Semigradsky, @Simer13, @siriwatknp, @TheNatkat, @uuxxx, @vineetjk, @zanivan, @ZeeshanTamboli
+
 ## 5.14.13
 
 <!-- generated comparing v5.14.12..master -->

@@ -31,6 +31,10 @@ const babelPlugin = declare((api) => {
         if (!expressionPath.isExpression()) {
           return;
         }
+        if (!expressionPath.isObjectExpression() && !expressionPath.isArrowFunctionExpression()) {
+          return;
+        }
+        sxObjectExtractor(expressionPath);
         const sxIdentifier = addNamed(namePath, 'sx', '@mui/zero-runtime');
         expressionPath.replaceWith(
           t.callExpression(sxIdentifier, [expressionPath.node, t.identifier(tagName.node.name)]),

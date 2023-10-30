@@ -29,7 +29,7 @@ const content = [
     title: 'Accessibility',
     description:
       'We take accessibility seriously. The Base UI docs are loaded with guidelines and best practices.',
-    link: '/base-ui/getting-started/quickstart/#components-and-hooks',
+    link: '/base-ui/getting-started/accessibility/',
   },
 ];
 
@@ -40,7 +40,7 @@ export default function BaseUISummary() {
         alwaysCenter
         overline="Why Base UI"
         title={
-          <Typography variant="h2" sx={{ mt: 1, maxWidth: 600, mx: 'auto' }}>
+          <Typography variant="h2" sx={{ mt: 1 }}>
             Essential building blocks
             <br /> for <GradientText>sleek and accessible</GradientText> UIs
           </Typography>

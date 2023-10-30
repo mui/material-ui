@@ -95,6 +95,7 @@ export const SliderRoot = styled('span', {
     },
   };
 });
+
 export const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',

@@ -85,16 +85,29 @@ export default class SxProcessor extends BaseProcessor {
     if (this.collectedVariables.length) {
       const varProperties: ReturnType<typeof t.objectProperty>[] = this.collectedVariables.map(
         ([variableId, expression, isUnitLess]) => {
-          if (
-            expression.type === 'ArrowFunctionExpression' ||
-            expression.type === 'FunctionExpression'
-          ) {
-            return t.objectProperty(
-              t.stringLiteral(variableId),
-              t.arrayExpression([expression.body as Expression, t.booleanLiteral(isUnitLess)]),
-            );
+          switch (expression.type) {
+            case 'ArrowFunctionExpression': {
+              return t.objectProperty(
+                t.stringLiteral(variableId),
+                t.arrayExpression([expression.body as Expression, t.booleanLiteral(isUnitLess)]),
+              );
+            }
+            case 'FunctionExpression': {
+              const returnStatement = expression.body.body[0];
+              if (returnStatement.type === 'ReturnStatement' && returnStatement.argument) {
+                return t.objectProperty(
+                  t.stringLiteral(variableId),
+                  t.arrayExpression([returnStatement.argument, t.booleanLiteral(isUnitLess)]),
+                );
+              }
+              throw this.sxArguments[0].buildCodeFrameError(
+                'Invalid transformation encountered. The callbacks in sx properties should directly return an Expression.',
+              );
+            }
+            default: {
+              return t.objectProperty(t.stringLiteral(variableId), t.nullLiteral());
+            }
           }
-          return t.objectProperty(t.stringLiteral(variableId), t.nullLiteral());
         },
       );
 
