@@ -76,7 +76,7 @@ export default function TabsPageExample() {
         </TabList>
         <Box
           sx={(theme) => ({
-            '--bg': theme.vars.palette.background.surface,
+            '--bg': theme.vars.palette.background.level1,
             background: 'var(--bg)',
             boxShadow: '0 0 0 100vmax var(--bg)',
             clipPath: 'inset(0 -100vmax)',

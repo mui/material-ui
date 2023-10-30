@@ -75,7 +75,7 @@ export default function ChatBubble({
               borderTopLeftRadius: isSent ? 'lg' : 0,
               backgroundColor: isSent
                 ? 'var(--joy-palette-primary-solidBg)'
-                : 'background.body',
+                : 'background.level0',
             }}
           >
             <Typography

@@ -17,7 +17,7 @@ const ToggleButton = styled('button')(
     alignItems: 'center',
     border: '1px solid',
     borderColor: theme.vars.palette.neutral.outlinedBorder,
-    backgroundColor: theme.vars.palette.background.body,
+    backgroundColor: theme.vars.palette.background.level0,
     boxShadow: theme.vars.shadow.md,
     [theme.focus.selector]: theme.focus.default,
     ...theme.variants.plain.neutral,
@@ -27,7 +27,7 @@ const ToggleButton = styled('button')(
     }),
     ...(pressed === 'true' && {
       color: theme.vars.palette.danger.plainColor,
-      backgroundColor: theme.vars.palette.background.body,
+      backgroundColor: theme.vars.palette.background.level0,
       boxShadow: theme.shadow.sm.replace(/,/g, ', inset'),
     }),
   }),

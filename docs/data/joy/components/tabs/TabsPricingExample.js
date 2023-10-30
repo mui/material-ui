@@ -27,7 +27,7 @@ export default function TabsPricingExample() {
             fontWeight: 'lg',
             [`&[aria-selected="true"]`]: {
               color: 'primary.500',
-              bgcolor: 'background.surface',
+              bgcolor: 'background.level1',
             },
             [`&.${tabClasses.focusVisible}`]: {
               outlineOffset: '-4px',

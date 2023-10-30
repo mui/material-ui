@@ -44,10 +44,10 @@ export default function ExampleSegmentedControls() {
               action: ({ checked }) => ({
                 sx: {
                   ...(checked && {
-                    bgcolor: 'background.surface',
+                    bgcolor: 'background.level1',
                     boxShadow: 'sm',
                     '&:hover': {
-                      bgcolor: 'background.surface',
+                      bgcolor: 'background.level1',
                     },
                   }),
                 },

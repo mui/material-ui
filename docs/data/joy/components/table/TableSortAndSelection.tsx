@@ -482,7 +482,7 @@ export default function TableSortAndSelection() {
                     variant="outlined"
                     disabled={page === 0}
                     onClick={() => handleChangePage(page - 1)}
-                    sx={{ bgcolor: 'background.surface' }}
+                    sx={{ bgcolor: 'background.level1' }}
                   >
                     <KeyboardArrowLeftIcon />
                   </IconButton>
@@ -496,7 +496,7 @@ export default function TableSortAndSelection() {
                         : false
                     }
                     onClick={() => handleChangePage(page + 1)}
-                    sx={{ bgcolor: 'background.surface' }}
+                    sx={{ bgcolor: 'background.level1' }}
                   >
                     <KeyboardArrowRightIcon />
                   </IconButton>

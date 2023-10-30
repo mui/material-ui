@@ -32,7 +32,7 @@ export default function ExampleIOSList() {
         sx={(theme) => ({
           '& ul': {
             '--List-gap': '0px',
-            bgcolor: 'background.surface',
+            bgcolor: 'background.level1',
             '& > li:first-child > [role="button"]': {
               borderTopRightRadius: 'var(--List-radius)',
               borderTopLeftRadius: 'var(--List-radius)',
@@ -88,7 +88,7 @@ export default function ExampleIOSList() {
         <ListItem nested>
           <ListItem
             sx={{
-              bgcolor: 'background.surface',
+              bgcolor: 'background.level1',
               mb: 1,
               borderRadius: 'var(--List-radius)',
             }}

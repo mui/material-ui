@@ -69,7 +69,7 @@ export default function LevelOfImportance() {
                 display: 'flex',
                 p: 1.5,
                 gap: 1.5,
-                '& > button': { bgcolor: 'background.surface' },
+                '& > button': { bgcolor: 'background.level1' },
               }}
             >
               <IconButton

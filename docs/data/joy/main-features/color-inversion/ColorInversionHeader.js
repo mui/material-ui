@@ -117,7 +117,7 @@ export default function ColorInversionHeader() {
               component="span"
               variant="outlined"
               level="body-xs"
-              sx={{ bgcolor: 'background.surface', mx: 0 }}
+              sx={{ bgcolor: 'background.level1', mx: 0 }}
             >
               ⌘K
             </Typography>

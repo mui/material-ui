@@ -31,7 +31,7 @@ export default function BioCard() {
             mt: -1,
             mb: 1,
             border: '3px solid',
-            borderColor: 'background.surface',
+            borderColor: 'background.level1',
           }}
         >
           PRO
@@ -117,7 +117,7 @@ export default function BioCard() {
       </CardContent>
       <CardOverflow sx={{ bgcolor: 'background.level1' }}>
         <CardActions buttonFlex="1">
-          <ButtonGroup variant="outlined" sx={{ bgcolor: 'background.surface' }}>
+          <ButtonGroup variant="outlined" sx={{ bgcolor: 'background.level1' }}>
             <Button>Message</Button>
             <Button>Connect</Button>
           </ButtonGroup>

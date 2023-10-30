@@ -18,7 +18,7 @@ export default function VerticalDividers() {
           border: '1px solid',
           borderColor: 'divider',
           borderRadius: 'sm',
-          bgcolor: 'background.surface',
+          bgcolor: 'background.level1',
           color: 'text.secondary',
           '& svg': {
             m: 1.5,

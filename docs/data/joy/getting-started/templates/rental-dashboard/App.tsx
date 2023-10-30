@@ -27,7 +27,7 @@ export default function RentalDashboard() {
       >
         <Stack
           sx={{
-            backgroundColor: 'background.surface',
+            backgroundColor: 'background.level1',
             px: { xs: 2, md: 4 },
             py: 2,
             borderBottom: '1px solid',

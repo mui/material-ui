@@ -41,8 +41,8 @@ export default function TableScrollingShadows() {
           overflow: 'auto',
           background: (
             theme,
-          ) => `linear-gradient(${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
-            linear-gradient(rgba(255, 255, 255, 0), ${theme.vars.palette.background.surface} 70%) 0 100%,
+          ) => `linear-gradient(${theme.vars.palette.background.level1} 30%, rgba(255, 255, 255, 0)),
+            linear-gradient(rgba(255, 255, 255, 0), ${theme.vars.palette.background.level1} 70%) 0 100%,
             radial-gradient(
               farthest-side at 50% 0,
               rgba(0, 0, 0, 0.12),
@@ -59,7 +59,7 @@ export default function TableScrollingShadows() {
           backgroundAttachment: 'local, local, scroll, scroll',
           backgroundPosition:
             '0 var(--TableHeader-height), 0 100%, 0 var(--TableHeader-height), 0 100%',
-          backgroundColor: 'background.surface',
+          backgroundColor: 'background.level1',
         }}
       >
         <Table stickyHeader>

@@ -35,8 +35,8 @@ export default function TableColumnPinning() {
           '--TableRow-hoverBackground': 'rgba(0 0 0 / 0.08)',
           overflow: 'auto',
           background: (theme) =>
-            `linear-gradient(to right, ${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
-            linear-gradient(to right, rgba(255, 255, 255, 0), ${theme.vars.palette.background.surface} 70%) 0 100%,
+            `linear-gradient(to right, ${theme.vars.palette.background.level1} 30%, rgba(255, 255, 255, 0)),
+            linear-gradient(to right, rgba(255, 255, 255, 0), ${theme.vars.palette.background.level1} 70%) 0 100%,
             radial-gradient(
               farthest-side at 0 50%,
               rgba(0, 0, 0, 0.12),
@@ -54,7 +54,7 @@ export default function TableColumnPinning() {
           backgroundAttachment: 'local, local, scroll, scroll',
           backgroundPosition:
             'var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height), var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height)',
-          backgroundColor: 'background.surface',
+          backgroundColor: 'background.level1',
         }}
       >
         <Table
@@ -66,7 +66,7 @@ export default function TableColumnPinning() {
               position: 'sticky',
               left: 0,
               boxShadow: '1px 0 var(--TableCell-borderColor)',
-              bgcolor: 'background.surface',
+              bgcolor: 'background.level1',
             },
             '& tr > *:last-child': {
               position: 'sticky',

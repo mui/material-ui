@@ -62,7 +62,7 @@ export default function Asynchronous() {
         loading={loading}
         endDecorator={
           loading ? (
-            <CircularProgress size="sm" sx={{ bgcolor: 'background.surface' }} />
+            <CircularProgress size="sm" sx={{ bgcolor: 'background.level1' }} />
           ) : null
         }
       />

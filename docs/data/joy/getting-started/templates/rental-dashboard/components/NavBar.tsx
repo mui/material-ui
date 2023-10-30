@@ -18,7 +18,7 @@ export default function HeaderSection() {
         px: 1.5,
         py: 1,
         zIndex: 10000,
-        backgroundColor: 'background.body',
+        backgroundColor: 'background.level0',
         borderBottom: '1px solid',
         borderColor: 'divider',
         position: 'sticky',

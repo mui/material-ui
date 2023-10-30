@@ -18,10 +18,10 @@ export default function ExampleFluentSwitch() {
         '--Switch-thumbSize': '12px',
         '--Switch-thumbBackground': 'rgb(96, 94, 92)',
         '--Switch-trackBorderColor': 'rgb(96, 94, 92)',
-        '--Switch-trackBackground': theme.vars.palette.background.body,
+        '--Switch-trackBackground': theme.vars.palette.background.level0,
         '&:hover': {
           '--Switch-trackBorderColor': 'rgb(50, 49, 48)',
-          '--Switch-trackBackground': theme.vars.palette.background.body,
+          '--Switch-trackBackground': theme.vars.palette.background.level0,
         },
         [`&.${switchClasses.checked}`]: {
           '--Switch-trackBackground': '#0078D4',

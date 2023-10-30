@@ -18,7 +18,7 @@ export default function TabsBrowserExample() {
         sx={{
           [`& .${tabClasses.root}`]: {
             '&[aria-selected="true"]': {
-              bgcolor: 'background.surface',
+              bgcolor: 'background.level1',
               borderColor: 'divider',
               '&::before': {
                 content: '""',
@@ -28,7 +28,7 @@ export default function TabsBrowserExample() {
                 bottom: -2,
                 left: 0,
                 right: 0,
-                bgcolor: 'background.surface',
+                bgcolor: 'background.level1',
               },
             },
           },

@@ -33,7 +33,7 @@ export default function CongratCard() {
             borderRadius: '50%',
             width: 'var(--icon-size)',
             boxShadow: 'sm',
-            bgcolor: 'background.surface',
+            bgcolor: 'background.level1',
             position: 'relative',
           }}
         >

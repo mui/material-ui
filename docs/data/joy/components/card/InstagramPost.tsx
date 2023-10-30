@@ -47,7 +47,7 @@ export default function InstagramPost() {
           <Avatar
             size="sm"
             src="/static/logo.png"
-            sx={{ p: 0.5, border: '2px solid', borderColor: 'background.body' }}
+            sx={{ p: 0.5, border: '2px solid', borderColor: 'background.level0' }}
           />
         </Box>
         <Typography fontWeight="lg">MUI</Typography>

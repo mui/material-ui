@@ -35,7 +35,7 @@ export default function Playground() {
           border: '1px solid',
           borderColor: 'divider',
           borderRadius: 'xs',
-          bgcolor: 'background.surface',
+          bgcolor: 'background.level1',
         }}
       >
         <FormControl sx={{ width: 300, mx: 'auto' }}>

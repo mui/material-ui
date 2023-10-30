@@ -50,7 +50,7 @@ export default function MyProfile() {
             sm: -100,
             md: -110,
           },
-          bgcolor: 'background.body',
+          bgcolor: 'background.level0',
           zIndex: 9995,
         }}
       >
@@ -191,7 +191,7 @@ export default function MyProfile() {
                 variant="outlined"
                 color="neutral"
                 sx={{
-                  bgcolor: 'background.body',
+                  bgcolor: 'background.level0',
                   position: 'absolute',
                   zIndex: 2,
                   borderRadius: '50%',
@@ -289,7 +289,7 @@ export default function MyProfile() {
                   variant="outlined"
                   color="neutral"
                   sx={{
-                    bgcolor: 'background.body',
+                    bgcolor: 'background.level0',
                     position: 'absolute',
                     zIndex: 2,
                     borderRadius: '50%',

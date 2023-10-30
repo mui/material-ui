@@ -30,7 +30,7 @@ export default function IconsRadio() {
             position: 'absolute',
             top: '-8px',
             right: '-8px',
-            bgcolor: 'background.surface',
+            bgcolor: 'background.level1',
             borderRadius: '50%',
           },
         },

@@ -6,7 +6,7 @@ const StatRoot = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   gap: theme.spacing(0.5),
   padding: theme.spacing(3, 4),
-  backgroundColor: theme.vars.palette.background.surface,
+  backgroundColor: theme.vars.palette.background.level1,
   borderRadius: theme.vars.radius.sm,
   boxShadow: theme.vars.shadow.md,
 }));

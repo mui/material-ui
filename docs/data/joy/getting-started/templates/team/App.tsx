@@ -495,7 +495,7 @@ export default function TeamExample() {
                       <Avatar
                         size="sm"
                         src="https://www.vectorlogo.zone/logos/pinterest/pinterest-icon.svg"
-                        sx={{ backgroundColor: 'background.body' }}
+                        sx={{ backgroundColor: 'background.level0' }}
                       />
                     </ListItemDecorator>
                     <ListItemContent>

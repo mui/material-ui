@@ -15,7 +15,7 @@ export default function TabsSegmentedControls() {
           bgcolor: 'background.level1',
           [`& .${tabClasses.root}[aria-selected="true"]`]: {
             boxShadow: 'sm',
-            bgcolor: 'background.surface',
+            bgcolor: 'background.level1',
           },
         }}
       >
