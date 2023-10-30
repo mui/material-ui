@@ -12,6 +12,8 @@ import Dropdown from '@mui/joy/Dropdown';
 import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
+import ListDivider from '@mui/joy/ListDivider';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -20,6 +22,10 @@ import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -166,7 +172,7 @@ export default function Header() {
           size="sm"
           variant="outlined"
           color="neutral"
-          sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
+          sx={{ display: { xs: 'inline-flex', sm: 'none' }, alignSelf: 'center' }}
         >
           <SearchRoundedIcon />
         </IconButton>
@@ -183,40 +189,100 @@ export default function Header() {
           </IconButton>
         </Tooltip>
         <ColorSchemeToggle />
-
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            pl: 2,
-            ml: 1,
-            borderLeft: '1px solid',
-            borderColor: 'divider',
-          }}
-        >
-          <Avatar
-            src="https://i.pravatar.cc/40?img=2"
-            srcSet="https://i.pravatar.cc/80?img=2"
-            sx={{ borderRadius: '50%' }}
+        <Dropdown>
+          <MenuButton
+            variant="outlined"
             size="sm"
-          />
-          <Box sx={{ ml: 2, display: { xs: 'none', sm: 'block' } }}>
-            <Typography level="title-sm" textColor="text.primary">
-              Rick Sanchez
-            </Typography>
-            <Typography level="body-xs" textColor="text.tertiary">
-              rick@email.com
-            </Typography>
-          </Box>
-          <IconButton
-            size="sm"
-            variant="plain"
-            color="neutral"
-            sx={{ ml: 1, display: { xs: 'none', sm: 'flex' } }}
+            slots={{ root: Box }}
+            sx={{
+              p: 1,
+              borderRadius: '999px',
+              '&:hover': {
+                bgcolor: 'var(--joy-palette-neutral-plainHoverBg)',
+                cursor: 'pointer',
+              },
+              '&:active': {
+                bgcolor: 'var(--joy-palette-neutral-plainActiveBg)',
+                cursor: 'pointer',
+              },
+            }}
           >
-            <ExpandMoreRoundedIcon />
-          </IconButton>
-        </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <Avatar
+                src="https://i.pravatar.cc/40?img=2"
+                srcSet="https://i.pravatar.cc/80?img=2"
+                sx={{ borderRadius: '50%' }}
+                size="sm"
+              />
+              <Box sx={{ ml: 2, display: { xs: 'none', sm: 'block' } }}>
+                <Typography level="title-sm" textColor="text.primary">
+                  Rick Sanchez
+                </Typography>
+              </Box>
+              <IconButton
+                size="sm"
+                variant="plain"
+                color="neutral"
+                sx={{ ml: 1, display: { xs: 'none', sm: 'flex' } }}
+              >
+                <ExpandMoreRoundedIcon />
+              </IconButton>
+            </Box>
+          </MenuButton>
+          <Menu
+            placement="bottom-end"
+            size="sm"
+            sx={{
+              zIndex: '99999',
+              p: 1.5,
+              gap: 1,
+              '--List-radius': '8px',
+            }}
+          >
+            <MenuItem disabled>rick@email.com</MenuItem>
+            <ListDivider />
+            <MenuItem>
+              <ListItemDecorator>
+                <HelpRoundedIcon />
+              </ListItemDecorator>
+              Help
+            </MenuItem>
+            <MenuItem>
+              <ListItemDecorator>
+                <SettingsRoundedIcon />
+              </ListItemDecorator>
+              Settings
+            </MenuItem>
+            <ListDivider />
+            <MenuItem component="a" href="/blog/first-look-at-joy/">
+              First look at Joy UI
+              <ListItemDecorator>
+                <OpenInNewRoundedIcon />
+              </ListItemDecorator>
+            </MenuItem>
+            <MenuItem
+              component="a"
+              href="https://github.com/mui/material-ui/tree/master/docs/data/joy/getting-started/templates/email"
+            >
+              Sourcecode
+              <ListItemDecorator>
+                <OpenInNewRoundedIcon />
+              </ListItemDecorator>
+            </MenuItem>
+            <ListDivider />
+            <MenuItem>
+              <ListItemDecorator>
+                <LogoutRoundedIcon />
+              </ListItemDecorator>
+              Log out
+            </MenuItem>
+          </Menu>
+        </Dropdown>
       </Box>
     </Box>
   );

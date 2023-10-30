@@ -8,8 +8,8 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 
 // Icons import
-import FolderOpenIcon from '@mui/icons-material/FolderOpen';
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
+import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
+import ShareRoundedIcon from '@mui/icons-material/ShareRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 export default function Navigation() {
@@ -26,7 +26,7 @@ export default function Navigation() {
           <ListItem>
             <ListItemButton selected>
               <ListItemDecorator>
-                <FolderOpenIcon fontSize="small" />
+                <FolderRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>My files</ListItemContent>
             </ListItemButton>
@@ -34,7 +34,7 @@ export default function Navigation() {
           <ListItem>
             <ListItemButton>
               <ListItemDecorator>
-                <ShareOutlinedIcon fontSize="small" />
+                <ShareRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Shared files</ListItemContent>
             </ListItemButton>

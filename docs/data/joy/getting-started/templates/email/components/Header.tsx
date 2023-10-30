@@ -172,7 +172,7 @@ export default function Header() {
           size="sm"
           variant="outlined"
           color="neutral"
-          sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
+          sx={{ display: { xs: 'inline-flex', sm: 'none' }, alignSelf: 'center' }}
         >
           <SearchRoundedIcon />
         </IconButton>
@@ -235,6 +235,7 @@ export default function Header() {
             </Box>
           </MenuButton>
           <Menu
+            placement="bottom-end"
             size="sm"
             sx={{
               zIndex: '99999',

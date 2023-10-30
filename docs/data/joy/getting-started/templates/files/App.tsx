@@ -24,9 +24,9 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemContent from '@mui/joy/ListItemContent';
 
 // Icons import
-import FolderOpenIcon from '@mui/icons-material/FolderOpen';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import CloseIcon from '@mui/icons-material/Close';
+import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 // custom
 import Layout from './components/Layout';
@@ -86,10 +86,18 @@ export default function FilesExample() {
               >
                 <thead>
                   <tr>
-                    <th>Folder name</th>
-                    <th>Date modified</th>
-                    <th>Size</th>
-                    <th>Users</th>
+                    <th>
+                      <Typography level="title-sm">Folder</Typography>
+                    </th>
+                    <th>
+                      <Typography level="title-sm">Last modified</Typography>
+                    </th>
+                    <th>
+                      <Typography level="title-sm">Size</Typography>
+                    </th>
+                    <th>
+                      <Typography level="title-sm">Users</Typography>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -97,17 +105,17 @@ export default function FilesExample() {
                     <td>
                       <Typography
                         level="body-sm"
-                        startDecorator={<FolderOpenIcon color="primary" />}
+                        startDecorator={<FolderRoundedIcon color="primary" />}
                         sx={{ alignItems: 'flex-start' }}
                       >
                         Travel pictures
                       </Typography>
                     </td>
-                    <td>21 October 2011, 3PM</td>
                     <td>
-                      <Typography level="body-sm" color="success">
-                        987.5MB
-                      </Typography>
+                      <Typography level="body-xs">21 October 2011, 3PM</Typography>
+                    </td>
+                    <td>
+                      <Typography level="body-xs">987.5MB</Typography>
                     </td>
                     <td>
                       <AvatarGroup
@@ -137,17 +145,17 @@ export default function FilesExample() {
                     <td>
                       <Typography
                         level="body-sm"
-                        startDecorator={<FolderOpenIcon color="primary" />}
+                        startDecorator={<FolderRoundedIcon color="primary" />}
                         sx={{ alignItems: 'flex-start' }}
                       >
                         Important documents
                       </Typography>
                     </td>
-                    <td>26 May 2010, 7PM</td>
                     <td>
-                      <Typography level="body-sm" color="success">
-                        123.3KB
-                      </Typography>
+                      <Typography level="body-xs">26 May 2010, 7PM</Typography>
+                    </td>
+                    <td>
+                      <Typography level="body-xs">123.3KB</Typography>
                     </td>
                     <td>
                       <AvatarGroup
@@ -176,7 +184,6 @@ export default function FilesExample() {
                 </tbody>
               </Table>
             </Sheet>
-
             <Sheet
               variant="outlined"
               sx={{
@@ -209,7 +216,7 @@ export default function FilesExample() {
                       >
                         <Typography
                           level="body-sm"
-                          startDecorator={<FolderOpenIcon color="primary" />}
+                          startDecorator={<FolderRoundedIcon color="primary" />}
                           sx={{ alignItems: 'flex-start' }}
                         >
                           Travel pictures
@@ -269,7 +276,7 @@ export default function FilesExample() {
                       >
                         <Typography
                           level="body-sm"
-                          startDecorator={<FolderOpenIcon color="primary" />}
+                          startDecorator={<FolderRoundedIcon color="primary" />}
                           sx={{ alignItems: 'flex-start' }}
                         >
                           Important documents
@@ -318,6 +325,7 @@ export default function FilesExample() {
                 </ListItem>
               </List>
             </Sheet>
+
             <Card
               variant="outlined"
               sx={{
@@ -352,7 +360,7 @@ export default function FilesExample() {
                   </Typography>
                 </Box>
                 <IconButton variant="plain" color="neutral">
-                  <EditOutlinedIcon />
+                  <EditRoundedIcon />
                 </IconButton>
               </Box>
             </Card>
@@ -392,7 +400,7 @@ export default function FilesExample() {
                   </Typography>
                 </Box>
                 <IconButton variant="plain">
-                  <EditOutlinedIcon />
+                  <EditRoundedIcon />
                 </IconButton>
               </CardContent>
             </Card>
@@ -430,7 +438,85 @@ export default function FilesExample() {
                   </Typography>
                 </Box>
                 <IconButton variant="plain" color="neutral">
-                  <EditOutlinedIcon />
+                  <EditRoundedIcon />
+                </IconButton>
+              </Box>
+            </Card>
+            <Card
+              variant="solid"
+              invertedColors
+              sx={{
+                '--Card-radius': (theme) => theme.vars.radius.sm,
+                boxShadow: 'none',
+                minHeight: { xs: 250, md: '100%' },
+              }}
+            >
+              <CardCover>
+                <img
+                  alt=""
+                  src="https://images.unsplash.com/photo-1599593752325-ffa41031056e?auto=format&fit=crop&q=80&w=3570&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                />
+              </CardCover>
+              <CardCover
+                sx={{
+                  background:
+                    'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.12))',
+                }}
+              />
+              <CardContent
+                sx={{
+                  mt: 'auto',
+                  flexGrow: 0,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <Box sx={{ flex: 1 }}>
+                  <Typography>serra-das-araras.png</Typography>
+                  <Typography level="body-xs" mt={0.5}>
+                    Added 2 Feb 2010
+                  </Typography>
+                </Box>
+                <IconButton variant="plain">
+                  <EditRoundedIcon />
+                </IconButton>
+              </CardContent>
+            </Card>
+            <Card
+              variant="outlined"
+              sx={{
+                '--Card-radius': (theme) => theme.vars.radius.sm,
+                boxShadow: 'none',
+              }}
+            >
+              <CardOverflow
+                sx={{
+                  borderBottom: '1px solid',
+                  borderColor: 'neutral.outlinedBorder',
+                }}
+              >
+                <AspectRatio ratio="16/9" color="primary">
+                  <Typography
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'primary.plainColor',
+                    }}
+                  >
+                    .fig
+                  </Typography>
+                </AspectRatio>
+              </CardOverflow>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ flex: 1 }}>
+                  <Typography>final-version-3.fig</Typography>
+                  <Typography level="body-xs" mt={0.5}>
+                    Added 25 May 2009
+                  </Typography>
+                </Box>
+                <IconButton variant="plain" color="neutral">
+                  <EditRoundedIcon />
                 </IconButton>
               </Box>
             </Card>
@@ -448,7 +534,7 @@ export default function FilesExample() {
               torres-del-paine.png
             </Typography>
             <IconButton variant="plain" color="neutral" size="sm">
-              <CloseIcon />
+              <CloseRoundedIcon />
             </IconButton>
           </Box>
           <Divider />
@@ -511,11 +597,6 @@ export default function FilesExample() {
               3,6 MB (3,258,385 bytes)
             </Typography>
 
-            <Typography level="title-sm">Storage used</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              3,6 MB (3,258,385 bytes)
-            </Typography>
-
             <Typography level="title-sm">Location</Typography>
             <Typography level="body-sm" textColor="text.primary">
               Travel pictures
@@ -538,7 +619,7 @@ export default function FilesExample() {
           </Box>
           <Divider />
           <Box sx={{ py: 2, px: 1 }}>
-            <Button variant="plain" size="sm" endDecorator={<EditOutlinedIcon />}>
+            <Button variant="plain" size="sm" endDecorator={<EditRoundedIcon />}>
               Add a description
             </Button>
           </Box>
