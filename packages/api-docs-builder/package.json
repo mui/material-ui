@@ -33,7 +33,7 @@
     "@types/doctrine": "^0.0.8",
     "@types/mdast": "4.0.2",
     "@types/mocha": "^10.0.3",
-    "@types/node": "^18.18.6",
+    "@types/node": "^18.18.7",
     "@types/sinon": "^10.0.20",
     "chai": "^4.3.10",
     "sinon": "^15.2.0",
