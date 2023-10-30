@@ -93,7 +93,7 @@ export default function MaterialDesignDemo(props: CardProps) {
         direction="row"
         alignItems="center"
         justifyContent="space-between"
-        sx={{ px: 2, py: 1, bgcolor: 'background.default' }}
+        sx={{ px: 2, py: 1.5, bgcolor: 'background.default' }}
       >
         <Chip
           label={active ? 'Active account' : 'Inactive account'}
