@@ -1,5 +1,4 @@
 'use client';
 
-export { default as SvgIcon } from './SvgIcon';
-export { default as svgIconClasses } from './svgIconClasses';
+// eslint-disable-next-line import/prefer-default-export
 export { default as createSvgIcon } from './createSvgIcon';

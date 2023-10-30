@@ -2,7 +2,7 @@
 
 import _extends from "@babel/runtime/helpers/esm/extends";
 import * as React from 'react';
-import SvgIcon from './SvgIcon';
+import SvgIcon from '../SvgIcon';
 
 /**
  * Private module reserved for @mui packages.
