@@ -62,7 +62,32 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
-### `base-use-named-exports`
+#### `joy-rename-palette-background`
+
+Renames the background tokens to be descriptive.
+
+```diff
+<Card
+  sx={{
+-   bgcolor: 'background.body',
++   bgcolor: 'background.level0',
+    '&:hover': {
+-     bgcolor: 'background.surface',
++     bgcolor: 'background.level1',
+    },
+    '&:active': {
+-     bgcolor: 'background.popup',
++     bgcolor: 'background.level0',
+    },
+  }}
+/>
+```
+
+```bash
+npx @mui/codemod v5.0.0/joy-rename-palette-background <path>
+```
+
+#### `base-use-named-exports`
 
 Base UI default exports were changed to named ones. Previously we had a mix of default and named ones.
 This was changed to improve consistency and avoid problems some bundlers have with default exports.
@@ -81,7 +106,7 @@ This codemod updates the import and re-export statements.
 npx @mui/codemod v5.0.0/base-use-named-exports <path>
 ```
 
-### `base-remove-unstyled-suffix`
+#### `base-remove-unstyled-suffix`
 
 The `Unstyled` suffix has been removed from all Base UI component names, including names of types and other related identifiers.
 
