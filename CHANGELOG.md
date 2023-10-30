@@ -6,7 +6,7 @@ _Oct 30, 2023_
 
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
-- ✨ Added [Snackbar](https://mui.com/joy-ui/react-snackbar) component in Joy UI (#38801) @ZeeshanTamboli
+- ✨ New highly requested Joy UI component: [Snackbar](https://mui.com/joy-ui/react-snackbar) (#38801) @ZeeshanTamboli
 
 ### `@mui/material@5.14.16`
 
