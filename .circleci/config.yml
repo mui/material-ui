@@ -110,6 +110,8 @@ commands:
             - run:
                 name: Install playwright browsers
                 command: yarn playwright install --with-deps
+                environment:
+                  PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
       - save_cache:
           name: Save yarn cache
           key: v8-yarn-{{ checksum "yarn.lock" }}
