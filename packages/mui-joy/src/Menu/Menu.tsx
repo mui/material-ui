@@ -46,7 +46,7 @@ const MenuRoot = styled(StyledList, {
       '--ListItem-stickyBackground':
         variantStyle?.backgroundColor ||
         variantStyle?.background ||
-        theme.vars.palette.background.popup,
+        theme.vars.palette.background.level0,
       '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
       ...scopedVariables,
       borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
@@ -55,7 +55,7 @@ const MenuRoot = styled(StyledList, {
       // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
       zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
       ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.popup,
+        backgroundColor: theme.vars.palette.background.level0,
       }),
       ...(ownerState.variant === 'solid' &&
         ownerState.color &&
