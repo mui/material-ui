@@ -11898,10 +11898,10 @@ marked@^5.1.2:
   resolved "https://registry.yarnpkg.com/marked/-/marked-5.1.2.tgz#62b5ccfc75adf72ca3b64b2879b551d89e77677f"
   integrity sha512-ahRPGXJpjMjwSOlBoTMZAK7ATXkli5qCPxZ21TG44rx1KEo44bii4ekgTDQPNRQ4Kh7JMb9Ub1PVk1NxRSsorg==
 
-material-ui-popup-state@^5.0.9:
-  version "5.0.9"
-  resolved "https://registry.yarnpkg.com/material-ui-popup-state/-/material-ui-popup-state-5.0.9.tgz#c4a1054b3ee8457fe1952fc32ad7604f238eca17"
-  integrity sha512-NjTm7zdEzOY1CHu+a2to6h1Jr1Y8ra24rZ2JF5teO/+g0wTNiKWwNT04v3oW3McHsLcTfG46yYcqf1iznjst8Q==
+material-ui-popup-state@^5.0.10:
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/material-ui-popup-state/-/material-ui-popup-state-5.0.10.tgz#1c2d42cbe9f04f60fa6e4cd8ceb8ff5a456dfc62"
+  integrity sha512-gd0DI8skwCSdth/j/yndoIwNkS2eDusosTe5hyPZ3jbrMzDkbQBs+tBbwapQ9hLfgiVLwICd1mwyerUV9Y5Elw==
   dependencies:
     "@babel/runtime" "^7.20.6"
     "@mui/material" "^5.0.0"
