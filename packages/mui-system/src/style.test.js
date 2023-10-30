@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import style, { getStyleValue } from './style';
+import style from './style';
 
 describe('style', () => {
   const bgcolor = style({
@@ -256,62 +256,6 @@ describe('style', () => {
       expect(output).to.deep.equal({
         opacity: 0.5,
       });
-    });
-  });
-  describe('getStyleValue', () => {
-    it('should warn on acceptable object', () => {
-      const round = (value) => Math.round(value * 1e5) / 1e5;
-      let output;
-
-      expect(() => {
-        output = getStyleValue(
-          {
-            body1: {
-              fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-              fontSize: '1rem',
-              letterSpacing: `${round(0.15 / 16)}em`,
-              fontWeight: 400,
-              lineHeight: 1.5,
-            },
-          },
-          null,
-          'body1',
-        );
-      }).toWarnDev(
-        'MUI: The value found in theme for prop: "body1" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
-      );
-
-      expect(output).to.deep.equal({
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-        fontSize: '1rem',
-        letterSpacing: `${round(0.15 / 16)}em`,
-        fontWeight: 400,
-        lineHeight: 1.5,
-      });
-    });
-
-    it('should warn on unacceptable object', () => {
-      const theme = {
-        palette: {
-          grey: { 100: '#f5f5f5' },
-        },
-      };
-
-      const paletteTransform = (value, userValue) => {
-        if (userValue === 'grey') {
-          return userValue;
-        }
-        return value;
-      };
-      let output;
-
-      expect(() => {
-        output = getStyleValue(theme.palette, paletteTransform, 'grey');
-      }).toWarnDev(
-        'MUI: The value found in theme for prop: "grey" is an [Object] instead of string or number. Check if you forgot to add the correct dotted notation, eg, "background.paper" instead of "background".',
-      );
-
-      expect(output).to.be.equal('grey');
     });
   });
 });

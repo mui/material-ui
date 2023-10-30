@@ -44,7 +44,7 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
   name: 'JoyDrawer',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: DrawerOwnerState }>(({ ownerState, theme }) => ({
+})<{ ownerState: DrawerOwnerState }>(({ ownerState }) => ({
   '--Drawer-transitionDuration': '0.3s',
   '--Drawer-transitionFunction': 'ease',
   '--ModalClose-radius':
@@ -72,15 +72,6 @@ const DrawerRoot = styled(StyledModalRoot as unknown as 'div', {
   ...(!ownerState.open && {
     visibility: 'hidden',
   }),
-  ...(ownerState.variant === 'solid' &&
-    ownerState.color &&
-    ownerState.invertedColors &&
-    applySolidInversion(ownerState.color)(theme)),
-  ...(ownerState.variant === 'soft' &&
-    ownerState.color &&
-    ownerState.invertedColors &&
-    applySoftInversion(ownerState.color)(theme)),
-  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
 
 const DrawerBackdrop = styled(StyledModalBackdrop as unknown as 'div', {
@@ -131,6 +122,14 @@ const DrawerContent = styled('div', {
     ? '100vw'
     : 'min(100vw, var(--Drawer-horizontalSize))',
   transition: 'transform var(--Drawer-transitionDuration) var(--Drawer-transitionFunction)',
+  ...(ownerState.variant === 'solid' &&
+    ownerState.color &&
+    ownerState.invertedColors &&
+    applySolidInversion(ownerState.color)(theme)),
+  ...(ownerState.variant === 'soft' &&
+    ownerState.color &&
+    ownerState.invertedColors &&
+    applySoftInversion(ownerState.color)(theme)),
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   [`& > .${dialogTitleClasses.root}`]: {
     '--unstable_DialogTitle-margin': 'var(--Drawer-titleMargin)',

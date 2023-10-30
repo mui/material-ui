@@ -24,7 +24,7 @@ export default function AboutEnd() {
           alwaysCenter
           overline="Join us"
           title={
-            <Typography variant="h2" sx={{ maxWidth: 600, mx: 'auto' }}>
+            <Typography variant="h2">
               <GradientText>Build the next generation</GradientText>
               <br /> of tools for UI development
             </Typography>

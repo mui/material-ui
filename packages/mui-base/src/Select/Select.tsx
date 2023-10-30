@@ -71,6 +71,7 @@ const Select = React.forwardRef(function Select<
 ) {
   const {
     areOptionsEqual,
+    autoComplete,
     autoFocus,
     children,
     defaultValue,
@@ -225,7 +226,7 @@ const Select = React.forwardRef(function Select<
         </PopperComponent>
       )}
 
-      <input {...getHiddenInputProps()} />
+      <input {...getHiddenInputProps()} autoComplete={autoComplete} />
     </React.Fragment>
   );
 }) as SelectType;
@@ -243,6 +244,12 @@ Select.propTypes /* remove-proptypes */ = {
    * Therefore, it's recommented to use the default reference equality comparison whenever possible.
    */
   areOptionsEqual: PropTypes.func,
+  /**
+   * This prop helps users to fill forms faster, especially on mobile devices.
+   * The name can be confusing, as it's more like an autofill.
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+   */
+  autoComplete: PropTypes.string,
   /**
    * If `true`, the select element is focused during the first mount
    * @default false

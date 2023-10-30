@@ -53,7 +53,6 @@ export default function ColorInversionHeader() {
           const nextColor = colors.indexOf(color);
           setColor(colors[nextColor + 1] ?? colors[0]);
         }}
-        sx={{ borderRadius: '50%' }}
       >
         <ColorLensRoundedIcon fontSize="small" />
       </IconButton>
@@ -109,7 +108,7 @@ export default function ColorInversionHeader() {
       <Box sx={{ display: 'flex', flexShrink: 0, gap: 2 }}>
         <Button
           startDecorator={<AddIcon />}
-          sx={{ borderRadius: '50%', display: { xs: 'none', md: 'inline-flex' } }}
+          sx={{ display: { xs: 'none', md: 'inline-flex' } }}
         >
           New invoice
         </Button>
@@ -128,7 +127,6 @@ export default function ColorInversionHeader() {
             </Typography>
           }
           sx={{
-            '--Input-radius': '50%',
             '--Input-paddingInline': '12px',
             width: 160,
             display: { xs: 'none', lg: 'flex' },
