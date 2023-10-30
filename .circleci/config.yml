@@ -106,6 +106,12 @@ commands:
           command: yarn install
           environment:
             PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: <<# parameters.browsers >>0<</ parameters.browsers >><<^ parameters.browsers >>1<</ parameters.browsers >>
+      - when:
+          condition: << parameters.browsers >>
+          steps:
+            - run:
+                name: Install playwright browsers
+                command: yarn playwright install
       - save_cache:
           name: Save yarn cache
           key: v8-yarn-{{ checksum "yarn.lock" }}
