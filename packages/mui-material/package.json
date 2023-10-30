@@ -48,7 +48,7 @@
     "@mui/system": "^5.14.15",
     "@mui/types": "^7.2.7",
     "@mui/utils": "^5.14.15",
-    "@types/react-transition-group": "^4.4.7",
+    "@types/react-transition-group": "^4.4.8",
     "clsx": "^2.0.0",
     "csstype": "^3.1.2",
     "prop-types": "^15.8.1",
