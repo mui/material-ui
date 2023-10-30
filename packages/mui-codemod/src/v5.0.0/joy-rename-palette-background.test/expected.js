@@ -21,3 +21,16 @@ const Custom = styled('div')(({ theme }) => ({
     }}
   />
 </div>;
+
+extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        background: {
+          level0: 'var(--joy-palette-common-black)',
+          level1: 'var(--joy-palette-neutral-900)',
+        },
+      },
+    },
+  },
+});

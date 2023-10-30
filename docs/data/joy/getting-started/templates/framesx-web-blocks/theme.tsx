@@ -41,8 +41,8 @@ export default extendTheme({
           solidActiveBg: 'var(--joy-palette-primary-400)',
         },
         background: {
-          body: 'var(--joy-palette-common-black)',
-          surface: 'var(--joy-palette-neutral-900)',
+          level0: 'var(--joy-palette-common-black)',
+          level1: 'var(--joy-palette-neutral-900)',
         },
       },
     },
