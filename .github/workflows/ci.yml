@@ -35,9 +35,6 @@ jobs:
           node-version: 18
           cache: 'yarn' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: yarn install
-        env:
-          # Don't need playwright in this job
-          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
       - run: yarn release:build
       # double run to check if cleanup works
       - run: yarn release:build
