@@ -122,7 +122,7 @@ const SnackbarRoot = styled('div', {
         animationName: exitAnimation,
       }),
       boxShadow: theme.vars.shadow.lg,
-      backgroundColor: theme.vars.palette.background.surface,
+      backgroundColor: theme.vars.palette.background.level1,
       padding: `var(--Snackbar-padding)`,
       borderRadius: 'var(--Snackbar-radius)',
       ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
