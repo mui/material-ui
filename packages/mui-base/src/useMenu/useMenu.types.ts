@@ -9,6 +9,16 @@ export interface UseMenuParameters {
    */
   id?: string;
   /**
+   * If `true`, it will be possible to highlight disabled items.
+   * @default true
+   */
+  disabledItemsFocusable?: boolean;
+  /**
+   * If `true`, the highlight will not wrap around the list if arrow keys are used.
+   * @default false
+   */
+  disableListWrap?: boolean;
+  /**
    * Callback fired when the menu items change.
    */
   onItemsChange?: (items: string[]) => void;

@@ -494,6 +494,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /material-ui/api/tree-view/ /x/api/tree-view/tree-view/ 301
 /material-ui/api/tree-item/ /x/api/tree-view/tree-item/ 301
 /material-ui/guides/styled-engine/ /material-ui/guides/styled-components/ 301
+/material-ui/guides/themeable-component/ /material-ui/guides/creating-themed-components/ 301
 
 # Proxies
 
@@ -522,3 +523,4 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 
 ### MUI Design kits
 /figma/getting-started/ https://mui-org.notion.site/MUI-for-Figma-docs-4eb22360388047a9a31fc19d300a285e 302
+/r/figma-* https://mui-store.netlify.app/r/figma-:splat 200

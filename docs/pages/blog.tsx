@@ -17,6 +17,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import DiscordIcon from 'docs/src/icons/DiscordIcon';
 import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -460,6 +461,10 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 <Link href="https://twitter.com/MUI_hq" target="_blank" fontSize={14}>
                   <TwitterIcon fontSize="small" />
                   Twitter
+                </Link>
+                <Link href="https://mui.com/r/discord/" target="_blank" fontSize={14}>
+                  <DiscordIcon fontSize="small" />
+                  Discord
                 </Link>
                 <Link href="https://www.linkedin.com/company/mui/" target="_blank" fontSize={14}>
                   <LinkedInIcon fontSize="small" />

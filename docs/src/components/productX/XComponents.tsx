@@ -74,18 +74,16 @@ export default function XComponents() {
     <Section bg="gradient">
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="React component library"
-              title={
-                <Typography variant="h2">
-                  Powerful components for <GradientText>advanced</GradientText> use-cases
-                </Typography>
-              }
-              description="The MUI X package enables applications to have complex use-cases, supported by several advanced components."
-            />
-          </Box>
-          <Group desktopColumns={2} sx={{ mt: 4 }}>
+          <SectionHeadline
+            overline="React component library"
+            title={
+              <Typography variant="h2">
+                Powerful components for <GradientText>advanced</GradientText> use-cases
+              </Typography>
+            }
+            description="The MUI X package enables applications to have complex use-cases, supported by several advanced components."
+          />
+          <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />

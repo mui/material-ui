@@ -6,7 +6,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { Interpolation } from '@mui/system';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, Theme, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
@@ -108,7 +107,7 @@ export const getButtonStyles = ({
         '--Button-gap': '0.375rem',
         minHeight: 'var(--Button-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
-        paddingBlock: '2px',
+        paddingBlock: 'var(--Button-paddingBlock, 0.25rem)',
         paddingInline: '0.75rem',
       }),
       ...(ownerState.size === 'md' && {
@@ -118,7 +117,8 @@ export const getButtonStyles = ({
         '--Button-gap': '0.5rem',
         minHeight: 'var(--Button-minHeight, 2.25rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
-        paddingBlock: '0.25rem', // the padding-block act as a minimum spacing between content and root element
+        // internal --Button-paddingBlock is used to control the padding-block of the button from the outside, e.g. as a decorator of an Input
+        paddingBlock: 'var(--Button-paddingBlock, 0.375rem)', // the padding-block act as a minimum spacing between content and root element
         paddingInline: '1rem',
       }),
       ...(ownerState.size === 'lg' && {
@@ -128,10 +128,11 @@ export const getButtonStyles = ({
         '--Button-gap': '0.75rem',
         minHeight: 'var(--Button-minHeight, 2.75rem)',
         fontSize: theme.vars.fontSize.md,
-        paddingBlock: '0.375rem',
+        paddingBlock: 'var(--Button-paddingBlock, 0.5rem)',
         paddingInline: '1.5rem',
       }),
       WebkitTapHighlightColor: 'transparent',
+      boxSizing: 'border-box',
       borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, e.g. Input
       margin: `var(--Button-margin)`, // to be controlled by other components, e.g. Input
       border: 'none',
@@ -144,7 +145,7 @@ export const getButtonStyles = ({
       textDecoration: 'none', // prevent user agent underline when used as anchor
       fontFamily: theme.vars.fontFamily.body,
       fontWeight: theme.vars.fontWeight.lg,
-      lineHeight: 1,
+      lineHeight: theme.vars.lineHeight.md,
       ...(ownerState.fullWidth && {
         width: '100%',
       }),
@@ -214,8 +215,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, buttonGroup.color || colorProp);
+  const color = inProps.color || buttonGroup.color || colorProp;
   const disabled =
     (inProps.disabled || inProps.loading) ?? (buttonGroup.disabled || disabledProp || loading);
 
@@ -229,10 +229,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress
-      {...(color !== 'context' && { color })}
-      thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3}
-    />
+    <CircularProgress color={color} thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3} />
   );
 
   React.useImperativeHandle(

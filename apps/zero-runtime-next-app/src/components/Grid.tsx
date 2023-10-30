@@ -1,6 +1,6 @@
 import { styled } from '@mui/zero-runtime';
 
-const Grid = styled('div')(({ theme }: any) => ({
+const Grid = styled('div')(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(4, minmax(25%, auto))',
   maxWidth: '100%',

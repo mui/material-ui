@@ -39,15 +39,16 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/core": "^7.23.0",
-    "@linaria/vite": "^4.5.4",
+    "@babel/core": "^7.23.2",
+    "@linaria/logger": "^4.5.0",
+    "@linaria/utils": "^4.5.3",
     "@mui/zero-tag-processor": "0.0.1-alpha.0"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.2",
-    "@types/chai": "^4.3.6",
-    "chai": "^4.3.8",
-    "vite": "^4.4.9"
+    "@types/babel__core": "^7.20.3",
+    "@types/chai": "^4.3.9",
+    "chai": "^4.3.10",
+    "vite": "^4.4.11"
   },
   "peerDependencies": {
     "vite": "^4.0.0"
