@@ -3958,10 +3958,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-window@^1.8.6":
-  version "1.8.6"
-  resolved "https://registry.yarnpkg.com/@types/react-window/-/react-window-1.8.6.tgz#4faba05b86abd36f40b612a5b02e28fadcf95c7c"
-  integrity sha512-AVJr3A5rIO9dQQu5TwTN0lP2c1RtuqyyZGCt7PGP8e5gUpn1PuQRMJb/u3UpdbwTHh4wbEi33UMW5NI0IXt1Mg==
+"@types/react-window@^1.8.7":
+  version "1.8.7"
+  resolved "https://registry.yarnpkg.com/@types/react-window/-/react-window-1.8.7.tgz#742a5e00b7aa45c9f0afc1be8c7b562a36950e8a"
+  integrity sha512-FpPHEhmGVOBKomuR4LD2nvua1Ajcw6PfnfbDysuCwwPae3JNulcq3+uZIpQNbDN2AI1z+Y4tKj2xQ4ELiQ4QDw==
   dependencies:
     "@types/react" "*"
 
