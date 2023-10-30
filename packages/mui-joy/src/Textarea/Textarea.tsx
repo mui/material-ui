@@ -103,7 +103,7 @@ const TextareaRoot = styled('div', {
       borderRadius: 'var(--Textarea-radius)',
       ...theme.typography[`body-${ownerState.size!}`],
       ...variantStyle,
-      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.level1,
       '&:before': {
         boxSizing: 'border-box',
         content: '""',

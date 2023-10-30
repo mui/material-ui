@@ -68,7 +68,7 @@ const AlertRoot = styled('div', {
         '--Icon-fontSize': theme.vars.fontSize.xl2,
         gap: '0.875rem',
       }),
-      backgroundColor: theme.vars.palette.background.surface,
+      backgroundColor: theme.vars.palette.background.level1,
       display: 'flex',
       position: 'relative',
       alignItems: 'center',

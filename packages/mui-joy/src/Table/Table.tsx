@@ -115,7 +115,7 @@ const TableRoot = styled('table', {
     {
       '--Table-headerUnderlineThickness': '2px',
       '--TableCell-borderColor': variantStyle?.borderColor ?? theme.vars.palette.divider,
-      '--TableCell-headBackground': `var(--Sheet-background, ${theme.vars.palette.background.surface})`,
+      '--TableCell-headBackground': `var(--Sheet-background, ${theme.vars.palette.background.level1})`,
       ...(ownerState.size === 'sm' && {
         '--unstable_TableCell-height': 'var(--TableCell-height, 32px)',
         '--TableCell-paddingX': '0.25rem',

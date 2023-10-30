@@ -248,7 +248,7 @@ const SkeletonRoot = styled('span', {
           height: '100%',
           zIndex: 'var(--unstable_pseudo-zIndex)',
           ...(ownerState.animation === 'pulse' && {
-            backgroundColor: theme.vars.palette.background.surface,
+            backgroundColor: theme.vars.palette.background.level1,
           }),
           ...(ownerState.level !== 'inherit' && {
             ...theme.typography[ownerState.level!],

@@ -56,7 +56,7 @@ const BadgeRoot = styled('span', {
     '--Badge-paddingX': '0.5rem',
   }),
   '--Badge-ringSize': '2px',
-  '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.surface})`,
+  '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.level1})`,
   position: 'relative',
   display: 'inline-flex',
   // For correct alignment with the text.
@@ -120,7 +120,7 @@ const BadgeBadge = styled('span', {
     minWidth: 'var(--Badge-minHeight)',
     borderRadius: 'var(--Badge-radius, var(--Badge-minHeight))',
     zIndex: theme.vars.zIndex.badge,
-    backgroundColor: theme.vars.palette.background.surface,
+    backgroundColor: theme.vars.palette.background.level1,
     [ownerState.anchorOrigin!.vertical]: inset[ownerState.anchorOrigin!.vertical],
     [ownerState.anchorOrigin!.horizontal]: inset[ownerState.anchorOrigin!.horizontal],
     transform: `scale(1) ${translateX} ${translateY}`,

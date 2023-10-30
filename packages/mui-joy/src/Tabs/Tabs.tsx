@@ -48,7 +48,7 @@ const TabsRoot = styled('div', {
     background ||
     variantStyle?.backgroundColor ||
     variantStyle?.background ||
-    theme.vars.palette.background.surface;
+    theme.vars.palette.background.level1;
   return {
     ...(ownerState.size === 'sm' && {
       '--Tabs-spacing': '0.75rem',
@@ -70,7 +70,7 @@ const TabsRoot = styled('div', {
     ...(ownerState.orientation === 'vertical' && {
       flexDirection: 'row',
     }),
-    backgroundColor: theme.vars.palette.background.surface,
+    backgroundColor: theme.vars.palette.background.level1,
     position: 'relative',
     ...theme.typography[`body-${ownerState.size!}`],
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],

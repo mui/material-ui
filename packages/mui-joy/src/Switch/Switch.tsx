@@ -43,12 +43,12 @@ const switchColorVariables =
     const styles =
       theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
-      '--Switch-trackBackground': styles.backgroundColor ?? theme.vars.palette.background.surface,
+      '--Switch-trackBackground': styles.backgroundColor ?? theme.vars.palette.background.level1,
       '--Switch-trackColor': styles.color,
       '--Switch-trackBorderColor':
         ownerState.variant === 'outlined' ? styles.borderColor : 'currentColor',
       '--Switch-thumbBackground': styles.color,
-      '--Switch-thumbColor': styles.backgroundColor ?? theme.vars.palette.background.surface,
+      '--Switch-thumbColor': styles.backgroundColor ?? theme.vars.palette.background.level1,
     };
   };
 

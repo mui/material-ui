@@ -100,7 +100,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         borderRadius: 'var(--Input-radius)',
         ...theme.typography[`body-${ownerState.size!}`],
         ...variantStyle,
-        backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+        backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.level1,
         '&:before': {
           boxSizing: 'border-box',
           content: '""',

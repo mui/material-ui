@@ -99,7 +99,7 @@ const DrawerContent = styled('div', {
 })<{ ownerState: DrawerOwnerState }>(({ theme, ownerState }) => ({
   ...theme.typography[`body-${ownerState.size!}`],
   boxShadow: theme.shadow.md,
-  backgroundColor: theme.vars.palette.background.surface,
+  backgroundColor: theme.vars.palette.background.level1,
   outline: 0,
   display: 'flex',
   flexDirection: 'column',

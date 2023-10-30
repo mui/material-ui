@@ -53,7 +53,7 @@ export const SheetRoot = styled('div', {
     background ||
     variantStyle?.backgroundColor ||
     variantStyle?.background ||
-    theme.vars.palette.background.surface;
+    theme.vars.palette.background.level1;
   return [
     {
       '--Icon-color':
@@ -67,7 +67,7 @@ export const SheetRoot = styled('div', {
         '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
         '--unstable_actionRadius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
       }),
-      backgroundColor: theme.vars.palette.background.surface,
+      backgroundColor: theme.vars.palette.background.level1,
       position: 'relative',
     } as const,
     {

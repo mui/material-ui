@@ -39,13 +39,13 @@ const MenuListRoot = styled(StyledList, {
     '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
-      theme.vars.palette.background.surface,
+      theme.vars.palette.background.level1,
     '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
     borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
     overflow: 'auto',
     ...(!variantStyle?.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
+      backgroundColor: theme.vars.palette.background.level1,
     }),
   };
 });

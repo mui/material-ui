@@ -70,7 +70,7 @@ const TooltipRoot = styled('div', {
     ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
     ...variantStyle,
     ...(!variantStyle.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
+      backgroundColor: theme.vars.palette.background.level1,
     }),
     '&::before': {
       // acts as a invisible connector between the element and the tooltip
@@ -130,8 +130,8 @@ const TooltipArrow = styled('span', {
       border: 'calc(var(--Tooltip-arrowSize) / 2) solid',
       borderLeftColor: 'transparent',
       borderBottomColor: 'transparent',
-      borderTopColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
-      borderRightColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+      borderTopColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.level1,
+      borderRightColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.level1,
       borderRadius: `0px 2px 0px 0px`,
       boxShadow: `var(--variant-borderWidth, 0px) calc(-1 * var(--variant-borderWidth, 0px)) 0px 0px ${variantStyle.borderColor}`,
       transformOrigin: 'center center',

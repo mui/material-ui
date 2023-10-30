@@ -136,7 +136,7 @@ const SelectRoot = styled('div', {
       borderRadius: 'var(--Select-radius)',
       cursor: 'pointer',
       ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
+        backgroundColor: theme.vars.palette.background.level1,
       }),
       ...(ownerState.size && {
         paddingBlock: { sm: 2, md: 3, lg: 4 }[ownerState.size], // the padding-block act as a minimum spacing between content and root element

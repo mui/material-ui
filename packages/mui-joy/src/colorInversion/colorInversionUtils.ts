@@ -67,7 +67,7 @@ export const skipInvertedColors = (theme: ThemeFragment) => {
       )]: `${theme.colorSchemes.light?.palette.background.level0} !important`,
       [prefixVar(
         '--palette-background-surface',
-      )]: `${theme.colorSchemes.light?.palette.background.surface} !important`,
+      )]: `${theme.colorSchemes.light?.palette.background.level1} !important`,
       [prefixVar(
         '--palette-background-popup',
       )]: `${theme.colorSchemes.light?.palette.background.popup} !important`,
@@ -100,7 +100,7 @@ export const skipInvertedColors = (theme: ThemeFragment) => {
       )]: `${theme.colorSchemes.dark?.palette.background.level0} !important`,
       [prefixVar(
         '--palette-background-surface',
-      )]: `${theme.colorSchemes.dark?.palette.background.surface} !important`,
+      )]: `${theme.colorSchemes.dark?.palette.background.level1} !important`,
       [prefixVar(
         '--palette-background-popup',
       )]: `${theme.colorSchemes.dark?.palette.background.popup} !important`,

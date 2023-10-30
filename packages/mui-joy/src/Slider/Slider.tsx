@@ -61,8 +61,8 @@ const sliderColorVariables =
       ...(!data.state && { '--variant-borderWidth': styles['--variant-borderWidth'] ?? '0px' }),
       '--Slider-trackColor': styles.color,
       '--Slider-thumbBackground': styles.color,
-      '--Slider-thumbColor': styles.backgroundColor || theme.vars.palette.background.surface,
-      '--Slider-trackBackground': styles.backgroundColor || theme.vars.palette.background.surface,
+      '--Slider-thumbColor': styles.backgroundColor || theme.vars.palette.background.level1,
+      '--Slider-trackBackground': styles.backgroundColor || theme.vars.palette.background.level1,
       '--Slider-trackBorderColor': styles.borderColor,
       '--Slider-railBackground': theme.vars.palette.background.level2,
     };

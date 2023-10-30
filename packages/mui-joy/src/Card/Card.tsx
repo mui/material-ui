@@ -78,7 +78,7 @@ export const StyledCardRoot = styled('div')<{ ownerState: CardOwnerState }>(
         }),
         padding: 'var(--Card-padding)',
         borderRadius: 'var(--Card-radius)',
-        backgroundColor: theme.vars.palette.background.surface,
+        backgroundColor: theme.vars.palette.background.level1,
         position: 'relative',
         display: 'flex',
         flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
