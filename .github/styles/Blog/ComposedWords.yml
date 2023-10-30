@@ -9,5 +9,5 @@ swap:
   sub-components: subcomponents
   'sub component': subcomponent
   'sub components': subcomponents
-  usecase: use-case
-  'use case': use-case
+  'use-case': 'use case'
+  'use-case': 'use case'
