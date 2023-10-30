@@ -13,24 +13,24 @@ export default function NestedCard() {
   return (
     <Card sx={{ borderRadius: 0, width: 300, maxWidth: '100%' }}>
       <CardContent>
-        <Typography level="body-sm">IN DESIGN</Typography>
-        <Typography level="h3">AFSL Web App</Typography>
+        <Typography level="body-xs">IN DESIGN</Typography>
+        <Typography level="title-lg">AFSL Web App</Typography>
       </CardContent>
       <Card
         orientation="horizontal"
         size="sm"
-        sx={{ bgcolor: 'background.body', borderRadius: 0 }}
+        sx={{ bgcolor: 'background.surface', borderRadius: 0, mb: 1 }}
       >
         <CardOverflow>
           <AspectRatio
             ratio="1"
-            sx={{ minWidth: 64, '& img[data-first-child]': { p: 1 } }}
+            sx={{ minWidth: 70, '& img[data-first-child]': { p: 1.5 } }}
           >
             <img src="https://uilogos.co/img/logomark/lighting.png" alt="" />
           </AspectRatio>
         </CardOverflow>
         <CardContent>
-          <Typography level="title-sm">Sub project</Typography>
+          <Typography level="title-md">Sub project</Typography>
           <Typography level="body-sm">Next review in 17 days</Typography>
         </CardContent>
       </Card>
@@ -46,24 +46,15 @@ export default function NestedCard() {
           borderColor: 'divider',
         }}
       >
-        <Typography
-          startDecorator={<BallotIcon color="danger" />}
-          sx={{ fontWeight: 'lg', fontSize: 'sm' }}
-        >
+        <Typography startDecorator={<BallotIcon color="danger" />} level="title-sm">
           13
         </Typography>
         <Divider orientation="vertical" />
-        <Typography
-          startDecorator={<CommentOutlinedIcon />}
-          sx={{ fontWeight: 'lg', fontSize: 'sm' }}
-        >
+        <Typography startDecorator={<CommentOutlinedIcon />} level="title-sm">
           9
         </Typography>
         <Divider orientation="vertical" />
-        <Typography
-          startDecorator={<InboxOutlinedIcon />}
-          sx={{ fontWeight: 'lg', fontSize: 'sm' }}
-        >
+        <Typography startDecorator={<InboxOutlinedIcon />} level="title-sm">
           32
         </Typography>
       </CardOverflow>
