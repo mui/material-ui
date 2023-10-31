@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import { styled, alpha } from '@mui/material/styles';
 import { brandingDarkTheme as darkTheme } from 'docs/src/modules/brandingTheme';
 
