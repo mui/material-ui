@@ -28,19 +28,20 @@ export default function XRoadmap() {
           mt: 2,
           display: 'grid',
           alignItems: 'center',
-          gap: 2,
+          gap: 1.5,
           gridTemplateColumns: 'max-content 1fr',
           position: 'relative',
+          fontWeight: 'semiBold',
           ...(nested && {
             '&:before': {
               content: '""',
               display: 'block',
               position: 'absolute',
               width: 1.5,
-              bgcolor: 'primaryDark.500',
+              bgcolor: 'primaryDark.600',
               top: 24,
               bottom: 10,
-              left: 10,
+              left: 8,
             },
           }),
         }}
@@ -52,7 +53,7 @@ export default function XRoadmap() {
   const bullet = (
     <Box
       sx={{
-        ml: 1.3,
+        ml: 1,
         mr: -2,
         display: 'flex',
         alignItems: 'center',
@@ -61,7 +62,7 @@ export default function XRoadmap() {
           display: 'block',
           height: 1.5,
           width: 15,
-          bgcolor: 'primaryDark.500',
+          bgcolor: 'primaryDark.600',
         },
       }}
     />
@@ -79,143 +80,160 @@ export default function XRoadmap() {
           }`,
       }}
     >
-      <div>
-        <Grid container spacing={2} alignItems="center" justifyContent="space-between">
-          <Grid item xs={12} md={5}>
-            <Box maxWidth={500} sx={{ mb: { xs: 2, sm: 0 } }}>
-              <SectionHeadline
-                overline="Roadmap"
-                title="Follow the MUI X roadmap for future updates"
-                description="It's just the beginning of the MUI X components. Stay tuned for the exciting news and updates coming soon!"
-              />
-              <Button
-                component={Link}
-                href={ROUTES.xRoadmap}
-                noLinkStyle
-                size="large"
-                variant="contained"
-                endIcon={<KeyboardArrowRightRounded />}
-                sx={{ width: { xs: '100%', sm: 'auto' } }}
-              >
-                See the roadmap
-              </Button>
-            </Box>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={7}
-            lg="auto"
-            container
-            spacing={2}
-            sx={{
-              typography: 'body2',
-              '& .MuiPaper-root': {
-                p: 2,
-                minWidth: { lg: 180 },
-              },
-              '& svg': {
-                color: 'primary.300',
-              },
-            }}
+      <Grid container spacing={2} alignItems="center" justifyContent="space-between">
+        <Grid item xs={12} md={5}>
+          <SectionHeadline
+            overline="Roadmap"
+            title="Follow the MUI X roadmap for future updates"
+            description="It's just the beginning of the MUI X components. Stay tuned for the exciting news and updates coming soon!"
+          />
+          <Button
+            component={Link}
+            href={ROUTES.xRoadmap}
+            noLinkStyle
+            size="large"
+            variant="contained"
+            endIcon={<KeyboardArrowRightRounded />}
+            sx={{ width: { xs: '100%', sm: 'auto' } }}
           >
-            <Grid item xs={12} sm={4} lg="auto">
-              <Paper variant="outlined">
-                <Typography fontWeight={600} variant="body2" color="text.primary">
-                  Released
-                </Typography>
-                <Typography color="text.secondary" variant="body2">
-                  More updates coming.
-                </Typography>
-                {renderList(
-                  <React.Fragment>
-                    <TableChartRounded fontSize="small" />
-                    <b>Data Grid</b>
-                    <DateRangeRounded fontSize="small" />
-                    <b>Date and Time Pickers</b>
-                    <BarChartRounded fontSize="small" />
-                    <b>Charts</b>
-                    <AccountTreeRounded fontSize="small" />
-                    <b>Tree View</b>
-                  </React.Fragment>,
-                )}
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={4} lg="auto">
-              <Paper variant="outlined">
-                <Typography fontWeight={600} variant="body2" color="text.primary">
-                  Work in progress
-                </Typography>
-                <Typography color="text.secondary" variant="body2">
-                  Getting there.
-                </Typography>
-                {renderList(
-                  <React.Fragment>
-                    <Box
-                      sx={{
-                        lineHeight: 0,
-                      }}
-                    >
-                      <TableChartRounded fontSize="small" />
-                    </Box>
-                    <b>Data Grid</b>
-                    {bullet}
-                    <b>Pivoting</b>
-                    {bullet}
-                    <b>Charts integration</b>
-                    {bullet}
-                    <Link href={ROUTES.dataGridFeaturesComparison} sx={{ color: 'primary.300' }}>
-                      And more!
-                    </Link>
-                  </React.Fragment>,
-                  true,
-                )}
-                {renderList(
-                  <React.Fragment>
-                    <Box
-                      sx={{
-                        lineHeight: 0,
-                      }}
-                    >
-                      <AccountTreeRounded fontSize="small" />
-                    </Box>
-                    <b>Tree View</b>
-                    {bullet}
-                    <b>Virtualization</b>
-                    {bullet}
-                    <b>Drag and Drop</b>
-                  </React.Fragment>,
-                  true,
-                )}
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={4} lg="auto">
-              <Paper variant="outlined">
-                <Typography fontWeight={600} variant="body2" color="text.primary">
-                  On the list
-                </Typography>
-                <Typography color="text.secondary" variant="body2">
-                  Starting sometime soon…
-                </Typography>
-                {renderList(
-                  <React.Fragment>
-                    <ShowChartRounded fontSize="small" />
-                    <b>Sparkline</b>
-                    <InsertDriveFileOutlined fontSize="small" />
-                    <b>Rich Text Editor</b>
-                    <FileUploadRounded fontSize="small" />
-                    <b>Upload</b>
-                    <PendingActionsRounded fontSize="small" />
-                    <b>Scheduler</b>
-                    <SpeedRounded fontSize="small" />
-                    <b>Gauge</b>
-                  </React.Fragment>,
-                )}
-              </Paper>
-            </Grid>
+            See the roadmap
+          </Button>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={7}
+          lg="auto"
+          container
+          spacing={2}
+          sx={{
+            typography: 'body2',
+            '& .MuiPaper-root': {
+              p: 2,
+              minWidth: { lg: 180 },
+            },
+            '& svg': {
+              color: 'primary.300',
+            },
+          }}
+        >
+          <Grid item xs={12} sm={4} lg="auto">
+            <Paper variant="outlined">
+              <Typography fontWeight="bold" variant="body2" color="text.primary">
+                Released
+                <Box
+                  sx={{
+                    ml: 1,
+                    display: 'inline-block',
+                    width: 8,
+                    height: 8,
+                    borderRadius: 10,
+                    bgcolor: 'success.main',
+                  }}
+                />
+              </Typography>
+              {renderList(
+                <React.Fragment>
+                  <TableChartRounded sx={{ fontSize: 16 }} />
+                  Data Grid
+                  <DateRangeRounded sx={{ fontSize: 16 }} />
+                  Date and Time Pickers
+                  <BarChartRounded sx={{ fontSize: 16 }} />
+                  Charts
+                  <AccountTreeRounded sx={{ fontSize: 16 }} />
+                  Tree View
+                </React.Fragment>,
+              )}
+            </Paper>
+          </Grid>
+          <Grid item xs={12} sm={4} lg="auto">
+            <Paper variant="outlined">
+              <Typography fontWeight="bold" variant="body2" color="text.primary">
+                Work in progress
+                <Box
+                  sx={{
+                    ml: 1,
+                    display: 'inline-block',
+                    width: 8,
+                    height: 8,
+                    borderRadius: 10,
+                    bgcolor: 'warning.main',
+                  }}
+                />
+              </Typography>
+              {renderList(
+                <React.Fragment>
+                  <Box
+                    sx={{
+                      lineHeight: 0,
+                    }}
+                  >
+                    <TableChartRounded sx={{ fontSize: 16 }} />
+                  </Box>
+                  Data Grid
+                  {bullet}
+                  Pivoting
+                  {bullet}
+                  Charts integration
+                  {bullet}
+                  <Link href={ROUTES.dataGridFeaturesComparison} sx={{ color: 'primary.300' }}>
+                    And more!
+                  </Link>
+                </React.Fragment>,
+                true,
+              )}
+              {renderList(
+                <React.Fragment>
+                  <Box
+                    sx={{
+                      lineHeight: 0,
+                    }}
+                  >
+                    <AccountTreeRounded sx={{ fontSize: 16 }} />
+                  </Box>
+                  Tree View
+                  {bullet}
+                  Virtualization
+                  {bullet}
+                  Drag and Drop
+                </React.Fragment>,
+                true,
+              )}
+            </Paper>
+          </Grid>
+          <Grid item xs={12} sm={4} lg="auto">
+            <Paper variant="outlined">
+              <Typography fontWeight="bold" variant="body2" color="text.primary">
+                Sometime soon
+                <Box
+                  sx={{
+                    ml: 1,
+                    display: 'inline-block',
+                    width: 8,
+                    height: 8,
+                    borderRadius: 10,
+                    bgcolor: 'primaryDark.400',
+                  }}
+                />
+              </Typography>
+              {renderList(
+                <React.Fragment>
+                  <ShowChartRounded sx={{ fontSize: 16 }} />
+                  Sparkline
+                  <InsertDriveFileOutlined sx={{ fontSize: 16 }} />
+                  Rich Text Editor
+                  <FileUploadRounded sx={{ fontSize: 16 }} />
+                  Upload
+                  <PendingActionsRounded sx={{ fontSize: 16 }} />
+                  Scheduler
+                  <SpeedRounded sx={{ fontSize: 16 }} />
+                  Gauge
+                </React.Fragment>,
+              )}
+            </Paper>
           </Grid>
         </Grid>
-      </div>
+      </Grid>
     </Section>
   );
 }

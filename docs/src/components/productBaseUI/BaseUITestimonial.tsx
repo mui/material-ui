@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-import ArrowForward from '@mui/icons-material/ArrowForward';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import Link from 'docs/src/modules/components/Link';
 import Section from 'docs/src/layouts/Section';
 
@@ -32,13 +32,7 @@ export default function BaseUITestimonial() {
               },
             }}
           >
-            <Typography
-              variant="h4"
-              component="h2"
-              mb={2.5}
-              fontWeight="medium"
-              sx={{ color: '#FFF' }}
-            >
+            <Typography variant="h4" component="h2" fontWeight="medium" color="#FFF" mb={2.5}>
               Nhost&apos;s dashboard
             </Typography>
             <Box
@@ -55,12 +49,12 @@ export default function BaseUITestimonial() {
           </Box>
           <Typography variant="body2" sx={{ mt: 2 }}>
             Nhost&apos;s new dashboard, powered by Base UI &nbsp;&nbsp;
-            <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
+            <Typography component="span" variant="inherit" color="divider">
               /
             </Typography>
             &nbsp;&nbsp;
             <Link href="https://nhost.io/blog/new-database-ui" target="_blank">
-              View the blog post <ArrowForward fontSize="small" />
+              View the blog post <ChevronRightRoundedIcon fontSize="small" />
             </Link>
           </Typography>
         </Grid>
@@ -74,7 +68,7 @@ export default function BaseUITestimonial() {
             the icing on the cake.”
           </Typography>
           <Divider />
-          <Box sx={{ display: 'flex', gap: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Box
               sx={(theme) => ({
                 p: 0.5,
@@ -94,7 +88,7 @@ export default function BaseUITestimonial() {
               />
             </Box>
             <Box sx={{ flex: 1 }}>
-              <Typography variant="body2" fontWeight={600}>
+              <Typography variant="body2" fontWeight="semiBold">
                 Szilárd Dóró
               </Typography>
               <Typography variant="body2" color="text.secondary">
