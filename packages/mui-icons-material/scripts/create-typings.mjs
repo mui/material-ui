@@ -16,13 +16,13 @@ function normalizeFileName(file) {
 
 function createIconTyping(file) {
   const name = normalizeFileName(file);
-  const contents = `export { default } from './utils/SvgIcon';`;
+  const contents = `export { default } from './SvgIcon';`;
   return fse.writeFile(path.resolve(TARGET_DIR, `${name}.d.ts`), contents, 'utf8');
 }
 
 function createIndexTyping(files) {
   const contents = `
-import SvgIcon from './utils/SvgIcon';
+import SvgIcon from './SvgIcon';
 
 type SvgIconComponent = typeof SvgIcon;
 
