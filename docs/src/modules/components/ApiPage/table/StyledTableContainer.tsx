@@ -10,7 +10,7 @@ const StyledTableContainer = styled('div')(
       marginLeft: -1,
       marginRight: -1,
       background: [
-        'linear-gradient(to right, rgb(255, 255, 255) 5%, rgba(255, 255, 255, 0) 80%) local',
+        'linear-gradient(to right, rgb(255, 255, 255) 5%, rgba(255, 255, 255, 0) 90%) local',
         'linear-gradient(to right, rgba(255, 255, 255, 0), rgb(255, 255, 255) 100%) 100% center local',
         `linear-gradient(to right, ${alpha(
           theme.palette.grey[500],
@@ -41,14 +41,23 @@ const StyledTableContainer = styled('div')(
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
-      background: [
-        'linear-gradient(to right, rgb(10, 25, 41) 5%, rgba(10, 25, 41, 0)) local',
-        'linear-gradient(to right, rgba(10, 25, 41, 0), rgb(10, 25, 41) 100%) 100% center local',
-        'linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0) 5%) scroll',
-        'linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0) 5%) scroll',
-      ].join(', '),
-      '& tr:hover': {
-        backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.5),
+      '& table': {
+        background: [
+          `linear-gradient(to right, ${theme.palette.primaryDark[900]} 5%, ${alpha(
+            theme.palette.primaryDark[900],
+            0,
+          )} 80%) local`,
+          `linear-gradient(to right, ${alpha(theme.palette.primaryDark[900], 0)}, ${
+            theme.palette.primaryDark[900]
+          } 100%) 100% center local`,
+          `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 10%) scroll`,
+          'linear-gradient(to left, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 10%) scroll',
+        ].join(', '),
+      },
+      '& tr': {
+        '&:hover': {
+          backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.5),
+        },
       },
     },
   }),
