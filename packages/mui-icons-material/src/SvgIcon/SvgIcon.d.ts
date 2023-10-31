@@ -3,7 +3,7 @@ import { SxProps, Theme } from '@mui/system';
 import { OverridableStringUnion, OverridableComponent, OverrideProps } from '@mui/types';
 import { SvgIconClasses } from './svgIconClasses';
 
-export interface SvgIconPropsSizeOverrides {}
+export interface SvgIconPropsFontSizeOverrides {}
 
 export interface SvgIconPropsColorOverrides {}
 
@@ -42,7 +42,7 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      */
     fontSize?: OverridableStringUnion<
       'inherit' | 'large' | 'medium' | 'small',
-      SvgIconPropsSizeOverrides
+      SvgIconPropsFontSizeOverrides
     >;
     /**
      * Applies a color attribute to the SVG element.
