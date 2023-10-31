@@ -62,23 +62,31 @@ const StepRoot = styled('li', {
         height: `var(--Step-connectorThickness, ${THICKNESS})`,
         background: `var(--Step-connectorBg, ${theme.vars.palette.divider})`,
         flex: 1,
-        marginInlineEnd: '0.5rem',
+        marginInlineStart: `calc(var(--Step-connectorInset, ${INSET}) - var(--Step-gap, ${INSET}))`,
+        marginInlineEnd: `var(--Step-connectorInset, ${INSET})`,
         zIndex: 0,
       },
     },
     [`.${stepperClasses.horizontal} &:not([data-last-child])`]: {
-      '--_Step-flex': 1,
+      '--_Step-flex': 'auto', // requires to be `auto` to make equally connectors.
+      [`&.${stepClasses.vertical}`]: {
+        '--_Step-flex': 1, // requires to be `1` to make equally connectors.
+      },
     },
     [`.${stepperClasses.vertical} &`]: {
       display: 'grid',
       '--_Step-justify': 'flex-start',
-      '--_Step-padding': '0 0 var(--Stepper-verticalGap) 0',
+      '&[data-indicator]': {
+        '--Step-indicatorDotSize': '0px',
+      },
+      '&:not([data-last-child])': {
+        '--_Step-padding': '0 0 var(--Stepper-verticalGap) 0',
+      },
       '&::after': {
         gridColumn: '1',
         width: `var(--Step-connectorThickness, ${THICKNESS})`,
         height: 'auto',
-        minHeight: '1rem',
-        margin: `calc(var(--Step-connectorInset, ${THICKNESS}) - var(--Step-gap, ${INSET})) auto calc(var(--Step-connectorInset, ${THICKNESS}) - var(--Stepper-verticalGap))`,
+        margin: `calc(var(--Step-connectorInset, ${THICKNESS}) - var(--Step-gap, ${INSET}) - var(--Step-indicatorDotSize)) auto calc(var(--Step-connectorInset, ${THICKNESS}) - var(--Stepper-verticalGap) - var(--Step-indicatorDotSize))`,
         alignSelf: 'stretch',
       },
     },
@@ -88,7 +96,10 @@ const StepRoot = styled('li', {
         style: {
           flexDirection: 'column',
           [`.${stepperClasses.horizontal} &`]: {
-            '--_Step-flex': 1,
+            '&[data-last-child]': {
+              // for horizontal stepper, all vertical steps must have flex `1` to stretch equally.
+              '--_Step-flex': 1,
+            },
             '&[data-indicator]': {
               '--_Step-justify': 'flex-start',
             },
@@ -144,9 +155,9 @@ const StepIndicator = styled('div', {
     '&::before': {
       content: '""',
       display: 'block',
-      width: 6,
-      height: 6,
-      borderRadius: 6,
+      width: 'var(--Step-indicatorDotSize)',
+      height: 'var(--Step-indicatorDotSize)',
+      borderRadius: 'var(--Step-indicatorDotSize)',
       color: 'inherit',
       background: 'currentColor',
     },
