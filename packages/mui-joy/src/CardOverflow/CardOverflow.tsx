@@ -51,33 +51,6 @@ const CardOverflowRoot = styled('div', {
     margin: 'var(--_CardOverflow-margin)',
     borderRadius: 'var(--_CardOverflow-radius)',
     padding: 'var(--_CardOverflow-padding)',
-    [`.${cardClasses.horizontal} &, .${cardClasses.vertical} .${cardClasses.horizontal} &`]: {
-      '--_CardOverflow-flexDirection': 'row',
-      '--AspectRatio-margin': 'calc(-1 * var(--Card-padding)) 0px',
-      '--_CardOverflow-margin': 'var(--CardOverflow-offset) 0px',
-      '--_CardOverflow-padding': 'var(--Card-padding) 0px',
-      '&[data-first-child]': {
-        '--AspectRatio-radius': `${childRadius} 0 0 ${childRadius}`,
-        '--_CardOverflow-radius': 'var(--CardOverflow-radius) 0 0 var(--CardOverflow-radius)',
-        '--_CardOverflow-margin':
-          'var(--CardOverflow-offset) 0px var(--CardOverflow-offset) var(--CardOverflow-offset)',
-      },
-      '&[data-last-child]': {
-        '--AspectRatio-radius': `0 ${childRadius} ${childRadius} 0`,
-        '--_CardOverflow-radius': '0 var(--CardOverflow-radius) var(--CardOverflow-radius) 0',
-        '--_CardOverflow-margin':
-          'var(--CardOverflow-offset) var(--CardOverflow-offset) var(--CardOverflow-offset) 0px',
-      },
-      '&[data-last-child][data-first-child]': {
-        '--AspectRatio-radius': childRadius,
-        '--_CardOverflow-margin': 'var(--CardOverflow-offset)',
-      },
-      [`& > .${buttonClasses.root}:only-child`]: {
-        height: 'calc(100% + -2 * var(--CardOverflow-offset))',
-        '--Button-margin': 'var(--CardOverflow-offset) 0',
-        '--Button-radius': '0 var(--CardOverflow-radius) var(--CardOverflow-radius) 0',
-      },
-    },
     [`.${cardClasses.vertical} &, .${cardClasses.horizontal} .${cardClasses.vertical} &, .${modalDialogClasses.root} &`]:
       {
         '--_CardOverflow-flexDirection': 'column', // required to make AspectRatio works
@@ -105,6 +78,33 @@ const CardOverflowRoot = styled('div', {
           '--Button-radius': '0 0 var(--CardOverflow-radius) var(--CardOverflow-radius)',
         },
       },
+    [`.${cardClasses.horizontal} &, .${cardClasses.vertical} .${cardClasses.horizontal} &`]: {
+      '--_CardOverflow-flexDirection': 'row',
+      '--AspectRatio-margin': 'calc(-1 * var(--Card-padding)) 0px',
+      '--_CardOverflow-margin': 'var(--CardOverflow-offset) 0px',
+      '--_CardOverflow-padding': 'var(--Card-padding) 0px',
+      '&[data-first-child]': {
+        '--AspectRatio-radius': `${childRadius} 0 0 ${childRadius}`,
+        '--_CardOverflow-radius': 'var(--CardOverflow-radius) 0 0 var(--CardOverflow-radius)',
+        '--_CardOverflow-margin':
+          'var(--CardOverflow-offset) 0px var(--CardOverflow-offset) var(--CardOverflow-offset)',
+      },
+      '&[data-last-child]': {
+        '--AspectRatio-radius': `0 ${childRadius} ${childRadius} 0`,
+        '--_CardOverflow-radius': '0 var(--CardOverflow-radius) var(--CardOverflow-radius) 0',
+        '--_CardOverflow-margin':
+          'var(--CardOverflow-offset) var(--CardOverflow-offset) var(--CardOverflow-offset) 0px',
+      },
+      '&[data-last-child][data-first-child]': {
+        '--AspectRatio-radius': childRadius,
+        '--_CardOverflow-margin': 'var(--CardOverflow-offset)',
+      },
+      [`& > .${buttonClasses.root}:only-child`]: {
+        height: 'calc(100% + -2 * var(--CardOverflow-offset))',
+        '--Button-margin': 'var(--CardOverflow-offset) 0',
+        '--Button-radius': '0 var(--CardOverflow-radius) var(--CardOverflow-radius) 0',
+      },
+    },
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   };
 });
