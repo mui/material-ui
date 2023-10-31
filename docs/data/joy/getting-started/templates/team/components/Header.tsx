@@ -151,7 +151,7 @@ export default function Header() {
             <IconButton
               variant="outlined"
               color="neutral"
-              sx={{ bgcolor: 'background.level1' }}
+              sx={{ bgcolor: 'background.backdrop' }}
             >
               <Typography level="title-sm" textColor="text.icon">
                 ⌘ K

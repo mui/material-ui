@@ -55,18 +55,18 @@ export default function TeamExample() {
         direction="row"
         justifyContent="space-around"
         spacing={1}
-        sx={{
+        sx={(theme) => ({
           display: { xs: 'flex', sm: 'none' },
           zIndex: '999',
           bottom: 0,
           position: 'fixed',
           width: '100dvw',
           py: 2,
-          backgroundColor: 'background.level1',
+          backgroundColor: `rgba(${theme.palette.background.body}, 0.9)`,
+          backdropFilter: 'blur(12px)',
           borderTop: '1px solid',
           borderColor: 'divider',
-          boxShadow: 'lg',
-        }}
+        })}
       >
         <Button
           variant="plain"
