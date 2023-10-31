@@ -6,7 +6,7 @@
 
 _Oct 31, 2023_
 
-A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
 - ✨ New highly requested Joy UI component: [Snackbar](https://mui.com/joy-ui/react-snackbar) (#38801) @ZeeshanTamboli
 
@@ -18,16 +18,18 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 28 -->[Autocomplete] Standardize box shadow on demos (#39519) @zanivan
 - &#8203;<!-- 27 -->[useSelect] Support browser autofill (#39595) @DiegoAndai
+- &#8203;<!-- 30 -->[base-ui] Fix mergeSlotProps className join order (#39616) @mj12albert
 
 ### `@mui/joy@5.0.0-beta.13`
 
-- &#8203;<!-- 29 -->[Accordion] Add type button to accordion summary (#39532) @Popppins
-- &#8203;<!-- 10 --> Fix sticky hover media query issue on mobile (#37467) @gitstart
-- &#8203;<!-- 09 --> Add Snackbar component (#38801) @ZeeshanTamboli
+- &#8203;<!-- 29 -->[Accordion] Add type button to accordion
+- &#8203;<!-- 28 -->[Card] Fix CardOverflow in nested cards (#39668) @siriwatknp summary (#39532) @Popppins
 - &#8203;<!-- 08 -->[Menu] Fix closing of listbox in `MenuList` demo (#39459) @sai6855
 - &#8203;<!-- 07 -->[Progress] Revamp Linear and Circular progress variants (#39492) @zanivan
 - &#8203;<!-- 06 -->[Select] Support selection of `multiple` options (#39454) @sai6855
 - &#8203;<!-- 05 -->[Textarea] Add ref usage instructions (#39615) @danilo-leal
+- &#8203;<!-- 10 --> Fix sticky hover media query issue on mobile (#37467) @gitstart
+- &#8203;<!-- 09 --> Add Snackbar component (#38801) @ZeeshanTamboli
 
 ### `@mui/material-next@6.0.0-alpha.108`
 
@@ -46,7 +48,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - &#8203;<!-- 12 -->[examples] Upgrade Remix to v2 (#39229) @Nkzn
 - &#8203;<!-- 11 -->[examples][material-ui] Remove hardcoded `color="black"` from Next.js App Router layout (#39577) @samuelsycamore
 - &#8203;<!-- 02 -->[website] Add stray adjustments and clean-ups (#39673) @danilo-leal
-- &#8203;<!-- 01 -->[website] Open the `Design Engineer - xGrid` role (#39375) @DanailH
 
 ### Core
 
@@ -56,8 +57,9 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - &#8203;<!-- 23 -->[core] Remove not used `@types/loader-utils` package from `zero-next-plugin` (#39609) @ZeeshanTamboli
 - &#8203;<!-- 21 -->[docs-infra] Add meta charset in codesandbox examples (#39424) @Janpot
 - &#8203;<!-- 20 -->[docs-infra] Fix settings drawer accessibility issues (#39589) @emamoah
+- &#8203;<!-- 01 -->[website] Open the `Design Engineer - xGrid` role (#39375) @DanailH
 
-All contributors of this release in alphabetical order: @alexfauquette, @DanailH, @danilo-leal, @DiegoAndai, @emamoah, @gitstart, @Janpot, @jcoyle37, @mj12albert, @mnajdova, @Nkzn, @oliviertassinari, @Popppins, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @alexfauquette, @Best-Sardar, @DanailH, @danilo-leal, @DiegoAndai, @emamoah, @gitstart, @Janpot, @jcoyle37, @mj12albert, @mnajdova, @Nkzn, @oliviertassinari, @Popppins, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
 
 ## 5.14.15
 
