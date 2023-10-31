@@ -19,7 +19,7 @@ interface WriteEmailProps {
 }
 
 const WriteEmail = React.forwardRef<HTMLDivElement, WriteEmailProps>(
-  function DrawerMobileNavigation({ open, onClose }, ref) {
+  function WriteEmail({ open, onClose }, ref) {
     return (
       <Sheet
         ref={ref}
