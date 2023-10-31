@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { CssVarsProvider } from '@mui/joy/styles';
+import { FocusTrap } from '@mui/base/FocusTrap';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
@@ -72,28 +73,9 @@ export default function EmailExample() {
             >
               Compose email
             </Button>
-            <Drawer
-              disableAutoFocus
-              disableEnforceFocus
-              disableScrollLock
-              hideBackdrop
-              size="lg"
-              variant="plain"
-              anchor="bottom"
-              open={open}
-              onClose={() => setOpen(false)}
-              slotProps={{
-                content: {
-                  sx: {
-                    p: { md: 3, sm: 0 },
-                    boxShadow: 'none',
-                    background: 'transparent',
-                  },
-                },
-              }}
-            >
-              <WriteEmail />
-            </Drawer>
+            <FocusTrap open={open} disableAutoFocus disableEnforceFocus>
+              <WriteEmail open={open} onClose={() => setOpen(false)} />
+            </FocusTrap>
           </Box>
           <Mails />
         </Layout.SidePane>
