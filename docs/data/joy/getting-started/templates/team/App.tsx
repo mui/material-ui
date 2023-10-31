@@ -9,10 +9,10 @@ import ChipDelete from '@mui/joy/ChipDelete';
 import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 import List from '@mui/joy/List';
-import ListSubheader from '@mui/joy/ListSubheader';
+import IconButton from '@mui/joy/IconButton';
+import Stack from '@mui/joy/Stack';
 import Divider from '@mui/joy/Divider';
 import ListItem from '@mui/joy/ListItem';
-import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import RadioGroup from '@mui/joy/RadioGroup';
@@ -29,63 +29,16 @@ import AccordionSummary, {
 } from '@mui/joy/AccordionSummary';
 
 // Icons import
-import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
-import AssignmentIndRoundedIcon from '@mui/icons-material/AssignmentIndRounded';
-import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
+import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
+import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 
 // custom
 import Layout from './components/Layout';
 import Header from './components/Header';
-
-function TeamNav() {
-  return (
-    <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
-      <ListItem nested>
-        <ListSubheader>Browse</ListSubheader>
-        <List
-          aria-labelledby="nav-list-browse"
-          sx={{
-            '& .JoyListItemButton-root': { p: '8px' },
-          }}
-        >
-          <ListItem>
-            <ListItemButton selected>
-              <ListItemDecorator>
-                <PeopleRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>People</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                <AssignmentIndRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>Managing accounts</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                <ArticleRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>Policies</ListItemContent>
-              <Chip
-                variant="soft"
-                color="neutral"
-                size="sm"
-                sx={{ borderRadius: 'sm' }}
-              >
-                Beta
-              </Chip>
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </ListItem>
-    </List>
-  );
-}
+import TeamNav from './components/TeamNav';
 
 export default function TeamExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -97,6 +50,59 @@ export default function TeamExample() {
           <TeamNav />
         </Layout.SideDrawer>
       )}
+      <Stack
+        id="tab-bar"
+        direction="row"
+        justifyContent="space-around"
+        spacing={1}
+        sx={{
+          display: { xs: 'flex', sm: 'none' },
+          zIndex: '999',
+          bottom: 0,
+          position: 'fixed',
+          width: '100dvw',
+          py: 2,
+          backgroundColor: 'background.level1',
+          borderTop: '1px solid',
+          borderColor: 'divider',
+          boxShadow: 'lg',
+        }}
+      >
+        <Button
+          variant="plain"
+          color="neutral"
+          component="a"
+          href="/joy-ui/getting-started/templates/email/"
+          size="md"
+          startDecorator={<EmailRoundedIcon />}
+          sx={{ alignSelf: 'center' }}
+        >
+          Email
+        </Button>
+        <Button
+          variant="plain"
+          color="neutral"
+          aria-pressed="true"
+          component="a"
+          href="/joy-ui/getting-started/templates/team/"
+          size="md"
+          startDecorator={<PeopleAltRoundedIcon />}
+          sx={{ alignSelf: 'center' }}
+        >
+          Team
+        </Button>
+        <Button
+          variant="plain"
+          color="neutral"
+          component="a"
+          href="/joy-ui/getting-started/templates/files/"
+          size="md"
+          startDecorator={<FolderRoundedIcon />}
+          sx={{ alignSelf: 'center' }}
+        >
+          Files
+        </Button>
+      </Stack>
       <Layout.Root
         sx={{
           ...(drawerOpen && {
@@ -127,7 +133,6 @@ export default function TeamExample() {
             </Button>
           </Box>
           <AccordionGroup
-            disableDivider
             sx={{
               [`& .${accordionDetailsClasses.content}.${accordionDetailsClasses.expanded}`]:
                 {
@@ -186,7 +191,6 @@ export default function TeamExample() {
                     </Chip>
                   </Box>
                 </Box>
-                <Divider />
               </AccordionDetails>
             </Accordion>
             <Accordion defaultExpanded>
@@ -227,7 +231,6 @@ export default function TeamExample() {
                     />
                   </Box>
                 </Box>
-                <Divider />
               </AccordionDetails>
             </Accordion>
             <Accordion defaultExpanded>
@@ -243,7 +246,6 @@ export default function TeamExample() {
                     <Radio label="Post-graduate" value="post-graduate" size="sm" />
                   </RadioGroup>
                 </Box>
-                <Divider />
               </AccordionDetails>
             </Accordion>
           </AccordionGroup>
