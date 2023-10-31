@@ -151,7 +151,7 @@ export default function Header() {
             <IconButton
               variant="outlined"
               color="neutral"
-              sx={{ bgcolor: 'background.backdrop' }}
+              sx={{ bgcolor: 'background.level1' }}
             >
               <Typography level="title-sm" textColor="text.icon">
                 ⌘ K
@@ -252,7 +252,7 @@ export default function Header() {
             <ListDivider />
             <MenuItem component="a" href="/blog/first-look-at-joy/">
               First look at Joy UI
-              <ListItemDecorator>
+              <ListItemDecorator sx={{ ml: 1 }}>
                 <OpenInNewRoundedIcon />
               </ListItemDecorator>
             </MenuItem>
@@ -261,7 +261,7 @@ export default function Header() {
               href="https://github.com/mui/material-ui/tree/master/docs/data/joy/getting-started/templates/email"
             >
               Sourcecode
-              <ListItemDecorator>
+              <ListItemDecorator sx={{ ml: 1 }}>
                 <OpenInNewRoundedIcon />
               </ListItemDecorator>
             </MenuItem>
