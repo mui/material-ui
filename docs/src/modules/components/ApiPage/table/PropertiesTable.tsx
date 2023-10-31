@@ -71,6 +71,9 @@ const StyledTable = styled('table')(
         color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
         backgroundColor: alpha(lightTheme.palette.warning[50], 0.5),
         borderColor: `var(--muidocs-palette-warning-200, ${lightTheme.palette.warning[200]})`,
+        '& .MuiAlert-icon': {
+          padding: 0,
+        },
         '& strong': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
         },
@@ -255,8 +258,8 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                     <Alert
                       severity="warning"
                       className="prop-table-alert prop-table-deprecated"
-                      sx={{ mb: 1, py: 0 }}
                       icon={<WarningRoundedIcon fontSize="small" />}
+                      sx={{ mb: 1, py: 0, alignItems: 'center' }}
                     >
                       {t('api-docs.deprecated')}
                       {deprecationInfo && (
