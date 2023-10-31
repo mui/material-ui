@@ -5,7 +5,6 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { useButton } from '@mui/base/useButton';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
@@ -143,8 +142,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const buttonGroup = React.useContext(ButtonGroupContext);
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, buttonGroup.color || colorProp);
+  const color = inProps.color || buttonGroup.color || colorProp;
   const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp);
 
   const buttonRef = React.useRef<HTMLElement>(null);

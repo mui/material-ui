@@ -309,10 +309,19 @@ const ChipLabel = styled('span', {
   paddingLeft: 12,
   paddingRight: 12,
   whiteSpace: 'nowrap',
+  ...(ownerState.variant === 'outlined' && {
+    paddingLeft: 11,
+    paddingRight: 11,
+  }),
   ...(ownerState.size === 'small' && {
     paddingLeft: 8,
     paddingRight: 8,
   }),
+  ...(ownerState.size === 'small' &&
+    ownerState.variant === 'outlined' && {
+      paddingLeft: 7,
+      paddingRight: 7,
+    }),
 }));
 
 function isDeleteKeyboardEvent(keyboardEvent) {
@@ -504,7 +513,7 @@ Chip.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'default'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

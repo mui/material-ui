@@ -12,7 +12,6 @@ import {
 import { Breakpoint } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
 import { Theme } from '../styles/types/theme';
-import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
 import { ModalDialogProps, ModalDialogOwnerState, ModalDialogTypeMap } from './ModalDialogProps';
 import ModalDialogSizeContext from './ModalDialogSizeContext';
@@ -137,7 +136,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     children,
     invertedColors = false,
     orientation = 'vertical',
-    color: colorProp = 'neutral',
+    color = 'neutral',
     component = 'div',
     variant = 'outlined',
     size = 'md',
@@ -148,8 +147,6 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -160,6 +157,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     layout,
     size,
     variant,
+    invertedColors,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -168,7 +166,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
   const labelledBy = useId();
   const describedBy = useId();
   const contextValue = React.useMemo(
-    () => ({ variant, color: color === 'context' ? undefined : color, labelledBy, describedBy }),
+    () => ({ variant, color, labelledBy, describedBy }),
     [color, variant, labelledBy, describedBy],
   );
 
@@ -187,7 +185,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     },
   });
 
-  const result = (
+  return (
     <ModalDialogSizeContext.Provider value={size}>
       <ModalDialogVariantColorContext.Provider value={contextValue}>
         <SlotRoot {...rootProps}>
@@ -223,11 +221,6 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
       </ModalDialogVariantColorContext.Provider>
     </ModalDialogSizeContext.Provider>
   );
-
-  if (invertedColors) {
-    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
-  }
-  return result;
 }) as OverridableComponent<ModalDialogTypeMap>;
 
 ModalDialog.propTypes /* remove-proptypes */ = {

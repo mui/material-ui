@@ -37,7 +37,14 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
  * - [useMenu API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu)
  */
 export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
-  const { listboxRef: listboxRefProp, onItemsChange, id: idParam } = parameters;
+  const {
+    listboxRef: listboxRefProp,
+    onItemsChange,
+    id: idParam,
+    disabledItemsFocusable = true,
+    disableListWrap = false,
+    // autoFocus = true,
+  } = parameters;
 
   const rootRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(rootRef, listboxRefProp);
@@ -80,7 +87,8 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     state: { highlightedValue },
     rootRef: mergedListRef,
   } = useList({
-    disabledItemsFocusable: true,
+    disabledItemsFocusable,
+    disableListWrap,
     focusManagement: 'DOM',
     getItemDomElement,
     getInitialState: () => ({
@@ -104,6 +112,7 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
 
   React.useEffect(() => {
     if (open && highlightedValue === subitemKeys[0] && !isInitiallyOpen.current) {
+      // TODO v6: focus only if autoFocus is true
       subitems.get(subitemKeys[0])?.ref?.current?.focus();
     }
   }, [open, highlightedValue, subitems, subitemKeys]);

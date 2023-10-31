@@ -5,6 +5,7 @@ import { describeConformance, act, createRenderer } from '@mui-internal/test-uti
 import Checkbox, { checkboxClasses as classes } from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 describe('<Checkbox />', () => {
   const { render } = createRenderer();
@@ -89,6 +90,48 @@ describe('<Checkbox />', () => {
       const root = checkbox.parentElement;
 
       expect(root).to.have.class(classes.sizeMedium);
+    });
+  });
+
+  describe('theme: customization', () => {
+    it('should be customizable in the theme using the size prop.', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        components: {
+          MuiCheckbox: {
+            styleOverrides: {
+              sizeMedium: {
+                marginTop: 40,
+                paddingLeft: 20,
+              },
+              sizeSmall: {
+                marginLeft: -40,
+                paddingRight: 2,
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Checkbox />
+          <Checkbox size="small" />
+        </ThemeProvider>,
+      );
+
+      expect(container.querySelector(`.${classes.sizeMedium}`)).toHaveComputedStyle({
+        marginTop: '40px',
+        paddingLeft: '20px',
+      });
+
+      expect(container.querySelector(`.${classes.sizeSmall}`)).toHaveComputedStyle({
+        marginLeft: '-40px',
+        paddingRight: '2px',
+      });
     });
   });
 

@@ -12,6 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
@@ -43,6 +44,7 @@ interface Profile {
   about?: string;
   github?: string;
   twitter?: string;
+  linkedin?: string;
 }
 
 function Person(props: Profile & { sx?: PaperProps['sx'] }) {
@@ -134,7 +136,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
         <Box sx={{ mt: -0.5, mr: -0.5, ml: 'auto' }}>
           {props.github && (
             <IconButton
-              aria-label={`${props.name} github`}
+              aria-label={`${props.name} GitHub profile`}
               component="a"
               href={`https://github.com/${props.github}`}
               target="_blank"
@@ -145,13 +147,24 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
           )}
           {props.twitter && (
             <IconButton
-              aria-label={`${props.name} twitter`}
+              aria-label={`${props.name} Twitter profile`}
               component="a"
               href={`https://twitter.com/${props.twitter}`}
               target="_blank"
               rel="noreferrer noopener"
             >
               <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
+            </IconButton>
+          )}
+          {props.linkedin && (
+            <IconButton
+              aria-label={`${props.name} LinkedIn profile`}
+              component="a"
+              href={`https://www.linkedin.com/${props.linkedin}`}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <LinkedInIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
           )}
         </Box>

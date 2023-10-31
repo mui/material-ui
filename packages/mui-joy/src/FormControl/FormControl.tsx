@@ -60,20 +60,16 @@ export const FormControlRoot = styled('div', {
     '--FormHelperText-fontSize': theme.vars.fontSize.sm,
     '--FormHelperText-lineHeight': theme.vars.lineHeight.sm,
   }),
-  ...(ownerState.color &&
-    ownerState.color !== 'context' && {
-      '--FormHelperText-color': theme.vars.palette[ownerState.color]?.[500],
-    }),
+  ...(ownerState.color && {
+    '--FormHelperText-color': theme.vars.palette[ownerState.color]?.[500],
+  }),
   '--FormHelperText-margin': '0.375rem 0 0 0',
   [`&.${formControlClasses.error}`]: {
     '--FormHelperText-color': theme.vars.palette.danger[500],
   },
   [`&.${formControlClasses.disabled}`]: {
-    ...(ownerState.color !== 'context' && {
-      '--FormLabel-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
-      '--FormHelperText-color':
-        theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
-    }),
+    '--FormLabel-color': theme.variants.plainDisabled?.[ownerState.color || 'neutral']?.color,
+    '--FormHelperText-color': theme.variants.plainDisabled?.[ownerState.color || 'neutral']?.color,
   },
   display: 'flex',
   position: 'relative', // for keeping the control action area, e.g. Switch

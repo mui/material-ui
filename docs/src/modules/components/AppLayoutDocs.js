@@ -20,6 +20,7 @@ const TOC_WIDTH = 242;
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
 })(({ disableToc, theme }) => ({
+  minHeight: '100vh',
   display: 'grid',
   width: '100%',
   ...(disableToc

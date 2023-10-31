@@ -7,7 +7,6 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useButton } from '@mui/base/useButton';
 import useSlot from '../utils/useSlot';
 import { useThemeProps, styled } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import { StyledIconButton } from '../IconButton/IconButton';
 import { getModalCloseUtilityClass } from './modalCloseClasses';
 import { ModalCloseProps, ModalCloseOwnerState, ModalCloseTypeMap } from './ModalCloseProps';
@@ -96,8 +95,7 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
   const modalDialogVariantColor = React.useContext(ModalDialogVariantColorContext);
   const variant =
     inProps.variant ?? modalDialogVariantMapping[modalDialogVariantColor?.variant!] ?? variantProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, modalDialogVariantColor?.color ?? colorProp);
+  const color = inProps.color ?? modalDialogVariantColor?.color ?? colorProp;
 
   const modalDialogSize = React.useContext(ModalDialogSizeContext);
   const size = inProps.size ?? modalDialogSize ?? sizeProp;

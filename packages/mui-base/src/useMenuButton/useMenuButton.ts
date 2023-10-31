@@ -89,6 +89,7 @@ export function useMenuButton(parameters: UseMenuButtonParameters = {}): UseMenu
       ...externalProps,
       ...externalEventHandlers,
       ...getCombinedProps(externalEventHandlers),
+      tabIndex: 0, // this is needed to make the button focused after click in Safari
       ref: handleRef,
     };
   };

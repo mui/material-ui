@@ -6,7 +6,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { useMenuItem } from '@mui/base/useMenuItem';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import { useVariantColor } from '../styles/variantColorInheritance';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import { MenuItemOwnerState, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
@@ -68,12 +67,10 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { variant = variantProp, color: inheritedColor = colorProp } = useVariantColor(
+  const { variant = variantProp, color = colorProp } = useVariantColor(
     inProps.variant,
     inProps.color,
   );
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, inheritedColor);
 
   const { getRootProps, disabled, focusVisible } = useMenuItem({
     disabled: disabledProp,

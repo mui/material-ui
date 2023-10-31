@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "5.14.11",
+  "version": "6.0.0-alpha.4",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
@@ -38,28 +38,23 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.1",
+    "@babel/runtime": "^7.23.2",
     "csstype": "^3.1.2",
+    "hoist-non-react-statics": "^3.3.2",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
     "@mui/styled-engine-sc": "workspace:*",
     "@mui-internal/test-utils": "workspace:^",
-    "@types/chai": "^4.3.6",
-    "@types/react": "^18.2.23",
-    "@types/styled-components": "^5.1.27",
-    "chai": "^4.3.8",
+    "@types/chai": "^4.3.9",
+    "@types/hoist-non-react-statics": "^3.3.4",
+    "@types/react": "^18.2.33",
+    "chai": "^4.3.10",
     "react": "^18.2.0",
-    "styled-components": "^5.3.11"
+    "styled-components": "^6.0.0"
   },
   "peerDependencies": {
-    "@types/styled-components": "^5.1.14",
-    "styled-components": "^5.3.1"
-  },
-  "peerDependenciesMeta": {
-    "@types/styled-components": {
-      "optional": true
-    }
+    "styled-components": "^6.0.0"
   },
   "sideEffects": false,
   "publishConfig": {

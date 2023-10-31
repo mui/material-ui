@@ -39,7 +39,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/core": "^7.23.0",
+    "@babel/core": "^7.23.2",
     "@babel/helper-module-imports": "^7.22.15",
     "@babel/helper-plugin-utils": "^7.22.5",
     "@babel/parser": "^7.23.0",
@@ -53,13 +53,13 @@
   },
   "devDependencies": {
     "@mui/material": "workspace:^",
-    "@types/babel__core": "^7.20.2",
-    "@types/babel__helper-module-imports": "^7.18.1",
-    "@types/babel__helper-plugin-utils": "^7.10.1",
-    "@types/chai": "^4.3.6",
-    "@types/lodash.get": "^4.4.7",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "^18.18.0",
+    "@types/babel__core": "^7.20.3",
+    "@types/babel__helper-module-imports": "^7.18.2",
+    "@types/babel__helper-plugin-utils": "^7.10.2",
+    "@types/chai": "^4.3.9",
+    "@types/lodash.get": "^4.4.8",
+    "@types/mocha": "^10.0.3",
+    "@types/node": "^18.18.7",
     "@types/stylis": "^4.2.0"
   },
   "sideEffects": false,

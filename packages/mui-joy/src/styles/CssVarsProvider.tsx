@@ -3,12 +3,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-ignore
 import * as React from 'react';
-import { deepmerge } from '@mui/utils';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import defaultTheme from './defaultTheme';
-import { CssVarsThemeOptions } from './extendTheme';
-import { createSoftInversion, createSolidInversion } from './variantUtils';
-import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
+import type { DefaultColorScheme, ExtendedColorScheme } from './types';
 import THEME_ID from './identifier';
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
@@ -23,20 +20,6 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',
-  },
-  resolveTheme: (mergedTheme: Theme) => {
-    const colorInversionInput = mergedTheme.colorInversion as CssVarsThemeOptions['colorInversion'];
-    mergedTheme.colorInversion = deepmerge(
-      {
-        soft: createSoftInversion(mergedTheme),
-        solid: createSolidInversion(mergedTheme),
-      },
-      typeof colorInversionInput === 'function'
-        ? colorInversionInput(mergedTheme)
-        : colorInversionInput,
-      { clone: false },
-    );
-    return mergedTheme;
   },
 });
 
