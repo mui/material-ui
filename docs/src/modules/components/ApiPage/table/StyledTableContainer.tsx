@@ -12,8 +12,14 @@ const StyledTableContainer = styled('div')(
       background: [
         'linear-gradient(to right, rgb(255, 255, 255) 5%, rgba(255, 255, 255, 0) 80%) local',
         'linear-gradient(to right, rgba(255, 255, 255, 0), rgb(255, 255, 255) 100%) 100% center local',
-        'linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0) 5%) scroll',
-        'linear-gradient(to left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0) 5%) scroll',
+        `linear-gradient(to right, ${alpha(
+          theme.palette.grey[500],
+          0.5,
+        )}, rgba(0, 0, 0, 0) 5%) scroll`,
+        `linear-gradient(to left, ${alpha(
+          theme.palette.grey[500],
+          0.2,
+        )}, rgba(0, 0, 0, 0) 5%) scroll`,
       ].join(', '),
     },
     '&& th': {
@@ -27,6 +33,9 @@ const StyledTableContainer = styled('div')(
       scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
       '&:hover': {
         backgroundColor: alpha(darkTheme.palette.grey[50], 0.5),
+      },
+      '& .MuiPropTable-description-column': {
+        minWidth: 400,
       },
     },
   }),
