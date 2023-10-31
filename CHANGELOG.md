@@ -37,7 +37,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 ### Docs
 
-- &#8203;<!-- 22 --> Fix 301 link to Primer design system @oliviertassinari
+- &#8203;<!-- 22 -->Fix 301 link to Primer design system @oliviertassinari
 - &#8203;<!-- 19 -->[joy-ui] Revise the CSS vars page (#39335) @danilo-leal
 - &#8203;<!-- 18 -->[joy-ui] Add docs for changing styles based on states (#39597) @siriwatknp
 - &#8203;<!-- 17 -->[joy-ui] Fix wrong messages (#39602) @siriwatknp
