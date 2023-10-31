@@ -21,8 +21,8 @@ const warn = () => {
   }
 };
 
-type TreeViewComponent = ((
-  props: TreeViewProps & React.RefAttributes<HTMLDivElement>,
+type TreeViewComponent<Multiple extends boolean | undefined = undefined> = ((
+  props: TreeViewProps<Multiple> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element) & { propTypes?: any };
 
 /**
@@ -37,4 +37,4 @@ const TreeView = React.forwardRef(function DeprecatedTreeView() {
 
 export default TreeView;
 
-export type TreeViewProps = Record<any, any>;
+export type TreeViewProps<Multiple> = Record<any, any>;
