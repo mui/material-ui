@@ -46,7 +46,6 @@
     "@mui/system": "^5.14.15",
     "@mui/types": "^7.2.7",
     "@mui/utils": "^5.14.15",
-    "@mui/x-tree-view": "6.0.0-alpha.1",
     "clsx": "^2.0.0",
     "prop-types": "^15.8.1"
   },
