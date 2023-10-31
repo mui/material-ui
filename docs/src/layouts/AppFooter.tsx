@@ -73,9 +73,9 @@ export default function AppFooter(props: AppFooterProps) {
             <Link href={ROUTES.productMaterial}>Material UI</Link>
             <Link href={ROUTES.productBase}>Base UI</Link>
             <Link href={ROUTES.productAdvanced}>MUI X</Link>
+            <Link href={ROUTES.productToolpad}>MUI Toolpad</Link>
             <Link href={ROUTES.productTemplates}>Templates</Link>
             <Link href={ROUTES.productDesignKits}>Design kits</Link>
-            <Link href={ROUTES.productToolpad}>MUI Toolpad</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
@@ -120,12 +120,12 @@ export default function AppFooter(props: AppFooterProps) {
                   borderRadius: 8,
                   border: 1,
                   borderColor: 'success.300',
-                  bgcolor: alpha(theme.palette.success[100], 0.5),
+                  bgcolor: alpha(theme.palette.success[100], 0.4),
                   color: 'success.700',
                   ...theme.applyDarkStyles({
                     borderColor: alpha(theme.palette.success[800], 0.5),
-                    bgcolor: alpha(theme.palette.success[800], 0.5),
-                    color: 'success.300',
+                    bgcolor: alpha(theme.palette.success[800], 0.2),
+                    color: 'success.200',
                   }),
                 })}
               >

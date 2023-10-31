@@ -46,10 +46,10 @@
     "@types/enzyme": "^3.10.15",
     "@types/format-util": "^1.0.3",
     "@types/prop-types": "^15.7.9",
-    "@types/react": "^18.2.32",
+    "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
-    "@types/react-test-renderer": "^18.0.3",
-    "@types/sinon": "^10.0.19",
+    "@types/react-test-renderer": "^18.0.5",
+    "@types/sinon": "^10.0.20",
     "typescript": "^5.1.6"
   },
   "peerDependencies": {

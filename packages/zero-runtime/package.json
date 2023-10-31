@@ -45,8 +45,8 @@
   "devDependencies": {
     "@types/chai": "^4.3.9",
     "@types/mocha": "^10.0.3",
-    "@types/node": "^18.18.6",
-    "@types/react": "^18.2.32",
+    "@types/node": "^18.18.7",
+    "@types/react": "^18.2.33",
     "react": "^18.2.0"
   },
   "peerDependencies": {
