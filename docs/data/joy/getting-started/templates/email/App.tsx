@@ -5,7 +5,6 @@ import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
-import Drawer from '@mui/joy/Drawer';
 
 // Icons import
 import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
