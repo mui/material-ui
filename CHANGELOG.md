@@ -47,7 +47,6 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - &#8203;<!-- 13 -->[system] Clean up `@mui/styles` docs and discourage users from installing it (#39644) @samuelsycamore
 - &#8203;<!-- 12 -->[examples] Upgrade Remix to v2 (#39229) @Nkzn
 - &#8203;<!-- 11 -->[examples][material-ui] Remove hardcoded `color="black"` from Next.js App Router layout (#39577) @samuelsycamore
-- &#8203;<!-- 02 -->[website] Add stray adjustments and clean-ups (#39673) @danilo-leal
 
 ### Core
 
@@ -57,6 +56,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - &#8203;<!-- 23 -->[core] Remove not used `@types/loader-utils` package from `zero-next-plugin` (#39609) @ZeeshanTamboli
 - &#8203;<!-- 21 -->[docs-infra] Add meta charset in codesandbox examples (#39424) @Janpot
 - &#8203;<!-- 20 -->[docs-infra] Fix settings drawer accessibility issues (#39589) @emamoah
+- &#8203;<!-- 02 -->[website] Add stray adjustments and clean-ups (#39673) @danilo-leal
 - &#8203;<!-- 01 -->[website] Open the `Design Engineer - xGrid` role (#39375) @DanailH
 
 All contributors of this release in alphabetical order: @alexfauquette, @Best-Sardar, @DanailH, @danilo-leal, @DiegoAndai, @emamoah, @gitstart, @Janpot, @jcoyle37, @mj12albert, @mnajdova, @Nkzn, @oliviertassinari, @Popppins, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
