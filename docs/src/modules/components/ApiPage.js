@@ -3,12 +3,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import ReviewsRoundedIcon from '@mui/icons-material/ReviewsRounded';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -67,40 +64,6 @@ Heading.propTypes = {
   hash: PropTypes.string.isRequired,
   level: PropTypes.string,
 };
-
-function DesignInfo() {
-  return (
-    <Alert
-      severity="info"
-      icon={<ReviewsRoundedIcon fontSize="small" color="primary" sx={{ marginTop: 0.3 }} />}
-      sx={[
-        (theme) => ({
-          mt: 4,
-          padding: '16px 20px',
-          gap: 1,
-          background: alpha(theme.palette.primary[50], 0.5),
-          border: '1px dashed',
-          borderColor: (theme.vars || theme).palette.divider,
-          ...theme.applyDarkStyles({
-            background: alpha(theme.palette.primary[900], 0.2),
-          }),
-        }),
-      ]}
-    >
-      <AlertTitle sx={{ fontWeight: (theme) => theme.typography.fontWeightSemiBold }}>
-        Have any feedback about this new API display design?
-      </AlertTitle>
-      <Typography>
-        We&apos;ve heard from you and iterated on making the design of API content documentation
-        more scalable and easier to parse! We value your input, so please don&apos;t hesitate to
-        share any additional feedback you may have.
-      </Typography>
-      <Button variant="outlined" data-feedback-hash="new-docs-api-feedback">
-        Share feedback
-      </Button>
-    </Alert>
-  );
-}
 
 export default function ApiPage(props) {
   const { descriptions, disableAd = false, pageContent } = props;
@@ -339,8 +302,6 @@ export default function ApiPage(props) {
           classDescriptions={classDescriptions}
           spreadHint={t('api-docs.classesDescription')}
         />
-
-        <DesignInfo />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 12 6">
