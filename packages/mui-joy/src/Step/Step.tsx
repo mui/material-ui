@@ -46,7 +46,7 @@ const StepRoot = styled('li', {
   return {
     position: 'relative',
     display: 'flex',
-    gridTemplateColumns: 'auto 1fr', // for vertical stepper. has no effect on horizontal stepper.
+    gridTemplateColumns: 'var(--Stepper-indicatorColumn) 1fr', // for vertical stepper. has no effect on horizontal stepper.
     gridAutoFlow: 'dense',
     flex: 'var(--_Step-flex)',
     flexDirection: 'row',
@@ -78,7 +78,7 @@ const StepRoot = styled('li', {
         width: `var(--Step-connectorThickness, ${THICKNESS})`,
         height: 'auto',
         minHeight: '1rem',
-        margin: `min(0px, calc(var(--Step-connectorInset, ${THICKNESS}) - var(--Step-gap, ${INSET}))) auto min(0px, calc(var(--Step-connectorInset, ${THICKNESS}) - var(--Stepper-verticalGap)))`,
+        margin: `calc(var(--Step-connectorInset, ${THICKNESS}) - var(--Step-gap, ${INSET})) auto calc(var(--Step-connectorInset, ${THICKNESS}) - var(--Stepper-verticalGap))`,
         alignSelf: 'stretch',
       },
     },
@@ -132,6 +132,7 @@ const StepIndicator = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  placeSelf: 'center', // for vertical stepper
   width: `var(--StepIndicator-size, ${SIZE})`,
   height: `var(--StepIndicator-size, ${SIZE})`,
   position: 'var(--_Step-indicatorPosition, unset)' as React.CSSProperties['position'],

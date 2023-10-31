@@ -27,6 +27,7 @@ const StepperRoot = styled('ol', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: StepperOwnerState }>(({ theme }) => {
   return {
+    '--Stepper-indicatorColumn': 'auto', // For vertical stepper, to control the column width of the indicator.
     '--Step-connectorThickness': '2px',
     boxSizing: 'border-box',
     display: 'flex',
