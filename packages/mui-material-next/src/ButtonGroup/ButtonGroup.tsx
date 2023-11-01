@@ -59,7 +59,7 @@ const overridesResolver = (
 };
 
 export const ButtonGroupRoot = styled('div', {
-  name: 'MuiButtonGroup',
+    name: 'MuiButtonGroup',
   slot: 'Root',
   overridesResolver,
 })<{ ownerState: ButtonGroupOwnerState }>(({ theme, ownerState }) => {
@@ -205,8 +205,8 @@ const ButtonGroup = React.forwardRef(function ButtonGroup<
     component = 'div',
     disabled = false,
     disableElevation = false,
-    disableFocusRipple = false,
     disableRipple = false,
+    disableTouchRipple = false,
     fullWidth = false,
     orientation = 'horizontal',
     size = 'medium',
@@ -220,8 +220,8 @@ const ButtonGroup = React.forwardRef(function ButtonGroup<
     component,
     disabled,
     disableElevation,
-    disableFocusRipple,
     disableRipple,
+    disableTouchRipple,
     fullWidth,
     orientation,
     size,
@@ -236,8 +236,8 @@ const ButtonGroup = React.forwardRef(function ButtonGroup<
       color,
       disabled,
       disableElevation,
-      disableFocusRipple,
       disableRipple,
+      disableTouchRipple,
       fullWidth,
       size,
       variant,
@@ -246,8 +246,8 @@ const ButtonGroup = React.forwardRef(function ButtonGroup<
       color,
       disabled,
       disableElevation,
-      disableFocusRipple,
       disableRipple,
+      disableTouchRipple,
       fullWidth,
       size,
       variant,
