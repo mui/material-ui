@@ -155,11 +155,11 @@ const StepIndicator = styled('div', {
  *
  * Demos:
  *
- * - [Step](https://mui.com/joy-ui/react-card/)
+ * - [Stepper](https://mui.com/joy-ui/react-stepper/)
  *
  * API:
  *
- * - [Step API](https://mui.com/joy-ui/api/card/)
+ * - [Step API](https://mui.com/joy-ui/api/step/)
  */
 const Step = React.forwardRef(function Step(inProps, ref) {
   const props = useThemeProps<typeof inProps & StepProps>({
@@ -236,8 +236,12 @@ Step.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The indicator to display. If provided, a wrapper element will be used.
+   */
+  indicator: PropTypes.node,
+  /**
    * The component orientation.
-   * @default 'vertical'
+   * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
@@ -254,6 +258,7 @@ Step.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -261,6 +266,7 @@ Step.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    indicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**

@@ -82,11 +82,11 @@ const StepperRoot = styled('ol', {
  *
  * Demos:
  *
- * - [Stepper](https://mui.com/joy-ui/react-card/)
+ * - [Stepper](https://mui.com/joy-ui/react-stepper/)
  *
  * API:
  *
- * - [Stepper API](https://mui.com/joy-ui/api/card/)
+ * - [Stepper API](https://mui.com/joy-ui/api/stepper/)
  */
 const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   const props = useThemeProps<typeof inProps & StepperProps>({
@@ -163,7 +163,7 @@ Stepper.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The component orientation.
-   * @default 'vertical'
+   * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**

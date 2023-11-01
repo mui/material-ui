@@ -53,11 +53,11 @@ const StepIndicatorRoot = styled('div', {
  *
  * Demos:
  *
- * - [StepIndicator](https://mui.com/joy-ui/react-card/)
+ * - [Stepper](https://mui.com/joy-ui/react-stepper/)
  *
  * API:
  *
- * - [StepIndicator API](https://mui.com/joy-ui/api/card/)
+ * - [StepIndicator API](https://mui.com/joy-ui/api/step-indicator/)
  */
 const StepIndicator = React.forwardRef(function StepIndicator(inProps, ref) {
   const props = useThemeProps<typeof inProps & StepIndicatorProps>({
@@ -112,24 +112,18 @@ StepIndicator.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The component orientation.
-   * @default 'vertical'
-   */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-  /**
-   * The size of the component.
-   * It accepts theme values between 'sm' and 'lg'.
-   * @default 'md'
-   */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['lg', 'md', 'sm']),
-    PropTypes.string,
-  ]),
   /**
    * The props used for each slot inside.
    * @default {}
@@ -151,6 +145,14 @@ StepIndicator.propTypes /* remove-proptypes */ = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
+  ]),
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'soft'
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
   ]),
 } as any;
 

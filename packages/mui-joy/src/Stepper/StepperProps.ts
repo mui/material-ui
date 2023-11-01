@@ -33,7 +33,7 @@ export interface StepperTypeMap<P = {}, D extends React.ElementType = 'ol'> {
     children?: React.ReactNode;
     /**
      * The component orientation.
-     * @default 'vertical'
+     * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';
     /**
