@@ -40,9 +40,7 @@ function parseInput(v: string): string {
  *
  * - [useNumberInput API](https://mui.com/base-ui/react-number-input/hooks-api/#use-number-input)
  */
-export function useNumberInput(
-  parameters: UseNumberInputParameters = {},
-): UseNumberInputReturnValue {
+export function useNumberInput(parameters: UseNumberInputParameters): UseNumberInputReturnValue {
   const {
     min,
     max,
