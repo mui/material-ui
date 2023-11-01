@@ -421,12 +421,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    actions: PropTypes.shape({
-      firstButton: PropTypes.object,
-      lastButton: PropTypes.object,
-      nextButton: PropTypes.object,
-      previousButton: PropTypes.object,
-    }),
+    actions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     select: PropTypes.object,
   }),
   /**
