@@ -152,4 +152,5 @@ Your organization logo will be placed in the [sponsor list](#bronze-sponsors).
 
 ### Backers
 
-Help support more open-source development by becoming a Backer. We'll thank you by including your avatar in the [backers list](#backers).
+Help support more open-source development by becoming a Backer.
+We'll thank you by including your avatar in the [backers list](#backers).
