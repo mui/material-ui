@@ -160,7 +160,7 @@ Below is an example using the [`InputBase`](/material-ui/api/input-base/) compon
 
 ## Performance
 
-`InputBase` injects/removes `GlobalStyles` for the auto-fill keyframes on every mount/unmount. If you are loading a large number of `TextField` components at once, it might be a good idea to change this default behavior by enabling the `disableInjectingGlobalStyles` option in `InputBase`. Make sure to inject `GlobalStyles` for the auto-fill keyframes at the top of your application.
+Global styles for the auto-fill keyframes are injected/removd on every mount/unmount. If you are loading a large number of `TextField` components at once, it might be a good idea to change this default behavior by enabling [`disableInjectingGlobalStyles`](/material-ui/api/input-base/#InputBase-prop-disableInjectingGlobalStyles) in `InputBase`. Make sure to inject `GlobalStyles` for the auto-fill keyframes at the top of your application.
 
 ```jsx
 import {
