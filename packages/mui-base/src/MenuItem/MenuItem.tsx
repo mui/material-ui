@@ -26,7 +26,7 @@ function useUtilityClasses(ownerState: MenuItemOwnerState) {
   return composeClasses(slots, useClassNamesOverride(getMenuItemUtilityClass));
 }
 
-const MenuItem = React.memo(
+const InnerMenuItem = React.memo(
   React.forwardRef(function MenuItem<RootComponentType extends React.ElementType>(
     props: MenuItemProps<RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>,
@@ -68,34 +68,49 @@ const MenuItem = React.memo(
 
 /**
  * An unstyled menu item to be used within a Menu.
+ *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/base-ui/react-menu/)
+ *
+ * API:
+ *
+ * - [MenuItem API](https://mui.com/base-ui/react-menu/components-api/#menu-item)
  */
-const StableMenuItem = React.forwardRef(function StableMenuItem(
+const MenuItem = React.forwardRef(function MenuItem(
   props: MenuItemProps,
   ref: React.ForwardedRef<Element>,
 ) {
+  const { id: idProp } = props;
+
   // This wrapper component is used as a performance optimization.
   // `useMenuItemContextStabilizer` ensures that the context value
   // is stable across renders, so that the actual MenuItem re-renders
   // only when it needs to.
-  const { contextValue, id } = useMenuItemContextStabilizer(props.id);
+  const { contextValue, id } = useMenuItemContextStabilizer(idProp);
 
   return (
     <ListContext.Provider value={contextValue}>
-      <MenuItem {...props} id={id} ref={ref} />
+      <InnerMenuItem {...props} id={id} ref={ref} />
     </ListContext.Provider>
   );
 }) as PolymorphicComponent<MenuItemTypeMap>;
 
-StableMenuItem.propTypes /* remove-proptypes */ = {
+MenuItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
   className: PropTypes.string,
   /**
-   * If `true`, the menu item will be disabled.
-   * @default false
+   * @ignore
    */
   disabled: PropTypes.bool,
   /**
@@ -103,6 +118,9 @@ StableMenuItem.propTypes /* remove-proptypes */ = {
    * Used for keyboard text navigation matching.
    */
   label: PropTypes.string,
+  /**
+   * @ignore
+   */
   onClick: PropTypes.func,
   /**
    * The props used for each slot inside the MenuItem.
@@ -121,15 +139,4 @@ StableMenuItem.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-/**
- * An unstyled menu item to be used within a Menu.
- *
- * Demos:
- *
- * - [Menu](https://mui.com/base-ui/react-menu/)
- *
- * API:
- *
- * - [MenuItem API](https://mui.com/base-ui/react-menu/components-api/#menu-item)
- */
-export { StableMenuItem as MenuItem };
+export { MenuItem };

@@ -20,7 +20,7 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
   return composeClasses(slots, useClassNamesOverride(getOptionUtilityClass));
 }
 
-const Option = React.memo(
+const InnerOption = React.memo(
   React.forwardRef(function Option<OptionValue, RootComponentType extends React.ElementType>(
     props: OptionProps<OptionValue, RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>,
@@ -77,30 +77,46 @@ const Option = React.memo(
 
 /**
  * An unstyled option to be used within a Select.
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/base-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
  */
-const StableOption = React.forwardRef(function StableOption<OptionValue>(
+const Option = React.forwardRef(function Option<OptionValue>(
   props: OptionProps<OptionValue>,
   ref: React.ForwardedRef<Element>,
 ) {
+  const { value } = props;
+
   // This wrapper component is used as a performance optimization.
   // `useOptionContextStabilizer` ensures that the context value
   // is stable across renders, so that the actual Option re-renders
   // only when it needs to.
-  const { contextValue } = useOptionContextStabilizer(props.value);
+  const { contextValue } = useOptionContextStabilizer(value);
 
   return (
     <ListContext.Provider value={contextValue}>
-      <Option {...props} ref={ref} />
+      <InnerOption {...props} ref={ref} />
     </ListContext.Provider>
   );
 }) as OptionType;
 
-StableOption.propTypes /* remove-proptypes */ = {
+Option.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
   className: PropTypes.string,
   /**
    * If `true`, the option will be disabled.
@@ -133,15 +149,4 @@ StableOption.propTypes /* remove-proptypes */ = {
   value: PropTypes.any.isRequired,
 } as any;
 
-/**
- * An unstyled option to be used within a Select.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base-ui/react-select/)
- *
- * API:
- *
- * - [Option API](https://mui.com/base-ui/react-select/components-api/#option)
- */
-export { StableOption as Option };
+export { Option };
