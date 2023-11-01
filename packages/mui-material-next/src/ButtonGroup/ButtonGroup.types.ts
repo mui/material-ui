@@ -43,9 +43,9 @@ export interface ButtonGroupOwnProps {
    */
   disableRipple?: boolean;
   /**
-     * If `true`, the touch ripple effect is disabled.
-     * @default false
-     */
+   * If `true`, the touch ripple effect is disabled.
+   * @default false
+   */
   disableTouchRipple?: boolean;
   /**
    * If `true`, the buttons will take up the full width of its container.

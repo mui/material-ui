@@ -59,7 +59,7 @@ const overridesResolver = (
 };
 
 export const ButtonGroupRoot = styled('div', {
-    name: 'MuiButtonGroup',
+  name: 'MuiButtonGroup',
   slot: 'Root',
   overridesResolver,
 })<{ ownerState: ButtonGroupOwnerState }>(({ theme, ownerState }) => {
@@ -342,15 +342,15 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    */
   disableElevation: PropTypes.bool,
   /**
-   * If `true`, the button keyboard focus ripple is disabled.
-   * @default false
-   */
-  disableFocusRipple: PropTypes.bool,
-  /**
    * If `true`, the button ripple effect is disabled.
    * @default false
    */
   disableRipple: PropTypes.bool,
+  /**
+   * If `true`, the touch ripple effect is disabled.
+   * @default false
+   */
+  disableTouchRipple: PropTypes.bool,
   /**
    * If `true`, the buttons will take up the full width of its container.
    * @default false
