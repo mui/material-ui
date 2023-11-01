@@ -168,7 +168,7 @@ To create a floating label input, a custom component (combination of `<input>` a
 
 {{"demo": "DebouncedInput.js"}}
 
-### Third-party formatting
+## Third-party integrations
 
 The Input component can be integrated with third-party formatting libraries for more complex use cases.
 
@@ -177,13 +177,13 @@ Then use that adapter as a value to the `slotProps.input.component` property of 
 
 The demos below illustrate how to do this with two popular libraries.
 
-#### React imask
+### React imask
 
 [react-imask](https://github.com/uNmAnNeR/imaskjs/tree/master/packages/react-imask) provides the `IMaskInput` component for complex formatting options.
 
 {{"demo": "InputReactImask.js"}}
 
-#### React number format
+### React number format
 
 [react-number-format](https://github.com/s-yadav/react-number-format) provides the `NumericFormat` component for enforcing text formatting that follows a specific number or string pattern.
 
