@@ -54,7 +54,7 @@ export default function StepperUsage() {
         <Stepper
           orientation={stepperOrientation}
           size={size}
-          sx={{ width: 320, mb: 3 }}
+          sx={{ width: 320, mb: 3, py: 3 }}
         >
           <Step
             orientation={stepOrientation}
