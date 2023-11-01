@@ -10,6 +10,21 @@ import FormLabel from '@mui/material-next/FormLabel';
 import InputLabel, { inputLabelClasses as classes } from '@mui/material-next/InputLabel';
 
 describe('<InputLabel />', () => {
+  let originalMatchmedia: typeof window.matchMedia;
+
+  beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
+    window.matchMedia = () =>
+      ({
+        addListener: () => {},
+        removeListener: () => {},
+      } as unknown as MediaQueryList);
+  });
+
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
+  });
+
   const { render } = createRenderer();
 
   describeConformance(<InputLabel>Foo</InputLabel>, () => ({
@@ -129,6 +144,38 @@ describe('<InputLabel />', () => {
 
         setProps({ shrink: true });
         expect(label).to.have.class(classes.shrink);
+      });
+
+      it('provides ownerState.focused in styleOverrides', () => {
+        const theme = extendTheme({
+          components: {
+            MuiInputLabel: {
+              styleOverrides: {
+                root: (props) => {
+                  return {
+                    ...(props.ownerState.focused === true && {
+                      mixBlendMode: 'darken',
+                    }),
+                  };
+                },
+              },
+            },
+          },
+        });
+
+        const { getByText } = render(
+          <CssVarsProvider theme={theme}>
+            <FormControl focused>
+              <InputLabel>Test Label</InputLabel>
+            </FormControl>
+          </CssVarsProvider>,
+        );
+
+        const label = getByText('Test Label');
+
+        expect(label).to.toHaveComputedStyle({
+          mixBlendMode: 'darken',
+        });
       });
     });
   });

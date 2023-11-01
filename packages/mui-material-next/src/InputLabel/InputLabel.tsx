@@ -46,6 +46,7 @@ const InputLabelRoot = styled(FormLabel, {
       ownerState.size === 'small' && styles.sizeSmall,
       ownerState.shrink && styles.shrink,
       !ownerState.disableAnimation && styles.animated,
+      ownerState.focused && styles.focused,
       styles[ownerState.variant],
     ];
   },
