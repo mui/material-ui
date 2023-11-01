@@ -123,7 +123,7 @@ These great services sponsor MUI's core infrastructure:
 
 ### Diamond
 
-Your name/company logo will be placed in:
+Your organization logo will be placed in:
 
 - A prominent logo placement in sidebar of all content pages (4m+ sessions, 900k+ unique visitors/month)
 - the [homepage](https://mui.com/#sponsors) (500k+ pageviews and 150k+ unique visitors/month)
@@ -134,7 +134,7 @@ Please contact us at sales@mui.com before subscribing to this tier to get prelim
 
 ### Gold
 
-Your name/company logo will be placed in:
+Your organization logo will be placed in:
 
 - the [homepage](https://mui.com/#sponsors) (500k+ pageviews and 150k+ unique visitors/month)
 - the [README.md](https://github.com/mui/material-ui#sponsors) (80k+ unique visitors/month)
