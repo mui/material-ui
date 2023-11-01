@@ -70,6 +70,12 @@ Play around combining different colors with different variants.
 
 {{"demo": "ButtonColors.js"}}
 
+### Decorators
+
+Use the `startDecorator` and `endDecorator` props to append actions and icons to either side of the Button:
+
+{{"demo": "ButtonIcons.js"}}
+
 ### Disabled
 
 Use the `disabled` prop to disable interaction and focus:
@@ -83,12 +89,6 @@ The Button is [disabled](#disabled) as long as it's loading.
 See [Loading indicator](#loading-indicator) and [Loading position](#loading-position) for customization options.
 
 {{"demo": "ButtonLoading.js"}}
-
-### Decorators
-
-Use the `startDecorator` and `endDecorator` props to append actions and icons to either side of the Button:
-
-{{"demo": "ButtonIcons.js"}}
 
 ### Loading indicator
 
