@@ -49,7 +49,6 @@
     },
     "getInputProps": { "description": "Resolver for the input slot&#39;s props." },
     "getRootProps": { "description": "Resolver for the root slot&#39;s props." },
-    "inputRef": { "description": "The ref of the input element." },
     "inputValue": {
       "description": "The dirty <code>value</code> of the <code>input</code> element when it is in focus."
     },

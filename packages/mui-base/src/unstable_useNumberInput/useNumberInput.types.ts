@@ -224,8 +224,4 @@ export interface UseNumberInputReturnValue {
    * @default false
    */
   isDecrementDisabled: boolean;
-  /**
-   * The ref of the input element.
-   */
-  inputRef: React.RefObject<HTMLInputElement> | null;
 }

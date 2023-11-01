@@ -420,6 +420,5 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     isIncrementDisabled,
     isDecrementDisabled,
     inputValue: dirtyValue,
-    inputRef,
   };
 }
