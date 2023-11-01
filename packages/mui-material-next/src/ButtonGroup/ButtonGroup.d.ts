@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { OverridableStringUnion, OverridableComponent, OverrideProps } from '@mui/types';
 import { Theme } from '..';
 import { ButtonGroupClasses } from './buttonGroupClasses';
 
