@@ -1,4 +1,4 @@
-# Sponsors & Backers
+# Sponsors and Backers
 
 <p class="description">Support the development of new open-source projects from MUI through crowdfunding.</p>
 
