@@ -146,6 +146,8 @@ const StepIndicator = styled('div', {
   position: 'var(--_Step-indicatorPosition, unset)' as React.CSSProperties['position'],
   [`.${stepperClasses.horizontal} &:empty`]: {
     '--_Step-indicatorPosition': 'absolute',
+    '--StepIndicator-size': '0px',
+    '--Step-connectorInset': '0px',
   },
   [`.${stepperClasses.vertical} &:empty`]: {
     height: 'auto',

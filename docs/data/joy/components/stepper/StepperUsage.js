@@ -2,6 +2,7 @@ import * as React from 'react';
 import Stepper from '@mui/joy/Stepper';
 import Step from '@mui/joy/Step';
 import StepIndicator from '@mui/joy/StepIndicator';
+import Typography from '@mui/joy/Typography';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Check from '@mui/icons-material/Check';
 
@@ -65,13 +66,13 @@ export default function StepperUsage() {
               )
             }
           >
-            First
+            <Typography sx={{ bgcolor: 'background.body' }}>First</Typography>
           </Step>
           <Step
             orientation={stepOrientation}
             indicator={indicator && <StepIndicator color="primary">2</StepIndicator>}
           >
-            Second
+            <Typography sx={{ bgcolor: 'background.body' }}>Second</Typography>
           </Step>
         </Stepper>
       )}
