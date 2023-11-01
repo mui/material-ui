@@ -89,7 +89,7 @@ const ButtonGroupRoot = styled('div', {
     }),
     [`& .${buttonGroupClasses.grouped}`]: {
       minWidth: 40,
-      '&:hover': {
+      '&:hover, &:focus': {
         boxShadow: 'none',
       },
       boxShadow: 'none',
