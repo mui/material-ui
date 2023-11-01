@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { CSSInterpolation, alpha } from '@mui/system';
+import { CSSInterpolation } from '@mui/system';
 import { getValidReactChildren, unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
@@ -62,125 +62,100 @@ const ButtonGroupRoot = styled('div', {
   name: 'MuiButtonGroup',
   slot: 'Root',
   overridesResolver,
-})<{ ownerState: ButtonGroupOwnerState }>(({ theme, ownerState }) => ({
-  display: 'inline-flex',
-  borderRadius: (theme.vars || theme).shape.borderRadius,
-  ...(ownerState.variant === 'contained' && {
-    boxShadow: (theme.vars || theme).shadows[2],
-  }),
-  ...(ownerState.disableElevation && {
-    boxShadow: 'none',
-  }),
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
-  ...(ownerState.orientation === 'vertical' && {
-    flexDirection: 'column',
-  }),
-  [`& .${buttonGroupClasses.grouped}`]: {
-    minWidth: 40,
-    '&:hover': {
-      ...(ownerState.variant === 'contained' && {
-        boxShadow: 'none',
-      }),
-    },
-    ...(ownerState.variant === 'contained' && {
+})<{ ownerState: ButtonGroupOwnerState }>(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+  const {
+    disabled,
+    disableElevation,
+    fullWidth,
+    orientation = 'horizontal',
+    variant = 'outlined',
+  } = ownerState;
+
+  return {
+    display: 'inline-flex',
+    borderRadius: tokens.sys.shape.corner.full,
+    ...(variant === 'elevated' && {
+      boxShadow: tokens.sys.elevation[1],
+    }),
+    ...((disableElevation || disabled) && {
       boxShadow: 'none',
     }),
-  },
-  [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
-    ...(ownerState.orientation === 'horizontal' && {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
+    ...(fullWidth && {
+      width: '100%',
     }),
-    ...(ownerState.orientation === 'vertical' && {
-      borderBottomRightRadius: 0,
-      borderBottomLeftRadius: 0,
+    ...(orientation === 'vertical' && {
+      flexDirection: 'column',
     }),
-    ...(ownerState.variant === 'text' &&
-      ownerState.orientation === 'horizontal' && {
-        borderRight: theme.vars
-          ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
-          : `1px solid ${
-              theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-            }`,
-        [`&.${buttonGroupClasses.disabled}`]: {
-          borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
-        },
+    [`& .${buttonGroupClasses.grouped}`]: {
+      minWidth: 40,
+      '&:hover': {
+        boxShadow: 'none',
+      },
+      boxShadow: 'none',
+    },
+    [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
+      ...(orientation === 'horizontal' && {
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
       }),
-    ...(ownerState.variant === 'text' &&
-      ownerState.orientation === 'vertical' && {
-        borderBottom: theme.vars
-          ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
-          : `1px solid ${
-              theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-            }`,
-        [`&.${buttonGroupClasses.disabled}`]: {
-          borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
-        },
+      ...(orientation === 'vertical' && {
+        borderBottomRightRadius: 0,
+        borderBottomLeftRadius: 0,
       }),
-    ...(ownerState.variant === 'text' &&
-      ownerState.color !== 'inherit' && {
-        borderColor: theme.vars
-          ? `rgba(${theme.vars.palette[ownerState.color ?? 'primary'].mainChannel} / 0.5)`
-          : alpha(theme.palette[ownerState.color ?? 'primary'].main, 0.5),
-      }),
-    ...(ownerState.variant === 'outlined' &&
-      ownerState.orientation === 'horizontal' && {
-        borderRightColor: 'transparent',
-      }),
-    ...(ownerState.variant === 'outlined' &&
-      ownerState.orientation === 'vertical' && {
-        borderBottomColor: 'transparent',
-      }),
-    ...(ownerState.variant === 'contained' &&
-      ownerState.orientation === 'horizontal' && {
-        borderRight: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
-        [`&.${buttonGroupClasses.disabled}`]: {
-          borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
-        },
-      }),
-    ...(ownerState.variant === 'contained' &&
-      ownerState.orientation === 'vertical' && {
-        borderBottom: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
-        [`&.${buttonGroupClasses.disabled}`]: {
-          borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
-        },
-      }),
-    ...(ownerState.variant === 'contained' &&
-      ownerState.color !== 'inherit' && {
-        borderColor: (theme.vars || theme).palette[ownerState.color ?? 'primary'].dark,
-      }),
-    '&:hover': {
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.orientation === 'horizontal' && {
-          borderRightColor: 'currentColor',
+      ...(variant === 'text' &&
+        orientation === 'horizontal' && {
+          borderRight: `1px solid ${tokens.sys.color.outline}`,
+          [`&.${buttonGroupClasses.disabled}`]: {
+            borderRight: `1px solid rgba(${tokens.sys.color.onSurface} / 0.12)`,
+          },
         }),
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.orientation === 'vertical' && {
-          borderBottomColor: 'currentColor',
+      ...(variant === 'text' &&
+        orientation === 'vertical' && {
+          borderBottom: `1px solid ${tokens.sys.color.outline}`,
+          [`&.${buttonGroupClasses.disabled}`]: {
+            borderBottom: `1px solid rgba(${tokens.sys.color.onSurface} / 0.12)`,
+          },
+        }),
+      ...(variant === 'outlined' &&
+        orientation === 'horizontal' && {
+          borderRightColor: 'transparent',
+        }),
+      ...(variant === 'outlined' &&
+        orientation === 'vertical' && {
+          borderBottomColor: 'transparent',
+        }),
+      '&:hover': {
+        ...(variant === 'outlined' &&
+          orientation === 'horizontal' && {
+            borderRightColor: 'currentColor',
+          }),
+        ...(variant === 'outlined' &&
+          orientation === 'vertical' && {
+            borderBottomColor: 'currentColor',
+          }),
+      },
+    },
+    [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
+      ...(orientation === 'horizontal' && {
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+      }),
+      ...(orientation === 'vertical' && {
+        borderTopRightRadius: 0,
+        borderTopLeftRadius: 0,
+      }),
+      ...(variant === 'outlined' &&
+        orientation === 'horizontal' && {
+          marginLeft: -1,
+        }),
+      ...(variant === 'outlined' &&
+        orientation === 'vertical' && {
+          marginTop: -1,
         }),
     },
-  },
-  [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
-    ...(ownerState.orientation === 'horizontal' && {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-    }),
-    ...(ownerState.orientation === 'vertical' && {
-      borderTopRightRadius: 0,
-      borderTopLeftRadius: 0,
-    }),
-    ...(ownerState.variant === 'outlined' &&
-      ownerState.orientation === 'horizontal' && {
-        marginLeft: -1,
-      }),
-    ...(ownerState.variant === 'outlined' &&
-      ownerState.orientation === 'vertical' && {
-        marginTop: -1,
-      }),
-  },
-}));
+  };
+});
 
 const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
   const {
