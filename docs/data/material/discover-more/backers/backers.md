@@ -126,7 +126,9 @@ These great services sponsor MUI's core infrastructure:
 Your name/company logo will be placed in:
 
 - A prominent logo placement in sidebar of all content pages (4m+ sessions, 900k+ unique visitors per month)
-- ⬇️ same as the lower tiers
+- the [homepage](https://mui.com/#sponsors) (500k+ pageviews and 150k+ unique visitors per month)
+- the [README.md](https://github.com/mui/material-ui#sponsors) (80k+ unique visitors per month)
+- the [sponsor list](#diamond-sponsors)
 
 Please contact us at sales@mui.com before subscribing to this tier to get preliminary approval.
 
@@ -136,18 +138,18 @@ Your name/company logo will be placed in:
 
 - the [homepage](https://mui.com/#sponsors) (500k+ pageviews and 150k+ unique visitors per month)
 - the [README.md](https://github.com/mui/material-ui#sponsors) (80k+ unique visitors per month)
-- the [sponsors' list](#gold-sponsors)
+- the [sponsor list](#gold-sponsors)
 
 \*we accept donations, but we won't show unethical ads.
 
 ### Silver
 
-Your name/company logo will be placed in the [sponsors' list](#silver-sponsors).
+Your organization logo will be placed in the [sponsors' list](#silver-sponsors).
 
 ### Bronze
 
-Your name/company logo will be placed in the [sponsors' list](#bronze-sponsors).
+Your organization logo will be placed in the [sponsors' list](#bronze-sponsors).
 
 ### Backers
 
-Help support office hours and further development by becoming a Backer. We'll thank you by including your avatar in the [backers list](#backers).
+Help support more open-source development by becoming a Backer. We'll thank you by including your avatar in the [backers list](#backers).
