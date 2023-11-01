@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
-import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material/ButtonGroup';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Button, { buttonClasses } from '@mui/material/Button';
+import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material-next/ButtonGroup';
+import Button, { buttonClasses } from '@mui/material-next/Button';
 import ButtonGroupContext from './ButtonGroupContext';
+import { CssVarsProvider, extendTheme } from '../styles';
 
 describe('<ButtonGroup />', () => {
   const { render } = createRenderer();
@@ -185,8 +185,8 @@ describe('<ButtonGroup />', () => {
   describe('theme default props on Button', () => {
     it('should override default variant prop', () => {
       render(
-        <ThemeProvider
-          theme={createTheme({
+        <CssVarsProvider
+          theme={extendTheme({
             components: {
               MuiButton: {
                 defaultProps: {
@@ -201,7 +201,7 @@ describe('<ButtonGroup />', () => {
           <ButtonGroup variant="outlined" size="small" color="secondary">
             <Button>Hello World</Button>
           </ButtonGroup>
-        </ThemeProvider>,
+        </CssVarsProvider>,
       );
 
       expect(screen.getByRole('button')).to.have.class(buttonClasses.outlined);
