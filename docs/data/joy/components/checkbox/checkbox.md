@@ -39,8 +39,6 @@ Use the `label` prop to provide text, and add `defaultChecked` when the input sh
 
 {{"demo": "BasicCheckbox.js"}}
 
-## Customization
-
 ### Variants
 
 The Checkbox component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft`, `outlined`, and `plain`. By default, when unchecked, the Checkbox is set to `outlined`;
@@ -95,13 +93,6 @@ Try clicking on the Checkbox labels in the demo below to see how this works:
 
 {{"demo": "IconlessCheckbox.js"}}
 
-### Focus outline
-
-By default, the focus outline wraps both the Checkbox input and its label.
-To set the focus outline so that it only wraps the input, target the `checkboxClasses.checkbox` class and add `position: 'relative'`, as shown in the demo below:
-
-{{"demo": "FocusCheckbox.js"}}
-
 ### Clickable container
 
 Use the `overlay` prop to shift the focus outline from the Checkbox to its container, making the entire container clickable to toggle the state of the Checkbox.
@@ -129,6 +120,15 @@ It has no accessibility or UX implications.
 
 {{"demo": "IndeterminateCheckbox.js"}}
 
+## Customization
+
+### Focus outline
+
+By default, the focus outline wraps both the Checkbox input and its label.
+To set the focus outline so that it only wraps the input, target the `checkboxClasses.checkbox` class and add `position: 'relative'`, as shown in the demo below:
+
+{{"demo": "FocusCheckbox.js"}}
+
 ### Helper text
 
 ```jsx
@@ -136,7 +136,7 @@ import FormControl from '@mui/joy/FormControl';
 import FormHelperText from '@mui/joy/FormHelperText';
 ```
 
-Use the Form Control and Form Helper Text components add a description to the Checkbox.
+Use the Form Control and Form Helper Text components to add a description to the Checkbox.
 The Checkbox will be linked to the helper text via the `aria-describedby` attribute.
 
 {{"demo": "HelperTextCheckbox.js"}}
