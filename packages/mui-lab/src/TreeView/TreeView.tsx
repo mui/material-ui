@@ -26,10 +26,9 @@ const warn = () => {
  * @deprecated The TreeView component was moved from `@mui/lab` to `@mui/x-tree-view`. More information about this migration on our blog: https://mui.com/blog/lab-tree-view-to-mui-x/.
  * @ignore - do not document.
  */
-const TreeView = React.forwardRef(function DeprecatedTreeView(
-  props: TreeViewProps,
-  ref: React.Ref<HTMLUListElement>,
-) {
+const TreeView = React.forwardRef(function DeprecatedTreeView<
+  Multiple extends boolean | undefined = undefined,
+>(props: TreeViewProps<Multiple>, ref: React.Ref<HTMLUListElement>) {
   warn();
 
   return <XTreeView {...props} ref={ref} />;

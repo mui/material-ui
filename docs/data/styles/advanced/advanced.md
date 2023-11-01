@@ -2,17 +2,24 @@
 
 <p class="description">This section covers more advanced usage of @mui/styles.</p>
 
-> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for Material UI.
-> It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5.
-> If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/) documentation which is the recommended alternative.
+:::error
+`@mui/styles` was deprecated with the release of MUI Core v5 in late 2021.
+It depended on [JSS](https://cssinjs.org/) as a styling solution, which is no longer used in `@mui/material`.
 
-> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18.
+`@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18, and it will not be updated.
+
+This documentation remains here for those working on legacy projects, but we **strongly discourage** you from using `@mui/styles` when creating a new app with Material UI—you _will_ face unresolvable dependency issues.
+
+Please use [`@mui/system`](/system/getting-started/) instead.
+:::
 
 ## Theming
 
 Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Then, you can access the theme object in style functions.
 
-> This example creates a theme object for custom-built components. If you intend to use some of Material UI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/material-ui/customization/theming/) to learn how to build your custom Material UI theme.
+:::info
+This example creates a theme object for custom-built components. If you intend to use some of Material UI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/material-ui/customization/theming/) to learn how to build your custom Material UI theme.
+:::
 
 ```jsx
 import { ThemeProvider } from '@mui/styles';
@@ -227,9 +234,10 @@ Note that this doesn't support selectors, or nested rules.
 
 ## CSS injection order
 
-> It's **really important** to understand how the CSS specificity is calculated by the browser,
-> as it's one of the key elements to know when overriding styles.
-> You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+:::warning
+It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles.
+Read this section from the MDN docs for more information: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+:::
 
 By default, the style tags are injected **last** in the `<head>` element of the page.
 They gain more specificity than any other style tags on your page e.g. CSS modules, styled components.
