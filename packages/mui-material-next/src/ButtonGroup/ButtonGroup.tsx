@@ -58,7 +58,7 @@ const overridesResolver = (
   ];
 };
 
-const ButtonGroupRoot = styled('div', {
+export const ButtonGroupRoot = styled('div', {
   name: 'MuiButtonGroup',
   slot: 'Root',
   overridesResolver,
