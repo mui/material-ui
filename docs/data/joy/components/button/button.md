@@ -18,6 +18,8 @@ unstyled: /base-ui/react-button/
 Buttons communicate actions that users can take.
 The Joy UI Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
 
+Joy UI also provides an Icon Button component for buttons with no text content.
+
 {{"demo": "ButtonUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Basics
@@ -32,6 +34,14 @@ The demo below shows the three basic states available to the Button: default, di
 
 {{"demo": "BasicButtons.js"}}
 
+```jsx
+import IconButton from '@mui/joy/IconButton';
+```
+
+Use the Icon Button component for a square button to house an icon with no text content.
+
+{{"demo": "IconButtons.js"}}
+
 ### Disabled
 
 Use the `disabled` prop to disable interaction and focus:
@@ -45,8 +55,6 @@ The Button is [disabled](#disabled) as long as it's loading.
 See [Loading indicator](#loading-indicator) and [Loading position](#loading-position) for customization options.
 
 {{"demo": "ButtonLoading.js"}}
-
-## Customization
 
 ### Variants
 
@@ -100,6 +108,8 @@ It supports three values:
 
 {{"demo": "ButtonLoadingPosition.js"}}
 
+## Customization
+
 ### Link Button
 
 Buttons let users take actions, but if that action is to navigate to a new page, then an anchor tag is generally preferable over a button tag.
@@ -113,16 +123,6 @@ If you need the style of a button with the functionality of a link, then you can
 To create a file upload button, turn the button into a label using `component="label"` and then create a visually-hidden input with type `file`.
 
 {{"demo": "InputFileUpload.js"}}
-
-## Icon Button
-
-```jsx
-import IconButton from '@mui/joy/IconButton';
-```
-
-Use the Icon Button component for a square button to house an icon with no text content.
-
-{{"demo": "IconButtons.js"}}
 
 ## CSS variables playground
 
