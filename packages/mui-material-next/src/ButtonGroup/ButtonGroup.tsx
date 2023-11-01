@@ -3,30 +3,43 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha } from '@mui/system';
+import { CSSInterpolation, alpha } from '@mui/system';
 import { getValidReactChildren, unstable_capitalize as capitalize } from '@mui/utils';
+import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 import ButtonGroupContext from './ButtonGroupContext';
 import ButtonGroupButtonContext from './ButtonGroupButtonContext';
+import { ButtonGroupOwnerState, ButtonGroupProps, ButtonGroupTypeMap } from './ButtonGroup.types';
 
-const overridesResolver = (props, styles) => {
-  const { ownerState } = props;
+const overridesResolver = (
+  props: ButtonGroupProps & { ownerState: ButtonGroupOwnerState },
+  styles: Record<string, CSSInterpolation>,
+) => {
+  const {
+    ownerState: {
+      color = 'primary',
+      disableElevation,
+      fullWidth,
+      orientation = 'horizontal',
+      variant = 'outlined',
+    },
+  } = props;
 
   return [
     { [`& .${buttonGroupClasses.grouped}`]: styles.grouped },
     {
-      [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(ownerState.orientation)}`],
+      [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(orientation)}`],
     },
-    { [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(ownerState.variant)}`] },
+    { [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(variant)}`] },
     {
       [`& .${buttonGroupClasses.grouped}`]:
-        styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.orientation)}`],
+        styles[`grouped${capitalize(variant)}${capitalize(orientation)}`],
     },
     {
       [`& .${buttonGroupClasses.grouped}`]:
-        styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.color)}`],
+        styles[`grouped${capitalize(variant)}${capitalize(color)}`],
     },
     {
       [`& .${buttonGroupClasses.firstButton}`]: styles.firstButton,
@@ -38,10 +51,10 @@ const overridesResolver = (props, styles) => {
       [`& .${buttonGroupClasses.middleButton}`]: styles.middleButton,
     },
     styles.root,
-    styles[ownerState.variant],
-    ownerState.disableElevation === true && styles.disableElevation,
-    ownerState.fullWidth && styles.fullWidth,
-    ownerState.orientation === 'vertical' && styles.vertical,
+    styles[variant],
+    disableElevation === true && styles.disableElevation,
+    fullWidth && styles.fullWidth,
+    orientation === 'vertical' && styles.vertical,
   ];
 };
 
@@ -49,7 +62,7 @@ const ButtonGroupRoot = styled('div', {
   name: 'MuiButtonGroup',
   slot: 'Root',
   overridesResolver,
-})(({ theme, ownerState }) => ({
+})<{ ownerState: ButtonGroupOwnerState }>(({ theme, ownerState }) => ({
   display: 'inline-flex',
   borderRadius: (theme.vars || theme).shape.borderRadius,
   ...(ownerState.variant === 'contained' && {
@@ -109,8 +122,8 @@ const ButtonGroupRoot = styled('div', {
     ...(ownerState.variant === 'text' &&
       ownerState.color !== 'inherit' && {
         borderColor: theme.vars
-          ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
-          : alpha(theme.palette[ownerState.color].main, 0.5),
+          ? `rgba(${theme.vars.palette[ownerState.color ?? 'primary'].mainChannel} / 0.5)`
+          : alpha(theme.palette[ownerState.color ?? 'primary'].main, 0.5),
       }),
     ...(ownerState.variant === 'outlined' &&
       ownerState.orientation === 'horizontal' && {
@@ -136,7 +149,7 @@ const ButtonGroupRoot = styled('div', {
       }),
     ...(ownerState.variant === 'contained' &&
       ownerState.color !== 'inherit' && {
-        borderColor: (theme.vars || theme).palette[ownerState.color].dark,
+        borderColor: (theme.vars || theme).palette[ownerState.color ?? 'primary'].dark,
       }),
     '&:hover': {
       ...(ownerState.variant === 'outlined' &&
@@ -169,9 +182,16 @@ const ButtonGroupRoot = styled('div', {
   },
 }));
 
-const useUtilityClasses = (ownerState) => {
-  const { classes, color, disabled, disableElevation, fullWidth, orientation, variant } =
-    ownerState;
+const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
+  const {
+    classes,
+    color = 'primary',
+    disabled,
+    disableElevation,
+    fullWidth,
+    orientation = 'horizontal',
+    variant = 'outlined',
+  } = ownerState;
 
   const slots = {
     root: [
@@ -197,7 +217,19 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getButtonGroupUtilityClass, classes);
 };
 
-const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Button Group](https://mui.com/material-ui/react-button-group/)
+ *
+ * API:
+ *
+ * - [ButtonGroup API](https://mui.com/material-ui/api/button-group/)
+ */
+const ButtonGroup = React.forwardRef(function ButtonGroup<
+  BaseComponentType extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
+>(inProps: ButtonGroupProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
   const props = useThemeProps({ props: inProps, name: 'MuiButtonGroup' });
   const {
     children,
@@ -259,7 +291,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   const validChildren = getValidReactChildren(children);
   const childrenCount = validChildren.length;
 
-  const getButtonPositionClassName = (index) => {
+  const getButtonPositionClassName = (index: number) => {
     const isFirstButton = index === 0;
     const isLastButton = index === childrenCount - 1;
 
@@ -298,12 +330,12 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       </ButtonGroupContext.Provider>
     </ButtonGroupRoot>
   );
-});
+}) as OverridableComponent<ButtonGroupTypeMap>;
 
 ButtonGroup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The content of the component.
@@ -387,6 +419,6 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['contained', 'outlined', 'text']),
     PropTypes.string,
   ]),
-};
+} as any;
 
 export default ButtonGroup;
