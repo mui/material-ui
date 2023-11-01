@@ -45,34 +45,6 @@ const overridesResolver = (props, styles) => {
   ];
 };
 
-const useUtilityClasses = (ownerState) => {
-  const { classes, color, disabled, disableElevation, fullWidth, orientation, variant } =
-    ownerState;
-
-  const slots = {
-    root: [
-      'root',
-      variant,
-      orientation === 'vertical' && 'vertical',
-      fullWidth && 'fullWidth',
-      disableElevation && 'disableElevation',
-    ],
-    grouped: [
-      'grouped',
-      `grouped${capitalize(orientation)}`,
-      `grouped${capitalize(variant)}`,
-      `grouped${capitalize(variant)}${capitalize(orientation)}`,
-      `grouped${capitalize(variant)}${capitalize(color)}`,
-      disabled && 'disabled',
-    ],
-    firstButton: ['firstButton'],
-    lastButton: ['lastButton'],
-    middleButton: ['middleButton'],
-  };
-
-  return composeClasses(slots, getButtonGroupUtilityClass, classes);
-};
-
 const ButtonGroupRoot = styled('div', {
   name: 'MuiButtonGroup',
   slot: 'Root',
@@ -196,6 +168,34 @@ const ButtonGroupRoot = styled('div', {
       }),
   },
 }));
+
+const useUtilityClasses = (ownerState) => {
+  const { classes, color, disabled, disableElevation, fullWidth, orientation, variant } =
+    ownerState;
+
+  const slots = {
+    root: [
+      'root',
+      variant,
+      orientation === 'vertical' && 'vertical',
+      fullWidth && 'fullWidth',
+      disableElevation && 'disableElevation',
+    ],
+    grouped: [
+      'grouped',
+      `grouped${capitalize(orientation)}`,
+      `grouped${capitalize(variant)}`,
+      `grouped${capitalize(variant)}${capitalize(orientation)}`,
+      `grouped${capitalize(variant)}${capitalize(color)}`,
+      disabled && 'disabled',
+    ],
+    firstButton: ['firstButton'],
+    lastButton: ['lastButton'],
+    middleButton: ['middleButton'],
+  };
+
+  return composeClasses(slots, getButtonGroupUtilityClass, classes);
+};
 
 const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiButtonGroup' });
