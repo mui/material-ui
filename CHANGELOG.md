@@ -1,5 +1,66 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.16
+
+<!-- generated comparing v5.14.15..master -->
+
+_Oct 31, 2023_
+
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ New highly requested Joy UI component: [Snackbar](https://mui.com/joy-ui/react-snackbar) (#38801) @ZeeshanTamboli
+
+### `@mui/material@5.14.16`
+
+- &#8203;<!-- 03 -->Fix ownerstate being propagated to DOM node when using styled-components v6 (#39586) @mnajdova
+
+### `@mui/base@5.0.0-beta.22`
+
+- &#8203;<!-- 28 -->[Autocomplete] Standardize box shadow on demos (#39519) @zanivan
+- &#8203;<!-- 27 -->[useSelect] Support browser autofill (#39595) @DiegoAndai
+- &#8203;<!-- 30 -->[base-ui] Fix mergeSlotProps className join order (#39616) @mj12albert
+
+### `@mui/joy@5.0.0-beta.13`
+
+- &#8203;<!-- 29 -->[Accordion] Add type button to accordion
+- &#8203;<!-- 28 -->[Card] Fix CardOverflow in nested cards (#39668) @siriwatknp summary (#39532) @Popppins
+- &#8203;<!-- 08 -->[Menu] Fix closing of listbox in `MenuList` demo (#39459) @sai6855
+- &#8203;<!-- 07 -->[Progress] Revamp Linear and Circular progress variants (#39492) @zanivan
+- &#8203;<!-- 06 -->[Select] Support selection of `multiple` options (#39454) @sai6855
+- &#8203;<!-- 05 -->[Textarea] Add ref usage instructions (#39615) @danilo-leal
+- &#8203;<!-- 10 --> Fix sticky hover media query issue on mobile (#37467) @gitstart
+- &#8203;<!-- 09 --> Add Snackbar component (#38801) @ZeeshanTamboli
+
+### `@mui/material-next@6.0.0-alpha.108`
+
+- &#8203;<!-- 04 -->[theme] Update Material You typescale tokens (#39514) @mj12albert
+
+### Docs
+
+- &#8203;<!-- 22 -->Fix 301 link to Primer design system @oliviertassinari
+- &#8203;<!-- 19 -->[joy-ui] Revise the CSS vars page (#39335) @danilo-leal
+- &#8203;<!-- 18 -->[joy-ui] Add docs for changing styles based on states (#39597) @siriwatknp
+- &#8203;<!-- 17 -->[joy-ui] Fix wrong messages (#39602) @siriwatknp
+- &#8203;<!-- 16 -->[material-ui] Include link to bundler how-to for Styled Components users (#39620) @jcoyle37
+- &#8203;<!-- 15 -->[material-ui] Improve Dialog demos (#39642) @ZeeshanTamboli
+- &#8203;<!-- 14 -->[material-ui] Add stray design fine-tuning to the example collection (#39581) @danilo-leal
+- &#8203;<!-- 13 -->[system] Clean up `@mui/styles` docs and discourage users from installing it (#39644) @samuelsycamore
+- &#8203;<!-- 12 -->[examples] Upgrade Remix to v2 (#39229) @Nkzn
+- &#8203;<!-- 11 -->[examples][material-ui] Remove hardcoded `color="black"` from Next.js App Router layout (#39577) @samuelsycamore
+
+### Core
+
+- &#8203;<!-- 26 -->[core] Setup vale for enforcing style guides (#39633) @alexfauquette
+- &#8203;<!-- 25 -->[core] Remove unused use client (#38967) @oliviertassinari
+- &#8203;<!-- 24 -->[core] Remove duplicate export (#39346) @oliviertassinari
+- &#8203;<!-- 23 -->[core] Remove not used `@types/loader-utils` package from `zero-next-plugin` (#39609) @ZeeshanTamboli
+- &#8203;<!-- 21 -->[docs-infra] Add meta charset in codesandbox examples (#39424) @Janpot
+- &#8203;<!-- 20 -->[docs-infra] Fix settings drawer accessibility issues (#39589) @emamoah
+- &#8203;<!-- 02 -->[website] Add stray adjustments and clean-ups (#39673) @danilo-leal
+- &#8203;<!-- 01 -->[website] Open the `Design Engineer - xGrid` role (#39375) @DanailH
+
+All contributors of this release in alphabetical order: @alexfauquette, @Best-Sardar, @DanailH, @danilo-leal, @DiegoAndai, @emamoah, @gitstart, @Janpot, @jcoyle37, @mj12albert, @mnajdova, @Nkzn, @oliviertassinari, @Popppins, @sai6855, @samuelsycamore, @siriwatknp, @zanivan, @ZeeshanTamboli
+
 ## 5.14.15
 
 <!-- generated comparing v5.14.14..master -->

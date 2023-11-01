@@ -6,10 +6,12 @@ import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
 import CalendarViewDayRoundedIcon from '@mui/icons-material/CalendarViewDayRounded';
 import TableChartRoundedIcon from '@mui/icons-material/TableChartRounded';
 import ReorderRoundedIcon from '@mui/icons-material/ReorderRounded';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 
 export type ApiDisplayOptions = 'collapsed' | 'expended' | 'table';
 
 const options: ApiDisplayOptions[] = ['collapsed', 'expended', 'table'];
+const DEFAULT_LAYOUT: ApiDisplayOptions = 'expended';
 
 export const API_LAYOUT_STORAGE_KEYS = {
   default: 'apiPage_default',
@@ -20,6 +22,10 @@ export const API_LAYOUT_STORAGE_KEYS = {
 } as const;
 
 const getRandomOption = () => {
+  if (/bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
+    // When crawlers visit the page, they should not have to expand items
+    return DEFAULT_LAYOUT;
+  }
   // A default layout is saved in localstorage at first render to make sure all section start with the same layout.
   const savedDefaultOption = localStorage.getItem(
     API_LAYOUT_STORAGE_KEYS.default,
@@ -38,10 +44,51 @@ const getRandomOption = () => {
   return randomOption;
 };
 
+let neverHydrated = true;
+
+const getOption = (storageKey: string) => {
+  if (neverHydrated) {
+    return DEFAULT_LAYOUT;
+  }
+  try {
+    const savedOption = localStorage.getItem(storageKey);
+
+    if (savedOption !== null) {
+      return savedOption as ApiDisplayOptions;
+    }
+
+    const randomOption = getRandomOption();
+
+    return randomOption;
+  } catch (error) {
+    return DEFAULT_LAYOUT;
+  }
+};
+
 export function useApiPageOption(
   storageKey: string,
 ): [ApiDisplayOptions, (newOption: ApiDisplayOptions) => void] {
-  const [option, setOption] = React.useState(options[0]);
+  const [option, setOption] = React.useState(getOption(storageKey));
+  const [needsScroll, setNeedsScroll] = React.useState(false);
+
+  useEnhancedEffect(() => {
+    neverHydrated = false;
+    const newOption = getOption(storageKey);
+    setOption(newOption);
+    setNeedsScroll(newOption !== DEFAULT_LAYOUT);
+  }, [storageKey]);
+
+  React.useEffect(() => {
+    setNeedsScroll(false);
+    if (needsScroll) {
+      return () => {
+        const id = document?.location.hash.slice(1);
+        const element = document.getElementById(id);
+        element?.scrollIntoView();
+      };
+    }
+    return () => {};
+  }, [needsScroll]);
 
   const updateOption = React.useCallback(
     (newOption: ApiDisplayOptions) => {
@@ -54,21 +101,6 @@ export function useApiPageOption(
     },
     [storageKey],
   );
-
-  React.useEffect(() => {
-    try {
-      const savedOption = localStorage.getItem(storageKey);
-      if (savedOption !== null) {
-        setOption(savedOption as ApiDisplayOptions);
-        return;
-      }
-
-      const randomOption = getRandomOption();
-      updateOption(randomOption);
-    } catch (error) {
-      // do nothing
-    }
-  }, [storageKey, updateOption]);
 
   return [option, updateOption];
 }
