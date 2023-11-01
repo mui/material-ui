@@ -25,6 +25,11 @@ export default function ButtonGroupMaterialYouPlayground() {
           defaultValue: 'primary',
           knob: 'select',
           options: ['primary', 'secondary', 'tertiary'],
+        },{
+          propName: 'size',
+          defaultValue: 'medium',
+          knob: 'select',
+          options: ['small', 'medium', 'large'],
         },
         {
           propName: 'disabled',
