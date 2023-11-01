@@ -73,89 +73,80 @@ export const ButtonGroupRoot = styled('div', {
   } = ownerState;
 
   return {
-    display: 'inline-flex',
-    borderRadius: tokens.sys.shape.corner.full,
-    ...(variant === 'elevated' && {
-      boxShadow: tokens.sys.elevation[1],
-    }),
+  display: 'inline-flex',
+  borderRadius: tokens.sys.shape.corner.full,
+  ...(variant === 'elevated' && {
+    boxShadow: tokens.sys.elevation[1],
+  }),
     ...((disableElevation || disabled) && {
-      boxShadow: 'none',
-    }),
+    boxShadow: 'none',
+  }),
     ...(fullWidth && {
-      width: '100%',
-    }),
+    width: '100%',
+  }),
     ...(orientation === 'vertical' && {
-      flexDirection: 'column',
-    }),
-    [`& .${buttonGroupClasses.grouped}`]: {
-      minWidth: 40,
-      '&:hover, &:focus': {
-        boxShadow: 'none',
-      },
+    flexDirection: 'column',
+  }),
+  [`& .${buttonGroupClasses.grouped}`]: {
+    minWidth: 40,
+    '&:hover, &:focus': {
       boxShadow: 'none',
     },
-    [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
-      ...(orientation === 'horizontal' && {
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
-      }),
-      ...(orientation === 'vertical' && {
-        borderBottomRightRadius: 0,
-        borderBottomLeftRadius: 0,
-      }),
-      ...(variant === 'text' &&
-        orientation === 'horizontal' && {
-          borderRight: `1px solid ${tokens.sys.color.outline}`,
-          [`&.${buttonGroupClasses.disabled}`]: {
-            borderRight: `1px solid rgba(${tokens.sys.color.onSurface} / 0.12)`,
-          },
-        }),
-      ...(variant === 'text' &&
-        orientation === 'vertical' && {
-          borderBottom: `1px solid ${tokens.sys.color.outline}`,
-          [`&.${buttonGroupClasses.disabled}`]: {
-            borderBottom: `1px solid rgba(${tokens.sys.color.onSurface} / 0.12)`,
-          },
-        }),
-      ...(variant === 'outlined' &&
-        orientation === 'horizontal' && {
-          borderRightColor: 'transparent',
-        }),
-      ...(variant === 'outlined' &&
-        orientation === 'vertical' && {
-          borderBottomColor: 'transparent',
-        }),
-      '&:hover': {
-        ...(variant === 'outlined' &&
-          orientation === 'horizontal' && {
-            borderRightColor: 'currentColor',
-          }),
-        ...(variant === 'outlined' &&
-          orientation === 'vertical' && {
-            borderBottomColor: 'currentColor',
-          }),
+    boxShadow: 'none',
+  },
+  [`.${buttonGroupClasses.firstButton}, .${buttonGroupClasses.middleButton}`]: {
+    [`&.${buttonGroupClasses.groupedHorizontal}`]: {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+    [`&.${buttonGroupClasses.groupedVertical}`]: {
+      borderBottomRightRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
+    [`&.${buttonGroupClasses.groupedTextHorizontal}`]: {
+      borderRight: `1px solid ${tokens.sys.color.outline}`,
+      [`&.${buttonGroupClasses.disabled}`]: {
+        borderRightColor: `rgba(${tokens.sys.color.onSurface}, 0.12)`,
       },
     },
-    [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
-      ...(orientation === 'horizontal' && {
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
-      }),
-      ...(orientation === 'vertical' && {
-        borderTopRightRadius: 0,
-        borderTopLeftRadius: 0,
-      }),
-      ...(variant === 'outlined' &&
-        orientation === 'horizontal' && {
-          marginLeft: -1,
-        }),
-      ...(variant === 'outlined' &&
-        orientation === 'vertical' && {
-          marginTop: -1,
-        }),
+    [`&.${buttonGroupClasses.groupedTextVertical}`]: {
+      borderBottom: `1px solid ${tokens.sys.color.outline}`,
+      [`&.${buttonGroupClasses.disabled}`]: {
+        borderBottomColor: `rgba(${tokens.sys.color.onSurface}, 0.12)`,
+      },
     },
-  };
-});
+    [`&.${buttonGroupClasses.groupedOutlinedHorizontal}`]: {
+      borderRightColor: 'transparent',
+    },
+    [`&.${buttonGroupClasses.groupedOutlinedVertical}`]: {
+      borderBottomColor: 'transparent',
+    },
+    '&:hover': {
+      [`&.${buttonGroupClasses.groupedOutlinedHorizontal}`]: {
+        borderRightColor: 'currentColor',
+      },
+      [`&.${buttonGroupClasses.groupedOutlinedVertical}`]: {
+        borderBottomColor: 'currentColor',
+      },
+    },
+  },
+  [`.${buttonGroupClasses.lastButton}, .${buttonGroupClasses.middleButton}`]: {
+    [`&.${buttonGroupClasses.groupedHorizontal}`]: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
+    [`&.${buttonGroupClasses.groupedVertical}`]: {
+      borderTopRightRadius: 0,
+      borderTopLeftRadius: 0,
+    },
+    [`&.${buttonGroupClasses.groupedOutlinedHorizontal}`]: {
+      marginLeft: -1,
+    },
+    [`&.${buttonGroupClasses.groupedOutlinedVertical}`]: {
+      marginTop: -1,
+    },
+  }
+}});
 
 const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
   const {
