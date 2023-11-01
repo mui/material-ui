@@ -1,4 +1,3 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -6,8 +5,6 @@ import { exactProp } from '@mui/utils';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import ReviewsRoundedIcon from '@mui/icons-material/ReviewsRounded';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
