@@ -156,7 +156,7 @@ To create a floating label input, a custom component (combination of `<input>` a
 
 {{"demo": "UnderlineInput.js"}}
 
-### Newsletter Subscription
+### Newsletter subscription
 
 {{"demo": "InputSubscription.js"}}
 

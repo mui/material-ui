@@ -14,20 +14,19 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 
 ## Introduction
 
-Radio buttons let users make a mutually exclusive choice (e.g., this or that).
+Radio buttons let users make a mutually exclusive choice ("this _or_ that").
 Only one selection is allowed from the available set of options.
 
 Radio buttons should have the most commonly used option selected by default.
 
 {{"demo": "RadioUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-:::success
-When should you use radio buttons rather than checkboxes, switches, or selects?
+:::info
+When should you use Radio buttons rather than Checkboxes, Switches, or Selects?
 
-- Use checkboxes to give the user **multiple binary choices**—radio buttons are preferable when you need to restrict user selection to one mutually exclusive option from a series.
-- Use a switch to provide the user with **a single binary choice**—radio buttons are preferable when you need to give the user multiple binary choices.
-- Consider using a select if it's not important for the user to be able to see all options.
-- If available options can be collapsed, consider using a Select component to conserve space.
+- Use Checkboxes to give the user **multiple binary choices**—Radio buttons are preferable when you need to restrict user selection to one mutually exclusive option from a series.
+- Use a Switch to provide the user with **a single binary choice**—Radio buttons are preferable when you need to give the user multiple binary choices.
+- Consider using a Select if it's not important for the user to be able to see all options and you want to conserve space.
   :::
 
 ## Basics
@@ -39,8 +38,6 @@ import Radio from '@mui/joy/Radio';
 The Joy UI Radio button behaves similar to the native HTML <input type="radio">, so it accepts props like `checked`, `value` and `onChange`.
 
 {{"demo": "RadioButtons.js"}}
-
-## Customization
 
 ### Variants
 
@@ -79,36 +76,6 @@ For more complex layouts, compose a Radio button with Form Control, Form Label, 
 
 {{"demo": "RadioButtonControl.js"}}
 
-### Position
-
-To swap the positions of a Radio and its label, use the CSS property `flex-direction: row-reverse`.
-
-{{"demo": "RadioPositionEnd.js"}}
-
-## Usage with Radio Group
-
-```jsx
-import RadioGroup from '@mui/joy/RadioGroup';
-```
-
-The Radio Group component is the ideal wrapper for multiple Radio components as it provides a tailored API for grouping and better keyboard navigation accessibility.
-
-{{"demo": "RadioButtonsGroup.js"}}
-
-### Controlled
-
-Use the `value` and `onChange` props to control the actions performed by the Radio buttons.
-For example, the Radio buttons in the demo below update the state to reflect the selected option:
-
-{{"demo": "ControlledRadioButtonsGroup.js"}}
-
-### Focus outline
-
-By default, the focus outline wraps both the Radio button and its label.
-If you need to focus to omit the label, target the `radioClasses.radio` class and add `position: 'relative'`.
-
-{{"demo": "RadioFocus.js"}}
-
 ### Overlay
 
 To make the Radio button's container clickable, use the `overlay` prop.
@@ -134,6 +101,45 @@ Use the `disableIcon` prop to remove the Radio button's icon.
 In this case, you'll need to use CSS properties like border and background color to communicate the state of the Radio button, as shown in the demo below:
 
 {{"demo": "IconlessRadio.js"}}
+
+### Controlled
+
+Use the `value` and `onChange` props to control the actions performed by the Radio buttons.
+For example, the Radio buttons in the demo below update the state to reflect the selected option:
+
+{{"demo": "ControlledRadioButtonsGroup.js"}}
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+  Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+  :::
+
+## Customization
+
+### Position
+
+To swap the positions of a Radio and its label, use the CSS property `flex-direction: row-reverse`.
+
+{{"demo": "RadioPositionEnd.js"}}
+
+### Focus outline
+
+By default, the focus outline wraps both the Radio button and its label.
+If you need to focus to omit the label, target the `radioClasses.radio` class and add `position: 'relative'`.
+
+{{"demo": "RadioFocus.js"}}
+
+### Use with Radio Group
+
+```jsx
+import RadioGroup from '@mui/joy/RadioGroup';
+```
+
+The Radio Group component is the ideal wrapper for multiple Radio components as it provides a tailored API for grouping and better keyboard navigation accessibility.
+
+{{"demo": "RadioButtonsGroup.js"}}
 
 ## Common examples
 
