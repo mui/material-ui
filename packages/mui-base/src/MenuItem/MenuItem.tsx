@@ -110,7 +110,8 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * @ignore
+   * If `true`, the menu item will be disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
