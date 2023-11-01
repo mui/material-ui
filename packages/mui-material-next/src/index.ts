@@ -9,6 +9,9 @@ export * from './Button';
 export { default as ButtonBase } from './ButtonBase';
 export * from './ButtonBase';
 
+export { default as ButtonGroup } from './ButtonGroup';
+export * from './ButtonGroup';
+
 export { default as Chip } from './Chip';
 export * from './Chip';
 
