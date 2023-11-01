@@ -9,13 +9,13 @@ describe('<Step />', () => {
 
   describeConformance(<Step />, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: 'li',
     render,
     ThemeProvider,
     muiName: 'JoyStep',
-    refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'ul',
-    testVariantProps: { variant: 'solid' },
+    refInstanceof: window.HTMLLIElement,
+    testComponentPropWith: 'div',
+    testVariantProps: { orientation: 'vertical' },
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
     slots: {
@@ -25,25 +25,13 @@ describe('<Step />', () => {
     },
   }));
 
-  it('can change size', () => {
+  it('apply horizontal and vertical classes', () => {
     const { container, rerender } = render(<Step />);
 
-    expect(container.firstChild).to.have.class(classes.sizeMd);
+    expect(container.firstChild).to.have.class(classes.horizontal);
 
-    rerender(<Step size="lg" />);
+    rerender(<Step orientation="vertical" />);
 
-    expect(container.firstChild).to.have.class(classes.sizeLg);
-  });
-
-  it('add data-attribute to the first and last child', () => {
-    const { container } = render(
-      <Step>
-        <div>First</div>
-        <div>Second</div>
-        <div>Third</div>
-      </Step>,
-    );
-    expect(container.querySelector('[data-first-child]')).to.have.text('First');
-    expect(container.querySelector('[data-last-child]')).to.have.text('Third');
+    expect(container.firstChild).to.have.class(classes.vertical);
   });
 });

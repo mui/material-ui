@@ -9,13 +9,13 @@ describe('<Stepper />', () => {
 
   describeConformance(<Stepper />, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: 'ol',
     render,
     ThemeProvider,
     muiName: 'JoyStepper',
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLOListElement,
     testComponentPropWith: 'ul',
-    testVariantProps: { variant: 'solid' },
+    testVariantProps: { orientation: 'vertical' },
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
     slots: {

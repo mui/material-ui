@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import StepIndicator, { stepIndicatorClasses as classes } from '@mui/joy/StepIndicator';
@@ -14,7 +15,7 @@ describe('<StepIndicator />', () => {
     ThemeProvider,
     muiName: 'JoyStepIndicator',
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'ul',
+    testComponentPropWith: 'span',
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
@@ -25,25 +26,41 @@ describe('<StepIndicator />', () => {
     },
   }));
 
-  it('can change size', () => {
-    const { container, rerender } = render(<StepIndicator />);
+  describe('prop: variant', () => {
+    it('by default, should render with the root, variantSoft classes', () => {
+      const { container } = render(<StepIndicator>Hello World</StepIndicator>);
 
-    expect(container.firstChild).to.have.class(classes.sizeMd);
+      expect(container.firstChild).to.have.class(classes.root);
+      expect(container.firstChild).to.have.class(classes.variantSoft);
+    });
 
-    rerender(<StepIndicator size="lg" />);
+    (['plain', 'outlined', 'solid'] as const).forEach((variant) => {
+      it(`should render ${variant}`, () => {
+        const { container } = render(<StepIndicator variant={variant} />);
 
-    expect(container.firstChild).to.have.class(classes.sizeLg);
+        expect(container.firstChild).to.have.class(
+          classes[`variant${capitalize(variant)}` as keyof typeof classes],
+        );
+      });
+    });
   });
 
-  it('add data-attribute to the first and last child', () => {
-    const { container } = render(
-      <StepIndicator>
-        <div>First</div>
-        <div>Second</div>
-        <div>Third</div>
-      </StepIndicator>,
-    );
-    expect(container.querySelector('[data-first-child]')).to.have.text('First');
-    expect(container.querySelector('[data-last-child]')).to.have.text('Third');
+  describe('prop: color', () => {
+    it('by default, should render with the root, colorNeutral classes', () => {
+      const { container } = render(<StepIndicator>Hello World</StepIndicator>);
+
+      expect(container.firstChild).to.have.class(classes.root);
+      expect(container.firstChild).to.have.class(classes.colorNeutral);
+    });
+
+    (['primary', 'success', 'danger', 'warning'] as const).forEach((color) => {
+      it(`should render ${color}`, () => {
+        const { container } = render(<StepIndicator color={color} />);
+
+        expect(container.firstChild).to.have.class(
+          classes[`color${capitalize(color)}` as keyof typeof classes],
+        );
+      });
+    });
   });
 });
