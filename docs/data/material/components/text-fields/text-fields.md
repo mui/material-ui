@@ -234,7 +234,7 @@ We do not recommend using type="number" with a Text Field due to potential usabi
 
 If you need a text field with number validation, you can use Base UI's [Number Input](/base-ui/react-number-input/) instead.
 
-You can also upvote [this GitHub issue](https://github.com/mui/material-ui/issues/19154) to express your need for a Number Input component in Material UI.
+You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/19154) to track the progress of introducing the Number Input component to Material UI.
 
 ### Helper text
 
