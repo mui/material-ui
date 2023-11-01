@@ -27,8 +27,6 @@ The Input component provides a customizable input field that can be used to coll
 
 {{"demo": "BasicInput.js"}}
 
-## Customization
-
 ### Variants
 
 The Input component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
@@ -56,11 +54,34 @@ Every palette included in the theme is available via the `color` prop.
 
 {{"demo": "InputColors.js"}}
 
+### Decorators
+
+Use the `startDecorator` and `endDecorator` props to add supporting icons or elements to the input.
+
+{{"demo": "InputDecorators.js"}}
+
 ### Form submission
 
 You can add standard form attributes such as `required` and `disabled` to the Input component:
 
 {{"demo": "InputFormProps.js"}}
+
+### Validation
+
+Use the `error` prop on Input or Form Control to toggle the error state:
+
+{{"demo": "InputValidation.js"}}
+
+:::info
+Using the `color` prop with `danger` as the value gives you the same result:
+
+```js
+<Input color="danger" />
+```
+
+:::
+
+## Customization
 
 ### Focused ring
 
@@ -100,31 +121,15 @@ The focus ring still appear on focus even though you set `--Input-focused: 0`.
 
 ### Label and helper text
 
-Group Input with the Form label and Form helper text in a Form control component to create a text field.
-
-{{"demo": "InputField.js"}}
-
-### Validation
-
-Use the `error` prop on Input or Form Control to toggle the error state:
-
-{{"demo": "InputValidation.js"}}
-
-:::info
-Using the `color` prop with `danger` as the value gives you the same result:
-
-```js
-<Input color="danger" />
+```jsx
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import FormHelperText from '@mui/joy/FormHelperText';
 ```
 
-:::
+Group an Input with the Form Label and Form Helper Text in a Form Control component to create a more sophisticated text input for a form.
 
-### Decorators
-
-The `startDecorator` and `endDecorator` props can be used to add supporting icons or elements to the input.
-With inputs, decorators are typically located at the top and/or bottom of the input field.
-
-{{"demo": "InputDecorators.js"}}
+{{"demo": "InputField.js"}}
 
 ### Inner HTML input
 
@@ -132,13 +137,6 @@ If you need to pass props to the inner HTML `<input>`, use `slotProps={{ input: 
 These props may include HTML attributes such as `ref`, `min`, `max`, and `autocomplete`.
 
 {{"demo": "InputSlotProps.js"}}
-
-## CSS variables playground
-
-Play around with the CSS variables available to the Input component to see how the design changes.
-You can use these to customize the component with both the `sx` prop and the theme.
-
-{{"demo": "InputVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Common examples
 
@@ -190,6 +188,13 @@ The demos below illustrate how to do this with two popular libraries.
 [react-number-format](https://github.com/s-yadav/react-number-format) provides the `NumericFormat` component for enforcing text formatting that follows a specific number or string pattern.
 
 {{"demo": "InputReactNumberFormat.js"}}
+
+## CSS variables playground
+
+Play around with the CSS variables available to the Input component to see how the design changes.
+You can use these to customize the component with both the `sx` prop and the theme.
+
+{{"demo": "InputVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Accessibility
 
