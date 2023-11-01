@@ -354,7 +354,7 @@ describe('<TablePagination />', () => {
   });
 
   describe('prop: backIconButtonProps', () => {
-    it('should should apply props to the back button', () => {
+    it('should apply props to the back button', () => {
       const backIconButtonPropsDisabled = true;
 
       const { getByRole } = render(
@@ -380,7 +380,7 @@ describe('<TablePagination />', () => {
   });
 
   describe('prop: nextIconButtonProps', () => {
-    it('should should apply props to the next button', () => {
+    it('should apply props to the next button', () => {
       const nextIconButtonPropsDisabled = true;
 
       const { getByRole } = render(
