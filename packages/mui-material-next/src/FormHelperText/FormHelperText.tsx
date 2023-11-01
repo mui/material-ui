@@ -93,7 +93,6 @@ const FormHelperText = React.forwardRef(function FormHelperText<
   const props = useThemeProps({ props: inProps, name: 'MuiFormHelperText' });
   const {
     children,
-    className,
     component = 'p',
     disabled: disabledProp,
     error: errorProp,
@@ -138,7 +137,7 @@ const FormHelperText = React.forwardRef(function FormHelperText<
       ref: forwardedRef,
     },
     ownerState,
-    className: [classes.root, className],
+    className: [classes.root],
   });
 
   return (
