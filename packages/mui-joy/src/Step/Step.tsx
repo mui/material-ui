@@ -53,12 +53,12 @@ const StepRoot = styled('li', {
     alignItems: 'var(--_Step-alignItems, center)',
     justifyContent: 'var(--_Step-justify, center)',
     gap: `var(--Step-gap, ${INSET})`,
-    padding: 'var(--_Step-padding)',
     '& > *': { zIndex: 1, [`&:not(.${stepClasses.indicator})`]: { gridColumn: '2' } },
     '&:not([data-last-child])': {
       '&::after': {
         content: '""',
         display: 'block',
+        borderRadius: 'var(--Step-connectorRadius)',
         height: `var(--Step-connectorThickness, ${THICKNESS})`,
         background: `var(--Step-connectorBg, ${theme.vars.palette.divider})`,
         flex: 1,
@@ -78,9 +78,6 @@ const StepRoot = styled('li', {
       '--_Step-justify': 'flex-start',
       '&[data-indicator]': {
         '--Step-indicatorDotSize': '0px',
-      },
-      '&:not([data-last-child])': {
-        '--_Step-padding': '0 0 var(--Stepper-verticalGap) 0',
       },
       '&::after': {
         gridColumn: '1',

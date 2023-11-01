@@ -11,7 +11,13 @@ export default function StepperUsage() {
       componentName="Stepper"
       data={[
         {
-          propName: 'orientation',
+          propName: 'stepperOrientation',
+          knob: 'radio',
+          defaultValue: 'horizontal',
+          options: ['horizontal', 'vertical'],
+        },
+        {
+          propName: 'stepOrientation',
           knob: 'radio',
           defaultValue: 'horizontal',
           options: ['horizontal', 'vertical'],
@@ -31,21 +37,26 @@ export default function StepperUsage() {
       getCodeBlock={(code, props) => `<Stepper${
         props.orientation === 'vertical' ? ' orientation="vertical"' : ''
       }>
-  <Step${
-    props.indicator
-      ? `
+  <Step${props.stepOrientation === 'vertical' ? ` orientation="vertical"` : ''}${
+        props.indicator
+          ? `
     indicator={
       <StepIndicator variant="solid" color="primary">
         <Check />
       </StepIndicator>
     }\n  `
-      : ''
-  }>First</Step>
+          : ''
+      }>First</Step>
   ...
 </Stepper>`}
-      renderDemo={({ orientation, size, indicator }) => (
-        <Stepper orientation={orientation} size={size} sx={{ width: 400, mb: 3 }}>
+      renderDemo={({ stepperOrientation, stepOrientation, size, indicator }) => (
+        <Stepper
+          orientation={stepperOrientation}
+          size={size}
+          sx={{ width: 320, mb: 3 }}
+        >
           <Step
+            orientation={stepOrientation}
             indicator={
               indicator && (
                 <StepIndicator variant="solid" color="primary">
@@ -57,16 +68,10 @@ export default function StepperUsage() {
             First
           </Step>
           <Step
+            orientation={stepOrientation}
             indicator={indicator && <StepIndicator color="primary">2</StepIndicator>}
           >
             Second
-          </Step>
-          <Step
-            indicator={
-              indicator && <StepIndicator variant="outlined">3</StepIndicator>
-            }
-          >
-            Third
           </Step>
         </Stepper>
       )}
