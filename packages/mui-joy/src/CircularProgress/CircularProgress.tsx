@@ -128,6 +128,15 @@ const CircularProgressRoot = styled('span', {
         ...rest,
       },
     }),
+    ...(ownerState.variant === 'soft' && {
+      '--CircularProgress-trackColor': theme.variants.soft.neutral.backgroundColor,
+      '--CircularProgress-progressColor': theme.variants.solid?.[ownerState.color!].backgroundColor,
+    }),
+    ...(ownerState.variant === 'solid' && {
+      '--CircularProgress-trackColor':
+        theme.variants.softHover?.[ownerState.color!].backgroundColor,
+      '--CircularProgress-progressColor': theme.variants.solid?.[ownerState.color!].backgroundColor,
+    }),
   };
 });
 
