@@ -47,3 +47,16 @@ The button group can be displayed vertically using the `orientation` prop.
 You can remove the elevation with the `disableElevation` prop.
 
 {{"demo": "DisableElevation.js"}}
+
+## Experimental API
+
+### Material You version
+
+The default ButtonGroup component follows the Material Design 2 specs.
+For the Material Design 3 ([Material You](https://m3.material.io/)) version, you can use the new experimental `@mui/material-next` package:
+
+```js
+import ButtonGroup from '@mui/material-next/ButtonGroup';
+```
+
+{{"demo": "ButtonGroupMaterialYouPlayground.js", "hideToolbar": true}}
