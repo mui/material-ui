@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SxProps, Theme } from '@mui/system';
 // TODO v6: port to material-next
-// eslint-disable-next-line no-restricted-imports
 import { InternalStandardProps as StandardProps } from '@mui/material';
 import { InputBaseProps } from '../InputBase/InputBase.types';
 import { OutlinedInputClasses } from './outlinedInputClasses';
