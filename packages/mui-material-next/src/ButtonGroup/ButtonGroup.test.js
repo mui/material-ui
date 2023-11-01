@@ -20,7 +20,7 @@ describe('<ButtonGroup />', () => {
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'span',
       muiName: 'MuiButtonGroup',
-      testVariantProps: { variant: 'contained' },
+      testVariantProps: { variant: 'filled' },
       skip: ['componentsProp'],
     }),
   );
@@ -33,7 +33,7 @@ describe('<ButtonGroup />', () => {
     );
     const buttonGroup = container.firstChild;
     expect(buttonGroup).to.have.class(classes.root);
-    expect(buttonGroup).not.to.have.class(classes.contained);
+    expect(buttonGroup).not.to.have.class(classes.filled);
     expect(buttonGroup).not.to.have.class(classes.fullWidth);
   });
 
@@ -65,18 +65,18 @@ describe('<ButtonGroup />', () => {
     expect(button).not.to.have.class(classes.groupedOutlinedSecondary);
   });
 
-  it('can render a contained button', () => {
+  it('can render a filled button', () => {
     const { getByRole } = render(
-      <ButtonGroup variant="contained">
+      <ButtonGroup variant="filled">
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class('MuiButton-contained');
+    expect(button).to.have.class('MuiButton-filled');
     expect(button).to.have.class(classes.grouped);
-    expect(button).to.have.class(classes.groupedContained);
-    expect(button).to.have.class(classes.groupedContainedPrimary);
-    expect(button).not.to.have.class(classes.groupedContainedSecondary);
+    expect(button).to.have.class(classes.groupedFilled);
+    expect(button).to.have.class(classes.groupedFilledPrimary);
+    expect(button).not.to.have.class(classes.groupedFilledSecondary);
   });
 
   it('can render a small button', () => {
@@ -164,7 +164,7 @@ describe('<ButtonGroup />', () => {
   it('should forward the context to children', () => {
     let context;
     render(
-      <ButtonGroup size="large" variant="contained">
+      <ButtonGroup size="large" variant="filled">
         <ButtonGroupContext.Consumer>
           {(value) => {
             context = value;
@@ -172,7 +172,7 @@ describe('<ButtonGroup />', () => {
         </ButtonGroupContext.Consumer>
       </ButtonGroup>,
     );
-    expect(context.variant).to.equal('contained');
+    expect(context.variant).to.equal('filled');
     expect(context.size).to.equal('large');
     expect(context.fullWidth).to.equal(false);
     expect(context.disableRipple).to.equal(false);
@@ -192,7 +192,7 @@ describe('<ButtonGroup />', () => {
                 defaultProps: {
                   color: 'primary',
                   size: 'medium',
-                  variant: 'contained',
+                  variant: 'filled',
                 },
               },
             },
