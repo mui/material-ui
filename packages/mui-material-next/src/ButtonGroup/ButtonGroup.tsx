@@ -73,80 +73,81 @@ export const ButtonGroupRoot = styled('div', {
   } = ownerState;
 
   return {
-  display: 'inline-flex',
-  borderRadius: tokens.sys.shape.corner.full,
-  ...(variant === 'elevated' && {
-    boxShadow: tokens.sys.elevation[1],
-  }),
+    display: 'inline-flex',
+    borderRadius: tokens.sys.shape.corner.full,
+    ...(variant === 'elevated' && {
+      boxShadow: tokens.sys.elevation[1],
+    }),
     ...((disableElevation || disabled) && {
-    boxShadow: 'none',
-  }),
+      boxShadow: 'none',
+    }),
     ...(fullWidth && {
-    width: '100%',
-  }),
+      width: '100%',
+    }),
     ...(orientation === 'vertical' && {
-    flexDirection: 'column',
-  }),
-  [`& .${buttonGroupClasses.grouped}`]: {
-    minWidth: 40,
-    '&:hover, &:focus': {
+      flexDirection: 'column',
+    }),
+    [`& .${buttonGroupClasses.grouped}`]: {
+      minWidth: 40,
+      '&:hover, &:focus': {
+        boxShadow: 'none',
+      },
       boxShadow: 'none',
     },
-    boxShadow: 'none',
-  },
-  [`.${buttonGroupClasses.firstButton}, .${buttonGroupClasses.middleButton}`]: {
-    [`&.${buttonGroupClasses.groupedHorizontal}`]: {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-    [`&.${buttonGroupClasses.groupedVertical}`]: {
-      borderBottomRightRadius: 0,
-      borderBottomLeftRadius: 0,
-    },
-    [`&.${buttonGroupClasses.groupedTextHorizontal}`]: {
-      borderRight: `1px solid ${tokens.sys.color.outline}`,
-      [`&.${buttonGroupClasses.disabled}`]: {
-        borderRightColor: `rgba(${tokens.sys.color.onSurface}, 0.12)`,
+    [`.${buttonGroupClasses.firstButton}, .${buttonGroupClasses.middleButton}`]: {
+      [`&.${buttonGroupClasses.groupedHorizontal}`]: {
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
       },
-    },
-    [`&.${buttonGroupClasses.groupedTextVertical}`]: {
-      borderBottom: `1px solid ${tokens.sys.color.outline}`,
-      [`&.${buttonGroupClasses.disabled}`]: {
-        borderBottomColor: `rgba(${tokens.sys.color.onSurface}, 0.12)`,
+      [`&.${buttonGroupClasses.groupedVertical}`]: {
+        borderBottomRightRadius: 0,
+        borderBottomLeftRadius: 0,
       },
-    },
-    [`&.${buttonGroupClasses.groupedOutlinedHorizontal}`]: {
-      borderRightColor: 'transparent',
-    },
-    [`&.${buttonGroupClasses.groupedOutlinedVertical}`]: {
-      borderBottomColor: 'transparent',
-    },
-    '&:hover': {
+      [`&.${buttonGroupClasses.groupedTextHorizontal}`]: {
+        borderRight: `1px solid ${tokens.sys.color.outline}`,
+        [`&.${buttonGroupClasses.disabled}`]: {
+          borderRightColor: `rgba(${tokens.sys.color.onSurface}, 0.12)`,
+        },
+      },
+      [`&.${buttonGroupClasses.groupedTextVertical}`]: {
+        borderBottom: `1px solid ${tokens.sys.color.outline}`,
+        [`&.${buttonGroupClasses.disabled}`]: {
+          borderBottomColor: `rgba(${tokens.sys.color.onSurface}, 0.12)`,
+        },
+      },
       [`&.${buttonGroupClasses.groupedOutlinedHorizontal}`]: {
-        borderRightColor: 'currentColor',
+        borderRightColor: 'transparent',
       },
       [`&.${buttonGroupClasses.groupedOutlinedVertical}`]: {
-        borderBottomColor: 'currentColor',
+        borderBottomColor: 'transparent',
+      },
+      '&:hover': {
+        [`&.${buttonGroupClasses.groupedOutlinedHorizontal}`]: {
+          borderRightColor: 'currentColor',
+        },
+        [`&.${buttonGroupClasses.groupedOutlinedVertical}`]: {
+          borderBottomColor: 'currentColor',
+        },
       },
     },
-  },
-  [`.${buttonGroupClasses.lastButton}, .${buttonGroupClasses.middleButton}`]: {
-    [`&.${buttonGroupClasses.groupedHorizontal}`]: {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
+    [`.${buttonGroupClasses.lastButton}, .${buttonGroupClasses.middleButton}`]: {
+      [`&.${buttonGroupClasses.groupedHorizontal}`]: {
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+      },
+      [`&.${buttonGroupClasses.groupedVertical}`]: {
+        borderTopRightRadius: 0,
+        borderTopLeftRadius: 0,
+      },
+      [`&.${buttonGroupClasses.groupedOutlinedHorizontal}`]: {
+        marginLeft: -1,
+      },
+      [`&.${buttonGroupClasses.groupedOutlinedVertical}`]: {
+        marginTop: -1,
+      },
     },
-    [`&.${buttonGroupClasses.groupedVertical}`]: {
-      borderTopRightRadius: 0,
-      borderTopLeftRadius: 0,
-    },
-    [`&.${buttonGroupClasses.groupedOutlinedHorizontal}`]: {
-      marginLeft: -1,
-    },
-    [`&.${buttonGroupClasses.groupedOutlinedVertical}`]: {
-      marginTop: -1,
-    },
-  }
-}});
+  };
+});
 
 const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
   const {
