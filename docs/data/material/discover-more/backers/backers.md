@@ -13,7 +13,7 @@ MUI Core is our crowd-funded open-source projects, licensed under the permissive
 
 _1/3 slots available_
 
-Diamond Sponsors are those who have pledged \$1,500/month or more to MUI. [Tier benefits](#diamond).
+Diamond sponsors are those who've pledged \$1,500/month or more to MUI. [Tier benefits](#diamond).
 
 ## Gold sponsors
 
@@ -29,7 +29,7 @@ via [Open Collective](https://opencollective.com/mui) or via [the for-profit](h
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="icons8.com" href="https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/icons8/7fa1641/logo/96.png" srcset="https://images.opencollective.com/icons8/7fa1641/logo/192.png 2x" alt="Icons8" title="We provide the neat icons, photos, illustrations, and music. Developers, use our API to insert all the content we have into your apps." loading="lazy"></a>
 </p>
 
-Gold Sponsors are those who have pledged \$500/month or more to MUI. [Tier benefits](#gold).
+Gold sponsors are those who've pledged \$500/month or more to MUI. [Tier benefits](#gold).
 
 ## Silver sponsors
 
@@ -39,7 +39,7 @@ via [Open Collective](https://opencollective.com/mui)
   <object type="image/svg+xml" data="https://opencollective.com/mui/tiers/silver-sponsor.svg?avatarHeight=70&width=600" style="border-radius: 10px;">Silver Sponsors</object>
 </p>
 
-Silver Sponsors are those who have pledged $250/month to $500/month to MUI. [Tier benefits](#silver).
+Silvers sponsors are those who've pledged $250/month to $500/month to MUI. [Tier benefits](#silver).
 
 ## Bronze sponsors
 
@@ -49,7 +49,7 @@ via [Open Collective](https://opencollective.com/mui)
   <object type="image/svg+xml" data="https://opencollective.com/mui/tiers/bronze-sponsor.svg?avatarHeight=60&width=600" style="border-radius: 10px;">Bronze Sponsors</object>
 </p>
 
-Bronze Sponsors are those who have pledged $100/month to $250/month to MUI. [Tier benefits](#sliver).
+Bronze sponsors are those who've pledged $100/month to $250/month to MUI. [Tier benefits](#sliver).
 
 ## Backers
 
