@@ -158,6 +158,42 @@ Below is an example using the [`InputBase`](/material-ui/api/input-base/) compon
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field/).
 
+## Performance
+
+`InputBase` injects/removes `GlobalStyles` for the auto-fill keyframes on every mount/unmount. If you are loading a large number of `TextField` components at once, it might be a good idea to change this default behavior by enabling the `disableInjectingGlobalStyles` option in `InputBase`. Make sure to inject `GlobalStyles` for the auto-fill keyframes at the top of your application.
+
+```jsx
+import {
+  GlobalStyles,
+  createTheme,
+  ThemeProvider
+} from "@mui/material";
+
+const theme = createTheme({
+  components: {
+    MuiInputBase: {
+      defaultProps: {
+        disableInjectingGlobalStyles: true
+      }
+    }
+  }
+});
+
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+        <GlobalStyles
+          styles={{
+            "@keyframes mui-auto-fill": { from: { display: "block" } },
+            "@keyframes mui-auto-fill-cancel": { from: { display: "block" } }
+          }}
+        />
+        ...
+    </ThemeProvider>
+  );
+}
+```
+
 ## `useFormControl`
 
 For advanced customization use cases, a `useFormControl()` hook is exposed.
