@@ -196,7 +196,7 @@ import { useFormControl } from '@mui/material/FormControl';
 
 ## Performance
 
-Global styles for the auto-fill keyframes are injected/removd on every mount/unmount. If you are loading a large number of `TextField` components at once, it might be a good idea to change this default behavior by enabling [`disableInjectingGlobalStyles`](/material-ui/api/input-base/#InputBase-prop-disableInjectingGlobalStyles) in `InputBase`. Make sure to inject `GlobalStyles` for the auto-fill keyframes at the top of your application.
+Global styles for the auto-fill keyframes are injected/removed on every mount/unmount. If you are loading a large number of `TextField` components at once, it might be a good idea to change this default behavior by enabling [`disableInjectingGlobalStyles`](/material-ui/api/input-base/#InputBase-prop-disableInjectingGlobalStyles) in `InputBase`. Make sure to inject `GlobalStyles` for the auto-fill keyframes at the top of your application.
 
 ```jsx
 import {
