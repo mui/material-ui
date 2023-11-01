@@ -16,6 +16,7 @@ const data = [
     date: '21 Oct 2022',
     title: 'Details for our Yosemite Park hike',
     body: 'Hello, my friend! So, it seems that we are getting there…',
+    color: 'warning.400',
   },
   {
     name: 'Pete Sand',
@@ -24,6 +25,7 @@ const data = [
     date: '06 Jul 2022',
     title: 'Tickets for our upcoming trip',
     body: 'Good day, mate! It seems that our tickets just arrived…',
+    color: 'success.400',
   },
   {
     name: 'Kate Gates',
@@ -32,6 +34,7 @@ const data = [
     date: '16 May 2022',
     title: 'Brunch this Saturday?',
     body: "Hey! I'll be around the city this weekend, how about a…",
+    color: 'primary.500',
   },
   {
     name: 'John Snow',
@@ -40,6 +43,7 @@ const data = [
     date: '10 May 2022',
     title: 'Exciting News!',
     body: 'Hello there! I have some exciting news to share with you...',
+    color: 'danger.500',
   },
   {
     name: 'Michael Scott',
@@ -48,6 +52,7 @@ const data = [
     date: '13 Apr 2022',
     title: 'Upcoming Product Launch',
     body: 'Dear customers and supporters, I am thrilled to announc...',
+    color: 'danger.500',
   },
 ];
 
@@ -56,7 +61,7 @@ export default function EmailList() {
     <List
       sx={{
         [`& .${listItemButtonClasses.root}.${listItemButtonClasses.selected}`]: {
-          backgroundColor: 'background.level1',
+          borderLeft: '2px solid',
           borderLeftColor: 'var(--joy-palette-primary-outlinedBorder)',
         },
       }}
@@ -87,13 +92,27 @@ export default function EmailList() {
                     mb: 0.5,
                   }}
                 >
-                  <Typography level="body-xs">{item.name}</Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    <Typography level="body-xs">{item.name}</Typography>
+                    <Box
+                      sx={{
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '99px',
+                        bgcolor: item.color,
+                      }}
+                    />
+                  </Box>
+
                   <Typography level="body-xs" textColor="text.tertiary">
                     {item.date}
                   </Typography>
                 </Box>
+
                 <div>
-                  <Typography sx={{ mb: 0.5 }}>{item.title}</Typography>
+                  <Typography level="title-sm" sx={{ mb: 0.5 }}>
+                    {item.title}
+                  </Typography>
                   <Typography level="body-sm">{item.body}</Typography>
                 </div>
               </Box>

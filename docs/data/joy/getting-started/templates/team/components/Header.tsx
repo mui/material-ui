@@ -31,7 +31,7 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
 // Custom
-import TeamNav from './TeamNav';
+import TeamNav from './Navigation';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -141,7 +141,14 @@ export default function Header() {
         </Drawer>
       </Box>
 
-      <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: 1.5,
+          alignItems: 'center',
+        }}
+      >
         <Input
           size="sm"
           variant="outlined"
@@ -188,21 +195,16 @@ export default function Header() {
         </Tooltip>
         <ColorSchemeToggle />
         <Dropdown>
-          <MenuButton variant="outlined" size="sm" slots={{ root: IconButton }}>
-            <IconButton
-              size="sm"
-              variant="plain"
-              color="neutral"
-              sx={{
-                borderRadius: '99999999px',
-              }}
-            >
-              <Avatar
-                src="https://i.pravatar.cc/40?img=2"
-                srcSet="https://i.pravatar.cc/80?img=2"
-                sx={{ maxWidth: 32, maxHeight: 32, borderRadius: '50%' }}
-              />
-            </IconButton>
+          <MenuButton
+            variant="plain"
+            size="sm"
+            sx={{ maxWidth: '32px', maxHeight: '32px' }}
+          >
+            <Avatar
+              src="https://i.pravatar.cc/40?img=2"
+              srcSet="https://i.pravatar.cc/80?img=2"
+              sx={{ maxWidth: '32px', maxHeight: '32px' }}
+            />
           </MenuButton>
           <Menu
             placement="bottom-end"
@@ -226,7 +228,7 @@ export default function Header() {
                   srcSet="https://i.pravatar.cc/80?img=2"
                   sx={{ borderRadius: '50%' }}
                 />
-                <Box sx={{ ml: 2 }}>
+                <Box sx={{ ml: 1.5 }}>
                   <Typography level="title-sm" textColor="text.primary">
                     Rick Sanchez
                   </Typography>

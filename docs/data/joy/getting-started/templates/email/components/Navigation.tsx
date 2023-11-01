@@ -14,17 +14,14 @@ import DraftsRoundedIcon from '@mui/icons-material/DraftsRounded';
 import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
-export default function EmailNav() {
+export default function Navigation() {
   return (
     <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
       <ListItem nested>
-        <ListSubheader>Browse</ListSubheader>
-        <List
-          aria-labelledby="nav-list-browse"
-          sx={{
-            '& .JoyListItemButton-root': { p: '8px' },
-          }}
-        >
+        <ListSubheader sx={{ letterSpacing: '2px', fontWeight: '800' }}>
+          Browse
+        </ListSubheader>
+        <List aria-labelledby="nav-list-browse">
           <ListItem>
             <ListItemButton selected>
               <ListItemDecorator>
@@ -68,13 +65,14 @@ export default function EmailNav() {
         </List>
       </ListItem>
       <ListItem nested sx={{ mt: 2 }}>
-        <ListSubheader>Tags</ListSubheader>
+        <ListSubheader sx={{ letterSpacing: '2px', fontWeight: '800' }}>
+          Tags
+        </ListSubheader>
         <List
           aria-labelledby="nav-list-tags"
           size="sm"
           sx={{
             '--ListItemDecorator-size': '32px',
-            '& .JoyListItemButton-root': { p: '8px' },
           }}
         >
           <ListItem>

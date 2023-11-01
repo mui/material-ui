@@ -14,6 +14,9 @@ import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
 import ListDivider from '@mui/joy/ListDivider';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
+import Drawer from '@mui/joy/Drawer';
+import ModalClose from '@mui/joy/ModalClose';
+import DialogTitle from '@mui/joy/DialogTitle';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -21,11 +24,14 @@ import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
-import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+
+// Custom
+import Navigation from './Navigation';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -41,7 +47,7 @@ function ColorSchemeToggle() {
       <IconButton
         id="toggle-mode"
         size="sm"
-        variant="soft"
+        variant="plain"
         color="neutral"
         sx={{ alignSelf: 'center' }}
         onClick={() => {
@@ -59,6 +65,7 @@ function ColorSchemeToggle() {
 }
 
 export default function Header() {
+  const [open, setOpen] = React.useState(false);
   return (
     <Box
       sx={{
@@ -71,7 +78,7 @@ export default function Header() {
         direction="row"
         justifyContent="center"
         alignItems="center"
-        spacing={2}
+        spacing={1}
         sx={{ display: { xs: 'none', sm: 'flex' } }}
       >
         <IconButton
@@ -118,32 +125,30 @@ export default function Header() {
         </Button>
       </Stack>
       <Box sx={{ display: { xs: 'inline-flex', sm: 'none' } }}>
-        <Dropdown>
-          <MenuButton variant="plain" endDecorator={<ExpandMoreRoundedIcon />}>
-            Files
-          </MenuButton>
-          <Menu
-            placement="bottom-start"
-            sx={{ zIndex: '99999', width: 120, justifyContent: 'center' }}
-          >
-            <MenuItem component="a" href="/joy-ui/getting-started/templates/email/">
-              Email
-            </MenuItem>
-            <MenuItem component="a" href="/joy-ui/getting-started/templates/team/">
-              Team
-            </MenuItem>
-            <MenuItem
-              selected
-              component="a"
-              href="/joy-ui/getting-started/templates/files/"
-            >
-              Files
-            </MenuItem>
-          </Menu>
-        </Dropdown>
+        <IconButton variant="plain" color="neutral" onClick={() => setOpen(true)}>
+          <MenuRoundedIcon />
+        </IconButton>
+        <Drawer
+          sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
+          open={open}
+          onClose={() => setOpen(false)}
+        >
+          <ModalClose />
+          <DialogTitle>Acme Co.</DialogTitle>
+          <Box sx={{ px: 1 }}>
+            <Navigation />
+          </Box>
+        </Drawer>
       </Box>
 
-      <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: 1.5,
+          alignItems: 'center',
+        }}
+      >
         <Input
           size="sm"
           variant="outlined"
@@ -156,7 +161,7 @@ export default function Header() {
               sx={{ bgcolor: 'background.level1' }}
             >
               <Typography level="title-sm" textColor="text.icon">
-                ⌘ k
+                ⌘ K
               </Typography>
             </IconButton>
           }
@@ -179,7 +184,7 @@ export default function Header() {
         <Tooltip title="Joy UI overview" variant="outlined">
           <IconButton
             size="sm"
-            variant="soft"
+            variant="plain"
             color="neutral"
             component="a"
             href="/blog/first-look-at-joy/"
@@ -191,60 +196,48 @@ export default function Header() {
         <ColorSchemeToggle />
         <Dropdown>
           <MenuButton
-            variant="outlined"
+            variant="plain"
             size="sm"
-            slots={{ root: Box }}
-            sx={{
-              p: 1,
-              borderRadius: '999px',
-              '&:hover': {
-                bgcolor: 'var(--joy-palette-neutral-plainHoverBg)',
-                cursor: 'pointer',
-              },
-              '&:active': {
-                bgcolor: 'var(--joy-palette-neutral-plainActiveBg)',
-                cursor: 'pointer',
-              },
-            }}
+            sx={{ maxWidth: '32px', maxHeight: '32px' }}
           >
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <Avatar
-                src="https://i.pravatar.cc/40?img=2"
-                srcSet="https://i.pravatar.cc/80?img=2"
-                sx={{ borderRadius: '50%' }}
-                size="sm"
-              />
-              <Box sx={{ ml: 2, display: { xs: 'none', sm: 'block' } }}>
-                <Typography level="title-sm" textColor="text.primary">
-                  Rick Sanchez
-                </Typography>
-              </Box>
-              <IconButton
-                size="sm"
-                variant="plain"
-                color="neutral"
-                sx={{ ml: 1, display: { xs: 'none', sm: 'flex' } }}
-              >
-                <ExpandMoreRoundedIcon />
-              </IconButton>
-            </Box>
+            <Avatar
+              src="https://i.pravatar.cc/40?img=2"
+              srcSet="https://i.pravatar.cc/80?img=2"
+              sx={{ maxWidth: '32px', maxHeight: '32px' }}
+            />
           </MenuButton>
           <Menu
             placement="bottom-end"
             size="sm"
             sx={{
               zIndex: '99999',
-              p: 1.5,
+              p: 1,
               gap: 1,
-              '--List-radius': '8px',
+              '--ListItem-radius': 'var(--joy-radius-sm)',
             }}
           >
-            <MenuItem disabled>rick@email.com</MenuItem>
+            <MenuItem>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                <Avatar
+                  src="https://i.pravatar.cc/40?img=2"
+                  srcSet="https://i.pravatar.cc/80?img=2"
+                  sx={{ borderRadius: '50%' }}
+                />
+                <Box sx={{ ml: 1.5 }}>
+                  <Typography level="title-sm" textColor="text.primary">
+                    Rick Sanchez
+                  </Typography>
+                  <Typography level="body-xs" textColor="text.tertiary">
+                    rick@email.com
+                  </Typography>
+                </Box>
+              </Box>
+            </MenuItem>
             <ListDivider />
             <MenuItem>
               <ListItemDecorator>
@@ -261,7 +254,7 @@ export default function Header() {
             <ListDivider />
             <MenuItem component="a" href="/blog/first-look-at-joy/">
               First look at Joy UI
-              <ListItemDecorator>
+              <ListItemDecorator sx={{ ml: 1 }}>
                 <OpenInNewRoundedIcon />
               </ListItemDecorator>
             </MenuItem>
@@ -270,7 +263,7 @@ export default function Header() {
               href="https://github.com/mui/material-ui/tree/master/docs/data/joy/getting-started/templates/email"
             >
               Sourcecode
-              <ListItemDecorator>
+              <ListItemDecorator sx={{ ml: 1 }}>
                 <OpenInNewRoundedIcon />
               </ListItemDecorator>
             </MenuItem>

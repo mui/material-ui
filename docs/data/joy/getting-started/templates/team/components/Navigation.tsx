@@ -11,8 +11,10 @@ import ListItemContent from '@mui/joy/ListItemContent';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import AssignmentIndRoundedIcon from '@mui/icons-material/AssignmentIndRounded';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
+import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
+import TodayRoundedIcon from '@mui/icons-material/TodayRounded';
 
-export default function TeamNav() {
+export default function Navigation() {
   return (
     <List
       size="sm"
@@ -42,6 +44,22 @@ export default function TeamNav() {
                 <AssignmentIndRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Managing accounts</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+                <AccountTreeRoundedIcon fontSize="small" />
+              </ListItemDecorator>
+              <ListItemContent>Org chart</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+                <TodayRoundedIcon fontSize="small" />
+              </ListItemDecorator>
+              <ListItemContent>Time off</ListItemContent>
             </ListItemButton>
           </ListItem>
           <ListItem>

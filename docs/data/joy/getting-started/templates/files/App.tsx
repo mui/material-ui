@@ -22,11 +22,14 @@ import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemContent from '@mui/joy/ListItemContent';
+import Stack from '@mui/joy/Stack';
 
 // Icons import
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 
 // custom
 import Layout from './components/Layout';
@@ -43,6 +46,58 @@ export default function FilesExample() {
           <Navigation />
         </Layout.SideDrawer>
       )}
+      <Stack
+        id="tab-bar"
+        direction="row"
+        justifyContent="space-around"
+        spacing={1}
+        sx={(theme) => ({
+          display: { xs: 'flex', sm: 'none' },
+          zIndex: '999',
+          bottom: 0,
+          position: 'fixed',
+          width: '100dvw',
+          py: 2,
+          backgroundColor: 'background.body',
+          borderTop: '1px solid',
+          borderColor: 'divider',
+        })}
+      >
+        <Button
+          variant="plain"
+          color="neutral"
+          component="a"
+          href="/joy-ui/getting-started/templates/email/"
+          size="sm"
+          startDecorator={<EmailRoundedIcon />}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        >
+          Email
+        </Button>
+        <Button
+          variant="plain"
+          color="neutral"
+          component="a"
+          href="/joy-ui/getting-started/templates/team/"
+          size="sm"
+          startDecorator={<PeopleAltRoundedIcon />}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        >
+          Team
+        </Button>
+        <Button
+          variant="plain"
+          color="neutral"
+          aria-pressed="true"
+          component="a"
+          href="/joy-ui/getting-started/templates/files/"
+          size="sm"
+          startDecorator={<FolderRoundedIcon />}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        >
+          Files
+        </Button>
+      </Stack>
       <Layout.Root
         sx={{
           gridTemplateColumns: {

@@ -9,7 +9,6 @@ import ChipDelete from '@mui/joy/ChipDelete';
 import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 import List from '@mui/joy/List';
-import IconButton from '@mui/joy/IconButton';
 import Stack from '@mui/joy/Stack';
 import Divider from '@mui/joy/Divider';
 import ListItem from '@mui/joy/ListItem';
@@ -30,15 +29,15 @@ import AccordionSummary, {
 
 // Icons import
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
+import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 
 // custom
 import Layout from './components/Layout';
 import Header from './components/Header';
-import TeamNav from './components/TeamNav';
+import Navigation from './components/Navigation';
 
 export default function TeamExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -47,7 +46,7 @@ export default function TeamExample() {
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
-          <TeamNav />
+          <Navigation />
         </Layout.SideDrawer>
       )}
       <Stack
@@ -62,8 +61,7 @@ export default function TeamExample() {
           position: 'fixed',
           width: '100dvw',
           py: 2,
-          backgroundColor: `rgba(${theme.palette.background.body}, 0.9)`,
-          backdropFilter: 'blur(12px)',
+          backgroundColor: 'background.body',
           borderTop: '1px solid',
           borderColor: 'divider',
         })}
@@ -73,9 +71,9 @@ export default function TeamExample() {
           color="neutral"
           component="a"
           href="/joy-ui/getting-started/templates/email/"
-          size="md"
+          size="sm"
           startDecorator={<EmailRoundedIcon />}
-          sx={{ alignSelf: 'center' }}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
         >
           Email
         </Button>
@@ -85,9 +83,9 @@ export default function TeamExample() {
           aria-pressed="true"
           component="a"
           href="/joy-ui/getting-started/templates/team/"
-          size="md"
+          size="sm"
           startDecorator={<PeopleAltRoundedIcon />}
-          sx={{ alignSelf: 'center' }}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
         >
           Team
         </Button>
@@ -96,9 +94,9 @@ export default function TeamExample() {
           color="neutral"
           component="a"
           href="/joy-ui/getting-started/templates/files/"
-          size="md"
+          size="sm"
           startDecorator={<FolderRoundedIcon />}
-          sx={{ alignSelf: 'center' }}
+          sx={{ flexDirection: 'column', '--Button-gap': 0 }}
         >
           Files
         </Button>
@@ -115,21 +113,36 @@ export default function TeamExample() {
           <Header />
         </Layout.Header>
         <Layout.SideNav>
-          <TeamNav />
+          <Navigation />
         </Layout.SideNav>
         <Layout.SidePane>
           <Box
             sx={{
               p: 2,
-              pb: 1,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
             }}
           >
-            <Typography level="title-md">Filter by</Typography>
+            <Typography level="title-lg" textColor="text.secondary">
+              People
+            </Typography>
+
+            <Button startDecorator={<PersonRoundedIcon />} size="sm">
+              Add new
+            </Button>
+          </Box>
+          <Box
+            sx={{
+              p: 2,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Typography level="title-md">Filters</Typography>
             <Button size="sm" variant="plain">
-              Clear filters
+              Clear
             </Button>
           </Box>
           <AccordionGroup
@@ -201,7 +214,7 @@ export default function TeamExample() {
                 <Box sx={{ my: 2 }}>
                   <Autocomplete
                     size="sm"
-                    placeholder="Position, skills, etc…"
+                    placeholder="Country, city, etc…"
                     options={[
                       // some of Thailand provinces
                       'Bangkok',

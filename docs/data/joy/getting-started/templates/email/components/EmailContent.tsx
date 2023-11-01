@@ -10,6 +10,7 @@ import Snackbar from '@mui/joy/Snackbar';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
+import Tooltip from '@mui/joy/Tooltip';
 
 // Icons import
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
@@ -129,7 +130,7 @@ export default function EmailContent() {
           <Button
             size="sm"
             variant="plain"
-            color="neutral"
+            color="danger"
             startDecorator={<DeleteRoundedIcon />}
             onClick={() => handleSnackbarOpen(2)}
           >
@@ -160,9 +161,15 @@ export default function EmailContent() {
       <Box
         sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start' }}
       >
-        <Typography level="title-lg" textColor="text.primary">
-          Details for our Yosemite Park hike
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Typography level="title-lg" textColor="text.primary">
+            Details for our Yosemite Park hike
+          </Typography>
+          <Chip size="sm" variant="outlined" color="warning">
+            Personal
+          </Chip>
+        </Box>
+
         <Box
           sx={{
             mt: 1,
@@ -180,9 +187,11 @@ export default function EmailContent() {
             >
               From
             </Typography>
-            <Chip size="sm" variant="soft" color="primary" onClick={() => {}}>
-              alex.jonnold@hike.com
-            </Chip>
+            <Tooltip size="sm" title="Copy email" variant="outlined">
+              <Chip size="sm" variant="soft" color="primary" onClick={() => {}}>
+                alex.jonnold@hike.com
+              </Chip>
+            </Tooltip>
           </div>
           <div>
             <Typography
@@ -192,9 +201,12 @@ export default function EmailContent() {
             >
               to
             </Typography>
-            <Chip size="sm" variant="soft" color="primary" onClick={() => {}}>
-              steve@mail.com
-            </Chip>
+
+            <Tooltip size="sm" title="Copy email" variant="outlined">
+              <Chip size="sm" variant="soft" color="primary" onClick={() => {}}>
+                steve@mail.com
+              </Chip>
+            </Tooltip>
           </div>
         </Box>
       </Box>

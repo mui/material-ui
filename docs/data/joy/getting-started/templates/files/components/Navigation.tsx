@@ -16,7 +16,9 @@ export default function Navigation() {
   return (
     <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
       <ListItem nested>
-        <ListSubheader>Browse</ListSubheader>
+        <ListSubheader sx={{ letterSpacing: '2px', fontWeight: '800' }}>
+          Browse
+        </ListSubheader>
         <List
           aria-labelledby="nav-list-browse"
           sx={{
@@ -50,7 +52,9 @@ export default function Navigation() {
         </List>
       </ListItem>
       <ListItem nested sx={{ mt: 2 }}>
-        <ListSubheader>Tags</ListSubheader>
+        <ListSubheader sx={{ letterSpacing: '2px', fontWeight: '800' }}>
+          Tags
+        </ListSubheader>
         <List
           aria-labelledby="nav-list-tags"
           size="sm"
