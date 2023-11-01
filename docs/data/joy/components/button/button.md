@@ -42,20 +42,6 @@ Use the Icon Button component for a square button to house an icon with no text 
 
 {{"demo": "IconButtons.js"}}
 
-### Disabled
-
-Use the `disabled` prop to disable interaction and focus:
-
-{{"demo": "ButtonDisabled.js"}}
-
-### Loading
-
-Add the `loading` prop to show the Button's loading state.
-The Button is [disabled](#disabled) as long as it's loading.
-See [Loading indicator](#loading-indicator) and [Loading position](#loading-position) for customization options.
-
-{{"demo": "ButtonLoading.js"}}
-
 ### Variants
 
 The Button component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
@@ -83,6 +69,20 @@ Every palette included in the theme is available via the `color` prop.
 Play around combining different colors with different variants.
 
 {{"demo": "ButtonColors.js"}}
+
+### Disabled
+
+Use the `disabled` prop to disable interaction and focus:
+
+{{"demo": "ButtonDisabled.js"}}
+
+### Loading
+
+Add the `loading` prop to show the Button's loading state.
+The Button is [disabled](#disabled) as long as it's loading.
+See [Loading indicator](#loading-indicator) and [Loading position](#loading-position) for customization options.
+
+{{"demo": "ButtonLoading.js"}}
 
 ### Decorators
 
