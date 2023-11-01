@@ -50,7 +50,7 @@ export default function TaskCard() {
           >
             <Avatar
               imgProps={{ 'aria-labelledby': 'demo-task-card-assignee-name' }}
-              src="https://i.scdn.co/image/ab67616d0000b273992e45c95fa03ee72c52a526"
+              src="/static/images/avatar/2.jpg"
             />
           </Box>
           <div>
@@ -58,7 +58,7 @@ export default function TaskCard() {
               Assigned to
             </Typography>
             <Typography id="demo-task-card-assignee-name" variant="body2" fontWeight="semiBold">
-              Michael Scott
+              Lucas Smith
             </Typography>
           </div>
         </Box>

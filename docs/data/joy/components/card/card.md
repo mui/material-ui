@@ -172,6 +172,10 @@ This is because the variables are also used to calculate a proper radius for the
 
 ## Common examples
 
+### Nested cards
+
+{{"demo": "NestedCard.js"}}
+
 ### Bio card
 
 {{"demo": "BioCard.js"}}

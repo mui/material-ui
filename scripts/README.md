@@ -34,6 +34,7 @@ The following steps must be proposed as a pull request.
    1. Keep the package versions of stable public packages the same as the root `package.json` version.
    2. Don't bump private packages unless necessary, these have `"private": true` in their `package.json`
    3. Manually remove `^` from packages with prerelease version, e.g. `-alpha`
+   4. [IMPORTANT] Search for the older version string in the whole project directory and bump packages and its references that are still on the old version.
 5. Open PR with changes and wait for review and green CI
 6. Merge PR once CI is green and it has been approved
 
