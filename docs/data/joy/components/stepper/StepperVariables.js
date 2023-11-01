@@ -51,9 +51,9 @@ export default function StepperVariables() {
           sx={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
-            gap: 2,
+            gap: 4,
             rowGap: 8,
-            width: '100%',
+            width: 320,
           }}
         >
           <Stepper sx={{ gridColumn: '1/-1', ...sx }}>

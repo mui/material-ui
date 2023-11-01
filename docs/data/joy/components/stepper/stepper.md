@@ -72,16 +72,16 @@ Use `orientation="vertical"` to display the Stepper vertically. If you don't pro
 
 For vertical Steppers, you can pass more content to the Step by grouping it inside an HTML element.
 
-The Step switches the display to CSS `grid` when the Stepper's orientation is vertical.
+The Step switches its display to CSS `grid` when the Stepper's orientation is vertical.
 
 {{"demo": "VerticalExtraContentStepper.js"}}
 
 ### Connector
+
+The connector is a pseudo element of the Step. To customize it, target `::after` element of the Step using `sx` prop.
 
 {{"demo": "ConnectorStepper.js"}}
 
 ## CSS Variables
 
 {{"demo": "StepperVariables.js"}}
-
-## Common examples

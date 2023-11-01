@@ -54,18 +54,19 @@ const StepRoot = styled('li', {
     justifyContent: 'var(--_Step-justify, center)',
     gap: `var(--Step-gap, ${INSET})`,
     '& > *': { zIndex: 1, [`&:not(.${stepClasses.indicator})`]: { gridColumn: '2' } },
-    '&:not([data-last-child])': {
-      '&::after': {
-        content: '""',
-        display: 'block',
-        borderRadius: 'var(--Step-connectorRadius)',
-        height: `var(--Step-connectorThickness, ${THICKNESS})`,
-        background: `var(--Step-connectorBg, ${theme.vars.palette.divider})`,
-        flex: 1,
-        marginInlineStart: `calc(var(--Step-connectorInset, ${INSET}) - var(--Step-gap, ${INSET}))`,
-        marginInlineEnd: `var(--Step-connectorInset, ${INSET})`,
-        zIndex: 0,
-      },
+    '&::after': {
+      content: '""',
+      display: 'block',
+      borderRadius: 'var(--Step-connectorRadius)',
+      height: `var(--Step-connectorThickness, ${THICKNESS})`,
+      background: `var(--Step-connectorBg, ${theme.vars.palette.divider})`,
+      flex: 1,
+      marginInlineStart: `calc(var(--Step-connectorInset, ${INSET}) - var(--Step-gap, ${INSET}))`,
+      marginInlineEnd: `var(--Step-connectorInset, ${INSET})`,
+      zIndex: 0,
+    },
+    '&[data-last-child]::after': {
+      display: 'none',
     },
     [`.${stepperClasses.horizontal} &:not([data-last-child])`]: {
       '--_Step-flex': 'auto', // requires to be `auto` to make equally connectors.
@@ -101,29 +102,19 @@ const StepRoot = styled('li', {
               '--_Step-justify': 'flex-start',
             },
             '&::after': {
-              display: 'none !important',
-            },
-          },
-          [`.${stepperClasses.horizontal} &:not([data-last-child]) .${stepClasses.indicator}`]: {
-            '&::after': {
-              content: '""',
-              display: 'block',
+              margin: 0,
               position: 'absolute',
               height: `var(--Step-connectorThickness, ${THICKNESS})`,
-              background: `var(--Step-connectorBg, ${theme.vars.palette.divider})`,
               zIndex: 0,
               top: `calc(var(--StepIndicator-size, ${SIZE}) / 2 - var(--Step-connectorThickness, ${THICKNESS}) / 2)`,
               left: `calc(50% + var(--StepIndicator-size, ${SIZE}) / 2 + var(--Step-connectorInset, ${INSET}))`,
               width: `calc(100% - var(--StepIndicator-size, ${SIZE}) - 2 * var(--Step-connectorInset, ${INSET}))`,
             },
-            '&:empty': {
-              zIndex: 0,
-              width: '100%',
-              height: '100%',
-              '&::after': {
-                top: `calc(50% - var(--Step-connectorThickness, ${THICKNESS}) / 2)`,
-                left: '50%',
-              },
+            // Eventhough `:has` is <90% support, we can use it because this is an edge case for vertical step without an indicator.
+            [`&:has(.${stepClasses.indicator}:empty)::after`]: {
+              '--StepIndicator-size': '0px',
+              '--Step-connectorInset': '0px',
+              top: `calc(50% - var(--Step-connectorThickness, ${THICKNESS}) / 2)`,
             },
           },
         },
@@ -143,11 +134,8 @@ const StepIndicator = styled('div', {
   placeSelf: 'center', // for vertical stepper
   width: `var(--StepIndicator-size, ${SIZE})`,
   height: `var(--StepIndicator-size, ${SIZE})`,
-  position: 'var(--_Step-indicatorPosition, unset)' as React.CSSProperties['position'],
   [`.${stepperClasses.horizontal} &:empty`]: {
-    '--_Step-indicatorPosition': 'absolute',
-    '--StepIndicator-size': '0px',
-    '--Step-connectorInset': '0px',
+    display: 'none',
   },
   [`.${stepperClasses.vertical} &:empty`]: {
     height: 'auto',
