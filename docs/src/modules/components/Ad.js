@@ -41,7 +41,7 @@ const inHouseAds = [
     name: 'scaffoldhub',
     link: 'https://v2.scaffoldhub.io/scaffolds/react-material-ui?partner=1',
     img: '/static/ads-in-house/scaffoldhub.png',
-    description: '<b>ScaffoldHub</b>. Automate building your full-stack MUI web-app.',
+    description: '<b>ScaffoldHub</b>. Automate building your full-stack Material UI web-app.',
   },
   {
     name: 'templates',
@@ -68,7 +68,8 @@ const inHouseAds = [
     name: 'figma',
     link: 'https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
     img: '/static/ads-in-house/figma.png',
-    description: '<b>For Figma</b>. A large UI kit with over 600 handcrafted MUI components 🎨.',
+    description:
+      '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material UI, MUI X, Joy UI components 🎨.',
   },
 ];
 
