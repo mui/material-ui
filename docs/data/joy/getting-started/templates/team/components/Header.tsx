@@ -13,7 +13,6 @@ import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
 import ListDivider from '@mui/joy/ListDivider';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Drawer from '@mui/joy/Drawer';
 import ModalClose from '@mui/joy/ModalClose';
 import DialogTitle from '@mui/joy/DialogTitle';
@@ -198,7 +197,7 @@ export default function Header() {
           <MenuButton
             variant="plain"
             size="sm"
-            sx={{ maxWidth: '32px', maxHeight: '32px' }}
+            sx={{ maxWidth: '32px', maxHeight: '32px', borderRadius: '9999999px' }}
           >
             <Avatar
               src="https://i.pravatar.cc/40?img=2"
@@ -240,38 +239,28 @@ export default function Header() {
             </MenuItem>
             <ListDivider />
             <MenuItem>
-              <ListItemDecorator>
-                <HelpRoundedIcon />
-              </ListItemDecorator>
+              <HelpRoundedIcon />
               Help
             </MenuItem>
             <MenuItem>
-              <ListItemDecorator>
-                <SettingsRoundedIcon />
-              </ListItemDecorator>
+              <SettingsRoundedIcon />
               Settings
             </MenuItem>
             <ListDivider />
             <MenuItem component="a" href="/blog/first-look-at-joy/">
               First look at Joy UI
-              <ListItemDecorator sx={{ ml: 1 }}>
-                <OpenInNewRoundedIcon />
-              </ListItemDecorator>
+              <OpenInNewRoundedIcon />
             </MenuItem>
             <MenuItem
               component="a"
               href="https://github.com/mui/material-ui/tree/master/docs/data/joy/getting-started/templates/email"
             >
               Sourcecode
-              <ListItemDecorator sx={{ ml: 1 }}>
-                <OpenInNewRoundedIcon />
-              </ListItemDecorator>
+              <OpenInNewRoundedIcon />
             </MenuItem>
             <ListDivider />
             <MenuItem>
-              <ListItemDecorator>
-                <LogoutRoundedIcon />
-              </ListItemDecorator>
+              <LogoutRoundedIcon />
               Log out
             </MenuItem>
           </Menu>
