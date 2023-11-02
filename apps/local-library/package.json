@@ -2,6 +2,6 @@
   "name": "local-ui-lib",
   "version": "0.0.0",
   "dependencies": {
-    "@mui/zero-runtime": "*"
+    "@mui/zero-runtime": "workspace:*"
   }
 }

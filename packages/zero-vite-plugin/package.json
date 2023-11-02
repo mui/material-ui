@@ -43,7 +43,7 @@
     "@linaria/babel-preset": "^4.5.4",
     "@linaria/logger": "^4.5.0",
     "@linaria/utils": "^4.5.3",
-    "@mui/zero-tag-processor": "0.0.1-alpha.0"
+    "@mui/zero-tag-processor": "workspace:^"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.3",
@@ -57,8 +57,7 @@
   "sideEffects": false,
   "publishConfig": {
     "access": "public",
-    "directory": "build",
-    "linkDirectory": false
+    "directory": "build"
   },
   "engines": {
     "node": ">=12.0.0"
