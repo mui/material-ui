@@ -148,7 +148,7 @@ const InputAdornment = React.forwardRef(function InputAdornment<
 InputAdornment.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The content of the component, normally an `IconButton` or string.
@@ -158,10 +158,6 @@ InputAdornment.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -183,6 +179,14 @@ InputAdornment.propTypes /* remove-proptypes */ = {
    */
   position: PropTypes.oneOf(['end', 'start']).isRequired,
   /**
+   * The components used for each slot inside the InputAdornment.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -195,7 +199,7 @@ InputAdornment.propTypes /* remove-proptypes */ = {
    * Note: If you are using the `TextField` component or the `FormControl` component
    * you do not have to set this manually.
    */
-  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
-};
+  variant: PropTypes.oneOf(['filled', 'outlined']),
+} as any;
 
 export default InputAdornment;
