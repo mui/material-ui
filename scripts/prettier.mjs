@@ -5,11 +5,11 @@
 // supported modes = check, check-changed, write, write-changed
 
 import yargs from 'yargs';
-import { spawn } from 'child_process';
+import { $ } from 'execa';
 import listChangedFiles from './listChangedFiles.mjs';
 
 async function run(argv) {
-  const { mode, branch } = argv;
+  const { mode, branch, ci } = argv;
   const shouldWrite = mode === 'write' || mode === 'write-changed';
   const onlyChanged = mode === 'check-changed' || mode === 'write-changed';
 
@@ -23,22 +23,22 @@ async function run(argv) {
 
   if (onlyChanged) {
     const changedFiles = await listChangedFiles({ branch });
-    args.push('--ignore-unknown', ...changedFiles);
+
+    const hasLockFileChanges =
+      changedFiles.has('yarn.lock') ||
+      changedFiles.has('pnpm.lock') ||
+      changedFiles.has('package-json.lock');
+
+    if (ci && hasLockFileChanges) {
+      args.push('.');
+    } else {
+      args.push('--ignore-unknown', ...changedFiles);
+    }
   } else {
     args.push('.');
   }
 
-  const child = spawn('prettier', args, { stdio: 'inherit' });
-
-  await new Promise((resolve, reject) => {
-    child.on('exit', (code) => {
-      if (code !== 0) {
-        reject(new Error(`prettier ${shouldWrite ? 'write' : 'check'} failed`));
-        return;
-      }
-      resolve();
-    });
-  });
+  await $({ stdio: 'inherit' })`prettier ${args}`;
 }
 
 yargs(process.argv.slice(2))
@@ -57,6 +57,11 @@ yargs(process.argv.slice(2))
           default: 'master',
           describe: 'The branch to diff against',
           type: 'string',
+        })
+        .option('ci', {
+          default: false,
+          describe: 'Run in CI mode',
+          type: 'boolean',
         });
     },
     handler: run,

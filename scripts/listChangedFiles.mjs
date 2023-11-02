@@ -8,7 +8,10 @@ async function listChangedFiles({ branch = 'master' } = {}) {
   const mergeBase = await $`git rev-parse ${comparedBranch}`;
   const gitDiff = await $`git diff --name-only ${mergeBase}`;
   const gitLs = await $`git ls-files --others --exclude-standard`;
-  return new Set([...gitDiff.stdout.split('\n'), ...gitLs.stdout.split('\n')]);
+  return new Set([
+    ...gitDiff.stdout.split('\n').filter(Boolean),
+    ...gitLs.stdout.split('\n').filter(Boolean),
+  ]);
 }
 
 export default listChangedFiles;
