@@ -274,25 +274,6 @@ describe('useSelect', () => {
         expect(buttonRefSpy.calledWith(buttonElement)).to.equal(true);
       });
     });
-
-    it('merges buttonRef parameter with listboxRootRef when focus management is activeDescendant', () => {
-      const buttonElement = document.createElement('button');
-      const buttonRefSpy = sinon.spy();
-      const { result } = renderHook(() =>
-        useSelect({ buttonRef: buttonRefSpy, focusManagement: 'activeDescendant' }),
-      );
-
-      const { listboxRootRef } = result.current;
-
-      expect(listboxRootRef).not.to.eq(null);
-
-      act(() => {
-        listboxRootRef?.(buttonElement);
-      });
-
-      expect(buttonRefSpy.calledOnce).to.equal(true);
-      expect(buttonRefSpy.calledWith(buttonElement)).to.equal(true);
-    });
   });
 
   describe('parameter: listboxRef', () => {
@@ -335,25 +316,6 @@ describe('useSelect', () => {
         expect(listboxRefSpy.calledOnce).to.equal(true);
         expect(listboxRefSpy.calledWith(listboxElement)).to.equal(true);
       });
-    });
-
-    it('merges listboxRef parameter with listboxRootRef when focus management is DOM', () => {
-      const listboxElement = document.createElement('ul');
-      const listboxRefSpy = sinon.spy();
-      const { result } = renderHook(() =>
-        useSelect({ listboxRef: listboxRefSpy, focusManagement: 'DOM' }),
-      );
-
-      const { listboxRootRef } = result.current;
-
-      expect(listboxRootRef).not.to.eq(null);
-
-      act(() => {
-        listboxRootRef?.(listboxElement);
-      });
-
-      expect(listboxRefSpy.calledOnce).to.equal(true);
-      expect(listboxRefSpy.calledWith(listboxElement)).to.equal(true);
     });
   });
 });

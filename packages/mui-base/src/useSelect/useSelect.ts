@@ -308,7 +308,6 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getRootProps: getListboxRootProps,
     contextValue: listContextValue,
     state: { open, highlightedValue: highlightedOption, selectedValues: selectedOptions },
-    rootRef: mergedListRootRef,
   } = useList(useListParameters);
 
   const createHandleButtonMouseDown =
@@ -497,7 +496,6 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getListboxProps,
     getOptionMetadata,
     listboxRef: handleListboxRef,
-    listboxRootRef: mergedListRootRef,
     open,
     options: optionValues,
     value: selectValue,

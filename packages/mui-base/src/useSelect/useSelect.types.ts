@@ -237,10 +237,6 @@ export interface UseSelectReturnValue<Value, Multiple> {
    */
   listboxRef: React.RefCallback<Element> | null;
   /**
-   * Ref to the listbox root slot DOM node.
-   */
-  listboxRootRef: React.RefCallback<Element> | null;
-  /**
    * If `true`, the listbox is open.
    */
   open: boolean;
