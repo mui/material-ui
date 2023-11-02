@@ -8,7 +8,7 @@ export default function LoadingButtonGroup() {
   return (
     <ButtonGroup variant="contained" aria-label="loading button group">
       <Button>Submit</Button>
-      <LoadingButton loadingIndicator="Loading…">Fetch data</LoadingButton>
+      <LoadingButton>Fetch data</LoadingButton>
       <LoadingButton loading loadingPosition="start" startIcon={<SaveIcon />}>
         Save
       </LoadingButton>
