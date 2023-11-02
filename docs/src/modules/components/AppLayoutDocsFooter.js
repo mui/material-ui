@@ -219,8 +219,13 @@ async function submitFeedback(page, rating, comment, language, commentedSection)
 function getCurrentRating(pathname) {
   let userFeedback;
   if (typeof window !== 'undefined') {
-    userFeedback = getCookie('feedback');
-    userFeedback = userFeedback && JSON.parse(userFeedback);
+    try {
+      userFeedback = getCookie('feedback');
+      userFeedback = userFeedback && JSON.parse(userFeedback);
+    } catch {
+      // For unknown reason the `userFeedback` can be uncomplet, leading the JSON.parse to crash the entire docs
+      return undefined;
+    }
   }
   return userFeedback && userFeedback[pathname] && userFeedback[pathname].rating;
 }

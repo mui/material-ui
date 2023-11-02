@@ -13,22 +13,10 @@ import {
   PropDescriptionParams,
   getHash,
 } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
+import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
-    '& .table-headers': {
-      paddingTop: 8,
-      paddingBottom: 8,
-      textAlign: 'left',
-      fontWeight: theme.typography.fontWeightSemiBold,
-      fontSize: theme.typography.pxToRem(14),
-    },
-    '& tr': {
-      scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
-      '&:hover': {
-        backgroundColor: alpha(darkTheme.palette.grey[50], 0.5),
-      },
-    },
     '& .type-column': {
       minWidth: '20%',
     },
@@ -43,42 +31,49 @@ const StyledTable = styled('table')(
       color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
     },
     '& .MuiApi-table-item-type': {
-      padding: '0 4px',
-      borderRadius: 5,
-      border: '1px solid',
-      borderColor: alpha(darkTheme.palette.primary[100], 0.5),
-      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
       ...theme.typography.caption,
       fontFamily: theme.typography.fontFamilyCode,
       fontWeight: theme.typography.fontWeightRegular,
+      color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+      padding: '1px 4px',
+      borderRadius: 6,
+      border: '1px solid',
+      borderColor: alpha(darkTheme.palette.primary[100], 0.8),
+      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
     },
     '& .MuiApi-table-item-default': {
-      padding: '0 4px',
-      borderRadius: 5,
-      color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
-      border: '1px solid',
-      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       ...theme.typography.caption,
       fontFamily: theme.typography.fontFamilyCode,
       fontWeight: theme.typography.fontWeightRegular,
+      color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+      padding: '1px 4px',
+      borderRadius: 6,
+      border: '1px solid',
+      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
     },
     '& .MuiPropTable-description-column': {
       width: '40%',
       paddingRight: 8,
-      '& .prop-list-description': {
+      '& .prop-table-description': {
         marginBottom: 0,
       },
-      '& .prop-list-additional-description': {
+      '& .prop-table-additional-description': {
         marginTop: 12,
         marginBottom: 0,
       },
-      '& .refAlert': {
+      '& .prop-table-deprecated': {
+        '& code ': { all: 'unset' },
+      },
+      '& .prop-table-alert': {
         padding: '2px 12px',
         marginTop: 12,
         color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
         backgroundColor: alpha(lightTheme.palette.warning[50], 0.5),
         borderColor: `var(--muidocs-palette-warning-200, ${lightTheme.palette.warning[200]})`,
+        '& .MuiAlert-icon': {
+          padding: 0,
+        },
         '& strong': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
         },
@@ -94,24 +89,19 @@ const StyledTable = styled('table')(
         },
       },
     },
-    '& .prop-list-signature': {
+    '& .prop-table-signature': {
       marginTop: 12,
       marginBottom: 0,
       display: 'flex',
       flexDirection: 'column',
       gap: 16,
-      '& .prop-list-title': {
+      '& .prop-table-title': {
         fontWeight: theme.typography.fontWeightMedium,
       },
     },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
-      '& tr': {
-        '&:hover': {
-          backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.5),
-        },
-      },
       '& .MuiApi-table-item-title': {
         color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
       },
@@ -125,13 +115,13 @@ const StyledTable = styled('table')(
         backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
       },
-      '& .prop-list-signature': {
-        '& .prop-list-title': {
+      '& .prop-table-signature': {
+        '& .prop-table-title': {
           color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         },
       },
       '& .MuiPropTable-description-column': {
-        '& .refAlert': {
+        '& .prop-table-alert': {
           color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
           backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
           borderColor: alpha(darkTheme.palette.warning[600], 0.3),
@@ -157,7 +147,7 @@ function PropDescription({ description }: { description: string }) {
 
   return (
     <ComponentToRender
-      className="prop-list-description" // This className is used by Algolia
+      className="prop-table-description" // This className is used by Algolia
       dangerouslySetInnerHTML={{
         __html: description,
       }}
@@ -177,166 +167,156 @@ export default function PropertiesTable(props: PropertiesTableProps) {
   const { properties } = props;
   const t = useTranslate();
   return (
-    <StyledTable>
-      <thead>
-        <tr>
-          <th className="table-headers">Name</th>
-          <th className="table-headers">Type</th>
-          <th className="table-headers">Default</th>
-          <th className="table-headers">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        {properties.map((params) => {
-          const {
-            targetName,
-            propName,
-            description,
-            requiresRef,
-            isOptional,
-            isRequired,
-            isDeprecated,
-            hooksParameters,
-            hooksReturnValue,
-            deprecationInfo,
-            typeName,
-            propDefault,
-            additionalInfo,
-            signature,
-            signatureArgs,
-            signatureReturnDescription,
-          } = params;
+    <StyledTableContainer>
+      <StyledTable>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {properties.map((params) => {
+            const {
+              targetName,
+              propName,
+              description,
+              requiresRef,
+              isOptional,
+              isRequired,
+              isDeprecated,
+              hooksParameters,
+              hooksReturnValue,
+              deprecationInfo,
+              typeName,
+              propDefault,
+              additionalInfo,
+              signature,
+              signatureArgs,
+              signatureReturnDescription,
+            } = params;
 
-          return (
-            <tr
-              key={propName}
-              id={getHash({ targetName, propName, hooksParameters, hooksReturnValue })}
-            >
-              <td className="MuiApi-table-item-title">
-                {propName}
-                {isRequired ? '*' : ''}
-                {isOptional ? '?' : ''}
-              </td>
-              <td className="type-column">
-                {
-                  <span
-                    className="MuiApi-table-item-type"
-                    dangerouslySetInnerHTML={{
-                      __html: typeName,
-                    }}
-                  />
-                }
-              </td>
-              <td className="default-column">
-                <span className="MuiApi-table-item-default">{propDefault}</span>
-              </td>
-              <td className="MuiPropTable-description-column">
-                {description && <PropDescription description={description} />}
-                {requiresRef && (
-                  <Alert
-                    className="refAlert"
-                    severity="warning"
-                    icon={<WarningRoundedIcon fontSize="small" />}
-                    sx={{
-                      alignItems: 'center',
-                      '& .MuiAlert-icon': {
-                        height: 'fit-content',
-                        p: 0,
-                        mr: 1,
-                        mb: 0.3,
-                      },
-                    }}
-                  >
+            return (
+              <tr
+                key={propName}
+                id={getHash({ targetName, propName, hooksParameters, hooksReturnValue })}
+              >
+                <td className="MuiApi-table-item-title">
+                  {propName}
+                  {isRequired ? '*' : ''}
+                  {isOptional ? '?' : ''}
+                </td>
+                <td className="type-column">
+                  {
                     <span
+                      className="MuiApi-table-item-type"
                       dangerouslySetInnerHTML={{
-                        __html: t('api-docs.requires-ref'),
+                        __html: typeName,
                       }}
                     />
-                  </Alert>
-                )}
-                {additionalInfo.map((key) => (
-                  <p
-                    className="prop-list-additional-description"
-                    key={key}
-                    dangerouslySetInnerHTML={{
-                      __html: t(`api-docs.additional-info.${key}`),
-                    }}
-                  />
-                ))}
-                {isDeprecated && (
-                  <Alert
-                    severity="warning"
-                    sx={{ mb: 1, py: 0 }}
-                    iconMapping={{
-                      warning: (
-                        <svg
-                          width="14"
-                          height="12"
-                          viewBox="0 0 14 12"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M1.98012 11.9997H12.0201C13.0468 11.9997 13.6868 10.8864 13.1735 9.99971L8.15345 1.32638C7.64012 0.43971 6.36012 0.43971 5.84679 1.32638L0.826788 9.99971C0.313455 10.8864 0.953455 11.9997 1.98012 11.9997ZM7.00012 7.33304C6.63345 7.33304 6.33345 7.03304 6.33345 6.66638V5.33304C6.33345 4.96638 6.63345 4.66638 7.00012 4.66638C7.36679 4.66638 7.66679 4.96638 7.66679 5.33304V6.66638C7.66679 7.03304 7.36679 7.33304 7.00012 7.33304ZM7.66679 9.99971H6.33345V8.66638H7.66679V9.99971Z" />
-                        </svg>
-                      ),
-                    }}
-                  >
-                    {t('api-docs.deprecated')}
-                    {deprecationInfo && (
-                      <React.Fragment>
-                        {' - '}
-                        <span
-                          dangerouslySetInnerHTML={{
-                            __html: deprecationInfo
-                              .replace(/<code>/g, '<span>')
-                              .replace(/<\/code>/g, '</span>'),
-                          }}
-                        />
-                      </React.Fragment>
-                    )}
-                  </Alert>
-                )}
-                {signature && (
-                  <div className="prop-list-signature">
-                    <span className="prop-list-title">{t('api-docs.signature')}:</span>
-
-                    <code
+                  }
+                </td>
+                <td className="default-column">
+                  <span className="MuiApi-table-item-default">{propDefault}</span>
+                </td>
+                <td className="MuiPropTable-description-column">
+                  {description && <PropDescription description={description} />}
+                  {requiresRef && (
+                    <Alert
+                      className="prop-table-alert"
+                      severity="warning"
+                      icon={<WarningRoundedIcon fontSize="small" />}
+                      sx={{
+                        alignItems: 'center',
+                        '& .MuiAlert-icon': {
+                          height: 'fit-content',
+                          p: 0,
+                          mr: 1,
+                          mb: 0.3,
+                        },
+                      }}
+                    >
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: t('api-docs.requires-ref'),
+                        }}
+                      />
+                    </Alert>
+                  )}
+                  {additionalInfo.map((key) => (
+                    <p
+                      className="prop-table-additional-description"
+                      key={key}
                       dangerouslySetInnerHTML={{
-                        __html: signature,
+                        __html: t(`api-docs.additional-info.${key}`),
                       }}
                     />
+                  ))}
+                  {isDeprecated && (
+                    <Alert
+                      severity="warning"
+                      className="prop-table-alert prop-table-deprecated"
+                      icon={<WarningRoundedIcon fontSize="small" />}
+                      sx={{ mb: 1, py: 0, alignItems: 'center' }}
+                    >
+                      {t('api-docs.deprecated')}
+                      {deprecationInfo && (
+                        <React.Fragment>
+                          {' - '}
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: deprecationInfo,
+                            }}
+                          />
+                        </React.Fragment>
+                      )}
+                    </Alert>
+                  )}
+                  {signature && (
+                    <div className="prop-table-signature">
+                      <span className="prop-table-title">{t('api-docs.signature')}:</span>
 
-                    {signatureArgs && (
-                      <div>
-                        <ul>
-                          {signatureArgs.map(({ argName, argDescription }) => (
-                            <li
-                              className="prop-signature-list"
-                              key={argName}
-                              dangerouslySetInnerHTML={{
-                                __html: `<code>${argName}</code> ${argDescription}`,
-                              }}
-                            />
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                    {signatureReturnDescription && (
-                      <p>
-                        {t('api-docs.returns')}
-                        <span
-                          dangerouslySetInnerHTML={{
-                            __html: signatureReturnDescription,
-                          }}
-                        />
-                      </p>
-                    )}
-                  </div>
-                )}
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </StyledTable>
+                      <code
+                        dangerouslySetInnerHTML={{
+                          __html: signature,
+                        }}
+                      />
+
+                      {signatureArgs && (
+                        <div>
+                          <ul>
+                            {signatureArgs.map(({ argName, argDescription }) => (
+                              <li
+                                className="prop-signature-list"
+                                key={argName}
+                                dangerouslySetInnerHTML={{
+                                  __html: `<code>${argName}</code> ${argDescription}`,
+                                }}
+                              />
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {signatureReturnDescription && (
+                        <p>
+                          {t('api-docs.returns')}
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: signatureReturnDescription,
+                            }}
+                          />
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </StyledTable>
+    </StyledTableContainer>
   );
 }

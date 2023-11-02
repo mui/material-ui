@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.3",
-    "@types/chai": "^4.3.8",
+    "@types/chai": "^4.3.9",
     "chai": "^4.3.10",
     "vite": "^4.4.11"
   },

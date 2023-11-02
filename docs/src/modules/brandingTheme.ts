@@ -1135,6 +1135,9 @@ export function getThemedComponents(): ThemeOptions {
                 color: (theme.vars || theme).palette.primary[500],
                 borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
                 backgroundColor: (theme.vars || theme).palette.primary[50],
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primary[100],
+                },
               },
             } as const,
             theme.applyDarkStyles({
