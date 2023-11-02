@@ -63,6 +63,11 @@ const B1 = styled('a')<{ isRed?: boolean }>(({ theme }) => ({
   ],
 }));
 
+// @ts-expect-error Type argument should be a key:value object
+const B2 = styled.a<number>({
+  color: 'red',
+});
+
 const bElement = <B isRed />;
 
 // @ts-expect-error isBlue is not a prop
