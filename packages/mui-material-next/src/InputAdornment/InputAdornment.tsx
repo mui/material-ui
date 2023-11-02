@@ -3,26 +3,20 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { OverridableComponent } from '@mui/types';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import Typography from '@mui/material/Typography';
+import { styled, useThemeProps } from '../styles';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
-import styled from '../styles/styled';
 import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
-import useThemeProps from '../styles/useThemeProps';
+import {
+  InputAdornmentOwnerState,
+  InputAdornmentProps,
+  InputAdornmentTypeMap,
+} from './InputAdornment.types';
 
-const overridesResolver = (props, styles) => {
-  const { ownerState } = props;
-
-  return [
-    styles.root,
-    styles[`position${capitalize(ownerState.position)}`],
-    ownerState.disablePointerEvents === true && styles.disablePointerEvents,
-    styles[ownerState.variant],
-  ];
-};
-
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: InputAdornmentOwnerState) => {
   const { classes, disablePointerEvents, hiddenLabel, position, size, variant } = ownerState;
   const slots = {
     root: [
@@ -41,8 +35,17 @@ const useUtilityClasses = (ownerState) => {
 const InputAdornmentRoot = styled('div', {
   name: 'MuiInputAdornment',
   slot: 'Root',
-  overridesResolver,
-})(({ theme, ownerState }) => ({
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      styles[`position${capitalize(ownerState.position)}`],
+      ownerState.disablePointerEvents === true && styles.disablePointerEvents,
+      styles[ownerState.variant],
+    ];
+  },
+})<{ ownerState: InputAdornmentOwnerState }>(({ theme, ownerState }) => ({
   display: 'flex',
   height: '0.01em', // Fix IE11 flexbox alignment. To remove at some point.
   maxHeight: '2em',
@@ -69,7 +72,10 @@ const InputAdornmentRoot = styled('div', {
   }),
 }));
 
-const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
+const InputAdornment = React.forwardRef(function InputAdornment(
+  inProps: InputAdornmentProps,
+  forwardedRef: React.ForwardedRef<any>,
+) {
   const props = useThemeProps({ props: inProps, name: 'MuiInputAdornment' });
   const {
     children,
@@ -82,11 +88,9 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
     ...other
   } = props;
 
-  const muiFormControl = useFormControl() || {};
+  const muiFormControl = useFormControl();
 
-  let variant = variantProp;
-
-  if (variantProp && muiFormControl.variant) {
+  if (variantProp && muiFormControl?.variant) {
     if (process.env.NODE_ENV !== 'production') {
       if (variantProp === muiFormControl.variant) {
         console.error(
@@ -97,28 +101,24 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
     }
   }
 
-  if (muiFormControl && !variant) {
-    variant = muiFormControl.variant;
-  }
-
-  const ownerState = {
+  const ownerState: InputAdornmentOwnerState = {
     ...props,
-    hiddenLabel: muiFormControl.hiddenLabel,
-    size: muiFormControl.size,
+    hiddenLabel: muiFormControl?.hiddenLabel ?? false,
+    size: muiFormControl?.size ?? 'medium',
     disablePointerEvents,
     position,
-    variant,
+    variant: muiFormControl?.variant ?? variantProp ?? 'outlined',
   };
 
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <FormControlContext.Provider value={null}>
+    <FormControlContext.Provider value={undefined}>
       <InputAdornmentRoot
         as={component}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
-        ref={ref}
+        ref={forwardedRef}
         {...other}
       >
         {typeof children === 'string' && !disableTypography ? (
@@ -136,7 +136,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
       </InputAdornmentRoot>
     </FormControlContext.Provider>
   );
-});
+}) as OverridableComponent<InputAdornmentTypeMap>;
 
 InputAdornment.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

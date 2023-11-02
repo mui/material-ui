@@ -5,16 +5,19 @@ import {
   describeConformance,
   strictModeDoubleLoggingSuppressed,
 } from '@mui-internal/test-utils';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import { typographyClasses } from '@mui/material/Typography';
-import InputAdornment, { inputAdornmentClasses as classes } from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl';
-import Input from '@mui/material/Input';
+import FilledInput from '../FilledInput';
+import FormControl from '../FormControl';
+import InputAdornment, { inputAdornmentClasses as classes } from '.';
 
 describe('<InputAdornment />', () => {
   const { render } = createRenderer();
 
   describeConformance(<InputAdornment position="start">foo</InputAdornment>, () => ({
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
     classes,
     inheritComponent: 'div',
     render,
@@ -50,7 +53,9 @@ describe('<InputAdornment />', () => {
   });
 
   describe('prop: variant', () => {
-    it("should inherit the TextField's variant", () => {
+    // TODO v6: requires material-next/TextField
+    // eslint-disable-next-line mocha/no-skipped-tests
+    it.skip("should inherit the TextField's variant", () => {
       const { getByTestId } = render(
         <TextField
           fullWidth
@@ -88,7 +93,9 @@ describe('<InputAdornment />', () => {
       expect(adornment).to.have.class(classes.filled);
     });
 
-    it('should override the inherited variant', () => {
+    // TODO v6: requires material-next/TextField
+    // eslint-disable-next-line mocha/no-skipped-tests
+    it.skip('should override the inherited variant', () => {
       const { getByTestId } = render(
         <TextField
           fullWidth
@@ -128,7 +135,7 @@ describe('<InputAdornment />', () => {
       expect(() => {
         render(
           <FormControl variant="filled">
-            <Input
+            <FilledInput
               startAdornment={
                 <InputAdornment variant="filled" position="start">
                   foo
