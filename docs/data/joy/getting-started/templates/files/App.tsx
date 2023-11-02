@@ -14,7 +14,6 @@ import Typography from '@mui/joy/Typography';
 import IconButton from '@mui/joy/IconButton';
 import Divider from '@mui/joy/Divider';
 import Sheet from '@mui/joy/Sheet';
-import Table from '@mui/joy/Table';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
@@ -30,11 +29,14 @@ import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
+import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
+import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRounded';
 
 // custom
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
+import TableFiles from './components/TableFiles';
 
 export default function FilesExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -125,6 +127,7 @@ export default function FilesExample() {
               gap: 2,
             }}
           >
+            {' '}
             <Sheet
               variant="outlined"
               sx={{
@@ -133,111 +136,7 @@ export default function FilesExample() {
                 display: { xs: 'none', md: 'flex' },
               }}
             >
-              <Table
-                sx={{
-                  '--TableCell-paddingX': '1rem',
-                  '--TableCell-paddingY': '1rem',
-                }}
-              >
-                <thead>
-                  <tr>
-                    <th>
-                      <Typography level="title-sm">Folder</Typography>
-                    </th>
-                    <th>
-                      <Typography level="title-sm">Last modified</Typography>
-                    </th>
-                    <th>
-                      <Typography level="title-sm">Size</Typography>
-                    </th>
-                    <th>
-                      <Typography level="title-sm">Users</Typography>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <Typography
-                        level="body-sm"
-                        startDecorator={<FolderRoundedIcon color="primary" />}
-                        sx={{ alignItems: 'flex-start' }}
-                      >
-                        Travel pictures
-                      </Typography>
-                    </td>
-                    <td>
-                      <Typography level="body-xs">21 October 2011, 3PM</Typography>
-                    </td>
-                    <td>
-                      <Typography level="body-xs">987.5MB</Typography>
-                    </td>
-                    <td>
-                      <AvatarGroup
-                        size="sm"
-                        sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
-                      >
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=6"
-                          srcSet="https://i.pravatar.cc/48?img=6 2x"
-                        />
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=7"
-                          srcSet="https://i.pravatar.cc/48?img=7 2x"
-                        />
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=8"
-                          srcSet="https://i.pravatar.cc/48?img=8 2x"
-                        />
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=9"
-                          srcSet="https://i.pravatar.cc/48?img=9 2x"
-                        />
-                      </AvatarGroup>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Typography
-                        level="body-sm"
-                        startDecorator={<FolderRoundedIcon color="primary" />}
-                        sx={{ alignItems: 'flex-start' }}
-                      >
-                        Important documents
-                      </Typography>
-                    </td>
-                    <td>
-                      <Typography level="body-xs">26 May 2010, 7PM</Typography>
-                    </td>
-                    <td>
-                      <Typography level="body-xs">123.3KB</Typography>
-                    </td>
-                    <td>
-                      <AvatarGroup
-                        size="sm"
-                        sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
-                      >
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=6"
-                          srcSet="https://i.pravatar.cc/48?img=6 2x"
-                        />
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=7"
-                          srcSet="https://i.pravatar.cc/48?img=7 2x"
-                        />
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=8"
-                          srcSet="https://i.pravatar.cc/48?img=8 2x"
-                        />
-                        <Avatar
-                          src="https://i.pravatar.cc/24?img=9"
-                          srcSet="https://i.pravatar.cc/48?img=9 2x"
-                        />
-                      </AvatarGroup>
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
+              <TableFiles />
             </Sheet>
             <Sheet
               variant="outlined"
@@ -380,54 +279,95 @@ export default function FilesExample() {
                 </ListItem>
               </List>
             </Sheet>
-
-            <Card
-              variant="outlined"
-              sx={{
-                '--Card-radius': (theme) => theme.vars.radius.sm,
-                boxShadow: 'none',
-              }}
-            >
+            <Card variant="outlined" size="sm">
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ flex: 1 }}>
+                  <Typography level="title-md">lotr-two-towers.pdf</Typography>
+                  <Typography level="body-sm">132.2MB</Typography>
+                </Box>
+                <IconButton variant="plain" color="neutral" size="sm">
+                  <MoreVertRoundedIcon />
+                </IconButton>
+              </Box>
               <CardOverflow
                 sx={{
                   borderBottom: '1px solid',
+                  borderTop: '1px solid',
                   borderColor: 'neutral.outlinedBorder',
                 }}
               >
-                <AspectRatio ratio="16/9" color="primary">
-                  <Typography
+                <AspectRatio ratio="16/9" color="primary" sx={{ borderRadius: 0 }}>
+                  <img
+                    alt=""
+                    src="https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?auto=format&fit=crop&q=80&w=3024&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  />
+                </AspectRatio>
+              </CardOverflow>
+              <Typography level="body-xs">Added 27 Jun 2023</Typography>
+            </Card>
+            <Card variant="outlined" size="sm">
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ flex: 1 }}>
+                  <Typography level="title-md">photos-travel.zip</Typography>
+                  <Typography level="body-sm">2.4GB</Typography>
+                </Box>
+                <IconButton variant="plain" color="neutral" size="sm">
+                  <MoreVertRoundedIcon />
+                </IconButton>
+              </Box>
+              <CardOverflow
+                sx={{
+                  borderBottom: '1px solid',
+                  borderTop: '1px solid',
+                  borderColor: 'neutral.outlinedBorder',
+                }}
+              >
+                <AspectRatio
+                  ratio="16/9"
+                  color="primary"
+                  sx={{ borderRadius: 0, color: 'primary.plainColor' }}
+                >
+                  <Box
                     sx={{
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: 'primary.plainColor',
                     }}
                   >
-                    .zip
-                  </Typography>
+                    <InsertDriveFileRoundedIcon />
+                  </Box>
                 </AspectRatio>
               </CardOverflow>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Box sx={{ flex: 1 }}>
-                  <Typography>photos-travel.zip</Typography>
-                  <Typography level="body-xs" mt={0.5}>
-                    Added 25 May 2011
-                  </Typography>
-                </Box>
-                <IconButton variant="plain" color="neutral">
-                  <EditRoundedIcon />
-                </IconButton>
-              </Box>
+              <Typography level="body-xs">Added 16 May 2021</Typography>
             </Card>
             <Card
               variant="solid"
               invertedColors
+              size="sm"
               sx={{
-                '--Card-radius': (theme) => theme.vars.radius.sm,
-                boxShadow: 'none',
+                border: '1px solid',
+                borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
                 minHeight: { xs: 250, md: '100%' },
               }}
             >
+              <CardContent
+                sx={{
+                  mb: 'auto',
+                  flexGrow: 0,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <Box sx={{ flex: 1 }}>
+                  <Typography level="title-md">torres-del-paine.png</Typography>
+                  <Typography level="body-xs" mt={0.5}>
+                    Added 5 Apr 2021
+                  </Typography>
+                </Box>
+                <IconButton variant="plain" size="sm">
+                  <MoreVertRoundedIcon />
+                </IconButton>
+              </CardContent>
               <CardCover>
                 <img
                   alt=""
@@ -437,75 +377,38 @@ export default function FilesExample() {
               <CardCover
                 sx={{
                   background:
-                    'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.12))',
+                    'linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.12))',
                 }}
               />
+            </Card>
+            <Card
+              variant="solid"
+              size="sm"
+              invertedColors
+              sx={{
+                minHeight: { xs: 250, md: '100%' },
+                border: '1px solid',
+                borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
+              }}
+            >
               <CardContent
                 sx={{
-                  mt: 'auto',
+                  mb: 'auto',
                   flexGrow: 0,
                   flexDirection: 'row',
                   alignItems: 'center',
                 }}
               >
                 <Box sx={{ flex: 1 }}>
-                  <Typography>torres-del-paine.png</Typography>
+                  <Typography level="title-md">serra-das-araras.png</Typography>
                   <Typography level="body-xs" mt={0.5}>
-                    Added 5 Aug 2016
+                    Added 2 Mar 2021
                   </Typography>
                 </Box>
-                <IconButton variant="plain">
-                  <EditRoundedIcon />
+                <IconButton variant="plain" size="sm">
+                  <MoreVertRoundedIcon />
                 </IconButton>
               </CardContent>
-            </Card>
-            <Card
-              variant="outlined"
-              sx={{
-                '--Card-radius': (theme) => theme.vars.radius.sm,
-                boxShadow: 'none',
-              }}
-            >
-              <CardOverflow
-                sx={{
-                  borderBottom: '1px solid',
-                  borderColor: 'neutral.outlinedBorder',
-                }}
-              >
-                <AspectRatio ratio="16/9" color="primary">
-                  <Typography
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: 'primary.plainColor',
-                    }}
-                  >
-                    .zip
-                  </Typography>
-                </AspectRatio>
-              </CardOverflow>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Box sx={{ flex: 1 }}>
-                  <Typography>platform_ios.zip</Typography>
-                  <Typography level="body-xs" mt={0.5}>
-                    Added 26 May 2011
-                  </Typography>
-                </Box>
-                <IconButton variant="plain" color="neutral">
-                  <EditRoundedIcon />
-                </IconButton>
-              </Box>
-            </Card>
-            <Card
-              variant="solid"
-              invertedColors
-              sx={{
-                '--Card-radius': (theme) => theme.vars.radius.sm,
-                boxShadow: 'none',
-                minHeight: { xs: 250, md: '100%' },
-              }}
-            >
               <CardCover>
                 <img
                   alt=""
@@ -515,65 +418,70 @@ export default function FilesExample() {
               <CardCover
                 sx={{
                   background:
-                    'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.12))',
+                    'linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.12))',
                 }}
               />
-              <CardContent
-                sx={{
-                  mt: 'auto',
-                  flexGrow: 0,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}
-              >
-                <Box sx={{ flex: 1 }}>
-                  <Typography>serra-das-araras.png</Typography>
-                  <Typography level="body-xs" mt={0.5}>
-                    Added 2 Feb 2010
-                  </Typography>
-                </Box>
-                <IconButton variant="plain">
-                  <EditRoundedIcon />
-                </IconButton>
-              </CardContent>
             </Card>
-            <Card
-              variant="outlined"
-              sx={{
-                '--Card-radius': (theme) => theme.vars.radius.sm,
-                boxShadow: 'none',
-              }}
-            >
+            <Card variant="outlined" size="sm">
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ flex: 1 }}>
+                  <Typography level="title-md">translated-docs.txt</Typography>
+                  <Typography level="body-sm">12.2KB</Typography>
+                </Box>
+                <IconButton variant="plain" color="neutral" size="sm">
+                  <MoreVertRoundedIcon />
+                </IconButton>
+              </Box>
               <CardOverflow
                 sx={{
                   borderBottom: '1px solid',
+                  borderTop: '1px solid',
                   borderColor: 'neutral.outlinedBorder',
                 }}
               >
-                <AspectRatio ratio="16/9" color="primary">
-                  <Typography
+                <AspectRatio ratio="16/9" color="primary" sx={{ borderRadius: 0 }}>
+                  <img
+                    alt=""
+                    src="https://images.unsplash.com/photo-1572445271230-a78b5944a659?auto=format&fit=crop&q=80&w=3024&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  />
+                </AspectRatio>
+              </CardOverflow>
+              <Typography level="body-xs">Added 25 May 2019</Typography>
+            </Card>
+            <Card variant="outlined" size="sm">
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ flex: 1 }}>
+                  <Typography level="title-md">final-version-v3.fig</Typography>
+                  <Typography level="body-sm">1.1GB</Typography>
+                </Box>
+                <IconButton variant="plain" color="neutral" size="sm">
+                  <MoreVertRoundedIcon />
+                </IconButton>
+              </Box>
+              <CardOverflow
+                sx={{
+                  borderBottom: '1px solid',
+                  borderTop: '1px solid',
+                  borderColor: 'neutral.outlinedBorder',
+                }}
+              >
+                <AspectRatio
+                  ratio="16/9"
+                  color="primary"
+                  sx={{ borderRadius: 0, color: 'primary.plainColor' }}
+                >
+                  <Box
                     sx={{
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: 'primary.plainColor',
                     }}
                   >
-                    .fig
-                  </Typography>
+                    <InsertDriveFileRoundedIcon />
+                  </Box>
                 </AspectRatio>
               </CardOverflow>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Box sx={{ flex: 1 }}>
-                  <Typography>final-version-3.fig</Typography>
-                  <Typography level="body-xs" mt={0.5}>
-                    Added 25 May 2009
-                  </Typography>
-                </Box>
-                <IconButton variant="plain" color="neutral">
-                  <EditRoundedIcon />
-                </IconButton>
-              </Box>
+              <Typography level="body-xs">Added 12 May 2019</Typography>
             </Card>
           </Box>
         </Layout.Main>
@@ -594,12 +502,12 @@ export default function FilesExample() {
           </Box>
           <Divider />
           <Tabs>
-            <TabList disableUnderline>
-              <Tab disableIndicator sx={{ flexGrow: 1 }}>
-                Details
+            <TabList>
+              <Tab sx={{ flexGrow: 1 }}>
+                <Typography level="title-sm">Details</Typography>
               </Tab>
-              <Tab disableIndicator sx={{ flexGrow: 1 }}>
-                Activity
+              <Tab sx={{ flexGrow: 1 }}>
+                <Typography level="title-sm">Activity</Typography>
               </Tab>
             </TabList>
           </Tabs>
