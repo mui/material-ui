@@ -225,7 +225,7 @@ Make sure that the input is larger than the label to display correctly.
 ### type="number"
 
 :::warning
-We do not recommend using type="number" with a Text Field due to potential usability issues:
+We do not recommend using `type="number"` with a Text Field due to potential usability issues:
 
 - it allows certain non-numeric characters ('e', '+', '-', '.') and silently discards others
 - the functionality of scrolling to increment/decrement the number can cause accidental and hard-to-notice changes
