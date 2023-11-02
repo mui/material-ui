@@ -76,10 +76,10 @@ describe('<LoadingButton />', () => {
 
   describe('ButtonGroup works with LoadingButton', () => {
     it('correctly passes props to children', () => {
-      const {getByRole} = render(
-        <ButtonGroup variant='contained' size='large' color='secondary'>
-          <LoadingButton/>
-        </ButtonGroup>
+      const { getByRole } = render(
+        <ButtonGroup variant="contained" size="large" color="secondary">
+          <LoadingButton />
+        </ButtonGroup>,
       );
       const button = getByRole('button');
       expect(button).to.have.class(buttonClasses.contained);
