@@ -3,7 +3,7 @@ import { createRenderer, describeConformance, screen, within } from '@mui-intern
 import { expect } from 'chai';
 import Button, { buttonClasses } from '@mui/material/Button';
 import LoadingButton, { loadingButtonClasses as classes } from '@mui/lab/LoadingButton';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import ButtonGroup, { buttonGroupClasses } from '@mui/material/ButtonGroup';
 
 describe('<LoadingButton />', () => {
   const { render } = createRenderer();
@@ -100,17 +100,17 @@ describe('<LoadingButton />', () => {
       const middleButton = screen.getAllByRole('button')[1];
       const lastButton = screen.getAllByRole('button')[2];
 
-      expect(firstButton).to.have.class(classes.firstButton);
-      expect(firstButton).not.to.have.class(classes.middleButton);
-      expect(firstButton).not.to.have.class(classes.lastButton);
+      expect(firstButton).to.have.class(buttonGroupClasses.firstButton);
+      expect(firstButton).not.to.have.class(buttonGroupClasses.middleButton);
+      expect(firstButton).not.to.have.class(buttonGroupClasses.lastButton);
 
-      expect(middleButton).to.have.class(classes.middleButton);
-      expect(middleButton).not.to.have.class(classes.firstButton);
-      expect(middleButton).not.to.have.class(classes.lastButton);
+      expect(middleButton).to.have.class(buttonGroupClasses.middleButton);
+      expect(middleButton).not.to.have.class(buttonGroupClasses.firstButton);
+      expect(middleButton).not.to.have.class(buttonGroupClasses.lastButton);
 
-      expect(lastButton).to.have.class(classes.lastButton);
-      expect(lastButton).not.to.have.class(classes.middleButton);
-      expect(lastButton).not.to.have.class(classes.firstButton);
+      expect(lastButton).to.have.class(buttonGroupClasses.lastButton);
+      expect(lastButton).not.to.have.class(buttonGroupClasses.middleButton);
+      expect(lastButton).not.to.have.class(buttonGroupClasses.firstButton);
     });
   });
 });
