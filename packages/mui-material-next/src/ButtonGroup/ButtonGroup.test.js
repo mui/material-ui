@@ -22,6 +22,8 @@ describe('<ButtonGroup />', () => {
       muiName: 'MuiButtonGroup',
       testVariantProps: { variant: 'filled' },
       skip: ['componentsProp'],
+      ThemeProvider: CssVarsProvider,
+      createTheme: extendTheme,
     }),
   );
 
