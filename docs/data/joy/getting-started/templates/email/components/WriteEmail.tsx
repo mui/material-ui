@@ -3,6 +3,7 @@ import Box from '@mui/joy/Box';
 import ModalClose from '@mui/joy/ModalClose';
 import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 import Sheet from '@mui/joy/Sheet';
 import { IconButton, Input, Stack, Typography } from '@mui/joy';
@@ -30,9 +31,9 @@ const WriteEmail = React.forwardRef<HTMLDivElement, WriteEmailProps>(
           width: { xs: '100dvw', md: 600 },
           flexGrow: 1,
           border: '1px solid',
-          borderRadius: 'md',
-          backgroundColor: 'var(--joy-palette-background-level1)',
-          borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
+          borderRadius: '8px 8px 0 0',
+          backgroundColor: 'background.level1',
+          borderColor: 'neutral.outlinedBorder',
           boxShadow: 'lg',
           zIndex: 1000,
           position: 'fixed',
@@ -51,11 +52,11 @@ const WriteEmail = React.forwardRef<HTMLDivElement, WriteEmailProps>(
           sx={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}
         >
           <FormControl>
-            <Typography level="title-sm">To</Typography>
+            <FormLabel>To</FormLabel>
             <Input placeholder="email@email.com" aria-label="Message" />
           </FormControl>
           <FormControl>
-            <Typography level="title-sm">CC</Typography>
+            <FormLabel>CC</FormLabel>
             <Input placeholder="email@email.com" aria-label="Message" />
           </FormControl>
 
@@ -94,9 +95,8 @@ const WriteEmail = React.forwardRef<HTMLDivElement, WriteEmailProps>(
                     </IconButton>
                   </div>
                   <Button
-                    size="sm"
                     color="primary"
-                    sx={{ alignSelf: 'center', borderRadius: 'sm' }}
+                    sx={{ borderRadius: 'sm' }}
                     onClick={onClose}
                   >
                     Send

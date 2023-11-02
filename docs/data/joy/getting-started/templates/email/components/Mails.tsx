@@ -77,12 +77,7 @@ export default function EmailList() {
               sx={{ p: 2 }}
             >
               <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
-                <Avatar
-                  alt=""
-                  srcSet={item.avatar2x}
-                  src={item.avatar}
-                  sx={{ borderRadius: '50%' }}
-                />
+                <Avatar alt="" srcSet={item.avatar2x} src={item.avatar} />
               </ListItemDecorator>
               <Box sx={{ pl: 2, width: '100%' }}>
                 <Box

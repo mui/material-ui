@@ -125,6 +125,7 @@ export default function EmailExample() {
               size="sm"
               startDecorator={<CreateRoundedIcon />}
               onClick={() => setOpen(true)}
+              sx={{ ml: 'auto' }}
             >
               Compose email
             </Button>

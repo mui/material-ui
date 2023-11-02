@@ -231,10 +231,9 @@ export default function TeamExample() {
           </Box>
           <AccordionGroup
             sx={{
-              [`& .${accordionDetailsClasses.content}.${accordionDetailsClasses.expanded}`]:
-                {
-                  px: 2,
-                },
+              [`& .${accordionDetailsClasses.content}`]: {
+                px: 2,
+              },
               [`& .${accordionSummaryClasses.button}`]: {
                 px: 2,
               },

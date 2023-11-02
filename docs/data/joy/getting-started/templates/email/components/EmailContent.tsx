@@ -57,7 +57,6 @@ export default function EmailContent() {
           <Avatar
             src="https://i.pravatar.cc/40?img=3"
             srcSet="https://i.pravatar.cc/80?img=3"
-            sx={{ borderRadius: '50%' }}
           />
           <Box sx={{ ml: 2 }}>
             <Typography level="title-sm" textColor="text.primary" mb={0.5}>
@@ -161,14 +160,17 @@ export default function EmailContent() {
       <Box
         sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start' }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Typography level="title-lg" textColor="text.primary">
-            Details for our Yosemite Park hike
-          </Typography>
-          <Chip size="sm" variant="outlined" color="warning">
-            Personal
-          </Chip>
-        </Box>
+        <Typography
+          level="title-lg"
+          textColor="text.primary"
+          endDecorator={
+            <Chip size="sm" variant="outlined" color="warning">
+              Personal
+            </Chip>
+          }
+        >
+          Details for our Yosemite Park hike
+        </Typography>
 
         <Box
           sx={{
