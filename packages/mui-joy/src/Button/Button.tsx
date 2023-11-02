@@ -282,7 +282,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ariaPressed = slotProps.root['aria-pressed'];
   }
 
-  if (toggleButtonGroup) {
+  if (toggleButtonGroup.value) {
     if (Array.isArray(toggleButtonGroup.value)) {
       ariaPressed = toggleButtonGroup.value.indexOf(props.value as string) !== -1;
     } else {
