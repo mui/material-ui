@@ -12,7 +12,7 @@ describe('<StepButton />', () => {
     render,
     ThemeProvider,
     muiName: 'JoyStepButton',
-    refInstanceof: window.HTMLLIElement,
+    refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'div',
     skip: ['classesRoot', 'componentsProp'],
     slots: {
