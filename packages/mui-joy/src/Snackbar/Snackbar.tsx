@@ -312,10 +312,10 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
 }) as OverridableComponent<SnackbarTypeMap>;
 
 Snackbar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The anchor of the `Snackbar`.
    * On smaller screens, the component grows to occupy all the available width,
