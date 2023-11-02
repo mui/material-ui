@@ -37,16 +37,24 @@ describe('<InputAdornment />', () => {
   });
 
   it('should have the root and start class when position is start', () => {
-    const { container } = render(<InputAdornment position="start">foo</InputAdornment>);
-    const adornment = container.firstChild;
+    const { getByTestId } = render(
+      <InputAdornment data-testid="test-adornment" position="start">
+        foo
+      </InputAdornment>,
+    );
+    const adornment = getByTestId('test-adornment');
 
     expect(adornment).to.have.class(classes.root);
     expect(adornment).to.have.class(classes.positionStart);
   });
 
   it('should have the root and end class when position is end', () => {
-    const { container } = render(<InputAdornment position="end">foo</InputAdornment>);
-    const adornment = container.firstChild;
+    const { getByTestId } = render(
+      <InputAdornment data-testid="test-adornment" position="end">
+        foo
+      </InputAdornment>,
+    );
+    const adornment = getByTestId('test-adornment');
 
     expect(adornment).to.have.class(classes.root);
     expect(adornment).to.have.class(classes.positionEnd);
@@ -64,14 +72,14 @@ describe('<InputAdornment />', () => {
           variant="filled"
           InputProps={{
             startAdornment: (
-              <InputAdornment data-testid="InputAdornment" position="start">
+              <InputAdornment data-testid="test-adornment" position="start">
                 foo
               </InputAdornment>
             ),
           }}
         />,
       );
-      const adornment = getByTestId('InputAdornment');
+      const adornment = getByTestId('test-adornment');
 
       expect(adornment).to.have.class(classes.root);
       expect(adornment).to.have.class(classes.positionStart);
@@ -81,12 +89,12 @@ describe('<InputAdornment />', () => {
     it("should inherit the FormControl's variant", () => {
       const { getByTestId } = render(
         <FormControl variant="filled">
-          <InputAdornment data-testid="InputAdornment" position="start">
+          <InputAdornment data-testid="test-adornment" position="start">
             foo
           </InputAdornment>
         </FormControl>,
       );
-      const adornment = getByTestId('InputAdornment');
+      const adornment = getByTestId('test-adornment');
 
       expect(adornment).to.have.class(classes.root);
       expect(adornment).to.have.class(classes.positionStart);
@@ -104,14 +112,14 @@ describe('<InputAdornment />', () => {
           variant="filled"
           InputProps={{
             startAdornment: (
-              <InputAdornment data-testid="InputAdornment" variant="standard" position="start">
+              <InputAdornment data-testid="test-adornment" variant="outlined" position="start">
                 foo
               </InputAdornment>
             ),
           }}
         />,
       );
-      const adornment = getByTestId('InputAdornment');
+      const adornment = getByTestId('test-adornment');
 
       expect(adornment).to.have.class(classes.root);
       expect(adornment).to.have.class(classes.positionStart);
@@ -119,12 +127,12 @@ describe('<InputAdornment />', () => {
     });
 
     it('should have the filled root and class when variant is filled', () => {
-      const { container } = render(
-        <InputAdornment variant="filled" position="start">
+      const { getByTestId } = render(
+        <InputAdornment data-testid="test-adornment" variant="filled" position="start">
           foo
         </InputAdornment>,
       );
-      const adornment = container.firstChild;
+      const adornment = getByTestId('test-adornment');
 
       expect(adornment).to.have.class(classes.root);
       expect(adornment).to.have.class(classes.positionStart);
@@ -155,12 +163,12 @@ describe('<InputAdornment />', () => {
   });
 
   it('should have the disabled pointer events class when disabledPointerEvents true', () => {
-    const { container } = render(
-      <InputAdornment disablePointerEvents position="start">
+    const { getByTestId } = render(
+      <InputAdornment data-testid="test-adornment" disablePointerEvents position="start">
         foo
       </InputAdornment>,
     );
-    const adornment = container.firstChild;
+    const adornment = getByTestId('test-adornment');
 
     expect(adornment).to.have.class(classes.disablePointerEvents);
   });
@@ -176,24 +184,24 @@ describe('<InputAdornment />', () => {
   });
 
   it('should render children', () => {
-    const { container } = render(
-      <InputAdornment position="end">
+    const { getByTestId } = render(
+      <InputAdornment data-testid="test-adornment" position="end">
         <div>foo</div>
       </InputAdornment>,
     );
-    const adornment = container.firstChild;
+    const adornment = getByTestId('test-adornment');
 
     expect(adornment.firstChild).to.have.property('nodeName', 'DIV');
   });
 
   describe('prop: position', () => {
     it('should render span for vertical baseline alignment', () => {
-      const { container } = render(
-        <InputAdornment position="start">
+      const { getByTestId } = render(
+        <InputAdornment data-testid="test-adornment" position="start">
           <div>foo</div>
         </InputAdornment>,
       );
-      const adornment = container.firstChild;
+      const adornment = getByTestId('test-adornment');
 
       expect(adornment.firstChild).to.have.tagName('span');
       expect(adornment.firstChild).to.have.class('notranslate');
@@ -204,24 +212,24 @@ describe('<InputAdornment />', () => {
   it('applies a size small class inside <FormControl size="small" />', () => {
     const { getByTestId } = render(
       <FormControl size="small">
-        <InputAdornment position="start" data-testid="root">
+        <InputAdornment position="start" data-testid="test-adornment">
           $
         </InputAdornment>
       </FormControl>,
     );
 
-    expect(getByTestId('root')).to.have.class(classes.sizeSmall);
+    expect(getByTestId('test-adornment')).to.have.class(classes.sizeSmall);
   });
 
   it('applies a hiddenLabel class inside <FormControl hiddenLabel />', () => {
     const { getByTestId } = render(
       <FormControl hiddenLabel>
-        <InputAdornment position="start" data-testid="root">
+        <InputAdornment position="start" data-testid="test-adornment">
           $
         </InputAdornment>
       </FormControl>,
     );
 
-    expect(getByTestId('root')).to.have.class(classes.hiddenLabel);
+    expect(getByTestId('test-adornment')).to.have.class(classes.hiddenLabel);
   });
 });
