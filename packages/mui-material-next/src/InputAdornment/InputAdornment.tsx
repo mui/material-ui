@@ -44,32 +44,37 @@ const InputAdornmentRoot = styled('div', {
       styles[ownerState.variant],
     ];
   },
-})<{ ownerState: InputAdornmentOwnerState }>(({ theme, ownerState }) => ({
-  display: 'flex',
-  maxHeight: '2em',
-  alignItems: 'center',
-  whiteSpace: 'nowrap',
-  color: (theme.vars || theme).palette.action.active,
-  // TODO: this may not be needed https://github.com/mui/material-ui/issues/39628#issuecomment-1786842659
-  // ...(ownerState.variant === 'filled' && {
-  //   // Styles applied to the root element if `variant="filled"`.
-  //   [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
-  //     marginTop: 16,
-  //   },
-  // }),
-  ...(ownerState.position === 'start' && {
-    // Styles applied to the root element if `position="start"`.
-    marginRight: 8,
-  }),
-  ...(ownerState.position === 'end' && {
-    // Styles applied to the root element if `position="end"`.
-    marginLeft: 8,
-  }),
-  ...(ownerState.disablePointerEvents === true && {
-    // Styles applied to the root element if `disablePointerEvents={true}`.
-    pointerEvents: 'none',
-  }),
-}));
+})<{ ownerState: InputAdornmentOwnerState }>(({ theme, ownerState }) => {
+  const { vars: tokens } = theme;
+  return {
+    '--md-comp-input-adornment-color': tokens.sys.color.onSurfaceVariant,
+    display: 'flex',
+    maxHeight: '2em',
+    alignItems: 'center',
+    whiteSpace: 'nowrap',
+    color: 'var(--md-comp-input-adornment-color)',
+    // TODO: this may not be needed, resolve when integrating TextField+Label
+    // https://github.com/mui/material-ui/issues/39628#issuecomment-1786842659
+    // ...(ownerState.variant === 'filled' && {
+    //   // Styles applied to the root element if `variant="filled"`.
+    //   [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
+    //     marginTop: 16,
+    //   },
+    // }),
+    ...(ownerState.position === 'start' && {
+      // Styles applied to the root element if `position="start"`.
+      marginRight: 8,
+    }),
+    ...(ownerState.position === 'end' && {
+      // Styles applied to the root element if `position="end"`.
+      marginLeft: 8,
+    }),
+    ...(ownerState.disablePointerEvents === true && {
+      // Styles applied to the root element if `disablePointerEvents={true}`.
+      pointerEvents: 'none',
+    }),
+  };
+});
 
 const InputAdornment = React.forwardRef(function InputAdornment<
   RootComponentType extends React.ElementType,
