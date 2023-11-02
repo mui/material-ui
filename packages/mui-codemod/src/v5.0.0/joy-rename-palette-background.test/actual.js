@@ -23,17 +23,6 @@ const Custom = styled('div')(({ theme }) => ({
 </div>;
 
 extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        background: {
-          body: 'var(--joy-palette-common-black)',
-          surface: 'var(--joy-palette-neutral-900)',
-          backdrop: 'rgba(0 0 0 / 0.87)',
-        },
-      },
-    },
-  },
   typography: {
     kbd: {
       background:

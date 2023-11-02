@@ -10,8 +10,5 @@ export default function transformer(file) {
     .replace(/background\.popup/gm, 'background.level0')
     .replace(/palette-background-popup/gm, 'palette-background-level0')
     .replace(/background\.backdrop/gm, 'background.translucent')
-    .replace(/palette-background-backdrop/gm, 'palette-background-translucent')
-    .replace(/^(\s*)body:([^,]+),$/gm, '$1level0:$2,')
-    .replace(/^(\s*)surface:([^,]+),$/gm, '$1level1:$2,')
-    .replace(/^(\s*)backdrop:([^,]+),$/gm, '$1translucent:$2,');
+    .replace(/palette-background-backdrop/gm, 'palette-background-translucent');
 }
