@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import stepClasses, { getStepUtilityClass } from './stepClasses';
@@ -13,10 +12,10 @@ import useSlot from '../utils/useSlot';
 import stepperClasses from '../Stepper/stepperClasses';
 
 const useUtilityClasses = (ownerState: StepOwnerState) => {
-  const { size, orientation } = ownerState;
+  const { orientation } = ownerState;
 
   const slots = {
-    root: ['root', orientation, size && `size${capitalize(size)}`],
+    root: ['root', orientation],
     indicator: ['indicator'],
   };
 
@@ -170,7 +169,6 @@ const Step = React.forwardRef(function Step(inProps, ref) {
   const {
     className,
     component = 'li',
-    size = 'md',
     children,
     orientation = 'horizontal',
     indicator,
@@ -183,7 +181,6 @@ const Step = React.forwardRef(function Step(inProps, ref) {
     ...props,
     component,
     orientation,
-    size,
   };
 
   const classes = useUtilityClasses(ownerState);

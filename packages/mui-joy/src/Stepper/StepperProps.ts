@@ -20,8 +20,6 @@ export type StepperSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-export interface StepperPropsColorOverrides {}
-export interface StepperPropsVariantOverrides {}
 export interface StepperPropsSizeOverrides {}
 
 export interface StepperTypeMap<P = {}, D extends React.ElementType = 'ol'> {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
@@ -26,10 +26,6 @@ export type StepSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-export interface StepPropsColorOverrides {}
-export interface StepPropsVariantOverrides {}
-export interface StepPropsSizeOverrides {}
-
 export interface StepTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
     /**
@@ -46,12 +42,6 @@ export interface StepTypeMap<P = {}, D extends React.ElementType = 'li'> {
      * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';
-    /**
-     * The size of the component.
-     * It accepts theme values between 'sm' and 'lg'.
-     * @default 'md'
-     */
-    size?: OverridableStringUnion<'sm' | 'md' | 'lg', StepPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
