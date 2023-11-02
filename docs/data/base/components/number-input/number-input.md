@@ -93,11 +93,11 @@ The following code snippet:
 
 ### Events
 
-The NumberInput component provides two props - `onChange` and `onInputChange` - that accept event handlers for when the value of the component changes.
+The NumberInput component provides two props-`onChange` and `onInputChange`-that accept event handlers for when the value of the component changes.
 
 #### onChange
 
-`onChange` accepts a custom event handler that is called with two arguments - the underlying event, and the latest "clamped" value:
+`onChange` accepts a custom event handler that is called with two arguments: the underlying event, and the latest "clamped" value.
 
 ```ts
 onChange: (
@@ -106,9 +106,11 @@ onChange: (
 ) => void;
 ```
 
-It's called when the `<input>` element is blurred, or when the stepper buttons are clicked, after the value has been clamped based on the min, max, or step props.
+It's called when the `<input>` element is blurred, or when the stepper buttons are clicked, after the value has been clamped based on the [`min`, `max`](#minimum-and-maximum), or [`step`](#incremental-steps) props.
 
-Be aware that `onChange` can only be passed as a prop on the component, and not through `slotProps`.
+:::warning
+`onChange` can only be passed as a prop on the component—not through `slotProps`.
+:::
 
 ```jsx
 // ✅ Works
@@ -129,17 +131,20 @@ Be aware that `onChange` can only be passed as a prop on the component, and not 
 
 #### onInputChange
 
-`onInputChange` accepts a native input change handler that is passed to the `<input>` element:
+`onInputChange` accepts a native input change handler that's passed to the `<input>` element:
 
 ```ts
 onInputChange: React.ChangeEventHandler<HTMLInputElement>;
 ```
 
-It's called whenever the value of the textbox changes, e.g. on every keystroke typed into it, before clamping is applied.
+It's called whenever the value of the textbox changes–for example, on every keystroke typed into it, before clamping is applied.
 
-In other words, it is possible for `event.target.value` to contain out-of-range values or non-numerical characters.
+In other words, it's possible for `event.target.value` to contain out-of-range values or non-numerical characters.
 
-Be aware that `onInputChange` can only be passed as a prop on the component. If you prefer to use slotProps, pass it as `slotProps.input.onChange` instead.
+:::warning
+`onInputChange` can only be passed as a prop on the component.
+If you prefer to use `slotProps`, pass it as `slotProps.input.onChange` instead.
+:::
 
 ```jsx
 // ✅ Works
