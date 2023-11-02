@@ -4,7 +4,7 @@ import * as React from 'react';
 interface ToggleButtonGroupContextType {
   onClick: (
     event: React.MouseEvent<HTMLButtonElement>,
-    childValue: readonly string[] | string | number | undefined,
+    childValue: React.ButtonHTMLAttributes<HTMLButtonElement>['value'],
   ) => void;
   value?: string | (string | number)[] | null;
 }
