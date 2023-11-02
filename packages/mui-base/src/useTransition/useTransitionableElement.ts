@@ -1,35 +1,77 @@
 import * as React from 'react';
 import { TransitionContextValue } from './TransitionContext';
 
+interface TransitionState {
+  /**
+   * `true`, if the transitioned element has exited completely.
+   */
+  elementExited: boolean;
+  /**
+   * `true`, if the transition is in progress.
+   */
+  inProgress: boolean;
+}
+
+type TransitionAction = 'entering' | 'entered' | 'exiting' | 'exited';
+
+function transitionStateReducer(_: TransitionState, action: TransitionAction): TransitionState {
+  switch (action) {
+    case 'entering':
+      return {
+        elementExited: false,
+        inProgress: true,
+      };
+    case 'entered':
+      return {
+        elementExited: false,
+        inProgress: false,
+      };
+    case 'exiting':
+      return {
+        elementExited: false,
+        inProgress: true,
+      };
+    case 'exited':
+      return {
+        elementExited: true,
+        inProgress: false,
+      };
+    default:
+      throw new Error(`Unhandled action: ${action}`);
+  }
+}
+
 export function useTransitionableElement(requestEnter: boolean) {
-  const [hasExited, setHasExited] = React.useState(true);
-  const [inTransition, setInTransition] = React.useState(false);
+  const [state, dispatch] = React.useReducer(transitionStateReducer, {
+    elementExited: false,
+    inProgress: false,
+  });
+
   const hasTransition = React.useRef(false);
 
   const handleEntering = React.useCallback(() => {
-    setHasExited(false);
-    setInTransition(true);
+    dispatch('entering');
   }, []);
 
   const handleEntered = React.useCallback(() => {
-    setHasExited(false);
-    setInTransition(false);
+    dispatch('entered');
   }, []);
 
   const handleExiting = React.useCallback(() => {
-    setHasExited(false);
-    setInTransition(true);
+    dispatch('exiting');
   }, []);
 
   const handleExited = React.useCallback(() => {
-    setHasExited(true);
-    setInTransition(true);
+    dispatch('exited');
   }, []);
 
   React.useEffect(() => {
     if (!hasTransition.current) {
-      setHasExited(!requestEnter);
-      setInTransition(false);
+      if (requestEnter) {
+        dispatch('entered');
+      } else {
+        dispatch('exited');
+      }
     }
   }, [requestEnter]);
 
@@ -48,7 +90,7 @@ export function useTransitionableElement(requestEnter: boolean) {
       onExiting: handleExiting,
       onExited: handleExited,
       registerTransition,
-      hasExited,
+      hasExited: state.elementExited,
     }),
     [
       handleEntering,
@@ -57,13 +99,13 @@ export function useTransitionableElement(requestEnter: boolean) {
       handleExited,
       requestEnter,
       registerTransition,
-      hasExited,
+      state.elementExited,
     ],
   );
 
   return {
     contextValue,
-    hasExited,
-    transitionInProgress: inTransition,
+    hasExited: state.elementExited,
+    transitionInProgress: state.inProgress,
   };
 }
