@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 
-interface IToggleButtonGroupContext {
+interface ToggleButtonGroupContextType {
   onClick: (
     event: React.MouseEvent<HTMLButtonElement>,
     childValue: readonly string[] | string | number | undefined,
@@ -12,7 +12,7 @@ interface IToggleButtonGroupContext {
 /**
  * @ignore - internal component.
  */
-const ToggleButtonGroupContext = React.createContext<IToggleButtonGroupContext>({
+const ToggleButtonGroupContext = React.createContext<ToggleButtonGroupContextType>({
   onClick: () => {},
   value: null,
 });
