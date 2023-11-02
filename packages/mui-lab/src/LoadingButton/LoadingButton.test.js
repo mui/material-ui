@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { createRenderer, describeConformance, screen, within } from '@mui-internal/test-utils';
 import { expect } from 'chai';
-import Button from '@mui/material/Button';
+import Button, { buttonClasses } from '@mui/material/Button';
 import LoadingButton, { loadingButtonClasses as classes } from '@mui/lab/LoadingButton';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 describe('<LoadingButton />', () => {
   const { render } = createRenderer();
@@ -70,6 +71,46 @@ describe('<LoadingButton />', () => {
       );
 
       expect(screen.getByRole('button')).to.have.text('loading…Test');
+    });
+  });
+
+  describe('ButtonGroup works with LoadingButton', () => {
+    it('correctly passes props to children', () => {
+      const {getByRole} = render(
+        <ButtonGroup variant='contained' size='large' color='secondary'>
+          <LoadingButton/>
+        </ButtonGroup>
+      );
+      const button = getByRole('button');
+      expect(button).to.have.class(buttonClasses.contained);
+      expect(button).to.have.class(buttonClasses.sizeLarge);
+      expect(button).to.have.class(buttonClasses.containedSecondary);
+    });
+
+    it('correctly applies position classes to buttons', () => {
+      render(
+        <ButtonGroup>
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3</Button>
+        </ButtonGroup>,
+      );
+
+      const firstButton = screen.getAllByRole('button')[0];
+      const middleButton = screen.getAllByRole('button')[1];
+      const lastButton = screen.getAllByRole('button')[2];
+
+      expect(firstButton).to.have.class(classes.firstButton);
+      expect(firstButton).not.to.have.class(classes.middleButton);
+      expect(firstButton).not.to.have.class(classes.lastButton);
+
+      expect(middleButton).to.have.class(classes.middleButton);
+      expect(middleButton).not.to.have.class(classes.firstButton);
+      expect(middleButton).not.to.have.class(classes.lastButton);
+
+      expect(lastButton).to.have.class(classes.lastButton);
+      expect(lastButton).not.to.have.class(classes.middleButton);
+      expect(lastButton).not.to.have.class(classes.firstButton);
     });
   });
 });
