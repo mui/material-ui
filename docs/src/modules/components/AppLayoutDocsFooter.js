@@ -423,81 +423,84 @@ export default function AppLayoutDocsFooter(props) {
             </Tooltip>
           </Stack>
         </Stack>
-        <Collapse
-          in={commentOpen}
-          unmountOnExit
-          onEntered={handleEntered}
-          timeout={{ enter: 0, exit: theme.transitions.duration.standard }}
-        >
-          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-          <form
-            aria-labelledby="feedback-message"
-            onReset={handleCancelComment}
-            onSubmit={handleSubmitComment}
-            onKeyDown={handleKeyDownForm}
+        {/* Wrapper div to fix Collapse close animation */}
+        <div>
+          <Collapse
+            in={commentOpen}
+            unmountOnExit
+            onEntered={handleEntered}
+            timeout={{ enter: 0, exit: theme.transitions.duration.standard }}
           >
-            <div>
-              {commentedSection.text ? (
-                <Typography
-                  variant="body2"
-                  id="feedback-description"
-                  color="text.secondary"
-                  dangerouslySetInnerHTML={{
-                    __html: t('feedbackSectionSpecific').replace(
-                      '{{sectionName}}',
-                      `"${commentedSection.text}"`,
-                    ),
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+            <form
+              aria-labelledby="feedback-message"
+              onReset={handleCancelComment}
+              onSubmit={handleSubmitComment}
+              onKeyDown={handleKeyDownForm}
+            >
+              <div>
+                {commentedSection.text ? (
+                  <Typography
+                    variant="body2"
+                    id="feedback-description"
+                    color="text.secondary"
+                    dangerouslySetInnerHTML={{
+                      __html: t('feedbackSectionSpecific').replace(
+                        '{{sectionName}}',
+                        `"${commentedSection.text}"`,
+                      ),
+                    }}
+                  />
+                ) : (
+                  <Typography variant="body2" id="feedback-description" color="text.secondary">
+                    {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
+                  </Typography>
+                )}
+                <TextField
+                  multiline
+                  margin="dense"
+                  name="comment"
+                  fullWidth
+                  rows={4}
+                  value={comment}
+                  onChange={handleChangeTextfield}
+                  inputProps={{
+                    'aria-label': t('feedbackCommentLabel'),
+                    'aria-describedby': 'feedback-description',
+                    ref: inputRef,
                   }}
                 />
-              ) : (
-                <Typography variant="body2" id="feedback-description" color="text.secondary">
-                  {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
-                </Typography>
-              )}
-              <TextField
-                multiline
-                margin="dense"
-                name="comment"
-                fullWidth
-                rows={4}
-                value={comment}
-                onChange={handleChangeTextfield}
-                inputProps={{
-                  'aria-label': t('feedbackCommentLabel'),
-                  'aria-describedby': 'feedback-description',
-                  ref: inputRef,
-                }}
-              />
-              {rating !== 1 && (
-                <Alert
-                  severity="warning"
-                  color="warning"
-                  icon={<PanToolRoundedIcon fontSize="small" />}
-                  sx={{ my: 1.5 }}
-                >
-                  <Typography id="feedback-description" color="text.secondary">
-                    {t('feedbackMessageToGitHub.usecases')}{' '}
-                    <Link
-                      href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
-                      target="_blank"
-                    >
-                      {t('feedbackMessageToGitHub.callToAction.link')}
-                    </Link>{' '}
-                    {t('feedbackMessageToGitHub.reasonWhy')}
-                  </Typography>
-                </Alert>
-              )}
-              <DialogActions>
-                <Button type="reset" size="small">
-                  {t('cancel')}
-                </Button>
-                <Button type="submit" variant="contained" size="small">
-                  {t('submit')}
-                </Button>
-              </DialogActions>
-            </div>
-          </form>
-        </Collapse>
+                {rating !== 1 && typeof window !== 'undefined' && (
+                  <Alert
+                    severity="warning"
+                    color="warning"
+                    icon={<PanToolRoundedIcon fontSize="small" />}
+                    sx={{ my: 1.5 }}
+                  >
+                    <Typography id="feedback-description" color="text.secondary">
+                      {t('feedbackMessageToGitHub.usecases')}{' '}
+                      <Link
+                        href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
+                        target="_blank"
+                      >
+                        {t('feedbackMessageToGitHub.callToAction.link')}
+                      </Link>{' '}
+                      {t('feedbackMessageToGitHub.reasonWhy')}
+                    </Typography>
+                  </Alert>
+                )}
+                <DialogActions>
+                  <Button type="reset" size="small">
+                    {t('cancel')}
+                  </Button>
+                  <Button type="submit" variant="contained" size="small">
+                    {t('submit')}
+                  </Button>
+                </DialogActions>
+              </div>
+            </form>
+          </Collapse>
+        </div>
         <Divider />
         {hidePagePagination ? null : (
           <Stack direction="row" justifyContent="space-between" sx={{ my: 2 }}>
