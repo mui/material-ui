@@ -47,18 +47,10 @@ describe('<ToggleButtonGroup />', () => {
 
   it('should toggle the state when immediate children is not button', () => {
     function CustomButton() {
-      return (
-        <div>
-          <Button value="custom-button">Custom button</Button>
-        </div>
-      );
+      return <Button value="custom-button">Custom button</Button>;
     }
     function CustomIconButton() {
-      return (
-        <div>
-          <IconButton value="custom-iconbutton">Custom button</IconButton>
-        </div>
-      );
+      return <IconButton value="custom-iconbutton">Custom button</IconButton>;
     }
     const handleChange = spy();
 
