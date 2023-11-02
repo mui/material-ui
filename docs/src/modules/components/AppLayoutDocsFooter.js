@@ -22,7 +22,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import PanToolRoundedIcon from '@mui/icons-material/PanToolRounded';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
@@ -539,7 +538,7 @@ export default function AppLayoutDocsFooter(props) {
           spacing={{ xs: 3, sm: 1 }}
         >
           <Stack direction="row" alignItems="center" spacing={1} sx={{ flexGrow: 1 }}>
-            <Link href={ROUTES.blog}>
+            <Link href={ROUTES.blog} target="_blank" rel="noopener noreferrer">
               <FooterLink>
                 Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
@@ -547,17 +546,9 @@ export default function AppLayoutDocsFooter(props) {
             <Typography color="grey.500" fontSize={13}>
               &bull;
             </Typography>
-            <Link href={ROUTES.store}>
+            <Link href={ROUTES.store} target="_blank" rel="noopener noreferrer">
               <FooterLink>
                 Store <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
-              </FooterLink>
-            </Link>
-            <Typography color="grey.500" fontSize={13}>
-              &bull;
-            </Typography>
-            <Link href={ROUTES.careers}>
-              <FooterLink>
-                Careers <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
             </Link>
           </Stack>
@@ -581,16 +572,6 @@ export default function AppLayoutDocsFooter(props) {
               size="small"
             >
               <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.linkedin.com/company/mui/"
-              aria-label="linkedin"
-              title="LinkedIn"
-              size="small"
-            >
-              <LinkedInIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
             <IconButton
               target="_blank"
