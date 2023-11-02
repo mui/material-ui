@@ -3,7 +3,7 @@ import { Unstable_Popup as BasePopup, PopupProps } from '@mui/base/Unstable_Popu
 import Button from '@mui/joy/Button';
 import { CssVarsProvider } from '@mui/joy/styles';
 import { styled } from '@mui/system';
-import { useTransition, TransitionContext } from '@mui/base/useTransition';
+import { useTransitionStateManager, TransitionContext } from '@mui/base/useTransition';
 import { Fade } from '@mui/material';
 import { useSpring, useSpringRef, animated } from '@react-spring/web';
 
@@ -33,7 +33,8 @@ function Animated(props: React.PropsWithChildren<{ className?: string }>) {
     throw new Error('Missing transition context');
   }
 
-  const { requestedEnter, onEntering, onEntered, onExiting, onExited, hasExited } = useTransition();
+  const { requestedEnter, onEntering, onEntered, onExiting, onExited, hasExited } =
+    useTransitionStateManager();
 
   React.useEffect(() => {
     if (requestedEnter && !hasExited) {
@@ -121,7 +122,7 @@ function PopupWithTrigger(props: PopupProps & { label: string }) {
 }
 
 function MaterialUITransitionAdapter(props: { children: React.ReactElement }) {
-  const { requestedEnter, onEntering, onExited } = useTransition();
+  const { requestedEnter, onEntering, onExited } = useTransitionStateManager();
   const { children } = props;
 
   return React.cloneElement(children, {
@@ -137,7 +138,8 @@ const Container = styled('div')`
 `;
 
 function ReactSpringTransition({ children }: React.PropsWithChildren<{}>) {
-  const { requestedEnter, onEntering, onEntered, onExiting, onExited } = useTransition();
+  const { requestedEnter, onEntering, onEntered, onExiting, onExited } =
+    useTransitionStateManager();
 
   const api = useSpringRef();
   const springs = useSpring({

@@ -1,40 +1,5 @@
 import * as React from 'react';
-import { TransitionContext, TransitionContextValue } from './TransitionContext';
-/**
- *
- * API:
- *
- * - [useTransition API](https://mui.com/base-ui/api/use-transition/)
- */
-export function useTransition() {
-  const transitionContext = React.useContext(TransitionContext);
-  if (!transitionContext) {
-    throw new Error('Missing transition context');
-  }
-
-  const {
-    registerTransition,
-    requestEnter: requestOpen,
-    onEntering,
-    onEntered,
-    onExiting,
-    onExited,
-    hasExited,
-  } = transitionContext;
-
-  React.useEffect(() => {
-    return registerTransition();
-  }, [registerTransition]);
-
-  return {
-    onEntering,
-    onEntered,
-    onExiting,
-    onExited,
-    requestedEnter: requestOpen,
-    hasExited,
-  };
-}
+import { TransitionContextValue } from './TransitionContext';
 
 export function useTransitionableElement(requestEnter: boolean) {
   const [hasExited, setHasExited] = React.useState(true);

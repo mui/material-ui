@@ -1,2 +1,3 @@
-export * from './useTransition';
+export * from './useTransitionStateManager';
+export * from './useTransitionableElement';
 export * from './TransitionContext';
