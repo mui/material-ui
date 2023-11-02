@@ -66,21 +66,26 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 Renames the background tokens to be descriptive.
 
+- `background.body` -> `background.level0`
+- `background.surface` -> `background.level1`
+- `background.popup` -> `background.level0`
+- `background.backdrop` -> `background.translucent`
+
 ```diff
-<Card
-  sx={{
--   bgcolor: 'background.body',
-+   bgcolor: 'background.level0',
-    '&:hover': {
--     bgcolor: 'background.surface',
-+     bgcolor: 'background.level1',
-    },
-    '&:active': {
--     bgcolor: 'background.popup',
-+     bgcolor: 'background.level0',
-    },
-  }}
-/>
+ <Card
+   sx={{
+-    bgcolor: 'background.body',
++    bgcolor: 'background.level0',
+     '&:hover': {
+-      bgcolor: 'background.surface',
++      bgcolor: 'background.level1',
+     },
+     '&:active': {
+-      bgcolor: 'background.popup',
++      bgcolor: 'background.level0',
+     },
+   }}
+ />
 ```
 
 ```bash
