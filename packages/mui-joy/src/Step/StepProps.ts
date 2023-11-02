@@ -30,7 +30,7 @@ export interface StepPropsColorOverrides {}
 export interface StepPropsVariantOverrides {}
 export interface StepPropsSizeOverrides {}
 
-export interface StepTypeMap<P = {}, D extends React.ElementType = 'ol'> {
+export interface StepTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
     /**
      * Used to render icon or text elements inside the Step if `src` is not set.
