@@ -217,7 +217,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         level2: getCssVarColor('palette-neutral-100'), // Former level1
         level3: getCssVarColor('palette-neutral-200'), // Former level2
         level4: getCssVarColor('palette-neutral-300'), // Former level3 and also intended to be used for tooltip
-        backdrop: `rgba(${getCssVar(
+        translucent: `rgba(${getCssVar(
           'palette-neutral-darkChannel',
           colorChannel(defaultColors.neutral[900]), // should be the same index as in `attachColorChannels`
         )} / 0.25)`,
@@ -273,7 +273,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         level2: getCssVarColor('palette-neutral-800'), // Former level1
         level3: getCssVarColor('palette-neutral-700'), // Former level2
         level4: getCssVarColor('palette-neutral-600'), // Former level3 and also intended to be used for tooltip
-        backdrop: `rgba(${getCssVar(
+        translucent: `rgba(${getCssVar(
           'palette-neutral-darkChannel',
           colorChannel(defaultColors.neutral[50]), // should be the same index as in `attachColorChannels`
         )} / 0.25)`,

@@ -293,7 +293,7 @@ describe('[Joy] CssVarsProvider', () => {
           level2: 'var(--joy-palette-background-level2)',
           level3: 'var(--joy-palette-background-level3)',
           level4: 'var(--joy-palette-background-level4)',
-          backdrop: 'var(--joy-palette-background-backdrop)',
+          translucent: 'var(--joy-palette-background-translucent)',
         }),
       );
       expect(screen.getByTestId('palette-focusVisible').textContent).to.equal(
