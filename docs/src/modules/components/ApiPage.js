@@ -9,6 +9,7 @@ import Divider from '@mui/material/Divider';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import ReviewsRoundedIcon from '@mui/icons-material/ReviewsRounded';
+import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -230,12 +231,45 @@ export default function ApiPage(props) {
           {disableAd ? null : <Ad />}
         </Typography>
         <Heading hash="demos" />
-        <div
-          dangerouslySetInnerHTML={{
-            __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
+        <Alert
+          severity="success"
+          variant="outlined"
+          icon={<VerifiedRoundedIcon sx={{ fontSize: 20 }} />}
+          sx={[
+            (theme) => ({
+              mt: 1.5,
+              pt: 1,
+              px: 2,
+              pb: 0,
+              fontSize: theme.typography.pxToRem(16),
+              backgroundColor: (theme.vars || theme).palette.success[50],
+              borderColor: (theme.vars || theme).palette.success[100],
+              '& * p': {
+                mb: 1,
+              },
+              '& * a': {
+                fontWeight: theme.typography.fontWeightMedium,
+                color: (theme.vars || theme).palette.success[900],
+                textDecorationColor: alpha(theme.palette.success[600], 0.3),
+              },
+              ...theme.applyDarkStyles({
+                '& * a': {
+                  color: (theme.vars || theme).palette.success[100],
+                  textDecorationColor: alpha(theme.palette.success[100], 0.3),
+                },
+                backgroundColor: alpha(theme.palette.success[700], 0.15),
+                borderColor: alpha(theme.palette.success[600], 0.3),
+              }),
+            }),
+          ]}
+        >
+          <span
+            dangerouslySetInnerHTML={{
+              __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
               ${demos}`,
-          }}
-        />
+            }}
+          />
+        </Alert>
         <Heading hash="import" />
         <HighlightedCode
           code={pageContent.imports.join(`

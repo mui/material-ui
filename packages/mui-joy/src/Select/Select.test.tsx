@@ -646,4 +646,32 @@ describe('Joy <Select />', () => {
     });
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');
   });
+
+  describe('prop: multiple', () => {
+    it('renders the selected values (multiple) using the renderValue prop', () => {
+      const { getByRole } = render(
+        <Select
+          multiple
+          defaultValue={[1, 2]}
+          renderValue={(values) => values.map((v) => `${v.label} (${v.value})`).join(', ')}
+        >
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One (1), Two (2)');
+    });
+
+    it('renders the selected values (multiple) as comma-separated list of labels if renderValue is not provided', () => {
+      const { getByRole } = render(
+        <Select multiple defaultValue={[1, 2]}>
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One, Two');
+    });
+  });
 });

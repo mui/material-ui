@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "5.14.15",
+  "version": "5.14.16",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
@@ -35,13 +35,13 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.2",
-    "@mui/base": "5.0.0-beta.21",
-    "@mui/utils": "^5.14.15",
+    "@mui/base": "5.0.0-beta.22",
+    "@mui/utils": "^5.14.16",
     "nprogress": "^0.2.0",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@types/react": "^18.2.32",
+    "@types/react": "^18.2.33",
     "react": "^18.2.0"
   },
   "peerDependencies": {
