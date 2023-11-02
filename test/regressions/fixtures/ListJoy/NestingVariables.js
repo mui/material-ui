@@ -15,7 +15,7 @@ export default function NestedVariables() {
           '--List-padding': '8px',
           '--List-gap': '4px',
           '& > li [role="button"]': {
-            bgcolor: 'background.surface',
+            bgcolor: 'background.level0',
           },
         })}
       >
