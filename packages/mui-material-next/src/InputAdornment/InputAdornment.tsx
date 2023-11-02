@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { styled, useThemeProps } from '../styles';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
-import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
+import { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
 import {
   InputAdornmentOwnerState,
   InputAdornmentProps,
@@ -46,17 +46,17 @@ const InputAdornmentRoot = styled('div', {
   },
 })<{ ownerState: InputAdornmentOwnerState }>(({ theme, ownerState }) => ({
   display: 'flex',
-  height: '0.01em', // Fix IE11 flexbox alignment. To remove at some point.
   maxHeight: '2em',
   alignItems: 'center',
   whiteSpace: 'nowrap',
   color: (theme.vars || theme).palette.action.active,
-  ...(ownerState.variant === 'filled' && {
-    // Styles applied to the root element if `variant="filled"`.
-    [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
-      marginTop: 16,
-    },
-  }),
+  // TODO: this may not be needed https://github.com/mui/material-ui/issues/39628#issuecomment-1786842659
+  // ...(ownerState.variant === 'filled' && {
+  //   // Styles applied to the root element if `variant="filled"`.
+  //   [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
+  //     marginTop: 16,
+  //   },
+  // }),
   ...(ownerState.position === 'start' && {
     // Styles applied to the root element if `position="start"`.
     marginRight: 8,
