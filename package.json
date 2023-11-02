@@ -74,6 +74,11 @@
     "validate-declarations": "ts-node --esm scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs"
   },
+  "dependencies": {
+    "execa": "^8.0.1",
+    "prettier": "^2.8.8",
+    "yargs": "^17.7.2"
+  },
   "devDependencies": {
     "@argos-ci/core": "^0.12.0",
     "@babel/cli": "^7.23.0",
@@ -154,7 +159,6 @@
     "nyc": "^15.1.0",
     "piscina": "^4.1.0",
     "postcss-styled-syntax": "^0.4.0",
-    "prettier": "^2.8.8",
     "process": "^0.11.10",
     "raw-loader": "4.0.2",
     "rimraf": "^5.0.5",
@@ -169,7 +173,6 @@
     "webpack": "^5.88.2",
     "webpack-bundle-analyzer": "^4.9.1",
     "webpack-cli": "^5.1.4",
-    "yargs": "^17.7.2",
     "yarn-deduplicate": "^6.0.2"
   },
   "resolutions": {
