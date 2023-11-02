@@ -13,6 +13,8 @@ interface ToggleButtonGroupContextType {
 /**
  * @ignore - internal component.
  */
-const ToggleButtonGroupContext = React.createContext<ToggleButtonGroupContextType>({});
+const ToggleButtonGroupContext = React.createContext<ToggleButtonGroupContextType | undefined>(
+  undefined,
+);
 
 export default ToggleButtonGroupContext;

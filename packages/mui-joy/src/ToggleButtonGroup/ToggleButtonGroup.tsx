@@ -140,7 +140,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup<
     () => ({
       onClick: (
         event: React.MouseEvent<HTMLButtonElement>,
-        childValue: string | readonly string[] | number | undefined,
+        childValue: React.ButtonHTMLAttributes<HTMLButtonElement>['value'],
       ) => {
         if (!event.defaultPrevented) {
           handleChange(event, childValue);
