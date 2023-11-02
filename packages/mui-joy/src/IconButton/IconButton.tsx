@@ -181,13 +181,27 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    props.onClick?.(event);
+    let onClick = props.onClick;
+    if (typeof slotProps.root === 'function') {
+      onClick = slotProps.root(ownerState).onClick;
+    } else if (slotProps.root) {
+      onClick = slotProps.root.onClick;
+    }
+
+    onClick?.(event);
+
     if (toggleButtonGroup) {
       toggleButtonGroup.onClick?.(event, props.value);
     }
   };
 
   let ariaPressed = props['aria-pressed'];
+
+  if (typeof slotProps.root === 'function') {
+    ariaPressed = slotProps.root(ownerState)['aria-pressed'];
+  } else if (slotProps.root) {
+    ariaPressed = slotProps.root['aria-pressed'];
+  }
 
   if (toggleButtonGroup) {
     if (Array.isArray(toggleButtonGroup.value)) {
@@ -196,6 +210,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       ariaPressed = toggleButtonGroup.value === props.value;
     }
   }
+
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
