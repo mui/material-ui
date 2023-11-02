@@ -121,7 +121,7 @@ export default function DiamondSponsors() {
           />
         </StyledAnchor>
         <Link
-          aria-label={t('diamondSponsors')}
+          aria-label={`${t('becomeADiamondSponsor')}${t('diamondSponsorVacancies')}`}
           rel="noopener noreferrer"
           href="/material-ui/discover-more/backers/#diamond"
           sx={(theme) => ({
@@ -157,12 +157,10 @@ export default function DiamondSponsors() {
           })}
         >
           <Typography variant="caption" fontWeight="semiBold" textAlign="center">
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-            {'Become a diamond sponsor!'}
+            {t('becomeADiamondSponsor')}
           </Typography>
           <Typography variant="caption" fontWeight="regular" color="text.secondary">
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-            {'One spot left'}
+            {t('diamondSponsorVacancies')}
           </Typography>
         </Link>
       </Stack>

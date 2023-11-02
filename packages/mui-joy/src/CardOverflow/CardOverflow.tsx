@@ -47,10 +47,39 @@ const CardOverflowRoot = styled('div', {
     alignSelf: 'stretch', // prevent shrinking if parent's align-items is not initial
     position: 'relative',
     display: 'flex',
+    flexDirection: 'var(--_CardOverflow-flexDirection)' as React.CSSProperties['flexDirection'],
     margin: 'var(--_CardOverflow-margin)',
     borderRadius: 'var(--_CardOverflow-radius)',
     padding: 'var(--_CardOverflow-padding)',
-    [`.${cardClasses.horizontal} &`]: {
+    [`.${cardClasses.vertical} &, .${cardClasses.horizontal} .${cardClasses.vertical} &, .${modalDialogClasses.root} &`]:
+      {
+        '--_CardOverflow-flexDirection': 'column', // required to make AspectRatio works
+        '--AspectRatio-margin': '0 calc(-1 * var(--Card-padding))',
+        '--_CardOverflow-margin': '0 var(--CardOverflow-offset)',
+        '--_CardOverflow-padding': '0 var(--Card-padding)',
+        '&[data-first-child]': {
+          '--AspectRatio-radius': `${childRadius} ${childRadius} 0 0`,
+          '--_CardOverflow-radius': 'var(--CardOverflow-radius) var(--CardOverflow-radius) 0 0',
+          '--_CardOverflow-margin': 'var(--CardOverflow-offset) var(--CardOverflow-offset) 0',
+        },
+        '&[data-last-child]': {
+          '--AspectRatio-radius': `0 0 ${childRadius} ${childRadius}`,
+          '--_CardOverflow-radius': '0 0 var(--CardOverflow-radius) var(--CardOverflow-radius)',
+          '--_CardOverflow-margin': '0 var(--CardOverflow-offset) var(--CardOverflow-offset)',
+        },
+        '&[data-last-child][data-first-child]': {
+          '--AspectRatio-radius': childRadius,
+          '--_CardOverflow-margin': 'var(--CardOverflow-offset)',
+        },
+        [`& > .${buttonClasses.root}:only-child`]: {
+          zIndex: 1, // prevent button from being covered Link overlay. This can be improved in the future with :has() selector
+          width: 'calc(100% + -2 * var(--CardOverflow-offset))',
+          '--Button-margin': '0 var(--CardOverflow-offset)',
+          '--Button-radius': '0 0 var(--CardOverflow-radius) var(--CardOverflow-radius)',
+        },
+      },
+    [`.${cardClasses.horizontal} &, .${cardClasses.vertical} .${cardClasses.horizontal} &`]: {
+      '--_CardOverflow-flexDirection': 'row',
       '--AspectRatio-margin': 'calc(-1 * var(--Card-padding)) 0px',
       '--_CardOverflow-margin': 'var(--CardOverflow-offset) 0px',
       '--_CardOverflow-padding': 'var(--Card-padding) 0px',
@@ -68,36 +97,12 @@ const CardOverflowRoot = styled('div', {
       },
       '&[data-last-child][data-first-child]': {
         '--AspectRatio-radius': childRadius,
+        '--_CardOverflow-margin': 'var(--CardOverflow-offset)',
       },
       [`& > .${buttonClasses.root}:only-child`]: {
         height: 'calc(100% + -2 * var(--CardOverflow-offset))',
         '--Button-margin': 'var(--CardOverflow-offset) 0',
         '--Button-radius': '0 var(--CardOverflow-radius) var(--CardOverflow-radius) 0',
-      },
-    },
-    [`.${cardClasses.vertical} &, .${modalDialogClasses.root} &`]: {
-      flexDirection: 'column', // required to make AspectRatio works
-      '--AspectRatio-margin': '0 calc(-1 * var(--Card-padding))',
-      '--_CardOverflow-margin': '0 var(--CardOverflow-offset)',
-      '--_CardOverflow-padding': '0 var(--Card-padding)',
-      '&[data-first-child]': {
-        '--AspectRatio-radius': `${childRadius} ${childRadius} 0 0`,
-        '--_CardOverflow-radius': 'var(--CardOverflow-radius) var(--CardOverflow-radius) 0 0',
-        '--_CardOverflow-margin': 'var(--CardOverflow-offset) var(--CardOverflow-offset) 0',
-      },
-      '&[data-last-child]': {
-        '--AspectRatio-radius': `0 0 ${childRadius} ${childRadius}`,
-        '--_CardOverflow-radius': '0 0 var(--CardOverflow-radius) var(--CardOverflow-radius)',
-        '--_CardOverflow-margin': '0 var(--CardOverflow-offset) var(--CardOverflow-offset)',
-      },
-      '&[data-last-child][data-first-child]': {
-        '--AspectRatio-radius': childRadius,
-      },
-      [`& > .${buttonClasses.root}:only-child`]: {
-        zIndex: 1, // prevent button from being covered Link overlay. This can be improved in the future with :has() selector
-        width: 'calc(100% + -2 * var(--CardOverflow-offset))',
-        '--Button-margin': '0 var(--CardOverflow-offset)',
-        '--Button-radius': '0 0 var(--CardOverflow-radius) var(--CardOverflow-radius)',
       },
     },
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
