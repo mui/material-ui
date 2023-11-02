@@ -35,13 +35,13 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
   const {
     action,
     children,
-    value: valueProp,
     disabled = false,
     onChange,
     onClick,
     onFocus,
     slotProps = {},
     slots = {},
+    value,
     ...other
   } = props;
 
@@ -51,6 +51,7 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
   const { active, highlighted, selected, getRootProps } = useTab({
     ...props,
     rootRef: handleRef,
+    value,
   });
 
   const ownerState: TabOwnerState = {

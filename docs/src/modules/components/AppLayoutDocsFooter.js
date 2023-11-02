@@ -249,6 +249,9 @@ function usePageNeighbours() {
 }
 
 const EMPTY_SECTION = { hash: '', text: '' };
+
+// The design feedback alert was removed in https://github.com/mui/material-ui/pull/39691
+// This dead code is here to simplify the creation of special feedback channel
 const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API content design' }];
 
 export default function AppLayoutDocsFooter(props) {
