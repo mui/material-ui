@@ -164,6 +164,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       '& code.Api-code': {
         borderColor: alpha(darkTheme.palette.primary[400], 0.1),
         backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
+        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
       },
     },
   }),
