@@ -159,7 +159,7 @@ export const applySolidInversion =
         [`${theme.getColorSchemeSelector('light')}, ${theme.getColorSchemeSelector('dark')}`]: {
           colorScheme: 'dark',
           [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-200`),
-          [prefixVar('--palette-background-level0')]: getCssVar(`palette-${color}-600`),
+          [prefixVar('--palette-background-level0')]: getCssVar(`palette-${color}-700`),
           [prefixVar('--palette-background-level1')]: `rgba(${getCssVar(
             `palette-${color}-darkChannel`,
           )} / 0.2)`,
@@ -249,19 +249,19 @@ export const applySoftInversion =
         '--Icon-color': 'currentColor',
         [theme.getColorSchemeSelector('dark')]: {
           [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-300`),
-          [prefixVar('--palette-background-level0')]: getCssVar(`palette-${color}-800`),
+          [prefixVar('--palette-background-level0')]: getCssVar(`palette-${color}-900`),
           [prefixVar('--palette-background-level1')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
-          )} / 0.2)`,
+          )} / 0.08)`,
           [prefixVar('--palette-background-level2')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
-          )} / 0.4)`,
+          )} / 0.2)`,
           [prefixVar('--palette-background-level3')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
-          )} / 0.6)`,
+          )} / 0.4)`,
           [prefixVar('--palette-background-level4')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
-          )} / 0.72)`,
+          )} / 0.6)`,
           [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
           [prefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
             `palette-${color}-lightChannel`,
@@ -320,19 +320,19 @@ export const applySoftInversion =
         // `light` (default color scheme) should come last in case that `theme.getColorSchemeSelector()` return the same value
         [theme.getColorSchemeSelector('light')]: {
           [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-500`),
-          [prefixVar('--palette-background-level0')]: getCssVar(`palette-${color}-100`),
+          [prefixVar('--palette-background-level0')]: getCssVar(`palette-common-white`),
           [prefixVar('--palette-background-level1')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
-          )} / 0.2)`,
+          )} / 0.08)`,
           [prefixVar('--palette-background-level2')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
-          )} / 0.32)`,
+          )} / 0.2)`,
           [prefixVar('--palette-background-level3')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
-          )} / 0.48)`,
+          )} / 0.32)`,
           [prefixVar('--palette-background-level4')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
-          )} / 0.6)`,
+          )} / 0.48)`,
           [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-700`),
           [prefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
             `palette-${color}-darkChannel`,
