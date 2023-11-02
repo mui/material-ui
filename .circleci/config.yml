@@ -141,7 +141,13 @@ jobs:
                 command: git add -A && git diff --exit-code --staged
             - run:
                 name: Check for duplicated packages
-                command: pnpm dedupe --check
+                command: |
+                  if [[ $(git diff --name-status master | grep pnpm.lock) == "" ]];
+                  then
+                      echo "No changes to dependencies detected. Skipping..."
+                  else
+                      pnpm dedupe --check
+                  fi
   test_unit:
     <<: *defaults
     steps:
