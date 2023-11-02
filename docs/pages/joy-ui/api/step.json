@@ -7,14 +7,6 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
-    "size": {
-      "type": {
-        "name": "union",
-        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;string"
-      },
-      "default": "'md'",
-      "additionalInfo": { "joy-size": true }
-    },
     "slotProps": {
       "type": {
         "name": "shape",

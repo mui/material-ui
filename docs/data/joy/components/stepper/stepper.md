@@ -1,7 +1,7 @@
 ---
 productId: material-ui
 title: React Stepper component
-components: Stepper, Step, StepIndicator
+components: Stepper, Step, StepButton, StepIndicator
 githubLabel: 'component: stepper'
 materialDesign: https://m1.material.io/components/steppers.html
 ---

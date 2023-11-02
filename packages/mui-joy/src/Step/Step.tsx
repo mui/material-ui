@@ -233,15 +233,6 @@ Step.propTypes /* remove-proptypes */ = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * The size of the component.
-   * It accepts theme values between 'sm' and 'lg'.
-   * @default 'md'
-   */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['lg', 'md', 'sm']),
-    PropTypes.string,
-  ]),
-  /**
    * The props used for each slot inside.
    * @default {}
    */

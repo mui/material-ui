@@ -69,11 +69,11 @@ const StepButtonRoot = styled('button', {
  *
  * Demos:
  *
- * - [StepButtonper](https://mui.com/joy-ui/react-stepper/)
+ * - [Stepper](https://mui.com/joy-ui/react-stepper/)
  *
  * API:
  *
- * - [StepButton API](https://mui.com/joy-ui/api/step/)
+ * - [StepButton API](https://mui.com/joy-ui/api/step-button/)
  */
 const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & StepButtonProps>({
@@ -124,29 +124,10 @@ StepButton.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The indicator to display. If provided, a wrapper element will be used.
-   */
-  indicator: PropTypes.node,
-  /**
-   * The component orientation.
-   * @default 'horizontal'
-   */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-  /**
-   * The size of the component.
-   * It accepts theme values between 'sm' and 'lg'.
-   * @default 'md'
-   */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['lg', 'md', 'sm']),
-    PropTypes.string,
-  ]),
-  /**
    * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
-    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -154,7 +135,6 @@ StepButton.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
-    indicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**

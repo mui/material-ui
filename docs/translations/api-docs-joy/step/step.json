@@ -11,9 +11,6 @@
       "description": "The indicator to display. If provided, a wrapper element will be used."
     },
     "orientation": { "description": "The component orientation." },
-    "size": {
-      "description": "The size of the component. It accepts theme values between &#39;sm&#39; and &#39;lg&#39;."
-    },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
     "sx": {

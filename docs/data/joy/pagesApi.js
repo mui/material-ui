@@ -62,6 +62,7 @@ module.exports = [
   { pathname: '/joy-ui/api/snackbar' },
   { pathname: '/joy-ui/api/stack' },
   { pathname: '/joy-ui/api/step' },
+  { pathname: '/joy-ui/api/step-button' },
   { pathname: '/joy-ui/api/step-indicator' },
   { pathname: '/joy-ui/api/stepper' },
   { pathname: '/joy-ui/api/svg-icon' },
