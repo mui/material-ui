@@ -67,7 +67,7 @@ function CssBaseline(props: CssBaselineProps) {
               // Add support for document.body.requestFullScreen().
               // Other elements, if background transparent, are not supported.
               '&::backdrop': {
-                backgroundColor: theme.vars.palette.background.backdrop,
+                backgroundColor: theme.vars.palette.background.translucent,
               },
             },
             ...colorSchemeStyles,

@@ -63,14 +63,11 @@ export const skipInvertedColors = (theme: ThemeFragment) => {
         '--palette-focusVisible',
       )]: `${theme.colorSchemes.light?.palette.focusVisible} !important`,
       [prefixVar(
-        '--palette-background-body',
+        '--palette-background-level0',
       )]: `${theme.colorSchemes.light?.palette.background.level0} !important`,
       [prefixVar(
-        '--palette-background-surface',
+        '--palette-background-level1',
       )]: `${theme.colorSchemes.light?.palette.background.level1} !important`,
-      [prefixVar(
-        '--palette-background-popup',
-      )]: `${theme.colorSchemes.light?.palette.background.level0} !important`,
       [prefixVar(
         '--palette-background-level1',
       )]: `${theme.colorSchemes.light?.palette.background.level1} !important`,
@@ -79,6 +76,9 @@ export const skipInvertedColors = (theme: ThemeFragment) => {
       )]: `${theme.colorSchemes.light?.palette.background.level2} !important`,
       [prefixVar(
         '--palette-background-level3',
+      )]: `${theme.colorSchemes.light?.palette.background.level3} !important`,
+      [prefixVar(
+        '--palette-background-level4',
       )]: `${theme.colorSchemes.light?.palette.background.level3} !important`,
       [prefixVar(
         '--palette-text-primary',
@@ -96,14 +96,11 @@ export const skipInvertedColors = (theme: ThemeFragment) => {
         '--palette-focusVisible',
       )]: `${theme.colorSchemes.dark?.palette.focusVisible} !important`,
       [prefixVar(
-        '--palette-background-body',
+        '--palette-background-level0',
       )]: `${theme.colorSchemes.dark?.palette.background.level0} !important`,
       [prefixVar(
-        '--palette-background-surface',
+        '--palette-background-level1',
       )]: `${theme.colorSchemes.dark?.palette.background.level1} !important`,
-      [prefixVar(
-        '--palette-background-popup',
-      )]: `${theme.colorSchemes.dark?.palette.background.level0} !important`,
       [prefixVar(
         '--palette-background-level1',
       )]: `${theme.colorSchemes.dark?.palette.background.level1} !important`,
@@ -113,6 +110,9 @@ export const skipInvertedColors = (theme: ThemeFragment) => {
       [prefixVar(
         '--palette-background-level3',
       )]: `${theme.colorSchemes.dark?.palette.background.level3} !important`,
+      [prefixVar(
+        '--palette-background-level4',
+      )]: `${theme.colorSchemes.light?.palette.background.level3} !important`,
       [prefixVar(
         '--palette-text-primary',
       )]: `${theme.colorSchemes.dark?.palette.text.primary} !important`,
@@ -159,9 +159,7 @@ export const applySolidInversion =
         [`${theme.getColorSchemeSelector('light')}, ${theme.getColorSchemeSelector('dark')}`]: {
           colorScheme: 'dark',
           [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-200`),
-          [prefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
-          [prefixVar('--palette-background-surface')]: 'rgba(0 0 0 / 0.06)',
-          [prefixVar('--palette-background-popup')]: getCssVar(`palette-${color}-700`),
+          [prefixVar('--palette-background-level0')]: 'rgba(0 0 0 / 0.1)',
           [prefixVar('--palette-background-level1')]: `rgba(${getCssVar(
             `palette-${color}-darkChannel`,
           )} / 0.2)`,
@@ -171,6 +169,9 @@ export const applySolidInversion =
           [prefixVar('--palette-background-level3')]: `rgba(${getCssVar(
             `palette-${color}-darkChannel`,
           )} / 0.6)`,
+          [prefixVar('--palette-background-level4')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.72)`,
           [prefixVar('--palette-text-primary')]: getCssVar(`palette-common-white`),
           [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-200`),
           [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-300`),
@@ -248,12 +249,9 @@ export const applySoftInversion =
         '--Icon-color': 'currentColor',
         [theme.getColorSchemeSelector('dark')]: {
           [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-300`),
-          [prefixVar('--palette-background-body')]: `rgba(${getCssVar(
+          [prefixVar('--palette-background-level0')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.1)`,
-          [prefixVar('--palette-background-surface')]: `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.08)`,
           [prefixVar('--palette-background-level1')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.2)`,
@@ -263,6 +261,9 @@ export const applySoftInversion =
           [prefixVar('--palette-background-level3')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.6)`,
+          [prefixVar('--palette-background-level3')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.72)`,
           [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
           [prefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
             `palette-${color}-lightChannel`,
@@ -321,12 +322,9 @@ export const applySoftInversion =
         // `light` (default color scheme) should come last in case that `theme.getColorSchemeSelector()` return the same value
         [theme.getColorSchemeSelector('light')]: {
           [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-500`),
-          [prefixVar('--palette-background-body')]: `rgba(${getCssVar(
+          [prefixVar('--palette-background-level0')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.1)`,
-          [prefixVar('--palette-background-surface')]: `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.08)`,
           [prefixVar('--palette-background-level1')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.2)`,
@@ -336,6 +334,9 @@ export const applySoftInversion =
           [prefixVar('--palette-background-level3')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.48)`,
+          [prefixVar('--palette-background-level4')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.6)`,
           [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-700`),
           [prefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
             `palette-${color}-darkChannel`,

@@ -3,7 +3,7 @@ import { styled, VariantProp, ColorPaletteProp } from '@mui/joy/styles';
 
 const Basic = styled('button')({
   fontWeight: 'var(--fontSize-md)' as React.CSSProperties['fontWeight'],
-  backgroundColor: 'var(--palette-background-body)',
+  backgroundColor: 'var(--palette-background-level0)',
   lineHeight: 1,
 });
 

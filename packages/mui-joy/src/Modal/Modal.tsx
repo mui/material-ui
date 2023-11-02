@@ -56,7 +56,7 @@ export const StyledModalBackdrop = styled('div')<{ ownerState: ModalOwnerState }
   bottom: 0,
   top: 0,
   left: 0,
-  backgroundColor: theme.vars.palette.background.backdrop,
+  backgroundColor: theme.vars.palette.background.translucent,
   WebkitTapHighlightColor: 'transparent',
   backdropFilter: 'blur(8px)',
 }));
