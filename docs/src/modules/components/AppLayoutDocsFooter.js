@@ -535,7 +535,7 @@ export default function AppLayoutDocsFooter(props) {
           spacing={{ xs: 3, sm: 1 }}
         >
           <Stack direction="row" alignItems="center" spacing={1} sx={{ flexGrow: 1 }}>
-            <Link href={ROUTES.blog}>
+            <Link href={ROUTES.blog} target="_blank" rel="noopener noreferrer">
               <FooterLink>
                 Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
@@ -543,7 +543,7 @@ export default function AppLayoutDocsFooter(props) {
             <Typography color="grey.500" fontSize={13}>
               &bull;
             </Typography>
-            <Link href={ROUTES.store}>
+            <Link href={ROUTES.store} target="_blank" rel="noopener noreferrer">
               <FooterLink>
                 Store <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
