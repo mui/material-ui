@@ -159,7 +159,7 @@ export const applySolidInversion =
         [`${theme.getColorSchemeSelector('light')}, ${theme.getColorSchemeSelector('dark')}`]: {
           colorScheme: 'dark',
           [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-200`),
-          [prefixVar('--palette-background-level0')]: 'rgba(0 0 0 / 0.1)',
+          [prefixVar('--palette-background-level0')]: getCssVar(`palette-${color}-600`),
           [prefixVar('--palette-background-level1')]: `rgba(${getCssVar(
             `palette-${color}-darkChannel`,
           )} / 0.2)`,
@@ -249,9 +249,7 @@ export const applySoftInversion =
         '--Icon-color': 'currentColor',
         [theme.getColorSchemeSelector('dark')]: {
           [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-300`),
-          [prefixVar('--palette-background-level0')]: `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.1)`,
+          [prefixVar('--palette-background-level0')]: getCssVar(`palette-${color}-800`),
           [prefixVar('--palette-background-level1')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.2)`,
@@ -261,7 +259,7 @@ export const applySoftInversion =
           [prefixVar('--palette-background-level3')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.6)`,
-          [prefixVar('--palette-background-level3')]: `rgba(${getCssVar(
+          [prefixVar('--palette-background-level4')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.72)`,
           [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
@@ -322,9 +320,7 @@ export const applySoftInversion =
         // `light` (default color scheme) should come last in case that `theme.getColorSchemeSelector()` return the same value
         [theme.getColorSchemeSelector('light')]: {
           [prefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-500`),
-          [prefixVar('--palette-background-level0')]: `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.1)`,
+          [prefixVar('--palette-background-level0')]: getCssVar(`palette-${color}-100`),
           [prefixVar('--palette-background-level1')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.2)`,
