@@ -46,11 +46,17 @@ To learn how to add your own variants, check out [Themed components—Extend var
 Note that you lose the global variants when you add custom variants.
 :::
 
-### Indicator at the top
+#### Indicator at the top
 
 Set Step's `orientation="vertical"` to show an indicator at the top.
 
 {{"demo": "IndicatorTopStepper.js"}}
+
+### Button
+
+To make the Step clickable, renders the `StepButton` component as a direct child of the Step.
+
+{{"demo": "ButtonStepper.js"}}
 
 ### Sizes
 
