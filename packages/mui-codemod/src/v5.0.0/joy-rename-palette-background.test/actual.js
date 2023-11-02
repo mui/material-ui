@@ -29,8 +29,19 @@ extendTheme({
         background: {
           body: 'var(--joy-palette-common-black)',
           surface: 'var(--joy-palette-neutral-900)',
+          backdrop: 'rgba(0 0 0 / 0.87)',
         },
       },
+    },
+  },
+  typography: {
+    kbd: {
+      background:
+        'linear-gradient(to top, var(--joy-palette-background-body), var(--joy-palette-background-surface), var(--joy-palette-background-popup))',
+      border: '1px solid var(--joy-palette-background-backdrop)',
+      borderRadius: 'var(--joy-radius-xs)',
+      boxShadow: 'var(--joy-shadow-sm)',
+      padding: '0.125em 0.375em',
     },
   },
 });
