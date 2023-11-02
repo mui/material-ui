@@ -205,6 +205,9 @@ export * from './Stepper';
 export { default as Step } from './Step';
 export * from './Step';
 
+export { default as StepButton } from './StepButton';
+export * from './StepButton';
+
 export { default as StepIndicator } from './StepIndicator';
 export * from './StepIndicator';
 

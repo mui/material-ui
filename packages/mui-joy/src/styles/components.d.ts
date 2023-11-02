@@ -199,6 +199,11 @@ import { StackProps, StackSlot } from '../Stack/StackProps';
 import { StepperProps, StepperOwnerState, StepperSlot } from '../Stepper/StepperProps';
 import { StepProps, StepOwnerState, StepSlot } from '../Step/StepProps';
 import {
+  StepButtonProps,
+  StepButtonOwnerState,
+  StepButtonSlot,
+} from '../StepButton/StepButtonProps';
+import {
   StepIndicatorProps,
   StepIndicatorOwnerState,
   StepIndicatorSlot,
@@ -465,6 +470,10 @@ export interface Components<Theme = unknown> {
   JoyStep?: {
     defaultProps?: Partial<StepProps>;
     styleOverrides?: StyleOverrides<StepSlot, StepOwnerState, Theme>;
+  };
+  JoyStepButton?: {
+    defaultProps?: Partial<StepButtonProps>;
+    styleOverrides?: StyleOverrides<StepButtonSlot, StepButtonOwnerState, Theme>;
   };
   JoyStepIndicator?: {
     defaultProps?: Partial<StepIndicatorProps>;
