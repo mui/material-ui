@@ -46,7 +46,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class('MuiButton-outlined');
+    expect(button).to.have.class(buttonClasses.outlined);
     expect(button).to.have.class(classes.grouped);
     expect(button).to.have.class(classes.groupedOutlined);
     expect(button).to.have.class(classes.groupedOutlinedPrimary);
@@ -60,7 +60,8 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class('MuiButton-outlinedPrimary');
+    expect(button).to.have.class(buttonClasses.outlined);
+    expect(button).to.have.class(buttonClasses.colorPrimary);
     expect(button).to.have.class(classes.grouped);
     expect(button).to.have.class(classes.groupedOutlined);
     expect(button).to.have.class(classes.groupedOutlinedPrimary);
@@ -74,7 +75,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class('MuiButton-filled');
+    expect(button).to.have.class(buttonClasses.filled);
     expect(button).to.have.class(classes.grouped);
     expect(button).to.have.class(classes.groupedFilled);
     expect(button).to.have.class(classes.groupedFilledPrimary);
@@ -88,7 +89,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class('MuiButton-outlinedSizeSmall');
+    expect(button).to.have.class(buttonClasses.sizeSmall);
   });
 
   it('can render a large button', () => {
@@ -98,7 +99,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class('MuiButton-outlinedSizeLarge');
+    expect(button).to.have.class(buttonClasses.sizeLarge);
   });
 
   it('should have a ripple by default', () => {
@@ -117,7 +118,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class('MuiButton-disableElevation');
+    expect(button).to.have.class(buttonClasses.disableElevation);
   });
 
   it('can disable the ripple', () => {
