@@ -20,7 +20,7 @@ export default function FadeModalDialog() {
             open={!['exited', 'exiting'].includes(state)}
             onClose={() => setOpen(false)}
             slotProps={{
-              translucent: {
+              backdrop: {
                 sx: {
                   opacity: 0,
                   backdropFilter: 'none',
