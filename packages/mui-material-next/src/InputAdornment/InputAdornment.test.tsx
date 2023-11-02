@@ -21,9 +21,12 @@ describe('<InputAdornment />', () => {
     classes,
     inheritComponent: 'div',
     render,
+    refInstanceof: window.HTMLDivElement,
     muiName: 'MuiInputAdornment',
     testVariantProps: { color: 'primary' },
-    refInstanceof: window.HTMLDivElement,
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
     skip: ['componentsProp'],
     testComponentPropWith: 'span',
   }));
