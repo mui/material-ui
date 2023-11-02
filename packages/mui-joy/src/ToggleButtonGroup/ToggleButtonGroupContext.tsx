@@ -1,12 +1,13 @@
 'use client';
 import * as React from 'react';
+import { SupportedValue, ToggleButtonGroupProps } from './ToggleButtonGroupProps';
 
 interface ToggleButtonGroupContextType {
   onClick: (
     event: React.MouseEvent<HTMLButtonElement>,
     childValue: React.ButtonHTMLAttributes<HTMLButtonElement>['value'],
   ) => void;
-  value?: string | (string | number)[] | null;
+  value?: ToggleButtonGroupProps<SupportedValue>['value'];
 }
 
 /**
