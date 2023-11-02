@@ -6,7 +6,9 @@ const { DynamoDB } = require('@aws-sdk/client-dynamodb');
 const { v4: uuid } = require('uuid');
 
 const api = new ApiBuilder();
-const dynamoDb = DynamoDBDocument.from(new DynamoDB());
+const dynamoDb = DynamoDBDocument.from(new DynamoDB(), {
+  marshallOptions: { removeUndefinedValues: true }
+});
 
 async function dbGet(request, id, page) {
   const stage = request.context.stage;
