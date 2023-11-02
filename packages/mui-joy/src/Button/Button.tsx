@@ -260,22 +260,22 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    props.onClick?.(event);
     if (toggleButtonGroup) {
-      props.onClick?.(event);
       toggleButtonGroup.onClick?.(event, props.value);
-    } else {
-      props.onClick?.(event);
     }
   };
 
   const isAriaPressed = () => {
+    let ariaPressed = props['aria-pressed'];
     if (toggleButtonGroup) {
       if (Array.isArray(toggleButtonGroup.value)) {
-        return toggleButtonGroup.value.indexOf(props.value as string) !== -1;
+        ariaPressed = toggleButtonGroup.value.indexOf(props.value as string) !== -1;
+      } else {
+        ariaPressed = toggleButtonGroup.value === props.value;
       }
-      return toggleButtonGroup.value === props.value;
     }
-    return props['aria-pressed'];
+    return ariaPressed;
   };
 
   const externalForwardedProps = { ...other, component, slots, slotProps };
