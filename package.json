@@ -74,6 +74,11 @@
     "validate-declarations": "ts-node --esm scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs"
   },
+  "dependencies": {
+    "@googleapis/sheets": "^5.0.5",
+    "@slack/bolt": "^3.14.0",
+    "google-auth-library": "^9.0.0"
+  },
   "devDependencies": {
     "@argos-ci/core": "^0.12.0",
     "@babel/cli": "^7.23.0",
@@ -100,7 +105,6 @@
     "@next/eslint-plugin-next": "^13.5.6",
     "@octokit/rest": "^20.0.2",
     "@playwright/test": "1.39.0",
-    "@slack/bolt": "^3.14.0",
     "@slack/web-api": "^6.9.0",
     "@types/enzyme": "^3.10.15",
     "@types/fs-extra": "^11.0.3",
@@ -144,7 +148,6 @@
     "fast-glob": "^3.3.1",
     "fs-extra": "^11.1.1",
     "globby": "^13.2.2",
-    "google-auth-library": "^9.0.0",
     "karma": "^6.4.2",
     "karma-browserstack-launcher": "~1.6.0",
     "karma-chrome-launcher": "^3.2.0",
