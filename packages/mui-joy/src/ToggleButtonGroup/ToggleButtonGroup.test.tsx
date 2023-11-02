@@ -78,7 +78,7 @@ describe('<ToggleButtonGroup />', () => {
 
     const { getAllByRole } = render(<ToggleGroup />);
 
-    const [firstButton, secondButton, thirdButton, fouthButton] = getAllByRole('button');
+    const [firstButton, secondButton, thirdButton, fourthButton] = getAllByRole('button');
     act(() => {
       firstButton.click();
     });
@@ -99,7 +99,7 @@ describe('<ToggleButtonGroup />', () => {
     ]);
     expect(thirdButton).to.have.attribute('aria-pressed', 'true');
     act(() => {
-      fouthButton.click();
+      fourthButton.click();
     });
     expect(handleChange.args[3][1]).to.have.members([
       'tooltip-button',
@@ -107,7 +107,7 @@ describe('<ToggleButtonGroup />', () => {
       'custom-iconbutton',
       'tooltip-iconbutton',
     ]);
-    expect(fouthButton).to.have.attribute('aria-pressed', 'true');
+    expect(fourthButton).to.have.attribute('aria-pressed', 'true');
     expect(handleChange.callCount).to.equal(4);
   });
 
