@@ -40,13 +40,6 @@ export function selectReducer<OptionValue>(
     );
   }
 
-  if (action.type === SelectActionTypes.closeListbox) {
-    return {
-      ...state,
-      open: false,
-    };
-  }
-
   const newState: SelectInternalState<OptionValue> = listReducer(
     state,
     action as ActionWithContext<ListAction<OptionValue>, ListActionContext<OptionValue>>,
@@ -108,10 +101,6 @@ export function selectReducer<OptionValue>(
       break;
 
     case ListActionTypes.blur:
-      if (action.context.focusManagement === 'DOM') {
-        return state;
-      }
-
       return {
         ...newState,
         open: false,

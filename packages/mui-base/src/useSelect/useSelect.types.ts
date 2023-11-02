@@ -257,7 +257,6 @@ export interface UseSelectReturnValue<Value, Multiple> {
 export const SelectActionTypes = {
   buttonClick: 'buttonClick',
   browserAutoFill: 'browserAutoFill',
-  closeListbox: 'closeListbox',
 } as const;
 
 export interface ButtonClickAction {
@@ -271,15 +270,7 @@ export interface BrowserAutofillAction<OptionValue> {
   event: React.ChangeEvent;
 }
 
-export interface CloseListboxAction {
-  type: typeof SelectActionTypes.closeListbox;
-}
-
-export type SelectAction<OptionValue> =
-  | ButtonClickAction
-  | BrowserAutofillAction<OptionValue>
-  | CloseListboxAction;
-
+export type SelectAction<OptionValue> = ButtonClickAction | BrowserAutofillAction<OptionValue>;
 export interface SelectInternalState<OptionValue> extends ListState<OptionValue> {
   open: boolean;
 }
