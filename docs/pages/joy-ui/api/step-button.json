@@ -36,7 +36,7 @@
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyStepButton",
-  "forwardsRefTo": "HTMLLIElement",
+  "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/StepButton/StepButton.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-stepper/\">Stepper</a></li></ul>",
