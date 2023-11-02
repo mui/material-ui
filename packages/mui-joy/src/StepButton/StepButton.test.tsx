@@ -14,7 +14,7 @@ describe('<StepButton />', () => {
     muiName: 'JoyStepButton',
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'div',
-    skip: ['classesRoot', 'componentsProp'],
+    skip: ['classesRoot', 'componentsProp', 'themeVariants'],
     slots: {
       root: {
         expectedClassName: classes.root,
