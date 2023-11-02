@@ -1,10 +1,9 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import Typography from '@mui/material/Typography';
 import { styled, useThemeProps } from '../styles';
 import FormControlContext from '../FormControl/FormControlContext';
@@ -72,19 +71,19 @@ const InputAdornmentRoot = styled('div', {
   }),
 }));
 
-const InputAdornment = React.forwardRef(function InputAdornment(
-  inProps: InputAdornmentProps,
-  forwardedRef: React.ForwardedRef<any>,
-) {
+const InputAdornment = React.forwardRef(function InputAdornment<
+  RootComponentType extends React.ElementType,
+>(inProps: InputAdornmentProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const props = useThemeProps({ props: inProps, name: 'MuiInputAdornment' });
   const {
     children,
-    className,
     component = 'div',
     disablePointerEvents = false,
     disableTypography = false,
     position,
     variant: variantProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -112,15 +111,23 @@ const InputAdornment = React.forwardRef(function InputAdornment(
 
   const classes = useUtilityClasses(ownerState);
 
+  const Root = slots.root ?? InputAdornmentRoot;
+
+  const rootProps = useSlotProps({
+    elementType: Root,
+    externalSlotProps: slotProps.root,
+    additionalProps: {
+      ref: forwardedRef,
+      as: component,
+    },
+    externalForwardedProps: other,
+    ownerState,
+    className: [classes.root],
+  });
+
   return (
     <FormControlContext.Provider value={undefined}>
-      <InputAdornmentRoot
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        ref={forwardedRef}
-        {...other}
-      >
+      <Root {...rootProps}>
         {typeof children === 'string' && !disableTypography ? (
           <Typography color="text.secondary">{children}</Typography>
         ) : (
@@ -133,7 +140,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(
             {children}
           </React.Fragment>
         )}
-      </InputAdornmentRoot>
+      </Root>
     </FormControlContext.Provider>
   );
 }) as OverridableComponent<InputAdornmentTypeMap>;
