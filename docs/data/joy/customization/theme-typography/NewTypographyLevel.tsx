@@ -12,7 +12,7 @@ const customTheme = extendTheme({
   typography: {
     kbd: {
       background:
-        'linear-gradient(to top, var(--joy-palette-background-level2), var(--joy-palette-background-surface))',
+        'linear-gradient(to top, var(--joy-palette-background-level2), var(--joy-palette-background-level1))',
       border: '1px solid var(--joy-palette-neutral-outlinedBorder)',
       borderRadius: 'var(--joy-radius-xs)',
       boxShadow: 'var(--joy-shadow-sm)',

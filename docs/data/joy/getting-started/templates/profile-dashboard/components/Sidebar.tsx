@@ -112,7 +112,7 @@ export default function Sidebar() {
           width: '100vw',
           height: '100vh',
           opacity: 'var(--SideNavigation-slideIn)',
-          backgroundColor: 'var(--joy-palette-background-backdrop)',
+          backgroundColor: 'var(--joy-palette-background-translucent)',
           transition: 'opacity 0.4s',
           transform: {
             xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1) + var(--SideNavigation-slideIn, 0) * var(--Sidebar-width, 0px)))',

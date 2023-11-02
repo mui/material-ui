@@ -113,10 +113,10 @@ export default function GitHubLabel() {
               borderRadius: '6px',
               overflow: 'hidden',
               '--joy-palette-neutral-plainBg': '#fff',
-              '--joy-palette-background-surface': '#fff',
+              '--joy-palette-background-level1': '#fff',
               [theme.getColorSchemeSelector('dark')]: {
                 '--joy-palette-neutral-plainBg': '#000',
-                '--joy-palette-background-surface': '#000',
+                '--joy-palette-background-level1': '#000',
               },
             })}
           >

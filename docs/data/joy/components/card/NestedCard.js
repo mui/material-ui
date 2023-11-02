@@ -19,7 +19,7 @@ export default function NestedCard() {
       <Card
         orientation="horizontal"
         size="sm"
-        sx={{ bgcolor: 'background.surface', borderRadius: 0, mb: 1 }}
+        sx={{ bgcolor: 'background.level1', borderRadius: 0, mb: 1 }}
       >
         <CardOverflow>
           <AspectRatio
