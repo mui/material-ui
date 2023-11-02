@@ -22,20 +22,14 @@ const useUtilityClasses = (ownerState: StepOwnerState) => {
   return composeClasses(slots, getStepUtilityClass, {});
 };
 
-const THICKNESS = '2px';
-const INSET = '0.25rem';
-const SIZE = '2.5rem';
-
 /**
  * CSS architecture:
  * - The root is a flex container with direction based on the provided orientation (horizontal by default).
  * - The indicator slot is used to render the icon or text provided in the `indicator` prop.
  *    - It allows the connector to be shown in the middle of the indicator (because the indicator prop is dynamic and it can be different sizes between step).
- *    - If there is no indicator prop, the indicator slot will fill the entire root so that the connector is in the middle.
+ *    - If there is no indicator prop, the indicator will disappear for horizontal Stepper but display a dot for vertical Stepper.
  * - The connector is a pseudo-element that is absolutely positioned relative to the step's width.
- *    - For horizontal orientation, the connector is a pseudo-element of the root.
- *    - For vertical orientation, the connector is a pseudo-element of the indicator.
- * - Developers can control the CSS variables from the Stepper component.
+ * - Developers can control the CSS variables from the Stepper component or from a specific Step.
  */
 const StepRoot = styled('li', {
   name: 'JoyStep',
@@ -51,17 +45,17 @@ const StepRoot = styled('li', {
     flexDirection: 'row',
     alignItems: 'var(--_Step-alignItems, center)',
     justifyContent: 'var(--_Step-justify, center)',
-    gap: `var(--Step-gap, ${INSET})`,
+    gap: `var(--Step-gap)`,
     '& > *': { zIndex: 1, [`&:not(.${stepClasses.indicator})`]: { gridColumn: '2' } },
     '&::after': {
       content: '""',
       display: 'block',
       borderRadius: 'var(--Step-connectorRadius)',
-      height: `var(--Step-connectorThickness, ${THICKNESS})`,
+      height: `var(--Step-connectorThickness)`,
       background: `var(--Step-connectorBg, ${theme.vars.palette.divider})`,
       flex: 1,
-      marginInlineStart: `calc(var(--Step-connectorInset, ${INSET}) - var(--Step-gap, ${INSET}))`,
-      marginInlineEnd: `var(--Step-connectorInset, ${INSET})`,
+      marginInlineStart: `calc(var(--Step-connectorInset) - var(--Step-gap))`,
+      marginInlineEnd: `var(--Step-connectorInset)`,
       zIndex: 0,
     },
     '&[data-last-child]::after': {
@@ -76,14 +70,11 @@ const StepRoot = styled('li', {
     [`.${stepperClasses.vertical} &`]: {
       display: 'grid',
       '--_Step-justify': 'flex-start',
-      '&[data-indicator]': {
-        '--Step-indicatorDotSize': '0px',
-      },
       '&::after': {
         gridColumn: '1',
-        width: `var(--Step-connectorThickness, ${THICKNESS})`,
+        width: `var(--Step-connectorThickness)`,
         height: 'auto',
-        margin: `calc(var(--Step-connectorInset, ${THICKNESS}) - var(--Step-gap, ${INSET}) - var(--Step-indicatorDotSize)) auto calc(var(--Step-connectorInset, ${THICKNESS}) - var(--Stepper-verticalGap) - var(--Step-indicatorDotSize))`,
+        margin: `calc(var(--Step-connectorInset) - var(--Step-gap)) auto calc(var(--Step-connectorInset) - var(--Stepper-verticalGap))`,
         alignSelf: 'stretch',
       },
     },
@@ -103,17 +94,17 @@ const StepRoot = styled('li', {
             '&::after': {
               margin: 0,
               position: 'absolute',
-              height: `var(--Step-connectorThickness, ${THICKNESS})`,
+              height: `var(--Step-connectorThickness)`,
               zIndex: 0,
-              top: `calc(var(--StepIndicator-size, ${SIZE}) / 2 - var(--Step-connectorThickness, ${THICKNESS}) / 2)`,
-              left: `calc(50% + var(--StepIndicator-size, ${SIZE}) / 2 + var(--Step-connectorInset, ${INSET}))`,
-              width: `calc(100% - var(--StepIndicator-size, ${SIZE}) - 2 * var(--Step-connectorInset, ${INSET}))`,
+              top: `calc(var(--StepIndicator-size) / 2 - var(--Step-connectorThickness) / 2)`,
+              left: `calc(50% + var(--StepIndicator-size) / 2 + var(--Step-connectorInset))`,
+              width: `calc(100% - var(--StepIndicator-size) - 2 * var(--Step-connectorInset))`,
             },
             // Eventhough `:has` is <90% support, we can use it because this is an edge case for vertical step without an indicator.
             [`&:has(.${stepClasses.indicator}:empty)::after`]: {
               '--StepIndicator-size': '0px',
               '--Step-connectorInset': '0px',
-              top: `calc(50% - var(--Step-connectorThickness, ${THICKNESS}) / 2)`,
+              top: `calc(50% - var(--Step-connectorThickness) / 2)`,
             },
           },
         },
@@ -131,8 +122,8 @@ const StepIndicator = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   placeSelf: 'center', // for vertical stepper
-  width: `var(--StepIndicator-size, ${SIZE})`,
-  height: `var(--StepIndicator-size, ${SIZE})`,
+  width: `var(--StepIndicator-size)`,
+  height: `var(--StepIndicator-size)`,
   [`.${stepperClasses.horizontal} &:empty`]: {
     display: 'none',
   },

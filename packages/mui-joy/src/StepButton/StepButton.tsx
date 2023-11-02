@@ -22,6 +22,7 @@ const StepButtonRoot = styled('button', {
       '--Step-gap': '0px',
     },
     [`.${stepClasses.horizontal} &`]: {
+      '--_StepButton-alignSelf': 'stretch',
       '--_StepButton-gap': 'var(--Step-gap)',
     },
     [`.${stepClasses.horizontal} &::before`]: {
@@ -30,7 +31,7 @@ const StepButtonRoot = styled('button', {
     [`.${stepClasses.vertical} &::before`]: {
       '--_StepButton-top': 'calc(-1 * (var(--StepIndicator-size) + var(--Step-gap)))',
     },
-    [`.${stepperClasses.vertical} &`]: {
+    [`.${stepperClasses.vertical} .${stepClasses.vertical} &`]: {
       '--_StepButton-alignItems': 'flex-start',
     },
     [`.${stepperClasses.vertical} &::before`]: {
@@ -49,16 +50,17 @@ const StepButtonRoot = styled('button', {
     display: 'inline-flex',
     flexDirection: 'inherit',
     alignItems: 'var(--_StepButton-alignItems, inherit)',
+    alignSelf: 'var(--_StepButton-alignSelf)',
     gap: 'var(--_StepButton-gap)',
     [theme.focus.selector]: theme.focus.default,
     '&::before': {
       content: '""',
       display: 'block',
       position: 'absolute',
-      top: 'var(--_StepButton-top)',
+      top: 'var(--_StepButton-top, 0)',
       right: 0,
       bottom: 0,
-      left: 'var(--_StepButton-left)',
+      left: 'var(--_StepButton-left, 0)',
     },
   };
 });
