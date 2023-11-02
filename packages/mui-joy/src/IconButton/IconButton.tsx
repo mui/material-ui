@@ -187,18 +187,15 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     }
   };
 
-  const isAriaPressed = () => {
-    let ariaPressed = props['aria-pressed'];
-    if (toggleButtonGroup) {
-      if (Array.isArray(toggleButtonGroup.value)) {
-        ariaPressed = toggleButtonGroup.value.indexOf(props.value as string) !== -1;
-      } else {
-        ariaPressed = toggleButtonGroup.value === props.value;
-      }
-    }
-    return ariaPressed;
-  };
+  let ariaPressed = props['aria-pressed'];
 
+  if (toggleButtonGroup) {
+    if (Array.isArray(toggleButtonGroup.value)) {
+      ariaPressed = toggleButtonGroup.value.indexOf(props.value as string) !== -1;
+    } else {
+      ariaPressed = toggleButtonGroup.value === props.value;
+    }
+  }
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
@@ -210,7 +207,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     ownerState,
     additionalProps: {
       onClick: handleClick,
-      'aria-pressed': isAriaPressed(),
+      'aria-pressed': ariaPressed,
     },
   });
 

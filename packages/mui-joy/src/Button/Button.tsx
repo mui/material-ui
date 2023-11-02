@@ -266,17 +266,15 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     }
   };
 
-  const isAriaPressed = () => {
-    let ariaPressed = props['aria-pressed'];
-    if (toggleButtonGroup) {
-      if (Array.isArray(toggleButtonGroup.value)) {
-        ariaPressed = toggleButtonGroup.value.indexOf(props.value as string) !== -1;
-      } else {
-        ariaPressed = toggleButtonGroup.value === props.value;
-      }
+  let ariaPressed = props['aria-pressed'];
+
+  if (toggleButtonGroup) {
+    if (Array.isArray(toggleButtonGroup.value)) {
+      ariaPressed = toggleButtonGroup.value.indexOf(props.value as string) !== -1;
+    } else {
+      ariaPressed = toggleButtonGroup.value === props.value;
     }
-    return ariaPressed;
-  };
+  }
 
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
@@ -289,7 +287,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ownerState,
     additionalProps: {
       onClick: handleClick,
-      'aria-pressed': isAriaPressed(),
+      'aria-pressed': ariaPressed,
     },
   });
 
