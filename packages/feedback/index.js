@@ -7,7 +7,7 @@ const { v4: uuid } = require('uuid');
 
 const api = new ApiBuilder();
 const dynamoDb = DynamoDBDocument.from(new DynamoDB(), {
-  marshallOptions: { removeUndefinedValues: true }
+  marshallOptions: { removeUndefinedValues: true },
 });
 
 async function dbGet(request, id, page) {
