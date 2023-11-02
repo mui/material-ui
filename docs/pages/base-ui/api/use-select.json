@@ -89,8 +89,8 @@
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "dispatch": {
       "type": {
-        "name": "(action: ListAction&lt;Value&gt; | SelectAction) =&gt; void",
-        "description": "(action: ListAction&lt;Value&gt; | SelectAction) =&gt; void"
+        "name": "(action: ListAction&lt;Value&gt; | SelectAction&lt;Value&gt;) =&gt; void",
+        "description": "(action: ListAction&lt;Value&gt; | SelectAction&lt;Value&gt;) =&gt; void"
       },
       "required": true
     },

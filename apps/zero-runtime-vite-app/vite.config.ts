@@ -1,9 +1,15 @@
-/// <reference types="vitest" />
 import { join, dirname, basename } from 'node:path';
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
+import { UserConfig as VitestConfig } from 'vitest';
 import reactPlugin from '@vitejs/plugin-react';
 import { zeroVitePlugin } from '@mui/zero-vite-plugin';
 import { createTheme } from '@mui/material/styles';
+
+declare module 'vite' {
+  interface UserConfig {
+    test: VitestConfig;
+  }
+}
 
 const theme = createTheme();
 // @TODO - Make this part of the main package

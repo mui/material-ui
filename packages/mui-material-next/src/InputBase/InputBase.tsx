@@ -11,12 +11,13 @@ import {
   WithOptionalOwnerState,
 } from '@mui/base';
 import { useInput } from '@mui/base/useInput';
+import { CSSInterpolation } from '@mui/system';
+import { DefaultComponentProps, OverrideProps } from '@mui/types';
 import {
   refType,
   unstable_capitalize as capitalize,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
-import { OverrideProps } from '@mui/types';
 import FormControlContext from '@mui/material-next/FormControl/FormControlContext';
 import useFormControl from '@mui/material-next/FormControl/useFormControl';
 import styled from '../styles/styled';
@@ -80,25 +81,30 @@ const useUtilityClasses = (ownerState: InputBaseOwnerState) => {
   return composeClasses(slots, getInputBaseUtilityClass, classes);
 };
 
+export function rootOverridesResolver(
+  props: InputBaseRootSlotProps,
+  styles: Record<string, CSSInterpolation>,
+) {
+  const { ownerState } = props;
+
+  return [
+    styles.root,
+    ownerState.formControl && styles.formControl,
+    ownerState.startAdornment && styles.adornedStart,
+    ownerState.endAdornment && styles.adornedEnd,
+    ownerState.error && styles.error,
+    ownerState.size === 'small' && styles.sizeSmall,
+    ownerState.multiline && styles.multiline,
+    ownerState.color && styles[`color${capitalize(ownerState.color)}`],
+    ownerState.fullWidth && styles.fullWidth,
+    ownerState.hiddenLabel && styles.hiddenLabel,
+  ];
+}
+
 export const InputBaseRoot = styled('div', {
   name: 'MuiInputBase',
   slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.root,
-      ownerState.formControl && styles.formControl,
-      ownerState.startAdornment && styles.adornedStart,
-      ownerState.endAdornment && styles.adornedEnd,
-      ownerState.error && styles.error,
-      ownerState.size === 'small' && styles.sizeSmall,
-      ownerState.multiline && styles.multiline,
-      ownerState.color && styles[`color${capitalize(ownerState.color)}`],
-      ownerState.fullWidth && styles.fullWidth,
-      ownerState.hiddenLabel && styles.hiddenLabel,
-    ];
-  },
+  overridesResolver: rootOverridesResolver,
 })<{ ownerState: InputBaseOwnerState }>(({ theme, ownerState }) => {
   const { vars: tokens } = theme;
 
@@ -129,22 +135,27 @@ export const InputBaseRoot = styled('div', {
   };
 });
 
+export function inputOverridesResolver(
+  props: InputBaseInputSlotProps,
+  styles: Record<string, CSSInterpolation>,
+) {
+  const { ownerState } = props;
+
+  return [
+    styles.input,
+    ownerState.size === 'small' && styles.inputSizeSmall,
+    ownerState.multiline && styles.inputMultiline,
+    ownerState.type === 'search' && styles.inputTypeSearch,
+    ownerState.startAdornment && styles.inputAdornedStart,
+    ownerState.endAdornment && styles.inputAdornedEnd,
+    ownerState.hiddenLabel && styles.inputHiddenLabel,
+  ];
+}
+
 export const InputBaseInput = styled('input', {
   name: 'MuiInputBase',
   slot: 'Input',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.input,
-      ownerState.size === 'small' && styles.inputSizeSmall,
-      ownerState.multiline && styles.inputMultiline,
-      ownerState.type === 'search' && styles.inputTypeSearch,
-      ownerState.startAdornment && styles.inputAdornedStart,
-      ownerState.endAdornment && styles.inputAdornedEnd,
-      ownerState.hiddenLabel && styles.inputHiddenLabel,
-    ];
-  },
+  overridesResolver: inputOverridesResolver,
 })<{ ownerState: InputBaseOwnerState }>(({ theme, ownerState }) => {
   const { vars: tokens } = theme;
 
@@ -291,6 +302,23 @@ const InputBase = React.forwardRef(function InputBase<
     ...other
   } = props;
 
+  if (process.env.NODE_ENV !== 'production') {
+    const definedMultilineProps = (['rows', 'minRows', 'maxRows'] as const).filter(
+      (multilineProp) => props[multilineProp] !== undefined,
+    );
+
+    if (!multiline && definedMultilineProps.length > 0) {
+      console.error(
+        [
+          'MUI: You have set multiline props on an single-line input.',
+          'Set the `multiline` prop if you want to render a multi-line input.',
+          'Otherwise they will be ignored.',
+          `Ignored props: ${definedMultilineProps.join(', ')}`,
+        ].join('\n'),
+      );
+    }
+  }
+
   const { current: isControlled } = React.useRef(value != null);
 
   const muiFormControl = useFormControl();
@@ -308,7 +336,7 @@ const InputBase = React.forwardRef(function InputBase<
   const onFilled = muiFormControl && muiFormControl.onFilled;
   const onEmpty = muiFormControl && muiFormControl.onEmpty;
 
-  // TODO: needs material-next/Outlined|FilledInput
+  // TODO: needs material-next/OutlinedInput
   const checkDirty = React.useCallback(
     (obj: any) => {
       if (isFilled(obj)) {
@@ -535,10 +563,12 @@ interface InputBaseComponent {
       /**
        * The component used for the input node.
        * Either a string to use a HTML element or a component.
+       * @default 'input'
        */
       inputComponent?: C;
     } & OverrideProps<InputBaseTypeMap, C>,
   ): JSX.Element | null;
+  (props: DefaultComponentProps<InputBaseTypeMap>): JSX.Element | null;
   propTypes?: any;
 }
 
@@ -552,6 +582,16 @@ InputBase.propTypes /* remove-proptypes */ = {
    */
   'aria-describedby': PropTypes.string,
   /**
+   * Defines a string value that labels the current element.
+   * @see aria-labelledby.
+   */
+  'aria-label': PropTypes.string,
+  /**
+   * Identifies the element (or elements) that labels the current element.
+   * @see aria-describedby.
+   */
+  'aria-labelledby': PropTypes.string,
+  /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
@@ -562,16 +602,32 @@ InputBase.propTypes /* remove-proptypes */ = {
    */
   autoFocus: PropTypes.bool,
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
+  color: PropTypes.oneOf([
+    'error',
+    'info',
+    'primary',
+    'secondary',
+    'success',
+    'tertiary',
+    'warning',
+  ]),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -608,6 +664,7 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the input node.
    * Either a string to use a HTML element or a component.
+   * @default 'input'
    */
   inputComponent: PropTypes.elementType,
   /**
@@ -650,6 +707,10 @@ InputBase.propTypes /* remove-proptypes */ = {
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
   /**
    * @ignore
    */
@@ -726,7 +787,30 @@ InputBase.propTypes /* remove-proptypes */ = {
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
    */
-  type: PropTypes.string,
+  type: PropTypes /* @typescript-to-proptypes-ignore */.oneOf([
+    'button',
+    'checkbox',
+    'color',
+    'date',
+    'datetime-local',
+    'email',
+    'file',
+    'hidden',
+    'image',
+    'month',
+    'number',
+    'password',
+    'radio',
+    'range',
+    'reset',
+    'search',
+    'submit',
+    'tel',
+    'text',
+    'time',
+    'url',
+    'week',
+  ]),
   /**
    * The value of the `input` element, required for a controlled component.
    */

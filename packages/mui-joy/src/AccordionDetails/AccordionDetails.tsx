@@ -68,7 +68,6 @@ const AccordionDetailsContent = styled('div', {
 });
 
 /**
- * ⚠️ AccordionDetails must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
  * Demos:
  *

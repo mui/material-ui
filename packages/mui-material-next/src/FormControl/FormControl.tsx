@@ -141,7 +141,7 @@ const FormControl = React.forwardRef(function FormControl<
 
         if (
           React.isValidElement(child) &&
-          (isFilled(child.props, true) || isFilled(child.props.inputProps, true))
+          (isFilled(child.props, true) || isFilled(child.props.slotProps?.input, true))
         ) {
           initialFilled = true;
         }

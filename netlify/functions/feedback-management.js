@@ -7,6 +7,8 @@ const X_FEEBACKS_CHANNEL_ID = 'C04U3R2V9UK';
 const JOY_FEEBACKS_CHANNEL_ID = 'C050VE13HDL';
 const TOOLPAD_FEEBACKS_CHANNEL_ID = 'C050MHU703Z';
 const CORE_FEEBACKS_CHANNEL_ID = 'C041SDSF32L';
+// The design feedback alert was removed in https://github.com/mui/material-ui/pull/39691
+// This dead code is here to simplify the creation of special feedback channel
 const DESIGN_FEEDBACKS_CHANNEL_ID = 'C05HHSFH2QJ';
 
 const getSlackChannelId = (url, specialCases) => {
@@ -143,6 +145,8 @@ exports.handler = async (event, context, callback) => {
         githubRepo,
       } = data;
 
+      // The design feedback alert was removed in https://github.com/mui/material-ui/pull/39691
+      // This dead code is here to simplify the creation of special feedback channel
       const isDesignFeedback = inCommmentSectionURL.includes('#new-docs-api-feedback');
       const commmentSectionURL = isDesignFeedback ? '' : inCommmentSectionURL;
 
