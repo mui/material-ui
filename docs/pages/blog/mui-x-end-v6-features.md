@@ -39,7 +39,7 @@ The stable version of MUI X charts supports the most commonly used chart plots y
 
 Featuring lines, areas, bars, pie charts and scatter plots, the latest versions also include:
 
-- **Animations**
+- **Bar charts animations**
   <video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline width="680" height="306">
     <source src="/static/blog/mui-x-end-v6-features/bar-chart-animations.mp4" type="video/mp4">
   </video>
