@@ -14,6 +14,18 @@ function getVariantClasses(componentProps, variants) {
 }
 
 /**
+ * @param {string} propKey
+ * @returns {boolean}
+ */
+function defaultShouldForwardProp(propKey) {
+  return propKey !== 'sx' && propKey !== 'as' && propKey !== 'ownerState';
+}
+
+/**
+ * @typedef {typeof defaultShouldForwardProp} ShouldForwardProp
+ */
+
+/**
  * @TODO - Filter props and only pass necessary props to children
  *
  * This is the runtime `styled` function that finally renders the component
@@ -27,6 +39,7 @@ function getVariantClasses(componentProps, variants) {
  * @param {string} options.variants.className Classname generated for this specific variant through styled processor.
  * @param {string} options.name
  * @param {string} options.slot
+ * @param {ShouldForwardProp} options.shouldForwardProp
  * @param {Object} options.defaultProps Default props object copied over and inlined from theme object
  */
 export default function styled(tag, options = {}) {
@@ -38,6 +51,7 @@ export default function styled(tag, options = {}) {
     name,
     slot,
     defaultProps = {},
+    shouldForwardProp = defaultShouldForwardProp,
   } = options;
   let componentName = 'Component';
 
@@ -62,6 +76,9 @@ export default function styled(tag, options = {}) {
     const varStyles = Object.entries(cssVars).reduce(
       (acc, [cssVariable, [variableFunction, isUnitLess]]) => {
         const value = variableFunction(props);
+        if (typeof value === 'undefined') {
+          return acc;
+        }
         if (typeof value === 'string' || isUnitLess) {
           acc[`--${cssVariable}`] = value;
         } else {
@@ -87,12 +104,18 @@ export default function styled(tag, options = {}) {
     }
 
     const finalClassName = clsx(classes, sxClass, className, getVariantClasses(props, variants));
+    const toPassProps = Object.keys(restProps)
+      .filter((item) => shouldForwardProp(item))
+      .reduce((acc, key) => {
+        acc[key] = restProps[key];
+        return acc;
+      }, {});
 
     // eslint-disable-next-line no-underscore-dangle
     if (!Component.__isStyled) {
       return (
         <Component
-          {...restProps}
+          {...toPassProps}
           ref={ref}
           className={finalClassName}
           style={{
@@ -105,7 +128,7 @@ export default function styled(tag, options = {}) {
 
     return (
       <Component
-        {...restProps}
+        {...toPassProps}
         ownerState={ownerState}
         ref={ref}
         className={finalClassName}

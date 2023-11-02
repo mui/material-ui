@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useButton } from '../useButton';
-import {
+import type {
   MenuItemMetadata,
   UseMenuItemParameters,
   UseMenuItemReturnValue,
@@ -12,7 +12,7 @@ import { useListItem } from '../useList';
 import { DropdownActionTypes } from '../useDropdown';
 import { DropdownContext, DropdownContextValue } from '../useDropdown/DropdownContext';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
-import { useCompoundItem } from '../utils/useCompoundItem';
+import { useCompoundItem } from '../useCompound';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { EventHandlers } from '../utils/types';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
@@ -53,11 +53,7 @@ export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnVal
 
   const { dispatch } = React.useContext(DropdownContext) ?? FALLBACK_MENU_CONTEXT;
 
-  const {
-    getRootProps: getListRootProps,
-    highlighted,
-    rootRef: listItemRefHandler,
-  } = useListItem({
+  const { getRootProps: getListRootProps, highlighted } = useListItem({
     item: id,
   });
 
@@ -72,7 +68,7 @@ export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnVal
     focusableWhenDisabled: true,
   });
 
-  const handleRef = useForkRef(listItemRefHandler, buttonRefHandler, externalRef, itemRef);
+  const handleRef = useForkRef(buttonRefHandler, externalRef, itemRef);
 
   React.useDebugValue({ id, highlighted, disabled, label });
 
@@ -108,6 +104,7 @@ export function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnVal
       ...externalProps,
       ...externalEventHandlers,
       ...getCombinedRootProps(externalEventHandlers),
+      id,
       ref: handleRef,
       role: 'menuitem',
     };

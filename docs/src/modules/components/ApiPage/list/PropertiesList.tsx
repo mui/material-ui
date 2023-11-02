@@ -37,6 +37,9 @@ const StyledApiItem = styled(ExpendableApiItem)(
         fontSize: theme.typography.pxToRem(12),
       },
     },
+    '& .prop-list-deprecated': {
+      '& code ': { all: 'unset' },
+    },
     '& .prop-list-default-props': {
       ...theme.typography.body2,
       fontWeight: theme.typography.fontWeightSemiBold,
@@ -100,17 +103,36 @@ PropDescription.propTypes = {
   description: PropTypes.string.isRequired,
 };
 
-export const getHash = ({ componentName, propName }: { componentName: string; propName: string }) =>
-  `${componentName ? `${componentName}-` : ''}prop-${propName}`;
+export const getHash = ({
+  targetName,
+  propName,
+  hooksParameters,
+  hooksReturnValue,
+}: {
+  targetName: string;
+  propName: string;
+  hooksParameters?: boolean;
+  hooksReturnValue?: boolean;
+}) => {
+  let sectionName = 'prop';
+  if (hooksParameters) {
+    sectionName = 'parameters';
+  } else if (hooksReturnValue) {
+    sectionName = 'return-value';
+  }
+  return `${targetName ? `${targetName}-` : ''}${sectionName}-${propName}`;
+};
 
 export interface PropDescriptionParams {
-  componentName: string;
+  targetName: string;
   propName: string;
   description?: string;
   requiresRef?: string;
   isOptional?: boolean;
   isRequired?: boolean;
   isDeprecated?: boolean;
+  hooksParameters?: boolean;
+  hooksReturnValue?: boolean;
   deprecationInfo?: string;
   typeName: string;
   propDefault?: string;
@@ -132,13 +154,15 @@ export default function PropertiesList(props: PropertiesListProps) {
     <ApiItemContaier>
       {properties.map((params) => {
         const {
-          componentName,
+          targetName,
           propName,
           description,
           requiresRef,
           isOptional,
           isRequired,
           isDeprecated,
+          hooksParameters,
+          hooksReturnValue,
           deprecationInfo,
           typeName,
           propDefault,
@@ -150,7 +174,7 @@ export default function PropertiesList(props: PropertiesListProps) {
         return (
           <StyledApiItem
             key={propName}
-            id={getHash({ componentName, propName })}
+            id={getHash({ targetName, propName, hooksParameters, hooksReturnValue })}
             title={propName}
             note={(isOptional && 'Optional') || (isRequired && 'Required') || ''}
             type="props"
@@ -188,7 +212,7 @@ export default function PropertiesList(props: PropertiesListProps) {
             ))}
             {isDeprecated && (
               <Alert
-                className="MuiApi-collapsible"
+                className="MuiApi-collapsible prop-list-deprecated"
                 severity="warning"
                 icon={<WarningRoundedIcon fontSize="small" />}
                 sx={{
@@ -204,9 +228,7 @@ export default function PropertiesList(props: PropertiesListProps) {
                     {' - '}
                     <span
                       dangerouslySetInnerHTML={{
-                        __html: deprecationInfo
-                          .replace(/<code>/g, '<span>')
-                          .replace(/<\/code>/g, '</span>'),
+                        __html: deprecationInfo,
                       }}
                     />
                   </React.Fragment>
@@ -220,7 +242,7 @@ export default function PropertiesList(props: PropertiesListProps) {
                   <code
                     className="Api-code"
                     dangerouslySetInnerHTML={{
-                      __html: typeName.replace(/<br>&#124;/g, ' |'),
+                      __html: typeName,
                     }}
                   />
                 </p>

@@ -53,14 +53,14 @@ export interface SelectPropsVariantOverrides {}
 export interface SelectPropsColorOverrides {}
 export interface SelectPropsSizeOverrides {}
 
-export type SelectSlotsAndSlotProps = CreateSlotsAndSlotProps<
+export type SelectSlotsAndSlotProps<Multiple extends boolean> = CreateSlotsAndSlotProps<
   SelectSlots,
   {
-    root: SlotProps<'div', {}, SelectOwnerState<any>>;
-    button: SlotProps<'button', {}, SelectOwnerState<any>>;
-    startDecorator: SlotProps<'span', {}, SelectOwnerState<any>>;
-    endDecorator: SlotProps<'span', {}, SelectOwnerState<any>>;
-    indicator: SlotProps<'span', {}, SelectOwnerState<any>>;
+    root: SlotProps<'div', {}, SelectOwnerState<any, Multiple>>;
+    button: SlotProps<'button', {}, SelectOwnerState<any, Multiple>>;
+    startDecorator: SlotProps<'span', {}, SelectOwnerState<any, Multiple>>;
+    endDecorator: SlotProps<'span', {}, SelectOwnerState<any, Multiple>>;
+    indicator: SlotProps<'span', {}, SelectOwnerState<any, Multiple>>;
     listbox: SlotProps<
       'ul',
       {
@@ -68,7 +68,7 @@ export type SelectSlotsAndSlotProps = CreateSlotsAndSlotProps<
         variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
         size?: OverridableStringUnion<'sm' | 'md' | 'lg', SelectPropsSizeOverrides>;
       } & Omit<PopperOwnProps, 'slots' | 'slotProps' | 'open'>,
-      SelectOwnerState<any>
+      SelectOwnerState<any, Multiple>
     >;
   }
 >;
@@ -165,40 +165,47 @@ export interface SelectStaticProps {
   variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
 }
 
-export type SelectOwnProps<OptionValue extends {}> = SelectStaticProps &
-  SelectSlotsAndSlotProps & {
+export type SelectOwnProps<OptionValue extends {}, Multiple extends boolean> = SelectStaticProps &
+  SelectSlotsAndSlotProps<Multiple> & {
     /**
      * The default selected value. Use when the component is not controlled.
      */
-    defaultValue?: OptionValue | null;
+    defaultValue?: SelectValue<OptionValue, Multiple>;
+    /**
+     * If `true`, selecting multiple values is allowed.
+     * This affects the type of the `value`, `defaultValue`, and `onChange` props.
+     *
+     * @default false
+     */
+    multiple?: Multiple;
     /**
      * A function to convert the currently selected value to a string.
      * Used to set a value of a hidden input associated with the select,
      * so that the selected value can be posted with a form.
      */
     getSerializedValue?: (
-      option: SelectValue<SelectOption<OptionValue>, false>,
+      option: SelectValue<SelectOption<OptionValue>, Multiple>,
     ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
     /**
      * Callback fired when an option is selected.
      */
     onChange?: (
       event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-      value: OptionValue | null,
+      value: SelectValue<OptionValue, Multiple>,
     ) => void;
     /**
      * Function that customizes the rendering of the selected value.
      */
-    renderValue?: (option: SelectOption<OptionValue> | null) => React.ReactNode;
+    renderValue?: (option: SelectValue<SelectOption<OptionValue>, Multiple>) => React.ReactNode;
     /**
      * The selected value.
      * Set to `null` to deselect all options.
      */
-    value?: OptionValue | null;
+    value?: SelectValue<OptionValue, Multiple>;
   };
 
-export interface SelectOwnerState<OptionValue extends {}>
-  extends ApplyColorInversion<SelectOwnProps<OptionValue>> {
+export interface SelectOwnerState<OptionValue extends {}, Multiple extends boolean>
+  extends ApplyColorInversion<SelectOwnProps<OptionValue, Multiple>> {
   /**
    * If `true`, the select button is active.
    */
@@ -223,16 +230,18 @@ export interface SelectOwnerState<OptionValue extends {}>
 
 export interface SelectTypeMap<
   OptionValue extends {},
+  Multiple extends boolean = false,
   P = {},
   D extends React.ElementType = 'button',
 > {
-  props: P & SelectOwnProps<OptionValue>;
+  props: P & SelectOwnProps<OptionValue, Multiple>;
   defaultComponent: D;
 }
 
 export type SelectProps<
   OptionValue extends {},
-  D extends React.ElementType = SelectTypeMap<OptionValue>['defaultComponent'],
-> = OverrideProps<SelectTypeMap<OptionValue, {}, D>, D> & {
+  Multiple extends boolean,
+  D extends React.ElementType = SelectTypeMap<OptionValue, Multiple>['defaultComponent'],
+> = OverrideProps<SelectTypeMap<OptionValue, Multiple, {}, D>, D> & {
   component?: D;
 };

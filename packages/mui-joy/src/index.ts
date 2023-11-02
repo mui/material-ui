@@ -196,6 +196,9 @@ export * from './Skeleton';
 export { default as Slider } from './Slider';
 export * from './Slider';
 
+export { default as Snackbar } from './Snackbar';
+export * from './Snackbar';
+
 export { default as Stack } from './Stack';
 export * from './Stack';
 

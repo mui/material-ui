@@ -16,6 +16,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
   ({ theme }) => ({
     position: 'relative',
     marginBottom: 12,
+    scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
     '& .MuiApi-item-header': {
       minHeight: 26,
       display: 'flex',
@@ -112,9 +113,11 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       ...theme.typography.caption,
       fontFamily: theme.typography.fontFamilyCode,
       fontWeight: theme.typography.fontWeightRegular,
+      color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
       padding: '1px 4px',
+      borderRadius: 6,
       border: '1px solid',
-      borderColor: alpha(darkTheme.palette.primary[100], 0.5),
+      borderColor: alpha(darkTheme.palette.primary[100], 0.8),
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
     },
   }),
@@ -234,12 +237,12 @@ function ApiItem(props: ApiItemProps) {
             onClick={() => setIsExtended((prev) => !prev)}
             className="MuiApi-expend-button"
             size="small"
-            sx={{ p: 0, ml: 'auto' }}
+            sx={{ p: 0, ml: 'auto', borderRadius: '6px' }}
           >
             {isExtended ? (
-              <KeyboardArrowDownIcon sx={{ color: 'grey.500' }} />
-            ) : (
               <KeyboardArrowUpIcon sx={{ color: 'grey.500' }} />
+            ) : (
+              <KeyboardArrowDownIcon sx={{ color: 'grey.500' }} />
             )}
           </IconButton>
         )}

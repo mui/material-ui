@@ -1,4 +1,4 @@
-<CustomButton href={'https://mui.com/'}>Standard link</CustomButton>
+<Button href={'https://mui.com/'}>Standard link</Button>
 <Link href={'https://mui.com/'}>
-  <CustomButton>Next link</CustomButton>
+  <Button>Next link</Button>
 </Link>

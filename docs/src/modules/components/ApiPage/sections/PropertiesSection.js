@@ -25,7 +25,7 @@ export const getPropsToC = ({
       .filter(([, propData]) => propData.description !== '@ignore')
       .map(([propName]) => ({
         text: propName,
-        hash: getHash({ propName, componentName }),
+        hash: getHash({ propName, targetName: componentName }),
         children: [],
       })),
     ...(inheritance
@@ -41,12 +41,14 @@ export default function PropertiesSection(props) {
   const {
     properties,
     propertiesDescriptions,
-    componentName = '',
+    targetName = '',
     showOptionalAbbr = false,
     title = 'api-docs.props',
     titleHash = 'props',
     level: Level = 'h2',
     spreadHint,
+    hooksParameters = false,
+    hooksReturnValue = false,
   } = props;
   const t = useTranslate();
 
@@ -58,9 +60,7 @@ export default function PropertiesSection(props) {
       const isOptional = !propData.required && showOptionalAbbr;
 
       const isDeprecated = propData.deprecated;
-      const deprecationInfo = propData.deprecationInfo
-        ?.replace(/<code>/g, '<span>')
-        ?.replace(/<\/code>/g, '</span>');
+      const deprecationInfo = propData.deprecationInfo;
 
       const typeName = propData.type?.description || propData.type.name;
       const propDefault = propData.default;
@@ -85,13 +85,15 @@ export default function PropertiesSection(props) {
         propertiesDescriptions[propName].typeDescriptions[propData.signature.returned];
 
       return {
-        componentName,
+        targetName,
         propName,
         description: propDescription?.description,
         requiresRef: propDescription?.requiresRef,
         isOptional,
         isRequired,
         isDeprecated,
+        hooksParameters,
+        hooksReturnValue,
         deprecationInfo,
         typeName,
         propDefault,
@@ -104,7 +106,7 @@ export default function PropertiesSection(props) {
 
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 1 }}>
         <Level id={titleHash} style={{ flexGrow: 1 }}>
           {t(title)}
           <a
@@ -133,12 +135,14 @@ export default function PropertiesSection(props) {
 }
 
 PropertiesSection.propTypes = {
-  componentName: PropTypes.string,
+  hooksParameters: PropTypes.bool,
+  hooksReturnValue: PropTypes.bool,
   level: PropTypes.string,
   properties: PropTypes.object.isRequired,
   propertiesDescriptions: PropTypes.object.isRequired,
   showOptionalAbbr: PropTypes.bool,
   spreadHint: PropTypes.string,
+  targetName: PropTypes.string,
   title: PropTypes.string,
   titleHash: PropTypes.string,
 };
