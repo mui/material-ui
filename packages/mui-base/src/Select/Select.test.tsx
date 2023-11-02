@@ -11,8 +11,8 @@ import {
   screen,
 } from '@mui-internal/test-utils';
 import { Select, SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
-import { useOption, SelectOption } from '@mui/base/useOption';
-import { Option, OptionProps, optionClasses } from '@mui/base/Option';
+import { SelectOption } from '@mui/base/useOption';
+import { Option, OptionProps, OptionRootSlotProps, optionClasses } from '@mui/base/Option';
 import { OptionGroup } from '@mui/base/OptionGroup';
 
 describe('<Select />', () => {
@@ -1204,33 +1204,45 @@ describe('<Select />', () => {
     const renderOption3Spy = spy();
     const renderOption4Spy = spy();
 
-    function CustomOption(props: OptionProps<number> & { renderSpy?: () => void }) {
-      const { renderSpy, value } = props;
-      renderSpy?.();
-
-      const { getRootProps } = useOption({
-        value,
-        label: value.toString(),
-        disabled: false,
-      });
-
-      return <li {...getRootProps} />;
-    }
+    const LoggingRoot = React.forwardRef(function LoggingRoot(
+      props: OptionRootSlotProps<number> & { renderSpy: () => void },
+      ref: React.ForwardedRef<HTMLLIElement>,
+    ) {
+      const { renderSpy, ownerState, ...other } = props;
+      renderSpy();
+      return <li {...other} ref={ref} />;
+    });
 
     const { getByRole } = render(
       <Select>
-        <CustomOption renderSpy={renderOption1Spy} value={1}>
+        <Option
+          slots={{ root: LoggingRoot }}
+          slotProps={{ root: { renderSpy: renderOption1Spy } as any }}
+          value={1}
+        >
           1
-        </CustomOption>
-        <CustomOption renderSpy={renderOption2Spy} value={2}>
+        </Option>
+        <Option
+          slots={{ root: LoggingRoot }}
+          slotProps={{ root: { renderSpy: renderOption2Spy } as any }}
+          value={2}
+        >
           2
-        </CustomOption>
-        <CustomOption renderSpy={renderOption3Spy} value={3}>
+        </Option>
+        <Option
+          slots={{ root: LoggingRoot }}
+          slotProps={{ root: { renderSpy: renderOption3Spy } as any }}
+          value={3}
+        >
           3
-        </CustomOption>
-        <CustomOption renderSpy={renderOption4Spy} value={4}>
+        </Option>
+        <Option
+          slots={{ root: LoggingRoot }}
+          slotProps={{ root: { renderSpy: renderOption4Spy } as any }}
+          value={4}
+        >
           4
-        </CustomOption>
+        </Option>
       </Select>,
     );
 

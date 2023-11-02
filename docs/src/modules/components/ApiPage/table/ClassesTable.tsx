@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
@@ -12,19 +12,6 @@ import {
 
 const StyledTable = styled('table')(
   ({ theme }) => ({
-    '& .table-headers': {
-      paddingTop: 8,
-      paddingBottom: 8,
-      textAlign: 'left',
-      fontWeight: theme.typography.fontWeightSemiBold,
-      fontSize: theme.typography.pxToRem(14),
-    },
-    '& tr': {
-      scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
-      '&:hover': {
-        backgroundColor: alpha(darkTheme.palette.grey[50], 0.5),
-      },
-    },
     '& .rule-name': {
       flexShrink: 0,
       fontWeight: theme.typography.fontWeightSemiBold,
@@ -35,11 +22,6 @@ const StyledTable = styled('table')(
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
-      '& tr': {
-        '&:hover': {
-          backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.5),
-        },
-      },
       '& .rule-name': {
         color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
       },
@@ -57,8 +39,8 @@ export default function ClassesTable(props: ClassesTableProps) {
     <StyledTable>
       <thead>
         <tr>
-          <th className="table-headers">Rule name</th>
-          <th className="table-headers">Description</th>
+          <th>Rule name</th>
+          <th>Description</th>
         </tr>
       </thead>
       <tbody>
