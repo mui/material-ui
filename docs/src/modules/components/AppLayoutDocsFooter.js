@@ -545,7 +545,7 @@ export default function AppLayoutDocsFooter(props) {
             </Typography>
             <Link href={ROUTES.store}>
               <FooterLink>
-                Templates <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
+                Store <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
             </Link>
           </Stack>
