@@ -22,7 +22,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import PanToolRoundedIcon from '@mui/icons-material/PanToolRounded';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
@@ -546,15 +545,7 @@ export default function AppLayoutDocsFooter(props) {
             </Typography>
             <Link href={ROUTES.store}>
               <FooterLink>
-                Store <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
-              </FooterLink>
-            </Link>
-            <Typography color="grey.500" fontSize={13}>
-              &bull;
-            </Typography>
-            <Link href={ROUTES.careers}>
-              <FooterLink>
-                Careers <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
+                Templates <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
             </Link>
           </Stack>
@@ -578,16 +569,6 @@ export default function AppLayoutDocsFooter(props) {
               size="small"
             >
               <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.linkedin.com/company/mui/"
-              aria-label="linkedin"
-              title="LinkedIn"
-              size="small"
-            >
-              <LinkedInIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
             <IconButton
               target="_blank"
