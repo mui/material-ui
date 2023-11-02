@@ -183,7 +183,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (toggleButtonGroup) {
       props.onClick?.(event);
-      toggleButtonGroup.onClick(event, props.value);
+      toggleButtonGroup.onClick?.(event, props.value);
     } else {
       props.onClick?.(event);
     }
@@ -192,7 +192,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const isAriaPressed = () => {
     if (toggleButtonGroup) {
       if (Array.isArray(toggleButtonGroup.value)) {
-        return toggleButtonGroup.value.indexOf(props.value as string | number) !== -1;
+        return toggleButtonGroup.value.indexOf(props.value as string) !== -1;
       }
       return toggleButtonGroup.value === props.value;
     }

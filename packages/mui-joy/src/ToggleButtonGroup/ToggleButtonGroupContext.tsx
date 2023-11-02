@@ -3,7 +3,7 @@ import * as React from 'react';
 import { SupportedValue, ToggleButtonGroupProps } from './ToggleButtonGroupProps';
 
 interface ToggleButtonGroupContextType {
-  onClick: (
+  onClick?: (
     event: React.MouseEvent<HTMLButtonElement>,
     childValue: React.ButtonHTMLAttributes<HTMLButtonElement>['value'],
   ) => void;
@@ -13,9 +13,6 @@ interface ToggleButtonGroupContextType {
 /**
  * @ignore - internal component.
  */
-const ToggleButtonGroupContext = React.createContext<ToggleButtonGroupContextType>({
-  onClick: () => {},
-  value: null,
-});
+const ToggleButtonGroupContext = React.createContext<ToggleButtonGroupContextType>({});
 
 export default ToggleButtonGroupContext;
