@@ -35,7 +35,7 @@
     "jsdom": "^22.1.0",
     "lodash": "^4.17.21",
     "mocha": "^10.2.0",
-    "playwright": "^1.37.1",
+    "playwright": "^1.39.0",
     "prop-types": "^15.8.1",
     "react-test-renderer": "^18.2.0",
     "sinon": "^15.2.0"
