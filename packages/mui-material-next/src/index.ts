@@ -41,6 +41,9 @@ export * from './Menu';
 export { default as MenuItem } from './MenuItem';
 export * from './MenuItem';
 
+export { default as OutlinedInput } from './OutlinedInput';
+export * from './OutlinedInput';
+
 export { default as Select } from './Select';
 export * from './Select';
 
