@@ -4,6 +4,7 @@ import Step, { stepClasses } from '@mui/joy/Step';
 import StepIndicator, { stepIndicatorClasses } from '@mui/joy/StepIndicator';
 import Typography from '@mui/joy/Typography';
 import Check from '@mui/icons-material/Check';
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 
 export default function DottedConnector() {
   return (
@@ -81,7 +82,11 @@ export default function DottedConnector() {
       <Step
         active
         orientation="vertical"
-        indicator={<StepIndicator variant="outlined" color="primary" />}
+        indicator={
+          <StepIndicator variant="outlined" color="primary">
+            <KeyboardArrowDown />
+          </StepIndicator>
+        }
       >
         <Typography
           level="h4"
