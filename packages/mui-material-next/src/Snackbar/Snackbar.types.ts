@@ -3,10 +3,11 @@ import { SxProps } from '@mui/system';
 import { ClickAwayListenerProps } from '@mui/base/ClickAwayListener';
 // eslint-disable-next-line no-restricted-imports
 import { InternalStandardProps as StandardProps } from '@mui/material';
-import { SnackbarContentProps } from '@mui/material/SnackbarContent';
+// TODO v6: port to material-next
 import { TransitionProps } from '@mui/material/transitions';
 import { Theme } from '../styles';
 import { SnackbarClasses } from './snackbarClasses';
+import { SnackbarContentProps } from '../SnackbarContent/SnackbarContent.types';
 
 export interface SnackbarOwnerState extends SnackbarProps {
   anchorOrigin: NonNullable<SnackbarProps['anchorOrigin']>;

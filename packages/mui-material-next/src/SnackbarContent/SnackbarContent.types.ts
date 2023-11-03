@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, PaperProps, Theme } from '@mui/material';
+// eslint-disable-next-line no-restricted-imports
+import { InternalStandardProps as StandardProps, PaperProps } from '@mui/material';
 import { SnackbarContentClasses } from './snackbarContentClasses';
 
 export interface SnackbarContentOwnerState extends SnackbarContentProps {}
 
+// TODO v6: Add the 'sx' type after migrating the Paper Component.
 export interface SnackbarContentProps extends StandardProps<PaperProps, 'children'> {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
@@ -22,9 +23,5 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
    * The ARIA role attribute of the element.
    * @default 'alert'
    */
-  role?: PaperProps['role'];
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme>;
+  role?: React.AriaRole;
 }

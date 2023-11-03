@@ -3,11 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { emphasize } from '@mui/system';
+import Paper from '@mui/material/Paper';
 import useThemeProps from '../styles/useThemeProps';
 import { getSnackbarContentUtilityClass } from './snackbarContentClasses';
-import { CssVarsTheme, Paper, styled } from '@mui/material';
 import { SnackbarContentOwnerState, SnackbarContentProps } from './SnackbarContent.types';
+import { styled } from '../styles';
 
 const useUtilityClasses = (ownerState: SnackbarContentOwnerState) => {
   const { classes } = ownerState;
@@ -25,22 +25,20 @@ const SnackbarContentRoot = styled(Paper, {
   name: 'MuiSnackbarContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SnackbarContentOwnerState; theme?: CssVarsTheme }>(({ theme }) => {
-  const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
-  const backgroundColor = emphasize(theme.palette.background.default, emphasis);
+})<{ ownerState: SnackbarContentOwnerState }>(({ theme }) => {
+  const { vars: tokens } = theme;
 
   return {
     ...theme.typography.body2,
-    color: theme.vars
-      ? theme.vars.palette.SnackbarContent.color
-      : theme.palette.getContrastText(backgroundColor),
-    backgroundColor: theme.vars ? theme.vars.palette.SnackbarContent.bg : backgroundColor,
+    color: tokens.sys.color.inverseOnSurface,
+    backgroundColor: tokens.sys.color.inverseSurface,
     display: 'flex',
-    alignItems: 'center',
     flexWrap: 'wrap',
+    alignItems: 'center',
     padding: '6px 16px',
     borderRadius: (theme.vars || theme).shape.borderRadius,
     flexGrow: 1,
+    boxShadow: tokens.sys.elevation[3],
     [theme.breakpoints.up('sm')]: {
       flexGrow: 'initial',
       minWidth: 288,
@@ -64,7 +62,7 @@ const SnackbarContentAction = styled('div', {
   display: 'flex',
   alignItems: 'center',
   marginLeft: 'auto',
-  paddingLeft: 16,
+  paddingLeft: 4,
   marginRight: -8,
 });
 
@@ -102,7 +100,7 @@ const SnackbarContent = React.forwardRef(function SnackbarContent(
 SnackbarContent.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
@@ -125,14 +123,6 @@ SnackbarContent.propTypes /* remove-proptypes */ = {
    * @default 'alert'
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
-};
+} as any;
 
 export default SnackbarContent;

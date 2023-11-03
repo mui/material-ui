@@ -5,12 +5,15 @@ import Paper from '@mui/material/Paper';
 import SnackbarContent, {
   snackbarContentClasses as classes,
 } from '@mui/material-next/SnackbarContent';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<SnackbarContent />', () => {
   const { render } = createRenderer();
 
   describeConformance(<SnackbarContent message="conform?" />, () => ({
     classes,
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
     inheritComponent: Paper,
     render,
     muiName: 'MuiSnackbarContent',

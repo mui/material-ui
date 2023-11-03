@@ -114,7 +114,7 @@ interface MaterialYouUsageDemoProps<ComponentProps> {
   /**
    * Configuration
    */
-  data: Array<{
+  data?: Array<{
     /**
      * Name of the prop, e.g. 'children'
      */
@@ -170,7 +170,7 @@ interface MaterialYouUsageDemoProps<ComponentProps> {
 export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}>({
   componentName,
   childrenAccepted = false,
-  data,
+  data = [],
   renderDemo,
   getCodeBlock = defaultGetCodeBlock,
 }: MaterialYouUsageDemoProps<T>) {
@@ -240,138 +240,141 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
           />
         </BrandingProvider>
       </Box>
-      <Box
-        sx={(theme) => ({
-          flexShrink: 0,
-          gap: 2,
-          borderLeft: '1px solid',
-          borderColor: theme.palette.grey[200],
-          background: alpha(theme.palette.grey[50], 0.5),
-          minWidth: '250px',
-          [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
-            borderColor: alpha(theme.palette.grey[900], 0.8),
-            backgroundColor: alpha(theme.palette.grey[900], 0.3),
-          },
-        })}
-      >
+
+      {data.length > 0 && (
         <Box
-          sx={{
-            px: 3,
-            py: 2,
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
+          sx={(theme) => ({
+            flexShrink: 0,
+            gap: 2,
+            borderLeft: '1px solid',
+            borderColor: theme.palette.grey[200],
+            background: alpha(theme.palette.grey[50], 0.5),
+            minWidth: '250px',
+            [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
+              borderColor: alpha(theme.palette.grey[900], 0.8),
+              backgroundColor: alpha(theme.palette.grey[900], 0.3),
+            },
+          })}
         >
-          <Typography
-            id="usage-props"
-            component="h3"
-            fontWeight="600"
-            sx={{ scrollMarginTop: 160, fontFamily: 'General Sans' }}
-          >
-            Playground
-          </Typography>
-          <IconButton
-            aria-label="Reset all"
-            size="small"
-            onClick={() => setProps(initialProps as T)}
+          <Box
             sx={{
-              visibility: !shallowEqual(props, initialProps) ? 'visible' : 'hidden',
+              px: 3,
+              py: 2,
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
             }}
           >
-            <ReplayRoundedIcon />
-          </IconButton>
-        </Box>
-        <Divider sx={{ opacity: 0.5 }} />
-        <Box
-          sx={{
-            p: 3,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
-            [`& .${formLabelClasses.root}`]: {
-              fontWeight: 'lg',
-            },
-          }}
-        >
-          {data.map(({ propName, knob, options = [], defaultValue, onChange }) => {
-            const resolvedValue = props[propName] ?? defaultValue;
-            if (!knob) {
-              return null;
-            }
-            if (knob === 'switch') {
-              return (
-                <FormControl
-                  key={propName}
-                  size="small"
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <FormLabel
-                    sx={{
-                      textTransform: 'capitalize',
-                      fontWeight: 'medium',
-                      fontSize: '0.875rem',
-                      color: 'text.secondary',
-                    }}
-                  >
-                    {propName}
-                  </FormLabel>
-                  <Switch
+            <Typography
+              id="usage-props"
+              component="h3"
+              fontWeight="600"
+              sx={{ scrollMarginTop: 160, fontFamily: 'General Sans' }}
+            >
+              Playground
+            </Typography>
+            <IconButton
+              aria-label="Reset all"
+              size="small"
+              onClick={() => setProps(initialProps as T)}
+              sx={{
+                visibility: !shallowEqual(props, initialProps) ? 'visible' : 'hidden',
+              }}
+            >
+              <ReplayRoundedIcon />
+            </IconButton>
+          </Box>
+          <Divider sx={{ opacity: 0.5 }} />
+          <Box
+            sx={{
+              p: 3,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 2,
+              [`& .${formLabelClasses.root}`]: {
+                fontWeight: 'lg',
+              },
+            }}
+          >
+            {data.map(({ propName, knob, options = [], defaultValue, onChange }) => {
+              const resolvedValue = props[propName] ?? defaultValue;
+              if (!knob) {
+                return null;
+              }
+              if (knob === 'switch') {
+                return (
+                  <FormControl
+                    key={propName}
                     size="small"
-                    checked={Boolean(resolvedValue)}
-                    onChange={(event) => {
-                      setProps((latestProps) => ({
-                        ...latestProps,
-                        [propName]: event.target.checked,
-                      }));
-                      onChange?.(event);
-                    }}
-                  />
-                </FormControl>
-              );
-            }
-            if (knob === 'select') {
-              return (
-                <FormControl key={propName} size="small">
-                  <FormLabel
                     sx={{
-                      textTransform: 'capitalize',
-                      fontWeight: 'medium',
-                      fontSize: '0.875rem',
-                      mb: 0.5,
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
                     }}
                   >
-                    {propName}
-                  </FormLabel>
-                  <Select
-                    placeholder="Select a variant..."
-                    value={(resolvedValue || 'none') as string}
-                    onChange={(event) => {
-                      setProps((latestProps) => ({
-                        ...latestProps,
-                        [propName]: event.target.value,
-                      }));
-                      onChange?.(event as React.SyntheticEvent);
-                    }}
-                  >
-                    {options.map((value) => (
-                      <MenuItem key={value} value={value}>
-                        {value}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              );
-            }
-            return null;
-          })}
+                    <FormLabel
+                      sx={{
+                        textTransform: 'capitalize',
+                        fontWeight: 'medium',
+                        fontSize: '0.875rem',
+                        color: 'text.secondary',
+                      }}
+                    >
+                      {propName}
+                    </FormLabel>
+                    <Switch
+                      size="small"
+                      checked={Boolean(resolvedValue)}
+                      onChange={(event) => {
+                        setProps((latestProps) => ({
+                          ...latestProps,
+                          [propName]: event.target.checked,
+                        }));
+                        onChange?.(event);
+                      }}
+                    />
+                  </FormControl>
+                );
+              }
+              if (knob === 'select') {
+                return (
+                  <FormControl key={propName} size="small">
+                    <FormLabel
+                      sx={{
+                        textTransform: 'capitalize',
+                        fontWeight: 'medium',
+                        fontSize: '0.875rem',
+                        mb: 0.5,
+                      }}
+                    >
+                      {propName}
+                    </FormLabel>
+                    <Select
+                      placeholder="Select a variant..."
+                      value={(resolvedValue || 'none') as string}
+                      onChange={(event) => {
+                        setProps((latestProps) => ({
+                          ...latestProps,
+                          [propName]: event.target.value,
+                        }));
+                        onChange?.(event as React.SyntheticEvent);
+                      }}
+                    >
+                      {options.map((value) => (
+                        <MenuItem key={value} value={value}>
+                          {value}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                );
+              }
+              return null;
+            })}
+          </Box>
         </Box>
-      </Box>
+      )}
     </Box>
   );
 }

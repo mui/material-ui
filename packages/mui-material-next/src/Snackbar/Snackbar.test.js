@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material-next/Snackbar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<Snackbar />', () => {
   const { clock, render: clientRender } = createRenderer({ clock: 'fake' });
@@ -26,6 +27,8 @@ describe('<Snackbar />', () => {
   describeConformance(<Snackbar open message="message" />, () => ({
     classes,
     inheritComponent: 'div',
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSnackbar',
