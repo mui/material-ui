@@ -8,6 +8,8 @@ import yargs from 'yargs';
 import { $ } from 'execa';
 import listChangedFiles from './listChangedFiles.mjs';
 
+const numberFormat = new Intl.NumberFormat();
+
 async function run(argv) {
   const { mode, branch, ci } = argv;
   const shouldWrite = mode === 'write' || mode === 'write-changed';
@@ -30,8 +32,10 @@ async function run(argv) {
       changedFiles.has('package-json.lock');
 
     if (ci && hasLockFileChanges) {
+      console.log('Detected lockfile changes in CI, running prettier on all files.');
       args.push('.');
     } else {
+      console.log(`Running prettier on ${numberFormat.format(changedFiles.size)} files.`);
       args.push('--ignore-unknown', ...changedFiles);
     }
   } else {
