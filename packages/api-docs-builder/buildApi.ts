@@ -59,7 +59,14 @@ export interface ProjectSettings {
   getApiPages: () => Array<{ pathname: string }>;
   getComponentInfo: (filename: string) => ComponentInfo;
   getHookInfo?: (filename: string) => HookInfo;
+  /**
+   * Callback function to be called when the API generation is completed
+   */
   onCompleted?: () => void;
+  /**
+   * Languages to which the API docs will be generated
+   */
+  languages: string[];
 }
 
 export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp | null = null) {
@@ -123,7 +130,7 @@ export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp 
 
           mkdirSync(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
 
-          return generateComponentApi(componentInfo, project);
+          return generateComponentApi(componentInfo, project, setting);
         } catch (error: any) {
           error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
           throw error;
@@ -139,7 +146,7 @@ export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp 
           const hookInfo = setting.getHookInfo(filename);
 
           mkdirSync(hookInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
-          return generateHookApi(hookInfo, project);
+          return generateHookApi(hookInfo, project, setting);
         } catch (error: any) {
           error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
           throw error;

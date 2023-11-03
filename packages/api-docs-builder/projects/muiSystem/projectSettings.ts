@@ -1,4 +1,5 @@
 import path from 'path';
+import { LANGUAGES } from 'docs/config';
 import { ProjectSettings } from '../../buildApi';
 import findApiPages from '../../utils/findApiPages';
 import getSystemComponentInfo from './getSystemComponentInfo';
@@ -16,6 +17,7 @@ const muiSystemSettings: ProjectSettings = {
   ],
   getApiPages: () => findApiPages('docs/pages/system/api'),
   getComponentInfo: getSystemComponentInfo,
+  languages: LANGUAGES,
 };
 
 export default muiSystemSettings;

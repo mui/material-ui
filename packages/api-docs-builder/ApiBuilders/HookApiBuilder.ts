@@ -9,7 +9,7 @@ import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-doc
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { renderMarkdown } from '@mui/markdown';
-import { LANGUAGES } from 'docs/config';
+import { ProjectSettings } from '../buildApi';
 import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
 import {
   getSymbolDescription,
@@ -431,11 +431,15 @@ const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
   );
 };
 
-const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiTranslations = (
+  outputDirectory: string,
+  reactApi: ReactApi,
+  languages: string[],
+) => {
   const hookName = reactApi.name;
   const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(hookName));
   function resolveApiDocsTranslationsComponentLanguagePath(
-    language: (typeof LANGUAGES)[0],
+    language: (typeof languages)[0],
   ): string {
     const languageSuffix = language === 'en' ? '' : `-${language}`;
 
@@ -452,7 +456,7 @@ const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) =>
     JSON.stringify(reactApi.translations),
   );
 
-  LANGUAGES.forEach((language) => {
+  languages.forEach((language) => {
     if (language !== 'en') {
       try {
         writePrettifiedFile(
@@ -536,7 +540,11 @@ const getHookImports = (name: string, filename: string) => {
   return [subpathImport, rootImport];
 };
 
-export default async function generateHookApi(hooksInfo: HookInfo, project: TypeScriptProject) {
+export default async function generateHookApi(
+  hooksInfo: HookInfo,
+  project: TypeScriptProject,
+  projectSettings: ProjectSettings,
+) {
   const { filename, name, apiPathname, apiPagesDirectory, getDemos, readFile, skipApiGeneration } =
     hooksInfo;
 
@@ -600,7 +608,11 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
+    generateApiTranslations(
+      path.join(process.cwd(), 'docs/translations/api-docs'),
+      reactApi,
+      projectSettings.languages,
+    );
     generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file

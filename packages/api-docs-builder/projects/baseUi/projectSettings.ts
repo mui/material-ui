@@ -1,5 +1,6 @@
 import path from 'path';
-import { ProjectSettings } from 'buildApi';
+import { LANGUAGES } from 'docs/config';
+import { ProjectSettings } from '../../buildApi';
 import findApiPages from '../../utils/findApiPages';
 import getBaseUiComponentInfo from './getBaseUiComponentInfo';
 import getBaseUiHookInfo from './getBaseUiHookInfo';
@@ -19,6 +20,7 @@ const projectSettings: ProjectSettings = {
   getApiPages: () => findApiPages('docs/pages/base-ui/api'),
   getComponentInfo: getBaseUiComponentInfo,
   getHookInfo: getBaseUiHookInfo,
+  languages: LANGUAGES,
   onCompleted: () => {
     generateBaseUIApiPages();
   },

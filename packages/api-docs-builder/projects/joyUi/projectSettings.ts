@@ -1,5 +1,6 @@
 import path from 'path';
-import { ProjectSettings } from 'buildApi';
+import { LANGUAGES } from 'docs/config';
+import { ProjectSettings } from '../../buildApi';
 import findApiPages from '../../utils/findApiPages';
 import getJoyUiComponentInfo from './getJoyUiComponentInfo';
 
@@ -16,6 +17,7 @@ const projectSettings: ProjectSettings = {
   ],
   getApiPages: () => findApiPages('docs/pages/joy-ui/api'),
   getComponentInfo: getJoyUiComponentInfo,
+  languages: LANGUAGES,
 };
 
 export default projectSettings;
