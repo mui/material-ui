@@ -152,6 +152,17 @@ const openRolesData = [
       },
     ],
   },
+  {
+    title: 'Design',
+    roles: [
+      {
+        title: 'Design Engineer - xGrid',
+        description:
+          'You will design and implement a great user and developer experience for the MUI X Data Grid.',
+        url: '/careers/design-engineer-x-grid/',
+      },
+    ],
+  },
 ];
 
 const nextRolesData = [
@@ -457,12 +468,11 @@ function CareersContent() {
               }
               description={
                 <React.Fragment>
-                  We hire in batches, we collect applications a few months before we actively aim to
-                  fill the roles. If none of them fit with what you are looking for, apply to the{' '}
+                  If none of the roles below fit with what you are looking for, apply to the{' '}
                   <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
                     Dream job
                   </Link>{' '}
-                  role.
+                  role!
                 </React.Fragment>
               }
             />
@@ -525,7 +535,8 @@ function CareersContent() {
                 </Typography>
               </Box>
               <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
-                We&apos;re to help you with any other question you have about our hiring process.
+                We&apos;re here to help you with any other question you have about our hiring
+                process.
               </Typography>
               <Link href="mailto:job@mui.com" variant="body2">
                 Contact us <KeyboardArrowRightRounded fontSize="small" />

@@ -613,13 +613,14 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: slots and slotProps', () => {
-    // e.g. integration of react-select with InputBase
-    // https://github.com/mui/material-ui/issues/18130
-    // react-select has a custom onChange that is essentially "(string, string) => void"
     it('should call slotProps.input.onChange callback with all params sent from custom inputComponent', () => {
       const INPUT_VALUE = 'material';
       const OUTPUT_VALUE = 'test';
-
+      /**
+       * This component simulates the integration of react-select with Input
+       * react-select has a custom onChange that is essentially "(string, string) => void"
+       * https://github.com/mui/material-ui/issues/18130
+       */
       const MyInputBase = React.forwardRef(function MyInputBase(
         props: {
           onChange: (...args: string[]) => void;

@@ -35,7 +35,7 @@
     "jsdom": "^22.1.0",
     "lodash": "^4.17.21",
     "mocha": "^10.2.0",
-    "playwright": "^1.37.1",
+    "playwright": "^1.39.0",
     "prop-types": "^15.8.1",
     "react-test-renderer": "^18.2.0",
     "sinon": "^15.2.0"
@@ -43,13 +43,13 @@
   "devDependencies": {
     "@types/chai": "^4.3.9",
     "@types/chai-dom": "^1.11.2",
-    "@types/enzyme": "^3.10.14",
-    "@types/format-util": "^1.0.2",
-    "@types/prop-types": "^15.7.8",
-    "@types/react": "^18.2.29",
-    "@types/react-dom": "^18.2.13",
-    "@types/react-test-renderer": "^18.0.3",
-    "@types/sinon": "^10.0.19",
+    "@types/enzyme": "^3.10.15",
+    "@types/format-util": "^1.0.3",
+    "@types/prop-types": "^15.7.9",
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
+    "@types/react-test-renderer": "^18.0.5",
+    "@types/sinon": "^10.0.20",
     "typescript": "^5.1.6"
   },
   "peerDependencies": {

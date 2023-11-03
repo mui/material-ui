@@ -419,6 +419,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       table: 10,
       popup: 1000,
       modal: 1300,
+      snackbar: 1400,
       tooltip: 1500,
     },
 
