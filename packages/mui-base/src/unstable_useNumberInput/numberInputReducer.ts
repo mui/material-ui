@@ -2,11 +2,10 @@ import {
   NumberInputActionContext,
   NumberInputReducerAction,
   NumberInputState,
+  StepDirection,
 } from './useNumberInput.types';
 import { NumberInputActionTypes } from './numberInputAction.types';
 import { clamp, isNumber } from './utils';
-
-type Direction = '+' | '-';
 
 // extracted from handleValueChange
 function getClampedValues(rawValue: number | undefined, context: NumberInputActionContext) {
@@ -25,7 +24,7 @@ function getClampedValues(rawValue: number | undefined, context: NumberInputActi
 function stepValue(
   state: NumberInputState,
   context: NumberInputActionContext,
-  direction: Direction,
+  direction: StepDirection,
   multiplier: number,
 ) {
   const { value } = state;
@@ -33,14 +32,14 @@ function stepValue(
 
   if (isNumber(value)) {
     return {
-      '+': value + (step ?? 1) * multiplier,
-      '-': value - (step ?? 1) * multiplier,
+      up: value + (step ?? 1) * multiplier,
+      down: value - (step ?? 1) * multiplier,
     }[direction];
   }
 
   return {
-    '+': min ?? 0,
-    '-': max ?? 0,
+    up: min ?? 0,
+    down: max ?? 0,
   }[direction];
 }
 
@@ -99,8 +98,8 @@ function handleInputChange<State extends NumberInputState>(
 function handleStep<State extends NumberInputState>(
   state: State,
   context: NumberInputActionContext,
-  direction: Direction,
   applyMultiplier: boolean,
+  direction: StepDirection,
 ) {
   const multiplier = applyMultiplier ? context.shiftMultiplier : 1;
 
@@ -144,9 +143,9 @@ export function numberInputReducer(
     case NumberInputActionTypes.inputChange:
       return handleInputChange(state, context, action.inputValue);
     case NumberInputActionTypes.increment:
-      return handleStep(state, context, '+', action.applyMultiplier);
+      return handleStep(state, context, action.applyMultiplier, 'up');
     case NumberInputActionTypes.decrement:
-      return handleStep(state, context, '-', action.applyMultiplier);
+      return handleStep(state, context, action.applyMultiplier, 'down');
     case NumberInputActionTypes.incrementToMax:
       return handleToMinOrMax(state, context, 'max');
     case NumberInputActionTypes.decrementToMin:
