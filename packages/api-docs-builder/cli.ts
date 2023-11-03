@@ -11,6 +11,7 @@ const projectSettings: ProjectSettings[] = [
   joyUiProjectSettings,
   muiSystemSettings,
 ];
+
 type CommandOptions = { grep?: string };
 
 async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {

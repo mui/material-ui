@@ -4,12 +4,7 @@ import * as fse from 'fs-extra';
 import kebabCase from 'lodash/kebabCase';
 import findComponents from './utils/findComponents';
 import findHooks from './utils/findHooks';
-import {
-  ComponentInfo,
-  HookInfo,
-  generateBaseUIApiPages,
-  writePrettifiedFile,
-} from './buildApiUtils';
+import { ComponentInfo, HookInfo, writePrettifiedFile } from './buildApiUtils';
 import generateComponentApi, { ReactApi } from './ApiBuilders/ComponentApiBuilder';
 import generateHookApi from './ApiBuilders/HookApiBuilder';
 import { createTypeScriptProjectBuilder } from './utils/createTypeScriptProject';
@@ -62,6 +57,7 @@ export interface ProjectSettings {
   getApiPages: () => Array<{ pathname: string }>;
   getComponentInfo: (filename: string) => ComponentInfo;
   getHookInfo?: (filename: string) => HookInfo;
+  onCompleted?: () => void;
 }
 
 export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp | null = null) {
@@ -199,11 +195,11 @@ export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp 
     }
 
     writePrettifiedFile(apiPagesManifestPath, source);
+
+    setting.onCompleted?.();
+
     return Promise.resolve();
   }, Promise.resolve());
-
-  // update the component pages to show the API tabs
-  generateBaseUIApiPages();
 
   if (grep === null) {
     const componentApis = allBuilds
