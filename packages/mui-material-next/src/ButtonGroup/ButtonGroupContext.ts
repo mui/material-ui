@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { ButtonGroupProps } from './ButtonGroup.types';
 
-interface IButtonGroupContext {
+export interface IButtonGroupContext {
   className?: string;
   color?: ButtonGroupProps['color'];
   disabled?: boolean;

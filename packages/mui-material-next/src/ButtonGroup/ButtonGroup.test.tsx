@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material-next/ButtonGroup';
 import Button, { buttonClasses } from '@mui/material-next/Button';
-import ButtonGroupContext from './ButtonGroupContext';
+import ButtonGroupContext, { IButtonGroupContext } from './ButtonGroupContext';
 import { CssVarsProvider, extendTheme } from '../styles';
 
 describe('<ButtonGroup />', () => {
@@ -103,9 +103,10 @@ describe('<ButtonGroup />', () => {
   });
 
   it('should have a ripple by default', () => {
+    const props = {TouchRippleProps:{ classes: { root: 'touchRipple' } }};
     const { container } = render(
       <ButtonGroup>
-        <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
+        <Button {...props}>Hello World</Button>
       </ButtonGroup>,
     );
     expect(container.querySelector('.touchRipple')).not.to.equal(null);
@@ -122,9 +123,10 @@ describe('<ButtonGroup />', () => {
   });
 
   it('can disable the ripple', () => {
+    const props = {TouchRippleProps:{ classes: { root: 'touchRipple' } }};
     const { container } = render(
       <ButtonGroup disableRipple>
-        <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
+        <Button {...props}>Hello World</Button>
       </ButtonGroup>,
     );
     expect(container.querySelector('.touchRipple')).to.equal(null);
@@ -165,24 +167,25 @@ describe('<ButtonGroup />', () => {
   });
 
   it('should forward the context to children', () => {
-    let context;
+    let context: IButtonGroupContext;
     render(
       <ButtonGroup size="large" variant="filled">
         <ButtonGroupContext.Consumer>
           {(value) => {
             context = value;
+            return (<Button/>)
           }}
         </ButtonGroupContext.Consumer>
       </ButtonGroup>,
     );
-    expect(context.variant).to.equal('filled');
-    expect(context.size).to.equal('large');
-    expect(context.fullWidth).to.equal(false);
-    expect(context.disableRipple).to.equal(false);
-    expect(context.disableTouchRipple).to.equal(false);
-    expect(context.disableElevation).to.equal(false);
-    expect(context.disabled).to.equal(false);
-    expect(context.color).to.equal('primary');
+    expect(context!.variant).to.equal('filled');
+    expect(context!.size).to.equal('large');
+    expect(context!.fullWidth).to.equal(false);
+    expect(context!.disableRipple).to.equal(false);
+    expect(context!.disableTouchRipple).to.equal(false);
+    expect(context!.disableElevation).to.equal(false);
+    expect(context!.disabled).to.equal(false);
+    expect(context!.color).to.equal('primary');
   });
 
   describe('theme default props on Button', () => {
@@ -195,7 +198,7 @@ describe('<ButtonGroup />', () => {
                 defaultProps: {
                   color: 'primary',
                   size: 'medium',
-                  variant: 'filled',
+                  variant: 'text',
                 },
               },
             },
