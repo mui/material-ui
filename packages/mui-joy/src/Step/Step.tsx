@@ -222,6 +222,12 @@ Step.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * If `true`, the active className is appended.
+   * You can customize the active state from the Stepper's `sx` prop.
+   * @default false
+   */
+  active: PropTypes.bool,
+  /**
    * Used to render icon or text elements inside the Step if `src` is not set.
    * This can be an element, or just a string.
    */
@@ -231,10 +237,22 @@ Step.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * If `true`, the completed className is appended.
+   * You can customize the active state from the Stepper's `sx` prop.
+   * @default false
+   */
+  completed: PropTypes.bool,
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, the active className is appended.
+   * You can customize the active state from the Stepper's `sx` prop.
+   * @default false
+   */
+  disabled: PropTypes.bool,
   /**
    * The indicator to display. If provided, a wrapper element will be used.
    */

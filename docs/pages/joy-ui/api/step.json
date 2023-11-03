@@ -1,7 +1,10 @@
 {
   "props": {
+    "active": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
+    "completed": { "type": { "name": "bool" }, "default": "false" },
     "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "indicator": { "type": { "name": "node" } },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
@@ -44,7 +47,14 @@
       "class": ".MuiStep-indicator"
     }
   ],
-  "classes": { "classes": ["horizontal", "vertical"], "globalClasses": {} },
+  "classes": {
+    "classes": ["active", "completed", "disabled", "horizontal", "vertical"],
+    "globalClasses": {
+      "active": "Mui-active",
+      "completed": "Mui-completed",
+      "disabled": "Mui-disabled"
+    }
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyStep",

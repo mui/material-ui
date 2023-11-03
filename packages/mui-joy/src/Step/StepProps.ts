@@ -31,6 +31,7 @@ export interface StepTypeMap<P = {}, D extends React.ElementType = 'li'> {
     /**
      * If `true`, the active className is appended.
      * You can customize the active state from the Stepper's `sx` prop.
+     * @default false
      */
     active?: boolean;
     /**
@@ -41,11 +42,13 @@ export interface StepTypeMap<P = {}, D extends React.ElementType = 'li'> {
     /**
      * If `true`, the completed className is appended.
      * You can customize the active state from the Stepper's `sx` prop.
+     * @default false
      */
     completed?: boolean;
     /**
      * If `true`, the active className is appended.
      * You can customize the active state from the Stepper's `sx` prop.
+     * @default false
      */
     disabled?: boolean;
     /**
