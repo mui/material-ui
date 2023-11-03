@@ -60,7 +60,7 @@ export interface InputLabelOwnProps {
   /**
    * The variant to use.
    */
-  variant?: 'outlined' | 'filled'; // TODO: standardize to TextFieldProps['variant']
+  variant?: 'outlined' | 'filled'; // TODO v6: standardize to TextFieldProps['variant']
 }
 
 export type InputLabelTypeMap<
