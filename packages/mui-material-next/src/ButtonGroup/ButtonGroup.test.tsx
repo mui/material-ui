@@ -9,6 +9,20 @@ import { CssVarsProvider, extendTheme } from '../styles';
 describe('<ButtonGroup />', () => {
   const { render } = createRenderer();
 
+  let originalMatchmedia: typeof window.matchMedia;
+
+  beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
+    window.matchMedia = () =>
+      ({
+        addListener: () => {},
+        removeListener: () => {},
+      } as unknown as MediaQueryList);
+  });
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
+  });
+
   describeConformance(
     <ButtonGroup>
       <Button>Conformance?</Button>
