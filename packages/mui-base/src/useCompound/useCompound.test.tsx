@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { render } from '@mui-internal/test-utils';
-import { CompoundComponentContext, useCompoundParent } from './useCompound';
+import { CompoundComponentContext, useCompoundParent } from './useCompoundParent';
 import { useCompoundItem } from './useCompoundItem';
 
 type ItemValue = { value: string; ref: React.RefObject<HTMLSpanElement> };
