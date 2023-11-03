@@ -9,7 +9,6 @@ const warn = () => {
     console.warn(
       [
         'MUI: The TreeItem component was moved from `@mui/lab` to `@mui/x-tree-view`.',
-        'The component will no longer be exported from `@mui/lab` in the first release of October 2023.',
         '',
         "You should use `import { TreeItem } from '@mui/x-tree-view'`",
         "or `import { TreeItem } from '@mui/x-tree-view/TreeItem'`",
