@@ -101,3 +101,7 @@ The connector is a pseudo element of the Step. To customize it, target `::after`
 ### Dotted connector
 
 {{"demo": "DottedConnector.js"}}
+
+### Icon stepper
+
+{{"demo": "IconStepper.js"}}

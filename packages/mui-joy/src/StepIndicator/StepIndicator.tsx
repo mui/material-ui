@@ -35,7 +35,7 @@ const StepIndicatorRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: StepIndicatorOwnerState }>(({ theme, ownerState }) => {
   return {
-    '--Icon-fontSize': '1.25em',
+    '--Icon-fontSize': 'calc(var(--StepIndicator-size, 2rem) / 2)',
     '--Icon-color': 'currentColor',
     boxSizing: 'border-box',
     display: 'flex',
