@@ -61,7 +61,7 @@ export function writePrettifiedFile(
 let systemComponents: string[] | undefined;
 // making the resolution lazy to avoid issues when importing something irrelevant from this file (i.e. `getSymbolDescription`)
 // the eager resolution results in errors when consuming externally (i.e. `mui-x`)
-function getSystemComponents() {
+export function getSystemComponents() {
   if (!systemComponents) {
     systemComponents = fs
       .readdirSync(path.resolve('packages', 'mui-system', 'src'))
@@ -160,30 +160,6 @@ export type HookInfo = {
   skipApiGeneration?: boolean;
 };
 
-const migratedBaseComponents = [
-  'Badge',
-  'Button',
-  'ClickAwayListener',
-  'FocusTrap',
-  'Input',
-  'MenuItem',
-  'Menu',
-  'Modal',
-  'NoSsr',
-  'OptionGroup',
-  'Option',
-  'Popper',
-  'Portal',
-  'Select',
-  'Slider',
-  'Switch',
-  'TablePagination',
-  'TabPanel',
-  'TabsList',
-  'Tabs',
-  'Tab',
-];
-
 export function getMaterialComponentInfo(filename: string): ComponentInfo {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
@@ -241,39 +217,7 @@ export function getMaterialComponentInfo(filename: string): ComponentInfo {
   };
 }
 
-function findBaseDemos(
-  componentName: string,
-  pagesMarkdown: ReadonlyArray<{
-    pathname: string;
-    components: readonly string[];
-    markdownContent: string;
-  }>,
-) {
-  return pagesMarkdown
-    .filter((page) => page.components.includes(componentName))
-    .map((page) => ({
-      demoPageTitle: getTitle(page.markdownContent),
-      demoPathname: fixPathname(page.pathname),
-    }));
-}
-
-function findBaseHooksDemos(
-  hookName: string,
-  pagesMarkdown: ReadonlyArray<{
-    pathname: string;
-    hooks: readonly string[];
-    markdownContent: string;
-  }>,
-) {
-  return pagesMarkdown
-    .filter((page) => page.hooks && page.hooks.includes(hookName))
-    .map((page) => ({
-      demoPageTitle: getTitle(page.markdownContent),
-      demoPathname: `${fixPathname(page.pathname)}#hook${page.hooks?.length > 1 ? 's' : ''}`,
-    }));
-}
-
-const getApiPath = (
+export const getApiPath = (
   demos: Array<{ demoPageTitle: string; demoPathname: string }>,
   name: string,
 ) => {
@@ -289,104 +233,6 @@ const getApiPath = (
 
   return apiPath;
 };
-
-export function getBaseComponentInfo(filename: string): ComponentInfo {
-  const { name } = extractPackageFile(filename);
-  let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
-  if (!name) {
-    throw new Error(`Could not find the component name from: ${filename}`);
-  }
-
-  // resolve demos, so that we can getch the API url
-  const allMarkdowns = findPagesMarkdown()
-    .filter((markdown) => {
-      if (migratedBaseComponents.some((component) => filename.includes(component))) {
-        return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
-      }
-      return true;
-    })
-    .map((markdown) => {
-      const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-      const markdownHeaders = getHeaders(markdownContent) as any;
-
-      return {
-        ...markdown,
-        markdownContent,
-        components: markdownHeaders.components as string[],
-      };
-    });
-
-  const demos = findBaseDemos(name, allMarkdowns);
-  const apiPath = getApiPath(demos, name);
-
-  return {
-    filename,
-    name,
-    muiName: getMuiName(name),
-    apiPathname: apiPath ?? `/base-ui/api/${kebabCase(name)}/`,
-    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base-ui/api`),
-    isSystemComponent: getSystemComponents().includes(name),
-    readFile: () => {
-      srcInfo = parseFile(filename);
-      return srcInfo;
-    },
-    getInheritance: (inheritedComponent = srcInfo?.inheritedComponent) => {
-      if (!inheritedComponent) {
-        return null;
-      }
-      return {
-        name: inheritedComponent,
-        apiPathname:
-          inheritedComponent === 'Transition'
-            ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-            : `/base-ui/api/${kebabCase(inheritedComponent)}/`,
-      };
-    },
-    getDemos: () => demos,
-  };
-}
-
-export function getBaseHookInfo(filename: string): HookInfo {
-  const { name } = extractPackageFile(filename);
-  let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
-  if (!name) {
-    throw new Error(`Could not find the hook name from: ${filename}`);
-  }
-
-  const allMarkdowns = findPagesMarkdown()
-    .filter((markdown) => {
-      if (migratedBaseComponents.some((component) => filename.includes(component))) {
-        return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
-      }
-      return true;
-    })
-    .map((markdown) => {
-      const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-      const markdownHeaders = getHeaders(markdownContent) as any;
-
-      return {
-        ...markdown,
-        markdownContent,
-        hooks: markdownHeaders.hooks as string[],
-      };
-    });
-
-  const demos = findBaseHooksDemos(name, allMarkdowns);
-  const apiPath = getApiPath(demos, name);
-
-  const result = {
-    filename,
-    name,
-    apiPathname: apiPath ?? `/base-ui/api/${kebabCase(name)}/`,
-    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base-ui/api`),
-    readFile: () => {
-      srcInfo = parseFile(filename);
-      return srcInfo;
-    },
-    getDemos: () => demos,
-  };
-  return result;
-}
 
 export function getJoyComponentInfo(filename: string): ComponentInfo {
   const { name } = extractPackageFile(filename);
