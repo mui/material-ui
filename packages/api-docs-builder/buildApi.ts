@@ -9,6 +9,7 @@ import generateComponentApi, { ReactApi } from './ApiBuilders/ComponentApiBuilde
 import generateHookApi from './ApiBuilders/HookApiBuilder';
 import {
   CreateTypeScriptProjectOptions,
+  TypeScriptProjectBuilder,
   createTypeScriptProjectBuilder,
 } from './utils/createTypeScriptProject';
 
@@ -73,8 +74,8 @@ export interface ProjectSettings {
   skipComponent: (filename: string) => boolean;
 }
 
-export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp | null = null) {
-  const allTypeScriptProjects = projectSettings
+export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp | null = null) {
+  const allTypeScriptProjects = projectsSettings
     .flatMap((setting) => setting.typeScriptProjects)
     .reduce((acc, project) => {
       acc[project.name] = project;
@@ -84,134 +85,13 @@ export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp 
   const buildTypeScriptProject = createTypeScriptProjectBuilder(allTypeScriptProjects);
 
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
-  for (let i = 0; i < projectSettings.length; i += 1) {
-    const setting = projectSettings[i];
-    const projects = setting.typeScriptProjects.map((project) =>
-      buildTypeScriptProject(project.name),
-    );
-    const apiPagesManifestPath = setting.output.apiManifestPath;
-
-    const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];
-    if (manifestDir) {
-      mkdirSync(manifestDir, { recursive: true });
-    }
-
-    const apiBuilds = projects.flatMap((project) => {
-      const projectComponents = findComponents(path.join(project.rootPath, 'src')).filter(
-        (component) => {
-          if (setting.skipComponent(component.filename)) {
-            return false;
-          }
-
-          if (grep === null) {
-            return true;
-          }
-
-          return grep.test(component.filename);
-        },
-      );
-
-      const projectHooks = findHooks(path.join(project.rootPath, 'src')).filter((hook) => {
-        if (grep === null) {
-          return true;
-        }
-        return grep.test(hook.filename);
-      });
-
-      const componentsBuilds = projectComponents.map(async (component) => {
-        try {
-          const { filename } = component;
-          const componentInfo = setting.getComponentInfo(filename);
-
-          mkdirSync(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
-
-          return generateComponentApi(componentInfo, project, setting);
-        } catch (error: any) {
-          error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
-          throw error;
-        }
-      });
-
-      const hooksBuilds = projectHooks.map(async (hook) => {
-        if (!setting.getHookInfo) {
-          return [];
-        }
-        try {
-          const { filename } = hook;
-          const hookInfo = setting.getHookInfo(filename);
-
-          mkdirSync(hookInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
-          return generateHookApi(hookInfo, project, setting);
-        } catch (error: any) {
-          error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
-          throw error;
-        }
-      });
-
-      return [...componentsBuilds, ...hooksBuilds];
-    });
-
+  for (let i = 0; i < projectsSettings.length; i += 1) {
+    const setting = projectsSettings[i];
     // eslint-disable-next-line no-await-in-loop
-    const builds = await Promise.allSettled(apiBuilds);
-
-    const fails = builds.filter(
-      (promise): promise is PromiseRejectedResult => promise.status === 'rejected',
-    );
-
-    fails.forEach((build) => {
-      console.error(build.reason);
-    });
-
-    if (fails.length > 0) {
-      process.exit(1);
-    }
-
-    const apiLinks: { pathname: string; title: string }[] = [];
-
-    // Generate the api links, in a format that would point to the appropriate API tab
-    // @ts-ignore there are no failed builds at this point
-    const baseBuilds = builds.filter((build) => build?.value?.filename?.indexOf('mui-base') >= 0);
-    if (baseBuilds.length >= 0) {
-      baseBuilds.forEach((build) => {
-        // @ts-ignore
-        const { value } = build;
-        const { name, demos } = value;
-        // find a potential # in the pathname
-        const hashIdx = demos.length > 0 ? demos[0].demoPathname.indexOf('#') : -1;
-
-        let pathname = null;
-
-        if (demos.length > 0) {
-          // make sure the pathname doesn't contain #
-          pathname =
-            hashIdx >= 0 ? demos[0].demoPathname.substr(0, hashIdx) : demos[0].demoPathname;
-        }
-
-        if (pathname !== null) {
-          // add the new apiLink, where pathame is in format of /react-component/components-api
-          apiLinks.push({
-            pathname: `${pathname}${
-              name.startsWith('use') ? 'hooks-api' : 'components-api'
-            }/#${kebabCase(name)}`,
-            title: name,
-          });
-        }
-      });
-    }
+    const projectBuilds = await buildSingleProject(setting, buildTypeScriptProject, grep);
 
     // @ts-ignore ignore hooks builds for now
-    allBuilds = [...allBuilds, ...builds];
-
-    apiLinks.sort((a, b) => (a.title > b.title ? 1 : -1));
-    let source = `module.exports = ${JSON.stringify(setting.getApiPages())}`;
-    if (apiLinks.length > 0) {
-      // @ts-ignore
-      source = `module.exports = ${JSON.stringify(apiLinks)}`;
-    }
-
-    writePrettifiedFile(apiPagesManifestPath, source);
-
-    setting.onCompleted?.();
+    allBuilds = [...allBuilds, ...projectBuilds];
   }
 
   if (grep === null) {
@@ -222,6 +102,137 @@ export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp 
       .map((build) => {
         return build.value;
       });
+
     await removeOutdatedApiDocsTranslations(componentApis);
   }
+}
+
+async function buildSingleProject(
+  projectSettings: ProjectSettings,
+  buildTypeScriptProject: TypeScriptProjectBuilder,
+  grep: RegExp | null,
+) {
+  const tsProjects = projectSettings.typeScriptProjects.map((project) =>
+    buildTypeScriptProject(project.name),
+  );
+  const apiPagesManifestPath = projectSettings.output.apiManifestPath;
+
+  const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];
+  if (manifestDir) {
+    mkdirSync(manifestDir, { recursive: true });
+  }
+
+  const apiBuilds = tsProjects.flatMap((project) => {
+    const projectComponents = findComponents(path.join(project.rootPath, 'src')).filter(
+      (component) => {
+        if (projectSettings.skipComponent(component.filename)) {
+          return false;
+        }
+
+        if (grep === null) {
+          return true;
+        }
+
+        return grep.test(component.filename);
+      },
+    );
+
+    const projectHooks = findHooks(path.join(project.rootPath, 'src')).filter((hook) => {
+      if (grep === null) {
+        return true;
+      }
+      return grep.test(hook.filename);
+    });
+
+    const componentsBuilds = projectComponents.map(async (component) => {
+      try {
+        const { filename } = component;
+        const componentInfo = projectSettings.getComponentInfo(filename);
+
+        mkdirSync(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
+
+        return generateComponentApi(componentInfo, project, projectSettings);
+      } catch (error: any) {
+        error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
+        throw error;
+      }
+    });
+
+    const hooksBuilds = projectHooks.map(async (hook) => {
+      if (!projectSettings.getHookInfo) {
+        return [];
+      }
+      try {
+        const { filename } = hook;
+        const hookInfo = projectSettings.getHookInfo(filename);
+
+        mkdirSync(hookInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
+        return generateHookApi(hookInfo, project, projectSettings);
+      } catch (error: any) {
+        error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
+        throw error;
+      }
+    });
+
+    return [...componentsBuilds, ...hooksBuilds];
+  });
+
+  const builds = await Promise.allSettled(apiBuilds);
+
+  const fails = builds.filter(
+    (promise): promise is PromiseRejectedResult => promise.status === 'rejected',
+  );
+
+  fails.forEach((build) => {
+    console.error(build.reason);
+  });
+
+  if (fails.length > 0) {
+    process.exit(1);
+  }
+
+  const apiLinks: { pathname: string; title: string }[] = [];
+
+  // Generate the api links, in a format that would point to the appropriate API tab
+  // @ts-ignore there are no failed builds at this point
+  const baseBuilds = builds.filter((build) => build?.value?.filename?.indexOf('mui-base') >= 0);
+
+  if (baseBuilds.length >= 0) {
+    baseBuilds.forEach((build) => {
+      // @ts-ignore
+      const { value } = build;
+      const { name, demos } = value;
+      // find a potential # in the pathname
+      const hashIdx = demos.length > 0 ? demos[0].demoPathname.indexOf('#') : -1;
+
+      let pathname = null;
+
+      if (demos.length > 0) {
+        // make sure the pathname doesn't contain #
+        pathname = hashIdx >= 0 ? demos[0].demoPathname.substr(0, hashIdx) : demos[0].demoPathname;
+      }
+
+      if (pathname !== null) {
+        // add the new apiLink, where pathame is in format of /react-component/components-api
+        apiLinks.push({
+          pathname: `${pathname}${
+            name.startsWith('use') ? 'hooks-api' : 'components-api'
+          }/#${kebabCase(name)}`,
+          title: name,
+        });
+      }
+    });
+  }
+
+  apiLinks.sort((a, b) => (a.title > b.title ? 1 : -1));
+  let source = `module.exports = ${JSON.stringify(projectSettings.getApiPages())}`;
+  if (apiLinks.length > 0) {
+    // @ts-ignore
+    source = `module.exports = ${JSON.stringify(apiLinks)}`;
+  }
+
+  writePrettifiedFile(apiPagesManifestPath, source);
+
+  projectSettings.onCompleted?.();
+  return builds;
 }

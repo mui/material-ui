@@ -100,9 +100,14 @@ export const createTypeScriptProject = (
   };
 };
 
+export type TypeScriptProjectBuilder = (
+  projectName: string,
+  options?: { files?: string[] },
+) => TypeScriptProject;
+
 export const createTypeScriptProjectBuilder = (
   projectsConfig: Record<string, Omit<CreateTypeScriptProjectOptions, 'name'>>,
-) => {
+): TypeScriptProjectBuilder => {
   const projects = new Map<string, TypeScriptProject>();
 
   return (projectName: string, options: { files?: string[] } = {}) => {
