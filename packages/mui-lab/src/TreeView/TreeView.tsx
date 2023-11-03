@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
 let warnedOnce = false;
 
