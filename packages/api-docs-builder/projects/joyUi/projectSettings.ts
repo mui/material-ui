@@ -7,7 +7,13 @@ const projectSettings: ProjectSettings = {
   output: {
     apiManifestPath: path.join(process.cwd(), 'docs/data/joy/pagesApi.js'),
   },
-  typeScriptProjects: ['joy'],
+  typeScriptProjects: [
+    {
+      name: 'joy',
+      rootPath: path.join(process.cwd(), 'packages/mui-joy'),
+      entryPointPath: 'src/index.ts',
+    },
+  ],
   getApiPages: () => findApiPages('docs/pages/joy-ui/api'),
   getComponentInfo: getJoyUiComponentInfo,
 };

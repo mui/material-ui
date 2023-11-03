@@ -7,8 +7,10 @@ import findHooks from './utils/findHooks';
 import { ComponentInfo, HookInfo, writePrettifiedFile } from './buildApiUtils';
 import generateComponentApi, { ReactApi } from './ApiBuilders/ComponentApiBuilder';
 import generateHookApi from './ApiBuilders/HookApiBuilder';
-import { createTypeScriptProjectBuilder } from './utils/createTypeScriptProject';
-import { CORE_TYPESCRIPT_PROJECTS, CoreTypeScriptProjects } from './utils/coreTypeScriptProjects';
+import {
+  CreateTypeScriptProjectOptions,
+  createTypeScriptProjectBuilder,
+} from './utils/createTypeScriptProject';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
 
@@ -53,7 +55,7 @@ export interface ProjectSettings {
   /**
    * Component directories to be used to generate API
    */
-  typeScriptProjects: CoreTypeScriptProjects[];
+  typeScriptProjects: CreateTypeScriptProjectOptions[];
   getApiPages: () => Array<{ pathname: string }>;
   getComponentInfo: (filename: string) => ComponentInfo;
   getHookInfo?: (filename: string) => HookInfo;
@@ -61,12 +63,21 @@ export interface ProjectSettings {
 }
 
 export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp | null = null) {
-  const buildTypeScriptProject = createTypeScriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
+  const allTypeScriptProjects = projectSettings
+    .flatMap((setting) => setting.typeScriptProjects)
+    .reduce((acc, project) => {
+      acc[project.name] = project;
+      return acc;
+    }, {} as Record<string, CreateTypeScriptProjectOptions>);
+
+  const buildTypeScriptProject = createTypeScriptProjectBuilder(allTypeScriptProjects);
 
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
-  await projectSettings.reduce(async (resolvedPromise, setting) => {
-    await resolvedPromise;
-    const projects = setting.typeScriptProjects.map((project) => buildTypeScriptProject(project));
+  for (let i = 0; i < projectSettings.length; i += 1) {
+    const setting = projectSettings[i];
+    const projects = setting.typeScriptProjects.map((project) =>
+      buildTypeScriptProject(project.name),
+    );
     const apiPagesManifestPath = setting.output.apiManifestPath;
 
     const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];
@@ -138,6 +149,7 @@ export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp 
       return [...componentsBuilds, ...hooksBuilds];
     });
 
+    // eslint-disable-next-line no-await-in-loop
     const builds = await Promise.allSettled(apiBuilds);
 
     const fails = builds.filter(
@@ -147,6 +159,7 @@ export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp 
     fails.forEach((build) => {
       console.error(build.reason);
     });
+
     if (fails.length > 0) {
       process.exit(1);
     }
@@ -197,9 +210,7 @@ export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp 
     writePrettifiedFile(apiPagesManifestPath, source);
 
     setting.onCompleted?.();
-
-    return Promise.resolve();
-  }, Promise.resolve());
+  }
 
   if (grep === null) {
     const componentApis = allBuilds

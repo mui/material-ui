@@ -7,7 +7,18 @@ const projectSettings: ProjectSettings = {
   output: {
     apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
   },
-  typeScriptProjects: ['material', 'lab'],
+  typeScriptProjects: [
+    {
+      name: 'material',
+      rootPath: path.join(process.cwd(), 'packages/mui-material'),
+      entryPointPath: 'src/index.d.ts',
+    },
+    {
+      name: 'lab',
+      rootPath: path.join(process.cwd(), 'packages/mui-lab'),
+      entryPointPath: 'src/index.d.ts',
+    },
+  ],
   getApiPages: () => findApiPages('docs/pages/material-ui/api'),
   getComponentInfo: getMaterialUiComponentInfo,
 };

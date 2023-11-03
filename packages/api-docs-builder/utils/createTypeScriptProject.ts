@@ -100,12 +100,12 @@ export const createTypeScriptProject = (
   };
 };
 
-export const createTypeScriptProjectBuilder = <P extends string>(
-  projectsConfig: Record<P, Omit<CreateTypeScriptProjectOptions, 'name'>>,
+export const createTypeScriptProjectBuilder = (
+  projectsConfig: Record<string, Omit<CreateTypeScriptProjectOptions, 'name'>>,
 ) => {
-  const projects = new Map<P, TypeScriptProject>();
+  const projects = new Map<string, TypeScriptProject>();
 
-  return (projectName: P, options: { files?: string[] } = {}) => {
+  return (projectName: string, options: { files?: string[] } = {}) => {
     const cachedProject = projects.get(projectName);
     if (cachedProject != null) {
       return cachedProject;
