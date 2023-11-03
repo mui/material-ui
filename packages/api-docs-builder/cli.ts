@@ -1,27 +1,17 @@
-import path from 'path';
 import * as yargs from 'yargs';
 import { ProjectSettings, buildApi } from './buildApi';
-import findApiPages from './utils/findApiPages';
 import baseUiProjectSettings from './projects/baseUi/projectSettings';
+import joyUiProjectSettings from './projects/joyUi/projectSettings';
 import muiSystemSettings from './projects/muiSystem/projectSettings';
 import materialUiProjectSettings from './projects/materialUi/projectSettings';
-import { getJoyComponentInfo } from './buildApiUtils';
-
-type CommandOptions = { grep?: string };
 
 const projectSettings: ProjectSettings[] = [
   materialUiProjectSettings,
   baseUiProjectSettings,
-  {
-    output: {
-      apiManifestPath: path.join(process.cwd(), 'docs/data/joy/pagesApi.js'),
-    },
-    typeScriptProjects: ['joy'],
-    getApiPages: () => findApiPages('docs/pages/joy-ui/api'),
-    getComponentInfo: getJoyComponentInfo,
-  },
+  joyUiProjectSettings,
   muiSystemSettings,
 ];
+type CommandOptions = { grep?: string };
 
 async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
