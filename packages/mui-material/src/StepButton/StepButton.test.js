@@ -186,7 +186,7 @@ describe('<StepButton />', () => {
             <StepButton StepIconComponent={CustomizedIcon}>Step One</StepButton>
           </Step>,
         );
-  
+
         const icon = container.querySelector(`.${stepLabelClasses.iconContainer}`);
         expect(icon).to.have.class(stepLabelClasses.completed);
       });
@@ -199,10 +199,10 @@ describe('<StepButton />', () => {
         }
         const { container } = render(
           <Step active>
-            <StepLabel StepIconComponent={CustomizedIcon}>Step One</StepLabel>
+            <StepButton StepIconComponent={CustomizedIcon}>Step One</StepButton>
           </Step>,
         );
-  
+
         const icon = container.querySelector(`.${stepLabelClasses.iconContainer}`);
         expect(icon).to.have.class(stepLabelClasses.active);
       });
