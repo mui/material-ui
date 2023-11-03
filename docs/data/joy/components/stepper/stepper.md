@@ -97,3 +97,7 @@ The connector is a pseudo element of the Step. To customize it, target `::after`
 ### Company registration
 
 {{"demo": "CompanyRegistrationStepper.js"}}
+
+### Dotted connector
+
+{{"demo": "DottedConnector.js"}}
