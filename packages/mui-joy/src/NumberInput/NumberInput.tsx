@@ -236,11 +236,11 @@ const InputEndDecorator = styled(StyledNumberInputEndDecorator, {
  *
  * Demos:
  *
- * - [Input](https://mui.com/joy-ui/react-input/)
+ * - [Basics](https://mui.com/joy-ui/react-number-input/)
  *
  * API:
  *
- * - [Input API](https://mui.com/joy-ui/api/input/)
+ * - [NumberInput API](https://mui.com/joy-ui/api/number-input/)
  */
 const NumberInput = React.forwardRef(function Input(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({

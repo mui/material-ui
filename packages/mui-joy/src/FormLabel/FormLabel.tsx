@@ -51,6 +51,7 @@ const AsteriskComponent = styled('span', {
  * Demos:
  *
  * - [Input](https://mui.com/joy-ui/react-input/)
+ * - [Basics](https://mui.com/joy-ui/react-number-input/)
  *
  * API:
  *
