@@ -2,18 +2,11 @@ import { mkdirSync } from 'fs';
 import path from 'path';
 import * as fse from 'fs-extra';
 import kebabCase from 'lodash/kebabCase';
-import * as yargs from 'yargs';
 import findComponents from './utils/findComponents';
 import findHooks from './utils/findHooks';
 import {
   ComponentInfo,
   HookInfo,
-  getMaterialComponentInfo,
-  getBaseComponentInfo,
-  getBaseHookInfo,
-  getSystemComponentInfo,
-  extractApiPage,
-  getJoyComponentInfo,
   generateBaseUIApiPages,
   writePrettifiedFile,
 } from './buildApiUtils';
@@ -55,55 +48,7 @@ async function removeOutdatedApiDocsTranslations(components: readonly ReactApi[]
   );
 }
 
-const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []) => {
-  const files = fse.readdirSync(dirPath);
-
-  files.forEach((file) => {
-    if (fse.statSync(`${dirPath}/${file}`).isDirectory()) {
-      arrayOfFiles = getAllFiles(`${dirPath}/${file}`, arrayOfFiles);
-    } else {
-      arrayOfFiles.push(path.join(__dirname, dirPath, '/', file));
-    }
-  });
-
-  return arrayOfFiles;
-};
-
-function findApiPages(relativeFolder: string) {
-  let pages: Array<{ pathname: string }> = [];
-  let filePaths: string[] = [];
-  try {
-    filePaths = getAllFiles(path.join(process.cwd(), relativeFolder));
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
-    return [];
-  }
-  filePaths.forEach((itemPath) => {
-    if (itemPath.endsWith('.js')) {
-      const data = extractApiPage(itemPath);
-
-      pages.push({ pathname: data.apiPathname });
-    }
-  });
-
-  // sort by pathnames without '-' so that e.g. card comes before card-action
-  pages = pages.sort((a, b) => {
-    const pathnameA = a.pathname.replace(/-/g, '');
-    const pathnameB = b.pathname.replace(/-/g, '');
-    if (pathnameA < pathnameB) {
-      return -1;
-    }
-    if (pathnameA > pathnameB) {
-      return 1;
-    }
-    return 0;
-  });
-
-  return pages;
-}
-
-interface Settings {
+export interface ProjectSettings {
   output: {
     /**
      * The output path of `pagesApi` generated from `input.pageDirectory`
@@ -119,50 +64,11 @@ interface Settings {
   getHookInfo?: (filename: string) => HookInfo;
 }
 
-const SETTINGS: Settings[] = [
-  {
-    output: {
-      apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
-    },
-    typeScriptProjects: ['material', 'lab'],
-    getApiPages: () => findApiPages('docs/pages/material-ui/api'),
-    getComponentInfo: getMaterialComponentInfo,
-  },
-  {
-    output: {
-      apiManifestPath: path.join(process.cwd(), 'docs/data/base/pagesApi.js'),
-    },
-    typeScriptProjects: ['base'],
-    getApiPages: () => findApiPages('docs/pages/base-ui/api'),
-    getComponentInfo: getBaseComponentInfo,
-    getHookInfo: getBaseHookInfo,
-  },
-  {
-    output: {
-      apiManifestPath: path.join(process.cwd(), 'docs/data/joy/pagesApi.js'),
-    },
-    typeScriptProjects: ['joy'],
-    getApiPages: () => findApiPages('docs/pages/joy-ui/api'),
-    getComponentInfo: getJoyComponentInfo,
-  },
-  {
-    output: {
-      apiManifestPath: path.join(process.cwd(), 'docs/data/system/pagesApi.js'),
-    },
-    typeScriptProjects: ['system'],
-    getApiPages: () => findApiPages('docs/pages/system/api'),
-    getComponentInfo: getSystemComponentInfo,
-  },
-];
-
-type CommandOptions = { grep?: string };
-
-async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
-  const grep = argv.grep == null ? null : new RegExp(argv.grep);
+export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp | null = null) {
   const buildTypeScriptProject = createTypeScriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
 
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
-  await SETTINGS.reduce(async (resolvedPromise, setting) => {
+  await projectSettings.reduce(async (resolvedPromise, setting) => {
     await resolvedPromise;
     const projects = setting.typeScriptProjects.map((project) => buildTypeScriptProject(project));
     const apiPagesManifestPath = setting.output.apiManifestPath;
@@ -310,21 +216,3 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
     await removeOutdatedApiDocsTranslations(componentApis);
   }
 }
-
-yargs
-  .command({
-    command: '$0',
-    describe: 'formats codebase',
-    builder: (command) => {
-      return command.option('grep', {
-        description:
-          'Only generate files for component filenames matching the pattern. The string is treated as a RegExp.',
-        type: 'string',
-      });
-    },
-    handler: run,
-  })
-  .help()
-  .strict(true)
-  .version(false)
-  .parse();

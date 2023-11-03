@@ -14,7 +14,7 @@ import { TypeScriptProject } from './utils/createTypeScriptProject';
  * Plus replaceComponentLinks() shouldn't exist in the first place,
  * the markdown folder location should match the URLs.
  */
-function fixPathname(pathname: string): string {
+export function fixPathname(pathname: string): string {
   let fixedPathname;
 
   if (pathname.startsWith('/material')) {
@@ -70,7 +70,7 @@ function getSystemComponents() {
   return systemComponents;
 }
 
-function getMuiName(name: string) {
+export function getMuiName(name: string) {
   return `Mui${name.replace('Styled', '')}`;
 }
 
@@ -89,18 +89,7 @@ export function extractPackageFile(filePath: string) {
   };
 }
 
-export function extractApiPage(filePath: string) {
-  filePath = filePath.replace(new RegExp(`\\${path.sep}`, 'g'), '/');
-  return {
-    apiPathname: filePath
-      .replace(/^.*\/pages/, '')
-      .replace(/\.(js|tsx)/, '')
-      .replace(/^\/index$/, '/') // Replace `index` by `/`.
-      .replace(/\/index$/, ''),
-  };
-}
-
-function parseFile(filename: string) {
+export function parseFile(filename: string) {
   const src = fs.readFileSync(filename, 'utf8');
   return {
     src,
@@ -250,26 +239,6 @@ export function getMaterialComponentInfo(filename: string): ComponentInfo {
         }));
     },
   };
-}
-
-interface PageMarkdown {
-  pathname: string;
-  title: string;
-  components: readonly string[];
-}
-
-function pathToSystemTitle(page: PageMarkdown) {
-  const defaultTitle = page.title;
-  if (page.pathname.startsWith('/material')) {
-    return `${defaultTitle} (Material UI)`;
-  }
-  if (page.pathname.startsWith('/system')) {
-    return `${defaultTitle} (MUI System)`;
-  }
-  if (page.pathname.startsWith('/joy')) {
-    return `${defaultTitle} (Joy UI)`;
-  }
-  return defaultTitle;
 }
 
 function findBaseDemos(
@@ -467,57 +436,6 @@ export function getJoyComponentInfo(filename: string): ComponentInfo {
         .filter((page) => page.pathname.startsWith('/joy') && page.components.includes(name))
         .map((page) => ({
           demoPageTitle: getTitle(page.markdownContent),
-          demoPathname: fixPathname(page.pathname),
-        }));
-    },
-  };
-}
-
-export function getSystemComponentInfo(filename: string): ComponentInfo {
-  const { name } = extractPackageFile(filename);
-  let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
-  if (!name) {
-    throw new Error(`Could not find the component name from: ${filename}`);
-  }
-  return {
-    filename,
-    name,
-    muiName: getMuiName(name),
-    apiPathname: `/system/api/${kebabCase(name)}/`,
-    apiPagesDirectory: path.join(process.cwd(), `docs/pages/system/api`),
-    isSystemComponent: true,
-    readFile: () => {
-      srcInfo = parseFile(filename);
-      return srcInfo;
-    },
-    getInheritance() {
-      return null;
-    },
-    getDemos: () => {
-      const allMarkdowns = findPagesMarkdown()
-        .filter((markdown) => {
-          if (migratedBaseComponents.some((component) => filename.includes(component))) {
-            return markdown.filename.match(/[\\/]data[\\/]system[\\/]/);
-          }
-          return true;
-        })
-        .map((markdown) => {
-          const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-          const markdownHeaders = getHeaders(markdownContent) as any;
-
-          return {
-            ...markdown,
-            markdownContent,
-            components: markdownHeaders.components as string[],
-          };
-        });
-      return allMarkdowns
-        .filter((page) => page.components.includes(name))
-        .map((page) => ({
-          demoPageTitle: pathToSystemTitle({
-            ...page,
-            title: getTitle(page.markdownContent),
-          }),
           demoPathname: fixPathname(page.pathname),
         }));
     },
