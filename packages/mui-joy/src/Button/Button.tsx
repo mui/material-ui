@@ -283,10 +283,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   }
 
   if (toggleButtonGroup?.value) {
-    if (Array.isArray(toggleButtonGroup?.value)) {
-      ariaPressed = toggleButtonGroup?.value.indexOf(props.value as string) !== -1;
+    if (Array.isArray(toggleButtonGroup.value)) {
+      ariaPressed = toggleButtonGroup.value.indexOf(props.value as string) !== -1;
     } else {
-      ariaPressed = toggleButtonGroup?.value === props.value;
+      ariaPressed = toggleButtonGroup.value === props.value;
     }
   }
 

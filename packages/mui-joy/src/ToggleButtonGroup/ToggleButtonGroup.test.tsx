@@ -59,7 +59,7 @@ describe('<ToggleButtonGroup />', () => {
       return (
         <ToggleButtonGroup
           onChange={(...args) => {
-            setValue(args[1]!);
+            setValue(args[1]);
             handleChange(...args);
           }}
           value={value}
