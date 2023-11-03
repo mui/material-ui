@@ -60,7 +60,7 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ actions?: func<br>&#124;&nbsp;object, select?: object }"
+        "description": "{ actions?: { firstButton?: object, lastButton?: object, nextButton?: object, previousButton?: object }, select?: object }"
       },
       "default": "{}"
     },

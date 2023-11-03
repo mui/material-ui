@@ -149,10 +149,10 @@ TablePaginationActions.propTypes = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    firstIconButton: PropTypes.object,
-    lastIconButton: PropTypes.object,
-    nextIconButton: PropTypes.object,
-    previousIconButton: PropTypes.object,
+    firstButton: PropTypes.object,
+    lastButton: PropTypes.object,
+    nextButton: PropTypes.object,
+    previousButton: PropTypes.object,
   }),
 };
 
