@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/base';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import TablePaginationActions, { TablePaginationActionsProps } from './TablePaginationActions';
+import { TablePaginationActionsProps } from './TablePaginationActions';
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
@@ -140,7 +139,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * @default {}
    */
   slotProps?: {
-    actions?: SlotComponentProps<typeof TablePaginationActions, {}, {}>;
+    actions?: TablePaginationActionsProps['slotProps'];
     select?: Partial<SelectProps>;
   };
   /**
