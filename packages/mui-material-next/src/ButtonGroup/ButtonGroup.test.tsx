@@ -103,7 +103,7 @@ describe('<ButtonGroup />', () => {
   });
 
   it('should have a ripple by default', () => {
-    const props = {TouchRippleProps:{ classes: { root: 'touchRipple' } }};
+    const props = { TouchRippleProps: { classes: { root: 'touchRipple' } } };
     const { container } = render(
       <ButtonGroup>
         <Button {...props}>Hello World</Button>
@@ -123,7 +123,7 @@ describe('<ButtonGroup />', () => {
   });
 
   it('can disable the ripple', () => {
-    const props = {TouchRippleProps:{ classes: { root: 'touchRipple' } }};
+    const props = { TouchRippleProps: { classes: { root: 'touchRipple' } } };
     const { container } = render(
       <ButtonGroup disableRipple>
         <Button {...props}>Hello World</Button>
@@ -173,7 +173,7 @@ describe('<ButtonGroup />', () => {
         <ButtonGroupContext.Consumer>
           {(value) => {
             context = value;
-            return (<Button/>)
+            return <Button />;
           }}
         </ButtonGroupContext.Consumer>
       </ButtonGroup>,
