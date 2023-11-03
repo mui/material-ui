@@ -4,19 +4,13 @@ import { ProjectSettings, buildApi } from './buildApi';
 import findApiPages from './utils/findApiPages';
 import baseUiProjectSettings from './projects/baseUi/projectSettings';
 import muiSystemSettings from './projects/muiSystem/projectSettings';
-import { getJoyComponentInfo, getMaterialComponentInfo } from './buildApiUtils';
+import materialUiProjectSettings from './projects/materialUi/projectSettings';
+import { getJoyComponentInfo } from './buildApiUtils';
 
 type CommandOptions = { grep?: string };
 
 const projectSettings: ProjectSettings[] = [
-  {
-    output: {
-      apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
-    },
-    typeScriptProjects: ['material', 'lab'],
-    getApiPages: () => findApiPages('docs/pages/material-ui/api'),
-    getComponentInfo: getMaterialComponentInfo,
-  },
+  materialUiProjectSettings,
   baseUiProjectSettings,
   {
     output: {
