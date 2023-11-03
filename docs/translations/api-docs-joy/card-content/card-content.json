@@ -1,5 +1,5 @@
 {
-  "componentDescription": "⚠️ CardContent must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.",
+  "componentDescription": "",
   "propDescriptions": {
     "children": {
       "description": "Used to render icon or text elements inside the CardContent if <code>src</code> is not set. This can be an element, or just a string."

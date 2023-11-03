@@ -37,3 +37,6 @@ node_modules
 package-lock.json
 size-snapshot.json
 docs/public/static/blog/feed/*
+# vale downloaded config
+.github/styles/Google
+.github/styles/write-good

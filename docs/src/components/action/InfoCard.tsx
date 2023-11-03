@@ -17,6 +17,7 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        flexShrink: 0,
         borderRadius: 1,
         border: '1px solid',
         borderColor: 'primary.200',

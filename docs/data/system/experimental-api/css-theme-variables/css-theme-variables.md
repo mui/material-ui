@@ -114,7 +114,7 @@ const myCustomDefaultTheme = extendTheme();
 export default myCustomDefaultTheme;
 ```
 
-Here, the returned `theme` object needs to follow a certain structure to be used correctly by the final `CssVarsProvider`. It should have a `colorSchemes` key with the light and dark (and any other) palette. `prepareCssVars` import from `@mui/system` is used to create css variable names which can then be easily accessed using the returned `vars`. This is also added to the `theme` object. Finally, `myCustomDefaultTheme` theme object is created that can now be passed to the `createCssVarsProvider` to get a `CssVarsProvider`.
+Here, the returned `theme` object needs to follow a certain structure to be used correctly by the final `CssVarsProvider`. It should have a `colorSchemes` key with the light and dark (and any other) palette. `prepareCssVars` import from `@mui/system` is used to create CSS variable names which can then be easily accessed using the returned `vars`. This is also added to the `theme` object. Finally, `myCustomDefaultTheme` theme object is created that can now be passed to the `createCssVarsProvider` to get a `CssVarsProvider`.
 
 ```js
 // CssVarsProvider.js
@@ -133,7 +133,7 @@ export { CssVarsProvider, useColorScheme };
 
 Now wrap your top level app component with this `CssVarsProvider` component and then you can access the passed theme value to any of the components rendered inside the provider.
 
-Example of a component using the css variable -
+Example of a component using the CSS variable -
 
 ```js
 // Button.js
