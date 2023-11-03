@@ -141,7 +141,7 @@ const FormControl = React.forwardRef(function FormControl<
 
         if (
           React.isValidElement(child) &&
-          (isFilled(child.props, true) || isFilled(child.props.inputProps, true))
+          (isFilled(child.props, true) || isFilled(child.props.slotProps?.input, true))
         ) {
           initialFilled = true;
         }
@@ -277,7 +277,7 @@ FormControl.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

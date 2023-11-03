@@ -423,8 +423,11 @@ export default class StyledProcessor extends BaseProcessor {
     styleArg: ExpressionValue | null,
     variantsAccumulator?: VariantData[],
   ) {
-    const { themeArgs } = this.options as IOptions;
+    const { themeArgs = {} } = this.options as IOptions;
     const styleObj = typeof styleObjOrFn === 'function' ? styleObjOrFn(themeArgs) : styleObjOrFn;
+    if (!styleObj) {
+      return '';
+    }
     if (styleObj.variants) {
       variantsAccumulator?.push(...styleObj.variants);
       delete styleObj.variants;

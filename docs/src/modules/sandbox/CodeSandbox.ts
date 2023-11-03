@@ -41,10 +41,10 @@ const createReactApp = (demoData: DemoData) => {
     'public/index.html': {
       content: CRA.getHtml(demoData),
     },
-    [`index.${ext}`]: {
+    [`src/index.${ext}`]: {
       content: CRA.getRootIndex(demoData),
     },
-    [`Demo.${ext}`]: {
+    [`src/Demo.${ext}`]: {
       content: demoData.raw,
     },
     ...(demoData.codeVariant === 'TS' && {
@@ -83,7 +83,7 @@ const createReactApp = (demoData: DemoData) => {
      * @description should start with `/`, e.g. `/Demo.tsx`. If the extension is not provided,
      * it will be appended based on the code variant.
      */
-    openSandbox: (initialFile: string = `/Demo.${ext}`) =>
+    openSandbox: (initialFile: string = `/src/Demo.${ext}`) =>
       openSandbox({ files, codeVariant: demoData.codeVariant, initialFile }),
   };
 };
