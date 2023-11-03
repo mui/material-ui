@@ -5,8 +5,10 @@ import kebabCase from 'lodash/kebabCase';
 import findComponents from './utils/findComponents';
 import findHooks from './utils/findHooks';
 import { ComponentInfo, HookInfo, writePrettifiedFile } from './buildApiUtils';
-import generateComponentApi, { ReactApi } from './ApiBuilders/ComponentApiBuilder';
-import generateHookApi from './ApiBuilders/HookApiBuilder';
+import generateComponentApi, {
+  ReactApi as ComponentReactApi,
+} from './ApiBuilders/ComponentApiBuilder';
+import generateHookApi, { ReactApi as HookReactApi } from './ApiBuilders/HookApiBuilder';
 import {
   CreateTypeScriptProjectOptions,
   TypeScriptProjectBuilder,
@@ -15,7 +17,9 @@ import {
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
 
-async function removeOutdatedApiDocsTranslations(components: readonly ReactApi[]): Promise<void> {
+async function removeOutdatedApiDocsTranslations(
+  components: readonly ComponentReactApi[],
+): Promise<void> {
   const componentDirectories = new Set<string>();
   const files = await fse.readdir(apiDocsTranslationsDirectory);
   await Promise.all(
@@ -64,6 +68,10 @@ export interface ProjectSettings {
    * Callback function to be called when the API generation is completed
    */
   onCompleted?: () => void;
+  onWritingManifestFile?: (
+    builds: PromiseSettledResult<ComponentReactApi | HookReactApi | null | never[]>[],
+    source: string,
+  ) => string;
   /**
    * Languages to which the API docs will be generated
    */
@@ -84,7 +92,7 @@ export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp
 
   const buildTypeScriptProject = createTypeScriptProjectBuilder(allTypeScriptProjects);
 
-  let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
+  let allBuilds: Array<PromiseSettledResult<ComponentReactApi | null>> = [];
   for (let i = 0; i < projectsSettings.length; i += 1) {
     const setting = projectsSettings[i];
     // eslint-disable-next-line no-await-in-loop
@@ -96,7 +104,7 @@ export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp
 
   if (grep === null) {
     const componentApis = allBuilds
-      .filter((build): build is PromiseFulfilledResult<ReactApi> => {
+      .filter((build): build is PromiseFulfilledResult<ComponentReactApi> => {
         return build.status === 'fulfilled' && build.value !== null;
       })
       .map((build) => {
@@ -191,44 +199,9 @@ async function buildSingleProject(
     process.exit(1);
   }
 
-  const apiLinks: { pathname: string; title: string }[] = [];
-
-  // Generate the api links, in a format that would point to the appropriate API tab
-  // @ts-ignore there are no failed builds at this point
-  const baseBuilds = builds.filter((build) => build?.value?.filename?.indexOf('mui-base') >= 0);
-
-  if (baseBuilds.length >= 0) {
-    baseBuilds.forEach((build) => {
-      // @ts-ignore
-      const { value } = build;
-      const { name, demos } = value;
-      // find a potential # in the pathname
-      const hashIdx = demos.length > 0 ? demos[0].demoPathname.indexOf('#') : -1;
-
-      let pathname = null;
-
-      if (demos.length > 0) {
-        // make sure the pathname doesn't contain #
-        pathname = hashIdx >= 0 ? demos[0].demoPathname.substr(0, hashIdx) : demos[0].demoPathname;
-      }
-
-      if (pathname !== null) {
-        // add the new apiLink, where pathame is in format of /react-component/components-api
-        apiLinks.push({
-          pathname: `${pathname}${
-            name.startsWith('use') ? 'hooks-api' : 'components-api'
-          }/#${kebabCase(name)}`,
-          title: name,
-        });
-      }
-    });
-  }
-
-  apiLinks.sort((a, b) => (a.title > b.title ? 1 : -1));
   let source = `module.exports = ${JSON.stringify(projectSettings.getApiPages())}`;
-  if (apiLinks.length > 0) {
-    // @ts-ignore
-    source = `module.exports = ${JSON.stringify(apiLinks)}`;
+  if (projectSettings.onWritingManifestFile) {
+    source = projectSettings.onWritingManifestFile(builds, source);
   }
 
   writePrettifiedFile(apiPagesManifestPath, source);

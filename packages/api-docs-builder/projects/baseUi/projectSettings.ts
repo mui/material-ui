@@ -5,6 +5,7 @@ import findApiPages from '../../utils/findApiPages';
 import getBaseUiComponentInfo from './getBaseUiComponentInfo';
 import getBaseUiHookInfo from './getBaseUiHookInfo';
 import generateBaseUIApiPages from './generateBaseUiApiPages';
+import generateApiLinks from './generateApiLinks';
 
 const projectSettings: ProjectSettings = {
   output: {
@@ -24,6 +25,14 @@ const projectSettings: ProjectSettings = {
   skipComponent: () => false,
   onCompleted: () => {
     generateBaseUIApiPages();
+  },
+  onWritingManifestFile(builds, source) {
+    const apiLinks = generateApiLinks(builds);
+    if (apiLinks.length > 0) {
+      return `module.exports = ${JSON.stringify(apiLinks)}`;
+    }
+
+    return source;
   },
 };
 
