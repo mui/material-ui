@@ -114,9 +114,7 @@ export default function CSSSection(props: CSSSectionProps) {
         </Level>
         <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} />
       </Box>
-
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
-
       {displayOption === 'table' ? (
         <CSSTable classes={formatedClasses} />
       ) : (

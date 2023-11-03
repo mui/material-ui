@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
+import { UseMenuItemRootSlotProps } from '../useMenuItem';
 
 export interface MenuItemRootSlotPropsOverrides {}
 
@@ -65,3 +66,12 @@ export interface MenuItemState {
   disabled: boolean;
   highlighted: boolean;
 }
+
+export type MenuItemRootSlotProps = Simplify<
+  UseMenuItemRootSlotProps & {
+    children?: React.ReactNode;
+    className: string;
+    ref: React.Ref<HTMLElement>;
+    ownerState: MenuItemOwnerState;
+  }
+>;

@@ -16,8 +16,6 @@ describe('<Tab />', () => {
     getItemState() {
       return { disabled: false, highlighted: false, selected: false, focusable: true, index: 0 };
     },
-    registerHighlightChangeHandler: () => () => {},
-    registerSelectionChangeHandler: () => () => {},
   };
 
   describeConformanceUnstyled(<Tab value="1" />, () => ({
