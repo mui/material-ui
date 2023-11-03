@@ -194,39 +194,10 @@ Here's an example of a custom component built using the `useNumberInput` hook wi
 
 {{"demo": "UseNumberInput.js", "defaultCodeOpen": false}}
 
-### Events
-
-The `useNumberInput` hook accepts two parameters-`onChange` and `onInputChange`-for event handlers for when the value of the component changes.
-
-#### onChange
-
-`onChange` accepts a custom event handler that is called with two arguments: the underlying event, and the latest "clamped" value.
-
-```ts
-onChange: (
-  event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent,
-  value: number | undefined,
-) => void;
-```
-
-It's called when the `<input>` element is blurred, or when the stepper buttons are clicked, after the value has been clamped based on the [`min`, `max`](#minimum-and-maximum), or [`step`](#incremental-steps) props.
-
 Here's an example of a "compact" number input component using the hook that only consists of the stepper buttons.
 In this demo, `onChange` is used to write the latest value of the component to a state variable.
 
 {{"demo": "UseNumberInputCompact.js", "defaultCodeOpen": false}}
-
-#### onInputChange
-
-`onInputChange` accepts a native input change handler that's passed to the `<input>` element:
-
-```ts
-onInputChange: React.ChangeEventHandler<HTMLInputElement>;
-```
-
-It's called whenever the value of the textbox changes–for example, on every keystroke typed into it, before clamping is applied.
-
-In other words, it's possible for `event.target.value` to contain out-of-range values or non-numerical characters.
 
 ## Customization
 
