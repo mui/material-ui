@@ -12,10 +12,16 @@ import useSlot from '../utils/useSlot';
 import stepperClasses from '../Stepper/stepperClasses';
 
 const useUtilityClasses = (ownerState: StepOwnerState) => {
-  const { orientation } = ownerState;
+  const { orientation, active, completed, disabled } = ownerState;
 
   const slots = {
-    root: ['root', orientation],
+    root: [
+      'root',
+      orientation,
+      active && 'active',
+      completed && 'completed',
+      disabled && 'disabled',
+    ],
     indicator: ['indicator'],
   };
 
@@ -158,9 +164,12 @@ const Step = React.forwardRef(function Step(inProps, ref) {
   });
 
   const {
+    active = false,
+    completed = false,
     className,
     component = 'li',
     children,
+    disabled = false,
     orientation = 'horizontal',
     indicator,
     slots = {},
@@ -170,7 +179,10 @@ const Step = React.forwardRef(function Step(inProps, ref) {
 
   const ownerState = {
     ...props,
+    active,
+    completed,
     component,
+    disabled,
     orientation,
   };
 

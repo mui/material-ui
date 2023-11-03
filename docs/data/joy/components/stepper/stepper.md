@@ -91,3 +91,9 @@ The connector is a pseudo element of the Step. To customize it, target `::after`
 ## CSS Variables
 
 {{"demo": "StepperVariables.js"}}
+
+## Common examples
+
+### Company registration
+
+{{"demo": "CompanyRegistrationStepper.js"}}

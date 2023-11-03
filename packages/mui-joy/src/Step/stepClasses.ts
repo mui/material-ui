@@ -9,6 +9,12 @@ export interface StepClasses {
   horizontal: string;
   /** Class name applied to the root element if `orientation="vertical"`. */
   vertical: string;
+  /** Class name applied to the root element if `active` is true. */
+  active: string;
+  /** Class name applied to the root element if `completed` is true. */
+  completed: string;
+  /** Class name applied to the root element if `disabled` is true. */
+  disabled: string;
 }
 
 export type StepClassKey = keyof StepClasses;
@@ -22,6 +28,9 @@ const stepClasses: StepClasses = generateUtilityClasses('MuiStep', [
   'indicator',
   'horizontal',
   'vertical',
+  'active',
+  'completed',
+  'disabled',
 ]);
 
 export default stepClasses;

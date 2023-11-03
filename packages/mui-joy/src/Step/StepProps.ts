@@ -29,10 +29,25 @@ export type StepSlotsAndSlotProps = CreateSlotsAndSlotProps<
 export interface StepTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
     /**
+     * If `true`, the active className is appended.
+     * You can customize the active state from the Stepper's `sx` prop.
+     */
+    active?: boolean;
+    /**
      * Used to render icon or text elements inside the Step if `src` is not set.
      * This can be an element, or just a string.
      */
     children?: React.ReactNode;
+    /**
+     * If `true`, the completed className is appended.
+     * You can customize the active state from the Stepper's `sx` prop.
+     */
+    completed?: boolean;
+    /**
+     * If `true`, the active className is appended.
+     * You can customize the active state from the Stepper's `sx` prop.
+     */
+    disabled?: boolean;
     /**
      * The indicator to display. If provided, a wrapper element will be used.
      */
