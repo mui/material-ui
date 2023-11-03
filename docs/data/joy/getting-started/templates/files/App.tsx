@@ -25,6 +25,10 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemContent from '@mui/joy/ListItemContent';
 import Stack from '@mui/joy/Stack';
 import Chip from '@mui/joy/Chip';
+import Dropdown from '@mui/joy/Dropdown';
+import Menu from '@mui/joy/Menu';
+import MenuButton from '@mui/joy/MenuButton';
+import MenuItem from '@mui/joy/MenuItem';
 
 // Icons import
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
@@ -35,6 +39,7 @@ import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRounded';
 import ShareRoundedIcon from '@mui/icons-material/ShareRounded';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 // custom
 import Layout from './components/Layout';
@@ -369,9 +374,44 @@ export default function FilesExample() {
                   <Typography level="title-md">lotr-two-towers.pdf</Typography>
                   <Typography level="body-sm">132.2MB</Typography>
                 </Box>
-                <IconButton variant="plain" color="neutral" size="sm">
-                  <MoreVertRoundedIcon />
-                </IconButton>
+                <Dropdown>
+                  <MenuButton
+                    variant="plain"
+                    size="sm"
+                    sx={{
+                      maxWidth: '32px',
+                      maxHeight: '32px',
+                      borderRadius: '9999999px',
+                    }}
+                  >
+                    <IconButton variant="plain" color="neutral" size="sm">
+                      <MoreVertRoundedIcon />
+                    </IconButton>
+                  </MenuButton>
+                  <Menu
+                    placement="bottom-end"
+                    size="sm"
+                    sx={{
+                      zIndex: '99999',
+                      p: 1,
+                      gap: 1,
+                      '--ListItem-radius': 'var(--joy-radius-sm)',
+                    }}
+                  >
+                    <MenuItem>
+                      <EditRoundedIcon />
+                      Rename file
+                    </MenuItem>
+                    <MenuItem>
+                      <ShareRoundedIcon />
+                      Share file
+                    </MenuItem>
+                    <MenuItem sx={{ textColor: 'danger.500' }}>
+                      <DeleteRoundedIcon color="danger" />
+                      Delete file
+                    </MenuItem>
+                  </Menu>
+                </Dropdown>
               </Box>
               <CardOverflow
                 sx={{
@@ -395,9 +435,43 @@ export default function FilesExample() {
                   <Typography level="title-md">photos-travel.zip</Typography>
                   <Typography level="body-sm">2.4GB</Typography>
                 </Box>
-                <IconButton variant="plain" color="neutral" size="sm">
-                  <MoreVertRoundedIcon />
-                </IconButton>
+                <Dropdown>
+                  <MenuButton
+                    variant="plain"
+                    size="sm"
+                    sx={{
+                      maxWidth: '32px',
+                      maxHeight: '32px',
+                    }}
+                  >
+                    <IconButton variant="plain" color="neutral" size="sm">
+                      <MoreVertRoundedIcon />
+                    </IconButton>
+                  </MenuButton>
+                  <Menu
+                    placement="bottom-end"
+                    size="sm"
+                    sx={{
+                      zIndex: '99999',
+                      p: 1,
+                      gap: 1,
+                      '--ListItem-radius': 'var(--joy-radius-sm)',
+                    }}
+                  >
+                    <MenuItem>
+                      <EditRoundedIcon />
+                      Rename file
+                    </MenuItem>
+                    <MenuItem>
+                      <ShareRoundedIcon />
+                      Share file
+                    </MenuItem>
+                    <MenuItem sx={{ textColor: 'danger.500' }}>
+                      <DeleteRoundedIcon color="danger" />
+                      Delete file
+                    </MenuItem>
+                  </Menu>
+                </Dropdown>
               </Box>
               <CardOverflow
                 sx={{
@@ -448,9 +522,43 @@ export default function FilesExample() {
                     Added 5 Apr 2021
                   </Typography>
                 </Box>
-                <IconButton variant="plain" size="sm">
-                  <MoreVertRoundedIcon />
-                </IconButton>
+                <Dropdown>
+                  <MenuButton
+                    variant="plain"
+                    size="sm"
+                    sx={{
+                      maxWidth: '32px',
+                      maxHeight: '32px',
+                    }}
+                  >
+                    <IconButton variant="plain" color="neutral" size="sm">
+                      <MoreVertRoundedIcon />
+                    </IconButton>
+                  </MenuButton>
+                  <Menu
+                    placement="bottom-end"
+                    size="sm"
+                    sx={{
+                      zIndex: '99999',
+                      p: 1,
+                      gap: 1,
+                      '--ListItem-radius': 'var(--joy-radius-sm)',
+                    }}
+                  >
+                    <MenuItem>
+                      <EditRoundedIcon />
+                      Rename file
+                    </MenuItem>
+                    <MenuItem>
+                      <ShareRoundedIcon />
+                      Share file
+                    </MenuItem>
+                    <MenuItem sx={{ textColor: 'danger.500' }}>
+                      <DeleteRoundedIcon color="danger" />
+                      Delete file
+                    </MenuItem>
+                  </Menu>
+                </Dropdown>
               </CardContent>
               <CardCover>
                 <img
@@ -489,9 +597,43 @@ export default function FilesExample() {
                     Added 2 Mar 2021
                   </Typography>
                 </Box>
-                <IconButton variant="plain" size="sm">
-                  <MoreVertRoundedIcon />
-                </IconButton>
+                <Dropdown>
+                  <MenuButton
+                    variant="plain"
+                    size="sm"
+                    sx={{
+                      maxWidth: '32px',
+                      maxHeight: '32px',
+                    }}
+                  >
+                    <IconButton variant="plain" color="neutral" size="sm">
+                      <MoreVertRoundedIcon />
+                    </IconButton>
+                  </MenuButton>
+                  <Menu
+                    placement="bottom-end"
+                    size="sm"
+                    sx={{
+                      zIndex: '99999',
+                      p: 1,
+                      gap: 1,
+                      '--ListItem-radius': 'var(--joy-radius-sm)',
+                    }}
+                  >
+                    <MenuItem>
+                      <EditRoundedIcon />
+                      Rename file
+                    </MenuItem>
+                    <MenuItem>
+                      <ShareRoundedIcon />
+                      Share file
+                    </MenuItem>
+                    <MenuItem sx={{ textColor: 'danger.500' }}>
+                      <DeleteRoundedIcon color="danger" />
+                      Delete file
+                    </MenuItem>
+                  </Menu>
+                </Dropdown>
               </CardContent>
               <CardCover>
                 <img
@@ -512,9 +654,44 @@ export default function FilesExample() {
                   <Typography level="title-md">translated-docs.txt</Typography>
                   <Typography level="body-sm">12.2KB</Typography>
                 </Box>
-                <IconButton variant="plain" color="neutral" size="sm">
-                  <MoreVertRoundedIcon />
-                </IconButton>
+                <Dropdown>
+                  <MenuButton
+                    variant="plain"
+                    size="sm"
+                    sx={{
+                      maxWidth: '32px',
+                      maxHeight: '32px',
+                      borderRadius: '9999999px',
+                    }}
+                  >
+                    <IconButton variant="plain" color="neutral" size="sm">
+                      <MoreVertRoundedIcon />
+                    </IconButton>
+                  </MenuButton>
+                  <Menu
+                    placement="bottom-end"
+                    size="sm"
+                    sx={{
+                      zIndex: '99999',
+                      p: 1,
+                      gap: 1,
+                      '--ListItem-radius': 'var(--joy-radius-sm)',
+                    }}
+                  >
+                    <MenuItem>
+                      <EditRoundedIcon />
+                      Rename file
+                    </MenuItem>
+                    <MenuItem>
+                      <ShareRoundedIcon />
+                      Share file
+                    </MenuItem>
+                    <MenuItem sx={{ textColor: 'danger.500' }}>
+                      <DeleteRoundedIcon color="danger" />
+                      Delete file
+                    </MenuItem>
+                  </Menu>
+                </Dropdown>
               </Box>
               <CardOverflow
                 sx={{
@@ -538,9 +715,44 @@ export default function FilesExample() {
                   <Typography level="title-md">final-version-v3.fig</Typography>
                   <Typography level="body-sm">1.1GB</Typography>
                 </Box>
-                <IconButton variant="plain" color="neutral" size="sm">
-                  <MoreVertRoundedIcon />
-                </IconButton>
+                <Dropdown>
+                  <MenuButton
+                    variant="plain"
+                    size="sm"
+                    sx={{
+                      maxWidth: '32px',
+                      maxHeight: '32px',
+                      borderRadius: '9999999px',
+                    }}
+                  >
+                    <IconButton variant="plain" color="neutral" size="sm">
+                      <MoreVertRoundedIcon />
+                    </IconButton>
+                  </MenuButton>
+                  <Menu
+                    placement="bottom-end"
+                    size="sm"
+                    sx={{
+                      zIndex: '99999',
+                      p: 1,
+                      gap: 1,
+                      '--ListItem-radius': 'var(--joy-radius-sm)',
+                    }}
+                  >
+                    <MenuItem>
+                      <EditRoundedIcon />
+                      Rename file
+                    </MenuItem>
+                    <MenuItem>
+                      <ShareRoundedIcon />
+                      Share file
+                    </MenuItem>
+                    <MenuItem sx={{ textColor: 'danger.500' }}>
+                      <DeleteRoundedIcon color="danger" />
+                      Delete file
+                    </MenuItem>
+                  </Menu>
+                </Dropdown>
               </Box>
               <CardOverflow
                 sx={{
@@ -695,9 +907,12 @@ export default function FilesExample() {
                   <Chip variant="outlined" startDecorator={<ShareRoundedIcon />}>
                     Shared with 3 users
                   </Chip>
+                  <Typography level="body-xs" sx={{ mt: 1 }}>
+                    3 Nov 2023
+                  </Typography>
                 </Box>
               </Box>
-              <Typography level="title-md">Last month</Typography>
+              <Typography level="title-md">Older</Typography>
               <Box sx={{ display: 'flex', gap: 1 }}>
                 <Avatar
                   size="sm"
@@ -717,6 +932,9 @@ export default function FilesExample() {
                   <Chip variant="outlined" startDecorator={<EditRoundedIcon />}>
                     Changed name
                   </Chip>
+                  <Typography level="body-xs" sx={{ mt: 1 }}>
+                    12 Apr 2021
+                  </Typography>
                 </Box>
               </Box>
               <Box sx={{ display: 'flex', gap: 1 }}>
@@ -738,6 +956,9 @@ export default function FilesExample() {
                   <Chip variant="outlined" startDecorator={<EditRoundedIcon />}>
                     Added 5 Apr 2021
                   </Chip>
+                  <Typography level="body-xs" sx={{ mt: 1 }}>
+                    12 Apr 2021
+                  </Typography>
                 </Box>
               </Box>
             </TabPanel>
