@@ -47,10 +47,10 @@ export interface NumberInputClasses {
   endDecorator: string;
 }
 
-export type InputClassKey = keyof NumberInputClasses;
+export type NumberInputClassKey = keyof NumberInputClasses;
 
-export function getInputUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiInput', slot);
+export function getNumberInputUtilityClass(slot: string): string {
+  return generateUtilityClass('MuiNumberInput', slot);
 }
 
 const numberInputClasses: NumberInputClasses = generateUtilityClasses('MuiInput', [

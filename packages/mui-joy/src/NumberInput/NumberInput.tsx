@@ -7,7 +7,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import { NumberInputTypeMap, NumberInputProps, NumberInputOwnerState } from './NumberInputProps';
-import inputClasses, { getInputUtilityClass } from './numberInputClasses';
+import inputClasses, { getNumberInputUtilityClass } from './numberInputClasses';
 import useForwardedInput from './useForwardedNumberInput';
 import { INVERTED_COLORS_ATTR } from '../colorInversion/colorInversionUtils';
 
@@ -28,7 +28,7 @@ const useUtilityClasses = (ownerState: NumberInputOwnerState) => {
     endDecorator: ['endDecorator'],
   };
 
-  return composeClasses(slots, getInputUtilityClass, {});
+  return composeClasses(slots, getNumberInputUtilityClass, {});
 };
 
 export const StyledNumberInputRoot = styled('div')<{ ownerState: NumberInputOwnerState }>(

@@ -8,7 +8,7 @@ import {
   act,
   fireEvent,
 } from '@mui-internal/test-utils';
-import Input, { inputClasses as classes } from '@mui/joy/NumberInput';
+import Input, { numberInputClasses as classes } from '@mui/joy/NumberInput';
 import { ThemeProvider } from '@mui/joy/styles';
 
 describe('Joy <Input />', () => {
@@ -19,7 +19,7 @@ describe('Joy <Input />', () => {
     classes,
     ThemeProvider,
     refInstanceof: window.HTMLDivElement,
-    muiName: 'JoyInput',
+    muiName: 'JoyNumberInput',
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'solid', fullWidth: true },
     testCustomVariant: true,
