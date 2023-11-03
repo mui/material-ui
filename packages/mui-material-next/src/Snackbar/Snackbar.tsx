@@ -6,7 +6,7 @@ import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { useSnackbar } from '@mui/base/useSnackbar';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import Grow from '@mui/material/Grow';
-import SnackbarContent from '@mui/material/SnackbarContent';
+import SnackbarContent from '../SnackbarContent';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';

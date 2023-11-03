@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { emphasize } from '@mui/system';
-import styled from '@mui/material/styles/styled';
-import useThemeProps from '@mui/material/styles/useThemeProps';
-import Paper from '@mui/material/Paper';
+import useThemeProps from '../styles/useThemeProps';
 import { getSnackbarContentUtilityClass } from './snackbarContentClasses';
+import { CssVarsTheme, Paper, styled } from '@mui/material';
+import { SnackbarContentOwnerState, SnackbarContentProps } from './SnackbarContent.types';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: SnackbarContentOwnerState) => {
   const { classes } = ownerState;
 
   const slots = {
@@ -25,7 +25,7 @@ const SnackbarContentRoot = styled(Paper, {
   name: 'MuiSnackbarContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => {
+})<{ ownerState: SnackbarContentOwnerState; theme?: CssVarsTheme }>(({ theme }) => {
   const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
   const backgroundColor = emphasize(theme.palette.background.default, emphasis);
 
@@ -52,7 +52,7 @@ const SnackbarContentMessage = styled('div', {
   name: 'MuiSnackbarContent',
   slot: 'Message',
   overridesResolver: (props, styles) => styles.message,
-})({
+})<{ ownerState: SnackbarContentOwnerState }>({
   padding: '8px 0',
 });
 
@@ -60,7 +60,7 @@ const SnackbarContentAction = styled('div', {
   name: 'MuiSnackbarContent',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
-})({
+})<{ ownerState: SnackbarContentOwnerState }>({
   display: 'flex',
   alignItems: 'center',
   marginLeft: 'auto',
@@ -68,7 +68,10 @@ const SnackbarContentAction = styled('div', {
   marginRight: -8,
 });
 
-const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) {
+const SnackbarContent = React.forwardRef(function SnackbarContent(
+  inProps: SnackbarContentProps,
+  ref: React.ForwardedRef<any>,
+) {
   const props = useThemeProps({ props: inProps, name: 'MuiSnackbarContent' });
   const { action, className, message, role = 'alert', ...other } = props;
   const ownerState = props;

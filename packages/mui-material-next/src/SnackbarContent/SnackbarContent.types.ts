@@ -3,6 +3,8 @@ import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, PaperProps, Theme } from '@mui/material';
 import { SnackbarContentClasses } from './snackbarContentClasses';
 
+export interface SnackbarContentOwnerState extends SnackbarContentProps {}
+
 export interface SnackbarContentProps extends StandardProps<PaperProps, 'children'> {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
@@ -26,16 +28,3 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
    */
   sx?: SxProps<Theme>;
 }
-
-/**
- *
- * Demos:
- *
- * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
- *
- * API:
- *
- * - [SnackbarContent API](https://mui.com/material-ui/api/snackbar-content/)
- * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
- */
-export default function SnackbarContent(props: SnackbarContentProps): JSX.Element;
