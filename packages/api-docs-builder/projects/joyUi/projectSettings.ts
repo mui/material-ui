@@ -18,6 +18,17 @@ const projectSettings: ProjectSettings = {
   getApiPages: () => findApiPages('docs/pages/joy-ui/api'),
   getComponentInfo: getJoyUiComponentInfo,
   languages: LANGUAGES,
+  skipComponent(filename: string) {
+    // Box's demo isn't ready
+    // Container's demo isn't ready
+    // GlobalStyles's demo isn't ready
+    // Grid has problem with react-docgen
+    return (
+      filename.match(
+        /(ThemeProvider|CssVarsProvider|Box|Container|ColorInversion|Grid|GlobalStyles)/,
+      ) !== null
+    );
+  },
 };
 
 export default projectSettings;

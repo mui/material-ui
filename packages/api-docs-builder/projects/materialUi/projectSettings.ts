@@ -23,6 +23,9 @@ const projectSettings: ProjectSettings = {
   getApiPages: () => findApiPages('docs/pages/material-ui/api'),
   getComponentInfo: getMaterialUiComponentInfo,
   languages: LANGUAGES,
+  skipComponent(filename: string) {
+    return filename.match(/(ThemeProvider|CssVarsProvider|Grid2)/) !== null;
+  },
 };
 
 export default projectSettings;

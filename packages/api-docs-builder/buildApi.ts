@@ -67,6 +67,10 @@ export interface ProjectSettings {
    * Languages to which the API docs will be generated
    */
   languages: string[];
+  /**
+   * Fuction called to detemine whether to skip the generation of a particular component's API docs
+   */
+  skipComponent: (filename: string) => boolean;
 }
 
 export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp | null = null) {
@@ -95,23 +99,14 @@ export async function buildApi(projectSettings: ProjectSettings[], grep: RegExp 
     const apiBuilds = projects.flatMap((project) => {
       const projectComponents = findComponents(path.join(project.rootPath, 'src')).filter(
         (component) => {
-          if (
-            component.filename.includes('ThemeProvider') ||
-            component.filename.includes('CssVarsProvider') ||
-            (component.filename.includes('mui-material') && component.filename.includes('Grid2')) ||
-            (component.filename.includes('mui-joy') &&
-              // Box's demo isn't ready
-              // Container's demo isn't ready
-              // GlobalStyles's demo isn't ready
-              // Grid has problem with react-docgen
-              component.filename.match(/(Box|Container|ColorInversion|Grid|GlobalStyles)/)) ||
-            (component.filename.includes('mui-system') && component.filename.match(/GlobalStyles/))
-          ) {
+          if (setting.skipComponent(component.filename)) {
             return false;
           }
+
           if (grep === null) {
             return true;
           }
+
           return grep.test(component.filename);
         },
       );

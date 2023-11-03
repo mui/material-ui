@@ -21,6 +21,7 @@ const projectSettings: ProjectSettings = {
   getComponentInfo: getBaseUiComponentInfo,
   getHookInfo: getBaseUiHookInfo,
   languages: LANGUAGES,
+  skipComponent: () => false,
   onCompleted: () => {
     generateBaseUIApiPages();
   },
