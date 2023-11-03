@@ -84,9 +84,7 @@ export default function ClassesSection(props: ClassesSectionProps) {
         </Level>
         <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} />
       </Box>
-
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
-
       {displayOption === 'table' ? (
         <ClassesTable classes={formatedClasses} />
       ) : (

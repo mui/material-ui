@@ -1,4 +1,3 @@
-import path from 'path';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
@@ -41,7 +40,7 @@ export default function RichMarkdownElement(props) {
     const Component = srcComponents?.[name];
 
     if (Component === undefined) {
-      throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
+      throw new Error(`No component found at the path 'docs/src/${name}`);
     }
 
     const additionalProps = {};
