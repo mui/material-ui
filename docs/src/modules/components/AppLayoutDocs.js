@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import { exactProp } from '@mui/utils';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import NoSsr from '@mui/material/NoSsr';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
@@ -150,9 +149,7 @@ export default function AppLayoutDocs(props) {
           */}
           <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs} disableToc={disableToc}>
             {children}
-            <NoSsr>
-              <AppLayoutDocsFooter tableOfContents={toc} location={location} />
-            </NoSsr>
+            <AppLayoutDocsFooter tableOfContents={toc} location={location} />
           </StyledAppContainer>
           {disableToc ? null : <AppTableOfContents toc={toc} />}
         </Main>
