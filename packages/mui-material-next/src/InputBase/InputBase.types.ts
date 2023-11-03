@@ -2,9 +2,8 @@ import * as React from 'react';
 import { SlotComponentProps } from '@mui/base';
 import { FormControlContextValue } from '@mui/material-next/FormControl/FormControlContext';
 import { UseInputRootSlotProps } from '@mui/base/useInput';
-import { SxProps } from '@mui/system';
 import { OverridableStringUnion, OverrideProps, Simplify } from '@mui/types';
-import { Theme } from '../styles';
+import { SxProps } from '../styles';
 import { InputBaseClasses } from './inputBaseClasses';
 
 export interface InputBasePropsSizeOverrides {}
@@ -137,8 +136,12 @@ export type InputBaseOwnProps = {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<'div', InputBaseRootSlotPropsOverrides, InputBaseOwnerState>;
-    input?: SlotComponentProps<'input', InputBaseInputSlotPropsOverrides, InputBaseOwnerState>;
+    root?: SlotComponentProps<'div', InputBaseRootSlotPropsOverrides, InputBaseOwnerState> & {
+      sx?: SxProps;
+    };
+    input?: SlotComponentProps<'input', InputBaseInputSlotPropsOverrides, InputBaseOwnerState> & {
+      sx?: SxProps;
+    };
   };
   /**
    * The components used for each slot inside the InputBase.
@@ -153,7 +156,7 @@ export type InputBaseOwnProps = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps;
   /**
    * The value of the `input` element, required for a controlled component.
    */
