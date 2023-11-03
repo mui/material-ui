@@ -17,12 +17,14 @@ import Sheet from '@mui/joy/Sheet';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
+import TabPanel from '@mui/joy/TabPanel';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListDivider from '@mui/joy/ListDivider';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemContent from '@mui/joy/ListItemContent';
 import Stack from '@mui/joy/Stack';
+import Chip from '@mui/joy/Chip';
 
 // Icons import
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
@@ -32,6 +34,7 @@ import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRounded';
+import ShareRoundedIcon from '@mui/icons-material/ShareRounded';
 
 // custom
 import Layout from './components/Layout';
@@ -591,82 +594,154 @@ export default function FilesExample() {
                 <Typography level="title-sm">Activity</Typography>
               </Tab>
             </TabList>
+            <TabPanel value={0} sx={{ p: 0 }}>
+              <AspectRatio ratio="21/9">
+                <img
+                  alt=""
+                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=774"
+                />
+              </AspectRatio>
+              <Box sx={{ p: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
+                <Typography level="title-sm" mr={1}>
+                  Shared with
+                </Typography>
+                <AvatarGroup size="sm" sx={{ '--Avatar-size': '24px' }}>
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=6"
+                    srcSet="https://i.pravatar.cc/48?img=6 2x"
+                  />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=7"
+                    srcSet="https://i.pravatar.cc/48?img=7 2x"
+                  />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=8"
+                    srcSet="https://i.pravatar.cc/48?img=8 2x"
+                  />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=9"
+                    srcSet="https://i.pravatar.cc/48?img=9 2x"
+                  />
+                </AvatarGroup>
+              </Box>
+              <Divider />
+              <Box
+                sx={{
+                  gap: 2,
+                  p: 2,
+                  display: 'grid',
+                  gridTemplateColumns: 'auto 1fr',
+                  '& > *:nth-child(odd)': { color: 'text.secondary' },
+                }}
+              >
+                <Typography level="title-sm">Type</Typography>
+                <Typography level="body-sm" textColor="text.primary">
+                  Image
+                </Typography>
+
+                <Typography level="title-sm">Size</Typography>
+                <Typography level="body-sm" textColor="text.primary">
+                  3,6 MB (3,258,385 bytes)
+                </Typography>
+
+                <Typography level="title-sm">Location</Typography>
+                <Typography level="body-sm" textColor="text.primary">
+                  Travel pictures
+                </Typography>
+
+                <Typography level="title-sm">Owner</Typography>
+                <Typography level="body-sm" textColor="text.primary">
+                  Michael Scott
+                </Typography>
+
+                <Typography level="title-sm">Modified</Typography>
+                <Typography level="body-sm" textColor="text.primary">
+                  26 October 2016
+                </Typography>
+
+                <Typography level="title-sm">Created</Typography>
+                <Typography level="body-sm" textColor="text.primary">
+                  5 August 2016
+                </Typography>
+              </Box>
+              <Divider />
+              <Box sx={{ py: 2, px: 1 }}>
+                <Button variant="plain" size="sm" endDecorator={<EditRoundedIcon />}>
+                  Add a description
+                </Button>
+              </Box>
+            </TabPanel>
+            <TabPanel
+              value={1}
+              sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}
+            >
+              <Typography level="title-md">This week</Typography>
+              <Box sx={{ display: 'flex', gap: 1 }}>
+                <Avatar
+                  size="sm"
+                  src="https://i.pravatar.cc/24?img=2"
+                  srcSet="https://i.pravatar.cc/48?img=2 2x"
+                />
+                <Box>
+                  <Box
+                    sx={{ display: 'flex', gap: 0.5, alignItems: 'center', mb: 1 }}
+                  >
+                    <Typography level="title-sm" sx={{ alignItems: 'center' }}>
+                      You
+                    </Typography>
+                    <Typography level="body-sm">shared</Typography>
+                    <Typography level="title-sm">torres-del-paine.png</Typography>
+                  </Box>
+                  <Chip variant="outlined" startDecorator={<ShareRoundedIcon />}>
+                    Shared with 3 users
+                  </Chip>
+                </Box>
+              </Box>
+              <Typography level="title-md">Last month</Typography>
+              <Box sx={{ display: 'flex', gap: 1 }}>
+                <Avatar
+                  size="sm"
+                  src="https://i.pravatar.cc/24?img=2"
+                  srcSet="https://i.pravatar.cc/48?img=2 2x"
+                />
+                <Box>
+                  <Box
+                    sx={{ display: 'flex', gap: 0.5, alignItems: 'center', mb: 1 }}
+                  >
+                    <Typography level="title-sm" sx={{ alignItems: 'center' }}>
+                      You
+                    </Typography>
+                    <Typography level="body-sm">edited</Typography>
+                    <Typography level="title-sm">torres-del-paine.png</Typography>
+                  </Box>
+                  <Chip variant="outlined" startDecorator={<EditRoundedIcon />}>
+                    Changed name
+                  </Chip>
+                </Box>
+              </Box>
+              <Box sx={{ display: 'flex', gap: 1 }}>
+                <Avatar
+                  size="sm"
+                  src="https://i.pravatar.cc/24?img=2"
+                  srcSet="https://i.pravatar.cc/48?img=2 2x"
+                />
+                <Box>
+                  <Box
+                    sx={{ display: 'flex', gap: 0.5, alignItems: 'center', mb: 1 }}
+                  >
+                    <Typography level="title-sm" sx={{ alignItems: 'center' }}>
+                      You
+                    </Typography>
+                    <Typography level="body-sm">created</Typography>
+                    <Typography level="title-sm">torres-del-paine.png</Typography>
+                  </Box>
+                  <Chip variant="outlined" startDecorator={<EditRoundedIcon />}>
+                    Added 5 Apr 2021
+                  </Chip>
+                </Box>
+              </Box>
+            </TabPanel>
           </Tabs>
-          <AspectRatio ratio="21/9">
-            <img
-              alt=""
-              src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=774"
-            />
-          </AspectRatio>
-          <Box sx={{ p: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
-            <Typography level="title-sm" mr={1}>
-              Shared with
-            </Typography>
-            <AvatarGroup size="sm" sx={{ '--Avatar-size': '24px' }}>
-              <Avatar
-                src="https://i.pravatar.cc/24?img=6"
-                srcSet="https://i.pravatar.cc/48?img=6 2x"
-              />
-              <Avatar
-                src="https://i.pravatar.cc/24?img=7"
-                srcSet="https://i.pravatar.cc/48?img=7 2x"
-              />
-              <Avatar
-                src="https://i.pravatar.cc/24?img=8"
-                srcSet="https://i.pravatar.cc/48?img=8 2x"
-              />
-              <Avatar
-                src="https://i.pravatar.cc/24?img=9"
-                srcSet="https://i.pravatar.cc/48?img=9 2x"
-              />
-            </AvatarGroup>
-          </Box>
-          <Divider />
-          <Box
-            sx={{
-              gap: 2,
-              p: 2,
-              display: 'grid',
-              gridTemplateColumns: 'auto 1fr',
-              '& > *:nth-child(odd)': { color: 'text.secondary' },
-            }}
-          >
-            <Typography level="title-sm">Type</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              Image
-            </Typography>
-
-            <Typography level="title-sm">Size</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              3,6 MB (3,258,385 bytes)
-            </Typography>
-
-            <Typography level="title-sm">Location</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              Travel pictures
-            </Typography>
-
-            <Typography level="title-sm">Owner</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              Michael Scott
-            </Typography>
-
-            <Typography level="title-sm">Modified</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              26 October 2016
-            </Typography>
-
-            <Typography level="title-sm">Created</Typography>
-            <Typography level="body-sm" textColor="text.primary">
-              5 August 2016
-            </Typography>
-          </Box>
-          <Divider />
-          <Box sx={{ py: 2, px: 1 }}>
-            <Button variant="plain" size="sm" endDecorator={<EditRoundedIcon />}>
-              Add a description
-            </Button>
-          </Box>
         </Sheet>
       </Layout.Root>
     </CssVarsProvider>
