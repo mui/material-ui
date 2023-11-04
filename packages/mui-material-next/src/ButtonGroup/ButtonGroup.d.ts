@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverridableStringUnion, OverrideProps } from '@mui/types';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { ButtonGroupClasses } from './buttonGroupClasses';
 
 export interface ButtonGroupPropsColorOverrides {}
