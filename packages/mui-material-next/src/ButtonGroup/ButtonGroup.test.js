@@ -208,7 +208,7 @@ describe('<ButtonGroup />', () => {
 
       expect(screen.getByRole('button')).to.have.class(buttonClasses.outlined);
       expect(screen.getByRole('button')).to.have.class(buttonClasses.sizeSmall);
-      expect(screen.getByRole('button')).to.have.class(buttonClasses.outlinedSecondary);
+      expect(screen.getByRole('button')).to.have.class(buttonClasses.colorSecondary);
     });
   });
 
