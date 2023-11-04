@@ -9,6 +9,19 @@ import ButtonGroupContext from './ButtonGroupContext';
 describe('<ButtonGroup />', () => {
   const { render } = createRenderer();
 
+  let originalMatchmedia;
+
+  beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
+    window.matchMedia = () => ({
+      addListener: () => {},
+      removeListener: () => {},
+    });
+  });
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
+  });
+
   describeConformance(
     <ButtonGroup>
       <Button>Conformance?</Button>
