@@ -46,7 +46,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class('MuiButton-outlined');
+    expect(button).to.have.class(buttonClasses.outlined);
     expect(button).to.have.class(classes.grouped);
     expect(button).to.have.class(classes.groupedOutlined);
     expect(button).to.have.class(classes.groupedOutlinedPrimary);
@@ -60,25 +60,26 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class('MuiButton-outlinedPrimary');
+    expect(button).to.have.class(buttonClasses.outlined);
+    expect(button).to.have.class(buttonClasses.colorPrimary);
     expect(button).to.have.class(classes.grouped);
     expect(button).to.have.class(classes.groupedOutlined);
     expect(button).to.have.class(classes.groupedOutlinedPrimary);
     expect(button).not.to.have.class(classes.groupedOutlinedSecondary);
   });
 
-  it('can render a contained button', () => {
+  it('can render a text button', () => {
     const { getByRole } = render(
       <ButtonGroup variant="contained">
         <Button>Hello World</Button>
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class('MuiButton-contained');
+    expect(button).to.have.class(buttonClasses.text);
     expect(button).to.have.class(classes.grouped);
-    expect(button).to.have.class(classes.groupedContained);
-    expect(button).to.have.class(classes.groupedContainedPrimary);
-    expect(button).not.to.have.class(classes.groupedContainedSecondary);
+    expect(button).to.have.class(classes.groupedText);
+    expect(button).to.have.class(classes.groupedTextPrimary);
+    expect(button).not.to.have.class(classes.groupedTextSecondary);
   });
 
   it('can render a small button', () => {
@@ -88,7 +89,8 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class('MuiButton-outlinedSizeSmall');
+    expect(button).to.have.class(buttonClasses.outlined);
+    expect(button).to.have.class(buttonClasses.sizeSmall);
   });
 
   it('can render a large button', () => {
@@ -98,7 +100,8 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class('MuiButton-outlinedSizeLarge');
+    expect(button).to.have.class(buttonClasses.outlined);
+    expect(button).to.have.class(buttonClasses.sizeLarge);
   });
 
   it('should have a ripple by default', () => {
@@ -117,7 +120,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = getByRole('button');
-    expect(button).to.have.class('MuiButton-disableElevation');
+    expect(button).to.have.class(buttonClasses.disableElevation);
   });
 
   it('can disable the ripple', () => {
