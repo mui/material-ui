@@ -38,15 +38,15 @@ export interface ButtonGroupOwnProps {
    */
   disableElevation?: boolean;
   /**
-   * If `true`, the button keyboard focus ripple is disabled.
-   * @default false
-   */
-  disableFocusRipple?: boolean;
-  /**
    * If `true`, the button ripple effect is disabled.
    * @default false
    */
   disableRipple?: boolean;
+  /**
+   * If `true`, the touch ripple effect is disabled.
+   * @default false
+   */
+  disableTouchRipple?: boolean;
   /**
    * If `true`, the buttons will take up the full width of its container.
    * @default false

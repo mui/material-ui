@@ -176,7 +176,7 @@ describe('<ButtonGroup />', () => {
     expect(context.size).to.equal('large');
     expect(context.fullWidth).to.equal(false);
     expect(context.disableRipple).to.equal(false);
-    expect(context.disableFocusRipple).to.equal(false);
+    expect(context.disableTouchRipple).to.equal(false);
     expect(context.disableElevation).to.equal(false);
     expect(context.disabled).to.equal(false);
     expect(context.color).to.equal('primary');

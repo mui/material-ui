@@ -6,7 +6,7 @@ interface IButtonGroupContext {
   color?: ButtonGroupProps['color'];
   disabled?: boolean;
   disableElevation?: boolean;
-  disableFocusRipple?: boolean;
+  disableTouchRipple?: boolean;
   disableRipple?: boolean;
   fullWidth?: boolean;
   size?: ButtonGroupProps['size'];
