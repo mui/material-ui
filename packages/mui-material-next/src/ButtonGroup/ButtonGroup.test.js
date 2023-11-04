@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
-import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material/ButtonGroup';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Button, { buttonClasses } from '@mui/material/Button';
+import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material-next/ButtonGroup';
+import { ThemeProvider, createTheme } from '@mui/material-next/styles';
+import Button, { buttonClasses } from '@mui/material-next/Button';
 import ButtonGroupContext from './ButtonGroupContext';
 
 describe('<ButtonGroup />', () => {
