@@ -65,7 +65,7 @@ We are adding new components regularly and you're welcome to contribute!
 
 ### MUI System
 
-Visit [https://mui.com/system/](https://mui.com/system/) to view the full documentation.
+Visit [https://mui.com/system/getting-started/](https://mui.com/system/getting-started/) to view the full documentation.
 
 ## Sponsors
 
