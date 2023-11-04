@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material-next/ButtonGroup';
-import { ThemeProvider, createTheme } from '@mui/material-next/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import Button, { buttonClasses } from '@mui/material-next/Button';
 import ButtonGroupContext from './ButtonGroupContext';
 
@@ -22,6 +22,8 @@ describe('<ButtonGroup />', () => {
       muiName: 'MuiButtonGroup',
       testVariantProps: { variant: 'contained' },
       skip: ['componentsProp'],
+      ThemeProvider: CssVarsProvider,
+      createTheme: extendTheme
     }),
   );
 
@@ -185,8 +187,8 @@ describe('<ButtonGroup />', () => {
   describe('theme default props on Button', () => {
     it('should override default variant prop', () => {
       render(
-        <ThemeProvider
-          theme={createTheme({
+        <CssVarsProvider
+          theme={extendTheme({
             components: {
               MuiButton: {
                 defaultProps: {
@@ -201,7 +203,7 @@ describe('<ButtonGroup />', () => {
           <ButtonGroup variant="outlined" size="small" color="secondary">
             <Button>Hello World</Button>
           </ButtonGroup>
-        </ThemeProvider>,
+        </CssVarsProvider>,
       );
 
       expect(screen.getByRole('button')).to.have.class(buttonClasses.outlined);
