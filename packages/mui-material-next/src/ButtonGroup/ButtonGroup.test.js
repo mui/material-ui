@@ -23,7 +23,7 @@ describe('<ButtonGroup />', () => {
       testVariantProps: { variant: 'contained' },
       skip: ['componentsProp'],
       ThemeProvider: CssVarsProvider,
-      createTheme: extendTheme
+      createTheme: extendTheme,
     }),
   );
 
