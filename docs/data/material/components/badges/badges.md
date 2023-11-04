@@ -10,6 +10,8 @@ unstyled: /base-ui/react-badge/
 
 <p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
 
+Badges are useful for various purposes, such as indicating notifications, counts, or changes in an application's user interface. This helps provide a visual feedback indicating change in the application.
+
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic badge

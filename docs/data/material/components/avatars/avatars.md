@@ -9,6 +9,11 @@ githubLabel: 'component: avatar'
 
 <p class="description">Avatars are found throughout material design with uses in everything from tables to dialog menus.</p>
 
+Avatars are a flexible component that can be used for a wide range of applications, from
+displaying user profile images to representing text or icons in a UI. They also offer
+features like styling variants, handling image loading errors, and work well alongside
+groups and badges to enhance the user interface.
+
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Image avatars
