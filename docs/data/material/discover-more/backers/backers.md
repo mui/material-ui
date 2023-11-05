@@ -123,9 +123,9 @@ These great services sponsor MUI's core infrastructure:
 
 ### Diamond
 
-Your organization logo will be placed in:
+Your organization logo will be prominently featured:
 
-- A prominent logo placement in sidebar of all content pages (4m+ sessions, 900k+ unique visitors/month)
+- on the sidebar of all content pages (4m+ sessions, 900k+ unique visitors/month)
 - the [homepage](https://mui.com/#sponsors) (500k+ pageviews and 150k+ unique visitors/month)
 - the [README.md](https://github.com/mui/material-ui#sponsors) (80k+ unique visitors/month)
 - the [Diamond sponsor list](#diamond-sponsors)
