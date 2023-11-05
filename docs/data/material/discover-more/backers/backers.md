@@ -1,8 +1,9 @@
 # Sponsors and Backers
 
-<p class="description">Support the development of new open-source projects from MUI through crowdfunding.</p>
+<p class="description">Support the development of the open-source projects of the MUI organization through crowdfunding.</p>
 
-MUI Core is our crowd-funded open-source projects, licensed under the permissive MIT license. Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
+Material UI, Joy UI, and Base UI, are crowd-funded open-source projects, licensed under the permissive MIT license.
+Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
 
 ## Diamond sponsors
 
