@@ -76,7 +76,7 @@ Visit [https://mui.com/system/getting-started/](https://mui.com/system/getting-s
   <a href="https://www.doit.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://avatars.githubusercontent.com/u/8424863?s=256" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
 </p>
 
-Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
+Diamond sponsors are those who have pledged \$1,500/month or more to MUI.
 
 ### Gold 🏆
 
@@ -93,7 +93,7 @@ via [Open Collective](https://opencollective.com/mui) or via [Patreon](https://
   <a href="https://ipinfo.ai?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/ipinfoai/04f41d5/logo/192.png" alt="ipinfo.ai" title="We offer various IP data API services, including IP Geolocation Data, ASN Data, Company Data, IP Ranges Data, Abuse Contacts Data, Anonymous Browsing Detection, etc." loading="lazy"></a>
 </p>
 
-Gold Sponsors are those who have pledged \$500/month or more to MUI.
+Gold sponsors are those who have pledged \$500/month or more to MUI.
 
 ### More backers
 
@@ -115,7 +115,7 @@ You can find complete templates and themes in the [MUI Store](https://mui.com/st
 
 Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes.
 
-Contributing to MUI Core is about more than just issues and pull requests!
+Contributing is about more than just issues and pull requests!
 There are many other ways to [support MUI](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) beyond contributing to the code base.
 
 ## Changelog
