@@ -83,13 +83,14 @@
   cursor: pointer;
   border: 1px solid var(--cyan-500);
   box-shadow: 0 2px 4px var(--GalleryButton-boxShadow-color, rgba(13, 84, 99, 0.5)),
-    inset 0 1.5px 1px ar(--cyan-400), inset 0 -2px 1px var(--cyan-600);
+    inset 0 1.5px 1px var(--cyan-400), inset 0 -2px 1px var(--cyan-600);
 }
 .GalleryButton:hover {
   background-color: var(--cyan-600);
 }
 .GalleryButton:active {
   background-color: var(--cyan-700);
+  box-shadow: none;
 }
 .GalleryButton:focus-visible {
   box-shadow: 0 0 0 4px var(--GalleryButton-focusVisible-boxShadow-color, var(--cyan-200));
