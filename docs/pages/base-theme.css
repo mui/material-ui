@@ -642,3 +642,86 @@
     --GallerySnackbar-content-boxShadow-color: rgba(0, 0, 0, 0.5);
   }
 }
+
+.GallerySwitch {
+  font-size: 0;
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 24px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.GallerySwitch.Mui-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.GallerySwitch-track {
+  background: var(--GallerySwitch-track-background-color, var(--grey-50));
+  border: 1px solid var(--GallerySwitch-track-border-color, var(--grey-200));
+  border-radius: 24px;
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  box-shadow: inset 0px 1px 1px var(--GallerySwitch-track-boxShadow-color, rgba(0, 0, 0, 0.05));
+}
+
+.GallerySwitch:hover .GallerySwitch-track {
+  background: var(--GallerySwitch-hover-track-background-color, var(--grey-100));
+  border-color: var(--GallerySwitch-hover-track-border-color, var(--grey-300));
+}
+
+.GallerySwitch-thumb {
+  display: block;
+  width: 16px;
+  height: 16px;
+  top: 4px;
+  left: 4px;
+  border-radius: 16px;
+  background-color: #fff;
+  position: relative;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 120ms;
+}
+
+.GallerySwitch.Mui-focusVisible .GallerySwitch-track {
+  box-shadow: 0 0 0 3px var(--GallerySwitch-focusVisible-track, var(--cyan-200));
+}
+
+.GallerySwitch.Mui-checked .GallerySwitch-thumb {
+  left: 18px;
+  background-color: #fff;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.GallerySwitch.Mui-checked .GallerySwitch-track {
+  border: none;
+  background: var(--cyan-500);
+}
+
+.GallerySwitch-input {
+  cursor: inherit;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+  margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .GallerySwitch {
+    --GallerySwitch-track-background-color: var(--grey-900);
+    --GallerySwitch-track-border-color: var(--grey-800);
+    --GallerySwitch-hover-track-background-color: var(--grey-800);
+    --GallerySwitch-hover-track-border-color: var(--grey-600);
+    --GallerySwitch-track-boxShadow-color: rgba(0, 0, 0, 0.5);
+    --GallerySwitch-focusVisible-track: var(--cyan-400);
+  }
+}

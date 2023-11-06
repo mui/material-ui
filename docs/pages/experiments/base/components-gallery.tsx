@@ -20,6 +20,7 @@ import { Snackbar } from '@mui/base/Snackbar';
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
+import { Switch } from '@mui/base/Switch';
 
 // Snackbar demo
 const positioningStyles = {
@@ -75,6 +76,9 @@ export default function ComponentsGallery() {
   const handleOnExited = () => {
     setExited(true);
   };
+
+  // switch demo
+  const label = { 'aria-label': 'Demo switch' };
 
   return (
     <Stack gap={2} style={{ padding: '8px' }}>
@@ -238,6 +242,44 @@ export default function ComponentsGallery() {
             )}
           </Transition>
         </Snackbar>
+      </div>
+      <div>
+        <Switch
+          slotProps={{
+            root: { className: 'GallerySwitch' },
+            input: { ...label, className: 'GallerySwitch-input' },
+            thumb: { className: 'GallerySwitch-thumb' },
+            track: { className: 'GallerySwitch-track' },
+          }}
+          defaultChecked
+        />
+        <Switch
+          slotProps={{
+            root: { className: 'GallerySwitch' },
+            input: { ...label, className: 'GallerySwitch-input' },
+            thumb: { className: 'GallerySwitch-thumb' },
+            track: { className: 'GallerySwitch-track' },
+          }}
+        />
+        <Switch
+          slotProps={{
+            root: { className: 'GallerySwitch' },
+            input: { ...label, className: 'GallerySwitch-input' },
+            thumb: { className: 'GallerySwitch-thumb' },
+            track: { className: 'GallerySwitch-track' },
+          }}
+          defaultChecked
+          disabled
+        />
+        <Switch
+          slotProps={{
+            root: { className: 'GallerySwitch' },
+            input: { ...label, className: 'GallerySwitch-input' },
+            thumb: { className: 'GallerySwitch-thumb' },
+            track: { className: 'GallerySwitch-track' },
+          }}
+          disabled
+        />
       </div>
     </Stack>
   );
