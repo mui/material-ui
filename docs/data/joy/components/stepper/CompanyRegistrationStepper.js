@@ -3,17 +3,17 @@ import Stepper from '@mui/joy/Stepper';
 import Step, { stepClasses } from '@mui/joy/Step';
 import StepIndicator, { stepIndicatorClasses } from '@mui/joy/StepIndicator';
 import Typography, { typographyClasses } from '@mui/joy/Typography';
-import Check from '@mui/icons-material/Check';
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import AppRegistrationRoundedIcon from '@mui/icons-material/AppRegistrationRounded';
 
 export default function CompanyRegistrationStepper() {
   return (
     <Stepper
       orientation="vertical"
       sx={{
-        '--Stepper-verticalGap': '1.5rem',
+        '--Stepper-verticalGap': '2.5rem',
         '--StepIndicator-size': '2.5rem',
-        '--Step-gap': '1.5rem',
+        '--Step-gap': '1rem',
         '--Step-connectorInset': '0.5rem',
         '--Step-connectorRadius': '1rem',
         '--Step-connectorThickness': '4px',
@@ -42,7 +42,7 @@ export default function CompanyRegistrationStepper() {
         completed
         indicator={
           <StepIndicator variant="solid" color="success">
-            <Check />
+            <CheckRoundedIcon />
           </StepIndicator>
         }
       >
@@ -55,7 +55,7 @@ export default function CompanyRegistrationStepper() {
         completed
         indicator={
           <StepIndicator variant="solid" color="success">
-            <Check />
+            <CheckRoundedIcon />
           </StepIndicator>
         }
       >
@@ -68,7 +68,7 @@ export default function CompanyRegistrationStepper() {
         active
         indicator={
           <StepIndicator variant="solid" color="primary">
-            <AppRegistrationIcon />
+            <AppRegistrationRoundedIcon />
           </StepIndicator>
         }
       >

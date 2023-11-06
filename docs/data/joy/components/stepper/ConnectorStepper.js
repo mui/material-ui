@@ -10,7 +10,8 @@ export default function ConnectorStepper() {
         <Step
           sx={{
             '&::after': {
-              height: 4,
+              height: 2,
+              borderRadius: '24px',
               background:
                 'linear-gradient(to right, #002f61, #00507b, #006e8e, #008b98, #00a79c)',
             },
@@ -21,7 +22,8 @@ export default function ConnectorStepper() {
         <Step
           sx={{
             '&::after': {
-              height: 4,
+              height: 2,
+              borderRadius: '24px',
               background:
                 'linear-gradient(to right, #00c395, #18dc82, #71ee65, #bbf942, #ffff00)',
             },

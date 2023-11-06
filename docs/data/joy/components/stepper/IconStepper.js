@@ -3,11 +3,11 @@ import Stepper from '@mui/joy/Stepper';
 import Step, { stepClasses } from '@mui/joy/Step';
 import StepIndicator, { stepIndicatorClasses } from '@mui/joy/StepIndicator';
 import Typography from '@mui/joy/Typography';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
-import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
-import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
-import Check from '@mui/icons-material/Check';
+import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+import ContactsRoundedIcon from '@mui/icons-material/ContactsRounded';
+import LocalShippingRoundedIcon from '@mui/icons-material/LocalShippingRounded';
+import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 export default function IconStepper() {
   return (
@@ -15,21 +15,21 @@ export default function IconStepper() {
       size="lg"
       sx={{
         width: '100%',
-        '--StepIndicator-size': '4rem',
+        '--StepIndicator-size': '3rem',
         '--Step-connectorInset': '0px',
         [`& .${stepIndicatorClasses.root}`]: {
-          borderWidth: 3,
+          borderWidth: 4,
         },
         [`& .${stepClasses.root}::after`]: {
-          height: 3,
+          height: 4,
         },
         [`& .${stepClasses.completed}`]: {
           [`& .${stepIndicatorClasses.root}`]: {
-            borderColor: 'primary.400',
-            color: 'primary.400',
+            borderColor: 'primary.300',
+            color: 'primary.300',
           },
           '&::after': {
-            bgcolor: 'primary.400',
+            bgcolor: 'primary.300',
           },
         },
         [`& .${stepClasses.active}`]: {
@@ -47,7 +47,7 @@ export default function IconStepper() {
         orientation="vertical"
         indicator={
           <StepIndicator variant="outlined" color="primary">
-            <ShoppingCartOutlinedIcon />
+            <ShoppingCartRoundedIcon />
           </StepIndicator>
         }
       />
@@ -56,7 +56,7 @@ export default function IconStepper() {
         completed
         indicator={
           <StepIndicator variant="outlined" color="primary">
-            <ContactsOutlinedIcon />
+            <ContactsRoundedIcon />
           </StepIndicator>
         }
       />
@@ -65,7 +65,7 @@ export default function IconStepper() {
         completed
         indicator={
           <StepIndicator variant="outlined" color="primary">
-            <LocalShippingOutlinedIcon />
+            <LocalShippingRoundedIcon />
           </StepIndicator>
         }
       />
@@ -73,8 +73,8 @@ export default function IconStepper() {
         orientation="vertical"
         active
         indicator={
-          <StepIndicator variant="outlined" color="primary">
-            <CreditCardOutlinedIcon />
+          <StepIndicator variant="solid" color="primary">
+            <CreditCardRoundedIcon />
           </StepIndicator>
         }
       >
@@ -94,7 +94,7 @@ export default function IconStepper() {
         disabled
         indicator={
           <StepIndicator variant="outlined" color="neutral">
-            <Check />
+            <CheckCircleRoundedIcon />
           </StepIndicator>
         }
       />
