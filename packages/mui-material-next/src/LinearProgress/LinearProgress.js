@@ -353,6 +353,10 @@ LinearProgress.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
