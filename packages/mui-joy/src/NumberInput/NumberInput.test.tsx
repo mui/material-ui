@@ -74,7 +74,9 @@ describe('Joy <NumberInput />', () => {
     it('should reset the focused state if getting disabled', () => {
       const handleBlur = spy();
       const handleFocus = spy();
-      const { getByRole, setProps } = render(<NumberInput onBlur={handleBlur} onFocus={handleFocus} />);
+      const { getByRole, setProps } = render(
+        <NumberInput onBlur={handleBlur} onFocus={handleFocus} />,
+      );
 
       act(() => {
         getByRole('textbox').focus();
