@@ -1,6 +1,6 @@
 import kebabCase from 'lodash/kebabCase';
-import { ReactApi as ComponentReactApi } from '../../ApiBuilders/ComponentApiBuilder';
-import { ReactApi as HookReactApi } from '../../ApiBuilders/HookApiBuilder';
+import { ReactApi as ComponentReactApi } from '@mui-internal/api-docs-builder/ApiBuilders/ComponentApiBuilder';
+import { ReactApi as HookReactApi } from '@mui-internal/api-docs-builder/ApiBuilders/HookApiBuilder';
 
 /**
  * Generates the api links, in a format that would point to the appropriate API tab

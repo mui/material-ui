@@ -9,8 +9,8 @@ import {
   fixPathname,
   getApiPath,
   parseFile,
-} from '../../buildApiUtils';
-import findPagesMarkdown from '../../utils/findPagesMarkdown';
+} from '@mui-internal/api-docs-builder/buildApiUtils';
+import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
 import migratedBaseComponents from './migratedBaseComponents';
 
 export default function getBaseHookInfo(filename: string): HookInfo {

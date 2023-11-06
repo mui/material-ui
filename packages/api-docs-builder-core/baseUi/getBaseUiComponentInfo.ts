@@ -10,8 +10,8 @@ import {
   getMuiName,
   getSystemComponents,
   parseFile,
-} from '../../buildApiUtils';
-import findPagesMarkdown from '../../utils/findPagesMarkdown';
+} from '@mui-internal/api-docs-builder/buildApiUtils';
+import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
 import migratedBaseComponents from './migratedBaseComponents';
 
 function findBaseDemos(

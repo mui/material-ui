@@ -1,15 +1,17 @@
-import * as yargs from 'yargs';
-import { ProjectSettings, buildApi } from './buildApi';
-import baseUiProjectSettings from './projects/baseUi/projectSettings';
-import joyUiProjectSettings from './projects/joyUi/projectSettings';
-import muiSystemSettings from './projects/muiSystem/projectSettings';
-import materialUiProjectSettings from './projects/materialUi/projectSettings';
+import yargs from 'yargs';
+import { ProjectSettings, buildApi } from '@mui-internal/api-docs-builder/buildApi';
+import {
+  baseUiProjectSettings,
+  joyUiProjectSettings,
+  materialUiProjectSettings,
+  muiSystemProjectSettings,
+} from '@mui-internal/api-docs-builder-core';
 
 const projectSettings: ProjectSettings[] = [
   materialUiProjectSettings,
   baseUiProjectSettings,
   joyUiProjectSettings,
-  muiSystemSettings,
+  muiSystemProjectSettings,
 ];
 
 type CommandOptions = { grep?: string };
@@ -19,7 +21,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   return buildApi(projectSettings, grep);
 }
 
-yargs
+yargs(process.argv.slice(2))
   .command({
     command: '$0',
     describe: 'Generates API documentation for the MUI packages.',

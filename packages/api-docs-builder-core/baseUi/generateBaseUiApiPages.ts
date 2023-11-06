@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import { getHeaders } from '@mui/markdown';
-import findPagesMarkdown from '../../utils/findPagesMarkdown';
-import { writePrettifiedFile } from '../../buildApiUtils';
+import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
+import { writePrettifiedFile } from '@mui-internal/api-docs-builder/buildApiUtils';
 
 export default function generateBaseUIApiPages() {
   findPagesMarkdown().forEach((markdown) => {
