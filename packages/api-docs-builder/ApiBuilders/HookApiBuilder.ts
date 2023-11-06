@@ -9,7 +9,7 @@ import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-doc
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { renderMarkdown } from '@mui/markdown';
-import { ProjectSettings } from '../buildApi';
+import { ProjectSettings } from '../ProjectSettings';
 import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
 import {
   getSymbolDescription,

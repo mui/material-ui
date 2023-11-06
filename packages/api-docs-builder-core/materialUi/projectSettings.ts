@@ -1,6 +1,6 @@
 import path from 'path';
 import { LANGUAGES } from 'docs/config';
-import { ProjectSettings } from '@mui-internal/api-docs-builder/buildApi';
+import { ProjectSettings } from '@mui-internal/api-docs-builder';
 import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
 import getMaterialUiComponentInfo from './getMaterialUiComponentInfo';
 

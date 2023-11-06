@@ -1,5 +1,5 @@
 import yargs from 'yargs';
-import { ProjectSettings, buildApi } from '@mui-internal/api-docs-builder/buildApi';
+import { ProjectSettings, buildApi } from '@mui-internal/api-docs-builder';
 import {
   baseUiProjectSettings,
   joyUiProjectSettings,

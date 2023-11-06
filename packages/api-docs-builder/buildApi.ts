@@ -4,16 +4,17 @@ import * as fse from 'fs-extra';
 import kebabCase from 'lodash/kebabCase';
 import findComponents from './utils/findComponents';
 import findHooks from './utils/findHooks';
-import { ComponentInfo, HookInfo, writePrettifiedFile } from './buildApiUtils';
+import { writePrettifiedFile } from './buildApiUtils';
 import generateComponentApi, {
   ReactApi as ComponentReactApi,
 } from './ApiBuilders/ComponentApiBuilder';
-import generateHookApi, { ReactApi as HookReactApi } from './ApiBuilders/HookApiBuilder';
+import generateHookApi from './ApiBuilders/HookApiBuilder';
 import {
   CreateTypeScriptProjectOptions,
   TypeScriptProjectBuilder,
   createTypeScriptProjectBuilder,
 } from './utils/createTypeScriptProject';
+import { ProjectSettings } from './ProjectSettings';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
 
@@ -48,38 +49,6 @@ async function removeOutdatedApiDocsTranslations(
       return fse.remove(outdatedComponentDirectory);
     }),
   );
-}
-
-export interface ProjectSettings {
-  output: {
-    /**
-     * The output path of `pagesApi` generated from `input.pageDirectory`
-     */
-    apiManifestPath: string;
-  };
-  /**
-   * Component directories to be used to generate API
-   */
-  typeScriptProjects: CreateTypeScriptProjectOptions[];
-  getApiPages: () => Array<{ pathname: string }>;
-  getComponentInfo: (filename: string) => ComponentInfo;
-  getHookInfo?: (filename: string) => HookInfo;
-  /**
-   * Callback function to be called when the API generation is completed
-   */
-  onCompleted?: () => void;
-  onWritingManifestFile?: (
-    builds: PromiseSettledResult<ComponentReactApi | HookReactApi | null | never[]>[],
-    source: string,
-  ) => string;
-  /**
-   * Languages to which the API docs will be generated
-   */
-  languages: string[];
-  /**
-   * Fuction called to detemine whether to skip the generation of a particular component's API docs
-   */
-  skipComponent: (filename: string) => boolean;
 }
 
 export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp | null = null) {

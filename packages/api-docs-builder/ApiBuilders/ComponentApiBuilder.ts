@@ -11,7 +11,7 @@ import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import { renderMarkdown } from '@mui/markdown';
-import { ProjectSettings } from '../buildApi';
+import { ProjectSettings } from '../ProjectSettings';
 import { ComponentInfo, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
@@ -777,7 +777,9 @@ export default async function generateComponentApi(
       }
     }
   } else {
-    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), { filename });
+    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+      filename,
+    });
   }
 
   // Ignore what we might have generated in `annotateComponentDefinition`
