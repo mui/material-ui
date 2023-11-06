@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { Theme } from '../styles';
 import { CircularProgressClasses } from './circularProgressClasses';
 
 export interface CircularProgressPropsColorOverrides {}
 
-export interface CircularProgressProps
-  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
+export interface CircularProgressOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -57,6 +56,19 @@ export interface CircularProgressProps
    */
   variant?: 'determinate' | 'indeterminate';
 }
+
+export interface CircularProgressTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'span',
+> {
+  props: CircularProgressOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
+}
+
+export type CircularProgressProps<
+  RootComponentType extends React.ElementType = CircularProgressTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<CircularProgressTypeMap<AdditionalProps, RootComponentType>, RootComponentType>;
 
 /**
  * ## ARIA

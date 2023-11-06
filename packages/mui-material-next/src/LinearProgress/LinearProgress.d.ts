@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { Theme } from '../styles';
 import { LinearProgressClasses } from './linearProgressClasses';
 
 export interface LinearProgressPropsColorOverrides {}
 
-export interface LinearProgressProps
-  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
+export interface LinearProgressOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -43,6 +42,19 @@ export interface LinearProgressProps
    */
   variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
 }
+
+export interface LinearProgressTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'span',
+> {
+  props: LinearProgressOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
+}
+
+export type LinearProgressProps<
+  RootComponentType extends React.ElementType = LinearProgressTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<LinearProgressTypeMap<AdditionalProps, RootComponentType>, RootComponentType>;
 
 /**
  * ## ARIA
