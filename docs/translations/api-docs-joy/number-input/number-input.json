@@ -118,12 +118,16 @@
       "conditions": "<code>fullWidth={true}</code>"
     },
     "startDecorator": { "description": "Class name applied to the startDecorator element" },
-    "endDecorator": { "description": "Class name applied to the endDecorator element" }
+    "endDecorator": { "description": "Class name applied to the endDecorator element" },
+    "incrementButton": { "description": "Class name applied to the incrementButton element" },
+    "decrementButton": { "description": "Class name applied to the decrementButton element" }
   },
   "slotDescriptions": {
     "root": "The component that renders the root.",
     "input": "The component that renders the input.",
     "startDecorator": "The component that renders the start decorator.",
-    "endDecorator": "The component that renders the end decorator."
+    "endDecorator": "The component that renders the end decorator.",
+    "incrementButton": "The component that renders the increment button.",
+    "decrementButton": "The component that renders the decrement button."
   }
 }

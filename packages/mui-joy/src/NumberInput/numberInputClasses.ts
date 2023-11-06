@@ -45,6 +45,10 @@ export interface NumberInputClasses {
   startDecorator: string;
   /** Class name applied to the endDecorator element */
   endDecorator: string;
+  /** Class name applied to the incrementButton element */
+  incrementButton: string;
+  /** Class name applied to the decrementButton element */
+  decrementButton: string;
 }
 
 export type NumberInputClassKey = keyof NumberInputClasses;
@@ -78,6 +82,8 @@ const numberInputClasses: NumberInputClasses = generateUtilityClasses('MuiInput'
   'fullWidth',
   'startDecorator',
   'endDecorator',
+  'incrementButton',
+  'decrementButton',
 ]);
 
 export default numberInputClasses;

@@ -64,6 +64,18 @@
       "description": "The component that renders the end decorator.",
       "default": "'div'",
       "class": ".MuiNumberInput-endDecorator"
+    },
+    {
+      "name": "incrementButton",
+      "description": "The component that renders the increment button.",
+      "default": "'button'",
+      "class": ".MuiNumberInput-incrementButton"
+    },
+    {
+      "name": "decrementButton",
+      "description": "The component that renders the decrement button.",
+      "default": "'button'",
+      "class": ".MuiNumberInput-decrementButton"
     }
   ],
   "classes": {

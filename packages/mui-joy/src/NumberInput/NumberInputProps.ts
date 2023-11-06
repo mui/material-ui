@@ -3,7 +3,13 @@ import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ApplyColorInversion, ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export type NumberInputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
+export type NumberInputSlot =
+  | 'root'
+  | 'input'
+  | 'startDecorator'
+  | 'endDecorator'
+  | 'increment'
+  | 'decrement';
 
 export interface NumberInputSlots {
   /**
@@ -26,6 +32,16 @@ export interface NumberInputSlots {
    * @default 'div'
    */
   endDecorator?: React.ElementType;
+  /**
+   * The component that renders the increment button.
+   * @default 'button'
+   */
+  incrementButton?: React.ElementType;
+  /**
+   * The component that renders the decrement button.
+   * @default 'button'
+   */
+  decrementButton?: React.ElementType;
 }
 
 export interface NumberInputPropsVariantOverrides {}
@@ -39,6 +55,8 @@ export type NumberInputSlotsAndSlotProps = CreateSlotsAndSlotProps<
     input: SlotProps<'input', {}, NumberInputOwnerState>;
     startDecorator: SlotProps<'span', {}, NumberInputOwnerState>;
     endDecorator: SlotProps<'span', {}, NumberInputOwnerState>;
+    incrementButton: SlotProps<'button', {}, NumberInputOwnerState>;
+    decrementButton: SlotProps<'button', {}, NumberInputOwnerState>;
   }
 >;
 
@@ -68,6 +86,14 @@ export interface NumberInputTypeMap<P = {}, D extends React.ElementType = 'div'>
        * Class name applied to the root element.
        */
       className?: string;
+      /**
+       * The component used to render decrement button.
+       */
+      decrementButton?: React.ReactNode;
+      /**
+       * The component used to render increment button.
+       */
+      incrementButton?: React.ReactNode;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'

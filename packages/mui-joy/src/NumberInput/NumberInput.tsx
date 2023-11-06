@@ -26,6 +26,8 @@ const useUtilityClasses = (ownerState: NumberInputOwnerState) => {
     input: ['input'],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
+    incrementButton: ['incrementButton'],
+    decrementButton: ['decrementButton'],
   };
 
   return composeClasses(slots, getNumberInputUtilityClass, {});
@@ -359,14 +361,6 @@ NumberInput.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  autoComplete: PropTypes.string,
-  /**
-   * @ignore
-   */
-  autoFocus: PropTypes.bool,
-  /**
-   * @ignore
-   */
   children: PropTypes.node,
   /**
    * Class name applied to the root element.
@@ -381,17 +375,9 @@ NumberInput.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * @ignore
+   * The component used to render decrement button.
    */
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  /**
-   * @ignore
-   */
-  disabled: PropTypes.bool,
+  decrementButton: PropTypes.node,
   /**
    * Trailing adornment for this input.
    */
@@ -408,29 +394,9 @@ NumberInput.propTypes /* remove-proptypes */ = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * @ignore
+   * The component used to render increment button.
    */
-  id: PropTypes.string,
-  /**
-   * @ignore
-   */
-  name: PropTypes.string,
-  /**
-   * @ignore
-   */
-  onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  placeholder: PropTypes.string,
-  /**
-   * @ignore
-   */
-  readOnly: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  required: PropTypes.bool,
+  incrementButton: PropTypes.node,
   /**
    * The size of the component.
    * @default 'md'
@@ -450,14 +416,6 @@ NumberInput.propTypes /* remove-proptypes */ = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
-  ]),
-  /**
-   * @ignore
-   */
-  value: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number,
-    PropTypes.string,
   ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
