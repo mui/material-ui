@@ -5,6 +5,12 @@ components: FormControl, FormHelperText, FormLabel, NumberInput
 unstyled: /base-ui/react-number-input/
 ---
 
+# Number Input
+
+<p class="description">The Input component facilitates the entry of text data from the user.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Basics
 
 ```jsx
