@@ -3220,7 +3220,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Improve line-height readability (#35387) @oliviertassinari
 - [docs] Improve a bit the Composition docs (#35329) @oliviertassinari
 - [docs] Refactor `ToggleButtonSizes` demo (#35375) @Armanio
-- [docs] Standardize the usage of callouts in the MUI Core docs (#35361) @samuelsycamore
+- [docs] Standardize the usage of callouts in the docs (#35361) @samuelsycamore
 - [docs] Format feedback to add a link to the commented section (#35381) @alexfauquette
 - [docs] Direct users from Material UI to Base UI for duplicated components (#35293) @samuelsycamore
 - [docs] Fix typo in FormControl API docs (#35449) @Spanishiwa
@@ -3586,7 +3586,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 16 -->[docs] Fix typo in docs title (#34926) @PunitSoniME
 - &#8203;<!-- 25 -->[docs] Fix missing emotion prefixes (#34958) @oliviertassinari
 - &#8203;<!-- 26 -->[docs] Improve UI display for copy code (#34950) @oliviertassinari
-- &#8203;<!-- 15 -->[docs] Standardize all MUI Core "Usage" pages (#34183) @samuelsycamore
+- &#8203;<!-- 15 -->[docs] Standardize all "Usage" pages (#34183) @samuelsycamore
 - &#8203;<!-- 14 -->[docs] Update templates' readme files to include required dependencies (#34757) @michaldudak
 - &#8203;<!-- 13 -->[docs] Fix inconsistent theme colors when applying custom colors in playground (#34866) @cherniavskii
 - &#8203;<!-- 12 -->[docs] Fix typo in bottom-navigation.md (#34884) @RoodyCode
@@ -3952,7 +3952,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Update the guide for migrating to TSS (#34417) @garronej
 - [docs] Fix typo in `Grid` docs (#34475) @Dustin-Digitar
 - [docs] Fix typo in `Back to top` section in AppBar docs (#34479) @Dustin-Digitar
-- [docs] Standardize all MUI Core "Installation" pages (#34168) @samuelsycamore
+- [docs] Standardize all "Installation" pages (#34168) @samuelsycamore
 - [docs] Fix webpack file name to the standard: `webpack.config.js` (#34446) @CodingItWrong
 - [docs] Fix Select `onChange` call (#34408) @siriwatknp
 - [docs] Notification for pickers blog - v5 stable (#34400) @joserodolfofreitas
