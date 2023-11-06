@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { keyframes, css, darken, lighten } from '@mui/system';
-import capitalize from '../utils/capitalize';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import useTheme from '../styles/useTheme';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
