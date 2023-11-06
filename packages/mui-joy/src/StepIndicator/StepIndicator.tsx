@@ -43,8 +43,8 @@ const StepIndicatorRoot = styled('div', {
     justifyContent: 'center',
     font: 'inherit',
     borderRadius: '50%',
-    width: 'var(--StepIndicator-size, 2rem)',
-    height: 'var(--StepIndicator-size, 2rem)',
+    width: 'var(--StepIndicator-size, 1.5rem)',
+    height: 'var(--StepIndicator-size, 1.5rem)',
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   };
 });

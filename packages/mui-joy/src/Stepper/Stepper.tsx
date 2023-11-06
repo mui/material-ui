@@ -28,7 +28,7 @@ const StepperRoot = styled('ol', {
 })<{ ownerState: StepperOwnerState }>(({ theme }) => {
   return {
     '--Stepper-indicatorColumn': 'auto', // For vertical stepper, to control the column width of the indicator.
-    '--Step-connectorThickness': '2px',
+    '--Step-connectorThickness': '1px',
     '--Step-indicatorDotSize': '0.375rem',
     variants: [
       {
@@ -37,7 +37,7 @@ const StepperRoot = styled('ol', {
           '--Stepper-verticalGap': '0.5rem',
           '--Step-gap': '0.375rem',
           '--Step-connectorInset': '0.25rem',
-          '--StepIndicator-size': '1.5rem',
+          '--StepIndicator-size': '1.25rem',
           ...theme.typography['title-sm'],
         },
       },
@@ -47,18 +47,18 @@ const StepperRoot = styled('ol', {
           '--Stepper-verticalGap': '0.75rem',
           '--Step-gap': '0.5rem',
           '--Step-connectorInset': '0.375rem',
-          '--StepIndicator-size': '2rem',
+          '--StepIndicator-size': '1.5rem',
           ...theme.typography['title-md'],
         },
       },
       {
         props: { size: 'lg' },
         style: {
-          '--Stepper-verticalGap': '1rem',
-          '--Step-gap': '0.75rem',
+          '--Stepper-verticalGap': '0.75rem',
+          '--Step-gap': '0.5rem',
           '--Step-connectorInset': '0.5rem',
-          '--StepIndicator-size': '2.5rem',
-          ...theme.typography['title-md'],
+          '--StepIndicator-size': '1.75rem',
+          ...theme.typography['title-lg'],
         },
       },
       {
