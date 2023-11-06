@@ -18,7 +18,6 @@ export default function BasicFormControl() {
   );
 }
 
-// TODO: plain CSS shouldn't use Tailwind CSS classes
 const Label = React.forwardRef(({ className: classNameProp, children }, ref) => {
   const formControlContext = useFormControlContext();
   const [dirty, setDirty] = React.useState(false);

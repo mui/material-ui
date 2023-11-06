@@ -187,8 +187,8 @@
 }
 
 .GalleryMenu--item:hover:not(.Mui-disabled) {
-  background-color: var(--GalleryMenu-item-hover-background-color var(--cyan-800), var(--cyan-50));
-  color: var(--GalleryMenu-item-hover-color var(--grey-300), var(--grey-900));
+  background-color: var(--GalleryMenu-item-hover-background-color, var(--cyan-50));
+  color: var(--GalleryMenu-item-hover-color, var(--grey-900));
 }
 
 .GalleryMenu {
