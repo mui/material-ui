@@ -56,7 +56,6 @@ export type LinearProgressProps<
   AdditionalProps = {},
 > = OverrideProps<LinearProgressTypeMap<AdditionalProps, RootComponentType>, RootComponentType>;
 
-
 /**
  * ## ARIA
  *
