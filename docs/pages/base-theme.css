@@ -363,7 +363,8 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .GalleryPopper, .GalleryPopup {
+  .GalleryPopper,
+  .GalleryPopup {
     --GalleryPopper-background-color: var(--grey-900);
     --GalleryPopper-border-color: var(--grey-700);
     --GalleryPopper-color: var(--grey-100);
@@ -384,7 +385,7 @@
   border: 1px solid var(--GallerySelect-border-color, var(--grey-200));
   color: var(--GallerySelect-color, var(--grey-900));
   position: relative;
-  box-shadow: 0px 2px 4px var(--GallerySelect-boxShadow-color, rgba(0,0,0, 0.05));
+  box-shadow: 0px 2px 4px var(--GallerySelect-boxShadow-color, rgba(0, 0, 0, 0.05));
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
@@ -421,7 +422,7 @@
   background: var(--GallerySelect-listbox-background-color, #fff);
   border: 1px solid var(--GallerySelect-listbox-border-color, var(--grey-200));
   color: var(--GallerySelect-listbox-color, var(--grey-900));
-  box-shadow: 0px 4px 6px var(--GallerySelect-listbox-boxShadow-color, rgba(0,0,0, 0.05));
+  box-shadow: 0px 4px 6px var(--GallerySelect-listbox-boxShadow-color, rgba(0, 0, 0, 0.05));
 }
 .GallerySelect-popper {
   z-index: 1;
@@ -447,7 +448,10 @@
   }
 
   &.MuiOption-highlighted.Mui-selected {
-    background-color: var(--GallerySelect-option-highlighted-selected-background-color,  var(--cyan-100));
+    background-color: var(
+      --GallerySelect-option-highlighted-selected-background-color,
+      var(--cyan-100)
+    );
     color: var(--GallerySelect-option-highlighted-selected-color, var(--cyan-900));
   }
 
@@ -466,14 +470,14 @@
     --GallerySelect-background-color: var(--grey-900);
     --GallerySelect-border-color: var(--grey-700);
     --GallerySelect-color: var(--grey-300);
-    --GallerySelect-boxShadow-color: rgba(0,0,0, 0.5);
+    --GallerySelect-boxShadow-color: rgba(0, 0, 0, 0.5);
     --GallerySelect-background-color: var(--grey-800);
     --GallerySelect-border-color: var(--grey-600);
     --GallerySelect-focusVisible-boxShadow-color: var(--cyan-600);
     --GallerySelect-listbox-background-color: var(--grey-900);
     --GallerySelect-listbox-border-color: var(--grey-700);
     --GallerySelect-listbox-color: var(--grey-300);
-    --GallerySelect-listbox-boxShadow-color: rgba(0,0,0, 0.50);
+    --GallerySelect-listbox-boxShadow-color: rgba(0, 0, 0, 0.5);
     --GallerySelect-option-selected-background-color: var(--cyan-700);
     --GallerySelect-option-selected-color: var(--cyan-50);
     --GallerySelect-option-disabled-background-color: var(--grey-800);
@@ -483,5 +487,158 @@
     --GallerySelect-option-highlighted-selected-background-color: var(--cyan-700);
     --GallerySelect-option-highlighted-selected-color: var(--cyan-50);
     --GallerySelect-option-disabled-color: var(--grey-700);
+  }
+}
+
+.GallerySlider {
+  color: var(--GallerySlider-color, var(--cyan-500));
+  height: 6px;
+  width: 100%;
+  padding: 16px 0;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.GallerySlider:hover {
+  opacity: 1;
+}
+
+.GallerySlider.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+  color: var(--GallerySlider-disabled-color, var(--grey-300));
+  opacity: 0.5;
+  outline: none;
+}
+
+.GallerySlider-rail {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: currentColor;
+  opacity: 0.4;
+}
+
+.GallerySlider-track {
+  display: block;
+  position: absolute;
+  height: 4px;
+  border-radius: 2px;
+  background-color: currentColor;
+}
+
+.GallerySlider-thumb {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin-left: -6px;
+  margin-top: -6px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  outline: 0;
+  border: 3px solid currentColor;
+  background-color: #fff;
+}
+
+.GallerySlider-thumb:hover {
+  /* TODO: alpha used, needs to be changed */
+  /* box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? var(--cyan-300) : var(--cyan-200), 0.5)}; */
+}
+
+.GallerySlider-thumb:focus-visible {
+  box-shadow: 0 0 0 4px var(--GallerySlider-focusVisible-boxShadow-color, var(--cyan-200));
+}
+
+.GallerySlider-thumb.Mui-active {
+  box-shadow: 0 0 0 4px var(--GallerySlider-active-boxShadow-color, var(--cyan-300));
+}
+
+@media (prefers-color-scheme: dark) {
+  .GallerySlider {
+    --GallerySlider-color: var(--cyan-300);
+    --GallerySlider-disabled-color: var(--grey-600);
+    --GallerySlider-focusVisible-boxShadow-color: var(--cyan-700);
+    --GallerySlider-active-boxShadow-color: var(--cyan-600);
+  }
+}
+
+@keyframes in-right {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.GallerySnackbar {
+  position: fixed;
+  z-index: 5500;
+  display: flex;
+  bottom: 16px;
+  right: 16px;
+  max-width: 560px;
+  min-width: 300px;
+}
+
+.GallerySnackbar-content {
+  display: flex;
+  gap: 8px;
+  overflow: hidden;
+  background-color: var(--GallerySnackbar-content-background-color, #fff);
+  border-radius: 8px;
+  border: 1px solid var(--GallerySnackbar-content-border-color, var(--grey-200));
+  box-shadow: 0 2px 16px var(--GallerySnackbar-content-boxShadow-color, var(--grey-200));
+  padding: 0.75rem;
+  color: var(--GallerySnackbar-content-color, var(--grey-900));
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 500;
+  text-align: start;
+  position: relative;
+
+  & .snackbar-message {
+    flex: 1 1 0%;
+    max-width: 100%;
+  }
+
+  & .snackbar-title {
+    margin: 0;
+    line-height: 1.5rem;
+    margin-right: 0.5rem;
+  }
+
+  & .snackbar-description {
+    margin: 0;
+    line-height: 1.5rem;
+    font-weight: 400;
+    color: var(--GallerySnackbar-description-color, var(--grey-800));
+  }
+
+  & .snackbar-close-icon {
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 2px;
+    border-radius: 4px;
+
+    &:hover {
+      background: var(--GallerySnackbar-closeIcon-background-color, var(--grey-50));
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .GallerySnackbar {
+    --GallerySnackbar-content-background-color: var(--grey-900);
+    --GallerySnackbar-content-border-color: var(--grey-700);
+    --GallerySnackbar-content-color: var(--grey-50);
+    --GallerySnackbar-description-color: var(--grey-400);
+    --GallerySnackbar-closeIcon-background-color: var(--grey-800);
+    --GallerySnackbar-content-boxShadow-color: rgba(0, 0, 0, 0.5);
   }
 }
