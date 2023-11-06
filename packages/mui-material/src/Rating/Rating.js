@@ -367,14 +367,16 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     }
 
     const rootNode = rootRef.current;
-    const { right, left } = rootNode.getBoundingClientRect();
-    const { width } = rootNode.firstChild.getBoundingClientRect();
+    const { right, left, width: containerWidth } = rootNode.getBoundingClientRect();
+
+    const itemWidth = containerWidth / max;
+
     let percent;
 
     if (theme.direction === 'rtl') {
-      percent = (right - event.clientX) / (width * max);
+      percent = (right - event.clientX) / (itemWidth * max);
     } else {
-      percent = (event.clientX - left) / (width * max);
+      percent = (event.clientX - left) / (itemWidth * max);
     }
 
     let newHover = roundValueToPrecision(max * percent + precision / 2, precision);
