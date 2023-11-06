@@ -46,9 +46,7 @@ describe('<Rating />', () => {
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
       left: 0,
       right: 100,
-    }));
-    stub(container.firstChild.firstChild, 'getBoundingClientRect').callsFake(() => ({
-      width: 20,
+      width: 100,
     }));
     fireEvent.mouseMove(container.firstChild, {
       clientX: 19,
