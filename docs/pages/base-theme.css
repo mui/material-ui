@@ -346,6 +346,7 @@
   }
 }
 
+/* TODO: Same styles applied here, split to use different CSS vars */
 .GalleryPopper,
 .GalleryPopup {
   background-color: var(--GalleryPopper-background-color, #fff);
@@ -362,10 +363,125 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .GalleryPopper {
+  .GalleryPopper, .GalleryPopup {
     --GalleryPopper-background-color: var(--grey-900);
     --GalleryPopper-border-color: var(--grey-700);
     --GalleryPopper-color: var(--grey-100);
     --GalleryPopper-boxShadow-color: rgb(0 0 0 / 0.7);
+  }
+}
+
+.GallerySelect {
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  min-width: 320px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-align: left;
+  line-height: 1.5;
+  background: var(--GallerySelect-background-color, #fff);
+  border: 1px solid var(--GallerySelect-border-color, var(--grey-200));
+  color: var(--GallerySelect-color, var(--grey-900));
+  position: relative;
+  box-shadow: 0px 2px 4px var(--GallerySelect-boxShadow-color, rgba(0,0,0, 0.05));
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 120ms;
+
+  &:hover {
+    background: var(--GallerySelect-background-color, var(--grey-50));
+    border-color: var(--GallerySelect-border-color, var(--grey-300));
+  }
+
+  &.Mui-focusVisible {
+    outline: 0;
+    border-color: var(--cyan-400);
+    box-shadow: 0 0 0 3px var(--GallerySelect-focusVisible-boxShadow-color, var(--cyan-200));
+  }
+
+  & > svg {
+    font-size: 1rem;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 10px;
+  }
+}
+.GallerySelect-listbox {
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  padding: 6px;
+  margin: 12px 0;
+  min-width: 320px;
+  border-radius: 12px;
+  overflow: auto;
+  outline: 0px;
+  background: var(--GallerySelect-listbox-background-color, #fff);
+  border: 1px solid var(--GallerySelect-listbox-border-color, var(--grey-200));
+  color: var(--GallerySelect-listbox-color, var(--grey-900));
+  box-shadow: 0px 4px 6px var(--GallerySelect-listbox-boxShadow-color, rgba(0,0,0, 0.05));
+}
+.GallerySelect-popper {
+  z-index: 1;
+}
+.GallerySelect-option {
+  list-style: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: default;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  &.Mui-selected {
+    background-color: var(--GallerySelect-option-selected-background-color, var(--cyan-100));
+    color: var(--GallerySelect-option-selected-color, var(--cyan-900));
+  }
+
+  &.MuiOption-highlighted {
+    background-color: var(--SelectGallery-option-highlighted-background-color, var(--grey-100));
+    color: var(--SelectGallery-option-highlighted-color, var(--grey-900));
+  }
+
+  &.MuiOption-highlighted.Mui-selected {
+    background-color: var(--GallerySelect-option-highlighted-selected-background-color,  var(--cyan-100));
+    color: var(--GallerySelect-option-highlighted-selected-color, var(--cyan-900));
+  }
+
+  &.Mui-disabled {
+    color: var(--GallerySelect-option-disabled-color var(--grey-700), var(--grey-400));
+  }
+
+  &:hover:not(.Mui-disabled) {
+    background-color: var(--GallerySelect-option-disabled-background-color, var(--grey-100));
+    color: var(--GallerySelect-option-disabled-color, var(--grey-900));
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .GallerySelect {
+    --GallerySelect-background-color: var(--grey-900);
+    --GallerySelect-border-color: var(--grey-700);
+    --GallerySelect-color: var(--grey-300);
+    --GallerySelect-boxShadow-color: rgba(0,0,0, 0.5);
+    --GallerySelect-background-color: var(--grey-800);
+    --GallerySelect-border-color: var(--grey-600);
+    --GallerySelect-focusVisible-boxShadow-color: var(--cyan-600);
+    --GallerySelect-listbox-background-color: var(--grey-900);
+    --GallerySelect-listbox-border-color: var(--grey-700);
+    --GallerySelect-listbox-color: var(--grey-300);
+    --GallerySelect-listbox-boxShadow-color: rgba(0,0,0, 0.50);
+    --GallerySelect-option-selected-background-color: var(--cyan-700);
+    --GallerySelect-option-selected-color: var(--cyan-50);
+    --GallerySelect-option-disabled-background-color: var(--grey-800);
+    --GallerySelect-option-disabled-color: var(--grey-300);
+    --SelectGallery-option-highlighted-background-color: var(--grey-800);
+    --SelectGallery-option-highlighted-color: var(--grey-300);
+    --GallerySelect-option-highlighted-selected-background-color: var(--cyan-700);
+    --GallerySelect-option-highlighted-selected-color: var(--cyan-50);
+    --GallerySelect-option-disabled-color: var(--grey-700);
   }
 }

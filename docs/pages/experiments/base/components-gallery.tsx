@@ -10,6 +10,8 @@ import { Dropdown } from '@mui/base/Dropdown';
 import { Popper } from '@mui/base/Popper';
 import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
 import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
+import { Select } from '@mui/base/Select';
+import { Option } from '@mui/base/Option';
 
 export default function ComponentsGallery() {
   // Popper demo
@@ -101,6 +103,29 @@ export default function ComponentsGallery() {
         <Popup id={popupId} open={popupOpen} anchor={popupAnchor}>
           <div className="GalleryPopup">The content of the Popup.</div>
         </Popup>
+      </div>
+      <div>
+        <Select
+          className="GallerySelect"
+          slots={{
+            root: Button,
+          }}
+          slotProps={{
+            listbox: { className: 'GallerySelect-listbox' },
+            popper: { className: 'GallerySelect-popper' },
+          }}
+          defaultValue={10}
+        >
+          <Option className="GallerySelect-option" value={10}>
+            Documentation
+          </Option>
+          <Option className="GallerySelect-option" value={20}>
+            Components
+          </Option>
+          <Option className="GallerySelect-option" value={30}>
+            Features
+          </Option>
+        </Select>
       </div>
     </Stack>
   );
