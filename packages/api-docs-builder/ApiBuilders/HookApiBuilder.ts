@@ -19,7 +19,6 @@ import {
   writePrettifiedFile,
 } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import muiDefaultParamsHandler from '../utils/defaultParamsHandler';
 
 interface ParsedProperty {
   name: string;
@@ -568,7 +567,7 @@ export default async function generateHookApi(
       });
       return node;
     },
-    defaultHandlers.concat(muiDefaultParamsHandler),
+    defaultHandlers,
     { filename },
   );
 
