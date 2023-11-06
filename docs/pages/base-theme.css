@@ -345,3 +345,27 @@
     --GalleryNumberInput-btn-background-color: var(--grey-900);
   }
 }
+
+.GalleryPopper,
+.GalleryPopup {
+  background-color: var(--GalleryPopper-background-color, #fff);
+  border-radius: 8px;
+  border: 1px solid var(--GalleryPopper-color, var(--grey-200));
+  box-shadow: 0 4px 8px var(--GalleryPopper-boxShadow-color, rgb(0 0 0 / 0.1));
+  padding: 0.75rem;
+  color: var(--GalleryPopper-color, var(--grey-700));
+  font-size: 0.875rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  opacity: 1;
+  margin: 0.25rem 0px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .GalleryPopper {
+    --GalleryPopper-background-color: var(--grey-900);
+    --GalleryPopper-border-color: var(--grey-700);
+    --GalleryPopper-color: var(--grey-100);
+    --GalleryPopper-boxShadow-color: rgb(0 0 0 / 0.7);
+  }
+}
