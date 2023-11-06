@@ -3,8 +3,8 @@ import Stepper from '@mui/joy/Stepper';
 import Step, { stepClasses } from '@mui/joy/Step';
 import StepIndicator, { stepIndicatorClasses } from '@mui/joy/StepIndicator';
 import Typography from '@mui/joy/Typography';
-import Check from '@mui/icons-material/Check';
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 
 export default function DottedConnector() {
   return (
@@ -42,7 +42,7 @@ export default function DottedConnector() {
         orientation="vertical"
         indicator={
           <StepIndicator variant="solid" color="primary">
-            <Check />
+            <CheckRoundedIcon />
           </StepIndicator>
         }
       >
@@ -63,7 +63,7 @@ export default function DottedConnector() {
         orientation="vertical"
         indicator={
           <StepIndicator variant="solid" color="primary">
-            <Check />
+            <CheckRoundedIcon />
           </StepIndicator>
         }
       >
@@ -84,7 +84,7 @@ export default function DottedConnector() {
         orientation="vertical"
         indicator={
           <StepIndicator variant="outlined" color="primary">
-            <KeyboardArrowDown />
+            <KeyboardArrowDownRoundedIcon />
           </StepIndicator>
         }
       >
