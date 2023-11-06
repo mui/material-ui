@@ -8,13 +8,13 @@ import {
   act,
   fireEvent,
 } from '@mui-internal/test-utils';
-import Input, { numberInputClasses as classes } from '@mui/joy/NumberInput';
+import NumberInput, { numberInputClasses as classes } from '@mui/joy/NumberInput';
 import { ThemeProvider } from '@mui/joy/styles';
 
-describe('Joy <Input />', () => {
+describe('Joy <NumberInput />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Input startDecorator="1" endDecorator="2" />, () => ({
+  describeConformance(<NumberInput startDecorator="1" endDecorator="2" />, () => ({
     render,
     classes,
     ThemeProvider,
@@ -33,40 +33,40 @@ describe('Joy <Input />', () => {
   }));
 
   it('should have placeholder', () => {
-    const { getByPlaceholderText } = render(<Input placeholder="Placeholder" />);
+    const { getByPlaceholderText } = render(<NumberInput placeholder="Placeholder" />);
     expect(getByPlaceholderText('Placeholder')).toBeVisible();
   });
 
   it('should have error classes', () => {
-    const { container } = render(<Input error />);
+    const { container } = render(<NumberInput error />);
     expect(container.firstChild).to.have.class(classes.error);
   });
 
   it('should have fullWidth classes', () => {
-    const { container } = render(<Input fullWidth />);
+    const { container } = render(<NumberInput fullWidth />);
     expect(container.firstChild).to.have.class(classes.fullWidth);
   });
 
   it('should have startDecorator', () => {
-    render(<Input startDecorator={<span data-testid="start">start</span>} />);
+    render(<NumberInput startDecorator={<span data-testid="start">start</span>} />);
     expect(screen.getByTestId('start')).toBeVisible();
   });
 
   it('should have endDecorator', () => {
-    render(<Input endDecorator={<span data-testid="end">end</span>} />);
+    render(<NumberInput endDecorator={<span data-testid="end">end</span>} />);
     expect(screen.getByTestId('end')).toBeVisible();
   });
 
   describe('prop: required', () => {
     it('should pass to `input` element', () => {
-      const { getByRole } = render(<Input required />);
+      const { getByRole } = render(<NumberInput required />);
       expect(getByRole('textbox')).to.have.attribute('required');
     });
   });
 
   describe('prop: disabled', () => {
     it('should have disabled classes', () => {
-      const { container, getByRole } = render(<Input disabled />);
+      const { container, getByRole } = render(<NumberInput disabled />);
       expect(getByRole('textbox')).to.have.attribute('disabled');
       expect(container.firstChild).to.have.class(classes.disabled);
     });
@@ -74,7 +74,7 @@ describe('Joy <Input />', () => {
     it('should reset the focused state if getting disabled', () => {
       const handleBlur = spy();
       const handleFocus = spy();
-      const { getByRole, setProps } = render(<Input onBlur={handleBlur} onFocus={handleFocus} />);
+      const { getByRole, setProps } = render(<NumberInput onBlur={handleBlur} onFocus={handleFocus} />);
 
       act(() => {
         getByRole('textbox').focus();
@@ -93,7 +93,7 @@ describe('Joy <Input />', () => {
       const handleKeyDown = spy();
       const handleKeyUp = spy();
       const { getByRole } = render(
-        <Input slotProps={{ input: { onKeyDown: handleKeyDown, onKeyUp: handleKeyUp } }} />,
+        <NumberInput slotProps={{ input: { onKeyDown: handleKeyDown, onKeyUp: handleKeyUp } }} />,
       );
 
       act(() => {
@@ -110,7 +110,7 @@ describe('Joy <Input />', () => {
       const handleBlur = spy();
       const handleFocus = spy();
       const { getByRole } = render(
-        <Input slotProps={{ input: { onFocus: handleFocus, onBlur: handleBlur } }} />,
+        <NumberInput slotProps={{ input: { onFocus: handleFocus, onBlur: handleBlur } }} />,
       );
 
       act(() => {
@@ -127,7 +127,7 @@ describe('Joy <Input />', () => {
       const handleFocus = spy();
       const handleSlotFocus = spy();
       const { getByRole } = render(
-        <Input onFocus={handleFocus} slotProps={{ input: { onFocus: handleSlotFocus } }} />,
+        <NumberInput onFocus={handleFocus} slotProps={{ input: { onFocus: handleSlotFocus } }} />,
       );
 
       act(() => {

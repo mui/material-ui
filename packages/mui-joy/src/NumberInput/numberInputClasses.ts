@@ -57,7 +57,7 @@ export function getNumberInputUtilityClass(slot: string): string {
   return generateUtilityClass('MuiNumberInput', slot);
 }
 
-const numberInputClasses: NumberInputClasses = generateUtilityClasses('MuiInput', [
+const numberInputClasses: NumberInputClasses = generateUtilityClasses('MuiNumberInput', [
   'root',
   'input',
   'formControl',

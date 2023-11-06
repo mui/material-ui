@@ -212,25 +212,25 @@ export const StyledNumberInputEndDecorator = styled('div')<{ ownerState: NumberI
 });
 
 const InputRoot = styled(StyledNumberInputRoot, {
-  name: 'JoyInput',
+  name: 'JoyNumberInput',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
 
 const InputInput = styled(StyledNumberInputHtml, {
-  name: 'JoyInput',
+  name: 'JoyNumberInput',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
 })({});
 
 const InputStartDecorator = styled(StyledNumberInputStartDecorator, {
-  name: 'JoyInput',
+  name: 'JoyNumberInput',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })({});
 
 const InputEndDecorator = styled(StyledNumberInputEndDecorator, {
-  name: 'JoyInput',
+  name: 'JoyNumberInput',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })({});
@@ -247,7 +247,7 @@ const InputEndDecorator = styled(StyledNumberInputEndDecorator, {
 const NumberInput = React.forwardRef(function Input(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'JoyInput',
+    name: 'JoyNumberInput',
   });
 
   const {
