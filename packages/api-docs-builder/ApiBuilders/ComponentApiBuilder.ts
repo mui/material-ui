@@ -865,7 +865,7 @@ export default async function generateComponentApi(
     generateApiTranslations(
       path.join(process.cwd(), translationPagesDirectory),
       reactApi,
-      projectSettings.languages,
+      projectSettings.translationLanguages,
     );
 
     // Once we have the tabs API in all projects, we can make this default

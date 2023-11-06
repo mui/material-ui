@@ -17,7 +17,7 @@ export const projectSettings: ProjectSettings = {
   ],
   getApiPages: () => findApiPages('docs/pages/system/api'),
   getComponentInfo: getSystemComponentInfo,
-  languages: LANGUAGES,
+  translationLanguages: LANGUAGES,
   skipComponent(filename) {
     return filename.match(/(ThemeProvider|CssVarsProvider|GlobalStyles)/) !== null;
   },

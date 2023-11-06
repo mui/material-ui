@@ -22,7 +22,7 @@ export const projectSettings: ProjectSettings = {
   ],
   getApiPages: () => findApiPages('docs/pages/material-ui/api'),
   getComponentInfo: getMaterialUiComponentInfo,
-  languages: LANGUAGES,
+  translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
     return filename.match(/(ThemeProvider|CssVarsProvider|Grid2)/) !== null;
   },

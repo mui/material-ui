@@ -610,7 +610,7 @@ export default async function generateHookApi(
     generateApiTranslations(
       path.join(process.cwd(), 'docs/translations/api-docs'),
       reactApi,
-      projectSettings.languages,
+      projectSettings.translationLanguages,
     );
     generateApiJson(apiPagesDirectory, reactApi);
 

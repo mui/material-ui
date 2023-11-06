@@ -21,7 +21,7 @@ export const projectSettings: ProjectSettings = {
   getApiPages: () => findApiPages('docs/pages/base-ui/api'),
   getComponentInfo: getBaseUiComponentInfo,
   getHookInfo: getBaseUiHookInfo,
-  languages: LANGUAGES,
+  translationLanguages: LANGUAGES,
   skipComponent: () => false,
   onCompleted: () => {
     generateBaseUIApiPages();

@@ -17,7 +17,7 @@ export const projectSettings: ProjectSettings = {
   ],
   getApiPages: () => findApiPages('docs/pages/joy-ui/api'),
   getComponentInfo: getJoyUiComponentInfo,
-  languages: LANGUAGES,
+  translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
     // Box's demo isn't ready
     // Container's demo isn't ready

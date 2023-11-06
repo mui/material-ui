@@ -21,6 +21,9 @@ export interface ProjectSettings {
    * Callback function to be called when the API generation is completed
    */
   onCompleted?: () => void;
+  /**
+   * Callback to customize the manifest file before it's written to the disk
+   */
   onWritingManifestFile?: (
     builds: PromiseSettledResult<ComponentReactApi | HookReactApi | null | never[]>[],
     source: string,
@@ -28,7 +31,7 @@ export interface ProjectSettings {
   /**
    * Languages to which the API docs will be generated
    */
-  languages: string[];
+  translationLanguages: string[];
   /**
    * Fuction called to detemine whether to skip the generation of a particular component's API docs
    */
