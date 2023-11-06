@@ -1,4 +1,4 @@
-export default [
+export const migratedBaseComponents = [
   'Badge',
   'Button',
   'ClickAwayListener',

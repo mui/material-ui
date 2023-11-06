@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import getBaseUiComponentInfo from './getBaseUiComponentInfo';
+import { getBaseUiComponentInfo } from './getBaseUiComponentInfo';
 
 describe('getBaseUiComponentInfo', () => {
   it('return correct info for base component file', () => {

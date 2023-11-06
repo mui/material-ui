@@ -12,7 +12,7 @@ import {
 } from '@mui-internal/api-docs-builder/buildApiUtils';
 import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
 
-export default function getJoyComponentInfo(filename: string): ComponentInfo {
+export function getJoyUiComponentInfo(filename: string): ComponentInfo {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
   if (!name) {

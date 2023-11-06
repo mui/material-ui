@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import getBaseUiHookInfo from './getBaseUiHookInfo';
+import { getBaseUiHookInfo } from './getBaseUiHookInfo';
 
 describe('getBaseUiHookInfo', () => {
   it('return correct info for base hook file', () => {

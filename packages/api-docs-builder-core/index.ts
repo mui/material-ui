@@ -1,4 +1,4 @@
-export { default as baseUiProjectSettings } from './baseUi/projectSettings';
-export { default as joyUiProjectSettings } from './joyUi/projectSettings';
-export { default as materialUiProjectSettings } from './materialUi/projectSettings';
-export { default as muiSystemProjectSettings } from './muiSystem/projectSettings';
+export { projectSettings as baseUiProjectSettings } from './baseUi/projectSettings';
+export { projectSettings as joyUiProjectSettings } from './joyUi/projectSettings';
+export { projectSettings as materialUiProjectSettings } from './materialUi/projectSettings';
+export { projectSettings as muiSystemProjectSettings } from './muiSystem/projectSettings';

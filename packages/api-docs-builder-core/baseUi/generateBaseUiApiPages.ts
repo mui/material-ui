@@ -5,7 +5,7 @@ import { getHeaders } from '@mui/markdown';
 import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
 import { writePrettifiedFile } from '@mui-internal/api-docs-builder/buildApiUtils';
 
-export default function generateBaseUIApiPages() {
+export function generateBaseUIApiPages() {
   findPagesMarkdown().forEach((markdown) => {
     const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
     const markdownHeaders = getHeaders(markdownContent) as any;

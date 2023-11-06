@@ -2,9 +2,9 @@ import path from 'path';
 import { LANGUAGES } from 'docs/config';
 import { ProjectSettings } from '@mui-internal/api-docs-builder';
 import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
-import getSystemComponentInfo from './getSystemComponentInfo';
+import { getSystemComponentInfo } from './getSystemComponentInfo';
 
-const muiSystemSettings: ProjectSettings = {
+export const projectSettings: ProjectSettings = {
   output: {
     apiManifestPath: path.join(process.cwd(), 'docs/data/system/pagesApi.js'),
   },
@@ -22,5 +22,3 @@ const muiSystemSettings: ProjectSettings = {
     return filename.match(/(ThemeProvider|CssVarsProvider|GlobalStyles)/) !== null;
   },
 };
-
-export default muiSystemSettings;

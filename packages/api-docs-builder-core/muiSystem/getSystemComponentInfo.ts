@@ -35,7 +35,7 @@ const migratedBaseComponents = [
   'Tab',
 ];
 
-export default function getSystemComponentInfo(filename: string): ComponentInfo {
+export function getSystemComponentInfo(filename: string): ComponentInfo {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
   if (!name) {

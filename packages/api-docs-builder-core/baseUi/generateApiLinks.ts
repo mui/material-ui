@@ -5,7 +5,7 @@ import { ReactApi as HookReactApi } from '@mui-internal/api-docs-builder/ApiBuil
 /**
  * Generates the api links, in a format that would point to the appropriate API tab
  */
-export default function generateApiLinks(
+export function generateApiLinks(
   builds: PromiseSettledResult<ComponentReactApi | HookReactApi | never[] | null>[],
 ) {
   const apiLinks: { pathname: string; title: string }[] = [];

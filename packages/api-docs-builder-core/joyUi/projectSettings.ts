@@ -2,9 +2,9 @@ import path from 'path';
 import { LANGUAGES } from 'docs/config';
 import { ProjectSettings } from '@mui-internal/api-docs-builder';
 import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
-import getJoyUiComponentInfo from './getJoyUiComponentInfo';
+import { getJoyUiComponentInfo } from './getJoyUiComponentInfo';
 
-const projectSettings: ProjectSettings = {
+export const projectSettings: ProjectSettings = {
   output: {
     apiManifestPath: path.join(process.cwd(), 'docs/data/joy/pagesApi.js'),
   },
@@ -30,5 +30,3 @@ const projectSettings: ProjectSettings = {
     );
   },
 };
-
-export default projectSettings;

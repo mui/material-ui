@@ -2,12 +2,12 @@ import path from 'path';
 import { LANGUAGES } from 'docs/config';
 import { ProjectSettings } from '@mui-internal/api-docs-builder';
 import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
-import getBaseUiComponentInfo from './getBaseUiComponentInfo';
-import getBaseUiHookInfo from './getBaseUiHookInfo';
-import generateBaseUIApiPages from './generateBaseUiApiPages';
-import generateApiLinks from './generateApiLinks';
+import { getBaseUiComponentInfo } from './getBaseUiComponentInfo';
+import { getBaseUiHookInfo } from './getBaseUiHookInfo';
+import { generateBaseUIApiPages } from './generateBaseUiApiPages';
+import { generateApiLinks } from './generateApiLinks';
 
-const projectSettings: ProjectSettings = {
+export const projectSettings: ProjectSettings = {
   output: {
     apiManifestPath: path.join(process.cwd(), 'docs/data/base/pagesApi.js'),
   },
@@ -35,5 +35,3 @@ const projectSettings: ProjectSettings = {
     return source;
   },
 };
-
-export default projectSettings;

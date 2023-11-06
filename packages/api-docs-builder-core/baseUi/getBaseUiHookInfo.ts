@@ -11,9 +11,9 @@ import {
   parseFile,
 } from '@mui-internal/api-docs-builder/buildApiUtils';
 import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
-import migratedBaseComponents from './migratedBaseComponents';
+import { migratedBaseComponents } from './migratedBaseComponents';
 
-export default function getBaseHookInfo(filename: string): HookInfo {
+export function getBaseUiHookInfo(filename: string): HookInfo {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
   if (!name) {
