@@ -12,7 +12,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 ### `@mui/material@5.14.17`
 
 - [Dialog] Should not close until the IME is cancelled (#39713) @megos
-- [InputBase] Add `sx` type to `input` , `root` slot (#39569) @sai6855
+- [InputBase] Add `sx` type to `input` and `root` slot (#39569) @sai6855
 
 ### `@mui/joy@5.0.0-beta.13`
 
@@ -27,6 +27,10 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 - [InputBase] InputBase slotProps accepts sx type (#39714) @mj12albert
 - [OutlinedInput] Copy v5 OutlinedInput (#39698) @mj12albert
+
+### `@mui/lab@5.0.0-alpha.152`
+
+- [TreeView] Remove tree view import from @mui/lab (#39685) @alexfauquette
 
 ### Docs
 
