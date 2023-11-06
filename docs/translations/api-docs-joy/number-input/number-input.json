@@ -5,6 +5,7 @@
     "color": {
       "description": "The color of the component. It supports those theme colors that make sense for this component."
     },
+    "decrementButton": { "description": "The component used to render decrement button." },
     "endDecorator": { "description": "Trailing adornment for this input." },
     "error": {
       "description": "If <code>true</code>, the <code>input</code> will indicate an error. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
@@ -12,6 +13,7 @@
     "fullWidth": {
       "description": "If <code>true</code>, the input will take up the full width of its container."
     },
+    "incrementButton": { "description": "The component used to render increment button." },
     "size": { "description": "The size of the component." },
     "startDecorator": { "description": "Leading adornment for this input." },
     "sx": {

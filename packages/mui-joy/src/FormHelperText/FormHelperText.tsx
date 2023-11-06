@@ -46,7 +46,7 @@ const FormHelperTextRoot = styled('div', {
  * Demos:
  *
  * - [Input](https://mui.com/joy-ui/react-input/)
- * - [Basics](https://mui.com/joy-ui/react-number-input/)
+ * - [Number Input](https://mui.com/joy-ui/react-number-input/)
  *
  * API:
  *

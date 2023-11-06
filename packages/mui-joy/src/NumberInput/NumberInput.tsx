@@ -238,7 +238,7 @@ const InputEndDecorator = styled(StyledNumberInputEndDecorator, {
  *
  * Demos:
  *
- * - [Basics](https://mui.com/joy-ui/react-number-input/)
+ * - [Number Input](https://mui.com/joy-ui/react-number-input/)
  *
  * API:
  *

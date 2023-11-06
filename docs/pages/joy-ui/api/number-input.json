@@ -8,9 +8,11 @@
       },
       "additionalInfo": { "joy-color": true }
     },
+    "decrementButton": { "type": { "name": "node" } },
     "endDecorator": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "fullWidth": { "type": { "name": "bool" } },
+    "incrementButton": { "type": { "name": "node" } },
     "size": {
       "type": {
         "name": "union",
@@ -107,6 +109,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/NumberInput/NumberInput.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/joy-ui/react-number-input/\">Basics</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-number-input/\">Number Input</a></li></ul>",
   "cssComponent": false
 }
