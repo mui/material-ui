@@ -115,3 +115,233 @@
     --GaleryButton-disabled-hover-background-color: var(--grey-700);
   }
 }
+
+.GalleryInput .MuiInput-input {
+  width: 320px;
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--GalleryInput-input-color, var(--grey-900));
+  background: var(--GalleryInput-input-background-color, '#fff');
+  border: 1px solid var(--GalleryInput-input-border-color, var(--grey-200));
+  box-shadow: 0px 2px 2px var(--GalleryInput-input-boxShadow-color, var(--grey-50));
+}
+.GalleryInput .MuiInput-input:hover {
+  border-color: var(--cyan-400);
+}
+.GalleryInput .MuiInput-input:focus {
+  outline: 0;
+  border-color: var(--cyan-400);
+  box-shadow: 0 0 0 3px var(--GalleryInput-input-focus-boxShadow-color, var(--cyan-200));
+}
+
+@media (prefers-color-scheme: dark) {
+  .GalleryInput {
+    --GalleryInput-input-color: var(--grey-300);
+    --GalleryInput-input-background-color: var(--grey-900);
+    --GalleryInput-input-border-color: var(--grey-700);
+    --GalleryInput-input-boxShadow-color: var(--grey-900);
+    --GalleryInput-input-focus-boxShadow-color: var(--cyan-600);
+  }
+}
+
+.GalleryMenu--listbox {
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  padding: 6px;
+  margin: 12px 0;
+  min-width: 200px;
+  border-radius: 12px;
+  overflow: auto;
+  outline: 0px;
+  background: var(--GalleryMenu-listbox-background, #fff);
+  border: 1px solid var(--GalleryMenu-listbox-border-color, var(--grey-200));
+  color: var(--GalleryMenu-listbox-color, var(--grey-900));
+  box-shadow: 0px 4px 30px var(--GalleryMenu-listbox-boxShadow-color, var(--grey-200));
+}
+
+.GalleryMenu--item {
+  list-style: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: default;
+  user-select: none;
+}
+
+.GalleryMenu--item:last-of-type {
+  border-bottom: none;
+}
+
+.GalleryMenu--item.Mui-focusVisible {
+  outline: 3px solid var(--GalleryMenu-item-outline-color, var(--cyan-200));
+  background-color: var(--GalleryMenu-item-background-color, var(--grey-100));
+  color: var(--GalleryMenu-item-color, var(--grey-900));
+}
+
+.GalleryMenu--item.Mui-disabled {
+  color: var(--GalleryMenu-item-disabled-color, var(--grey-400));
+}
+
+.GalleryMenu--item:hover:not(.Mui-disabled) {
+  background-color: var(--GalleryMenu-item-hover-background-color var(--cyan-800), var(--cyan-50));
+  color: var(--GalleryMenu-item-hover-color var(--grey-300), var(--grey-900));
+}
+
+.GalleryMenu {
+  z-index: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .GalleryInput {
+    --GalleryMenu-listbox-background: var(--grey-900);
+    --GalleryMenu-listbox-border-color: var(--grey-700);
+    --GalleryMenu-listbox-color: var(--grey-300);
+    --GalleryMenu-listbox-boxShadow-color: var(--grey-900);
+    --GalleryMenu-item-outline-color: var(--cyan-600);
+    --GalleryMenu-item-background-color: var(--grey-800);
+    --GalleryMenu-item-color: var(--grey-300);
+    --GalleryMenu-item-disabled-color: var(--grey-700);
+    --GalleryMenu-item-hover-background-color: var(--cyan-800);
+    --GalleryMenu-item-hover-color: var(--grey-300);
+  }
+}
+
+.GalleryNumberInput {
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 400;
+  border-radius: 8px;
+  color: var(--GalleryNumberInput-color, var(--grey-900));
+  background: var(--GalleryNumberInput-background-color, '#fff');
+  border: 1px solid var(--GalleryNumberInput-border-color, var(--grey-200));
+  box-shadow: 0px 2px 4px var(--GalleryNumberInput-boxShadow-color, rgba(0, 0, 0, 0.05));
+  display: grid;
+  grid-template-columns: 1fr 19px;
+  grid-template-rows: 1fr 1fr;
+  overflow: hidden;
+  column-gap: 8px;
+  padding: 4px;
+}
+
+.GalleryNumberInput:hover {
+  border-color: var(--cyan-400);
+}
+
+.GalleryNumberInput.Mui-focused {
+  border-color: var(--cyan-400);
+  box-shadow: 0 0 0 3px var(--GalleryNumberInput-focused-boxShadow-color, var(--cyan-200));
+}
+
+.GalleryNumberInput .input {
+  font-size: 0.875rem;
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+  grid-column: 1/2;
+  grid-row: 1/3;
+  color: var(--GalleryNumberInput-input-color, var(--grey-900));
+  background: inherit;
+  border: none;
+  border-radius: inherit;
+  padding: 8px 12px;
+  outline: 0;
+}
+
+.GalleryNumberInput .input:focus-visible {
+  outline: 0;
+}
+
+.GalleryNumberInput .btn {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  appearance: none;
+  padding: 0;
+  width: 19px;
+  height: 19px;
+  font-family: system-ui, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1;
+  box-sizing: border-box;
+  background: var(--GalleryNumberInput-btn-background-color, '#fff');
+  border: 0;
+  color: var(--GalleryNumberInput-btn-color, var(--grey-900));
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 120ms;
+}
+
+.GalleryNumberInput .btn:hover {
+  background: var(--GalleryNumberInput-btn-hover-background-color, var(--grey-50));
+  border-color: var(--GalleryNumberInput-btn-hover-border-color, var(--grey-300));
+  cursor: pointer;
+}
+
+.GalleryNumberInput .btn.increment {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border: 1px solid;
+  border-bottom: 0;
+  border-color: var(--GalleryNumberInput-btn-increment-border-color, var(--grey-200));
+  background: var(--GalleryNumberInput-btn-increment-background-color, var(--grey-50));
+  color: var(--GalleryNumberInput-btn-increment-color, var(--grey-900));
+
+  &:hover {
+    cursor: pointer;
+    color: #fff;
+    background: var(--GalleryNumberInput-btn-increment-hover-background-color, var(--cyan-500));
+    border-color: var(--GalleryNumberInput-btn-increment-hover-color, var(--cyan-600));
+  }
+}
+
+.GalleryNumberInput .btn.decrement {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border: 1px solid;
+  border-color: var(--GalleryNumberInput-btn-decrement-border-color, var(--grey-200));
+  background: var(--GalleryNumberInput-btn-decrement-background-color, var(--grey-50));
+  color: var(--GalleryNumberInput-btn-decrement-color, var(--grey-900));
+}
+
+.GalleryNumberInput .btn.decrement:hover {
+  cursor: pointer;
+  color: #fff;
+  background: var(--GalleryNumberInput-btn-decrement-hover-background-color, var(--cyan-500));
+  border-color: var(--GalleryNumberInput-btn-decrement-hover-border-color, var(--cyan-600));
+}
+.GalleryNumberInput .btn.decrement .arrow {
+  transform: translateY(-1px);
+}
+
+@media (prefers-color-scheme: dark) {
+  .GalleryNumberInput {
+    --GalleryNumberInput-color: var(--grey-300);
+    --GalleryNumberInput-background-color: var(--grey-900);
+    --GalleryNumberInput-border-color: var(--grey-700);
+    --GalleryNumberInput-boxShadow-color: gba(0, 0, 0, 0.5);
+    --GalleryNumberInput-focused-boxShadow-color: var(--cyan-500);
+    --GalleryNumberInput-input-color: var(--grey-300);
+    --GalleryNumberInput-btn-color: var(--grey-300);
+    --GalleryNumberInput-btn-increment-border-color: var(--grey-800);
+    --GalleryNumberInput-btn-increment-background-color: var(--grey-900);
+    --GalleryNumberInput-btn-increment-color: var(--grey-200);
+    --GalleryNumberInput-btn-increment-hover-background-color: var(--cyan-100);
+    --GalleryNumberInput-btn-increment-hover-color: var(--cyan-400);
+    --GalleryNumberInput-btn-decrement-hover-background-color: var(--cyan-100);
+    --GalleryNumberInput-btn-decrement-hover-border-color: var(--cyan-400);
+    --GalleryNumberInput-btn-decrement-border-color: var(--grey-800);
+    --GalleryNumberInput-btn-decrement-background-color: var(--grey-900);
+    --GalleryNumberInput-btn-decrement-color: var(--grey-200);
+    --GalleryNumberInput-btn-hover-background-color: var(--grey-800);
+    --GalleryNumberInput-btn-hover-border-color: var(--grey-600);
+    --GalleryNumberInput-btn-background-color: var(--grey-900);
+  }
+}
