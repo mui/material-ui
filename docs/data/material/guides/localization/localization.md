@@ -49,6 +49,7 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 | Catalan                 | ca-ES               | `caES`      |
 | Chinese (Hong Kong)     | zh-HK               | `zhHK`      |
 | Chinese (Simplified)    | zh-CN               | `zhCN`      |
+| Chinese (Taiwan)        | zh-TW               | `zhTW`      |
 | Croatian                | hr-HR               | `hrHR`      |
 | Czech                   | cs-CZ               | `csCZ`      |
 | Danish                  | da-DK               | `daDK`      |
@@ -87,7 +88,6 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 | Slovak                  | sk-SK               | `skSK`      |
 | Spanish                 | es-ES               | `esES`      |
 | Swedish                 | sv-SE               | `svSE`      |
-| Taiwan                  | zh-TW               | `zhTW`      |
 | Thai                    | th-TH               | `thTH`      |
 | Turkish                 | tr-TR               | `trTR`      |
 | Tagalog                 | tl-TL               | `tlTL`      |
