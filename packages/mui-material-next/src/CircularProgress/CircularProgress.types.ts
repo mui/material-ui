@@ -70,19 +70,4 @@ export type CircularProgressProps<
   AdditionalProps = {},
 > = OverrideProps<CircularProgressTypeMap<AdditionalProps, RootComponentType>, RootComponentType>;
 
-/**
- * ## ARIA
- *
- * If the progress bar is describing the loading progress of a particular region of a page,
- * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
- * attribute to `true` on that region until it has finished loading.
- *
- * Demos:
- *
- * - [Progress](https://mui.com/material-ui/react-progress/)
- *
- * API:
- *
- * - [CircularProgress API](https://mui.com/material-ui/api/circular-progress/)
- */
-export default function CircularProgress(props: CircularProgressProps): JSX.Element;
+export interface CircularProgressOwnerState extends CircularProgressProps {}
