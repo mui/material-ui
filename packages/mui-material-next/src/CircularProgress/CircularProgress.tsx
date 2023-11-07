@@ -43,7 +43,7 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: ['root', variant, `color${capitalize(color)}`],
-    svg: ['svg'],
+    svg: ['svg', `svg${capitalize(variant)}`],
     circle: ['circle', `circle${capitalize(variant)}`, disableShrink && 'circleDisableShrink'],
   };
 
