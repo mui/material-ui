@@ -61,7 +61,7 @@
     "@mui/lab": "5.0.0-alpha.152",
     "@mui/styles": "^5.14.17",
     "@popperjs/core": "^2.11.8",
-    "@rollup/plugin-replace": "^5.0.4",
+    "@rollup/plugin-replace": "^5.0.5",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/user-event": "^14.5.1",
     "@types/chai": "^4.3.9",
