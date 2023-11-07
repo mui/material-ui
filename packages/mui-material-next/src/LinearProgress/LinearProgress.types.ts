@@ -55,3 +55,5 @@ export type LinearProgressProps<
   RootComponentType extends React.ElementType = LinearProgressTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<LinearProgressTypeMap<AdditionalProps, RootComponentType>, RootComponentType>;
+
+export interface LinearProgressOwnerState extends LinearProgressProps {}
