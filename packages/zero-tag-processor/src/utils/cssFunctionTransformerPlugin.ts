@@ -31,13 +31,7 @@ const cssFunctionTransformerPlugin = declare<BabelPluginOptions>((api, pluginOpt
   };
   const config = typedTheme?.unstable_sxConfig ?? defaultSxConfig;
   const cssPropOptions = config[styleKey];
-  const { themeKey } = cssPropOptions;
-  if (!typedTheme || !config || !cssPropOptions || !themeKey) {
-    return {
-      name: '@mui/zero-internal/cssFunctionTransformerPlugin',
-      visitor: {},
-    };
-  }
+  const themeKey = cssPropOptions?.themeKey;
   const finalPrefix = cssVariablesPrefix ? `${cssVariablesPrefix}-` : '';
 
   return {
@@ -82,16 +76,19 @@ const cssFunctionTransformerPlugin = declare<BabelPluginOptions>((api, pluginOpt
         if (themeKey === 'typography' && val === 'inherit') {
           return;
         }
+        const propertyThemeKey = themeKey ?? val.split('.')[0];
         const themeValue =
-          get(typedTheme, `${themeKey}.${val}`) ??
-          (typedTheme.vars ? get(typedTheme.vars, `${themeKey}.${val}`) : undefined);
+          get(typedTheme, `${propertyThemeKey}.${val}`) ??
+          (typedTheme.vars ? get(typedTheme.vars, `${propertyThemeKey}.${val}`) : undefined);
         if (!themeValue) {
           console.warn(
-            `MUI: Value for key: ${val} does not exist in "theme.${themeKey}" or "theme.vars.${themeKey}"`,
+            `MUI: Value for key: ${val} does not exist in "theme.${propertyThemeKey}" or "theme.vars.${propertyThemeKey}"`,
           );
         }
         const themeKeyArr = val.split('.').join('-');
-        path.replaceWith(t.stringLiteral(`var(--${finalPrefix}${themeKey}-${themeKeyArr})`));
+        path.replaceWith(
+          t.stringLiteral(`var(--${finalPrefix}${propertyThemeKey}-${themeKeyArr})`),
+        );
       },
     },
   };

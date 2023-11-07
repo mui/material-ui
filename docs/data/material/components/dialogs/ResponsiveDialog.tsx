@@ -22,7 +22,7 @@ export default function ResponsiveDialog() {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open responsive dialog
       </Button>
@@ -50,6 +50,6 @@ export default function ResponsiveDialog() {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </React.Fragment>
   );
 }

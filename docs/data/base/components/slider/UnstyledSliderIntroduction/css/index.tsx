@@ -10,7 +10,7 @@ export default function UnstyledSliderIntroduction() {
           root: { className: 'CustomSlider' },
           rail: { className: 'CustomSlider-rail' },
           track: { className: 'CustomSlider-track' },
-          thumb: { className: 'CustomSlider-thumb' },
+          thumb: { className: 'CustomSlider-thumb', tabIndex: 0 },
         }}
         defaultValue={50}
       />
@@ -86,6 +86,7 @@ function Styles() {
       cursor: default;
       color: ${isDarkMode ? grey[600] : grey[300]};
       opacity: 0.5;
+      outline: none;
     }
 
     .CustomSlider-rail {
@@ -120,16 +121,16 @@ function Styles() {
     }
 
     .CustomSlider-thumb:hover {
-      box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? cyan[300] : cyan[400], 0.15)};
+      box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? cyan[300] : cyan[200], 0.5)};
     }
 
     .CustomSlider-thumb:focus-visible {
-      box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
-      outline: none;
+      box-shadow: 0 0 0 4px ${isDarkMode ? cyan[700] : cyan[200]};
+      
     }
 
     .CustomSlider-thumb.${sliderClasses.active} {
-      box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? cyan[300] : cyan[200], 0.3)};
+      box-shadow: 0 0 0 4px ${isDarkMode ? cyan[600] : cyan[300]};
     }
     `}</style>
   );

@@ -29,6 +29,9 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
   /**
    * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) component.
+   *
+   * This prop is an alias for `slotProps.actions.previousButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.actions.previousButton` instead.
    */
   backIconButtonProps?: Partial<IconButtonProps>;
   /**
@@ -41,6 +44,11 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * To enable server side pagination for an unknown number of items, provide -1.
    */
   count: number;
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled?: boolean;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
@@ -72,6 +80,9 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   labelRowsPerPage?: React.ReactNode;
   /**
    * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
+   *
+   * This prop is an alias for `slotProps.actions.nextButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.actions.nextButton` instead.
    */
   nextIconButtonProps?: Partial<IconButtonProps>;
   /**
@@ -106,6 +117,10 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   rowsPerPageOptions?: Array<number | { value: number; label: string }>;
   /**
    * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.
+   *
+   * This prop is an alias for `slotProps.select` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.select` instead.
+   *
    * @default {}
    */
   SelectProps?: Partial<SelectProps>;
@@ -119,6 +134,14 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * @default false
    */
   showLastButton?: boolean;
+  /**
+   * The props used for each slot inside the TablePagination.
+   * @default {}
+   */
+  slotProps?: {
+    actions?: TablePaginationActionsProps['slotProps'];
+    select?: Partial<SelectProps>;
+  };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

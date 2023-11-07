@@ -15,6 +15,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
   const {
     backIconButtonProps,
     count,
+    disabled = false,
     getItemAriaLabel,
     nextIconButtonProps,
     onPageChange,
@@ -22,6 +23,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     rowsPerPage,
     showFirstButton,
     showLastButton,
+    slotProps,
     ...other
   } = props;
 
@@ -48,39 +50,41 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       {showFirstButton && (
         <IconButton
           onClick={handleFirstPageButtonClick}
-          disabled={page === 0}
+          disabled={disabled || page === 0}
           aria-label={getItemAriaLabel('first', page)}
           title={getItemAriaLabel('first', page)}
+          {...(slotProps?.firstButton ?? {})}
         >
           {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
         </IconButton>
       )}
       <IconButton
         onClick={handleBackButtonClick}
-        disabled={page === 0}
+        disabled={disabled || page === 0}
         color="inherit"
         aria-label={getItemAriaLabel('previous', page)}
         title={getItemAriaLabel('previous', page)}
-        {...backIconButtonProps}
+        {...(slotProps?.previousButton ?? backIconButtonProps)}
       >
         {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
-        disabled={count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false}
+        disabled={disabled || (count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false)}
         color="inherit"
         aria-label={getItemAriaLabel('next', page)}
         title={getItemAriaLabel('next', page)}
-        {...nextIconButtonProps}
+        {...(slotProps?.nextButton ?? nextIconButtonProps)}
       >
         {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
       </IconButton>
       {showLastButton && (
         <IconButton
           onClick={handleLastPageButtonClick}
-          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          disabled={disabled || page >= Math.ceil(count / rowsPerPage) - 1}
           aria-label={getItemAriaLabel('last', page)}
           title={getItemAriaLabel('last', page)}
+          {...(slotProps?.lastButton ?? {})}
         >
           {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
         </IconButton>
@@ -98,6 +102,11 @@ TablePaginationActions.propTypes = {
    * The total number of rows.
    */
   count: PropTypes.number.isRequired,
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    *
@@ -135,6 +144,16 @@ TablePaginationActions.propTypes = {
    * If `true`, show the last-page button.
    */
   showLastButton: PropTypes.bool.isRequired,
+  /**
+   * The props used for each slot inside the TablePaginationActions.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    firstButton: PropTypes.object,
+    lastButton: PropTypes.object,
+    nextButton: PropTypes.object,
+    previousButton: PropTypes.object,
+  }),
 };
 
 export default TablePaginationActions;
