@@ -110,7 +110,7 @@ For more details on sparkline and other custom columns, please visit the [docume
 ### Performance improvements
 
 In our pursuit to enhance user experience, one of the most significant changes in latest v6 versions are related to performance boosts on filtering and scrolling.
-In the following charts, you can see the difference of current version compare with v5 LTS.
+In the following charts, you can see the difference of the latest v6 version compared with v5 LTS.
 
 #### Filtering
 
