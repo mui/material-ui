@@ -11,12 +11,13 @@ import { Dropdown } from '@mui/base/Dropdown';
 import { Popper } from '@mui/base/Popper';
 import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
 import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
-import { Select } from '@mui/base/Select';
+import { Select, SelectRootSlotProps } from '@mui/base/Select';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { Option } from '@mui/base/Option';
 import { Slider } from '@mui/base/Slider';
 import { Snackbar } from '@mui/base/Snackbar';
 // TODO: re-export from the @mui/base/Snackbar, if developer only uses the component
-// it is not intuitive to import required type from a different module
+// it is not intuitive to import types from a different module
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
@@ -107,11 +108,11 @@ export default function ComponentsGallery() {
         <Badge
           slotProps={{
             root: { className: 'GalleryBadge' },
-            badge: { className: 'GalleryBadge--badge' },
+            badge: { className: 'GalleryBadge-badge' },
           }}
           badgeContent={5}
         >
-          <span className="GalleryBadge--content" />
+          <span className="GalleryBadge-content" />
         </Badge>
       </div>
       <div>
@@ -129,12 +130,12 @@ export default function ComponentsGallery() {
           <Menu
             className="GalleryMenu"
             slotProps={{
-              listbox: { className: 'GalleryMenu--listbox' },
+              listbox: { className: 'GalleryMenu-listbox' },
             }}
           >
-            <MenuItem className="GalleryMenu--item">Profile</MenuItem>
-            <MenuItem className="GalleryMenu--item">Language settings</MenuItem>
-            <MenuItem className="GalleryMenu--item">Log out</MenuItem>
+            <MenuItem className="GalleryMenu-item">Profile</MenuItem>
+            <MenuItem className="GalleryMenu-item">Language settings</MenuItem>
+            <MenuItem className="GalleryMenu-item">Log out</MenuItem>
           </Menu>
         </Dropdown>
       </div>
@@ -175,7 +176,7 @@ export default function ComponentsGallery() {
         <Select
           className="GallerySelect"
           slots={{
-            root: Button,
+            root: SelectButton,
           }}
           slotProps={{
             listbox: { className: 'GallerySelect-listbox' },
@@ -363,3 +364,19 @@ export default function ComponentsGallery() {
     </Stack>
   );
 }
+
+const SelectButton = React.forwardRef(function SelectButton<
+  TValue extends {},
+  Multiple extends boolean,
+>(
+  props: SelectRootSlotProps<TValue, Multiple>,
+  ref: React.ForwardedRef<HTMLButtonElement>,
+) {
+  const { ownerState, ...other } = props;
+  return (
+    <button type="button" {...other} ref={ref}>
+      {other.children}
+      <UnfoldMoreRoundedIcon />
+    </button>
+  );
+});

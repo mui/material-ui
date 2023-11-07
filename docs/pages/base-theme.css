@@ -34,7 +34,7 @@
   line-height: 1;
 }
 
-.GalleryBadge--badge {
+.GalleryBadge-badge {
   box-sizing: border-box;
   z-index: auto;
   position: absolute;
@@ -56,18 +56,20 @@
   transform-origin: 100% 0;
 }
 
-.GalleryBadge--content {
+.GalleryBadge-content {
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: var(--GalleryBadge--content-background-color, var(--grey-300));
+  background: var(--GalleryBadge-content-background-color, var(--grey-300));
   display: inline-block;
   vertical-align: middle;
 }
 
 @media (prefers-color-scheme: dark) {
-  --GalleryBadge-badge-boxShadow-color: var(--grey-900);
-  --GalleryBadge--content-background-color: var(--grey-400);
+  .GalleryBadge {
+    --GalleryBadge-badge-boxShadow-color: var(--grey-900);
+    --GalleryBadge-content-background-color: var(--grey-400);
+  }
 }
 
 .GalleryButton {
@@ -149,7 +151,7 @@
   }
 }
 
-.GalleryMenu--listbox {
+.GalleryMenu-listbox {
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
@@ -165,7 +167,7 @@
   box-shadow: 0px 4px 30px var(--GalleryMenu-listbox-boxShadow-color, var(--grey-200));
 }
 
-.GalleryMenu--item {
+.GalleryMenu-item {
   list-style: none;
   padding: 8px;
   border-radius: 8px;
@@ -173,21 +175,21 @@
   user-select: none;
 }
 
-.GalleryMenu--item:last-of-type {
+.GalleryMenu-item:last-of-type {
   border-bottom: none;
 }
 
-.GalleryMenu--item.Mui-focusVisible {
+.GalleryMenu-item.Mui-focusVisible {
   outline: 3px solid var(--GalleryMenu-item-outline-color, var(--cyan-200));
   background-color: var(--GalleryMenu-item-background-color, var(--grey-100));
   color: var(--GalleryMenu-item-color, var(--grey-900));
 }
 
-.GalleryMenu--item.Mui-disabled {
+.GalleryMenu-item.Mui-disabled {
   color: var(--GalleryMenu-item-disabled-color, var(--grey-400));
 }
 
-.GalleryMenu--item:hover:not(.Mui-disabled) {
+.GalleryMenu-item:hover:not(.Mui-disabled) {
   background-color: var(--GalleryMenu-item-hover-background-color, var(--cyan-50));
   color: var(--GalleryMenu-item-hover-color, var(--grey-900));
 }
@@ -347,15 +349,10 @@
   }
 }
 
-/* TODO: Same styles applied here, split to use different CSS vars */
 .GalleryPopper,
 .GalleryPopup {
-  background-color: var(--GalleryPopper-background-color, #fff);
   border-radius: 8px;
-  border: 1px solid var(--GalleryPopper-color, var(--grey-200));
-  box-shadow: 0 4px 8px var(--GalleryPopper-boxShadow-color, rgb(0 0 0 / 0.1));
   padding: 0.75rem;
-  color: var(--GalleryPopper-color, var(--grey-700));
   font-size: 0.875rem;
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 500;
@@ -363,13 +360,33 @@
   margin: 0.25rem 0px;
 }
 
+.GalleryPopper {
+  background-color: var(--GalleryPopper-background-color, #fff);
+  border: 1px solid var(--GalleryPopper-color, var(--grey-200));
+  box-shadow: 0 4px 8px var(--GalleryPopper-boxShadow-color, rgb(0 0 0 / 0.1));
+  color: var(--GalleryPopper-color, var(--grey-700));
+}
+
+.GalleryPopup {
+  background-color: var(--GalleryPopup-background-color, #fff);
+  border: 1px solid var(--GalleryPopup-color, var(--grey-200));
+  box-shadow: 0 4px 8px var(--GalleryPopup-boxShadow-color, rgb(0 0 0 / 0.1));
+  color: var(--GalleryPopup-color, var(--grey-700));
+}
+
 @media (prefers-color-scheme: dark) {
-  .GalleryPopper,
-  .GalleryPopup {
+  .GalleryPopper {
     --GalleryPopper-background-color: var(--grey-900);
     --GalleryPopper-border-color: var(--grey-700);
     --GalleryPopper-color: var(--grey-100);
     --GalleryPopper-boxShadow-color: rgb(0 0 0 / 0.7);
+  }
+
+  .GalleryPopup {
+    --GalleryPopup-background-color: var(--grey-900);
+    --GalleryPopup-border-color: var(--grey-700);
+    --GalleryPopup-color: var(--grey-100);
+    --GalleryPopup-boxShadow-color: rgb(0 0 0 / 0.7);
   }
 }
 
@@ -392,8 +409,8 @@
   transition-duration: 120ms;
 
   &:hover {
-    background: var(--GallerySelect-background-color, var(--grey-50));
-    border-color: var(--GallerySelect-border-color, var(--grey-300));
+    background: var(--GallerySelect-hover-background-color, var(--grey-50));
+    border-color: var(--GallerySelect-hover-border-color, var(--grey-300));
   }
 
   &.Mui-focusVisible {
@@ -472,8 +489,8 @@
     --GallerySelect-border-color: var(--grey-700);
     --GallerySelect-color: var(--grey-300);
     --GallerySelect-boxShadow-color: rgba(0, 0, 0, 0.5);
-    --GallerySelect-background-color: var(--grey-800);
-    --GallerySelect-border-color: var(--grey-600);
+    --GallerySelect-hover-background-color: var(--grey-800);
+    --GallerySelect-hover-border-color: var(--grey-600);
     --GallerySelect-focusVisible-boxShadow-color: var(--cyan-600);
     --GallerySelect-listbox-background-color: var(--grey-900);
     --GallerySelect-listbox-border-color: var(--grey-700);
@@ -546,10 +563,10 @@
   background-color: #fff;
 }
 
-.GallerySlider-thumb:hover {
-  /* TODO: alpha used, needs to be changed */
-  /* box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? var(--cyan-300) : var(--cyan-200), 0.5)}; */
-}
+/* TODO: alpha used, needs to be changed */
+/* .GallerySlider-thumb:hover {
+  box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? var(--cyan-300) : var(--cyan-200), 0.5)};
+} */
 
 .GallerySlider-thumb:focus-visible {
   box-shadow: 0 0 0 4px var(--GallerySlider-focusVisible-boxShadow-color, var(--cyan-200));
@@ -770,7 +787,6 @@
 
 /* Demo's table styles end */
 
-/* TODO: The demo uses directly the exported Base UI classes, this should be updated before mergin */
 .GalleryTablePagination .MuiTablePagination-spacer {
   display: none;
 }
@@ -947,7 +963,7 @@
   outline: none;
 }
 
-// firefox
+/* firefox */
 .GalleryTextarea:focus-visible {
   outline: 0;
 }
