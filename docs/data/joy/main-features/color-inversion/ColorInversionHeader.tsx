@@ -60,7 +60,11 @@ export default function ColorInversionHeader() {
         <Chip
           variant="outlined"
           onClick={(event) => {
-            setAnchorEl(event.currentTarget);
+            if (anchorEl) {
+              setAnchorEl(null);
+            } else {
+              setAnchorEl(event.currentTarget);
+            }
           }}
           endDecorator={<KeyboardArrowDownIcon />}
         >
