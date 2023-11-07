@@ -48,6 +48,62 @@ function intToHex(int) {
 }
 
 /**
+ * Converts a color object with type and values to a string.
+ * @param {object} color - Decomposed color
+ * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla', 'color'
+ * @param {array} color.values - [n,n,n] or [n,n,n,n]
+ * @returns {string} A CSS color string
+ */
+export function recomposeColor(color) {
+  const { type, colorSpace } = color;
+  let { values } = color;
+
+  if (type.indexOf('rgb') !== -1) {
+    // Only convert the first 3 values to int (i.e. not alpha)
+    values = values.map((n, i) => (i < 3 ? parseInt(n, 10) : n));
+  } else if (type.indexOf('hsl') !== -1) {
+    values[1] = `${values[1]}%`;
+    values[2] = `${values[2]}%`;
+  }
+  if (type.indexOf('color') !== -1) {
+    values = `${colorSpace} ${values.join(' ')}`;
+  } else {
+    values = `${values.join(', ')}`;
+  }
+
+  return `${type}(${values})`;
+}
+
+/**
+ * Converts a color from hsl format to rgb format.
+ * @param {string} color - HSL color values
+ * @returns {string} rgb color values
+ */
+export function hslToRgb(color) {
+  const marker = color.indexOf('(');
+  const hslType = color.substring(0, marker);
+  const values = color
+    .substring(marker + 1, color.length - 1)
+    .split(',')
+    .map((value) => parseFloat(value));
+  const h = values[0];
+  const s = values[1] / 100;
+  const l = values[2] / 100;
+  const a = s * Math.min(l, 1 - l);
+  const f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+
+  let type = 'rgb';
+  const rgb = [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
+
+  if (hslType === 'hsla') {
+    type += 'a';
+    rgb.push(values[3]);
+  }
+
+  return recomposeColor({ type, values: rgb });
+}
+
+/**
  * Returns an object with the type and values of a color.
  *
  * Note: Does not support rgb % values.
@@ -62,6 +118,9 @@ export function decomposeColor(color) {
 
   if (color.charAt(0) === '#') {
     return decomposeColor(hexToRgb(color));
+  }
+  if (color.startsWith('hsl')) {
+    return decomposeColor(hslToRgb(color));
   }
 
   const marker = color.indexOf('(');
@@ -124,33 +183,6 @@ export const private_safeColorChannel = (color, warning) => {
 };
 
 /**
- * Converts a color object with type and values to a string.
- * @param {object} color - Decomposed color
- * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla', 'color'
- * @param {array} color.values - [n,n,n] or [n,n,n,n]
- * @returns {string} A CSS color string
- */
-export function recomposeColor(color) {
-  const { type, colorSpace } = color;
-  let { values } = color;
-
-  if (type.indexOf('rgb') !== -1) {
-    // Only convert the first 3 values to int (i.e. not alpha)
-    values = values.map((n, i) => (i < 3 ? parseInt(n, 10) : n));
-  } else if (type.indexOf('hsl') !== -1) {
-    values[1] = `${values[1]}%`;
-    values[2] = `${values[2]}%`;
-  }
-  if (type.indexOf('color') !== -1) {
-    values = `${colorSpace} ${values.join(' ')}`;
-  } else {
-    values = `${values.join(', ')}`;
-  }
-
-  return `${type}(${values})`;
-}
-
-/**
  * Converts a color from CSS rgb format to CSS hex format.
  * @param {string} color - RGB color, i.e. rgb(n, n, n)
  * @returns {string} A CSS rgb color string, i.e. #nnnnnn
@@ -163,31 +195,6 @@ export function rgbToHex(color) {
 
   const { values } = decomposeColor(color);
   return `#${values.map((n, i) => intToHex(i === 3 ? Math.round(255 * n) : n)).join('')}`;
-}
-
-/**
- * Converts a color from hsl format to rgb format.
- * @param {string} color - HSL color values
- * @returns {string} rgb color values
- */
-export function hslToRgb(color) {
-  color = decomposeColor(color);
-  const { values } = color;
-  const h = values[0];
-  const s = values[1] / 100;
-  const l = values[2] / 100;
-  const a = s * Math.min(l, 1 - l);
-  const f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-
-  let type = 'rgb';
-  const rgb = [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
-
-  if (color.type === 'hsla') {
-    type += 'a';
-    rgb.push(values[3]);
-  }
-
-  return recomposeColor({ type, values: rgb });
 }
 /**
  * The relative brightness of any point in a color space,
