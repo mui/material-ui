@@ -34,6 +34,7 @@ import {
   THEME_ID as MATERIAL_THEME_ID,
 } from '@mui/material/styles';
 import { CssVarsProvider as JoyCssVarsProvider } from '@mui/joy/styles';
+import CssBaseline from "@mui/material/CssBaseline";
 
 const materialTheme = materialExtendTheme();
 
