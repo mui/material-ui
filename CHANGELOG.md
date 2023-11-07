@@ -14,7 +14,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [Dialog] Should not close until the IME is cancelled (#39713) @megos
 - [InputBase] Add `sx` type to `input` and `root` slot (#39569) @sai6855
 
-### `@mui/joy@5.0.0-beta.13`
+### `@mui/joy@5.0.0-beta.14`
 
 - [ModalDialog] Remove redundant code (#39719) @sai6855
 - [ToggleButtonGroup] Fix toggling button state when `Button` is not immediate children (#39571) @sai6855
