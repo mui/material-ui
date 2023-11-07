@@ -80,7 +80,7 @@ You can learn how to customize and other details at the [clearable behavior docu
 
 ### Customization Playgrounds
 
-We’re constantly improving our documentation and working to better communicate how to use our components effectively.
+We're constantly improving our documentation and working to better communicate how to use our components effectively.
 With the new customization playgrounds, you can now tailor the style of [Date Picker](https://mui.com/x/react-date-pickers/date-picker/#customization) and experiment with multiple combinations of [sub-components](https://mui.com/x/react-date-pickers/playground/) to achieve the look and feel you desire.
 
 ## Data Grid
