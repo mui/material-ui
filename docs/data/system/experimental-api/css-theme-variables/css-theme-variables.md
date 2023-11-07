@@ -27,11 +27,11 @@ You can checkout the [advantages](https://mui.com/material-ui/experimental-api/c
 
 For server-side applications, there are some trade-offs to consider:
 
-|                                                      | Compare to the default method | Reason                                                                                                         |
-| :--------------------------------------------------- | :---------------------------- | :------------------------------------------------------------------------------------------------------------- |
-| HTML size                                            | Bigger                        | CSS variables are generated for both light and dark mode at build time.                                        |
-| [First Contentful Paint (FCP)](https://web.dev/fcp/) | Longer                        | Since the HTML size is bigger, the time to download the HTML before showing the content is bit longer.         |
-| [Time to Interactive (TTI)](https://web.dev/tti/)    | Shorter (for dark mode)       | Stylesheets are not regenerated between light and dark mode, a lot less time is spent running JavaScript code. |
+|                                                              | Compare to the default method | Reason                                                                                                         |
+| :----------------------------------------------------------- | :---------------------------- | :------------------------------------------------------------------------------------------------------------- |
+| HTML size                                                    | Bigger                        | CSS variables are generated for both light and dark mode at build time.                                        |
+| [First Contentful Paint (FCP)](https://web.dev/articles/fcp) | Longer                        | Since the HTML size is bigger, the time to download the HTML before showing the content is bit longer.         |
+| [Time to Interactive (TTI)](https://web.dev/articles/tti)    | Shorter (for dark mode)       | Stylesheets are not regenerated between light and dark mode, a lot less time is spent running JavaScript code. |
 
 :::warning
 The comparison described in the table above may not be applicable to large and complex applications since there are so many factors that can impact performance metrics.
@@ -114,7 +114,7 @@ const myCustomDefaultTheme = extendTheme();
 export default myCustomDefaultTheme;
 ```
 
-Here, the returned `theme` object needs to follow a certain structure to be used correctly by the final `CssVarsProvider`. It should have a `colorSchemes` key with the light and dark (and any other) palette. `prepareCssVars` import from `@mui/system` is used to create css variable names which can then be easily accessed using the returned `vars`. This is also added to the `theme` object. Finally, `myCustomDefaultTheme` theme object is created that can now be passed to the `createCssVarsProvider` to get a `CssVarsProvider`.
+Here, the returned `theme` object needs to follow a certain structure to be used correctly by the final `CssVarsProvider`. It should have a `colorSchemes` key with the light and dark (and any other) palette. `prepareCssVars` import from `@mui/system` is used to create CSS variable names which can then be easily accessed using the returned `vars`. This is also added to the `theme` object. Finally, `myCustomDefaultTheme` theme object is created that can now be passed to the `createCssVarsProvider` to get a `CssVarsProvider`.
 
 ```js
 // CssVarsProvider.js
@@ -133,7 +133,7 @@ export { CssVarsProvider, useColorScheme };
 
 Now wrap your top level app component with this `CssVarsProvider` component and then you can access the passed theme value to any of the components rendered inside the provider.
 
-Example of a component using the css variable -
+Example of a component using the CSS variable -
 
 ```js
 // Button.js

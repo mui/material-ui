@@ -60,9 +60,7 @@ export default function PropertiesSection(props) {
       const isOptional = !propData.required && showOptionalAbbr;
 
       const isDeprecated = propData.deprecated;
-      const deprecationInfo = propData.deprecationInfo
-        ?.replace(/<code>/g, '<span>')
-        ?.replace(/<\/code>/g, '</span>');
+      const deprecationInfo = propData.deprecationInfo;
 
       const typeName = propData.type?.description || propData.type.name;
       const propDefault = propData.default;
@@ -108,7 +106,7 @@ export default function PropertiesSection(props) {
 
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 1 }}>
         <Level id={titleHash} style={{ flexGrow: 1 }}>
           {t(title)}
           <a

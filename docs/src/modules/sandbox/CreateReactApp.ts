@@ -14,6 +14,7 @@ export const getHtml = ({
   return `<!DOCTYPE html>
 <html lang="${language}">
   <head>
+    <meta charset="utf-8" />
     <title>${title}</title>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->

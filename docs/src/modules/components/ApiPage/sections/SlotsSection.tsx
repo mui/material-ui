@@ -50,7 +50,7 @@ export default function SlotsSection(props: SlotsSectionProps) {
 
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 1 }}>
         <Level id={titleHash} style={{ flexGrow: 1 }}>
           {t(title)}
           <a
@@ -66,9 +66,7 @@ export default function SlotsSection(props: SlotsSectionProps) {
         </Level>
         <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} />
       </Box>
-
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
-
       {displayOption === 'table' ? (
         <SlotsTable slots={formatedSlots} />
       ) : (

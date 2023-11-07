@@ -21,7 +21,7 @@ const drawerWidth = 240;
 interface Props {
   /**
    * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
+   * Remove this when copying and pasting into your project.
    */
   window?: () => Window;
 }
@@ -66,6 +66,7 @@ export default function ResponsiveDrawer(props: Props) {
     </div>
   );
 
+  // Remove this const when copying and pasting into your project.
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (

@@ -86,7 +86,9 @@ const LinkRoot = styled('a', {
       ...(ownerState.underline === 'hover' && {
         textDecoration: 'none',
         '&:hover': {
-          textDecorationLine: 'underline',
+          '@media (hover: hover)': {
+            textDecorationLine: 'underline',
+          },
         },
       }),
       ...(ownerState.underline === 'always' && {
@@ -130,7 +132,7 @@ const LinkRoot = styled('a', {
               } / 0.6))`,
             },
           }),
-      userSelect: 'none',
+      userSelect: ownerState.component === 'button' ? 'none' : undefined,
       MozAppearance: 'none', // Reset
       WebkitAppearance: 'none', // Reset
       '&::-moz-focus-inner': {
@@ -161,7 +163,9 @@ const LinkRoot = styled('a', {
     } as const,
     ownerState.variant && {
       ...theme.variants[ownerState.variant]?.[ownerState.color!],
-      '&:hover': theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
+      '&:hover': {
+        '@media (hover: hover)': theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
+      },
       '&:active': theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
       [`&.${linkClasses.disabled}`]:
         theme.variants[`${ownerState.variant}Disabled`]?.[ownerState.color!],

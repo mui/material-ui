@@ -11,7 +11,7 @@ import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import { renderMarkdown } from '@mui/markdown';
-import { LANGUAGES } from 'docs/config';
+import { ProjectSettings } from '../ProjectSettings';
 import { ComponentInfo, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
@@ -361,11 +361,15 @@ export function toGitHubPath(filepath: string): string {
   return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }
 
-const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiTranslations = (
+  outputDirectory: string,
+  reactApi: ReactApi,
+  languages: string[],
+) => {
   const componentName = reactApi.name;
   const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(componentName));
   function resolveApiDocsTranslationsComponentLanguagePath(
-    language: (typeof LANGUAGES)[0],
+    language: (typeof languages)[0],
   ): string {
     const languageSuffix = language === 'en' ? '' : `-${language}`;
 
@@ -382,7 +386,7 @@ const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) =>
     JSON.stringify(reactApi.translations),
   );
 
-  LANGUAGES.forEach((language) => {
+  languages.forEach((language) => {
     if (language !== 'en') {
       try {
         writePrettifiedFile(
@@ -701,6 +705,7 @@ const getComponentImports = (name: string, filename: string) => {
 export default async function generateComponentApi(
   componentInfo: ComponentInfo,
   project: TypeScriptProject,
+  projectSettings: ProjectSettings,
 ) {
   const {
     filename,
@@ -772,7 +777,9 @@ export default async function generateComponentApi(
       }
     }
   } else {
-    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), { filename });
+    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+      filename,
+    });
   }
 
   // Ignore what we might have generated in `annotateComponentDefinition`
@@ -855,7 +862,11 @@ export default async function generateComponentApi(
       translationPagesDirectory = 'docs/translations/api-docs-base';
     }
 
-    generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
+    generateApiTranslations(
+      path.join(process.cwd(), translationPagesDirectory),
+      reactApi,
+      projectSettings.translationLanguages,
+    );
 
     // Once we have the tabs API in all projects, we can make this default
     const generateOnlyJsonFile = normalizedApiPathname.startsWith('/base');

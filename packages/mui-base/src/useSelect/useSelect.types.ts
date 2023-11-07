@@ -139,8 +139,13 @@ export type UseSelectButtonSlotProps<TOther = {}> = UseListRootSlotProps<
     ref: React.RefCallback<Element> | null;
   };
 
-export type UseSelectHiddenInputSlotProps<TOther = {}> =
-  React.InputHTMLAttributes<HTMLInputElement> & TOther;
+interface UseSelectHiddenInputSlotEventHandlers {
+  onChange: MuiCancellableEventHandler<React.ChangeEvent<HTMLInputElement>>;
+}
+
+export type UseSelectHiddenInputSlotProps<TOther = {}> = UseSelectHiddenInputSlotEventHandlers &
+  React.InputHTMLAttributes<HTMLInputElement> &
+  TOther;
 
 interface UseSelectListboxSlotEventHandlers {
   onMouseDown: React.MouseEventHandler;
@@ -178,7 +183,7 @@ export interface UseSelectReturnValue<Value, Multiple> {
    * Action dispatcher for the select component.
    * Allows to programmatically control the select.
    */
-  dispatch: (action: ListAction<Value> | SelectAction) => void;
+  dispatch: (action: ListAction<Value> | SelectAction<Value>) => void;
   /**
    * Resolver for the button slot's props.
    * @param externalProps event handlers for the button slot
@@ -238,6 +243,7 @@ export interface UseSelectReturnValue<Value, Multiple> {
 
 export const SelectActionTypes = {
   buttonClick: 'buttonClick',
+  browserAutoFill: 'browserAutoFill',
 } as const;
 
 export interface ButtonClickAction {
@@ -245,7 +251,13 @@ export interface ButtonClickAction {
   event: React.MouseEvent;
 }
 
-export type SelectAction = ButtonClickAction;
+export interface BrowserAutofillAction<OptionValue> {
+  type: typeof SelectActionTypes.browserAutoFill;
+  item: OptionValue;
+  event: React.ChangeEvent;
+}
+
+export type SelectAction<OptionValue> = ButtonClickAction | BrowserAutofillAction<OptionValue>;
 
 export interface SelectInternalState<OptionValue> extends ListState<OptionValue> {
   open: boolean;
