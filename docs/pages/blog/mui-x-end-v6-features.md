@@ -39,7 +39,7 @@ The stable version of MUI X charts supports the most commonly used chart plots y
 
 Featuring lines, areas, bars, pie charts and scatter plots, the latest versions also include:
 
-- **Bar charts animations**
+- **Animations**
   <video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline width="680" height="306">
     <source src="/static/blog/mui-x-end-v6-features/bar-chart-animations.mp4" type="video/mp4">
   </video>
@@ -98,6 +98,14 @@ Learn more details at [column autosizing section](https://mui.com/x/react-data-g
 ### New examples
 
 We're continuously improving our docs, and we're starting to add more advanced examples like [bulk editing](https://mui.com/x/react-data-grid/recipes-editing/#bulk-editing) and [lazy loading for tree data](https://mui.com/x/react-data-grid/tree-data/#children-lazy-loading).
+
+### Sparkline as a column type
+
+Based on MUI X Charts package, you can now add a sparkline column to your Data Grid.
+
+<img src="/static/blog/mui-x-end-v6-features/sparkline-datagrid.png" alt="Sparkline on data grid" width="1314" height="610" style="margin-bottom: 16px;" />
+
+For more details on sparkline and other custom columns, please visit the [documentation page](https://mui.com/x/react-data-grid/custom-columns/#sparkline).
 
 ### Performance improvements
 
