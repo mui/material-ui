@@ -1,5 +1,5 @@
 ---
-title: MUI X v6.20.0 and the final touches to reach LTS.
+title: MUI X v6.18.0 and the final touches to reach LTS.
 description: New components, polished features better performance and more.
 date: 2023-11-13T00:00:00.000Z
 authors: ['josefreitas']
@@ -7,11 +7,11 @@ card: false
 tags: ['MUI X', 'News']
 ---
 
-<a href="https://github.com/mui/mui-x/releases/tag/v6.20.0">
+<a href="https://github.com/mui/mui-x/releases/tag/v6.18.0">
   <img src="/static/blog/mui-x-end-v6-features/intro.png" alt="open release page" width="1384" height="346" style="margin-bottom: 16px;" />
 </a>
 
-We are happy to share the newest MUI X features, marking the release of [MUI X v6.20.0](https://github.com/mui/mui-x/releases/tag/v6.20.0) and sealing v6 with new components and solid functionalities.
+We are happy to share the newest MUI X features, marking the release of [MUI X v6.18.0](https://github.com/mui/mui-x/releases/tag/v6.18.0) and sealing v6 with new components and solid functionalities.
 
 As we gear up to develop the next major version, let's review the notable new features introduced since our last [blog post](https://mui.com/blog/mui-x-mid-v6-features/).
 
