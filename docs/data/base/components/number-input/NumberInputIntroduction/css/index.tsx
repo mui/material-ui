@@ -5,7 +5,6 @@ import {
 } from '@mui/base/Unstable_NumberInput';
 import { useTheme } from '@mui/system';
 
-// TODO rename exported component name to NumberInput
 export default function NumberInputBasic() {
   return (
     <React.Fragment>
