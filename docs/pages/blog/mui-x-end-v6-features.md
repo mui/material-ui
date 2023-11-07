@@ -7,9 +7,11 @@ card: false
 tags: ['MUI X', 'News']
 ---
 
-<a href="https://github.com/mui/mui-x/releases/tag/v6.18.0">
-  <img src="/static/blog/mui-x-end-v6-features/intro.png" alt="open v6.18.0 release page" width="1200" height="300" style="margin-bottom: 16px;" />
-</a>
+<div style="max-width:680px;width: 100%; height: 170px; overflow: hidden;">
+  <a href="https://github.com/mui/mui-x/releases/tag/v6.18.0">
+    <img src="/static/blog/mui-x-end-v6-features/intro.png" alt="open v6.18.0 release page" style="margin-bottom: 16px;width: 100%; height: 100%; object-fit: cover; object-position: center; max-width:100px;" />
+  </a>  
+</div>
 
 We are happy to share the newest MUI X features, marking the release of [MUI X v6.18.0](https://github.com/mui/mui-x/releases/tag/v6.18.0) and sealing v6 with new components and solid functionalities.
 
