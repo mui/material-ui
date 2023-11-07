@@ -101,9 +101,9 @@ We're continuously improving our docs, and we're starting to add more advanced e
 
 ### Sparkline as a column type
 
-Based on MUI X Charts package, you can now add a sparkline column to your Data Grid.
+Based on `@mui/x-charts` package, you can now add sparkline columns to your Data Grid.
 
-<img src="/static/blog/mui-x-end-v6-features/sparkline-datagrid.png" alt="Sparkline on data grid" width="1314" height="610" style="margin-bottom: 16px;" />
+<img src="/static/blog/mui-x-end-v6-features/sparkline-datagrid.png" alt="Sparkline on data grid" width="658" height="305" style="margin-bottom: 16px;" />
 
 For more details on sparkline and other custom columns, please visit the [documentation page](https://mui.com/x/react-data-grid/custom-columns/#sparkline).
 
