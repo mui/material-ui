@@ -334,7 +334,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup<
 ButtonGroup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The content of the component.
@@ -344,10 +344,6 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
@@ -359,8 +355,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
+   * @ignore
    */
   component: PropTypes.elementType,
   /**
@@ -418,6 +413,6 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['contained', 'outlined', 'text']),
     PropTypes.string,
   ]),
-};
+} as any;
 
 export default ButtonGroup;
