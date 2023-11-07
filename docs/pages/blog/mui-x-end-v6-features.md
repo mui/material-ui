@@ -1,6 +1,6 @@
 ---
-title: MUI X v6.18.0 and the final touches to reach LTS.
-description: New components, polished features better performance and more.
+title: MUI X v6.18.0 and the latest touches before the next major.
+description: New components, polished features, better performance and more.
 date: 2023-11-13T00:00:00.000Z
 authors: ['josefreitas']
 card: false
