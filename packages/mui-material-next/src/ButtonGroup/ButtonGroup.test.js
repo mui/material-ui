@@ -81,7 +81,7 @@ describe('<ButtonGroup />', () => {
     expect(button).not.to.have.class(classes.groupedOutlinedSecondary);
   });
 
-  // TODO change to filled when MD3 styles are applied
+  // TODO v6: change to filled when MD3 styles are applied
   it('can render a text button', () => {
     const { getByRole } = render(
       <ButtonGroup variant="text">
