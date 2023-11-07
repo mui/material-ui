@@ -21,6 +21,12 @@ import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import { Switch } from '@mui/base/Switch';
+import { TablePagination } from '@mui/base/TablePagination';
+import { Tabs } from '@mui/base/Tabs';
+import { TabsList } from '@mui/base/TabsList';
+import { TabPanel } from '@mui/base/TabPanel';
+import { Tab } from '@mui/base/Tab';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 
 // Snackbar demo
 const positioningStyles = {
@@ -79,6 +85,21 @@ export default function ComponentsGallery() {
 
   // switch demo
   const label = { 'aria-label': 'Demo switch' };
+
+  // table pagination demo
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   return (
     <Stack gap={2} style={{ padding: '8px' }}>
@@ -279,6 +300,64 @@ export default function ComponentsGallery() {
             track: { className: 'GallerySwitch-track' },
           }}
           disabled
+        />
+      </div>
+      <div className="TablePaginationDemo">
+        <table aria-label="custom pagination table">
+          <tfoot>
+            <tr>
+              <TablePagination
+                className="GalleryTablePagination"
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={3}
+                count={13}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                slotProps={{
+                  select: {
+                    'aria-label': 'rows per page',
+                  },
+                  actions: {
+                    showFirstButton: true,
+                    showLastButton: true,
+                  },
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div style={{ maxWidth: '550px' }}>
+        <Tabs defaultValue={0}>
+          <TabsList className="GalleryTabsList">
+            <Tab className="GalleryTab" value={0}>
+              My account
+            </Tab>
+            <Tab className="GalleryTab" value={1}>
+              Profile
+            </Tab>
+            <Tab className="GalleryTab" value={2}>
+              Language
+            </Tab>
+          </TabsList>
+          <TabPanel className="GalleryTabPanel" value={0}>
+            My account page
+          </TabPanel>
+          <TabPanel className="GalleryTabPanel" value={1}>
+            Profile page
+          </TabPanel>
+          <TabPanel className="GalleryTabPanel" value={2}>
+            Language page
+          </TabPanel>
+        </Tabs>
+      </div>
+      <div>
+        <TextareaAutosize
+          className="GalleryTextarea"
+          aria-label="empty textarea"
+          placeholder="Empty"
         />
       </div>
     </Stack>

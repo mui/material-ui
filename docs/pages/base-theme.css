@@ -726,3 +726,238 @@
     --GallerySwitch-focusVisible-track: var(--cyan-400);
   }
 }
+
+/* Demo's table styles start */
+
+.GalleryTablePaginationDemo {
+  width: 500px;
+  max-width: 100%;
+}
+
+.GalleryTablePaginationDemo th {
+  background-color: var(--GalleryTablePaginationDemo-th-background-color, #fff);
+}
+
+.GalleryTablePaginationDemo table {
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  width: 100%;
+  background-color: var(--GalleryTablePainationDemo-table-background-color, #fff);
+  box-shadow: 0px 2px 16px var(--GalleryTablePainationDemo-table-boxShadow-color, var(--grey-200));
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--GalleryTablePainationDemo-table-border-color, var(--grey-200));
+}
+
+.GalleryTablePaginationDemo td,
+.GalleryTablePaginationDemo th {
+  padding: 16px;
+}
+
+.GalleryTablePaginationDemo th {
+  background-color: var(--GalleryTablePaginationDemo-th-background-color, #fff);
+}
+
+@media (prefers-color-scheme: dark) {
+  .GalleryTablePaginationDemo {
+    --GalleryTablePainationDemo-table-background-color: var(--grey-900);
+    --GalleryTablePainationDemo-table-boxShadow-color: var(--grey-900);
+    --GalleryTablePainationDemo-table-border-color: var(--grey-800);
+    --GalleryTablePaginationDemo-th-background-color: var(--grey-900);
+    --GalleryTablePaginationDemo-th-background-color: var(--grey-900);
+  }
+}
+
+/* Demo's table styles end */
+
+/* TODO: The demo uses directly the exported Base UI classes, this should be updated before mergin */
+.GalleryTablePagination .MuiTablePagination-spacer {
+  display: none;
+}
+
+.GalleryTablePagination .MuiTablePagination-toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.GalleryTablePagination .MuiTablePagination-selectLabel {
+  margin: 0;
+}
+
+.GalleryTablePagination .MuiTablePagination-select {
+  padding: 2px 6px;
+  border: 1px solid var(--GalleryTablePagination-select-border-color, var(--grey-200));
+  border-radius: 50px;
+  background-color: transparent;
+}
+
+.GalleryTablePagination .MuiTablePagination-select:hover {
+  background-color: var(--GalleryTablePagination-select-hover-background-color, var(--grey-50));
+}
+
+.GalleryTablePagination .MuiTablePagination-select:focus {
+  outline: 1px solid var(--GalleryTablePagination-select-focus-outline-color, var(--cyan-200));
+}
+
+.GalleryTablePagination .MuiTablePagination-displayedRows {
+  margin: 0;
+
+  @media (min-width: 768px) {
+    margin-left: auto;
+  }
+}
+
+.GalleryTablePagination .MuiTablePagination-actions {
+  padding: 2px 6px;
+  border: 1px solid var(--GalleryTablePagination-actions-border-color, var(--grey-200));
+  border-radius: 50px;
+  text-align: center;
+}
+
+.GalleryTablePagination .MuiTablePagination-actions > button {
+  margin: 0 8px;
+  border: transparent;
+  border-radius: 2px;
+  background-color: transparent;
+}
+
+.GalleryTablePagination .MuiTablePagination-actions > button:hover {
+  background-color: var(
+    --GalleryTablePagination-actions-button-hover-background-color,
+    var(--grey-50)
+  );
+}
+
+.GalleryTablePagination .MuiTablePagination-actions > button:focus {
+  outline: 1px solid
+    var(--GalleryTablePagination-actions-button-focus-outline-color, var(--cyan-200));
+}
+
+.GalleryTablePagination .MuiTablePagination-actions > button:disabled {
+  opacity: 0.7;
+}
+
+@media (prefers-color-scheme: dark) {
+  .GalleryTablePagination {
+    --GalleryTablePagination-select-border-color: var(--grey-800);
+    --GalleryTablePagination-select-hover-background-color: var(--grey-800);
+    --GalleryTablePagination-select-focus-outline-color: var(--cyan-400);
+    --GalleryTablePagination-actions-border-color: var(--grey-800);
+    --GalleryTablePagination-actions-button-hover-background-color: var(--grey-800);
+    --GalleryTablePagination-actions-button-focus-outline-color: var(--cyan-400);
+  }
+}
+
+.GalleryTabsList {
+  min-width: 400px;
+  background-color: var(--cyan-500);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: space-between;
+  box-shadow: 0px 4px 6px var(--GalleryTabsList-boxShadow-color, var(--grey-200));
+}
+
+.GalleryTab {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background-color: transparent;
+  width: 100%;
+  padding: 10px 12px;
+  margin: 6px;
+  border: none;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+}
+
+.GalleryTab:hover {
+  background-color: var(--cyan-400);
+}
+
+.GalleryTab:focus {
+  color: #fff;
+  outline: 3px solid var(--cyan-200);
+}
+
+.GalleryTab.Mui-selected {
+  background-color: #fff;
+  color: var(--cyan-600);
+}
+
+.GalleryTab.Mui-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.GalleryTabPanel {
+  width: 100%;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.875rem;
+  padding: 20px 12px;
+  background: var(--GalleryTabPanel-background-color, #fff);
+  border: 1px solid var(--GalleryTabPanel-border-color, var(--grey-200));
+  border-radius: 12px;
+  opacity: 0.6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .GalleryTabList {
+    --GalleryTabsList-boxShadow-color: var(--grey-900);
+  }
+  .GalleryTabPanel {
+    --GalleryTabPanel-background-color: var(--grey-900);
+    --GalleryTabPanel-border-color: var(--grey-700);
+  }
+}
+
+.GalleryTextarea {
+  width: 320px;
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 12px;
+  border-radius: 12px 12px 0 12px;
+  color: var(--GalleryTextarea-color, var(--grey-900));
+  background: var(--GalleryTextarea-background-color, '#fff');
+  border: 1px solid var(--GalleryTextarea-border-color, var(--grey-200));
+  box-shadow: 0px 2px 24px var(--GalleryTextarea-boxShadow-color, var(--cyan-100));
+}
+
+.GalleryTextarea:hover {
+  border-color: var(--cyan-400);
+}
+
+.GalleryTextarea:focus {
+  border-color: var(--cyan-400);
+  box-shadow: 0 0 0 3px var(--GalleryTextarea-focus-boxShadow-color, var(--cyan-200));
+  outline: none;
+}
+
+// firefox
+.GalleryTextarea:focus-visible {
+  outline: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .GalleryTextarea {
+    --GalleryTextarea-color: var(--grey-300);
+    --GalleryTextarea-background-color: var(--grey-900);
+    --GalleryTextarea-border-color: var(--grey-700);
+    --GalleryTextarea-boxShadow-color: var(--cyan-900);
+    --GalleryTextarea-focus-boxShadow-color: var(--cyan-600);
+  }
+}
