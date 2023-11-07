@@ -5,7 +5,7 @@ import {
 } from '@mui/base/Unstable_NumberInput';
 import { useTheme } from '@mui/system';
 
-export default function NumberInputIntroduction() {
+export default function NumberInputBasic() {
   return (
     <React.Fragment>
       <BaseNumberInput
