@@ -126,7 +126,7 @@ We're now working on the next MUI X major, v7, which will include many new featu
 
 Most notably:
 
-- DateTime- and TimeRange
+- DateTime- and TimeRangePicker
 - Improved accessibility on date and time fields
 - New UI for column management for the [`DataGrid`](https://mui.com/x/react-data-grid)
 - Pivoting for the [`DataGridPremium`](https://mui.com/x/react-data-grid/#premium-plan)
@@ -141,7 +141,7 @@ You can use the following list for quick access to each components issues.
 - [Data Grid](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+data+grid%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
 - [Date and Time pickers](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+pickers%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
 
-The next major release (v7) will be available through alpha and beta versions until March 2024, when it's planned for it to be officially promoted to the new stable version. At the same time, v6 will transition to [Long-Term Support](/x-lts-policy-todo/), while support for v5 will be discontinued.
+The next major release (v7) will be available through alpha and beta versions until March 2024, when it's planned for it to be officially promoted to the new stable version. At the same time, v6 will transition to [Long-Term Support](https://mui.com/versions/#long-term-support-lts), while support for v5 will be discontinued.
 
 ## Feedback
 
