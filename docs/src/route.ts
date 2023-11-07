@@ -30,7 +30,7 @@ const ROUTES = {
   vision: '/material-ui/discover-more/vision/',
   support: '/material-ui/getting-started/support/#professional-support-premium',
   privacyPolicy: 'https://mui.com/legal/privacy/',
-  goldSponsor: '/material-ui/discover-more/backers/#gold',
+  goldSponsor: '/material-ui/discover-more/backers/#gold-sponsors',
   store: 'https://mui.com/store/',
   advancedComponents: '/x/introduction/',
   toolpadDocs: '/toolpad/getting-started/overview/',
