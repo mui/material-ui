@@ -128,7 +128,7 @@ Most notably:
 
 - DateTime- and TimeRangePicker
 - Improved accessibility on date and time fields
-- New UI for column management for the [`DataGrid`](https://mui.com/x/react-data-grid)
+- New UI for column management for the [`DataGrid`](https://mui.com/x/react-data-grid/)
 - Pivoting for the [`DataGridPremium`](https://mui.com/x/react-data-grid/#premium-plan)
 
 For the new components, we will keep expanding our portfolio with new chart types such as [Heat map](https://mui.com/x/react-charts/heat-map/), [Funnel](https://mui.com/x/react-charts/funnel/), [Gantt](https://mui.com/x/react-charts/gantt/), and explore virtualization and other advanced use cases for Tree view.
