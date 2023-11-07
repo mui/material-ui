@@ -168,6 +168,12 @@ The `FormControlState` interface was renamed to `FormControlContextValue`:
 
 The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
 
+## FormLabel
+
+### Removed the `standard` variant
+
+The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
+
 ## InputBase
 
 ### Removed `inputProps`
@@ -180,6 +186,12 @@ The standard variant is no longer supported in Material You, use the `filled` or
 +    slotProps={{ input: { className: 'my-input' } }}
  />
 ```
+
+## InputLabel
+
+### Removed the `standard` variant
+
+The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
 
 ## Chip
 
