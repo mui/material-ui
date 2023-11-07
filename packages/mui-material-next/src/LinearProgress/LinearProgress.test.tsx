@@ -5,6 +5,7 @@ import {
   screen,
   describeConformance,
   strictModeDoubleLoggingSuppressed,
+  MuiRenderResult,
 } from '@mui-internal/test-utils';
 import LinearProgress, {
   linearProgressClasses as classes,
@@ -152,7 +153,7 @@ describe('<LinearProgress />', () => {
 
   describe('prop: value', () => {
     it('should warn when not used as expected', () => {
-      let rerender;
+      let rerender: MuiRenderResult['rerender'];
 
       expect(() => {
         ({ rerender } = render(<LinearProgress variant="determinate" value={undefined} />));
