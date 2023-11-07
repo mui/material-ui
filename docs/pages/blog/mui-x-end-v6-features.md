@@ -51,7 +51,7 @@ Featuring lines, areas, bars, pie charts and scatter plots, the latest versions 
   Customize the legend text to your heart's content, making your charts more readable and visually
   appealing.
 
-Get started with charts [now!](https://mui.com/x/react-charts/#getting-started)
+[Get started with charts now!](https://mui.com/x/react-charts/#getting-started)
 
 ### Tree view
 
@@ -61,7 +61,7 @@ After an extensive period of development and refinement in the lab and pre-relea
   <source src="/static/blog/mui-x-end-v6-features/tree-view-gmail.mp4" type="video/mp4">
 </video>
 
-Get started with tree view [now!](https://mui.com/x/react-tree-view/getting-started/)
+[Get started with tree view now!](https://mui.com/x/react-tree-view/getting-started/)
 
 ## Date Pickers
 
@@ -120,18 +120,18 @@ Most notably:
 
 - DateTime- and TimeRange
 - Improved accessibility on date and time fields
-- New UI for column management for the DataGrid
-- Pivoting for the DataGridPremium
+- New UI for column management for the [`DataGrid`](https://mui.com/x/react-data-grid)
+- Pivoting for the [`DataGridPremium`](https://mui.com/x/react-data-grid/#premium-plan)
 
 For the new components, we will keep expanding our portfolio with new chart types such as [Heat map](https://mui.com/x/react-charts/heat-map/), [Funnel](https://mui.com/x/react-charts/funnel/), [Gantt](https://mui.com/x/react-charts/gantt/), and explore virtualization and other advanced use cases for Tree view.
 
 We encourage you to upvote issues on GitHub to help us prioritize. Your input directly influences our development schedule, so don't hesitate to let us know what matters most to you!
 You can use the following list for quick access to each components issues.
 
-- [charts](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+charts%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
-- [tree view](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+treeview%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
-- [data grid](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+data+grid%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
-- [data and time pickers](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+pickers%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
+- [Charts](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+charts%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
+- [Tree View](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+treeview%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
+- [Data Grid](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+data+grid%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
+- [Date and Time pickers](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+pickers%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
 
 The next major release (v7) will be available through alpha and beta versions until March 2024, when it's planned for it to be officially promoted to the new stable version. At the same time, v6 will transition to [Long-Term Support](/x-lts-policy-todo/), while support for v5 will be discontinued.
 
