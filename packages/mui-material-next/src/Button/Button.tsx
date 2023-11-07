@@ -401,7 +401,7 @@ const Button = React.forwardRef(function Button<
 
   const classes = useUtilityClasses(ownerState);
 
-  const postionClassName = buttonGroupButtonContextPositionClassName ?? '';
+  const positionClassName = buttonGroupButtonContextPositionClassName ?? '';
 
   const rootProps = useSlotProps({
     elementType: ButtonRoot,
@@ -412,7 +412,7 @@ const Button = React.forwardRef(function Button<
       ref,
     },
     ownerState,
-    className: clsx(contextProps.className, postionClassName),
+    className: clsx(contextProps.className, positionClassName),
   });
 
   const startIcon = startIconProp && (
