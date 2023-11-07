@@ -59,8 +59,8 @@ describe('<CircularProgress />', () => {
     const { container } = render(<CircularProgress size={60} />);
     const circularProgress = container.firstChild!;
     expect(circularProgress).to.have.class(classes.root);
-    expect(circularProgress.style.width).to.equal('60px', 'should have width correctly set');
-    expect(circularProgress.style.height).to.equal('60px', 'should have height correctly set');
+    expect(circularProgress).to.have.property('width', '60px', 'should have width correctly set')
+    expect(circularProgress).to.have.property('height', '60px', 'should have height correctly set')
     const svg = circularProgress.firstChild!;
     expect(svg).to.have.tagName('svg');
     const circle = svg.firstChild!;
@@ -85,14 +85,8 @@ describe('<CircularProgress />', () => {
       expect(circularProgress).to.have.class(classes.root);
       const svg = circularProgress.firstChild!;
       const circle = svg.firstChild!;
-      expect(circle.style.strokeDasharray).to.match(
-        /126\.920?(px)?/gm,
-        'should have strokeDasharray set',
-      );
-      expect(circle.style.strokeDashoffset).to.equal(
-        '38.076px',
-        'should have strokeDashoffset set',
-      );
+      expect(circle).to.have.property('strokeDasharray', '126.920px', 'should have strokeDasharray set')
+      expect(circle).to.have.property('strokeDashoffset', '38.076px', 'should have strokeDashoffset set')
       expect(circularProgress).to.have.attribute('aria-valuenow', '70');
     });
   });
