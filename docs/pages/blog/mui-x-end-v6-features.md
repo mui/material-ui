@@ -1,5 +1,5 @@
 ---
-title: MUI X v6.18.0 and the latest features before the next major.
+title: MUI X v6.18.0 and the latest features before the next major
 description: New components, polished features, better performance and more.
 date: 2023-11-13T00:00:00.000Z
 authors: ['josefreitas']
@@ -19,7 +19,7 @@ As we gear up to develop the next major version, let's review the notable new fe
 
 ## Table of contents
 
-- [New stable components](#new-stable-components)
+- [New stable components 🎉](#new-stable-components)
   - [Charts](#charts)
   - [Tree view](#tree-view)
 - [Date Pickers](#date-pickers)
@@ -43,14 +43,20 @@ The stable version of MUI X charts supports the most commonly used chart plots y
 Featuring lines, areas, bars, pie charts and scatter plots, the latest versions also include:
 
 - **Animations**
+
+  Animations on bars, pie charts, and more to come.
+
   <video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline width="680" height="306">
     <source src="/static/blog/mui-x-end-v6-features/bar-chart-animations.mp4" type="video/mp4">
   </video>
 
-- **Horizontal Bar Chart Support**:
-  Recently added, the horizontal bars can broaden your data visualization spectrum. Especially when you need to display long labels for multiple categories. Check out the [layout documentation](https://mui.com/x/react-charts/bars/#layout) for more details.
+- **Horizontal Bar Chart Support**
 
-- **Improved Text Customization**:
+  Recently added, the horizontal bars can broaden your data visualization spectrum, especially when you need to display long labels for multiple categories.
+  Check out Bar's [layout documentation](https://mui.com/x/react-charts/bars/#layout) for more details.
+
+- **Improved Text Customization**
+
   Customize the legend text to your heart's content, making your charts more readable and visually
   appealing.
 
