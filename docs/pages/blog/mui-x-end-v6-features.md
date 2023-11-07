@@ -29,6 +29,7 @@ As we gear up to develop the next major version, let's review the notable new fe
 - [Data Grid](#data-grid)
   - [Column Autosizing](#filter-on-column-headers) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [New examples](#new-examples)
+  - [Sparkline as a column type](#sparkline-as-a-column-type)
   - [Performance improvements](#performance-improvements)
 - [What's next](#whats-next)
 - [Feedback](#feedback)
@@ -53,7 +54,7 @@ Featuring lines, areas, bars, pie charts and scatter plots, the latest versions 
   Customize the legend text to your heart's content, making your charts more readable and visually
   appealing.
 
-[Get started with charts now!](https://mui.com/x/react-charts/#getting-started)
+Get started with charts [now!](https://mui.com/x/react-charts/#getting-started)
 
 ### Tree view
 
@@ -63,7 +64,7 @@ After an extensive period of development and refinement in the lab and pre-relea
   <source src="/static/blog/mui-x-end-v6-features/tree-view-gmail.mp4" type="video/mp4">
 </video>
 
-[Get started with tree view now!](https://mui.com/x/react-tree-view/getting-started/)
+Get started with tree view [now!](https://mui.com/x/react-tree-view/getting-started/)
 
 ## Date Pickers
 
