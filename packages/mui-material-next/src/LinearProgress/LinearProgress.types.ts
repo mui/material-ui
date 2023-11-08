@@ -56,19 +56,4 @@ export type LinearProgressProps<
   AdditionalProps = {},
 > = OverrideProps<LinearProgressTypeMap<AdditionalProps, RootComponentType>, RootComponentType>;
 
-/**
- * ## ARIA
- *
- * If the progress bar is describing the loading progress of a particular region of a page,
- * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
- * attribute to `true` on that region until it has finished loading.
- *
- * Demos:
- *
- * - [Progress](https://mui.com/material-ui/react-progress/)
- *
- * API:
- *
- * - [LinearProgress API](https://mui.com/material-ui/api/linear-progress/)
- */
-export default function LinearProgress(props: LinearProgressProps): JSX.Element;
+export interface LinearProgressOwnerState extends LinearProgressProps {}

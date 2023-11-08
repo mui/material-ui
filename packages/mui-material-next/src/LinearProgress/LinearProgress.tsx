@@ -5,10 +5,17 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { keyframes, css, darken, lighten } from '@mui/system';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import { OverridableComponent } from '@mui/types';
 import useTheme from '../styles/useTheme';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
+import {
+  LinearProgressOwnerState,
+  LinearProgressProps,
+  LinearProgressTypeMap,
+} from './LinearProgress.types';
+import { Theme } from '../styles';
 
 const TRANSITION_DURATION = 4; // seconds
 const indeterminate1Keyframe = keyframes`
@@ -62,8 +69,8 @@ const bufferKeyframe = keyframes`
   }
 `;
 
-const useUtilityClasses = (ownerState) => {
-  const { classes, variant, color } = ownerState;
+const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
+  const { classes, variant, color = 'primary' } = ownerState;
 
   const slots = {
     root: ['root', `color${capitalize(color)}`, variant],
@@ -87,7 +94,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getLinearProgressUtilityClass, classes);
 };
 
-const getColorShade = (theme, color) => {
+const getColorShade = (theme: Theme, color: LinearProgressOwnerState['color'] = 'primary') => {
   if (color === 'inherit') {
     return 'currentColor';
   }
@@ -111,7 +118,7 @@ const LinearProgressRoot = styled('span', {
       styles[ownerState.variant],
     ];
   },
-})(({ ownerState, theme }) => ({
+})<{ ownerState: LinearProgressOwnerState }>(({ ownerState, theme }) => ({
   position: 'relative',
   overflow: 'hidden',
   display: 'block',
@@ -147,7 +154,7 @@ const LinearProgressDashed = styled('span', {
 
     return [styles.dashed, styles[`dashedColor${capitalize(ownerState.color)}`]];
   },
-})(
+})<{ ownerState: LinearProgressOwnerState }>(
   ({ ownerState, theme }) => {
     const backgroundColor = getColorShade(theme, ownerState.color);
 
@@ -184,7 +191,7 @@ const LinearProgressBar1 = styled('span', {
       ownerState.variant === 'buffer' && styles.bar1Buffer,
     ];
   },
-})(
+})<{ ownerState: LinearProgressOwnerState }>(
   ({ ownerState, theme }) => ({
     width: '100%',
     position: 'absolute',
@@ -196,7 +203,7 @@ const LinearProgressBar1 = styled('span', {
     backgroundColor:
       ownerState.color === 'inherit'
         ? 'currentColor'
-        : (theme.vars || theme).palette[ownerState.color].main,
+        : (theme.vars || theme).palette[ownerState.color ?? 'primary'].main,
     ...(ownerState.variant === 'determinate' && {
       transition: `transform .${TRANSITION_DURATION}s linear`,
     }),
@@ -227,7 +234,7 @@ const LinearProgressBar2 = styled('span', {
       ownerState.variant === 'buffer' && styles.bar2Buffer,
     ];
   },
-})(
+})<{ ownerState: LinearProgressOwnerState }>(
   ({ ownerState, theme }) => ({
     width: '100%',
     position: 'absolute',
@@ -240,7 +247,7 @@ const LinearProgressBar2 = styled('span', {
       backgroundColor:
         ownerState.color === 'inherit'
           ? 'currentColor'
-          : (theme.vars || theme).palette[ownerState.color].main,
+          : (theme.vars || theme).palette[ownerState.color ?? 'primary'].main,
     }),
     ...(ownerState.color === 'inherit' && {
       opacity: 0.3,
@@ -264,8 +271,18 @@ const LinearProgressBar2 = styled('span', {
  * If the progress bar is describing the loading progress of a particular region of a page,
  * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
  * attribute to `true` on that region until it has finished loading.
+ *
+ * Demos:
+ *
+ * - [Progress](https://mui.com/material-ui/react-progress/)
+ *
+ * API:
+ *
+ * - [LinearProgress API](https://mui.com/material-ui/api/linear-progress/)
  */
-const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
+const LinearProgress = React.forwardRef(function LinearProgress<
+  BaseComponentType extends React.ElementType = LinearProgressTypeMap['defaultComponent'],
+>(inProps: LinearProgressProps<BaseComponentType>, ref: React.ForwardedRef<HTMLSpanElement>) {
   const props = useThemeProps({ props: inProps, name: 'MuiLinearProgress' });
   const {
     className,
@@ -284,8 +301,14 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
   const theme = useTheme();
 
-  const rootProps = {};
-  const inlineStyles = { bar1: {}, bar2: {} };
+  const rootProps: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLSpanElement>,
+    HTMLSpanElement
+  > = {};
+  const inlineStyles: { bar1: React.CSSProperties; bar2: React.CSSProperties } = {
+    bar1: {},
+    bar2: {},
+  };
 
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
@@ -345,12 +368,12 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       )}
     </LinearProgressRoot>
   );
-});
+}) as OverridableComponent<LinearProgressTypeMap>;
 
 LinearProgress.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * @ignore
@@ -370,9 +393,14 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
-    PropTypes.string,
+  color: PropTypes.oneOf([
+    'error',
+    'info',
+    'inherit',
+    'primary',
+    'secondary',
+    'success',
+    'warning',
   ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -398,6 +426,6 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    * @default 'indeterminate'
    */
   variant: PropTypes.oneOf(['buffer', 'determinate', 'indeterminate', 'query']),
-};
+} as any;
 
 export default LinearProgress;
