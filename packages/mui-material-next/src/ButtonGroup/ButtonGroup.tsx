@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha } from '@mui/system';
 import { getValidReactChildren, unstable_capitalize as capitalize } from '@mui/utils';
+import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
@@ -324,7 +325,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup<
       </ButtonGroupContext.Provider>
     </ButtonGroupRoot>
   );
-});
+}) as OverridableComponent<ButtonGroupTypeMap>;
 
 ButtonGroup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
