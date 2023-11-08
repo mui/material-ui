@@ -39,7 +39,7 @@ const Stat = React.forwardRef(function Stat(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'JoyStat' });
   const { value, unit, variant, ...other } = props;
 
-  const ownerState = { ...props, variant };
+  const ownerState = { ...other, variant };
 
   return (
     <StatRoot ref={ref} ownerState={ownerState} {...other}>
