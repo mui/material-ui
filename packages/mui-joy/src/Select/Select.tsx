@@ -573,8 +573,9 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
 
   const renderDisplayValue = () => {
     let displayValue = placeholder;
-    if (multiple) {
-      if (Array.isArray(selectedOption) && selectedOption.length > 0) {
+
+    if (Array.isArray(selectedOption)) {
+      if (selectedOption.length > 0) {
         displayValue = renderValue(selectedOption);
       }
     } else if (selectedOption) {
