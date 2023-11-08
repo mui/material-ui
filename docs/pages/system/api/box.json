@@ -11,7 +11,7 @@
   },
   "name": "Box",
   "imports": ["import Box from '@mui/system/Box';", "import { Box } from '@mui/system';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "classes": [],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiBox",

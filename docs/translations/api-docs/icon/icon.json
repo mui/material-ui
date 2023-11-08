@@ -20,7 +20,21 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "colorAction": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"action\"</code>"
+    },
+    "colorDisabled": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"disabled\"</code>"
+    },
+    "colorError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"error\"</code>"
+    },
     "colorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -31,35 +45,21 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
-    "colorAction": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"action\"</code>"
-    },
-    "colorError": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"error\"</code>"
-    },
-    "colorDisabled": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"disabled\"</code>"
-    },
     "fontSizeInherit": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>fontSize=\"inherit\"</code>"
+    },
+    "fontSizeLarge": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>fontSize=\"large\"</code>"
     },
     "fontSizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>fontSize=\"small\"</code>"
     },
-    "fontSizeLarge": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>fontSize=\"large\"</code>"
-    }
+    "root": { "description": "Styles applied to the root element." }
   }
 }

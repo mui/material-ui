@@ -25,42 +25,42 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "disablePointerEvents": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disablePointerEvents={true}</code>"
+    },
     "filled": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code>"
+    },
+    "hiddenLabel": {
+      "description": "Styles applied if the adornment is used inside <FormControl hiddenLabel />."
     },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
-    "standard": {
+    "positionEnd": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"standard\"</code>"
+      "conditions": "<code>position=\"end\"</code>"
     },
     "positionStart": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>position=\"start\"</code>"
     },
-    "positionEnd": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>position=\"end\"</code>"
-    },
-    "disablePointerEvents": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disablePointerEvents={true}</code>"
-    },
-    "hiddenLabel": {
-      "description": "Styles applied if the adornment is used inside <FormControl hiddenLabel />."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "sizeSmall": {
       "description": "Styles applied if the adornment is used inside <FormControl size=\"small\" />."
+    },
+    "standard": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"standard\"</code>"
     }
   }
 }

@@ -29,31 +29,25 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "variantOverlay": {
+    "body-lg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"overlay\"</code>"
+      "conditions": "<code>level=\"body-lg\"</code>"
     },
-    "variantCircular": {
+    "body-md": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"circular\"</code>"
+      "conditions": "<code>level=\"body-md\"</code>"
     },
-    "variantRectangular": {
+    "body-sm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"rectangular\"</code>"
+      "conditions": "<code>level=\"body-sm\"</code>"
     },
-    "variantText": {
+    "body-xs": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code>"
-    },
-    "variantInline": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"inline\"</code>"
+      "conditions": "<code>level=\"body-xs\"</code>"
     },
     "h1": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -90,25 +84,30 @@
       "nodeName": "the root element",
       "conditions": "<code>level=\"title-sm\"</code>"
     },
-    "body-lg": {
+    "variantCircular": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"body-lg\"</code>"
+      "conditions": "<code>variant=\"circular\"</code>"
     },
-    "body-md": {
+    "variantInline": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"body-md\"</code>"
+      "conditions": "<code>variant=\"inline\"</code>"
     },
-    "body-sm": {
+    "variantOverlay": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"body-sm\"</code>"
+      "conditions": "<code>variant=\"overlay\"</code>"
     },
-    "body-xs": {
+    "variantRectangular": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"body-xs\"</code>"
+      "conditions": "<code>variant=\"rectangular\"</code>"
+    },
+    "variantText": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code>"
     }
   },
   "slotDescriptions": { "root": "The component that renders the root." }
