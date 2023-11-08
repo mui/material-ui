@@ -62,7 +62,7 @@ describe('<Rating />', () => {
     const { container } = render(
       <Rating
         sx={{
-          '.MuiRating-decimal': { marginRight: 2 },
+          [`.${classes.decimal}`]: { marginRight: 2 },
         }}
         precision={0.5}
       />,
