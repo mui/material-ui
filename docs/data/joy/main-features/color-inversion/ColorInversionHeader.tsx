@@ -20,7 +20,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 
-
 export default function ColorInversionHeader() {
   const [color, setColor] = React.useState<ColorPaletteProp>('primary');
   return (
