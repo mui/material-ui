@@ -49,7 +49,7 @@ const useUtilityClasses = (ownerState: CircularProgressOwnerState) => {
 
   const slots = {
     root: ['root', variant, `color${capitalize(color)}`],
-    svg: ['svg', `svg${capitalize(variant)}`],
+    svg: ['svg'],
     circle: ['circle', `circle${capitalize(variant)}`, disableShrink && 'circleDisableShrink'],
   };
 
