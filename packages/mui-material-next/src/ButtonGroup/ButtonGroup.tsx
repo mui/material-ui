@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { CSSInterpolation, alpha } from '@mui/system';
+import { alpha } from '@mui/system';
 import { getValidReactChildren, unstable_capitalize as capitalize } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -11,51 +11,6 @@ import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupCla
 import ButtonGroupContext from './ButtonGroupContext';
 import ButtonGroupButtonContext from './ButtonGroupButtonContext';
 import { ButtonGroupOwnerState, ButtonGroupProps, ButtonGroupTypeMap } from './ButtonGroup.types';
-
-const overridesResolver = (
-  props: ButtonGroupProps & { ownerState: ButtonGroupOwnerState },
-  styles: Record<string, CSSInterpolation>,
-) => {
-  const {
-    ownerState: {
-      color = 'primary',
-      disableElevation,
-      fullWidth,
-      orientation = 'horizontal',
-      variant = 'outlined',
-    },
-  } = props;
-
-  return [
-    { [`& .${buttonGroupClasses.grouped}`]: styles.grouped },
-    {
-      [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(orientation)}`],
-    },
-    { [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(variant)}`] },
-    {
-      [`& .${buttonGroupClasses.grouped}`]:
-        styles[`grouped${capitalize(variant)}${capitalize(orientation)}`],
-    },
-    {
-      [`& .${buttonGroupClasses.grouped}`]:
-        styles[`grouped${capitalize(variant)}${capitalize(color)}`],
-    },
-    {
-      [`& .${buttonGroupClasses.firstButton}`]: styles.firstButton,
-    },
-    {
-      [`& .${buttonGroupClasses.lastButton}`]: styles.lastButton,
-    },
-    {
-      [`& .${buttonGroupClasses.middleButton}`]: styles.middleButton,
-    },
-    styles.root,
-    styles[variant],
-    disableElevation === true && styles.disableElevation,
-    fullWidth && styles.fullWidth,
-    orientation === 'vertical' && styles.vertical,
-  ];
-};
 
 const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
   const {
@@ -95,7 +50,47 @@ const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
 const ButtonGroupRoot = styled('div', {
   name: 'MuiButtonGroup',
   slot: 'Root',
-  overridesResolver,
+  overridesResolver(props, styles) {
+    const {
+      ownerState: {
+        color = 'primary',
+        disableElevation,
+        fullWidth,
+        orientation = 'horizontal',
+        variant = 'outlined',
+      },
+    } = props;
+
+    return [
+      { [`& .${buttonGroupClasses.grouped}`]: styles.grouped },
+      {
+        [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(orientation)}`],
+      },
+      { [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(variant)}`] },
+      {
+        [`& .${buttonGroupClasses.grouped}`]:
+          styles[`grouped${capitalize(variant)}${capitalize(orientation)}`],
+      },
+      {
+        [`& .${buttonGroupClasses.grouped}`]:
+          styles[`grouped${capitalize(variant)}${capitalize(color)}`],
+      },
+      {
+        [`& .${buttonGroupClasses.firstButton}`]: styles.firstButton,
+      },
+      {
+        [`& .${buttonGroupClasses.lastButton}`]: styles.lastButton,
+      },
+      {
+        [`& .${buttonGroupClasses.middleButton}`]: styles.middleButton,
+      },
+      styles.root,
+      styles[variant],
+      disableElevation === true && styles.disableElevation,
+      fullWidth && styles.fullWidth,
+      orientation === 'vertical' && styles.vertical,
+    ];
+  },
 })<{ ownerState: ButtonGroupOwnerState }>(({ theme, ownerState }) => ({
   display: 'inline-flex',
   borderRadius: (theme.vars || theme).shape.borderRadius,
