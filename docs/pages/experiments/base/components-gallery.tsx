@@ -38,6 +38,19 @@ const positioningStyles = {
   unmounted: 'translateX(500px)',
 };
 
+const SelectButton = React.forwardRef(function SelectButton<
+  TValue extends {},
+  Multiple extends boolean,
+>(props: SelectRootSlotProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
+  const { ownerState, ...other } = props;
+  return (
+    <button type="button" {...other} ref={ref}>
+      {other.children}
+      <UnfoldMoreRoundedIcon />
+    </button>
+  );
+});
+
 export default function ComponentsGallery() {
   // Popper demo
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -364,19 +377,3 @@ export default function ComponentsGallery() {
     </Stack>
   );
 }
-
-const SelectButton = React.forwardRef(function SelectButton<
-  TValue extends {},
-  Multiple extends boolean,
->(
-  props: SelectRootSlotProps<TValue, Multiple>,
-  ref: React.ForwardedRef<HTMLButtonElement>,
-) {
-  const { ownerState, ...other } = props;
-  return (
-    <button type="button" {...other} ref={ref}>
-      {other.children}
-      <UnfoldMoreRoundedIcon />
-    </button>
-  );
-});
