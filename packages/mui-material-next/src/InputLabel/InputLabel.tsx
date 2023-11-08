@@ -1,17 +1,17 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
+import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
-import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import FormLabel, { formLabelClasses } from '../FormLabel';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
+import { InputLabelProps, InputLabelTypeMap, InputLabelOwnerState } from './InputLabel.types';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: InputLabelOwnerState) => {
   const { classes, formControl, size, shrink, disableAnimation, variant, required } = ownerState;
   const slots = {
     root: [
@@ -46,10 +46,11 @@ const InputLabelRoot = styled(FormLabel, {
       ownerState.size === 'small' && styles.sizeSmall,
       ownerState.shrink && styles.shrink,
       !ownerState.disableAnimation && styles.animated,
+      ownerState.focused && styles.focused,
       styles[ownerState.variant],
     ];
   },
-})(({ theme, ownerState }) => ({
+})<{ ownerState: InputLabelOwnerState }>(({ theme, ownerState }) => ({
   display: 'block',
   transformOrigin: 'top left',
   whiteSpace: 'nowrap',
@@ -120,14 +121,20 @@ const InputLabelRoot = styled(FormLabel, {
   }),
 }));
 
-const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
+const InputLabel = React.forwardRef(function InputLabel<
+  RootComponentType extends React.ElementType = InputLabelTypeMap['defaultComponent'],
+>(inProps: InputLabelProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const props = useThemeProps({ name: 'MuiInputLabel', props: inProps });
   const {
     disableAnimation = false,
     margin,
+    focused: focusedProp,
+    required: requiredProp,
     shrink: shrinkProp,
-    variant,
-    className,
+    size: sizeProp,
+    variant: variantProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -138,40 +145,43 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
     shrink = muiFormControl.filled || muiFormControl.focused || muiFormControl.adornedStart;
   }
 
-  const fcs = formControlState({
-    props,
-    muiFormControl,
-    states: ['size', 'variant', 'required'],
-  });
-
-  const ownerState = {
+  const ownerState: InputLabelOwnerState = {
     ...props,
     disableAnimation,
     formControl: muiFormControl,
     shrink,
-    size: fcs.size,
-    variant: fcs.variant,
-    required: fcs.required,
+    size: sizeProp ?? muiFormControl?.size,
+    variant: variantProp ?? muiFormControl?.variant,
+    required: requiredProp ?? muiFormControl?.required,
+    focused: focusedProp ?? muiFormControl?.focused,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <InputLabelRoot
-      data-shrink={shrink}
-      ownerState={ownerState}
-      ref={ref}
-      className={clsx(classes.root, className)}
-      {...other}
-      classes={classes}
-    />
-  );
-});
+  const RootSlot = slots?.root ?? InputLabelRoot;
+
+  const rootProps = useSlotProps({
+    elementType: RootSlot,
+    externalSlotProps: slotProps.root,
+    externalForwardedProps: { ...other, classes },
+    additionalProps: {
+      ref: forwardedRef,
+      'data-shrink': shrink,
+      required: requiredProp,
+      size: sizeProp,
+      focused: focusedProp,
+    },
+    ownerState,
+    className: [classes.root],
+  });
+
+  return <RootSlot {...rootProps} />;
+}) as OverridableComponent<InputLabelTypeMap>;
 
 InputLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The content of the component.
@@ -181,10 +191,6 @@ InputLabel.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
@@ -243,7 +249,7 @@ InputLabel.propTypes /* remove-proptypes */ = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
-};
+  variant: PropTypes.oneOf(['filled', 'outlined']),
+} as any;
 
 export default InputLabel;

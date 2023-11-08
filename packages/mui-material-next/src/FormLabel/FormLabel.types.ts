@@ -1,20 +1,11 @@
 import * as React from 'react';
+import { SlotComponentProps } from '@mui/base';
 import { SxProps } from '@mui/system';
-import {
-  OverridableStringUnion,
-  OverridableComponent,
-  OverrideProps,
-  OverridableTypeMap,
-} from '@mui/types';
+import { OverridableStringUnion, OverrideProps, OverridableTypeMap } from '@mui/types';
 import { Theme } from '../styles';
 import { FormLabelClasses } from './formLabelClasses';
 
 export interface FormLabelPropsColorOverrides {}
-
-/**
- * This type is kept for compatibility. Use `FormLabelOwnProps` instead.
- */
-export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 
 export interface FormLabelOwnProps {
   /**
@@ -26,12 +17,16 @@ export interface FormLabelOwnProps {
    */
   classes?: Partial<FormLabelClasses>;
   /**
+   * @ignore
+   */
+  className?: string;
+  /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    'primary' | 'secondary' | 'tertiary' | 'error' | 'info' | 'warning' | 'success',
     FormLabelPropsColorOverrides
   >;
   /**
@@ -55,32 +50,39 @@ export interface FormLabelOwnProps {
    */
   required?: boolean;
   /**
+   * The props used for each slot inside the FormLabel.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<'label', {}, FormLabelOwnerState>;
+  };
+  /**
+   * The components used for each slot inside the FormLabel.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: FormLabelSlots;
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
+}
+
+export interface FormLabelSlots {
+  /**
+   * The component that renders the root.
+   * @default 'span'
+   */
+  root?: React.ElementType;
 }
 
 export interface FormLabelTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'label',
 > {
-  props: AdditionalProps & FormLabelBaseProps & FormLabelOwnProps;
+  props: AdditionalProps & FormLabelOwnProps;
   defaultComponent: RootComponent;
 }
-
-/**
- *
- * Demos:
- *
- * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
- * - [Radio Group](https://mui.com/material-ui/react-radio-button/)
- * - [Switch](https://mui.com/material-ui/react-switch/)
- *
- * API:
- *
- * - [FormLabel API](https://mui.com/material-ui/api/form-label/)
- */
-declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
 
 export interface ExtendFormLabelTypeMap<TypeMap extends OverridableTypeMap> {
   props: TypeMap['props'] & Pick<FormLabelOwnProps, 'filled' | 'color'>;
@@ -94,4 +96,6 @@ export type FormLabelProps<
   component?: React.ElementType;
 };
 
-export default FormLabel;
+export interface FormLabelOwnerState extends FormLabelProps {
+  color: NonNullable<FormLabelProps['color']>;
+}
