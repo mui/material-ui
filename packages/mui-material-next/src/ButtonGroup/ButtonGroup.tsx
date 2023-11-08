@@ -341,6 +341,10 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
@@ -351,7 +355,8 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * @ignore
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
