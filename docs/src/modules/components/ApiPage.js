@@ -16,8 +16,9 @@ import Ad from 'docs/src/modules/components/Ad';
 import PropertiesSection, {
   getPropsToC,
 } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import CSSSection, { getCssToC } from 'docs/src/modules/components/ApiPage/sections/CssSection';
-import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
+import ClassesSection, {
+  getClassesToC,
+} from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 
 export function getTranslatedHeader(t, header) {
@@ -78,7 +79,6 @@ export default function ApiPage(props) {
     inheritance,
     props: componentProps,
     spread,
-    styles: componentStyles,
     slots: componentSlots,
     classes: componentClasses,
   } = pageContent;
@@ -140,10 +140,10 @@ export default function ApiPage(props) {
       inheritance,
       themeDefaultProps: pageContent.themeDefaultProps,
     }),
-    ...getCssToC({
+    ...getClassesToC({
       t,
       componentName: pageContent.name,
-      componentStyles,
+      componentClasses,
     }),
     componentSlots?.length > 0 && createTocEntry('slots'),
     hasClasses && createTocEntry('classes'),
@@ -311,14 +311,6 @@ export default function ApiPage(props) {
           </React.Fragment>
         )}
 
-        <CSSSection
-          componentStyles={componentStyles}
-          classDescriptions={classDescriptions}
-          componentName={pageContent.name}
-          spreadHint={t('api-docs.cssDescription')}
-          styleOverridesLink={styleOverridesLink}
-        />
-
         <SlotsSection
           componentSlots={componentSlots}
           slotDescriptions={slotDescriptions}
@@ -334,6 +326,8 @@ export default function ApiPage(props) {
           componentName={pageContent.name}
           classDescriptions={classDescriptions}
           spreadHint={t('api-docs.classesDescription')}
+          styleOverridesLink={styleOverridesLink}
+          displayClassKeys
         />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
