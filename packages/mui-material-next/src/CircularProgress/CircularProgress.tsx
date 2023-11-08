@@ -5,9 +5,15 @@ import clsx from 'clsx';
 import { chainPropTypes, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { keyframes, css } from '@mui/system';
+import { OverridableComponent } from '@mui/types';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
+import {
+  CircularProgressOwnerState,
+  CircularProgressProps,
+  CircularProgressTypeMap,
+} from './CircularProgress.types';
 
 const SIZE = 44;
 
@@ -38,8 +44,8 @@ const circularDashKeyframe = keyframes`
   }
 `;
 
-const useUtilityClasses = (ownerState) => {
-  const { classes, variant, color, disableShrink } = ownerState;
+const useUtilityClasses = (ownerState: CircularProgressOwnerState) => {
+  const { classes, variant = 'indeterminate', color = 'primary', disableShrink } = ownerState;
 
   const slots = {
     root: ['root', variant, `color${capitalize(color)}`],
@@ -62,14 +68,14 @@ const CircularProgressRoot = styled('span', {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(
+})<{ ownerState: CircularProgressOwnerState }>(
   ({ ownerState, theme }) => ({
     display: 'inline-block',
     ...(ownerState.variant === 'determinate' && {
       transition: theme.transitions.create('transform'),
     }),
     ...(ownerState.color !== 'inherit' && {
-      color: (theme.vars || theme).palette[ownerState.color].main,
+      color: (theme.vars || theme).palette[ownerState.color ?? 'primary'].main,
     }),
   }),
   ({ ownerState }) =>
@@ -83,7 +89,7 @@ const CircularProgressSVG = styled('svg', {
   name: 'MuiCircularProgress',
   slot: 'Svg',
   overridesResolver: (props, styles) => styles.svg,
-})({
+})<{ ownerState: CircularProgressOwnerState }>({
   display: 'block', // Keeps the progress centered
 });
 
@@ -99,7 +105,7 @@ const CircularProgressCircle = styled('circle', {
       ownerState.disableShrink && styles.circleDisableShrink,
     ];
   },
-})(
+})<{ ownerState: CircularProgressOwnerState }>(
   ({ ownerState, theme }) => ({
     stroke: 'currentColor',
     // Use butt to follow the specification, by chance, it's already the default CSS value.
@@ -127,8 +133,18 @@ const CircularProgressCircle = styled('circle', {
  * If the progress bar is describing the loading progress of a particular region of a page,
  * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
  * attribute to `true` on that region until it has finished loading.
+ *
+ * Demos:
+ *
+ * - [Progress](https://mui.com/material-ui/react-progress/)
+ *
+ * API:
+ *
+ * - [CircularProgress API](https://mui.com/material-ui/api/circular-progress/)
  */
-const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref) {
+const CircularProgress = React.forwardRef(function CircularProgress<
+  BaseComponentType extends React.ElementType = CircularProgressTypeMap['defaultComponent'],
+>(inProps: CircularProgressProps<BaseComponentType>, ref: React.ForwardedRef<HTMLSpanElement>) {
   const props = useThemeProps({ props: inProps, name: 'MuiCircularProgress' });
   const {
     className,
@@ -154,9 +170,12 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
 
   const classes = useUtilityClasses(ownerState);
 
-  const circleStyle = {};
-  const rootStyle = {};
-  const rootProps = {};
+  const circleStyle: React.CSSProperties = {};
+  const rootStyle: React.CSSProperties = {};
+  const rootProps: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLSpanElement>,
+    HTMLSpanElement
+  > = {};
 
   if (variant === 'determinate') {
     const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
@@ -194,12 +213,12 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
       </CircularProgressSVG>
     </CircularProgressRoot>
   );
-});
+}) as OverridableComponent<CircularProgressTypeMap>;
 
 CircularProgress.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * @ignore
@@ -274,6 +293,6 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * @default 'indeterminate'
    */
   variant: PropTypes.oneOf(['determinate', 'indeterminate']),
-};
+} as any;
 
 export default CircularProgress;
