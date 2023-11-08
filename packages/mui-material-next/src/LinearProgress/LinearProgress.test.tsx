@@ -10,6 +10,7 @@ import {
 import LinearProgress, {
   linearProgressClasses as classes,
 } from '@mui/material-next/LinearProgress';
+import { CssVarsProvider, extendTheme } from '../styles';
 
 describe('<LinearProgress />', () => {
   const { render } = createRenderer();
@@ -22,6 +23,8 @@ describe('<LinearProgress />', () => {
     testDeepOverrides: { slotName: 'bar', slotClassName: classes.bar },
     testVariantProps: { variant: 'determinate', value: 25 },
     refInstanceof: window.HTMLSpanElement,
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
     skip: ['componentProp', 'componentsProp'],
   }));
 
