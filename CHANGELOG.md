@@ -876,7 +876,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 ### Core
 
-- [CHANGELOG] Fix issues in highlight @oliviertassinari
+- [changelog] Fix issues in highlight @oliviertassinari
 - [core] Remove redundant `@material-ui/` aliases from regression test webpack config (#38574) @ZeeshanTamboli
 - [core] Fix CI error @oliviertassinari
 - [core] Remove unnecessary Box (#38461) @oliviertassinari
@@ -1535,7 +1535,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - &#8203;<!-- 20 -->[docs-infra] Fix demos border radius (#37658) @oliviertassinari
 - &#8203;<!-- 19 -->[docs-infra] Add analyticsTags to Algolia (#37600) @Janpot
 - &#8203;<!-- 18 -->[docs-infra] Simplify product id handling (#37593) @oliviertassinari
-- &#8203;<!-- 35 -->[CHANGELOG] Add missing release date for v5.13.5 @oliviertassinari
+- &#8203;<!-- 35 -->[changelog] Add missing release date for v5.13.5 @oliviertassinari
 - &#8203;<!-- 16 -->[examples] Shell command fix in the readme file of material-next-ts example (#37675) @bablukpik
 - &#8203;<!-- 15 -->[examples] Next.js v13 app router with Material UI (#37315) @smo043
 
@@ -6878,7 +6878,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 - [blog] MUI X v5 blog post (#29590) @DanailH
 - [blog] Polish the Benny Joo joins MUI post (#29697) @oliviertassinari
-- [CHANGELOG] Explain why we do breaking changes @oliviertassinari
+- [changelog] Explain why we do breaking changes @oliviertassinari
 - [core] Update latest issue template for codesandbox CI (#29783) @eps1lon
 - [core] Ensure `@mui/core` is an alias for `@mui/base` (#29762) @eps1lon
 - [docs] Fix broken Next and Previous links (#29711) @scallaway
@@ -10121,7 +10121,7 @@ The prop didn't solve any important problem better than any of its alternatives 
 
 ### Core
 
-- &#8203;<!-- 01 -->[CHANGELOG] Better document breaking changes @oliviertassinari
+- &#8203;<!-- 01 -->[changelog] Better document breaking changes @oliviertassinari
 - &#8203;<!-- 05 -->[core] Modernize icons `builder:src` (#25137) @eps1lon
 - &#8203;<!-- 04 -->[core] Properly use BABEL_ENV test and development (#25139) @eps1lon
 - &#8203;<!-- 15 -->[test] Add (manual) visual regression test for icons (#25160) @eps1lon
