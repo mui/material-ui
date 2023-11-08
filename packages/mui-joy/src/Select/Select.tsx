@@ -571,6 +571,18 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
     [listboxProps.modifiers],
   );
 
+  const renderSelectedOption = () => {
+    let displayValue = placeholder;
+    if (multiple) {
+      if (Array.isArray(selectedOption) && selectedOption.length > 0) {
+        displayValue = renderValue(selectedOption);
+      }
+    } else if (selectedOption) {
+      displayValue = renderValue(selectedOption);
+    }
+    return displayValue;
+  };
+
   return (
     <React.Fragment>
       <SlotRoot {...rootProps}>
@@ -578,9 +590,7 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        <SlotButton {...buttonProps}>
-          {selectedOption ? renderValue(selectedOption) : placeholder}
-        </SlotButton>
+        <SlotButton {...buttonProps}>{renderSelectedOption()}</SlotButton>
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
 
         {indicator && <SlotIndicator {...indicatorProps}>{indicator}</SlotIndicator>}
