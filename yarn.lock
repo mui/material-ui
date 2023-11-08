@@ -1486,31 +1486,31 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-3.0.0.tgz#798622546b63847e82389e473fd67f2707d82247"
   integrity sha512-hBI9tfBtuPIi885ZsZ32IMEU/5nlZH/KOVYJCOh7gyMxaVLGmLedYqFN6Ui1LXkI8JlC8IsuC0rF0btcRZKd5g==
 
-"@definitelytyped/header-parser@^0.0.182", "@definitelytyped/header-parser@latest":
-  version "0.0.182"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.182.tgz#24f5d30f9e12b0f6d8b5defe3307cb333ceb4c5e"
-  integrity sha512-SF4sN7UUbh3I1UwZk2fJqvgN/hUjb/adJ13fA7FG5u5dr7MuRQFVfcd/dMrXkLpl4G7/pKMNoLmGiL0N7VOodg==
+"@definitelytyped/header-parser@^0.0.186", "@definitelytyped/header-parser@latest":
+  version "0.0.186"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.186.tgz#22048bec6bbc518944d0d01dcced5529d68ce7cf"
+  integrity sha512-rPuE7sNN5Ty5hH3KpFIHTZEdqtkslpzQF0LAP9vz7i9CeJaQm5uwuYGuPrhXL339kh9g2B5Hcct7G3T9BJMf8Q==
   dependencies:
-    "@definitelytyped/typescript-versions" "0.0.179"
-    "@definitelytyped/utils" "0.0.181"
+    "@definitelytyped/typescript-versions" "0.0.180"
+    "@definitelytyped/utils" "0.0.184"
     semver "^7.3.7"
 
-"@definitelytyped/typescript-versions@0.0.179", "@definitelytyped/typescript-versions@^0.0.179", "@definitelytyped/typescript-versions@latest":
-  version "0.0.179"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.179.tgz#62cd6e114b56322ea1aef7a4f3492f1b8ad50fc2"
-  integrity sha512-E0VjIZkVtOt2ozagGlmWULKJYvFZwMjS6A335QJX8dmn21idRP/0RodxRpjtMU2//ChtvCZZUuKrPZQ2D/owww==
+"@definitelytyped/typescript-versions@0.0.180", "@definitelytyped/typescript-versions@^0.0.180", "@definitelytyped/typescript-versions@latest":
+  version "0.0.180"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.180.tgz#3834f55fd151c4c74a143a2dbc1110eb8b358583"
+  integrity sha512-susENartHdWecD3kvD5iaMpYOFmlEjY9JRvPqTAoWyOeEsUKQbQsxsyHm1OQkfn7YzbURuNvS+5jkSIIbIy59A==
 
-"@definitelytyped/utils@0.0.181", "@definitelytyped/utils@^0.0.181", "@definitelytyped/utils@latest":
-  version "0.0.181"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.181.tgz#c272263493f167cf4c473710d4fb0f5217dd79d4"
-  integrity sha512-4FuIV3RK1HEaDJ8na7DStyp9WJRDJqWyaYLbhiObj+iivFnudO06V9FEvl9hDx8dbvrlJt0JvNN8bogyBn+M8A==
+"@definitelytyped/utils@0.0.184", "@definitelytyped/utils@^0.0.184", "@definitelytyped/utils@latest":
+  version "0.0.184"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.184.tgz#bc0a17323f7d7db7be57013af884341473c14785"
+  integrity sha512-Vj/9jt7VRnm0eNkp9Imy0otZ8YBVFu+As9tQFGrTITc2ONy9T4QFdtSB/KN6U8XAdB9JdLXrqlbqWUJd/Ipe5g==
   dependencies:
-    "@definitelytyped/typescript-versions" "0.0.179"
+    "@definitelytyped/typescript-versions" "0.0.180"
     "@qiwi/npm-registry-client" "^8.9.1"
     "@types/node" "^14.14.35"
     charm "^1.0.2"
     fs-extra "^8.1.0"
-    fstream "^1.0.12"
+    minimatch "^9.0.3"
     tar "^6.1.11"
     tar-stream "^2.1.4"
 
