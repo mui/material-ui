@@ -4,7 +4,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 export default function ArrowTooltips() {
   return (
-    <Tooltip title="Add" arrow>
+    <Tooltip title="Add" hasArrow>
       <Button>Arrow</Button>
     </Tooltip>
   );
