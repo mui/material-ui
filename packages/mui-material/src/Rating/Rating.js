@@ -156,7 +156,7 @@ const RatingIcon = styled('span', {
     transform: 'scale(1.2)',
   }),
   ...(ownerState.iconEmpty && {
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : theme.palette.grey[600],
+    color: theme.palette.action.active,
   }),
 }));
 
