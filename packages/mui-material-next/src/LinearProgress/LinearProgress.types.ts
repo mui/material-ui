@@ -18,7 +18,7 @@ export interface LinearProgressOwnProps {
    * @default 'primary'
    */
   color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'inherit',
+    'primary' | 'secondary' | 'tertiary',
     LinearProgressPropsColorOverrides
   >;
   /**

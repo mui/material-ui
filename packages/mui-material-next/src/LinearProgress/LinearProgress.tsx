@@ -393,15 +393,7 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color: PropTypes.oneOf([
-    'error',
-    'info',
-    'inherit',
-    'primary',
-    'secondary',
-    'success',
-    'warning',
-  ]),
+  color: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
