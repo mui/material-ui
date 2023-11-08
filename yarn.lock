@@ -2293,13 +2293,13 @@
     react-test-renderer "^18.0.0"
     semver "^5.7.0"
 
-"@mui/x-charts@6.0.0-alpha.17":
-  version "6.0.0-alpha.17"
-  resolved "https://registry.yarnpkg.com/@mui/x-charts/-/x-charts-6.0.0-alpha.17.tgz#2970c0878d533ee649efc20c9b14c1de701a2638"
-  integrity sha512-3IlmvFJlJpP1Flz89TftpJVmaWhQqj1X9vR3gH59F4jWHjSb1ROlDMLsDIirn34aCgggTp1TjkHMsuLAUKG3wA==
+"@mui/x-charts@6.18.0":
+  version "6.18.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-charts/-/x-charts-6.18.0.tgz#944d35365ae54fc4344ac65e9edbe73e06d5d431"
+  integrity sha512-4xdiqPWAkBpV0UOKrbtzmT8Kgv4TrD2cAmq9L2NB/iPJBuEAzTIVZXmLBHGGou7v4xf57fLv5HqBN5iciGHotw==
   dependencies:
     "@babel/runtime" "^7.23.2"
-    "@mui/base" "^5.0.0-beta.20"
+    "@mui/base" "^5.0.0-beta.22"
     "@react-spring/rafz" "^9.7.3"
     "@react-spring/web" "^9.7.3"
     clsx "^2.0.0"
@@ -2308,27 +2308,27 @@
     d3-shape "^3.2.0"
     prop-types "^15.8.1"
 
-"@mui/x-data-grid-generator@6.17.0":
-  version "6.17.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-6.17.0.tgz#9df05b211767ccbd741cbb67d6935b6b17d9f56c"
-  integrity sha512-OTkzED/fP/qw9N+YZIuxOa3Ao5749M3hka2NnNTp2W+hoR9LUrTlRXI2NOeki++RaIprpOPmIQQ/sK49ljuDZw==
+"@mui/x-data-grid-generator@6.18.0":
+  version "6.18.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-6.18.0.tgz#cb91b9309565426ab71cb90a2d48e0a47661a3dc"
+  integrity sha512-+Dp91tiVNS31dwfSpCCox4WYoY76SeOigOE1bBnf5EsHRvH85A33jKlCHTMUMkw/3nYj4E3dgxQunz157n+6Jw==
   dependencies:
     "@babel/runtime" "^7.23.2"
-    "@mui/base" "^5.0.0-beta.20"
-    "@mui/x-data-grid-premium" "6.17.0"
+    "@mui/base" "^5.0.0-beta.22"
+    "@mui/x-data-grid-premium" "6.18.0"
     chance "^1.1.11"
     clsx "^2.0.0"
     lru-cache "^7.18.3"
 
-"@mui/x-data-grid-premium@6.17.0":
-  version "6.17.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-premium/-/x-data-grid-premium-6.17.0.tgz#f6b47bfec39761c57da5e108f10c2fe498b4bec5"
-  integrity sha512-0hkH0SgoEphQk220n8qcHv12Arlt2KD6XBesY2HCXeaCWLMdOkVWfLxslA1/L54DKmwQ0uONfUDL+eGXKrvZGg==
+"@mui/x-data-grid-premium@6.18.0":
+  version "6.18.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-premium/-/x-data-grid-premium-6.18.0.tgz#14ec79972f7b0f7dae4f7f096425a2c0cfe49d7a"
+  integrity sha512-LjDDxxq7JOM3q3TrL1+fKZ1elxtlmnvMhj2PPERXmKcXSbM5i+02bvjqC7XH0MLIv5MGy1X/84swk2ZLEJU4nw==
   dependencies:
     "@babel/runtime" "^7.23.2"
-    "@mui/utils" "^5.14.14"
-    "@mui/x-data-grid" "6.17.0"
-    "@mui/x-data-grid-pro" "6.17.0"
+    "@mui/utils" "^5.14.16"
+    "@mui/x-data-grid" "6.18.0"
+    "@mui/x-data-grid-pro" "6.18.0"
     "@mui/x-license-pro" "6.10.2"
     "@types/format-util" "^1.0.3"
     clsx "^2.0.0"
@@ -2336,53 +2336,53 @@
     prop-types "^15.8.1"
     reselect "^4.1.8"
 
-"@mui/x-data-grid-pro@6.17.0":
-  version "6.17.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-6.17.0.tgz#8db01d95e8412da35896cfa38c1529ca70ad99dc"
-  integrity sha512-+TeXwvEFMUlDJSLWT0QyEl44U9q8lu/Fp37DU5qXox9DOgQa8ootTq/OkYPFrf6YNhiL9aMk5vARkNqeU24sEQ==
+"@mui/x-data-grid-pro@6.18.0":
+  version "6.18.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-6.18.0.tgz#d299110b7920c8738fd0e45423281aed0c444f4a"
+  integrity sha512-V6EjWm9Mx/nCuNmLiay8TJLrQk6j/XKNZ4j5Ww15/lXTk59lGtB8+Q/tVZgN+8zo7ACq09JVLm+SVVnuaRgm9A==
   dependencies:
     "@babel/runtime" "^7.23.2"
-    "@mui/utils" "^5.14.14"
-    "@mui/x-data-grid" "6.17.0"
+    "@mui/utils" "^5.14.16"
+    "@mui/x-data-grid" "6.18.0"
     "@mui/x-license-pro" "6.10.2"
     "@types/format-util" "^1.0.3"
     clsx "^2.0.0"
     prop-types "^15.8.1"
     reselect "^4.1.8"
 
-"@mui/x-data-grid@6.17.0":
-  version "6.17.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-6.17.0.tgz#ef8b04ddc53a9a3cf25dbd55efcc09f7d63cb01b"
-  integrity sha512-HlpavV9jR7bLDYfi7n05R0xSsLl5ZxCTy3J5g4OfQtxhg9Zsu1uOkkLfudsM5LFqTbi5o+3PvZ9Kh33VvNUN/w==
+"@mui/x-data-grid@6.18.0":
+  version "6.18.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-6.18.0.tgz#5feb937e1c2cf105b39616e870384359d26a614c"
+  integrity sha512-js7Qhv+8XLgXilghKZmfBgUbkP7dYt7V1HLkM4C9285jFRUDFgAM9L6PVlRyUMn+YhVVPbvy+SWT+VWC8rYeQQ==
   dependencies:
     "@babel/runtime" "^7.23.2"
-    "@mui/utils" "^5.14.14"
+    "@mui/utils" "^5.14.16"
     clsx "^2.0.0"
     prop-types "^15.8.1"
     reselect "^4.1.8"
 
-"@mui/x-date-pickers-pro@6.17.0":
-  version "6.17.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers-pro/-/x-date-pickers-pro-6.17.0.tgz#c65caddf0b83287843d76e158fd515eaad32f3a1"
-  integrity sha512-wCnY66352EqVw4t1bgUSSRlMO3dw9DzZLqv2uxv4Awe6WdaM7j9I0xwXdnxLcG1yYCePbAysNfsL80xMArifIA==
+"@mui/x-date-pickers-pro@6.18.0":
+  version "6.18.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers-pro/-/x-date-pickers-pro-6.18.0.tgz#d40f0e8a7f3cad7045cfd55eee158f132d297a2a"
+  integrity sha512-Fk1txiINyBLndu04tezdu+7FqoDf4AdamkK2z/R5YSUKA8tpjh+B6LSlvKN+4og3S6BpNHgrXqMLR3WXqP6tgQ==
   dependencies:
     "@babel/runtime" "^7.23.2"
-    "@mui/base" "^5.0.0-beta.20"
-    "@mui/utils" "^5.14.14"
-    "@mui/x-date-pickers" "6.17.0"
+    "@mui/base" "^5.0.0-beta.22"
+    "@mui/utils" "^5.14.16"
+    "@mui/x-date-pickers" "6.18.0"
     "@mui/x-license-pro" "6.10.2"
     clsx "^2.0.0"
     prop-types "^15.8.1"
     react-transition-group "^4.4.5"
 
-"@mui/x-date-pickers@6.17.0":
-  version "6.17.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers/-/x-date-pickers-6.17.0.tgz#984ee91d05600630661f40a26c749596e60673c0"
-  integrity sha512-rBKiw6GL1bTJpfSuD0KnOgxrERhoSip7eyqXzHbh0GODmp9f5bonE9gRZ74XmlyMQT7tcSzXdzk0c1X0HhmP1A==
+"@mui/x-date-pickers@6.18.0":
+  version "6.18.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers/-/x-date-pickers-6.18.0.tgz#3bc439d246315e957858f08a8c4a3a8fbe95adfd"
+  integrity sha512-y4UlkHQXiNRfb6FWQ/GWir0sZ+9kL+GEEZssG+XWP3KJ+d3lONRteusl4AJkYJBdIAOh+5LnMV9RAQKq9Sl7yw==
   dependencies:
     "@babel/runtime" "^7.23.2"
-    "@mui/base" "^5.0.0-beta.20"
-    "@mui/utils" "^5.14.14"
+    "@mui/base" "^5.0.0-beta.22"
+    "@mui/utils" "^5.14.16"
     "@types/react-transition-group" "^4.4.8"
     clsx "^2.0.0"
     prop-types "^15.8.1"
