@@ -147,7 +147,7 @@ Add a `variant` prop to the `Stat` component and use it to style the `root` slot
   const Stat = React.forwardRef(function Stat(props, ref) {
 +   const { value, unit, variant, ...other } = props;
 +
-+   const ownerState = { ...props, variant };
++   const ownerState = { ...other, variant };
 
     return (
 -      <StatRoot ref={ref} {...other}>
@@ -268,7 +268,7 @@ const Stat = React.forwardRef<HTMLDivElement, StatProps>(function Stat(inProps, 
   const props = useThemeProps({ props: inProps, name: 'JoyStat' });
   const { value, unit, variant, ...other } = props;
 
-  const ownerState = { ...props, variant };
+  const ownerState = { ...other, variant };
 
   return (
     <StatRoot ref={ref} ownerState={ownerState} {...other}>
