@@ -75,9 +75,11 @@ describe('<CircularProgress />', () => {
       const { container, getByRole } = render(<CircularProgress variant="determinate" />);
       const circularProgress = getByRole('progressbar');
       expect(circularProgress).to.have.class(classes.root);
+      expect(circularProgress).not.to.have.class(classes.indeterminate);
       const svg = container.querySelector<SVGElement>('svg');
       expect(svg).to.have.tagName('svg');
-      expect(svg).not.to.have.class(classes.svgIndeterminate);
+      const circle = container.querySelector<SVGCircleElement>('circle');
+      expect(circle).not.to.have.class(classes.circleIndeterminate);
     });
 
     it('should set strokeDasharray of circle', () => {
