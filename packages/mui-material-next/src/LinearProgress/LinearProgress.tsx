@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { keyframes, css, darken, lighten } from '@mui/system';
+import { keyframes, css } from '@mui/system';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import useTheme from '../styles/useTheme';
@@ -15,7 +15,6 @@ import {
   LinearProgressProps,
   LinearProgressTypeMap,
 } from './LinearProgress.types';
-import { Theme } from '../styles';
 
 const TRANSITION_DURATION = 4; // seconds
 const indeterminate1Keyframe = keyframes`
@@ -94,18 +93,6 @@ const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
   return composeClasses(slots, getLinearProgressUtilityClass, classes);
 };
 
-const getColorShade = (theme: Theme, color: LinearProgressOwnerState['color'] = 'primary') => {
-  if (color === 'inherit') {
-    return 'currentColor';
-  }
-  if (theme.vars) {
-    return theme.vars.palette.LinearProgress[`${color}Bg`];
-  }
-  return theme.palette.mode === 'light'
-    ? lighten(theme.palette[color].main, 0.62)
-    : darken(theme.palette[color].main, 0.5);
-};
-
 const LinearProgressRoot = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Root',
@@ -118,30 +105,20 @@ const LinearProgressRoot = styled('span', {
       styles[ownerState.variant],
     ];
   },
-})<{ ownerState: LinearProgressOwnerState }>(({ ownerState, theme }) => ({
+})<{ ownerState: LinearProgressOwnerState }>(({ ownerState, theme: { vars: tokens } }) => ({
+  '--md-comp-linear-progress-indicator-track-color': tokens.sys.color.surfaceContainerHighest,
+  '--md-comp-linear-progress-indicator-active-indicator-height': '4px',
+  '--md-comp-linear-progress-indicator-active-indicator-color':
+    tokens.sys.color[ownerState.color ?? 'primary'],
   position: 'relative',
   overflow: 'hidden',
   display: 'block',
-  height: 4,
+  height: 'var(--md-comp-linear-progress-indicator-active-indicator-height)',
   zIndex: 0, // Fix Safari's bug during composition of different paint.
   '@media print': {
     colorAdjust: 'exact',
   },
-  backgroundColor: getColorShade(theme, ownerState.color),
-  ...(ownerState.color === 'inherit' &&
-    ownerState.variant !== 'buffer' && {
-      backgroundColor: 'none',
-      '&::before': {
-        content: '""',
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'currentColor',
-        opacity: 0.3,
-      },
-    }),
+  backgroundColor: 'var(--md-comp-linear-progress-indicator-track-color)',
   ...(ownerState.variant === 'buffer' && { backgroundColor: 'transparent' }),
   ...(ownerState.variant === 'query' && { transform: 'rotate(180deg)' }),
 }));
@@ -155,21 +132,14 @@ const LinearProgressDashed = styled('span', {
     return [styles.dashed, styles[`dashedColor${capitalize(ownerState.color)}`]];
   },
 })<{ ownerState: LinearProgressOwnerState }>(
-  ({ ownerState, theme }) => {
-    const backgroundColor = getColorShade(theme, ownerState.color);
-
-    return {
-      position: 'absolute',
-      marginTop: 0,
-      height: '100%',
-      width: '100%',
-      ...(ownerState.color === 'inherit' && {
-        opacity: 0.3,
-      }),
-      backgroundImage: `radial-gradient(${backgroundColor} 0%, ${backgroundColor} 16%, transparent 42%)`,
-      backgroundSize: '10px 10px',
-      backgroundPosition: '0 -23px',
-    };
+  {
+    position: 'absolute',
+    marginTop: 0,
+    height: '100%',
+    width: '100%',
+    backgroundImage: `radial-gradient(var(--md-comp-linear-progress-indicator-track-color) 0%, var(--md-comp-linear-progress-indicator-track-color) 16%, transparent 42%)`,
+    backgroundSize: '10px 10px',
+    backgroundPosition: '0 -23px',
   },
   css`
     animation: ${bufferKeyframe} 3s infinite linear;
@@ -192,7 +162,7 @@ const LinearProgressBar1 = styled('span', {
     ];
   },
 })<{ ownerState: LinearProgressOwnerState }>(
-  ({ ownerState, theme }) => ({
+  ({ ownerState }) => ({
     width: '100%',
     position: 'absolute',
     left: 0,
@@ -200,10 +170,7 @@ const LinearProgressBar1 = styled('span', {
     top: 0,
     transition: 'transform 0.2s linear',
     transformOrigin: 'left',
-    backgroundColor:
-      ownerState.color === 'inherit'
-        ? 'currentColor'
-        : (theme.vars || theme).palette[ownerState.color ?? 'primary'].main,
+    backgroundColor: 'var(--md-comp-linear-progress-indicator-active-indicator-color)',
     ...(ownerState.variant === 'determinate' && {
       transition: `transform .${TRANSITION_DURATION}s linear`,
     }),
@@ -235,7 +202,7 @@ const LinearProgressBar2 = styled('span', {
     ];
   },
 })<{ ownerState: LinearProgressOwnerState }>(
-  ({ ownerState, theme }) => ({
+  ({ ownerState }) => ({
     width: '100%',
     position: 'absolute',
     left: 0,
@@ -243,17 +210,9 @@ const LinearProgressBar2 = styled('span', {
     top: 0,
     transition: 'transform 0.2s linear',
     transformOrigin: 'left',
-    ...(ownerState.variant !== 'buffer' && {
-      backgroundColor:
-        ownerState.color === 'inherit'
-          ? 'currentColor'
-          : (theme.vars || theme).palette[ownerState.color ?? 'primary'].main,
-    }),
-    ...(ownerState.color === 'inherit' && {
-      opacity: 0.3,
-    }),
+    backgroundColor: 'var(--md-comp-linear-progress-indicator-active-indicator-color)',
     ...(ownerState.variant === 'buffer' && {
-      backgroundColor: getColorShade(theme, ownerState.color),
+      backgroundColor: 'var(--md-comp-linear-progress-indicator-track-color)',
       transition: `transform .${TRANSITION_DURATION}s linear`,
     }),
   }),
