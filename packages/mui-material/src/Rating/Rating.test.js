@@ -58,6 +58,52 @@ describe('<Rating />', () => {
     expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(2);
   });
 
+  it('should handle mouse hover correctly for icons with spacing', () => {
+    const { container } = render(
+      <Rating
+        sx={{
+          '.MuiRating-decimal': { marginRight: 2 },
+        }}
+        precision={0.5}
+      />,
+    );
+    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      left: 0,
+      right: 200,
+      width: 200,
+    }));
+
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 19,
+    });
+    // half star highlighted
+    expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(1);
+
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 21,
+    });
+    // one full star highlighted
+    expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(2);
+
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 39,
+    });
+    // Still one star remains highlighted as the total item width (40px) has not been reached yet, considering 24px for the icon width and 16px for margin-right.
+    expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(2);
+
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 41,
+    });
+    // one and half star highlighted
+    expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(3);
+
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 60,
+    });
+    // two full stars highlighted
+    expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(4);
+  });
+
   it('should clear the rating', () => {
     const handleChange = spy();
     const { container } = render(<Rating name="rating-test" onChange={handleChange} value={2} />);
