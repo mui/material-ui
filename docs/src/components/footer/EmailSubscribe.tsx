@@ -93,9 +93,9 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     <Form onSubmit={handleSubmit} sx={sx}>
       <FormLabel
         htmlFor="email-subscribe"
-        sx={{ typography: 'caption', color: 'text.secondary', fontWeight: 500 }}
+        sx={{ typography: 'caption', color: 'text.secondary', fontWeight: 'medium' }}
       >
-        Enter your email:
+        Your email
       </FormLabel>
       <Box
         sx={{
