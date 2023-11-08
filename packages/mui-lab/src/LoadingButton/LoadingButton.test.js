@@ -87,12 +87,12 @@ describe('<LoadingButton />', () => {
       expect(button).to.have.class(buttonClasses.containedSecondary);
     });
 
-    it('correctly applies position classes to buttons', () => {
+    it('correctly applies position classes to loading buttons', () => {
       render(
         <ButtonGroup>
-          <Button>Button 1</Button>
-          <Button>Button 2</Button>
-          <Button>Button 3</Button>
+          <LoadingButton>Button 1</LoadingButton>
+          <LoadingButton>Button 2</LoadingButton>
+          <LoadingButton>Button 3</LoadingButton>
         </ButtonGroup>,
       );
 
