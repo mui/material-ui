@@ -13,7 +13,7 @@
     "@mui/material": "file:../../packages/mui-material/build",
     "@mui/utils": "file:../../packages/mui-utils/build",
     "@mui/zero-runtime": "file:../../packages/zero-runtime/build",
-    "next": "13.4.19",
+    "next": "13.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
