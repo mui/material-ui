@@ -56,14 +56,14 @@
     "@testing-library/user-event": "^14.5.1",
     "@types/chai": "^4.3.9",
     "@types/prop-types": "^15.7.9",
-    "@types/react": "^18.2.33",
+    "@types/react": "^18.2.36",
     "@types/react-dom": "^18.2.14",
     "@types/sinon": "^10.0.20",
     "chai": "^4.3.10",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0",
+    "react-router-dom": "^6.18.0",
     "sinon": "^15.2.0"
   },
   "peerDependencies": {
