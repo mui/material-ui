@@ -571,7 +571,7 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
     [listboxProps.modifiers],
   );
 
-  const renderSelectedOption = () => {
+  const renderDisplayValue = () => {
     let displayValue = placeholder;
     if (multiple) {
       if (Array.isArray(selectedOption) && selectedOption.length > 0) {
@@ -590,7 +590,7 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        <SlotButton {...buttonProps}>{renderSelectedOption()}</SlotButton>
+        <SlotButton {...buttonProps}>{renderDisplayValue()}</SlotButton>
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
 
         {indicator && <SlotIndicator {...indicatorProps}>{indicator}</SlotIndicator>}
