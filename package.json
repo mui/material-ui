@@ -136,7 +136,7 @@
     "fast-glob": "^3.3.1",
     "fs-extra": "^11.1.1",
     "globby": "^13.2.2",
-    "google-auth-library": "^9.0.0",
+    "google-auth-library": "^9.2.0",
     "karma": "^6.4.2",
     "karma-browserstack-launcher": "~1.6.0",
     "karma-chrome-launcher": "^3.2.0",
