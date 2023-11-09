@@ -58,7 +58,7 @@ function getOption(storageKey: string) {
   try {
     const savedOption = localStorage.getItem(storageKey);
 
-    if (savedOption !== null) {
+    if (savedOption !== null && options.includes(savedOption as ApiDisplayOptions)) {
       return savedOption as ApiDisplayOptions;
     }
 
