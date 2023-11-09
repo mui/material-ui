@@ -150,9 +150,9 @@ const CircularProgress = React.forwardRef(function CircularProgress<
     className,
     color = 'primary',
     disableShrink = false,
-    size = 40,
+    size = 48,
     style,
-    thickness = 3.6,
+    thickness = 4,
     value = 0,
     variant = 'indeterminate',
     ...other
