@@ -238,10 +238,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  color: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   /**
    * If `true`, the shrink animation is disabled.
    * This only works if variant is `indeterminate`.
@@ -254,14 +251,27 @@ CircularProgress.propTypes /* remove-proptypes */ = {
           'with a variant other than `indeterminate`. This will have no effect.',
       );
     }
-
+    return null;
+  }),
+  /**
+   * If `true`, the component render indeterminate mode using four colors instead of one.
+   * This only works if variant is `indeterminate`.
+   * @default false
+   */
+  fourColor: chainPropTypes(PropTypes.bool, (props) => {
+    if (props.fourColor && props.variant && props.variant !== 'indeterminate') {
+      return new Error(
+        'MUI: You have provided the `fourColor` prop ' +
+          'with a variant other than `indeterminate`. This will have no effect.',
+      );
+    }
     return null;
   }),
   /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
    * If using a string, you need to provide the CSS unit, e.g. '3rem'.
-   * @default 40
+   * @default 48
    */
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
@@ -278,7 +288,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The thickness of the circle.
-   * @default 3.6
+   * @default 4
    */
   thickness: PropTypes.number,
   /**

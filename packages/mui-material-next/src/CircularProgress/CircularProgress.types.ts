@@ -18,7 +18,7 @@ export interface CircularProgressOwnProps {
    * @default 'primary'
    */
   color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'inherit',
+    'primary' | 'secondary' | 'tertiary',
     CircularProgressPropsColorOverrides
   >;
   /**
@@ -28,10 +28,16 @@ export interface CircularProgressOwnProps {
    */
   disableShrink?: boolean;
   /**
+   * If `true`, the component render indeterminate mode using four colors instead of one.
+   * This only works if variant is `indeterminate`.
+   * @default false
+   */
+  fourColor?: boolean;
+  /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
    * If using a string, you need to provide the CSS unit, e.g. '3rem'.
-   * @default 40
+   * @default 48
    */
   size?: number | string;
   /**
@@ -40,7 +46,7 @@ export interface CircularProgressOwnProps {
   sx?: SxProps<Theme>;
   /**
    * The thickness of the circle.
-   * @default 3.6
+   * @default 4
    */
   thickness?: number;
   /**
