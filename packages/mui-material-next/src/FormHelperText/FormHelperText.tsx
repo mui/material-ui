@@ -48,23 +48,21 @@ const FormHelperTextRoot = styled('p', {
   const { vars: tokens } = theme;
 
   const pxFontSize = theme.sys.typescale.body.small.size;
-  const letterSpacing = `${theme.sys.typescale.body.small.tracking / pxFontSize}rem`;
+  const lineHeight = `calc(${tokens.sys.typescale.body.small.lineHeight} / ${pxFontSize})`;
 
   return {
-    '--md-comp-form-helper-text-color': tokens.sys.color.secondary,
+    '--md-comp-form-helper-text-color': tokens.sys.color.onSurfaceVariant,
     '--md-comp-form-helper-text-font-family': tokens.sys.typescale.body.small.family,
     '--md-comp-form-helper-text-font-size': theme.typography.pxToRem(pxFontSize), // the pxToRem should be moved to typescale in the future,
     '--md-comp-form-helper-text-font-weight': tokens.sys.typescale.body.small.weight,
-    '--md-comp-form-helper-text-letter-spacing': letterSpacing,
-    '--md-comp-form-helper-text-line-height': theme.sys.typescale.body.small.lineHeight,
+    '--md-comp-form-helper-text-line-height': lineHeight,
     '--md-comp-form-helper-text-disabled-color': tokens.sys.color.onSurface,
     '--md-comp-form-helper-text-disabled-opacity': 0.38,
     '--md-comp-form-helper-text-error-color': tokens.sys.color.error,
     color: 'var(--md-comp-form-helper-text-color)',
     fontFamily: 'var(--md-comp-form-helper-text-font-family)',
     fontSize: 'var(--md-comp-form-helper-text-font-size)',
-    lineHeight: `calc(var(--md-comp-form-helper-text-line-height) / ${pxFontSize})`,
-    letterSpacing: 'var(--md-comp-form-helper-text-letter-spacing)',
+    lineHeight: `var(--md-comp-form-helper-text-line-height)`,
     textAlign: 'left',
     marginTop: 3,
     marginRight: 0,
@@ -72,7 +70,7 @@ const FormHelperTextRoot = styled('p', {
     marginLeft: 0,
     [`&.${formHelperTextClasses.disabled}`]: {
       color:
-        'color-mix(in srgb, var(--md-comp-form-helper-text-disabled-color), transparent calc(var(--md-comp-form-helper-text-disabled-opacity) * 100%))',
+        'color-mix(in srgb, var(--md-comp-form-helper-text-disabled-color), transparent calc((1 - var(--md-comp-form-helper-text-disabled-opacity)) * 100%))',
     },
     [`&.${formHelperTextClasses.error}`]: {
       color: 'var(--md-comp-form-helper-text-error-color)',
