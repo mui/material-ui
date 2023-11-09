@@ -38,7 +38,7 @@ export default function EmailExample() {
         direction="row"
         justifyContent="space-around"
         spacing={1}
-        sx={(theme) => ({
+        sx={{
           display: { xs: 'flex', sm: 'none' },
           zIndex: '999',
           bottom: 0,
@@ -48,7 +48,7 @@ export default function EmailExample() {
           backgroundColor: 'background.body',
           borderTop: '1px solid',
           borderColor: 'divider',
-        })}
+        }}
       >
         <Button
           variant="plain"

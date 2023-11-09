@@ -62,7 +62,7 @@ export default function FilesExample() {
         direction="row"
         justifyContent="space-around"
         spacing={1}
-        sx={(theme) => ({
+        sx={{
           display: { xs: 'flex', sm: 'none' },
           zIndex: '999',
           bottom: 0,
@@ -72,7 +72,7 @@ export default function FilesExample() {
           backgroundColor: 'background.body',
           borderTop: '1px solid',
           borderColor: 'divider',
-        })}
+        }}
       >
         <Button
           variant="plain"
@@ -894,7 +894,7 @@ export default function FilesExample() {
                   src="https://i.pravatar.cc/24?img=2"
                   srcSet="https://i.pravatar.cc/48?img=2 2x"
                 />
-                <Box>
+                <div>
                   <Box
                     sx={{ display: 'flex', gap: 0.5, alignItems: 'center', mb: 1 }}
                   >
@@ -910,7 +910,7 @@ export default function FilesExample() {
                   <Typography level="body-xs" sx={{ mt: 1 }}>
                     3 Nov 2023
                   </Typography>
-                </Box>
+                </div>
               </Box>
               <Typography level="title-md">Older</Typography>
               <Box sx={{ display: 'flex', gap: 1 }}>
@@ -919,7 +919,7 @@ export default function FilesExample() {
                   src="https://i.pravatar.cc/24?img=2"
                   srcSet="https://i.pravatar.cc/48?img=2 2x"
                 />
-                <Box>
+                <div>
                   <Box
                     sx={{ display: 'flex', gap: 0.5, alignItems: 'center', mb: 1 }}
                   >
@@ -935,7 +935,7 @@ export default function FilesExample() {
                   <Typography level="body-xs" sx={{ mt: 1 }}>
                     12 Apr 2021
                   </Typography>
-                </Box>
+                </div>
               </Box>
               <Box sx={{ display: 'flex', gap: 1 }}>
                 <Avatar
@@ -943,7 +943,7 @@ export default function FilesExample() {
                   src="https://i.pravatar.cc/24?img=2"
                   srcSet="https://i.pravatar.cc/48?img=2 2x"
                 />
-                <Box>
+                <div>
                   <Box
                     sx={{ display: 'flex', gap: 0.5, alignItems: 'center', mb: 1 }}
                   >
@@ -959,7 +959,7 @@ export default function FilesExample() {
                   <Typography level="body-xs" sx={{ mt: 1 }}>
                     12 Apr 2021
                   </Typography>
-                </Box>
+                </div>
               </Box>
             </TabPanel>
           </Tabs>
