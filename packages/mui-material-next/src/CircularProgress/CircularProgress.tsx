@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { keyframes, css } from '@mui/system';
+import { keyframes } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
@@ -15,32 +15,61 @@ import {
   CircularProgressTypeMap,
 } from './CircularProgress.types';
 
-const SIZE = 44;
+const SIZE = 48;
+const ARC_DURATION = 1333; // milliseconds
+const CYCLE_DURATION = 4 * ARC_DURATION; // milliseconds
+const LINEAR_ROTATE_DURATION = ARC_DURATION * 360 / 306; // milliseconds
 
 const circularRotateKeyframe = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
+  to {
     transform: rotate(360deg);
   }
 `;
 
 const circularDashKeyframe = keyframes`
   0% {
-    stroke-dasharray: 1px, 200px;
-    stroke-dashoffset: 0;
+    stroke-dasharray: 10px, 200px;
+    stroke-dashoffset: 0px;
   }
 
   50% {
-    stroke-dasharray: 100px, 200px;
-    stroke-dashoffset: -15px;
+    stroke-dasharray: 139px, 10px;
+    stroke-dashoffset: -10px;
   }
 
   100% {
-    stroke-dasharray: 100px, 200px;
-    stroke-dashoffset: -125px;
+    stroke-dasharray: 139px, 129px;
+    stroke-dashoffset: -139px;
+  }
+`;
+
+const fourColorKeyframe = keyframes`
+  0% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-one-color);
+  }
+  15% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-one-color);
+  }
+  25% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-two-color);
+  }
+  40% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-two-color);
+  }
+  50% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-three-color);
+  }
+  65% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-three-color);
+  }
+  75% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-four-color);
+  }
+  90% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-four-color);
+  }
+  100% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-one-color);
   }
 `;
 
@@ -80,22 +109,30 @@ const CircularProgressRoot = styled('span', {
       ownerState.fourColor && styles.fourColor,
     ];
   },
-})<{ ownerState: CircularProgressOwnerState }>(
-  ({ ownerState, theme }) => ({
-    display: 'inline-block',
-    ...(ownerState.variant === 'determinate' && {
-      transition: theme.transitions.create('transform'),
-    }),
-    ...(ownerState.color !== 'inherit' && {
-      color: (theme.vars || theme).palette[ownerState.color ?? 'primary'].main,
-    }),
+})<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme: {vars: tokens} }) => ({
+  '--md-comp-linear-progress-indicator-active-indicator-color':
+    tokens.sys.color[ownerState.color ?? 'primary'],
+  '--md-comp-linear-progress-indicator-active-indicator-width': ownerState.thickness,
+  '--md-comp-linear-progress-indicator-size': ownerState.size,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-one-color':
+    tokens.sys.color.primary,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-two-color':
+    tokens.sys.color.primaryContainer,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-three-color':
+    tokens.sys.color.tertiary,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-four-color':
+    tokens.sys.color.tertiaryContainer,
+  display: 'inline-block',
+  height: 'var(--md-comp-linear-progress-indicator-size)',
+  width: 'var(--md-comp-linear-progress-indicator-size)',
+  ...(ownerState.variant === 'determinate' && {
+    transition: `transform ${tokens.sys.motion.duration.medium2} ${tokens.sys.motion.easing.legacy}`,
   }),
-  ({ ownerState }) =>
-    ownerState.variant === 'indeterminate' &&
-    css`
-      animation: ${circularRotateKeyframe} 1.4s linear infinite;
-    `,
-);
+  ...(ownerState.variant === 'indeterminate' && {
+    animation: `linear infinite ${circularRotateKeyframe}`,
+    animationDuration: `${LINEAR_ROTATE_DURATION}ms`,
+  }),
+}));
 
 const CircularProgressSVG = styled('svg', {
   name: 'MuiCircularProgress',
@@ -118,27 +155,31 @@ const CircularProgressCircle = styled('circle', {
       ownerState.fourColor && styles.circleFourColor,
     ];
   },
-})<{ ownerState: CircularProgressOwnerState }>(
-  ({ ownerState, theme }) => ({
-    stroke: 'currentColor',
-    // Use butt to follow the specification, by chance, it's already the default CSS value.
-    // strokeLinecap: 'butt',
-    ...(ownerState.variant === 'determinate' && {
-      transition: theme.transitions.create('stroke-dashoffset'),
-    }),
-    ...(ownerState.variant === 'indeterminate' && {
-      // Some default value that looks fine waiting for the animation to kicks in.
-      strokeDasharray: '80px, 200px',
-      strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
-    }),
+})<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme: {vars: tokens} }) => ({
+  stroke: 'var(--md-comp-linear-progress-indicator-active-indicator-color)',
+  strokeWidth: 'var(--md-comp-linear-progress-indicator-active-indicator-width)',
+  // Use butt to follow the specification, by chance, it's already the default CSS value.
+  // strokeLinecap: 'butt',
+  ...(ownerState.variant === 'determinate' && {
+    transition: `stroke-dashoffset ${tokens.sys.motion.duration.medium2} ${tokens.sys.motion.easing.legacy}`,
   }),
-  ({ ownerState }) =>
-    ownerState.variant === 'indeterminate' &&
-    !ownerState.disableShrink &&
-    css`
-      animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
-    `,
-);
+  ...(ownerState.variant === 'indeterminate' && {
+    // Some default value that looks fine waiting for the animation to kicks in.
+    strokeDasharray: '10px, 200px',
+    strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
+  }),
+  ...(ownerState.variant === 'indeterminate' &&
+    !ownerState.disableShrink && {
+      animation: circularDashKeyframe,
+      animationDuration: `${ARC_DURATION}ms, ${CYCLE_DURATION}ms`,
+      animationIterationCount: 'infinite',
+      animationFillMode: 'both',
+      animationTimingFunction: tokens.sys.motion.easing.legacy,
+      ...(ownerState.fourColor && {
+        animationName: `${circularDashKeyframe}, ${fourColorKeyframe}`,
+      }),
+    }),
+}));
 
 /**
  * ## ARIA
@@ -164,7 +205,6 @@ const CircularProgress = React.forwardRef(function CircularProgress<
     color = 'primary',
     disableShrink = false,
     size = 48,
-    style,
     thickness = 4,
     value = 0,
     variant = 'indeterminate',
@@ -175,7 +215,7 @@ const CircularProgress = React.forwardRef(function CircularProgress<
     ...props,
     color,
     disableShrink,
-    size,
+    size: typeof size === 'number' ? `${size}px` : size,
     thickness,
     value,
     variant,
@@ -201,7 +241,7 @@ const CircularProgress = React.forwardRef(function CircularProgress<
   return (
     <CircularProgressRoot
       className={clsx(classes.root, className)}
-      style={{ width: size, height: size, ...rootStyle, ...style }}
+      style={{ ...rootStyle }}
       ownerState={ownerState}
       ref={ref}
       role="progressbar"
@@ -221,7 +261,6 @@ const CircularProgress = React.forwardRef(function CircularProgress<
           cy={SIZE}
           r={(SIZE - thickness) / 2}
           fill="none"
-          strokeWidth={thickness}
         />
       </CircularProgressSVG>
     </CircularProgressRoot>
