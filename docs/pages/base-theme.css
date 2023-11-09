@@ -699,6 +699,7 @@
   top: 4px;
   left: 4px;
   border-radius: 16px;
+  border: 1px solid var(--GallerySwitch-track-border-color, var(--grey-200));
   background-color: #fff;
   position: relative;
   transition-property: all;
@@ -717,7 +718,6 @@
 }
 
 .GallerySwitch.Mui-checked .GallerySwitch-track {
-  border: none;
   background: var(--cyan-500);
 }
 
@@ -792,6 +792,8 @@
 }
 
 .GalleryTablePagination .MuiTablePagination-toolbar {
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -946,11 +948,11 @@
   font-weight: 400;
   line-height: 1.5;
   padding: 12px;
-  border-radius: 12px 12px 0 12px;
+  border-radius: 8px 8px 0 8px;
   color: var(--GalleryTextarea-color, var(--grey-900));
   background: var(--GalleryTextarea-background-color, '#fff');
   border: 1px solid var(--GalleryTextarea-border-color, var(--grey-200));
-  box-shadow: 0px 2px 24px var(--GalleryTextarea-boxShadow-color, var(--cyan-100));
+  box-shadow: 0px 2px 24px var(--GalleryTextarea-boxShadow-color, var(--grey-50));
 }
 
 .GalleryTextarea:hover {
