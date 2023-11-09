@@ -171,7 +171,7 @@ export default function MarkdownDocsV2(props) {
           t,
           componentName: componentNameKebabCase,
           componentClasses: classes,
-          hash: `${componentNameKebabCase}-css`,
+          hash: `${componentNameKebabCase}-classes`,
         }),
       ].filter(Boolean);
 

@@ -23,7 +23,7 @@ export const getClassesToC = ({ componentName, componentClasses, t, hash }: GetC
     : [
         {
           text: t('api-docs.classes'),
-          hash: hash ?? 'css',
+          hash: hash ?? 'classes',
           children: [
             ...componentClasses.map((styles) => ({
               text: styles.key,
