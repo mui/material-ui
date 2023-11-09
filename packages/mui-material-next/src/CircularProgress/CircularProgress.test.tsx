@@ -41,7 +41,7 @@ describe('<CircularProgress />', () => {
   });
 
   it('should render with the tertiary color', () => {
-    const { getByRole } = render(<CircularProgress color="secondary" />);
+    const { getByRole } = render(<CircularProgress color="tertiary" />);
     const circularProgress = getByRole('progressbar');
     expect(circularProgress).to.have.class(classes.colorTertiary);
   });
