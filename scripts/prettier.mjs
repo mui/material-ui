@@ -6,26 +6,80 @@
 
 import yargs from 'yargs';
 import { $ } from 'execa';
+import prettier from 'prettier';
+import fs from 'fs/promises';
 import listChangedFiles from './listChangedFiles.mjs';
+
+const IGNORE_PATH = '.eslintignore';
 
 const numberFormat = new Intl.NumberFormat();
 
-async function runPrettierCli(...args) {
-  await $({ stdio: 'inherit' })`prettier ${args}`;
+async function runPrettierOnFile(file, { write } = {}) {
+  const info = await prettier.getFileInfo(file, { ignorePath: IGNORE_PATH });
+  if (info.ignored || !info.inferredParser) {
+    console.log(`"${file}": IGNORED`);
+    return;
+  }
+
+  const src = await fs.readFile(file, 'utf8').catch((err) => {
+    if (err.code === 'ENOENT') {
+      return null;
+    }
+    throw err;
+  });
+
+  if (!src) {
+    console.log(`"${file}": IGNORED`);
+    return;
+  }
+
+  const config = await prettier.resolveConfig(file);
+  const options = { ...config, filepath: file };
+
+  if (write) {
+    const formatted = await prettier.format(src, options);
+    if (formatted === src) {
+      console.log(`"${file}": OK`);
+    } else {
+      await fs.writeFile(file, formatted, 'utf8');
+      console.log(`"${file}": FORMATTED`);
+    }
+  } else {
+    const isOk = await prettier.check(src, options);
+
+    if (isOk) {
+      console.log(`"${file}": OK`);
+    } else {
+      throw new Error(`"${file}": FAIL`);
+    }
+  }
+}
+
+async function runPrettierOnFiles(files) {
+  const concurrency = 10;
+  const iterator = Array.from(files).values();
+
+  const createWorker = async () => {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const file of iterator) {
+      // eslint-disable-next-line no-await-in-loop
+      await runPrettierOnFile(file);
+    }
+  };
+
+  const workers = [];
+
+  for (let i = 0; i < concurrency; i += 1) {
+    workers.push(createWorker());
+  }
+
+  await Promise.allSettled(workers);
 }
 
 async function run(argv) {
   const { mode, branch, ci } = argv;
   const shouldWrite = mode === 'write' || mode === 'write-changed';
   const onlyChanged = mode === 'check-changed' || mode === 'write-changed';
-
-  const commonArgs = ['--ignore-path=.eslintignore'];
-
-  if (shouldWrite) {
-    commonArgs.push('--write');
-  } else {
-    commonArgs.push('--check');
-  }
 
   let filesToCheck = null;
 
@@ -45,21 +99,10 @@ async function run(argv) {
 
   if (filesToCheck) {
     console.log(`Running prettier on ${numberFormat.format(filesToCheck.size)} files.`);
-    const batchSize = 50;
-    const batchCount = Math.ceil(filesToCheck.size / batchSize);
-    for (let i = 0; i < batchCount; i += 1) {
-      console.log(`Running prettier on batch ${i + 1} of ${batchCount}.`);
-      const batch = Array.from(filesToCheck).slice(i * batchSize, (i + 1) * batchSize);
-      // eslint-disable-next-line no-await-in-loop
-      await runPrettierCli(
-        ...commonArgs,
-        '--ignore-unknown',
-        '--no-error-on-unmatched-pattern',
-        ...batch,
-      );
-    }
+    await runPrettierOnFiles(Array.from(filesToCheck), { write: shouldWrite });
   } else {
-    await runPrettierCli(...commonArgs, '.');
+    const args = [`--ignore-path=${IGNORE_PATH}`, shouldWrite ? '--write' : '--check'];
+    await $({ stdio: 'inherit' })`prettier ${args}`;
   }
 }
 
