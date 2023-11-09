@@ -22,8 +22,12 @@ export default function KeepMountedModal() {
         keepMounted
       >
         <ModalContent sx={style}>
-          <h2 id="keep-mounted-modal-title">Text in a modal</h2>
-          <p id="keep-mounted-modal-description">Aliquid amet deserunt earum!</p>
+          <h3 id="keep-mounted-modal-title" className="modal-title">
+            Text in a modal
+          </h3>
+          <p id="keep-mounted-modal-description" className="modal-description">
+            Aliquid amet deserunt earum!
+          </p>
         </ModalContent>
       </Modal>
     </div>
@@ -95,7 +99,6 @@ const style = {
 
 const ModalContent = styled(Box)(
   ({ theme }) => `
-  width: 400,
   display: flex;
   flex-direction: column;
   gap: 8px;
