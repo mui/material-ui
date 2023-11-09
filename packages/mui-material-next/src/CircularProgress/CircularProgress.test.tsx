@@ -4,6 +4,7 @@ import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import CircularProgress, {
   circularProgressClasses as classes,
 } from '@mui/material-next/CircularProgress';
+import { CssVarsProvider, extendTheme } from '../styles';
 
 describe('<CircularProgress />', () => {
   const { render } = createRenderer();
@@ -16,7 +17,10 @@ describe('<CircularProgress />', () => {
     testDeepOverrides: { slotName: 'circle', slotClassName: classes.circle },
     testVariantProps: { variant: 'determinate' },
     refInstanceof: window.HTMLSpanElement,
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
     skip: ['componentProp', 'componentsProp'],
+
   }));
 
   it('should render with the primary color by default', () => {
