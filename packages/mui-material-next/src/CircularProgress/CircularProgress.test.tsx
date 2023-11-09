@@ -20,7 +20,6 @@ describe('<CircularProgress />', () => {
     ThemeProvider: CssVarsProvider,
     createTheme: extendTheme,
     skip: ['componentProp', 'componentsProp'],
-
   }));
 
   it('should render with the primary color by default', () => {

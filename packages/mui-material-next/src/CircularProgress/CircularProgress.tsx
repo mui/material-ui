@@ -18,7 +18,7 @@ import {
 const SIZE = 48;
 const ARC_DURATION = 1333; // milliseconds
 const CYCLE_DURATION = 4 * ARC_DURATION; // milliseconds
-const LINEAR_ROTATE_DURATION = ARC_DURATION * 360 / 306; // milliseconds
+const LINEAR_ROTATE_DURATION = (ARC_DURATION * 360) / 306; // milliseconds
 
 const circularRotateKeyframe = keyframes`
   to {
@@ -109,7 +109,7 @@ const CircularProgressRoot = styled('span', {
       ownerState.fourColor && styles.fourColor,
     ];
   },
-})<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme: {vars: tokens} }) => ({
+})<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme: { vars: tokens } }) => ({
   '--md-comp-linear-progress-indicator-active-indicator-color':
     tokens.sys.color[ownerState.color ?? 'primary'],
   '--md-comp-linear-progress-indicator-active-indicator-width': ownerState.thickness,
@@ -155,7 +155,7 @@ const CircularProgressCircle = styled('circle', {
       ownerState.fourColor && styles.circleFourColor,
     ];
   },
-})<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme: {vars: tokens} }) => ({
+})<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme: { vars: tokens } }) => ({
   stroke: 'var(--md-comp-linear-progress-indicator-active-indicator-color)',
   strokeWidth: 'var(--md-comp-linear-progress-indicator-active-indicator-width)',
   // Use butt to follow the specification, by chance, it's already the default CSS value.
