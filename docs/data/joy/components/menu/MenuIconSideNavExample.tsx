@@ -150,7 +150,7 @@ export default function MenuIconSideNavExample() {
             onOpen={() => setMenuIndex(0)}
             onLeaveMenu={createHandleLeaveMenu(0)}
             menu={
-              <Menu onClose={() => setMenuIndex(null)}>
+              <Menu>
                 <MenuItem {...itemProps}>Application 1</MenuItem>
                 <MenuItem {...itemProps}>Application 2</MenuItem>
                 <MenuItem {...itemProps}>Application 3</MenuItem>
@@ -167,7 +167,7 @@ export default function MenuIconSideNavExample() {
             onOpen={() => setMenuIndex(1)}
             onLeaveMenu={createHandleLeaveMenu(1)}
             menu={
-              <Menu onClose={() => setMenuIndex(null)}>
+              <Menu>
                 <MenuItem {...itemProps}>Setting 1</MenuItem>
                 <MenuItem {...itemProps}>Setting 2</MenuItem>
                 <MenuItem {...itemProps}>Setting 3</MenuItem>
@@ -184,7 +184,7 @@ export default function MenuIconSideNavExample() {
             onOpen={() => setMenuIndex(2)}
             onLeaveMenu={createHandleLeaveMenu(2)}
             menu={
-              <Menu onClose={() => setMenuIndex(null)}>
+              <Menu>
                 <MenuItem {...itemProps}>Personal 1</MenuItem>
                 <MenuItem {...itemProps}>Personal 2</MenuItem>
                 <MenuItem {...itemProps}>Personal 3</MenuItem>

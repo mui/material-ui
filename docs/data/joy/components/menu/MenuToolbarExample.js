@@ -10,9 +10,17 @@ import Dropdown from '@mui/joy/Dropdown';
 import MenuButton from '@mui/joy/MenuButton';
 
 const MenuBarButton = React.forwardRef(
-  ({ children, menu, open, onOpen, onKeyDown, ...props }, ref) => {
+  ({ children, menu, open, onOpen, onClose, onKeyDown, ...props }, ref) => {
+    const handleOpenChange = (event, isOpen) => {
+      if (isOpen) {
+        onOpen(event);
+      } else {
+        onClose(event);
+      }
+    };
+
     return (
-      <Dropdown open={open} onOpenChange={onOpen}>
+      <Dropdown open={open} onOpenChange={handleOpenChange}>
         <MenuButton
           {...props}
           slots={{ root: ListItemButton }}
@@ -132,6 +140,9 @@ export default function MenuToolbarExample() {
           onOpen={() => {
             setMenuIndex((prevMenuIndex) => (prevMenuIndex === null ? 0 : null));
           }}
+          onClose={() => {
+            menus.current[0]?.focus();
+          }}
           onKeyDown={createHandleButtonKeyDown(0)}
           onMouseEnter={() => {
             if (typeof menuIndex === 'number') {
@@ -142,11 +153,7 @@ export default function MenuToolbarExample() {
             menus.current[0] = instance;
           }}
           menu={
-            <Menu
-              onClose={() => {
-                menus.current[0]?.focus();
-              }}
-            >
+            <Menu>
               <ListItem nested>
                 <List aria-label="New">
                   <MenuItem {...itemProps}>New File</MenuItem>
@@ -177,6 +184,9 @@ export default function MenuToolbarExample() {
           onOpen={() => {
             setMenuIndex((prevMenuIndex) => (prevMenuIndex === null ? 1 : null));
           }}
+          onClose={() => {
+            menus.current[1]?.focus();
+          }}
           onKeyDown={createHandleButtonKeyDown(1)}
           onMouseEnter={() => {
             if (typeof menuIndex === 'number') {
@@ -187,11 +197,7 @@ export default function MenuToolbarExample() {
             menus.current[1] = instance;
           }}
           menu={
-            <Menu
-              onClose={() => {
-                menus.current[1]?.focus();
-              }}
-            >
+            <Menu>
               <ListItem nested>
                 <List aria-label="Time travel">
                   <MenuItem {...itemProps}>Undo {renderShortcut('⌘ Z')}</MenuItem>
@@ -218,6 +224,9 @@ export default function MenuToolbarExample() {
           onOpen={() => {
             setMenuIndex((prevMenuIndex) => (prevMenuIndex === null ? 2 : null));
           }}
+          onClose={() => {
+            menus.current[2]?.focus();
+          }}
           onKeyDown={createHandleButtonKeyDown(2)}
           onMouseEnter={() => {
             if (typeof menuIndex === 'number') {
@@ -228,11 +237,7 @@ export default function MenuToolbarExample() {
             menus.current[2] = instance;
           }}
           menu={
-            <Menu
-              onClose={() => {
-                menus.current[2]?.focus();
-              }}
-            >
+            <Menu>
               <MenuItem {...itemProps}>Select All {renderShortcut('⌘ A')}</MenuItem>
               <MenuItem {...itemProps}>
                 Expand Selection {renderShortcut('⌃ ⇧ ⌘ →')}

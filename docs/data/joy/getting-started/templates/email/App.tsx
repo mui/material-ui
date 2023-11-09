@@ -5,6 +5,7 @@ import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
+import MenuButton from '@mui/joy/MenuButton';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -140,14 +141,15 @@ export default function EmailExample() {
             <Menu
               id="app-selector"
               control={
-                <IconButton
-                  size="sm"
-                  variant="soft"
-                  color="neutral"
+                <MenuButton
+                  slots={{ root: IconButton }}
                   aria-label="Apps"
+                  slotProps={{
+                    root: { variant: 'soft', color: 'neutral', size: 'sm' },
+                  }}
                 >
                   <GridViewRoundedIcon />
-                </IconButton>
+                </MenuButton>
               }
               menus={[
                 {
