@@ -56,7 +56,7 @@ export default function ColorInversionHeader() {
         <Dropdown>
           <MenuButton
             sx={{
-              borderRadius: '1.5rem',
+              '--Button-radius': '1.5rem',
             }}
             variant="outlined"
             endDecorator={<KeyboardArrowDownIcon />}
