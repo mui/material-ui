@@ -98,4 +98,5 @@ export type FormHelperTextProps<
 export interface FormHelperTextOwnerState extends FormHelperTextProps {
   contained: boolean;
   size: NonNullable<FormControlProps['size']>;
+  variant: NonNullable<FormControlProps['variant']>;
 }
