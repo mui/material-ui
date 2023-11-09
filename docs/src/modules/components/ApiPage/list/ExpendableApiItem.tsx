@@ -164,6 +164,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       '& code.Api-code': {
         borderColor: alpha(darkTheme.palette.primary[400], 0.1),
         backgroundColor: alpha(darkTheme.palette.primary[900], 0.4),
+        color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
       },
     },
   }),
@@ -212,20 +213,11 @@ function ApiItem(props: ApiItemProps) {
       )}
     >
       <div className="MuiApi-item-header">
-        <a
-          className="MuiApi-item-link-visual"
-          href={`#${id}`}
-          onClick={() => {
-            navigator.clipboard.writeText(
-              `${window.location.origin}${window.location.pathname}#${id}`,
-            );
-          }}
-        >
+        <a className="MuiApi-item-link-visual" href={`#${id}`}>
           <svg>
             <use xlinkHref="#anchor-link-icon" />
           </svg>
         </a>
-
         <span
           className="MuiApi-item-title" // This className is used by Algolia
         >

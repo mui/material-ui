@@ -39,7 +39,6 @@ const CardOverflowRoot = styled('div', {
   ownerState: CardOverflowOwnerState & {
     'data-first-child'?: string;
     'data-last-child'?: string;
-    'data-parent'?: 'Card-horizontal' | 'Card-vertical';
   };
 }>(({ theme, ownerState }) => {
   const childRadius = 'calc(var(--CardOverflow-radius) - var(--variant-borderWidth, 0px))';

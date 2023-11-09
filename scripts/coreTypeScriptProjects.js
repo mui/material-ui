@@ -1,19 +1,6 @@
 import path from 'path';
-import { CreateTypeScriptProjectOptions } from './createTypeScriptProject';
 
-export type CoreTypeScriptProjects =
-  | 'material'
-  | 'lab'
-  | 'base'
-  | 'joy'
-  | 'system'
-  | 'material-next'
-  | 'docs';
-
-export const CORE_TYPESCRIPT_PROJECTS: Record<
-  CoreTypeScriptProjects,
-  Omit<CreateTypeScriptProjectOptions, 'name'>
-> = {
+export default {
   material: {
     rootPath: path.join(process.cwd(), 'packages/mui-material'),
     entryPointPath: 'src/index.d.ts',

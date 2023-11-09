@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion, OverridableComponent, OverrideProps } from '@mui/types';
-import { FormLabelProps, ExtendFormLabelTypeMap } from '../FormLabel';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { FormControlContextValue } from '../FormControl/FormControlContext';
+import { FormLabelProps, ExtendFormLabelTypeMap } from '../FormLabel/FormLabel.types';
 import { Theme } from '../styles';
 import { InputLabelClasses } from './inputLabelClasses';
 
@@ -59,7 +60,7 @@ export interface InputLabelOwnProps {
   /**
    * The variant to use.
    */
-  variant?: 'standard' | 'outlined' | 'filled';
+  variant?: 'outlined' | 'filled'; // TODO v6: standardize to TextFieldProps['variant']
 }
 
 export type InputLabelTypeMap<
@@ -70,19 +71,6 @@ export type InputLabelTypeMap<
   defaultComponent: RootComponent;
 }>;
 
-/**
- *
- * Demos:
- *
- * - [Text Field](https://mui.com/material-ui/react-text-field/)
- *
- * API:
- *
- * - [InputLabel API](https://mui.com/material-ui/api/input-label/)
- * - inherits [FormLabel API](https://mui.com/material-ui/api/form-label/)
- */
-declare const InputLabel: OverridableComponent<InputLabelTypeMap>;
-
 export type InputLabelProps<
   RootComponent extends React.ElementType = InputLabelTypeMap['defaultComponent'],
   AdditionalProps = {},
@@ -90,4 +78,6 @@ export type InputLabelProps<
   component?: React.ElementType;
 };
 
-export default InputLabel;
+export interface InputLabelOwnerState extends InputLabelProps {
+  formControl: FormControlContextValue | undefined;
+}

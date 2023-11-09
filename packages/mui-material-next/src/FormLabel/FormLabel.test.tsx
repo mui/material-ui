@@ -4,15 +4,24 @@ import { expect } from 'chai';
 import { describeConformance, act, createRenderer } from '@mui-internal/test-utils';
 import FormLabel, { formLabelClasses as classes } from '@mui/material-next/FormLabel';
 import FormControl, { useFormControl } from '@mui/material-next/FormControl';
-// TODO v6: re-export from material-next
-import { hexToRgb } from '@mui/system';
-// TODO v6: remove after implementing Material You styles
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-// TODO v6: remove after implementing Material You styles
-const MaterialV5DefaultTheme = createTheme();
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<FormLabel />', () => {
+  let originalMatchmedia: typeof window.matchMedia;
+
+  beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
+    window.matchMedia = () =>
+      ({
+        addListener: () => {},
+        removeListener: () => {},
+      } as unknown as MediaQueryList);
+  });
+
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
+  });
+
   const { render } = createRenderer();
 
   describeConformance(<FormLabel />, () => ({
@@ -23,6 +32,13 @@ describe('<FormLabel />', () => {
     testComponentPropWith: 'div',
     muiName: 'MuiFormLabel',
     testVariantProps: { color: 'secondary' },
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
     skip: ['componentsProp'],
   }));
 
@@ -56,7 +72,7 @@ describe('<FormLabel />', () => {
 
   describe('with FormControl', () => {
     describe('error', () => {
-      function Wrapper(props) {
+      function Wrapper(props: { children?: React.ReactNode }) {
         return <FormControl error {...props} />;
       }
 
@@ -91,7 +107,7 @@ describe('<FormLabel />', () => {
       });
 
       it(`should have the focused class`, () => {
-        const formControlRef = React.createRef();
+        const formControlRef = React.createRef<{ onFocus: () => void }>();
         const { container } = render(
           <FormControl error>
             <FormLabel data-testid="FormLabel" />
@@ -102,14 +118,14 @@ describe('<FormLabel />', () => {
         expect(container.querySelector('label')).not.to.have.class(classes.focused);
 
         act(() => {
-          formControlRef.current.onFocus();
+          formControlRef.current?.onFocus();
         });
         expect(container.querySelector('label')).to.have.class(classes.focused);
       });
 
       it('should be overridden by props', () => {
-        const formControlRef = React.createRef();
-        function Wrapper({ children }) {
+        const formControlRef = React.createRef<{ onFocus: () => void }>();
+        function Wrapper({ children }: { children?: React.ReactNode }) {
           return (
             <FormControl error>
               {children}
@@ -122,7 +138,7 @@ describe('<FormLabel />', () => {
           wrapper: Wrapper,
         });
         act(() => {
-          formControlRef.current.onFocus();
+          formControlRef.current?.onFocus();
         });
 
         expect(container.querySelector('label')).to.have.class(classes.focused);
@@ -159,6 +175,23 @@ describe('<FormLabel />', () => {
     });
   });
 
+  const theme = extendTheme({
+    components: {
+      MuiFormLabel: {
+        styleOverrides: {
+          root: {
+            [`&.${classes.focused}`]: {
+              mixBlendMode: 'darken',
+            },
+            [`&.${classes.error}`]: {
+              mixBlendMode: 'lighten',
+            },
+          },
+        },
+      },
+    },
+  });
+
   describe('prop: color', () => {
     it('should have color secondary class', () => {
       const { container } = render(<FormLabel color="secondary" />);
@@ -167,25 +200,25 @@ describe('<FormLabel />', () => {
 
     it('should have the focused class and style', () => {
       const { container, getByTestId } = render(
-        <ThemeProvider theme={MaterialV5DefaultTheme}>
+        <CssVarsProvider theme={theme}>
           <FormLabel data-testid="FormLabel" color="secondary" focused />
-        </ThemeProvider>,
+        </CssVarsProvider>,
       );
       expect(container.querySelector(`.${classes.colorSecondary}`)).to.have.class(classes.focused);
       expect(getByTestId('FormLabel')).toHaveComputedStyle({
-        color: hexToRgb(MaterialV5DefaultTheme.palette.secondary.main),
+        mixBlendMode: 'darken',
       });
     });
 
     it('should have the error class and style, even when focused', () => {
       const { container, getByTestId } = render(
-        <ThemeProvider theme={MaterialV5DefaultTheme}>
+        <CssVarsProvider theme={theme}>
           <FormLabel data-testid="FormLabel" color="secondary" focused error />
-        </ThemeProvider>,
+        </CssVarsProvider>,
       );
       expect(container.querySelector(`.${classes.colorSecondary}`)).to.have.class(classes.error);
       expect(getByTestId('FormLabel')).toHaveComputedStyle({
-        color: hexToRgb(MaterialV5DefaultTheme.palette.error.main),
+        mixBlendMode: 'lighten',
       });
     });
   });
