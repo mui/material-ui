@@ -80,8 +80,10 @@ export default function ApiPage(props) {
     props: componentProps,
     spread,
     slots: componentSlots,
-    classes: componentClasses,
+    classes,
   } = pageContent;
+
+  const componentClasses = [...classes].sort((c1, c2) => c1.className.localeCompare(c2.className));
 
   const isJoyComponent = filename.includes('mui-joy');
   const isBaseComponent = filename.includes('mui-base');
@@ -110,10 +112,6 @@ export default function ApiPage(props) {
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
   const apiSourceLocation = filename.replace('.js', '.d.ts');
 
-  const hasClasses =
-    componentClasses?.classes?.length ||
-    Object.keys(componentClasses?.classes?.globalClasses || {}).length;
-
   function createTocEntry(sectionName) {
     return {
       text: getTranslatedHeader(t, sectionName),
@@ -140,13 +138,12 @@ export default function ApiPage(props) {
       inheritance,
       themeDefaultProps: pageContent.themeDefaultProps,
     }),
+    componentSlots?.length > 0 && createTocEntry('slots'),
     ...getClassesToC({
       t,
       componentName: pageContent.name,
       componentClasses,
     }),
-    componentSlots?.length > 0 && createTocEntry('slots'),
-    hasClasses && createTocEntry('classes'),
   ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.

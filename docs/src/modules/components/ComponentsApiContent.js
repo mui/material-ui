@@ -84,9 +84,13 @@ export default function ComponentsApiContent(props) {
       props: componentProps,
       spread,
       slots: componentSlots,
-      classes: componentClasses,
+      classes,
       imports,
     } = pageContent;
+
+    const componentClasses = [...classes].sort((c1, c2) =>
+      c1.className.localeCompare(c2.className),
+    );
 
     const { classDescriptions, propDescriptions, slotDescriptions } =
       descriptions[key][userLanguage];
