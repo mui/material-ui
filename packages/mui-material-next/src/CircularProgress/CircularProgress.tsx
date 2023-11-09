@@ -45,12 +45,23 @@ const circularDashKeyframe = keyframes`
 `;
 
 const useUtilityClasses = (ownerState: CircularProgressOwnerState) => {
-  const { classes, variant = 'indeterminate', color = 'primary', disableShrink } = ownerState;
+  const {
+    classes,
+    variant = 'indeterminate',
+    color = 'primary',
+    disableShrink,
+    fourColor,
+  } = ownerState;
 
   const slots = {
-    root: ['root', variant, `color${capitalize(color)}`],
+    root: ['root', variant, `color${capitalize(color)}`, fourColor && 'fourColor'],
     svg: ['svg'],
-    circle: ['circle', `circle${capitalize(variant)}`, disableShrink && 'circleDisableShrink'],
+    circle: [
+      'circle',
+      `circle${capitalize(variant)}`,
+      disableShrink && 'circleDisableShrink',
+      fourColor && 'circleFourColor',
+    ],
   };
 
   return composeClasses(slots, getCircularProgressUtilityClass, classes);
@@ -66,6 +77,7 @@ const CircularProgressRoot = styled('span', {
       styles.root,
       styles[ownerState.variant],
       styles[`color${capitalize(ownerState.color)}`],
+      ownerState.fourColor && styles.fourColor,
     ];
   },
 })<{ ownerState: CircularProgressOwnerState }>(
@@ -103,6 +115,7 @@ const CircularProgressCircle = styled('circle', {
       styles.circle,
       styles[`circle${capitalize(ownerState.variant)}`],
       ownerState.disableShrink && styles.circleDisableShrink,
+      ownerState.fourColor && styles.circleFourColor,
     ];
   },
 })<{ ownerState: CircularProgressOwnerState }>(

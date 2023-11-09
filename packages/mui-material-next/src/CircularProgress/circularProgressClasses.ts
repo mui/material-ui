@@ -14,6 +14,10 @@ export interface CircularProgressClasses {
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary: string;
+  /** Styles applied to the root element if `color="tertiary"`. */
+  colorTertiary: string;
+  /** Styles applied to the root element if `fourColor={true}`. */
+  fourColor: string;
   /** Styles applied to the svg element. */
   svg: string;
   /** Styles applied to the `circle` svg path. */
@@ -24,6 +28,8 @@ export interface CircularProgressClasses {
   circleIndeterminate: string;
   /** Styles applied to the `circle` svg path if `disableShrink={true}`. */
   circleDisableShrink: string;
+  /** Styles applied to the `circle` svg path if `fourColor={true}`. */
+  circleFourColor: string;
 }
 
 export type CircularProgressClassKey = keyof CircularProgressClasses;
@@ -40,11 +46,14 @@ const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(
     'indeterminate',
     'colorPrimary',
     'colorSecondary',
+    'colorTertiary',
+    'fourColor',
     'svg',
     'circle',
     'circleDeterminate',
     'circleIndeterminate',
     'circleDisableShrink',
+    'circleFourColor',
   ],
 );
 
