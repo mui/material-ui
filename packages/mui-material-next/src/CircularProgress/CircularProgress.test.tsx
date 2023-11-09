@@ -37,6 +37,12 @@ describe('<CircularProgress />', () => {
     expect(circularProgress).to.have.class(classes.colorSecondary);
   });
 
+  it('should render with the tertiary color', () => {
+    const { getByRole } = render(<CircularProgress color="secondary" />);
+    const circularProgress = getByRole('progressbar');
+    expect(circularProgress).to.have.class(classes.colorTertiary);
+  });
+
   it('should contain an SVG with the svg class, and a circle with the circle class', () => {
     const { container, getByRole } = render(<CircularProgress />);
     const circularProgress = getByRole('progressbar');
@@ -66,8 +72,8 @@ describe('<CircularProgress />', () => {
     expect(svg).to.have.tagName('svg');
     const circle = container.querySelector<SVGCircleElement>('circle');
     expect(circle).to.have.tagName('circle');
-    expect(circle).to.have.attribute('cx', '44');
-    expect(circle).to.have.attribute('cy', '44');
+    expect(circle).to.have.attribute('cx', '48');
+    expect(circle).to.have.attribute('cy', '48');
   });
 
   describe('prop: variant="determinate"', () => {
@@ -90,11 +96,11 @@ describe('<CircularProgress />', () => {
       expect(circularProgress).to.have.class(classes.root);
       const circle = container.querySelector<SVGCircleElement>('circle')!;
       expect(circle.style.strokeDasharray).to.match(
-        /126\.920?(px)?/gm,
+        /138\.230?(px)?/gm,
         'should have strokeDasharray set',
       );
       expect(circle.style.strokeDashoffset).to.equal(
-        '38.076px',
+        '41.469px',
         'should have strokeDashoffset set',
       );
       expect(circularProgress).to.have.attribute('aria-valuenow', '70');
@@ -131,6 +137,42 @@ describe('<CircularProgress />', () => {
       const circle = container.querySelector<SVGCircleElement>('circle');
       expect(circle).to.have.tagName('circle');
       expect(circle).to.have.class(classes.circleDisableShrink);
+    });
+  });
+
+  describe('prop: fourColor ', () => {
+    it('should default to false', () => {
+      const { container, getByRole } = render(<CircularProgress variant="indeterminate" />);
+      const circularProgress = getByRole('progressbar');
+      expect(circularProgress).to.have.class(classes.root);
+      expect(circularProgress).not.to.have.class(classes.fourColor);
+      const circle = container.querySelector<SVGCircleElement>('circle');
+      expect(circle).to.have.tagName('circle');
+      expect(circle).not.to.have.class(classes.circleFourColor);
+    });
+
+    it('should render without fourColor class when set to false', () => {
+      const { container, getByRole } = render(
+        <CircularProgress variant="indeterminate" fourColor={false} />,
+      );
+      const circularProgress = getByRole('progressbar');
+      expect(circularProgress).to.have.class(classes.root);
+      expect(circularProgress).not.to.have.class(classes.fourColor);
+      const circle = container.querySelector<SVGCircleElement>('circle');
+      expect(circle).to.have.tagName('circle');
+      expect(circle).not.to.have.class(classes.circleFourColor);
+    });
+
+    it('should render with fourColor class when set to true', () => {
+      const { container, getByRole } = render(
+        <CircularProgress variant="indeterminate" fourColor />,
+      );
+      const circularProgress = getByRole('progressbar');
+      expect(circularProgress).to.have.class(classes.root);
+      expect(circularProgress).to.have.class(classes.fourColor);
+      const circle = container.querySelector<SVGCircleElement>('circle');
+      expect(circle).to.have.tagName('circle');
+      expect(circle).to.have.class(classes.circleFourColor);
     });
   });
 });
