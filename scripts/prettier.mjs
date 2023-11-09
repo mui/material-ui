@@ -10,39 +10,57 @@ import listChangedFiles from './listChangedFiles.mjs';
 
 const numberFormat = new Intl.NumberFormat();
 
+async function runPrettierCli(...args) {
+  await $({ stdio: 'inherit' })`prettier ${args}`;
+}
+
 async function run(argv) {
   const { mode, branch, ci } = argv;
   const shouldWrite = mode === 'write' || mode === 'write-changed';
   const onlyChanged = mode === 'check-changed' || mode === 'write-changed';
 
-  const args = ['--ignore-path=.eslintignore'];
+  const commonArgs = ['--ignore-path=.eslintignore'];
 
   if (shouldWrite) {
-    args.push('--write');
+    commonArgs.push('--write');
   } else {
-    args.push('--check');
+    commonArgs.push('--check');
   }
 
+  let filesToCheck = null;
+
   if (onlyChanged) {
-    const changedFiles = await listChangedFiles({ branch });
+    filesToCheck = await listChangedFiles({ branch });
 
     const hasLockFileChanges =
-      changedFiles.has('yarn.lock') ||
-      changedFiles.has('pnpm.lock') ||
-      changedFiles.has('package-json.lock');
+      filesToCheck.has('yarn.lock') ||
+      filesToCheck.has('pnpm.lock') ||
+      filesToCheck.has('package-json.lock');
 
     if (ci && hasLockFileChanges) {
       console.log('Detected lockfile changes in CI, running prettier on all files.');
-      args.push('.');
-    } else {
-      console.log(`Running prettier on ${numberFormat.format(changedFiles.size)} files.`);
-      args.push('--ignore-unknown', ...changedFiles);
+      filesToCheck = null;
     }
-  } else {
-    args.push('.');
   }
 
-  await $({ stdio: 'inherit' })`prettier ${args}`;
+  if (filesToCheck) {
+    console.log(`Running prettier on ${numberFormat.format(filesToCheck.size)} files.`);
+    const batchSize = 50;
+    const batchCount = Math.ceil(filesToCheck.size / batchSize);
+    for (let i = 0; i < batchCount; i += 1) {
+      console.log(`Running prettier on batch ${i + 1} of ${batchCount}.`);
+      const batch = Array.from(filesToCheck).slice(i * batchSize, (i + 1) * batchSize);
+      // eslint-disable-next-line no-await-in-loop
+      await runPrettierCli(
+        ...commonArgs,
+        '--ignore-unknown',
+        '--no-error-on-unmatched-pattern',
+        ...batch,
+      );
+    }
+  } else {
+    await runPrettierCli(...commonArgs, '.');
+  }
 }
 
 yargs(process.argv.slice(2))
