@@ -1010,6 +1010,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   onInputChange: PropTypes.func,
   /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).
    *
