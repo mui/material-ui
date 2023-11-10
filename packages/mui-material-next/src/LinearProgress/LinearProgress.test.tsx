@@ -203,4 +203,36 @@ describe('<LinearProgress />', () => {
       ]);
     });
   });
+
+  describe('prop: fourColor ', () => {
+    it('should default to false', () => {
+      render(<LinearProgress variant="indeterminate" />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.class(classes.root);
+      expect(progressbar).not.to.have.class(classes.fourColor);
+      expect(progressbar.children[0]).not.to.have.class(classes.bar1FourColor);
+      expect(progressbar.children[1]).not.to.have.class(classes.bar2FourColor);
+    });
+
+    it('should render without fourColor class when set to false', () => {
+      render(<LinearProgress variant="indeterminate" fourColor={false} />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.class(classes.root);
+      expect(progressbar).not.to.have.class(classes.fourColor);
+      expect(progressbar.children[0]).not.to.have.class(classes.bar1FourColor);
+      expect(progressbar.children[1]).not.to.have.class(classes.bar2FourColor);
+    });
+
+    it('should render with fourColor class when set to true', () => {
+      render(<LinearProgress variant="indeterminate" fourColor />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.class(classes.root);
+      expect(progressbar).to.have.class(classes.fourColor);
+      expect(progressbar.children[0]).to.have.class(classes.bar1FourColor);
+      expect(progressbar.children[1]).to.have.class(classes.bar2FourColor);
+    });
+  });
 });
