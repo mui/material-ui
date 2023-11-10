@@ -137,14 +137,14 @@ function Styles() {
     color: ${grey[900]};
     overflow: auto;
     outline: 0px;
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05);
   }
-
+  
   .mode-dark .menu-root {
     background: ${grey[900]};
     border-color: ${grey[700]};
     color: ${grey[300]};
-    box-shadow: 0px 2px 16px ${grey[900]};
+    box-shadow: 0px 2px 6px rgba(0,0,0, 0.50);
   }
 
   .menu-item {
