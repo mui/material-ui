@@ -70,7 +70,7 @@ const FormHelperTextRoot = styled('p', {
     marginLeft: 0,
     [`&.${formHelperTextClasses.disabled}`]: {
       color:
-        'color-mix(in srgb, var(--md-comp-form-helper-text-disabled-color), transparent calc((1 - var(--md-comp-form-helper-text-disabled-opacity)) * 100%))',
+        'color-mix(in srgb, var(--md-comp-form-helper-text-disabled-color) calc(- var(--md-comp-form-helper-text-disabled-opacity) * 100%), transparent)',
     },
     [`&.${formHelperTextClasses.error}`]: {
       color: 'var(--md-comp-form-helper-text-error-color)',

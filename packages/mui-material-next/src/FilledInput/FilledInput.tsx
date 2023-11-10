@@ -85,7 +85,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
     },
     [`&.${filledInputClasses.disabled}`]: {
       backgroundColor:
-        'color-mix(in srgb, var(--md-comp-filled-input-disabled-container-color), transparent calc((1 - var(--md-comp-filled-input-disabled-container-opacity)) * 100%))',
+        'color-mix(in srgb, var(--md-comp-filled-input-disabled-container-color) calc(var(--md-comp-filled-input-disabled-container-opacity) * 100%), transparent)',
     },
     ...(!ownerState.disableUnderline && {
       '&:after': {
@@ -131,7 +131,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       },
       [`&.${filledInputClasses.disabled}:before`]: {
         borderColor:
-          'color-mix(in srgb, var(--md-comp-filled-input-disabled-active-indicator-color), transparent calc((1 - var(--md-comp-filled-input-disabled-active-indicator-opacity)) * 100%))',
+          'color-mix(in srgb, var(--md-comp-filled-input-disabled-active-indicator-color) calc(var(--md-comp-filled-input-disabled-active-indicator-opacity) * 100%), transparent)',
       },
     }),
     ...(ownerState.startAdornment && {
