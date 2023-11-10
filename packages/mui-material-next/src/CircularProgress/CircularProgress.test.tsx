@@ -65,7 +65,11 @@ describe('<CircularProgress />', () => {
     expect(circle).to.have.class(classes.circleIndeterminate);
   });
 
-  it('should render with a different size', () => {
+  it('should render with a different size', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // only run on browser, because getComputedStyle only works in browser
+      this.skip();
+    }
     const { container, getByRole } = render(<CircularProgress size={60} />);
     const circularProgress = getByRole('progressbar');
     const circularProgressStyle = window.getComputedStyle(circularProgress);
