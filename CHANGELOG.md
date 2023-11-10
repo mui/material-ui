@@ -1,5 +1,67 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.17
+
+<!-- generated comparing v5.14.16..master -->
+
+_Nov 6, 2023_
+
+A big thanks to the 12 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.14.17`
+
+- [Dialog] Should not close until the IME is cancelled (#39713) @megos
+- [InputBase] Add `sx` type to `input` and `root` slot (#39569) @sai6855
+
+### `@mui/joy@5.0.0-beta.14`
+
+- [ModalDialog] Remove redundant code (#39719) @sai6855
+- [ToggleButtonGroup] Fix toggling button state when `Button` is not immediate children (#39571) @sai6855
+
+### `@mui/base@5.0.0-beta.23`
+
+- Make list components more reliable (#39380) @michaldudak
+
+### `@mui/material-next@6.0.0-alpha.109`
+
+- [InputBase] InputBase slotProps accepts sx type (#39714) @mj12albert
+- [OutlinedInput] Copy v5 OutlinedInput (#39698) @mj12albert
+
+### `@mui/lab@5.0.0-alpha.152`
+
+- [TreeView] Remove tree view import from @mui/lab (#39685) @alexfauquette
+
+### Docs
+
+- Update Taiwan country name in demos (#39729) @chiahao
+- Update release doc for unchanged packages (#39487) @brijeshb42
+- [joy-ui] Make code readable to set next color in color inversion demos (#39669) @ZeeshanTamboli
+- [material-ui] Remove numeric input workaround from TextField docs (#39629) @mj12albert
+- [material-ui] Add comment about code to be removed from Drawer demo (#39678) @samuelsycamore
+
+### Core
+
+- [docs-infra] Fix path bloat client-side (#39708) @oliviertassinari
+- [docs-infra] Render footer in SSR (#39710) @oliviertassinari
+- [docs-infra] Simplify footer (#39709) @oliviertassinari
+- [docs-infra] Fix dark theme color (#39720) @alexfauquette
+- [docs-infra] Remove the design feedback alert (#39691) @danilo-leal
+- [docs-infra] Bring back scroll gradient in API page with table (#39689) @alexfauquette
+- [docs-infra] Clarify the content of the ads @oliviertassinari
+- [docs-infra] Link to ScaffoldHub v2 @oliviertassinari
+- [docs-infra] Improve access to the component demos via the API page (#39690) @danilo-leal
+- [docs-infra] Add appropriate aria-label to docs buttons (#39638) @danilo-leal
+- [docs-infra] Fix crawler on API pages (#39490) @alexfauquette
+- [docs–infra] Small polish on API toggle (#39704) @oliviertassinari
+- [core] Speed up the CI by removing the second build (#39684) @michaldudak
+- [core][docs] Fix broken MUI System link in README.md (#39734) @samuelsycamore
+- [website] List benefits for sponsors (#39640) @oliviertassinari
+- [website] Add Vadym teamMember card to 'About' (#39701) @hasdfa
+- [test] Fix flaky screenshot (#39711) @oliviertassinari
+
+All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @chiahao, @danilo-leal, @hasdfa, @megos, @michaldudak, @mj12albert, @oliviertassinari, @sai6855, @samuelsycamore, @ZeeshanTamboli
+
 ## 5.14.16
 
 <!-- generated comparing v5.14.15..master -->
@@ -814,7 +876,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 ### Core
 
-- [CHANGELOG] Fix issues in highlight @oliviertassinari
+- [changelog] Fix issues in highlight @oliviertassinari
 - [core] Remove redundant `@material-ui/` aliases from regression test webpack config (#38574) @ZeeshanTamboli
 - [core] Fix CI error @oliviertassinari
 - [core] Remove unnecessary Box (#38461) @oliviertassinari
@@ -1473,7 +1535,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - &#8203;<!-- 20 -->[docs-infra] Fix demos border radius (#37658) @oliviertassinari
 - &#8203;<!-- 19 -->[docs-infra] Add analyticsTags to Algolia (#37600) @Janpot
 - &#8203;<!-- 18 -->[docs-infra] Simplify product id handling (#37593) @oliviertassinari
-- &#8203;<!-- 35 -->[CHANGELOG] Add missing release date for v5.13.5 @oliviertassinari
+- &#8203;<!-- 35 -->[changelog] Add missing release date for v5.13.5 @oliviertassinari
 - &#8203;<!-- 16 -->[examples] Shell command fix in the readme file of material-next-ts example (#37675) @bablukpik
 - &#8203;<!-- 15 -->[examples] Next.js v13 app router with Material UI (#37315) @smo043
 
@@ -3220,7 +3282,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Improve line-height readability (#35387) @oliviertassinari
 - [docs] Improve a bit the Composition docs (#35329) @oliviertassinari
 - [docs] Refactor `ToggleButtonSizes` demo (#35375) @Armanio
-- [docs] Standardize the usage of callouts in the MUI Core docs (#35361) @samuelsycamore
+- [docs] Standardize the usage of callouts in the docs (#35361) @samuelsycamore
 - [docs] Format feedback to add a link to the commented section (#35381) @alexfauquette
 - [docs] Direct users from Material UI to Base UI for duplicated components (#35293) @samuelsycamore
 - [docs] Fix typo in FormControl API docs (#35449) @Spanishiwa
@@ -3586,7 +3648,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 16 -->[docs] Fix typo in docs title (#34926) @PunitSoniME
 - &#8203;<!-- 25 -->[docs] Fix missing emotion prefixes (#34958) @oliviertassinari
 - &#8203;<!-- 26 -->[docs] Improve UI display for copy code (#34950) @oliviertassinari
-- &#8203;<!-- 15 -->[docs] Standardize all MUI Core "Usage" pages (#34183) @samuelsycamore
+- &#8203;<!-- 15 -->[docs] Standardize all "Usage" pages (#34183) @samuelsycamore
 - &#8203;<!-- 14 -->[docs] Update templates' readme files to include required dependencies (#34757) @michaldudak
 - &#8203;<!-- 13 -->[docs] Fix inconsistent theme colors when applying custom colors in playground (#34866) @cherniavskii
 - &#8203;<!-- 12 -->[docs] Fix typo in bottom-navigation.md (#34884) @RoodyCode
@@ -3952,7 +4014,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Update the guide for migrating to TSS (#34417) @garronej
 - [docs] Fix typo in `Grid` docs (#34475) @Dustin-Digitar
 - [docs] Fix typo in `Back to top` section in AppBar docs (#34479) @Dustin-Digitar
-- [docs] Standardize all MUI Core "Installation" pages (#34168) @samuelsycamore
+- [docs] Standardize all "Installation" pages (#34168) @samuelsycamore
 - [docs] Fix webpack file name to the standard: `webpack.config.js` (#34446) @CodingItWrong
 - [docs] Fix Select `onChange` call (#34408) @siriwatknp
 - [docs] Notification for pickers blog - v5 stable (#34400) @joserodolfofreitas
@@ -6816,7 +6878,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 - [blog] MUI X v5 blog post (#29590) @DanailH
 - [blog] Polish the Benny Joo joins MUI post (#29697) @oliviertassinari
-- [CHANGELOG] Explain why we do breaking changes @oliviertassinari
+- [changelog] Explain why we do breaking changes @oliviertassinari
 - [core] Update latest issue template for codesandbox CI (#29783) @eps1lon
 - [core] Ensure `@mui/core` is an alias for `@mui/base` (#29762) @eps1lon
 - [docs] Fix broken Next and Previous links (#29711) @scallaway
@@ -10059,7 +10121,7 @@ The prop didn't solve any important problem better than any of its alternatives 
 
 ### Core
 
-- &#8203;<!-- 01 -->[CHANGELOG] Better document breaking changes @oliviertassinari
+- &#8203;<!-- 01 -->[changelog] Better document breaking changes @oliviertassinari
 - &#8203;<!-- 05 -->[core] Modernize icons `builder:src` (#25137) @eps1lon
 - &#8203;<!-- 04 -->[core] Properly use BABEL_ENV test and development (#25139) @eps1lon
 - &#8203;<!-- 15 -->[test] Add (manual) visual regression test for icons (#25160) @eps1lon

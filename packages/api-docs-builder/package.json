@@ -2,8 +2,9 @@
   "name": "@mui-internal/api-docs-builder",
   "version": "1.0.0",
   "private": "true",
-  "main": "./buildApi.ts",
+  "main": "./index.ts",
   "scripts": {
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/api-docs-builder/**/*.test.{js,ts,tsx}'",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
@@ -12,9 +13,8 @@
     "@babel/traverse": "^7.23.2",
     "@mui-internal/docs-utilities": "^1.0.0",
     "@mui/markdown": "^5.0.0",
-    "@mui/utils": "^5.14.16",
+    "@mui/utils": "^5.14.17",
     "ast-types": "^0.14.2",
-    "docs": "^5.0.0",
     "doctrine": "^3.0.0",
     "fast-glob": "^3.3.1",
     "fs-extra": "^11.1.1",
@@ -23,8 +23,7 @@
     "react-docgen": "^5.4.3",
     "recast": "^0.23.4",
     "remark": "^13.0.0",
-    "unist-util-visit": "^2.0.3",
-    "yargs": "^17.7.2"
+    "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.3",
@@ -33,7 +32,7 @@
     "@types/doctrine": "^0.0.8",
     "@types/mdast": "4.0.2",
     "@types/mocha": "^10.0.3",
-    "@types/node": "^18.18.7",
+    "@types/node": "^18.18.9",
     "@types/sinon": "^10.0.20",
     "chai": "^4.3.10",
     "sinon": "^15.2.0",

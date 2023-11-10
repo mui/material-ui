@@ -34,13 +34,17 @@ import {
   THEME_ID as MATERIAL_THEME_ID,
 } from '@mui/material/styles';
 import { CssVarsProvider as JoyCssVarsProvider } from '@mui/joy/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 const materialTheme = materialExtendTheme();
 
 export default function App() {
   return (
     <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
-      <JoyCssVarsProvider>...Material UI and Joy UI components</JoyCssVarsProvider>
+      <JoyCssVarsProvider>
+        <CssBaseline enableColorScheme />
+        ...Material UI and Joy UI components
+      </JoyCssVarsProvider>
     </MaterialCssVarsProvider>
   );
 }
@@ -97,6 +101,7 @@ If you want to change the `defaultMode`, you have to specify the prop to both of
   theme={{ [MATERIAL_THEME_ID]: materialTheme }}
 >
   <JoyCssVarsProvider defaultMode="system">
+    <CssBaseline enableColorScheme />
     ...Material UI and Joy UI components
   </JoyCssVarsProvider>
 </MaterialCssVarsProvider>
