@@ -30,6 +30,10 @@ const StepperRoot = styled('ol', {
     '--Stepper-indicatorColumn': 'auto', // For vertical stepper, to control the column width of the indicator.
     '--Step-connectorThickness': '1px',
     '--Step-indicatorDotSize': '0.375rem',
+    boxSizing: 'border-box',
+    display: 'flex',
+    margin: 0, // Reset browser default style.
+    padding: 0, // Reset browser default style.
     variants: [
       {
         props: { size: 'sm' },
@@ -64,15 +68,6 @@ const StepperRoot = styled('ol', {
       {
         props: { orientation: 'vertical' },
         style: { flexDirection: 'column', gap: 'var(--Stepper-verticalGap)' },
-      },
-      {
-        props: {},
-        style: {
-          boxSizing: 'border-box',
-          display: 'flex',
-          margin: 0, // Reset browser default style.
-          padding: 0, // Reset browser default style.
-        },
       },
     ],
   };
