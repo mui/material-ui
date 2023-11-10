@@ -27,7 +27,7 @@ As we gear up to develop the next major version, let's review the notable new fe
   - [Clearable Field](#clearable-field)
   - [Customization Playgrounds](#customization-playgrounds)
 - [Data Grid](#data-grid)
-  - [Column Autosizing](#filter-on-column-headers) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Column Autosizing](#column-autosizing) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [New examples](#new-examples)
   - [Sparkline as a column type](#sparkline-as-a-column-type)
   - [Performance improvements](#performance-improvements)
