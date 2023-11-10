@@ -1,25 +1,25 @@
 :root {
-  --cyan-50: #e9f8fc;
-  --cyan-100: #bdebf4;
-  --cyan-200: #99d8e5;
-  --cyan-300: #66bacc;
-  --cyan-400: #1f94ad;
-  --cyan-500: #0d5463;
-  --cyan-600: #094855;
-  --cyan-700: #063c47;
-  --cyan-800: #043039;
-  --cyan-900: #022127;
+  --cyan-50: #E9F9FC;
+  --cyan-100: #C1ECF4;
+  --cyan-200: #99DAE5;
+  --cyan-300: #66BBCA;
+  --cyan-400: #1F91A5;
+  --cyan-500: #0D535F;
+  --cyan-600: #094651;
+  --cyan-700: #063B44;
+  --cyan-800: #042F37;
+  --cyan-900: #022126;
 
-  --grey-50: #f3f6f9;
-  --grey-100: #e5eaf2;
-  --grey-200: #dae2ed;
-  --grey-300: #c7d0dd;
-  --grey-400: #b0b8c4;
-  --grey-500: #9da8b7;
-  --grey-600: #6b7a90;
-  --grey-700: #434d5b;
+  --grey-50: #F3F6F9;
+  --grey-100: #E5EAF2;
+  --grey-200: #DAE2ED;
+  --grey-300: #C7D0DD;
+  --grey-400: #B0B8C4;
+  --grey-500: #9DA8B7;
+  --grey-600: #6B7A90;
+  --grey-700: #434D5B;
   --grey-800: #303740;
-  --grey-900: #1c2025;
+  --grey-900: #1C2025;
 }
 
 .GalleryBadge {
