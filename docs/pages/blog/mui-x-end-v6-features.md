@@ -130,7 +130,7 @@ To illustrate some of these improvements, the following table display a benchmar
     <th>Max time (ms)</th>
     <th>Median (ms)</th>
     <th>Average (ms)</th>
-    <th>Std Deviation</th>
+    <th>Deviation</th>
   </tr>
   <tr>
     <td>v5.17.26</td>
