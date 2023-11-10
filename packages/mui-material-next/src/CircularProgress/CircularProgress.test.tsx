@@ -68,9 +68,10 @@ describe('<CircularProgress />', () => {
   it('should render with a different size', () => {
     const { container, getByRole } = render(<CircularProgress size={60} />);
     const circularProgress = getByRole('progressbar');
+    const circularProgressStyle = window.getComputedStyle(circularProgress);
     expect(circularProgress).to.have.class(classes.root);
-    expect(circularProgress).to.have.property('width', '60px', 'should have width correctly set');
-    expect(circularProgress).to.have.property('height', '60px', 'should have height correctly set');
+    expect(circularProgressStyle.width).to.equal('60px', 'should have width correctly set');
+    expect(circularProgressStyle.height).to.equal('60px', 'should have height correctly set');
     const svg = container.querySelector<SVGElement>('svg');
     expect(svg).to.have.tagName('svg');
     const circle = container.querySelector<SVGCircleElement>('circle');
