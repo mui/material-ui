@@ -55,12 +55,6 @@ const grey = {
   900: '#1C2025',
 };
 
-const blue = {
-  200: '#99CCF3',
-  300: '#66B2FF',
-  700: '#0059B2',
-};
-
 const Modal = styled(BaseModal)`
   position: fixed;
   z-index: 1300;
