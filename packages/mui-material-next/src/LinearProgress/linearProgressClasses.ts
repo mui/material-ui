@@ -10,6 +10,8 @@ export interface LinearProgressClasses {
   colorPrimary: string;
   /** Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
   colorSecondary: string;
+  /** Styles applied to the root and bar2 elements if `color="tertiary"`; bar2 if `variant="buffer"`. */
+  colorTertiary: string;
   /** Styles applied to the root element if `variant="determinate"`. */
   determinate: string;
   /** Styles applied to the root element if `variant="indeterminate"`. */
@@ -24,12 +26,16 @@ export interface LinearProgressClasses {
   dashedColorPrimary: string;
   /** Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`. */
   dashedColorSecondary: string;
+  /** Styles applied to the additional bar element if `variant="buffer"` and `color="tertiary"`. */
+  dashedColorTertiary: string;
   /** Styles applied to the layered bar1 and bar2 elements. */
   bar: string;
   /** Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer". */
   barColorPrimary: string;
   /** Styles applied to the bar elements if `color="secondary"`; bar2 if `variant` not "buffer". */
   barColorSecondary: string;
+  /** Styles applied to the bar elements if `color="tertiary"`; bar2 if `variant` not "buffer". */
+  barColorTertiary: string;
   /** Styles applied to the bar1 element if `variant="indeterminate or query"`. */
   bar1Indeterminate: string;
   /** Styles applied to the bar1 element if `variant="determinate"`. */
@@ -52,6 +58,7 @@ const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('Mui
   'root',
   'colorPrimary',
   'colorSecondary',
+  'colorTertiary',
   'determinate',
   'indeterminate',
   'buffer',
@@ -59,9 +66,11 @@ const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('Mui
   'dashed',
   'dashedColorPrimary',
   'dashedColorSecondary',
+  'dashedColorTertiary',
   'bar',
   'barColorPrimary',
   'barColorSecondary',
+  'barColorTertiary',
   'bar1Indeterminate',
   'bar1Determinate',
   'bar1Buffer',
