@@ -54,6 +54,14 @@ describe('<LinearProgress />', () => {
     expect(progressbar.children[1]).to.have.class(classes.barColorSecondary);
   });
 
+  it('should render for the tertiary color', () => {
+    render(<LinearProgress color="tertiary" />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar.children[0]).to.have.class(classes.barColorTertiary);
+    expect(progressbar.children[1]).to.have.class(classes.barColorTertiary);
+  });
+
   it('should render with determinate classes for the primary color by default', () => {
     render(<LinearProgress value={1} variant="determinate" />);
     const progressbar = screen.getByRole('progressbar');
@@ -78,6 +86,15 @@ describe('<LinearProgress />', () => {
 
     expect(progressbar).to.have.class(classes.determinate);
     expect(progressbar.children[0]).to.have.class(classes.barColorSecondary);
+    expect(progressbar.children[0]).to.have.class(classes.bar1Determinate);
+  });
+
+  it('should render with determinate classes for the tertiary color', () => {
+    render(<LinearProgress color="tertiary" value={1} variant="determinate" />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar).to.have.class(classes.determinate);
+    expect(progressbar.children[0]).to.have.class(classes.barColorTertiary);
     expect(progressbar.children[0]).to.have.class(classes.bar1Determinate);
   });
 
@@ -118,6 +135,17 @@ describe('<LinearProgress />', () => {
     expect(progressbar.children[1]).to.have.class(classes.barColorSecondary);
     expect(progressbar.children[1]).to.have.class(classes.bar1Buffer);
     expect(progressbar.children[2]).to.have.class(classes.colorSecondary);
+    expect(progressbar.children[2]).to.have.class(classes.bar2Buffer);
+  });
+
+  it('should render with buffer classes for the tertiary color', () => {
+    render(<LinearProgress value={1} valueBuffer={1} color="tertiary" variant="buffer" />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar.children[0]).to.have.class(classes.dashedColorTertiary);
+    expect(progressbar.children[1]).to.have.class(classes.barColorTertiary);
+    expect(progressbar.children[1]).to.have.class(classes.bar1Buffer);
+    expect(progressbar.children[2]).to.have.class(classes.colorTertiary);
     expect(progressbar.children[2]).to.have.class(classes.bar2Buffer);
   });
 
