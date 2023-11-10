@@ -20,6 +20,8 @@ export interface LinearProgressClasses {
   buffer: string;
   /** Styles applied to the root element if `variant="query"`. */
   query: string;
+  /** Styles applied to the root element if `fourColor={true}`. */
+  fourColor: string;
   /** Styles applied to the additional bar element if `variant="buffer"`. */
   dashed: string;
   /** Styles applied to the additional bar element if `variant="buffer"` and `color="primary"`. */
@@ -38,12 +40,16 @@ export interface LinearProgressClasses {
   barColorTertiary: string;
   /** Styles applied to the bar1 element if `variant="indeterminate or query"`. */
   bar1Indeterminate: string;
+  /** Styles applied to the bar1 element if `variant="indeterminate or query"` and `fourColor={true}`. */
+  bar1FourColor: string;
   /** Styles applied to the bar1 element if `variant="determinate"`. */
   bar1Determinate: string;
   /** Styles applied to the bar1 element if `variant="buffer"`. */
   bar1Buffer: string;
   /** Styles applied to the bar2 element if `variant="indeterminate or query"`. */
   bar2Indeterminate: string;
+  /** Styles applied to the bar2 element if `variant="indeterminate or query"` and `fourColor={true}`. */
+  bar2FourColor: string;
   /** Styles applied to the bar2 element if `variant="buffer"`. */
   bar2Buffer: string;
 }
@@ -63,6 +69,7 @@ const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('Mui
   'indeterminate',
   'buffer',
   'query',
+  'fourColor',
   'dashed',
   'dashedColorPrimary',
   'dashedColorSecondary',
@@ -72,9 +79,11 @@ const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('Mui
   'barColorSecondary',
   'barColorTertiary',
   'bar1Indeterminate',
+  'bar1FourColor',
   'bar1Determinate',
   'bar1Buffer',
   'bar2Indeterminate',
+  'bar2FourColor',
   'bar2Buffer',
 ]);
 

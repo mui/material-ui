@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { keyframes, css } from '@mui/system';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { unstable_capitalize as capitalize, chainPropTypes } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import useTheme from '../styles/useTheme';
 import styled from '../styles/styled';
@@ -69,15 +69,16 @@ const bufferKeyframe = keyframes`
 `;
 
 const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
-  const { classes, variant, color = 'primary' } = ownerState;
+  const { classes, variant, color = 'primary', fourColor } = ownerState;
 
   const slots = {
-    root: ['root', `color${capitalize(color)}`, variant],
+    root: ['root', `color${capitalize(color)}`, variant, fourColor && 'fourColor'],
     dashed: ['dashed', `dashedColor${capitalize(color)}`],
     bar1: [
       'bar',
       `barColor${capitalize(color)}`,
       (variant === 'indeterminate' || variant === 'query') && 'bar1Indeterminate',
+      (variant === 'indeterminate' || variant === 'query') && fourColor && 'bar1FourColor',
       variant === 'determinate' && 'bar1Determinate',
       variant === 'buffer' && 'bar1Buffer',
     ],
@@ -86,6 +87,7 @@ const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
       variant !== 'buffer' && `barColor${capitalize(color)}`,
       variant === 'buffer' && `color${capitalize(color)}`,
       (variant === 'indeterminate' || variant === 'query') && 'bar2Indeterminate',
+      (variant === 'indeterminate' || variant === 'query') && fourColor && 'bar2FourColor',
       variant === 'buffer' && 'bar2Buffer',
     ],
   };
@@ -353,6 +355,25 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
+  /**
+   * If `true`, the component render indeterminate or query mode using four colors instead of one.
+   * This only works if variant is `indeterminate` or `query`.
+   * @default false
+   */
+  fourColor: chainPropTypes(PropTypes.bool, (props) => {
+    if (
+      props.fourColor &&
+      props.variant &&
+      props.variant !== 'indeterminate' &&
+      props.variant !== 'query'
+    ) {
+      return new Error(
+        'MUI: You have provided the `fourColor` prop ' +
+          'with a variant other than `indeterminate` or `query`. This will have no effect.',
+      );
+    }
+    return null;
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

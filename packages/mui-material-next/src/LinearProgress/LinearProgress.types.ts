@@ -22,6 +22,12 @@ export interface LinearProgressOwnProps {
     LinearProgressPropsColorOverrides
   >;
   /**
+   * If `true`, the component render indeterminate or query mode using four colors instead of one.
+   * This only works if variant is `indeterminate` or `query`.
+   * @default false
+   */
+  fourColor?: boolean;
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
