@@ -119,15 +119,44 @@ For more details on sparkline and other custom columns, please visit the [docume
 ### Performance improvements
 
 In our pursuit to enhance user experience, one of the most significant changes in latest v6 versions are related to performance boosts on filtering and scrolling.
-In the following charts, you can see the difference of the latest v6 version compared with v5 LTS.
 
-#### Filtering
+To illustrate some of these improvements, the following table display a benchmark comparing the latest v5 (v5.17.26) with v6.18.0. The focus is to assess the raw filtering speed in a use case involving a one-column string filter over 100,000 rows.
 
-[missing comparison charts]
+<table border="0" style="text-align:center">
+  <tr>
+    <th>Version</th>
+    <th>N# of Tests</th>
+    <th>Min time (ms)</th>
+    <th>Max time (ms)</th>
+    <th>Median (ms)</th>
+    <th>Average (ms)</th>
+    <th>Std Deviation</th>
+  </tr>
+  <tr>
+    <td>v5.17.26</td>
+    <td>22</td>
+    <td>396</td>
+    <td>409</td>
+    <td>400</td>
+    <td>400.7</td>
+    <td>3.96</td>
+  </tr>
+  <tr>
+    <td>v6.18.0</td>
+    <td>20</td>
+    <td>44</td>
+    <td>66</td>
+    <td>49.5</td>
+    <td>50.4</td>
+    <td>5.63</td>
+  </tr>
+</table>
 
-#### Scrolling
+As we can see, the current version operates 7.9 times faster; the average time has dropped from 400.7 milliseconds in the previous version to just 50.4 milliseconds in the current one.
 
-[missing comparison charts]
+:::info
+Note that these results are based on raw filtering speed, and not end-to-end operation (which includes user typing, filtering and rerender).
+:::
 
 ## What's next?
 
