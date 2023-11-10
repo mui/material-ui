@@ -34,4 +34,15 @@ const TreeView = React.forwardRef(function DeprecatedTreeView<
   return <XTreeView {...props} ref={ref} />;
 });
 
+TreeView.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+} as any;
+
 export default TreeView;
