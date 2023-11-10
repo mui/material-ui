@@ -291,6 +291,7 @@ const LinearProgress = React.forwardRef(function LinearProgress<
   const {
     className,
     color = 'primary',
+    fourColor = false,
     value,
     valueBuffer,
     variant = 'indeterminate',
@@ -299,6 +300,7 @@ const LinearProgress = React.forwardRef(function LinearProgress<
   const ownerState = {
     ...props,
     color,
+    fourColor,
     variant,
   };
 
