@@ -186,7 +186,7 @@ onChange: (
 
 It's called when the `<input>` element is blurred, or when the stepper buttons are clicked, after the value has been clamped based on the [`min`, `max`](#minimum-and-maximum), or [`step`](#incremental-steps) props.
 
-:::warning
+:::info
 When using the component, `onChange` can only be passed as a prop on the component—not through `slotProps`.
 :::
 
@@ -219,9 +219,8 @@ It's called whenever the value of the textbox changes–for example, on every ke
 
 In other words, it's possible for `event.target.value` to contain out-of-range values or non-numerical characters.
 
-:::warning
-When using the component, `onInputChange` can only be passed as a prop on the component.
-If you prefer to use `slotProps`, pass it as `slotProps.input.onChange` instead.
+:::info
+When using the component, `onInputChange` can only be passed as a prop on the component. If you prefer to use `slotProps`, pass it as `slotProps.input.onChange` instead. Both ways–`onInputChange` and `slotProps.input.onChange`–work the same.
 :::
 
 ```jsx
@@ -234,6 +233,7 @@ If you prefer to use `slotProps`, pass it as `slotProps.input.onChange` instead.
 <NumberInput
   slotProps={{
     input: {
+      // this exactly the same as onInputChange above
       onChange: (event) => console.log(`the input value is: ${event.target.value}`),
     },
   }}
