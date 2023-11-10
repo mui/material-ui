@@ -10,7 +10,7 @@ tags: ['MUI X', 'News']
 <div style="max-width:680px;width: 100%; height: 170px; overflow: hidden; margin-bottom: 16px;">
   <a href="https://github.com/mui/mui-x/releases/tag/v6.18.0">
     <img src="/static/blog/mui-x-end-v6-features/intro.png" alt="open v6.18.0 release page" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
-  </a>  
+  </a>
 </div>
 
 We are happy to share the newest MUI X features, marking the release of [MUI X v6.18.0](https://github.com/mui/mui-x/releases/tag/v6.18.0) and sealing v6 with new components and solid functionalities.
