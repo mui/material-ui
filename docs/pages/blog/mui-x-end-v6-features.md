@@ -15,7 +15,7 @@ tags: ['MUI X', 'News']
 
 We are happy to share the newest MUI X features, marking the release of [MUI X v6.18.0](https://github.com/mui/mui-x/releases/tag/v6.18.0) and sealing v6 with new components and solid functionalities.
 
-As we gear up to develop the next major version, let's review the notable new features introduced since our last [blog post](https://mui.com/blog/mui-x-mid-v6-features/).
+As we gear up to develop the next major version, let's review the notable new features introduced since our last [blog post](/blog/mui-x-mid-v6-features/).
 
 ## Table of contents
 
@@ -53,14 +53,14 @@ Featuring lines, areas, bars, pie charts and scatter plots, the latest versions 
 - **Horizontal Bar Chart Support**
 
   Recently added, the horizontal bars can broaden your data visualization spectrum, especially when you need to display long labels for multiple categories.
-  Check out Bar's [layout documentation](https://mui.com/x/react-charts/bars/#layout) for more details.
+  Check out Bar's [layout documentation](/x/react-charts/bars/#layout) for more details.
 
 - **Improved Text Customization**
 
   Customize the legend text to your heart's content, making your charts more readable and visually
   appealing.
 
-Get started with charts [now!](https://mui.com/x/react-charts/#getting-started)
+Get started with charts [now](/x/react-charts/#getting-started)!
 
 ### Tree view
 
@@ -70,7 +70,7 @@ After an extensive period of development and refinement in the lab and pre-relea
   <source src="/static/blog/mui-x-end-v6-features/tree-view-gmail.mp4" type="video/mp4">
 </video>
 
-Get started with tree view [now!](https://mui.com/x/react-tree-view/getting-started/)
+Get started with tree view [now](/x/react-tree-view/getting-started/)!
 
 ## Date Pickers
 
@@ -81,7 +81,7 @@ The animations have been smoothened, especially on Android devices, ensuring a m
 ### Clearable Field
 
 A much-anticipated feature, the date and time fields now allow users to clear a selected date with a single click.
-You can learn how to customize and other details at the [clearable behavior documentation](https://mui.com/x/react-date-pickers/fields/#clearable-behavior).
+You can learn how to use it at the [clearable behavior documentation](/x/react-date-pickers/fields/#clearable-behavior).
 
 <video preload="metadata" style="margin-bottom: 10px;" autoplay muted loop playsinline width="680" height="128">
   <source src="/static/blog/mui-x-end-v6-features/clearable-fields.mp4" type="video/mp4">
@@ -90,7 +90,7 @@ You can learn how to customize and other details at the [clearable behavior docu
 ### Customization Playgrounds
 
 We're constantly improving our documentation and working to better communicate how to use our components effectively.
-With the new customization playgrounds, you can now tailor the style of [Date Picker](https://mui.com/x/react-date-pickers/date-picker/#customization) and experiment with multiple combinations of [sub-components](https://mui.com/x/react-date-pickers/playground/) to achieve the look and feel you desire.
+With the new customization playgrounds, you can now tailor the style of [Date Picker](/x/react-date-pickers/date-picker/#customization) and experiment with multiple combinations of [sub-components](/x/react-date-pickers/playground/) to achieve the look and feel you desire.
 
 ## Data Grid
 
@@ -98,7 +98,7 @@ With the new customization playgrounds, you can now tailor the style of [Date Pi
 
 The new autosizing feature automatically adjusts the column width to accommodate the content within.
 You can include or exclude both headers and outliers from the calculation and expand to use the entire area of the grid.
-Learn more details at [column autosizing section](https://mui.com/x/react-data-grid/column-dimensions/#autosizing).
+Learn more details at [column autosizing section](/x/react-data-grid/column-dimensions/#autosizing).
 
 <video preload="metadata" style="margin-bottom: 10px;" autoplay muted loop playsinline width="680" height="128">
   <source src="/static/blog/mui-x-end-v6-features/column-auto-sizing.mp4" type="video/mp4">
@@ -106,7 +106,7 @@ Learn more details at [column autosizing section](https://mui.com/x/react-data-g
 
 ### New examples
 
-We're continuously improving our docs, and we're starting to add more advanced examples like [bulk editing](https://mui.com/x/react-data-grid/recipes-editing/#bulk-editing) and [lazy loading for tree data](https://mui.com/x/react-data-grid/tree-data/#children-lazy-loading).
+We're continuously improving our docs, and we're starting to add more advanced examples like [bulk editing](/x/react-data-grid/recipes-editing/#bulk-editing) and [lazy loading for tree data](/x/react-data-grid/tree-data/#children-lazy-loading).
 
 ### Sparkline as a column type
 
@@ -114,7 +114,7 @@ Based on `@mui/x-charts` package, you can now add sparkline columns to your Data
 
 <img src="/static/blog/mui-x-end-v6-features/sparkline-datagrid.png" alt="Sparkline on data grid" width="658" height="305" style="margin-bottom: 16px;" />
 
-For more details on sparkline and other custom columns, please visit the [documentation page](https://mui.com/x/react-data-grid/custom-columns/#sparkline).
+For more details on sparkline and other custom columns, please visit the [documentation page](/x/react-data-grid/custom-columns/#sparkline).
 
 ### Performance improvements
 
@@ -122,7 +122,7 @@ In our pursuit to enhance user experience, one of the most significant changes i
 
 To illustrate some of these improvements, the following table display a benchmark comparing the latest v5 (v5.17.26) with v6.18.0. The focus is to assess the raw filtering speed in a use case involving a one-column string filter over 100,000 rows.
 
-<table border="0" style="text-align:center">
+<table border="0" style="text-align:center;width:100%;display:table">
   <tr>
     <th>Version</th>
     <th>N# of Tests</th>
@@ -164,12 +164,12 @@ We're now working on the next MUI X major, v7, which will include many new featu
 
 Most notably:
 
-- DateTime- and TimeRangePicker
+- DateTime and TimeRangePicker
 - Improved accessibility on date and time fields
-- New UI for column management for the [`DataGrid`](https://mui.com/x/react-data-grid/)
-- Pivoting for the [`DataGridPremium`](https://mui.com/x/react-data-grid/#premium-plan)
+- New UI for column management for the [`DataGrid`](/x/react-data-grid/)
+- Pivoting for the [`DataGridPremium`](/x/react-data-grid/#premium-plan)
 
-For the new components, we will keep expanding our portfolio with new chart types such as [Heat map](https://mui.com/x/react-charts/heat-map/), [Funnel](https://mui.com/x/react-charts/funnel/), [Gantt](https://mui.com/x/react-charts/gantt/), and explore virtualization and other advanced use cases for Tree view.
+For the new components, we will keep expanding our portfolio with new chart types such as [Heat map](/x/react-charts/heat-map/), [Funnel](/x/react-charts/funnel/), [Gantt](/x/react-charts/gantt/), and explore virtualization and other advanced use cases for Tree view.
 
 We encourage you to upvote issues on GitHub to help us prioritize. Your input directly influences our development schedule, so don't hesitate to let us know what matters most to you!
 You can use the following list for quick access to each components issues.
@@ -179,7 +179,7 @@ You can use the following list for quick access to each components issues.
 - [Data Grid](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+data+grid%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
 - [Date and Time pickers](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+pickers%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
 
-The next major release (v7) will be available through alpha and beta versions until March 2024, when it's planned for it to be officially promoted to the new stable version. At the same time, v6 will transition to [Long-Term Support](https://mui.com/versions/#long-term-support-lts), while support for v5 will be discontinued.
+The next major release (v7) will be available through alpha and beta versions until March 2024, when it's planned for it to be officially promoted to the new stable version. At the same time, v6 will transition to [Long-Term Support](/versions/#long-term-support-lts), while support for v5 will be discontinued.
 
 ## Feedback
 
