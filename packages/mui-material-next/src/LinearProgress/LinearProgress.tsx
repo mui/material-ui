@@ -68,6 +68,38 @@ const bufferKeyframe = keyframes`
   }
 `;
 
+const fourColorKeyframe = keyframes`
+  0% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-one-color);
+  }
+
+  15% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-one-color);
+  }
+  25% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-two-color);
+  }
+  40% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-two-color);
+  }
+
+  50% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-three-color);
+  }
+  65% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-three-color);
+  }
+  75% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-four-color);
+  }
+  90% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-four-color);
+  }
+  100% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-one-color);
+  }
+`;
+
 const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
   const { classes, variant, color = 'primary', fourColor } = ownerState;
 
@@ -112,6 +144,14 @@ const LinearProgressRoot = styled('span', {
   '--md-comp-linear-progress-indicator-active-indicator-height': '4px',
   '--md-comp-linear-progress-indicator-active-indicator-color':
     tokens.sys.color[ownerState.color ?? 'primary'],
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-one-color':
+    tokens.sys.color.primary,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-two-color':
+    tokens.sys.color.primaryContainer,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-three-color':
+    tokens.sys.color.tertiary,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-four-color':
+    tokens.sys.color.tertiaryContainer,
   position: 'relative',
   overflow: 'hidden',
   display: 'block',
@@ -163,31 +203,32 @@ const LinearProgressBar1 = styled('span', {
       ownerState.variant === 'buffer' && styles.bar1Buffer,
     ];
   },
-})<{ ownerState: LinearProgressOwnerState }>(
-  ({ ownerState }) => ({
-    width: '100%',
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    top: 0,
-    transition: 'transform 0.2s linear',
-    transformOrigin: 'left',
-    backgroundColor: 'var(--md-comp-linear-progress-indicator-active-indicator-color)',
-    ...(ownerState.variant === 'determinate' && {
-      transition: `transform .${TRANSITION_DURATION}s linear`,
-    }),
-    ...(ownerState.variant === 'buffer' && {
-      zIndex: 1,
-      transition: `transform .${TRANSITION_DURATION}s linear`,
+})<{ ownerState: LinearProgressOwnerState }>(({ ownerState }) => ({
+  width: '100%',
+  position: 'absolute',
+  left: 0,
+  bottom: 0,
+  top: 0,
+  transition: 'transform 0.2s linear',
+  transformOrigin: 'left',
+  backgroundColor: 'var(--md-comp-linear-progress-indicator-active-indicator-color)',
+  ...(ownerState.variant === 'determinate' && {
+    transition: `transform .${TRANSITION_DURATION}s linear`,
+  }),
+  ...(ownerState.variant === 'buffer' && {
+    zIndex: 1,
+    transition: `transform .${TRANSITION_DURATION}s linear`,
+  }),
+  ...((ownerState.variant === 'indeterminate' || ownerState.variant === 'query') && {
+    width: 'auto',
+    animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
+    ...(ownerState.fourColor && {
+      animationName: `${indeterminate1Keyframe}, ${fourColorKeyframe}`,
+      animationDuration: '2.1s, 4.2s',
+      animationTimingFunction: 'cubic-bezier(0.65, 0.815, 0.735, 0.395), linear',
     }),
   }),
-  ({ ownerState }) =>
-    (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-    css`
-      width: auto;
-      animation: ${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
-    `,
-);
+}));
 
 const LinearProgressBar2 = styled('span', {
   name: 'MuiLinearProgress',
@@ -203,28 +244,30 @@ const LinearProgressBar2 = styled('span', {
       ownerState.variant === 'buffer' && styles.bar2Buffer,
     ];
   },
-})<{ ownerState: LinearProgressOwnerState }>(
-  ({ ownerState }) => ({
-    width: '100%',
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    top: 0,
-    transition: 'transform 0.2s linear',
-    transformOrigin: 'left',
-    backgroundColor: 'var(--md-comp-linear-progress-indicator-active-indicator-color)',
-    ...(ownerState.variant === 'buffer' && {
-      backgroundColor: 'var(--md-comp-linear-progress-indicator-track-color)',
-      transition: `transform .${TRANSITION_DURATION}s linear`,
+})<{ ownerState: LinearProgressOwnerState }>(({ ownerState }) => ({
+  width: '100%',
+  position: 'absolute',
+  left: 0,
+  bottom: 0,
+  top: 0,
+  transition: 'transform 0.2s linear',
+  transformOrigin: 'left',
+  backgroundColor: 'var(--md-comp-linear-progress-indicator-active-indicator-color)',
+  ...(ownerState.variant === 'buffer' && {
+    backgroundColor: 'var(--md-comp-linear-progress-indicator-track-color)',
+    transition: `transform .${TRANSITION_DURATION}s linear`,
+  }),
+  ...((ownerState.variant === 'indeterminate' || ownerState.variant === 'query') && {
+    width: 'auto',
+    animation: `${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite`,
+    ...(ownerState.fourColor && {
+      animationName: `${indeterminate2Keyframe}, ${fourColorKeyframe}`,
+      animationDuration: '2.1s, 4.2s',
+      animationDelay: '1.15s, 0s',
+      animationTimingFunction: 'cubic-bezier(0.165, 0.84, 0.44, 1), linear',
     }),
   }),
-  ({ ownerState }) =>
-    (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-    css`
-      width: auto;
-      animation: ${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
-    `,
-);
+}));
 
 /**
  * ## ARIA
