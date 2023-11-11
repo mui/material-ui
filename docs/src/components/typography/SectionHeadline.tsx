@@ -17,7 +17,7 @@ interface SectionHeadlineProps {
 export default function SectionHeadline(props: SectionHeadlineProps) {
   const { description, id, overline, title, alwaysCenter = false, inverted = false } = props;
   return (
-    <Box sx={{ maxWidth: 500 }}>
+    <Box sx={{ maxWidth: 500, m: alwaysCenter ? 'auto' : 'none' }}>
       {overline && (
         <Typography
           id={id}

@@ -4,6 +4,7 @@ import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import XHero from 'docs/src/components/productX/XHero';
+import XComponents2 from 'docs/src/components/productX/XComponents2';
 import XComponents from 'docs/src/components/productX/XComponents';
 import XDataGrid from 'docs/src/components/productX/XDataGrid';
 import XTheming from 'docs/src/components/productX/XTheming';
@@ -28,6 +29,7 @@ export default function X() {
         <References companies={ADVANCED_CUSTOMERS} />
         <Divider />
         <XComponents />
+        <XComponents2 />
         <Divider />
         <XDataGrid />
         <Divider />

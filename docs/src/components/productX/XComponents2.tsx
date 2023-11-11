@@ -18,6 +18,10 @@ import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import Link from 'docs/src/modules/components/Link';
 import More from 'docs/src/components/action/More';
+import XGridFullDemo from 'docs/src/components/productX/XGridFullDemo';
+import XDateRangeDemo from 'docs/src/components/productX/XDateRangeDemo';
+import XTreeViewDemo from 'docs/src/components/productX/XTreeViewDemo';
+import XChartsDemo from 'docs/src/components/productX/XChartsDemo';
 
 export const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
 
@@ -29,14 +33,6 @@ export const icons = {
 
 export const TEMPLATES = {
   [DEMOS[0]]: [
-    {
-      name: 'Devias Kit Pro - Client & Admin Dashboard',
-      src: {
-        light: '/static/branding/store-templates/template-4light.jpg',
-        dark: '/static/branding/store-templates/template-4dark.jpg',
-      },
-      href: 'https://mui.com/store/items/devias-kit-pro/',
-    },
     {
       name: 'Minimal - Client & Admin Dashboard',
       src: {
@@ -122,7 +118,7 @@ function ActionArea(props: ButtonBaseProps) {
   );
 }
 
-export default function MaterialTemplates() {
+export default function XComponents2() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const [templateIndex, setTemplateIndex] = React.useState(1);
   const templates = TEMPLATES[demo];
@@ -131,14 +127,13 @@ export default function MaterialTemplates() {
     <Section bg="gradient" cozy>
       <SectionHeadline
         alwaysCenter
-        overline="Templates"
+        overline="React component library"
         title={
           <Typography variant="h2">
-            The right template for your
-            <br /> <GradientText>specific use case</GradientText>
+            Powerful components for <GradientText>advanced</GradientText> use-cases
           </Typography>
         }
-        description="A collection of 4.5 average rating templates, for multiple use cases, all powered by Material UI components and carefully curated by MUI's team."
+        description="The MUI X package enables applications to have complex use-cases, supported by several advanced components."
       />
       <Group rowLayout desktopColumns={2} sx={{ mt: 3 }}>
         {DEMOS.map((name) => (
@@ -190,93 +185,10 @@ export default function MaterialTemplates() {
               enableMouseEvents
               onChangeIndex={(index) => setTemplateIndex(index)}
             >
-              {templates.map((item, index) => (
-                <Box
-                  key={item.name}
-                  sx={(theme) => ({
-                    overflow: 'auto',
-                    borderRadius: 1,
-                    height: { xs: 220, sm: 320, md: 450 },
-                    backgroundImage: `url(${item.src.light})`,
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat',
-                    border: '1px solid',
-                    borderColor: templateIndex === index ? 'primary.100' : 'divider',
-                    boxShadow: `0px 2px 12px ${alpha(theme.palette.primary[200], 0.3)}`,
-                    transition: '0.6s cubic-bezier(0.15, 0.3, 0.25, 1)',
-                    transform: templateIndex !== index ? 'scale(0.92)' : 'scale(1)',
-                    ...theme.applyDarkStyles({
-                      backgroundImage: `url(${item.src.dark})`,
-                      borderColor: templateIndex === index ? 'primary.800' : 'divider',
-                      boxShadow: `0px 2px 12px ${alpha(theme.palette.primary[900], 0.5)}`,
-                    }),
-                  })}
-                >
-                  <Link
-                    href={`${item.href}?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta2`}
-                    noLinkStyle
-                    target="_blank"
-                    sx={[
-                      (theme) => ({
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexDirection: 'column',
-                        gap: 1,
-                        transition: '0.2s',
-                        position: 'absolute',
-                        width: '100%',
-                        height: '100%',
-                        opacity: 0,
-                        top: 0,
-                        left: 0,
-                        bgcolor: alpha(theme.palette.primary[50], 0.6),
-                        backdropFilter: 'blur(4px)',
-                        textDecoration: 'none',
-                        '&:hover, &:focus': {
-                          opacity: 1,
-                        },
-                        ...theme.applyDarkStyles({
-                          bgcolor: alpha(theme.palette.primaryDark[900], 0.6),
-                        }),
-                      }),
-                    ]}
-                  >
-                    <Typography
-                      component="p"
-                      variant="h6"
-                      fontWeight="bold"
-                      textAlign="center"
-                      sx={[
-                        (theme) => ({
-                          color: 'text.primary',
-                          ...theme.applyDarkStyles({
-                            color: '#FFF',
-                          }),
-                        }),
-                      ]}
-                    >
-                      {templates[templateIndex].name}
-                    </Typography>
-                    <Box
-                      sx={[
-                        (theme) => ({
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 0.5,
-                          color: 'primary.500',
-                          ...theme.applyDarkStyles({
-                            color: 'primary.100',
-                          }),
-                        }),
-                      ]}
-                    >
-                      <Typography fontWeight="bold">Buy now</Typography>
-                      <LaunchRounded fontSize="small" />
-                    </Box>
-                  </Link>
-                </Box>
-              ))}
+              <XGridFullDemo />
+              <XDateRangeDemo />
+              <XChartsDemo />
+              <XTreeViewDemo />
             </SwipeableViews>
             {templates.length > 1 && (
               <React.Fragment>
