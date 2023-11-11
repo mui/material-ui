@@ -84,7 +84,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     fullWidth = false,
     helperText,
     id: idOverride,
-    InputLabelProps,
+    InputLabelProps = {},
     inputProps,
     InputProps,
     inputRef,
@@ -142,6 +142,9 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     // unset defaults from textbox inputs
     if (!SelectProps || !SelectProps.native) {
       InputMore.id = undefined;
+      if (!InputLabelProps?.component) {
+        InputLabelProps.component = 'span';
+      }
     }
     InputMore['aria-describedby'] = undefined;
   }
@@ -190,12 +193,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       {...other}
     >
       {label != null && label !== '' && (
-        <InputLabel
-          htmlFor={id}
-          id={inputLabelId}
-          {...InputLabelProps}
-          component={select ? 'span' : undefined}
-        >
+        <InputLabel htmlFor={id} id={inputLabelId} {...InputLabelProps}>
           {label}
         </InputLabel>
       )}
