@@ -13,8 +13,8 @@ import { SelectProps } from '../Select';
 import { Theme } from '../styles';
 import { TextFieldClasses } from './textFieldClasses';
 
-export interface TextFieldPropsColorOverrides {}
-export interface TextFieldPropsSizeOverrides {}
+export interface TextFieldPropsColorOverrides { }
+export interface TextFieldPropsSizeOverrides { }
 
 export interface BaseTextFieldProps
   extends StandardProps<
@@ -86,6 +86,8 @@ export interface BaseTextFieldProps
   /**
    * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
    * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
+   * 
+   * @default {}
    */
   InputLabelProps?: Partial<InputLabelProps>;
   /**
@@ -230,10 +232,10 @@ export type TextFieldVariants = 'outlined' | 'standard' | 'filled';
 
 export type TextFieldProps<Variant extends TextFieldVariants = TextFieldVariants> =
   Variant extends 'filled'
-    ? FilledTextFieldProps
-    : Variant extends 'standard'
-    ? StandardTextFieldProps
-    : OutlinedTextFieldProps;
+  ? FilledTextFieldProps
+  : Variant extends 'standard'
+  ? StandardTextFieldProps
+  : OutlinedTextFieldProps;
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).

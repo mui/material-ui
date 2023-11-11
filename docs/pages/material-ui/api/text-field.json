@@ -17,7 +17,7 @@
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "helperText": { "type": { "name": "node" } },
     "id": { "type": { "name": "string" } },
-    "InputLabelProps": { "type": { "name": "object" } },
+    "InputLabelProps": { "type": { "name": "object" }, "default": "{}" },
     "inputProps": { "type": { "name": "object" } },
     "InputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
