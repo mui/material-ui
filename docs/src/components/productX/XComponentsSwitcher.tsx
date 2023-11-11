@@ -1,18 +1,37 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
-import { Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { visuallyHidden } from '@mui/utils';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import IconImage from 'docs/src/components/icon/IconImage';
+import TableChartRounded from '@mui/icons-material/TableChartRounded';
+import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
+import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
+import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
+
+function IconContainer({ icon }: { icon: React.ReactNode }) {
+  return (
+    <Box
+      sx={{
+        background: 'black',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 36,
+        width: 36,
+        borderRadius: '50%',
+      }}
+    >
+      {icon}
+    </Box>
+  );
+}
 
 function ProductItem({
   label,
@@ -24,7 +43,7 @@ function ProductItem({
   label: string;
   icon: React.ReactNode;
   name: React.ReactNode;
-  description: React.ReactNode;
+  description?: React.ReactNode;
   href: string;
 }) {
   return (
@@ -74,7 +93,7 @@ function ProductItem({
             event.stopPropagation();
           }}
         >
-          <span>Learn more</span>{' '}
+          <span>View the docs</span>{' '}
           <Box component="span" sx={visuallyHidden}>
             {label}
           </Box>
@@ -93,35 +112,27 @@ export default function XComponentsSwitcher(props: {
   const { inView = false, productIndex, setProductIndex } = props;
   const productElements = [
     <ProductItem
+      name="Data Grid"
       label="by going to the Core components page"
-      icon={<IconImage name="product-core" />}
-      name="MUI Core"
-      description="Foundational components for shipping features faster. Includes Material UI."
+      icon={<IconContainer icon={<TableChartRounded fontSize="small" />} />}
       href={ROUTES.productCore}
     />,
     <ProductItem
+      name="Date and Time Pickers"
       label="by going to the Advanced components page"
-      icon={<IconImage name="product-advanced" />}
-      name={
-        <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center' }}>
-          MUI X
-        </Box>
-      }
-      description="Advanced components for complex use cases."
+      icon={<IconContainer icon={<DateRangeRounded fontSize="small" />} />}
       href={ROUTES.productAdvanced}
     />,
     <ProductItem
+      name="Charts"
       label="by going to the templates page"
-      icon={<IconImage name="product-templates" />}
-      name="Templates"
-      description="Professionally designed UI layouts to jumpstart your next project."
+      icon={<IconContainer icon={<AccountTreeRounded fontSize="small" />} />}
       href={ROUTES.productTemplates}
     />,
     <ProductItem
+      name="Tree View"
       label="by going to the design-kits page"
-      icon={<IconImage name="product-designkits" />}
-      name="Design kits"
-      description="Bring our components to your favorite design tool."
+      icon={<IconContainer icon={<ShowChartRounded fontSize="small" />} />}
       href={ROUTES.productDesignKits}
     />,
   ];
