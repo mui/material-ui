@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
@@ -19,7 +19,9 @@ import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
 import Button from '@mui/material/Button';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import Frame from 'docs/src/components/action/Frame';
+import ROUTES from 'docs/src/route';
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps & { lastNestedChild?: boolean },
@@ -271,43 +273,30 @@ export default function XDateRangeDemo() {
           </TreeView>
         </Paper>
       </Frame.Demo>
-
-      <Frame.Info data-mui-color-scheme="dark">
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            lineHeight: 1,
-            mb: 0.5,
-          }}
-        >
-          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-            Experiment with the Tree View now!
+      <Frame.Info
+        data-mui-color-scheme="dark"
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 4,
+        }}
+      >
+        <div>
+          <Chip variant="outlined" label="Stable component" color="success" size="small" />
+          <Typography variant="body2" color="text.secondary" mt={1}>
+            Production-ready <strong>Tree View</strong> component for displaying hierarchical data,
+            such as a file system navigator.
           </Typography>
-          <Chip
-            variant="outlined"
-            label="Alpha"
-            color="warning"
-            size="small"
-            sx={(theme) => ({
-              pb: 0.2,
-              fontWeight: theme.typography.fontWeightSemiBold,
-              color: (theme.vars || theme).palette.warning[300],
-              borderColor: alpha(theme.palette.warning[300], 0.3),
-              background: alpha(theme.palette.warning[800], 0.3),
-            })}
-          />
-        </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Play with the component and let us know what you think!
-        </Typography>
+        </div>
         <Button
-          variant="outlined"
-          href="/x/react-tree-view"
           component="a"
-          sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300' }}
+          variant="outlined"
+          href={ROUTES.treeViewOverview}
+          endIcon={<ChevronRightRoundedIcon />}
+          sx={{ whiteSpace: 'nowrap', flexShrink: 0 }}
         >
-          View the documentation
+          Visit docs
         </Button>
       </Frame.Info>
     </Frame>

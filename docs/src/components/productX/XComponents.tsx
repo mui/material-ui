@@ -14,6 +14,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
+import XComponentsSwitcher from 'docs/src/components/productX/XComponentsSwitcher';
 import XGridFullDemo from 'docs/src/components/productX/XGridFullDemo';
 import XDateRangeDemo from 'docs/src/components/productX/XDateRangeDemo';
 import XTreeViewDemo from 'docs/src/components/productX/XTreeViewDemo';
@@ -62,6 +63,7 @@ function PrefetchImages() {
 }
 
 export default function XComponents() {
+  const [productIndex, setProductIndex] = React.useState(0);
   const [demo, setDemo] = React.useState(DEMOS[1]);
   const icons = {
     [DEMOS[0]]: <TableChartRounded fontSize="small" />,
@@ -73,7 +75,7 @@ export default function XComponents() {
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
+        <Grid item md={6}>
           <SectionHeadline
             overline="React component library"
             title={
@@ -83,57 +85,21 @@ export default function XComponents() {
             }
             description="The MUI X package enables applications to have complex use-cases, supported by several advanced components."
           />
-          <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
-            {DEMOS.map((name) => (
-              <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
-                <Item icon={React.cloneElement(icons[name])} title={name} />
-                {WIP.includes(name) && (
-                  <Tooltip title="Work in progress">
-                    <IconImage name="pricing/time" sx={{ ml: 'auto', mr: 2 }} />
-                  </Tooltip>
-                )}
-              </Highlighter>
-            ))}
-            <More href={ROUTES.xIntro} />
-          </Group>
+          <Box sx={{ mt: 4 }} />
+          <XComponentsSwitcher productIndex={productIndex} setProductIndex={setProductIndex} />
         </Grid>
-        <Grid item xs={12} md={6} sx={{ position: 'relative' }}>
-          <PrefetchImages />
-          {demo === DEMOS[0] && (
-            <Fade in timeout={500}>
-              <Box sx={{ height: '100%' }}>
-                <XGridFullDemo />
-              </Box>
-            </Fade>
-          )}
-          {demo === DEMOS[1] && (
-            <Fade in timeout={500}>
-              <div>
-                <XDateRangeDemo />
-              </div>
-            </Fade>
-          )}
-          {demo === DEMOS[2] && (
-            <Fade in timeout={500}>
-              <div>
-                <XChartsDemo />
-              </div>
-            </Fade>
-          )}
-          {demo === DEMOS[3] && (
-            <Fade in timeout={500}>
-              <div>
-                <XTreeViewDemo />
-              </div>
-            </Fade>
-          )}
-          {demo === DEMOS[4] && (
-            <Fade in timeout={500}>
-              <div>
-                <XSparklineDemo />
-              </div>
-            </Fade>
-          )}
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={productIndex === 0 ? { minHeight: { xs: 777, sm: 757, md: 'unset' } } : {}}
+        >
+          <React.Fragment>
+            {productIndex === 0 && <XGridFullDemo />}
+            {productIndex === 1 && <XDateRangeDemo />}
+            {productIndex === 2 && <XChartsDemo />}
+            {productIndex === 3 && <XTreeViewDemo />}
+          </React.Fragment>
         </Grid>
       </Grid>
     </Section>

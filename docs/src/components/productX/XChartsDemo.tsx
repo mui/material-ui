@@ -1,14 +1,15 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import { alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { mangoFusionPalette } from '@mui/x-charts';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import Frame from 'docs/src/components/action/Frame';
+import ROUTES from 'docs/src/route';
 
 export default function XChartsDemo() {
   return (
@@ -31,7 +32,7 @@ export default function XChartsDemo() {
               }),
           ]}
         >
-          <Box sx={{ py: 1 }}>
+          <Box sx={{ py: 2, px: 1 }}>
             <LineChart
               sx={{
                 '& .MuiMarkElement-root': { display: 'none' },
@@ -40,13 +41,13 @@ export default function XChartsDemo() {
               margin={{ top: 10, bottom: 50, left: 40, right: 20 }}
               series={[
                 { data: [35, 44, 24, 34], stack: 'total', area: true },
-                { data: [51, 6, 49, 30], stack: 'total', area: true },
-                { data: [5, 15, 30, 50], stack: 'total', area: true },
+                { data: [51, 32, 49, 30], stack: 'total', area: true },
+                { data: [5, 31, 30, 50], stack: 'total', area: true },
                 { data: [60, 50, 15, 10], stack: 'total', area: true },
               ]}
               xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'point' }]}
               colors={mangoFusionPalette}
-              height={250}
+              height={200}
             />
             <BarChart
               sx={{
@@ -61,48 +62,36 @@ export default function XChartsDemo() {
                 { data: [60, 50, 15, 25] },
               ]}
               xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
-              height={200}
+              height={180}
               colors={mangoFusionPalette}
             />
           </Box>
         </Paper>
       </Frame.Demo>
-      <Frame.Info data-mui-color-scheme="dark">
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            lineHeight: 1,
-            mb: 0.5,
-          }}
-        >
-          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-            Experiment with Charts now!
+      <Frame.Info
+        data-mui-color-scheme="dark"
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 4,
+        }}
+      >
+        <div>
+          <Chip variant="outlined" label="Stable component" color="success" size="small" />
+          <Typography variant="body2" color="text.secondary" mt={1}>
+            Production-ready <strong>Charts</strong> component, featuring bar, lines, pie, scatter,
+            and more types of graphs.
           </Typography>
-          <Chip
-            variant="outlined"
-            label="Alpha"
-            color="warning"
-            size="small"
-            sx={(theme) => ({
-              pb: 0.2,
-              fontWeight: theme.typography.fontWeightSemiBold,
-              color: (theme.vars || theme).palette.warning[300],
-              borderColor: alpha(theme.palette.warning[300], 0.3),
-              background: alpha(theme.palette.warning[800], 0.3),
-            })}
-          />
-        </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Using D3.js for data manipulation and SVG for rendering, Charts are coming to MUI X!
-        </Typography>
+        </div>
         <Button
-          variant="outlined"
-          href="/x/react-charts/"
           component="a"
-          sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300' }}
+          variant="outlined"
+          href={ROUTES.chartsOverview}
+          endIcon={<ChevronRightRoundedIcon />}
+          sx={{ whiteSpace: 'nowrap', flexShrink: 0 }}
         >
-          View the documentation
+          Visit docs
         </Button>
       </Frame.Info>
     </Frame>
