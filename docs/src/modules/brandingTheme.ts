@@ -907,9 +907,12 @@ export function getThemedComponents(): ThemeOptions {
               }),
             ...(variant === 'outlined' &&
               color === 'primary' && {
-                borderColor: (theme.vars || theme).palette.primary[200],
+                borderColor: (theme.vars || theme).palette.primary[100],
+                backgroundColor: (theme.vars || theme).palette.primary[50],
                 ...theme.applyDarkStyles({
-                  borderColor: alpha(theme.palette.primary[500], 0.3),
+                  color: (theme.vars || theme).palette.primary[300],
+                  borderColor: alpha(theme.palette.primary[500], 0.2),
+                  backgroundColor: alpha(theme.palette.primary[700], 0.2),
                 }),
               }),
             ...(variant === 'filled' && {

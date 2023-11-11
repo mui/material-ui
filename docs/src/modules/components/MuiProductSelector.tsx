@@ -115,15 +115,7 @@ export default function MuiProductSelector() {
       <Box
         component="li"
         role="none"
-        sx={(theme) => ({
-          p: 2,
-          pr: 3,
-          borderBottom: '1px solid',
-          borderColor: 'grey.100',
-          ...theme.applyDarkStyles({
-            borderColor: alpha(theme.palette.primary[100], 0.08),
-          }),
-        })}
+        sx={{ p: 2, pr: 3, borderBottom: '1px solid', borderColor: 'divider' }}
       >
         <ProductSubMenu
           role="menuitem"
@@ -165,15 +157,7 @@ export default function MuiProductSelector() {
       <Box
         component="li"
         role="none"
-        sx={(theme) => ({
-          p: 2,
-          pr: 3,
-          borderBottom: '1px solid',
-          borderColor: 'grey.100',
-          ...theme.applyDarkStyles({
-            borderColor: alpha(theme.palette.primary[100], 0.08),
-          }),
-        })}
+        sx={{ p: 2, pr: 3, borderBottom: '1px solid', borderColor: 'divider' }}
       >
         <ProductSubMenu
           role="menuitem"
@@ -219,8 +203,6 @@ export default function MuiProductSelector() {
             {
               p: 2,
               pr: 3,
-              borderBottom: '1px solid',
-              borderColor: 'grey.100',
               width: '100%',
               '&:hover': {
                 backgroundColor: 'grey.50',
@@ -228,7 +210,6 @@ export default function MuiProductSelector() {
             },
             (theme) =>
               theme.applyDarkStyles({
-                borderColor: alpha(theme.palette.primary[100], 0.08),
                 '&:hover': {
                   backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
                 },
