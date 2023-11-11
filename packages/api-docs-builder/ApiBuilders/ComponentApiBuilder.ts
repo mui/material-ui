@@ -10,7 +10,7 @@ import remarkVisit from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { renderMarkdown } from '@mui/markdown';
-import { ComponentClassDefinition } from '@mui-internal/docs-utils';
+import { ComponentClassDefinition, TypeScriptProject } from '@mui-internal/docs-utils';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { ComponentInfo, toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
@@ -21,7 +21,6 @@ import createDescribeableProp, {
   DescribeablePropDescriptor,
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
-import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { sortAlphabetical } from '../utils/sortObjects';

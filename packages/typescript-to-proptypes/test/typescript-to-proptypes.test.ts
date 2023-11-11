@@ -4,10 +4,7 @@ import * as ts from 'typescript';
 import { expect } from 'chai';
 import glob from 'fast-glob';
 import prettier from 'prettier';
-import {
-  TypeScriptProject,
-  createTypeScriptProjectBuilder,
-} from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
+import { TypeScriptProject, createTypeScriptProjectBuilder } from '@mui-internal/docs-utils';
 import { generatePropTypes } from '../src/generatePropTypes';
 import { injectPropTypesInFile } from '../src/injectPropTypesInFile';
 import { getPropTypesFromFile } from '../src/getPropTypesFromFile';

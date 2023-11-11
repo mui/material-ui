@@ -4,143 +4,125 @@ import * as fse from 'fs-extra';
 import * as prettier from 'prettier';
 import glob from 'fast-glob';
 import * as _ from 'lodash';
-import * as yargs from 'yargs';
-import * as ts from 'typescript';
 import {
+  CreateTypeScriptProjectOptions,
   fixBabelGeneratorIssues,
   fixLineEndings,
   getUnstyledFilename,
-} from '@mui-internal/docs-utils';
+  createTypeScriptProjectBuilder,
+  TypeScriptProject,
+} from '@mui-internal/docs-utilities';
 import {
   getPropTypesFromFile,
   injectPropTypesInFile,
   InjectPropTypesInFileOptions,
+  LiteralType,
 } from '@mui-internal/typescript-to-proptypes';
-import {
-  createTypeScriptProjectBuilder,
-  TypeScriptProject,
-} from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
+import { ProjectSettings } from './ProjectSettings';
 
-import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects';
+export async function generatePropTypes(
+  projectsSettings: ProjectSettings[],
+  pattern: RegExp | null,
+  prettierConfigPath: string,
+) {
+  if (pattern != null) {
+    console.log(`Only considering declaration files matching ${pattern.source}`);
+  }
 
-const useExternalPropsFromInputBase = [
-  'autoComplete',
-  'autoFocus',
-  'color',
-  'defaultValue',
-  'disabled',
-  'endAdornment',
-  'error',
-  'id',
-  'inputProps',
-  'inputRef',
-  'margin',
-  'maxRows',
-  'minRows',
-  'name',
-  'onChange',
-  'placeholder',
-  'readOnly',
-  'required',
-  'rows',
-  'startAdornment',
-  'value',
-];
+  const allTypeScriptProjects = projectsSettings
+    .map((setting) => setting.typeScriptProject)
+    .reduce((acc, project) => {
+      acc[project.name] = project;
+      return acc;
+    }, {} as Record<string, CreateTypeScriptProjectOptions>);
 
-/**
- * A map of components and their props that should be documented
- * but are not used directly in their implementation.
- *
- * TODO: In the future we want to remove them from the API docs in favor
- * of dynamically loading them. At that point this list should be removed.
- * TODO: typecheck values
- */
-const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
-  Button: ['disableRipple'],
-  Box: ['component', 'sx'],
-  // `classes` is always external since it is applied from a HOC
-  // In DialogContentText we pass it through
-  // Therefore it's considered "unused" in the actual component but we still want to document it.
-  DialogContentText: ['classes'],
-  FilledInput: useExternalPropsFromInputBase,
-  IconButton: ['disableRipple'],
-  Input: useExternalPropsFromInputBase,
-  MenuItem: ['dense'],
-  OutlinedInput: useExternalPropsFromInputBase,
-  Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
-  Checkbox: ['defaultChecked'],
-  Container: ['component'],
-  Stack: ['component'],
-  Switch: [
-    'checked',
-    'defaultChecked',
-    'disabled',
-    'disableRipple',
-    'edge',
-    'id',
-    'inputProps',
-    'inputRef',
-    'onChange',
-    'required',
-    'value',
-  ],
-  SwipeableDrawer: [
-    'anchor',
-    'hideBackdrop',
-    'ModalProps',
-    'PaperProps',
-    'transitionDuration',
-    'variant',
-  ],
-  Tab: ['disableRipple'],
-  TextField: ['margin'],
-  ToggleButton: ['disableRipple'],
-};
-const transitionCallbacks = [
-  'onEnter',
-  'onEntered',
-  'onEntering',
-  'onExit',
-  'onExiting',
-  'onExited',
-];
-/**
- * These are components that use props implemented by external components.
- * Those props have their own JSDoc which we don't want to emit in our docs
- * but do want them to have JSDoc in IntelliSense
- * TODO: In the future we want to ignore external docs on the initial load anyway
- * since they will be fetched dynamically.
- */
-const ignoreExternalDocumentation: Record<string, readonly string[]> = {
-  Button: ['focusVisibleClassName', 'type'],
-  Collapse: transitionCallbacks,
-  CardActionArea: ['focusVisibleClassName'],
-  AccordionSummary: ['onFocusVisible'],
-  Dialog: ['BackdropProps'],
-  Drawer: ['BackdropProps'],
-  Fab: ['focusVisibleClassName'],
-  Fade: transitionCallbacks,
-  Grow: transitionCallbacks,
-  ListItem: ['focusVisibleClassName'],
-  InputBase: ['aria-describedby'],
-  Menu: ['PaperProps'],
-  MenuItem: ['disabled'],
-  Slide: transitionCallbacks,
-  SwipeableDrawer: ['anchor', 'hideBackdrop', 'ModalProps', 'PaperProps', 'variant'],
-  TextField: ['hiddenLabel'],
-  Zoom: transitionCallbacks,
-};
+  const buildTypeScriptProject = createTypeScriptProjectBuilder(allTypeScriptProjects);
 
-function sortBreakpointsLiteralByViewportAscending(a: ts.LiteralType, b: ts.LiteralType) {
+  const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
+    config: prettierConfigPath,
+  });
+
+  const promises: Promise<void>[] = [];
+  for (let i = 0; i < projectsSettings.length; i += 1) {
+    const projectSettings = projectsSettings[i];
+    const typeScriptProject = buildTypeScriptProject(projectSettings.typeScriptProject.name);
+
+    generatePropTypesForProject(typeScriptProject, projectSettings, pattern, prettierConfig);
+  }
+
+  const results = await Promise.allSettled(promises);
+
+  const fails = results.filter((result): result is PromiseRejectedResult => {
+    return result.status === 'rejected';
+  });
+
+  fails.forEach((result) => {
+    console.error(result.reason);
+  });
+  if (fails.length > 0) {
+    process.exit(1);
+  }
+}
+
+function sortBreakpointsLiteralByViewportAscending(a: LiteralType, b: LiteralType) {
   // default breakpoints ordered by their size ascending
   const breakpointOrder: readonly unknown[] = ['"xs"', '"sm"', '"md"', '"lg"', '"xl"'];
 
   return breakpointOrder.indexOf(a.value) - breakpointOrder.indexOf(b.value);
 }
 
-function sortSizeByScaleAscending(a: ts.LiteralType, b: ts.LiteralType) {
+function sortSizeByScaleAscending(a: LiteralType, b: LiteralType) {
   const sizeOrder: readonly unknown[] = ['"small"', '"medium"', '"large"'];
   return sizeOrder.indexOf(a.value) - sizeOrder.indexOf(b.value);
+}
+
+async function generatePropTypesForProject(
+  typeScriptProject: TypeScriptProject,
+  projectSettings: ProjectSettings,
+  pattern: RegExp | null,
+  prettierConfig: prettier.Options | null,
+) {
+  // Matches files where the folder and file both start with uppercase letters
+  // Example: AppBar/AppBar.d.ts
+  const allFiles = await glob('+([A-Z])*/+([A-Z])*.*@(d.ts|ts|tsx)', {
+    absolute: true,
+    cwd: projectSettings.rootPath,
+  });
+
+  const files = _.flatten(allFiles)
+    .filter((filePath) => {
+      // Filter out files where the directory name and filename doesn't match
+      // Example: Modal/ModalManager.d.ts
+      let folderName = path.basename(path.dirname(filePath));
+      const fileName = path.basename(filePath).replace(/(\.d\.ts|\.tsx|\.ts)/g, '');
+
+      // An exception is if the folder name starts with Unstable_/unstable_
+      // Example: Unstable_Grid2/Grid2.tsx
+      if (/(u|U)nstable_/g.test(folderName)) {
+        folderName = folderName.slice(9);
+      }
+
+      return fileName === folderName;
+    })
+    .filter((filePath) => pattern?.test(filePath) ?? true);
+
+  const promises = files.map<Promise<void>>(async (tsFile) => {
+    const sourceFile = tsFile.includes('.d.ts') ? tsFile.replace('.d.ts', '.js') : tsFile;
+    try {
+      await generatePropTypesForFile(
+        typeScriptProject,
+        projectSettings,
+        sourceFile,
+        tsFile,
+        prettierConfig,
+      );
+    } catch (error: any) {
+      error.message = `${tsFile}: ${error.message}`;
+      throw error;
+    }
+  });
+
+  return promises;
 }
 
 // Custom order of literal unions by component
@@ -162,10 +144,12 @@ const getSortLiteralUnions: InjectPropTypesInFileOptions['getSortLiteralUnions']
   return undefined;
 };
 
-async function generateProptypes(
+async function generatePropTypesForFile(
   project: TypeScriptProject,
+  projectSettings: ProjectSettings,
   sourceFile: string,
   tsFile: string,
+  prettierConfig: prettier.Options | null,
 ): Promise<void> {
   const components = getPropTypesFromFile({
     filePath: tsFile,
@@ -199,6 +183,8 @@ async function generateProptypes(
     }
     return true;
   });
+
+  const { useExternalDocumentation = {}, ignoreExternalDocumentation = {} } = projectSettings;
 
   cleanComponents.forEach((component) => {
     component.types.forEach((prop) => {
@@ -312,97 +298,3 @@ async function generateProptypes(
 
   await fse.writeFile(sourceFile, correctedLineEndings);
 }
-
-interface HandlerArgv {
-  pattern: string;
-}
-async function run(argv: HandlerArgv) {
-  const { pattern } = argv;
-
-  const filePattern = new RegExp(pattern);
-  if (pattern.length > 0) {
-    console.log(`Only considering declaration files matching ${filePattern}`);
-  }
-
-  const buildProject = createTypeScriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
-
-  // Matches files where the folder and file both start with uppercase letters
-  // Example: AppBar/AppBar.d.ts
-  const allFiles = await Promise.all(
-    [
-      path.resolve(__dirname, '../packages/mui-system/src'),
-      path.resolve(__dirname, '../packages/mui-base/src'),
-      path.resolve(__dirname, '../packages/mui-material/src'),
-      path.resolve(__dirname, '../packages/mui-lab/src'),
-      path.resolve(__dirname, '../packages/mui-material-next/src'),
-      path.resolve(__dirname, '../packages/mui-joy/src'),
-    ].map((folderPath) =>
-      glob('+([A-Z])*/+([A-Z])*.*@(d.ts|ts|tsx)', {
-        absolute: true,
-        cwd: folderPath,
-      }),
-    ),
-  );
-
-  const files = _.flatten(allFiles)
-    .filter((filePath) => {
-      // Filter out files where the directory name and filename doesn't match
-      // Example: Modal/ModalManager.d.ts
-      let folderName = path.basename(path.dirname(filePath));
-      const fileName = path.basename(filePath).replace(/(\.d\.ts|\.tsx|\.ts)/g, '');
-
-      // An exception is if the folder name starts with Unstable_/unstable_
-      // Example: Unstable_Grid2/Grid2.tsx
-      if (/(u|U)nstable_/g.test(folderName)) {
-        folderName = folderName.slice(9);
-      }
-
-      return fileName === folderName;
-    })
-    .filter((filePath) => filePattern.test(filePath));
-
-  const promises = files.map<Promise<void>>(async (tsFile) => {
-    const sourceFile = tsFile.includes('.d.ts') ? tsFile.replace('.d.ts', '.js') : tsFile;
-    try {
-      const projectName = tsFile.match(
-        /packages\/mui-([a-zA-Z-]+)\/src/,
-      )![1] as CoreTypeScriptProjects;
-      const project = buildProject(projectName);
-      await generateProptypes(project, sourceFile, tsFile);
-    } catch (error: any) {
-      error.message = `${tsFile}: ${error.message}`;
-      throw error;
-    }
-  });
-
-  const results = await Promise.allSettled(promises);
-
-  const fails = results.filter((result): result is PromiseRejectedResult => {
-    return result.status === 'rejected';
-  });
-
-  fails.forEach((result) => {
-    console.error(result.reason);
-  });
-  if (fails.length > 0) {
-    process.exit(1);
-  }
-}
-
-yargs
-  .command<HandlerArgv>({
-    command: '$0',
-    describe: 'Generates Component.propTypes from TypeScript declarations',
-    builder: (command) => {
-      return command.option('pattern', {
-        default: '',
-        describe: 'Only considers declaration files matching this pattern.',
-        type: 'string',
-      });
-    },
-    handler: run,
-  })
-  .help()
-  .strict(true)
-  .version(false)
-  .parse();

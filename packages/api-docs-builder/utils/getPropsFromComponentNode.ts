@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import { TypeScriptProject } from './createTypeScriptProject';
+import { TypeScriptProject } from '@mui-internal/docs-utils';
 
 export interface ParsedProp {
   /**

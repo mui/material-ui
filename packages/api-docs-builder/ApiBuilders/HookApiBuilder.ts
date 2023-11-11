@@ -9,6 +9,7 @@ import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-doc
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { renderMarkdown } from '@mui/markdown';
+import { TypeScriptProject } from '@mui-internal/docs-utils';
 import { ProjectSettings } from '../ProjectSettings';
 import { computeApiDescription } from './ComponentApiBuilder';
 import {
@@ -19,7 +20,6 @@ import {
   toGitHubPath,
   writePrettifiedFile,
 } from '../buildApiUtils';
-import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import generateApiTranslations from '../utils/generateApiTranslation';
 
 interface ParsedProperty {

@@ -1,0 +1,20 @@
+{
+  "name": "@mui-internal/proptypes-builder",
+  "version": "1.0.0",
+  "private": "true",
+  "main": "./index.ts",
+  "scripts": {
+    "typescript": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@mui-internal/api-docs-builder": "workspace:^",
+    "@mui-internal/docs-utils": "workspace:^",
+    "@mui-internal/typescript-to-proptypes": "workspace:^",
+    "fast-glob": "^3.3.2",
+    "fs-extra": "^11.2.0",
+    "prettier": "^2.8.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

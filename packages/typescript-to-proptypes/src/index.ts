@@ -4,3 +4,5 @@ export { injectPropTypesInFile } from './injectPropTypesInFile';
 export type { InjectPropTypesInFileOptions } from './injectPropTypesInFile';
 export { generatePropTypes } from './generatePropTypes';
 export type { GeneratePropTypesOptions } from './generatePropTypes';
+
+export * from './models';

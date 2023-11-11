@@ -1,8 +1,7 @@
 import * as ts from 'typescript';
-import { ComponentClassDefinition } from '@mui-internal/docs-utils';
+import { ComponentClassDefinition, TypeScriptProject } from '@mui-internal/docs-utils';
 import { renderMarkdown } from '@mui/markdown';
 import { getSymbolDescription, getSymbolJSDocTags } from '../buildApiUtils';
-import { TypeScriptProject } from './createTypeScriptProject';
 import { getPropsFromComponentNode } from './getPropsFromComponentNode';
 import resolveExportSpecifier from './resolveExportSpecifier';
 import { ProjectSettings } from '../ProjectSettings';
