@@ -7,8 +7,8 @@ export default function UnstyledButtonsSimple() {
   return (
     <React.Fragment>
       <Stack spacing={2} direction="row">
-        <Button className="CustomButton">Button</Button>
-        <Button className="CustomButton" disabled>
+        <Button className="BasicButton">Button</Button>
+        <Button className="BasicButton" disabled>
           Disabled
         </Button>
       </Stack>
@@ -55,7 +55,7 @@ function Styles() {
   return (
     <style>
       {`
-      .CustomButton {
+      .BasicButton {
         font-family: IBM Plex Sans, sans-serif;
         font-weight: 600;
         font-size: 0.875rem;
@@ -71,25 +71,25 @@ function Styles() {
           isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(13, 84, 99, 0.5)'
         }, inset 0 1.5px 1px ${cyan[400]}, inset 0 -2px 1px ${cyan[600]};
       }
-      .CustomButton:hover {
+      .BasicButton:hover {
         background-color: ${cyan[600]};
       }
-      .CustomButton:active {
+      .BasicButton:active {
         background-color: ${cyan[700]};
+        box-shadow: none;
+        transform: scale(0.99);
       }
-      .CustomButton:focusVisible {
+      .BasicButton:focusVisible {
         box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
         outline: none;
       }
-      .CustomButton:disabled {
+      .BasicButton.Mui-disabled {
         background-color: ${isDarkMode ? grey[700] : grey[200]};
         color: ${isDarkMode ? grey[200] : grey[700]};
         border: 0;
-        cursor: not-allowed;
+        cursor: default;
         box-shadow: none;
-      }
-      .CustomButton:disabled:hover {
-        background-color: ${isDarkMode ? grey[700] : grey[200]};
+        transform: scale(1);
       }
       `}
     </style>

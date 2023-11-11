@@ -39,7 +39,7 @@ Notice that the second button cannot be clicked due to the `disabled` prop:
 The Button component is composed of a root `<button>` slot with no interior slots:
 
 ```html
-<button class="BaseButton-root">
+<button class="MuiButton-root">
   <!-- button text goes here -->
 </button>
 ```
@@ -127,7 +127,7 @@ You can even use SVGs, as shown in the demo below:
 
 ### Using with links
 
-The following demo illustrates how to use the Button as a link, whether using the Base UI Button itself for the `href`, or with the [Next.js Link component](https://nextjs.org/learn/basics/navigate-between-pages/link-component):
+The following demo illustrates how to use the Button as a link, whether using the Base UI Button itself for the `href`, or with the [Next.js Link component](https://nextjs.org/docs/pages/api-reference/components/link):
 
 {{"demo": "UnstyledLinkButton.js", "defaultCodeOpen": true}}
 

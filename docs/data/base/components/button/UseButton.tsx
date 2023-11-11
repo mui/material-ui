@@ -1,9 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { ButtonProps } from '@mui/base/Button';
-import { useButton } from '@mui/base/useButton';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
+import { useButton } from '@mui/base/useButton';
+import { ButtonProps } from '@mui/base/Button';
 
 const CustomButton = React.forwardRef(function CustomButton(
   props: ButtonProps,
@@ -83,6 +83,7 @@ const CustomButtonRoot = styled('button')(
   &:active {
     background-color: ${blue[700]};
     box-shadow: none;
+    transform: scale(0.99);
   }
 
   &:focus-visible {
@@ -90,16 +91,13 @@ const CustomButtonRoot = styled('button')(
     outline: none;
   }
 
-  &:disabled {
+  &.disabled {
     background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    cursor: not-allowed;
+    border: 0;
+    cursor: default;
     box-shadow: none;
-
-    &:hover {
-      background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    }
+    transform: scale(1);
   }
 `,
 );
