@@ -243,4 +243,13 @@ module.exports = withDocsInfra({
       { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
     ];
   },
+  redirects: async () => {
+    return [
+      {
+        source: '/material-ui/guides/understand-mui-packages/',
+        destination: '/blog/mui-product-comparison/',
+        permanent: true,
+      },
+    ];
+  },
 });
