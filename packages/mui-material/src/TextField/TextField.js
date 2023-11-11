@@ -190,7 +190,12 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       {...other}
     >
       {label != null && label !== '' && (
-        <InputLabel htmlFor={id} id={inputLabelId} {...InputLabelProps}>
+        <InputLabel
+          htmlFor={id}
+          id={inputLabelId}
+          {...InputLabelProps}
+          component={select ? 'span' : undefined}
+        >
           {label}
         </InputLabel>
       )}
