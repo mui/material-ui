@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
-import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
@@ -61,7 +61,7 @@ function ProductSubMenu(props: ProductSubMenuProp) {
   );
 }
 
-const products = [
+const coreProducts = [
   {
     name: 'Material UI',
     href: ROUTES.materialDocs,
@@ -81,6 +81,29 @@ const products = [
     name: 'MUI System',
     href: ROUTES.systemDocs,
     id: 'system',
+  },
+];
+
+const advancedProducts = [
+  {
+    name: 'Data Grid',
+    href: ROUTES.dataGridOverview,
+    id: 'x-data-grid',
+  },
+  {
+    name: 'Date Pickers',
+    href: ROUTES.datePickersOverview,
+    id: 'x-date-pickers',
+  },
+  {
+    name: 'Charts',
+    href: ROUTES.chartsOverview,
+    id: 'x-charts',
+  },
+  {
+    name: 'Tree View',
+    href: ROUTES.treeViewOverview,
+    id: 'x-tree-view',
   },
 ];
 
@@ -124,7 +147,7 @@ export default function MuiProductSelector() {
               },
             }}
           >
-            {products.map((product) => (
+            {coreProducts.map((product) => (
               <Chip
                 key={product.name}
                 color={pageContext.productId === product.id ? 'primary' : undefined}
@@ -139,37 +162,56 @@ export default function MuiProductSelector() {
           </Stack>
         </Box>
       </Box>
-      <li role="none">
-        <Link
-          href={ROUTES.advancedComponents}
-          sx={[
-            {
-              p: 2,
-              pr: 3,
-              borderBottom: '1px solid',
-              borderColor: 'grey.100',
-              width: '100%',
-              '&:hover': {
-                backgroundColor: 'grey.50',
-              },
-            },
-            (theme) =>
-              theme.applyDarkStyles({
-                borderColor: alpha(theme.palette.primary[100], 0.08),
+      <Box
+        component="li"
+        role="none"
+        sx={(theme) => ({
+          p: 2,
+          pr: 3,
+          borderBottom: '1px solid',
+          borderColor: 'grey.100',
+          ...theme.applyDarkStyles({
+            borderColor: alpha(theme.palette.primary[100], 0.08),
+          }),
+        })}
+      >
+        <ProductSubMenu
+          role="menuitem"
+          icon={<IconImage name="product-advanced" />}
+          name="MUI X"
+          description="Advanced and powerful components for complex use cases."
+        />
+        <Box sx={{ ml: '36px', pl: 2, pt: 1.5, position: 'relative' }}>
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            alignItems="flex-start"
+            spacing={1}
+            sx={{
+              '& > .MuiChip-root': {
+                position: 'initial',
                 '&:hover': {
-                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                  '& .product-description': {
+                    opacity: 1,
+                  },
                 },
-              }),
-          ]}
-        >
-          <ProductSubMenu
-            role="menuitem"
-            icon={<IconImage name="product-advanced" />}
-            name="MUI X"
-            description="Advanced and powerful components for complex use cases."
-          />
-        </Link>
-      </li>
+              },
+            }}
+          >
+            {advancedProducts.map((product) => (
+              <Chip
+                key={product.name}
+                color={pageContext.productId === product.id ? 'primary' : undefined}
+                variant={pageContext.productId === product.id ? 'filled' : 'outlined'}
+                component={Link}
+                href={product.href}
+                label={product.name}
+                clickable
+                size="small"
+              />
+            ))}
+          </Stack>
+        </Box>
+      </Box>
       <li role="none">
         <Link
           href={ROUTES.toolpadDocs}

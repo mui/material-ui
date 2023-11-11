@@ -94,7 +94,7 @@ export default function XComponents() {
                 )}
               </Highlighter>
             ))}
-            <More href={ROUTES.xDocs} />
+            <More href={ROUTES.xIntro} />
           </Group>
         </Grid>
         <Grid item xs={12} md={6} sx={{ position: 'relative' }}>
