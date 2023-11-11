@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
@@ -11,9 +10,7 @@ import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePi
 import { PickersShortcutsItem, PickersShortcutsProps, DateRange } from '@mui/x-date-pickers-pro';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import Frame from 'docs/src/components/action/Frame';
-import ROUTES from 'docs/src/route';
 import { startOfWeek, endOfWeek, subDays } from 'date-fns';
 
 const startDate = new Date();
@@ -172,31 +169,12 @@ export default function XDateRangeDemo() {
           </LocalizationProvider>
         </Paper>
       </Frame.Demo>
-      <Frame.Info
-        data-mui-color-scheme="dark"
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 4,
-        }}
-      >
-        <div>
-          <Chip variant="outlined" label="Stable component" color="success" size="small" />
-          <Typography variant="body2" color="text.secondary" mt={1}>
-            Production-ready <strong>Tree View</strong> component for displaying hierarchical data,
-            such as a file system navigator.
-          </Typography>
-        </div>
-        <Button
-          component="a"
-          variant="outlined"
-          href={ROUTES.treeViewOverview}
-          endIcon={<ChevronRightRoundedIcon />}
-          sx={{ whiteSpace: 'nowrap', flexShrink: 0 }}
-        >
-          Visit docs
-        </Button>
+      <Frame.Info data-mui-color-scheme="dark">
+        <Chip variant="outlined" label="Stable component" color="success" size="small" />
+        <Typography variant="body2" color="text.secondary" mt={1}>
+          Production-ready <strong>Tree View</strong> component for displaying hierarchical data,
+          such as a file system navigator.
+        </Typography>
       </Frame.Info>
     </Frame>
   );

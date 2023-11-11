@@ -2,14 +2,11 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { mangoFusionPalette } from '@mui/x-charts';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import Frame from 'docs/src/components/action/Frame';
-import ROUTES from 'docs/src/route';
 
 export default function XChartsDemo() {
   return (
@@ -68,31 +65,12 @@ export default function XChartsDemo() {
           </Box>
         </Paper>
       </Frame.Demo>
-      <Frame.Info
-        data-mui-color-scheme="dark"
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 4,
-        }}
-      >
-        <div>
-          <Chip variant="outlined" label="Stable component" color="success" size="small" />
-          <Typography variant="body2" color="text.secondary" mt={1}>
-            Production-ready <strong>Charts</strong> component, featuring bar, lines, pie, scatter,
-            and more types of graphs.
-          </Typography>
-        </div>
-        <Button
-          component="a"
-          variant="outlined"
-          href={ROUTES.chartsOverview}
-          endIcon={<ChevronRightRoundedIcon />}
-          sx={{ whiteSpace: 'nowrap', flexShrink: 0 }}
-        >
-          Visit docs
-        </Button>
+      <Frame.Info data-mui-color-scheme="dark">
+        <Chip variant="outlined" label="Stable component" color="success" size="small" />
+        <Typography variant="body2" color="text.secondary" mt={1}>
+          Production-ready <strong>Charts</strong> component, featuring bar, lines, pie, scatter,
+          and more types of graphs.
+        </Typography>
       </Frame.Info>
     </Frame>
   );

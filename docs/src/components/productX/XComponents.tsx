@@ -1,8 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Fade from '@mui/material/Fade';
 import Grid from '@mui/material/Grid';
-import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import TableChartRounded from '@mui/icons-material/TableChartRounded';
 import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
@@ -12,17 +10,11 @@ import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import Item, { Group } from 'docs/src/components/action/Item';
-import Highlighter from 'docs/src/components/action/Highlighter';
 import XComponentsSwitcher from 'docs/src/components/productX/XComponentsSwitcher';
 import XGridFullDemo from 'docs/src/components/productX/XGridFullDemo';
 import XDateRangeDemo from 'docs/src/components/productX/XDateRangeDemo';
 import XTreeViewDemo from 'docs/src/components/productX/XTreeViewDemo';
 import XChartsDemo from 'docs/src/components/productX/XChartsDemo';
-import XSparklineDemo from 'docs/src/components/productX/XSparklineDemo';
-import More from 'docs/src/components/action/More';
-import ROUTES from 'docs/src/route';
-import IconImage from 'docs/src/components/icon/IconImage';
 
 const DEMOS = ['Data Grid', 'Date and Time Pickers', 'Charts', 'Tree View', 'Sparkline'];
 const WIP = DEMOS.slice(4);
