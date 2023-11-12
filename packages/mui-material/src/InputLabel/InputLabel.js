@@ -119,6 +119,12 @@ const InputLabelRoot = styled(FormLabel, {
       transform: 'translate(14px, -9px) scale(0.75)',
     }),
   }),
+  ...(ownerState.component === 'span' &&
+    ownerState.variant === 'standard' && {
+      '& + div': {
+        marginTop: '16px',
+      },
+    }),
 }));
 
 const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
