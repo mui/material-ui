@@ -22,6 +22,7 @@ function samePageLinkNavigation(
 interface LinkTabProps {
   label?: string;
   href?: string;
+  selected?: boolean
 }
 
 function LinkTab(props: LinkTabProps) {
@@ -34,6 +35,7 @@ function LinkTab(props: LinkTabProps) {
           event.preventDefault();
         }
       }}
+      aria-current={props.selected && "page"}
       {...props}
     />
   );
