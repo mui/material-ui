@@ -1,7 +1,6 @@
 import path from 'node:path';
 import yargs from 'yargs';
-import { generatePropTypes } from './index';
-import { ProjectSettings } from './ProjectSettings';
+import { generatePropTypes, ProjectSettings } from '@mui-internal/proptypes-builder';
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -119,7 +118,7 @@ interface CommandOptions {
 
 const projectSettings: ProjectSettings[] = [
   {
-    rootPath: path.resolve(__dirname, '../mui-system/src'),
+    rootPath: path.resolve(process.cwd(), 'packages/mui-system/src'),
     typeScriptProject: {
       name: 'system',
       rootPath: path.join(process.cwd(), 'packages/mui-system'),
@@ -131,7 +130,7 @@ const projectSettings: ProjectSettings[] = [
     },
   },
   {
-    rootPath: path.resolve(__dirname, '../mui-base/src'),
+    rootPath: path.resolve(process.cwd(), 'packages/mui-base/src'),
     typeScriptProject: {
       name: 'base',
       rootPath: path.join(process.cwd(), 'packages/mui-base'),
@@ -142,7 +141,7 @@ const projectSettings: ProjectSettings[] = [
     },
   },
   {
-    rootPath: path.resolve(__dirname, '../mui-material/src'),
+    rootPath: path.resolve(process.cwd(), 'packages/mui-material/src'),
     typeScriptProject: {
       name: 'material',
       rootPath: path.join(process.cwd(), 'packages/mui-material'),
@@ -152,7 +151,7 @@ const projectSettings: ProjectSettings[] = [
     ignoreExternalDocumentation: ignoreMaterialUiExternalDocumentation,
   },
   {
-    rootPath: path.resolve(__dirname, '../mui-lab/src'),
+    rootPath: path.resolve(process.cwd(), 'packages/mui-lab/src'),
     typeScriptProject: {
       name: 'lab',
       rootPath: path.join(process.cwd(), 'packages/mui-lab'),
@@ -160,7 +159,7 @@ const projectSettings: ProjectSettings[] = [
     },
   },
   {
-    rootPath: path.resolve(__dirname, '../mui-material-next/src'),
+    rootPath: path.resolve(process.cwd(), 'packages/mui-material-next/src'),
     typeScriptProject: {
       name: 'material-next',
       rootPath: path.join(process.cwd(), 'packages/mui-material-next'),
@@ -170,7 +169,7 @@ const projectSettings: ProjectSettings[] = [
     ignoreExternalDocumentation: ignoreMaterialUiExternalDocumentation,
   },
   {
-    rootPath: path.resolve(__dirname, '../mui-joy/src'),
+    rootPath: path.resolve(process.cwd(), 'packages/mui-joy/src'),
     typeScriptProject: {
       name: 'joy',
       rootPath: path.join(process.cwd(), 'packages/mui-joy'),
@@ -190,7 +189,7 @@ const projectSettings: ProjectSettings[] = [
 
 async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   const pattern = argv.pattern == null || argv.pattern === '' ? null : new RegExp(argv.pattern);
-  const prettierConfigPath = path.join(__dirname, '../../prettier.config.js');
+  const prettierConfigPath = path.join(__dirname, '../prettier.config.js');
   return generatePropTypes(projectSettings, pattern, prettierConfigPath);
 }
 
