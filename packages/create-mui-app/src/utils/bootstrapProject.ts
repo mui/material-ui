@@ -6,6 +6,15 @@ import path from 'path';
 import { PKG_ROOT } from 'src/constants';
 import { type InstallerOptions } from 'src/installers';
 
+import { type FrameworkOption } from './createProject';
+
+const displayNames: Record<FrameworkOption, string> = {
+  'react-cra': 'React (CRA)',
+  'react-vite': 'React (Vite)',
+  'next-app': 'Next (AppDir)',
+  'next-pages': 'Next (PagesDir)',
+};
+
 export default async function bootstrapProject({
   projectDir,
   projectName,
@@ -73,6 +82,11 @@ export default async function bootstrapProject({
   fs.copySync(srcDir, projectDir);
 
   const scaffoldedName = projectName === '.' ? 'App' : chalk.cyan.bold(projectName);
+  const frameworkName = displayNames[framework];
 
-  spinner.succeed(`${scaffoldedName} ${chalk.green('scaffolded successfully!')}\n`);
+  spinner.succeed(
+    `${scaffoldedName} ${chalk.green(
+      `scaffolded successfully with ${chalk.white(frameworkName)}!`,
+    )}\n`,
+  );
 }
