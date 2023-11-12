@@ -1,0 +1,48 @@
+{
+  "name": "@mui/create-mui-app",
+  "version": "0.0.1",
+  "description": "Create a stunning react application with MUI components",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui/material-ui.git",
+    "directory": "packages/create-mui-app"
+  },
+  "author": "MUI Team",
+  "exports": "./build/index.js",
+  "bin": {
+    "create-mui-app": "./build/index.js"
+  },
+  "files": [
+    "build",
+    "templates",
+    "README.md",
+    "package.json",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:umd && yarn build:types && yarn build:copy-files",
+    "build:legacy": "node ../../scripts/build.mjs legacy",
+    "build:modern": "node ../../scripts/build.mjs modern",
+    "build:node": "node ../../scripts/build.mjs node",
+    "build:stable": "node ../../scripts/build.mjs stable",
+    "build:umd": "cross-env BABEL_ENV=stable rollup -c scripts/rollup.config.mjs",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:types": "node ../../scripts/buildTypes.mjs",
+    "prebuild": "rimraf build tsconfig.build.tsbuildinfo"
+  },
+  "dependencies": {
+    "@clack/core": "^0.3.3",
+    "@clack/prompts": "^0.7.0",
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "execa": "^8.0.1",
+    "ora": "^7.0.1",
+    "sort-package-json": "^2.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
