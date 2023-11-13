@@ -101,7 +101,7 @@
     "@types/mocha": "^10.0.3",
     "@types/node": "^18.18.9",
     "@types/prettier": "^2.7.3",
-    "@types/react": "^18.2.36",
+    "@types/react": "^18.2.37",
     "@types/yargs": "^17.0.29",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
@@ -190,7 +190,7 @@
     "**/@definitelytyped/typescript-versions": "^0.0.180",
     "**/@definitelytyped/utils": "^0.0.185",
     "**/@types/node": "^18.18.9",
-    "**/@types/react": "^18.2.36",
+    "**/@types/react": "^18.2.37",
     "**/cross-fetch": "^4.0.0"
   },
   "nyc": {
