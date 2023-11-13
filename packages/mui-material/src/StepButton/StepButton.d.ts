@@ -4,6 +4,7 @@ import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '..
 import { OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 import { StepButtonClasses } from './stepButtonClasses';
+import { StepIconProps } from '../StepIcon';
 
 /**
  * @deprecated use `StepButtonProps['icon']` instead.
@@ -31,6 +32,14 @@ export interface StepButtonOwnProps {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
+  /**
+   * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
+   */
+  StepIconComponent?: React.ElementType;
+  /**
+   * Props applied to the [`StepIcon`](/material-ui/api/step-icon/) element.
+   */
+  StepIconProps?: Partial<StepIconProps>;
 }
 
 export type StepButtonTypeMap<
