@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { MenuItemMetadata } from '../useMenuItem';
-import { EventHandlers } from '../utils/types';
 import { MenuProviderValue } from './MenuProvider';
 
 export interface UseMenuParameters {
@@ -9,6 +8,16 @@ export interface UseMenuParameters {
    * The id of the menu. If not provided, it will be generated.
    */
   id?: string;
+  /**
+   * If `true`, it will be possible to highlight disabled items.
+   * @default true
+   */
+  disabledItemsFocusable?: boolean;
+  /**
+   * If `true`, the highlight will not wrap around the list if arrow keys are used.
+   * @default false
+   */
+  disableListWrap?: boolean;
   /**
    * Callback fired when the menu items change.
    */
@@ -31,11 +40,11 @@ export interface UseMenuReturnValue {
   dispatch: (action: ListAction<string>) => void;
   /**
    * Resolver for the listbox slot's props.
-   * @param otherHandlers event handlers for the listbox component
+   * @param externalProps additional props for the listbox component
    * @returns props that should be spread on the listbox component
    */
-  getListboxProps: <TOther extends EventHandlers>(
-    otherHandlers?: TOther,
+  getListboxProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
   ) => UseMenuListboxSlotProps;
   /**
    * The highlighted option in the menu listbox.
@@ -64,8 +73,8 @@ interface UseMenuListboxSlotEventHandlers {
   onKeyDown: React.KeyboardEventHandler;
 }
 
-export type UseMenuListboxSlotProps<TOther = {}> = UseListRootSlotProps<
-  Omit<TOther, keyof UseMenuListboxSlotEventHandlers> & UseMenuListboxSlotEventHandlers
+export type UseMenuListboxSlotProps<ExternalProps = {}> = UseListRootSlotProps<
+  Omit<ExternalProps, keyof UseMenuListboxSlotEventHandlers> & UseMenuListboxSlotEventHandlers
 > & {
   ref: React.RefCallback<Element> | null;
   role: React.AriaRole;

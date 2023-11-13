@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Badge, { BadgeClassKey, BadgeOrigin, badgeClasses as classes } from '@mui/joy/Badge';
@@ -40,13 +40,6 @@ describe('<Badge />', () => {
       },
       skip: ['classesRoot', 'componentsProp'],
     }),
-  );
-
-  describeJoyColorInversion(
-    <Badge badgeContent="1" slotProps={{ badge: { 'data-testid': 'test-element' } }}>
-      <button />
-    </Badge>,
-    { muiName: 'JoyBadge', classes },
   );
 
   it('renders children and badgeContent', () => {

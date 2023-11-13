@@ -110,8 +110,6 @@ function App() {
 
 The Aspect Ratio component can be a handy tool for creating a square container for an icon.
 
-The example below show
-
 {{"demo": "IconWrapper.js"}}
 
 ## Common examples

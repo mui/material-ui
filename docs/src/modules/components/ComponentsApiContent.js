@@ -5,13 +5,12 @@ import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import Divider from 'docs/src/modules/components/ApiDivider';
-import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import CSSList from './ApiPage/CSSList';
-import ClassesList from './ApiPage/ClassesList';
-import SlotsList from './ApiPage/SlotsList';
+import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
+import CSSSection from 'docs/src/modules/components/ApiPage/sections/CssSection';
+import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
+import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 
 function getTranslatedHeader(t, header, text) {
   const translations = {
@@ -74,9 +73,8 @@ export default function ComponentsApiContent(props) {
   }, [router]);
 
   const components = Object.keys(pageContents);
-  const numberOfComponents = components.length;
 
-  return components.map((key, idx) => {
+  return components.map((key) => {
     const pageContent = pageContents[key];
     const {
       cssComponent,
@@ -146,14 +144,18 @@ export default function ComponentsApiContent(props) {
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
           <HighlightedCode code={importInstructions} language="jsx" />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
-          <Heading text="props" hash={`${componentNameKebabCase}-props`} level="h3" />
-          <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
-          <PropertiesTable
+
+          <PropertiesSection
             properties={componentProps}
             propertiesDescriptions={propDescriptions}
-            componentName={componentName}
+            targetName={componentNameKebabCase}
+            spreadHint={spreadHint}
+            level="h3"
+            titleHash={`${componentNameKebabCase}-props`}
           />
+
           <br />
+
           {cssComponent && (
             <React.Fragment>
               <span
@@ -165,7 +167,17 @@ export default function ComponentsApiContent(props) {
               <br />
             </React.Fragment>
           )}
-          <span dangerouslySetInnerHTML={{ __html: refHint }} />
+
+          <div
+            className="MuiCallout-root MuiCallout-info"
+            dangerouslySetInnerHTML={{ __html: refHint }}
+            style={{
+              alignItems: 'baseline',
+              gap: '4px',
+              marginTop: 0,
+            }}
+          />
+
           {inheritance && (
             <React.Fragment>
               <Heading
@@ -184,6 +196,7 @@ export default function ComponentsApiContent(props) {
               />
             </React.Fragment>
           )}
+
           {pageContent.themeDefaultProps && (
             <React.Fragment>
               <Heading
@@ -200,80 +213,42 @@ export default function ComponentsApiContent(props) {
               />
             </React.Fragment>
           )}
-          {Object.keys(componentStyles.classes).length ? (
-            <React.Fragment>
-              <Heading text="css" hash={`${componentName}-css`} level="h3" />
-              <CSSList
-                componentStyles={componentStyles}
-                classDescriptions={classDescriptions}
-                componentName={componentName}
-              />
-              <br />
-              <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.overrideStylesStyledComponent').replace(
-                    /{{styleOverridesLink}}/,
-                    styleOverridesLink,
-                  ),
-                }}
-              />
-            </React.Fragment>
-          ) : null}
-          {componentSlots?.length ? (
-            <React.Fragment>
-              <Heading text="slots" hash={`${componentNameKebabCase}-slots`} level="h3" />
-              {slotGuideLink && (
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t('api-docs.slotDescription').replace(
-                      /{{slotGuideLink}}/,
-                      slotGuideLink,
-                    ),
-                  }}
-                />
-              )}
-              <SlotsList
-                componentSlots={componentSlots}
-                slotDescriptions={slotDescriptions}
-                componentName={componentName}
-              />
-              <br />
-              <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.overrideStylesStyledComponent').replace(
-                    /{{styleOverridesLink}}/,
-                    styleOverridesLink,
-                  ),
-                }}
-              />
-            </React.Fragment>
-          ) : null}
-          {componentClasses?.classes?.length ||
-          Object.keys(componentClasses?.classes?.globalClasses || {}).length ? (
-            <React.Fragment>
-              <Heading text="classes" hash={`${componentNameKebabCase}-classes`} level="h3" />
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.classesDescription'),
-                }}
-              />
-              <ClassesList
-                componentClasses={componentClasses}
-                componentName={pageContent.name}
-                classDescriptions={classDescriptions}
-              />
-              <br />
-            </React.Fragment>
-          ) : null}
+
+          <CSSSection
+            componentStyles={componentStyles}
+            classDescriptions={classDescriptions}
+            componentName={componentName}
+            styleOverridesLink={styleOverridesLink}
+            titleHash={`${componentName}-css`}
+            level="h3"
+          />
+
+          <SlotsSection
+            componentSlots={componentSlots}
+            slotDescriptions={slotDescriptions}
+            componentName={componentName}
+            titleHash={`${componentNameKebabCase}-slots`}
+            level="h3"
+            spreadHint={
+              slotGuideLink &&
+              t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
+            }
+          />
+
+          <ClassesSection
+            componentClasses={componentClasses}
+            componentName={pageContent.name}
+            classDescriptions={classDescriptions}
+            spreadHint={t('api-docs.classesDescription')}
+            titleHash={`${componentNameKebabCase}-classes`}
+            level="h3"
+          />
         </MarkdownElement>
         <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
           <symbol id="anchor-link-icon" viewBox="0 0 16 16">
             <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" />
           </symbol>
         </svg>
-        {idx < numberOfComponents - 1 && <Divider />}
       </React.Fragment>
     );
   });

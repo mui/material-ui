@@ -41,7 +41,7 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ## Implementing a Button
 
-This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style/design/) as a reference.
+This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style/components/button) as a reference.
 
 {{"demo": "Tutorial.js", "defaultCodeOpen": false, "hideToolbar": true}}
 
@@ -134,7 +134,7 @@ The demo below shows how to build the Primer button using Tailwind CSS:
 
 ### Styling with MUI System
 
-[MUI System](/system/getting-started/) is a small set of CSS utilties that provide a styled-components-like API for building out designs that adhere to a theme.
+[MUI System](/system/getting-started/) is a small set of CSS utilities that provide a styled-components-like API for building out designs that adhere to a theme.
 
 MUI System's core utility is a [`styled` function](/system/styled/) that's equivalent to the `styled()` function in emotion and styled-components.
 Interpolations or arguments that are functions called by `styled` receive the `theme` from an upper `ThemeProvider`.
