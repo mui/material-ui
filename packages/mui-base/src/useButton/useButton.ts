@@ -172,7 +172,8 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     };
 
   const updateHostElementName = React.useCallback((instance: HTMLElement | null) => {
-    setHostElementName(instance?.tagName ?? '');
+    // Set a default hostname for initial server rendering to ensure consistency with client-side HTML.
+    setHostElementName(typeof window !== 'undefined' ? instance?.tagName ?? '' : 'BUTTON');
   }, []);
 
   const handleRef = useForkRef(updateHostElementName, externalRef, focusVisibleRef, buttonRef);
