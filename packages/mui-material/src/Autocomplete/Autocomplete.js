@@ -552,7 +552,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   );
 
   const renderGroup = renderGroupProp || defaultRenderGroup;
-  const defaultRenderOption = (props2, option) => <li {...props2}>{getOptionLabel(option)}</li>;
+  const defaultRenderOption = (props2, option) => {
+    const { key, ...otherProps } = props2;
+    return (
+      <li key={key} {...otherProps}>
+        {getOptionLabel(option)}
+      </li>
+    );
+  };
   const renderOption = renderOptionProp || defaultRenderOption;
 
   const renderListOption = (option, index) => {
@@ -1009,6 +1016,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
   onInputChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
   /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).

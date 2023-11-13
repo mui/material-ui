@@ -74,7 +74,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/joy-ui/react-linear-progress', title: 'Linear Progress' },
           { pathname: '/joy-ui/react-modal' },
           { pathname: '/joy-ui/react-skeleton', newFeature: true },
-          { pathname: '/joy-ui/react-snackbar', planned: true },
+          { pathname: '/joy-ui/react-snackbar', newFeature: true },
         ],
       },
       {
@@ -94,13 +94,18 @@ const pages: readonly MuiPage[] = [
           { pathname: '/joy-ui/react-drawer', newFeature: true },
           { pathname: '/joy-ui/react-link' },
           { pathname: '/joy-ui/react-menu' },
+          { pathname: '/joy-ui/react-stepper', newFeature: true },
           { pathname: '/joy-ui/react-tabs' },
         ],
       },
       {
         pathname: '/joy-ui/components/layout',
         subheader: 'layout',
-        children: [{ pathname: '/joy-ui/react-grid' }, { pathname: '/joy-ui/react-stack' }],
+        children: [
+          { pathname: '/joy-ui/react-box' },
+          { pathname: '/joy-ui/react-grid' },
+          { pathname: '/joy-ui/react-stack' },
+        ],
       },
       {
         pathname: '/joy-ui/components/utils',

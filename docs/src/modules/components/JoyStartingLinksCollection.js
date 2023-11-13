@@ -28,7 +28,7 @@ const content = [
     title: 'Joy UI for Figma',
     description:
       'The Joy UI components, with variables, variants, and states, in your favorite design tool.',
-    link: 'https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma',
+    link: 'https://www.figma.com/community/file/1293288155415213351/joy-ui-for-figma',
     icon: (
       <img
         src={`/static/branding/design-kits/figma-logo.svg`}

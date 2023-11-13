@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { Select, SelectRootSlotProps, SelectProps } from '@mui/base/Select';
+import {
+  Select as BaseSelect,
+  SelectRootSlotProps,
+  SelectProps,
+} from '@mui/base/Select';
 import {
   Option as BaseOption,
   OptionProps,
@@ -20,11 +24,11 @@ export default function UnstyledSelectIntroduction() {
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
-      <CustomSelect defaultValue={10}>
+      <Select defaultValue={10}>
         <Option value={10}>Documentation</Option>
         <Option value={20}>Components</Option>
         <Option value={30}>Features</Option>
-      </CustomSelect>
+      </Select>
     </div>
   );
 }
@@ -86,7 +90,7 @@ const Button = React.forwardRef(function Button<
 const resolveSlotProps = (fn: any, args: any) =>
   typeof fn === 'function' ? fn(args) : fn;
 
-const CustomSelect = React.forwardRef(function CustomSelect<
+const Select = React.forwardRef(function CustomSelect<
   TValue extends {},
   Multiple extends boolean,
 >(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
@@ -94,7 +98,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<
   const isDarkMode = useIsDarkMode();
 
   return (
-    <Select
+    <BaseSelect
       ref={ref}
       {...props}
       slots={{
@@ -112,7 +116,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `relative text-sm font-sans box-border w-80 px-3 py-2 rounded-lg text-left bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-700 outline-0 shadow-md shadow-slate-100 dark:shadow-slate-900 ${
+              `relative text-sm font-sans box-border w-80 px-3 py-2 rounded-lg text-left bg-white dark:bg-slate-800 border border-solid border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-700 outline-0 shadow-[0_2px_4px_rgb(0_0_0/_0.05)] dark:shadow-[0_2px_4px_rgb(0_0_0/_0.5)] ${
                 ownerState.focusVisible
                   ? 'border-purple-400 shadow-outline-purple'
                   : ''

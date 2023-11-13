@@ -44,6 +44,7 @@ const CheckboxRoot = styled(SwitchBase, {
     return [
       styles.root,
       ownerState.indeterminate && styles.indeterminate,
+      styles[`size${capitalize(ownerState.size)}`],
       ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
     ];
   },

@@ -15,6 +15,8 @@ export interface SelectClasses {
   popper: string;
   /** Class name applied to the listbox slot. */
   listbox: string;
+  /** Class name applied to the root slot if `multiple=true` */
+  multiple: string;
   /** Class name applied to the root slot if `color="primary"`. */
   colorPrimary: string;
   /** Class name applied to the root slot if `color="neutral"`. */
@@ -79,6 +81,7 @@ const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
   'focusVisible',
   'disabled',
   'expanded',
+  'multiple',
 ]);
 
 export default selectClasses;

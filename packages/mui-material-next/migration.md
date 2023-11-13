@@ -140,6 +140,19 @@ If you need to prevent default on a `key-up` and/or `key-down` event, then besid
 
 This is to ensure that default is prevented when the `ButtonBase` root is not a native button, for example, when the root element used is a `span`.
 
+## FilledInput
+
+### Removed `inputProps`
+
+`inputProps` are removed in favor of `slotProps.input`:
+
+```diff
+ <FilledInput
+-    inputProps={{ className: 'my-input' }}
++    slotProps={{ input: { className: 'my-input' } }}
+ />
+```
+
 ## FormControl
 
 ### Renamed `FormControlState`
@@ -150,6 +163,12 @@ The `FormControlState` interface was renamed to `FormControlContextValue`:
 -import { FormControlState } from '@mui/material';
 +import { FormControlContextValue } from '@mui/material-next';
 ```
+
+### Removed the `standard` variant
+
+The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
+
+## FormLabel
 
 ### Removed the `standard` variant
 
@@ -167,6 +186,12 @@ The standard variant is no longer supported in Material You, use the `filled` or
 +    slotProps={{ input: { className: 'my-input' } }}
  />
 ```
+
+## InputLabel
+
+### Removed the `standard` variant
+
+The standard variant is no longer supported in Material You, use the `filled` or `outlined` variants instead.
 
 ## Chip
 
@@ -337,3 +362,31 @@ If you are using the `thumb` or `valueLabel` Slider slots, then make sure the co
 ```
 
 This is required in v6 as it's used to apply the overlap styles to these slots. For more info take a look into [Material You's Slider overlapping handles guidelines](https://m3.material.io/components/sliders/guidelines#ad5ceb95-a690-4ddd-8243-53a8e13bdab6).
+
+## Divider
+
+### Removed the "light" prop and class
+
+The `"light"` prop is no longer accepted for the Divider component.
+
+If you were using the `light` prop to create a lighter Divider (which is not supported in version 6), please remove the prop as shown below:
+
+```diff
+ <Divider
+-  light={true}
++  sx={{ borderColor: '#eee' }}
+ />
+```
+
+### Remove composed classes and `styleOverrides` keys
+
+The following classes were removed:
+
+- `MuiDivider-withChildrenVertical`
+
+The `MuiDivider-withChildrenVertical` class has been removed. To replace it, you can use the `MuiDivider-withChildren` class along with the `MuiDivider-vertical` class. Here's an updated example:
+
+```diff
+- .MuiDivider-withChildrenVertical
++ .MuiDivider-withChildren.MuiDivider-vertical
+```

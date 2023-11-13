@@ -1,12 +1,11 @@
-# Sponsors & Backers
+# Sponsors and Backers
 
-<p class="description">Support the development of new open-source projects from MUI through crowdfunding.</p>
+<p class="description">Support the development of the open-source projects of the MUI organization through crowdfunding.</p>
 
-The core of MUI is our crowd-funded open-source projects, licensed under the permissive MIT license. Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
+Material UI, Joy UI, and Base UI, are crowd-funded open-source projects, licensed under the permissive MIT license.
+Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
 
-## MUI's sponsors
-
-### Diamond 💎
+## Diamond sponsors
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="octopus.com" href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://i.ibb.co/w0HF0Nz/Logo-Blue-140px-rgb.png" srcset="https://i.ibb.co/w0HF0Nz/Logo-Blue-140px-rgb.png 2x" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
@@ -15,11 +14,9 @@ The core of MUI is our crowd-funded open-source projects, licensed under the per
 
 _1/3 slots available_
 
-Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
-Please contact us at sales@mui.com to subscribe to this tier.
-Even when there are no more slots available, we accept higher bids.
+Diamond sponsors are those who've pledged \$1,500/month or more to MUI. [Tier benefits](#diamond).
 
-### Gold 🏆
+## Gold sponsors
 
 via [Open Collective](https://opencollective.com/mui) or via [the for-profit](https://www.patreon.com/oliviertassinari)
 
@@ -29,13 +26,13 @@ via [Open Collective](https://opencollective.com/mui) or via [the for-profit](h
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="spotify.com" href="https://open.spotify.com?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/spotify/f37ea28/logo/96.png" srcset="https://images.opencollective.com/spotify/f37ea28/logo/192.png 2x" alt="Spotify" title="Music service to access to millions of songs" loading="lazy"></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="megafamous.com" href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="/static/sponsors/megafamous.png" alt="megafamous.com" title="The best place to buy Instagram followers & likes" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="dialmycalls.com" href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/96.png" srcset="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/192.png 2x" alt="dialmycalls.com" title="Send text messages, calls & emails to thousands with ease." loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="goread.io" href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/96.png" srcset="https://images.opencollective.com/goread_io/eb6337d/logo/192.png 2x" alt="goread.io" title="Instagram followers, likes, power likes, views, comments, saves in minutes." loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="goread.io" href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px; display:flex;"><img height="110" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/96.png" srcset="https://images.opencollective.com/goread_io/eb6337d/logo/192.png 2x" alt="goread.io" title="Instagram followers, likes, power likes, views, comments, saves in minutes." loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="icons8.com" href="https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/icons8/7fa1641/logo/96.png" srcset="https://images.opencollective.com/icons8/7fa1641/logo/192.png 2x" alt="Icons8" title="We provide the neat icons, photos, illustrations, and music. Developers, use our API to insert all the content we have into your apps." loading="lazy"></a>
 </p>
 
-Gold Sponsors are those who have pledged \$500/month or more to MUI.
+Gold sponsors are those who've pledged \$500/month or more to MUI. [Tier benefits](#gold).
 
-### Silver
+## Silver sponsors
 
 via [Open Collective](https://opencollective.com/mui)
 
@@ -43,9 +40,9 @@ via [Open Collective](https://opencollective.com/mui)
   <object type="image/svg+xml" data="https://opencollective.com/mui/tiers/silver-sponsor.svg?avatarHeight=70&width=600" style="border-radius: 10px;">Silver Sponsors</object>
 </p>
 
-Silver Sponsors are those who have pledged $250/month to $500/month to MUI.
+Silvers sponsors are those who've pledged $250/month to $500/month to MUI. [Tier benefits](#silver).
 
-### Bronze
+## Bronze sponsors
 
 via [Open Collective](https://opencollective.com/mui)
 
@@ -53,9 +50,9 @@ via [Open Collective](https://opencollective.com/mui)
   <object type="image/svg+xml" data="https://opencollective.com/mui/tiers/bronze-sponsor.svg?avatarHeight=60&width=600" style="border-radius: 10px;">Bronze Sponsors</object>
 </p>
 
-Bronze Sponsors are those who have pledged $100/month to $250/month to MUI.
+Bronze sponsors are those who've pledged $100/month to $250/month to MUI. [Tier benefits](#sliver).
 
-### Backers
+## Backers
 
 via [Open Collective](https://opencollective.com/mui)
 
@@ -93,32 +90,68 @@ Funds transferred to the MUI for-profit support the company's mission.
 These great services sponsor MUI's core infrastructure:
 
 <span class="only-light-mode">
-  <img src="/static/readme/github-lightmode.svg" alt="GitHub logo" loading="lazy" width="80" height="43">
+  <img src="/static/readme/github-lightmode.svg" alt="GitHub logo" loading="lazy" width="300" height="107" style="width:80px;">
 </span>
 <span class="only-dark-mode">
-  <img src="/static/readme/github-darkmode.svg" alt="GitHub logo" loading="lazy" width="80" height="43">
+  <img src="/static/readme/github-darkmode.svg" alt="GitHub logo" loading="lazy" width="300" height="107" style="width:80px;">
 </span>
 
 [GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
 
 <span class="only-light-mode">
-  <img src="/static/readme/netlify-lightmode.svg" alt="Netlify logo" loading="lazy" width="100" height="27" style="margin-top: 1rem;">
+  <img src="/static/readme/netlify-lightmode.svg" alt="Netlify logo" loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1rem;">
 </span>
 <span class="only-dark-mode">
-  <img src="/static/readme/netlify-darkmode.svg" alt="Netlify logo" loading="lazy" width="100" height="27" style="margin-top: 1rem;">
+  <img src="/static/readme/netlify-darkmode.svg" alt="Netlify logo" loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1rem;">
 </span>
 
 [Netlify](https://www.netlify.com/) lets us distribute the documentation.
 
 <span class="only-light-mode">
-  <img src="/static/readme/browserstack-lightmode.svg" alt="BrowserStack logo" loading="lazy" width="140" height="25" style="margin-top: 1rem;">
+  <img src="/static/readme/browserstack-lightmode.svg" alt="BrowserStack logo" loading="lazy" width="180" height="32" style="width: 140px; margin-top: 1rem;">
 </span>
 <span class="only-dark-mode">
-  <img src="/static/readme/browserstack-darkmode.svg" alt="BrowserStack logo" loading="lazy" width="140" height="25" style="margin-top: 1rem;">
+  <img src="/static/readme/browserstack-darkmode.svg" alt="BrowserStack logo" loading="lazy" width="180" height="32" style="width: 140px; margin-top: 1rem;">
 </span>
 
 [BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
 
-<img loading="lazy" alt="CodeCov logo" src="https://avatars.githubusercontent.com/u/8226205?s=70" width="35" height="35" style="margin-top: 1rem;">
+<img loading="lazy" alt="CodeCov logo" src="https://avatars.githubusercontent.com/u/8226205?s=70" width="70" height="70" style="width: 35px; margin-top: 1rem;">
 
 [CodeCov](https://about.codecov.io/) lets us monitor test coverage.
+
+## Tier benefits
+
+### Diamond
+
+Your organization logo will be prominently featured:
+
+- on the sidebar of all content pages (4m+ sessions, 900k+ unique visitors/month)
+- the [homepage](https://mui.com/#sponsors) (500k+ pageviews and 150k+ unique visitors/month)
+- the [README.md](https://github.com/mui/material-ui#sponsors) (80k+ unique visitors/month)
+- the [Diamond sponsor list](#diamond-sponsors)
+
+Please contact us at sales@mui.com before subscribing to this tier to get preliminary approval.
+
+### Gold
+
+Your organization logo will be placed in:
+
+- the [homepage](https://mui.com/#sponsors) (500k+ pageviews and 150k+ unique visitors/month)
+- the [README.md](https://github.com/mui/material-ui#sponsors) (80k+ unique visitors/month)
+- the [Gold sponsor list](#gold-sponsors)
+
+\*we accept donations, but we won't show unethical ads.
+
+### Silver
+
+Your organization logo will be placed in the [Silver sponsor list](#silver-sponsors).
+
+### Bronze
+
+Your organization logo will be placed in the [Bronze sponsor list](#bronze-sponsors).
+
+### Backers
+
+Help support more open-source development by becoming a Backer.
+We'll thank you by including your avatar in the [backers list](#backers).

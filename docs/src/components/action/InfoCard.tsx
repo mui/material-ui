@@ -17,6 +17,7 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        flexShrink: 0,
         borderRadius: 1,
         border: '1px solid',
         borderColor: 'primary.200',
@@ -49,7 +50,11 @@ export default function InfoCard({ icon, svg, title, description, link }: InfoCa
     <Paper
       component={link ? Link : 'div'}
       href={link}
-      noLinkStyle={Boolean(link)}
+      {...(link
+        ? {
+            noLinkStyle: true,
+          }
+        : {})}
       variant="outlined"
       sx={(theme) => ({
         p: 3.5,

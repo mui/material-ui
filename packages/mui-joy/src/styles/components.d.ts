@@ -194,7 +194,20 @@ import { SkeletonProps, SkeletonOwnerState, SkeletonSlot } from '../Skeleton/Ske
 import { SelectProps, SelectOwnerState, SelectSlot } from '../Select/SelectProps';
 import { OptionProps, OptionOwnerState, OptionSlot } from '../Option/OptionProps';
 import { SliderProps, SliderOwnerState, SliderSlot } from '../Slider/SliderProps';
+import { SnackbarProps, SnackbarOwnerState, SnackbarSlot } from '../Snackbar/SnackbarProps';
 import { StackProps, StackSlot } from '../Stack/StackProps';
+import { StepperProps, StepperOwnerState, StepperSlot } from '../Stepper/StepperProps';
+import { StepProps, StepOwnerState, StepSlot } from '../Step/StepProps';
+import {
+  StepButtonProps,
+  StepButtonOwnerState,
+  StepButtonSlot,
+} from '../StepButton/StepButtonProps';
+import {
+  StepIndicatorProps,
+  StepIndicatorOwnerState,
+  StepIndicatorSlot,
+} from '../StepIndicator/StepIndicatorProps';
 import { SvgIconProps, SvgIconOwnerState, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 import { SwitchProps, SwitchOwnerState, SwitchSlot } from '../Switch/SwitchProps';
 import { TabProps, TabOwnerState, TabSlot } from '../Tab/TabProps';
@@ -431,8 +444,8 @@ export interface Components<Theme = unknown> {
     styleOverrides?: StyleOverrides<RadioGroupSlot, RadioGroupOwnerState, Theme>;
   };
   JoySelect?: {
-    defaultProps?: Partial<SelectProps<any>>;
-    styleOverrides?: StyleOverrides<SelectSlot, SelectOwnerState<any>, Theme>;
+    defaultProps?: Partial<SelectProps<any, any>>;
+    styleOverrides?: StyleOverrides<SelectSlot, SelectOwnerState<any, any>, Theme>;
   };
   JoyOption?: {
     defaultProps?: Partial<OptionProps>;
@@ -450,6 +463,22 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<StackProps>;
     styleOverrides?: StyleOverrides<StackSlot, StackProps, Theme>;
   };
+  JoyStepper?: {
+    defaultProps?: Partial<StepperProps>;
+    styleOverrides?: StyleOverrides<StepperSlot, StepperOwnerState, Theme>;
+  };
+  JoyStep?: {
+    defaultProps?: Partial<StepProps>;
+    styleOverrides?: StyleOverrides<StepSlot, StepOwnerState, Theme>;
+  };
+  JoyStepButton?: {
+    defaultProps?: Partial<StepButtonProps>;
+    styleOverrides?: StyleOverrides<StepButtonSlot, StepButtonOwnerState, Theme>;
+  };
+  JoyStepIndicator?: {
+    defaultProps?: Partial<StepIndicatorProps>;
+    styleOverrides?: StyleOverrides<StepIndicatorSlot, StepIndicatorOwnerState, Theme>;
+  };
   JoySwitch?: {
     defaultProps?: Partial<SwitchProps>;
     styleOverrides?: StyleOverrides<SwitchSlot, SwitchOwnerState, Theme>;
@@ -466,6 +495,10 @@ export interface Components<Theme = unknown> {
   JoySlider?: {
     defaultProps?: Partial<SliderProps>;
     styleOverrides?: StyleOverrides<SliderSlot, SliderOwnerState, Theme>;
+  };
+  JoySnackbar?: {
+    defaultProps?: Partial<SnackbarProps>;
+    styleOverrides?: StyleOverrides<SnackbarSlot, SnackbarOwnerState, Theme>;
   };
   JoyTabs?: {
     defaultProps?: Partial<TabsProps>;
