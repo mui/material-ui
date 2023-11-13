@@ -29,7 +29,6 @@ function LinkTab(props) {
         }
       }}
       aria-current={props.selected && 'page'}
-      role="navigation"
       {...props}
     />
   );
@@ -54,7 +53,12 @@ export default function NavTabs() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="nav tabs example"
+        role="navigation"
+      >
         <LinkTab label="Page One" href="/drafts" />
         <LinkTab label="Page Two" href="/trash" />
         <LinkTab label="Page Three" href="/spam" />
