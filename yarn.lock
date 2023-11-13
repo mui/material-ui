@@ -3641,10 +3641,10 @@
   resolved "https://registry.yarnpkg.com/@types/doctrine/-/doctrine-0.0.8.tgz#e6d6572ddc6f424aef73245cf411724e225dfa11"
   integrity sha512-mGinUwtyZsYnU2ana2wyteVHD0PFPukcZMOZWMtSRJBTFMirYy6RlV286CjttvPoNYYgW9jWf0MXKniV7f2oVw==
 
-"@types/enzyme@^3.10.15":
-  version "3.10.15"
-  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.10.15.tgz#56d1167bb11a2c3f65af790de0cbb0e990b21489"
-  integrity sha512-Tdm2XXW7TfyKhb/ddSLMpj8W0UgxbCOOauFNeLJH7+KzsfOBrHF6XPctw11SwGoOPyUglYQpvMoQNFXOF0uTwg==
+"@types/enzyme@^3.10.16":
+  version "3.10.16"
+  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.10.16.tgz#100c49093f694545fc903266b2eb410df08859a9"
+  integrity sha512-17uMdJjSKjvdn/MhO/G2lRNPZGvJxFpvgONrsRoS1+khtJ6UcnCwC9v3gk2UqPyAkMZb6a1VYxScc/vOgkDl9w==
   dependencies:
     "@types/cheerio" "*"
     "@types/react" "^16"

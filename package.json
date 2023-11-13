@@ -95,7 +95,7 @@
     "@playwright/test": "1.39.0",
     "@slack/bolt": "^3.14.0",
     "@slack/web-api": "^6.9.1",
-    "@types/enzyme": "^3.10.15",
+    "@types/enzyme": "^3.10.16",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.14.201",
     "@types/mocha": "^10.0.4",
