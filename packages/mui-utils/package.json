@@ -54,7 +54,7 @@
     "@types/node": "^18.18.9",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
-    "@types/react-is": "^18.2.3",
+    "@types/react-is": "^18.2.4",
     "@types/sinon": "^10.0.20",
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-tester": "^11.0.4",

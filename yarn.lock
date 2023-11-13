@@ -3926,10 +3926,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-is@^18.2.3":
-  version "18.2.3"
-  resolved "https://registry.yarnpkg.com/@types/react-is/-/react-is-18.2.3.tgz#eda298f3cb054e0d3ee044443109e23ec22fbffe"
-  integrity sha512-w45BV1PsuELGu0P+y7sy+w2sY7qMfDVFrf4+30smfViAxgnOV6MGwdCTAmz32BdYRr0E87xH6L6k6qBB2jjRvA==
+"@types/react-is@^18.2.4":
+  version "18.2.4"
+  resolved "https://registry.yarnpkg.com/@types/react-is/-/react-is-18.2.4.tgz#95a92829de452662348ce08349ca65623c50daf7"
+  integrity sha512-wBc7HgmbCcrvw0fZjxbgz/xrrlZKzEqmABBMeSvpTvdm25u6KI6xdIi9pRE2G0C1Lw5ETFdcn4UbYZ4/rpqUYw==
   dependencies:
     "@types/react" "*"
 
