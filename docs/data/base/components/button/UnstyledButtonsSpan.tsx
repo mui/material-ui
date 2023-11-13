@@ -1,12 +1,7 @@
 import * as React from 'react';
-import {
-  Button as BaseButton,
-  buttonClasses,
-  ButtonTypeMap,
-} from '@mui/base/Button';
+import { Button as BaseButton, buttonClasses } from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
-import { PolymorphicComponent } from '@mui/base/utils';
 
 export default function UnstyledButtonsSpan() {
   return (
@@ -62,7 +57,7 @@ const Button = styled(BaseButton)(
     background-color: ${blue[600]};
   }
 
-  &:active {
+  &.${buttonClasses.active} {
     background-color: ${blue[700]};
     box-shadow: none;
     transform: scale(0.99);
@@ -81,5 +76,5 @@ const Button = styled(BaseButton)(
     box-shadow: none;
     transform: scale(1);
   }
-  `,
-) as PolymorphicComponent<ButtonTypeMap>;
+`,
+);

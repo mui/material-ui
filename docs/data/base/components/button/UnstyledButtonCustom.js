@@ -87,7 +87,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
     outline-offset: 2px;
   }
 
-  &:active {
+  &.${buttonClasses.active} {
     & .bg {
       fill: var(--active-color);
       transition: fill 150ms ease-out;

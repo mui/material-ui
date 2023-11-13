@@ -66,19 +66,19 @@ function Styles() {
     transition: all 150ms ease;
     cursor: pointer;
     border: 1px solid ${cyan[500]};
-    box-shadow: 0 2px 4px ${
-      isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(13, 84, 99, 0.5)'
+    box-shadow: 0 2px 1px ${
+      isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
     }, inset 0 1.5px 1px ${cyan[400]}, inset 0 -2px 1px ${cyan[600]};
   }
   .IntroductionButton:hover {
     background-color: ${cyan[600]};
   }
-  .IntroductionButton:active {
+  .IntroductionButton.Mui-active {
     background-color: ${cyan[700]};
     box-shadow: none;
     transform: scale(0.99);
   }
-  .IntroductionButton:focus-visible {
+  .IntroductionButton.Mui-focusVisible {
     box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
     outline: none;
   }

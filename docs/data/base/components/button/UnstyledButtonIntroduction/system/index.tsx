@@ -47,21 +47,21 @@ const Button = styled(BaseButton)(
   transition: all 150ms ease;
   cursor: pointer;
   border: 1px solid ${blue[500]};
-  box-shadow: 0 2px 4px ${
-    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 127, 255, 0.5)'
+  box-shadow: 0 2px 1px ${
+    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
   }, inset 0 1.5px 1px ${blue[400]}, inset 0 -2px 1px ${blue[600]};
 
   &:hover {
     background-color: ${blue[600]};
   }
 
-  &:active {
+  &.Mui-active {
     background-color: ${blue[700]};
     box-shadow: none;
     transform: scale(0.99);
   }
 
-  &:focus-visible {
+  &.Mui-focusVisible {
     box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
     outline: none;
   }

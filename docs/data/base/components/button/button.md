@@ -32,7 +32,7 @@ The Button behaves similar to the native HTML `<button>`, so it wraps around the
 The following demo shows how to create and style two basic buttons.
 Notice that the second button cannot be clicked due to the `disabled` prop:
 
-{{"demo": "UnstyledButtonsSimple"}}
+{{"demo": "UnstyledButtonsSimple.js"}}
 
 ### Anatomy
 
@@ -61,7 +61,7 @@ If you provide a non-interactive element such as a `<span>`, the Button componen
 
 Compare the attributes on the `<span>` in this demo with the Button from the previous demo—try inspecting them both with your browser's dev tools:
 
-{{"demo": "UnstyledButtonsSpan"}}
+{{"demo": "UnstyledButtonsSpan.js"}}
 
 :::warning
 If a Button is customized with a non-button element (for instance, `<Button slots={{ root: "span" }} />`), it will not submit the form it's in when clicked.

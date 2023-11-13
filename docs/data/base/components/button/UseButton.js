@@ -12,14 +12,15 @@ const CustomButton = React.forwardRef(function CustomButton(props, ref) {
     rootRef: ref,
   });
 
-  const classes = {
-    active,
-    disabled,
-    focusVisible,
-  };
-
   return (
-    <CustomButtonRoot {...getRootProps()} className={clsx(classes)}>
+    <CustomButtonRoot
+      {...getRootProps()}
+      className={clsx({
+        active,
+        disabled,
+        focusVisible,
+      })}
+    >
       {children}
     </CustomButtonRoot>
   );
@@ -86,13 +87,13 @@ const CustomButtonRoot = styled('button')(
     background-color: ${blue[600]};
   }
 
-  &:active {
+  &.active {
     background-color: ${blue[700]};
     box-shadow: none;
     transform: scale(0.99);
   }
 
-  &:focus-visible {
+  &.focusVisible {
     box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
     outline: none;
   }
