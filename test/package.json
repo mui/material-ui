@@ -19,7 +19,7 @@
     "@mui/system": "^5.14.17",
     "@playwright/test": "1.39.0",
     "@testing-library/dom": "^9.3.3",
-    "@types/chai": "^4.3.9",
+    "@types/chai": "^4.3.10",
     "@types/react": "^18.2.37",
     "chai": "^4.3.10",
     "docs": "^5.0.0",
