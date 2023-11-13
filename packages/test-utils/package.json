@@ -44,7 +44,7 @@
     "@types/chai": "^4.3.9",
     "@types/chai-dom": "^1.11.3",
     "@types/enzyme": "^3.10.15",
-    "@types/format-util": "^1.0.3",
+    "@types/format-util": "^1.0.4",
     "@types/prop-types": "^15.7.10",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
