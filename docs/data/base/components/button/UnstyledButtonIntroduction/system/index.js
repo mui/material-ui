@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button as BaseButton } from '@mui/base/Button';
+import { Button as BaseButton, buttonClasses } from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
@@ -55,18 +55,18 @@ const Button = styled(BaseButton)(
     background-color: ${blue[600]};
   }
 
-  &.Mui-active {
+  &.${buttonClasses.active} {
     background-color: ${blue[700]};
     box-shadow: none;
     transform: scale(0.99);
   }
 
-  &.Mui-focusVisible {
+  &.${buttonClasses.focusVisible} {
     box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
     outline: none;
   }
 
-  &.Mui-disabled {
+  &.${buttonClasses.disabled} {
     background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
     border: 0;
