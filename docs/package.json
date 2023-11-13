@@ -121,7 +121,7 @@
     "@types/autosuggest-highlight": "^3.2.3",
     "@types/chai": "^4.3.10",
     "@types/css-mediaquery": "^0.1.4",
-    "@types/json2mq": "^0.2.1",
+    "@types/json2mq": "^0.2.2",
     "@types/markdown-to-jsx": "^7.0.1",
     "@types/node": "^18.18.9",
     "@types/prop-types": "^15.7.10",
