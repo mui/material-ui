@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -27,10 +28,16 @@ function LinkTab(props) {
           event.preventDefault();
         }
       }}
+      aria-current={props.selected && 'page'}
+      role="navigation"
       {...props}
     />
   );
 }
+
+LinkTab.propTypes = {
+  selected: PropTypes.bool,
+};
 
 export default function NavTabs() {
   const [value, setValue] = React.useState(0);

@@ -36,6 +36,7 @@ function LinkTab(props: LinkTabProps) {
         }
       }}
       aria-current={props.selected && "page"}
+      role="navigation"
       {...props}
     />
   );
