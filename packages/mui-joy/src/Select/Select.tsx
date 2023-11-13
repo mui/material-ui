@@ -25,6 +25,7 @@ import selectClasses, { getSelectUtilityClass } from './selectClasses';
 import { ListOwnerState } from '../List';
 import FormControlContext from '../FormControl/FormControlContext';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
+import { INVERTED_COLORS_ATTR } from '../colorInversion/colorInversionUtils';
 
 function defaultRenderValue<OptionValue>(
   selectedOptions: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
@@ -94,14 +95,14 @@ const SelectRoot = styled('div', {
       '--Select-focusedThickness': theme.vars.focus.thickness,
       '--Select-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
-      '&:not([data-inverted-colors="false"])': {
+      [`&:not([${INVERTED_COLORS_ATTR}])`]: {
         ...(ownerState.instanceColor && {
           '--_Select-focusedHighlight':
             theme.vars.palette[
               ownerState.instanceColor === 'neutral' ? 'primary' : ownerState.instanceColor
             ]?.[500],
         }),
-        '--Select-focusedHighlight': theme.vars.palette.focusVisible,
+        '--Select-focusedHighlight': `var(--_Select-focusedHighlight, ${theme.vars.palette.focusVisible})`,
       },
       ...(ownerState.size === 'sm' && {
         '--Select-minHeight': '2rem',
@@ -153,6 +154,23 @@ const SelectRoot = styled('div', {
       paddingInline: `var(--Select-paddingInline)`,
       ...theme.typography[`body-${ownerState.size!}`],
       ...variantStyle,
+      '&::before': {
+        boxSizing: 'border-box',
+        content: '""',
+        display: 'block',
+        position: 'absolute',
+        pointerEvents: 'none',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1,
+        borderRadius: 'inherit',
+        margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
+      },
+      [`&:focus-within::before`]: {
+        boxShadow: `inset 0 0 0 var(--Select-focusedThickness) var(--Select-focusedHighlight)`,
+      },
     } as const,
     {
       '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
@@ -197,9 +215,6 @@ const SelectButton = styled('button', {
     right: 'calc(-1 * var(--variant-borderWidth, 0px))',
     bottom: 'calc(-1 * var(--variant-borderWidth, 0px))',
     borderRadius: 'var(--Select-radius)',
-  },
-  '&:focus::before': {
-    boxShadow: `inset 0 0 0 var(--Select-focusedThickness) var(--Select-focusedHighlight)`,
   },
 }));
 
@@ -435,6 +450,7 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
   });
 
   const ownerState: SelectOwnerState<OptionValue, Multiple> = {
+    instanceColor: inProps.color,
     ...props,
     active: buttonActive,
     defaultListboxOpen,
