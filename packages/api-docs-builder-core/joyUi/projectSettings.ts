@@ -21,7 +21,6 @@ export const projectSettings: ProjectSettings = {
   skipComponent(filename: string) {
     // Container's demo isn't ready
     // GlobalStyles's demo isn't ready
-    // Grid has problem with react-docgen
     return (
       filename.match(/(ThemeProvider|CssVarsProvider|Container|ColorInversion|GlobalStyles)/) !==
       null
