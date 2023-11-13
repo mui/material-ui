@@ -46,7 +46,7 @@ export const FormControlLabelRoot = styled('label', {
   },
 })(({ theme, ownerState }) => ({
   display: 'inline-flex',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   cursor: 'pointer',
   // For correct alignment with the text.
   verticalAlign: 'middle',
@@ -156,7 +156,6 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       </Typography>
     );
   }
-
   return (
     <FormControlLabelRoot
       className={clsx(classes.root, className)}
@@ -164,7 +163,16 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       ref={ref}
       {...other}
     >
-      {React.cloneElement(control, controlProps)}
+      {ownerState.labelPlacement === 'top' || ownerState.labelPlacement === 'bottom' ? (
+        <Stack direction="row" alignSelf="center">
+          {React.cloneElement(control, controlProps)}
+        </Stack>
+      ) : (
+        <Stack direction="row" mt="-9px">
+          {React.cloneElement(control, controlProps)}
+        </Stack>
+      )}
+
       {required ? (
         <Stack display="block">
           {label}
