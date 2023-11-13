@@ -50,7 +50,7 @@
     "@mui/types": "^7.2.8",
     "@types/babel-plugin-macros": "^3.1.2",
     "@types/chai": "^4.3.9",
-    "@types/mocha": "^10.0.3",
+    "@types/mocha": "^10.0.4",
     "@types/node": "^18.18.9",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
