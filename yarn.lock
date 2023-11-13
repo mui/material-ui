@@ -3465,10 +3465,10 @@
   resolved "https://registry.yarnpkg.com/@types/aria-query/-/aria-query-5.0.1.tgz#3286741fb8f1e1580ac28784add4c7a1d49bdfbc"
   integrity sha512-XTIieEY+gvJ39ChLcB4If5zHtPxt3Syj5rgZR+e1ctpmK8NjPf0zFqsz4JpLJT0xla9GFDKjy8Cpu331nrmE1Q==
 
-"@types/autosuggest-highlight@^3.2.2":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@types/autosuggest-highlight/-/autosuggest-highlight-3.2.2.tgz#e320f286f43f83110316a5468cdd74f022aa6b42"
-  integrity sha512-16Ru92s9/XoSM6zueeNjoL4OdYlm8iMeuDLpRjtDAszl2GeBsVCvEg9f3u7ZYYVJO8+Wo7SJth6dBtd6bs2QiQ==
+"@types/autosuggest-highlight@^3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@types/autosuggest-highlight/-/autosuggest-highlight-3.2.3.tgz#966b4f6b2b8fc9df2838481600500db6b3795aaa"
+  integrity sha512-8Mb21KWtpn6PvRQXjsKhrXIcxbSloGqNH50RntwGeJsGPW4xvNhfml+3kKulaKpO/7pgZfOmzsJz7VbepArlGQ==
 
 "@types/babel-plugin-macros@^3.1.2":
   version "3.1.2"
