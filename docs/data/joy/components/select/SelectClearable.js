@@ -18,7 +18,6 @@ export default function SelectClearable() {
         // when user has selected a value
         endDecorator: (
           <IconButton
-            size="sm"
             variant="plain"
             color="neutral"
             onMouseDown={(event) => {
