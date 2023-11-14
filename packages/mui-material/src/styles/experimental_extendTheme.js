@@ -1,4 +1,4 @@
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
 import {
   private_safeColorChannel as safeColorChannel,
   private_safeAlpha as safeAlpha,

@@ -1,5 +1,5 @@
 'use client';
-import { unstable_useControlled as useControlled } from '@mui/utils';
+import useControlled from '@mui/utils/useControlled';
 
 export default function usePagination(props = {}) {
   // keep default values in sync with @default tags in Pagination.propTypes

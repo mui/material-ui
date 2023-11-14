@@ -2,7 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import { useSlotProps } from '@mui/base';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';

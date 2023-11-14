@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
-import { refType, deepmerge } from '@mui/utils';
+import refType from '@mui/utils/refType';
+import deepmerge from '@mui/utils/deepmerge';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import InputBase from '../InputBase';

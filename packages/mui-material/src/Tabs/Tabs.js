@@ -3,7 +3,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@mui/utils';
+import refType from '@mui/utils/refType';
 import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';

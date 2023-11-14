@@ -1,5 +1,5 @@
 import { ContainerClasses } from '@mui/system';
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 import generateUtilityClass from '../generateUtilityClass';
 
 export type { ContainerClassKey } from '@mui/system';

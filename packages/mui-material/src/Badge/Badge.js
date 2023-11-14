@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { usePreviousProps } from '@mui/utils';
+import usePreviousProps from '@mui/utils/usePreviousProps';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useBadge } from '@mui/base/useBadge';
 import { useSlotProps } from '@mui/base';
