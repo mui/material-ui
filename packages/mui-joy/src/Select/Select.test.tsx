@@ -3,12 +3,11 @@ import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
   describeConformance,
-  describeJoyColorInversion,
   act,
   createRenderer,
   fireEvent,
   screen,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
@@ -64,12 +63,6 @@ describe('Joy <Select />', () => {
       'reactTestRenderer',
     ],
   }));
-
-  describeJoyColorInversion(<Select listboxOpen />, {
-    muiName: 'JoySelect',
-    classes,
-    portalSlot: 'listbox',
-  });
 
   it('should be able to mount the component', () => {
     render(
@@ -652,5 +645,56 @@ describe('Joy <Select />', () => {
       fireEvent.mouseDown(getByTestId('test-element'));
     });
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');
+  });
+
+  describe('prop: multiple', () => {
+    it('renders the selected values (multiple) using the renderValue prop', () => {
+      const { getByRole } = render(
+        <Select
+          multiple
+          defaultValue={[1, 2]}
+          renderValue={(values) => values.map((v) => `${v.label} (${v.value})`).join(', ')}
+        >
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One (1), Two (2)');
+    });
+
+    it('renders the selected values (multiple) as comma-separated list of labels if renderValue is not provided', () => {
+      const { getByRole } = render(
+        <Select multiple defaultValue={[1, 2]}>
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One, Two');
+    });
+
+    it('should render placeholder when options are not selected', () => {
+      const { getByRole } = render(
+        <Select multiple defaultValue={[]} placeholder="hello">
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('hello');
+    });
+
+    it('renders the selected values inplace of placeholder', () => {
+      const { getByRole } = render(
+        <Select multiple defaultValue={[1, 2]} placeholder="hello">
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One, Two');
+      expect(getByRole('combobox')).not.to.have.text('hello');
+    });
   });
 });

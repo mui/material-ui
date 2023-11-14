@@ -34,7 +34,8 @@ export default function TemplateHero() {
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-designkits" /> Design kits
+            <IconImage width={28} height={28} loading="eager" name="product-designkits" /> Design
+            kits
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Material UI

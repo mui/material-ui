@@ -196,6 +196,21 @@ export * from './Skeleton';
 export { default as Slider } from './Slider';
 export * from './Slider';
 
+export { default as Snackbar } from './Snackbar';
+export * from './Snackbar';
+
+export { default as Stepper } from './Stepper';
+export * from './Stepper';
+
+export { default as Step } from './Step';
+export * from './Step';
+
+export { default as StepButton } from './StepButton';
+export * from './StepButton';
+
+export { default as StepIndicator } from './StepIndicator';
+export * from './StepIndicator';
+
 export { default as Stack } from './Stack';
 export * from './Stack';
 

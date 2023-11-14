@@ -1,22 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/zero-runtime';
+import { Button, bounceAnim } from 'local-library';
 import Slider from './Slider/ZeroSlider';
-
-const Button = styled('button', {
-  name: 'MuiButton',
-  slot: 'Root',
-})(
-  'color:red',
-  ({ theme }: any) => ({
-    fontFamily: 'sans-serif',
-    backgroundColor: [theme.palette.primary.main, 'text.primary', 'background.paper'],
-  }),
-  {
-    fontFamily: 'sans-serif',
-    // p: (props: any) => (props.isRed ? 10 : 20),
-    color: (props: any) => (props.isRed ? 'primary.main' : 'secondary.main'),
-  },
-);
 
 const ShowCaseDiv = styled('div')({
   [`.${Button}`]: {
@@ -30,6 +15,7 @@ const HalfWidth = styled.div({
   maxHeight: 100,
   padding: 20,
   border: '1px solid #ccc',
+  animation: `${bounceAnim} 1s ease infinite`,
 });
 
 export default function App({ isRed }: any) {
@@ -105,7 +91,7 @@ export default function App({ isRed }: any) {
       </div>
       <div>
         <HalfWidth
-          sx={({ theme }: any) => ({
+          sx={({ theme }) => ({
             color: theme.palette.primary.main,
             fontSize: isRed ? 'h1.fontSize' : 'h2.fontSize',
             ':hover': {

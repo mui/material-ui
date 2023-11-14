@@ -1,2 +1,2 @@
-<CustomButton>Button</CustomButton>
-<CustomButton disabled>Disabled</CustomButton>
+<Button>Button</Button>
+<Button disabled>Disabled</Button>

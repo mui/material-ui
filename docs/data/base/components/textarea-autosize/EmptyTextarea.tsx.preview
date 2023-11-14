@@ -1,1 +1,1 @@
-<StyledTextarea aria-label="empty textarea" placeholder="Empty" />
+<Textarea aria-label="empty textarea" placeholder="Empty" />

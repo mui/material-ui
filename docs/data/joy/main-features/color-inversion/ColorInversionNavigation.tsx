@@ -86,7 +86,13 @@ export default function ColorInversionNavigation() {
               <SmsIcon />
             </ListItemDecorator>
             Chat
-            <Chip size="sm" color="warning" variant="soft" sx={{ ml: 'auto' }}>
+            <Chip
+              data-skip-inverted-colors
+              size="sm"
+              color="warning"
+              variant="soft"
+              sx={{ ml: 'auto' }}
+            >
               5
             </Chip>
           </ListItemButton>
@@ -176,8 +182,8 @@ export default function ColorInversionNavigation() {
               'success',
               'warning',
             ];
-            const nextColor = colors.indexOf(color);
-            setColor(colors[nextColor + 1] ?? colors[0]);
+            const nextColorIndex = colors.indexOf(color) + 1;
+            setColor(colors[nextColorIndex] ?? colors[0]);
           }}
           sx={{ mt: 'auto', height: '40px' }}
         >

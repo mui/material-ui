@@ -23,7 +23,7 @@ export default function HeroContainer(props: HeroContainerProps) {
     right,
     rightSx,
   } = props;
-  const frame = React.useRef<null | HTMLDivElement>(null);
+  const frame = React.useRef<HTMLDivElement>(null);
 
   useEnhancedEffect(() => {
     let obs: undefined | MutationObserver;

@@ -27,8 +27,8 @@ export default function ContrySelector({ sx, ...props }: FormControlProps) {
                 <img
                   loading="lazy"
                   width="20"
-                  src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
                   srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                  src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
                   alt=""
                 />
               </AspectRatio>
@@ -431,7 +431,7 @@ const countries: readonly CountryType[] = [
   { code: 'TV', label: 'Tuvalu', phone: '688' },
   {
     code: 'TW',
-    label: 'Taiwan, Republic of China',
+    label: 'Taiwan',
     phone: '886',
   },
   {

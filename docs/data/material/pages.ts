@@ -181,7 +181,10 @@ const pages: MuiPage[] = [
     title: 'How-to guides',
     children: [
       { pathname: '/material-ui/guides/api', title: 'API design approach' },
-      { pathname: '/material-ui/guides/themeable-component', title: 'Themeable component' },
+      {
+        pathname: '/material-ui/guides/creating-themed-components',
+        title: 'Creating themed components',
+      },
       { pathname: '/material-ui/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/material-ui/guides/typescript', title: 'TypeScript' },
       { pathname: '/material-ui/guides/interoperability', title: 'Style library interoperability' },
@@ -237,7 +240,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/discover-more/related-projects' },
       { pathname: '/material-ui/discover-more/design-kits' },
       { pathname: '/material-ui/discover-more/roadmap' },
-      { pathname: '/material-ui/discover-more/backers', title: 'Sponsors & Backers' },
+      { pathname: '/material-ui/discover-more/backers', title: 'Sponsors and Backers' },
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
     ],

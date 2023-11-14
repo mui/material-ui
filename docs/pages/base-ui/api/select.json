@@ -1,6 +1,7 @@
 {
   "props": {
     "areOptionsEqual": { "type": { "name": "func" } },
+    "autoComplete": { "type": { "name": "string" } },
     "autoFocus": { "type": { "name": "bool" }, "default": "false" },
     "defaultListboxOpen": { "type": { "name": "bool" }, "default": "false" },
     "defaultValue": { "type": { "name": "any" } },
@@ -13,6 +14,7 @@
     "name": { "type": { "name": "string" } },
     "onChange": { "type": { "name": "func" } },
     "onListboxOpenChange": { "type": { "name": "func" } },
+    "placeholder": { "type": { "name": "node" } },
     "renderValue": { "type": { "name": "func" } },
     "required": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {

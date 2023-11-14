@@ -93,7 +93,7 @@ You're still able to override the style completely via the usual CSS overrides, 
 Joy UI provides an effective way to prevent UI flicker when users refresh or re-enter a page with dark mode enabled.
 The out-of-the-box CSS variables support allows every color scheme to be rendered at build time, inserting the selected color scheme and mode before the browser renders the DOM.
 
-What's more, it provides a function called `getInitColorSchemeScript()` that enables you to have perfect functioning dark mode in various React framworks, such as Next.js, Gatsby, and Remix.
+What's more, it provides a function called `getInitColorSchemeScript()` that enables you to have perfect functioning dark mode in various React frameworks, such as Next.js, Gatsby, and Remix.
 
 ```js
 // A Next.js example
@@ -103,7 +103,7 @@ import { getInitColorSchemeScript } from '@mui/joy/styles';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html data-color-scheme="light">
         <Head>...</Head>
         <body>
           {getInitColorSchemeScript()}
