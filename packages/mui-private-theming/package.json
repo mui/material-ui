@@ -46,7 +46,7 @@
     "@mui-internal/test-utils": "^1.0.0",
     "@mui/material": "^5.14.18",
     "@mui/styles": "^5.14.18",
-    "@mui/types": "^7.2.8",
+    "@mui/types": "^7.2.9",
     "@types/chai": "^4.3.10",
     "@types/react": "^18.2.37",
     "chai": "^4.3.10",

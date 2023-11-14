@@ -44,7 +44,7 @@
     "@mui/base": "5.0.0-beta.24",
     "@mui/material": "^5.14.18",
     "@mui/system": "^5.14.18",
-    "@mui/types": "^7.2.8",
+    "@mui/types": "^7.2.9",
     "@mui/utils": "^5.14.18",
     "@types/react-transition-group": "^4.4.8",
     "clsx": "^2.0.0",
