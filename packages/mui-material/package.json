@@ -44,7 +44,7 @@
   "dependencies": {
     "@babel/runtime": "^7.23.2",
     "@mui/base": "5.0.0-beta.24",
-    "@mui/core-downloads-tracker": "^5.14.17",
+    "@mui/core-downloads-tracker": "^5.14.18",
     "@mui/system": "^5.14.18",
     "@mui/types": "^7.2.8",
     "@mui/utils": "^5.14.18",
@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@mui-internal/test-utils": "^1.0.0",
-    "@mui/icons-material": "^5.14.16",
+    "@mui/icons-material": "^5.14.18",
     "@mui/lab": "5.0.0-alpha.153",
     "@mui/styles": "^5.14.18",
     "@popperjs/core": "^2.11.8",
