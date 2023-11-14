@@ -8,7 +8,7 @@ _Nov 13, 2023_
 
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
-- 💫 Introduced new [Stepper](https://mui.com/joy-ui/react-stepper/) component in Joy UI(#39688) @siriwatknp
+- 💫 Introduced new [Stepper](https://mui.com/joy-ui/react-stepper/) component in Joy UI (#39688) @siriwatknp
 - other 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.14.18`
