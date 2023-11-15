@@ -14,15 +14,8 @@ import ButtonGroupButtonContext from './ButtonGroupButtonContext';
 import { ButtonGroupOwnerState, ButtonGroupProps, ButtonGroupTypeMap } from './ButtonGroup.types';
 
 const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
-  const {
-    classes,
-    color = 'primary',
-    disabled,
-    disableElevation,
-    fullWidth,
-    orientation = 'horizontal',
-    variant = 'outlined',
-  } = ownerState;
+  const { classes, color, disabled, disableElevation, fullWidth, orientation, variant } =
+    ownerState;
 
   const slots = {
     root: [
@@ -53,13 +46,7 @@ const ButtonGroupRoot = styled('div', {
   slot: 'Root',
   overridesResolver(props, styles) {
     const {
-      ownerState: {
-        color = 'primary',
-        disableElevation,
-        fullWidth,
-        orientation = 'horizontal',
-        variant = 'outlined',
-      },
+      ownerState: { color, disableElevation, fullWidth, orientation, variant },
     } = props;
 
     return [
@@ -152,8 +139,8 @@ const ButtonGroupRoot = styled('div', {
     ...(ownerState.variant === 'text' &&
       ownerState.color !== 'inherit' && {
         borderColor: theme.vars
-          ? `rgba(${theme.vars.palette[ownerState.color ?? 'primary'].mainChannel} / 0.5)`
-          : alpha(theme.palette[ownerState.color ?? 'primary'].main, 0.5),
+          ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
+          : alpha(theme.palette[ownerState.color].main, 0.5),
       }),
     ...(ownerState.variant === 'outlined' &&
       ownerState.orientation === 'horizontal' && {
@@ -179,7 +166,7 @@ const ButtonGroupRoot = styled('div', {
       }),
     ...(ownerState.variant === 'contained' &&
       ownerState.color !== 'inherit' && {
-        borderColor: (theme.vars || theme).palette[ownerState.color ?? 'primary'].dark,
+        borderColor: (theme.vars || theme).palette[ownerState.color].dark,
       }),
     '&:hover': {
       ...(ownerState.variant === 'outlined' &&
