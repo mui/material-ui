@@ -115,8 +115,86 @@ export default function ComponentsGallery() {
     setPage(0);
   };
 
+  // Copy button logic
+  const [copySnackbarOpen, setCopySnackbarOpen] = React.useState(false);
+  const [copySnackbarExited, setCopySnackbarExited] = React.useState(true);
+  const copyNodeRef = React.useRef(null);
+
+  async function copyTheme() {
+    const response = await fetch('/static/components-gallery/base-theme.css');
+    const css = await response.text();
+
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(css);
+    setCopySnackbarOpen(true)
+  };
+
+  const handleCopyClose = (_: any, reason: SnackbarCloseReason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setCopySnackbarOpen(false);
+  };
+
+  const handleCopyOnEnter = () => {
+    setCopySnackbarExited(false);
+  };
+
+  const handleCopyOnExited = () => {
+    setCopySnackbarExited(true);
+  };
+
   return (
     <Stack gap={2} style={{ padding: '8px' }}>
+      {/* Copy theme button */}
+      <div>
+        <Button className="GalleryButton" style={{ float: 'right'}} onClick={copyTheme}>Copy theme</Button>
+        <Snackbar
+          autoHideDuration={2000}
+          open={copySnackbarOpen}
+          onClose={handleCopyClose}
+          exited={copySnackbarExited}
+          className="GallerySnackbar"
+        >
+          <Transition
+            timeout={{ enter: 400, exit: 400 }}
+            in={copySnackbarOpen}
+            appear
+            unmountOnExit
+            onEnter={handleCopyOnEnter}
+            onExited={handleCopyOnExited}
+            nodeRef={copyNodeRef}
+          >
+            {(status) => (
+              <div
+                className="GallerySnackbar-content"
+                style={{
+                  transform: positioningStyles[status],
+                  transition: 'transform 300ms ease',
+                }}
+                ref={copyNodeRef}
+              >
+                <CheckRoundedIcon
+                  sx={{
+                    color: 'success.main',
+                    flexShrink: 0,
+                    width: '1.25rem',
+                    height: '1.5rem',
+                  }}
+                />
+                <div className="snackbar-message">
+                  <p className="snackbar-title">Copied!</p>
+                  <p className="snackbar-description">
+                    The theme stylesheet has been copied!
+                  </p>
+                </div>
+                <CloseIcon onClick={handleCopyClose} className="snackbar-close-icon" />
+              </div>
+            )}
+          </Transition>
+        </Snackbar>
+      </div>
       <div>
         <Badge
           slotProps={{
