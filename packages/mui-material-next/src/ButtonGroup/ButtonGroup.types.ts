@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps, Overwrite } from '@mui/types';
 import { Theme } from '../styles';
 import { ButtonGroupClasses } from './buttonGroupClasses';
 
@@ -92,4 +92,19 @@ export type ButtonGroupProps<
   component?: React.ElementType;
 };
 
-export interface ButtonGroupOwnerState extends ButtonGroupProps {}
+export interface ButtonGroupOwnerState
+  extends Overwrite<
+    ButtonGroupProps,
+    Pick<
+      Required<ButtonGroupProps>,
+      | 'color'
+      | 'disabled'
+      | 'disableElevation'
+      | 'disableRipple'
+      | 'disableTouchRipple'
+      | 'fullWidth'
+      | 'orientation'
+      | 'size'
+      | 'variant'
+    >
+  > {}
