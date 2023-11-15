@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import chainPropTypes from './chainPropTypes';
+import chainPropTypes from '../chainPropTypes';
 
 function isClassComponent(elementType: Function) {
   // elementType.prototype?.isReactComponent
