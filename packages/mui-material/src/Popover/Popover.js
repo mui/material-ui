@@ -7,13 +7,11 @@ import {
   useSlotProps,
   isHostComponent,
 } from '@mui/base';
-import {
-  chainPropTypes,
-  integerPropType,
-  elementTypeAcceptingRef,
-  refType,
-  HTMLElementType,
-} from '@mui/utils';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import integerPropType from '@mui/utils/integerPropType';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import refType from '@mui/utils/refType';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import debounce from '../utils/debounce';

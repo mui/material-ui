@@ -1,4 +1,2 @@
-export {
-  unstable_detectScrollType as detectScrollType,
-  unstable_getNormalizedScrollLeft as getNormalizedScrollLeft,
-} from '@mui/utils';
+export { detectScrollType } from '@mui/utils/detectScrollType';
+export { getNormalizedScrollLeft } from '@mui/utils/getNormalizedScrollLeft';
