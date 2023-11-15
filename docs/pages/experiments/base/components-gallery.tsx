@@ -126,8 +126,8 @@ export default function ComponentsGallery() {
 
     // Copy the text inside the text field
     navigator.clipboard.writeText(css);
-    setCopySnackbarOpen(true)
-  };
+    setCopySnackbarOpen(true);
+  }
 
   const handleCopyClose = (_: any, reason: SnackbarCloseReason) => {
     if (reason === 'clickaway') {
@@ -149,7 +149,9 @@ export default function ComponentsGallery() {
     <Stack gap={2} style={{ padding: '8px' }}>
       {/* Copy theme button */}
       <div>
-        <Button className="GalleryButton" style={{ float: 'right'}} onClick={copyTheme}>Copy theme</Button>
+        <Button className="GalleryButton" style={{ float: 'right' }} onClick={copyTheme}>
+          Copy theme
+        </Button>
         <Snackbar
           autoHideDuration={2000}
           open={copySnackbarOpen}
@@ -185,9 +187,7 @@ export default function ComponentsGallery() {
                 />
                 <div className="snackbar-message">
                   <p className="snackbar-title">Copied!</p>
-                  <p className="snackbar-description">
-                    The theme stylesheet has been copied!
-                  </p>
+                  <p className="snackbar-description">The theme stylesheet has been copied!</p>
                 </div>
                 <CloseIcon onClick={handleCopyClose} className="snackbar-close-icon" />
               </div>
