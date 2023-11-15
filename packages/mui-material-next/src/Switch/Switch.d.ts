@@ -1,16 +1,18 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps, Theme } from '..';
-import { SwitchBaseProps } from '../internal/SwitchBase';
+import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
+// eslint-disable-next-line no-restricted-imports
+import type { SwitchBaseProps } from '@mui/material/internal/SwitchBase';
 import { SwitchClasses } from './switchClasses';
 
 export interface SwitchPropsSizeOverrides {}
 
 export interface SwitchPropsColorOverrides {}
 
-export interface SwitchProps
-  extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon'> {
+type NewType = SwitchBaseProps;
+
+export interface SwitchProps extends StandardProps<NewType, 'checkedIcon' | 'color' | 'icon'> {
   /**
    * The icon to display when the component is checked.
    */

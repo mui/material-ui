@@ -3,11 +3,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@mui/utils';
+import { refType, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha, darken, lighten } from '@mui/system';
-import capitalize from '../utils/capitalize';
-import SwitchBase from '../internal/SwitchBase';
+import SwitchBase from '@mui/material/internal/SwitchBase';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
