@@ -614,7 +614,7 @@ const Dialog = styled(AnimatedElement)({
     transform: 'translateY(0)',
     opacity: 1,
     boxShadow: 'var(--Panel-shadow)',
-    transition: 'opacity 0.3s ease, transform 0.2s ease-out',
+    transition: 'opacity 0.3s ease, transform 0.3s ease-out',
   },
 });
 
