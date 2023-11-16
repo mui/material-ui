@@ -10,9 +10,8 @@ export interface SwitchPropsSizeOverrides {}
 
 export interface SwitchPropsColorOverrides {}
 
-type NewType = SwitchBaseProps;
-
-export interface SwitchProps extends StandardProps<NewType, 'checkedIcon' | 'color' | 'icon'> {
+export interface SwitchProps
+  extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon'> {
   /**
    * The icon to display when the component is checked.
    */
