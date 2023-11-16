@@ -9,19 +9,19 @@ export default function LinearProgressVariables() {
       componentName="LinearProgress"
       data={[
         {
-          var: [linearProgressCssVars.thickness],
+          var: linearProgressCssVars.thickness,
           defaultValue: '6px',
         },
         {
-          var: [linearProgressCssVars.radius],
+          var: linearProgressCssVars.radius,
           helperText: "Default to root's thickness",
         },
         {
-          var: [linearProgressCssVars.progressThickness],
+          var: linearProgressCssVars.progressThickness,
           helperText: "Default to root's thickness",
         },
         {
-          var: [linearProgressCssVars.progressRadius],
+          var: linearProgressCssVars.progressRadius,
           helperText: "Default to root's thickness",
         },
       ]}
