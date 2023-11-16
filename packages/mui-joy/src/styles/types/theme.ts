@@ -1,3 +1,4 @@
+import { LinearProgressCssVarsType } from '@mui/joy/LinearProgress/LinearProgressCssVars';
 import { OverridableStringUnion } from '@mui/types';
 import {
   Breakpoints,
@@ -123,6 +124,8 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   applyStyles: ApplyStyles<DefaultColorScheme | ExtendedColorScheme>;
 }
 
-export type SxProps = SystemSxProps<Theme>;
+export type CssVarsType = LinearProgressCssVarsType;
+
+export type SxProps = SystemSxProps<Theme> & CssVarsType;
 
 export type SystemProps = SystemSystemProps<Theme>;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import LinearProgress from '@mui/joy/LinearProgress';
+import LinearProgress, { linearProgressCssVars } from '@mui/joy/LinearProgress';
 import Box from '@mui/joy/Box';
 import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
@@ -9,19 +9,19 @@ export default function LinearProgressVariables() {
       componentName="LinearProgress"
       data={[
         {
-          var: '--LinearProgress-thickness',
+          var: [linearProgressCssVars.thickness],
           defaultValue: '6px',
         },
         {
-          var: '--LinearProgress-radius',
+          var: [linearProgressCssVars.radius],
           helperText: "Default to root's thickness",
         },
         {
-          var: '--LinearProgress-progressThickness',
+          var: [linearProgressCssVars.progressThickness],
           helperText: "Default to root's thickness",
         },
         {
-          var: '--LinearProgress-progressRadius',
+          var: [linearProgressCssVars.progressRadius],
           helperText: "Default to root's thickness",
         },
       ]}
