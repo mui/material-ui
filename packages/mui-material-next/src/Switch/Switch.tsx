@@ -7,12 +7,14 @@ import { refType, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha, darken, lighten } from '@mui/system';
 import SwitchBase from '@mui/material/internal/SwitchBase';
+import { OverridableComponent } from '@mui/types';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
+import { SwitchOwnerState, SwitchProps, SwitchTypeMap } from './Switch.types';
 
-const useUtilityClasses = (ownerState) => {
-  const { classes, edge, size, color, checked, disabled } = ownerState;
+const useUtilityClasses = (ownerState: SwitchOwnerState) => {
+  const { classes, edge, size = 'medium', color = 'primary', checked, disabled } = ownerState;
 
   const slots = {
     root: ['root', edge && `edge${capitalize(edge)}`, `size${capitalize(size)}`],
@@ -47,7 +49,7 @@ const SwitchRoot = styled('span', {
       styles[`size${capitalize(ownerState.size)}`],
     ];
   },
-})(({ ownerState }) => ({
+})<{ ownerState: SwitchOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
   width: 34 + 12 * 2,
   height: 14 + 12 * 2,
@@ -96,7 +98,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
       ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(
+})<{ ownerState: SwitchOwnerState }>(
   ({ theme }) => ({
     position: 'absolute',
     top: 0,
@@ -141,29 +143,32 @@ const SwitchSwitchBase = styled(SwitchBase, {
     },
     ...(ownerState.color !== 'default' && {
       [`&.${switchClasses.checked}`]: {
-        color: (theme.vars || theme).palette[ownerState.color].main,
+        color: (theme.vars || theme).palette[ownerState.color ?? 'primary'].main,
         '&:hover': {
           backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
+            ? `rgba(${theme.vars.palette[ownerState.color ?? 'primary'].mainChannel} / ${
                 theme.vars.palette.action.hoverOpacity
               })`
-            : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
+            : alpha(
+                theme.palette[ownerState.color ?? 'primary'].main,
+                theme.palette.action.hoverOpacity,
+              ),
           '@media (hover: none)': {
             backgroundColor: 'transparent',
           },
         },
         [`&.${switchClasses.disabled}`]: {
           color: theme.vars
-            ? theme.vars.palette.Switch[`${ownerState.color}DisabledColor`]
+            ? theme.vars.palette.Switch[`${ownerState.color ?? 'primary'}DisabledColor`]
             : `${
                 theme.palette.mode === 'light'
-                  ? lighten(theme.palette[ownerState.color].main, 0.62)
-                  : darken(theme.palette[ownerState.color].main, 0.55)
+                  ? lighten(theme.palette[ownerState.color ?? 'primary'].main, 0.62)
+                  : darken(theme.palette[ownerState.color ?? 'primary'].main, 0.55)
               }`,
         },
       },
       [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
-        backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
+        backgroundColor: (theme.vars || theme).palette[ownerState.color ?? 'primary'].main,
       },
     }),
   }),
@@ -173,7 +178,7 @@ const SwitchTrack = styled('span', {
   name: 'MuiSwitch',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})(({ theme }) => ({
+})<{ ownerState: SwitchOwnerState }>(({ theme }) => ({
   height: '100%',
   width: '100%',
   borderRadius: 14 / 2,
@@ -193,7 +198,7 @@ const SwitchThumb = styled('span', {
   name: 'MuiSwitch',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
-})(({ theme }) => ({
+})<{ ownerState: SwitchOwnerState }>(({ theme }) => ({
   boxShadow: (theme.vars || theme).shadows[1],
   backgroundColor: 'currentColor',
   width: 20,
@@ -201,7 +206,21 @@ const SwitchThumb = styled('span', {
   borderRadius: '50%',
 }));
 
-const Switch = React.forwardRef(function Switch(inProps, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Switch](https://mui.com/material-ui/react-switch/)
+ * - [Transfer List](https://mui.com/material-ui/react-transfer-list/)
+ *
+ * API:
+ *
+ * - [Switch API](https://mui.com/material-ui/api/switch/)
+ * - inherits [IconButton API](https://mui.com/material-ui/api/icon-button/)
+ */
+const Switch = React.forwardRef(function Switch<
+  BaseComponentType extends React.ElementType = SwitchTypeMap['defaultComponent'],
+>(inProps: SwitchProps<BaseComponentType>, ref: React.ForwardedRef<HTMLSpanElement>) {
   const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
   const { className, color = 'primary', edge = false, size = 'medium', sx, ...other } = props;
 
@@ -232,7 +251,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
       <SwitchTrack className={classes.track} ownerState={ownerState} />
     </SwitchRoot>
   );
-});
+}) as OverridableComponent<SwitchTypeMap>;
 
 Switch.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
