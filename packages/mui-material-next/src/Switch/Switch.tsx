@@ -256,7 +256,7 @@ const Switch = React.forwardRef(function Switch<
 Switch.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * If `true`, the component is checked.
@@ -266,6 +266,10 @@ Switch.propTypes /* remove-proptypes */ = {
    * The icon to display when the component is checked.
    */
   checkedIcon: PropTypes.node,
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    */
@@ -356,6 +360,6 @@ Switch.propTypes /* remove-proptypes */ = {
    * The browser uses "on" as the default value.
    */
   value: PropTypes.any,
-};
+} as any;
 
 export default Switch;
