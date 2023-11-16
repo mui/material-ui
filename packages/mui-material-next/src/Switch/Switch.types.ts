@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { Theme } from '@mui/material/styles';
+import { InternalStandardProps as StandardProps } from '@mui/material/index';
 // eslint-disable-next-line no-restricted-imports
 import type { SwitchBaseProps } from '@mui/material/internal/SwitchBase';
 import { SwitchClasses } from './switchClasses';
@@ -55,16 +56,4 @@ export interface SwitchProps
   value?: unknown;
 }
 
-/**
- *
- * Demos:
- *
- * - [Switch](https://mui.com/material-ui/react-switch/)
- * - [Transfer List](https://mui.com/material-ui/react-transfer-list/)
- *
- * API:
- *
- * - [Switch API](https://mui.com/material-ui/api/switch/)
- * - inherits [IconButton API](https://mui.com/material-ui/api/icon-button/)
- */
-export default function Switch(props: SwitchProps): JSX.Element;
+export interface SwitchOwnerState extends SwitchProps {}
