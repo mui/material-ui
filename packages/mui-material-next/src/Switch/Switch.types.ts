@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { Theme } from '@mui/material/styles';
 import { InternalStandardProps as StandardProps } from '@mui/material/index';
-// eslint-disable-next-line no-restricted-imports
 import type { SwitchBaseProps } from '@mui/material/internal/SwitchBase';
 import { SwitchClasses } from './switchClasses';
 
@@ -11,7 +10,7 @@ export interface SwitchPropsSizeOverrides {}
 
 export interface SwitchPropsColorOverrides {}
 
-export interface SwitchProps
+export interface SwitchOwnProps
   extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon'> {
   /**
    * The icon to display when the component is checked.
@@ -55,5 +54,18 @@ export interface SwitchProps
    */
   value?: unknown;
 }
+
+export interface SwitchTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'span',
+> {
+  props: SwitchOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
+}
+
+export type SwitchProps<
+  RootComponentType extends React.ElementType = SwitchTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<SwitchTypeMap<AdditionalProps, RootComponentType>, RootComponentType>;
 
 export interface SwitchOwnerState extends SwitchProps {}
