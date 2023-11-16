@@ -19,7 +19,7 @@ export const resolveSxValue = <K extends string>(
   function resolveSx(sxProp: SxProps) {
     if (typeof sxProp === 'function') {
       const result = sxProp(theme);
-      resolveSx(result);
+      resolveSx(result as SxProps);
     } else if (Array.isArray(sxProp)) {
       sxProp.forEach((sxItem) => {
         if (typeof sxItem !== 'boolean') {
