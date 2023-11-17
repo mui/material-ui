@@ -181,6 +181,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     component = 'div',
     columns = 4,
     spacing = 1,
+    sequential = false,
     defaultColumns,
     defaultHeight,
     defaultSpacing,
@@ -235,6 +236,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
     const columnHeights = new Array(currentNumberOfColumns).fill(0);
     let skip = false;
+    let nextOrder = 1;
     masonry.childNodes.forEach((child) => {
       if (child.nodeType !== Node.ELEMENT_NODE || child.dataset.class === 'line-break' || skip) {
         return;
@@ -259,11 +261,20 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
         }
       }
       if (!skip) {
-        // find the current shortest column (where the current item will be placed)
-        const currentMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-        columnHeights[currentMinColumnIndex] += childHeight;
-        const order = currentMinColumnIndex + 1;
-        child.style.order = order;
+        if (sequential) {
+          columnHeights[nextOrder - 1] += childHeight;
+          child.style.order = nextOrder;
+          nextOrder += 1;
+          if (nextOrder > currentNumberOfColumns) {
+            nextOrder = 1;
+          }
+        } else {
+          // find the current shortest column (where the current item will be placed)
+          const currentMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+          columnHeights[currentMinColumnIndex] += childHeight;
+          const order = currentMinColumnIndex + 1;
+          child.style.order = order;
+        }
       }
     });
     if (!skip) {
@@ -374,6 +385,11 @@ Masonry.propTypes /* remove-proptypes */ = {
    * The default spacing of the component. Like `spacing`, it is a factor of the theme's spacing. This is provided for server-side rendering.
    */
   defaultSpacing: PropTypes.number,
+  /**
+   * Allows using sequential order rather than adding to shortest column
+   * @default false
+   */
+  sequential: PropTypes.bool,
   /**
    * Defines the space between children. It is a factor of the theme's spacing.
    * @default 1
