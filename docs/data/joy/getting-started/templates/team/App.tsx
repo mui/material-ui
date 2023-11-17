@@ -138,7 +138,7 @@ export default function TeamExample() {
         direction="row"
         justifyContent="space-around"
         spacing={1}
-        sx={(theme) => ({
+        sx={{
           display: { xs: 'flex', sm: 'none' },
           zIndex: '999',
           bottom: 0,
@@ -148,7 +148,7 @@ export default function TeamExample() {
           backgroundColor: 'background.body',
           borderTop: '1px solid',
           borderColor: 'divider',
-        })}
+        }}
       >
         <Button
           variant="plain"
