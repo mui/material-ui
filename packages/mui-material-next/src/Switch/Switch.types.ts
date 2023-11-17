@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { Theme } from '@mui/material/styles';
+// eslint-disable-next-line no-restricted-imports
 import { InternalStandardProps as StandardProps } from '@mui/material';
 import type { SwitchBaseProps } from '@mui/material/internal/SwitchBase';
 import { SwitchClasses } from './switchClasses';
