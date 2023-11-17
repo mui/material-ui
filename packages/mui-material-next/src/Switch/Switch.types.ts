@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { Theme } from '@mui/material/styles';
-import { InternalStandardProps as StandardProps } from '@mui/material/index';
+import { InternalStandardProps as StandardProps } from '@mui/material';
 import type { SwitchBaseProps } from '@mui/material/internal/SwitchBase';
 import { SwitchClasses } from './switchClasses';
 
