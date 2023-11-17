@@ -160,6 +160,7 @@ export default function ComponentsGallery() {
   // Copy button logic
   const [copySnackbarOpen, setCopySnackbarOpen] = React.useState(false);
   const [copySnackbarExited, setCopySnackbarExited] = React.useState(true);
+  const [rootStyles, setRootStyles] = React.useState('');
   const copyNodeRef = React.useRef(null);
 
   async function copyTheme() {
@@ -199,7 +200,6 @@ export default function ComponentsGallery() {
 
   const settingsOpen = Boolean(settingsAnchor);
   const settingsId = settingsOpen ? 'settings-popup' : undefined;
-  const [rootStyles, setRootStyles] = React.useState('');
 
   const colorPickerSliderChangeHandler = (e: Event, value: number | number[]) => {
     setRootStyles(`
@@ -217,7 +217,7 @@ export default function ComponentsGallery() {
 }
     `);
 
-    let styleTag = document.getElementById('gallery-overrides') ?? document.createElement('style');
+    const styleTag = document.getElementById('gallery-overrides') ?? document.createElement('style');
     styleTag.id = 'gallery-overrides';
     styleTag.innerHTML = rootStyles;
     document.getElementsByTagName('head')[0].appendChild(styleTag);
