@@ -23,7 +23,7 @@
   "homepage": "https://mui.com/material-ui/guides/styled-components/",
   "funding": {
     "type": "opencollective",
-    "url": "https://opencollective.com/mui"
+    "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",

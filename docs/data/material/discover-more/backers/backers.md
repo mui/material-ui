@@ -18,7 +18,7 @@ Diamond sponsors are those who've pledged \$1,500/month or more to MUI. [Tier be
 
 ## Gold sponsors
 
-via [Open Collective](https://opencollective.com/mui) or via [the for-profit](https://www.patreon.com/oliviertassinari)
+via [Open Collective](https://opencollective.com/mui-org) or via [the for-profit](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="tidelift.com" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=96" srcset="https://avatars.githubusercontent.com/u/30204434?s=192 2x" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
@@ -34,30 +34,30 @@ Gold sponsors are those who've pledged \$500/month or more to MUI. [Tier benefit
 
 ## Silver sponsors
 
-via [Open Collective](https://opencollective.com/mui)
+via [Open Collective](https://opencollective.com/mui-org)
 
 <p style="overflow: auto;">
-  <object type="image/svg+xml" data="https://opencollective.com/mui/tiers/silver-sponsor.svg?avatarHeight=70&width=600" style="border-radius: 10px;">Silver Sponsors</object>
+  <object type="image/svg+xml" data="https://opencollective.com/mui-org/tiers/silver-sponsor.svg?avatarHeight=70&width=600" style="border-radius: 10px;">Silver Sponsors</object>
 </p>
 
 Silvers sponsors are those who've pledged $250/month to $500/month to MUI. [Tier benefits](#silver).
 
 ## Bronze sponsors
 
-via [Open Collective](https://opencollective.com/mui)
+via [Open Collective](https://opencollective.com/mui-org)
 
 <p style="overflow: auto;">
-  <object type="image/svg+xml" data="https://opencollective.com/mui/tiers/bronze-sponsor.svg?avatarHeight=60&width=600" style="border-radius: 10px;">Bronze Sponsors</object>
+  <object type="image/svg+xml" data="https://opencollective.com/mui-org/tiers/bronze-sponsor.svg?avatarHeight=60&width=600" style="border-radius: 10px;">Bronze Sponsors</object>
 </p>
 
 Bronze sponsors are those who've pledged $100/month to $250/month to MUI. [Tier benefits](#sliver).
 
 ## Backers
 
-via [Open Collective](https://opencollective.com/mui)
+via [Open Collective](https://opencollective.com/mui-org)
 
 <p style="overflow: auto;">
-  <object type="image/svg+xml" data="https://opencollective.com/mui/tiers/backer.svg?avatarHeight=50&width=600" style="border-radius: 10px;">Backers</object>
+  <object type="image/svg+xml" data="https://opencollective.com/mui-org/tiers/backer.svg?avatarHeight=50&width=600" style="border-radius: 10px;">Backers</object>
 </p>
 
 ## FAQ
