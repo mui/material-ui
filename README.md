@@ -178,3 +178,4 @@ These great services sponsor MUI's core infrastructure:
 [CodeCov](https://about.codecov.io/) lets us monitor test coverage.
 
 </div>
+<div class="Popover-message Popover-message--large Box color-shadow-large Popover-message--top-right" style="width:360px;"></div>
