@@ -48,7 +48,7 @@
     "@types/prop-types": "^15.7.10",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
-    "@types/react-test-renderer": "^18.0.5",
+    "@types/react-test-renderer": "^18.0.6",
     "@types/sinon": "^10.0.20",
     "typescript": "^5.1.6"
   },
