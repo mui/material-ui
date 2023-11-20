@@ -1486,33 +1486,32 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-3.0.0.tgz#798622546b63847e82389e473fd67f2707d82247"
   integrity sha512-hBI9tfBtuPIi885ZsZ32IMEU/5nlZH/KOVYJCOh7gyMxaVLGmLedYqFN6Ui1LXkI8JlC8IsuC0rF0btcRZKd5g==
 
-"@definitelytyped/header-parser@^0.0.187", "@definitelytyped/header-parser@latest":
+"@definitelytyped/header-parser@^0.0.189", "@definitelytyped/header-parser@latest":
+  version "0.0.189"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.189.tgz#9e7a62778973728e63caa854a25466f23c169798"
+  integrity sha512-5zzTaVAJayCJXWgm6T3kn0V/J/TGY/5mqkfio9bGI0dlKvV/xt0gXCBUFpUT6a0buPcqpsr5eS540XftHvgThQ==
+  dependencies:
+    "@definitelytyped/typescript-versions" "0.0.181"
+    "@definitelytyped/utils" "0.0.187"
+    semver "^7.5.4"
+
+"@definitelytyped/typescript-versions@0.0.181", "@definitelytyped/typescript-versions@^0.0.181", "@definitelytyped/typescript-versions@latest":
+  version "0.0.181"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.181.tgz#104320db46b4ce69bfcbfa7f10e5b0d034471d2f"
+  integrity sha512-D3iVQSPLNg8r9xissfcrBP0dsv9hsexz1z/KXBJ97fsqSLIGIiAzaDJJnY9NLzbAOzeazk6Ezetn8k0sIlXetg==
+
+"@definitelytyped/utils@0.0.187", "@definitelytyped/utils@^0.0.187", "@definitelytyped/utils@latest":
   version "0.0.187"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.187.tgz#57224e00e0275c61339193b23a4a874c0f71cd4b"
-  integrity sha512-nib+RZ15Sh02bKFhWqLgTW7ADJObIga7kC6JxPMtJIZqK5PJisKlylHB/9Wt2N2kMIzYuKI0LDWkgQn/8WtRZQ==
+  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.187.tgz#26c123209a03df938f0b669aa95db16dd0c9ea72"
+  integrity sha512-sJlAKn7Rnqrw4qvgYudjs8vyqsOzgwWmqX20QWt7EW1c3Z1Pt7JkeaaSA3TSWDlwjP6gLGbf2pmDOBnQkAdR5w==
   dependencies:
-    "@definitelytyped/typescript-versions" "0.0.180"
-    "@definitelytyped/utils" "0.0.185"
-    semver "^7.3.7"
-
-"@definitelytyped/typescript-versions@0.0.180", "@definitelytyped/typescript-versions@^0.0.180", "@definitelytyped/typescript-versions@latest":
-  version "0.0.180"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.180.tgz#3834f55fd151c4c74a143a2dbc1110eb8b358583"
-  integrity sha512-susENartHdWecD3kvD5iaMpYOFmlEjY9JRvPqTAoWyOeEsUKQbQsxsyHm1OQkfn7YzbURuNvS+5jkSIIbIy59A==
-
-"@definitelytyped/utils@0.0.185", "@definitelytyped/utils@^0.0.185", "@definitelytyped/utils@latest":
-  version "0.0.185"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.185.tgz#04625555f1a6eb77542867d82b7110cb3d00a7f6"
-  integrity sha512-IuE+rzrkrquNlddzBAr9tKyvln9BIVqQ1ExuKuZrPUg2RpMX+dAsNLXG7OtOEf0jfYkLli9p0moS54O2D/HjXg==
-  dependencies:
-    "@definitelytyped/typescript-versions" "0.0.180"
+    "@definitelytyped/typescript-versions" "0.0.181"
     "@qiwi/npm-registry-client" "^8.9.1"
-    "@types/node" "^14.14.35"
+    "@types/node" "^16.18.61"
     charm "^1.0.2"
-    fs-extra "^8.1.0"
     minimatch "^9.0.3"
-    tar "^6.1.11"
-    tar-stream "^2.1.4"
+    tar "^6.2.0"
+    tar-stream "^3.1.6"
     which "^4.0.0"
 
 "@discoveryjs/json-ext@0.5.7", "@discoveryjs/json-ext@^0.5.0":
@@ -3865,7 +3864,7 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-10.0.4.tgz#b5331955ebca216604691fd4fcd2dbdc2bd559a4"
   integrity sha512-xKU7bUjiFTIttpWaIZ9qvgg+22O1nmbA+HRxdlR+u6TWsGfmFdXrheJoK4fFxrHNVIOBDvDNKZG+LYBpMHpX3w==
 
-"@types/node@*", "@types/node@>=10.0.0", "@types/node@>=12", "@types/node@>=12.0.0", "@types/node@>=18.0.0", "@types/node@^14.0.1", "@types/node@^14.14.35", "@types/node@^18.18.9":
+"@types/node@*", "@types/node@>=10.0.0", "@types/node@>=12", "@types/node@>=12.0.0", "@types/node@>=18.0.0", "@types/node@^14.0.1", "@types/node@^16.18.61", "@types/node@^18.18.9":
   version "18.18.9"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.18.9.tgz#5527ea1832db3bba8eb8023ce8497b7d3f299592"
   integrity sha512-0f5klcuImLnG4Qreu9hPj/rEfFq6YRc5n2mAjSsH+ec/mJL+3voBH0+8T7o8RpFjH7ovc+TRsL/c7OYIQsPTfQ==
@@ -16426,7 +16425,7 @@ tar-stream@^2.1.0, tar-stream@^2.1.4, tar-stream@^2.2.0, tar-stream@~2.2.0:
     inherits "^2.0.3"
     readable-stream "^3.1.1"
 
-tar-stream@^3.1.5:
+tar-stream@^3.1.5, tar-stream@^3.1.6:
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/tar-stream/-/tar-stream-3.1.6.tgz#6520607b55a06f4a2e2e04db360ba7d338cc5bab"
   integrity sha512-B/UyjYwPpMBv+PaFSWAmtYjwdrlEaZQEhMIBFNC5oEG8lpiW8XjcSdmEaClj28ArfKScKHs2nshz3k2le6crsg==
@@ -16435,7 +16434,7 @@ tar-stream@^3.1.5:
     fast-fifo "^1.2.0"
     streamx "^2.15.0"
 
-tar@6.1.11, tar@^6.1.11, tar@^6.1.2:
+tar@6.1.11:
   version "6.1.11"
   resolved "https://registry.yarnpkg.com/tar/-/tar-6.1.11.tgz#6760a38f003afa1b2ffd0ffe9e9abbd0eab3d621"
   integrity sha512-an/KZQzQUkZCkuoAA64hM92X0Urb6VpRhAFllDzz44U2mcD5scmT3zBc4VgVpkugF580+DQn8eAFSyoQt0tznA==
@@ -16443,6 +16442,18 @@ tar@6.1.11, tar@^6.1.11, tar@^6.1.2:
     chownr "^2.0.0"
     fs-minipass "^2.0.0"
     minipass "^3.0.0"
+    minizlib "^2.1.1"
+    mkdirp "^1.0.3"
+    yallist "^4.0.0"
+
+tar@^6.1.11, tar@^6.1.2, tar@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/tar/-/tar-6.2.0.tgz#b14ce49a79cb1cd23bc9b016302dea5474493f73"
+  integrity sha512-/Wo7DcT0u5HUV486xg675HtjNd3BXZ6xDbzsCUZPt5iw8bTQ63bP0Raut3mvro9u+CUyq7YQd8Cx55fsZXxqLQ==
+  dependencies:
+    chownr "^2.0.0"
+    fs-minipass "^2.0.0"
+    minipass "^5.0.0"
     minizlib "^2.1.1"
     mkdirp "^1.0.3"
     yallist "^4.0.0"
