@@ -3133,20 +3133,20 @@
   resolved "https://registry.yarnpkg.com/@sinonjs/text-encoding/-/text-encoding-0.7.2.tgz#5981a8db18b56ba38ef0efb7d995b12aa7b51918"
   integrity sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==
 
-"@slack/bolt@^3.14.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@slack/bolt/-/bolt-3.14.0.tgz#8b1d9c0e9e15aefbc7fa154bc5da19bb6b2173ef"
-  integrity sha512-Q7QifLEruuXLQQh0H/JODuBSH0UoiQdMxR+g4aVNdJQemv91XyHgbxRZgGuH8Vi1rVrOyDSLS9czS5jwMh2ewQ==
+"@slack/bolt@^3.15.0":
+  version "3.15.0"
+  resolved "https://registry.yarnpkg.com/@slack/bolt/-/bolt-3.15.0.tgz#2e464e0e8e11f2b9e6ad855e434ca4d08d2a68a8"
+  integrity sha512-B+N6oaEb1BuXXzP9eb0Yc5J/vLII+ZNYgKewia3+lAoiWTSbQ3cto6SCmglMnihsmZM6wjZUrKEK9Hg0+l90QQ==
   dependencies:
     "@slack/logger" "^4.0.0"
     "@slack/oauth" "^2.6.1"
     "@slack/socket-mode" "^1.3.2"
-    "@slack/types" "^2.8.0"
-    "@slack/web-api" "^6.7.1"
+    "@slack/types" "^2.9.0"
+    "@slack/web-api" "^6.10.0"
     "@types/express" "^4.16.1"
     "@types/promise.allsettled" "^1.0.3"
     "@types/tsscmp" "^1.0.0"
-    axios "^0.27.2"
+    axios "^1.6.0"
     express "^4.16.4"
     path-to-regexp "^6.2.1"
     please-upgrade-node "^3.2.0"
@@ -3196,15 +3196,15 @@
     p-queue "^2.4.2"
     ws "^7.5.3"
 
-"@slack/types@^2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@slack/types/-/types-2.8.0.tgz#11ea10872262a7e6f86f54e5bcd4f91e3a41fe91"
-  integrity sha512-ghdfZSF0b4NC9ckBA8QnQgC9DJw2ZceDq0BIjjRSv6XAZBXJdWgxIsYz0TYnWSiqsKZGH2ZXbj9jYABZdH3OSQ==
+"@slack/types@^2.8.0", "@slack/types@^2.9.0":
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/@slack/types/-/types-2.10.0.tgz#4766c7fb073e55b9b760af46e6f54add5c7f6a71"
+  integrity sha512-JXY9l49rf7dDgvfMZi0maFyugzGkvq0s5u+kDlD68WaRUhjZNLBDKZcsrycMsVVDFfyOK0R1UKkYGmy9Ph069Q==
 
-"@slack/web-api@^6.2.3", "@slack/web-api@^6.3.0", "@slack/web-api@^6.7.1", "@slack/web-api@^6.9.1":
-  version "6.9.1"
-  resolved "https://registry.yarnpkg.com/@slack/web-api/-/web-api-6.9.1.tgz#1058ee768a56d11be7d66874bc1d893d7ae68bb8"
-  integrity sha512-YqGbuiEJruhiDDsFb1EX6TqWNpyFoApJgkD9D0MQPaipiJyMUadscl8Vs2jfxkjNR0LspVQiCSDoeNWJK34GhQ==
+"@slack/web-api@^6.10.0", "@slack/web-api@^6.2.3", "@slack/web-api@^6.3.0", "@slack/web-api@^6.9.1":
+  version "6.10.0"
+  resolved "https://registry.yarnpkg.com/@slack/web-api/-/web-api-6.10.0.tgz#0316132f3cc455b14c2008464154c7966df03bec"
+  integrity sha512-UTX7EKWEf1MQ6+p//4KX7tNTbvzS2W9dbhd2hYk4Lt0mfXf9khe6ZYRYPnV7QBycYcZ3t6FJRJAB55GTcccZ/A==
   dependencies:
     "@slack/logger" "^3.0.0"
     "@slack/types" "^2.8.0"
@@ -5064,14 +5064,6 @@ axe-core@^4.6.2:
   version "4.6.3"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.6.3.tgz#fc0db6fdb65cc7a80ccf85286d91d64ababa3ece"
   integrity sha512-/BQzOX780JhsxDnPpH4ZiyrJAzcd8AfzFPkv+89veFSr1rcMjuq2JDCwypKaPeB6ljHp9KjXhPpjgCvQlWYuqg==
-
-axios@^0.27.2:
-  version "0.27.2"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
-  integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
-  dependencies:
-    follow-redirects "^1.14.9"
-    form-data "^4.0.0"
 
 axios@^1.0.0, axios@^1.5.0, axios@^1.6.0:
   version "1.6.0"
@@ -8679,7 +8671,7 @@ flow-parser@0.*:
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.186.0.tgz#ef6f4c7a3d8eb29fdd96e1d1f651b7ccb210f8e9"
   integrity sha512-QaPJczRxNc/yvp3pawws439VZ/vHGq+i1/mZ3bEdSaRy8scPgZgiWklSB6jN7y5NR9sfgL4GGIiBcMXTj3Opqg==
 
-follow-redirects@^1.0.0, follow-redirects@^1.14.9, follow-redirects@^1.15.0:
+follow-redirects@^1.0.0, follow-redirects@^1.15.0:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
