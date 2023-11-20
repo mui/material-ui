@@ -23,7 +23,10 @@ Box.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  children: PropTypes.node,
+  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
