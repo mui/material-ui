@@ -353,6 +353,112 @@ describe('<TablePagination />', () => {
     });
   });
 
+  describe('prop: backIconButtonProps', () => {
+    it('should apply props to the back button', () => {
+      const backIconButtonPropsDisabled = true;
+
+      const { getByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                backIconButtonProps={{ disabled: backIconButtonPropsDisabled }}
+                count={1}
+                page={0}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
+                rowsPerPage={10}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      const backButton = getByRole('button', { name: 'Go to previous page' });
+      expect(backButton).to.have.property('disabled', backIconButtonPropsDisabled);
+    });
+  });
+
+  describe('prop: nextIconButtonProps', () => {
+    it('should apply props to the next button', () => {
+      const nextIconButtonPropsDisabled = true;
+
+      const { getByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                nextIconButtonProps={{ disabled: nextIconButtonPropsDisabled }}
+                count={1}
+                page={0}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
+                rowsPerPage={10}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      const nextButton = getByRole('button', { name: 'Go to next page' });
+      expect(nextButton).to.have.property('disabled', nextIconButtonPropsDisabled);
+    });
+  });
+
+  describe('prop: disabled', () => {
+    it('should disable the first, last, next, and back buttons', () => {
+      const { getByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                disabled
+                showFirstButton
+                showLastButton
+                count={30}
+                page={1}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
+                rowsPerPage={10}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      const firstButton = getByRole('button', { name: 'Go to first page' });
+      const lastButton = getByRole('button', { name: 'Go to last page' });
+      const nextButton = getByRole('button', { name: 'Go to next page' });
+      const backButton = getByRole('button', { name: 'Go to previous page' });
+      expect(firstButton).to.have.property('disabled', true);
+      expect(lastButton).to.have.property('disabled', true);
+      expect(nextButton).to.have.property('disabled', true);
+      expect(backButton).to.have.property('disabled', true);
+    });
+
+    it('should disable TablePaginationSelect', () => {
+      const { getByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                disabled
+                count={10}
+                page={0}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
+                rowsPerPage={10}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      const combobox = getByRole('combobox');
+      expect(combobox.parentElement).to.have.class(inputClasses.disabled);
+    });
+  });
+
   describe('warnings', () => {
     beforeEach(() => {
       PropTypes.resetWarningCache();
@@ -455,6 +561,103 @@ describe('<TablePagination />', () => {
 
       expect(container).to.include.text('All');
       expect(container).to.include.text('1–25 of 25');
+    });
+  });
+
+  describe('prop: slotProps', () => {
+    describe('actions', () => {
+      describe('previousButton', () => {
+        it('should override backIconButtonProps', () => {
+          const slotPropsDisabled = false;
+          const backIconButtonPropsDisabled = true;
+
+          const { getByRole } = render(
+            <table>
+              <TableFooter>
+                <TableRow>
+                  <TablePagination
+                    backIconButtonProps={{ disabled: backIconButtonPropsDisabled }}
+                    slotProps={{
+                      actions: {
+                        previousButton: { disabled: slotPropsDisabled },
+                      },
+                    }}
+                    count={1}
+                    page={0}
+                    onPageChange={noop}
+                    onRowsPerPageChange={noop}
+                    rowsPerPage={10}
+                  />
+                </TableRow>
+              </TableFooter>
+            </table>,
+          );
+
+          const backButton = getByRole('button', { name: 'Go to previous page' });
+          expect(slotPropsDisabled).not.to.equal(backIconButtonPropsDisabled);
+          expect(backButton).to.have.property('disabled', slotPropsDisabled);
+        });
+      });
+
+      describe('nextButton', () => {
+        it('should override nextIconButtonProps', () => {
+          const slotPropsDisabled = false;
+          const nextIconButtonPropsDisabled = true;
+
+          const { getByRole } = render(
+            <table>
+              <TableFooter>
+                <TableRow>
+                  <TablePagination
+                    nextIconButtonProps={{ disabled: nextIconButtonPropsDisabled }}
+                    slotProps={{
+                      actions: { nextButton: { disabled: slotPropsDisabled } },
+                    }}
+                    count={1}
+                    page={0}
+                    onPageChange={noop}
+                    onRowsPerPageChange={noop}
+                    rowsPerPage={10}
+                  />
+                </TableRow>
+              </TableFooter>
+            </table>,
+          );
+
+          const nextButton = getByRole('button', { name: 'Go to next page' });
+          expect(slotPropsDisabled).not.to.equal(nextIconButtonPropsDisabled);
+          expect(nextButton).to.have.property('disabled', slotPropsDisabled);
+        });
+      });
+    });
+
+    describe('select', () => {
+      it('should override SelectProps', () => {
+        const slotPropsDisabled = false;
+        const SelectPropsDisabled = true;
+
+        const { getByRole } = render(
+          <table>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  SelectProps={{ disabled: SelectPropsDisabled }}
+                  slotProps={{ select: { disabled: slotPropsDisabled } }}
+                  count={1}
+                  page={0}
+                  onPageChange={noop}
+                  onRowsPerPageChange={noop}
+                  rowsPerPage={10}
+                />
+              </TableRow>
+            </TableFooter>
+          </table>,
+        );
+
+        const combobox = getByRole('combobox');
+        expect(slotPropsDisabled).not.to.equal(SelectPropsDisabled);
+        expect(combobox.parentElement).not.to.have.class(inputClasses.disabled);
+      });
     });
   });
 
