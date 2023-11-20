@@ -217,7 +217,8 @@ export default function ComponentsGallery() {
 }
     `);
 
-    const styleTag = document.getElementById('gallery-overrides') ?? document.createElement('style');
+    const styleTag =
+      document.getElementById('gallery-overrides') ?? document.createElement('style');
     styleTag.id = 'gallery-overrides';
     styleTag.innerHTML = rootStyles;
     document.getElementsByTagName('head')[0].appendChild(styleTag);
