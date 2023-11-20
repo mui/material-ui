@@ -266,7 +266,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     slots = {},
     slotProps = {},
     ...other
-  } = useForwardedInput<InputProps>(props, inputClasses);
+  } = useForwardedInput<InputProps>({ ...props, disabledInProp: inProps.disabled }, inputClasses);
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
