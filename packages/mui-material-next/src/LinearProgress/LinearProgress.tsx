@@ -143,7 +143,9 @@ const LinearProgressRoot = styled('span', {
   '--md-comp-linear-progress-indicator-track-color': tokens.sys.color.surfaceContainerHighest,
   '--md-comp-linear-progress-indicator-active-indicator-height': '4px',
   '--md-comp-linear-progress-indicator-active-indicator-color':
-    tokens.sys.color[ownerState.color ?? 'primary'],
+    ownerState.color !== 'inherit'
+      ? tokens.sys.color[ownerState.color ?? 'primary']
+      : 'currentColor',
   '--md-comp-linear-progress-indicator-four-color-active-indicator-one-color':
     tokens.sys.color.primary,
   '--md-comp-linear-progress-indicator-four-color-active-indicator-two-color':
@@ -399,7 +401,16 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
+  color: PropTypes.oneOf([
+    'error',
+    'info',
+    'inherit',
+    'primary',
+    'secondary',
+    'success',
+    'tertiary',
+    'warning',
+  ]),
   /**
    * If `true`, the component render indeterminate or query mode using four colors instead of one.
    * This only works if variant is `indeterminate` or `query`.
