@@ -30,9 +30,9 @@ export default function ServerModal() {
         container={() => rootRef.current}
       >
         <ModalContent sx={style}>
-          <h3 id="server-modal-title" className="modal-title">
+          <h2 id="server-modal-title" className="modal-title">
             Server-side modal
-          </h3>
+          </h2>
           <span id="server-modal-description" className="modal-description">
             If you disable JavaScript, you will still see me.
           </span>
@@ -65,13 +65,13 @@ const Modal = styled(BaseModal)`
   display: flex;
   align-items: center;
   justify-content: center;
+
   &.MuiModal-hidden {
     visibility: hidden;
   }
 `;
 
 const style = {
-  position: 'relative',
   width: 400,
 };
 

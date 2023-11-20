@@ -23,9 +23,9 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <ModalContent sx={style}>
-            <h3 id="transition-modal-title" className="modal-title">
+            <h2 id="transition-modal-title" className="modal-title">
               Text in a child modal
-            </h3>
+            </h2>
             <p id="transition-modal-description" className="modal-description">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             </p>

@@ -22,9 +22,9 @@ export default function ModalUnstyled() {
         slots={{ backdrop: StyledBackdrop }}
       >
         <ModalContent sx={style}>
-          <h3 id="unstyled-modal-title" className="modal-title">
+          <h2 id="unstyled-modal-title" className="modal-title">
             Text in a modal
-          </h3>
+          </h2>
           <p id="unstyled-modal-description" className="modal-description">
             Aliquid amet deserunt earum!
           </p>
