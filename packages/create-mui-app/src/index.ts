@@ -4,13 +4,16 @@ import fs from 'fs-extra';
 import path from 'path';
 
 import runCreateMuiCli from './cli';
+import { renderTitle, showNextSteps } from './cli/render';
 import { buildPkgInstallerMap, PackageManager } from './installers';
 import createProject, { FrameworkOption } from './utils/createProject';
 import installDependencies from './utils/installDependencies';
 import { logger } from './utils/logger';
 
 async function main() {
-  const { appName, flags, framework, packages: pkgs } = await runCreateMuiCli();
+  renderTitle();
+  const { appName, flags, packages: pkgs, ...opts } = await runCreateMuiCli();
+  const framework = opts.framework as FrameworkOption;
   const packages = buildPkgInstallerMap(pkgs);
   const packageManager = flags.packageManager as PackageManager;
 
@@ -18,7 +21,7 @@ async function main() {
     projectName: appName,
     packages,
     typescript: flags.typescript,
-    framework: framework as FrameworkOption,
+    framework,
     packageManager,
   });
 
@@ -38,6 +41,8 @@ async function main() {
   });
 
   await installDependencies({ projectDir, pkgManager: packageManager });
+
+  showNextSteps(packageManager, framework);
 }
 
 main().catch((err) => {
