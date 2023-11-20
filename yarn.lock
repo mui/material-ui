@@ -3932,10 +3932,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-swipeable-views-utils@^0.13.6":
-  version "0.13.6"
-  resolved "https://registry.yarnpkg.com/@types/react-swipeable-views-utils/-/react-swipeable-views-utils-0.13.6.tgz#2bf82aedea79598b1a4bcb10908b98ddc90ca3ca"
-  integrity sha512-yyGR0wUTw9kUqfYHIE9xI86E8G+GkAVp+Awzy7Sk9iQaZi2MZuKi3yWSWY6PdQPGsuvYZqgw9EuaWY3dmbNlpg==
+"@types/react-swipeable-views-utils@^0.13.7":
+  version "0.13.7"
+  resolved "https://registry.yarnpkg.com/@types/react-swipeable-views-utils/-/react-swipeable-views-utils-0.13.7.tgz#9dd524c78612837779367ede885a0a8097444464"
+  integrity sha512-ED8pf8dq3S79uWtP8EnSdrg7dUCrxyL9Uapq1dSA2mz+H83SjS8vsqmlFWmmBQoTuEHsQp5Ru9fxxsofQ+bI9Q==
   dependencies:
     "@material-ui/types" "^4.0.0"
     "@types/react" "*"
