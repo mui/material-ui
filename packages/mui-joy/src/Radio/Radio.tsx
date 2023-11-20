@@ -302,6 +302,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const name = inProps.name || radioGroup?.name || nameProp;
   const disableIcon = inProps.disableIcon || radioGroup?.disableIcon || disableIconProp;
   const overlay = inProps.overlay || radioGroup?.overlay || overlayProp;
+  const isDisabled = inProps.disabled || formControl?.disabled || disabledProp;
 
   const radioChecked =
     typeof checkedProp === 'undefined' && !!value
@@ -310,7 +311,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const useRadioProps = {
     checked: radioChecked,
     defaultChecked,
-    disabled: disabledProp ?? formControl?.disabled,
+    disabled: isDisabled,
     onBlur,
     onChange,
     onFocus,

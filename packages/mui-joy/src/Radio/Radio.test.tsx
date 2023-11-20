@@ -2,7 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import Radio, { radioClasses as classes } from '@mui/joy/Radio';
-import { ThemeProvider } from '@mui/joy/styles';
+import { ThemeProvider, extendTheme } from '@mui/joy/styles';
+import FormControl from '@mui/joy/FormControl';
 
 describe('<Radio />', () => {
   const { render } = createRenderer();
@@ -69,6 +70,28 @@ describe('<Radio />', () => {
 
   it('the radio can be disabled', () => {
     const { getByRole } = render(<Radio disabled />);
+
+    expect(getByRole('radio')).to.have.property('disabled', true);
+  });
+
+  it('disabled prop from FormControl should take precedence over disabled prop from theme', () => {
+    const { getByRole } = render(
+      <ThemeProvider
+        theme={extendTheme({
+          components: {
+            JoyRadio: {
+              defaultProps: {
+                disabled: false,
+              },
+            },
+          },
+        })}
+      >
+        <FormControl disabled>
+          <Radio value="outlined" label="Outlined" />
+        </FormControl>
+      </ThemeProvider>,
+    );
 
     expect(getByRole('radio')).to.have.property('disabled', true);
   });
