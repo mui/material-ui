@@ -3209,7 +3209,7 @@
   resolved "https://registry.yarnpkg.com/@slack/types/-/types-2.10.0.tgz#4766c7fb073e55b9b760af46e6f54add5c7f6a71"
   integrity sha512-JXY9l49rf7dDgvfMZi0maFyugzGkvq0s5u+kDlD68WaRUhjZNLBDKZcsrycMsVVDFfyOK0R1UKkYGmy9Ph069Q==
 
-"@slack/web-api@^6.10.0", "@slack/web-api@^6.2.3", "@slack/web-api@^6.3.0", "@slack/web-api@^6.9.1":
+"@slack/web-api@^6.10.0", "@slack/web-api@^6.2.3", "@slack/web-api@^6.3.0":
   version "6.10.0"
   resolved "https://registry.yarnpkg.com/@slack/web-api/-/web-api-6.10.0.tgz#0316132f3cc455b14c2008464154c7966df03bec"
   integrity sha512-UTX7EKWEf1MQ6+p//4KX7tNTbvzS2W9dbhd2hYk4Lt0mfXf9khe6ZYRYPnV7QBycYcZ3t6FJRJAB55GTcccZ/A==
