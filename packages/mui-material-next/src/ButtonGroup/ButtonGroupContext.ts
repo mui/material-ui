@@ -16,7 +16,7 @@ export interface ButtonGroupContextType {
 /**
  * @ignore - internal component.
  */
-const ButtonGroupContext = React.createContext<ButtonGroupContextType>({});
+const ButtonGroupContext = React.createContext<ButtonGroupContextType | null>(null);
 
 if (process.env.NODE_ENV !== 'production') {
   ButtonGroupContext.displayName = 'ButtonGroupContext';
