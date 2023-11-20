@@ -65,7 +65,7 @@ export default function ClassesList(props: ClassesListProps) {
             isExtendable={!!description}
           >
             {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
-            {displayClassKeys && (
+            {displayClassKeys && !isGlobal && (
               <p className="prop-list-class">
                 <span className="prop-list-title">{'Rule name'}:</span>
                 <code className="Api-code">{key}</code>

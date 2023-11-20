@@ -62,18 +62,14 @@ export default function ClassesTable(props: ClassesTableProps) {
       </thead>
       <tbody>
         {classes.map((params) => {
-          const { className, key, description } = params;
+          const { className, key, description, isGlobal } = params;
 
           return (
             <tr key={className} id={getHash({ componentName, className: key })}>
               <td>
                 <span className="class-name">.{className}</span>
               </td>
-              {displayClassKeys && (
-                <td>
-                  <span className="class-key">{key}</span>
-                </td>
-              )}
+              {displayClassKeys && <td>{!isGlobal && <span className="class-key">{key}</span>}</td>}
               <td>
                 <span
                   dangerouslySetInnerHTML={{
