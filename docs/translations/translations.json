@@ -519,6 +519,7 @@
     "/joy-ui/react-drawer": "Drawer",
     "/joy-ui/react-link": "Link",
     "/joy-ui/react-menu": "Menu",
+    "/joy-ui/react-stepper": "Stepper",
     "/joy-ui/react-tabs": "Tabs",
     "/joy-ui/react-box": "Box",
     "/joy-ui/react-grid": "Grid",
