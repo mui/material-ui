@@ -25,7 +25,7 @@ Box.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.node,
-    PropTypes.func,
+    PropTypes.instanceOf(Promise),
   ]),
   /**
    * The component used for the root node.
