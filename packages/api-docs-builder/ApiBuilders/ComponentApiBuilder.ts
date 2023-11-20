@@ -726,7 +726,7 @@ export default async function generateComponentApi(
 
               definitions.forEach((definition) => {
                 // definition.value.expression is defined when the source is in TypeScript.
-                const expression = definition.value.expression
+                const expression = definition.value?.expression
                   ? definition.get('expression')
                   : definition;
                 if (expression.value?.callee) {
@@ -803,7 +803,7 @@ export default async function generateComponentApi(
   attachTranslations(reactApi);
 
   // eslint-disable-next-line no-console
-  console.log('Built API docs for', reactApi.name);
+  console.log('Built API docs for', reactApi.apiPathname);
 
   const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
   const normalizedFilename = reactApi.filename.replace(/\\/g, '/');

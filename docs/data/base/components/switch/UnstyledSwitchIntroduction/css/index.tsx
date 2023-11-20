@@ -120,6 +120,7 @@ function Styles() {
       }
 
       .CustomSwitchIntroduction-thumb {
+        border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
         display: block;
         width: 16px;
         height: 16px;
