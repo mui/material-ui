@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import AdGuest from 'docs/src/modules/components/AdGuest';
 import Alert from '@mui/material/Alert';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import { alpha } from '@mui/material/styles';
@@ -12,7 +13,7 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-
+import BrandingProvider from 'docs/src/BrandingProvider';
 import PropertiesSection, {
   getPropsToC,
 } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
@@ -183,14 +184,15 @@ export default function ApiPage(props) {
     >
       <MarkdownElement>
         <h1>{pageContent.name} API</h1>
-        <Typography
-          variant="h5"
-          component="p"
-          className={`description${disableAd ? '' : ' ad'}`}
-          gutterBottom
-        >
+        <Typography variant="h5" component="p" className="description" gutterBottom>
           {description}
-          {disableAd ? null : <Ad />}
+          {disableAd ? null : (
+            <BrandingProvider>
+              <AdGuest>
+                <Ad />
+              </AdGuest>
+            </BrandingProvider>
+          )}
         </Typography>
         <Heading hash="demos" />
         <Alert
