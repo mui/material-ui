@@ -184,7 +184,7 @@ describe('<ButtonGroup />', () => {
   });
 
   it('should forward the context to children', () => {
-    let context: ButtonGroupContextType;
+    let context: ButtonGroupContextType | null;
     render(
       <ButtonGroup size="large" variant="contained">
         <ButtonGroupContext.Consumer>
