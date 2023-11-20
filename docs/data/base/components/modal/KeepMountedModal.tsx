@@ -22,9 +22,9 @@ export default function KeepMountedModal() {
         keepMounted
       >
         <ModalContent sx={style}>
-          <h3 id="keep-mounted-modal-title" className="modal-title">
+          <h2 id="keep-mounted-modal-title" className="modal-title">
             Text in a modal
-          </h3>
+          </h2>
           <p id="keep-mounted-modal-description" className="modal-description">
             Aliquid amet deserunt earum!
           </p>

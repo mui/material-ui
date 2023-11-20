@@ -24,9 +24,9 @@ export default function NestedModal() {
         slots={{ backdrop: StyledBackdrop }}
       >
         <ModalContent sx={style}>
-          <h3 id="parent-modal-title" className="modal-title">
+          <h2 id="parent-modal-title" className="modal-title">
             Text in a modal
-          </h3>
+          </h2>
           <p id="parent-modal-description" className="modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </p>
@@ -57,9 +57,9 @@ function ChildModal() {
         slots={{ backdrop: StyledBackdrop }}
       >
         <ModalContent sx={[style, { width: '240px' }]}>
-          <h3 id="child-modal-title" className="modal-title">
+          <h2 id="child-modal-title" className="modal-title">
             Text in a child modal
-          </h3>
+          </h2>
           <p id="child-modal-description" className="modal-description">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           </p>
@@ -149,7 +149,6 @@ const ModalContent = styled(Box)(
   font-weight: 500;
   text-align: start;
   position: relative;
-
 
   & .modal-title {
     margin: 0;
