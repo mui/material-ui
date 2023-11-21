@@ -791,7 +791,8 @@ export default async function generateComponentApi(
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
 
   const { slots, classes } = parseSlotsAndClasses({
-    project,
+    typescriptProject: project,
+    projectSettings,
     componentName: reactApi.name,
     muiName: reactApi.muiName,
   });

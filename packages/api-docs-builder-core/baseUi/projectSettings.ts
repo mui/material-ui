@@ -2,6 +2,10 @@ import path from 'path';
 import { LANGUAGES } from 'docs/config';
 import { ProjectSettings } from '@mui-internal/api-docs-builder';
 import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
+import {
+  unstable_generateUtilityClass as generateUtilityClass,
+  unstable_isGlobalState as isGlobalState,
+} from '@mui/base';
 import { getBaseUiComponentInfo } from './getBaseUiComponentInfo';
 import { getBaseUiHookInfo } from './getBaseUiHookInfo';
 import { generateBaseUIApiPages } from './generateBaseUiApiPages';
@@ -34,4 +38,6 @@ export const projectSettings: ProjectSettings = {
 
     return source;
   },
+  generateClassName: generateUtilityClass,
+  isGlobalClassName: isGlobalState,
 };

@@ -17,3 +17,7 @@ export function generateUtilityClass(
   const globalStateClass = globalStateClasses[slot as GlobalStateSlot];
   return globalStateClass ? buildStateClass(globalStateClass) : buildSlotClass(componentName, slot);
 }
+
+export function isGlobalState(slot: string) {
+  return globalStateClasses[slot as GlobalStateSlot] !== undefined;
+}

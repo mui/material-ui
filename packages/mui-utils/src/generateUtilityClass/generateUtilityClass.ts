@@ -1,7 +1,5 @@
 import ClassNameGenerator from '../ClassNameGenerator';
 
-// If GlobalStateSlot is changed, GLOBAL_STATE_CLASSES in
-// \packages\api-docs-builder\utils\parseSlotsAndClasses.ts must be updated accordingly.
 export type GlobalStateSlot = keyof typeof globalStateClasses;
 
 export const globalStateClasses = {
@@ -28,4 +26,8 @@ export default function generateUtilityClass(
   return globalStateClass
     ? `${globalStatePrefix}-${globalStateClass}`
     : `${ClassNameGenerator.generate(componentName)}-${slot}`;
+}
+
+export function isGlobalState(slot: string) {
+  return globalStateClasses[slot as GlobalStateSlot] !== undefined;
 }

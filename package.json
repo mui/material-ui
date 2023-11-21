@@ -163,6 +163,7 @@
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^5.3.9",
     "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.3.2",
     "webpack": "^5.88.2",
     "webpack-bundle-analyzer": "^4.9.1",

@@ -36,4 +36,12 @@ export interface ProjectSettings {
    * Fuction called to detemine whether to skip the generation of a particular component's API docs
    */
   skipComponent: (filename: string) => boolean;
+  /**
+   * Function called to generate the class name for a component (or its slot)
+   */
+  generateClassName: (componentName: string, slotOrState: string) => string;
+  /**
+   * Determines if a given slot or state is a global state
+   */
+  isGlobalClassName: (slotOrState: string) => boolean;
 }
