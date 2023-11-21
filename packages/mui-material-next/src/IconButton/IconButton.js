@@ -5,9 +5,9 @@ import clsx from 'clsx';
 import { chainPropTypes, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
+import ButtonBase from '@mui/material/ButtonBase';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import ButtonBase from '../ButtonBase';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -241,7 +241,7 @@ IconButton.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.oneOfType([
+  sx: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,

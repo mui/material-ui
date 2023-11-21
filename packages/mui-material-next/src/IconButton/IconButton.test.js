@@ -3,10 +3,11 @@ import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Icon from '@mui/material/Icon';
-import IconButton, { iconButtonClasses as classes } from '.';
-import ButtonBase from '../ButtonBase';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import ButtonBase from '@mui/material/ButtonBase';
+import { iconButtonClasses as classes } from '@mui/material/IconButton';
+import IconButton from '.';
 
 describe('<IconButton />', () => {
   const { render } = createRenderer();
@@ -21,8 +22,7 @@ describe('<IconButton />', () => {
     skip: ['componentProp', 'componentsProp'],
   }));
 
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('should render Icon children with right classes', () => {
+  it('should render Icon children with right classes', () => {
     const childClassName = 'child-woof';
     const iconChild = <Icon data-testid="icon" className={childClassName} />;
     const { getByTestId } = render(<IconButton>{iconChild}</IconButton>);
