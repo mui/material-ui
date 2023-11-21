@@ -9,7 +9,7 @@ unstyled: /base-ui/react-input/
 
 <p class="description">The Input component facilitates the entry of text data from the user.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
