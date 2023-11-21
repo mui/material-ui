@@ -145,37 +145,71 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
   const typographySlotProps = slotProps.typography ?? componentsProps.typography;
 
   let label = labelProp;
+  const labelRef = React.useRef(null);
+  const stackRef = React.useRef(null);
+
+  const [isLabelMultiline, setIsLabelMultiline] = React.useState(false);
+
+  React.useEffect(() => {
+    if (labelRef.current && stackRef.current) {
+      const { clientHeight } = stackRef.current;
+      const computedStyle = window.getComputedStyle(labelRef.current);
+      const lineHeightValue = parseFloat(computedStyle.getPropertyValue('line-height'));
+      console.log(clientHeight, lineHeightValue);
+      setIsLabelMultiline(clientHeight > lineHeightValue);
+    }
+  }, []);
+  console.log(isLabelMultiline);
   if (label != null && label.type !== Typography && !disableTypography) {
     label = (
-      <Typography
-        component="span"
-        {...typographySlotProps}
-        className={clsx(classes.label, typographySlotProps?.className)}
-      >
-        {label}
-      </Typography>
+            <Typography
+                    component="span"
+                    {...typographySlotProps}
+                    className={clsx(classes.label, typographySlotProps?.className)}
+                    ref={labelRef}
+            >
+              {label}
+            </Typography>
     );
   }
 
   return (
-    <FormControlLabelRoot
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      ref={ref}
-      {...other}
-    >
-      {React.cloneElement(control, controlProps)}
-      {required ? (
-        <Stack display="block">
-          {label}
-          <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
-            &thinsp;{'*'}
-          </AsteriskComponent>
-        </Stack>
-      ) : (
-        label
-      )}
-    </FormControlLabelRoot>
+          <FormControlLabelRoot
+                  className={clsx(classes.root, className)}
+                  ownerState={ownerState}
+                  ref={ref}
+                  {...other}
+          >
+            {isLabelMultiline ? (
+              <Stack direction="row">
+                {React.cloneElement(control, controlProps)}
+                {required ? (
+                  <Stack display="block" >
+                    {label}
+                    <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
+                      &thinsp;{'*'}
+                    </AsteriskComponent>
+                  </Stack>
+                ) : (
+                  label
+                )}
+              </Stack>
+            ) : (
+              <Stack direction="row">
+                {React.cloneElement(control, controlProps)}
+                {required ? (
+                        <Stack display="block" ref={stackRef}>
+                            {label}
+                            <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
+                                &thinsp;{'*'}
+                            </AsteriskComponent>
+                        </Stack>
+                ) : (
+                        label
+                )}
+            </Stack>
+            )}
+          </FormControlLabelRoot>
   );
 });
 
