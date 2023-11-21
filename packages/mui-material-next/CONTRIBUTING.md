@@ -2,30 +2,30 @@
 
 The Material You components are targeted for v6, so they will be developed on the `material-next` package.
 
-The progress for each component will be tracked in a separate GitHub issue. If you wish to contribute to the migration go to a component’s linked issue to see what tasks are missing (see progress list below).
+The progress for each component will be tracked in a separate GitHub issue. If you wish to contribute to the migration go to a component’s linked issue to see what tasks are missing (see progress tracker [here](https://github.com/mui/material-ui/issues/29345)).
 
-If the issue doesn’t exist, create it, name it `[material-next][<ComponentName>] Add <ComponentName> component`, and assign @DiegoAndai. The issue has to contain (at least) a task for each of the steps below (use the [Slider issue](https://github.com/mui/material-ui/issues/37527) as a template).
+If the issue doesn’t exist, create it, name it `[<ComponentName>][material-next] Add <ComponentName> component`, and assign @DiegoAndai. The issue has to contain (at least) a task for each of the steps below (use the [Slider issue](https://github.com/mui/material-ui/issues/37527) as a template).
 
 ## Steps
 
-1. **Copy component files from `material` (v5) to `material-next`**, including tests, types, and utils. Keep in mind to:
-    1. Add component export to `packages/mui-material-next/src/index.ts`
-    2. Change imports from `@mui/material` to `@mui/material-next`
-    3. If there are utils that don’t exist in `material-next`, add them by copying from `material`
-    4. Some utils imported from `../utils` might already exist in `@mui/utils`, if so, use the latter
-2. **Migrate component to Typescript**. The extension `.d.ts` should be replaced with `.types.ts` (except for `index.d.ts` which won’t be necessary)
-3. **Remove deprecated `components` and `componentsProps` props**, leaving only `slots` and `slotProps`
-4. **Drop support for `ThemeProvider` in favor of `CssVarsProvider`**. In practice, this means:
-    1. Consuming tokens from `theme.vars` instead of `theme`
-    2. In tests, using `CssVarsProvider` and `extendTheme` (both imported from `@mui/material-next/styles`) instead of `ThemeProvider` and `createTheme`, as well as providing the same `CssVarsProvier` and `extendTheme` to `describeConformance`'s `ThemeProvider` and `createTheme` options.
-5. **Refactor component to use Base UI’s hook if it exists**
-6. **Implement Material You design specs**. Add missing tokens if necessary. Use [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens/v0_172) as a reference for token values
-7. **Add component playground to v5 docs**, take the [Slider playground](https://mui.com/material-ui/react-slider/#material-you-version) as an example
-8. **Refactor styles to use component CSS Variables**, following [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens) and Joy UI’s equivalent component (if it exists) as guides.
+1. Copy component files from `material` (v5) to `material-next`, including tests, types, and utils. Keep in mind to:
+    - Add component export to `packages/mui-material-next/src/index.ts`
+    - Change imports from `@mui/material` to `@mui/material-next`
+    - If there are utils that don’t exist in `material-next`, add them by copying from `material`
+    - Some utils imported from `../utils` might already exist in `@mui/utils`, if so, use the latter
+2. Migrate component to Typescript. The extension `.d.ts` should be replaced with `.types.ts` (except for `index.d.ts` which won’t be necessary)
+3. Remove deprecated `components` and `componentsProps` props, leaving only `slots` and `slotProps`
+4. Drop support for `ThemeProvider` in favor of `CssVarsProvider`. In practice, this means:
+    - Consuming tokens from `theme.vars` instead of `theme`
+    - In tests, using `CssVarsProvider` and `extendTheme` (both imported from `@mui/material-next/styles`) instead of `ThemeProvider` and `createTheme`, as well as providing the same `CssVarsProvier` and `extendTheme` to `describeConformance`'s `ThemeProvider` and `createTheme` options.
+5. Refactor component to use Base UI hooks if it exists
+6. Implement Material You design specs. Add missing tokens if necessary. Use [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens/v0_172) as a reference for token values
+7. Add component playground to v5 docs, take the [Slider playground](https://mui.com/material-ui/react-slider/#material-you-version) as an example
+8. Refactor styles to use component CSS Variables, following [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens) and Joy UI’s equivalent component (if it exists) as guides.
 
 ## Other things to keep in mind:
 
-- Except for the first one, there's no particular order for the steps, but the proposed order has provided the best experience so far
+- Except for the first step, there's no particular order to follow, but the proposed order has provided the best experience so far
 - For every step, checking the components that are already in `material-next` will be really helpful
 - Try to avoid breaking changes, keeping the component’s API the same:
     - An exception to this is to use Material You nomenclature and naming conventions, even if it would be a breaking change.
