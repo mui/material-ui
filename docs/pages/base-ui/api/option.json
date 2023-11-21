@@ -1,6 +1,5 @@
 {
   "props": {
-    "value": { "type": { "name": "any" }, "required": true },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "string" } },
     "slotProps": {
@@ -11,7 +10,8 @@
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}",
       "additionalInfo": { "slotsApi": true }
-    }
+    },
+    "value": { "type": { "name": "any" } }
   },
   "name": "Option",
   "imports": ["import { Option } from '@mui/base/Option';", "import { Option } from '@mui/base';"],

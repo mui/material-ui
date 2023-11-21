@@ -9,7 +9,7 @@ export interface OptionOwnProps<OptionValue> {
   /**
    * The value of the option.
    */
-  value: OptionValue;
+  value: OptionValue | null;
   children?: React.ReactNode;
   /**
    * If `true`, the option will be disabled.

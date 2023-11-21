@@ -146,7 +146,7 @@ Option.propTypes /* remove-proptypes */ = {
   /**
    * The value of the option.
    */
-  value: PropTypes.any.isRequired,
+  value: PropTypes.any,
 } as any;
 
 export { Option };
