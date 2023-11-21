@@ -5,7 +5,7 @@ import { capitalize, unstable_useId as useId } from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import ButtonGroupContext from '@mui/material/ButtonGroup/ButtonGroupContext';
+import { ButtonGroupContext } from '@mui/material/ButtonGroup';
 import CircularProgress from '@mui/material/CircularProgress';
 import resolveProps from '@mui/utils/resolveProps';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
