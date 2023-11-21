@@ -84,7 +84,9 @@ export default function ApiPage(props) {
     classes,
   } = pageContent;
 
-  const componentClasses = [...classes].sort((c1, c2) => c1.className.localeCompare(c2.className));
+  const componentClasses = Array.isArray(classes)
+    ? [...classes].sort((c1, c2) => c1.className.localeCompare(c2.className))
+    : [];
 
   const isJoyComponent = filename.includes('mui-joy');
   const isBaseComponent = filename.includes('mui-base');
