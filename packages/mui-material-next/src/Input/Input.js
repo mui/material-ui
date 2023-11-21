@@ -6,13 +6,12 @@ import { styled } from '@mui/material/styles';
 import { shouldForwardProp, useThemeProps } from '@mui/system';
 import {
   Input as BaseInput,
-  inputClasses,
   unstable_composeClasses as composeClasses,
   appendOwnerState,
 } from '@mui/base';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
-import { getInputUtilityClass } from './inputClasses';
+import inputClasses, { getInputUtilityClass } from './inputClasses';
 
 const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !== 'classes';
 
@@ -48,8 +47,17 @@ const inputOverridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, color, endAdornment, fullWidth, hiddenLabel, size, startAdornment, type } =
-    ownerState;
+  const {
+    classes,
+    color,
+    disabled,
+    endAdornment,
+    fullWidth,
+    hiddenLabel,
+    size,
+    startAdornment,
+    type,
+  } = ownerState;
   const slots = {
     root: [
       'root',
@@ -60,6 +68,7 @@ const useUtilityClasses = (ownerState) => {
     ],
     input: [
       'input',
+      disabled && 'disabled',
       type === 'search' && 'inputTypeSearch',
       size === 'small' && 'inputSizeSmall',
       hiddenLabel && 'inputHiddenLabel',
