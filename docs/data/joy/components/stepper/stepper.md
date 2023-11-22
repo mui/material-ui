@@ -1,5 +1,5 @@
 ---
-productId: material-ui
+productId: joy-ui
 title: React Stepper component
 components: Stepper, Step, StepButton, StepIndicator
 githubLabel: 'component: stepper'
