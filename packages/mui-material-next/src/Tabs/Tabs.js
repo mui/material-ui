@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -10,8 +11,7 @@ import {
   unstable_ownerWindow as ownerWindow,
 } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { TabsContext } from '@mui/base/TabsUnstyled';
-import useTabs from '@mui/base/useTabs';
+import { useTabs, TabsProvider } from '@mui/base/useTabs';
 import { styled, useThemeProps, useTheme } from '@mui/material/styles';
 import animate from '@mui/material/internal/animate';
 import TabScrollButton from '../TabScrollButton';
@@ -146,10 +146,7 @@ const TabsIndicator = styled('span', {
   }),
 }));
 
-const TabsScrollbarSize = styled(ScrollbarSize, {
-  name: 'MuiTabs',
-  slot: 'ScrollbarSize',
-})({
+const TabsScrollbarSize = styled(ScrollbarSize)({
   overflowX: 'auto',
   overflowY: 'hidden',
   // Hide dimensionless scrollbar on macOS
@@ -199,8 +196,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
   const size = vertical ? 'height' : 'width';
 
-  const { tabsContextValue } = useTabs({ ...props, direction: theme.direction });
-
   const ownerState = {
     ...props,
     component,
@@ -219,6 +214,11 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     centered: centered && !scrollable,
     scrollButtonsHideMobile: !allowScrollButtonsMobile,
   };
+
+  const { contextValue: tabsContextValue } = useTabs({
+    ...ownerState,
+    direction: theme.direction ?? 'ltr',
+  });
 
   const classes = useUtilityClasses(ownerState);
 
@@ -278,7 +278,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     }
 
     let tabMeta;
-    if (tabsNode && value !== false) {
+    if (tabsNode && value !== null) {
       const currentChildren = tabListRef.current.children;
 
       if (currentChildren.length > 0) {
@@ -413,7 +413,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     moveTabsScroll(getScrollSize());
   };
 
-  // TODO Remove <ScrollbarSize /> as browser support for hidding the scrollbar
+  // TODO Remove <ScrollbarSize /> as browser support for hiding the scrollbar
   // with CSS improves.
   const handleScrollbarSizeChange = React.useCallback((scrollbarWidth) => {
     setScrollerStyle({
@@ -579,7 +579,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const conditionalElements = getConditionalElements();
 
   return (
-    <TabsContext.Provider value={tabsContextValue}>
+    <TabsProvider value={tabsContextValue}>
       <TabsRoot
         className={clsx(classes.root, className)}
         ownerState={ownerState}
@@ -618,7 +618,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         </TabsScroller>
         {conditionalElements.scrollButtonEnd}
       </TabsRoot>
-    </TabsContext.Provider>
+    </TabsProvider>
   );
 });
 

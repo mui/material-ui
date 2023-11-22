@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "enum",
@@ -17,16 +17,23 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "ListSubheader",
+  "imports": [
+    "import ListSubheader from '@mui/material/ListSubheader';",
+    "import { ListSubheader } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "colorPrimary", "colorInherit", "gutters", "inset", "sticky"],
     "globalClasses": {},
     "name": "MuiListSubheader"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListSubheader",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-material/src/ListSubheader/ListSubheader.js",
   "inheritance": null,

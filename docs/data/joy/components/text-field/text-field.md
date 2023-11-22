@@ -1,7 +1,6 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Text Field component
-components: TextField
 githubLabel: 'component: text field'
 ---
 
@@ -21,7 +20,7 @@ To learn more why it has been removed, visit the [RFC](https://github.com/mui/ma
 
 Run this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-text-field-to-input) in your project's terminal:
 
-```sh
+```bash
 npx @mui/codemod v5.0.0/joy-text-field-to-input <path>
 ```
 
@@ -63,7 +62,7 @@ Replace the `TextField` with composition:
 +  <FormLabel>
 +    Label
 +  </FormLabel>
-+  <JoyInput
++  <Input
 +    placeholder="Placeholder"
 +    name="Name"
 +    type="tel"

@@ -1,16 +1,27 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" }, "default": "{}" },
+    "classes": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "additionalInfo": { "cssApi": true }
+    },
     "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
     "input": { "type": { "name": "element" }, "default": "<Input />" },
     "inputProps": { "type": { "name": "object" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLSelectElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "any" } },
     "variant": {
@@ -21,6 +32,10 @@
     }
   },
   "name": "NativeSelect",
+  "imports": [
+    "import NativeSelect from '@mui/material/NativeSelect';",
+    "import { NativeSelect } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
@@ -35,12 +50,15 @@
       "iconFilled",
       "iconOutlined",
       "iconStandard",
-      "nativeInput"
+      "nativeInput",
+      "error"
     ],
-    "globalClasses": { "disabled": "Mui-disabled" },
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error" },
     "name": "MuiNativeSelect"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiNativeSelect",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/NativeSelect/NativeSelect.js",
   "inheritance": { "component": "Input", "pathname": "/material-ui/api/input/" },

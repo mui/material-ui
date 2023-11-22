@@ -74,7 +74,7 @@ Many people discover web development through Material UI but it's also used in p
 
 <p class="blog-description">An example of size-limit</p>
 
-- **Development warnings**. Because the API surface of UI components is so large, it's easy to leave the beaten path. We have condensed a large number of the issues raised into a number of informative development mode warnings to help you stay on the right track. Aside from [propTypes](https://reactjs.org/docs/typechecking-with-proptypes.html), we have added more than [20 warnings](https://github.com/mui/material-ui/search?p=1&q=warning&type=&utf8=%E2%9C%93), and the list will grow as we discover more edge cases.
+- **Development warnings**. Because the API surface of UI components is so large, it's easy to leave the beaten path. We have condensed a large number of the issues raised into a number of informative development mode warnings to help you stay on the right track. Aside from [propTypes](https://legacy.reactjs.org/docs/typechecking-with-proptypes.html), we have added more than [20 warnings](https://github.com/mui/material-ui/search?p=1&q=warning&type=&utf8=%E2%9C%93), and the list will grow as we discover more edge cases.
 
 ## What's new in v1?
 
@@ -121,7 +121,7 @@ I'm so excited at the idea we are making it stable, but rest assured, it's just 
 
 Material UI is an MIT-licensed open source project. It's an independent project with ongoing development helped by the support of these awesome [backers](/material-ui/discover-more/backers/). If you'd like to join them, please consider:
 
-- [Become a backer or sponsor on OpenCollective](https://opencollective.com/mui).
+- [Become a backer or sponsor on Open Collective](https://opencollective.com/mui-org).
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
 
 ![Our gold sponsors](https://cdn-images-1.medium.com/max/2000/1*fx_BaOxYY0ZJo3n9iXI1Jg.png)<p class="blog-description">Our gold sponsors</p>

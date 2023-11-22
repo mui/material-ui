@@ -1,30 +1,31 @@
+'use client';
 import * as React from 'react';
 import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
 import {
   UseSnackbarParameters,
   SnackbarCloseReason,
-  UseSnackbarRootSlotProps,
+  UseSnackbarReturnValue,
 } from './useSnackbar.types';
-import extractEventHandlers from '../utils/extractEventHandlers';
+import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { EventHandlers } from '../utils/types';
 
 /**
  * The basic building block for creating custom snackbar.
  *
  * Demos:
  *
- * - [Unstyled Snackbar](https://mui.com/base/react-snackbar/#hook)
+ * - [Snackbar](https://mui.com/base-ui/react-snackbar/#hook)
  *
  * API:
  *
- * - [useSnackbar API](https://mui.com/base/api/use-snackbar/)
+ * - [useSnackbar API](https://mui.com/base-ui/react-snackbar/hooks-api/#use-snackbar)
  */
-export default function useSnackbar(parameters: UseSnackbarParameters) {
+export function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
   const {
     autoHideDuration = null,
     disableWindowBlurListener = false,
     onClose,
     open,
-    ref,
     resumeHideDuration,
   } = parameters;
 
@@ -99,32 +100,28 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
   }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
 
   const createHandleBlur =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.FocusEvent<HTMLDivElement, Element>) => {
+    (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLDivElement, Element>) => {
       const onBlurCallback = otherHandlers.onBlur;
       onBlurCallback?.(event);
       handleResume();
     };
 
   const createHandleFocus =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.FocusEvent<HTMLDivElement, Element>) => {
+    (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLDivElement, Element>) => {
       const onFocusCallback = otherHandlers.onFocus;
       onFocusCallback?.(event);
       handlePause();
     };
 
   const createMouseEnter =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const onMouseEnterCallback = otherHandlers.onMouseEnter;
       onMouseEnterCallback?.(event);
       handlePause();
     };
 
   const createMouseLeave =
-    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const onMouseLeaveCallback = otherHandlers.onMouseLeave;
       onMouseLeaveCallback?.(event);
       handleResume();
@@ -145,20 +142,19 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     return undefined;
   }, [disableWindowBlurListener, handleResume, open]);
 
-  const getRootProps = <TOther extends Record<string, React.EventHandler<any> | undefined> = {}>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseSnackbarRootSlotProps<TOther> => {
-    const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseSnackbarParameters>;
+  const getRootProps = <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps: ExternalProps = {} as ExternalProps,
+  ) => {
     const externalEventHandlers = {
-      ...propsEventHandlers,
-      ...otherHandlers,
+      ...extractEventHandlers(parameters),
+      ...extractEventHandlers(externalProps),
     };
 
     return {
-      ref,
       // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
       // See https://github.com/mui/material-ui/issues/29080
       role: 'presentation',
+      ...externalProps,
       ...externalEventHandlers,
       onBlur: createHandleBlur(externalEventHandlers),
       onFocus: createHandleFocus(externalEventHandlers),

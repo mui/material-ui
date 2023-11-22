@@ -279,7 +279,7 @@ A big thanks to the 12 contributors who made this release possible.
 
 - [styles] Add support for TypeScript 4.1 (#23692) @ldrick
 - [ClickAwayListener] Fix mounting behavior in Portals in React 17 (#23367) @eps1lon
-- [TrapFocus] Prevent possible crash in React 17 (#22263) @eps1lon
+- [FocusTrap] Prevent possible crash in React 17 (#22263) @eps1lon
 - [Tabs] Fix RTL scrollbar with Chrome 85 (#22830) @ankit
 
 ### `@material-ui/styles@v4.11.1`
@@ -444,7 +444,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 - Minify error messages in production (#21214) @eps1lon.
 
-  Using the [React error decoder](https://reactjs.org/docs/error-decoder.html/) as inspiration, the exceptions thrown by Material UI in production are now minified.
+  Using the [React error decoder](https://legacy.reactjs.org/docs/error-decoder.html/) as inspiration, the exceptions thrown by Material UI in production are now minified.
   You will be redirected to the documentation to [decode the error](https://mui.com/production-error/?code=4&args%5B%5D=500).
 
 ### `@material-ui/core@v4.10.2`
@@ -542,7 +542,7 @@ A big thanks to the 21 contributors who made this release possible.
 
 ### Core
 
-- [TrapFocus] Make an unstable version public (#21201) @dmtrKovalenko
+- [FocusTrap] Make an unstable version public (#21201) @dmtrKovalenko
 - [test] Track size of `@material-ui/utils` (#21240) @eps1lon
 - [core] Batch small changes (#21156) @oliviertassinari
 - [core] Batch small changes (#21249) @oliviertassinari
@@ -729,7 +729,7 @@ Here are some highlights ✨:
 - [Tabs] Improve customizability of the scroll buttons (#20783) @netochaves
 - [TextField] Fix caret color in autofill dark theme (#20857) @CarsonF
 - [Tooltip] Fix disableTouchListener behavior (#20807) @weslenng
-- [unstable_TrapFocus] Guard against dropped memo cache (#20848) @eps1lon
+- [FocusTrap] Guard against dropped memo cache (#20848) @eps1lon
 
 ### `@material-ui/styles@v4.9.13`
 
@@ -1293,7 +1293,7 @@ Here are some highlights ✨:
 
 - [Autocomplete] Fix list of countries (#19862) @FottyM
 - [TreeView] Fix conditional nodes support (#19849) @joshwooding
-- [Treeview] Add node selection support (#18357) @joshwooding
+- [TreeView] Add node selection support (#18357) @joshwooding
 
 ### Docs
 
@@ -3443,7 +3443,7 @@ Here are some highlights ✨:
 - [Portal] Synchronously call onRendered (#15943) @Arlevoy
 - [Radio] Fix dot misalignment in IE11 (#15952) @rupert-ong
 - [theme] Return default value for spacing when no args provided (#15891) @mbrookes
-- [TrapFocus] Fix error restoring focus when activeElement is null (#15967) @ryancogswell
+- [FocusTrap] Fix error restoring focus when activeElement is null (#15967) @ryancogswell
 - [core] Export useMediaQuery & useScrollTrigger in index.js (#15958) @adeelibr
 - [core] Migrate extend ButtonBaseProps typings (#15869) @joshwooding
 
@@ -3963,7 +3963,7 @@ You will learn more about v4 in the final release blog post and our plans for th
 - [core] Use terser for minification in umd bundle (#15491) @eps1lon
 - [test] Conform components forward ref to root component (#15425) @eps1lon
 - [test] Fix a flaky test (#15445) @oliviertassinari
-- [test] Keep track of the bundle size of TrapFocus (#15453) @oliviertassinari
+- [test] Keep track of the bundle size of FocusTrap (#15453) @oliviertassinari
 
 ## 4.0.0-alpha.8
 
@@ -5079,7 +5079,6 @@ Here are some highlights ✨:
   https://mui.com/lab/breadcrumbs
 - 📝 AppBar and Textfield demos in TypeScript (#13229) @eps1lon
 - 📝 Prepare support for 5 new documentation languages
-  https://translate.mui.com/project/material-ui-docs
 - And many more 🐛 bug fixes and 📝 documentation improvements.
 
 ### `@material-ui/core@v3.9.2`
@@ -5541,7 +5540,7 @@ you to add them up quickly in your head without having to worry about decimals.
 
 - [docs] Fix search suggestions on dark mode (#13874) @rfbotto
 - [docs] Add accessibility section to selection-controls with demo (#13896) @wyseguyonline
-- [docs] Add support for multiple demo variants e.g JS or Hooks (#13873) @adeelibr
+- [docs] Add support for multiple demo variants e.g. JS or Hooks (#13873) @adeelibr
 - [docs] Remove the withRoot HOC (#13909) @oliviertassinari
 - [docs] Add material-ui-pickers in pickers page (#13697) @dmtrKovalenko
 - [docs] Continue #13806 and port back some fix from @system (#13917) @oliviertassinari
@@ -5572,7 +5571,7 @@ Here are some highlights ✨:
 - [Tooltip] Suppress warning if button is disabled and title is empty (#13785) @rfbotto
 - [Dialog] Warn if className in PaperProps is set (#13797) @eps1lon
 - [TextField] Fix textfield label position when empty (#13791) @Studio384
-- [Popper] Save 7 KB gzipped (for people only using it) (#13804) @oliviertassinari
+- [Popper] Save 7 kB gzipped (for people only using it) (#13804) @oliviertassinari
 - [Modal] Handle modal mount interruption (#13778) @amensouissi
 - [Select] Make value prop required in TypeScript (#13810) @t49tran
 - [Popover] Fix onEntering event propagation (#13821) @ekoeditaa
@@ -5603,7 +5602,7 @@ Here are some highlights ✨:
 - [docs] Link tags HTML vs JSX (#13775) @benbowler
 - [docs] Missing text in docs (#13798) @Skn0tt
 - [docs] Add virtualized table demo (#13786) @joshwooding
-- [docs] Add OpenCollective gold sponsors manually (#13806) @mbrookes
+- [docs] Add Open Collective gold sponsors manually (#13806) @mbrookes
 - [docs] Add example of globally disabling animations (#13805) @joshwooding
 - [docs] Fix KeyboardIcon import name (#13822) @bryantabaird
 - [docs] Force common hoist-non-react-statics version (#13818) @eps1lon
@@ -5654,7 +5653,7 @@ It's a stability release after v3.6.0. It contains tons of bug fixes 🐛.
 ### Docs
 
 - [docs] Add support for changing react version in codesandbox demos (#13686) @joshwooding
-- [CHANGELOG] Add deprecation notice for Divider (#13700) @eps1lon
+- [changelog] Add deprecation notice for Divider (#13700) @eps1lon
 - [docs] Add notistack demo to the snackbar page (#13685) @iamhosseindhv
 - [docs] Remove Grid List dead code (#13731) @akhil-gautam
 - [docs] Reduce the no-results rate on Algolia (#13741) @oliviertassinari
@@ -5789,7 +5788,7 @@ This new package is a significant step forward. Some of the key features:
 - Supports 4 different APIs: hooks, styled-components, higher-order components and render props.
 - Allow accessing the component's props from within the style object.
 - Replace the usage of the old React APIs with the new ones.
-- 15.0 KB gzipped.
+- 15.0 kB gzipped.
 
 Here is an example: https://codesandbox.io/s/vjzn5z4k77.
 
@@ -6157,7 +6156,7 @@ A big thanks to the 18 contributors who made this release possible!
 Here are some highlights ✨:
 
 - 💅 Update the Typography implementation to better follow the specification (#12916) @eps1lon.
-- 📝 Enable [translating the documentation into Chinese](https://translate.mui.com) @mbrookes.
+- 📝 Enable [translating the documentation into Chinese](https://crowdin.com/project/material-ui-docs) @mbrookes.
 - 📝 Fix many SEO issues of the docs.
 - And many more bug fixes 🐛 and documentation improvements.
 
@@ -9378,7 +9377,7 @@ Here are some highlights ✨:
   - We have reduced the size of the bundle by ~8 kB gzipped.
   - The propTypes runtime checks are back. You might experience new warnings.
 - We have introduced 4 breaking changes.
-- You can support me on [Patreon](https://www.patreon.com/oliviertassinari) and the community on [OpenCollective](https://opencollective.com/mui) (#9460).
+- You can support me on [Patreon](https://www.patreon.com/oliviertassinari) and the community on [Open Collective](https://opencollective.com/mui-org) (#9460).
   Blog posts are coming.
 - And many more bug fixes and documentation improvements.
 
@@ -9899,7 +9898,7 @@ Here are some highlights ✨:
 
 - New InputAdornment component (#8504).
 - New [Frequently asked questions](https://github.com/mui/material-ui/blob/4df547d56448cedf70977d6e2463b38eaf64d1c7/docs/src/pages/getting-started/frequently-asked-questions.md) documentation section
-- We have saved 1 KB gzip by removing our internal react-transition-group fork (#8785).
+- We have saved 1 kB gzip by removing our internal react-transition-group fork (#8785).
 - We have made one step further in order to upgrade all our development dependencies to react@16 (#8804).
 
 ### Breaking change
@@ -10323,7 +10322,7 @@ When `withStyles()` is used as a decorator and `strictNullChecks` is enabled, on
 - [docs] Tooltips are supported (#8282) @skirunman
 - [docs] Autosuggest example typo fix (#8315) @the-noob
 - [docs] Changing type 'Alignement' to Alignment (#8335) @apearson
-- [CHANGELOG] Add info for withStyles BC (#8342) @sebald
+- [changelog] Add info for withStyles BC (#8342) @sebald
 
 ### Core
 
@@ -11757,7 +11756,7 @@ We are releasing sooner than we use to for this **special day** :christmas_tree:
 That wouldn't have been possible without this awesome community.
 **Thank you!**
 
-But this's just the beginning, some [exciting stuff](https://github.com/mui/material-ui/blob/next/ROADMAP.md) is coming in 2017 :sparkles:.
+But this's just the beginning, some [exciting stuff](https://github.com/mui/material-ui/blob/v0.16.6/ROADMAP.md) is coming in 2017 :sparkles:.
 You can preview a **very early** version of the `next` branch following [this link](https://material-ui-next.com).
 
 ### Component Fixes / Enhancements

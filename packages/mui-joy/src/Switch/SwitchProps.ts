@@ -15,40 +15,40 @@ export type SwitchSlot =
 
 export interface SwitchSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
-   * The component used to render the thumb.
+   * The component that renders the thumb.
    * @default 'span'
    */
-  thumb: React.ElementType;
+  thumb?: React.ElementType;
   /**
-   * The component used to render the action.
+   * The component that renders the action.
    * @default 'div'
    */
-  action: React.ElementType;
+  action?: React.ElementType;
   /**
-   * The component used to render the input.
+   * The component that renders the input.
    * @default 'input'
    */
-  input: React.ElementType;
+  input?: React.ElementType;
   /**
-   * The component used to render the track.
+   * The component that renders the track.
    * @default 'span'
    */
-  track: React.ElementType;
+  track?: React.ElementType;
   /**
-   * The component used to render the start decorator.
+   * The component that renders the start decorator.
    * @default 'span'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
-   * The component used to render the end decorator.
+   * The component that renders the end decorator.
    * @default 'span'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
 }
 
 export interface SwitchPropsVariantOverrides {}
@@ -70,7 +70,6 @@ export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    SwitchSlotsAndSlotProps &
     UseSwitchParameters & {
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
@@ -99,7 +98,7 @@ export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, SwitchPropsVariantOverrides>;
-    };
+    } & SwitchSlotsAndSlotProps;
   defaultComponent: D;
 }
 

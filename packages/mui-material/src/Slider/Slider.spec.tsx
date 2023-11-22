@@ -13,10 +13,18 @@ function testOnChange() {
 
 <Slider track="inverted" />;
 
+// color types
+<Slider color="primary" />;
+<Slider color="secondary" />;
+<Slider color="error" />;
+<Slider color="success" />;
+<Slider color="info" />;
+<Slider color="warning" />;
+
 // slotProps and componentsProps as objects
 <Slider
   slotProps={{
-    root: { onMouseDown: () => 'onMouseDown event triggerred' },
+    root: { onMouseDown: () => 'onMouseDown event triggered' },
     input: { disabled: true },
     mark: { onClick: () => 'clicked' },
     markLabel: { className: 'markLabel' },
@@ -25,7 +33,7 @@ function testOnChange() {
     valueLabel: { valueLabelDisplay: 'auto' },
   }}
   componentsProps={{
-    root: { onMouseDown: () => 'onMouseDown event triggerred' },
+    root: { onMouseDown: () => 'onMouseDown event triggered' },
     input: { disabled: true },
     mark: { onClick: () => 'clicked' },
     markLabel: { className: 'markLabel' },

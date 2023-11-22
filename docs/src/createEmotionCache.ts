@@ -8,8 +8,8 @@ function globalSelector(element: Element) {
   switch (element.type) {
     case RULESET:
       element.props = (element.props as string[]).map((value: any) => {
-        if (value.match(/(:where|:has)\(/)) {
-          value = value.replace(/\.[^:]+(:where|:has)/, '$1');
+        if (value.match(/(:where|:is)\(/)) {
+          value = value.replace(/\.[^:]+(:where|:is)/, '$1');
           return value;
         }
         return value;

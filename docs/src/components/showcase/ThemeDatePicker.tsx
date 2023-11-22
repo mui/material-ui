@@ -2,13 +2,11 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import { iconButtonClasses } from '@mui/material/IconButton';
-import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
 export default function ThemeDatePicker() {
-  const [value, setValue] = React.useState<Date | null>(new Date());
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Fade in timeout={700}>
@@ -32,13 +30,18 @@ export default function ThemeDatePicker() {
               '& .MuiPickerStaticWrapper-content': {
                 bgcolor: 'initial',
               },
+              '& .MuiYearCalendar-root': {
+                width: '100%',
+              },
               '& .MuiDateCalendar-root': {
                 width: '100%',
+                height: 'fit-content',
                 '& .MuiPickersCalendarHeader-root': {
+                  margin: '12px 0',
                   paddingLeft: '18px',
                 },
                 '& .MuiTypography-caption': {
-                  color: 'grey.700',
+                  color: 'grey.500',
                   height: 24,
                 },
                 '[role="presentation"]': {
@@ -47,10 +50,18 @@ export default function ThemeDatePicker() {
                   },
                 },
                 '& .MuiPickersSlideTransition-root': {
-                  minHeight: 180,
+                  minHeight: 165,
                 },
                 '& .MuiPickersYear-yearButton': {
+                  flexBasis: '20%',
                   fontSize: '0.875rem',
+                  height: 'auto',
+                  width: 'auto',
+                  padding: '8px 12px',
+                  '&.Mui-selected': {
+                    color: '#fff',
+                    bgcolor: 'primary.main',
+                  },
                 },
                 '& [role="row"]': {
                   justifyContent: 'space-around',
@@ -80,7 +91,7 @@ export default function ThemeDatePicker() {
             (theme) =>
               theme.applyDarkStyles({
                 '& > div': {
-                  borderColor: 'primaryDark.500',
+                  borderColor: 'primaryDark.700',
                 },
                 [`& .${iconButtonClasses.root}`]: {
                   color: 'primary.300',
@@ -89,24 +100,14 @@ export default function ThemeDatePicker() {
                   bgcolor: 'primaryDark.800',
                 },
                 '& .MuiDateCalendar-root': {
-                  '& .MuiTypography-caption': {
-                    color: 'grey.600',
-                  },
                   '& .MuiPickersDay-root': {
-                    color: 'primary.200',
+                    color: 'primary.100',
                   },
                 },
               }),
           ]}
         >
-          <StaticDatePicker
-            displayStaticWrapperAs="desktop"
-            value={value}
-            onChange={(newValue) => {
-              setValue(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} />}
-          />
+          <StaticDatePicker displayStaticWrapperAs="desktop" />
         </Box>
       </Fade>
     </LocalizationProvider>

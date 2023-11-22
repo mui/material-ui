@@ -1,0 +1,5 @@
+<FormControl defaultValue="" required>
+  <Label>Name</Label>
+  <StyledInput placeholder="Write your name here" />
+  <HelperText />
+</FormControl>

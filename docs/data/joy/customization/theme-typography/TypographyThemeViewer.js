@@ -7,13 +7,11 @@ import Typography from '@mui/joy/Typography';
 const defaultTheme = extendTheme();
 
 const Table = styled('table')(({ theme }) => ({
-  border: '1px solid',
-  borderColor: theme.vars.palette.divider,
-  borderRadius: theme.vars.radius.xs,
   borderCollapse: 'separate',
   borderSpacing: 0,
   display: 'block',
   width: 'max-content',
+  overflow: 'auto',
   th: {
     textAlign: 'left',
     padding: 12,
@@ -43,7 +41,7 @@ const Table = styled('table')(({ theme }) => ({
 const extractFromVar = (value, field) =>
   (value || '').replace(`var(--joy-${field}-`, '').replace(')', '');
 
-export default function FontSizeThemeViewer() {
+export default function TypographyThemeViewer() {
   const levels = Object.keys(defaultTheme.typography);
 
   const renderSwatch = (colorScheme, token) =>
@@ -62,7 +60,17 @@ export default function FontSizeThemeViewer() {
       />
     ) : null;
   return (
-    <Box sx={{ maxWidth: '100%', overflowX: 'scroll' }}>
+    <Box
+      sx={{
+        marginBottom: '-9px',
+        maxWidth: '100%',
+        overflowX: 'scroll',
+        border: '1px solid',
+        borderColor: 'divider',
+        borderTopLeftRadius: '12px',
+        borderTopRightRadius: '12px',
+      }}
+    >
       <Table>
         <thead>
           <tr>
@@ -87,11 +95,6 @@ export default function FontSizeThemeViewer() {
             <th>
               <Typography fontSize="sm" noWrap>
                 Line height
-              </Typography>
-            </th>
-            <th>
-              <Typography fontSize="sm" noWrap>
-                Letter spacing
               </Typography>
             </th>
           </tr>
@@ -145,7 +148,6 @@ export default function FontSizeThemeViewer() {
                   <Typography
                     fontSize="xs"
                     fontFamily="code"
-                    letterSpacing="sm"
                     sx={{ cursor: 'zoom-in' }}
                   >
                     {defaultTheme.typography[level].color || '-'}
@@ -169,14 +171,13 @@ export default function FontSizeThemeViewer() {
                   <Typography
                     fontSize="xs"
                     fontFamily="code"
-                    letterSpacing="sm"
                     sx={{ cursor: 'zoom-in' }}
                   >
                     {defaultTheme.typography[level].fontSize || '-'}
                   </Typography>
                 </Tooltip>
               </td>
-              {['fontWeight', 'lineHeight', 'letterSpacing'].map((field) => (
+              {['fontWeight', 'lineHeight'].map((field) => (
                 <td key={field}>
                   <Tooltip
                     size="sm"
@@ -191,7 +192,6 @@ export default function FontSizeThemeViewer() {
                     <Typography
                       fontSize="xs"
                       fontFamily="code"
-                      letterSpacing="sm"
                       textAlign="center"
                       sx={{ cursor: 'zoom-in' }}
                     >

@@ -11,7 +11,7 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBase';
@@ -1236,7 +1236,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('prop: touchRipplepRef', () => {
+  describe('prop: touchRippleRef', () => {
     it('should return a ref', () => {
       const ref = React.createRef();
       render(<ButtonBase touchRippleRef={ref} />);

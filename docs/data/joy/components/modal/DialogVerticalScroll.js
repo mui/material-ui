@@ -8,36 +8,43 @@ import Switch from '@mui/joy/Switch';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import ModalClose from '@mui/joy/ModalClose';
-import Typography from '@mui/joy/Typography';
+import DialogTitle from '@mui/joy/DialogTitle';
 import Stack from '@mui/joy/Stack';
 
 export default function DialogVerticalScroll() {
-  const [open, setOpen] = React.useState('');
+  const [layout, setLayout] = React.useState(undefined);
   const [scroll, setScroll] = React.useState(true);
   return (
     <React.Fragment>
       <Stack direction="row" spacing={1}>
-        <Button variant="outlined" color="neutral" onClick={() => setOpen('center')}>
+        <Button
+          variant="outlined"
+          color="neutral"
+          onClick={() => {
+            setLayout('center');
+          }}
+        >
           Center
         </Button>
         <Button
           variant="outlined"
           color="neutral"
-          onClick={() => setOpen('fullscreen')}
+          onClick={() => {
+            setLayout('fullscreen');
+          }}
         >
           Full screen
         </Button>
       </Stack>
-      <Modal open={!!open} onClose={() => setOpen('')}>
-        <ModalDialog
-          aria-labelledby="dialog-vertical-scroll-title"
-          aria-describedby="dialog-vertical-scroll-description"
-          layout={open || undefined}
-        >
+      <Modal
+        open={!!layout}
+        onClose={() => {
+          setLayout(undefined);
+        }}
+      >
+        <ModalDialog layout={layout}>
           <ModalClose />
-          <Typography id="dialog-vertical-scroll-title" component="h2">
-            Vertical scroll example
-          </Typography>
+          <DialogTitle>Vertical scroll example</DialogTitle>
           <FormControl
             orientation="horizontal"
             sx={{ bgcolor: 'background.level2', p: 1, borderRadius: 'sm' }}

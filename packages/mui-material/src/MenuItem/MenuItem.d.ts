@@ -1,53 +1,59 @@
+import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { MenuItemClasses } from './menuItemClasses';
 
-export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = ExtendButtonBaseTypeMap<{
-  props: P & {
-    /**
-     * If `true`, the list item is focused during the first mount.
-     * Focus will also be triggered if the value changes from false to true.
-     * @default false
-     */
-    autoFocus?: boolean;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<MenuItemClasses>;
-    /**
-     * If `true`, compact vertical padding designed for keyboard and mouse input is used.
-     * The prop defaults to the value inherited from the parent Menu component.
-     * @default false
-     */
-    dense?: boolean;
-    /**
-     * If `true`, the component is disabled.
-     * @default false
-     */
-    disabled?: boolean;
-    /**
-     * If `true`, the left and right padding is removed.
-     * @default false
-     */
-    disableGutters?: boolean;
-    /**
-     * If `true`, a 1px light border is added to the bottom of the menu item.
-     * @default false
-     */
-    divider?: boolean;
-    /**
-     * If `true`, the component is selected.
-     * @default false
-     */
-    selected?: boolean;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
-  defaultComponent: D;
+export interface MenuItemOwnProps {
+  /**
+   * If `true`, the list item is focused during the first mount.
+   * Focus will also be triggered if the value changes from false to true.
+   * @default false
+   */
+  autoFocus?: boolean;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<MenuItemClasses>;
+  /**
+   * If `true`, compact vertical padding designed for keyboard and mouse input is used.
+   * The prop defaults to the value inherited from the parent Menu component.
+   * @default false
+   */
+  dense?: boolean;
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * If `true`, the left and right padding is removed.
+   * @default false
+   */
+  disableGutters?: boolean;
+  /**
+   * If `true`, a 1px light border is added to the bottom of the menu item.
+   * @default false
+   */
+  divider?: boolean;
+  /**
+   * If `true`, the component is selected.
+   * @default false
+   */
+  selected?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
+export type MenuItemTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'li',
+> = ExtendButtonBaseTypeMap<{
+  props: AdditionalProps & MenuItemOwnProps;
+  defaultComponent: RootComponent;
 }>;
 
 /**
@@ -64,8 +70,10 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
 declare const MenuItem: ExtendButtonBase<MenuItemTypeMap>;
 
 export type MenuItemProps<
-  D extends React.ElementType = MenuItemTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<MenuItemTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = MenuItemTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<MenuItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default MenuItem;

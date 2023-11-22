@@ -1,10 +1,11 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { refType } from '@mui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { refType, unstable_useId as useId } from '@mui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
@@ -27,6 +28,7 @@ const SelectSelect = styled('div', {
       // Win specificity over the input base
       { [`&.${selectClasses.select}`]: styles.select },
       { [`&.${selectClasses.select}`]: styles[ownerState.variant] },
+      { [`&.${selectClasses.error}`]: styles.error },
       { [`&.${selectClasses.multiple}`]: styles.multiple },
     ];
   },
@@ -83,10 +85,10 @@ function isEmpty(display) {
 }
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, disabled, multiple, open } = ownerState;
+  const { classes, variant, disabled, multiple, open, error } = ownerState;
 
   const slots = {
-    select: ['select', variant, disabled && 'disabled', multiple && 'multiple'],
+    select: ['select', variant, disabled && 'disabled', multiple && 'multiple', error && 'error'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
   };
@@ -109,6 +111,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     defaultValue,
     disabled,
     displayEmpty,
+    error = false,
     IconComponent,
     inputRef: inputRefProp,
     labelId,
@@ -242,13 +245,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   // Support autofill.
   const handleChange = (event) => {
-    const index = childrenArray.map((child) => child.props.value).indexOf(event.target.value);
+    const child = childrenArray.find((childItem) => childItem.props.value === event.target.value);
 
-    if (index === -1) {
+    if (child === undefined) {
       return;
     }
 
-    const child = childrenArray[index];
     setValueState(child.props.value);
 
     if (onChange) {
@@ -475,16 +477,27 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     variant,
     value,
     open,
+    error,
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const paperProps = {
+    ...MenuProps.PaperProps,
+    ...MenuProps.slotProps?.paper,
+  };
+
+  const listboxId = useId();
+
+  const hiddenInputId = useId();
 
   return (
     <React.Fragment>
       <SelectSelect
         ref={handleDisplayRef}
         tabIndex={tabIndex}
-        role="button"
+        role="combobox"
+        aria-controls={listboxId}
         aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : 'false'}
         aria-haspopup="listbox"
@@ -510,8 +523,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         )}
       </SelectSelect>
       <SelectNativeInput
+        aria-invalid={error}
         value={Array.isArray(value) ? value.join(',') : value}
-        name={name}
+        name={name ?? hiddenInputId}
         ref={inputRef}
         aria-hidden
         onChange={handleChange}
@@ -540,14 +554,19 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         MenuListProps={{
           'aria-labelledby': labelId,
           role: 'listbox',
+          'aria-multiselectable': multiple ? 'true' : undefined,
           disableListWrap: true,
+          id: listboxId,
           ...MenuProps.MenuListProps,
         }}
-        PaperProps={{
-          ...MenuProps.PaperProps,
-          style: {
-            minWidth: menuMinWidth,
-            ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
+        slotProps={{
+          ...MenuProps.slotProps,
+          paper: {
+            ...paperProps,
+            style: {
+              minWidth: menuMinWidth,
+              ...(paperProps != null ? paperProps.style : null),
+            },
           },
         }}
       >
@@ -606,6 +625,10 @@ SelectInput.propTypes = {
    * If `true`, the selected item is displayed even if its value is empty.
    */
   displayEmpty: PropTypes.bool,
+  /**
+   * If `true`, the `select input` will indicate an error.
+   */
+  error: PropTypes.bool,
   /**
    * The icon that displays the arrow.
    */

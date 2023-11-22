@@ -18,19 +18,12 @@ const ignoredIconNames = new Set([
   '123',
   '6_ft_apart',
   'add_chart', // Leads to inconsistent casing with `Addchart`
-  'ads_click',
   'area_chart',
-  'back_hand',
-  'checklist_rtl',
-  'checklist',
   'compost',
   'cruelty_free',
   'data_exploration',
   'disabled_visible',
-  'draw',
   'drive_file_move_rtl',
-  'edit_calendar',
-  'edit_note',
   'emergency',
   'exposure_neg_1', // Google product
   'exposure_neg_2', // Google product
@@ -54,11 +47,7 @@ const ignoredIconNames = new Set([
   'polymer', // Legacy brand
   'private_connectivity',
   'real_estate_agent',
-  'recycling',
-  'space_dashboard',
   'vertical_distribute', // Advanced text editor
-  'water_drop',
-  'waving_hand',
 ]);
 
 const themeMap = {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Divider, { dividerClasses as classes } from '@mui/joy/Divider';
 
@@ -17,6 +17,11 @@ describe('Joy <Divider />', () => {
     testComponentPropWith: 'div',
     testVariantProps: { orientation: 'vertical' },
     skip: ['componentsProp', 'classesRoot'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describe('prop: children', () => {

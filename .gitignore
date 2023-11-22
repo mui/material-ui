@@ -6,6 +6,7 @@
 *.iml
 .vscode/*
 !.vscode/launch.json
+!.vscode/extensions.json
 *.log
 *.tsbuildinfo
 /.eslintcache
@@ -29,8 +30,13 @@
 /test/regressions/screenshots
 /tmp
 .next
+# created by netlify dev (to perform local debug)
+.netlify
 build
 node_modules
 package-lock.json
 size-snapshot.json
 docs/public/static/blog/feed/*
+# vale downloaded config
+.github/styles/Google
+.github/styles/write-good

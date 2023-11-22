@@ -1,7 +1,0 @@
-{
-  "parameters": {},
-  "returnValue": {},
-  "name": "useFormControlUnstyledContext",
-  "filename": "/packages/mui-base/src/FormControlUnstyled/useFormControlUnstyledContext.ts",
-  "demos": "<ul><li><a href=\"/base/react-form-control/#hook\">Unstyled Form Control</a></li></ul>"
-}

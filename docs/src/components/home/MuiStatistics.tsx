@@ -5,9 +5,9 @@ import Typography from '@mui/material/Typography';
 
 const data = [
   { title: '4M', metadata: 'Weekly downloads on npm' },
-  { title: '83k', metadata: 'Stars on GitHub' },
-  { title: '2.6k', metadata: 'Open-source contributors' },
-  { title: '18.1k', metadata: 'Followers on Twitter' },
+  { title: '87k', metadata: 'Stars on GitHub' },
+  { title: '2.7k', metadata: 'Open-source contributors' },
+  { title: '18.4k', metadata: 'Followers on Twitter' },
 ];
 
 export default function MuiStatistics() {
@@ -18,9 +18,8 @@ export default function MuiStatistics() {
           <Box
             sx={(theme) => ({
               height: '100%',
-              p: 0.5,
               pl: 2,
-              borderLeft: '2px solid',
+              borderLeft: '1px solid',
               borderColor: 'primary.100',
               ...theme.applyDarkStyles({
                 borderColor: 'primaryDark.600',
@@ -40,16 +39,7 @@ export default function MuiStatistics() {
             >
               {item.title}
             </Typography>
-            <Typography
-              sx={(theme) => ({
-                color: 'grey.800',
-                ...theme.applyDarkStyles({
-                  color: 'grey.300',
-                }),
-              })}
-            >
-              {item.metadata}
-            </Typography>
+            <Typography color="text.secondary">{item.metadata}</Typography>
           </Box>
         </Grid>
       ))}

@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "custom", "description": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -30,10 +30,15 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "IconButton",
+  "imports": [
+    "import IconButton from '@mui/material/IconButton';",
+    "import { IconButton } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
@@ -55,6 +60,8 @@
     "name": "MuiIconButton"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiIconButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/IconButton/IconButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

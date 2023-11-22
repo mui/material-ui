@@ -16,7 +16,7 @@ We have focused on improving stability and developer experience since then, and 
 - Dozens of bugs have been fixed since the first alpha.
 - DX and overall API consistency have been improved.
 - Improved customizability.
-- Follow the [installation instructions](https://mui.com/x/react-date-pickers/getting-started/) and the [migration guide](https://mui.com/x/react-date-pickers/migration-lab/).
+- Follow the [installation instructions](https://mui.com/x/react-date-pickers/getting-started/) and the [migration guide](https://mui.com/x/migration/migration-pickers-lab/).
 
 ## What's changed?
 
@@ -89,7 +89,7 @@ Over 40% of users are already using the beta versions.
 ## Installation and migration from `@mui/lab`
 
 You can find the installation instructions in our [getting started](https://mui.com/x/react-date-pickers/getting-started/) page.
-If you are migrating from the `@mui/lab` package, we've prepared a [migration guide](https://mui.com/x/react-date-pickers/migration-lab/) to support you, including a codemod to replace the date pickers declarations.
+If you are migrating from the `@mui/lab` package, we've prepared a [migration guide](https://mui.com/x/migration/migration-pickers-lab/) to support you, including a codemod to replace the date pickers declarations.
 
 ## What to expect next?
 

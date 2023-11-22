@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import Button from '@mui/material/Button';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
@@ -484,6 +484,23 @@ describe('experimental_extendTheme', () => {
           },
         }),
       ).not.to.throw();
+    });
+  });
+
+  it('should have the vars object', () => {
+    const theme = extendTheme();
+    const keys = [
+      // MD2 specific tokens
+      'palette',
+      'shadows',
+      'zIndex',
+      'opacity',
+      'overlays',
+      'shape',
+    ];
+
+    Object.keys(keys).forEach((key) => {
+      expect(theme[key]).to.deep.equal(theme.vars[key]);
     });
   });
 });

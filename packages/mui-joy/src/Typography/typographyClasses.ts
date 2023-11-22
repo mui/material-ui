@@ -1,55 +1,57 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface TypographyClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `level="h1"`. */
+  /** Class name applied to the root element if `level="h1"`. */
   h1: string;
-  /** Styles applied to the root element if `level="h2"`. */
+  /** Class name applied to the root element if `level="h2"`. */
   h2: string;
-  /** Styles applied to the root element if `level="h3"`. */
+  /** Class name applied to the root element if `level="h3"`. */
   h3: string;
-  /** Styles applied to the root element if `level="h4"`. */
+  /** Class name applied to the root element if `level="h4"`. */
   h4: string;
-  /** Styles applied to the root element if `level="h5"`. */
-  h5: string;
-  /** Styles applied to the root element if `level="h6"`. */
-  h6: string;
-  /** Styles applied to the root element if `level="body1"`. */
-  body1: string;
-  /** Styles applied to the root element if `level="body2"`. */
-  body2: string;
-  /** Styles applied to the root element if `level="body3"`. */
-  body3: string;
-  /** Styles applied to the root element if `nowrap={true}`. */
+  /** Class name applied to the root element if `level="title-lg"`. */
+  'title-lg': string;
+  /** Class name applied to the root element if `level="title-md"`. */
+  'title-md': string;
+  /** Class name applied to the root element if `level="title-sm"`. */
+  'title-sm': string;
+  /** Class name applied to the root element if `level="body-lg"`. */
+  'body-lg': string;
+  /** Class name applied to the root element if `level="body-md"`. */
+  'body-md': string;
+  /** Class name applied to the root element if `level="body-sm"`. */
+  'body-sm': string;
+  /** Class name applied to the root element if `level="body-xs"`. */
+  'body-xs': string;
+  /** Class name applied to the root element if `nowrap={true}`. */
   noWrap: string;
-  /** Styles applied to the root element if `gutterBottom={true}`. */
+  /** Class name applied to the root element if `gutterBottom={true}`. */
   gutterBottom: string;
-  /** Styles applied to the startDecorator element */
+  /** Class name applied to the startDecorator element */
   startDecorator: string;
-  /** Styles applied to the endDecorator element */
+  /** Class name applied to the endDecorator element */
   endDecorator: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element when color inversion is triggered. */
+  /** Class name applied to the root element when color inversion is triggered. */
   colorContext: string;
-  /** Styles applied to the root element if `variant="plain"`. */
+  /** Class name applied to the root element if `variant="plain"`. */
   variantPlain: string;
-  /** Styles applied to the root element if `variant="outlined"`. */
+  /** Class name applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="soft"`. */
+  /** Class name applied to the root element if `variant="soft"`. */
   variantSoft: string;
-  /** Styles applied to the root element if `variant="solid"`. */
+  /** Class name applied to the root element if `variant="solid"`. */
   variantSolid: string;
 }
 
@@ -65,11 +67,13 @@ const typographyClasses: TypographyClasses = generateUtilityClasses('MuiTypograp
   'h2',
   'h3',
   'h4',
-  'h5',
-  'h6',
-  'body1',
-  'body2',
-  'body3',
+  'title-lg',
+  'title-md',
+  'title-sm',
+  'body-lg',
+  'body-md',
+  'body-sm',
+  'body-xs',
   'noWrap',
   'gutterBottom',
   'startDecorator',
@@ -77,7 +81,6 @@ const typographyClasses: TypographyClasses = generateUtilityClasses('MuiTypograp
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',

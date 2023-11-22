@@ -46,7 +46,7 @@ export interface InputBaseProps
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color?: OverridableStringUnion<
@@ -209,8 +209,10 @@ export interface InputBaseProps
    * @default {}
    */
   slotProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement> & InputBaseComponentsPropsOverrides;
-    input?: React.InputHTMLAttributes<HTMLInputElement> & InputBaseComponentsPropsOverrides;
+    root?: React.HTMLAttributes<HTMLDivElement> &
+      InputBaseComponentsPropsOverrides & { sx?: SxProps<Theme> };
+    input?: React.InputHTMLAttributes<HTMLInputElement> &
+      InputBaseComponentsPropsOverrides & { sx?: SxProps<Theme> };
   };
   /**
    * The components used for each slot inside.

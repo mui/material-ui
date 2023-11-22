@@ -1,73 +1,71 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface AutocompleteClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the wrapper element. */
+  /** Class name applied to the wrapper element. */
   wrapper: string;
-  /** Styles applied to the input element. */
+  /** Class name applied to the input element. */
   input: string;
-  /** Styles applied to the startDecorator element. */
+  /** Class name applied to the startDecorator element. */
   startDecorator: string;
-  /** Styles applied to the endDecorator element. */
+  /** Class name applied to the endDecorator element. */
   endDecorator: string;
-  /** Styles applied to the root element if the component is a descendant of `FormControl`. */
+  /** Class name applied to the root element if the component is a descendant of `FormControl`. */
   formControl: string;
-  /** Styles applied to the root element if the component is focused. */
+  /** Class name applied to the root element if the component is focused. */
   focused: string;
-  /** Styles applied to the root element if `disabled={true}`. */
+  /** Class name applied to the root element if `disabled={true}`. */
   disabled: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
-  /** Styles applied to the wrapper element if `multiple={true}`. */
+  /** Class name applied to the wrapper element if `multiple={true}`. */
   multiple: string;
-  /** Styles applied to the limitTag element. */
+  /** Class name applied to the limitTag element. */
   limitTag: string;
-  /** Styles applied when the popup icon is rendered. */
+  /** Class name applied when the popup icon is rendered. */
   hasPopupIcon: string;
-  /** Styles applied when the clear icon is rendered. */
+  /** Class name applied when the clear icon is rendered. */
   hasClearIcon: string;
-  /** Styles applied to the clear indicator. */
+  /** Class name applied to the clear indicator. */
   clearIndicator: string;
-  /** Styles applied to the popup indicator. */
+  /** Class name applied to the popup indicator. */
   popupIndicator: string;
-  /** Styles applied to the popup indicator if the popup is open. */
+  /** Class name applied to the popup indicator if the popup is open. */
   popupIndicatorOpen: string;
-  /** Styles applied to the listbox component. */
+  /** Class name applied to the listbox component. */
   listbox: string;
-  /** Styles applied to the option component. */
+  /** Class name applied to the option component. */
   option: string;
-  /** Styles applied to the loading wrapper. */
+  /** Class name applied to the loading wrapper. */
   loading: string;
-  /** Styles applied to the no option wrapper. */
+  /** Class name applied to the no option wrapper. */
   noOptions: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element when color inversion is triggered. */
+  /** Class name applied to the root element when color inversion is triggered. */
   colorContext: string;
-  /** Styles applied to the root element if `size="sm"`. */
+  /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
-  /** Styles applied to the root element if `size="md"`. */
+  /** Class name applied to the root element if `size="md"`. */
   sizeMd: string;
-  /** Styles applied to the root element if `size="lg"`. */
+  /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `variant="plain"`. */
+  /** Class name applied to the root element if `variant="plain"`. */
   variantPlain: string;
-  /** Styles applied to the root element if `variant="outlined"`. */
+  /** Class name applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="soft"`. */
+  /** Class name applied to the root element if `variant="soft"`. */
   variantSoft: string;
-  /** Styles applied to the root element if `variant="solid"`. */
+  /** Class name applied to the root element if `variant="solid"`. */
   variantSolid: string;
 }
 
@@ -101,7 +99,6 @@ const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('MuiAuto
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',

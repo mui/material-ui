@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "disableTypography": { "type": { "name": "bool" }, "default": "false" },
     "inset": { "type": { "name": "bool" }, "default": "false" },
     "primary": { "type": { "name": "node" } },
@@ -12,16 +12,23 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "ListItemText",
+  "imports": [
+    "import ListItemText from '@mui/material/ListItemText';",
+    "import { ListItemText } from '@mui/material';"
+  ],
   "styles": {
     "classes": ["root", "multiline", "dense", "inset", "primary", "secondary"],
     "globalClasses": {},
     "name": "MuiListItemText"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListItemText",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ListItemText/ListItemText.js",
   "inheritance": null,

@@ -7,25 +7,25 @@ export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
 
 export interface InputSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
-   * The component used to render the input.
+   * The component that renders the input.
    * @default 'input'
    */
-  input: React.ElementType;
+  input?: React.ElementType;
   /**
-   * The component used to render the start decorator.
-   * @default 'span'
+   * The component that renders the start decorator.
+   * @default 'div'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
-   * The component used to render the end decorator.
-   * @default 'span'
+   * The component that renders the end decorator.
+   * @default 'div'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
 }
 
 export interface InputPropsVariantOverrides {}
@@ -44,7 +44,6 @@ export type InputSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    InputSlotsAndSlotProps &
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       | 'autoComplete'
@@ -85,7 +84,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       error?: boolean;
       /**
-       * If `true`, the button will take up the full width of its container.
+       * If `true`, the input will take up the full width of its container.
        * @default false
        */
       fullWidth?: boolean;
@@ -107,7 +106,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'outlined'
        */
       variant?: OverridableStringUnion<VariantProp, InputPropsVariantOverrides>;
-    };
+    } & InputSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -125,4 +124,8 @@ export interface InputOwnerState extends ApplyColorInversion<InputProps> {
    * If `true`, the input is focused.
    */
   focused: boolean;
+  /**
+   * @internal
+   */
+  instanceColor?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
 }

@@ -142,6 +142,29 @@ export interface GridBaseProps extends Breakpoints {
    */
   disableEqualOverflow?: boolean;
   /**
+   * @internal
+   * The level of the grid starts from `0`
+   * and increases when the grid nests inside another grid regardless of container or item.
+   *
+   * ```js
+   * <Grid> // level 0
+   *   <Grid> // level 1
+   *     <Grid> // level 2
+   *   <Grid> // level 1
+   * ```
+   *
+   * Only consecutive grid is considered nesting.
+   * A grid container will start at `0` if there are non-Grid element above it.
+   *
+   * ```js
+   * <Grid> // level 0
+   *   <div>
+   *     <Grid> // level 0
+   *       <Grid> // level 1
+   * ```
+   */
+  unstable_level?: number;
+  /**
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
@@ -161,30 +184,22 @@ export interface GridBaseProps extends Breakpoints {
 }
 
 export interface GridOwnerState extends GridBaseProps {
-  /**
-   * The level of the grid starts from `0`
-   * and increases when the grid nests inside another grid regardless of container or item.
-   *
-   * ```js
-   * <Grid> // level 0
-   *   <Grid> // level 1
-   *     <Grid> // level 2
-   *   <Grid> // level 1
-   * ```
-   */
-  level: number;
+  unstable_level: number;
   gridSize: Partial<Record<Breakpoint, GridSize | boolean>>;
   gridOffset: Partial<Record<Breakpoint, GridSize>>;
 }
 
-export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & GridBaseProps & { sx?: SxProps<Theme> } & SystemProps<Theme>;
-  defaultComponent: D;
+export interface GridTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & GridBaseProps & { sx?: SxProps<Theme> } & SystemProps<Theme>;
+  defaultComponent: DefaultComponent;
 }
 
 export type GridProps<
-  D extends React.ElementType = GridTypeMap['defaultComponent'],
-  P = {
+  RootComponent extends React.ElementType = GridTypeMap['defaultComponent'],
+  AdditionalProps = {
     component?: React.ElementType;
   },
-> = OverrideProps<GridTypeMap<P, D>, D>;
+> = OverrideProps<GridTypeMap<AdditionalProps, RootComponent>, RootComponent>;
