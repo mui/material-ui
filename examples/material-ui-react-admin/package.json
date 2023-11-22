@@ -1,0 +1,34 @@
+{
+  "name": "material-ui-react-admin",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ./src",
+    "format": "prettier --write ./src"
+  },
+  "dependencies": {
+    "ra-data-fakerest": "^4.14.0",
+    "ra-input-rich-text": "^4.14.0",
+    "react": "^18.2.0",
+    "react-admin": "^4.14.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^5.60.1",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@types/node": "^18.16.1",
+    "@types/react": "^18.0.22",
+    "@types/react-dom": "^18.0.7",
+    "@vitejs/plugin-react": "^4.0.1",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.1.6",
+    "vite": "^4.3.9"
+  }
+}
