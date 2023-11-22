@@ -79,8 +79,8 @@ const FormHelperTextRoot = styled('p', {
       marginTop: 4,
     }),
     ...(ownerState.contained && {
-      marginLeft: 14,
-      marginRight: 14,
+      marginLeft: 16,
+      marginRight: 16,
     }),
   };
 });

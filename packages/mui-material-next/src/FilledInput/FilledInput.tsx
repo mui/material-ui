@@ -163,9 +163,9 @@ const FilledInputInput = styled(InputBaseInput, {
 
   return {
     paddingTop: 25,
-    paddingRight: 12,
+    paddingRight: 16,
     paddingBottom: 8,
-    paddingLeft: 12,
+    paddingLeft: 16,
     ...(!tokens
       ? {
           [theme.getColorSchemeSelector('light')]: {
