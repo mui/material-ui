@@ -150,6 +150,6 @@ export type Simplify<T> = T extends Function ? T : { [K in keyof T]: T[K] };
 /**
  * Changes the properties K from T to required
  */
-export type PickRequired<T, K extends keyof T> = DistributiveOmit<T, K> & {
+export type PartiallyRequired<T, K extends keyof T> = DistributiveOmit<T, K> & {
   [P in K]-?: T[P];
 };
