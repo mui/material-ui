@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import { debounce } from '@mui/material/utils';
 import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -22,6 +21,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import SvgIcon from '@mui/material/SvgIcon';
+import * as mui from '@mui/icons-material';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
@@ -46,7 +46,7 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
-import * as mui from '@mui/icons-material';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import synonyms from './synonyms';
 
 const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
@@ -132,21 +132,9 @@ const Icons = React.memo(function Icons(props) {
 
   const handleIconClick = (icon) => () => {
     if (Math.random() < 0.1) {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'material-icons',
-        eventAction: 'click',
-        eventLabel: icon.name,
-      });
       window.gtag('event', 'material-icons', {
         eventAction: 'click',
         eventLabel: icon.name,
-      });
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'material-icons-theme',
-        eventAction: 'click',
-        eventLabel: icon.theme,
       });
       window.gtag('event', 'material-icons-theme', {
         eventAction: 'click',
@@ -176,7 +164,7 @@ const Icons = React.memo(function Icons(props) {
               {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
               <div onClick={handleLabelClick}>{icon.importName}</div>
             </div>
-            {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
+            {/* eslint-enable jsx-a11y/click-events-have-key-events */}
           </StyledIcon>
         );
       })}
@@ -505,12 +493,6 @@ export default function SearchIcons() {
 
             // Keep track of the no results so we can add synonyms in the future.
             if (value.length >= 4 && results.length === 0) {
-              window.ga('send', {
-                hitType: 'event',
-                eventCategory: 'material-icons',
-                eventAction: 'no-results',
-                eventLabel: value,
-              });
               window.gtag('event', 'material-icons', {
                 eventAction: 'no-results',
                 eventLabel: value,

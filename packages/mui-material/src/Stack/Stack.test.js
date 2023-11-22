@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import Stack, { stackClasses as classes } from '@mui/material/Stack';
 
 // The main tests are in mui-system Stack folder

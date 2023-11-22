@@ -5,7 +5,7 @@ import FormHelperText from '@mui/joy/FormHelperText';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 
-export default function BasicCheckbox() {
+export default function ExampleSignUpCheckbox() {
   return (
     <FormControl size="sm" sx={{ width: 400 }}>
       <Checkbox
@@ -17,7 +17,7 @@ export default function BasicCheckbox() {
         }
       />
       <FormHelperText>
-        <Typography level="body2">
+        <Typography level="body-sm">
           Read our <Link href="#link">terms and conditions</Link>.
         </Typography>
       </FormHelperText>

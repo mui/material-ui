@@ -1,5 +1,5 @@
 ---
-product: base
+productId: base-ui
 title: React Portal component
 components: Portal
 githubLabel: 'component: Portal'
@@ -18,25 +18,13 @@ githubLabel: 'component: Portal'
 Portal is a utility component built around [React's `createPortal()` API](https://react.dev/reference/react-dom/createPortal).
 It gives you the functionality of `createPortal()` in a convenient component form.
 
-The Portal component is used internally by the [Modal](/base/react-modal/) and [Popper](/base/react-popper/) components.
+The Portal component is used internally by the [Modal](/base-ui/react-modal/) and [Popper](/base-ui/react-popper/) components.
 
 ## Component
 
-### Usage
-
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
-
 ```jsx
-import Portal from '@mui/base/Portal';
-
-export default function MyApp() {
-  return (
-    <Portal>{/* children to be rendered outside of the current DOM node */}</Portal>
-  );
-}
+import { Portal } from '@mui/base/Portal';
 ```
-
-### Basics
 
 Normally, children of a component are rendered within that component's DOM tree.
 But sometimes it's necessary to mount a child at a different location in the DOM.

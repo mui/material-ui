@@ -1,0 +1,44 @@
+{
+  "parameters": {
+    "defaultValue": {
+      "type": { "name": "string | number | null", "description": "string | number | null" }
+    },
+    "direction": {
+      "type": {
+        "name": "&#39;ltr&#39; | &#39;rtl&#39;",
+        "description": "&#39;ltr&#39; | &#39;rtl&#39;"
+      },
+      "default": "'ltr'"
+    },
+    "onChange": {
+      "type": {
+        "name": "(event: React.SyntheticEvent | null, value: number | string | null) =&gt; void",
+        "description": "(event: React.SyntheticEvent | null, value: number | string | null) =&gt; void"
+      }
+    },
+    "orientation": {
+      "type": {
+        "name": "&#39;horizontal&#39; | &#39;vertical&#39;",
+        "description": "&#39;horizontal&#39; | &#39;vertical&#39;"
+      },
+      "default": "'horizontal'"
+    },
+    "selectionFollowsFocus": { "type": { "name": "boolean", "description": "boolean" } },
+    "value": {
+      "type": { "name": "string | number | null", "description": "string | number | null" }
+    }
+  },
+  "returnValue": {
+    "contextValue": {
+      "type": { "name": "TabsProviderValue", "description": "TabsProviderValue" },
+      "required": true
+    }
+  },
+  "name": "useTabs",
+  "filename": "/packages/mui-base/src/useTabs/useTabs.ts",
+  "imports": [
+    "import { useTabs } from '@mui/base/useTabs';",
+    "import { useTabs } from '@mui/base';"
+  ],
+  "demos": "<ul><li><a href=\"/base-ui/react-tabs/#hooks\">Tabs</a></li></ul>"
+}

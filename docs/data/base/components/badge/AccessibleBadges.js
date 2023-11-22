@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import Badge, { badgeClasses } from '@mui/base/Badge';
+import { Badge as BaseBadge, badgeClasses } from '@mui/base/Badge';
 import MailIcon from '@mui/icons-material/Mail';
 
 function notificationsLabel(count) {
@@ -16,9 +16,9 @@ function notificationsLabel(count) {
 export default function AccessibleBadges() {
   return (
     <div aria-label={notificationsLabel(100)}>
-      <StyledBadge badgeContent={100}>
+      <Badge badgeContent={100}>
         <MailIcon />
-      </StyledBadge>
+      </Badge>
     </div>
   );
 }
@@ -27,11 +27,19 @@ const blue = {
 };
 
 const grey = {
-  300: '#afb8c1',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
-const StyledBadge = styled(Badge)(
+const Badge = styled(BaseBadge)(
   ({ theme }) => `
   box-sizing: border-box;
   margin: 0;

@@ -1,8 +1,4 @@
 import * as React from 'react';
-import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
-import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
-import { PaperProps } from '@mui/material/Paper';
-import { PopperProps } from '@mui/material/Popper';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import {
@@ -11,9 +7,15 @@ import {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
+  AutocompleteValue,
   createFilterOptions,
   UseAutocompleteProps,
+  AutocompleteFreeSoloValueMapping,
 } from '@mui/base';
+import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
+import { PaperProps } from '@mui/material/Paper';
+import { PopperProps } from '@mui/material/Popper';
 import { AutocompleteClasses } from './autocompleteClasses';
 
 export {
@@ -21,20 +23,22 @@ export {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
+  AutocompleteValue,
   createFilterOptions,
 };
 
 export type AutocompleteOwnerState<
-  T,
+  Value,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
-> = AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent> & {
+> = AutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent> & {
   disablePortal: boolean;
   expanded: boolean;
   focused: boolean;
   fullWidth: boolean;
+  getOptionLabel: (option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
   hasClearIcon: boolean;
   hasPopupIcon: boolean;
   inputFocused: boolean;
@@ -81,12 +85,12 @@ export interface AutocompleteRenderInputParams {
 export interface AutocompletePropsSizeOverrides {}
 
 export interface AutocompleteProps<
-  T,
+  Value,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
-> extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
+> extends UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {
   /**
    * Props applied to the [`Chip`](/material-ui/api/chip/) element.
@@ -191,6 +195,9 @@ export interface AutocompleteProps<
    * @default 'No options'
    */
   noOptionsText?: React.ReactNode;
+  onKeyDown?: (
+    event: React.KeyboardEvent<HTMLDivElement> & { defaultMuiPrevented?: boolean },
+  ) => void;
   /**
    * Override the default text for the *open popup* icon button.
    *
@@ -236,27 +243,29 @@ export interface AutocompleteProps<
    * Render the option, use `getOptionLabel` by default.
    *
    * @param {object} props The props to apply on the li element.
-   * @param {T} option The option to render.
-   * @param {object} state The state of the component.
+   * @param {Value} option The option to render.
+   * @param {object} state The state of each option.
+   * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderOption?: (
     props: React.HTMLAttributes<HTMLLIElement>,
-    option: T,
+    option: Value,
     state: AutocompleteRenderOptionState,
+    ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**
    * Render the selected value.
    *
-   * @param {T[]} value The `value` provided to the component.
+   * @param {Value[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderTags?: (
-    value: T[],
+    value: Value[],
     getTagProps: AutocompleteRenderGetTagProps,
-    ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+    ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**
    * The size of the component.
@@ -290,9 +299,11 @@ export interface AutocompleteProps<
  * - [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
  */
 export default function Autocomplete<
-  T,
+  Value,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
->(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>): JSX.Element;
+>(
+  props: AutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+): JSX.Element;

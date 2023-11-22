@@ -28,16 +28,7 @@ export default function BasicModal() {
             boxShadow: 'lg',
           }}
         >
-          <ModalClose
-            variant="outlined"
-            sx={{
-              top: 'calc(-1/4 * var(--IconButton-size))',
-              right: 'calc(-1/4 * var(--IconButton-size))',
-              boxShadow: '0 2px 12px 0 rgba(0 0 0 / 0.2)',
-              borderRadius: '50%',
-              bgcolor: 'background.body',
-            }}
-          />
+          <ModalClose variant="plain" sx={{ m: 1 }} />
           <Typography
             component="h2"
             id="modal-title"

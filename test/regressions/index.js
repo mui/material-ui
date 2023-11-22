@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import * as ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
@@ -32,8 +32,11 @@ const blacklist = [
   'docs-joy-tools/PaletteThemeViewer.png', // No need for theme tokens
   'docs-joy-tools/ShadowThemeViewer.png', // No need for theme tokens
   'docs-joy-customization-theme-typography/TypographyThemeViewer.png', // No need for theme tokens
+  'docs-joy-components-circular-progress/CircularProgressCountUp.png', // Flaky due to animation
   'docs-joy-components-divider/DividerChildPosition.png', // Needs interaction
+  'docs-joy-components-linear-progress/LinearProgressCountUp.png', // Flaky due to animation
   'docs-base-guides-working-with-tailwind-css/PlayerFinal.png', // No public components
+  'docs-base-getting-started-quickstart/BaseButtonTailwind.png', // CodeSandbox
   'docs-components-alert/TransitionAlerts.png', // Needs interaction
   'docs-components-app-bar/BackToTop.png', // Needs interaction
   'docs-components-app-bar/ElevateAppBar.png', // Needs interaction
@@ -223,21 +226,31 @@ if (unusedBlacklistPatterns.size > 0) {
 const viewerRoot = document.getElementById('test-viewer');
 
 function FixtureRenderer({ component: FixtureComponent }) {
-  React.useLayoutEffect(() => {
-    const children = (
-      <TestViewer>
-        <FixtureComponent />
-      </TestViewer>
-    );
-
-    ReactDOM.render(children, viewerRoot);
-  }, [FixtureComponent]);
+  const viewerReactRoot = React.useRef(null);
 
   React.useLayoutEffect(() => {
+    const renderTimeout = setTimeout(() => {
+      const children = (
+        <TestViewer>
+          <FixtureComponent />
+        </TestViewer>
+      );
+
+      if (viewerReactRoot.current === null) {
+        viewerReactRoot.current = ReactDOMClient.createRoot(viewerRoot);
+      }
+
+      viewerReactRoot.current.render(children);
+    });
+
     return () => {
-      ReactDOM.unmountComponentAtNode(viewerRoot);
+      clearTimeout(renderTimeout);
+      setTimeout(() => {
+        viewerReactRoot.current.unmount();
+        viewerReactRoot.current = null;
+      });
     };
-  }, []);
+  }, [FixtureComponent]);
 
   return null;
 }
@@ -275,11 +288,7 @@ function App(props) {
   React.useEffect(() => {
     webfontloader.load({
       google: {
-        families: [
-          'Roboto:300,400,500,700',
-          'Public Sans:300,400,500,600,700,800,900',
-          'Material+Icons',
-        ],
+        families: ['Roboto:300,400,500,700', 'Inter:300,400,500,600,700,800,900', 'Material+Icons'],
       },
       custom: {
         families: ['Font Awesome 5 Free:n9'],
@@ -356,9 +365,5 @@ App.propTypes = {
 
 const container = document.getElementById('react-root');
 const children = <App fixtures={regressionFixtures.concat(demoFixtures)} />;
-if (typeof ReactDOM.unstable_createRoot === 'function') {
-  const root = ReactDOM.unstable_createRoot(container);
-  root.render(children);
-} else {
-  ReactDOM.render(children, container);
-}
+const reactRoot = ReactDOMClient.createRoot(container);
+reactRoot.render(children);

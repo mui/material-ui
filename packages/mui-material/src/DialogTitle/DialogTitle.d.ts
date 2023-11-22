@@ -5,25 +5,27 @@ import { Theme } from '../styles';
 import { TypographyTypeMap } from '../Typography';
 import { DialogTitleClasses } from './dialogTitleClasses';
 
+export interface DialogTitleOwnProps extends Omit<TypographyTypeMap['props'], 'classes'> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<DialogTitleClasses>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export interface DialogTitleTypeMap<
-  P = {},
-  D extends React.ElementType = TypographyTypeMap['defaultComponent'],
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = TypographyTypeMap['defaultComponent'],
 > {
-  props: P & {
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<DialogTitleClasses>;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  } & Omit<TypographyTypeMap['props'], 'classes'>;
-  defaultComponent: D;
+  props: AdditionalProps & DialogTitleOwnProps;
+  defaultComponent: RootComponent;
 }
 
 /**
@@ -35,12 +37,15 @@ export interface DialogTitleTypeMap<
  * API:
  *
  * - [DialogTitle API](https://mui.com/material-ui/api/dialog-title/)
+ * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
  */
 declare const DialogTitle: OverridableComponent<DialogTitleTypeMap>;
 
 export type DialogTitleProps<
-  D extends React.ElementType = DialogTitleTypeMap['defaultComponent'],
-  P = { component?: React.ElementType },
-> = OverrideProps<DialogTitleTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = DialogTitleTypeMap['defaultComponent'],
+  AdditionalProps = { component?: React.ElementType },
+> = OverrideProps<DialogTitleTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default DialogTitle;

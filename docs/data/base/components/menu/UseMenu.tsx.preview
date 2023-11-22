@@ -1,0 +1,13 @@
+<React.Fragment>
+  <DropdownContext.Provider value={dropdownContextValue}>
+    <MenuButton>Theme</MenuButton>
+    <Menu id="hooks-menu">
+      <MenuItem onClick={createHandleMenuClick('OS Default')}>
+        OS default
+      </MenuItem>
+      <MenuItem onClick={createHandleMenuClick('Light')}>Light</MenuItem>
+      <MenuItem onClick={createHandleMenuClick('Dark')}>Dark</MenuItem>
+    </Menu>
+  </DropdownContext.Provider>
+  <Styles />
+</React.Fragment>

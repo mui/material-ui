@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Radio Button component
 components: Radio, RadioGroup
 githubLabel: 'component: radio'
@@ -197,7 +197,7 @@ Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radi
 The Radio Group component is composed of a root `<div>` element that can wrap multiple Radio components.
 
 ```html
-<div class="JoyRadioGroup-root">
+<div class="MuiRadioGroup-root">
   <!-- Radio components here -->
 </div>
 ```
@@ -205,13 +205,13 @@ The Radio Group component is composed of a root `<div>` element that can wrap mu
 The Radio component is composed of a root `<span>`, with further nested `<span>` elements for the radio button, icon, action (with a nested `<input>`), and its associated `<label>`.
 
 ```html
-  <span class="JoyRadio-root">
-    <span class="JoyRadio-radio">
-      <span class="JoyRadio-icon"></span>
-      <span class="JoyRadio-action">
-        <input class="JoyRadio-input">
+  <span class="MuiRadio-root">
+    <span class="MuiRadio-radio">
+      <span class="MuiRadio-icon"></span>
+      <span class="MuiRadio-action">
+        <input class="MuiRadio-input">
       </span>
     </span>
-    <label class="JoyRadio-label">
+    <label class="MuiRadio-label">
   </span>
 ```

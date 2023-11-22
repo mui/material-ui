@@ -6,37 +6,51 @@
 
 Run one of the following commands to add Material UI to your project:
 
-### npm
+<codeblock storageKey="package-manager">
 
-```sh
+```bash npm
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
-### yarn
-
-```sh
+```bash yarn
 yarn add @mui/material @emotion/react @emotion/styled
 ```
+
+```bash pnpm
+pnpm add @mui/material @emotion/react @emotion/styled
+```
+
+</codeblock>
 
 ## With styled-components
 
 Material UI uses [Emotion](https://emotion.sh/) as its default styling engine.
 If you want to use [styled-components](https://styled-components.com/) instead, run one of the following commands:
 
-### npm
+<codeblock storageKey="package-manager">
 
-```sh
+```bash npm
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
-### yarn
-
-```sh
+```bash yarn
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
-:::warning
-Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more information about how to configure styled-components.
+```bash pnpm
+pnpm add @mui/material @mui/styled-engine-sc styled-components
+```
+
+</codeblock>
+
+Next, follow the [styled-components how-to guide](/material-ui/guides/styled-components/) to properly configure your bundler to support `@mui/styled-engine-sc`.
+
+:::error
+As of late 2021, [styled-components](https://github.com/styled-components/styled-components) is **not compatible** with server-rendered Material UI projects.
+This is because `babel-plugin-styled-components` isn't able to work with the `styled()` utility inside `@mui` packages.
+See [this GitHub issue](https://github.com/mui/material-ui/issues/29742) for more details.
+
+We **strongly recommend** using Emotion for SSR projects.
 :::
 
 ## Peer dependencies
@@ -54,21 +68,24 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ## Roboto font
 
-Material UI is designed to use the [Roboto](https://fonts.google.com/specimen/Roboto)
-font by default.
-You may add it to your project with npm or yarn via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
+Material UI uses the [Roboto](https://fonts.google.com/specimen/Roboto) font by default.
+Add it to your project via Fontsource, or with the Google Fonts CDN.
 
-### npm
+<codeblock storageKey="package-manager">
 
-```sh
+```bash npm
 npm install @fontsource/roboto
 ```
 
-### yarn
-
-```sh
+```bash yarn
 yarn add @fontsource/roboto
 ```
+
+```bash pnpm
+pnpm add @fontsource/roboto
+```
+
+</codeblock>
 
 Then you can import it in your entry point like this:
 
@@ -85,31 +102,37 @@ Fontsource can be configured to load specific subsets, weights and styles. Mater
 
 ### Google Web Fonts
 
-To install the Roboto font in your project using the Google Web Fonts CDN, add the following code snippet inside your project's `<head />` tag:
+To install Roboto through the Google Web Fonts CDN, add the following code inside your project's <head /> tag:
 
 ```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
 />
 ```
 
 ## Icons
 
 To use the [font Icon component](/material-ui/icons/#icon-font-icons) or the prebuilt SVG Material Icons (such as those found in the [icon demos](/material-ui/icons/)), you must first install the [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) font.
-You can do so with npm or yarn, or with the Google Web Fonts CDN.
+You can do so with npm, or with the Google Web Fonts CDN.
 
-### npm
+<codeblock storageKey="package-manager">
 
-```sh
+```bash npm
 npm install @mui/icons-material
 ```
 
-### yarn
-
-```sh
+```bash yarn
 yarn add @mui/icons-material
 ```
+
+```bash pnpm
+pnpm add @mui/icons-material
+```
+
+</codeblock>
 
 ### Google Web Fonts
 
@@ -130,7 +153,7 @@ For instance, via Google Web Fonts:
 ## CDN
 
 You can start using Material UI right away with minimal front-end infrastructure by installing it via CDN, which is a great option for rapid prototyping.
-Follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/material-via-cdn) to get started.
+Follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/material-ui-via-cdn) to get started.
 
 :::error
 We do _not_ recommend using this approach in production.

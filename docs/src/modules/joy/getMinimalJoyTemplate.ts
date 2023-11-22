@@ -102,7 +102,7 @@ export default function App() {
           </ListItem>
         </List>
       </Card>
-      <Typography textAlign="center" level="body2">
+      <Typography textAlign="center" level="body-sm">
         Developed by{" "}
         <Link
           underline="always"

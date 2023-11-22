@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -20,11 +21,11 @@ function getContainer(container: PortalProps['container']) {
  *
  * Demos:
  *
- * - [Portal](https://mui.com/base/react-portal/)
+ * - [Portal](https://mui.com/base-ui/react-portal/)
  *
  * API:
  *
- * - [Portal API](https://mui.com/base/react-portal/components-api/#portal)
+ * - [Portal API](https://mui.com/base-ui/react-portal/components-api/#portal)
  */
 const Portal = React.forwardRef(function Portal(
   props: PortalProps,
@@ -101,4 +102,4 @@ if (process.env.NODE_ENV !== 'production') {
   (Portal as any)['propTypes' + ''] = exactProp((Portal as any).propTypes);
 }
 
-export default Portal;
+export { Portal };

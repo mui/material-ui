@@ -33,9 +33,9 @@ We added an identifier and menu to the upper-left corner of the docs for improve
 As for the URLs, this is how they look now:
 
 - MUI Core:
-  - Material UI: [https://mui.com/material-ui/](https://mui.com/material-ui/getting-started/overview/)
-  - Base UI: [https://mui.com/base/](https://mui.com/base/getting-started/overview/)
-  - MUI System: [https://mui.com/system/](https://mui.com/system/getting-started/overview/)
+  - Material UI: [https://mui.com/material-ui/](https://mui.com/material-ui/getting-started/)
+  - Base UI: [https://mui.com/base-ui/](https://mui.com/base-ui/getting-started/)
+  - MUI System: [https://mui.com/system/](https://mui.com/system/getting-started/)
 - MUI X:
   - Data grid: [https://mui.com/x/react-data-grid/](https://mui.com/x/react-data-grid/)
   - Date and Time pickers: [https://mui.com/x/react-date-pickers/](https://mui.com/x/react-date-pickers/getting-started/)
