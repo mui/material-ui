@@ -36,6 +36,15 @@ export function EmotionCacheProvider({
   return <CacheProvider value={emotionCache}>{children}</CacheProvider>;
 }
 
+export function EmotionTags({ emotionStyleTags }: { emotionStyleTags: JSX.Element[] }) {
+  return (
+    <React.Fragment>
+      <meta name="emotion-insertion-point" content="" />
+      {emotionStyleTags}
+    </React.Fragment>
+  );
+}
+
 // `getInitialProps` belongs to `_document` (instead of `_app`),
 // it's compatible with static-site generation (SSG).
 export async function getInitialProps(ctx: DocumentContext) {
@@ -82,7 +91,7 @@ export async function getInitialProps(ctx: DocumentContext) {
   // This is important. It prevents Emotion to render invalid HTML.
   // See https://github.com/mui/material-ui/issues/26561#issuecomment-855286153
   const { styles } = extractCriticalToChunks(initialProps.html);
-  const css = styles.map((style) => (
+  const emotionStyleTags = styles.map((style) => (
     <style
       data-emotion={`${style.key} ${style.ids.join(' ')}`}
       key={style.key}
@@ -93,6 +102,6 @@ export async function getInitialProps(ctx: DocumentContext) {
 
   return {
     ...initialProps,
-    css,
+    emotionStyleTags,
   };
 }
