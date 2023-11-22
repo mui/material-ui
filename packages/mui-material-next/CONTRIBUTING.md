@@ -18,10 +18,9 @@ If the issue doesn't exist, create it, name it `[<ComponentName>][material-next]
 4. Drop support for `ThemeProvider` in favor of `CssVarsProvider`. In practice, this means:
    - Consuming tokens from `theme.vars` instead of `theme`
    - In tests, using `CssVarsProvider` and `extendTheme` (both imported from `@mui/material-next/styles`) instead of `ThemeProvider` and `createTheme`, as well as providing the same `CssVarsProvier` and `extendTheme` to `describeConformance`'s `ThemeProvider` and `createTheme` options.
-5. Refactor component to use Base UI hooks if it exists
-6. Implement Material You design specs. Add missing tokens if necessary. Use [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens/v0_172) as a reference for token values
-7. Add component playground to v5 docs, take the [Slider playground](https://mui.com/material-ui/react-slider/#material-you-version) as an example
-8. Refactor styles to use component CSS Variables, following [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens) and Joy UI's equivalent component (if it exists) as guides.
+5. Implement Material You design specs. Add missing tokens if necessary. Use [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens/v0_172) as a reference for token values
+6. Add component playground to v5 docs, take the [Slider playground](https://mui.com/material-ui/react-slider/#material-you-version) as an example
+7. Refactor styles to use component CSS Variables, following [material-web tokens](https://github.com/material-components/material-web/tree/main/tokens) and Joy UI's equivalent component (if it exists) as guides.
 
 ## Other things to keep in mind
 
@@ -30,6 +29,6 @@ If the issue doesn't exist, create it, name it `[<ComponentName>][material-next]
 - Try to avoid breaking changes, keeping the component's API the same:
   - An exception to this is to use Material You nomenclature and naming conventions, even if it would be a breaking change.
   - If breaking changes are inevitable, then document them right away in `/packages/mui-material-next/migration.md` and add the `breaking change` label to your PR.
-- Divide the work in whatever way makes more sense. One PR for all steps, one PR for each step, or anything in between
+- Divide the work in whatever way makes more sense. One PR for a few steps or one PR for each step, however keep in mind that smaller pull requests will be reviewed and merged faster
 - Let everyone know what you're working on so we can keep the work coordinated and avoid overlap
 - Keep running tests every step of the way, this will help to identify changes as soon as possible and avoid hard debugging sessions at the end
