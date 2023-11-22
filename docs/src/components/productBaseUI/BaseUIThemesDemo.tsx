@@ -609,12 +609,12 @@ const Dialog = styled(AnimatedElement)({
   width: 'auto',
   transform: 'translateY(8px)',
   opacity: 0,
-  transition: 'all 0.2s ease-out',
+  transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
   '&[data-open="true"]': {
     transform: 'translateY(0)',
     opacity: 1,
     boxShadow: 'var(--Panel-shadow)',
-    transition: 'all 0.3s ease',
+    transition: 'opacity 0.3s ease, transform 0.3s ease',
   },
 });
 

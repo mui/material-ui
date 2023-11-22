@@ -6,9 +6,9 @@ import Stack from '@mui/material/Stack';
 export default function UnstyledButtonsDisabledFocus() {
   return (
     <Stack spacing={2}>
-      <Button disabled>focusableWhenDisabled = false</Button>
+      <Button disabled>{'focusableWhenDisabled = false'}</Button>
       <Button disabled focusableWhenDisabled>
-        focusableWhenDisabled = true
+        {'focusableWhenDisabled = true'}
       </Button>
     </Stack>
   );
@@ -60,6 +60,7 @@ const Button = styled(BaseButton)(
   &.${buttonClasses.active} {
     background-color: ${blue[700]};
     box-shadow: none;
+    transform: scale(0.99);
   }
 
   &.${buttonClasses.focusVisible} {
@@ -69,13 +70,11 @@ const Button = styled(BaseButton)(
 
   &.${buttonClasses.disabled} {
     background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]}};
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    cursor: not-allowed;
+    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
+    border: 0;
+    cursor: default;
     box-shadow: none;
-    &:hover {
-      background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    }
+    transform: scale(1);
   }
 `,
 );

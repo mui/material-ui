@@ -17,7 +17,7 @@
   "homepage": "https://mui.com/",
   "funding": {
     "type": "opencollective",
-    "url": "https://opencollective.com/mui"
+    "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
     "build": "mkdir build && yarn build:copy-files",

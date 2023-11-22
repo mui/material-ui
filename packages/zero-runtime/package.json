@@ -22,7 +22,7 @@
   "homepage": "@TODO",
   "funding": {
     "type": "opencollective",
-    "url": "https://opencollective.com/mui"
+    "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
@@ -45,7 +45,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.10",
     "@types/mocha": "^10.0.4",
-    "@types/node": "^18.18.9",
+    "@types/node": "^18.18.10",
     "@types/react": "^18.2.37",
     "react": "^18.2.0"
   },

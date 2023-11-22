@@ -24,7 +24,7 @@
   "homepage": "https://mui.com/material-ui/",
   "funding": {
     "type": "opencollective",
-    "url": "https://opencollective.com/mui"
+    "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:umd && yarn build:types && yarn build:copy-files",
@@ -48,7 +48,7 @@
     "@mui/system": "^5.14.18",
     "@mui/types": "^7.2.9",
     "@mui/utils": "^5.14.18",
-    "@types/react-transition-group": "^4.4.8",
+    "@types/react-transition-group": "^4.4.9",
     "clsx": "^2.0.0",
     "csstype": "^3.1.2",
     "prop-types": "^15.8.1",
@@ -72,7 +72,7 @@
     "chai": "^4.3.10",
     "css-mediaquery": "^0.1.2",
     "express": "^4.18.2",
-    "fast-glob": "^3.3.1",
+    "fast-glob": "^3.3.2",
     "fs-extra": "^11.1.1",
     "lodash": "^4.17.21",
     "playwright": "^1.39.0",
