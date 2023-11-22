@@ -73,7 +73,7 @@
         "name": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string",
         "description": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string"
       },
-      "default": "(option) => option?.key"
+      "default": "(option) => option.key"
     },
     "getOptionLabel": {
       "type": {

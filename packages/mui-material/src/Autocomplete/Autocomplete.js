@@ -900,7 +900,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {T} option The option to get the key for.
    * @returns {string}
-   * @default (option) => option?.key
+   * @default (option) => option.key
    */
   getOptionKey: PropTypes.func,
   /**
