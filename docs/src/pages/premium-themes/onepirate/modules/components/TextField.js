@@ -119,8 +119,6 @@ TextField.propTypes = {
   /**
    * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
    * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
-   *
-   * @default {}
    */
   InputLabelProps: PropTypes.object,
   /**
