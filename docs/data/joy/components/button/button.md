@@ -26,7 +26,7 @@ The Joy UI Button component replaces the native HTML `<button>` element and offe
 import Button from '@mui/joy/Button';
 ```
 
-The Joy UI Button behaves similarly to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
+The Joy UI Button behaves similarly to the native HTML `<button>`, so it wraps around the text displayed on its surface.
 
 The demo below shows the three basic states available to the Button: default, disabled, and loading.
 
