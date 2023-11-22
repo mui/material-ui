@@ -19,14 +19,11 @@ export const projectSettings: ProjectSettings = {
   getComponentInfo: getJoyUiComponentInfo,
   translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
-    // Box's demo isn't ready
     // Container's demo isn't ready
     // GlobalStyles's demo isn't ready
-    // Grid has problem with react-docgen
     return (
-      filename.match(
-        /(ThemeProvider|CssVarsProvider|Box|Container|ColorInversion|Grid|GlobalStyles)/,
-      ) !== null
+      filename.match(/(ThemeProvider|CssVarsProvider|Container|ColorInversion|GlobalStyles)/) !==
+      null
     );
   },
 };

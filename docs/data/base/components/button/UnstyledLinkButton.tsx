@@ -1,16 +1,19 @@
 import * as React from 'react';
-import { Button as BaseButton } from '@mui/base/Button';
+import { Button as BaseButton, buttonClasses } from '@mui/base/Button';
+import { prepareForSlot } from '@mui/base/utils';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
 
+const LinkSlot = prepareForSlot(Link);
+
 export default function UnstyledLinkButton() {
   return (
     <Stack spacing={2} direction="row">
-      <Button href={'https://mui.com/'}>Standard link</Button>
-      <Link href={'https://mui.com/'}>
-        <Button>Next link</Button>
-      </Link>
+      <Button href="https://mui.com/">Standard link</Button>
+      <Button href="https://mui.com/" slots={{ root: LinkSlot }}>
+        Next.js link
+      </Button>
     </Stack>
   );
 }
@@ -43,6 +46,7 @@ const Button = styled(BaseButton)(
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
+  text-decoration: none;
   background-color: ${blue[500]};
   padding: 8px 16px;
   border-radius: 8px;
@@ -58,26 +62,24 @@ const Button = styled(BaseButton)(
     background-color: ${blue[600]};
   }
 
-  &:active {
+  &.${buttonClasses.active} {
     background-color: ${blue[700]};
     box-shadow: none;
+    transform: scale(0.99);
   }
 
-  &:focus-visible {
+  &.${buttonClasses.focusVisible} {
     box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
     outline: none;
   }
 
-  &:disabled {
+  &.${buttonClasses.disabled} {
     background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    cursor: not-allowed;
+    border: 0;
+    cursor: default;
     box-shadow: none;
-
-    &:hover {
-      background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    }
+    transform: scale(1);
   }
   `,
 );

@@ -312,7 +312,7 @@ export const ButtonRoot = styled(ButtonBase, {
       backgroundColor: hoveredContainerColor[ownerState.variant ?? 'text'],
       boxShadow: hoveredContainerElevation[ownerState.variant ?? 'text'],
     },
-    [`&.${buttonBaseClasses.active}`]: {
+    '&:active': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-pressed-icon-color)',
       ...((ownerState.disableRipple || ownerState.disableTouchRipple) && {
         backgroundColor: pressedContainerColor[ownerState.variant ?? 'text'],

@@ -123,12 +123,11 @@ async function buildSingleProject(
 
     const componentsBuilds = projectComponents.map(async (component) => {
       try {
-        const { filename } = component;
-        const componentInfo = projectSettings.getComponentInfo(filename);
+        const componentInfo = projectSettings.getComponentInfo(component.filename);
 
         mkdirSync(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
 
-        return generateComponentApi(componentInfo, project, projectSettings);
+        return await generateComponentApi(componentInfo, project, projectSettings);
       } catch (error: any) {
         error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
         throw error;
