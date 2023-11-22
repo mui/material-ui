@@ -11,9 +11,9 @@ import {
   TabbedForm,
   TextInput,
   required,
-} from "react-admin";
-import { RichTextInput } from "ra-input-rich-text";
-import { Stack } from "@mui/material";
+} from 'react-admin';
+import { RichTextInput } from 'ra-input-rich-text';
+import { Stack } from '@mui/material';
 
 function PostEdit() {
   return (
@@ -32,7 +32,7 @@ function PostEdit() {
             reference="tags"
             source="tags"
             sortBy="tags.name"
-            sort={{ field: "name.en", order: "ASC" }}
+            sort={{ field: 'name.en', order: 'ASC' }}
           />
         </TabbedForm.Tab>
         <TabbedForm.Tab label="Stats">
@@ -49,14 +49,14 @@ function PostEdit() {
             <ReferenceManyCount
               reference="comments"
               target="post_id"
-              sx={{ lineHeight: "inherit" }}
+              sx={{ lineHeight: 'inherit' }}
             />
           }
         >
           <ReferenceManyField
             reference="comments"
             target="post_id"
-            sort={{ field: "created_at", order: "DESC" }}
+            sort={{ field: 'created_at', order: 'DESC' }}
           >
             <SimpleList
               primaryText="%{author}"

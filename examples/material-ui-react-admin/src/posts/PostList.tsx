@@ -11,12 +11,12 @@ import {
   SelectColumnsButton,
   TextField,
   TopToolbar,
-} from "react-admin";
+} from 'react-admin';
 
 function PostList() {
   return (
     <List
-      sort={{ field: "published_at", order: "DESC" }}
+      sort={{ field: 'published_at', order: 'DESC' }}
       filters={[<SearchInput source="q" alwaysOn key="q" />]}
       actions={
         <TopToolbar>
@@ -37,7 +37,7 @@ function PostList() {
           reference="tags"
           source="tags"
           sortBy="tags.name"
-          sort={{ field: "name.en", order: "ASC" }}
+          sort={{ field: 'name.en', order: 'ASC' }}
         />
       </DatagridConfigurable>
     </List>

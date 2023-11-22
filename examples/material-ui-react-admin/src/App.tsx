@@ -6,14 +6,14 @@ import {
   ShowGuesser,
   defaultLightTheme,
   defaultDarkTheme,
-} from "react-admin";
-import BookIcon from "@mui/icons-material/Book";
-import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+} from 'react-admin';
+import BookIcon from '@mui/icons-material/Book';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 
-import dataProvider from "./dataProvider";
-import PostList from "./posts/PostList";
-import PostEdit from "./posts/PostEdit";
-import PostCreate from "./posts/PostCreate";
+import dataProvider from './dataProvider';
+import PostList from './posts/PostList';
+import PostEdit from './posts/PostEdit';
+import PostCreate from './posts/PostCreate';
 
 function App() {
   return (

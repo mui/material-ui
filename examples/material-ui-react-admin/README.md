@@ -30,6 +30,6 @@ It shows how react-admin builds up on Material UI to provide application buildin
 
 ## What's Next?
 
-* Explore the code of this example
-* Discover the [React-admin features](https://marmelab.com/react-admin/Features.html)
-* Bootstrap your own admin with [Create React Admin](https://marmelab.com/react-admin/CreateReactAdmin.html)
+- Explore the code of this example
+- Discover the [React-admin features](https://marmelab.com/react-admin/Features.html)
+- Bootstrap your own admin with [Create React Admin](https://marmelab.com/react-admin/CreateReactAdmin.html)

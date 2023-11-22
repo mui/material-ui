@@ -6,9 +6,9 @@ import {
   SimpleForm,
   TextInput,
   required,
-} from "react-admin";
-import { RichTextInput } from "ra-input-rich-text";
-import { Stack } from "@mui/material";
+} from 'react-admin';
+import { RichTextInput } from 'ra-input-rich-text';
+import { Stack } from '@mui/material';
 
 function PostCreate() {
   return (
@@ -26,7 +26,7 @@ function PostCreate() {
           reference="tags"
           source="tags"
           sortBy="tags.name"
-          sort={{ field: "name.en", order: "ASC" }}
+          sort={{ field: 'name.en', order: 'ASC' }}
         />
       </SimpleForm>
     </Create>
