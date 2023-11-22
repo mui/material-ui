@@ -1,8 +1,0 @@
-<Stack spacing={2} direction="row">
-  <CustomButton className="hover:bg-violet-600 active:bg-violet-700">
-    Button
-  </CustomButton>
-  <CustomButton slots={{ root: 'span' }} disabled>
-    Disabled
-  </CustomButton>
-</Stack>
