@@ -24,7 +24,6 @@ npm run dev
 
 ## The Idea Behind This Example
 
-
 This example is a simple blog admin with posts and comments, built on top of a fake REST API running in the browser. It's fully functional: you can list, create, edit and delete posts and comments.
 
 It shows how react-admin builds up on Material UI to provide application building blocks: a datagrid, a form, a rich text editor, a theme switcher, etc.
