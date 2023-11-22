@@ -67,7 +67,7 @@
     "getOptionKey": {
       "type": { "name": "func" },
       "default": "(option) => option.key",
-      "signature": { "type": "function(option: T) => string", "describedArgs": ["option"] }
+      "signature": { "type": "function(option: Value) => string", "describedArgs": ["option"] }
     },
     "getOptionLabel": {
       "type": { "name": "func" },

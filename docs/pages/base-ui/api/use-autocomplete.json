@@ -70,8 +70,8 @@
     },
     "getOptionKey": {
       "type": {
-        "name": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string",
-        "description": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string"
+        "name": "(option: Value | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; void",
+        "description": "(option: Value | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; void"
       },
       "default": "(option) => option.key"
     },

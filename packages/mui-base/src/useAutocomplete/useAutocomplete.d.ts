@@ -158,11 +158,11 @@ export interface UseAutocompleteProps<
   /**
    * Used to determine the key for a given option.
    *
-   * @param {T} option The option to get the key for.
+   * @param {Value} option The option to get the key for.
    * @returns {string}
    * @default (option) => option.key
    */
-  getOptionKey?: (option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
+  getOptionKey?: (option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => void;
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
