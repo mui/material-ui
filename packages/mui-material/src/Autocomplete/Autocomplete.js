@@ -899,8 +899,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Used to determine the key for a given option.
    *
    * @param {Value} option The option to get the key for.
-   * @returns {string}
-   * @default (option) => option.key
+   * @returns {any}
+   * @default (option) => option?.key
    */
   getOptionKey: PropTypes.func,
   /**
