@@ -7,11 +7,12 @@ import type { EmotionCache, Options as OptionsOfCreateCache } from '@emotion/cac
 
 export type NextAppDirEmotionCacheProviderProps = {
   /** This is the options passed to createCache() from 'import createCache from "@emotion/cache"' */
-  options: OptionsOfCreateCache & {
+  options?: Partial<OptionsOfCreateCache> & {
     /**
-     * If `true`, the generated styles are not wrapped within `@layer mui`.
+     * If `true`, the generated styles are wrapped within `@layer mui`.
+     * This is useful if you want to
      */
-    disableCSSLayer?: boolean;
+    enableCssLayer?: boolean;
   };
   /** By default <CacheProvider /> from 'import { CacheProvider } from "@emotion/react"' */
   CacheProvider?: (props: {
@@ -26,12 +27,12 @@ export default function NextAppDirEmotionCacheProvider(props: NextAppDirEmotionC
   const { options, CacheProvider = DefaultCacheProvider, children } = props;
 
   const [registry] = React.useState(() => {
-    const cache = createCache({ ...options, key: options.key ?? 'mui' });
+    const cache = createCache({ ...options, key: options?.key ?? 'mui' });
     cache.compat = true;
     const prevInsert = cache.insert;
     let inserted: { name: string; isGlobal: boolean }[] = [];
     cache.insert = (...args) => {
-      if (!options.disableCSSLayer) {
+      if (options?.enableCssLayer) {
         args[1].styles = `@layer mui {${args[1].styles}}`;
       }
       const [selector, serialized] = args;
