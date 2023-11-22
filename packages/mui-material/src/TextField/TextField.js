@@ -84,6 +84,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     fullWidth = false,
     helperText,
     id: idOverride,
+    InputLabelProps,
     inputProps,
     InputProps,
     inputRef,
