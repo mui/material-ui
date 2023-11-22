@@ -14,7 +14,7 @@ import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchOwnerState, SwitchProps, SwitchTypeMap } from './Switch.types';
 
 const useUtilityClasses = (ownerState: SwitchOwnerState) => {
-  const { classes, edge, size = 'medium', color = 'primary', checked, disabled } = ownerState;
+  const { classes, edge, size, color, checked, disabled } = ownerState;
 
   const slots = {
     root: ['root', edge && `edge${capitalize(edge)}`, `size${capitalize(size)}`],
@@ -143,32 +143,29 @@ const SwitchSwitchBase = styled(SwitchBase, {
     },
     ...(ownerState.color !== 'default' && {
       [`&.${switchClasses.checked}`]: {
-        color: (theme.vars || theme).palette[ownerState.color ?? 'primary'].main,
+        color: (theme.vars || theme).palette[ownerState.color].main,
         '&:hover': {
           backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color ?? 'primary'].mainChannel} / ${
+            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
                 theme.vars.palette.action.hoverOpacity
               })`
-            : alpha(
-                theme.palette[ownerState.color ?? 'primary'].main,
-                theme.palette.action.hoverOpacity,
-              ),
+            : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
           '@media (hover: none)': {
             backgroundColor: 'transparent',
           },
         },
         [`&.${switchClasses.disabled}`]: {
           color: theme.vars
-            ? theme.vars.palette.Switch[`${ownerState.color ?? 'primary'}DisabledColor`]
+            ? theme.vars.palette.Switch[`${ownerState.color}DisabledColor`]
             : `${
                 theme.palette.mode === 'light'
-                  ? lighten(theme.palette[ownerState.color ?? 'primary'].main, 0.62)
-                  : darken(theme.palette[ownerState.color ?? 'primary'].main, 0.55)
+                  ? lighten(theme.palette[ownerState.color].main, 0.62)
+                  : darken(theme.palette[ownerState.color].main, 0.55)
               }`,
         },
       },
       [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
-        backgroundColor: (theme.vars || theme).palette[ownerState.color ?? 'primary'].main,
+        backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
       },
     }),
   }),
