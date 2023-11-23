@@ -1,5 +1,65 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.18
+
+<!-- generated comparing v5.14.17..master -->
+
+_Nov 14, 2023_
+
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- 💫 Introduced new [Stepper](https://mui.com/joy-ui/react-stepper/) component in Joy UI (#39688) @siriwatknp
+- other 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.14.18`
+
+- &#8203;<!-- 32 -->[Autocomplete] Add `defaultMuiPrevented` to onKeyDown type (#39820) @sai6855
+- &#8203;<!-- 31 -->[Autocomplete] Fix React key warning in Next.js (#39795) @mj12albert
+- &#8203;<!-- 24 -->[Checkbox] Asterisk placement aligned correctly (#39721) @axelbostrom
+- &#8203;<!-- 04 -->[Rating] Fix the hover highlighting for spaced icons (#39775) @ZeeshanTamboli
+- &#8203;<!-- 03 -->[TablePagination] Implement `slotProps` pattern for the actions and the select slots (#39353) @anle9650
+- &#8203;<!-- 02 -->[TextField] Fix padding on small filled multiline TextField (#39769) @mj12albert
+
+### `@mui/joy@5.0.0-beta.15`
+
+- &#8203;<!-- 11 -->[Stepper] Add new `Stepper` component (#39688) @siriwatknp
+- &#8203;<!-- 12 -->[Select] Fix displaying placeholder when multiple is true (#39806) @sai6855
+
+### `@mui/material-next@6.0.0-alpha.110`
+
+- &#8203;<!-- 26 -->[ButtonGroup] Copy `ButtonGroup` to material next (#39739) @lhilgert9
+- &#8203;<!-- 09 -->[ProgressIndicator] Change `CircularProgress` files to ts (#39791) @lhilgert9
+- &#8203;<!-- 08 -->[ProgressIndicator] Change `LinearProgress` files to ts (#39793) @lhilgert9
+- &#8203;<!-- 07 -->[ProgressIndicator] Copy `LinearProgress` to material next (#39779) @lhilgert9
+- &#8203;<!-- 06 -->[ProgressIndicator] Copy `CircularProgress` to material next (#39780) @lhilgert9
+- &#8203;<!-- 05 -->[TextField] Add FormLabel and InputLabel components (#39483) @mj12albert
+
+## Docs
+
+- &#8203;<!-- 30 -->[base-ui][NumberInput] Fix inconsistent demo component names (#39786) @mnajdova
+- &#8203;<!-- 29 -->[base-ui][Menu] Refine demos (#39823) @zanivan
+- &#8203;<!-- 28 -->[base-ui][Switch] Refine demos (#39822) @zanivan
+- &#8203;<!-- 16 -->[joy-ui] Fix API generation for Grid (#39861) @oliviertassinari
+- &#8203;<!-- 15 -->[joy-ui] Fix menu in color inversion header demo (#39785) @sai6855
+- &#8203;<!-- 14 -->[joy-ui] Change the design kit link on the Overview page (#39725) @danilo-leal
+- &#8203;<!-- 13 -->[joy-ui] Add `CssBaseline` to integration with Material UI page (#39790) @swillianc
+- &#8203;<!-- 10 -->[joy-ui][Tabs] Add wordBreak style to demo (#39821) @sai6855
+
+## Core
+
+- &#8203;<!-- 27 -->[blog] MUI X late v6 blog post (#39700) @joserodolfofreitas
+- &#8203;<!-- 25 -->[CHANGELOG] Correct the Joy UI version in the changelog (#39788) @michaldudak
+- &#8203;<!-- 23 -->[core] Remove legacy docs files (#39860) @oliviertassinari
+- &#8203;<!-- 22 -->[core] Fix GitHub title tag consistency @oliviertassinari
+- &#8203;<!-- 21 -->[core] Make the API docs builder configurable per project (#39772) @michaldudak
+- &#8203;<!-- 20 -->[docs] Fix the default theme viewer font family (#39782) @danilo-leal
+- &#8203;<!-- 19 -->[docs-infra] Fix hydration api (#39706) @oliviertassinari
+- &#8203;<!-- 18 -->[docs-infra] Adjust the website & docs footer (#39810) @danilo-leal
+- &#8203;<!-- 17 -->[docs-infra] Fix bug on API prop copy experience (#39707) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Change roadmap link destination (#39639) @danilo-leal
+
+All contributors of this release in alphabetical order: @anle9650, @axelbostrom, @danilo-leal, @joserodolfofreitas, @lhilgert9, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @swillianc, @zanivan, @ZeeshanTamboli
+
 ## 5.14.17
 
 <!-- generated comparing v5.14.16..master -->
