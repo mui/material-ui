@@ -32,7 +32,7 @@ Inside `app/layout.tsx`, import the `AppRouterCacheProvider` and wrap all of the
 
 ```diff
  // app/layout.tsx
-+ import { AppRouterCacheProvider } from '@mui/material-nextjs/appRouterV13';
++ import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 
  export default function RootLayout(props) {
    const { children } = props;
@@ -85,7 +85,7 @@ pnpm add @mui/material-nextjs @emotion/cache @emotion/server
 Inside `pages/_document.tsx`, import the `documentGetInitialProps` and use it as the Document's getInitialProps:
 
 ```diff
-+ import { documentGetInitialProps } from '@mui/material-nextjs/pagesRouterV13';
++ import { documentGetInitialProps } from '@mui/material-nextjs/v13-pagesRouter';
 
  export default function MyDocument() {
    return <Html lang="en">...</Html>;

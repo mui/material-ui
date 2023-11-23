@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Script from 'next/script';
-import { documentGetInitialProps } from '@mui/material-nextjs/pagesRouterV13';
+import { documentGetInitialProps } from '@mui/material-nextjs/v13-pagesRouter';
 import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
