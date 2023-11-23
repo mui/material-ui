@@ -11,8 +11,8 @@ import {
 } from '@mui-internal/test-utils';
 import userEvent from '@testing-library/user-event';
 import { Select, SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
-import { useOption, SelectOption } from '@mui/base/useOption';
-import { Option, OptionProps, optionClasses } from '@mui/base/Option';
+import { SelectOption } from '@mui/base/useOption';
+import { Option, OptionProps, OptionRootSlotProps, optionClasses } from '@mui/base/Option';
 import { OptionGroup } from '@mui/base/OptionGroup';
 
 // TODO v6: initialize @testing-library/user-event using userEvent.setup() instead of directly calling methods e.g. userEvent.click() for all related tests in this file
@@ -1170,33 +1170,46 @@ describe('<Select />', () => {
     const renderOption3Spy = spy();
     const renderOption4Spy = spy();
 
-    function CustomOption(props: OptionProps<number> & { renderSpy?: () => void }) {
-      const { renderSpy, value } = props;
-      renderSpy?.();
+    const LoggingRoot = React.forwardRef(function LoggingRoot(
+      props: OptionRootSlotProps<number> & { renderSpy: () => void },
+      ref: React.ForwardedRef<HTMLLIElement>,
+    ) {
+      const { renderSpy, ownerState, ...other } = props;
+      renderSpy();
 
-      const { getRootProps } = useOption({
-        value,
-        label: value.toString(),
-        disabled: false,
-      });
-
-      return <li {...getRootProps()} />;
-    }
+      return <li {...other} ref={ref} />;
+    });
 
     const { getByRole } = render(
       <Select>
-        <CustomOption renderSpy={renderOption1Spy} value={1}>
+        <Option
+          slots={{ root: LoggingRoot }}
+          slotProps={{ root: { renderSpy: renderOption1Spy } as any }}
+          value={1}
+        >
           1
-        </CustomOption>
-        <CustomOption renderSpy={renderOption2Spy} value={2}>
+        </Option>
+        <Option
+          slots={{ root: LoggingRoot }}
+          slotProps={{ root: { renderSpy: renderOption2Spy } as any }}
+          value={2}
+        >
           2
-        </CustomOption>
-        <CustomOption renderSpy={renderOption3Spy} value={3}>
+        </Option>
+        <Option
+          slots={{ root: LoggingRoot }}
+          slotProps={{ root: { renderSpy: renderOption3Spy } as any }}
+          value={3}
+        >
           3
-        </CustomOption>
-        <CustomOption renderSpy={renderOption4Spy} value={4}>
+        </Option>
+        <Option
+          slots={{ root: LoggingRoot }}
+          slotProps={{ root: { renderSpy: renderOption4Spy } as any }}
+          value={4}
+        >
           4
-        </CustomOption>
+        </Option>
       </Select>,
     );
 
@@ -1215,11 +1228,11 @@ describe('<Select />', () => {
 
     await userEvent.keyboard('{ArrowDown}'); // highlights '2'
     expect(renderOption1Spy.callCount).to.equal(6); // '1' rerenders as it loses highlight
-    expect(renderOption2Spy.callCount).to.equal(6); // '2' rerenders as it receives highlight
+    expect(renderOption2Spy.callCount).to.equal(4); // '2' rerenders as it receives highlight
 
     await userEvent.keyboard('{Enter}'); // selects '2'
     expect(renderOption1Spy.callCount).to.equal(6);
-    expect(renderOption2Spy.callCount).to.equal(10);
+    expect(renderOption2Spy.callCount).to.equal(8);
 
     // neither the highlighted nor the selected state of these options changed,
     // so they don't need to rerender:

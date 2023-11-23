@@ -19,11 +19,9 @@ const { getPropTypesFromFile, injectPropTypesInFile } = require('typescript-to-p
 const {
   createTypeScriptProjectBuilder,
 } = require('@mui-internal/api-docs-builder/utils/createTypeScriptProject');
-const {
-  CORE_TYPESCRIPT_PROJECTS,
-} = require('@mui-internal/api-docs-builder/utils/coreTypeScriptProjects');
 const yargs = require('yargs');
 const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui-internal/docs-utilities');
+const { default: CORE_TYPESCRIPT_PROJECTS } = require('../../scripts/coreTypeScriptProjects');
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],

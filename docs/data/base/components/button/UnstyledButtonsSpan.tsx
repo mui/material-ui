@@ -1,12 +1,7 @@
 import * as React from 'react';
-import {
-  Button as BaseButton,
-  buttonClasses,
-  ButtonTypeMap,
-} from '@mui/base/Button';
+import { Button as BaseButton, buttonClasses } from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
-import { PolymorphicComponent } from '@mui/base/utils';
 
 export default function UnstyledButtonsSpan() {
   return (
@@ -65,6 +60,7 @@ const Button = styled(BaseButton)(
   &.${buttonClasses.active} {
     background-color: ${blue[700]};
     box-shadow: none;
+    transform: scale(0.99);
   }
 
   &.${buttonClasses.focusVisible} {
@@ -74,13 +70,11 @@ const Button = styled(BaseButton)(
 
   &.${buttonClasses.disabled} {
     background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]}};
+    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
     border: 0;
-    cursor: not-allowed;
+    cursor: default;
     box-shadow: none;
-    &:hover {
-      background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    }
+    transform: scale(1);
   }
-  `,
-) as PolymorphicComponent<ButtonTypeMap>;
+`,
+);

@@ -22,7 +22,7 @@ import { ListActionTypes, useList, UseListParameters } from '../useList';
 import { EventHandlers } from '../utils/types';
 import { defaultOptionStringifier } from './defaultOptionStringifier';
 import { SelectProviderValue } from './SelectProvider';
-import { useCompoundParent } from '../utils/useCompound';
+import { useCompoundParent } from '../useCompound';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { SelectOption } from '../useOption/useOption.types';
 import { selectReducer } from './selectReducer';

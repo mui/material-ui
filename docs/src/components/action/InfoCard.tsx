@@ -17,6 +17,7 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        flexShrink: 0,
         borderRadius: 1,
         border: '1px solid',
         borderColor: 'primary.200',
@@ -38,13 +39,16 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
 
 interface InfoCardProps {
   title: string;
+  classNameTitle?: string;
   description?: string;
+  classNameDescription?: string;
   link?: string;
   icon?: React.ReactNode;
   svg?: React.ReactNode;
 }
 
-export default function InfoCard({ icon, svg, title, description, link }: InfoCardProps) {
+export default function InfoCard(props: InfoCardProps) {
+  const { icon, svg, title, classNameTitle, description, classNameDescription, link } = props;
   return (
     <Paper
       component={link ? Link : 'div'}
@@ -75,10 +79,11 @@ export default function InfoCard({ icon, svg, title, description, link }: InfoCa
         variant="body2"
         mt={icon ? 2 : 0}
         mb={description ? 0.5 : 0}
+        className={classNameTitle}
       >
         {title}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography variant="body2" color="text.secondary" className={classNameDescription}>
         {description}
       </Typography>
     </Paper>
