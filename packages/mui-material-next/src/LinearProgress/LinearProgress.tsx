@@ -105,23 +105,9 @@ const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
 
   const slots = {
     root: ['root', `color${capitalize(color)}`, variant, fourColor && 'fourColor'],
-    dashed: ['dashed', `dashedColor${capitalize(color)}`],
-    bar1: [
-      'bar',
-      `barColor${capitalize(color)}`,
-      (variant === 'indeterminate' || variant === 'query') && 'bar1Indeterminate',
-      (variant === 'indeterminate' || variant === 'query') && fourColor && 'bar1FourColor',
-      variant === 'determinate' && 'bar1Determinate',
-      variant === 'buffer' && 'bar1Buffer',
-    ],
-    bar2: [
-      'bar',
-      variant !== 'buffer' && `barColor${capitalize(color)}`,
-      variant === 'buffer' && `color${capitalize(color)}`,
-      (variant === 'indeterminate' || variant === 'query') && 'bar2Indeterminate',
-      (variant === 'indeterminate' || variant === 'query') && fourColor && 'bar2FourColor',
-      variant === 'buffer' && 'bar2Buffer',
-    ],
+    dashed: ['dashed'],
+    bar1: ['bar', `bar1`],
+    bar2: ['bar', `bar2`],
   };
 
   return composeClasses(slots, getLinearProgressUtilityClass, classes);
