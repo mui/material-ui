@@ -151,7 +151,7 @@ const NumberInput = React.forwardRef(function NumberInput(
   const inputProps: WithOptionalOwnerState<NumberInputInputSlotProps> = useSlotProps({
     elementType: Input,
     getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsForwardedToInputSlot }),
+      getInputProps({ ...propsForwardedToInputSlot, ...otherHandlers }),
     externalSlotProps: slotProps.input,
     ownerState,
     className: classes.input,
