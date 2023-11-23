@@ -171,7 +171,7 @@ In the following snippet, if <kbd class="key">Shift</kbd> is held when clicking 
 
 ### Events
 
-The number input component and hook provides two props–`onChange` and `onInputChange`–that accept event handlers for when the value of the component changes.
+The Number Input component and hook provide two props–`onChange` and `onInputChange`–that accept event handlers for when the value of the component changes.
 
 #### onChange
 
