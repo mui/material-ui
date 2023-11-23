@@ -219,6 +219,7 @@ function createWebpackConfig(entry, environment) {
         '@mui/utils': path.join(workspaceRoot, 'packages/mui-utils/build'),
         '@mui/base': path.join(workspaceRoot, 'packages/mui-base/build'),
         '@mui/material-next': path.join(workspaceRoot, 'packages/mui-material-next/build'),
+        '@mui/material-nextjs': path.join(workspaceRoot, 'packages/mui-material-nextjs/build'),
         '@mui/joy': path.join(workspaceRoot, 'packages/mui-joy/build'),
       },
     },
