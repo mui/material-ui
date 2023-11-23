@@ -164,7 +164,7 @@ export default function EmailContent() {
           level="title-lg"
           textColor="text.primary"
           endDecorator={
-            <Chip size="sm" variant="outlined" color="warning">
+            <Chip component="span" size="sm" variant="outlined" color="warning">
               Personal
             </Chip>
           }
