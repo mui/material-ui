@@ -117,11 +117,11 @@ const CircularProgressRoot = styled('span', {
   '--md-comp-linear-progress-indicator-four-color-active-indicator-one-color':
     tokens.sys.color.primary,
   '--md-comp-linear-progress-indicator-four-color-active-indicator-two-color':
-    tokens.sys.color.primaryContainer,
+    tokens.sys.color.onPrimaryContainer,
   '--md-comp-linear-progress-indicator-four-color-active-indicator-three-color':
     tokens.sys.color.tertiary,
   '--md-comp-linear-progress-indicator-four-color-active-indicator-four-color':
-    tokens.sys.color.tertiaryContainer,
+    tokens.sys.color.onTertiaryContainer,
   display: 'inline-block',
   height: 'var(--md-comp-linear-progress-indicator-size)',
   width: 'var(--md-comp-linear-progress-indicator-size)',
