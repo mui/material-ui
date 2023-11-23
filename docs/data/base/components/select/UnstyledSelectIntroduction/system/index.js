@@ -165,7 +165,7 @@ const Option = styled(BaseOption)(
   &:focus-visible {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
-
+  
   &.${optionClasses.highlighted}.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
