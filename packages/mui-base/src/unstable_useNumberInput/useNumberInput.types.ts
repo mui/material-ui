@@ -1,10 +1,43 @@
 import * as React from 'react';
 import { FormControlState } from '../FormControl';
+import { NumberInputAction } from './numberInputAction.types';
+import { ActionWithContext } from '../utils/useControllableReducer.types';
 
-export type UseNumberInputChangeHandler = (
-  e: React.KeyboardEvent<HTMLInputElement>,
-  value: number | null,
-) => void;
+export type StepDirection = 'up' | 'down';
+
+/**
+ * The internal state of the NumberInput.
+ * Modify via the reducer only.
+ */
+export interface NumberInputState {
+  /**
+   * The clamped `value` of the `input` element.
+   */
+  value?: number | '';
+  /**
+   * The dirty `value` of the `input` element when it is in focus.
+   */
+  inputValue?: string;
+}
+
+/**
+ * Additional props passed to the number input reducer actions.
+ */
+export type NumberInputActionContext = {
+  min?: number;
+  max?: number;
+  step?: number;
+  shiftMultiplier: number;
+  /**
+   * A function that parses the raw input value
+   */
+  getInputValueAsString: (val: string) => string;
+};
+
+export type NumberInputReducerAction<CustomActionContext = {}> = ActionWithContext<
+  NumberInputAction,
+  NumberInputActionContext & CustomActionContext
+>;
 
 export interface UseNumberInputParameters {
   /**
@@ -83,7 +116,7 @@ export interface UseNumberInputParameters {
   /**
    * The current value. Use when the component is controlled.
    */
-  value?: unknown;
+  value?: number;
 }
 
 export interface UseNumberInputRootSlotOwnProps {

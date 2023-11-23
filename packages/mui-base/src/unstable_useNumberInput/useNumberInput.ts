@@ -17,16 +17,15 @@ import {
   UseNumberInputIncrementButtonSlotProps,
   UseNumberInputDecrementButtonSlotProps,
   UseNumberInputReturnValue,
+  StepDirection,
 } from './useNumberInput.types';
 import { clamp, isNumber } from './utils';
-
-type StepDirection = 'up' | 'down';
 
 const STEP_KEYS = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown'];
 
 const SUPPORTED_KEYS = [...STEP_KEYS, 'Home', 'End'];
 
-function parseInput(v: string): string {
+export function getInputValueAsString(v: string): string {
   return v ? String(v.trim()) : String(v);
 }
 
@@ -165,7 +164,8 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
         return;
       }
 
-      const val = parseInput(event.currentTarget.value);
+      // TODO: event.currentTarget.value will be passed straight into the InputChange action
+      const val = getInputValueAsString(event.currentTarget.value);
 
       if (val === '' || val === '-') {
         setDirtyValue(val);
@@ -187,7 +187,8 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
         return;
       }
 
-      const val = parseInput(event.currentTarget.value);
+      // TODO: event.currentTarget.value will be passed straight into the Blur action, or just pass inputValue from state
+      const val = getInputValueAsString(event.currentTarget.value);
 
       if (val === '' || val === '-') {
         handleValueChange()(event, undefined);
