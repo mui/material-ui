@@ -32,6 +32,9 @@ const OptionRoot = styled(StyledListItemButton as unknown as 'li', {
     [`&.${optionClasses.highlighted}:not([aria-selected="true"])`]: {
       backgroundColor: variantStyle?.backgroundColor,
     },
+    '&:focus-visible': {
+      outline: 0,
+    },
   };
 });
 /**

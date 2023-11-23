@@ -366,12 +366,7 @@ describe('Joy <Select />', () => {
     describe('Grouped options', () => {
       it('first selectable option is focused to use the arrow', () => {
         const { getByRole, getAllByRole } = render(
-          <Select
-            autoFocus
-            defaultValue=""
-            defaultListboxOpen
-            slotProps={{ listbox: { component: 'div' } }}
-          >
+          <Select autoFocus defaultValue="" slotProps={{ listbox: { component: 'div' } }}>
             <List role="group">
               <ListItem role="presentation">Category 1</ListItem>
               <Option value={1}>Option 1</Option>
@@ -388,9 +383,9 @@ describe('Joy <Select />', () => {
         const combobox = getByRole('combobox');
         const options = getAllByRole('option');
 
-        fireEvent.keyDown(combobox, { key: 'ArrowDown' });
-        fireEvent.keyDown(combobox, { key: 'ArrowDown' });
-        fireEvent.keyDown(combobox, { key: 'Enter' });
+        fireEvent.keyDown(combobox, { key: 'ArrowDown' }); // open listbox
+        fireEvent.keyDown(options[0], { key: 'ArrowDown' }); // move focus to Option 2
+        fireEvent.keyDown(options[1], { key: 'Enter' }); // select Option 2
 
         expect(options[1]).to.have.attribute('aria-selected', 'true');
       });
@@ -635,14 +630,14 @@ describe('Joy <Select />', () => {
     );
     // Fire Click of the avatar
     act(() => {
-      fireEvent.mouseDown(getByTestId('test-element'));
+      fireEvent.click(getByTestId('test-element'));
     });
 
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
 
     // click again should close
     act(() => {
-      fireEvent.mouseDown(getByTestId('test-element'));
+      fireEvent.click(getByTestId('test-element'));
     });
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');
   });
