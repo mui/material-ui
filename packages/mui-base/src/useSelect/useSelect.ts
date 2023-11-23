@@ -303,6 +303,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getRootProps: getListboxRootProps,
     contextValue: listContextValue,
     state: { open, highlightedValue: highlightedOption, selectedValues: selectedOptions },
+    rootRef: mergedListRootRef,
   } = useList(useListParameters);
 
   // store the initial open state to prevent focus stealing
@@ -520,7 +521,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getHiddenInputProps,
     getListboxProps,
     getOptionMetadata,
-    listboxRef: handleListboxRef,
+    listboxRef: mergedListRootRef,
     open,
     options: optionValues,
     value: selectValue,
