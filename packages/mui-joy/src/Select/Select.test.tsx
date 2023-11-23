@@ -162,7 +162,7 @@ describe('Joy <Select />', () => {
           <Option value="2" />
         </Select>,
       );
-      fireEvent.mouseDown(getByRole('combobox'));
+      fireEvent.click(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -180,7 +180,7 @@ describe('Joy <Select />', () => {
           <Option value="2" />
         </Select>,
       );
-      fireEvent.mouseDown(getByRole('combobox'));
+      fireEvent.click(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -302,7 +302,7 @@ describe('Joy <Select />', () => {
           <Select id="foo-bar" />
         </div>,
       );
-      fireEvent.mouseDown(screen.getByLabelText('label'));
+      fireEvent.click(screen.getByLabelText('label'));
       expect(screen.getByRole('listbox')).toBeVisible();
     });
 
@@ -381,9 +381,9 @@ describe('Joy <Select />', () => {
         );
 
         const combobox = getByRole('combobox');
-        const options = getAllByRole('option');
-
         fireEvent.keyDown(combobox, { key: 'ArrowDown' }); // open listbox
+
+        const options = getAllByRole('option');
         fireEvent.keyDown(options[0], { key: 'ArrowDown' }); // move focus to Option 2
         fireEvent.keyDown(options[1], { key: 'Enter' }); // select Option 2
 
