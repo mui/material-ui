@@ -407,5 +407,10 @@ The following classes were removed:
 - `MuiLinearProgress-bar2Indeterminate`
 - `MuiLinearProgress-bar2Buffer`
 
+The following classes were added:
+
+- `MuiLinearProgress-bar1`
+- `MuiLinearProgress-bar2`
+
 You can replace them by combining classes with a CSS selector.
 The following example replaces the `MuiLinearProgress-dashedColorPrimary` class using `MuiLinearProgress-dashed` and `MuiLinearProgress-colorPrimary`:
