@@ -703,7 +703,7 @@ NumberInputBase.propTypes /* remove-proptypes */ = {
   /**
    * The value of the `input` element, required for a controlled component.
    */
-  value: PropTypes.any,
+  value: PropTypes.number,
 } as any;
 
 interface NumberInputBaseComponent {

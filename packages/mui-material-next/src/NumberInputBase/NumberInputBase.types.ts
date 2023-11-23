@@ -185,7 +185,7 @@ export type NumberInputBaseOwnProps = {
   /**
    * The value of the `input` element, required for a controlled component.
    */
-  value?: unknown;
+  value?: number;
 };
 
 export interface NumberInputBaseSlots {
