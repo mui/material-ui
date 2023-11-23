@@ -29,14 +29,14 @@ interface EmotionCacheProviderProps {
 
 const defaultEmotionCache = createEmotionCache();
 
-export function EmotionCacheProvider({
+export function AppCacheProvider({
   emotionCache = defaultEmotionCache,
   children,
 }: React.PropsWithChildren<EmotionCacheProviderProps>) {
   return <CacheProvider value={emotionCache}>{children}</CacheProvider>;
 }
 
-export function EmotionTags({ emotionStyleTags }: { emotionStyleTags: JSX.Element[] }) {
+export function DocumentHeadElements({ emotionStyleTags }: { emotionStyleTags: JSX.Element[] }) {
   return (
     <React.Fragment>
       <meta name="emotion-insertion-point" content="" />
@@ -47,7 +47,7 @@ export function EmotionTags({ emotionStyleTags }: { emotionStyleTags: JSX.Elemen
 
 // `getInitialProps` belongs to `_document` (instead of `_app`),
 // it's compatible with static-site generation (SSG).
-export async function getInitialProps(ctx: DocumentContext) {
+export async function documentGetInitialProps(ctx: DocumentContext) {
   // Resolution order
   //
   // On the server:
