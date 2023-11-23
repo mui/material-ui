@@ -105,7 +105,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           disablePortal
           options={['one', 'two', 'three']}
-          renderInput={(params) => <TextField data-testid="root" {...params} />}
+          renderInput={(params) => <TextField {...params} />}
         />,
       );
 
