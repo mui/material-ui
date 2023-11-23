@@ -31,19 +31,19 @@ pnpm add @mui/material-nextjs @emotion/cache
 Inside `app/layout.tsx`, import the `AppRouterCacheProvider` and wrap all of the elements under the `<body>`:
 
 ```diff
-// app/layout.tsx
+ // app/layout.tsx
 + import { AppRouterCacheProvider } from '@mui/material-nextjs/appRouterV13';
 
-export default function RootLayout(props) {
-  const { children } = props;
-  return (
-    <html lang="en">
-      <body>
+ export default function RootLayout(props) {
+   const { children } = props;
+   return (
+     <html lang="en">
+       <body>
 +        <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
-      </body>
-    </html>
-  );
-}
+       </body>
+     </html>
+   );
+ }
 ```
 
 ### Using other styling solutions
@@ -87,9 +87,9 @@ Inside `pages/_document.tsx`, import the `documentGetInitialProps` and use it as
 ```diff
 + import { documentGetInitialProps } from '@mui/material-nextjs/pagesRouterV13';
 
-export default function MyDocument() {
-  return <Html lang="en">...</Html>;
-}
+ export default function MyDocument() {
+   return <Html lang="en">...</Html>;
+ }
 
 + MyDocument.getInitialProps = documentGetInitialProps;
 ```
@@ -99,15 +99,15 @@ Then inside `pages/_app.tsx`, import the `AppCacheProvider` and wrap all of the 
 ```diff
 + import { AppCacheProvider } from '@mui/material-nextjs/pagesRouterV13';
 
-export default function MyApp(props) {
-  const { Component } = props;
-  return (
+ export default function MyApp(props) {
+   const { Component } = props;
+   return (
 +    <AppCacheProvider {...props}>
-      <Head>
-        ...
-      </Head>
-      ...
+       <Head>
+         ...
+       </Head>
+       ...
 +    </AppCacheProvider>
-  );
-}
+   );
+ }
 ```
