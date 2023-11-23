@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { BarChart } from '@mui/x-charts/BarChart';
@@ -14,22 +12,17 @@ export default function XChartsDemo() {
       <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
         <Paper
           variant="outlined"
-          sx={[
-            {
-              '& > div': {
-                borderRadius: 1,
-                bgcolor: '#fff',
-              },
-            },
-            (theme) =>
-              theme.applyDarkStyles({
-                '& > div': {
-                  bgcolor: 'primaryDark.900',
-                },
-              }),
-          ]}
+          sx={(theme) => ({
+            maxWidth: '100%',
+            mx: 'auto',
+            bgcolor: '#FFF',
+            height: '100%',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primaryDark.900',
+            }),
+          })}
         >
-          <Box sx={{ py: 2, px: 1 }}>
+          <Box sx={{ p: 2 }}>
             <LineChart
               sx={{
                 '& .MuiMarkElement-root': { display: 'none' },
@@ -44,7 +37,7 @@ export default function XChartsDemo() {
               ]}
               xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'point' }]}
               colors={mangoFusionPalette}
-              height={200}
+              height={250}
             />
             <BarChart
               sx={{
@@ -59,19 +52,12 @@ export default function XChartsDemo() {
                 { data: [60, 50, 15, 25] },
               ]}
               xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
-              height={180}
+              height={280}
               colors={mangoFusionPalette}
             />
           </Box>
         </Paper>
       </Frame.Demo>
-      <Frame.Info data-mui-color-scheme="dark">
-        <Chip variant="outlined" label="Stable component" color="success" size="small" />
-        <Typography variant="body2" color="text.secondary" mt={1}>
-          Production-ready <strong>Charts</strong> component, featuring bar, lines, pie, scatter,
-          and more types of graphs.
-        </Typography>
-      </Frame.Info>
     </Frame>
   );
 }

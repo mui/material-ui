@@ -109,11 +109,7 @@ function SettingsPanel(props: GridToolbarContainerProps) {
           ))}
         </Select>
       </FormControl>
-      <Button
-        variant="outlined"
-        onClick={handleApplyChanges}
-        sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300', height: 'fit-content' }}
-      >
+      <Button variant="outlined" size="small" onClick={handleApplyChanges}>
         Apply changes
       </Button>
     </FormGroup>
@@ -126,7 +122,7 @@ export default function XGridFullDemo() {
   const { loading, data, setRowLength, loadNewData } = useDemoData({
     dataSet: type,
     rowLength: size,
-    maxColumns: 40,
+    maxColumns: 20,
     editable: true,
   });
 
@@ -177,7 +173,7 @@ export default function XGridFullDemo() {
             {
               overflow: 'auto',
               borderRadius: '8px',
-              height: 328,
+              height: { xs: 320, sm: 500 },
               '& .MuiDataGrid-root': {
                 bgcolor: '#fff',
                 '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
@@ -256,8 +252,8 @@ export default function XGridFullDemo() {
           ]}
         >
           <DataGridPro
-            density="compact"
             {...data}
+            density="compact"
             components={{
               Toolbar: GridToolbar,
             }}

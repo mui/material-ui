@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
@@ -169,13 +168,6 @@ export default function XDateRangeDemo() {
           </LocalizationProvider>
         </Paper>
       </Frame.Demo>
-      <Frame.Info data-mui-color-scheme="dark">
-        <Chip variant="outlined" label="Stable component" color="success" size="small" />
-        <Typography variant="body2" color="text.secondary" mt={1}>
-          Production-ready <strong>Tree View</strong> component for displaying hierarchical data,
-          such as a file system navigator.
-        </Typography>
-      </Frame.Info>
     </Frame>
   );
 }

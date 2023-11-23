@@ -1,32 +1,35 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
 import Box from '@mui/material/Box';
-import { visuallyHidden } from '@mui/utils';
+import Stack from '@mui/material/Stack';
+import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import TableChartRounded from '@mui/icons-material/TableChartRounded';
 import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
 import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
+import { visuallyHidden } from '@mui/utils';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Link from 'docs/src/modules/components/Link';
-import { Group } from 'docs/src/components/action/Item';
 import ROUTES from 'docs/src/route';
 
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
 
-function ProductItem({
+function ComponentItem({
   label,
   icon,
   name,
   description,
   href,
+  stable,
 }: {
   label: string;
   icon: React.ReactNode;
   name: React.ReactNode;
   description?: React.ReactNode;
   href: string;
+  stable?: React.ReactNode;
 }) {
   return (
     <Box
@@ -42,15 +45,35 @@ function ProductItem({
     >
       <div>{icon}</div>
       <div>
-        <Typography
-          component="span"
-          color="text.primary"
-          variant="body2"
-          fontWeight="bold"
-          display="block"
-        >
-          {name}
-        </Typography>
+        <Stack direction="row" alignItems="center" useFlexGap spacing={1}>
+          <Typography
+            component="span"
+            color="text.primary"
+            variant="body2"
+            fontWeight="bold"
+            display="block"
+          >
+            {name}
+          </Typography>
+          {stable && (
+            <Chip
+              variant="outlined"
+              label="Stable"
+              color="success"
+              size="small"
+              sx={(theme) => ({
+                height: 'auto',
+                fontSize: theme.typography.pxToRem(10),
+                fontWeight: 'bold',
+                textTransform: 'uppercase',
+                letterSpacing: '.04rem',
+                '& .MuiChip-label': {
+                  px: '4px',
+                },
+              })}
+            />
+          )}
+        </Stack>
         {description && (
           <Typography
             component="span"
@@ -58,6 +81,7 @@ function ProductItem({
             variant="body2"
             fontWeight="regular"
             display="block"
+            gutterBottom
           >
             {description}
           </Typography>
@@ -90,34 +114,42 @@ function ProductItem({
 
 export default function XComponentsSwitcher(props: {
   inView?: boolean;
-  productIndex: number;
-  setProductIndex: React.Dispatch<React.SetStateAction<number>>;
+  componentIndex: number;
+  setComponentIndex: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  const { inView = false, productIndex, setProductIndex } = props;
+  const { inView = false, componentIndex, setComponentIndex } = props;
   const productElements = [
-    <ProductItem
+    <ComponentItem
       name="Data Grid"
       label="by going to the Core components page"
+      description="Feature-rich and fast table extension."
       icon={<TableChartRounded fontSize="small" />}
       href={ROUTES.productCore}
+      stable
     />,
-    <ProductItem
+    <ComponentItem
       name="Date Pickers"
+      description="Let users pick a date and time, or both together."
       label="by going to the Advanced components page"
       icon={<DateRangeRounded fontSize="small" />}
       href={ROUTES.productAdvanced}
+      stable
     />,
-    <ProductItem
+    <ComponentItem
       name="Charts"
+      description="Features bar, lines, pie, scatter, and more types of graphs."
       label="by going to the templates page"
       icon={<AccountTreeRounded fontSize="small" />}
       href={ROUTES.productTemplates}
+      stable
     />,
-    <ProductItem
+    <ComponentItem
       name="Tree View"
+      description="Display hierarchical data, such as a file system navigator."
       label="by going to the design-kits page"
       icon={<ShowChartRounded fontSize="small" />}
       href={ROUTES.productDesignKits}
+      stable
     />,
   ];
   return (
@@ -132,21 +164,21 @@ export default function XComponentsSwitcher(props: {
       >
         {inView && (
           <SwipeableViews
-            index={productIndex}
+            index={componentIndex}
             resistance
             enableMouseEvents
-            onChangeIndex={(index) => setProductIndex(index)}
+            onChangeIndex={(index) => setComponentIndex(index)}
           >
             {productElements.map((elm, index) => (
               <Highlighter
                 key={index}
                 disableBorder
-                onClick={() => setProductIndex(index)}
-                selected={productIndex === index}
+                onClick={() => setComponentIndex(index)}
+                selected={componentIndex === index}
                 sx={{
                   width: '100%',
                   transition: '0.3s',
-                  transform: productIndex !== index ? 'scale(0.9)' : 'scale(1)',
+                  transform: componentIndex !== index ? 'scale(0.9)' : 'scale(1)',
                 }}
               >
                 {elm}
@@ -155,18 +187,18 @@ export default function XComponentsSwitcher(props: {
           </SwipeableViews>
         )}
       </Box>
-      <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
+      <Stack spacing={1} sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
         {productElements.map((elm, index) => (
           <Highlighter
             key={index}
             disableBorder
-            onClick={() => setProductIndex(index)}
-            selected={productIndex === index}
+            onClick={() => setComponentIndex(index)}
+            selected={componentIndex === index}
           >
             {elm}
           </Highlighter>
         ))}
-      </Group>
+      </Stack>
     </React.Fragment>
   );
 }
