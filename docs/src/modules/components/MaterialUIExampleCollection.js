@@ -121,7 +121,9 @@ export default function MaterialUIExampleCollection() {
                 : { children: example.src })}
             />
             <div>
-              <Typography fontWeight="semiBold">{example.name}</Typography>
+              <Typography fontWeight="semiBold" className="algolia-lvl3">
+                {example.name}
+              </Typography>
               <Box
                 data-ga-event-category="material-ui-example"
                 data-ga-event-label={example.name}

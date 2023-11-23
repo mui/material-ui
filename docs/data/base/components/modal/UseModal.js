@@ -26,9 +26,9 @@ export default function UseModal() {
       >
         <Fade in={open}>
           <ModalContent sx={style}>
-            <h3 id="transition-modal-title" className="modal-title">
+            <h2 id="transition-modal-title" className="modal-title">
               Text in a modal
-            </h3>
+            </h2>
             <span id="transition-modal-description" className="modal-description">
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </span>
