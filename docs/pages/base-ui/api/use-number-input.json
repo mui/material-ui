@@ -14,8 +14,8 @@
     "min": { "type": { "name": "number", "description": "number" } },
     "onBlur": {
       "type": {
-        "name": "(event?: React.FocusEvent) =&gt; void",
-        "description": "(event?: React.FocusEvent) =&gt; void"
+        "name": "(event?: React.FocusEvent&lt;HTMLInputElement&gt;) =&gt; void",
+        "description": "(event?: React.FocusEvent&lt;HTMLInputElement&gt;) =&gt; void"
       }
     },
     "onChange": {
@@ -67,29 +67,29 @@
     },
     "getDecrementButtonProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputDecrementButtonSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputDecrementButtonSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputDecrementButtonSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputDecrementButtonSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getIncrementButtonProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputIncrementButtonSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputIncrementButtonSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputIncrementButtonSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputIncrementButtonSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getInputProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputInputSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputInputSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputInputSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputInputSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputRootSlotProps&lt;TOther&gt;",
-        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputRootSlotProps&lt;TOther&gt;"
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt; = {}&gt;(externalProps?: ExternalProps) =&gt; UseNumberInputRootSlotProps&lt;ExternalProps&gt;"
       },
       "required": true
     },

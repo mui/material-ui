@@ -24,9 +24,9 @@ export default function NestedModal() {
         slots={{ backdrop: StyledBackdrop }}
       >
         <ModalContent sx={style}>
-          <h3 id="parent-modal-title" className="modal-title">
+          <h2 id="parent-modal-title" className="modal-title">
             Text in a modal
-          </h3>
+          </h2>
           <p id="parent-modal-description" className="modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </p>
@@ -57,9 +57,9 @@ function ChildModal() {
         slots={{ backdrop: StyledBackdrop }}
       >
         <ModalContent sx={[style, { width: '240px' }]}>
-          <h3 id="child-modal-title" className="modal-title">
+          <h2 id="child-modal-title" className="modal-title">
             Text in a child modal
-          </h3>
+          </h2>
           <p id="child-modal-description" className="modal-description">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           </p>
@@ -133,6 +133,10 @@ const style = {
 
 const ModalContent = styled(Box)(
   ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 500;
+  text-align: start;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -141,20 +145,14 @@ const ModalContent = styled(Box)(
   border-radius: 8px;
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   box-shadow: 0px 4px 12px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.20)'
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.20)'
   };
-  padding: 1rem;
+  padding: 16px;
   color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: 500;
-  text-align: start;
-  position: relative;
-
 
   & .modal-title {
     margin: 0;
     line-height: 1.5rem;
-    margin-right: 0.5rem;
   }
 
   & .modal-description {
@@ -187,12 +185,11 @@ const TriggerButton = styled(Button)(
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
   
-  &.active {
-    background-color: ${blue[700]};
-    box-shadow: none;
+  &:active {
+    background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
   }
   
-  &.focusVisible {
+  &:focus-visible {
     box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
     outline: none;
   }
@@ -221,7 +218,8 @@ const ModalButton = styled(Button)(
   }
 
   &:active {
-    background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
+    background-color: ${blue[700]};
+    box-shadow: none;
   }
 
   &:focus-visible {
@@ -229,7 +227,7 @@ const ModalButton = styled(Button)(
     outline: none;
   }
 
-  &.disabled {
+  &:disabled {
     opacity: 0.4;
     cursor: not-allowed;
     box-shadow: none;

@@ -38,7 +38,7 @@ export interface UseNumberInputParameters {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error?: boolean;
-  onBlur?: (event?: React.FocusEvent) => void;
+  onBlur?: (event?: React.FocusEvent<HTMLInputElement>) => void;
   onClick?: React.MouseEventHandler;
   /**
    * Callback fired when the `input` value changes after each keypress, before clamping is applied.
@@ -90,8 +90,8 @@ export interface UseNumberInputRootSlotOwnProps {
   onClick: React.MouseEventHandler | undefined;
 }
 
-export type UseNumberInputRootSlotProps<TOther = {}> = Omit<
-  TOther,
+export type UseNumberInputRootSlotProps<ExternalProps = {}> = Omit<
+  ExternalProps,
   keyof UseNumberInputRootSlotOwnProps | 'onBlur' | 'onInputChange' | 'onFocus'
 > &
   UseNumberInputRootSlotOwnProps;
@@ -115,8 +115,8 @@ export interface UseNumberInputInputSlotOwnProps {
   disabled: boolean;
 }
 
-export type UseNumberInputInputSlotProps<TOther = {}> = Omit<
-  TOther,
+export type UseNumberInputInputSlotProps<ExternalProps = {}> = Omit<
+  ExternalProps,
   keyof UseNumberInputInputSlotOwnProps
 > &
   UseNumberInputInputSlotOwnProps;
@@ -128,8 +128,8 @@ export interface UseNumberInputIncrementButtonSlotOwnProps {
   tabIndex?: number;
 }
 
-export type UseNumberInputIncrementButtonSlotProps<TOther = {}> = Omit<
-  TOther,
+export type UseNumberInputIncrementButtonSlotProps<ExternalProps = {}> = Omit<
+  ExternalProps,
   keyof UseNumberInputIncrementButtonSlotOwnProps
 > &
   UseNumberInputIncrementButtonSlotOwnProps;
@@ -141,8 +141,8 @@ export interface UseNumberInputDecrementButtonSlotOwnProps {
   tabIndex?: number;
 }
 
-export type UseNumberInputDecrementButtonSlotProps<TOther = {}> = Omit<
-  TOther,
+export type UseNumberInputDecrementButtonSlotProps<ExternalProps = {}> = Omit<
+  ExternalProps,
   keyof UseNumberInputDecrementButtonSlotOwnProps
 > &
   UseNumberInputDecrementButtonSlotOwnProps;
@@ -172,33 +172,33 @@ export interface UseNumberInputReturnValue {
    * @param externalProps props for the decrement button slot
    * @returns props that should be spread on the decrement button slot
    */
-  getDecrementButtonProps: <TOther extends Record<string, any> = {}>(
-    externalProps?: TOther,
-  ) => UseNumberInputDecrementButtonSlotProps<TOther>;
+  getDecrementButtonProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseNumberInputDecrementButtonSlotProps<ExternalProps>;
   /**
    * Resolver for the increment button slot's props.
    * @param externalProps props for the increment button slot
    * @returns props that should be spread on the increment button slot
    */
-  getIncrementButtonProps: <TOther extends Record<string, any> = {}>(
-    externalProps?: TOther,
-  ) => UseNumberInputIncrementButtonSlotProps<TOther>;
+  getIncrementButtonProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseNumberInputIncrementButtonSlotProps<ExternalProps>;
   /**
    * Resolver for the input slot's props.
    * @param externalProps props for the input slot
    * @returns props that should be spread on the input slot
    */
-  getInputProps: <TOther extends Record<string, any> = {}>(
-    externalProps?: TOther,
-  ) => UseNumberInputInputSlotProps<TOther>;
+  getInputProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseNumberInputInputSlotProps<ExternalProps>;
   /**
    * Resolver for the root slot's props.
    * @param externalProps props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: <TOther extends Record<string, any> = {}>(
-    externalProps?: TOther,
-  ) => UseNumberInputRootSlotProps<TOther>;
+  getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseNumberInputRootSlotProps<ExternalProps>;
   /**
    * If `true`, the `input` will indicate that it's required.
    * @default false
