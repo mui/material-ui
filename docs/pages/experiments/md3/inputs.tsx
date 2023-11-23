@@ -21,58 +21,6 @@ const md3Theme = extendTheme();
 export default function MaterialYouInputs() {
   return (
     <Stack spacing={4}>
-      <ThemeProvider theme={md2Theme}>
-        <Stack direction="column" gap={4} sx={{ p: 4 }}>
-          <pre>MD2</pre>
-          <Stack display="inline-flex" direction="row" gap={4}>
-            <Md2FormControl color="primary" variant="filled">
-              <Md2InputLabel htmlFor="md2-primary">Primary</Md2InputLabel>
-              <Md2FilledInput
-                id="md2-primary"
-                defaultValue="primary"
-                aria-describedby="md2-primary-helper-text"
-              />
-              <Md2FormHelperText id="md2-primary-helper-text">
-                md2 primary helper text
-              </Md2FormHelperText>
-            </Md2FormControl>
-            <Md2FormControl color="secondary" variant="filled">
-              <Md2InputLabel htmlFor="md2-secondary">Secondary</Md2InputLabel>
-              <Md2FilledInput
-                id="md2-secondary"
-                defaultValue="secondary"
-                aria-describedby="md2-secondary-helper-text"
-              />
-              <Md2FormHelperText id="md2-secondary-helper-text">
-                md2 secondary helper text
-              </Md2FormHelperText>
-            </Md2FormControl>
-          </Stack>
-          <Stack display="inline-flex" direction="row" gap={4}>
-            <Md2FormControl color="primary" variant="filled">
-              <Md2InputLabel htmlFor="md2-primary">Primary adornments</Md2InputLabel>
-              <Md2FilledInput
-                id="md2-primary"
-                defaultValue="primary"
-                startAdornment={
-                  <Md2InputAdornment position="start">
-                    <SearchIcon />
-                  </Md2InputAdornment>
-                }
-              />
-            </Md2FormControl>
-            <Md2FormControl color="secondary" variant="filled">
-              <Md2InputLabel htmlFor="md2-secondary">Secondary adornments</Md2InputLabel>
-              <Md2FilledInput
-                id="md2-secondary"
-                defaultValue="secondary"
-                startAdornment={<Md2InputAdornment position="start">$</Md2InputAdornment>}
-              />
-            </Md2FormControl>
-          </Stack>
-        </Stack>
-      </ThemeProvider>
-
       <CssVarsProvider theme={md3Theme}>
         <Stack
           direction="column"
@@ -82,6 +30,38 @@ export default function MaterialYouInputs() {
           <Stack direction="row" gap={1}>
             <pre>MD3</pre>
             <ModeSwitcher />
+          </Stack>
+
+          <Stack display="inline-flex" direction="row" gap={4} mb={8}>
+            <FormControl color="primary" variant="filled">
+              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <FilledInput
+                id="md3-primary-adornment"
+                defaultValue="WIP primary adornment"
+                startAdornment={
+                  <Md2InputAdornment position="start">
+                    <SearchIcon />
+                  </Md2InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControl color="secondary" variant="filled">
+              <InputLabel htmlFor="md3-secondary-adornment">WIP Secondary adornments</InputLabel>
+              <FilledInput
+                id="md3-secondary-adornment"
+                defaultValue="WIP secondary adornment"
+                startAdornment={
+                  <Md2InputAdornment position="start">
+                    <SearchIcon />
+                  </Md2InputAdornment>
+                }
+                endAdornment={
+                  <Md2InputAdornment position="end">
+                    <HighlightOffIcon />
+                  </Md2InputAdornment>
+                }
+              />
+            </FormControl>
           </Stack>
 
           <Stack display="inline-flex" direction="row" gap={4}>
@@ -173,40 +153,60 @@ export default function MaterialYouInputs() {
               <FormHelperText id="md3-tertiary-helper-text">Tertiary helper text</FormHelperText>
             </FormControl>
           </Stack>
-
-          <Stack display="inline-flex" direction="row" gap={4} mt={8}>
-            <FormControl color="primary" variant="filled">
-              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
-              <FilledInput
-                id="md3-primary-adornment"
-                defaultValue="WIP primary adornment"
-                startAdornment={
-                  <Md2InputAdornment position="start">
-                    <SearchIcon />
-                  </Md2InputAdornment>
-                }
-              />
-            </FormControl>
-            <FormControl color="secondary" variant="filled">
-              <InputLabel htmlFor="md3-secondary-adornment">WIP Secondary adornments</InputLabel>
-              <FilledInput
-                id="md3-secondary-adornment"
-                defaultValue="WIP secondary adornment"
-                startAdornment={
-                  <Md2InputAdornment position="start">
-                    <SearchIcon />
-                  </Md2InputAdornment>
-                }
-                endAdornment={
-                  <Md2InputAdornment position="end">
-                    <HighlightOffIcon />
-                  </Md2InputAdornment>
-                }
-              />
-            </FormControl>
-          </Stack>
         </Stack>
       </CssVarsProvider>
+
+      <ThemeProvider theme={md2Theme}>
+        <Stack direction="column" gap={4} sx={{ p: 4 }}>
+          <pre>MD2</pre>
+          <Stack display="inline-flex" direction="row" gap={4}>
+            <Md2FormControl color="primary" variant="filled">
+              <Md2InputLabel htmlFor="md2-primary">Primary adornments</Md2InputLabel>
+              <Md2FilledInput
+                id="md2-primary"
+                defaultValue="primary"
+                startAdornment={
+                  <Md2InputAdornment position="start">
+                    <SearchIcon />
+                  </Md2InputAdornment>
+                }
+              />
+            </Md2FormControl>
+            <Md2FormControl color="secondary" variant="filled">
+              <Md2InputLabel htmlFor="md2-secondary">Secondary adornments</Md2InputLabel>
+              <Md2FilledInput
+                id="md2-secondary"
+                defaultValue="secondary"
+                startAdornment={<Md2InputAdornment position="start">$</Md2InputAdornment>}
+              />
+            </Md2FormControl>
+          </Stack>
+          <Stack display="inline-flex" direction="row" gap={4}>
+            <Md2FormControl color="primary" variant="filled">
+              <Md2InputLabel htmlFor="md2-primary">Primary</Md2InputLabel>
+              <Md2FilledInput
+                id="md2-primary"
+                defaultValue="primary"
+                aria-describedby="md2-primary-helper-text"
+              />
+              <Md2FormHelperText id="md2-primary-helper-text">
+                md2 primary helper text
+              </Md2FormHelperText>
+            </Md2FormControl>
+            <Md2FormControl color="secondary" variant="filled">
+              <Md2InputLabel htmlFor="md2-secondary">Secondary</Md2InputLabel>
+              <Md2FilledInput
+                id="md2-secondary"
+                defaultValue="secondary"
+                aria-describedby="md2-secondary-helper-text"
+              />
+              <Md2FormHelperText id="md2-secondary-helper-text">
+                md2 secondary helper text
+              </Md2FormHelperText>
+            </Md2FormControl>
+          </Stack>
+        </Stack>
+      </ThemeProvider>
     </Stack>
   );
 }
