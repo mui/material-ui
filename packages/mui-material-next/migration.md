@@ -390,3 +390,22 @@ The `MuiDivider-withChildrenVertical` class has been removed. To replace it, you
 - .MuiDivider-withChildrenVertical
 + .MuiDivider-withChildren.MuiDivider-vertical
 ```
+
+## LinearProgress
+
+### Removed combined classes
+
+The following classes were removed:
+
+- `MuiLinearProgress-dashedColorPrimary`
+- `MuiLinearProgress-dashedColorSecondary`
+- `MuiLinearProgress-barColorPrimary`
+- `MuiLinearProgress-barColorSecondary`
+- `MuiLinearProgress-bar1Indeterminate`
+- `MuiLinearProgress-bar1Determinate`
+- `MuiLinearProgress-bar1Buffer`
+- `MuiLinearProgress-bar2Indeterminate`
+- `MuiLinearProgress-bar2Buffer`
+
+You can replace them by combining classes with a CSS selector.
+The following example replaces the `MuiLinearProgress-dashedColorPrimary` class using `MuiLinearProgress-dashed` and `MuiLinearProgress-colorPrimary`:
