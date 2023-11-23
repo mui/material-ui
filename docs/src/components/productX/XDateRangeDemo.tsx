@@ -47,7 +47,7 @@ function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Date>>) {
         sx={{
           display: 'flex',
           p: 1.5,
-          gap: 1,
+          gap: 1.5,
           '& .MuiListItem-root': {
             p: 0,
             width: 'fit-content',
@@ -102,7 +102,7 @@ export default function XDateRangeDemo() {
               '& > div': {
                 borderRadius: 1,
                 overflow: 'auto',
-                bgcolor: '#fff',
+                bgcolor: '#FFF',
               },
               '& > div > div > div > div': {
                 flexGrow: 1,
@@ -132,10 +132,10 @@ export default function XDateRangeDemo() {
               '& .MuiPickersDay-root': {
                 width: 28,
                 height: 28,
-                fontWeight: 400,
+                fontWeight: 'regular',
               },
               '& .MuiDateRangePickerDay-day.Mui-selected': {
-                fontWeight: 600,
+                fontWeight: 'semiBold',
               },
               '& .MuiDateRangePickerDay-day:not(.Mui-selected)': {
                 borderColor: 'primary.300',

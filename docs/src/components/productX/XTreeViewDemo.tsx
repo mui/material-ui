@@ -206,6 +206,7 @@ export default function XDateRangeDemo() {
             maxWidth: '100%',
             mx: 'auto',
             bgcolor: '#FFF',
+            borderRadius: '8px',
             ...theme.applyDarkStyles({
               bgcolor: 'primaryDark.900',
             }),

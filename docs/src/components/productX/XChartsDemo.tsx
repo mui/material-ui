@@ -17,6 +17,7 @@ export default function XChartsDemo() {
             mx: 'auto',
             bgcolor: '#FFF',
             height: '100%',
+            borderRadius: '8px',
             ...theme.applyDarkStyles({
               bgcolor: 'primaryDark.900',
             }),
