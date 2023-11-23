@@ -167,9 +167,17 @@ export default function ComponentsGallery() {
     const response = await fetch('/static/components-gallery/base-theme.css');
     let css = await response.text();
 
-    if (rootStyles !== '') {
-      css += rootStyles;
-    }
+    // Replace the CSS variables declarations with the ones from the overrides
+    rootStyles
+      .split('\n')
+      .map((str) => str.trim())
+      .filter((rowString) => {
+        return rowString.startsWith('--') && rowString.endsWith(';');
+      })
+      .forEach((cssVarDeclaration) => {
+        const cssVar = cssVarDeclaration.split(':')[0].trim();
+        css = css.replace(new RegExp(cssVar + ':.*;'), cssVarDeclaration);
+      });
 
     // Copy the text inside the text field
     navigator.clipboard.writeText(css);
@@ -266,7 +274,9 @@ export default function ComponentsGallery() {
                 />
                 <div className="snackbar-message">
                   <p className="snackbar-title">Done!</p>
-                  <p className="snackbar-description">The theme stylesheet has been copied to clipboard!</p>
+                  <p className="snackbar-description">
+                    The theme stylesheet has been copied to clipboard!
+                  </p>
                 </div>
                 <CloseIcon onClick={handleCopyClose} className="snackbar-close-icon" />
               </div>
