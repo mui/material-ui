@@ -266,7 +266,7 @@ export default function ComponentsGallery() {
                 />
                 <div className="snackbar-message">
                   <p className="snackbar-title">Done!</p>
-                  <p className="snackbar-description">The theme stylesheet has been copied!</p>
+                  <p className="snackbar-description">The theme stylesheet has been copied to clipboard!</p>
                 </div>
                 <CloseIcon onClick={handleCopyClose} className="snackbar-close-icon" />
               </div>
