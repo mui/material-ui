@@ -2,10 +2,6 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import { act, renderHook } from '@testing-library/react';
 import { useSelect } from './useSelect';
-import { SelectActionTypes } from './useSelect.types';
-import { FocusManagementType } from '../useList';
-
-const focusManagementTypes: FocusManagementType[] = ['activeDescendant', 'DOM'];
 
 describe('useSelect', () => {
   describe('param: options', () => {
@@ -23,108 +19,6 @@ describe('useSelect', () => {
       expect(result.current.getOptionMetadata('b')?.label).to.equal('B');
       expect(result.current.getOptionMetadata('c')?.label).to.equal('C');
       expect(result.current.getOptionMetadata('c')?.disabled).to.equal(true);
-    });
-  });
-
-  describe('param: focusManagement', () => {
-    describe('activeDescendant', () => {
-      it('sets correct props on the trigger element', () => {
-        const options = [
-          { value: 'a', label: 'A' },
-          { value: 'b', label: 'B' },
-        ];
-
-        const { result } = renderHook(() =>
-          useSelect({ options, value: 'a', focusManagement: 'activeDescendant' }),
-        );
-
-        const { dispatch } = result.current;
-
-        act(() => {
-          // @ts-ignore
-          dispatch({ type: SelectActionTypes.buttonClick });
-        });
-
-        const { getButtonProps, getOptionMetadata } = result.current;
-
-        const buttonProps = getButtonProps();
-        const { tabIndex: buttonTabIndex, 'aria-activedescendant': buttonActiveDescendant } =
-          buttonProps;
-
-        expect(buttonTabIndex).to.eq(0);
-        expect(buttonActiveDescendant).to.eq(getOptionMetadata('a')?.id);
-      });
-
-      it('sets correct props on the listbox element', () => {
-        const options = [
-          { value: 'a', label: 'A' },
-          { value: 'b', label: 'B' },
-        ];
-
-        const { result } = renderHook(() =>
-          useSelect({ options, value: 'a', focusManagement: 'activeDescendant' }),
-        );
-
-        const { dispatch } = result.current;
-
-        act(() => {
-          // @ts-ignore
-          dispatch({ type: SelectActionTypes.buttonClick });
-        });
-
-        const { getListboxProps } = result.current;
-
-        const listboxProps = getListboxProps();
-        const { tabIndex: listboxTabIndex } = listboxProps;
-        // @ts-expect-error aria-activedescendant should not be included
-        const { 'aria-activedescendant': listboxActiveDescendant } = listboxProps;
-
-        expect(listboxTabIndex).to.eq(undefined);
-        expect(listboxActiveDescendant).to.eq(undefined);
-      });
-    });
-
-    describe('DOM', () => {
-      it('sets correct props to the trigger element', () => {
-        const { result } = renderHook(() => useSelect({ focusManagement: 'DOM' }));
-
-        const { dispatch } = result.current;
-
-        act(() => {
-          // @ts-ignore
-          dispatch({ type: SelectActionTypes.buttonClick });
-        });
-
-        const { getButtonProps } = result.current;
-
-        const buttonProps = getButtonProps();
-        const { tabIndex: buttonTabIndex, 'aria-activedescendant': buttonActiveDescendant } =
-          buttonProps;
-
-        expect(buttonTabIndex).to.eq(undefined);
-        expect(buttonActiveDescendant).to.eq(undefined);
-      });
-
-      it('sets correct props to the listbox element', () => {
-        const { result } = renderHook(() => useSelect({ focusManagement: 'DOM' }));
-
-        const { dispatch } = result.current;
-
-        act(() => {
-          // @ts-ignore
-          dispatch({ type: SelectActionTypes.buttonClick });
-        });
-
-        const { getListboxProps } = result.current;
-
-        const listboxProps = getListboxProps();
-        const { tabIndex: listboxTabIndex } = listboxProps;
-        // @ts-expect-error aria-activedescendant should not be included
-        const { 'aria-activedescendant': listboxActiveDescendant } = listboxProps;
-
-        expect(listboxTabIndex).to.eq(-1);
-        expect(listboxActiveDescendant).to.eq(undefined);
-      });
     });
   });
 
@@ -234,88 +128,76 @@ describe('useSelect', () => {
   });
 
   describe('parameter: buttonRef', () => {
-    focusManagementTypes.forEach((focusManagement) => {
-      it(`merges buttonRef parameter with getButtonProps ref when focus management is ${focusManagement}`, () => {
-        const buttonElement = document.createElement('button');
-        const buttonRefSpy = sinon.spy();
-        const { result } = renderHook(() =>
-          useSelect({ buttonRef: buttonRefSpy, focusManagement }),
-        );
+    it('merges buttonRef parameter with getButtonProps ref', () => {
+      const buttonElement = document.createElement('button');
+      const buttonRefSpy = sinon.spy();
+      const { result } = renderHook(() => useSelect({ buttonRef: buttonRefSpy }));
 
-        const { getButtonProps } = result.current;
-        const { ref: propGetterRefCallback } = getButtonProps();
+      const { getButtonProps } = result.current;
+      const { ref: propGetterRefCallback } = getButtonProps();
 
-        expect(propGetterRefCallback).not.to.eq(null);
+      expect(propGetterRefCallback).not.to.eq(null);
 
-        act(() => {
-          propGetterRefCallback?.(buttonElement);
-        });
-
-        expect(buttonRefSpy.calledOnce).to.equal(true);
-        expect(buttonRefSpy.calledWith(buttonElement)).to.equal(true);
+      act(() => {
+        propGetterRefCallback?.(buttonElement);
       });
 
-      it(`merges buttonRef parameter with returned buttonRef when focus management is ${focusManagement}`, () => {
-        const buttonElement = document.createElement('button');
-        const buttonRefSpy = sinon.spy();
-        const { result } = renderHook(() =>
-          useSelect({ buttonRef: buttonRefSpy, focusManagement }),
-        );
+      expect(buttonRefSpy.calledOnce).to.equal(true);
+      expect(buttonRefSpy.calledWith(buttonElement)).to.equal(true);
+    });
 
-        const { buttonRef: returnedButtonRef } = result.current;
+    it('merges buttonRef parameter with returned buttonRef', () => {
+      const buttonElement = document.createElement('button');
+      const buttonRefSpy = sinon.spy();
+      const { result } = renderHook(() => useSelect({ buttonRef: buttonRefSpy }));
 
-        expect(returnedButtonRef).not.to.eq(null);
+      const { buttonRef: returnedButtonRef } = result.current;
 
-        act(() => {
-          returnedButtonRef?.(buttonElement);
-        });
+      expect(returnedButtonRef).not.to.eq(null);
 
-        expect(buttonRefSpy.calledOnce).to.equal(true);
-        expect(buttonRefSpy.calledWith(buttonElement)).to.equal(true);
+      act(() => {
+        returnedButtonRef?.(buttonElement);
       });
+
+      expect(buttonRefSpy.calledOnce).to.equal(true);
+      expect(buttonRefSpy.calledWith(buttonElement)).to.equal(true);
     });
   });
 
   describe('parameter: listboxRef', () => {
-    focusManagementTypes.forEach((focusManagement) => {
-      it(`merges listboxRef parameter with getListboxProps ref  when focus management is ${focusManagement}`, () => {
-        const listboxElement = document.createElement('ul');
-        const listboxRefSpy = sinon.spy();
-        const { result } = renderHook(() =>
-          useSelect({ listboxRef: listboxRefSpy, focusManagement }),
-        );
+    it('merges listboxRef parameter with getListboxProps ref', () => {
+      const listboxElement = document.createElement('ul');
+      const listboxRefSpy = sinon.spy();
+      const { result } = renderHook(() => useSelect({ listboxRef: listboxRefSpy }));
 
-        const { getListboxProps } = result.current;
-        const { ref: propGetterRefCallback } = getListboxProps();
+      const { getListboxProps } = result.current;
+      const { ref: propGetterRefCallback } = getListboxProps();
 
-        expect(propGetterRefCallback).not.to.eq(null);
+      expect(propGetterRefCallback).not.to.eq(null);
 
-        act(() => {
-          propGetterRefCallback?.(listboxElement);
-        });
-
-        expect(listboxRefSpy.calledOnce).to.equal(true);
-        expect(listboxRefSpy.calledWith(listboxElement)).to.equal(true);
+      act(() => {
+        propGetterRefCallback?.(listboxElement);
       });
 
-      it(`merges listboxRef parameter with returned listboxRef  when focus management is ${focusManagement}`, () => {
-        const listboxElement = document.createElement('ul');
-        const listboxRefSpy = sinon.spy();
-        const { result } = renderHook(() =>
-          useSelect({ listboxRef: listboxRefSpy, focusManagement }),
-        );
+      expect(listboxRefSpy.calledOnce).to.equal(true);
+      expect(listboxRefSpy.calledWith(listboxElement)).to.equal(true);
+    });
 
-        const { listboxRef: returnedListboxRef } = result.current;
+    it('merges listboxRef parameter with returned listboxRef', () => {
+      const listboxElement = document.createElement('ul');
+      const listboxRefSpy = sinon.spy();
+      const { result } = renderHook(() => useSelect({ listboxRef: listboxRefSpy }));
 
-        expect(returnedListboxRef).not.to.eq(null);
+      const { listboxRef: returnedListboxRef } = result.current;
 
-        act(() => {
-          returnedListboxRef?.(listboxElement);
-        });
+      expect(returnedListboxRef).not.to.eq(null);
 
-        expect(listboxRefSpy.calledOnce).to.equal(true);
-        expect(listboxRefSpy.calledWith(listboxElement)).to.equal(true);
+      act(() => {
+        returnedListboxRef?.(listboxElement);
       });
+
+      expect(listboxRefSpy.calledOnce).to.equal(true);
+      expect(listboxRefSpy.calledWith(listboxElement)).to.equal(true);
     });
   });
 });

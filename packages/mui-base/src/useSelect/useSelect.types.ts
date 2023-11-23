@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { FocusManagementType, ListAction, ListState, UseListRootSlotProps } from '../useList';
+import { ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
 import { SelectProviderValue } from './SelectProvider';
 import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
+import { UseButtonRootSlotProps } from '../useButton';
 
 export type SelectChangeEventType =
   | React.MouseEvent<Element, MouseEvent>
@@ -45,12 +46,6 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    * The ref of the trigger button element.
    */
   buttonRef?: React.Ref<Element>;
-  /**
-   * The focus management strategy used by the list.
-   * Controls the attributes used to set focus on the list items.
-   * @default 'activeDescendant'
-   */
-  focusManagement?: FocusManagementType;
   /**
    * The `id` attribute of the listbox element.
    */
@@ -135,15 +130,13 @@ interface UseSelectButtonSlotEventHandlers {
   onMouseDown: MuiCancellableEventHandler<React.MouseEvent>;
 }
 
-export type UseSelectButtonSlotProps<TOther = {}> = Omit<
-  UseListRootSlotProps<Omit<TOther, keyof UseSelectButtonSlotEventHandlers>>,
-  'tabIndex'
+export type UseSelectButtonSlotProps<TOther = {}> = UseButtonRootSlotProps<
+  Omit<TOther, keyof UseSelectButtonSlotEventHandlers>
 > &
   UseSelectButtonSlotEventHandlers & {
     'aria-expanded': React.AriaAttributes['aria-expanded'];
     'aria-controls': React.AriaAttributes['aria-controls'];
     role: React.HTMLAttributes<Element>['role'];
-    tabIndex?: number;
     ref: React.RefCallback<Element> | null;
   };
 
@@ -156,19 +149,16 @@ export type UseSelectHiddenInputSlotProps<TOther = {}> = UseSelectHiddenInputSlo
   TOther;
 
 interface UseSelectListboxSlotEventHandlers {
-  onMouseDown?: React.MouseEventHandler;
+  onBlur: MuiCancellableEventHandler<React.FocusEvent<HTMLElement>>;
 }
 
-export type UseSelectListboxSlotProps<TOther = {}> = Omit<
-  TOther,
-  keyof UseSelectListboxSlotEventHandlers
+export type UseSelectListboxSlotProps<TOther = {}> = UseListRootSlotProps<
+  Omit<TOther, keyof UseSelectListboxSlotEventHandlers>
 > &
   UseSelectListboxSlotEventHandlers & {
     'aria-multiselectable': React.AriaAttributes['aria-multiselectable'];
     id: string | undefined;
-    ref: React.RefCallback<Element> | null;
     role: React.HTMLAttributes<Element>['role'];
-    tabIndex?: number;
   };
 
 export interface UseSelectReturnValue<Value, Multiple> {

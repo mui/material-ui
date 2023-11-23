@@ -5,6 +5,8 @@ import { SelectOption, UseOptionParameters, UseOptionReturnValue } from './useOp
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { useListItem } from '../useList';
 import { useCompoundItem } from '../utils/useCompoundItem';
+import { useButton } from '../useButton';
+import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
 
 /**
  *
@@ -28,6 +30,15 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
     item: value,
   });
 
+  const {
+    getRootProps: getButtonProps,
+    rootRef: buttonRefHandler,
+    focusVisible,
+  } = useButton({
+    disabled,
+    focusableWhenDisabled: true,
+  });
+
   const id = useId(idParam);
 
   const optionRef = React.useRef<HTMLElement>(null);
@@ -45,22 +56,25 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
 
   const { index } = useCompoundItem<Value, SelectOption<Value>>(value, selectOption);
 
-  const handleRef = useForkRef(optionRefParam, optionRef, listItemRefHandler)!;
+  const handleRef = useForkRef(optionRefParam, optionRef, listItemRefHandler, buttonRefHandler)!;
 
   return {
     getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
       externalProps: ExternalProps = {} as ExternalProps,
     ) => {
       const externalEventHandlers = extractEventHandlers(externalProps);
+      const getCombinedRootProps = combineHooksSlotProps(getListItemProps, getButtonProps);
       return {
         ...externalProps,
-        ...getListItemProps(externalEventHandlers),
+        ...externalEventHandlers,
+        ...getCombinedRootProps(externalEventHandlers),
         id,
         ref: handleRef,
         role: 'option',
         'aria-selected': selected,
       };
     },
+    focusVisible,
     highlighted,
     index,
     selected,

@@ -65,10 +65,6 @@ function defaultFormValueProvider<OptionValue>(
   return JSON.stringify(selectedOption.value);
 }
 
-function preventDefault(event: React.SyntheticEvent) {
-  event.preventDefault();
-}
-
 /**
  *
  * Demos:
@@ -88,7 +84,6 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     defaultOpen = false,
     defaultValue: defaultValueProp,
     disabled = false,
-    focusManagement = 'activeDescendant',
     listboxId: listboxIdProp,
     listboxRef: listboxRefProp,
     multiple = false as Multiple,
@@ -288,11 +283,11 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     }),
     getItemId,
     controlledProps: controlledState,
-    focusManagement,
+    focusManagement: 'DOM',
     getItemDomElement,
     itemComparer: areOptionsEqual,
     isItemDisabled,
-    rootRef: focusManagement === 'activeDescendant' ? mergedButtonRef : handleListboxRef,
+    rootRef: handleListboxRef,
     onChange: handleSelectionChange,
     onHighlightChange: handleHighlightChange,
     onStateChange: handleStateChange,
@@ -310,26 +305,19 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     state: { open, highlightedValue: highlightedOption, selectedValues: selectedOptions },
   } = useList(useListParameters);
 
-  const createHandleButtonMouseDown =
-    (externalEventHandlers?: EventHandlers) => (event: React.MouseEvent & MuiCancellableEvent) => {
-      externalEventHandlers?.onMouseDown?.(event);
-      if (!event.defaultMuiPrevented) {
-        const action: ButtonClickAction = {
-          type: SelectActionTypes.buttonClick,
-          event,
-        };
-
-        dispatch(action);
-      }
-    };
+  // store the initial open state to prevent focus stealing
+  // (the first option gets focused only when the menu is opened by the user)
+  const isInitiallyOpen = React.useRef(open);
 
   useEnhancedEffect(() => {
-    // Scroll to the currently highlighted option.
-    if (focusManagement === 'activeDescendant' && highlightedOption != null) {
+    if (open && highlightedOption !== null && !isInitiallyOpen.current) {
       const optionRef = getOptionByValue(highlightedOption)?.ref;
+
       if (!listboxRef.current || !optionRef?.current) {
         return;
       }
+
+      optionRef.current.focus({ preventScroll: true });
 
       const listboxClientRect = listboxRef.current.getBoundingClientRect();
       const optionClientRect = optionRef.current.getBoundingClientRect();
@@ -340,25 +328,54 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         listboxRef.current.scrollTop += optionClientRect.bottom - listboxClientRect.bottom;
       }
     }
-  }, [focusManagement, highlightedOption, getOptionByValue]);
-
-  React.useEffect(() => {
-    if (focusManagement === 'DOM' && open && highlightedOption !== null) {
-      getOptionByValue(highlightedOption)?.ref?.current?.focus();
-    }
-  }, [focusManagement, open, highlightedOption, getOptionByValue]);
+  }, [open, highlightedOption, getOptionByValue]);
 
   const getOptionMetadata = React.useCallback(
     (optionValue: OptionValue) => getOptionByValue(optionValue),
     [getOptionByValue],
   );
 
+  const createHandleButtonClick =
+    (externalEventHandlers?: EventHandlers) => (event: React.MouseEvent & MuiCancellableEvent) => {
+      externalEventHandlers?.onClick?.(event);
+      if (!event.defaultMuiPrevented) {
+        const action: ButtonClickAction = {
+          type: SelectActionTypes.buttonClick,
+          event,
+        };
+
+        dispatch(action);
+      }
+    };
+
+  const createHandleButtonKeyDown =
+    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent & MuiCancellableEvent) => {
+      otherHandlers.onKeyDown?.(event);
+      if (event.defaultMuiPrevented) {
+        return;
+      }
+
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        dispatch({
+          type: ListActionTypes.keyDown,
+          key: event.key,
+          event,
+        });
+      }
+    };
+
+  const getButtonOwnRootProps = (otherHandlers: EventHandlers = {}) => ({
+    onClick: createHandleButtonClick(otherHandlers),
+    onKeyDown: createHandleButtonKeyDown(otherHandlers),
+  });
+
   const getSelectTriggerProps = <OtherHandlers extends EventHandlers>(
     otherHandlers: OtherHandlers = {} as OtherHandlers,
   ) => {
     return {
       ...otherHandlers,
-      onMouseDown: createHandleButtonMouseDown(otherHandlers),
+      ...getButtonOwnRootProps(otherHandlers),
       role: 'combobox' as const,
       'aria-expanded': open,
       'aria-controls': listboxId,
@@ -369,12 +386,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSelectButtonSlotProps<ExternalProps> => {
     const externalEventHandlers = extractEventHandlers(externalProps);
-    const propGetter =
-      focusManagement === 'activeDescendant'
-        ? combineHooksSlotProps(getButtonRootProps, getListboxRootProps)
-        : getButtonRootProps;
-
-    const combinedProps = combineHooksSlotProps(propGetter, getSelectTriggerProps);
+    const combinedProps = combineHooksSlotProps(getButtonRootProps, getSelectTriggerProps);
 
     return {
       ...externalProps,
@@ -382,29 +394,42 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     };
   };
 
-  const getActiveDescendantListboxProps = (otherHandlers: EventHandlers = {}) => {
-    return {
-      ref: handleListboxRef,
-      onMouseDown: preventDefault, // to prevent the button from losing focus when interacting with the listbox
-      ...otherHandlers,
+  const createListboxHandleBlur =
+    (otherHandlers: EventHandlers) => (event: React.FocusEvent & MuiCancellableEvent) => {
+      otherHandlers.onBlur?.(event);
+      if (event.defaultMuiPrevented) {
+        return;
+      }
+
+      if (
+        listboxRef.current?.contains(event.relatedTarget as HTMLElement) ||
+        event.relatedTarget === buttonRef.current
+      ) {
+        return;
+      }
+
+      dispatch({
+        type: ListActionTypes.blur,
+        event,
+      });
     };
-  };
+
+  const getOwnListboxHandlers = (otherHandlers: EventHandlers = {}) => ({
+    onBlur: createListboxHandleBlur(otherHandlers),
+  });
 
   const getListboxProps = <ExternalProps extends Record<string, unknown>>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSelectListboxSlotProps<ExternalProps> => {
     const externalEventHandlers = extractEventHandlers(externalProps);
-    const propGetter =
-      focusManagement === 'activeDescendant'
-        ? getActiveDescendantListboxProps
-        : getListboxRootProps;
+    const getCombinedRootProps = combineHooksSlotProps(getOwnListboxHandlers, getListboxRootProps);
 
     return {
       id: listboxId,
       role: 'listbox' as const,
       'aria-multiselectable': multiple ? 'true' : undefined,
       ...externalProps,
-      ...propGetter(externalEventHandlers),
+      ...getCombinedRootProps(externalEventHandlers),
     };
   };
 

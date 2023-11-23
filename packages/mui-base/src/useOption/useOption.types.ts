@@ -22,6 +22,10 @@ export interface UseOptionReturnValue {
    */
   selected: boolean;
   /**
+   * If `true`, the component is being focused using keyboard.
+   */
+  focusVisible: boolean;
+  /**
    * If `true`, the option is highlighted.
    */
   highlighted: boolean;

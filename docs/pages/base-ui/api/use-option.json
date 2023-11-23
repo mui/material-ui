@@ -12,6 +12,7 @@
     }
   },
   "returnValue": {
+    "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getRootProps": {
       "type": {
         "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt;&gt;(externalProps?: ExternalProps) =&gt; UseOptionRootSlotProps&lt;ExternalProps&gt;",
