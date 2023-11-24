@@ -116,10 +116,7 @@ export default function XHero() {
             Build complex and data-rich applications using a growing list of advanced React
             components, like the Data Grid, Date Pickers, Charts, and more!
           </Typography>
-          <GetStartedButtons
-            primaryUrl={ROUTES.xIntro}
-            sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
-          />
+          <GetStartedButtons primaryUrl={ROUTES.xIntro} />
         </Box>
       }
       rightSx={{

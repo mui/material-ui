@@ -18,7 +18,8 @@ export default function X() {
     <BrandingCssVarsProvider>
       <Head
         title="MUI X: Performant advanced components"
-        description="Build data-rich applications using a growing list of advanced React components. We're kicking it off with the most powerful Data Grid on the market."
+        description="Build complex and data-rich applications using a growing list of advanced React
+        components, like the Data Grid, Date Pickers, Charts, and more!"
         card="/static/social-previews/x-preview.jpg"
       />
       <AppHeaderBanner />

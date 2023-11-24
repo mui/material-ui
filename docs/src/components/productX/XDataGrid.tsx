@@ -232,13 +232,10 @@ export default function XDataGrid() {
                       {demo === DEMOS[3] && 'Pagination > 100 rows per page is a paid feature!'}
                       {demo === DEMOS[4] && 'Multi-column filtering is a paid feature!'}
                     </Typography>
-                    <Typography color="grey.400" variant="body2">
+                    <Typography color="grey.300" variant="body2">
                       The Data Grid and all other MUI X components are available on free and paid
                       versions. More details about each plan and its features are on{' '}
-                      <Link href={ROUTES.pricing} sx={{ color: 'primary.300' }}>
-                        the pricing page
-                      </Link>
-                      .
+                      <Link href={ROUTES.pricing}>the pricing page</Link>.
                     </Typography>
                   </React.Fragment>
                 }

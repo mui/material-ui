@@ -19,6 +19,7 @@ import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
+import GradientText from 'docs/src/components/typography/GradientText';
 
 export default function XRoadmap() {
   function renderList(content: React.ReactElement, nested?: boolean) {
@@ -84,8 +85,12 @@ export default function XRoadmap() {
         <Grid item xs={12} md={5}>
           <SectionHeadline
             overline="Roadmap"
-            title="Follow the MUI X roadmap for future updates"
-            description="It's just the beginning of the MUI X components. Stay tuned for the exciting news and updates coming soon!"
+            title={
+              <Typography variant="h2">
+                Follow the <GradientText>MUI X roadmap</GradientText> for future updates
+              </Typography>
+            }
+            description="It's just the beginning for the MUI X components. Stay tuned for the exciting news and updates coming soon!"
           />
           <Button
             component={Link}
@@ -120,7 +125,7 @@ export default function XRoadmap() {
           <Grid item xs={12} sm={4} lg="auto">
             <Paper variant="outlined">
               <Typography fontWeight="bold" variant="body2" color="text.primary">
-                Released
+                Stable
                 <Box
                   sx={{
                     ml: 1,
@@ -204,7 +209,7 @@ export default function XRoadmap() {
           <Grid item xs={12} sm={4} lg="auto">
             <Paper variant="outlined">
               <Typography fontWeight="bold" variant="body2" color="text.primary">
-                Sometime soon
+                Future components
                 <Box
                   sx={{
                     ml: 1,
