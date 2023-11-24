@@ -1,17 +1,27 @@
+'use client';
 import { createBox } from '@mui/system';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '../className';
-import { BoxTypeMap } from './BoxProps';
+import { Theme } from '../styles/types';
 import defaultTheme from '../styles/defaultTheme';
-import styleFunctionSx from '../styles/styleFunctionSx';
-
-const Box = createBox({
+import THEME_ID from '../styles/identifier';
+import boxClasses from './boxClasses';
+/**
+ *
+ * Demos:
+ *
+ * - [Box](https://mui.com/joy-ui/react-box/)
+ *
+ * API:
+ *
+ * - [Box API](https://mui.com/joy-ui/api/box/)
+ */
+const Box = createBox<Theme>({
+  themeId: THEME_ID,
   defaultTheme,
-  defaultClassName: 'JoyBox-root',
+  defaultClassName: boxClasses.root,
   generateClassName: ClassNameGenerator.generate,
-  styleFunctionSx,
-}) as OverridableComponent<BoxTypeMap>;
+});
 
 Box.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

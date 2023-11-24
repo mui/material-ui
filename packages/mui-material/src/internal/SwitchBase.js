@@ -1,10 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import capitalize from '../utils/capitalize';
-import styled from '../styles/styled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useControlled from '../utils/useControlled';
 import useFormControl from '../FormControl/useFormControl';
 import ButtonBase from '../ButtonBase';
@@ -32,7 +33,7 @@ const SwitchBaseRoot = styled(ButtonBase)(({ ownerState }) => ({
   }),
 }));
 
-const SwitchBaseInput = styled('input')({
+const SwitchBaseInput = styled('input', { shouldForwardProp: rootShouldForwardProp })({
   cursor: 'inherit',
   position: 'absolute',
   opacity: 0,
@@ -67,7 +68,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     onChange,
     onFocus,
     readOnly,
-    required,
+    required = false,
     tabIndex,
     type,
     value,
@@ -159,7 +160,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
         defaultChecked={defaultChecked}
         className={classes.input}
         disabled={disabled}
-        id={hasLabelFor && id}
+        id={hasLabelFor ? id : undefined}
         name={name}
         onChange={handleInputChange}
         readOnly={readOnly}

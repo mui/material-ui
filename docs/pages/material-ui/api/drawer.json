@@ -8,19 +8,26 @@
       "default": "'left'"
     },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "16" },
-    "hideBackdrop": { "type": { "name": "bool" } },
+    "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
     "ModalProps": { "type": { "name": "object" }, "default": "{}" },
-    "onClose": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
+    "open": { "type": { "name": "bool" }, "default": "false" },
     "PaperProps": { "type": { "name": "object" }, "default": "{}" },
     "SlideProps": { "type": { "name": "object" } },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "transitionDuration": {
       "type": {
@@ -38,6 +45,10 @@
     }
   },
   "name": "Drawer",
+  "imports": [
+    "import Drawer from '@mui/material/Drawer';",
+    "import { Drawer } from '@mui/material';"
+  ],
   "styles": {
     "classes": [
       "root",
@@ -57,6 +68,8 @@
     "name": "MuiDrawer"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiDrawer",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Drawer/Drawer.js",
   "inheritance": null,

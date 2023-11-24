@@ -2,7 +2,13 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, act, fireEvent, within } from 'test/utils';
+import {
+  createRenderer,
+  describeConformance,
+  act,
+  fireEvent,
+  within,
+} from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Modal, { modalClasses as classes, ModalProps } from '@mui/joy/Modal';
 
@@ -22,6 +28,10 @@ describe('<Modal />', () => {
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'header',
       testVariantProps: { hideBackdrop: true },
+      slots: {
+        root: { expectedClassName: classes.root },
+        backdrop: { expectedClassName: classes.backdrop },
+      },
       skip: [
         'classesRoot',
         'rootClass', // portal, can't determine the root
@@ -113,7 +123,7 @@ describe('<Modal />', () => {
         <Modal
           onClose={onClose}
           open
-          componentsProps={{
+          slotProps={{
             backdrop: { 'data-testid': 'backdrop' } as any,
           }}
         >
@@ -146,7 +156,7 @@ describe('<Modal />', () => {
         <ModalWithDisabledBackdropClick
           onClose={onClose}
           open
-          componentsProps={{ backdrop: { 'data-testid': 'backdrop' } as any }}
+          slotProps={{ backdrop: { 'data-testid': 'backdrop' } as any }}
         >
           <div />
         </ModalWithDisabledBackdropClick>,
@@ -372,11 +382,11 @@ describe('<Modal />', () => {
         // see "DemoFrame" in our docs for a documented implementation
         function IFrame(props: React.PropsWithChildren<{}>) {
           const { children } = props;
-          const frameRef = React.useRef<null | HTMLIFrameElement>(null);
+          const frameRef = React.useRef<HTMLIFrameElement>(null);
           const [iframeLoaded, onLoad] = React.useReducer(() => true, false);
 
           React.useEffect(() => {
-            const document = frameRef.current?.contentDocument;
+            const document = frameRef.current!.contentDocument;
 
             if (document != null && document.readyState === 'complete' && !iframeLoaded) {
               onLoad();

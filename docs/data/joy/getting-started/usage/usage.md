@@ -4,36 +4,10 @@
 
 ## Quickstart
 
-The following code snippet demonstrates a simple app that uses the Joy UI [Button](/joy-ui/react-button/) component:
+After [installation](/joy-ui/getting-started/installation/), you can import any Joy UI component and start playing around.
+For example, try changing the `variant` on the [Button](/joy-ui/react-button/) to `soft` to see how the style changes:
 
-```jsx
-import * as React from 'react';
-import { CssVarsProvider } from '@mui/joy/styles';
-import Button from '@mui/joy/Button';
-
-export default function MyApp() {
-  return (
-    <CssVarsProvider>
-      <Button variant="solid">Hello World</Button>
-    </CssVarsProvider>
-  );
-}
-```
-
-You can play around with this code in the interactive Code Sandbox demo below.
-Try changing the `variant` on the Button to `soft` to see how the style changes:
-
-{{"demo": "Usage.js", "hideToolbar": true, "bg": true}}
-
-### CssVarsProvider
-
-In the Quickstart example above, you can see that the Button component is nested within `<CssVarsProvider />`.
-This provider unlocks a whole host of customization options powered by CSS variables.
-See [Using CSS variables](/joy-ui/customization/using-css-variables/) for more details.
-
-:::warning
-`<CssVarsProvider />` is _required_ when working with Joy UI components.
-:::
+{{"demo": "ButtonUsage.js", "defaultCodeOpen": true}}
 
 ## Globals
 
@@ -55,7 +29,12 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 Joy UI provides an optional [CssBaseline](/joy-ui/react-css-baseline/) component.
 It fixes some inconsistencies across browsers and devices while providing resets that are better tailored to fit Joy UI than alternative global style sheets like [normalize.css](https://github.com/necolas/normalize.css/).
 
+### CssVarsProvider
+
+Joy UI provides an optional `<CssVarsProvider />` component that unlocks a whole host of customization options powered by CSS variables.
+Visit the [Using CSS variables](/joy-ui/customization/using-css-variables/) guide to learn more.
+
 ### Default font
 
-Joy UI uses the Public Sans font by default.
-See [Installation—Public Sans font](/joy-ui/getting-started/installation/#public-sans-font) for complete details.
+Joy UI uses the Inter font by default.
+See [Installation—Inter font](/joy-ui/getting-started/installation/#inter-font) for complete details.

@@ -98,6 +98,20 @@ const rule = {
               componentName = parent.id.name;
             }
 
+            if (
+              parent.type === 'VariableDeclarator' &&
+              parent.init.type.match(/(CallExpression|TSAsExpression)/)
+            ) {
+              const callee =
+                parent.init.type === 'TSAsExpression'
+                  ? parent.init.expression.callee
+                  : parent.init.callee;
+              if (callee.name.includes(parent.id.name)) {
+                // For component factory, e.g. const Container = createContainer({ ... })
+                componentName = parent.id.name;
+              }
+            }
+
             parent = parent.parent;
           }
 

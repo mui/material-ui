@@ -1,6 +1,7 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Breadcrumbs component
+components: Breadcrumbs
 githubLabel: 'component: breadcrumbs'
 ---
 
@@ -8,14 +9,14 @@ githubLabel: 'component: breadcrumbs'
 
 <p class="description">A breadcrumb trail is a navigational tool that helps users keep track of their location within an app.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Introduction
 
 The Breadcrumbs component consists of a list of links that show the user the hierarchy of a given page in relation to the app's structure.
 It provides a simple visual aid for better context and ease of navigation between higher- and lower-level pages.
 
 {{"demo": "BreadcrumbsUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 
@@ -36,7 +37,7 @@ The Breadcrumbs component comes in three sizes: `sm`, `md` (default), and `lg`:
 
 {{"demo": "BreadcrumbsSizes.js"}}
 
-:::success
+:::info
 To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
@@ -64,6 +65,13 @@ The demo below shows how to add an icon to the Link with `startDecorator` and ch
 
 {{"demo": "BreadcrumbsWithIcon.js"}}
 
+## CSS variables playground
+
+Play around with the CSS variables available to the Breadcrumbs component to see how the design changes.
+You can use these to customize the component with both the `sx` prop and the theme.
+
+{{"demo": "BreadcrumbsVariables.js", "hideToolbar": true, "bg": "gradient"}}
+
 ## Common examples
 
 ### Condensed Breadcrumbs
@@ -82,13 +90,6 @@ import Menu from '@mui/joy/Menu';
 As an alternative to the behavior of the condensed demo above, consider adding a [Menu](/joy-ui/react-menu/) component to display the condensed links in a dropdown list:
 
 {{"demo": "BreadcrumbsWithMenu.js"}}
-
-## CSS variable playground
-
-Play around with the CSS variables available to the Breadcrumbs component to see how the design changes.
-You can use these to customize the component with both the `sx` prop and the theme.
-
-{{"demo": "BreadcrumbsVariables.js", "hideToolbar": true}}
 
 ## Accessibility
 
@@ -114,7 +115,7 @@ The Breadcrumbs component is composed of a root `<nav>` that wraps around an `<o
       <!-- Link or Typography -->
     </li>
     <li aria-hidden="true" class="MuiBreadcrumbs-separator">/</li>
-    <li class="MuiBreadcrumbs-li css-1rqbcrs-JoyBreadcrumbs-ol">
+    <li class="MuiBreadcrumbs-li css-1rqbcrs-MuiBreadcrumbs-ol">
       <!-- Link or Typography -->
     </li>
   </ol>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Theme } from '@mui/system';
+import { Box, Theme, styled } from '@mui/system';
 
 interface TestProps {
   test?: string;
@@ -48,7 +48,7 @@ function ComponentPropTest() {
 
 function ThemeCallbackTest() {
   <Box sx={{ background: (theme) => theme.palette.primary.main }} />;
-  <Box sx={{ ':hover': (theme) => ({ background: theme.palette.primary.main }) }} />;
+  <Box sx={{ '&:hover': (theme) => ({ background: theme.palette.primary.main }) }} />;
   <Box sx={{ '& .some-class': (theme) => ({ background: theme.palette.primary.main }) }} />;
   <Box maxWidth={(theme) => theme.breakpoints.values.sm} />;
 }
@@ -87,7 +87,7 @@ function CssVariablesWithNestedSelectors() {
   />;
 }
 
-// The fill prop conflicts with the Array's fill functiom.
+// The fill prop conflicts with the Array's fill function.
 // This test ensures that the callback value inside the sx prop
 // can be used without conflicting with the Array's fill function
 function TestFillPropCallback() {
@@ -103,4 +103,20 @@ function TestFillPropCallback() {
       },
     ]}
   />;
+}
+
+const StyledBox = styled(Box)`
+  color: white;
+`;
+
+function StyledBoxWithSx() {
+  return (
+    <StyledBox component="span" sx={{ width: 300 }}>
+      Box
+    </StyledBox>
+  );
+}
+
+function LogicalPropertiesTest() {
+  <Box marginInline={1} paddingBlockEnd="10px" />;
 }

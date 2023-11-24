@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Divider component
 components: Divider
 githubLabel: 'component: divider'
@@ -44,8 +44,8 @@ You can also render a divider with content.
 
 {{"demo": "DividerText.js"}}
 
-:::info
-**Accessibility tips**: When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` to the divider to make sure screen readers can announce its content:
+:::warning
+When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` to the divider to make sure screen readers can announce its content:
 
 ```js
 <Divider component="div" role="presentation">
@@ -77,3 +77,16 @@ You can also render a vertical divider with `variant="middle"`.
 You can also render a vertical divider with content.
 
 {{"demo": "VerticalDividerText.js"}}
+
+## Experimental APIs
+
+### Material You version
+
+The default Material UI Divider component follows the Material Design 2 specs.
+To get the Material You ([Material Design 3](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
+
+```js
+import Divider from '@mui/material-next/Divider';
+```
+
+{{"demo": "DividerMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}

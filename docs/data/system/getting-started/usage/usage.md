@@ -155,11 +155,11 @@ It works with both Emotion and styled-components.
 - Runtime performance takes a hit.
 
   | Benchmark case                    | Code snippet          | Time normalized |
-  | :-------------------------------- | :-------------------- | --------------- |
-  | a. Render 1,000 primitives        | `<div className="…">` | 100ms           |
-  | b. Render 1,000 components        | `<Div>`               | 120ms           |
-  | c. Render 1,000 styled components | `<StyledDiv>`         | 160ms           |
-  | d. Render 1,000 Box               | `<Box sx={…}>`        | 370ms           |
+  | :-------------------------------- | :-------------------- | --------------: |
+  | a. Render 1,000 primitives        | `<div className="…">` |           100ms |
+  | b. Render 1,000 components        | `<Div>`               |           112ms |
+  | c. Render 1,000 styled components | `<StyledDiv>`         |           181ms |
+  | d. Render 1,000 Box               | `<Box sx={…}>`        |           296ms |
 
 <!-- #default-branch-switch -->
 
@@ -298,7 +298,7 @@ Here's what that looks like:
 
 {{"demo": "BreakpointsAsArray.js"}}
 
-:::warning
+:::success
 This option should only be considered when the theme has a limited number of breakpoints, e.g. 3.
 
 We recommend using the object API instead if you need to define more than a few breakpoints.

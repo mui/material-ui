@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/joy/LinearProgress';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<LinearProgress />', () => {
   const { render } = createRenderer();
@@ -17,6 +17,11 @@ describe('<LinearProgress />', () => {
     testVariantProps: { determinate: true },
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describe('prop: determinate', () => {
@@ -47,7 +52,7 @@ describe('<LinearProgress />', () => {
       const { getByRole } = render(<LinearProgress />);
       expect(getByRole('progressbar')).to.have.class(classes.colorPrimary);
     });
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByRole } = render(<LinearProgress color={color} />);
         expect(getByRole('progressbar')).to.have.class(

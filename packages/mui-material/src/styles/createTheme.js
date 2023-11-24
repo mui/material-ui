@@ -1,5 +1,9 @@
 import { deepmerge } from '@mui/utils';
-import { createTheme as systemCreateTheme } from '@mui/system';
+import {
+  createTheme as systemCreateTheme,
+  unstable_defaultSxConfig as defaultSxConfig,
+  unstable_styleFunctionSx as styleFunctionSx,
+} from '@mui/system';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import generateUtilityClass from '../generateUtilityClass';
 import createMixins from './createMixins';
@@ -45,6 +49,7 @@ function createTheme(options = {}, ...args) {
   muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
 
   if (process.env.NODE_ENV !== 'production') {
+    // TODO v6: Refactor to use globalStateClassesMapping from @mui/utils once `readOnly` state class is used in Rating component.
     const stateClasses = [
       'active',
       'checked',
@@ -103,6 +108,17 @@ function createTheme(options = {}, ...args) {
       }
     });
   }
+
+  muiTheme.unstable_sxConfig = {
+    ...defaultSxConfig,
+    ...other?.unstable_sxConfig,
+  };
+  muiTheme.unstable_sx = function sx(props) {
+    return styleFunctionSx({
+      sx: props,
+      theme: this,
+    });
+  };
 
   return muiTheme;
 }

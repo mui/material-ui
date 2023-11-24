@@ -9,32 +9,33 @@ export default function ExampleMantineSwitch() {
       checked={checked}
       onChange={(event) => setChecked(event.target.checked)}
       sx={(theme) => ({
-        '--Switch-thumb-size': '14px',
-        '--Switch-thumb-shadow': 'inset 0 0 0 1px #dee2e6',
-        '--Switch-track-width': '38px',
-        '--Switch-track-height': '20px',
-        '--Switch-track-borderColor': '#dee2e6',
-        '--Switch-track-background': '#e9ecef',
-        '--Switch-thumb-background': '#fff',
+        display: 'inherit',
+        '--Switch-thumbSize': '14px',
+        '--Switch-thumbShadow': 'inset 0 0 0 1px #dee2e6',
+        '--Switch-trackWidth': '38px',
+        '--Switch-trackHeight': '20px',
+        '--Switch-trackBorderColor': '#dee2e6',
+        '--Switch-trackBackground': '#e9ecef',
+        '--Switch-thumbBackground': '#fff',
         '&:hover': {
-          '--Switch-thumb-background': '#fff',
-          '--Switch-track-background': '#e9ecef',
+          '--Switch-thumbBackground': '#fff',
+          '--Switch-trackBackground': '#e9ecef',
         },
         [`&.${switchClasses.checked}`]: {
-          '--Switch-thumb-shadow': 'none',
-          '--Switch-track-background': '#228be6',
+          '--Switch-thumbShadow': 'none',
+          '--Switch-trackBackground': '#228be6',
           '&:hover': {
-            '--Switch-track-background': '#228be6',
+            '--Switch-trackBackground': '#228be6',
           },
         },
         [`&.${switchClasses.disabled}`]: {
-          '--Switch-thumb-color': '#f8f9fa',
-          '--Switch-track-background': '#e9ecef',
+          '--Switch-thumbColor': '#f8f9fa',
+          '--Switch-trackBackground': '#e9ecef',
         },
         [theme.getColorSchemeSelector('dark')]: {
-          '--Switch-track-borderColor': 'rgb(55, 58, 64)',
-          '--Switch-track-background': 'rgb(55, 58, 64)',
-          '--Switch-thumb-shadow': 'none',
+          '--Switch-trackBorderColor': 'rgb(55, 58, 64)',
+          '--Switch-trackBackground': 'rgb(55, 58, 64)',
+          '--Switch-thumbShadow': 'none',
         },
       })}
     />

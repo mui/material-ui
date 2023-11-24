@@ -36,7 +36,7 @@ export default function Flexibility() {
           <ListItemButton>Item 4</ListItemButton>
         </ListItem>
       </List>
-      <List role="menubar" row>
+      <List role="menubar" orientation="horizontal">
         <ListItem role="none">
           <ListItemButton
             variant="solid"

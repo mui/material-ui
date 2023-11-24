@@ -39,24 +39,24 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    * @default false
    */
   disableTransitionOnChange?: boolean;
-  /**
-   * A function to determine if the key, value should be attached as CSS Variable
-   * `keys` is an array that represents the object path keys.
-   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
-   *  then, keys = ['foo', 'bar']
-   *        value = 'var(--test)'
-   */
-  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
 }
 
-export interface CreateCssVarsProviderResult<ColorScheme extends string> {
+type Identify<I extends string | undefined, T> = I extends string ? T | { [k in I]: T } : T;
+
+export interface CreateCssVarsProviderResult<
+  ColorScheme extends string,
+  Identifier extends string | undefined = undefined,
+> {
   CssVarsProvider: (
     props: React.PropsWithChildren<
       Partial<CssVarsProviderConfig<ColorScheme>> & {
-        theme?: {
-          cssVarPrefix?: string;
-          colorSchemes: Record<ColorScheme, Record<string, any>>;
-        };
+        theme?: Identify<
+          Identifier,
+          {
+            cssVarPrefix?: string;
+            colorSchemes: Record<ColorScheme, Record<string, any>>;
+          }
+        >;
         /**
          * The document used to perform `disableTransitionOnChange` feature
          * @default document
@@ -66,7 +66,7 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
          * The node used to attach the color-scheme attribute
          * @default document
          */
-        colorSchemeNode?: Document | HTMLElement | null;
+        colorSchemeNode?: Element | null;
         /**
          * The CSS selector for attaching the generated custom properties
          * @default ':root'
@@ -77,6 +77,17 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
          * @default window
          */
         storageWindow?: Window | null;
+        /**
+         * If `true`, the provider creates its own context and generate stylesheet as if it is a root `CssVarsProvider`.
+         */
+        disableNestedContext?: boolean;
+        /**
+         * If `true`, the style sheet won't be generated.
+         *
+         * This is useful for controlling nested CssVarsProvider behavior.
+         * @default false
+         */
+        disableStyleSheetGeneration?: boolean;
       }
     >,
   ) => React.ReactElement;
@@ -84,8 +95,15 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
   getInitColorSchemeScript: typeof getInitColorSchemeScript;
 }
 
-export default function createCssVarsProvider<ColorScheme extends string>(
+export default function createCssVarsProvider<
+  ColorScheme extends string,
+  Identifier extends string | undefined = undefined,
+>(
   options: CssVarsProviderConfig<ColorScheme> & {
+    /**
+     * The design system's unique id for getting the corresponded theme when there are multiple design systems.
+     */
+    themeId?: Identifier;
     /**
      * Design system default theme
      *
@@ -133,7 +151,7 @@ export default function createCssVarsProvider<ColorScheme extends string>(
      */
     excludeVariablesFromRoot?: (cssVarPrefix: string) => string[];
   },
-): CreateCssVarsProviderResult<ColorScheme>;
+): CreateCssVarsProviderResult<ColorScheme, Identifier>;
 
 // disable automatic export
 export {};

@@ -1,6 +1,12 @@
-<Button loading endDecorator={<SendIcon />} variant="solid">
-  Send
+<Button loading variant="solid">
+  Solid
 </Button>
-<Button loading loadingIndicator="Loading…" variant="outlined">
-  Fetch data
+<Button loading variant="soft">
+  Soft
+</Button>
+<Button loading variant="outlined">
+  Outlined
+</Button>
+<Button loading variant="plain">
+  Plain
 </Button>

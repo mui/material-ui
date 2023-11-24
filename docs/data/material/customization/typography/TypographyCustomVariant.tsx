@@ -7,10 +7,21 @@ const theme = createTheme({
   typography: {
     // @ts-ignore
     poster: {
-      color: 'red',
+      fontSize: '4rem',
+      color: 'indianred',
     },
     // Disable v3 variant
     h3: undefined,
+  },
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          // @ts-ignore
+          poster: 'h1', // map our new variant to render an <h1> by default
+        },
+      },
+    },
   },
 });
 

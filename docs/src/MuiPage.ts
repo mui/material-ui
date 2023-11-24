@@ -1,8 +1,11 @@
+import * as React from 'react';
+
 export interface MuiPage {
   pathname: string;
+  query?: object;
   children?: MuiPage[];
   disableDrawer?: boolean;
-  icon?: string;
+  icon?: string | React.ComponentType;
   /**
    * Indicates if the pages are regarding some legacy API.
    */
@@ -15,6 +18,7 @@ export interface MuiPage {
   /**
    * In case the children have pathnames out of pathname value, use this field to scope other pathnames.
    * Pathname can be partial, e.g. '/components/' will cover '/components/button/' and '/components/link/'.
+   * @deprecated Dead code, to remove.
    */
   scopePathnames?: string[];
   /**
@@ -24,9 +28,12 @@ export interface MuiPage {
    */
   inSideNav?: boolean;
   /**
-   * Props spread to the Link component
+   * Props spread to the Link component.
    */
   linkProps?: Record<string, unknown>;
+  /**
+   * Subheader to display before navigation links.
+   */
   subheader?: string;
   /**
    * Overrides the default page title.
@@ -37,6 +44,15 @@ export interface MuiPage {
    * @default false
    */
   newFeature?: boolean;
+  /**
+   * Indicates if the feature is planned for development.
+   * @default false
+   */
+  planned?: boolean;
+  /**
+   * Indicates if the component/hook is not stable yet.
+   */
+  unstable?: boolean;
 }
 
 export interface OrderedMuiPage extends MuiPage {

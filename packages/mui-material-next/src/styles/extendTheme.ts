@@ -6,6 +6,9 @@ import {
   lighten,
   emphasize,
   unstable_createGetCssVar as systemCreateGetCssVar,
+  unstable_styleFunctionSx as styleFunctionSx,
+  unstable_prepareCssVars as prepareCssVars,
+  SxProps,
 } from '@mui/system';
 import {
   createTheme as createThemeWithoutVars,
@@ -14,13 +17,18 @@ import {
   ColorSystem as MD2ColorSystem,
   Overlays,
 } from '@mui/material/styles';
+import defaultSxConfig from './sxConfig';
 import { Theme, MD3Palettes, MD3ColorSchemeTokens, CssVarsThemeOptions } from './Theme.types';
 import md3CommonPalette from './palette';
 import createMd3LightColorScheme from './createLightColorScheme';
 import createMd3DarkColorScheme from './createDarkColorScheme';
 import md3Typescale from './typescale';
 import md3Typeface from './typeface';
-import md3State from './states';
+import md3State from './state';
+import { elevationLight, elevationDark } from './elevation';
+import createMotions from './motion';
+import md3shape from './shape';
+import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 
 const defaultLightOverlays: Overlays = [...Array(25)].map(() => undefined) as Overlays;
 const defaultDarkOverlays: Overlays = [...Array(25)].map((_, index) => {
@@ -43,14 +51,29 @@ function setColor(obj: any, key: string, defaultValue: any) {
   obj[key] = obj[key] || defaultValue;
 }
 
-export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
+export const createGetCssVar = (cssVarPrefix = 'md') => systemCreateGetCssVar(cssVarPrefix);
 
 export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: any[]) {
-  const { colorSchemes: colorSchemesInput = {}, cssVarPrefix = 'mui', ...input } = options;
+  const {
+    colorSchemes: colorSchemesInput = {},
+    cssVarPrefix = 'md',
+    shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    ...input
+  } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
 
   const md3LightColors = createMd3LightColorScheme(getCssVar, md3CommonPalette);
   const md3DarkColors = createMd3DarkColorScheme(getCssVar, md3CommonPalette);
+  const shape = {
+    ...input.sys?.shape,
+    ...md3shape,
+    corner: { ...input.sys?.shape?.corner, ...md3shape.corner },
+  };
+
+  const motion = createMotions(input.sys?.motion);
+  const typescale = { ...md3Typescale, ...input.sys?.typescale };
+  const typeface = { ...md3Typeface, ...input.ref?.typeface };
+  const state = { ...md3State, ...input.sys?.state };
 
   const {
     palette: lightPalette,
@@ -66,20 +89,17 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     useMaterialYou: true,
     ref: {
       ...input.ref,
-      typeface: { ...md3Typeface, ...input.ref?.typeface },
+      typeface,
       palette: deepmerge(md3CommonPalette, colorSchemesInput.light?.ref?.palette),
     },
     sys: {
       ...input.sys,
-      typescale: { ...md3Typescale, ...input.sys?.typescale },
-      state: { ...md3State, ...input.sys?.state },
+      typescale,
+      state,
+      motion,
       color: { ...md3LightColors, ...colorSchemesInput.light?.sys?.color },
-    },
-    md3: {
-      shape: {
-        borderRadius: 100,
-        ...input?.shape,
-      },
+      elevation: colorSchemesInput.light?.sys?.elevation ?? elevationLight,
+      shape,
     },
     palette: {
       ...(colorSchemesInput.light && colorSchemesInput.light?.palette),
@@ -100,21 +120,24 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     // @ts-ignore - it's fine, everything that is not supported will be spread
     ref: {
       ...input.ref,
-      typeface: { ...md3Typeface, ...input.ref?.typeface },
+      typeface,
       palette: deepmerge(md3CommonPalette, colorSchemesInput.dark?.ref?.palette),
     },
     sys: {
       ...input.sys,
-      typescale: { ...md3Typescale, ...input.sys?.typescale },
-      state: { ...md3State, ...input.sys?.state },
+      typescale,
+      state,
+      motion,
       color: { ...md3DarkColors, ...colorSchemesInput.dark?.sys?.color },
+      elevation: colorSchemesInput.dark?.sys?.elevation ?? elevationDark,
+      shape,
     },
   });
 
-  const { color: lightSysColor } = lightSys;
+  const { color: lightSysColor, elevation: lightSysElevation } = lightSys;
   const { palette: lightRefPalette } = lightRef;
 
-  const { color: darkSysColor } = darkSys;
+  const { color: darkSysColor, elevation: darkSysElevation } = darkSys;
   const { palette: darkRefPalette } = darkRef;
 
   let theme: Theme = {
@@ -137,7 +160,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
           ...colorSchemesInput.light?.opacity,
         },
         overlays: colorSchemesInput.light?.overlays || defaultLightOverlays,
-        sys: { color: lightSysColor },
+        sys: { color: lightSysColor, elevation: lightSysElevation },
         ref: { palette: lightRefPalette },
       },
       dark: {
@@ -152,7 +175,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
           ...colorSchemesInput.dark?.opacity,
         },
         overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
-        sys: { color: darkSysColor },
+        sys: { color: darkSysColor, elevation: darkSysElevation },
         ref: { palette: darkRefPalette },
       },
     },
@@ -183,6 +206,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       'Alert',
       'AppBar',
       'Avatar',
+      'Button',
       'Chip',
       'FilledInput',
       'LinearProgress',
@@ -227,6 +251,8 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       setColor(palette.Alert, 'warningIconColor', getCssVar('palette-warning-light'));
       setColor(palette.AppBar, 'defaultBg', getCssVar('palette-grey-100'));
       setColor(palette.Avatar, 'defaultBg', getCssVar('palette-grey-400'));
+      setColor(palette.Button, 'inheritContainedBg', getCssVar('palette-grey-300'));
+      setColor(palette.Button, 'inheritContainedHoverBg', getCssVar('palette-grey-A100'));
       setColor(palette.Chip, 'defaultBorder', getCssVar('palette-grey-400'));
       setColor(palette.Chip, 'defaultAvatarColor', getCssVar('palette-grey-700'));
       setColor(palette.Chip, 'defaultIconColor', getCssVar('palette-grey-700'));
@@ -299,6 +325,8 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       setColor(palette.AppBar, 'darkBg', getCssVar('palette-background-paper')); // specific for dark mode
       setColor(palette.AppBar, 'darkColor', getCssVar('palette-text-primary')); // specific for dark mode
       setColor(palette.Avatar, 'defaultBg', getCssVar('palette-grey-600'));
+      setColor(palette.Button, 'inheritContainedBg', getCssVar('palette-grey-800'));
+      setColor(palette.Button, 'inheritContainedHoverBg', getCssVar('palette-grey-700'));
       setColor(palette.Chip, 'defaultBorder', getCssVar('palette-grey-700'));
       setColor(palette.Chip, 'defaultAvatarColor', getCssVar('palette-grey-300'));
       setColor(palette.Chip, 'defaultIconColor', getCssVar('palette-grey-300'));
@@ -419,6 +447,30 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   });
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
+
+  const parserConfig = {
+    prefix: cssVarPrefix,
+    shouldSkipGeneratingVar,
+  };
+
+  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, Theme['vars']>(
+    theme,
+    parserConfig,
+  );
+  theme.vars = themeVars;
+  theme.generateCssVars = generateCssVars;
+  theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
+
+  theme.unstable_sxConfig = {
+    ...defaultSxConfig,
+    ...input?.unstable_sxConfig,
+  };
+  theme.unstable_sx = function sx(props: SxProps<Theme>) {
+    return styleFunctionSx({
+      sx: props,
+      theme: this,
+    });
+  };
 
   return theme;
 }

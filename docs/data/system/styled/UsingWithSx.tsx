@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  styled,
-  createTheme,
-  ThemeProvider,
-  experimental_sx as sx,
-} from '@mui/system';
+import { styled, createTheme, ThemeProvider } from '@mui/system';
 
 const customTheme = createTheme({
   palette: {
@@ -15,8 +10,8 @@ const customTheme = createTheme({
   },
 });
 
-const MyThemeComponent = styled('div')(
-  sx({
+const MyThemeComponent = styled('div')(({ theme }) =>
+  theme.unstable_sx({
     color: 'primary.contrastText',
     backgroundColor: 'primary.main',
     padding: 1,
@@ -24,7 +19,7 @@ const MyThemeComponent = styled('div')(
   }),
 );
 
-export default function ThemeUsage() {
+export default function UsingWithSx() {
   return (
     <ThemeProvider theme={customTheme}>
       <MyThemeComponent>Styled div with theme</MyThemeComponent>

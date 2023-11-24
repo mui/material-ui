@@ -25,7 +25,6 @@ function Sidebar(props) {
           {archive.title}
         </Link>
       ))}
-
       <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
         Social
       </Typography>
@@ -57,7 +56,7 @@ Sidebar.propTypes = {
   description: PropTypes.string.isRequired,
   social: PropTypes.arrayOf(
     PropTypes.shape({
-      icon: PropTypes.elementType.isRequired,
+      icon: PropTypes.elementType,
       name: PropTypes.string.isRequired,
     }),
   ).isRequired,

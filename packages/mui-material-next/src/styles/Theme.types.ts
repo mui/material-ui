@@ -21,13 +21,24 @@ export interface MD3Tones {
   99: string;
   100: string;
 }
+
+export interface MD3NeutralTones extends MD3Tones {
+  17: string;
+  22: string;
+  92: string;
+  96: string;
+}
+
 export interface MD3Palettes {
   primary: MD3Tones;
   secondary: MD3Tones;
   tertiary: MD3Tones;
-  neutral: MD3Tones;
+  neutral: MD3NeutralTones;
   neutralVariant: MD3Tones;
   error: MD3Tones;
+  info: MD3Tones;
+  warning: MD3Tones;
+  success: MD3Tones;
   common: {
     black: string;
     white: string;
@@ -55,6 +66,21 @@ export interface MD3ColorSchemeTokens {
   errorContainer: string;
   onErrorContainer: string;
 
+  info: string;
+  onInfo: string;
+  infoContainer: string;
+  onInfoContainer: string;
+
+  warning: string;
+  onWarning: string;
+  warningContainer: string;
+  onWarningContainer: string;
+
+  success: string;
+  onSuccess: string;
+  successContainer: string;
+  onSuccessContainer: string;
+
   background: string;
   onBackground: string;
 
@@ -62,6 +88,9 @@ export interface MD3ColorSchemeTokens {
   onSurface: string;
   surfaceVariant: string;
   onSurfaceVariant: string;
+  surfaceContainerLow: string;
+  surfaceContainerHigh: string;
+  surfaceContainerHighest: string;
 
   inverseSurface: string;
   inverseOnSurface: string;
@@ -69,6 +98,7 @@ export interface MD3ColorSchemeTokens {
   surfaceTint?: string;
 
   outline: string;
+  outlineVariant: string;
   shadow: string;
 
   // channels
@@ -89,7 +119,7 @@ export interface MD3Typeface {
   };
 }
 
-export interface MD3States {
+export interface MD3State {
   hover: {
     stateLayerOpacity: number;
   };
@@ -108,10 +138,16 @@ export interface TypescaleValue {
   small: {
     family: string;
     weight: string;
+    lineHeight: number;
+    size: number;
+    tracking: number;
   };
   medium: {
     family: string;
     weight: string;
+    lineHeight: number;
+    size: number;
+    tracking: number;
   };
   large: {
     family: string;
@@ -129,20 +165,87 @@ export interface MD3Typescale {
   display: TypescaleValue;
 }
 
-export interface Shapes {
-  borderRadius: number;
+export interface MD3Shape {
+  corner: {
+    none: string;
+    extraSmall: string;
+    extraSmallTop: string;
+    small: string;
+    medium: string;
+    large: string;
+    largeEnd: string;
+    largeTop: string;
+    extraLarge: string;
+    extraLargeTop: string;
+    full: string;
+  };
+}
+
+export interface MD3ShapeOptions {
+  corner?: Partial<MD3Shape['corner']>;
+}
+
+export interface MD3Easing {
+  linear: string;
+  standard: string;
+  standardAccelerate: string;
+  standardDecelerate: string;
+  emphasized: string;
+  emphasizedDecelerate: string;
+  emphasizedAccelerate: string;
+  legacy: string;
+  legacyDecelerate: string;
+  legacyAccelerate: string;
+}
+export interface MD3Duration {
+  short1: string;
+  short2: string;
+  short3: string;
+  short4: string;
+  medium1: string;
+  medium2: string;
+  medium3: string;
+  medium4: string;
+  long1: string;
+  long2: string;
+  long3: string;
+  long4: string;
+  extraLong1: string;
+  extraLong2: string;
+  extraLong3: string;
+  extraLong4: string;
+}
+
+export interface MotionOptions {
+  easing?: Partial<MD3Easing>;
+  duration?: Partial<MD3Duration>;
+  create?: (
+    props: string | string[],
+    options?: Partial<{ duration: number | string; easing: string; delay: number | string }>,
+  ) => string;
+  getAutoHeightDuration?: (height: number) => number;
+}
+
+export interface Motion {
+  easing: MD3Easing;
+  duration: MD3Duration;
+  create: (
+    props: string | string[],
+    options?: Partial<{ duration: number | string; easing: string; delay: number | string }>,
+  ) => string;
+  getAutoHeightDuration: (height: number) => number;
 }
 
 export interface MD3CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'colorSchemes'> {
-  md3?: {
-    shape?: Partial<Shapes>;
-  };
   ref?: {
     typeface?: Partial<MD3Typeface>;
   };
   sys?: {
     typescale?: Partial<MD3Typescale>;
-    state?: Partial<MD3States>;
+    state?: Partial<MD3State>;
+    elevation?: string[];
+    motion?: MotionOptions;
+    shape?: MD3ShapeOptions;
   };
 }
 
@@ -152,6 +255,7 @@ export interface ColorSystemOptions extends MD2ColorSystemOptions {
   };
   sys?: {
     color?: Partial<MD3ColorSchemeTokens>;
+    elevation?: string[];
   };
 }
 
@@ -171,14 +275,13 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
   sys: {
     color: MD3ColorSchemeTokens;
     typescale: MD3Typescale;
-    state: MD3States;
-  };
-  md3: {
-    shape: Shapes;
+    state: MD3State;
+    elevation: string[];
+    motion: Motion;
+    shape: MD3Shape;
   };
   palette: MD2Theme['palette'];
   vars: MD2Theme['vars'] & {
-    palette: MD2Theme['vars']['palette'];
     ref: {
       palette: MD3Palettes;
       typeface: any;
@@ -186,11 +289,15 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
     sys: {
       color: MD3ColorSchemeTokens;
       typescale: MD3Typescale;
-      state: MD3States;
+      state: MD3State;
+      elevation: string[];
+      motion: Omit<Motion, 'create' | 'getAutoHeightDuration'>;
+      shape: MD3Shape;
     };
-    md3: {
-      shape: Shapes;
-    };
+  };
+  generateCssVars: (colorScheme?: SupportedColorScheme) => {
+    css: Record<string, string | number>;
+    vars: Theme['vars'];
   };
 }
 

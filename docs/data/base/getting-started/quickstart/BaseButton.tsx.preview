@@ -1,0 +1,5 @@
+<Button>Button</Button>
+
+<button type="button" {...getRootProps()}>
+  useButton
+</button>

@@ -14,9 +14,8 @@ export default function ExampleButtonCheckbox() {
       variant="outlined"
       aria-label="Screens"
       role="group"
-      row
+      orientation="horizontal"
       sx={{
-        bgcolor: 'background.body',
         flexGrow: 0,
         '--List-gap': '8px',
         '--List-padding': '8px',
@@ -46,7 +45,7 @@ export default function ExampleButtonCheckbox() {
             label={item}
             checked={value.includes(item)}
             color="neutral"
-            variant="plain"
+            variant={value.includes(item) ? 'outlined' : 'plain'}
             onChange={(event) => {
               if (event.target.checked) {
                 setValue((val) => [...val, item]);
@@ -54,14 +53,11 @@ export default function ExampleButtonCheckbox() {
                 setValue((val) => val.filter((text) => text !== item));
               }
             }}
-            componentsProps={{
+            slotProps={{
               action: ({ checked }) => ({
                 sx: {
-                  bgcolor: checked ? 'background.surface' : 'transparent',
+                  bgcolor: checked ? 'background.level1' : 'transparent',
                   boxShadow: checked ? 'sm' : 'none',
-                  '&:hover': {
-                    bgcolor: checked ? 'background.surface' : 'transparent',
-                  },
                 },
               }),
             }}

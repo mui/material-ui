@@ -17,7 +17,7 @@ function FormButton<C extends React.ElementType>(
       disabled={!mounted || !!disabled}
       type="submit"
       variant="contained"
-      {...others}
+      {...(others as ButtonProps<C, { component?: C }>)}
     />
   );
 }

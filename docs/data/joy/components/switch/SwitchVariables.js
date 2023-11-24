@@ -1,7 +1,7 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function SwitchVariables() {
   return (
@@ -10,21 +10,21 @@ export default function SwitchVariables() {
       data={[
         { var: '--Switch-gap', defaultValue: '8px' },
         [
-          'track',
+          'Track',
           [
-            { var: '--Switch-track-radius', defaultValue: '16px' },
-            { var: '--Switch-track-width', defaultValue: '48px' },
-            { var: '--Switch-track-height', defaultValue: '24px' },
+            { var: '--Switch-trackRadius', defaultValue: '16px' },
+            { var: '--Switch-trackWidth', defaultValue: '48px' },
+            { var: '--Switch-trackHeight', defaultValue: '24px' },
           ],
           { defaultOpen: true },
         ],
         [
-          'thumb',
+          'Thumb',
           [
-            { var: '--Switch-thumb-size', defaultValue: '16px' },
-            { var: '--Switch-thumb-radius' },
-            { var: '--Switch-thumb-width' },
-            { var: '--Switch-thumb-offset' },
+            { var: '--Switch-thumbSize', defaultValue: '16px' },
+            { var: '--Switch-thumbRadius' },
+            { var: '--Switch-thumbWidth' },
+            { var: '--Switch-thumbOffset' },
           ],
         ],
       ]}

@@ -52,35 +52,55 @@ export default function EditProgress(props: GridRenderEditCellParams) {
   return (
     <Slider
       ref={handleRef}
-      sx={{
-        p: 0,
-        height: '100%',
-        borderRadius: '0px',
-        '& .MuiSlider-rail': {
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
-        },
-        '& .MuiSlider-track': {
-          border: 0,
-          ...(valueState < 0.3 && {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.800' : 'error.500'),
-          }),
-          ...(valueState >= 0.3 &&
-            valueState <= 0.7 && {
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'warning.800' : 'warning.500'),
-            }),
-          ...(valueState > 0.7 && {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'success.800' : 'success.500'),
-          }),
-        },
-        '& .MuiSlider-thumb': {
-          cursor: 'col-resize',
+      sx={[
+        {
+          p: 0,
           height: '100%',
-          width: 5,
           borderRadius: '0px',
-          marginTop: 0,
-          backgroundColor: alpha('#000000', 0.2),
+          '& .MuiSlider-rail': {
+            bgcolor: 'grey.100',
+          },
+          '& .MuiSlider-track': {
+            border: 0,
+            ...(valueState < 0.3 && {
+              bgcolor: 'error.500',
+            }),
+            ...(valueState >= 0.3 &&
+              valueState <= 0.7 && {
+                bgcolor: 'warning.500',
+              }),
+            ...(valueState > 0.7 && {
+              bgcolor: 'success.500',
+            }),
+          },
+          '& .MuiSlider-thumb': {
+            cursor: 'col-resize',
+            height: '100%',
+            width: 5,
+            borderRadius: '0px',
+            marginTop: 0,
+            backgroundColor: alpha('#000000', 0.2),
+          },
         },
-      }}
+        (theme) =>
+          theme.applyDarkStyles({
+            '& .MuiSlider-rail': {
+              bgcolor: 'primaryDark.700',
+            },
+            '& .MuiSlider-track': {
+              ...(valueState < 0.3 && {
+                bgcolor: 'error.800',
+              }),
+              ...(valueState >= 0.3 &&
+                valueState <= 0.7 && {
+                  bgcolor: 'warning.800',
+                }),
+              ...(valueState > 0.7 && {
+                bgcolor: 'success.800',
+              }),
+            },
+          }),
+      ]}
       value={valueState}
       max={1}
       step={0.00001}
