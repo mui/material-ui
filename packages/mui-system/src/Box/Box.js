@@ -1,8 +1,13 @@
 'use client';
 import PropTypes from 'prop-types';
+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/utils';
 import createBox from '../createBox';
+import boxClasses from './boxClasses';
 
-const Box = createBox();
+const Box = createBox({
+  defaultClassName: boxClasses.root,
+  generateClassName: ClassNameGenerator.generate,
+});
 
 Box.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

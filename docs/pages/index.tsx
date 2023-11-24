@@ -36,7 +36,7 @@ export default function Home() {
               sameAs: [
                 'https://twitter.com/MUI_hq',
                 'https://github.com/mui/',
-                'https://opencollective.com/mui',
+                'https://opencollective.com/mui-org',
               ],
             }),
           }}
