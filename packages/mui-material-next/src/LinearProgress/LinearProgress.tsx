@@ -147,6 +147,20 @@ const LinearProgressRoot = styled('span', {
     colorAdjust: 'exact',
   },
   backgroundColor: 'var(--md-comp-linear-progress-indicator-track-color)',
+  ...(ownerState.color === 'inherit' &&
+    ownerState.variant !== 'buffer' && {
+      backgroundColor: 'none',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'currentColor',
+        opacity: 0.3,
+      },
+    }),
   ...(ownerState.variant === 'buffer' && { backgroundColor: 'transparent' }),
   ...(ownerState.variant === 'query' && { transform: 'rotate(180deg)' }),
 }));
@@ -156,15 +170,18 @@ const LinearProgressDashed = styled('span', {
   slot: 'Dashed',
   overridesResolver: (props, styles) => styles.dashed,
 })<{ ownerState: LinearProgressOwnerState }>(
-  {
+  ({ ownerState }) => ({
     position: 'absolute',
     marginTop: 0,
     height: '100%',
     width: '100%',
+    ...(ownerState.color === 'inherit' && {
+      opacity: 0.3,
+    }),
     backgroundImage: `radial-gradient(var(--md-comp-linear-progress-indicator-track-color) 0%, var(--md-comp-linear-progress-indicator-track-color) 16%, transparent 42%)`,
     backgroundSize: '10px 10px',
     backgroundPosition: '0 -23px',
-  },
+  }),
   css`
     animation: ${bufferKeyframe} 3s infinite linear;
   `,
@@ -218,6 +235,9 @@ const LinearProgressBar2 = styled('span', {
   transition: 'transform 0.2s linear',
   transformOrigin: 'left',
   backgroundColor: 'var(--md-comp-linear-progress-indicator-active-indicator-color)',
+  ...(ownerState.color === 'inherit' && {
+    opacity: 0.3,
+  }),
   ...(ownerState.variant === 'buffer' && {
     backgroundColor: 'var(--md-comp-linear-progress-indicator-track-color)',
     transition: `transform .${TRANSITION_DURATION}s linear`,
