@@ -123,6 +123,12 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    * Set to `null` to deselect all options.
    */
   value?: SelectValue<OptionValue, Multiple>;
+  /**
+   * The name of the component using useSelect.
+   * For debugging purposes.
+   * @default 'useSelect'
+   */
+  componentName?: string;
 }
 
 interface UseSelectButtonSlotEventHandlers {

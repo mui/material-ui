@@ -1365,7 +1365,7 @@ describe('<Select />', () => {
       expect(() => {
         setProps({ value: undefined });
       }).toErrorDev(
-        'useControllableReducer: The useSelect component is changing a controlled prop to be uncontrolled: selectedValues',
+        'useControllableReducer: The Select component is changing a controlled prop to be uncontrolled: selectedValues',
       );
     });
 
@@ -1380,7 +1380,7 @@ describe('<Select />', () => {
       expect(() => {
         setProps({ value: 1 });
       }).toErrorDev(
-        'useControllableReducer: The useSelect component is changing an uncontrolled prop to be controlled: selectedValues',
+        'useControllableReducer: The Select component is changing an uncontrolled prop to be controlled: selectedValues',
       );
     });
   });
