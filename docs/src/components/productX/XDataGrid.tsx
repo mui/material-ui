@@ -118,7 +118,7 @@ export default function XDataGrid() {
     }
   }, [demo, loading, firstRowId, gridApiRef]);
   return (
-    <Section>
+    <Section cozy>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <SectionHeadline
