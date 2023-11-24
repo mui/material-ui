@@ -2653,6 +2653,7 @@ describe('<Autocomplete />', () => {
       }).not.to.throw();
     });
   });
+
   it('should specify option key for duplicate options', () => {
     const { getAllByRole } = render(
       <Autocomplete
