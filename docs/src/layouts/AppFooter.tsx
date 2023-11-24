@@ -50,7 +50,10 @@ export default function AppFooter(props: AppFooterProps) {
         }}
       >
         <div>
-          <Typography variant="body2" fontWeight="bold">
+          <Link href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
+            <SvgMuiLogotype height={28} width={91} />
+          </Link>
+          <Typography variant="body2" fontWeight="bold" gutterBottom>
             Keep up to date
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
@@ -141,31 +144,16 @@ export default function AppFooter(props: AppFooterProps) {
         </Box>
       </Box>
       <Divider />
-      <Box
-        sx={{
-          my: 4,
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          alignItems: { sm: 'center' },
-          justifyContent: { sm: 'space-between' },
-          gap: { xs: 2, sm: 1 },
-        }}
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        alignItems="center"
+        justifyContent={{ sm: 'space-between' }}
+        gap={{ xs: 2, sm: 1 }}
+        sx={{ my: 4 }}
       >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', sm: 'row' },
-            alignItems: { xs: 'start', sm: 'center' },
-            gap: 1.5,
-          }}
-        >
-          <Link href="/" aria-label="Go to homepage">
-            <SvgMuiLogotype height={28} width={91} />
-          </Link>
-          <Typography color="text.tertiary" variant="caption" fontWeight={400}>
-            Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
-          </Typography>
-        </Box>
+        <Typography color="text.tertiary" variant="caption" fontWeight={400}>
+          Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
+        </Typography>
         <Stack spacing={1} direction="row" flexWrap="wrap" useFlexGap>
           <IconButton
             target="_blank"
@@ -240,7 +228,7 @@ export default function AppFooter(props: AppFooterProps) {
             </IconButton>
           ) : null}
         </Stack>
-      </Box>
+      </Stack>
     </Container>
   );
 }

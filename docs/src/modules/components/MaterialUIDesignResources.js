@@ -47,9 +47,9 @@ const content = [
 export default function MaterialUIDesignResources() {
   return (
     <Grid container spacing={2}>
-      {content.map(({ svg, title, description, link }) => (
+      {content.map(({ svg, title, link }) => (
         <Grid key={title} xs={12} sm={4}>
-          <InfoCard link={link} title={title} description={description} svg={svg} />
+          <InfoCard classNameTitle="algolia-lvl3" link={link} title={title} svg={svg} />
         </Grid>
       ))}
     </Grid>
