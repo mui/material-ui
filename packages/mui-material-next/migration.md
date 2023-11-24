@@ -393,6 +393,47 @@ The `MuiDivider-withChildrenVertical` class has been removed. To replace it, you
 
 ## LinearProgress
 
+### Removed combined styleOverrides keys
+
+The following `styleOverrides` `MuiLinearProgress` keys were removed:
+
+- `dashedColorPrimary`
+- `dashedColorSecondary`
+- `barColorPrimary`
+- `barColorSecondary`
+- `bar1Indeterminate`
+- `bar1Determinate`
+- `bar1Buffer`
+- `bar2Indeterminate`
+- `bar2Buffer`
+
+The following `styleOverrides` `MuiLinearProgress` keys were added:
+
+- `bar1`
+- `bar2`
+
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `dashedPrimary` with the variants API:
+
+```diff
+ const theme = extendTheme({
+   components: {
+     MuiLinearProgress: {
+       styleOverrides: {
+-        dashedColorPrimary: {
+-          background: "fuchsia"
+-        }
++        root: {
++          "&.MuiLinearProgress-colorPrimary > .MuiLinearProgress-dashed": {
++            background: "fuchsia"
++          }
++        }
+       }
+     }
+   }
+ });
+```
+
 ### Removed combined classes
 
 The following classes were removed:

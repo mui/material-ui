@@ -156,11 +156,7 @@ const LinearProgressRoot = styled('span', {
 const LinearProgressDashed = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Dashed',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [styles.dashed, styles[`dashedColor${capitalize(ownerState.color)}`]];
-  },
+  overridesResolver: (props, styles) => styles.dashed,
 })<{ ownerState: LinearProgressOwnerState }>(
   {
     position: 'absolute',
@@ -180,16 +176,7 @@ const LinearProgressBar1 = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Bar1',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.bar,
-      styles[`barColor${capitalize(ownerState.color)}`],
-      (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-        styles.bar1Indeterminate,
-      ownerState.variant === 'determinate' && styles.bar1Determinate,
-      ownerState.variant === 'buffer' && styles.bar1Buffer,
-    ];
+    return [styles.bar, styles.bar1];
   },
 })<{ ownerState: LinearProgressOwnerState }>(({ ownerState }) => ({
   width: '100%',
@@ -222,15 +209,7 @@ const LinearProgressBar2 = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Bar2',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.bar,
-      styles[`barColor${capitalize(ownerState.color)}`],
-      (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-        styles.bar2Indeterminate,
-      ownerState.variant === 'buffer' && styles.bar2Buffer,
-    ];
+    return [styles.bar, styles.bar2];
   },
 })<{ ownerState: LinearProgressOwnerState }>(({ ownerState }) => ({
   width: '100%',
