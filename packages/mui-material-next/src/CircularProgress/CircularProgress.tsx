@@ -74,13 +74,7 @@ const fourColorKeyframe = keyframes`
 `;
 
 const useUtilityClasses = (ownerState: CircularProgressOwnerState) => {
-  const {
-    classes,
-    variant = 'indeterminate',
-    color = 'primary',
-    disableShrink,
-    fourColor,
-  } = ownerState;
+  const { classes, variant, color, disableShrink, fourColor } = ownerState;
 
   const slots = {
     root: ['root', variant, `color${capitalize(color)}`, fourColor && 'fourColor'],
@@ -110,8 +104,7 @@ const CircularProgressRoot = styled('span', {
     ];
   },
 })<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme: { vars: tokens } }) => ({
-  '--md-comp-linear-progress-indicator-active-indicator-color':
-    tokens.sys.color[ownerState.color ?? 'primary'],
+  '--md-comp-linear-progress-indicator-active-indicator-color': tokens.sys.color[ownerState.color],
   '--md-comp-linear-progress-indicator-active-indicator-width': ownerState.thickness,
   '--md-comp-linear-progress-indicator-size': ownerState.size,
   '--md-comp-linear-progress-indicator-four-color-active-indicator-one-color':

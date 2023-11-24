@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps, PartiallyRequired } from '@mui/types';
 import { Theme } from '../styles';
 import { CircularProgressClasses } from './circularProgressClasses';
 
@@ -76,4 +76,8 @@ export type CircularProgressProps<
   AdditionalProps = {},
 > = OverrideProps<CircularProgressTypeMap<AdditionalProps, RootComponentType>, RootComponentType>;
 
-export interface CircularProgressOwnerState extends CircularProgressProps {}
+export interface CircularProgressOwnerState
+  extends PartiallyRequired<
+    CircularProgressProps,
+    'color' | 'disableShrink' | 'fourColor' | 'size' | 'thickness' | 'value' | 'variant'
+  > {}
