@@ -292,6 +292,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     freeSolo = false,
     getLimitTagsText = defaultLimitTagsText,
     getOptionDisabled,
+    getOptionKey,
     getOptionLabel = defaultGetOptionLabel,
     handleHomeEndKeys,
     includeInputInList,
