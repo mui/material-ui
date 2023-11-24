@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { SlotComponentProps } from '@mui/base';
 import { SxProps } from '@mui/system';
-import { OverridableComponent, OverrideProps, OverridableStringUnion } from '@mui/types';
+import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
+import { FormControlProps } from '../FormControl/FormControl.types';
 import { FormHelperTextClasses } from './formHelperTextClasses';
 
 export interface FormHelperTextPropsVariantOverrides {}
@@ -17,6 +19,10 @@ export interface FormHelperTextOwnProps {
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<FormHelperTextClasses>;
+  /**
+   * @ignore
+   */
+  className?: string;
   /**
    * If `true`, the helper text should be displayed in a disabled state.
    */
@@ -43,16 +49,35 @@ export interface FormHelperTextOwnProps {
    */
   required?: boolean;
   /**
+   * The props used for each slot inside the FormHelperText.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<'p', {}, FormHelperTextOwnerState>;
+  };
+  /**
+   * The components used for each slot inside the FormHelperText.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: FormHelperTextSlots;
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
   /**
    * The variant to use.
+   * @default 'outlined'
    */
-  variant?: OverridableStringUnion<
-    'standard' | 'outlined' | 'filled',
-    FormHelperTextPropsVariantOverrides
-  >;
+  variant?: OverridableStringUnion<'outlined' | 'filled', FormHelperTextPropsVariantOverrides>;
+}
+
+export interface FormHelperTextSlots {
+  /**
+   * The component that renders the root.
+   * @default 'p'
+   */
+  root?: React.ElementType;
 }
 
 export interface FormHelperTextTypeMap<
@@ -62,17 +87,6 @@ export interface FormHelperTextTypeMap<
   props: AdditionalProps & FormHelperTextOwnProps;
   defaultComponent: RootComponent;
 }
-/**
- *
- * Demos:
- *
- * - [Text Field](https://mui.com/material-ui/react-text-field/)
- *
- * API:
- *
- * - [FormHelperText API](https://mui.com/material-ui/api/form-helper-text/)
- */
-declare const FormHelperText: OverridableComponent<FormHelperTextTypeMap>;
 
 export type FormHelperTextProps<
   RootComponent extends React.ElementType = FormHelperTextTypeMap['defaultComponent'],
@@ -81,4 +95,8 @@ export type FormHelperTextProps<
   component?: React.ElementType;
 };
 
-export default FormHelperText;
+export interface FormHelperTextOwnerState extends FormHelperTextProps {
+  contained: boolean;
+  size: NonNullable<FormControlProps['size']>;
+  variant: NonNullable<FormControlProps['variant']>;
+}

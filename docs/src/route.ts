@@ -35,7 +35,7 @@ const ROUTES = {
   store: 'https://mui.com/store/',
   advancedComponents: '/x/introduction/',
   toolpadDocs: '/toolpad/getting-started/overview/',
-  xDocs: '/x/introduction',
+  xDocs: '/x/introduction/',
   dataGridSpace: '/x/react-data-grid/getting-started/',
   dataGridDocs: '/x/react-data-grid/getting-started/',
   dataGridFeatures: '/x/react-data-grid/#features',

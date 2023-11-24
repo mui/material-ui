@@ -384,7 +384,12 @@ export default function FilesExample() {
                       borderRadius: '9999999px',
                     }}
                   >
-                    <IconButton variant="plain" color="neutral" size="sm">
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
                       <MoreVertRoundedIcon />
                     </IconButton>
                   </MenuButton>
@@ -444,7 +449,12 @@ export default function FilesExample() {
                       maxHeight: '32px',
                     }}
                   >
-                    <IconButton variant="plain" color="neutral" size="sm">
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
                       <MoreVertRoundedIcon />
                     </IconButton>
                   </MenuButton>
@@ -531,7 +541,12 @@ export default function FilesExample() {
                       maxHeight: '32px',
                     }}
                   >
-                    <IconButton variant="plain" color="neutral" size="sm">
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
                       <MoreVertRoundedIcon />
                     </IconButton>
                   </MenuButton>
@@ -606,7 +621,12 @@ export default function FilesExample() {
                       maxHeight: '32px',
                     }}
                   >
-                    <IconButton variant="plain" color="neutral" size="sm">
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
                       <MoreVertRoundedIcon />
                     </IconButton>
                   </MenuButton>
@@ -664,7 +684,12 @@ export default function FilesExample() {
                       borderRadius: '9999999px',
                     }}
                   >
-                    <IconButton variant="plain" color="neutral" size="sm">
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
                       <MoreVertRoundedIcon />
                     </IconButton>
                   </MenuButton>
@@ -725,7 +750,12 @@ export default function FilesExample() {
                       borderRadius: '9999999px',
                     }}
                   >
-                    <IconButton variant="plain" color="neutral" size="sm">
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
                       <MoreVertRoundedIcon />
                     </IconButton>
                   </MenuButton>
@@ -792,7 +822,7 @@ export default function FilesExample() {
             <Typography level="title-md" sx={{ flex: 1 }}>
               torres-del-paine.png
             </Typography>
-            <IconButton variant="plain" color="neutral" size="sm">
+            <IconButton component="span" variant="plain" color="neutral" size="sm">
               <CloseRoundedIcon />
             </IconButton>
           </Box>
