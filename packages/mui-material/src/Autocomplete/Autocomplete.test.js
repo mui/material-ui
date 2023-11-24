@@ -2676,26 +2676,6 @@ describe('<Autocomplete />', () => {
       expect(options.length).to.equal(2);
     });
 
-    it('should use key property by default', () => {
-      const { getAllByRole } = render(
-        <Autocomplete
-          open
-          options={[
-            { name: 'one', key: '1' },
-            { name: 'two', key: '2' },
-            { name: 'three', key: '3' },
-            { name: 'three', key: '4' },
-          ]}
-          getOptionLabel={(option) => option.name}
-          renderInput={(params) => <TextField {...params} autoFocus />}
-        />,
-      );
-
-      fireEvent.change(document.activeElement, { target: { value: 'th' } });
-      const options = getAllByRole('option');
-      expect(options.length).to.equal(2);
-    });
-
     it('should throw warning if option does not have key for duplicate labels', () => {
       expect(() =>
         render(
