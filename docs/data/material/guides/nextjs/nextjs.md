@@ -4,7 +4,9 @@
 
 ## App Router
 
-App router is an evolution of the [Pages Router](#pages-router) and a new default way of building Next.js applications starting from version 13. To learn more about it, check out the [Next.js App Router documentation](https://nextjs.org/docs/app).
+[App router](https://nextjs.org/docs/app) is an evolution of the [Pages Router](#pages-router) and a new default way of building Next.js applications starting from version 13.
+
+This section will help you integrate Material UI with the App Router in Next.js.
 
 ### Intalling the dependencies
 
@@ -94,7 +96,7 @@ Inside `pages/_document.tsx`, import the `documentGetInitialProps` and use it as
 + MyDocument.getInitialProps = documentGetInitialProps;
 ```
 
-Then inside `pages/_app.tsx`, import the `AppCacheProvider` and wrap all of the elements:
+Then inside `pages/_app.tsx`, import the `AppCacheProvider` and render it as the root element:
 
 ```diff
 + import { AppCacheProvider } from '@mui/material-nextjs/pagesRouterV13';
