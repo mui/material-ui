@@ -53,18 +53,7 @@ const indeterminate2Keyframe = keyframes`
 
 const bufferKeyframe = keyframes`
   0% {
-    opacity: 1;
-    background-position: 0 -23px;
-  }
-
-  60% {
-    opacity: 0;
-    background-position: 0 -23px;
-  }
-
-  100% {
-    opacity: 1;
-    background-position: -200px -23px;
+    transform: translateX(calc(var(--md-comp-linear-progress-indicator-active-indicator-height) / 2 * 5));
   }
 `;
 
@@ -175,15 +164,16 @@ const LinearProgressDashed = styled('span', {
     marginTop: 0,
     height: '100%',
     width: '100%',
+    inset: '0px',
+    backgroundColor: 'var(--md-comp-linear-progress-indicator-track-color)',
     ...(ownerState.color === 'inherit' && {
       opacity: 0.3,
     }),
-    backgroundImage: `radial-gradient(var(--md-comp-linear-progress-indicator-track-color) 0%, var(--md-comp-linear-progress-indicator-track-color) 16%, transparent 42%)`,
-    backgroundSize: '10px 10px',
-    backgroundPosition: '0 -23px',
+    maskImage: `url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 2' preserveAspectRatio='xMinYMin slice'%3E%3Ccircle cx='1' cy='1' r='1'/%3E%3C/svg%3E")`,
+    backgroundRepeat: 'repeat-x',
   }),
   css`
-    animation: ${bufferKeyframe} 3s infinite linear;
+    animation: 250ms ${bufferKeyframe} infinite linear;
   `,
 );
 
