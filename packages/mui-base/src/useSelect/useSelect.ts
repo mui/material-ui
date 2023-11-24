@@ -287,6 +287,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getItemAsString: stringifyOption,
     selectionMode: multiple ? 'multiple' : 'single',
     stateReducer: selectReducer,
+    componentName: 'useSelect',
   };
 
   const {

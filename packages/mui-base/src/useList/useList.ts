@@ -90,6 +90,7 @@ function useList<
     reducerActionContext = EMPTY_OBJECT as CustomActionContext,
     selectionMode = 'single',
     stateReducer: externalReducer,
+    componentName = 'useList',
   } = params;
 
   if (process.env.NODE_ENV !== 'production') {
@@ -221,6 +222,7 @@ function useList<
     controlledProps,
     stateComparers,
     onStateChange: handleStateChange,
+    componentName,
   });
 
   const { highlightedValue, selectedValues } = state;
