@@ -90,7 +90,7 @@ const examples = [
   {
     name: 'React-admin',
     label: 'View TS example',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-react-admin',
+    link: 'https://github.com/marmelab/material-ui-react-admin',
     src: '/static/images/examples/reactadmin.svg',
   },
 ];
