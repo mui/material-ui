@@ -167,7 +167,7 @@ export function useControllableReducer<
           (controlledProps as Record<string, unknown>)[key] === undefined
         ) {
           console.error(
-            'MUI: useControllableReducer is changing a controlled prop to be uncontrolled',
+            `MUI: useControllableReducer is changing a controlled prop to be uncontrolled: ${key}`,
           );
         }
 
@@ -176,7 +176,7 @@ export function useControllableReducer<
           (controlledProps as Record<string, unknown>)[key] !== undefined
         ) {
           console.error(
-            'MUI: useControllableReducer is changing an uncontrolled prop to be controlled',
+            `MUI: useControllableReducer is changing an uncontrolled prop to be controlled: ${key}`,
           );
         }
       });

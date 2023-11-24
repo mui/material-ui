@@ -158,7 +158,7 @@ describe('useControllableReducer', () => {
       expect(() => {
         setProps({ make: undefined });
       }).to.toErrorDev(
-        'MUI: useControllableReducer is changing a controlled prop to be uncontrolled',
+        'MUI: useControllableReducer is changing a controlled prop to be uncontrolled: make',
       );
     });
 
@@ -188,7 +188,7 @@ describe('useControllableReducer', () => {
       expect(() => {
         setProps({ make: 'Tesla' });
       }).to.toErrorDev(
-        'MUI: useControllableReducer is changing an uncontrolled prop to be controlled',
+        'MUI: useControllableReducer is changing an uncontrolled prop to be controlled: make',
       );
     });
   });
