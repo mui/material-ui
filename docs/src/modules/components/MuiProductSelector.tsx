@@ -91,7 +91,7 @@ const advancedProducts = [
     id: 'x-data-grid',
   },
   {
-    name: 'Date Pickers',
+    name: 'Date and Time Pickers',
     href: ROUTES.datePickersOverview,
     id: 'x-date-pickers',
   },
