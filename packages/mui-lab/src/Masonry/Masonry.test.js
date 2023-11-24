@@ -381,23 +381,24 @@ describe('<Masonry />', () => {
       const thirdChildHeight = 10;
 
       const { getByTestId } = render(
-        <Masonry columns={2} data-testid="sequential" sequential>
-          <div style={{ height: `${firstChildHeight}px` }} />
-          <div style={{ height: `${secondChildHeight}px` }} />
-          <div style={{ height: `${thirdChildHeight}px` }} />
+        <Masonry columns={2} sequential>
+          <div style={{ height: `${firstChildHeight}px` }} data-testid="child1" />
+          <div style={{ height: `${secondChildHeight}px` }} data-testid="child2" />
+          <div style={{ height: `${thirdChildHeight}px` }} data-testid="child3" />
         </Masonry>,
       );
-      const masonry = getByTestId('sequential');
 
-      expect(window.getComputedStyle(masonry).height).to.equal(
-        `${firstChildHeight + thirdChildHeight}px`,
-      );
+      expect(getByTestId('child1')).toHaveComputedStyle({
+        order: '1',
+      });
 
-      expect(window.getComputedStyle(masonry.children[0]).style).to.equal(`order: 1;`);
+      expect(getByTestId('child2')).toHaveComputedStyle({
+        order: '2',
+      });
 
-      expect(window.getComputedStyle(masonry.children[1]).style).to.equal(`order: 2;`);
-
-      expect(window.getComputedStyle(masonry.children[2]).style).to.equal(`order: 1;`);
+      expect(getByTestId('child3')).toHaveComputedStyle({
+        order: '1',
+      });
     });
   });
 });
