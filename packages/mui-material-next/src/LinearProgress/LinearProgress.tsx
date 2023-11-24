@@ -101,7 +101,7 @@ const fourColorKeyframe = keyframes`
 `;
 
 const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
-  const { classes, variant, color = 'primary', fourColor } = ownerState;
+  const { classes, variant, color, fourColor } = ownerState;
 
   const slots = {
     root: ['root', `color${capitalize(color)}`, variant, fourColor && 'fourColor'],
@@ -129,9 +129,7 @@ const LinearProgressRoot = styled('span', {
   '--md-comp-linear-progress-indicator-track-color': tokens.sys.color.surfaceContainerHighest,
   '--md-comp-linear-progress-indicator-active-indicator-height': '4px',
   '--md-comp-linear-progress-indicator-active-indicator-color':
-    ownerState.color !== 'inherit'
-      ? tokens.sys.color[ownerState.color ?? 'primary']
-      : 'currentColor',
+    ownerState.color !== 'inherit' ? tokens.sys.color[ownerState.color] : 'currentColor',
   '--md-comp-linear-progress-indicator-four-color-active-indicator-one-color':
     tokens.sys.color.primary,
   '--md-comp-linear-progress-indicator-four-color-active-indicator-two-color':

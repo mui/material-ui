@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps, PartiallyRequired } from '@mui/types';
 import { Theme } from '../styles';
 import { LinearProgressClasses } from './linearProgressClasses';
 
@@ -62,4 +62,5 @@ export type LinearProgressProps<
   AdditionalProps = {},
 > = OverrideProps<LinearProgressTypeMap<AdditionalProps, RootComponentType>, RootComponentType>;
 
-export interface LinearProgressOwnerState extends LinearProgressProps {}
+export interface LinearProgressOwnerState
+  extends PartiallyRequired<LinearProgressProps, 'color' | 'variant'> {}
