@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformance, fireEvent, createRenderer } from 'test/utils';
+import { describeConformance, fireEvent, createRenderer } from '@mui-internal/test-utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
@@ -83,7 +83,7 @@ describe('<TablePagination />', () => {
 
   describe('prop: labelRowsPerPage', () => {
     it('labels the select for the current page', () => {
-      const { getAllByRole } = render(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -100,13 +100,12 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      // will be `getByRole('combobox')` in aria 1.2
-      const [combobox] = getAllByRole('button');
-      expect(combobox).toHaveAccessibleName('lines per page: 10');
+      const combobox = getByRole('combobox');
+      expect(combobox).toHaveAccessibleName('lines per page:');
     });
 
     it('accepts React nodes', () => {
-      const { getAllByRole } = render(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -127,15 +126,14 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      // will be `getByRole('combobox')` in aria 1.2
-      const [combobox] = getAllByRole('button');
-      expect(combobox).toHaveAccessibleName('lines per page: 10');
+      const combobox = getByRole('combobox');
+      expect(combobox).toHaveAccessibleName('lines per page:');
     });
   });
 
   describe('prop: page', () => {
     it('should disable the back button on the first page', () => {
-      const { getAllByRole } = render(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -151,13 +149,14 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const [, backButton, nextButton] = getAllByRole('button');
+      const backButton = getByRole('button', { name: 'Go to previous page' });
+      const nextButton = getByRole('button', { name: 'Go to next page' });
       expect(backButton).to.have.property('disabled', true);
       expect(nextButton).to.have.property('disabled', false);
     });
 
     it('should disable the next button on the last page', () => {
-      const { getAllByRole } = render(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -173,7 +172,8 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const [, backButton, nextButton] = getAllByRole('button');
+      const backButton = getByRole('button', { name: 'Go to previous page' });
+      const nextButton = getByRole('button', { name: 'Go to next page' });
       expect(backButton).to.have.property('disabled', false);
       expect(nextButton).to.have.property('disabled', true);
     });
@@ -380,7 +380,7 @@ describe('<TablePagination />', () => {
 
   describe('prop: SelectProps', () => {
     it('does allow manual label ids', () => {
-      const { getAllByRole } = render(
+      const { getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -397,9 +397,8 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      // will be `getByRole('combobox')` in aria 1.2
-      const [combobox] = getAllByRole('button');
-      expect(combobox).toHaveAccessibleName('Rows per page: 10');
+      const combobox = getByRole('combobox');
+      expect(combobox).toHaveAccessibleName('Rows per page:');
     });
   });
 

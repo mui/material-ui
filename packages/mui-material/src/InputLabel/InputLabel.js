@@ -46,6 +46,7 @@ const InputLabelRoot = styled(FormLabel, {
       ownerState.size === 'small' && styles.sizeSmall,
       ownerState.shrink && styles.shrink,
       !ownerState.disableAnimation && styles.animated,
+      ownerState.focused && styles.focused,
       styles[ownerState.variant],
     ];
   },
@@ -118,6 +119,11 @@ const InputLabelRoot = styled(FormLabel, {
       transform: 'translate(14px, -9px) scale(0.75)',
     }),
   }),
+  ...(ownerState.variant === 'standard' && {
+    '&:not(label) + div': {
+      marginTop: 16,
+    },
+  }),
 }));
 
 const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
@@ -141,7 +147,7 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['size', 'variant', 'required'],
+    states: ['size', 'variant', 'required', 'focused'],
   });
 
   const ownerState = {
@@ -152,6 +158,7 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
     size: fcs.size,
     variant: fcs.variant,
     required: fcs.required,
+    focused: fcs.focused,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -188,7 +195,7 @@ InputLabel.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),

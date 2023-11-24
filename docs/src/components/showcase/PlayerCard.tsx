@@ -14,11 +14,9 @@ import LoopRoundedIcon from '@mui/icons-material/LoopRounded';
 
 export default function PlayerCard({
   disableTheming,
-  horizontal,
   extraStyles,
 }: {
   disableTheming?: boolean;
-  horizontal?: boolean;
   extraStyles?: boolean;
 }) {
   const [paused, setPaused] = React.useState(true);
@@ -28,13 +26,14 @@ export default function PlayerCard({
         variant="outlined"
         sx={[
           {
+            width: { xs: '100%', sm: 'auto' },
             p: 2,
             display: 'flex',
-            flexDirection: horizontal ? 'row' : 'column',
+            flexDirection: { xs: 'column', sm: 'row' },
             alignItems: 'center',
-            borderColor: extraStyles ? 'primary.200' : 'grey.300',
+            borderColor: extraStyles ? 'primary.200' : 'grey.200',
             gap: 2,
-            boxShadow: extraStyles ? '0 4px 8px rgba(0, 127, 255, 0.2)' : 'none',
+            boxShadow: extraStyles ? '0 2px 4px rgba(0, 127, 255, 0.15)' : 'none',
             ...(!disableTheming && {
               [`& .${iconButtonClasses.root}`]: {
                 border: '1px solid',
@@ -78,20 +77,19 @@ export default function PlayerCard({
       >
         <CardMedia
           component="img"
-          width="214"
-          height={horizontal ? '214' : '187'}
-          alt="Birds of Tokyo album cover"
-          src="/static/images/cards/birds-of-tokyo.jpg"
+          width="100"
+          height="100"
+          alt="Contemplative Reptile album cover"
+          src="/static/images/cards/contemplative-reptile.jpg"
           sx={{
+            width: { xs: '100%', sm: 100 },
             borderRadius: 0.6,
-            height: horizontal ? 100 : 100,
-            width: horizontal ? 100 : '100%',
           }}
         />
         <Stack direction="column" spacing={2} alignItems="center">
           <Stack direction="column" spacing={0.2} alignItems="center">
             <Typography color="text.primary" fontWeight="medium" fontSize={15}>
-              If This Ship Sinks (I Give In)
+              Contemplative Reptile
             </Typography>
             <Typography
               component="div"
@@ -99,7 +97,7 @@ export default function PlayerCard({
               color="text.secondary"
               fontWeight="regular"
             >
-              Birds Of Tokyo
+              Sounds of Nature
             </Typography>
           </Stack>
           <Stack direction="row" alignItems="center" spacing={1.5}>

@@ -380,6 +380,7 @@ export interface Components<Theme = unknown> {
   };
   MuiPopper?: {
     defaultProps?: ComponentsProps['MuiPopper'];
+    styleOverrides?: ComponentsOverrides<Theme>['MuiPopper'];
   };
   MuiPopover?: {
     defaultProps?: ComponentsProps['MuiPopover'];

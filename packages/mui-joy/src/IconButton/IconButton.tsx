@@ -5,11 +5,11 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { useButton } from '@mui/base/useButton';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
+import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
 
 const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, size, variant } = ownerState;
@@ -43,7 +43,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
           ? 'currentColor'
           : theme.vars.palette.text.icon,
       ...(ownerState.instanceSize && {
-        '--IconButton-size': { sm: '2rem', md: '2.5rem', lg: '3rem' }[ownerState.instanceSize],
+        '--IconButton-size': { sm: '2rem', md: '2.25rem', lg: '2.75rem' }[ownerState.instanceSize],
       }),
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
@@ -55,20 +55,20 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
         paddingInline: '2px', // add a gap, in case the content is long, e.g. multiple icons
       }),
       ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 2.5rem) / 1.667)', // 1.5rem by default
-        '--CircularProgress-size': '24px',
-        '--CircularProgress-thickness': '3px',
-        minWidth: 'var(--IconButton-size, 2.5rem)',
-        minHeight: 'var(--IconButton-size, 2.5rem)',
+        '--Icon-fontSize': 'calc(var(--IconButton-size, 2.25rem) / 1.5)', // 1.5rem by default
+        '--CircularProgress-size': '20px',
+        '--CircularProgress-thickness': '2px',
+        minWidth: 'var(--IconButton-size, 2.25rem)',
+        minHeight: 'var(--IconButton-size, 2.25rem)',
         fontSize: theme.vars.fontSize.md,
         paddingInline: '0.25rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 3rem) / 1.714)', // 1.75rem by default
+        '--Icon-fontSize': 'calc(var(--IconButton-size, 2.75rem) / 1.571)', // 1.75rem by default
         '--CircularProgress-size': '28px',
         '--CircularProgress-thickness': '4px',
-        minWidth: 'var(--IconButton-size, 3rem)',
-        minHeight: 'var(--IconButton-size, 3rem)',
+        minWidth: 'var(--IconButton-size, 2.75rem)',
+        minHeight: 'var(--IconButton-size, 2.75rem)',
         fontSize: theme.vars.fontSize.lg,
         paddingInline: '0.375rem',
       }),
@@ -141,10 +141,10 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     ...other
   } = props;
   const buttonGroup = React.useContext(ButtonGroupContext);
+  const toggleButtonGroup = React.useContext(ToggleButtonGroupContext);
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, buttonGroup.color || colorProp);
+  const color = inProps.color || buttonGroup.color || colorProp;
   const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp);
 
   const buttonRef = React.useRef<HTMLElement>(null);
@@ -179,6 +179,38 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    let onClick = props.onClick;
+    if (typeof slotProps.root === 'function') {
+      onClick = slotProps.root(ownerState).onClick;
+    } else if (slotProps.root) {
+      onClick = slotProps.root.onClick;
+    }
+
+    onClick?.(event);
+
+    if (toggleButtonGroup) {
+      toggleButtonGroup.onClick?.(event, props.value);
+    }
+  };
+
+  let ariaPressed = props['aria-pressed'];
+
+  if (typeof slotProps.root === 'function') {
+    ariaPressed = slotProps.root(ownerState)['aria-pressed'];
+  } else if (slotProps.root) {
+    ariaPressed = slotProps.root['aria-pressed'];
+  }
+
+  if (toggleButtonGroup?.value) {
+    if (Array.isArray(toggleButtonGroup.value)) {
+      ariaPressed = toggleButtonGroup.value.indexOf(props.value as string) !== -1;
+    } else {
+      ariaPressed = toggleButtonGroup.value === props.value;
+    }
+  }
+
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
@@ -188,6 +220,10 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     getSlotProps: getRootProps,
     externalForwardedProps,
     ownerState,
+    additionalProps: {
+      onClick: handleClick,
+      'aria-pressed': ariaPressed,
+    },
   });
 
   return <SlotRoot {...rootProps}>{children}</SlotRoot>;
@@ -241,6 +277,10 @@ IconButton.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
    * The size of the component.
    * @default 'md'
    */
@@ -274,6 +314,14 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.number,
+  /**
+   * @ignore
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'

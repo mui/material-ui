@@ -47,6 +47,7 @@ describe('CodeSandbox', () => {
         content: `<!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
     <title>BasicButtons Material Demo</title>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->
@@ -67,7 +68,7 @@ describe('CodeSandbox', () => {
   </body>
 </html>`,
       },
-      'Demo.js': {
+      'src/Demo.js': {
         content: `import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -83,7 +84,7 @@ export default function BasicButtons() {
 }
 `,
       },
-      'index.js': {
+      'src/index.js': {
         content: `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
@@ -137,6 +138,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
         content: `<!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
     <title>BasicButtons Material Demo</title>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->
@@ -157,7 +159,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </body>
 </html>`,
       },
-      'Demo.tsx': {
+      'src/Demo.tsx': {
         content: `import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -173,7 +175,7 @@ export default function BasicButtons() {
 }
 `,
       },
-      'index.tsx': {
+      'src/index.tsx': {
         content: `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';

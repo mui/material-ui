@@ -137,6 +137,11 @@ const FilledInputRoot = styled(InputBaseRoot, {
         paddingTop: 16,
         paddingBottom: 17,
       }),
+      ...(ownerState.hiddenLabel &&
+        ownerState.size === 'small' && {
+          paddingTop: 8,
+          paddingBottom: 9,
+        }),
     }),
   };
 });
@@ -180,12 +185,6 @@ const FilledInputInput = styled(InputBaseInput, {
     paddingTop: 16,
     paddingBottom: 17,
   }),
-  ...(ownerState.multiline && {
-    paddingTop: 0,
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-  }),
   ...(ownerState.startAdornment && {
     paddingLeft: 0,
   }),
@@ -197,6 +196,12 @@ const FilledInputInput = styled(InputBaseInput, {
       paddingTop: 8,
       paddingBottom: 9,
     }),
+  ...(ownerState.multiline && {
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+  }),
 }));
 
 const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
@@ -229,7 +234,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 
   const componentsProps =
     slotProps ?? componentsPropsProp
-      ? deepmerge(slotProps ?? componentsPropsProp, filledInputComponentsProps)
+      ? deepmerge(filledInputComponentsProps, slotProps ?? componentsPropsProp)
       : filledInputComponentsProps;
 
   const RootSlot = slots.root ?? components.Root ?? FilledInputRoot;
@@ -272,7 +277,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

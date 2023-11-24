@@ -10,8 +10,8 @@ import remarkVisit from 'unist-util-visit';
 import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
-import { renderInline as renderMarkdownInline } from '@mui/markdown';
-import { LANGUAGES } from 'docs/config';
+import { renderMarkdown } from '@mui/markdown';
+import { ProjectSettings } from '../ProjectSettings';
 import { ComponentInfo, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
@@ -333,19 +333,19 @@ function extractClassConditions(descriptions: any) {
 
       if (conditions && conditions[6]) {
         classConditions[className] = {
-          description: renderMarkdownInline(
+          description: renderMarkdown(
             description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
           ),
-          nodeName: renderMarkdownInline(conditions[3]),
-          conditions: renderMarkdownInline(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
+          nodeName: renderMarkdown(conditions[3]),
+          conditions: renderMarkdown(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
         };
       } else if (conditions && conditions[3] && conditions[3] !== 'the root element') {
         classConditions[className] = {
-          description: renderMarkdownInline(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
-          nodeName: renderMarkdownInline(conditions[3]),
+          description: renderMarkdown(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
+          nodeName: renderMarkdown(conditions[3]),
         };
       } else {
-        classConditions[className] = { description: renderMarkdownInline(description) };
+        classConditions[className] = { description: renderMarkdown(description) };
       }
     }
   });
@@ -361,11 +361,15 @@ export function toGitHubPath(filepath: string): string {
   return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }
 
-const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiTranslations = (
+  outputDirectory: string,
+  reactApi: ReactApi,
+  languages: string[],
+) => {
   const componentName = reactApi.name;
   const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(componentName));
   function resolveApiDocsTranslationsComponentLanguagePath(
-    language: (typeof LANGUAGES)[0],
+    language: (typeof languages)[0],
   ): string {
     const languageSuffix = language === 'en' ? '' : `-${language}`;
 
@@ -382,7 +386,7 @@ const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) =>
     JSON.stringify(reactApi.translations),
   );
 
-  LANGUAGES.forEach((language) => {
+  languages.forEach((language) => {
     if (language !== 'en') {
       try {
         writePrettifiedFile(
@@ -517,13 +521,13 @@ const attachTranslations = (reactApi: ReactApi) => {
 
       const typeDescriptions: { [t: string]: string } = {};
       (signatureArgs || []).concat(signatureReturn || []).forEach(({ name, description }) => {
-        typeDescriptions[name] = renderMarkdownInline(description);
+        typeDescriptions[name] = renderMarkdown(description);
       });
 
       translations.propDescriptions[propName] = {
-        description: renderMarkdownInline(jsDocText),
+        description: renderMarkdown(jsDocText),
         requiresRef: requiresRef || undefined,
-        deprecated: renderMarkdownInline(deprecated) || undefined,
+        deprecated: renderMarkdown(deprecated) || undefined,
         typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
       };
     }
@@ -631,8 +635,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
           // undefined values are not serialized => saving some bytes
           required: requiredProp || undefined,
           deprecated: !!deprecation || undefined,
-          deprecationInfo:
-            renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
+          deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
           signature,
           additionalInfo:
             Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
@@ -702,6 +705,7 @@ const getComponentImports = (name: string, filename: string) => {
 export default async function generateComponentApi(
   componentInfo: ComponentInfo,
   project: TypeScriptProject,
+  projectSettings: ProjectSettings,
 ) {
   const {
     filename,
@@ -741,7 +745,7 @@ export default async function generateComponentApi(
 
               definitions.forEach((definition) => {
                 // definition.value.expression is defined when the source is in TypeScript.
-                const expression = definition.value.expression
+                const expression = definition.value?.expression
                   ? definition.get('expression')
                   : definition;
                 if (expression.value?.callee) {
@@ -773,7 +777,9 @@ export default async function generateComponentApi(
       }
     }
   } else {
-    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), { filename });
+    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+      filename,
+    });
   }
 
   // Ignore what we might have generated in `annotateComponentDefinition`
@@ -839,7 +845,7 @@ export default async function generateComponentApi(
   attachTranslations(reactApi);
 
   // eslint-disable-next-line no-console
-  console.log('Built API docs for', reactApi.name);
+  console.log('Built API docs for', reactApi.apiPathname);
 
   const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
   const normalizedFilename = reactApi.filename.replace(/\\/g, '/');
@@ -856,7 +862,11 @@ export default async function generateComponentApi(
       translationPagesDirectory = 'docs/translations/api-docs-base';
     }
 
-    generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
+    generateApiTranslations(
+      path.join(process.cwd(), translationPagesDirectory),
+      reactApi,
+      projectSettings.translationLanguages,
+    );
 
     // Once we have the tabs API in all projects, we can make this default
     const generateOnlyJsonFile = normalizedApiPathname.startsWith('/base');

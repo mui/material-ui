@@ -1,6 +1,6 @@
 const { promises: fs, readdirSync } = require('fs');
 const path = require('path');
-const { prepareMarkdown } = require('./parseMarkdown');
+const prepareMarkdown = require('./prepareMarkdown');
 const extractImports = require('./extractImports');
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;

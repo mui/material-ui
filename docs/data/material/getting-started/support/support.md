@@ -87,7 +87,7 @@ and
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+  href="https://tidelift.com/solutions/schedule-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
 request a demo today.
 </a>
 

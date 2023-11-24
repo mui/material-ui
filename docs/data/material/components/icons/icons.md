@@ -12,29 +12,34 @@ materialDesign: https://m2.material.io/design/iconography/system-icons.html
 
 Material UI provides icon support in three ways:
 
-1. Standardized [Material Icons](#material-svg-icons) exported as React components (SVG icons).
+1. With [Material Icons](#material-svg-icons) exported as React components (SVG icons).
 1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
 1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
 
 ## Material SVG icons
 
-Google has created over 2,100 official Material icons, each in five different "themes" (see below).
+Google has created over 2,100 official [Material icons](https://fonts.google.com/icons?icon.set=Material+Icons), each in five different "themes" (see below).
 For each SVG icon, we export the respective React component from the `@mui/icons-material` package.
 You can [search the full list of these icons](/material-ui/material-icons/).
 
 ### Installation
 
-To install and save in your `package.json` dependencies, run the command below using **npm**:
+Run one of the following commands to install it and save it to your `package.json` dependencies:
 
-```bash
+<codeblock storageKey="package-manager">
+```bash npm
 npm install @mui/icons-material
 ```
 
-Or **yarn**:
-
-```bash
+```bash yarn
 yarn add @mui/icons-material
 ```
+
+```bash pnpm
+pnpm add @mui/icons-material
+```
+
+</codeblock>
 
 These components use the Material UI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
 
@@ -181,7 +186,7 @@ Below is a comparison of the `FontAwesomeIcon` component and a wrapped `SvgIcon`
 
 FontAwesomeIcon's `fullWidth` prop can also be used to approximate the correct dimensions, but it isn't perfect.
 
-### Other Libraries
+### Other libraries
 
 #### MDI
 
@@ -290,7 +295,7 @@ const theme = createTheme({
 
 {{"demo": "FontAwesomeIconSize.js"}}
 
-## Font vs SVG. Which approach to use?
+## Font vs. SVGs: Which approach to use?
 
 Both approaches work fine, however there are some subtle differences, especially in terms of performance and rendering quality.
 Whenever possible SVG is preferred as it allows code splitting, supports more icons, and renders faster and better.

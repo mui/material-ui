@@ -228,8 +228,8 @@ const Root = styled('div')(
       ...theme.typography.body2,
       borderBottom: `1px solid var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
       paddingRight: 20,
-      paddingTop: 12,
-      paddingBottom: 12,
+      paddingTop: 16,
+      paddingBottom: 16,
       color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
     },
     '& td code': {
@@ -280,8 +280,14 @@ const Root = styled('div')(
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
+      '&>code': {
+        height: 'fit-content',
+        backgroundColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
+        borderColor: `var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
+      },
       '& .MuiCallout-content': {
         minWidth: 0, // Allows content to shrink. Useful when callout contains code block
+        flexGrow: 1,
         display: 'flex',
         flexDirection: 'column',
         gap: 6,
@@ -411,18 +417,19 @@ const Root = styled('div')(
       backgroundColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
     },
     '& kbd.key': {
-      padding: '5px',
+      padding: 6,
       display: 'inline-block',
       whiteSpace: 'nowrap',
       margin: '0 1px',
-      font: '11px Consolas,Liberation Mono,Menlo,monospace',
-      lineHeight: '10px',
+      fontFamily: lightTheme.typography.fontFamilyCode,
+      fontSize: lightTheme.typography.pxToRem(11),
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+      lineHeight: '10px',
       verticalAlign: 'middle',
-      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
+      borderRadius: 6,
       border: `1px solid var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
-      borderRadius: 5,
-      boxShadow: `inset 0 -1px 0 var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
+      backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
+      boxShadow: `inset 0 -2px 0 var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
     },
     '& details': {
       marginBottom: theme.spacing(1.5),
@@ -609,6 +616,11 @@ const Root = styled('div')(
       },
       '& .MuiCallout-root': {
         borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
+        '&>code': {
+          height: 'fit-content',
+          backgroundColor: `var(--muidocs-palette-primaryDark-600, ${lightTheme.palette.primaryDark[600]})`,
+          borderColor: `var(--muidocs-palette-primaryDark-500, ${lightTheme.palette.primaryDark[500]})`,
+        },
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
           backgroundColor: alpha(darkTheme.palette.error[700], 0.2),
@@ -671,9 +683,9 @@ const Root = styled('div')(
       },
       '& kbd.key': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
-        backgroundColor: `var(--muidocs-palette-primaryDark-900, ${darkTheme.palette.primaryDark[900]})`,
-        border: `1px solid var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
-        boxShadow: `inset 0 -1px 0 var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
+        backgroundColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[800]})`,
+        border: `1px solid var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
+        boxShadow: `inset 0 -2px 0 var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
       },
     },
   }),

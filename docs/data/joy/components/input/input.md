@@ -9,7 +9,7 @@ unstyled: /base-ui/react-input/
 
 <p class="description">The Input component facilitates the entry of text data from the user.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
@@ -165,6 +165,10 @@ To create a floating label input, a custom component (combination of `<input>` a
 ### Password meter
 
 {{"demo": "PasswordMeterInput.js"}}
+
+### Debounced Input
+
+{{"demo": "DebouncedInput.js"}}
 
 ### Third-party formatting
 

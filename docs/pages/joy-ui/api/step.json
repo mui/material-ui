@@ -1,0 +1,66 @@
+{
+  "props": {
+    "active": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
+    "completed": { "type": { "name": "bool" }, "default": "false" },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "indicator": { "type": { "name": "node" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ indicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ indicator?: elementType, root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "Step",
+  "imports": ["import Step from '@mui/joy/Step';", "import { Step } from '@mui/joy';"],
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiStep" },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'li'",
+      "class": ".MuiStep-root"
+    },
+    {
+      "name": "indicator",
+      "description": "The component that renders the indicator.",
+      "default": "'div'",
+      "class": ".MuiStep-indicator"
+    }
+  ],
+  "classes": {
+    "classes": ["active", "completed", "disabled", "horizontal", "vertical"],
+    "globalClasses": {
+      "active": "Mui-active",
+      "completed": "Mui-completed",
+      "disabled": "Mui-disabled"
+    }
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyStep",
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/mui-joy/src/Step/Step.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-stepper/\">Stepper</a></li></ul>",
+  "cssComponent": false
+}

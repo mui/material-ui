@@ -7,8 +7,8 @@
   >
     Toggle Popup
   </button>
-  <Popup id={id} open={open} anchor={anchor}>
+  <BasePopup id={id} open={open} anchor={anchor}>
     <div className="CustomPopup">The content of the Popup.</div>
-  </Popup>
+  </BasePopup>
   <Styles />
 </React.Fragment>

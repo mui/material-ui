@@ -1,6 +1,6 @@
-import createEmotion from '@emotion/css/create-instance';
 import type { Theme } from '@mui/material/styles';
 import type { PluginCustomOptions } from './utils/cssFnValueToVariable';
+import { css, cache } from './utils/emotion';
 
 type CssGenerationOptions = {
   injectInRoot?: boolean;
@@ -58,16 +58,13 @@ export function generateCss(
   generationOptions: CssGenerationOptions = {},
 ) {
   const { injectInRoot = true, defaultThemeKey = 'theme' } = generationOptions;
-  const { css, cache } = createEmotion({
-    key: 'mui-theme',
-  });
   const { cssVariablesPrefix = 'mui', themeArgs } = options;
   if (!themeArgs) {
     return '';
   }
   let cssStr = '';
   Object.entries(themeArgs).forEach(([themeKey, theme]) => {
-    const cssVarsObject = generateCssForTheme(theme, [cssVariablesPrefix]);
+    const cssVarsObject = generateCssForTheme(theme as Theme, [cssVariablesPrefix]);
     const cssThemeObject: Record<string, CssVarsObject> = {};
     if (themeKey === defaultThemeKey && injectInRoot) {
       cssThemeObject[':root'] = cssVarsObject;

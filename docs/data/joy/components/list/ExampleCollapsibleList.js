@@ -89,7 +89,7 @@ export default function ExampleCollapsibleList() {
             >
               Tutorial
             </Typography>
-            <Typography component="span" level="body-xs" sx={{ ml: 1 }}>
+            <Typography component="span" level="body-xs">
               9
             </Typography>
           </ListItem>
@@ -140,7 +140,7 @@ export default function ExampleCollapsibleList() {
             >
               How-to Guides
             </Typography>
-            <Typography component="span" level="body-xs" sx={{ ml: 1 }}>
+            <Typography component="span" level="body-xs">
               39
             </Typography>
           </ListItem>

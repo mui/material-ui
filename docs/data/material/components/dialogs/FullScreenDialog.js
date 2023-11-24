@@ -28,7 +28,7 @@ export default function FullScreenDialog() {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open full-screen dialog
       </Button>
@@ -69,6 +69,6 @@ export default function FullScreenDialog() {
           </ListItem>
         </List>
       </Dialog>
-    </div>
+    </React.Fragment>
   );
 }

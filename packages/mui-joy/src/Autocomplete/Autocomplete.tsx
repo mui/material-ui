@@ -23,7 +23,7 @@ import { VariantColorProvider, getChildVariantAndColor } from '../styles/variant
 // slot components
 import { StyledIconButton } from '../IconButton/IconButton';
 // default render components
-import Chip, { chipClasses } from '../Chip';
+import Chip from '../Chip';
 import ChipDelete from '../ChipDelete';
 import {
   StyledInputRoot,
@@ -46,7 +46,6 @@ import FormControlContext from '../FormControl/FormControlContext';
 import { StyledAutocompleteListbox } from '../AutocompleteListbox/AutocompleteListbox';
 import { StyledAutocompleteOption } from '../AutocompleteOption/AutocompleteOption';
 import useSlot from '../utils/useSlot';
-import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 'defaultValue'>;
 
@@ -106,7 +105,12 @@ const AutocompleteRoot = styled(StyledInputRoot as unknown as 'div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
-  '--Autocomplete-wrapperGap': '3px',
+  ...(ownerState.size === 'sm' && {
+    '--Autocomplete-wrapperGap': '3px',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Autocomplete-wrapperGap': '3px',
+  }),
   ...(ownerState.size === 'lg' && {
     '--Autocomplete-wrapperGap': '4px',
   }),
@@ -136,24 +140,15 @@ const AutocompleteWrapper = styled('div', {
   display: 'flex',
   alignItems: 'center',
   flexWrap: 'wrap',
+  gap: 'var(--Autocomplete-wrapperGap)',
   [`&.${autocompleteClasses.multiple}`]: {
-    paddingBlockEnd: 'min(var(--_Input-paddingBlock), var(--Autocomplete-wrapperGap))',
-    // TODO: use [CSS :has](https://caniuse.com/?search=%3Ahas) later
-    ...(ownerState.startDecorator &&
-      Array.isArray(ownerState.value) &&
-      (ownerState.value as Array<unknown>).length > 0 && {
-        marginBlockStart: 'min(var(--_Input-paddingBlock) - var(--Autocomplete-wrapperGap), 0px)',
-        marginInlineStart: 'calc(-1 * var(--Autocomplete-wrapperGap))',
-        [`& .${autocompleteClasses.input}`]: {
-          marginInlineStart: 'max(var(--Autocomplete-wrapperGap), var(--Input-gap))',
-        },
-      }),
-  },
-  [`& .${chipClasses.root}`]: {
-    // TODO: use flexbox `gap` later.
-    minWidth: 0,
-    marginInlineStart: 'var(--Autocomplete-wrapperGap)',
-    marginBlockStart: 'var(--Autocomplete-wrapperGap)',
+    paddingBlock: 'var(--Autocomplete-wrapperGap)',
+    ...(!ownerState.startDecorator && {
+      paddingInlineStart: 'var(--Autocomplete-wrapperGap)',
+    }),
+    ...(!ownerState.endDecorator && {
+      paddingInlineEnd: 'var(--Autocomplete-wrapperGap)',
+    }),
   },
 }));
 
@@ -165,10 +160,7 @@ const AutocompleteInput = styled(StyledInputHtml as unknown as 'input', {
   minWidth: 30,
   minHeight: 'var(--Chip-minHeight)',
   ...(ownerState.multiple && {
-    marginBlockStart: 'var(--Autocomplete-wrapperGap)',
-    ...(!ownerState.startDecorator && {
-      marginInlineStart: 'var(--Input-paddingInline)',
-    }),
+    marginInlineStart: 'calc(var(--Autocomplete-wrapperGap) * 2.5)',
   }),
 }));
 
@@ -353,12 +345,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   } = props;
   const other = excludeUseAutocompleteParams(otherProps);
 
-  const { getColor } = useColorInversion(variant);
   const formControl = React.useContext(FormControlContext);
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const rootColor = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
-  const color = getColor(inProps.color, rootColor);
+  const color = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
   const disabled = disabledProp ?? formControl?.disabled ?? false;
 
   const {
@@ -393,6 +383,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
 
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     value,
     disabled,
@@ -433,7 +424,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             key={index}
             size={size}
             variant="soft"
-            color={color === 'context' ? undefined : 'neutral'}
+            color="neutral"
             endDecorator={<ChipDelete {...getCustomizedTagProps({ index })} />}
           >
             {getOptionLabel(option)}
@@ -542,9 +533,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant:
-        mergedProps.variant || getChildVariantAndColor(variant, rootColor).variant || 'plain',
-      color: mergedProps.color || getChildVariantAndColor(variant, rootColor).color || 'neutral',
+      variant: mergedProps.variant || getChildVariantAndColor(variant, color).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, color).color || 'neutral',
       disableColorInversion: !!inProps.color,
     }),
     additionalProps: {
@@ -561,9 +551,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant:
-        mergedProps.variant || getChildVariantAndColor(variant, rootColor).variant || 'plain',
-      color: mergedProps.color || getChildVariantAndColor(variant, rootColor).color || 'neutral',
+      variant: mergedProps.variant || getChildVariantAndColor(variant, color).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, color).color || 'neutral',
       disableColorInversion: !!inProps.color,
     }),
     additionalProps: {
@@ -583,7 +572,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
       variant: mergedProps.variant || variant,
-      color: mergedProps.color || (!mergedProps.disablePortal ? rootColor : color),
+      color: mergedProps.color || color,
       disableColorInversion: !mergedProps.disablePortal,
     }),
     additionalProps: {
@@ -643,9 +632,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     externalForwardedProps,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
-      variant:
-        mergedProps.variant || getChildVariantAndColor(variant, rootColor).variant || 'plain',
-      color: mergedProps.color || getChildVariantAndColor(variant, rootColor).color || 'neutral',
+      variant: mergedProps.variant || getChildVariantAndColor(variant, color).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, color).color || 'neutral',
       disableColorInversion: !listboxProps.disablePortal,
     }),
     additionalProps: {
@@ -687,14 +675,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   let popup = null;
   if (anchorEl) {
     popup = (
-      <VariantColorProvider variant={variant} color={rootColor}>
+      <VariantColorProvider variant={variant} color={color}>
         <ListProvider nested>
           <SlotListbox
             {...listboxProps}
-            className={clsx(
-              listboxProps.className,
-              listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
-            )}
+            className={clsx(listboxProps.className)}
             // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
             modifiers={modifiers}
             {...(!props.slots?.listbox && {
@@ -725,11 +710,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         </ListProvider>
       </VariantColorProvider>
     );
-
-    if (!listboxProps.disablePortal) {
-      // For portal popup, the children should not inherit color inversion from the upper parent.
-      popup = <ColorInversion.Provider value={undefined}>{popup}</ColorInversion.Provider>;
-    }
   }
 
   return (

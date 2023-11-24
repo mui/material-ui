@@ -115,6 +115,12 @@ It's usually more common to see textarea components using decorators at the top 
 
 {{"demo": "TextareaDecorators.js"}}
 
+### HTML textarea ref
+
+Use the `slotProps.textarea` attribute to pass props to the `ref` and other [supported HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attributes) to the textarea element.
+
+{{"demo": "TextareaRef.js"}}
+
 ## Accessibility
 
 In order for the textarea to be accessible, **it should be linked to a label**.

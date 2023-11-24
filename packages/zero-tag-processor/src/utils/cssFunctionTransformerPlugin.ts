@@ -1,6 +1,7 @@
 import { declare } from '@babel/helper-plugin-utils';
 import defaultSxConfig from '@mui/system/styleFunctionSx/defaultSxConfig';
 import get from 'lodash.get';
+import type { Theme } from '@mui/material/styles';
 import type { PluginCustomOptions } from './cssFnValueToVariable';
 
 type BabelPluginOptions = {
@@ -25,15 +26,12 @@ const cssFunctionTransformerPlugin = declare<BabelPluginOptions>((api, pluginOpt
     options: { cssVariablesPrefix = 'mui', themeArgs: { theme } = {} },
     styleKey,
   } = pluginOptions;
-  const config = theme?.unstable_sxConfig ?? defaultSxConfig;
+  const typedTheme = theme as Theme & {
+    vars?: Theme;
+  };
+  const config = typedTheme?.unstable_sxConfig ?? defaultSxConfig;
   const cssPropOptions = config[styleKey];
-  const { themeKey } = cssPropOptions;
-  if (!theme || !config || !cssPropOptions || !themeKey) {
-    return {
-      name: '@mui/zero-internal/cssFunctionTransformerPlugin',
-      visitor: {},
-    };
-  }
+  const themeKey = cssPropOptions?.themeKey;
   const finalPrefix = cssVariablesPrefix ? `${cssVariablesPrefix}-` : '';
 
   return {
@@ -72,15 +70,25 @@ const cssFunctionTransformerPlugin = declare<BabelPluginOptions>((api, pluginOpt
       // literals as well.
       StringLiteral(path) {
         const val = path.node.value;
+        if (val.startsWith('var(') || !val.includes('.')) {
+          return;
+        }
         if (themeKey === 'typography' && val === 'inherit') {
           return;
         }
-        const themeValue = get(theme, `${themeKey}.${val}`);
-        if (typeof themeValue === 'undefined') {
-          return;
+        const propertyThemeKey = themeKey ?? val.split('.')[0];
+        const themeValue =
+          get(typedTheme, `${propertyThemeKey}.${val}`) ??
+          (typedTheme.vars ? get(typedTheme.vars, `${propertyThemeKey}.${val}`) : undefined);
+        if (!themeValue) {
+          console.warn(
+            `MUI: Value for key: ${val} does not exist in "theme.${propertyThemeKey}" or "theme.vars.${propertyThemeKey}"`,
+          );
         }
         const themeKeyArr = val.split('.').join('-');
-        path.replaceWith(t.stringLiteral(`var(--${finalPrefix}${themeKey}-${themeKeyArr})`));
+        path.replaceWith(
+          t.stringLiteral(`var(--${finalPrefix}${propertyThemeKey}-${themeKeyArr})`),
+        );
       },
     },
   };

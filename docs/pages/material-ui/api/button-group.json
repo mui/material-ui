@@ -54,6 +54,7 @@
       "text",
       "disableElevation",
       "disabled",
+      "firstButton",
       "fullWidth",
       "vertical",
       "grouped",
@@ -73,7 +74,9 @@
       "groupedContainedHorizontal",
       "groupedContainedVertical",
       "groupedContainedPrimary",
-      "groupedContainedSecondary"
+      "groupedContainedSecondary",
+      "lastButton",
+      "middleButton"
     ],
     "globalClasses": { "disabled": "Mui-disabled" },
     "name": "MuiButtonGroup"

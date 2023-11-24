@@ -11,8 +11,7 @@ export { SelectChangeEvent };
 
 export interface SelectProps<Value = unknown>
   extends StandardProps<InputProps, 'value' | 'onChange'>,
-    Omit<OutlinedInputProps, 'value' | 'onChange'>,
-    Pick<SelectInputProps<Value>, 'onChange'> {
+    Omit<OutlinedInputProps, 'value' | 'onChange'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.

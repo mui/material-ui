@@ -1,10 +1,10 @@
-<StyledTabs defaultValue={0} orientation="vertical">
-  <StyledTabsList>
-    <StyledTab>One</StyledTab>
-    <StyledTab>Two</StyledTab>
-    <StyledTab>Three</StyledTab>
-  </StyledTabsList>
-  <StyledTabPanel value={0}>First page</StyledTabPanel>
-  <StyledTabPanel value={1}>Second page</StyledTabPanel>
-  <StyledTabPanel value={2}>Third page</StyledTabPanel>
-</StyledTabs>
+<Tabs defaultValue={0} orientation="vertical">
+  <TabsList>
+    <Tab>One</Tab>
+    <Tab>Two</Tab>
+    <Tab>Three</Tab>
+  </TabsList>
+  <TabPanel value={0}>First page</TabPanel>
+  <TabPanel value={1}>Second page</TabPanel>
+  <TabPanel value={2}>Third page</TabPanel>
+</Tabs>

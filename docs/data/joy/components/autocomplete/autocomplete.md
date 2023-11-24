@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 <p class="description">The autocomplete is a text input enhanced by a panel of suggested options when users start typing.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
@@ -173,7 +173,7 @@ You could also display a dialog when the user wants to add a new value.
 {{"demo": "FreeSoloCreateOptionDialog.js"}}
 
 :::info
-The `AutocompleteOption` uses the same styles and variables as [`ListItemButton`](/joy-ui/react-list/#actionable), so that you get the same customization experience.
+The `AutocompleteOption` uses the same styles and variables as [`ListItemButton`](/joy-ui/react-list/#interactive-list-items), so that you get the same customization experience.
 :::
 
 ### Validation

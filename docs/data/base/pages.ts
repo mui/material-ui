@@ -10,6 +10,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/base-ui/getting-started/quickstart', title: 'Quickstart' },
       { pathname: '/base-ui/getting-started/usage', title: 'Usage' },
       { pathname: '/base-ui/getting-started/customization', title: 'Customization' },
+      { pathname: '/base-ui/getting-started/accessibility', title: 'Accessibility' },
     ],
   },
   {
@@ -88,7 +89,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/base-ui/react-modal', title: 'Modal' },
           { pathname: '/base-ui/react-no-ssr', title: 'No-SSR' },
           { pathname: '/base-ui/react-popper', title: 'Popper' },
-          { pathname: '/base-ui/react-popup', title: 'Popup' },
+          { pathname: '/base-ui/react-popup', title: 'Popup', unstable: true },
           { pathname: '/base-ui/react-portal', title: 'Portal' },
           { pathname: '/base-ui/react-textarea-autosize', title: 'Textarea Autosize' },
         ],
