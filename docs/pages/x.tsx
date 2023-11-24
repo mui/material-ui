@@ -19,7 +19,7 @@ export default function X() {
       <Head
         title="MUI X: Performant advanced components"
         description="Build complex and data-rich applications using a growing list of advanced React
-        components, like the Data Grid, Date Pickers, Charts, and more!"
+        components, like the Data Grid, Date and Time Pickers, Charts, and more!"
         card="/static/social-previews/x-preview.jpg"
       />
       <AppHeaderBanner />

@@ -114,7 +114,7 @@ export default function XHero() {
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             Build complex and data-rich applications using a growing list of advanced React
-            components, like the Data Grid, Date Pickers, Charts, and more!
+            components, like the Data Grid, Date and Time Pickers, Charts, and more!
           </Typography>
           <GetStartedButtons primaryUrl={ROUTES.xIntro} />
         </Box>

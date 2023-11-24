@@ -101,28 +101,28 @@ export default function XComponentsSwitcher(props: {
       label="by going to the Core components page"
       description="Feature-rich and fast table extension."
       icon={<TableChartRounded fontSize="small" />}
-      href={ROUTES.productCore}
+      href={ROUTES.dataGridOverview}
     />,
     <ComponentItem
       name="Date and Time Pickers"
       description="Let users pick a date and time, or both together."
       label="by going to the Advanced components page"
       icon={<DateRangeRounded fontSize="small" />}
-      href={ROUTES.productAdvanced}
+      href={ROUTES.datePickersOverview}
     />,
     <ComponentItem
       name="Charts"
       description="Features bar, lines, pie, scatter, and more types of graphs."
       label="by going to the templates page"
       icon={<AccountTreeRounded fontSize="small" />}
-      href={ROUTES.productTemplates}
+      href={ROUTES.chartsOverview}
     />,
     <ComponentItem
       name="Tree View"
       description="Display hierarchical data, such as a file system navigator."
       label="by going to the design-kits page"
       icon={<ShowChartRounded fontSize="small" />}
-      href={ROUTES.productDesignKits}
+      href={ROUTES.treeViewOverview}
     />,
   ];
   return (
@@ -142,7 +142,7 @@ export default function XComponentsSwitcher(props: {
             enableMouseEvents
             onChangeIndex={(index) => setComponentIndex(index)}
           >
-            {productElements.map((elm, index) => (
+            {productElements.map((element, index) => (
               <Highlighter
                 key={index}
                 disableBorder
@@ -154,7 +154,7 @@ export default function XComponentsSwitcher(props: {
                   transform: componentIndex !== index ? 'scale(0.9)' : 'scale(1)',
                 }}
               >
-                {elm}
+                {element}
               </Highlighter>
             ))}
           </SwipeableViews>

@@ -17,7 +17,7 @@ export default function XComponents() {
       <Grid container spacing={2}>
         <Grid item md={6}>
           <SectionHeadline
-            overline="React advanced component libraries"
+            overline="Advanced React component library"
             title={
               <Typography variant="h2">
                 Powerful components for <GradientText>advanced use-cases</GradientText>
