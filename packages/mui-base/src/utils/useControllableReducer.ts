@@ -154,6 +154,7 @@ export function useControllableReducer<
     stateComparers = EMPTY_OBJECT,
     onStateChange = NOOP,
     actionContext,
+    componentName = 'useControllableReducer',
   } = parameters;
 
   const controlledPropsRef = React.useRef(controlledProps);
@@ -167,7 +168,7 @@ export function useControllableReducer<
           (controlledProps as Record<string, unknown>)[key] === undefined
         ) {
           console.error(
-            `MUI: useControllableReducer is changing a controlled prop to be uncontrolled: ${key}`,
+            `MUI: A component: ${componentName} is changing a controlled prop to be uncontrolled: ${key}`,
           );
         }
 
@@ -176,11 +177,11 @@ export function useControllableReducer<
           (controlledProps as Record<string, unknown>)[key] !== undefined
         ) {
           console.error(
-            `MUI: useControllableReducer is changing an uncontrolled prop to be controlled: ${key}`,
+            `MUI: A component: ${componentName} is changing an uncontrolled prop to be controlled: ${key}`,
           );
         }
       });
-    }, [controlledProps]);
+    }, [controlledProps, componentName]);
   }
 
   // The reducer that is passed to React.useReducer is wrapped with a function that augments the state with controlled values.

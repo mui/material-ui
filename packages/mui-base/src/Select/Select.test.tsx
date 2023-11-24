@@ -1365,7 +1365,7 @@ describe('<Select />', () => {
       expect(() => {
         setProps({ value: undefined });
       }).toErrorDev(
-        'MUI: useControllableReducer is changing a controlled prop to be uncontrolled: selectedValues',
+        'MUI: A component: useControllableReducer is changing a controlled prop to be uncontrolled: selectedValues',
       );
     });
 
@@ -1380,7 +1380,7 @@ describe('<Select />', () => {
       expect(() => {
         setProps({ value: 1 });
       }).toErrorDev(
-        'MUI: useControllableReducer is changing an uncontrolled prop to be controlled: selectedValues',
+        'MUI: A component: useControllableReducer is changing an uncontrolled prop to be controlled: selectedValues',
       );
     });
   });
