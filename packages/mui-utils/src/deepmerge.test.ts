@@ -1,14 +1,25 @@
 import { expect } from 'chai';
+import { runInNewContext } from 'vm';
 import deepmerge from './deepmerge';
 
 describe('deepmerge', () => {
   // https://snyk.io/blog/after-three-years-of-silence-a-new-jquery-prototype-pollution-vulnerability-emerges-once-again/
   it('should not be subject to prototype pollution', () => {
-    deepmerge({}, JSON.parse('{ "myProperty": "a", "__proto__" : { "isAdmin" : true } }'), {
-      clone: false,
-    });
+    const result = deepmerge(
+      {},
+      JSON.parse('{ "myProperty": "a", "__proto__" : { "isAdmin" : true } }'),
+      {
+        clone: false,
+      },
+    );
 
-    expect({}).not.to.have.property('isAdmin');
+    expect(result).not.to.have.property('isAdmin');
+  });
+
+  it('should merge objects across realms', () => {
+    const vmObject = runInNewContext('({hello: "realm"})');
+    const result = deepmerge({ hello: 'original' }, vmObject);
+    expect(result.hello).to.equal('realm');
   });
 
   // https://github.com/mui/material-ui/issues/20095
