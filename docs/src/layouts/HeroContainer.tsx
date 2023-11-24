@@ -140,7 +140,7 @@ export default function HeroContainer(props: HeroContainerProps) {
         sx={{
           minHeight: 500,
           height: 'calc(100vh - 120px)',
-          maxHeight: { xs: 500, sm: 850 },
+          maxHeight: { md: 700, xl: 850 },
           transition: '0.3s',
         }}
       >
