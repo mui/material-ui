@@ -369,4 +369,35 @@ describe('<Masonry />', () => {
       });
     });
   });
+
+  describe('prop: sequential', () => {
+    it('should place children in sequential order', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // only run on browser
+        this.skip();
+      }
+      const firstChildHeight = 20;
+      const secondChildHeight = 10;
+      const thirdChildHeight = 10;
+
+      const { getByTestId } = render(
+        <Masonry columns={2} data-testid="sequential" sequential>
+          <div style={{ height: `${firstChildHeight}px` }} />
+          <div style={{ height: `${secondChildHeight}px` }} />
+          <div style={{ height: `${thirdChildHeight}px` }} />
+        </Masonry>,
+      );
+      const masonry = getByTestId('sequential');
+
+      expect(window.getComputedStyle(masonry).height).to.equal(
+        `${firstChildHeight + thirdChildHeight}px`,
+      );
+
+      expect(window.getComputedStyle(masonry.children[0]).style).to.equal(`order: 1;`);
+
+      expect(window.getComputedStyle(masonry.children[1]).style).to.equal(`order: 2;`);
+
+      expect(window.getComputedStyle(masonry.children[2]).style).to.equal(`order: 1;`);
+    });
+  });
 });
