@@ -2,7 +2,6 @@ import * as React from 'react';
 import dynamic from 'next/dynamic';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import TableChartRounded from '@mui/icons-material/TableChartRounded';
@@ -22,14 +21,12 @@ function ComponentItem({
   name,
   description,
   href,
-  stable,
 }: {
   label: string;
   icon: React.ReactNode;
   name: React.ReactNode;
   description?: React.ReactNode;
   href: string;
-  stable?: React.ReactNode;
 }) {
   return (
     <Box
@@ -40,40 +37,20 @@ function ComponentItem({
         px: 2,
         flexDirection: { xs: 'column', md: 'row' },
         alignItems: { md: 'center' },
-        gap: 2,
+        gap: 2.5,
       }}
     >
       <div>{icon}</div>
       <div>
-        <Stack direction="row" alignItems="center" useFlexGap spacing={1}>
-          <Typography
-            component="span"
-            color="text.primary"
-            variant="body2"
-            fontWeight="bold"
-            display="block"
-          >
-            {name}
-          </Typography>
-          {stable && (
-            <Chip
-              variant="outlined"
-              label="Stable"
-              color="success"
-              size="small"
-              sx={(theme) => ({
-                height: 'auto',
-                fontSize: theme.typography.pxToRem(10),
-                fontWeight: 'bold',
-                textTransform: 'uppercase',
-                letterSpacing: '.04rem',
-                '& .MuiChip-label': {
-                  px: '4px',
-                },
-              })}
-            />
-          )}
-        </Stack>
+        <Typography
+          component="span"
+          color="text.primary"
+          variant="body2"
+          fontWeight="bold"
+          display="block"
+        >
+          {name}
+        </Typography>
         {description && (
           <Typography
             component="span"
@@ -125,7 +102,6 @@ export default function XComponentsSwitcher(props: {
       description="Feature-rich and fast table extension."
       icon={<TableChartRounded fontSize="small" />}
       href={ROUTES.productCore}
-      stable
     />,
     <ComponentItem
       name="Date Pickers"
@@ -133,7 +109,6 @@ export default function XComponentsSwitcher(props: {
       label="by going to the Advanced components page"
       icon={<DateRangeRounded fontSize="small" />}
       href={ROUTES.productAdvanced}
-      stable
     />,
     <ComponentItem
       name="Charts"
@@ -141,7 +116,6 @@ export default function XComponentsSwitcher(props: {
       label="by going to the templates page"
       icon={<AccountTreeRounded fontSize="small" />}
       href={ROUTES.productTemplates}
-      stable
     />,
     <ComponentItem
       name="Tree View"
@@ -149,7 +123,6 @@ export default function XComponentsSwitcher(props: {
       label="by going to the design-kits page"
       icon={<ShowChartRounded fontSize="small" />}
       href={ROUTES.productDesignKits}
-      stable
     />,
   ];
   return (
