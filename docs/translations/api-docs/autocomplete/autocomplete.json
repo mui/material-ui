@@ -74,7 +74,7 @@
       "typeDescriptions": { "option": "The option to test." }
     },
     "getOptionKey": {
-      "description": "Used to determine the key for a given option.",
+      "description": "Used to determine the key for a given option. This can be useful when the labels of options are not unique (since labels are used as keys by default).",
       "typeDescriptions": { "option": "The option to get the key for." }
     },
     "getOptionLabel": {

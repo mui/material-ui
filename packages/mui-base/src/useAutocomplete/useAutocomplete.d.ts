@@ -157,6 +157,7 @@ export interface UseAutocompleteProps<
   getOptionDisabled?: (option: Value) => boolean;
   /**
    * Used to determine the key for a given option.
+   * This can be useful when the labels of options are not unique (since labels are used as keys by default).
    *
    * @param {Value} option The option to get the key for.
    * @returns {string | number}
