@@ -18,6 +18,8 @@ import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
 import Frame from 'docs/src/components/action/Frame';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps & { lastNestedChild?: boolean },
@@ -196,15 +198,72 @@ const TreeItem = React.forwardRef(function TreeItem(
   return <StyledTreeItem ContentComponent={CustomContent} {...props} ref={ref} />;
 });
 
+const code = `
+<TreeView
+  aria-label="file system navigator"
+  defaultExpanded={['1', '1.1', '1.2', '2', '2.3']}
+  sx={{ height: { xs: 260, sm: 460 }, overflowY: 'auto', p: 1 }}
+>
+  <TreeItem nodeId="1" label="Drive">
+    <TreeItem nodeId="1.1" label="Backup">
+      <TreeItem
+        nodeId="1.1.1"
+        label="Jan 2021.pdf"
+        ContentProps={{ lastNestedChild: true }}
+      />
+      <TreeItem
+        nodeId="1.1.2"
+        label="Feb 2021.pdf"
+        ContentProps={{ lastNestedChild: true }}
+      />
+      <TreeItem
+        nodeId="1.1.3"
+        label="Mar 2021.pdf"
+        ContentProps={{ lastNestedChild: true }}
+      />
+    </TreeItem>
+    <TreeItem nodeId="1.2" label="Photos">
+      <TreeItem
+        nodeId="1.2.1"
+        label="family.jpeg"
+        ContentProps={{ lastNestedChild: true }}
+      />
+      <TreeItem
+        nodeId="1.2.2"
+        label="my_dogpng"
+        ContentProps={{ lastNestedChild: true }}
+      />
+    </TreeItem>
+  </TreeItem>
+  <TreeItem nodeId="2" label="Favorite">
+    <TreeItem
+      nodeId="2.1"
+      label="MUI_retreat_photo.jpg"
+      ContentProps={{ lastNestedChild: true }}
+    />
+    <TreeItem
+      nodeId="2.2"
+      label="v6_secrets.mkv"
+      ContentProps={{ lastNestedChild: true }}
+    />
+    <TreeItem nodeId="2.3" label="Other pictures">
+      <TreeItem
+        nodeId="2.3.1"
+        label="my_avatar.jpg"
+        ContentProps={{ lastNestedChild: true }}
+      />
+    </TreeItem>
+  </TreeItem>
+</TreeView>`;
+
 export default function XDateRangeDemo() {
   return (
     <Frame>
-      <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
+      <Frame.Demo sx={{ p: 2 }}>
         <Paper
           variant="outlined"
           sx={(theme) => ({
             maxWidth: '100%',
-            mx: 'auto',
             bgcolor: '#FFF',
             borderRadius: '8px',
             ...theme.applyDarkStyles({
@@ -214,8 +273,8 @@ export default function XDateRangeDemo() {
         >
           <TreeView
             aria-label="file system navigator"
-            defaultExpanded={['1', '1.1', '1.2', '2', '2.3', '3']}
-            sx={{ height: { xs: 260, sm: 460 }, overflowY: 'auto', p: 1 }}
+            defaultExpanded={['1', '1.1', '1.2']}
+            sx={{ height: { xs: 260, sm: '100%' }, overflowY: 'auto', p: 1 }}
           >
             <TreeItem nodeId="1" label="Drive">
               <TreeItem nodeId="1.1" label="Backup">
@@ -248,7 +307,7 @@ export default function XDateRangeDemo() {
                 />
               </TreeItem>
             </TreeItem>
-            <TreeItem nodeId="2" label="Favorite">
+            <TreeItem nodeId="2" label="Favorites">
               <TreeItem
                 nodeId="2.1"
                 label="MUI_retreat_photo.jpg"
@@ -270,6 +329,9 @@ export default function XDateRangeDemo() {
           </TreeView>
         </Paper>
       </Frame.Demo>
+      <Frame.Info sx={{ maxHeight: 300, overflow: 'auto' }}>
+        <HighlightedCode copyButtonHidden component={MarkdownElement} code={code} language="jsx" />
+      </Frame.Info>
     </Frame>
   );
 }

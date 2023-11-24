@@ -104,7 +104,7 @@ export default function XComponentsSwitcher(props: {
       href={ROUTES.productCore}
     />,
     <ComponentItem
-      name="Date Pickers"
+      name="Date and Time Pickers"
       description="Let users pick a date and time, or both together."
       label="by going to the Advanced components page"
       icon={<DateRangeRounded fontSize="small" />}

@@ -9,8 +9,10 @@ import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePi
 import { PickersShortcutsItem, PickersShortcutsProps, DateRange } from '@mui/x-date-pickers-pro';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import Frame from 'docs/src/components/action/Frame';
 import { startOfWeek, endOfWeek, subDays } from 'date-fns';
+import Frame from 'docs/src/components/action/Frame';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -66,6 +68,22 @@ function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Date>>) {
     </Box>
   );
 }
+
+const code = `
+<LocalizationProvider dateAdapter={AdapterDateFns}>
+  <StaticDateRangePicker
+    displayStaticWrapperAs="desktop"
+    value={[startDate, endDate]}
+    slots={{
+      shortcuts: CustomRangeShortcuts,
+    }}
+    slotProps={{
+      shortcuts: {
+        items: shortcutsItems,
+      },
+    }}
+  />
+</LocalizationProvider>`;
 
 export default function XDateRangeDemo() {
   const today = new Date();
@@ -168,6 +186,9 @@ export default function XDateRangeDemo() {
           </LocalizationProvider>
         </Paper>
       </Frame.Demo>
+      <Frame.Info sx={{ maxHeight: 300, overflow: 'auto' }}>
+        <HighlightedCode copyButtonHidden component={MarkdownElement} code={code} language="jsx" />
+      </Frame.Info>
     </Frame>
   );
 }
