@@ -12,8 +12,8 @@
 ## The company
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub, and has paved the way for the fully fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 35+ people as of late 2023, and we're growing.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
@@ -68,9 +68,9 @@ Depending on the day, you'll:
 - **Sales**. Partner with the Sales team to create effective sales enablement materials.
 - **Events** Potentially: Lead corporate event programs that result in relationship building, lead/pipeline generation and acceleration, customer engagement, retention, and brand awareness.
 
-## About you
+## Who we're looking for
 
-### Skills you should have
+### Required
 
 - A technical background.
 - Experience marketing to software developers.
