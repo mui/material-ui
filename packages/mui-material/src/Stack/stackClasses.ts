@@ -1,4 +1,4 @@
-import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClasses from '../generateUtilityClasses';
 import { StackClasses } from '@mui/system';
 import generateUtilityClass from '../generateUtilityClass';
 
