@@ -18,7 +18,7 @@ This can cause eye fatigue in a low-light setting, not to mention a frustrating 
 
 The gif below illustrates this problem:
 
-<img src="/static/joy-ui/dark-mode/dark-mode-flicker.gif" style="width: 814px; border-radius: 8px;" alt="The Order Dashboard template, inspired by Untitled UI and built by the MUI team using Joy UI with very little customizations." width="1628" height="400" />
+<img src="/static/joy-ui/dark-mode/dark-mode-flicker.gif" style="width: 814px; border-radius: 8px;" alt="An example video that shows a page that initially loads correctly in dark mode but quickly flickers to light mode." width="1628" height="400" />
 
 ## The solution: CSS variables
 
