@@ -3,15 +3,16 @@ import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
+import AppFooter from 'docs/src/layouts/AppFooter';
+import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import References, { ADVANCED_CUSTOMERS } from 'docs/src/components/home/References';
 import XHero from 'docs/src/components/productX/XHero';
 import XComponents from 'docs/src/components/productX/XComponents';
 import XDataGrid from 'docs/src/components/productX/XDataGrid';
+// import XPlans from 'docs/src/components/productX/XPlans';
+import XPlans2 from 'docs/src/components/productX/XPlans2';
 import XTheming from 'docs/src/components/productX/XTheming';
 import XRoadmap from 'docs/src/components/productX/XRoadmap';
-import References, { ADVANCED_CUSTOMERS } from 'docs/src/components/home/References';
-import AppFooter from 'docs/src/layouts/AppFooter';
-import XPlans from 'docs/src/components/productX/XPlans';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 export default function X() {
   return (
@@ -34,7 +35,8 @@ export default function X() {
         <Divider />
         <XTheming />
         <Divider />
-        <XPlans />
+        {/* <XPlans /> */}
+        <XPlans2 />
         <Divider />
         <XRoadmap />
         <Divider />
