@@ -53,6 +53,8 @@ const FilledInputRoot = styled(InputBaseRoot, {
     '--md-comp-filled-input-container-color': tokens.sys.color.surfaceContainerHighest,
     '--md-comp-filled-input-disabled-container-color': tokens.sys.color.onSurface,
     '--md-comp-filled-input-disabled-container-opacity': 0.04,
+    '--md-comp-filled-input-disabled-active-indicator-color': tokens.sys.color.onSurface,
+    '--md-comp-filled-input-disabled-active-indicator-opacity': 0.38,
     '--md-comp-filled-input-error-active-indicator-color': tokens.sys.color.error,
     '--md-comp-filled-input-error-hover-active-indicator-color': tokens.sys.color.onErrorContainer,
     '--md-comp-filled-input-focus-active-indicator-color':
@@ -83,7 +85,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
     },
     [`&.${filledInputClasses.disabled}`]: {
       backgroundColor:
-        'color-mix(in srgb, var(--md-comp-filled-input-disabled-container-color) var(--md-comp-filled-input-disabled-container-opacity), var(--md-comp-filled-input-container-color))',
+        'color-mix(in srgb, var(--md-comp-filled-input-disabled-container-color) calc(var(--md-comp-filled-input-disabled-container-opacity) * 100%), transparent)',
     },
     ...(!ownerState.disableUnderline && {
       '&:after': {
@@ -128,7 +130,8 @@ const FilledInputRoot = styled(InputBaseRoot, {
         borderBottom: '1px solid var(--md-comp-filled-input-active-indicator-color)',
       },
       [`&.${filledInputClasses.disabled}:before`]: {
-        borderBottomStyle: 'dotted',
+        borderColor:
+          'color-mix(in srgb, var(--md-comp-filled-input-disabled-active-indicator-color) calc(var(--md-comp-filled-input-disabled-active-indicator-opacity) * 100%), transparent)',
       },
     }),
     ...(ownerState.startAdornment && {
@@ -160,9 +163,9 @@ const FilledInputInput = styled(InputBaseInput, {
 
   return {
     paddingTop: 25,
-    paddingRight: 12,
+    paddingRight: 16,
     paddingBottom: 8,
-    paddingLeft: 12,
+    paddingLeft: 16,
     ...(!tokens
       ? {
           [theme.getColorSchemeSelector('light')]: {

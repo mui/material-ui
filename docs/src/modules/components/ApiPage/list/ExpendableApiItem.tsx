@@ -213,22 +213,13 @@ function ApiItem(props: ApiItemProps) {
       )}
     >
       <div className="MuiApi-item-header">
-        <a
-          className="MuiApi-item-link-visual"
-          href={`#${id}`}
-          onClick={() => {
-            navigator.clipboard.writeText(
-              `${window.location.origin}${window.location.pathname}#${id}`,
-            );
-          }}
-        >
+        <a className="MuiApi-item-link-visual" href={`#${id}`}>
           <svg>
             <use xlinkHref="#anchor-link-icon" />
           </svg>
         </a>
-
         <span
-          className="MuiApi-item-title" // This className is used by Algolia
+          className="MuiApi-item-title algolia-lvl3" // This className is used by Algolia
         >
           {title}
         </span>
