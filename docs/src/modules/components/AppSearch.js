@@ -31,7 +31,6 @@ const SearchButton = styled('button')(({ theme }) => [
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
       padding: 0,
-      minWidth: 34,
       justifyContent: 'center',
       '& > *:not(.MuiSvgIcon-root)': {
         display: 'none',
@@ -43,7 +42,7 @@ const SearchButton = styled('button')(({ theme }) => [
     color: (theme.vars || theme).palette.text.secondary,
     fontSize: theme.typography.pxToRem(14),
     border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
-    borderRadius: 10,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
@@ -79,7 +78,7 @@ const SearchLabel = styled('span')(({ theme }) => {
 const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(12),
-    fontWeight: 700,
+    fontWeight: 'bold',
     lineHeight: '20px',
     marginLeft: theme.spacing(0.5),
     border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,

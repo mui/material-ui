@@ -116,7 +116,11 @@ export default function XHero() {
             Build complex and data-rich applications using a growing list of advanced React
             components, like the Data Grid, Date and Time Pickers, Charts, and more!
           </Typography>
-          <GetStartedButtons primaryUrl={ROUTES.xIntro} />
+          <GetStartedButtons
+            primaryUrl={ROUTES.xIntro}
+            secondaryLabel="Learn about licensing"
+            secondaryUrl={ROUTES.xLicensing}
+          />
         </Box>
       }
       rightSx={{
@@ -135,6 +139,7 @@ export default function XHero() {
               mb: { md: 2, lg: 3, xl: 4 },
               overflow: 'hidden',
               ...theme.applyDarkStyles({
+                borderColor: 'divider',
                 backgroundColor: 'primaryDark.800',
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
               }),
@@ -283,16 +288,17 @@ export default function XHero() {
             <Paper
               variant="outlined"
               sx={(theme) => ({
+                minWidth: 300,
+                mr: { md: 2, lg: 3, xl: 4 },
+                flexGrow: 1,
                 backgroundColor: '#fff',
                 borderColor: 'divider',
                 boxShadow: `0px 4px 12px ${alpha(theme.palette.grey[200], 0.6)}`,
                 ...theme.applyDarkStyles({
+                  borderColor: 'divider',
                   backgroundColor: 'primaryDark.800',
                   boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
                 }),
-                minWidth: 300,
-                mr: { md: 2, lg: 3, xl: 4 },
-                flexGrow: 1,
               })}
             >
               <Typography variant="body2" fontWeight="semiBold" p={2}>
@@ -347,10 +353,9 @@ export default function XHero() {
                 },
                 (theme) =>
                   theme.applyDarkStyles({
+                    borderColor: 'divider',
                     boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
-                    '& > div': {
-                      backgroundColor: 'primaryDark.800',
-                    },
+                    backgroundColor: 'primaryDark.800',
                     '& .MuiDateRangePickerDay-day.Mui-selected': {
                       color: '#FFF',
                     },
