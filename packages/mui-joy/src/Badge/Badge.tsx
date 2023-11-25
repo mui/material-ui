@@ -105,7 +105,7 @@ const BadgeBadge = styled('span', {
     theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`];
   return {
     '--Icon-color': 'currentColor',
-    '--Icon-fontSize': `calc(1em * ${typography.lineHeight ?? '1'})`,
+    '--Icon-fontSize': `calc(1em * ${typography?.lineHeight ?? '1'})`,
     display: 'inline-flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
