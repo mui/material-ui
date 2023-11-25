@@ -303,7 +303,7 @@ export default function XDateRangeDemo() {
         </Typography>
         <Button
           variant="outlined"
-          href="/x/react-tree-view"
+          href="/x/react-tree-view/"
           component="a"
           sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300' }}
         >
