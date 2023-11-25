@@ -16,6 +16,10 @@ Indeed, this light-mode "flash" will occur _every_ time you load up the app in t
 
 This can cause eye fatigue in a low-light setting, not to mention a frustrating interruption of the user experience—especially for those who interact with the app when it's in between modes.
 
+The gif below illustrates this problem:
+
+<img src="/static/joy-ui/dark-mode/dark-mode-flicker.gif" style="width: 814px; border-radius: 8px;" alt="The Order Dashboard template, inspired by Untitled UI and built by the MUI team using Joy UI with very little customizations." width="1628" height="400" />
+
 ## The solution: CSS variables
 
 Solving this problem required us to take a novel approach to styling and theming.
