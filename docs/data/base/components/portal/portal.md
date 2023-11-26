@@ -41,7 +41,7 @@ The following demo shows how a `<span>` nested within a Portal can be appended t
 
 ### Server-side
 
-The DOM API isn't available on the server, you need to use the `container` prop callback.
+The DOM API isn't available on the server, so you need to use the `container` prop callback.
 This callback is called during a React layout effect:
 
 ```jsx
