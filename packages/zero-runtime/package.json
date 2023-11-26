@@ -43,7 +43,7 @@
     "csstype": "^3.1.2"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.10",
+    "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.4",
     "@types/node": "^18.18.10",
     "@types/react": "^18.2.37",
