@@ -42,7 +42,6 @@ When the `name` prop is set, the Select will render a hidden input with the sele
 
 {{"demo": "UnstyledSelectForm.js"}}
 
-Note how the second Select in the demo above renders a hidden input with the name provided as a prop.
 You can customize the value of this hidden input—see the [Object values](#object-values) section for details.
 
 ### TypeScript caveat

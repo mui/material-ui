@@ -34,7 +34,7 @@
       "description": "An alternative way to specify the options. If this parameter is set, options defined as JSX children are ignored."
     },
     "required": {
-      "description": "If <code>true</code>, the select embedded in a form must have a selected value. Otherwise, the form submission will fail."
+      "description": "If <code>true</code>, the select embedded in a form must have a selected value. Otherwise, the form submission will fail. The <code>name</code> attribute is needed in Select for <code>required</code> to work properly."
     },
     "value": {
       "description": "The selected value. Set to <code>null</code> to deselect all options."
