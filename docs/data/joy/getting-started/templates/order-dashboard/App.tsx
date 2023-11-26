@@ -89,7 +89,7 @@ export default function JoyOrderDashboardTemplate() {
           <Box
             sx={{
               display: 'flex',
-              my: 1,
+              mb: 1,
               gap: 1,
               flexDirection: { xs: 'column', sm: 'row' },
               alignItems: { xs: 'start', sm: 'center' },
