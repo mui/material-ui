@@ -97,7 +97,7 @@
     "@slack/web-api": "^6.10.0",
     "@types/enzyme": "^3.10.16",
     "@types/fs-extra": "^11.0.4",
-    "@types/lodash": "^4.14.201",
+    "@types/lodash": "^4.14.202",
     "@types/mocha": "^10.0.4",
     "@types/node": "^18.18.10",
     "@types/prettier": "^2.7.3",
