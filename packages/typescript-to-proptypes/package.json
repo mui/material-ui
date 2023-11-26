@@ -25,7 +25,7 @@
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-jsx": "^7.23.3",
     "@babel/plugin-syntax-typescript": "^7.23.3",
-    "@babel/types": "^7.23.3",
+    "@babel/types": "^7.23.4",
     "@mui-internal/api-docs-builder": "^1.0.0",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@babel/register": "^7.22.15",
-    "@types/babel__core": "^7.20.4",
+    "@types/babel__core": "^7.20.5",
     "@types/chai": "^4.3.11",
     "@types/doctrine": "^0.0.9",
     "@types/lodash": "^4.14.202",

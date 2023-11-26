@@ -47,7 +47,7 @@
     "file-system-cache": "2.4.4"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.4",
+    "@types/babel__core": "^7.20.5",
     "next": "^13.4.19"
   },
   "peerDependencies": {
