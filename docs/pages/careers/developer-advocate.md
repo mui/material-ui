@@ -40,28 +40,30 @@ Learn more about what we value as an organization: [Evolving MUI's core values a
 
 MUI's DevEx program is currently maintained by a "team" of one, and that one person devotes the majority of their time to documentation and written technical content.
 
-Our users consistently rank documentation as one of the most important factors in deciding whether or not to build with our products, and many users express dissatisfaction with the rather steep learning curve that they face when onboarding.
+Our users [consistently rank documentation](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library) as one of the most important factors in deciding whether or not to build with our products, and many users express dissatisfaction with the rather steep learning curve that they face when onboarding.
 
-With that in mind, we're looking to add a second individual to the DevEx team who can dig deep into the documentation and expand our output of educational materials, to ease the learning curve and inspire users with great examples of what's possible with our component libraries.
+With that in mind, we're looking to grow the DevEx team, with a second individual who can dig deep into improving the documentation experience and expand our output of educational materials, to ease the learning curve, improve the product, and inspire users with great examples of what's possible with our libraries.
 
 ## The role
 
 MUI's Developer Experience program consists of three key pillars—Education, Documentation, and Community—which all contribute to the company's primary goal: to help developers build beautiful user interfaces quickly and efficiently.
 
-As our next Developer Advocate, you will focus your efforts on education and documentation initiatives, though you may also work on projects related to product DX and community relations from time to time as well.
+As our next Developer Advocate, you will focus your efforts on the creation of educational content and documentation initiatives.
+You may also need to work on projects related to product DX and documentation engineering depending on where the biggest improvement opportunities are.
+This role isn't centered on public speaking or community relations but this might be needed from time to time.
 
 You will also have frequent opportunities to shape the DevEx roadmap and contribute to product roadmaps by gathering feedback from the community and voicing the needs of users.
 
 Check out [The Radiating Circles of DX](https://dx.tips/circles) to better understand how we think about this role.
-From the perspective of that framework, you would pioneer the Content layer while contributing to the Docs and Product layers.
+From the perspective of that framework, you would pioneer the Content layer while contributing to the Docs and Product layers depending on where the problem is best solved (the closer to the root the better).
 
 ### Key responsibilities
 
-- Create educational materials (tutorials, how-to guides, demo apps) for devs of all skill levels
+- Create inspiring educational materials (demo apps, how-to guides, integration examples, tutorials) for devs of all skill levels
 - Seek out and implement improvements to the documentation
+- Contribute to the docs infrastructure, docs UX, or directly the product depending on where the problem is best solved (the closer to the root the better).
 - Engage with the community and gather feedback for product teams
 - Serve as the "voice" of the company through social media, conferences, and events
-- Contribute to the docs infrastructure and UX
 
 For the right candidate:
 
@@ -69,13 +71,13 @@ For the right candidate:
 
 ### Tasks and initiatives you might take on
 
-- Create tutorials for migrating from competitor products
+- Create tutorials to ease the migration from competitor products
 - Improve the Algolia search experience
 - Own community GitHub issues or PRs related to developer experience
 - Build example apps with MUI products and create how-to content around them
 - Research and write case studies
 - Overhaul the [Showcase](https://mui.com/material-ui/discover-more/showcase/)
-- Revamp the company blog infrastructure to empower less technical teammates to contribute
+- Revamp the company blog infrastructure to empower less technical teammates to contribute (e.g. HR)
 - Contribute to integrations with other popular libraries and frameworks
 - Create a learning section in the documentation for hybrid written and video tutorials
 
