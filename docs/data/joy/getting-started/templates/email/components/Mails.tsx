@@ -98,12 +98,10 @@ export default function EmailList() {
                       }}
                     />
                   </Box>
-
                   <Typography level="body-xs" textColor="text.tertiary">
                     {item.date}
                   </Typography>
                 </Box>
-
                 <div>
                   <Typography level="title-sm" sx={{ mb: 0.5 }}>
                     {item.title}

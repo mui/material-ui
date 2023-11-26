@@ -30,7 +30,6 @@ import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
 
-// Icons import
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
@@ -41,7 +40,6 @@ import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRound
 import ShareRoundedIcon from '@mui/icons-material/ShareRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
-// custom
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
@@ -880,27 +878,22 @@ export default function FilesExample() {
                 <Typography level="body-sm" textColor="text.primary">
                   Image
                 </Typography>
-
                 <Typography level="title-sm">Size</Typography>
                 <Typography level="body-sm" textColor="text.primary">
                   3,6 MB (3,258,385 bytes)
                 </Typography>
-
                 <Typography level="title-sm">Location</Typography>
                 <Typography level="body-sm" textColor="text.primary">
                   Travel pictures
                 </Typography>
-
                 <Typography level="title-sm">Owner</Typography>
                 <Typography level="body-sm" textColor="text.primary">
                   Michael Scott
                 </Typography>
-
                 <Typography level="title-sm">Modified</Typography>
                 <Typography level="body-sm" textColor="text.primary">
                   26 October 2016
                 </Typography>
-
                 <Typography level="title-sm">Created</Typography>
                 <Typography level="body-sm" textColor="text.primary">
                   5 August 2016
