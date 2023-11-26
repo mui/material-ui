@@ -103,13 +103,13 @@ const StyledDiv = styled.div`
 `;
 ```
 
-<p class="blog-description"><a href="https://codesandbox.io/s/elastic-yonath-uedfv?file=/src/App.js">CodeSandbox</a></p>
+<p class="blog-description"><a href="https://codesandbox.io/p/sandbox/elastic-yonath-uedfv?file=/src/App.js">CodeSandbox</a></p>
 
 You can find it in [styled-components](https://styled-components.com/), [emotion](https://emotion.sh/docs/styled), [goober](https://goober.js.org/), [stitches](https://stitches.dev/docs/api#styled), or [linaria](https://linaria.dev/).
 While MUI is compatible with any styling solution (as long as the styles have more specificity, for example, Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](https://mui.com/system/styles/basics/#hook-api) API.
 
 2. Our React integration with JSS (`@mui/styles`) is **too slow** to unlock the next layer of customization DX we aim for.
-   The static CSS generation using v4 was fast enough, even [faster](https://codesandbox.io/s/nb05w?file=/src/App.js) than emotion,
+   The static CSS generation using v4 was fast enough, even [faster](https://codesandbox.io/p/sandbox/nb05w?file=/src/App.js) than emotion,
    however, the dynamic style generation was too slow to be used in production. We would have needed to reimplement it.
 3. Many developers were advocating for MUI to [migrate to styled-components](https://github.com/mui/material-ui/issues/6115),
    which would allow us to drop the custom React JSS wrapper we maintain.
@@ -130,7 +130,7 @@ After [exploring](https://github.com/mui/material-ui/issues/22342) many differen
 
 3. For the last couple of months, we have been [sponsoring](https://opencollective.com/emotion) Emotion with a $100/month grant. We are now increasing this amount to $1,000/month. It's in our best interest to help ensure the library keeps pushing the envelope, leading the state of the art in a competitive space.
 
-The first immediate benefit of the move to Emotion was **performance**. The `<Box>` component is [x5-x10 more performant](https://codesandbox.io/s/zlh5w?file=/src/App.js) in v5, compared to v4.
+The first immediate benefit of the move to Emotion was **performance**. The `<Box>` component is [x5-x10 more performant](https://codesandbox.io/p/sandbox/zlh5w?file=/src/App.js) in v5, compared to v4.
 
 We would like to thank all the community contributors that made the migration of the components and documentation possible in [#24405](https://github.com/mui/material-ui/issues/24405) and [#16947](https://github.com/mui/material-ui/issues/16947): [@natac13](https://github.com/natac13), [@vicasas](https://github.com/vicasas), [@mngu](https://github.com/mngu), [@kodai3](https://github.com/kodai3), [@xs9627](https://github.com/xs9627), [@povilass](https://github.com/povilass), [@duganbrett](https://github.com/duganbrett), [@queengooborg](https://github.com/queengooborg), and more.
 It was a major undertaking!
@@ -163,7 +163,7 @@ For instance, you can add one unit of vertical margin with:
 <Slider sx={{ my: 1 }} />
 ```
 
-<p class="blog-description"><a href="https://codesandbox.io/s/nostalgic-williams-zmo5r?file=/src/App.js">CodeSandbox</a></p>
+<p class="blog-description"><a href="https://codesandbox.io/p/sandbox/nostalgic-williams-zmo5r?file=/src/App.js">CodeSandbox</a></p>
 
 Developers already seem to [love it](https://twitter.com/AnsonLowZF/status/1397034690771443715).
 You can find a [side-by-side comparison](https://mui.com/system/getting-started/usage/#why-use-mui-system) of `styled()` vs. `sx` in the documentation to determine when you should use the prop.
@@ -179,7 +179,7 @@ They expose a subset of the `sx` prop as flat props, for instance:
 <Typography sx={{ color: 'grey.600' }}>
 ```
 
-<p class="blog-description"><a href="https://codesandbox.io/s/keen-worker-zo2r3?file=/src/App.tsx">CodeSandbox</a></p>
+<p class="blog-description"><a href="https://codesandbox.io/p/sandbox/keen-worker-zo2r3?file=/src/App.tsx">CodeSandbox</a></p>
 
 See the [API tradeoff](https://mui.com/system/getting-started/usage/#api-tradeoff) section of the documentation for why not all the components accept these flat props.
 
@@ -234,7 +234,7 @@ declare module '@mui/material/Button' {
 <Button color="neutral"  />
 ```
 
-<p class="blog-description"><a href="https://codesandbox.io/s/stupefied-mclaren-ho4zs?file=/src/App.tsx">CodeSandbox</a></p>
+<p class="blog-description"><a href="https://codesandbox.io/p/sandbox/stupefied-mclaren-ho4zs?file=/src/App.tsx">CodeSandbox</a></p>
 
 **Second**, you can add [custom variants](/material-ui/customization/theme-components/#creating-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
 
@@ -271,7 +271,7 @@ declare module '@mui/material/Button' {
 </Button>
 ```
 
-<p class="blog-description"><a href="https://codesandbox.io/s/sharp-sky-xwz3d?file=/src/App.tsx">CodeSandbox</a></p>
+<p class="blog-description"><a href="https://codesandbox.io/p/sandbox/sharp-sky-xwz3d?file=/src/App.tsx">CodeSandbox</a></p>
 
 ### Global class names
 
@@ -318,7 +318,7 @@ const CustomizedTextField3 = styled((props) => (
 }) as typeof TextField;
 ```
 
-<p class="blog-description"><a href="https://codesandbox.io/s/zealous-dawn-0yr4g?file=/src/App.tsx">CodeSandbox</a></p>
+<p class="blog-description"><a href="https://codesandbox.io/p/sandbox/zealous-dawn-0yr4g?file=/src/App.tsx">CodeSandbox</a></p>
 
 Option 1 is the simplest but if you want more type safety and do not use a magic string (`MuiOutlinedInput-notchedOutline`), you can use Option 2.
 
@@ -374,7 +374,7 @@ const CustomButton = React.forwardRef(function CustomButton(
 });
 ```
 
-<p class="blog-description"><a href="https://codesandbox.io/s/7lc1r?file=/demo.tsx">CodeSandbox</a></p>
+<p class="blog-description"><a href="https://codesandbox.io/p/sandbox/7lc1r?file=/demo.tsx">CodeSandbox</a></p>
 
 We discuss the effort in [#6218](https://github.com/mui/material-ui/issues/6218).
 You can use [#27170](https://github.com/mui/material-ui/issues/27170) to follow our progress.

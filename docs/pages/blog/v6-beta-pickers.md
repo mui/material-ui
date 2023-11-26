@@ -111,7 +111,7 @@ Now that you've seen what's fundamentally changed with the Pickers, let's briefl
   You don't need to provide the usual `TextField` on `renderInput` anymore unless you need it customized.
   In which case you can do it by:
 
-  1. Customizing through props via `field` and `input` slots ([codebox example](https://codesandbox.io/s/customizing-fields-with-props-o66r1c?file=/demo.tsx)).
+  1. Customizing through props via `field` and `input` slots ([codebox example](https://codesandbox.io/p/sandbox/customizing-fields-with-props-o66r1c?file=/demo.tsx)).
   2. Build a new field component using the Field's headless API (documentation coming soon).
   3. Use an entirely [custom text field](https://next.mui.com/x/react-date-pickers/date-picker/#custom-input-component) to suit your use case.
 
