@@ -10,7 +10,7 @@
   "dependencies": {
     "@babel/core": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
-    "@babel/traverse": "^7.23.3",
+    "@babel/traverse": "^7.23.4",
     "@mui-internal/docs-utilities": "^1.0.0",
     "@mui/markdown": "^5.0.0",
     "@mui/utils": "^5.14.18",
@@ -26,7 +26,7 @@
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.4",
+    "@types/babel__core": "^7.20.5",
     "@types/babel__traverse": "^7.20.4",
     "@types/chai": "^4.3.11",
     "@types/doctrine": "^0.0.9",

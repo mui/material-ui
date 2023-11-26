@@ -41,7 +41,7 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.2",
+    "@babel/runtime": "^7.23.4",
     "@mui/base": "5.0.0-beta.24",
     "@mui/system": "^5.14.18",
     "@mui/types": "^7.2.9",

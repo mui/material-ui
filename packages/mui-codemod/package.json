@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "@babel/core": "^7.23.3",
-    "@babel/runtime": "^7.23.2",
-    "@babel/traverse": "^7.23.3",
+    "@babel/runtime": "^7.23.4",
+    "@babel/traverse": "^7.23.4",
     "jscodeshift": "^0.13.1",
     "jscodeshift-add-imports": "^1.0.10",
     "yargs": "^17.7.2"
