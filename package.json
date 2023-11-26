@@ -99,7 +99,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.14.202",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^18.18.10",
+    "@types/node": "^18.18.13",
     "@types/prettier": "^2.7.3",
     "@types/react": "^18.2.38",
     "@types/yargs": "^17.0.32",
@@ -189,7 +189,7 @@
     "**/@definitelytyped/header-parser": "^0.0.189",
     "**/@definitelytyped/typescript-versions": "^0.0.181",
     "**/@definitelytyped/utils": "^0.0.187",
-    "**/@types/node": "^18.18.10",
+    "**/@types/node": "^18.18.13",
     "**/@types/react": "^18.2.38",
     "**/cross-fetch": "^4.0.0"
   },
