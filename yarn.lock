@@ -8181,11 +8181,6 @@ event-stream@=3.3.4:
     stream-combiner "~0.0.4"
     through "~2.3.1"
 
-eventemitter-asyncresource@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eventemitter-asyncresource/-/eventemitter-asyncresource-1.0.0.tgz#734ff2e44bf448e627f7748f905d6bdd57bdb65b"
-  integrity sha512-39F7TBIV0G7gTelxwbEqnwhp90eqCPON1k0NwNfwhgKn4Co4ybUbj2pECcXT0B3ztRKZ7Pw1JujUUgmQJHcVAQ==
-
 eventemitter3@^3.1.0:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-3.1.2.tgz#2d3d48f9c346698fce83a85d7d664e98535df6e7"
@@ -13714,12 +13709,11 @@ pirates@^4.0.1, pirates@^4.0.4, pirates@^4.0.5:
   resolved "https://registry.yarnpkg.com/pirates/-/pirates-4.0.6.tgz#3018ae32ecfcff6c29ba2267cbf21166ac1f36b9"
   integrity sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==
 
-piscina@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/piscina/-/piscina-4.1.0.tgz#809578ee3ab2ecf4cf71c2a062100b4b95a85b96"
-  integrity sha512-sjbLMi3sokkie+qmtZpkfMCUJTpbxJm/wvaPzU28vmYSsTSW8xk9JcFUsbqGJdtPpIQ9tuj+iDcTtgZjwnOSig==
+piscina@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/piscina/-/piscina-4.2.0.tgz#61ac6c07f45fdefdd7726b6b07fc237d9a8d1776"
+  integrity sha512-/Yq6CLchvi5UQ6YGeiYHIJQV09VcZ5eYuNVS/YPkpxlxKrB4tEbIyc6j8F5b0jCP6tHdiji1Gos4fapc7q1csg==
   dependencies:
-    eventemitter-asyncresource "^1.0.0"
     hdr-histogram-js "^2.0.1"
     hdr-histogram-percentiles-obj "^3.0.0"
   optionalDependencies:
