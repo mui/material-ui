@@ -68,7 +68,6 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
   /**
    * If `true`, the select embedded in a form must have a selected value.
    * Otherwise, the form submission will fail.
-   * The `name` attribute is needed in Select for `required` to work properly.
    */
   required?: boolean;
   /**

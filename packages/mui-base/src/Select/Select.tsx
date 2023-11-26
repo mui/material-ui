@@ -226,7 +226,7 @@ const Select = React.forwardRef(function Select<
         </PopperComponent>
       )}
 
-      {name && <input {...getHiddenInputProps()} autoComplete={autoComplete} />}
+      <input {...getHiddenInputProps()} autoComplete={autoComplete} />
     </React.Fragment>
   );
 }) as SelectType;
