@@ -125,7 +125,7 @@
     "@types/json2mq": "^0.2.2",
     "@types/markdown-to-jsx": "^7.0.1",
     "@types/node": "^18.18.10",
-    "@types/prop-types": "^15.7.10",
+    "@types/prop-types": "^15.7.11",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.17",
     "@types/react-swipeable-views": "^0.13.5",
