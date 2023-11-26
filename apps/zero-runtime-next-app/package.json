@@ -22,7 +22,7 @@
     "@mui/zero-next-plugin": "file:../../packages/zero-next-plugin/build",
     "@types/node": "20.5.7",
     "@types/react": "18.2.37",
-    "@types/react-dom": "18.2.15",
+    "@types/react-dom": "18.2.17",
     "typescript": "5.1.6"
   },
   "resolutions": {
