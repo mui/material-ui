@@ -10,7 +10,7 @@ export default function UnstyledSelectForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    alert(`${formData.get('demo-select')}`);
+    alert(formData.get('demo-select'));
   };
 
   return (

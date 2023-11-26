@@ -14,7 +14,7 @@ export default function UnstyledSelectForm() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    alert(`${formData.get('demo-select')}`);
+    alert(formData.get('demo-select'));
   };
 
   return (
