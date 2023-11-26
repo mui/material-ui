@@ -323,7 +323,7 @@ This makes the button closer to the Material Design guidelines and simplifies th
 ```
 
 :::info
-If you prefer to use the `default` color in v4, take a look at this [CodeSandbox demo](https://codesandbox.io/s/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx) to see how to make it work in v5.
+If you prefer to use the `default` color in v4, take a look at this [CodeSandbox demo](https://codesandbox.io/p/sandbox/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx) to see how to make it work in v5.
 :::
 
 ### Remove span and label
@@ -573,7 +573,7 @@ In v4, using `orientation="vertical"` and `variant="middle"` was adding a left a
 In the v5, to avoid fixed spacing on the component, this margin was removed.
 
 :::info
-If you want to use the previous margin values, this change can be made in your theme with the following code. See the example on [CodeSandbox demo](https://codesandbox.io/s/v5-migration-vertical-alignment-middle-divider-45vepj?file=/src/index.tsx).
+If you want to use the previous margin values, this change can be made in your theme with the following code. See the example on [CodeSandbox demo](https://codesandbox.io/p/sandbox/v5-migration-vertical-alignment-middle-divider-45vepj?file=/src/index.tsx).
 :::
 
 ```diff
