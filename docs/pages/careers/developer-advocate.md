@@ -97,7 +97,7 @@ For the right candidate:
 
 - Great taste in product design
 - Knowledge of design trends
-- Experience in open source
+- Experience in open-source
 - Experience with design systems
 - Experience with MUI products
 - Experience with public speaking
