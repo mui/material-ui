@@ -10,8 +10,11 @@
     "baseUrl": "../../../",
     "noErrorTruncation": true,
     "paths": {
-      "@mui/material": ["./mui-material/src"],
-      "@mui/material/*": ["./mui-material/src/*"],
+      "@mui/types": ["./mui-types"],
+      "@mui/utils": ["./mui-utils/src"],
+      "@mui/utils/*": ["./mui-utils/src/*"],
+      "@mui/system": ["./mui-system/src"],
+      "@mui/system/*": ["./mui-system/src/*"],
       "@mui/icons-material": ["./mui-icons-material/build"],
       "@mui/icons-material/*": ["./mui-icons-material/build/*"]
     }

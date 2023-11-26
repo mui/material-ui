@@ -525,7 +525,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     breakpoints: createBreakpoints(breakpoints ?? {}),
     components: deepmerge(
       {
-        // TODO: find a way to abstract SvgIcon out of @mui/material
         MuiSvgIcon: {
           defaultProps: {
             fontSize: 'xl2',

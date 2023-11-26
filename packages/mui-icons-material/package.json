@@ -33,8 +33,8 @@
     "build:lib:clean": "rimraf lib/ && yarn build:lib",
     "build:legacy": "echo 'Skip legacy build'",
     "build:modern": "echo 'Skip modern build'",
-    "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",
-    "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir lib",
+    "build:node": "node ../../scripts/build.mjs node --largeFiles --skipTopLevelImportCheck --outDir lib",
+    "build:stable": "node ../../scripts/build.mjs stable --largeFiles --skipTopLevelImportCheck --outDir lib",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:typings": "node ./scripts/create-typings.mjs",
     "prebuild": "rimraf build",
@@ -46,7 +46,9 @@
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.2"
+    "@babel/runtime": "^7.23.2",
+    "@mui/system": "^5.14.15",
+    "@mui/utils": "^5.14.15"
   },
   "devDependencies": {
     "@mui/internal-waterfall": "^1.0.0",
@@ -66,12 +68,20 @@
     "yargs": "^17.7.2"
   },
   "peerDependencies": {
-    "@mui/material": "^5.0.0",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/types": "^7.2.3",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
+      "optional": true
+    },
+    "@emotion/react": {
+      "optional": true
+    },
+    "@emotion/styled": {
       "optional": true
     }
   },
