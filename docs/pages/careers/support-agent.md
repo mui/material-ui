@@ -37,10 +37,10 @@ For additional details about the culture you can check our [careers](https://mui
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
-
 The support on the store is currently almost exclusively done by the executive team of the company (e.g. CSO). This team does no longer has enough bandwidth. You will be responsible to step up and carry forward the support provided to customers of the store on multiple fronts: answering license questions, processing purchase orders, granting refunds, identifying recurring problems, and a lot more.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ## The role
 

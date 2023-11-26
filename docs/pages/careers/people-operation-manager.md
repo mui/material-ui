@@ -37,11 +37,11 @@ For additional details about the culture you can check our [careers](https://mui
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
-
 At the current growth rate, we target 50 new hires in 2023. We would reach 75 people.
 We need somebody to lead our HR strategy including hiring, onboarding, diversity & inclusion, learning & development, and employee happiness.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ## The role
 

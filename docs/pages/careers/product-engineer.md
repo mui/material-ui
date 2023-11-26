@@ -38,12 +38,12 @@ For additional details about the culture you can check our [careers](https://mui
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
-
 The development and operations of the store are currently almost exclusively run by the executive team of the company (the co-founders).
 This team doesn't have enough bandwidth, the store doesn't receive the care it deserves.
 You will be responsible to step up and carry forward the development of the store on new fronts.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ### Why this is interesting
 

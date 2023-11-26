@@ -38,9 +38,6 @@ For additional details about the culture you can check our [careers](https://mui
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
-
 We need a Community Engineer to solve friction points of users.
 We face challenges on multiple fronts:
 
@@ -48,6 +45,9 @@ We face challenges on multiple fronts:
 - The commercial version of the library is growing, but our community of developers is still small and has a reduced incentive to contribute compared to the community plan.
 - Software engineers at MUI are tasked with doing support, however, they could benefit from the help of a dedicated person in the company, for instance to improve the workflows and tooling.
 - The MUI X Premium plan will offer a technical advisor service, we need a Community Engineer to help deliver it.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ## The role
 

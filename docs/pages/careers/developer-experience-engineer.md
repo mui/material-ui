@@ -38,9 +38,6 @@ For additional details about the culture you can check our [careers](https://mui
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
-
 Developer Experience matters, [a lot](https://future.com/the-case-for-developer-experience/).
 We are looking for somebody to build the best developer experience ever created around a component library, earning the love of developers everywhere.
 This is about focusing on the outcome: success, that developers can have a wonderful workflow with our product.
@@ -50,6 +47,9 @@ We are looking for someone that can contribute to the following outcomes:
 - Amplify the need of the community so the product direction aims at what people need the most.
 - Improve the overall developer experience, resulting in better NPS & CSAT scores.
 - Create momentum in the React community and drive adoption of the library.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ### Why this is interesting
 

@@ -38,15 +38,15 @@ For additional details about the culture you can check our [careers](https://mui
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
-
 Up to this point we have operated:
 
 - on the open-source side, through word of mouth and SEO
 - on the commercial side, through inbound leads with $0 investment in marketing
 
 We believe that we could do a lot better. This is a white canvas opportunity at the company, this role is critical to our growth plans. Product Marketing will be a cross-functional role at MUI, partnering with Design, Product, Developer Experience and Sales.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ### Why this is interesting
 

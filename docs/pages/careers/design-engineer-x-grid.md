@@ -38,11 +38,17 @@ For additional details about the culture you can check our [careers](https://mui
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+[According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criterion used by developers & designers to pick their next general-purpose UI library.
 
-We are aiming to make high-end design accessible to the many, empowering developers who lack access to a designer as well as saving time for designers with a source they can trust.
-[According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criterion used by developers & designers to pick their next UI library.
+We hear an even bigger pain around _design_ from developers who adopt projects specialized into one UI component, e.g. data grid. For them, it's not only the default behaviors that need to be great but also the ease of customizing the components to their needs and integrating into the rest of their application.
+
+Up until now, we solved a subset of these problems by specializing in a MUI X Data Grid that deeply integrates with Material UI.
+We feel that the timing is right to take a step further and invest in the design of MUI X to have the best data grid not only for Material UI but for **any** React project.
+
+The MUI X Data Grid team has no dedicated designer, so we are opening this role to give us the means of this objective.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ### Why this is interesting
 
