@@ -115,6 +115,7 @@ export default function MyProfile() {
               },
               justifyContent: 'left',
               [`&& .${tabClasses.root}`]: {
+                fontWeight: '600',
                 flex: 'initial',
                 bgcolor: 'transparent',
                 [`&.${tabClasses.selected}`]: {
