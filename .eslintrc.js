@@ -294,7 +294,7 @@ module.exports = {
     {
       files: ['docs/**/*'],
       rules: {
-        '@stylistic/js/no-trailing-spaces': ['error', 2],
+        '@stylistic/js/no-trailing-spaces': ['error'],
       },
     },
     // Next.js entry points pages
