@@ -97,11 +97,11 @@ The CSS [`color-scheme`](https://web.dev/color-scheme/) is applied by default to
 ### Typography
 
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default).
-  You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/material-ui/customization/typography/#html-font-size) page.
+  Learn more about the implications of changing the `<html>` default font size in [the Material UI theme's typography documentation page](/material-ui/customization/typography/#html-font-size), which is also valid for Joy UI.
 - Set the default `Typography`'s level (`body1`) style on the `<body>` element. The style comes from `theme.typography.{default typography level prop}`.
 - Set the font-weight to `bold` for the `<b>` and `<strong>` elements.
 - Custom font-smoothing is enabled for better display of the default font.
-- Set the color of `<a>` elements to provide better contrast in both light and dark modes.
+- Set the `<a>` elements color to contrast properly in light and dark modes.
 
 ## Customization
 
