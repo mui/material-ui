@@ -91,10 +91,12 @@ export default function MyProfile() {
               pl: { xs: 0, md: 4 },
               justifyContent: 'left',
               [`&& .${tabClasses.root}`]: {
+                fontWeight: '600',
                 flex: 'initial',
-                bgcolor: 'transparent',
+                color: 'text.tertiary',
                 [`&.${tabClasses.selected}`]: {
-                  fontWeight: '600',
+                  bgcolor: 'transparent',
+                  color: 'text.primary',
                   '&::after': {
                     height: '2px',
                     bgcolor: 'primary.500',
