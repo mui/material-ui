@@ -67,11 +67,6 @@
       "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"]
     },
     {
-      "groupName": "tslint",
-      "matchPackageNames": ["tslint"],
-      "allowedVersions": "<= 5.14.0"
-    },
-    {
       "groupName": "typescript-eslint",
       "matchPackagePatterns": "@typescript-eslint/*"
     },

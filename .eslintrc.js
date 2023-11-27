@@ -208,6 +208,9 @@ module.exports = {
 
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
     'lines-around-directive': 'off',
+
+    "semi": "off",
+    "@typescript-eslint/semi": "error"
   },
   overrides: [
     {
