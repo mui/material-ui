@@ -17,11 +17,8 @@ export type MessageInputProps = {
   onSubmit: () => void;
 };
 
-export default function MessageInput({
-  textAreaValue,
-  setTextAreaValue,
-  onSubmit,
-}: MessageInputProps) {
+export default function MessageInput(props: MessageInputProps) {
+  const { textAreaValue, setTextAreaValue, onSubmit } = props;
   const textAreaRef = React.useRef<HTMLDivElement>(null);
   const handleClick = () => {
     if (textAreaValue.trim() !== '') {
