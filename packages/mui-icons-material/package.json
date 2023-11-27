@@ -43,7 +43,7 @@
     "src:icons": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-icons --renameFilter ./renameFilters/material-design-icons.mjs && yarn build:lib:clean",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-icons-material/**/*.test.{mjs,js,ts,tsx}'",
     "test:built-typings": "tsc -p test/generated-types/tsconfig.json \"test/generated-types/*.{ts,tsx}\"",
-    "typescript": "tsc -p tsconfig.json \"src/**/*.{ts,tsx}\""
+    "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.4"
