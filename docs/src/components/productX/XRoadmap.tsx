@@ -8,11 +8,9 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import PivotTableChartRoundedIcon from '@mui/icons-material/PivotTableChartRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
-import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
 import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import PendingActionsRounded from '@mui/icons-material/PendingActions';
-import InsertDriveFileOutlined from '@mui/icons-material/InsertDriveFileOutlined';
 import FormatSizeRoundedIcon from '@mui/icons-material/FormatSizeRounded';
 import AutoGraphRoundedIcon from '@mui/icons-material/AutoGraphRounded';
 import SpeedRounded from '@mui/icons-material/SpeedRounded';
