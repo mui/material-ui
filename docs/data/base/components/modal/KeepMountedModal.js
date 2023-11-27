@@ -110,7 +110,7 @@ const ModalContent = styled('div')(
     background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
     border-radius: 8px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    box-shadow: 0px 4px 12px
+    box-shadow: 0 4px 12px
       ${theme.palette.mode === 'dark' ? 'rgb(0 0 0 / 0.5)' : 'rgb(0 0 0 / 0.2)'};
     padding: 24px;
     color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
