@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, styled } from '@mui/system';
+import { styled } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
 import { Button } from '@mui/base/Button';
 import { useSpring, animated } from '@react-spring/web';
