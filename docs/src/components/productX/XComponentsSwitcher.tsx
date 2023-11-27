@@ -98,7 +98,7 @@ export default function XComponentsSwitcher(props: {
   const productElements = [
     <ComponentItem
       name="Data Grid"
-      label="by going to the Core components page"
+      label="Feature-rich and fast table extension."
       description="Feature-rich and fast table extension."
       icon={<PivotTableChartRoundedIcon />}
       href={ROUTES.dataGridOverview}
@@ -106,21 +106,21 @@ export default function XComponentsSwitcher(props: {
     <ComponentItem
       name="Date and Time Pickers"
       description="Let users pick a date and time, or both together."
-      label="by going to the Advanced components page"
+      label="Let users pick a date and time, or both together."
       icon={<CalendarMonthRoundedIcon />}
       href={ROUTES.datePickersOverview}
     />,
     <ComponentItem
       name="Charts"
-      description="Features bar, lines, pie, scatter, and more types of graphs."
-      label="by going to the templates page"
+      description="Features bar, line, pie, scatter, and more types of graphs."
+      label="Features bar, line, pie, scatter, and more types of graphs."
       icon={<BarChartRoundedIcon />}
       href={ROUTES.chartsOverview}
     />,
     <ComponentItem
       name="Tree View"
       description="Display hierarchical data, such as a file system navigator."
-      label="by going to the design-kits page"
+      label="Display hierarchical data, such as a file system navigator."
       icon={<AccountTreeRounded />}
       href={ROUTES.treeViewOverview}
     />,

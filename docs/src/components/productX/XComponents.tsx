@@ -23,7 +23,7 @@ export default function XComponents() {
                 Powerful components for <GradientText>advanced use-cases</GradientText>
               </Typography>
             }
-            description="The MUI X packages enables applications to have complex use-cases, supported by several advanced components."
+            description="The MUI X packages enable applications to have complex use-cases, supported by several advanced components."
           />
           <XComponentsSwitcher
             componentIndex={componentIndex}
