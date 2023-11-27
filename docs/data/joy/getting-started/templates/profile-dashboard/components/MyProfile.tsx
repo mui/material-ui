@@ -118,7 +118,6 @@ export default function MyProfile() {
                 flex: 'initial',
                 bgcolor: 'transparent',
                 [`&.${tabClasses.selected}`]: {
-                  fontWeight: '600',
                   '&::after': {
                     height: '2px',
                     bgcolor: 'primary.500',
