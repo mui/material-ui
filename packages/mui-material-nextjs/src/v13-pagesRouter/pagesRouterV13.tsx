@@ -67,6 +67,19 @@ export function createGetInitialProps(plugins: Plugin[]) {
   };
 }
 
+interface DocumentHeadTagsProps {
+  emotionStyleTags: React.JSX.Element[];
+}
+
+export function DocumentHeadTags({ emotionStyleTags }: DocumentHeadTagsProps) {
+  return (
+    <React.Fragment>
+      <meta name="emotion-insertion-point" content="" />
+      {emotionStyleTags}
+    </React.Fragment>
+  );
+}
+
 // `getInitialProps` belongs to `_document` (instead of `_app`),
 // it's compatible with static-site generation (SSG).
 export async function documentGetInitialProps(
@@ -115,21 +128,17 @@ export async function documentGetInitialProps(
         const { styles } = extractCriticalToChunks(initialProps.html);
         return {
           ...initialProps,
-          styles: [
-            <meta name="emotion-insertion-point" content="" />,
-            ...styles.map((style) => (
-              <style
-                data-emotion={`${style.key} ${style.ids.join(' ')}`}
-                key={style.key}
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{ __html: style.css }}
-              />
-            )),
-            ...(Array.isArray(initialProps.styles) ? initialProps.styles : [initialProps.styles]),
-          ],
+          emotionStyleTags: styles.map((style) => (
+            <style
+              data-emotion={`${style.key} ${style.ids.join(' ')}`}
+              key={style.key}
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{ __html: style.css }}
+            />
+          )),
         };
       },
     },
     ...(options?.plugins ?? []),
-  ])(ctx);
+  ])(ctx) as Promise<DocumentInitialProps & DocumentHeadTagsProps>;
 }

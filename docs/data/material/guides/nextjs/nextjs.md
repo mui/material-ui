@@ -84,13 +84,27 @@ pnpm add @mui/material-nextjs @emotion/cache @emotion/server
 
 ### Configuring
 
-Inside `pages/_document.tsx`, import the `documentGetInitialProps` and use it as the Document's getInitialProps:
+Inside `pages/_document.tsx`:
+
+- import the `documentGetInitialProps` and use it as the Document's getInitialProps.
+- import the `DocumentHeadTags` and render it inside the `<Head>`.
 
 ```diff
-+ import { documentGetInitialProps } from '@mui/material-nextjs/v13-pagesRouter';
++ import { DocumentHeadTags, documentGetInitialProps } from '@mui/material-nextjs/v13-pagesRouter';
 
- export default function MyDocument() {
-   return <Html lang="en">...</Html>;
+ export default function MyDocument(props) {
+   return (
+     <Html lang="en">
+       <Head>
++        <DocumentHeadTags />
+         ...
+       </Head>
+       <body>
+         <Main />
+         <NextScript />
+       </body>
+     </Html>
+   );
  }
 
 + MyDocument.getInitialProps = documentGetInitialProps;
