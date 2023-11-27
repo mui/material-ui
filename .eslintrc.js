@@ -35,6 +35,7 @@ module.exports = {
     'eslint-plugin-react-hooks',
     '@typescript-eslint/eslint-plugin',
     'eslint-plugin-filenames',
+    '@stylistic/js',
   ],
   settings: {
     'import/resolver': {
@@ -209,8 +210,8 @@ module.exports = {
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
     'lines-around-directive': 'off',
 
-    "semi": "off",
-    "@typescript-eslint/semi": "error"
+    semi: 'off',
+    '@typescript-eslint/semi': 'error',
   },
   overrides: [
     {
@@ -288,6 +289,12 @@ module.exports = {
       rules: {
         // We're not using the Image component at the moment
         '@next/next/no-img-element': 'off',
+      },
+    },
+    {
+      files: ['docs/**/*'],
+      rules: {
+        '@stylistic/js/no-trailing-spaces': ['error', 2],
       },
     },
     // Next.js entry points pages
