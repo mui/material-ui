@@ -44,8 +44,7 @@ export const styles = (theme, enableColorScheme = false) => {
       fontWeight: theme.typography.fontWeightBold,
     },
     a: {
-      color:
-        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[700],
+      color: (theme.vars || theme).palette.text.link,
     },
     body: {
       margin: 0, // Remove the margin in all browsers.
