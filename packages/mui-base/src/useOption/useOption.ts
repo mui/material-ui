@@ -29,11 +29,7 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
     item: value,
   });
 
-  const {
-    getRootProps: getButtonProps,
-    rootRef: buttonRefHandler,
-    focusVisible,
-  } = useButton({
+  const { getRootProps: getButtonProps, rootRef: buttonRefHandler } = useButton({
     disabled,
     focusableWhenDisabled: true,
   });
@@ -73,7 +69,6 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
         'aria-selected': selected,
       };
     },
-    focusVisible,
     highlighted,
     index,
     selected,

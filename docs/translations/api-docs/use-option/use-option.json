@@ -2,9 +2,6 @@
   "hookDescription": "",
   "parametersDescriptions": {},
   "returnValueDescriptions": {
-    "focusVisible": {
-      "description": "If <code>true</code>, the component is being focused using keyboard."
-    },
     "getRootProps": { "description": "Resolver for the root slot&#39;s props." },
     "highlighted": { "description": "If <code>true</code>, the option is highlighted." },
     "rootRef": { "description": "Ref to the root slot DOM node." },
