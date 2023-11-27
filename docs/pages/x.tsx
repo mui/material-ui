@@ -9,8 +9,7 @@ import References, { ADVANCED_CUSTOMERS } from 'docs/src/components/home/Referen
 import XHero from 'docs/src/components/productX/XHero';
 import XComponents from 'docs/src/components/productX/XComponents';
 import XDataGrid from 'docs/src/components/productX/XDataGrid';
-// import XPlans from 'docs/src/components/productX/XPlans';
-import XPlans2 from 'docs/src/components/productX/XPlans2';
+import XPlans from 'docs/src/components/productX/XPlans';
 import XTheming from 'docs/src/components/productX/XTheming';
 import XRoadmap from 'docs/src/components/productX/XRoadmap';
 
@@ -35,8 +34,7 @@ export default function X() {
         <Divider />
         <XTheming />
         <Divider />
-        {/* <XPlans /> */}
-        <XPlans2 />
+        <XPlans />
         <Divider />
         <XRoadmap />
         <Divider />
