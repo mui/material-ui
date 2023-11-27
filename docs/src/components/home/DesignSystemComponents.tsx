@@ -2,8 +2,8 @@ import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
 import Box from '@mui/material/Box';
-import Section from 'docs/src/layouts/Section';
 import Typography from '@mui/material/Typography';
+import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
@@ -37,7 +37,7 @@ function DesignSystemComponents() {
       <SectionHeadline
         overline="Production-ready components"
         title={
-          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
+          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
             Beautiful and powerful,
             <br /> <GradientText>right out of the box</GradientText>
           </Typography>

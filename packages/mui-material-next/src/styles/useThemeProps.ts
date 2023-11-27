@@ -3,11 +3,11 @@ import { useThemeProps as systemUseThemeProps } from '@mui/system';
 import defaultTheme from './defaultTheme';
 import THEME_ID from './identifier';
 
-export default function useThemeProps<T extends {}>({
+export default function useThemeProps<Props extends {}>({
   props,
   name,
 }: {
-  props: T & {};
+  props: Props & {};
   name: string;
 }) {
   return systemUseThemeProps({

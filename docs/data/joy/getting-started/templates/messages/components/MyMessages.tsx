@@ -10,11 +10,10 @@ export default function MyProfile() {
   return (
     <Sheet
       sx={{
-        bgcolor: 'background.body',
         flex: 1,
         width: '100%',
         mx: 'auto',
-        pt: { xs: 'var(--Header-height)', lg: 0 },
+        pt: { xs: 'var(--Header-height)', sm: 0 },
         display: 'grid',
         gridTemplateColumns: {
           xs: '1fr',

@@ -1,15 +1,15 @@
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import path from 'path';
 import * as ts from 'typescript';
 import * as astTypes from 'ast-types';
 import * as _ from 'lodash';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
-import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
-import { renderInline as renderMarkdownInline } from '@mui/markdown';
-import { LANGUAGES } from 'docs/config';
+import { renderMarkdown } from '@mui/markdown';
+import { ProjectSettings } from '../ProjectSettings';
 import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
 import {
   getSymbolDescription,
@@ -19,7 +19,6 @@ import {
   writePrettifiedFile,
 } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import muiDefaultParamsHandler from '../utils/defaultParamsHandler';
 
 interface ParsedProperty {
   name: string;
@@ -50,6 +49,10 @@ export interface ReactApi extends ReactDocgenApi {
    */
   name: string;
   description: string;
+  /**
+   * Different ways to import components
+   */
+  imports: string[];
   /**
    * result of path.readFileSync from the `filename` in utf-8
    */
@@ -100,6 +103,7 @@ async function annotateHookDefinition(api: ReactApi) {
   const HOST = 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
+  const fileName = path.parse(api.filename).name;
   const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
   const typesAST = await babel.parseAsync(typesSource, {
     configFile: false,
@@ -114,6 +118,11 @@ async function annotateHookDefinition(api: ReactApi) {
   let end = null;
   traverse(typesAST, {
     ExportDefaultDeclaration(babelPath) {
+      if (api.filename.includes('mui-base')) {
+        // Base UI does not use default exports.
+        return;
+      }
+
       /**
        * export default function Menu() {}
        */
@@ -165,11 +174,78 @@ async function annotateHookDefinition(api: ReactApi) {
         end = start;
       }
     },
+
+    ExportNamedDeclaration(babelPath) {
+      if (!api.filename.includes('mui-base')) {
+        return;
+      }
+
+      let node: babel.Node = babelPath.node;
+
+      if (babel.types.isTSDeclareFunction(node.declaration)) {
+        // export function useHook() in .d.ts
+        if (node.declaration.id?.name !== fileName) {
+          return;
+        }
+      } else if (node.declaration == null) {
+        // export { useHook };
+
+        node.specifiers.forEach((specifier) => {
+          if (specifier.type === 'ExportSpecifier' && specifier.local.name === fileName) {
+            const binding = babelPath.scope.bindings[specifier.local.name];
+
+            if (babel.types.isFunctionDeclaration(binding.path.node)) {
+              // For function declarations the binding is equal to the declaration
+              // /**
+              //  */
+              // function useHook() {}
+              node = binding.path.node;
+            } else {
+              // For variable declarations the binding points to the declarator.
+              // /**
+              //  */
+              // const useHook = () => {}
+              node = binding.path.parentPath!.node;
+            }
+          }
+        });
+      } else if (babel.types.isFunctionDeclaration(node.declaration)) {
+        // export function useHook() in .ts
+        if (node.declaration.id?.name !== fileName) {
+          return;
+        }
+      } else {
+        return;
+      }
+
+      const { leadingComments } = node;
+      const leadingCommentBlocks =
+        leadingComments != null
+          ? leadingComments.filter(({ type }) => type === 'CommentBlock')
+          : null;
+      const jsdocBlock = leadingCommentBlocks != null ? leadingCommentBlocks[0] : null;
+      if (leadingCommentBlocks != null && leadingCommentBlocks.length > 1) {
+        throw new Error(
+          `Should only have a single leading jsdoc block but got ${
+            leadingCommentBlocks.length
+          }:\n${leadingCommentBlocks
+            .map(({ type, value }, index) => `#${index} (${type}): ${value}`)
+            .join('\n')}`,
+        );
+      }
+      if (jsdocBlock?.start != null && jsdocBlock?.end != null) {
+        start = jsdocBlock.start;
+        end = jsdocBlock.end;
+      } else if (node.start != null) {
+        start = node.start - 1;
+        end = start;
+      }
+    },
   });
 
   if (end === null || start === 0) {
     throw new TypeError(
-      "Don't know where to insert the jsdoc block. Probably no `default export` found",
+      `${api.filename}: Don't know where to insert the jsdoc block. Probably no default export found`,
     );
   }
 
@@ -251,8 +327,7 @@ const attachTable = (
           // undefined values are not serialized => saving some bytes
           required: requiredProp || undefined,
           deprecated: !!deprecation || undefined,
-          deprecationInfo:
-            renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
+          deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
         },
       };
     })
@@ -274,7 +349,7 @@ const attachTable = (
 };
 
 const generateTranslationDescription = (description: string) => {
-  return renderMarkdownInline(description.replace(/\n@default.*$/, ''));
+  return renderMarkdown(description.replace(/\n@default.*$/, ''));
 };
 
 const attachTranslations = (reactApi: ReactApi) => {
@@ -292,7 +367,7 @@ const attachTranslations = (reactApi: ReactApi) => {
       const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
       if (deprecation !== null) {
         translations.parametersDescriptions[propName].deprecated =
-          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+          renderMarkdown(deprecation?.groups?.info || '').trim() || undefined;
       }
     }
   });
@@ -305,7 +380,7 @@ const attachTranslations = (reactApi: ReactApi) => {
       const deprecation = (description || '').match(/@deprecated(\s+(?<info>.*))?/);
       if (deprecation !== null) {
         translations.parametersDescriptions[propName].deprecated =
-          renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined;
+          renderMarkdown(deprecation?.groups?.info || '').trim() || undefined;
       }
     }
   });
@@ -343,6 +418,7 @@ const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
     ),
     name: reactApi.name,
     filename: toGitHubPath(reactApi.filename),
+    imports: reactApi.imports,
     demos: `<ul>${reactApi.demos
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
@@ -354,11 +430,15 @@ const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
   );
 };
 
-const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiTranslations = (
+  outputDirectory: string,
+  reactApi: ReactApi,
+  languages: string[],
+) => {
   const hookName = reactApi.name;
   const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(hookName));
   function resolveApiDocsTranslationsComponentLanguagePath(
-    language: (typeof LANGUAGES)[0],
+    language: (typeof languages)[0],
   ): string {
     const languageSuffix = language === 'en' ? '' : `-${language}`;
 
@@ -375,7 +455,7 @@ const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) =>
     JSON.stringify(reactApi.translations),
   );
 
-  LANGUAGES.forEach((language) => {
+  languages.forEach((language) => {
     if (language !== 'en') {
       try {
         writePrettifiedFile(
@@ -423,7 +503,47 @@ const extractInfoFromType = (typeName: string, project: TypeScriptProject): Pars
   return result;
 };
 
-export default async function generateHookApi(hooksInfo: HookInfo, project: TypeScriptProject) {
+/**
+ * Helper to get the import options
+ * @param name The name of the hook
+ * @param filename The filename where its defined (to infer the package)
+ * @returns an array of import command
+ */
+const getHookImports = (name: string, filename: string) => {
+  const githubPath = toGitHubPath(filename);
+  const rootImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/.*/,
+    (match, pkg) => `@mui/${pkg}`,
+  );
+
+  const subdirectoryImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/([^\\/]+)\/.*/,
+    (match, pkg, directory) => `@mui/${pkg}/${directory}`,
+  );
+
+  let namedImportName = name;
+  const defaultImportName = name;
+
+  if (/unstable_/.test(githubPath)) {
+    namedImportName = `unstable_${name} as ${name}`;
+  }
+
+  const useNamedImports = rootImportPath === '@mui/base';
+
+  const subpathImport = useNamedImports
+    ? `import { ${namedImportName} } from '${subdirectoryImportPath}';`
+    : `import ${defaultImportName} from '${subdirectoryImportPath}';`;
+
+  const rootImport = `import { ${namedImportName} } from '${rootImportPath}';`;
+
+  return [subpathImport, rootImport];
+};
+
+export default async function generateHookApi(
+  hooksInfo: HookInfo,
+  project: TypeScriptProject,
+  projectSettings: ProjectSettings,
+) {
   const { filename, name, apiPathname, apiPagesDirectory, getDemos, readFile, skipApiGeneration } =
     hooksInfo;
 
@@ -447,7 +567,7 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
       });
       return node;
     },
-    defaultHandlers.concat(muiDefaultParamsHandler),
+    defaultHandlers,
     { filename },
   );
 
@@ -461,6 +581,7 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
   }
   reactApi.filename = filename;
   reactApi.name = name;
+  reactApi.imports = getHookImports(name, filename);
   reactApi.apiPathname = apiPathname;
   reactApi.EOL = EOL;
   reactApi.demos = getDemos();
@@ -486,7 +607,11 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
+    generateApiTranslations(
+      path.join(process.cwd(), 'docs/translations/api-docs'),
+      reactApi,
+      projectSettings.translationLanguages,
+    );
     generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file

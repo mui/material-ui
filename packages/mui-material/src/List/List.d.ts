@@ -4,49 +4,53 @@ import { Theme } from '..';
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
 import { ListClasses } from './listClasses';
 
-export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
-  props: P & {
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ListClasses>;
-    /**
-     * If `true`, compact vertical padding designed for keyboard and mouse input is used for
-     * the list and list items.
-     * The prop is available to descendant components as the `dense` context.
-     * @default false
-     */
-    dense?: boolean;
-    /**
-     * If `true`, vertical padding is removed from the list.
-     * @default false
-     */
-    disablePadding?: boolean;
-    /**
-     * The content of the subheader, normally `ListSubheader`.
-     */
-    subheader?: React.ReactNode;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
-  defaultComponent: D;
+export interface ListOwnProps {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<ListClasses>;
+  /**
+   * If `true`, compact vertical padding designed for keyboard and mouse input is used for
+   * the list and list items.
+   * The prop is available to descendant components as the `dense` context.
+   * @default false
+   */
+  dense?: boolean;
+  /**
+   * If `true`, vertical padding is removed from the list.
+   * @default false
+   */
+  disablePadding?: boolean;
+  /**
+   * The content of the subheader, normally `ListSubheader`.
+   */
+  subheader?: React.ReactNode;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
+export interface ListTypeMap<AdditionalProps = {}, RootComponent extends React.ElementType = 'ul'> {
+  props: AdditionalProps & ListOwnProps;
+  defaultComponent: RootComponent;
 }
 
 /**
  * utility to create component types that inherit props from List.
  */
-export interface ExtendListTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & ListTypeMap['props'];
-  defaultComponent: M['defaultComponent'];
+export interface ExtendListTypeMap<TypeMap extends OverridableTypeMap> {
+  props: TypeMap['props'] & ListTypeMap['props'];
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
-export type ExtendList<M extends OverridableTypeMap> = OverridableComponent<ExtendListTypeMap<M>>;
+export type ExtendList<TypeMap extends OverridableTypeMap> = OverridableComponent<
+  ExtendListTypeMap<TypeMap>
+>;
 
 /**
  *
@@ -62,8 +66,10 @@ export type ExtendList<M extends OverridableTypeMap> = OverridableComponent<Exte
 declare const List: ExtendList<ListTypeMap>;
 
 export type ListProps<
-  D extends React.ElementType = ListTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ListTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = ListTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<ListTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default List;

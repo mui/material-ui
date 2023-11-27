@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import TabsUnstyled from '@mui/base/Tabs';
-import TabsListUnstyled from '@mui/base/TabsList';
-import TabPanelUnstyled from '@mui/base/TabPanel';
-import TabUnstyled from '@mui/base/Tab';
+import { Tabs as TabsUnstyled } from '@mui/base/Tabs';
+import { TabsList as TabsListUnstyled } from '@mui/base/TabsList';
+import { TabPanel as TabPanelUnstyled } from '@mui/base/TabPanel';
+import { Tab as TabUnstyled } from '@mui/base/Tab';
 import { styled, GlobalStyles } from '@mui/system';
 
 const tabListStyles = `
@@ -136,10 +136,10 @@ export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwin
 }
 BaseTabsDemo.getCode = (styling: 'system' | 'tailwindcss' | 'css') => {
   if (styling === 'system') {
-    return `import TabsUnstyled from '@mui/base/Tabs';
-import TabsListUnstyled from '@mui/base/TabsList';
-import TabPanelUnstyled from '@mui/base/TabPanel';
-import TabUnstyled from '@mui/base/Tab';
+    return `import { TabsUnstyled } from '@mui/base/Tabs';
+import { TabsListUnstyled } from '@mui/base/TabsList';
+import { TabPanelUnstyled } from '@mui/base/TabPanel';
+import { TabUnstyled } from '@mui/base/Tab';
 import { styled } from '@mui/system';
 
 const StyledTabsList = styled('div')\`${tabListStyles}\`;
@@ -167,10 +167,10 @@ const StyledTab = styled('button')\`${tabStyles}\`;
 `;
   }
   if (styling === 'tailwindcss') {
-    return `import TabsUnstyled from '@mui/base/Tabs';
-import TabsListUnstyled from '@mui/base/TabsList';
-import TabPanelUnstyled from '@mui/base/TabPanel';
-import TabUnstyled from '@mui/base/Tab';
+    return `import { TabsUnstyled } from '@mui/base/Tabs';
+import { TabsListUnstyled } from '@mui/base/TabsList';
+import { TabPanelUnstyled } from '@mui/base/TabPanel';
+import { TabUnstyled } from '@mui/base/Tab';
 
 <TabsUnstyled selectionFollowsFocus defaultValue={0}>
   <TabsListUnstyled
@@ -229,10 +229,10 @@ import TabUnstyled from '@mui/base/Tab';
 </TabsUnstyled>`;
   }
   if (styling === 'css') {
-    return `import TabsUnstyled from '@mui/base/Tabs';
-import TabsListUnstyled from '@mui/base/TabsList';
-import TabPanelUnstyled from '@mui/base/TabPanel';
-import TabUnstyled from '@mui/base/Tab';
+    return `import { TabsUnstyled } from '@mui/base/Tabs';
+import { TabsListUnstyled } from '@mui/base/TabsList';
+import { TabPanelUnstyled } from '@mui/base/TabPanel';
+import { TabUnstyled } from '@mui/base/Tab';
 import { styled } from '@mui/system';
 import './styles.css';
 

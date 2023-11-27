@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { Stack } from '@mui/system';
@@ -11,7 +12,8 @@ const highContrastThresholdTheme = createTheme({
   },
 });
 
-function ContrastShowcase({ title }) {
+function ContrastShowcase(props) {
+  const { title } = props;
   const theme = useTheme();
 
   return (
@@ -28,6 +30,10 @@ function ContrastShowcase({ title }) {
     </Stack>
   );
 }
+
+ContrastShowcase.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 
 export default function ContrastThreshold() {
   return (

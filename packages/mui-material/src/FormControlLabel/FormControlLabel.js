@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useFormControl } from '../FormControl';
 import Stack from '../Stack';
 import Typography from '../Typography';
@@ -166,7 +166,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     >
       {React.cloneElement(control, controlProps)}
       {required ? (
-        <Stack direction="row" alignItems="center">
+        <Stack display="block">
           {label}
           <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
             &thinsp;{'*'}

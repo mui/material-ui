@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
+import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import IconButton, { iconButtonClasses as classes } from '@mui/joy/IconButton';
 import { ThemeProvider } from '@mui/joy/styles';
 
@@ -21,20 +21,18 @@ describe('Joy <IconButton />', () => {
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 
-  describeJoyColorInversion(<IconButton />, { muiName: 'JoyIconButton', classes });
-
-  it('by default, should render with the root, variantSolid, sizeMd and colorPrimary classes', () => {
+  it('by default, should render with the root, variantPlain, sizeMd and colorNeutral classes', () => {
     const { getByRole } = render(<IconButton>Hello World</IconButton>);
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
-    expect(button).to.have.class(classes.variantSoft);
+    expect(button).to.have.class(classes.variantPlain);
     expect(button).to.have.class(classes.sizeMd);
-    expect(button).to.have.class(classes.colorPrimary);
+    expect(button).to.have.class(classes.colorNeutral);
 
     // should not have other variant classes
     expect(button).not.to.have.class(classes.variantOutlined);
-    expect(button).not.to.have.class(classes.variantPlain);
+    expect(button).not.to.have.class(classes.variantSoft);
     expect(button).not.to.have.class(classes.variantSolid);
   });
 

@@ -84,7 +84,7 @@ The type of value can be:
 
 ### Vertical group
 
-The Button Group component can be displayed vertically using the `orientation="horizontal"` prop.
+The Button Group component can be displayed vertically using the `orientation="vertical"` prop.
 Note that this prop has no effect on `IconButton` component.
 
 {{"demo": "GroupOrientation.js"}}
@@ -122,14 +122,6 @@ The Button Group component supports arbitrary children that wrap the buttons by 
 {{"demo": "TooltipButtonGroup.js"}}
 
 ## Common examples
-
-### Figma-like button group
-
-Use the CSS variable `--ButtonGroup-connected` to control when border radius of the buttons in-between should be removed.
-
-To create a Figma-like button group where the buttons are connected when users hover on any of the buttons, set the `--ButtonGroup-connected` to `0` and change to `1` on hover.
-
-{{"demo": "FigmaButtonGroup.js"}}
 
 ### Pill button group
 

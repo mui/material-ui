@@ -15,7 +15,7 @@ By the end, you should understand how to:
 
 ## Interactive demo
 
-Here's what the final product looks like—click on the **<>** icon underneath the demo to see the full source code:
+Here's what the final product looks like—click on the "Show code" button underneath the demo to see the full source code:
 
 {{"demo": "LoginFinal.js"}}
 
@@ -87,13 +87,12 @@ To go deeper, read about the `sx` prop in the [MUI System documentation](/system
 
 The [Typography](/joy-ui/react-typography/) component replaces HTML header, paragraph, and span tags to help maintain a consistent hierarchy of text on the page.
 
-:::info
 The `level` prop gives you access to a pre-defined scale of typographic values.
-Joy UI provides 13 typographic levels out of the box:
+Joy UI provides 11 typographic levels out of the box.
 
-`display1 | display2 | h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | body4 | body5`
-
-:::
+- Four heading levels: `'h1' | 'h2' | 'h3' | 'h4'`
+- Three title levels: `'title-lg' | 'title-md' | 'title-sm'`
+- Four body levels: `'body-lg' | 'body-md' | 'body-sm' | 'body-xs'`
 
 Add an import for Typography with the rest of your imports:
 
@@ -108,7 +107,7 @@ Replace `Welcome!` inside your Sheet component with this `<div>`:
   <Typography level="h4" component="h1">
     Welcome!
   </Typography>
-  <Typography level="body2">Sign in to continue.</Typography>
+  <Typography level="body-sm">Sign in to continue.</Typography>
 </div>
 ```
 
@@ -257,4 +256,4 @@ Learn more about [different customization approaches](/joy-ui/customization/appr
 To see some more sophisticated examples of Joy UI in action, check out our [collection of templates](/joy-ui/getting-started/templates/).
 
 Are you migrating from Material UI?
-Learn how to work with [Joy UI and Material UI together in one app](/joy-ui/guides/using-joy-ui-and-material-ui-together/).
+Learn how to work with [Joy UI and Material UI together in one app](/joy-ui/integrations/material-ui/).

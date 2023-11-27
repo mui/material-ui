@@ -19,16 +19,11 @@ function createElementBasePropMixedTest() {
   React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
     component: 'div',
   });
-  // ExpectError: type system should be demanding the required props of "CustomComponent"
-  // @ts-expect-error
-  React.createElement<CardHeaderProps<typeof CustomComponent>>(CardHeader, {
+  // @ts-expect-error required props are missing
+  React.createElement<CardHeaderProps<typeof CustomComponent, ComponentProp>>(CardHeader, {
     component: CustomComponent,
-    stringProp: '2',
-    numberProp: 3,
-    incorrectProp: 3,
   });
-
-  React.createElement<CardHeaderProps<typeof CustomComponent>>(CardHeader, {
+  React.createElement<CardHeaderProps<typeof CustomComponent, ComponentProp>>(CardHeader, {
     component: CustomComponent,
     stringProp: '',
     numberProp: 0,
@@ -36,19 +31,19 @@ function createElementBasePropMixedTest() {
   React.createElement<CardHeaderProps>(CardHeader, {
     disableTypography: true,
   });
-  // @ts-expect-error
+  // @ts-expect-error CardHeader does not accept unknownProp
   React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
     unknownProp: 'shouldNotWork',
   });
-  // @ts-expect-error
+  // @ts-expect-error disableTypography does not accept strings
   React.createElement<CardHeaderProps>(CardHeader, {
     disableTypography: 'hello',
   });
-  // @ts-expect-error
+  // @ts-expect-error disableTypography does not accept numbers
   React.createElement<CardHeaderProps>(CardHeader, {
     disableTypography: 1,
   });
-  // @ts-expect-error
+  // @ts-expect-error `component` is not a valid element
   React.createElement<CardHeaderProps<any, ComponentProp>>(CardHeader, {
     component: 'incorrectElement',
   });

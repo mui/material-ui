@@ -37,12 +37,11 @@ export default function ColorInversionPopup() {
             'primary',
             'neutral',
             'danger',
-            'info',
             'success',
             'warning',
           ];
-          const nextColor = colors.indexOf(color);
-          setColor(colors[nextColor + 1] ?? colors[0]);
+          const nextColorIndex = colors.indexOf(color) + 1;
+          setColor(colors[nextColorIndex] ?? colors[0]);
         }}
       >
         Change the color

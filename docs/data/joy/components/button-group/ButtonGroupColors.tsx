@@ -31,17 +31,6 @@ export default function ButtonGroupColors() {
       <ButtonGroup
         variant={variant}
         size="sm"
-        color="info"
-        aria-label="info button group"
-      >
-        <Button onClick={createOnClick('outlined')}>Outlined</Button>
-        <Button onClick={createOnClick('plain')}>Plain</Button>
-        <Button onClick={createOnClick('soft')}>Soft</Button>
-        <Button onClick={createOnClick('solid')}>Solid</Button>
-      </ButtonGroup>
-      <ButtonGroup
-        variant={variant}
-        size="sm"
         color="danger"
         aria-label="danger button group"
       >

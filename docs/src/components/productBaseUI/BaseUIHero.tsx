@@ -1,15 +1,13 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
-
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-
 // Local imports
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
-import GetStartedButtons2 from 'docs/src/components/home/GetStartedButtons2';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import Link from 'docs/src/modules/components/Link';
 
 const BaseUIThemesDemo = dynamic(() => import('./BaseUIThemesDemo'), {
@@ -55,7 +53,7 @@ export default function BaseUIHero() {
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-core" />{' '}
+            <IconImage width={28} height={28} loading="eager" name="product-core" />{' '}
             <Link href={ROUTES.productCore}>MUI Core</Link>{' '}
             <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
               /
@@ -83,11 +81,11 @@ export default function BaseUIHero() {
             build with using any styling solution you choose—no need to override any default style
             engine or theme.
           </Typography>
-          <GetStartedButtons2
-            getStartedUrl={ROUTES.baseDocs}
-            learnUrl={ROUTES.baseQuickstart}
-            learnLabel="Learn Base UI"
-            installation="npm install @mui/base"
+          <GetStartedButtons
+            primaryUrl={ROUTES.baseDocs}
+            secondaryLabel="Learn Base UI"
+            secondaryUrl={ROUTES.baseQuickstart}
+            altInstallation="npm install @mui/base"
           />
         </Box>
       }

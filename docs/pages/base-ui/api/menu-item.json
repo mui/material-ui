@@ -1,5 +1,6 @@
 {
   "props": {
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "string" } },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
@@ -8,10 +9,14 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     }
   },
   "name": "MenuItem",
+  "imports": [
+    "import { MenuItem } from '@mui/base/MenuItem';",
+    "import { MenuItem } from '@mui/base';"
+  ],
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {

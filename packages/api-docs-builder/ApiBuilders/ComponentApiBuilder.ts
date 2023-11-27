@@ -10,8 +10,8 @@ import remarkVisit from 'unist-util-visit';
 import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
-import { renderInline as renderMarkdownInline } from '@mui/markdown';
-import { LANGUAGES } from 'docs/config';
+import { renderMarkdown } from '@mui/markdown';
+import { ProjectSettings } from '../ProjectSettings';
 import { ComponentInfo, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
@@ -70,6 +70,10 @@ export interface ReactApi extends ReactDocgenApi {
     signature: undefined | { type: string; describedArgs?: string[]; returned?: string };
     additionalInfo?: AdditionalPropsInfo;
   }>;
+  /**
+   * Different ways to import components
+   */
+  imports: string[];
   translations: {
     componentDescription: string;
     propDescriptions: {
@@ -130,6 +134,7 @@ async function annotateComponentDefinition(api: ReactApi) {
   const HOST = 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
+  const fileName = path.parse(api.filename).name;
   const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
   const typesAST = await babel.parseAsync(typesSource, {
     configFile: false,
@@ -144,6 +149,11 @@ async function annotateComponentDefinition(api: ReactApi) {
   let end = null;
   traverse(typesAST, {
     ExportDefaultDeclaration(babelPath) {
+      if (api.filename.includes('mui-base')) {
+        // Base UI does not use default exports.
+        return;
+      }
+
       /**
        * export default function Menu() {}
        */
@@ -195,11 +205,72 @@ async function annotateComponentDefinition(api: ReactApi) {
         end = start;
       }
     },
+
+    ExportNamedDeclaration(babelPath) {
+      if (!api.filename.includes('mui-base')) {
+        return;
+      }
+
+      let node: babel.Node = babelPath.node;
+
+      if (node.declaration == null) {
+        // export { Menu };
+        node.specifiers.forEach((specifier) => {
+          if (specifier.type === 'ExportSpecifier' && specifier.local.name === fileName) {
+            const binding = babelPath.scope.bindings[specifier.local.name];
+
+            if (babel.types.isFunctionDeclaration(binding.path.node)) {
+              // For function declarations the binding is equal to the declaration
+              // /**
+              //  */
+              // function Component() {}
+              node = binding.path.node;
+            } else {
+              // For variable declarations the binding points to the declarator.
+              // /**
+              //  */
+              // const Component = () => {}
+              node = binding.path.parentPath!.node;
+            }
+          }
+        });
+      } else if (babel.types.isFunctionDeclaration(node.declaration)) {
+        // export function Menu() {}
+        if (node.declaration.id?.name === fileName) {
+          node = node.declaration;
+        }
+      } else {
+        return;
+      }
+
+      const { leadingComments } = node;
+      const leadingCommentBlocks =
+        leadingComments != null
+          ? leadingComments.filter(({ type }) => type === 'CommentBlock')
+          : null;
+      const jsdocBlock = leadingCommentBlocks != null ? leadingCommentBlocks[0] : null;
+      if (leadingCommentBlocks != null && leadingCommentBlocks.length > 1) {
+        throw new Error(
+          `Should only have a single leading jsdoc block but got ${
+            leadingCommentBlocks.length
+          }:\n${leadingCommentBlocks
+            .map(({ type, value }, index) => `#${index} (${type}): ${value}`)
+            .join('\n')}`,
+        );
+      }
+      if (jsdocBlock?.start != null && jsdocBlock?.end != null) {
+        start = jsdocBlock.start;
+        end = jsdocBlock.end;
+      } else if (node.start != null) {
+        start = node.start - 1;
+        end = start;
+      }
+    },
   });
 
   if (end === null || start === 0) {
     throw new TypeError(
-      "Don't know where to insert the jsdoc block. Probably no `default export` found",
+      `${api.filename}: Don't know where to insert the jsdoc block. Probably no default export or named export matching the file name was found.`,
     );
   }
 
@@ -262,19 +333,19 @@ function extractClassConditions(descriptions: any) {
 
       if (conditions && conditions[6]) {
         classConditions[className] = {
-          description: renderMarkdownInline(
+          description: renderMarkdown(
             description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
           ),
-          nodeName: renderMarkdownInline(conditions[3]),
-          conditions: renderMarkdownInline(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
+          nodeName: renderMarkdown(conditions[3]),
+          conditions: renderMarkdown(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
         };
       } else if (conditions && conditions[3] && conditions[3] !== 'the root element') {
         classConditions[className] = {
-          description: renderMarkdownInline(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
-          nodeName: renderMarkdownInline(conditions[3]),
+          description: renderMarkdown(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
+          nodeName: renderMarkdown(conditions[3]),
         };
       } else {
-        classConditions[className] = { description: renderMarkdownInline(description) };
+        classConditions[className] = { description: renderMarkdown(description) };
       }
     }
   });
@@ -290,11 +361,15 @@ export function toGitHubPath(filepath: string): string {
   return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }
 
-const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiTranslations = (
+  outputDirectory: string,
+  reactApi: ReactApi,
+  languages: string[],
+) => {
   const componentName = reactApi.name;
   const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(componentName));
   function resolveApiDocsTranslationsComponentLanguagePath(
-    language: (typeof LANGUAGES)[0],
+    language: (typeof languages)[0],
   ): string {
     const languageSuffix = language === 'en' ? '' : `-${language}`;
 
@@ -311,7 +386,7 @@ const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) =>
     JSON.stringify(reactApi.translations),
   );
 
-  LANGUAGES.forEach((language) => {
+  languages.forEach((language) => {
     if (language !== 'en') {
       try {
         writePrettifiedFile(
@@ -351,6 +426,7 @@ const generateApiPage = (
       }),
     ),
     name: reactApi.name,
+    imports: reactApi.imports,
     styles: {
       classes: reactApi.styles.classes,
       globalClasses: _.fromPairs(
@@ -444,16 +520,14 @@ const attachTranslations = (reactApi: ReactApi) => {
       // description = renderMarkdownInline(`${description}`);
 
       const typeDescriptions: { [t: string]: string } = {};
-      [...(signatureArgs ?? []), ...(signatureReturn ? [signatureReturn] : [])].forEach(
-        ({ name, description }) => {
-          typeDescriptions[name] = renderMarkdownInline(description);
-        },
-      );
+      (signatureArgs || []).concat(signatureReturn || []).forEach(({ name, description }) => {
+        typeDescriptions[name] = renderMarkdown(description);
+      });
 
       translations.propDescriptions[propName] = {
-        description: renderMarkdownInline(jsDocText),
+        description: renderMarkdown(jsDocText),
         requiresRef: requiresRef || undefined,
-        deprecated: renderMarkdownInline(deprecated) || undefined,
+        deprecated: renderMarkdown(deprecated) || undefined,
         typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
       };
     }
@@ -484,13 +558,14 @@ const attachTranslations = (reactApi: ReactApi) => {
 
 const attachPropsTable = (reactApi: ReactApi) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
+  type Pair = [string, ReactApi['propsTable'][string]];
   const componentProps: ReactApi['propsTable'] = _.fromPairs(
-    Object.entries(reactApi.props!).map(([propName, propDescriptor]) => {
+    Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
       let prop: DescribeablePropDescriptor | null;
       try {
         prop = createDescribeableProp(propDescriptor, propName);
       } catch (error) {
-        propErrors.push([propName, error as Error]);
+        propErrors.push([`[${reactApi.name}] \`${propName}\``, error as Error]);
         prop = null;
       }
       if (prop === null) {
@@ -540,7 +615,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
         }
       }
 
-      let signature;
+      let signature: ReactApi['propsTable'][string]['signature'];
       if (signatureType !== undefined) {
         signature = {
           type: signatureType,
@@ -560,10 +635,10 @@ const attachPropsTable = (reactApi: ReactApi) => {
           // undefined values are not serialized => saving some bytes
           required: requiredProp || undefined,
           deprecated: !!deprecation || undefined,
-          deprecationInfo:
-            renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
+          deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
           signature,
-          ...(Object.keys(additionalPropsInfo).length === 0 ? {} : { additionalPropsInfo }),
+          additionalInfo:
+            Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
         },
       ];
     }),
@@ -585,6 +660,42 @@ const attachPropsTable = (reactApi: ReactApi) => {
 };
 
 /**
+ * Helper to get the import options
+ * @param name The name of the component
+ * @param filename The filename where its defined (to infer the package)
+ * @returns an array of import command
+ */
+const getComponentImports = (name: string, filename: string) => {
+  const githubPath = toGitHubPath(filename);
+  const rootImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/.*/,
+    (match, pkg) => `@mui/${pkg}`,
+  );
+
+  const subdirectoryImportPath = githubPath.replace(
+    /\/packages\/mui(?:-(.+?))?\/src\/([^\\/]+)\/.*/,
+    (match, pkg, directory) => `@mui/${pkg}/${directory}`,
+  );
+
+  let namedImportName = name;
+  const defaultImportName = name;
+
+  if (/Unstable_/.test(githubPath)) {
+    namedImportName = `Unstable_${name} as ${name}`;
+  }
+
+  const useNamedImports = rootImportPath === '@mui/base';
+
+  const subpathImport = useNamedImports
+    ? `import { ${namedImportName} } from '${subdirectoryImportPath}';`
+    : `import ${defaultImportName} from '${subdirectoryImportPath}';`;
+
+  const rootImport = `import { ${namedImportName} } from '${rootImportPath}';`;
+
+  return [subpathImport, rootImport];
+};
+
+/**
  * - Build react component (specified filename) api by lookup at its definition (.d.ts or ts)
  *   and then generate the API page + json data
  * - Generate the translations
@@ -594,6 +705,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
 export default async function generateComponentApi(
   componentInfo: ComponentInfo,
   project: TypeScriptProject,
+  projectSettings: ProjectSettings,
 ) {
   const {
     filename,
@@ -633,7 +745,7 @@ export default async function generateComponentApi(
 
               definitions.forEach((definition) => {
                 // definition.value.expression is defined when the source is in TypeScript.
-                const expression = definition.value.expression
+                const expression = definition.value?.expression
                   ? definition.get('expression')
                   : definition;
                 if (expression.value?.callee) {
@@ -665,7 +777,9 @@ export default async function generateComponentApi(
       }
     }
   } else {
-    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), { filename });
+    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+      filename,
+    });
   }
 
   // Ignore what we might have generated in `annotateComponentDefinition`
@@ -675,6 +789,7 @@ export default async function generateComponentApi(
   }
   reactApi.filename = filename;
   reactApi.name = name;
+  reactApi.imports = getComponentImports(name, filename);
   reactApi.muiName = muiName;
   reactApi.apiPathname = apiPathname;
   reactApi.EOL = EOL;
@@ -730,7 +845,7 @@ export default async function generateComponentApi(
   attachTranslations(reactApi);
 
   // eslint-disable-next-line no-console
-  console.log('Built API docs for', reactApi.name);
+  console.log('Built API docs for', reactApi.apiPathname);
 
   const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
   const normalizedFilename = reactApi.filename.replace(/\\/g, '/');
@@ -747,7 +862,11 @@ export default async function generateComponentApi(
       translationPagesDirectory = 'docs/translations/api-docs-base';
     }
 
-    generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
+    generateApiTranslations(
+      path.join(process.cwd(), translationPagesDirectory),
+      reactApi,
+      projectSettings.translationLanguages,
+    );
 
     // Once we have the tabs API in all projects, we can make this default
     const generateOnlyJsonFile = normalizedApiPathname.startsWith('/base');

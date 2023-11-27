@@ -31,6 +31,9 @@
       "description": "<code>id</code> attribute of the listbox element. Also used to derive the <code>id</code> attributes of options."
     },
     "listboxOpen": { "description": "Controls the open state of the select&#39;s listbox." },
+    "multiple": {
+      "description": "If <code>true</code>, selecting multiple values is allowed. This affects the type of the <code>value</code>, <code>defaultValue</code>, and <code>onChange</code> props."
+    },
     "name": {
       "description": "Name of the element. For example used by the server to identify the fields in form submits. If the name is provided, the component will render a hidden input element that can be submitted to a server."
     },
@@ -42,6 +45,9 @@
     "placeholder": { "description": "Text to show when there is no selected value." },
     "renderValue": {
       "description": "Function that customizes the rendering of the selected value."
+    },
+    "required": {
+      "description": "If <code>true</code>, the Select cannot be empty when submitting form."
     },
     "size": { "description": "The size of the component." },
     "slots": { "description": "The components used for each slot inside." },
@@ -82,6 +88,9 @@
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the listbox slot"
     },
+    "multiple": {
+      "description": "Class name applied to the root slot if <code>multiple=true</code>"
+    },
     "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
@@ -96,11 +105,6 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>color=\"danger\"</code>"
-    },
-    "colorInfo": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root slot",
-      "conditions": "<code>color=\"info\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",

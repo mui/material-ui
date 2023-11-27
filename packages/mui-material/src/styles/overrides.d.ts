@@ -1,4 +1,5 @@
 import { CSSObject, CSSInterpolation } from '@mui/system';
+import { PopperClassKey } from '@mui/base/Popper';
 import { ComponentsPropsList } from './props';
 import { AccordionActionsClassKey } from '../AccordionActions';
 import { AccordionClassKey } from '../Accordion';
@@ -86,6 +87,7 @@ import { SnackbarContentClassKey } from '../SnackbarContent';
 import { SpeedDialClassKey } from '../SpeedDial';
 import { SpeedDialActionClassKey } from '../SpeedDialAction';
 import { SpeedDialIconClassKey } from '../SpeedDialIcon';
+import { StackClassKey } from '../Stack';
 import { StepButtonClasskey } from '../StepButton';
 import { StepClasskey } from '../Step';
 import { StepConnectorClasskey } from '../StepConnector';
@@ -214,6 +216,7 @@ export interface ComponentNameToClassKey {
   MuiPaginationItem: PaginationItemClassKey;
   MuiPaper: PaperClassKey;
   MuiPopover: PopoverClassKey;
+  MuiPopper: PopperClassKey;
   MuiRadio: RadioClassKey;
   MuiRating: RatingClassKey;
   MuiScopedCssBaseline: ScopedCssBaselineClassKey;
@@ -225,6 +228,7 @@ export interface ComponentNameToClassKey {
   MuiSpeedDial: SpeedDialClassKey;
   MuiSpeedDialAction: SpeedDialActionClassKey;
   MuiSpeedDialIcon: SpeedDialIconClassKey;
+  MuiStack: StackClassKey;
   MuiStep: StepClasskey;
   MuiStepButton: StepButtonClasskey;
   MuiStepConnector: StepConnectorClasskey;

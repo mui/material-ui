@@ -47,11 +47,15 @@ describe('CodeSandbox', () => {
         content: `<!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
     <title>BasicButtons Material Demo</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link
@@ -64,7 +68,7 @@ describe('CodeSandbox', () => {
   </body>
 </html>`,
       },
-      'Demo.js': {
+      'src/Demo.js': {
         content: `import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -80,7 +84,7 @@ export default function BasicButtons() {
 }
 `,
       },
-      'index.js': {
+      'src/index.js': {
         content: `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
@@ -134,11 +138,15 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
         content: `<!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
     <title>BasicButtons Material Demo</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link
@@ -151,7 +159,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </body>
 </html>`,
       },
-      'Demo.tsx': {
+      'src/Demo.tsx': {
         content: `import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -167,7 +175,7 @@ export default function BasicButtons() {
 }
 `,
       },
-      'index.tsx': {
+      'src/index.tsx': {
         content: `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
@@ -237,6 +245,25 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
     });
     expect(result.files['public/index.html'].content).to.contain(
       '<script src="https://cdn.tailwindcss.com"></script>',
+    );
+  });
+
+  it('should generate the correct stylesheet font link in index.html for Material Two Tones icons', () => {
+    const raw = `import * as React from 'react';
+    import Icon from '@mui/material/Icon';
+
+    export default function TwoToneIcons() {
+      return <Icon baseClassName="material-icons-two-tone">add_circle</Icon>;
+    }
+    `;
+
+    const result = CodeSandbox.createReactApp({
+      raw,
+      codeVariant: 'JS',
+    });
+
+    expect(result.files['public/index.html'].content).to.contain(
+      'https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone',
     );
   });
 });

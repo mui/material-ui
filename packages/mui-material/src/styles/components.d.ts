@@ -380,6 +380,7 @@ export interface Components<Theme = unknown> {
   };
   MuiPopper?: {
     defaultProps?: ComponentsProps['MuiPopper'];
+    styleOverrides?: ComponentsOverrides<Theme>['MuiPopper'];
   };
   MuiPopover?: {
     defaultProps?: ComponentsProps['MuiPopover'];
@@ -443,6 +444,7 @@ export interface Components<Theme = unknown> {
   };
   MuiStack?: {
     defaultProps?: ComponentsProps['MuiStack'];
+    styleOverrides?: ComponentsOverrides<Theme>['MuiStack'];
     variants?: ComponentsVariants['MuiStack'];
   };
   MuiStep?: {

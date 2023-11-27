@@ -1,14 +1,21 @@
 import * as React from 'react';
 import Box from '@mui/system/Box';
-import Portal from '@mui/base/Portal';
-import FocusTrap from '@mui/base/FocusTrap';
+import { Portal } from '@mui/base/Portal';
+import { FocusTrap } from '@mui/base/FocusTrap';
 
 export default function PortalFocusTrap() {
   const [open, setOpen] = React.useState(false);
   const [container, setContainer] = React.useState<HTMLElement | null>(null);
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+        '& [tabindex]:focus': { outline: '1px solid green' },
+      }}
+    >
       <button type="button" onClick={() => setOpen(true)}>
         Open
       </button>

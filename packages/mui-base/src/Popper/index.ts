@@ -1,5 +1,5 @@
 'use client';
-export { default } from './Popper';
+export { Popper } from './Popper';
 export type {
   PopperPlacementType,
   PopperTransitionProps,
@@ -11,5 +11,5 @@ export type {
   PopperRootSlotProps,
   PopperRootSlotPropsOverrides,
 } from './Popper.types';
-export { default as popperClasses, getPopperUtilityClass } from './popperClasses';
+export { popperClasses, getPopperUtilityClass } from './popperClasses';
 export type { PopperClassKey, PopperClasses } from './popperClasses';

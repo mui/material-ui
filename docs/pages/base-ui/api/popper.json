@@ -43,12 +43,13 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}",
-      "additionalPropsInfo": { "slotsApi": true }
+      "additionalInfo": { "slotsApi": true }
     },
     "transition": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Popper",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import { Popper } from '@mui/base/Popper';", "import { Popper } from '@mui/base';"],
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": null },
   "spread": true,
   "muiName": "MuiPopper",
   "forwardsRefTo": "HTMLDivElement",

@@ -3,6 +3,7 @@ import {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
+  AutocompleteFreeSoloValueMapping,
   AutocompleteInputChangeReason,
   AutocompleteValue,
   UseAutocompleteProps,
@@ -379,6 +380,7 @@ export interface AutocompleteOwnerState<
   FreeSolo extends boolean | undefined,
 > extends ApplyColorInversion<AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>> {
   focused?: boolean;
+  getOptionLabel: (option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
   hasClearIcon?: boolean;
   hasPopupIcon?: boolean;
   hasOptions?: boolean;

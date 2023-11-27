@@ -33,9 +33,6 @@ export default function LinkColors() {
         <Link href="#colors" variant={variant} color="danger">
           Danger
         </Link>
-        <Link href="#colors" variant={variant} color="info">
-          Info
-        </Link>
         <Link href="#colors" variant={variant} color="success">
           Success
         </Link>
@@ -52,7 +49,7 @@ export default function LinkColors() {
         }}
       >
         <Typography
-          level="body2"
+          level="body-sm"
           fontWeight="xl"
           id="variant-label"
           textColor="text.primary"

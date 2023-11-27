@@ -138,7 +138,7 @@ function useStateChangeDetection<State extends {}>(
  *
  * @ignore - internal hook.
  */
-export default function useControllableReducer<
+export function useControllableReducer<
   State extends {},
   Action extends ControllableReducerAction,
   ActionContext = undefined,

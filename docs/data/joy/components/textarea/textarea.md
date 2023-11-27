@@ -87,7 +87,7 @@ To trigger the focus ring programmatically, set the CSS variable `--Textarea-foc
 {{"demo": "TriggerFocusTextarea.js"}}
 
 :::info
-💡 The focus ring still appear on focus even though you set `--Textarea-focused: 0`.
+The focus ring still appear on focus even though you set `--Textarea-focused: 0`.
 :::
 
 ### Validation
@@ -114,6 +114,12 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons or 
 It's usually more common to see textarea components using decorators at the top and bottom.
 
 {{"demo": "TextareaDecorators.js"}}
+
+### HTML textarea ref
+
+Use the `slotProps.textarea` attribute to pass props to the `ref` and other [supported HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attributes) to the textarea element.
+
+{{"demo": "TextareaRef.js"}}
 
 ## Accessibility
 

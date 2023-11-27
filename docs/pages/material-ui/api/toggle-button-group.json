@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -35,13 +35,25 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
-      "additionalPropsInfo": { "sx": true }
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "any" } }
   },
   "name": "ToggleButtonGroup",
+  "imports": [
+    "import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';",
+    "import { ToggleButtonGroup } from '@mui/material';"
+  ],
   "styles": {
-    "classes": ["root", "vertical", "disabled", "grouped", "groupedHorizontal", "groupedVertical"],
+    "classes": [
+      "root",
+      "vertical",
+      "disabled",
+      "grouped",
+      "groupedHorizontal",
+      "groupedVertical",
+      "fullWidth"
+    ],
     "globalClasses": { "disabled": "Mui-disabled" },
     "name": "MuiToggleButtonGroup"
   },

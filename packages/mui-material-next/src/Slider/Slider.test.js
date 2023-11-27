@@ -2,9 +2,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import {
+  describeConformance,
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+} from '@mui-internal/test-utils';
+import { Slider as BaseSlider } from '@mui/base/Slider';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
-import BaseSlider from '@mui/base/Slider';
 import Slider, { sliderClasses as classes } from '@mui/material-next/Slider';
 
 function createTouches(touches) {

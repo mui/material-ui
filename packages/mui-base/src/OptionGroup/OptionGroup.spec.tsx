@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import OptionGroup, {
+import {
+  OptionGroup,
   OptionGroupLabelSlotProps,
   OptionGroupListSlotProps,
   OptionGroupRootSlotProps,

@@ -18,7 +18,7 @@ import { UseSwitchParameters, UseSwitchReturnValue } from './useSwitch.types';
  *
  * - [useSwitch API](https://mui.com/base-ui/react-switch/hooks-api/#use-switch)
  */
-export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
+export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
   const {
     checked: checkedProp,
     defaultChecked,

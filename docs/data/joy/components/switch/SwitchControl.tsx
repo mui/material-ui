@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
@@ -12,17 +11,17 @@ export default function SwitchControl() {
       orientation="horizontal"
       sx={{ width: 300, justifyContent: 'space-between' }}
     >
-      <Box>
+      <div>
         <FormLabel>Show captions</FormLabel>
         <FormHelperText sx={{ mt: 0 }}>All languages available.</FormHelperText>
-      </Box>
+      </div>
       <Switch
         checked={checked}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
           setChecked(event.target.checked)
         }
         color={checked ? 'success' : 'neutral'}
-        variant="outlined"
+        variant={checked ? 'solid' : 'outlined'}
         endDecorator={checked ? 'On' : 'Off'}
         slotProps={{
           endDecorator: {

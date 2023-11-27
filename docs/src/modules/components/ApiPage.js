@@ -1,24 +1,25 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import AdGuest from 'docs/src/modules/components/AdGuest';
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import ReviewsRoundedIcon from '@mui/icons-material/ReviewsRounded';
+import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import { alpha } from '@mui/material/styles';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-import CSSList from './ApiPage/CSSList';
-import ClassesList from './ApiPage/ClassesList';
-import SlotsList from './ApiPage/SlotsList';
+import BrandingProvider from 'docs/src/BrandingProvider';
+import PropertiesSection, {
+  getPropsToC,
+} from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
+import CSSSection, { getCssToC } from 'docs/src/modules/components/ApiPage/sections/CssSection';
+import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
+import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 
 export function getTranslatedHeader(t, header) {
   const translations = {
@@ -65,40 +66,6 @@ Heading.propTypes = {
   level: PropTypes.string,
 };
 
-function DesignInfo() {
-  return (
-    <Alert
-      severity="info"
-      icon={<ReviewsRoundedIcon fontSize="small" color="primary" sx={{ marginTop: 0.3 }} />}
-      sx={[
-        (theme) => ({
-          mt: 4,
-          padding: '16px 20px',
-          gap: 1,
-          background: alpha(theme.palette.primary[50], 0.5),
-          border: '1px dashed',
-          borderColor: (theme.vars || theme).palette.divider,
-          ...theme.applyDarkStyles({
-            background: alpha(theme.palette.primary[900], 0.2),
-          }),
-        }),
-      ]}
-    >
-      <AlertTitle sx={{ fontWeight: (theme) => theme.typography.fontWeightSemiBold }}>
-        Have any feedback about this new API display design?
-      </AlertTitle>
-      <Typography>
-        We&apos;ve heard from you and iterated on making the design of API content documentation
-        more scalable and easier to parse! We value your input, so please don&apos;t hesitate to
-        share any additional feedback you may have.
-      </Typography>
-      <Button variant="outlined" data-feedback-hash="new-docs-api-feedback">
-        Share feedback
-      </Button>
-    </Alert>
-  );
-}
-
 export default function ApiPage(props) {
   const { descriptions, disableAd = false, pageContent } = props;
   const t = useTranslate();
@@ -127,7 +94,7 @@ export default function ApiPage(props) {
     : '/material-ui/customization/theme-components/#theme-style-overrides';
   let slotGuideLink = '';
   if (isJoyComponent) {
-    slotGuideLink = '/joy-ui/guides/overriding-component-structure/';
+    slotGuideLink = '/joy-ui/customization/overriding-component-structure/';
   } else if (isBaseComponent) {
     slotGuideLink = '/base-ui/guides/overriding-component-structure/';
   }
@@ -140,11 +107,6 @@ export default function ApiPage(props) {
     slotDescriptions,
   } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, pageContent.name);
-
-  const source = filename
-    .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
-    // convert things like `/Table/Table.js` to ``
-    .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
   const apiSourceLocation = filename.replace('.js', '.d.ts');
@@ -172,8 +134,18 @@ export default function ApiPage(props) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    createTocEntry('props'),
-    componentStyles.classes.length > 0 && createTocEntry('css'),
+    getPropsToC({
+      t,
+      componentName: pageContent.name,
+      componentProps,
+      inheritance,
+      themeDefaultProps: pageContent.themeDefaultProps,
+    }),
+    ...getCssToC({
+      t,
+      componentName: pageContent.name,
+      componentStyles,
+    }),
     componentSlots?.length > 0 && createTocEntry('slots'),
     hasClasses && createTocEntry('classes'),
   ].filter(Boolean);
@@ -212,28 +184,61 @@ export default function ApiPage(props) {
     >
       <MarkdownElement>
         <h1>{pageContent.name} API</h1>
-        <Typography
-          variant="h5"
-          component="p"
-          className={`description${disableAd ? '' : ' ad'}`}
-          gutterBottom
-        >
+        <Typography variant="h5" component="p" className="description" gutterBottom>
           {description}
-          {disableAd ? null : <Ad />}
+          {disableAd ? null : (
+            <BrandingProvider>
+              <AdGuest>
+                <Ad />
+              </AdGuest>
+            </BrandingProvider>
+          )}
         </Typography>
         <Heading hash="demos" />
-        <div
-          dangerouslySetInnerHTML={{
-            __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
+        <Alert
+          severity="success"
+          variant="outlined"
+          icon={<VerifiedRoundedIcon sx={{ fontSize: 20 }} />}
+          sx={[
+            (theme) => ({
+              mt: 1.5,
+              pt: 1,
+              px: 2,
+              pb: 0,
+              fontSize: theme.typography.pxToRem(16),
+              backgroundColor: (theme.vars || theme).palette.success[50],
+              borderColor: (theme.vars || theme).palette.success[100],
+              '& * p': {
+                mb: 1,
+              },
+              '& * a': {
+                fontWeight: theme.typography.fontWeightMedium,
+                color: (theme.vars || theme).palette.success[900],
+                textDecorationColor: alpha(theme.palette.success[600], 0.3),
+              },
+              ...theme.applyDarkStyles({
+                '& * a': {
+                  color: (theme.vars || theme).palette.success[100],
+                  textDecorationColor: alpha(theme.palette.success[100], 0.3),
+                },
+                backgroundColor: alpha(theme.palette.success[700], 0.15),
+                borderColor: alpha(theme.palette.success[600], 0.3),
+              }),
+            }),
+          ]}
+        >
+          <span
+            dangerouslySetInnerHTML={{
+              __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
               ${demos}`,
-          }}
-        />
+            }}
+          />
+        </Alert>
         <Heading hash="import" />
         <HighlightedCode
-          code={`
-import ${pageContent.name} from '${source}/${pageContent.name}';
+          code={pageContent.imports.join(`
 // ${t('or')}
-import { ${pageContent.name} } from '${source}';`}
+`)}
           language="jsx"
         />
         <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
@@ -249,9 +254,13 @@ import { ${pageContent.name} } from '${source}';`}
           </React.Fragment>
         ) : null}
 
-        <Heading hash="props" />
-        <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
-        <PropertiesTable properties={componentProps} propertiesDescriptions={propDescriptions} />
+        <PropertiesSection
+          properties={componentProps}
+          propertiesDescriptions={propDescriptions}
+          targetName={pageContent.name}
+          spreadHint={spreadHint}
+        />
+
         {cssComponent && (
           <React.Fragment>
             <span
@@ -263,15 +272,21 @@ import { ${pageContent.name} } from '${source}';`}
             <br />
           </React.Fragment>
         )}
-        <Divider />
+
         <div
           className="MuiCallout-root MuiCallout-info"
           dangerouslySetInnerHTML={{ __html: refHint }}
+          style={{
+            alignItems: 'baseline',
+            gap: '4px',
+            marginTop: 0,
+          }}
         />
+
         {inheritance && (
           <React.Fragment>
             <Heading hash="inheritance" level="h3" />
-            <span
+            <p
               dangerouslySetInnerHTML={{
                 __html: t('api-docs.inheritanceDescription')
                   .replace(/{{component}}/, inheritance.component)
@@ -283,76 +298,45 @@ import { ${pageContent.name} } from '${source}';`}
             <Divider />
           </React.Fragment>
         )}
+
         {pageContent.themeDefaultProps && (
           <React.Fragment>
             <Heading hash="theme-default-props" level="h3" />
-            <span
+            <p
               dangerouslySetInnerHTML={{
                 __html: t('api-docs.themeDefaultPropsDescription')
                   .replace(/{{muiName}}/, pageContent.muiName)
                   .replace(/{{defaultPropsLink}}/, defaultPropsLink),
               }}
             />
-            <Divider />
+            <Divider sx={{ 'hr&&': { mb: 0 } }} />
           </React.Fragment>
         )}
-        {Object.keys(componentStyles.classes).length ? (
-          <React.Fragment>
-            <Heading hash="css" />
-            <p dangerouslySetInnerHTML={{ __html: t('api-docs.cssDescription') }} />
-            <CSSList componentStyles={componentStyles} classDescriptions={classDescriptions} />
-            <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
-            <span
-              dangerouslySetInnerHTML={{
-                __html: t('api-docs.overrideStylesStyledComponent').replace(
-                  /{{styleOverridesLink}}/,
-                  styleOverridesLink,
-                ),
-              }}
-            />
-          </React.Fragment>
-        ) : null}
-        {componentSlots?.length ? (
-          <React.Fragment>
-            <Heading hash="slots" />
-            {slotGuideLink && (
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink),
-                }}
-              />
-            )}
-            <SlotsList componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
-            <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
-            <span
-              dangerouslySetInnerHTML={{
-                __html: t('api-docs.overrideStylesStyledComponent').replace(
-                  /{{styleOverridesLink}}/,
-                  styleOverridesLink,
-                ),
-              }}
-            />
 
-            <Divider />
-          </React.Fragment>
-        ) : null}
-        {hasClasses ? (
-          <React.Fragment>
-            <Heading hash="classes" />
-            <p
-              dangerouslySetInnerHTML={{
-                __html: t('api-docs.classesDescription'),
-              }}
-            />
-            <ClassesList
-              componentClasses={componentClasses}
-              componentName={pageContent.name}
-              classDescriptions={classDescriptions}
-            />
-            <Divider />
-          </React.Fragment>
-        ) : null}
-        <DesignInfo />
+        <CSSSection
+          componentStyles={componentStyles}
+          classDescriptions={classDescriptions}
+          componentName={pageContent.name}
+          spreadHint={t('api-docs.cssDescription')}
+          styleOverridesLink={styleOverridesLink}
+        />
+
+        <SlotsSection
+          componentSlots={componentSlots}
+          slotDescriptions={slotDescriptions}
+          componentName={pageContent.name}
+          spreadHint={
+            slotGuideLink &&
+            t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
+          }
+        />
+
+        <ClassesSection
+          componentClasses={componentClasses}
+          componentName={pageContent.name}
+          classDescriptions={classDescriptions}
+          spreadHint={t('api-docs.classesDescription')}
+        />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 12 6">

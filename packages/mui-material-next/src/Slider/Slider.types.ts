@@ -18,8 +18,11 @@ export interface SliderOwnerState extends SliderProps {
   focusedThumbIndex: number;
 }
 
-export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
-  props: P & {
+export interface SliderTypeMap<
+  DefaultComponent extends React.ElementType = 'span',
+  AdditionalProps = {},
+> {
+  props: AdditionalProps & {
     /**
      * The label of the slider.
      */
@@ -35,7 +38,7 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
     /**
      * The color of the component.
      * It supports both default and custom theme colors, which can be added as shown in the
-     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
      * @default 'primary'
      */
     color?: OverridableStringUnion<'primary' | 'secondary', SliderPropsColorOverrides>;
@@ -219,7 +222,7 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
      */
     valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
   };
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 export type SliderValueLabelProps = NonNullable<SliderTypeMap['props']['slotProps']>['valueLabel'] &
@@ -267,8 +270,8 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
 declare const Slider: OverridableComponent<SliderTypeMap>;
 
 export type SliderProps<
-  D extends React.ElementType = SliderTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<SliderTypeMap<D, P>, D>;
+  RootComponent extends React.ElementType = SliderTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<SliderTypeMap<RootComponent, AdditionalProps>, RootComponent>;
 
 export default Slider;

@@ -4,22 +4,22 @@ import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import { exactProp } from '@mui/utils';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import NoSsr from '@mui/material/NoSsr';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import EditPage from 'docs/src/modules/components/EditPage';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import AdManager from 'docs/src/modules/components/AdManager';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
+import { AD_MARGIN_TOP, AD_HEIGHT, AD_MARGIN_BOTTOM } from 'docs/src/modules/components/Ad';
 
 const TOC_WIDTH = 242;
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
 })(({ disableToc, theme }) => ({
+  minHeight: '100vh',
   display: 'grid',
   width: '100%',
   ...(disableToc
@@ -58,25 +58,26 @@ const StyledAppContainer = styled(AppContainer, {
           maxWidth: '105ch',
         }),
     ...(!disableAd && {
-      ...(!hasTabs && {
-        // Sync with material-ui/docs/src/modules/components/Ad.js container
-        '&& .description': {
-          paddingBottom: `calc(${theme.spacing(4)} + 126px)`,
-          marginBottom: theme.spacing(3),
-        },
-        '&& .description.ad': {
-          paddingBottom: 0,
-          marginBottom: 0,
-        },
-      }),
-      ...(hasTabs && {
-        '&& .component-tabs .MuiTabs-root': {
-          marginBottom: `calc(${theme.spacing(4)} + 126px + 40px)`,
-        },
-        '&& .component-tabs.ad .MuiTabs-root': {
-          marginBottom: 0,
-        },
-      }),
+      ...(hasTabs
+        ? {
+            '&& .component-tabs .MuiTabs-root': {
+              // 40px matches MarkdownElement h2 margin-top.
+              marginBottom: `calc(${theme.spacing(AD_MARGIN_TOP)} + ${AD_HEIGHT}px + 40px)`,
+            },
+            '&& .component-tabs.ad .MuiTabs-root': {
+              marginBottom: 0,
+            },
+          }
+        : {
+            '&& .description': {
+              paddingBottom: `calc(${theme.spacing(AD_MARGIN_TOP)} + ${AD_HEIGHT}px)`,
+              marginBottom: theme.spacing(AD_MARGIN_BOTTOM),
+            },
+            '&& .description.ad': {
+              paddingBottom: 0,
+              marginBottom: 0,
+            },
+          }),
     }),
     [theme.breakpoints.up('lg')]: {
       paddingLeft: '60px',
@@ -84,15 +85,6 @@ const StyledAppContainer = styled(AppContainer, {
     },
   };
 });
-
-const ActionsDiv = styled('div')(({ theme }) => ({
-  display: 'flex',
-  marginTop: -10,
-  marginBottom: -15,
-  [theme.breakpoints.up('lg')]: {
-    justifyContent: 'flex-end',
-  },
-}));
 
 export default function AppLayoutDocs(props) {
   const router = useRouter();
@@ -156,13 +148,8 @@ export default function AppLayoutDocs(props) {
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
           <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs} disableToc={disableToc}>
-            <ActionsDiv>
-              <EditPage sourceLocation={location} />
-            </ActionsDiv>
             {children}
-            <NoSsr>
-              <AppLayoutDocsFooter tableOfContents={toc} />
-            </NoSsr>
+            <AppLayoutDocsFooter tableOfContents={toc} location={location} />
           </StyledAppContainer>
           {disableToc ? null : <AppTableOfContents toc={toc} />}
         </Main>

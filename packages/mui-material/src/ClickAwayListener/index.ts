@@ -1,2 +1,4 @@
-export { default } from '@mui/base/ClickAwayListener';
-export * from '@mui/base/ClickAwayListener';
+export {
+  ClickAwayListener as default,
+  type ClickAwayListenerProps,
+} from '@mui/base/ClickAwayListener';

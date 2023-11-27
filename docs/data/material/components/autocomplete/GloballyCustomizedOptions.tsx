@@ -26,7 +26,7 @@ const customTheme = (outerTheme: Theme) =>
               component="li"
               {...props}
             >
-              {ownerState.getOptionLabel?.(option)}
+              {ownerState.getOptionLabel(option)}
             </Box>
           ),
         },
@@ -458,7 +458,7 @@ const countries: readonly CountryType[] = [
   { code: 'TV', label: 'Tuvalu', phone: '688' },
   {
     code: 'TW',
-    label: 'Taiwan, Republic of China',
+    label: 'Taiwan',
     phone: '886',
   },
   {

@@ -50,30 +50,40 @@
       "nodeName": "the root element",
       "conditions": "<code>level=\"h4\"</code>"
     },
-    "h5": {
+    "title-lg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"h5\"</code>"
+      "conditions": "<code>level=\"title-lg\"</code>"
     },
-    "h6": {
+    "title-md": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"h6\"</code>"
+      "conditions": "<code>level=\"title-md\"</code>"
     },
-    "body1": {
+    "title-sm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"body1\"</code>"
+      "conditions": "<code>level=\"title-sm\"</code>"
     },
-    "body2": {
+    "body-lg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"body2\"</code>"
+      "conditions": "<code>level=\"body-lg\"</code>"
     },
-    "body3": {
+    "body-md": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>level=\"body3\"</code>"
+      "conditions": "<code>level=\"body-md\"</code>"
+    },
+    "body-sm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"body-sm\"</code>"
+    },
+    "body-xs": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"body-xs\"</code>"
     },
     "noWrap": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -101,11 +111,6 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"danger\"</code>"
-    },
-    "colorInfo": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"info\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",

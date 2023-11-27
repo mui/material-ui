@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import Select, { SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
-import useOption, { SelectOption } from '@mui/base/useOption';
-import Option, { OptionProps, optionClasses } from '@mui/base/Option';
-import OptionGroup from '@mui/base/OptionGroup';
 import {
   createMount,
   createRenderer,
@@ -13,14 +9,18 @@ import {
   userEvent,
   act,
   screen,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
+import { Select, SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
+import { SelectOption } from '@mui/base/useOption';
+import { Option, OptionProps, OptionRootSlotProps, optionClasses } from '@mui/base/Option';
+import { OptionGroup } from '@mui/base/OptionGroup';
 
 describe('<Select />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
   const componentToTest = (
-    <Select defaultListboxOpen slotProps={{ popper: { disablePortal: true } }}>
+    <Select defaultListboxOpen defaultValue={1} slotProps={{ popper: { disablePortal: true } }}>
       <OptionGroup label="Group">
         <Option value={1}>1</Option>
       </OptionGroup>
@@ -77,7 +77,7 @@ describe('<Select />', () => {
         const select = getByRole('combobox');
         act(() => {
           select.focus();
-          select.click();
+          fireEvent.mouseDown(select);
         });
 
         const listbox = getByRole('listbox');
@@ -121,7 +121,7 @@ describe('<Select />', () => {
           const select = getByRole('combobox');
           act(() => {
             select.focus();
-            select.click();
+            fireEvent.mouseDown(select);
           });
 
           userEvent.keyPress(select, { key: 'ArrowDown' }); // highlights '2'
@@ -523,7 +523,7 @@ describe('<Select />', () => {
         const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
           event.preventDefault();
           const formData = new FormData(event.currentTarget);
-          expect(formData.get('test-select')).to.equal('2,3');
+          expect(formData.get('test-select')).to.equal('[2,3]');
         };
 
         const { getByText } = render(
@@ -801,6 +801,19 @@ describe('<Select />', () => {
     });
   });
 
+  describe('prop: placeholder', () => {
+    it('renders when no value is selected ', () => {
+      const { getByRole } = render(
+        <Select placeholder="Placeholder text">
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('Placeholder text');
+    });
+  });
+
   describe('prop: renderValue', () => {
     it('renders the selected value using the renderValue prop', () => {
       const { getByRole } = render(
@@ -822,6 +835,20 @@ describe('<Select />', () => {
       );
 
       expect(getByRole('combobox')).to.have.text('One');
+    });
+
+    it('renders a zero-width space when there is no selected value nor placeholder and renderValue is not provided', () => {
+      const { getByRole } = render(
+        <Select>
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      const select = getByRole('combobox');
+      const zws = select.querySelector('.notranslate');
+
+      expect(zws).not.to.equal(null);
     });
 
     it('renders the selected values (multiple) using the renderValue prop', () => {
@@ -900,7 +927,7 @@ describe('<Select />', () => {
 
       const select = screen.getByRole('combobox');
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       expect(select).to.have.attribute('aria-expanded', 'true');
@@ -916,7 +943,7 @@ describe('<Select />', () => {
       const select = screen.getByRole('combobox');
 
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       const listbox = screen.getByRole('listbox');
@@ -956,7 +983,7 @@ describe('<Select />', () => {
 
       const select = getByRole('combobox');
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       expect(select).to.have.attribute('aria-expanded', 'true');
@@ -971,11 +998,11 @@ describe('<Select />', () => {
 
       const select = getByRole('combobox');
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       expect(select).to.have.attribute('aria-expanded', 'false');
@@ -998,7 +1025,7 @@ describe('<Select />', () => {
 
       act(() => {
         select.focus();
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       const listbox = getByRole('listbox');
@@ -1058,7 +1085,7 @@ describe('<Select />', () => {
     });
 
     it('does not steal focus from other elements on page when it is open on mount', () => {
-      const { getByRole } = render(
+      const { getAllByRole } = render(
         <div>
           <input autoFocus />
           <Select defaultListboxOpen>
@@ -1068,7 +1095,7 @@ describe('<Select />', () => {
         </div>,
       );
 
-      const input = getByRole('textbox');
+      const input = getAllByRole('textbox')[0];
       expect(document.activeElement).to.equal(input);
     });
 
@@ -1107,7 +1134,7 @@ describe('<Select />', () => {
       const select = getByRole('combobox');
 
       act(() => {
-        select.click();
+        fireEvent.mouseDown(select);
       });
 
       const listbox = getByRole('listbox');
@@ -1177,33 +1204,45 @@ describe('<Select />', () => {
     const renderOption3Spy = spy();
     const renderOption4Spy = spy();
 
-    function CustomOption(props: OptionProps<number> & { renderSpy?: () => void }) {
-      const { renderSpy, value } = props;
-      renderSpy?.();
-
-      const { getRootProps } = useOption({
-        value,
-        label: value.toString(),
-        disabled: false,
-      });
-
-      return <li {...getRootProps} />;
-    }
+    const LoggingRoot = React.forwardRef(function LoggingRoot(
+      props: OptionRootSlotProps<number> & { renderSpy: () => void },
+      ref: React.ForwardedRef<HTMLLIElement>,
+    ) {
+      const { renderSpy, ownerState, ...other } = props;
+      renderSpy();
+      return <li {...other} ref={ref} />;
+    });
 
     const { getByRole } = render(
       <Select>
-        <CustomOption renderSpy={renderOption1Spy} value={1}>
+        <Option
+          slots={{ root: LoggingRoot }}
+          slotProps={{ root: { renderSpy: renderOption1Spy } as any }}
+          value={1}
+        >
           1
-        </CustomOption>
-        <CustomOption renderSpy={renderOption2Spy} value={2}>
+        </Option>
+        <Option
+          slots={{ root: LoggingRoot }}
+          slotProps={{ root: { renderSpy: renderOption2Spy } as any }}
+          value={2}
+        >
           2
-        </CustomOption>
-        <CustomOption renderSpy={renderOption3Spy} value={3}>
+        </Option>
+        <Option
+          slots={{ root: LoggingRoot }}
+          slotProps={{ root: { renderSpy: renderOption3Spy } as any }}
+          value={3}
+        >
           3
-        </CustomOption>
-        <CustomOption renderSpy={renderOption4Spy} value={4}>
+        </Option>
+        <Option
+          slots={{ root: LoggingRoot }}
+          slotProps={{ root: { renderSpy: renderOption4Spy } as any }}
+          value={4}
+        >
           4
-        </CustomOption>
+        </Option>
       </Select>,
     );
 
@@ -1215,7 +1254,7 @@ describe('<Select />', () => {
     const select = getByRole('combobox');
     act(() => {
       select.focus();
-      select.click(); // opens and highlights '1'
+      fireEvent.mouseDown(select); // opens and highlights '1'
     });
 
     // React renders twice in strict mode, so we expect twice the number of spy calls
@@ -1233,5 +1272,84 @@ describe('<Select />', () => {
     // so they don't need to rerender:
     expect(renderOption3Spy.callCount).to.equal(0);
     expect(renderOption4Spy.callCount).to.equal(0);
+  });
+
+  describe('browser autofill', () => {
+    it('sets value and calls external onChange when browser autofills', () => {
+      const onChangeHandler = spy();
+      const { container } = render(
+        <Select onChange={onChangeHandler} defaultValue="germany" autoComplete="country">
+          <Option value="france">France</Option>
+          <Option value="germany">Germany</Option>
+          <Option value="china">China</Option>
+        </Select>,
+      );
+
+      const hiddenInput = container.querySelector('[autocomplete="country"]');
+
+      expect(hiddenInput).not.to.eq(null);
+      expect(hiddenInput).to.have.value('germany');
+
+      fireEvent.change(hiddenInput!, {
+        target: {
+          value: 'france',
+        },
+      });
+
+      expect(onChangeHandler.calledOnce).to.equal(true);
+      expect(onChangeHandler.firstCall.args[1]).to.equal('france');
+      expect(hiddenInput).to.have.value('france');
+    });
+
+    it('does not set value when browser autofills invalid value', () => {
+      const onChangeHandler = spy();
+      const { container } = render(
+        <Select onChange={onChangeHandler} defaultValue="germany" autoComplete="country">
+          <Option value="france">France</Option>
+          <Option value="germany">Germany</Option>
+          <Option value="china">China</Option>
+        </Select>,
+      );
+
+      const hiddenInput = container.querySelector('[autocomplete="country"]');
+
+      expect(hiddenInput).not.to.eq(null);
+      expect(hiddenInput).to.have.value('germany');
+
+      fireEvent.change(hiddenInput!, {
+        target: {
+          value: 'portugal',
+        },
+      });
+
+      expect(onChangeHandler.called).to.equal(false);
+      expect(hiddenInput).to.have.value('germany');
+    });
+
+    it('clears value and calls external onChange when browser clears autofill', () => {
+      const onChangeHandler = spy();
+      const { container } = render(
+        <Select onChange={onChangeHandler} defaultValue="germany" autoComplete="country">
+          <Option value="france">France</Option>
+          <Option value="germany">Germany</Option>
+          <Option value="china">China</Option>
+        </Select>,
+      );
+
+      const hiddenInput = container.querySelector('[autocomplete="country"]');
+
+      expect(hiddenInput).not.to.eq(null);
+      expect(hiddenInput).to.have.value('germany');
+
+      fireEvent.change(hiddenInput!, {
+        target: {
+          value: '',
+        },
+      });
+
+      expect(onChangeHandler.calledOnce).to.equal(true);
+      expect(onChangeHandler.firstCall.args[1]).to.equal(null);
+      expect(hiddenInput).to.have.value('');
+    });
   });
 });

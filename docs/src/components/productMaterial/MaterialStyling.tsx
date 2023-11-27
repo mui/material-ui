@@ -2,25 +2,26 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
+import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const code = `
 <Card
   variant="outlined"
   sx={{
-    display: 'flex',
     p: 1,
+    boxShadow: '0 1px 3px rgba(0, 127, 255, 0.1)',
+    display: 'flex',
     flexDirection: {
       xs: 'column', // mobile
       sm: 'row', // tablet and up
@@ -41,35 +42,40 @@ const code = `
     }}
   />
   <Box sx={{ alignSelf: 'center', ml: 2 }}>
-    <Typography variant="body2" color="text.secondary">
+    <Typography variant="body2" color="text.secondary" fontWeight="medium">
       123 Main St, Phoenix, AZ
     </Typography>
-    <Typography component="div" fontWeight="bold">
+    <Typography fontWeight="bold" noWrap>
       $280k - $310k
     </Typography>
     <Box
-      sx={{
-        ml: -1,
-        mt: 0.75,
-        px: 1,
-        py: 0.5,
-        borderRadius: 1,
-        display: 'flex',
+      sx={(theme) => ({
+        mt: 1,
+        py: 0.4,
+        pl: 0.5,
+        pr: 1,
         typography: 'caption',
-        bgcolor: (theme) =>
-          theme.palette.mode === 'dark' ? 'primary.900' : 'primary.50',
-        color: (theme) =>
-          theme.palette.mode === 'dark' ? '#fff' : 'primary.700',
-      }}
+        borderRadius: 10,
+        display: 'flex',
+        bgcolor: 'primary.50',
+        border: '1px solid',
+        borderColor: 'primary.100',
+        color: 'primary.700',
+        ...theme.applyDarkStyles({
+          bgcolor: 'primaryDark.700',
+          color: 'primary.200',
+          borderColor: 'primary.900',
+        }),
+      })}
     >
       <InfoRounded sx={{ fontSize: 16, mr: 0.5, mt: '1px' }} />
-      Confidence score of 85%
+      Confidence score: 85%
     </Box>
   </Box>
 </Card>`;
 
-const startLine = [32, 25, 5];
-const endLine = [44, 30, 8];
+const startLine = [34, 25, 6];
+const endLine = [48, 30, 8];
 const scrollTo = [540, 320, 0];
 
 export const useResizeHandle = (
@@ -165,7 +171,7 @@ export default function MaterialStyling() {
     <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
+          <Box sx={{ maxWidth: 500 }}>
             <SectionHeadline
               overline="Styling"
               title={
@@ -215,8 +221,8 @@ export default function MaterialStyling() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   position: 'relative',
-                  p: 5,
-                  pr: 3,
+                  p: { xs: 2, sm: 5 },
+                  pr: { xs: 2, sm: 3 },
                   minHeight: index === 2 ? 280 : 'initial',
                   backgroundColor: 'transparent',
                 }}
@@ -254,12 +260,12 @@ export default function MaterialStyling() {
                       sx={(theme) => ({
                         pointerEvents: 'none',
                         width: '1px',
-                        bgcolor: 'grey.400',
+                        bgcolor: 'grey.200',
                         position: 'absolute',
-                        left: 345,
+                        left: 375,
                         height: '100%',
                         ...theme.applyDarkStyles({
-                          bgcolor: 'primaryDark.500',
+                          bgcolor: 'primaryDark.600',
                         }),
                       })}
                     >
@@ -268,13 +274,17 @@ export default function MaterialStyling() {
                           position: 'absolute',
                           bottom: 5,
                           typography: 'caption',
+                          fontFamily: 'code',
                           left: -30,
                           color: 'text.secondary',
                           borderRadius: '4px',
-                          bgcolor: 'grey.200',
+                          bgcolor: 'grey.50',
+                          border: '1px solid',
+                          borderColor: 'grey.200',
                           px: 0.5,
                           ...theme.applyDarkStyles({
-                            bgcolor: 'grey.800',
+                            bgcolor: 'primaryDark.700',
+                            borderColor: 'primaryDark.600',
                           }),
                         })}
                       >
@@ -285,13 +295,17 @@ export default function MaterialStyling() {
                           position: 'absolute',
                           bottom: 5,
                           typography: 'caption',
+                          fontFamily: 'code',
                           left: 7,
                           color: 'text.secondary',
                           borderRadius: '4px',
-                          bgcolor: 'grey.200',
+                          bgcolor: 'grey.50',
+                          border: '1px solid',
+                          borderColor: 'grey.200',
                           px: 0.5,
                           ...theme.applyDarkStyles({
-                            bgcolor: 'grey.800',
+                            bgcolor: 'primaryDark.700',
+                            borderColor: 'primaryDark.600',
                           }),
                         })}
                       >

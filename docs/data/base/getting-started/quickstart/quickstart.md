@@ -21,7 +21,7 @@ yarn add @mui/base
 ```
 
 ```bash pnpm
-pnpm install @mui/base
+pnpm add @mui/base
 ```
 
 </codeblock>
@@ -41,7 +41,7 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ## Implementing a Button
 
-This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style/design/) as a reference.
+This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style/components/button) as a reference.
 
 {{"demo": "Tutorial.js", "defaultCodeOpen": false, "hideToolbar": true}}
 
@@ -56,7 +56,7 @@ The code snippets below demonstrate the basic implementation of each:
 
 ```tsx
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 
 export default function App() {
   return <Button>Click Me</Button>;
@@ -67,7 +67,7 @@ export default function App() {
 
 ```tsx
 import * as React from 'react';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 
 export default function App() {
   const { getRootProps } = useButton();
@@ -134,7 +134,7 @@ The demo below shows how to build the Primer button using Tailwind CSS:
 
 ### Styling with MUI System
 
-[MUI System](/system/getting-started/) is a small set of CSS utilties that provide a styled-components-like API for building out designs that adhere to a theme.
+[MUI System](/system/getting-started/) is a small set of CSS utilities that provide a styled-components-like API for building out designs that adhere to a theme.
 
 MUI System's core utility is a [`styled` function](/system/styled/) that's equivalent to the `styled()` function in emotion and styled-components.
 Interpolations or arguments that are functions called by `styled` receive the `theme` from an upper `ThemeProvider`.
@@ -143,25 +143,30 @@ Interpolations or arguments that are functions called by `styled` receive the `t
 import * as React from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { styled } from '@mui/system';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 
 const theme = {
-  colors: {
+  palette: {
     primary: 'green',
+    text: '#fff',
   },
 };
 
 const GitHubButton = styled(Button)(
   ({ theme }) => `
-    background-color: ${theme.colors.primary /* => 'green' */};
+    background-color: ${theme.palette.primary /* => 'green' */};
+    ${/* ... the rest of the styles */}
   `,
 );
 
-render(
-  <ThemeProvider theme={theme}>
-    <GitHubButton>Create Repository</GitHubButton>
-  </ThemeProvider>,
-);
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <GitHubButton>Create Repository</GitHubButton>
+    </ThemeProvider>
+  );
+}
+
 ```
 
 Most of the demos in the Base UI docs are styled with MUI System in this way.
@@ -173,7 +178,7 @@ The demos below show how to create the Primer button using MUI System:
 
 ```tsx
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import { Button } from '@mui/base/Button';
 import { styled } from '@mui/system';
 
 const GitHubButton = styled(Button)(
@@ -194,7 +199,7 @@ export default function App() {
 
 ```tsx
 import * as React from 'react';
-import useButton from '@mui/base/useButton';
+import { useButton } from '@mui/base/useButton';
 import { styled } from '@mui/system';
 
 const GitHubButton = styled('button')(

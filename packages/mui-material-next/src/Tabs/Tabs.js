@@ -11,7 +11,7 @@ import {
   unstable_ownerWindow as ownerWindow,
 } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useTabs, { TabsProvider } from '@mui/base/useTabs';
+import { useTabs, TabsProvider } from '@mui/base/useTabs';
 import { styled, useThemeProps, useTheme } from '@mui/material/styles';
 import animate from '@mui/material/internal/animate';
 import TabScrollButton from '../TabScrollButton';
@@ -146,10 +146,7 @@ const TabsIndicator = styled('span', {
   }),
 }));
 
-const TabsScrollbarSize = styled(ScrollbarSize, {
-  name: 'MuiTabs',
-  slot: 'ScrollbarSize',
-})({
+const TabsScrollbarSize = styled(ScrollbarSize)({
   overflowX: 'auto',
   overflowY: 'hidden',
   // Hide dimensionless scrollbar on macOS
@@ -199,11 +196,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
   const size = vertical ? 'height' : 'width';
 
-  const { contextValue: tabsContextValue } = useTabs({
-    ...props,
-    direction: theme.direction ?? 'ltr',
-  });
-
   const ownerState = {
     ...props,
     component,
@@ -222,6 +214,11 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     centered: centered && !scrollable,
     scrollButtonsHideMobile: !allowScrollButtonsMobile,
   };
+
+  const { contextValue: tabsContextValue } = useTabs({
+    ...ownerState,
+    direction: theme.direction ?? 'ltr',
+  });
 
   const classes = useUtilityClasses(ownerState);
 

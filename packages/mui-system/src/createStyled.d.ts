@@ -24,16 +24,16 @@ export interface MuiStyledOptions {
   skipSx?: boolean;
 }
 
-export type CreateMUIStyled<T extends object = DefaultTheme> = CreateMUIStyledStyledEngine<
-  MUIStyledCommonProps<T>,
+export type CreateMUIStyled<Theme extends object = DefaultTheme> = CreateMUIStyledStyledEngine<
+  MUIStyledCommonProps<Theme>,
   MuiStyledOptions,
-  T
+  Theme
 >;
 
-export default function createStyled<T extends object = DefaultTheme>(options?: {
+export default function createStyled<Theme extends object = DefaultTheme>(options?: {
   themeId?: string;
-  defaultTheme?: T;
+  defaultTheme?: Theme;
   rootShouldForwardProp?: (prop: PropertyKey) => boolean;
   slotShouldForwardProp?: (prop: PropertyKey) => boolean;
   styleFunctionSx?: typeof styleFunctionSx;
-}): CreateMUIStyled<T>;
+}): CreateMUIStyled<Theme>;

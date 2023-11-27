@@ -189,14 +189,17 @@ export interface GridOwnerState extends GridBaseProps {
   gridOffset: Partial<Record<Breakpoint, GridSize>>;
 }
 
-export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & GridBaseProps & { sx?: SxProps<Theme> } & SystemProps<Theme>;
-  defaultComponent: D;
+export interface GridTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & GridBaseProps & { sx?: SxProps<Theme> } & SystemProps<Theme>;
+  defaultComponent: DefaultComponent;
 }
 
 export type GridProps<
-  D extends React.ElementType = GridTypeMap['defaultComponent'],
-  P = {
+  RootComponent extends React.ElementType = GridTypeMap['defaultComponent'],
+  AdditionalProps = {
     component?: React.ElementType;
   },
-> = OverrideProps<GridTypeMap<P, D>, D>;
+> = OverrideProps<GridTypeMap<AdditionalProps, RootComponent>, RootComponent>;

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import Tabs from '@mui/base/Tabs';
-import TabsList from '@mui/base/TabsList';
-import TabPanel from '@mui/base/TabPanel';
-import Tab, { tabClasses } from '@mui/base/Tab';
+import { Tabs } from '@mui/base/Tabs';
+import { TabsList } from '@mui/base/TabsList';
+import { TabPanel } from '@mui/base/TabPanel';
+import { Tab, tabClasses } from '@mui/base/Tab';
 
 const blue = {
   50: '#F0F7FF',

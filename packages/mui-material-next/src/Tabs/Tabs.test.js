@@ -8,11 +8,11 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
-import Tab from '@mui/material-next/Tab';
-import Tabs, { tabsClasses as classes } from '@mui/material-next/Tabs';
+} from '@mui-internal/test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import Tab from '@mui/material-next/Tab';
+import Tabs, { tabsClasses as classes } from '@mui/material-next/Tabs';
 
 function findScrollButton(container, direction) {
   return container.querySelector(`svg[data-testid="KeyboardArrow${capitalize(direction)}Icon"]`);

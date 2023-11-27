@@ -151,8 +151,8 @@ export default function HeaderNavBar() {
   const [subMenuOpen, setSubMenuOpen] = React.useState<null | 'products' | 'docs'>(null);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
   const navRef = React.useRef<HTMLUListElement | null>(null);
-  const productsMenuRef = React.useRef<HTMLButtonElement | null>(null);
-  const docsMenuRef = React.useRef<HTMLButtonElement | null>(null);
+  const productsMenuRef = React.useRef<HTMLButtonElement>(null);
+  const docsMenuRef = React.useRef<HTMLButtonElement>(null);
   React.useEffect(() => {
     if (typeof subMenuIndex === 'number') {
       document.getElementById(PRODUCT_IDS[subMenuIndex])?.focus();
