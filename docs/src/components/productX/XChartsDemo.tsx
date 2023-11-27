@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { BarChart } from '@mui/x-charts/BarChart';
-import { mangoFusionPalette } from '@mui/x-charts';
+import { blueberryTwilightPaletteLight } from '@mui/x-charts';
 import Frame from 'docs/src/components/action/Frame';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
@@ -18,7 +18,7 @@ const code = `
   height={250}
   xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
   margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
-  colors={mangoFusionPalette}
+  colors={blueberryTwilightPaletteLight}
   sx={{
     '& .MuiMarkElement-root': { display: 'none' },
     '& .MuiMarkElement-root.MuiMarkElement-highlighted': { display: 'block' },
@@ -53,7 +53,7 @@ export default function XChartsDemo() {
               height={250}
               xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
               margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
-              colors={mangoFusionPalette}
+              colors={blueberryTwilightPaletteLight}
             />
           </Box>
         </Paper>
