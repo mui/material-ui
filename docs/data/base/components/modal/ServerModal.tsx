@@ -58,7 +58,7 @@ const Modal = styled(BaseModal)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0 0 0 / 0.4);
 
   &.MuiModal-hidden {
     visibility: hidden;
