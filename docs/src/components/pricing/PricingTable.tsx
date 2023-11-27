@@ -589,7 +589,9 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': <ColumnHead label="Zoom on mouse" />,
   'charts/export': <ColumnHead label="Export" />,
   // -- charts - datagrid --
-  'charts/cell-with-charts': <ColumnHead label="Cell with chart" />,
+  'charts/cell-with-charts': (
+    <ColumnHead label="Cell with chart" href="/x/react-data-grid/custom-columns/#sparkline" />
+  ),
   'charts/filter-interaction': <ColumnHead label="Row filtering" />,
   'charts/selection-interaction': <ColumnHead label="Range selection" />,
 
@@ -767,7 +769,7 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': no,
   'charts/export': no,
   // -- charts - datagrid --
-  'charts/cell-with-charts': pending,
+  'charts/cell-with-charts': yes,
   'charts/filter-interaction': no,
   'charts/selection-interaction': no,
 
@@ -863,7 +865,7 @@ const proData: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': pending,
   'charts/export': pending,
   // -- charts - datagrid --
-  'charts/cell-with-charts': pending,
+  'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': no,
 
@@ -964,7 +966,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': pending,
   'charts/export': pending,
   // -- charts - datagrid --
-  'charts/cell-with-charts': pending,
+  'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': pending,
 
