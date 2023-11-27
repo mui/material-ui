@@ -396,7 +396,6 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
 
   const rootRef = React.useRef<HTMLElement>(null);
   const buttonRef = React.useRef<HTMLElement>(null);
-  const listboxRef = React.useRef<HTMLElement>(null);
 
   const handleRef = useForkRef(ref, rootRef);
 
@@ -520,7 +519,6 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
 
   const [SlotListbox, listboxProps] = useSlot('listbox', {
     additionalProps: {
-      ref: listboxRef,
       anchorEl,
       open: listboxOpen,
       placement: 'bottom' as const,
