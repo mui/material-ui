@@ -307,7 +307,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   } = useList(useListParameters);
 
   // store the initial open state to prevent focus stealing
-  // (the first option gets focused only when the menu is opened by the user)
+  // (the first option gets focused only when the select is opened by the user)
   const isInitiallyOpen = React.useRef(open);
 
   useEnhancedEffect(() => {
