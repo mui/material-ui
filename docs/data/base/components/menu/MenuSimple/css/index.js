@@ -84,7 +84,7 @@ function Styles() {
   return (
     <style>{`
     .CustomMenuSimple--listbox {
-      font-family: IBM Plex Sans, sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 0.875rem;
       box-sizing: border-box;
       padding: 6px;
@@ -129,7 +129,7 @@ function Styles() {
     }
 
     .TriggerButtonSimple {
-      font-family: IBM Plex Sans, sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-weight: 600;
       font-size: 0.875rem;
       line-height: 1.5;
@@ -142,16 +142,16 @@ function Styles() {
       border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
       color: ${isDarkMode ? grey[200] : grey[900]};
       box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    
+
       &:hover {
         background: ${isDarkMode ? grey[800] : grey[50]};
         border-color: ${isDarkMode ? grey[600] : grey[300]};
       }
-    
+
       &:active {
         background: ${isDarkMode ? grey[700] : grey[100]};
       }
-    
+
       &:focus-visible {
         box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
         outline: none;
