@@ -24,6 +24,7 @@ import PageContext from 'docs/src/modules/components/PageContext';
 const SearchButton = styled('button')(({ theme }) => [
   {
     minHeight: 34,
+    minWidth: 34,
     display: 'flex',
     alignItems: 'center',
     margin: 0,

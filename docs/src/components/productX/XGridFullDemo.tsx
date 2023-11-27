@@ -65,7 +65,7 @@ function SettingsPanel(props: GridToolbarContainerProps) {
     <FormGroup
       className="MuiFormGroup-options"
       sx={{
-        flexDirection: { xs: 'column', sm: 'row' },
+        flexDirection: 'row',
         alignContent: { xs: 'start', sm: 'center' },
         alignItems: { xs: 'start', sm: 'center' },
         '& > *': {
@@ -109,7 +109,12 @@ function SettingsPanel(props: GridToolbarContainerProps) {
           ))}
         </Select>
       </FormControl>
-      <Button variant="outlined" size="small" onClick={handleApplyChanges}>
+      <Button
+        variant="outlined"
+        size="small"
+        onClick={handleApplyChanges}
+        sx={{ mt: { xs: 2, sm: 0 }, width: { xs: '100%', sm: 'fit-content' } }}
+      >
         Apply changes
       </Button>
     </FormGroup>
@@ -266,7 +271,7 @@ export default function XGridFullDemo() {
           />
         </Paper>
       </Frame.Demo>
-      <Frame.Info data-mui-color-scheme="dark" sx={{ pl: 1, pr: 2, py: 1.5 }}>
+      <Frame.Info data-mui-color-scheme="dark" sx={{ pl: { xs: 2, sm: 1 }, pr: 2, py: 1.5 }}>
         <SettingsPanel onApply={handleApplyClick} size={size} type={type} />
       </Frame.Info>
     </Frame>

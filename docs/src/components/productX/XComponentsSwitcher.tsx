@@ -33,8 +33,7 @@ function ComponentItem({
       component="span"
       sx={{
         display: 'flex',
-        py: 1.5,
-        px: 2,
+        p: 2,
         flexDirection: { xs: 'column', md: 'row' },
         alignItems: { md: 'center' },
         gap: 2.5,
@@ -90,12 +89,11 @@ function ComponentItem({
 }
 
 export default function XComponentsSwitcher(props: {
-  inView?: boolean;
   componentIndex: number;
   setComponentIndex: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  const { inView = false, componentIndex, setComponentIndex } = props;
-  const productElements = [
+  const { componentIndex, setComponentIndex } = props;
+  const componentElement = [
     <ComponentItem
       name="Data Grid"
       label="Feature-rich and fast table extension."
@@ -135,40 +133,38 @@ export default function XComponentsSwitcher(props: {
           '& > div': { pr: '32%' },
         }}
       >
-        {inView && (
-          <SwipeableViews
-            index={componentIndex}
-            resistance
-            enableMouseEvents
-            onChangeIndex={(index) => setComponentIndex(index)}
-          >
-            {productElements.map((element, index) => (
-              <Highlighter
-                key={index}
-                disableBorder
-                onClick={() => setComponentIndex(index)}
-                selected={componentIndex === index}
-                sx={{
-                  width: '100%',
-                  transition: '0.3s',
-                  transform: componentIndex !== index ? 'scale(0.9)' : 'scale(1)',
-                }}
-              >
-                {element}
-              </Highlighter>
-            ))}
-          </SwipeableViews>
-        )}
+        <SwipeableViews
+          index={componentIndex}
+          resistance
+          enableMouseEvents
+          onChangeIndex={(index) => setComponentIndex(index)}
+        >
+          {componentElement.map((element, index) => (
+            <Highlighter
+              key={index}
+              disableBorder
+              onClick={() => setComponentIndex(index)}
+              selected={componentIndex === index}
+              sx={{
+                width: '100%',
+                transition: '0.3s',
+                transform: componentIndex !== index ? 'scale(0.9)' : 'scale(1)',
+              }}
+            >
+              {element}
+            </Highlighter>
+          ))}
+        </SwipeableViews>
       </Box>
       <Stack spacing={1} sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
-        {productElements.map((elm, index) => (
+        {componentElement.map((element, index) => (
           <Highlighter
             key={index}
             disableBorder
             onClick={() => setComponentIndex(index)}
             selected={componentIndex === index}
           >
-            {elm}
+            {element}
           </Highlighter>
         ))}
       </Stack>

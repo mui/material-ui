@@ -34,7 +34,7 @@ export default function XComponents() {
           item
           xs={12}
           md={6}
-          sx={componentIndex === 0 ? { minHeight: { xs: 777, sm: 757, md: 'unset' } } : {}}
+          sx={componentIndex === 0 ? { minHeight: { xs: 'auto', sm: 757, md: 'unset' } } : {}}
         >
           <React.Fragment>
             {componentIndex === 0 && <XGridFullDemo />}
