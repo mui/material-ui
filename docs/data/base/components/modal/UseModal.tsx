@@ -207,6 +207,10 @@ const style = {
 
 const ModalContent = styled('div')(
   ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 500;
+  text-align: start;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -215,20 +219,15 @@ const ModalContent = styled('div')(
   border-radius: 8px;
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   box-shadow: 0px 4px 12px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.20)'
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.20)'
   };
-  padding: 1rem;
+  padding: 24px;
   color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: 500;
-  text-align: start;
-  position: relative;
-
 
   & .modal-title {
     margin: 0;
     line-height: 1.5rem;
-    margin-right: 0.5rem;
+    margin-bottom: 8px;
   }
 
   & .modal-description {
@@ -236,6 +235,7 @@ const ModalContent = styled('div')(
     line-height: 1.5rem;
     font-weight: 400;
     color: ${theme.palette.mode === 'dark' ? grey[400] : grey[800]};
+    margin-bottom: 4px;
   }
   `,
 );
