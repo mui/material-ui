@@ -6,14 +6,14 @@
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [4 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
+- **Level**: [IC4 or above](https://mui-org.notion.site/Levelling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## The company
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub, and has paved the way for the fully fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 35+ people as of late 2023, and we're growing.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
@@ -89,14 +89,14 @@ Depending on the day, you'll:
 - **Ship. Early and often**. You'll iterate and ship frequently.
   You'll have a real impact on the end-user experience and you'll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
 
-## About you
+## Who we're looking for
 
 We're looking for someone with strong front-end skills. More important than specific technical skills though is that you're a strong problem solver who loves to learn. Details matter to you.
 
-### Skills you should have
+### Required
 
 - **Expertise in the modern JavaScript ecosystem**.
-  MUI is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, webpack, and Babel.
+  MUI's open-source projects are built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, Webpack, and Babel.
 - **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 - **Strong written and verbal communication skills**.
   As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
@@ -110,7 +110,7 @@ We're looking for someone with strong front-end skills. More important than spec
   Perhaps you've created your company's design system, written a Babel plugin, or written complex React components.
   It would be great if you could address this in your cover letter!
 
-### What would be nice if you had, but isn't required
+### Nice to have (but not required)
 
 - **You've contributed to a design system before**.
   You have worked on enterprise components in the past, maybe for internal use in your company.
@@ -118,7 +118,7 @@ We're looking for someone with strong front-end skills. More important than spec
 - **You've maintained an active repository before**.
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
   Previous experience with highly active repository workflows is a definite plus for this role.
-- **You have contributed code to MUI before**. A history of contributing to MUI would be a definite plus.
+- **You have contributed code**. A history of contributing to MUI's open-source projects is a plus.
 
 ## Benefits and compensation
 
@@ -132,6 +132,6 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 Don't meet every requirement?
 Apply anyway!
-Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+Research shows that certain folks are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
 If this role excites you, we want to hear from you.
 We'd love for you to share the unique skills, passion, and experience you could bring to MUI.
