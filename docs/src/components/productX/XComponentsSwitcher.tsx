@@ -4,10 +4,10 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import TableChartRounded from '@mui/icons-material/TableChartRounded';
-import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
+import PivotTableChartRoundedIcon from '@mui/icons-material/PivotTableChartRounded';
+import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
-import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
+import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import { visuallyHidden } from '@mui/utils';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Link from 'docs/src/modules/components/Link';
@@ -100,28 +100,28 @@ export default function XComponentsSwitcher(props: {
       name="Data Grid"
       label="by going to the Core components page"
       description="Feature-rich and fast table extension."
-      icon={<TableChartRounded fontSize="small" />}
+      icon={<PivotTableChartRoundedIcon />}
       href={ROUTES.dataGridOverview}
     />,
     <ComponentItem
       name="Date and Time Pickers"
       description="Let users pick a date and time, or both together."
       label="by going to the Advanced components page"
-      icon={<DateRangeRounded fontSize="small" />}
+      icon={<CalendarMonthRoundedIcon />}
       href={ROUTES.datePickersOverview}
     />,
     <ComponentItem
       name="Charts"
       description="Features bar, lines, pie, scatter, and more types of graphs."
       label="by going to the templates page"
-      icon={<AccountTreeRounded fontSize="small" />}
+      icon={<BarChartRoundedIcon />}
       href={ROUTES.chartsOverview}
     />,
     <ComponentItem
       name="Tree View"
       description="Display hierarchical data, such as a file system navigator."
       label="by going to the design-kits page"
-      icon={<ShowChartRounded fontSize="small" />}
+      icon={<AccountTreeRounded />}
       href={ROUTES.treeViewOverview}
     />,
   ];

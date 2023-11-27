@@ -5,14 +5,16 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import TableChartRounded from '@mui/icons-material/TableChartRounded';
-import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
+import PivotTableChartRoundedIcon from '@mui/icons-material/PivotTableChartRounded';
+import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
 import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
 import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import PendingActionsRounded from '@mui/icons-material/PendingActions';
 import InsertDriveFileOutlined from '@mui/icons-material/InsertDriveFileOutlined';
+import FormatSizeRoundedIcon from '@mui/icons-material/FormatSizeRounded';
+import AutoGraphRoundedIcon from '@mui/icons-material/AutoGraphRounded';
 import SpeedRounded from '@mui/icons-material/SpeedRounded';
 import { alpha } from '@mui/material/styles';
 import ROUTES from 'docs/src/route';
@@ -139,9 +141,9 @@ export default function XRoadmap() {
               </Typography>
               {renderList(
                 <React.Fragment>
-                  <TableChartRounded sx={{ fontSize: 16 }} />
+                  <PivotTableChartRoundedIcon sx={{ fontSize: 16 }} />
                   Data Grid
-                  <DateRangeRounded sx={{ fontSize: 16 }} />
+                  <CalendarMonthRoundedIcon sx={{ fontSize: 16 }} />
                   Date and Time Pickers
                   <BarChartRounded sx={{ fontSize: 16 }} />
                   Charts
@@ -173,13 +175,17 @@ export default function XRoadmap() {
                       lineHeight: 0,
                     }}
                   >
-                    <TableChartRounded sx={{ fontSize: 16 }} />
+                    <PivotTableChartRoundedIcon sx={{ fontSize: 16 }} />
                   </Box>
                   Data Grid
                   {bullet}
-                  Pivoting
+                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
+                    Pivoting
+                  </Typography>
                   {bullet}
-                  Charts integration
+                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
+                    Charts integration
+                  </Typography>
                   {bullet}
                   <Link href={ROUTES.dataGridFeaturesComparison} sx={{ color: 'primary.300' }}>
                     And more!
@@ -198,9 +204,13 @@ export default function XRoadmap() {
                   </Box>
                   Tree View
                   {bullet}
-                  Virtualization
+                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
+                    Virtualization
+                  </Typography>
                   {bullet}
-                  Drag and Drop
+                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
+                    Drag and Drop
+                  </Typography>
                 </React.Fragment>,
                 true,
               )}
@@ -223,9 +233,9 @@ export default function XRoadmap() {
               </Typography>
               {renderList(
                 <React.Fragment>
-                  <ShowChartRounded sx={{ fontSize: 16 }} />
+                  <AutoGraphRoundedIcon sx={{ fontSize: 16 }} />
                   Sparkline
-                  <InsertDriveFileOutlined sx={{ fontSize: 16 }} />
+                  <FormatSizeRoundedIcon sx={{ fontSize: 16 }} />
                   Rich Text Editor
                   <FileUploadRounded sx={{ fontSize: 16 }} />
                   Upload

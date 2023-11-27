@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { blueberryTwilightPaletteLight } from '@mui/x-charts';
@@ -15,7 +14,7 @@ const code = `
     { data: [15, 25, 30, 50] },
     { data: [60, 50, 15, 25] },
   ]}
-  height={250}
+  height={290}
   xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
   margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
   colors={blueberryTwilightPaletteLight}
@@ -28,6 +27,7 @@ export default function XChartsDemo() {
         <Paper
           variant="outlined"
           sx={(theme) => ({
+            p: 2,
             maxWidth: '100%',
             mx: 'auto',
             bgcolor: '#FFF',
@@ -38,20 +38,18 @@ export default function XChartsDemo() {
             }),
           })}
         >
-          <Box sx={{ p: 2 }}>
-            <BarChart
-              series={[
-                { data: [35, 44, 24, 34] },
-                { data: [51, 6, 49, 30] },
-                { data: [15, 25, 30, 50] },
-                { data: [60, 50, 15, 25] },
-              ]}
-              height={250}
-              xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
-              margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
-              colors={blueberryTwilightPaletteLight}
-            />
-          </Box>
+          <BarChart
+            series={[
+              { data: [35, 44, 24, 34] },
+              { data: [51, 6, 49, 30] },
+              { data: [15, 25, 30, 50] },
+              { data: [60, 50, 15, 25] },
+            ]}
+            height={290}
+            xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
+            margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
+            colors={blueberryTwilightPaletteLight}
+          />
         </Paper>
       </Frame.Demo>
       <Frame.Info data-mui-color-scheme="dark" sx={{ maxHeight: 300, overflow: 'auto' }}>
