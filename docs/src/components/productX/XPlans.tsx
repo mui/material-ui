@@ -13,7 +13,7 @@ import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 const content = [
   {
     icon: <IconImage name="pricing/x-plan-community" mode="" loading="eager" />,
-    title: 'Community plan',
+    title: 'Community version',
     description:
       'Free forever. This version contains features that we believe are maintainable by contributions from the open-source community.',
   },

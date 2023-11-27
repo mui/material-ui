@@ -103,7 +103,7 @@ export default function XTheming() {
                 Advanced and <GradientText>beautiful</GradientText>
               </Typography>
             }
-            description="Use the sophisticated theming features to make the MUI X components look exactly as you want."
+            description="Use the sophisticated theming features to make the MUI X components look exactly as you want. Take this Data Grid as example."
           />
           <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
@@ -117,7 +117,7 @@ export default function XTheming() {
               <Item
                 icon={<SvgMaterialDesign />}
                 title="Material Design"
-                description="Every component comes with Google's tried and tested design system ready for use."
+                description="Every component comes with Google's tried and tested design system built-in ready for use."
               />
             </Highlighter>
           </Group>
