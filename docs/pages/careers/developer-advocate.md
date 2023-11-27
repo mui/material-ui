@@ -84,9 +84,9 @@ For the right candidate:
 - Organize a MUIConf (once we go >50 people)
 - Think about creative ways to promote Base UI, Joy UI, MUI X, MUI X Pro, and new products.
 
-## About you
+## Who we're looking for
 
-### Skills you should have
+### Required
 
 - You are fluent in English (both written and spoken). You'll be the face of MUI in the world, and make everyone in the company proud of the Developer Experience team.
 - You are a highly empathic person.
@@ -95,7 +95,7 @@ For the right candidate:
 - Hands-on developer who is comfortable with full-stack development.
 - You are passionate about UI development.
 
-### What would be nice if you had, but isn't required
+### Nice to have (but not required)
 
 - Experience in building community across some of the following channels: Twitter, YouTube, Twitch, Discord, blogs, meetups, public speaking & events
 - Experience working with open-source and/or with the open-source community.
@@ -114,6 +114,6 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 Don't meet every requirement?
 Apply anyway!
-Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+Research shows that certain folks are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
 If this role excites you, we want to hear from you.
 We'd love for you to share the unique skills, passion, and experience you could bring to MUI.
