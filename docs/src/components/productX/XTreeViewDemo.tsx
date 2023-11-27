@@ -329,7 +329,7 @@ export default function XDateRangeDemo() {
           </TreeView>
         </Paper>
       </Frame.Demo>
-      <Frame.Info sx={{ maxHeight: 300, overflow: 'auto' }}>
+      <Frame.Info data-mui-color-scheme="dark" sx={{ maxHeight: 300, overflow: 'auto' }}>
         <HighlightedCode copyButtonHidden component={MarkdownElement} code={code} language="jsx" />
       </Frame.Info>
     </Frame>
