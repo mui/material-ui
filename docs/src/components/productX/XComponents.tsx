@@ -20,10 +20,10 @@ export default function XComponents() {
             overline="Advanced React component library"
             title={
               <Typography variant="h2">
-                Powerful components for <GradientText>advanced use-cases</GradientText>
+                Powerful components for <GradientText>advanced use cases</GradientText>
               </Typography>
             }
-            description="The MUI X packages enable applications to have complex use-cases, supported by several advanced components."
+            description="The MUI X packages can power complex and data-intensive applications across a wide spectrum of use cases."
           />
           <XComponentsSwitcher
             componentIndex={componentIndex}

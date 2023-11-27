@@ -138,7 +138,7 @@ export default function MaterialTemplates() {
             <br /> <GradientText>specific use case</GradientText>
           </Typography>
         }
-        description="A collection of 4.5 average rating templates, for multiple use cases, all powered by Material UI components and carefully curated by MUI's team."
+        description="A carefully curated collection of gorgeous, fully functional templates, all powered by Material UI."
       />
       <Group rowLayout desktopColumns={2} sx={{ mt: 3 }}>
         {DEMOS.map((name) => (

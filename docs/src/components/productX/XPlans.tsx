@@ -27,7 +27,7 @@ const content = [
     icon: <IconImage name="pricing/x-plan-premium" mode="" loading="eager" />,
     title: 'Premium plan',
     description:
-      'Every advanced feature of every component, such as row grouping and Excel export, for the Data Grid, plus what is included in the Pro plan.',
+      'The most advanced features for every component, including row grouping and Excel export for the Data Grid, plus everything included in the Pro plan.',
   },
 ];
 

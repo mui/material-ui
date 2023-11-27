@@ -90,7 +90,7 @@ export default function XRoadmap() {
                 Follow the <GradientText>MUI X roadmap</GradientText> for future updates
               </Typography>
             }
-            description="It's just the beginning for the MUI X components. Stay tuned for the exciting news and updates coming soon!"
+            description="It's just the beginning for the MUI X components. Stay tuned for exciting news and updates coming soon!"
           />
           <Button
             component={Link}

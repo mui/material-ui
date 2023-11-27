@@ -234,7 +234,7 @@ export default function XDataGrid() {
                     </Typography>
                     <Typography color="grey.300" variant="body2">
                       The Data Grid and all other MUI X components are available on free and paid
-                      versions. More details about each plan and its features are on{' '}
+                      plans. Find more details about each plan and its features are on{' '}
                       <Link href={ROUTES.pricing}>the pricing page</Link>.
                     </Typography>
                   </React.Fragment>

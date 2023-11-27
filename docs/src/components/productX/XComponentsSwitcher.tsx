@@ -96,22 +96,22 @@ export default function XComponentsSwitcher(props: {
   const componentElement = [
     <ComponentItem
       name="Data Grid"
-      label="Feature-rich and fast table extension."
-      description="Feature-rich and fast table extension."
+      label="Fast, feature-rich data table."
+      description="Fast, feature-rich data table."
       icon={<PivotTableChartRoundedIcon />}
       href={ROUTES.dataGridOverview}
     />,
     <ComponentItem
       name="Date and Time Pickers"
-      description="Let users pick a date and time, or both together."
-      label="Let users pick a date and time, or both together."
+      description="A suite of components for selecting dates, times, and ranges."
+      label="A suite of components for selecting dates, times, and ranges."
       icon={<CalendarMonthRoundedIcon />}
       href={ROUTES.datePickersOverview}
     />,
     <ComponentItem
       name="Charts"
-      description="Features bar, line, pie, scatter, and more types of graphs."
-      label="Features bar, line, pie, scatter, and more types of graphs."
+      description="A collection of data visualization graphs, including bar, line, pie, scatter, and more."
+      label="A collection of data visualization graphs, including bar, line, pie, scatter, and more."
       icon={<BarChartRoundedIcon />}
       href={ROUTES.chartsOverview}
     />,
