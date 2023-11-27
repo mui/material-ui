@@ -115,7 +115,7 @@ const PopupBody = styled('div')(
     padding: 0.5rem 1rem;
     margin: 8px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
     border-radius: 8px;
     box-shadow: ${
       theme.palette.mode === 'dark'
@@ -139,7 +139,7 @@ const blue = {
 
 const Button = styled('button')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;

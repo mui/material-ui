@@ -89,7 +89,7 @@ function Styles() {
       {`
       .CustomSelect {
         position: relative;
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
         min-width: 320px;
@@ -117,7 +117,7 @@ function Styles() {
           border-color: ${cyan[400]};
           box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
         }
-        
+
         & > svg {
           font-size: 1rem;
           position: absolute;
@@ -127,7 +127,7 @@ function Styles() {
         }
       }
       .CustomSelect-listbox {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
         padding: 6px;
