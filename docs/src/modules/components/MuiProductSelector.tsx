@@ -31,23 +31,7 @@ function ProductSubMenu(props: ProductSubMenuProp) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <Box
-        sx={[
-          (theme) => ({
-            '& circle': {
-              fill: (theme.vars || theme).palette.grey[100],
-            },
-          }),
-          (theme) =>
-            theme.applyDarkStyles({
-              '& circle': {
-                fill: (theme.vars || theme).palette.primaryDark[700],
-              },
-            }),
-        ]}
-      >
-        {icon}
-      </Box>
+      {icon}
       <Box sx={{ flexGrow: 1 }}>
         <Typography color="text.primary" variant="body2" fontWeight="700">
           {name}
