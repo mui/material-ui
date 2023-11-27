@@ -137,7 +137,7 @@ describe('<Modal />', () => {
     scrollLockContainer.style.paddingRight = '344px';
     const { setProps } = render(
       <Modal open scrollLockContainer={scrollLockContainer}>
-        <div />
+        <div style={{ height: 10000 }} />
       </Modal>,
     );
 
