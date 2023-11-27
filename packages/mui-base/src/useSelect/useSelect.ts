@@ -311,14 +311,16 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   const isInitiallyOpen = React.useRef(open);
 
   useEnhancedEffect(() => {
-    if (open && highlightedOption !== null && !isInitiallyOpen.current) {
+    if (open && highlightedOption !== null) {
       const optionRef = getOptionByValue(highlightedOption)?.ref;
 
       if (!listboxRef.current || !optionRef?.current) {
         return;
       }
 
-      optionRef.current.focus({ preventScroll: true });
+      if (!isInitiallyOpen.current) {
+        optionRef.current.focus({ preventScroll: true });
+      }
 
       const listboxClientRect = listboxRef.current.getBoundingClientRect();
       const optionClientRect = optionRef.current.getBoundingClientRect();
