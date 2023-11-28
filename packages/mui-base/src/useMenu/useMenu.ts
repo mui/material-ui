@@ -122,9 +122,9 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
   }, [listboxId, registerPopup]);
 
   React.useEffect(() => {
-    if (open && highlightedValue === subitemKeys[0] && !isInitiallyOpen.current) {
+    if (open && highlightedValue && !isInitiallyOpen.current) {
       // TODO v6: focus only if autoFocus is true
-      subitems.get(subitemKeys[0])?.ref?.current?.focus();
+      subitems.get(highlightedValue)?.ref?.current?.focus();
     }
   }, [open, highlightedValue, subitems, subitemKeys]);
 
