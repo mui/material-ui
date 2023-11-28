@@ -99,6 +99,10 @@ describe('utils/colorManipulator', () => {
     it('converts an hsla color to an rgba color` ', () => {
       expect(hslToRgb('hsla(281, 60%, 57%, 0.5)')).to.equal('rgba(169, 80, 211, 0.5)');
     });
+
+    it('allow to convert values only', () => {
+      expect(hslToRgb(decomposeColor('hsl(281, 60%, 57%)'))).to.equal('rgb(169, 80, 211)');
+    });
   });
 
   describe('decomposeColor', () => {
@@ -116,14 +120,14 @@ describe('utils/colorManipulator', () => {
 
     it('converts an hsl color string to an object with `type` and `value` keys', () => {
       const { type, values } = decomposeColor('hsl(100, 50%, 25%)');
-      expect(type).to.equal('rgb');
-      expect(values).to.deep.equal([53, 96, 32]);
+      expect(type).to.equal('hsl');
+      expect(values).to.deep.equal([100, 50, 25]);
     });
 
     it('converts an hsla color string to an object with `type` and `value` keys', () => {
       const { type, values } = decomposeColor('hsla(100, 50%, 25%, 0.5)');
-      expect(type).to.equal('rgba');
-      expect(values).to.deep.equal([53, 96, 32, 0.5]);
+      expect(type).to.equal('hsla');
+      expect(values).to.deep.equal([100, 50, 25, 0.5]);
     });
 
     it('converts CSS4 color with color space display-3', () => {
@@ -281,11 +285,11 @@ describe('utils/colorManipulator', () => {
     });
 
     it('converts an hsl color to an hsla color with the value provided', () => {
-      expect(alpha('hsl(0, 100%, 50%)', 0.1)).to.equal('rgba(255, 0, 0, 0.1)');
+      expect(alpha('hsl(0, 100%, 50%)', 0.1)).to.equal('hsla(0, 100%, 50%, 0.1)');
     });
 
     it('updates an hsla color with the alpha value provided', () => {
-      expect(alpha('hsla(0, 100%, 50%, 0.2)', 0.5)).to.equal('rgba(255, 0, 0, 0.5)');
+      expect(alpha('hsla(0, 100%, 50%, 0.2)', 0.5)).to.equal('hsla(0, 100%, 50%, 0.5)');
     });
 
     it('throw on invalid colors', () => {
@@ -337,15 +341,15 @@ describe('utils/colorManipulator', () => {
     });
 
     it('darkens hsl red by 50% when coefficient is 0.5', () => {
-      expect(darken('hsl(0, 100%, 50%)', 0.5)).to.equal('rgb(127, 0, 0)');
+      expect(darken('hsl(0, 100%, 50%)', 0.5)).to.equal('hsl(0, 100%, 25%)');
     });
 
     it("doesn't modify hsl colors when coefficient is 0", () => {
-      expect(darken('hsl(0, 100%, 50%)', 0)).to.equal('rgb(255, 0, 0)');
+      expect(darken('hsl(0, 100%, 50%)', 0)).to.equal('hsl(0, 100%, 50%)');
     });
 
     it("doesn't modify hsl colors when l is 0%", () => {
-      expect(darken('hsl(0, 50%, 0%)', 0.5)).to.equal('rgb(0, 0, 0)');
+      expect(darken('hsl(0, 50%, 0%)', 0.5)).to.equal('hsl(0, 50%, 0%)');
     });
 
     it('darkens CSS4 color red by 50% when coefficient is 0.5', () => {
@@ -399,15 +403,15 @@ describe('utils/colorManipulator', () => {
     });
 
     it('lightens hsl red by 50% when coefficient is 0.5', () => {
-      expect(lighten('hsl(0, 100%, 50%)', 0.5)).to.equal('rgb(255, 127, 127)');
+      expect(lighten('hsl(0, 100%, 50%)', 0.5)).to.equal('hsl(0, 100%, 75%)');
     });
 
     it("doesn't modify hsl colors when coefficient is 0", () => {
-      expect(lighten('hsl(0, 100%, 50%)', 0)).to.equal('rgb(255, 0, 0)');
+      expect(lighten('hsl(0, 100%, 50%)', 0)).to.equal('hsl(0, 100%, 50%)');
     });
 
     it("doesn't modify hsl colors when `l` is 100%", () => {
-      expect(lighten('hsl(0, 50%, 100%)', 0.5)).to.equal('rgb(255, 255, 255)');
+      expect(lighten('hsl(0, 50%, 100%)', 0.5)).to.equal('hsl(0, 50%, 100%)');
     });
 
     it('lightens CSS4 color red by 50% when coefficient is 0.5', () => {
@@ -441,11 +445,11 @@ describe('utils/colorManipulator', () => {
     });
 
     it('converts hsl to a color channel` ', () => {
-      expect(colorChannel('hsl(170, 45%, 50%)')).to.equal('70 185 166');
+      expect(colorChannel('hsl(170, 45%, 50%)')).to.equal('170 45% 50%');
     });
 
     it('converts hsla to a color channel` ', () => {
-      expect(colorChannel('hsla(235, 100%, 50%, .5)')).to.equal('0 21 255');
+      expect(colorChannel('hsla(235, 100%, 50%, .5)')).to.equal('235 100% 50%');
     });
   });
 });
