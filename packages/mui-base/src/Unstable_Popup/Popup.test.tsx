@@ -245,6 +245,10 @@ describe('<Popup />', () => {
 
       act(() => screen.getByRole('button').click());
 
+      await new Promise((resolve) => {
+        requestAnimationFrame(resolve);
+      });
+
       await waitForPosition();
 
       expect(popup.getBoundingClientRect().left).to.equal(
