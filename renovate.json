@@ -114,7 +114,8 @@
     {
       "groupName": "Lerna",
       "matchPackageNames": ["lerna"],
-      "enabled": false
+      "description": "Limited at 7.2.0 until https://github.com/mui/material-ui/issues/40025 is fixed",
+      "allowedVersions": "<=7.2.0"
     }
   ],
   "postUpdateOptions": ["yarnDedupeHighest"],
