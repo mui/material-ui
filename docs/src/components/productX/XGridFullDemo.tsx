@@ -176,7 +176,7 @@ export default function XGridFullDemo() {
           variant="outlined"
           sx={[
             {
-              overflow: 'auto',
+              overflow: 'hidden',
               borderRadius: '8px',
               height: { xs: 320, sm: 500 },
               '& .MuiDataGrid-root': {
