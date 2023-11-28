@@ -21,6 +21,25 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
 
+interface RoadmapStatusDotProps {
+  color: string;
+}
+
+function RoadmapStatusDot({ color }: RoadmapStatusDotProps) {
+  return (
+    <Box
+      sx={{
+        ml: 1,
+        display: 'inline-block',
+        width: 8,
+        height: 8,
+        borderRadius: 10,
+        bgcolor: `${color}`,
+      }}
+    />
+  );
+}
+
 export default function XRoadmap() {
   function renderList(content: React.ReactElement, nested?: boolean) {
     return (
@@ -124,18 +143,9 @@ export default function XRoadmap() {
         >
           <Grid item xs={12} sm={4} lg="auto">
             <Paper variant="outlined">
-              <Typography fontWeight="bold" variant="body2" color="text.primary">
+              <Typography component="div" fontWeight="bold" variant="body2" color="text.primary">
                 Stable
-                <Box
-                  sx={{
-                    ml: 1,
-                    display: 'inline-block',
-                    width: 8,
-                    height: 8,
-                    borderRadius: 10,
-                    bgcolor: 'success.main',
-                  }}
-                />
+                <RoadmapStatusDot color="success.main" />
               </Typography>
               {renderList(
                 <React.Fragment>
@@ -153,18 +163,9 @@ export default function XRoadmap() {
           </Grid>
           <Grid item xs={12} sm={4} lg="auto">
             <Paper variant="outlined">
-              <Typography fontWeight="bold" variant="body2" color="text.primary">
+              <Typography component="div" fontWeight="bold" variant="body2" color="text.primary">
                 Work in progress
-                <Box
-                  sx={{
-                    ml: 1,
-                    display: 'inline-block',
-                    width: 8,
-                    height: 8,
-                    borderRadius: 10,
-                    bgcolor: 'warning.main',
-                  }}
-                />
+                <RoadmapStatusDot color="warning.main" />
               </Typography>
               {renderList(
                 <React.Fragment>
@@ -216,18 +217,9 @@ export default function XRoadmap() {
           </Grid>
           <Grid item xs={12} sm={4} lg="auto">
             <Paper variant="outlined">
-              <Typography fontWeight="bold" variant="body2" color="text.primary">
+              <Typography component="div" fontWeight="bold" variant="body2" color="text.primary">
                 Future components
-                <Box
-                  sx={{
-                    ml: 1,
-                    display: 'inline-block',
-                    width: 8,
-                    height: 8,
-                    borderRadius: 10,
-                    bgcolor: 'primaryDark.400',
-                  }}
-                />
+                <RoadmapStatusDot color="primaryDark.400" />
               </Typography>
               {renderList(
                 <React.Fragment>
