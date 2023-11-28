@@ -455,3 +455,8 @@ The following classes were added:
 
 You can replace them by combining classes with a CSS selector.
 The following example replaces the `MuiLinearProgress-dashedColorPrimary` class using `MuiLinearProgress-dashed` and `MuiLinearProgress-colorPrimary`:
+
+```diff
+- .MuiLinearProgress-dashedColorPrimary
++ .MuiLinearProgress-colorPrimary .MuiLinearProgress-dashed
+```
