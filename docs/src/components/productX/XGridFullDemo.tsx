@@ -82,15 +82,20 @@ function SettingsPanel(props: GridToolbarContainerProps) {
       }}
     >
       <FormControl variant="filled" size="small">
-        <InputLabel>Dataset</InputLabel>
-        <Select value={typeState} onChange={handleDatasetChange} disableUnderline>
+        <InputLabel id="Dataset">Dataset</InputLabel>
+        <Select labelId="Dataset" value={typeState} onChange={handleDatasetChange} disableUnderline>
           <MenuItem value="Employee">Employee</MenuItem>
           <MenuItem value="Commodity">Commodity</MenuItem>
         </Select>
       </FormControl>
       <FormControl variant="filled" size="small">
-        <InputLabel>Rows</InputLabel>
-        <Select value={String(sizeState)} onChange={handleSizeChange} disableUnderline>
+        <InputLabel id="Rows">Rows</InputLabel>
+        <Select
+          labelId="Rows"
+          value={String(sizeState)}
+          onChange={handleSizeChange}
+          disableUnderline
+        >
           <MenuItem value={100}>100</MenuItem>
           <MenuItem value={1000}>{Number(1000).toLocaleString()}</MenuItem>
           <MenuItem value={10000}>{Number(10000).toLocaleString()}</MenuItem>
@@ -98,8 +103,13 @@ function SettingsPanel(props: GridToolbarContainerProps) {
         </Select>
       </FormControl>
       <FormControl variant="filled" size="small" sx={{ minWidth: 80 }}>
-        <InputLabel>Page Size</InputLabel>
-        <Select value={selectedPaginationValue} onChange={handlePaginationChange} disableUnderline>
+        <InputLabel id="Page size">Page size</InputLabel>
+        <Select
+          labelId="Page size"
+          value={selectedPaginationValue}
+          onChange={handlePaginationChange}
+          disableUnderline
+        >
           <MenuItem value={-1}>off</MenuItem>
           <MenuItem value={0}>auto</MenuItem>
           {pageSizeOptions.map((pageSize) => (
