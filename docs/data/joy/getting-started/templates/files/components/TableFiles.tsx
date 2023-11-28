@@ -4,13 +4,10 @@ import AvatarGroup from '@mui/joy/AvatarGroup';
 import Typography from '@mui/joy/Typography';
 import Table from '@mui/joy/Table';
 
-// Icons import
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
-// custom
-
-function TableFiles() {
+export default function TableFiles() {
   return (
     <div>
       <Table
@@ -192,5 +189,3 @@ function TableFiles() {
     </div>
   );
 }
-
-export default TableFiles;
