@@ -107,36 +107,38 @@ export default function MuiProductSelector() {
           name="MUI Core"
           description="Ready-to-use foundational React components, free forever."
         />
-        <Box sx={{ ml: '36px', pl: 2, pt: 1.5, position: 'relative' }}>
-          <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            alignItems="flex-start"
-            spacing={1}
-            sx={{
-              '& > .MuiChip-root': {
-                position: 'initial',
-                '&:hover': {
-                  '& .product-description': {
-                    opacity: 1,
-                  },
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems="flex-start"
+          spacing={1}
+          sx={{
+            ml: '36px',
+            pl: 2,
+            pt: 1.5,
+            position: 'relative',
+            '& > .MuiChip-root': {
+              position: 'initial',
+              '&:hover': {
+                '& .product-description': {
+                  opacity: 1,
                 },
               },
-            }}
-          >
-            {coreProducts.map((product) => (
-              <Chip
-                key={product.name}
-                color={pageContext.productId === product.id ? 'primary' : undefined}
-                variant={pageContext.productId === product.id ? 'filled' : 'outlined'}
-                component={Link}
-                href={product.href}
-                label={product.name}
-                clickable
-                size="small"
-              />
-            ))}
-          </Stack>
-        </Box>
+            },
+          }}
+        >
+          {coreProducts.map((product) => (
+            <Chip
+              key={product.name}
+              color={pageContext.productId === product.id ? 'primary' : undefined}
+              variant={pageContext.productId === product.id ? 'filled' : 'outlined'}
+              component={Link}
+              href={product.href}
+              label={product.name}
+              clickable
+              size="small"
+            />
+          ))}
+        </Stack>
       </Box>
       <Box
         component="li"
@@ -149,56 +151,55 @@ export default function MuiProductSelector() {
           name="MUI X"
           description="Advanced and powerful components for complex use cases."
         />
-        <Box sx={{ ml: '36px', pl: 2, pt: 1.5, position: 'relative' }}>
-          <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            alignItems="flex-start"
-            spacing={1}
-            sx={{
-              '& > .MuiChip-root': {
-                position: 'initial',
-                '&:hover': {
-                  '& .product-description': {
-                    opacity: 1,
-                  },
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems="flex-start"
+          spacing={1}
+          sx={{
+            ml: '36px',
+            pl: 2,
+            pt: 1.5,
+            position: 'relative',
+            '& > .MuiChip-root': {
+              position: 'initial',
+              '&:hover': {
+                '& .product-description': {
+                  opacity: 1,
                 },
               },
-            }}
-          >
-            {advancedProducts.map((product) => (
-              <Chip
-                key={product.name}
-                color={pageContext.productId === product.id ? 'primary' : undefined}
-                variant={pageContext.productId === product.id ? 'filled' : 'outlined'}
-                component={Link}
-                href={product.href}
-                label={product.name}
-                clickable
-                size="small"
-              />
-            ))}
-          </Stack>
-        </Box>
+            },
+          }}
+        >
+          {advancedProducts.map((product) => (
+            <Chip
+              key={product.name}
+              color={pageContext.productId === product.id ? 'primary' : undefined}
+              variant={pageContext.productId === product.id ? 'filled' : 'outlined'}
+              component={Link}
+              href={product.href}
+              label={product.name}
+              clickable
+              size="small"
+            />
+          ))}
+        </Stack>
       </Box>
       <li role="none">
         <Link
           href={ROUTES.toolpadDocs}
-          sx={[
-            {
-              p: 2,
-              pr: 3,
-              width: '100%',
-              '&:hover': {
-                backgroundColor: 'grey.50',
-              },
+          sx={(theme) => ({
+            p: 2,
+            pr: 3,
+            width: '100%',
+            '&:hover': {
+              backgroundColor: 'grey.50',
             },
-            (theme) =>
-              theme.applyDarkStyles({
-                '&:hover': {
-                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-                },
-              }),
-          ]}
+            ...theme.applyDarkStyles({
+              '&:hover': {
+                backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+              },
+            }),
+          })}
         >
           <ProductSubMenu
             role="menuitem"
