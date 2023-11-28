@@ -42,7 +42,7 @@ We want Material UI to become whatever is generally useful for application devel
 We know the ease of use is a critical part of user acquisition. The more user we have, the more likely we can make the project sustainable. Improving the ease of use comes in different flavors:
 
 - **Onboarding**. We have reduced the onboarding friction as much as possible. We know the onboarding is a critical step for user acquisition. The onboarding friction comes in different flavors:
-  We have reduced the number of installation steps needed. It should be as simple as 1. npm install @mui/material and 2. import Button from '@mui/material/Button'; . We don't ask for polyfill, custom webpack plugin or any specific build tool. The usage of MuiThemeProvider is no longer mandatory.
+  We have reduced the number of installation steps needed. It should be as simple as 1. npm install @mui/material and 2. import Button from '@mui/material/Button'; . We don't ask for polyfill, custom Webpack plugin or any specific build tool. The usage of MuiThemeProvider is no longer mandatory.
 
 - **Examples**. We are hosting [example projects](https://github.com/mui/material-ui/tree/master/examples) with the most popular solutions to start a project: [create-react-app](https://github.com/facebook/create-react-app), [Next.js](https://github.com/vercel/next.js), [Gatsby](https://github.com/gatsbyjs/gatsby), and CDN.
 
@@ -121,7 +121,7 @@ I'm so excited at the idea we are making it stable, but rest assured, it's just 
 
 Material UI is an MIT-licensed open source project. It's an independent project with ongoing development helped by the support of these awesome [backers](/material-ui/discover-more/backers/). If you'd like to join them, please consider:
 
-- [Become a backer or sponsor on Open Collective](https://opencollective.com/mui).
+- [Become a backer or sponsor on Open Collective](https://opencollective.com/mui-org).
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
 
 ![Our gold sponsors](https://cdn-images-1.medium.com/max/2000/1*fx_BaOxYY0ZJo3n9iXI1Jg.png)<p class="blog-description">Our gold sponsors</p>

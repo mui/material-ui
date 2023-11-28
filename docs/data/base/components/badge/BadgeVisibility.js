@@ -37,7 +37,7 @@ const Badge = styled(BaseBadge)(
   margin: 0;
   padding: 0;
   list-style: none;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 14px;
   line-height: 1;
 
@@ -159,7 +159,7 @@ const Root = styled('span')(
 
 const StyledLabel = styled('label')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   `,
