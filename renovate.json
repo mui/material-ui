@@ -110,6 +110,11 @@
     {
       "groupName": "@definitelytyped tools",
       "matchPackagePatterns": ["@definitelytyped/*"]
+    },
+    {
+      "groupName": "Lerna",
+      "matchPackageNames": ["lerna"],
+      "enabled": false
     }
   ],
   "postUpdateOptions": ["yarnDedupeHighest"],
