@@ -144,6 +144,7 @@ describe('useControllableReducer', () => {
           controlledProps: {
             make: props.make,
           },
+          componentName: 'TestComponent',
         });
         return (
           <p>
@@ -158,7 +159,7 @@ describe('useControllableReducer', () => {
       expect(() => {
         setProps({ make: undefined });
       }).to.toErrorDev(
-        'useControllableReducer: A component is changing a controlled prop to be uncontrolled: make',
+        'useControllableReducer: The TestComponent component is changing a controlled prop to be uncontrolled: make',
       );
     });
 
@@ -174,6 +175,7 @@ describe('useControllableReducer', () => {
           controlledProps: {
             make: props.make,
           },
+          componentName: 'TestComponent',
         });
         return (
           <p>
@@ -188,7 +190,7 @@ describe('useControllableReducer', () => {
       expect(() => {
         setProps({ make: 'Tesla' });
       }).to.toErrorDev(
-        'useControllableReducer: A component is changing an uncontrolled prop to be controlled: make',
+        'useControllableReducer: The TestComponent component is changing an uncontrolled prop to be controlled: make',
       );
     });
   });
