@@ -63,6 +63,8 @@ export function getSystemComponents() {
   if (!systemComponents) {
     systemComponents = fs
       .readdirSync(path.resolve('packages', 'mui-system', 'src'))
+      // Normalization, the Unstable_ prefix doesn't count.
+      .map((pathname) => pathname.replace('Unstable_', ''))
       .filter((pathname) => pathname.match(/^[A-Z][a-zA-Z]+$/));
   }
   return systemComponents;

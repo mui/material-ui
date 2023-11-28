@@ -7,7 +7,7 @@ const styles = `
   body {
     padding: 0;
     margin: 0;
-    font-family: IBM Plex Sans, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
   }
 
   .list {
