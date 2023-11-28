@@ -1,5 +1,7 @@
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { findPagesDir } = require('next/dist/lib/find-pages-dir');
+const { webpack } = require('@siriwatknp/zero-unplugin');
 const pkg = require('../package.json');
 const withDocsInfra = require('./nextConfigDocsInfra');
 const { findPages } = require('./src/modules/utils/find');
@@ -17,6 +19,21 @@ const vercelDeploy = Boolean(process.env.VERCEL);
 const isDeployPreview = Boolean(process.env.PULL_REQUEST_ID);
 // For crowdin PRs we want to build all locales for testing.
 const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
+
+const theme = {};
+/**
+ * @type {ZeroPluginConfig}
+ */
+const zeroPluginOptions = {
+  theme,
+  cssVariablesPrefix: 'app',
+  sourceMap: true,
+};
+
+const extractionFile = path.join(
+  path.dirname(require.resolve('../node_modules/@siriwatknp/zero-next-plugin/package.json')),
+  'zero-virtual.css',
+);
 
 module.exports = withDocsInfra({
   webpack: (config, options) => {
@@ -74,6 +91,53 @@ module.exports = withDocsInfra({
     config.module.rules.forEach((r) => {
       r.resourceQuery = { not: [/raw/] };
     });
+
+    config.module.rules.unshift({
+      enforce: 'pre',
+      test: (filename) => filename.endsWith('zero-virtual.css'),
+      use: require.resolve('@siriwatknp/zero-next-plugin/loader.js'),
+    });
+
+    const findPagesDirResult = findPagesDir(
+      options.dir,
+      // @ts-expect-error next.js v12 accepts 2 arguments, while v13 only accepts 1
+      options.experimental?.appDir ?? false,
+    );
+
+    let hasAppDir = false;
+
+    if ('appDir' in (options.experimental || {})) {
+      hasAppDir =
+        !!options.experimental.appDir && !!(findPagesDirResult && findPagesDirResult.appDir);
+    } else {
+      hasAppDir = !!(findPagesDirResult && findPagesDirResult.appDir);
+    }
+
+    plugins.push(
+      webpack({
+        ...zeroPluginOptions,
+        meta: {
+          type: 'next',
+          dev: options.dev,
+          isServer: options.isServer,
+          outputCss: options.dev || hasAppDir || !options.isServer,
+          placeholderCssFile: extractionFile,
+        },
+        asyncResolve(what) {
+          if (what === 'next/image') {
+            return require.resolve('@siriwatknp/zero-unplugin/next-image');
+          }
+          if (what.startsWith('next/font')) {
+            return require.resolve('@siriwatknp/zero-unplugin/next-font');
+          }
+          return null;
+        },
+        babelOptions: {
+          ...zeroPluginOptions,
+          presets: [...(zeroPluginOptions?.presets ?? []), 'next/babel'],
+        },
+      }),
+    );
 
     return {
       ...config,
