@@ -9,6 +9,7 @@ import {
   unstable_defaultSxConfig as defaultSxConfig,
   unstable_styleFunctionSx as styleFunctionSx,
   unstable_prepareCssVars as prepareCssVars,
+  hslToRgb,
 } from '@mui/system';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
@@ -36,12 +37,19 @@ function setColor(obj, key, defaultValue) {
   }
 }
 
+function toRgb(color) {
+  if (!color || !color.startsWith('hsl')) {
+    return color;
+  }
+  return hslToRgb(color);
+}
+
 function setColorChannel(obj, key) {
   if (!(`${key}Channel` in obj)) {
     // custom channel token is not provided, generate one.
     // if channel token can't be generated, show a warning.
     obj[`${key}Channel`] = safeColorChannel(
-      obj[key],
+      toRgb(obj[key]),
       `MUI: Can't create \`palette.${key}Channel\` because \`palette.${key}\` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().` +
         '\n' +
         `To suppress this warning, you need to explicitly provide the \`palette.${key}Channel\` as a string (in rgb format, e.g. "12 12 12") or undefined if you want to remove the channel token.`,
@@ -344,16 +352,20 @@ export default function extendTheme(options = {}, ...args) {
       if (colors && typeof colors === 'object') {
         // Silent the error for custom palettes.
         if (colors.main) {
-          setColor(palette[color], 'mainChannel', safeColorChannel(colors.main));
+          setColor(palette[color], 'mainChannel', safeColorChannel(toRgb(colors.main)));
         }
         if (colors.light) {
-          setColor(palette[color], 'lightChannel', safeColorChannel(colors.light));
+          setColor(palette[color], 'lightChannel', safeColorChannel(toRgb(colors.light)));
         }
         if (colors.dark) {
-          setColor(palette[color], 'darkChannel', safeColorChannel(colors.dark));
+          setColor(palette[color], 'darkChannel', safeColorChannel(toRgb(colors.dark)));
         }
         if (colors.contrastText) {
-          setColor(palette[color], 'contrastTextChannel', safeColorChannel(colors.contrastText));
+          setColor(
+            palette[color],
+            'contrastTextChannel',
+            safeColorChannel(toRgb(colors.contrastText)),
+          );
         }
 
         if (color === 'text') {
