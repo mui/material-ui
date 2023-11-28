@@ -6,9 +6,12 @@ import { AccordionClasses } from './accordionClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ExtendPaperTypeMap } from '../Paper/Paper';
 
-export type AccordionTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendPaperTypeMap<
+export type AccordionTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> = ExtendPaperTypeMap<
   {
-    props: P & {
+    props: AdditionalProps & {
       /**
        * The content of the component.
        */
@@ -62,7 +65,7 @@ export type AccordionTypeMap<P = {}, D extends React.ElementType = 'div'> = Exte
        */
       TransitionProps?: TransitionProps;
     };
-    defaultComponent: D;
+    defaultComponent: RootComponent;
   },
   'onChange' | 'classes'
 >;
@@ -81,8 +84,10 @@ export type AccordionTypeMap<P = {}, D extends React.ElementType = 'div'> = Exte
 declare const Accordion: OverridableComponent<AccordionTypeMap>;
 
 export type AccordionProps<
-  D extends React.ElementType = AccordionTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<AccordionTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = AccordionTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<AccordionTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Accordion;

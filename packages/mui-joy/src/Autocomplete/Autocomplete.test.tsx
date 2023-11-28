@@ -9,8 +9,7 @@ import {
   act,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
-  describeJoyColorInversion,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
@@ -77,12 +76,6 @@ describe('Joy <Autocomplete />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<Autocomplete options={[]} open />, {
-    muiName: 'JoyAutocomplete',
-    classes,
-    portalSlot: 'listbox',
-  });
 
   it('should be customizable in the theme', () => {
     render(
@@ -1428,6 +1421,30 @@ describe('Joy <Autocomplete />', () => {
       checkHighlightIs(listbox, null);
     });
 
+    it('should reset the highlight when the input changed', () => {
+      const filterOptions = createFilterOptions({});
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          autoHighlight
+          autoFocus
+          options={['one', 'two', 'three']}
+          filterOptions={filterOptions}
+        />,
+      );
+      const textbox = getByRole('combobox');
+      const listbox = getByRole('listbox');
+
+      fireEvent.change(textbox, { target: { value: 't' } });
+      checkHighlightIs(listbox, 'two');
+
+      fireEvent.change(textbox, { target: { value: '' } });
+      checkHighlightIs(listbox, 'one');
+
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(textbox).has.value('one');
+    });
+
     it('should not select undefined', () => {
       const handleChange = spy();
       const { getByRole } = render(
@@ -1886,31 +1903,24 @@ describe('Joy <Autocomplete />', () => {
 
     it('provides a reason on select reset', () => {
       const handleInputChange = spy();
-      const options = [{ name: 'foo' }, { name: 'bar' }];
+      const options = [{ name: 'foo' }];
+      render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          openOnFocus
+          options={options}
+          getOptionLabel={(option) => option.name}
+          autoFocus
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
 
-      function MyComponent() {
-        const [value, setValue] = React.useState(options[0]);
-        return (
-          <React.Fragment>
-            <Autocomplete
-              onInputChange={handleInputChange}
-              openOnFocus
-              options={options}
-              getOptionLabel={(option) => option.name}
-              value={value}
-            />
-            <button onClick={() => setValue(options[1])}>Reset</button>
-          </React.Fragment>
-        );
-      }
-      render(<MyComponent />);
-      const resetBtn = screen.getByText('Reset');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
 
-      fireEvent.click(resetBtn);
-
-      expect(handleInputChange.callCount).to.equal(4);
-      expect(handleInputChange.args[3][1]).to.equal(options[1].name);
-      expect(handleInputChange.args[3][2]).to.equal('reset');
+      expect(handleInputChange.callCount).to.equal(1);
+      expect(handleInputChange.args[0][1]).to.equal(options[0].name);
+      expect(handleInputChange.args[0][2]).to.equal('reset');
     });
   });
 

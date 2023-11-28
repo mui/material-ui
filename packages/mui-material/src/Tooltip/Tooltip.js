@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -233,7 +234,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
-    children,
+    children: childrenProp,
     classes: classesProp,
     components = {},
     componentsProps = {},
@@ -262,6 +263,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     TransitionProps,
     ...other
   } = props;
+
+  // to prevent runtime errors, developers will need to provide a child as a React element anyway.
+  const children = React.isValidElement(childrenProp) ? childrenProp : <span>{childrenProp}</span>;
 
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';

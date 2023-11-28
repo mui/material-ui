@@ -1,16 +1,16 @@
 import * as React from 'react';
 import AspectRatio, { AspectRatioProps } from '@mui/joy/AspectRatio';
 
-export default function MuiLogo({ sx, ...props }: AspectRatioProps) {
+export default function MuiLogo(props: AspectRatioProps) {
+  const { sx, ...other } = props;
   return (
     <AspectRatio
       ratio="1"
       variant="plain"
-      {...props}
+      {...other}
       sx={[
         {
           width: 36,
-          borderRadius: 'sm',
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

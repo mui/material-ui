@@ -1,6 +1,6 @@
-import * as colors from '@mui/material/colors';
-import * as fse from 'fs-extra';
 import * as path from 'path';
+import * as fse from 'fs-extra';
+import * as colors from '@mui/material/colors';
 
 // use netlify deploy preview if you want to test changes
 const HOST = 'https://mui.com/';

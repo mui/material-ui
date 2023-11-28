@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Transition component
 components: Collapse, Fade, Grow, Slide, Zoom
 githubLabel: 'component: transitions'
@@ -54,7 +54,7 @@ Similarly, the `unmountOnExit` prop removes the component from the DOM after it 
 The Slide component also accepts `container` prop, which is a reference to a DOM node.
 If this prop is set, the Slide component will slide from the edge of that DOM node.
 
-{{"demo": "SlideFromContainer.js"}}
+{{"demo": "SlideFromContainer.js", "bg": true}}
 
 ## Zoom
 
@@ -74,15 +74,15 @@ This example also demonstrates how to delay the enter transition.
 ```jsx
 // The `props` object contains a `style` prop.
 // You need to provide it to the `div` element as shown here.
-const MyComponent = React.forwardRef((props, ref) {
+const MyComponent = React.forwardRef(function (props, ref) {
   return (
     <div ref={ref} {...props}>
       Fade
     </div>
   );
-})
+});
 
-export default Main() {
+export default function Main() {
   return (
     <Fade>
       {/* MyComponent must be the only child */}

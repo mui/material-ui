@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "loading": { "type": { "name": "bool" }, "default": "false" },
     "loadingIndicator": {
@@ -19,7 +19,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -30,6 +31,10 @@
     }
   },
   "name": "LoadingButton",
+  "imports": [
+    "import LoadingButton from '@mui/lab/LoadingButton';",
+    "import { LoadingButton } from '@mui/lab';"
+  ],
   "styles": {
     "classes": [
       "root",

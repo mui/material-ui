@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { EventHandlers } from '../utils';
 
 export interface UseSliderParameters {
   /**
@@ -113,7 +112,10 @@ export type UseSliderRootSlotOwnProps = {
   ref: React.RefCallback<Element> | null;
 };
 
-export type UseSliderRootSlotProps<TOther = {}> = Omit<TOther, keyof UseSliderRootSlotOwnProps> &
+export type UseSliderRootSlotProps<ExternalProps = {}> = Omit<
+  ExternalProps,
+  keyof UseSliderRootSlotOwnProps
+> &
   UseSliderRootSlotOwnProps;
 
 export type UseSliderThumbSlotOwnProps = {
@@ -121,7 +123,10 @@ export type UseSliderThumbSlotOwnProps = {
   onMouseOver: React.MouseEventHandler;
 };
 
-export type UseSliderThumbSlotProps<TOther = {}> = Omit<TOther, keyof UseSliderThumbSlotOwnProps> &
+export type UseSliderThumbSlotProps<ExternalProps = {}> = Omit<
+  ExternalProps,
+  keyof UseSliderThumbSlotOwnProps
+> &
   UseSliderThumbSlotOwnProps;
 
 export type UseSliderHiddenInputOwnProps = {
@@ -134,14 +139,14 @@ export type UseSliderHiddenInputOwnProps = {
   onBlur: React.FocusEventHandler;
   onChange: React.ChangeEventHandler;
   onFocus: React.FocusEventHandler;
-  step?: number;
+  step?: number | 'any';
   style: React.CSSProperties;
   tabIndex?: number;
   type?: React.InputHTMLAttributes<HTMLInputElement>['type'];
 };
 
-export type UseSliderHiddenInputProps<TOther = {}> = Omit<
-  TOther,
+export type UseSliderHiddenInputProps<ExternalProps = {}> = Omit<
+  ExternalProps,
   keyof UseSliderHiddenInputOwnProps
 > &
   UseSliderHiddenInputOwnProps;
@@ -170,12 +175,10 @@ export interface AxisProps<T extends Axis> {
 export interface UseSliderReturnValue {
   /**
    * The active index of the slider.
-   * @default -1
    */
   active: number;
   /**
    * The orientation of the slider.
-   * @default horizontal
    */
   axis: Axis;
   /**
@@ -184,7 +187,6 @@ export interface UseSliderReturnValue {
   axisProps: { [key in Axis]: AxisProps<key> };
   /**
    * If `true`, the slider is being dragged.
-   * @default false
    */
   dragging: boolean;
   /**
@@ -193,35 +195,40 @@ export interface UseSliderReturnValue {
   focusedThumbIndex: number;
   /**
    * Resolver for the hidden input slot's props.
-   * @param otherHandlers props for the hidden input slot
+   * @param externalProps props for the hidden input slot
    * @returns props that should be spread on the hidden input slot
    */
-  getHiddenInputProps: <TOther extends EventHandlers = {}>(
-    otherHandlers?: TOther,
-  ) => UseSliderHiddenInputProps<TOther>;
+  getHiddenInputProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSliderHiddenInputProps<ExternalProps>;
   /**
    * Resolver for the root slot's props.
-   * @param otherHandlers props for the root slot
+   * @param externalProps props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: <TOther extends EventHandlers = {}>(
-    otherHandlers?: TOther,
-  ) => UseSliderRootSlotProps<TOther>;
+  getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSliderRootSlotProps<ExternalProps>;
   /**
    * Resolver for the thumb slot's props.
-   * @param otherHandlers props for the thumb slot
+   * @param externalProps props for the thumb slot
    * @returns props that should be spread on the thumb slot
    */
-  getThumbProps: <TOther extends EventHandlers = {}>(
-    otherHandlers?: TOther,
-  ) => UseSliderThumbSlotProps<TOther>;
+  getThumbProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
+  ) => UseSliderThumbSlotProps<ExternalProps>;
+  /**
+   * Resolver for the thumb slot's style prop.
+   * @param index of the currently moved thumb
+   * @returns props that should be spread on the style prop of thumb slot
+   */
+  getThumbStyle: (index: number) => object;
   /**
    * The marks of the slider. Marks indicate predetermined values to which the user can move the slider.
    */
   marks: Mark[];
   /**
    * The thumb index for the current value when in hover state.
-   * @default -1
    */
   open: number;
   /**

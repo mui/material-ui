@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
-import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
+import { createMount, createRenderer, describeConformanceUnstyled } from '@mui-internal/test-utils';
+import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { MenuProvider } from '@mui/base/useMenu';
 
 const dummyGetItemState = () => ({
@@ -17,9 +17,7 @@ const testContext = {
   getItemProps: () => ({}),
   getItemState: dummyGetItemState,
   open: false,
-  registerHighlightChangeHandler: () => () => {},
   registerItem: () => ({ id: '', deregister: () => {} }),
-  registerSelectionChangeHandler: () => () => {},
   totalSubitemCount: 0,
 };
 

@@ -6,7 +6,7 @@ export type MenuActionContext = ListActionContext<string> & {
   listboxRef: React.RefObject<HTMLElement>;
 };
 
-export default function menuReducer(
+export function menuReducer(
   state: MenuInternalState,
   action: ActionWithContext<ListAction<string>, MenuActionContext>,
 ) {
@@ -35,6 +35,14 @@ export default function menuReducer(
 
   if (action.type === ListActionTypes.blur) {
     if (!action.context.listboxRef.current?.contains(action.event.relatedTarget)) {
+      // To prevent the menu from closing when the focus leaves the menu to the button.
+      // For more details, see https://github.com/mui/material-ui/pull/36917#issuecomment-1566992698
+      const listboxId = action.context.listboxRef.current?.getAttribute('id');
+      const controlledBy = action.event.relatedTarget?.getAttribute('aria-controls');
+      if (listboxId && controlledBy && listboxId === controlledBy) {
+        return newState;
+      }
+
       return {
         ...newState,
         open: false,

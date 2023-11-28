@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Alert component
 components: Alert
 githubLabel: 'component: alert'
@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 <p class="description">Alerts display brief messages for the user without interrupting their use of the app.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 

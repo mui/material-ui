@@ -23,7 +23,7 @@ export default function GradientCover() {
         }}
       />
       <CardContent sx={{ justifyContent: 'flex-end' }}>
-        <Typography level="h2" fontSize="lg" textColor="#fff" mb={1}>
+        <Typography level="title-lg" textColor="#fff">
           Yosemite National Park
         </Typography>
         <Typography

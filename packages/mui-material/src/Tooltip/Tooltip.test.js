@@ -10,7 +10,7 @@ import {
   simulatePointerDevice,
   focusVisible,
   programmaticFocusTriggersFocusVisible,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
@@ -993,6 +993,12 @@ describe('<Tooltip />', () => {
       }).toErrorDev(
         'The `children` component of the Tooltip is not forwarding its props correctly.',
       );
+    });
+
+    it('should warn when children is a string', () => {
+      expect(() => {
+        render(<Tooltip title="Hello World">Hello World</Tooltip>);
+      }).toErrorDev('Invalid prop `children` of type `string` supplied');
     });
   });
 

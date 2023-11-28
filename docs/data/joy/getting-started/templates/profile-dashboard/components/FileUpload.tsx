@@ -7,31 +7,28 @@ import IconButton from '@mui/joy/IconButton';
 import LinearProgress from '@mui/joy/LinearProgress';
 import Typography from '@mui/joy/Typography';
 
-export default function FileUpload({
-  icon,
-  fileName,
-  fileSize,
-  progress,
-  sx,
-  ...props
-}: CardProps & {
-  icon?: React.ReactElement;
-  fileName: string;
-  fileSize: string;
-  progress: number;
-}) {
+import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRounded';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded';
+
+export default function FileUpload(
+  props: CardProps & {
+    icon?: React.ReactElement;
+    fileName: string;
+    fileSize: string;
+    progress: number;
+  },
+) {
+  const { icon, fileName, fileSize, progress, sx, ...other } = props;
   return (
     <Card
       variant="outlined"
       orientation="horizontal"
-      {...props}
+      {...other}
       sx={[
         {
           gap: 1.5,
           alignItems: 'flex-start',
-          ...(progress >= 100 && {
-            borderColor: 'primary.500',
-          }),
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -39,24 +36,30 @@ export default function FileUpload({
       <AspectRatio
         ratio="1"
         variant="soft"
-        color="primary"
+        color="neutral"
         sx={{
           minWidth: 32,
           borderRadius: '50%',
           '--Icon-fontSize': '16px',
         }}
       >
-        <div>{icon ?? <i data-feather="file" />}</div>
+        <div>{icon ?? <InsertDriveFileRoundedIcon />}</div>
       </AspectRatio>
       <CardContent>
         <Typography fontSize="sm">{fileName}</Typography>
-        <Typography level="body3">{fileSize}</Typography>
+        <Typography level="body-xs">{fileSize}</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <LinearProgress
+            color="neutral"
             value={progress}
             determinate
-            variant="plain"
-            sx={{ bgcolor: 'neutral.softBg' }}
+            sx={[
+              {
+                ...(progress >= 100 && {
+                  color: 'var(--joy-palette-success-solidBg)',
+                }),
+              },
+            ]}
           />
           <Typography fontSize="xs">{progress}%</Typography>
         </Box>
@@ -65,7 +68,7 @@ export default function FileUpload({
         <AspectRatio
           ratio="1"
           variant="solid"
-          color="primary"
+          color="success"
           sx={{
             minWidth: 20,
             borderRadius: '50%',
@@ -73,17 +76,12 @@ export default function FileUpload({
           }}
         >
           <div>
-            <i data-feather="check" />
+            <CheckRoundedIcon />
           </div>
         </AspectRatio>
       ) : (
-        <IconButton
-          variant="plain"
-          color="neutral"
-          size="sm"
-          sx={{ mt: -1, mr: -1 }}
-        >
-          <i data-feather="trash-2" />
+        <IconButton variant="plain" color="danger" size="sm" sx={{ mt: -1, mr: -1 }}>
+          <RemoveCircleOutlineRoundedIcon />
         </IconButton>
       )}
     </Card>

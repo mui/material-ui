@@ -1,6 +1,6 @@
 # Breaking changes in v5, part one: styles and themes
 
-<p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4. This part covers changes to styling and theming.</p>
+<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrating from v4. This part covers changes to styling and theming.</p>
 
 ## Material UI v5 migration
 
@@ -641,7 +641,7 @@ If you are using this utility together with `@mui/material`, it's recommended yo
 +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 +const theme = createTheme();
-  const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+  const MyComponent = withTheme(({ theme }) => <div>{theme.direction}</div>);
 
   function App(props) {
 -  return <MyComponent />;

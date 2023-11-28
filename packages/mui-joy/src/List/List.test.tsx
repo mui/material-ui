@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
+import { describeConformance, createRenderer, screen } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import List, { listClasses as classes } from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -28,8 +28,6 @@ describe('Joy <List />', () => {
       },
     },
   }));
-
-  describeJoyColorInversion(<List />, { muiName: 'JoyList', classes });
 
   it('should have root className', () => {
     const { container } = render(<List />);
@@ -101,9 +99,11 @@ describe('Joy <List />', () => {
   });
 
   describe('Menu - integration', () => {
+    const element = document.createElement('div');
+    element.setAttribute('aria-controls', 'test');
     it('should have role="group" inside Menu', () => {
       render(
-        <Menu open anchorEl={() => document.createElement('div')}>
+        <Menu open anchorEl={() => element}>
           <List />
         </Menu>,
       );
@@ -112,7 +112,7 @@ describe('Joy <List />', () => {
 
     it('should inherit size', () => {
       render(
-        <Menu size="sm" open anchorEl={() => document.createElement('div')}>
+        <Menu size="sm" open anchorEl={() => element}>
           <List />
         </Menu>,
       );
@@ -121,7 +121,7 @@ describe('Joy <List />', () => {
 
     it('should use instance size', () => {
       render(
-        <Menu size="sm" open anchorEl={() => document.createElement('div')}>
+        <Menu size="sm" open anchorEl={() => element}>
           <List size="lg" />
         </Menu>,
       );

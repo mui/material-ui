@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Avatar component
 components: Avatar, AvatarGroup, SvgIcon
 githubLabel: 'component: avatar'
@@ -9,7 +9,7 @@ githubLabel: 'component: avatar'
 
 <p class="description">An avatar is a graphical representation of a user's identity.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
@@ -131,12 +131,12 @@ Combine the Avatar component with the [Badge](/joy-ui/react-badge/) to visually 
 
 {{"demo": "BadgeAvatars.js"}}
 
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Avatar component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.
 
-{{"demo": "AvatarGroupVariables.js", "hideToolbar": true }}
+{{"demo": "AvatarGroupVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Anatomy
 

@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: Bottom Navigation React component
 components: BottomNavigation, BottomNavigationAction
 githubLabel: 'component: bottom navigation'

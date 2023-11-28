@@ -1,6 +1,6 @@
 # Breaking changes in v5, part two: core components
 
-<p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4. This part covers changes to components.</p>
+<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrating from v4. This part covers changes to components.</p>
 
 ## Material UI v5 migration
 
@@ -567,6 +567,32 @@ If you have customized the color of the border, you will need to update the CSS 
  }
 ```
 
+### Support "middle" variant with "vertical" orientation
+
+In v4, using `orientation="vertical"` and `variant="middle"` was adding a left and right margins of `16px` in the component.
+In the v5, to avoid fixed spacing on the component, this margin was removed.
+
+:::info
+If you want to use the previous margin values, this change can be made in your theme with the following code. See the example on [CodeSandbox demo](https://codesandbox.io/s/v5-migration-vertical-alignment-middle-divider-45vepj?file=/src/index.tsx).
+:::
+
+```diff
+ const theme = createTheme({
+  components: {
+   MuiDivider: {
++     styleOverrides: {
++       root: ({ ownerState, theme }) => ({
++         ...(ownerState.orientation === 'vertical' && ownerState.variant === 'middle' && {
++           marginLeft: theme.spacing(2),
++           marginRight: theme.spacing(2),
++         }),
++       })
++     }
+    },
+  },
+ });
+```
+
 ## ExpansionPanel
 
 ### ✅ Rename components
@@ -676,8 +702,8 @@ Change the default variant from `standard` to `outlined`.
 
 `standard` has been removed from the Material Design guidelines.
 
-:::warning
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+:::success
+This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff
@@ -803,7 +829,7 @@ Use CSS `object-fit`. For IE11 support either use a polyfill such as
 
 This component is deprecated because its functionality can be created with the [`sx`](/system/getting-started/the-sx-prop/) prop or the [`useMediaQuery`](/material-ui/react-use-media-query/) hook.
 
-:::warning
+:::success
 This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, but further fixes are required.
 :::
 
@@ -881,8 +907,8 @@ The default `underline` prop is changed from `"hover"` to `"always"`.
 
 To recreate the behavior from v4, apply `defaultProps` in the theme.
 
-:::warning
-✅ This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod.
+:::success
+This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod.
 :::
 
 ```js
@@ -1231,7 +1257,7 @@ You can get a reference to the underlying DOM node of our components via `ref` p
 
 The component relied on [`ReactDOM.findDOMNode`](https://react.dev/reference/react-dom/findDOMNode) which is [deprecated in `React.StrictMode`](https://react.dev/reference/react/StrictMode#warning-about-deprecated-finddomnode-usage).
 
-:::warning
+:::success
 This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, but further fixes are required.
 :::
 
@@ -1253,7 +1279,7 @@ Change the default variant from `standard` to `outlined`.
 If you are composing the `Select` with a form control component, you only need to update `FormControl`—the select inherits the variant from its context.
 
 :::success
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff
@@ -1590,6 +1616,8 @@ Change the default `indicatorColor` and `textColor` prop values to "primary".
 
 This is done to match the most common use cases with Material Design.
 
+If you'd prefer to keep the v4 color styles, use `"secondary"` and `"inherit"`, respectively, as shown below:
+
 ```diff
 -<Tabs />
 +<Tabs indicatorColor="secondary" textColor="inherit" />
@@ -1654,7 +1682,7 @@ Change the default variant from `standard` to `outlined`.
 `standard` has been removed from the Material Design guidelines.
 
 :::success
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff

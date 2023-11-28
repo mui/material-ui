@@ -1,46 +1,52 @@
 import * as React from 'react';
-import Select, { SelectProps, selectClasses } from '@mui/base/Select';
-import Option, { optionClasses } from '@mui/base/Option';
-import Popper from '@mui/base/Popper';
+import {
+  Select as BaseSelect,
+  SelectProps,
+  selectClasses,
+  SelectRootSlotProps,
+} from '@mui/base/Select';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
+import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled, Box } from '@mui/system';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectForm() {
   return (
     <div>
       <Box sx={{ mb: 2 }}>
         <Label htmlFor="unnamed-select">Default</Label>
-        <CustomSelect defaultValue={10} id="unnamed-select">
-          <StyledOption value={10}>Ten</StyledOption>
-          <StyledOption value={20}>Twenty</StyledOption>
-          <StyledOption value={30}>Thirty</StyledOption>
-        </CustomSelect>
+        <Select defaultValue={10} id="unnamed-select">
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
+        </Select>
       </Box>
-      <Box>
+      <div>
         <Label htmlFor="named-select">
           With the <code>name</code> prop
         </Label>
-        <CustomSelect defaultValue={10} id="named-select" name="demo-select">
-          <StyledOption value={10}>Ten</StyledOption>
-          <StyledOption value={20}>Twenty</StyledOption>
-          <StyledOption value={30}>Thirty</StyledOption>
-        </CustomSelect>
-      </Box>
+        <Select defaultValue={10} id="named-select" name="demo-select">
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
+        </Select>
+      </div>
     </div>
   );
 }
 
-const CustomSelect = React.forwardRef(function CustomSelect<
+const Select = React.forwardRef(function CustomSelect<
   TValue extends {},
   Multiple extends boolean,
 >(props: SelectProps<TValue, Multiple>, ref: React.ForwardedRef<HTMLButtonElement>) {
   const slots: SelectProps<TValue, Multiple>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
+    root: Button,
+    listbox: Listbox,
+    popper: Popper,
     ...props.slots,
   };
 
-  return <Select {...props} ref={ref} slots={slots} />;
+  return <BaseSelect {...props} ref={ref} slots={slots} />;
 }) as <TValue extends {}, Multiple extends boolean>(
   props: SelectProps<TValue, Multiple> & React.RefAttributes<HTMLButtonElement>,
 ) => JSX.Element;
@@ -55,32 +61,51 @@ const blue = {
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
-const StyledButton = styled('button')(
+const Button = React.forwardRef(function Button<
+  TValue extends {},
+  Multiple extends boolean,
+>(
+  props: SelectRootSlotProps<TValue, Multiple>,
+  ref: React.ForwardedRef<HTMLButtonElement>,
+) {
+  const { ownerState, ...other } = props;
+  return (
+    <StyledButton type="button" {...other} ref={ref}>
+      {other.children}
+      <UnfoldMoreRoundedIcon />
+    </StyledButton>
+  );
+});
+
+const StyledButton = styled('button', { shouldForwardProp: () => true })(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  position: relative;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
   min-width: 320px;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
   text-align: left;
   line-height: 1.5;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -92,26 +117,24 @@ const StyledButton = styled('button')(
   }
 
   &.${selectClasses.focusVisible} {
+    outline: 0;
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
-  &.${selectClasses.expanded} {
-    &::after {
-      content: '▴';
-    }
-  }
-
-  &::after {
-    content: '▾';
-    float: right;
+  & > svg {
+    font-size: 1rem;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 10px;
   }
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -123,11 +146,13 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
-const StyledOption = styled(Option)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -164,13 +189,13 @@ const StyledOption = styled(Option)(
   `,
 );
 
-const StyledPopper = styled(Popper)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;
 
 const Label = styled('label')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.85rem;
   display: block;
   margin-bottom: 4px;

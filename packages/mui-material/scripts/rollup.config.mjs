@@ -1,8 +1,8 @@
 import { promises as fs, existsSync } from 'fs';
+import * as url from 'url';
 import path from 'path';
 import zlib from 'zlib';
 import { promisify } from 'util';
-import * as url from 'url';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
@@ -10,8 +10,9 @@ import replace from '@rollup/plugin-replace';
 import nodeGlobals from 'rollup-plugin-node-globals';
 import { terser } from 'rollup-plugin-terser';
 
-const gzip = promisify(zlib.gzip);
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
+
+const gzip = promisify(zlib.gzip);
 
 /**
  * @param {{snapshotPath: string}} options
@@ -93,11 +94,15 @@ function resolveNestedImport(packageFolder, importee) {
 }
 
 // Resolve imports like:
-// import Portal from '@mui/base/Portal';
+// import { Portal } from '@mui/base/Portal';
 const nestedFolder = {
   resolveId: (importee) => {
     if (importee.indexOf('@mui/base/') === 0) {
       return resolveNestedImport('mui-base', importee);
+    }
+
+    if (importee.indexOf('@mui/utils/') === 0) {
+      return resolveNestedImport('mui-utils', importee);
     }
 
     if (importee.indexOf('@mui/private-theming/') === 0) {
@@ -156,6 +161,9 @@ const nodeOptions = {
 };
 
 function onwarn(warning) {
+  if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
+    return;
+  }
   if (
     warning.code === 'UNUSED_EXTERNAL_IMPORT' &&
     warning.source === 'react' &&
@@ -182,6 +190,7 @@ export default [
       format: 'umd',
       name: 'MaterialUI',
       globals,
+      intro: "'use client';",
     },
     external: Object.keys(globals),
     plugins: [
@@ -201,6 +210,7 @@ export default [
       format: 'umd',
       name: 'MaterialUI',
       globals,
+      intro: "'use client';",
     },
     external: Object.keys(globals),
     plugins: [

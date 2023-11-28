@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { expectType } from '@mui/types';
 import Tabs from '@mui/material/Tabs';
 import SvgIcon from '@mui/material/SvgIcon';
 
@@ -48,5 +49,12 @@ function SampleIcon() {
       'data-testid': 'test-label-scrollButtonStart',
       fontSize: ownerState.textColor === 'secondary' ? 'large' : 'small',
     }),
+  }}
+/>;
+
+// Test for ref type
+<Tabs
+  ref={(elem) => {
+    expectType<HTMLDivElement | null, typeof elem>(elem);
   }}
 />;

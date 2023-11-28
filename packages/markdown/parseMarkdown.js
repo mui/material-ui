@@ -1,7 +1,22 @@
 const { marked } = require('marked');
-const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
+
+/**
+ * Option used by `marked` the library parsing markdown.
+ */
+const markedOptions = {
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  headerPrefix: false,
+  headerIds: false,
+  mangle: false,
+};
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
@@ -38,23 +53,62 @@ function escape(html, encode) {
 }
 
 function checkUrlHealth(href, linkText, context) {
-  // Skip links that are externals to MUI
-  if (!(href[0] === '/' || href.startsWith('https://mui.com/'))) {
+  const url = new URL(href, 'https://mui.com/');
+
+  if (/\/{2,}$/.test(url.pathname)) {
+    throw new Error(
+      [
+        'docs-infra: Duplicated trailing slashes. The following link:',
+        `[${linkText}](${href}) in ${context.location} has duplicated trailing slashes, please only add one.`,
+        '',
+        'See https://ahrefs.com/blog/trailing-slash/ for more details.',
+        '',
+      ].join('\n'),
+    );
+  }
+
+  // External links to MUI, ignore
+  if (url.host !== 'mui.com') {
     return;
   }
 
-  const url = new URL(href, 'https://mui.com/');
-
-  if (url.host === 'mui.com' && url.pathname[url.pathname.length - 1] !== '/') {
+  /**
+   * Break for links like:
+   * /material-ui/customization/theming
+   *
+   * It needs to be:
+   * /material-ui/customization/theming/
+   */
+  if (url.pathname[url.pathname.length - 1] !== '/') {
     throw new Error(
       [
-        'Missing trailing slash. The following link:',
+        'docs-infra: Missing trailing slash. The following link:',
         `[${linkText}](${href}) in ${context.location} is missing a trailing slash, please add it.`,
         '',
         'See https://ahrefs.com/blog/trailing-slash/ for more details.',
         '',
       ].join('\n'),
     );
+  }
+
+  // Relative links
+  if (href[0] !== '#' && !(href.startsWith('https://') || href.startsWith('http://'))) {
+    /**
+     * Break for links like:
+     * material-ui/customization/theming/
+     *
+     * It needs to be:
+     * /material-ui/customization/theming/
+     */
+    if (href[0] !== '/') {
+      throw new Error(
+        [
+          'docs-infra: Missing leading slash. The following link:',
+          `[${linkText}](${href}) in ${context.location} is missing a leading slash, please add it.`,
+          '',
+        ].join('\n'),
+      );
+    }
   }
 }
 
@@ -123,15 +177,19 @@ function getHeaders(markdown) {
 
     return headers;
   } catch (err) {
-    throw new Error(`${err.message} in getHeader(markdown) with markdown: \n\n${header}`);
+    throw new Error(
+      `docs-infra: ${err.message} in getHeader(markdown) with markdown: \n\n${header}\n`,
+    );
   }
 }
 
 function getContents(markdown) {
-  return markdown
+  const rep = markdown
     .replace(headerRegExp, '') // Remove header information
-    .split(/^{{("(?:demo|component)":[^}]*)}}$/gm) // Split markdown into an array, separating demos
+    .split(/^{{("(?:demo|component)":.*)}}$/gm) // Split markdown into an array, separating demos
+    .flatMap((text) => text.split(/^(<codeblock.*?<\/codeblock>)$/gmsu))
     .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
+  return rep;
 }
 
 function getTitle(markdown) {
@@ -153,16 +211,47 @@ function getDescription(markdown) {
   return matches[1].trim().replace(/`/g, '');
 }
 
+function getCodeblock(content) {
+  if (content.startsWith('<codeblock')) {
+    const storageKey = content.match(/^<codeblock [^>]*storageKey=["|'](\S*)["|'].*>/m)?.[1];
+    const blocks = [...content.matchAll(/^```(\S*) (\S*)\n(.*?)\n```/gmsu)].map(
+      ([, language, tab, code]) => ({ language, tab, code }),
+    );
+
+    const blocksData = blocks.filter(
+      (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
+    );
+
+    return {
+      type: 'codeblock',
+      data: blocksData,
+      storageKey,
+    };
+  }
+  return undefined;
+}
+
 /**
  * @param {string} markdown
  */
-function renderInline(markdown) {
-  return marked.parseInline(markdown);
+function renderMarkdown(markdown) {
+  // Check if the markdown contains an inline list. Unordered lists are block elements and cannot be parsed inline.
+  if (/[-*+] `([A-Za-z]+)`/g.test(markdown)) {
+    return marked.parse(markdown, markedOptions);
+  }
+  // Two new lines result in a newline in the table.
+  // All other new lines must be eliminated to prevent markdown mayhem.
+  return marked
+    .parseInline(markdown, markedOptions)
+    .replace(/(\r?\n){2}/g, '<br>')
+    .replace(/\r?\n/g, ' ');
 }
 
 // Help rank mui.com on component searches first.
 const noSEOadvantage = [
   'https://m2.material.io/',
+  'https://m3.material.io/',
+  'https://material.io/',
   'https://getbootstrap.com/',
   'https://icons.getbootstrap.com/',
   'https://pictogrammers.com/',
@@ -171,6 +260,9 @@ const noSEOadvantage = [
   'https://heroicons.com/',
   'https://react-icons.github.io/',
   'https://fontawesome.com/',
+  'https://www.radix-ui.com/',
+  'https://react-spectrum.adobe.com/',
+  'https://headlessui.com/',
 ];
 
 /**
@@ -209,13 +301,10 @@ function createRender(context) {
         return `<h${level}>${headingHtml}</h${level}>`;
       }
 
-      const headingText = headingHtml
-        .replace(
-          /([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])\uFE0F?/g,
-          '',
-        ) // remove emojis
-        .replace(/<\/?[^>]+(>|$)/g, '') // remove HTML
-        .trim();
+      // Remove links to avoid nested links in the TOCs
+      let headingText = headingHtml.replace(/<a\b[^>]*>/gi, '').replace(/<\/a>/gi, '');
+      // Remove `code` tags
+      headingText = headingText.replace(/<code\b[^>]*>/gi, '').replace(/<\/code>/gi, '');
 
       // Standardizes the hash from the default location (en) to different locations
       // Need english.md file parsed first
@@ -247,7 +336,7 @@ function createRender(context) {
         });
       } else if (level === 3) {
         if (!toc[toc.length - 1]) {
-          throw new Error(`Missing parent level for: ${headingText}`);
+          throw new Error(`docs-infra: Missing parent level for: ${headingText}\n`);
         }
 
         toc[toc.length - 1].children.push({
@@ -271,6 +360,10 @@ function createRender(context) {
     };
     renderer.link = (href, linkTitle, linkText) => {
       let more = '';
+
+      if (linkTitle) {
+        more += ` title="${linkTitle}"`;
+      }
 
       if (noSEOadvantage.some((domain) => href.indexOf(domain) !== -1)) {
         more = ' target="_blank" rel="noopener nofollow"';
@@ -314,19 +407,14 @@ function createRender(context) {
 
       return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
         escaped ? code : escape(code, true)
-      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>\n`;
-    };
-
-    const markedOptions = {
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false,
-      highlight: prism,
-      renderer,
+      }</code></pre>${[
+        '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">',
+        '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
+        '<use class="MuiCode-copy-icon" xlink:href="#copy-icon" />',
+        '<use class="MuiCode-copied-icon" xlink:href="#copied-icon" />',
+        '</svg>',
+        '<span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
+      ].join('')}\n`;
     };
 
     marked.use({
@@ -355,183 +443,37 @@ function createRender(context) {
             }
             return undefined;
           },
+
           renderer(token) {
-            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">${this.parser.parse(
-              token.tokens,
-            )}\n</aside>`;
+            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">
+            ${
+              ['info', 'success', 'warning', 'error'].includes(token.severity)
+                ? [
+                    '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
+                    `<use class="MuiCode-copied-icon" xlink:href="#${token.severity}-icon" />`,
+                    '</svg>',
+                  ].join('\n')
+                : ''
+            }
+            <div class="MuiCallout-content">
+            ${this.parser.parse(token.tokens)}\n</div></aside>`;
           },
         },
       ],
     });
 
-    return marked(markdown, markedOptions);
+    return marked(markdown, { ...markedOptions, renderer });
   }
 
   return render;
-}
-
-const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
-
-/**
- * @param {string} product
- * @example 'material'
- * @param {string} componentPkg
- * @example 'mui-base'
- * @param {string} component
- * @example 'Button'
- * @returns {string}
- */
-function resolveComponentApiUrl(product, componentPkg, component) {
-  if (!product) {
-    return `/api/${kebabCase(component)}/`;
-  }
-  if (product === 'date-pickers') {
-    return `/x/api/date-pickers/${kebabCase(component)}/`;
-  }
-  if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
-    return `/base/api/${kebabCase(component)}/`;
-  }
-  return `/${product}/api/${kebabCase(component)}/`;
-}
-
-/**
- * @param {object} config
- * @param {Array<{ markdown: string, filename: string, userLanguage: string }>} config.translations - Mapping of locale to its markdown
- * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
- * @param {object} config.options - provided to the webpack loader
- */
-function prepareMarkdown(config) {
-  const { pageFilename, translations, componentPackageMapping = {}, options } = config;
-
-  const demos = {};
-  /**
-   * @type {Record<string, { rendered: Array<string | { component: string } | { demo:string }> }>}
-   */
-  const docs = {};
-  const headingHashes = {};
-
-  translations
-    // Process the English markdown before the other locales.
-    // English ToC anchor links are used in all languages
-    .sort((a) => (a.userLanguage === 'en' ? -1 : 1))
-    .forEach((translation) => {
-      const { filename, markdown, userLanguage } = translation;
-      const headers = getHeaders(markdown);
-      const location = headers.filename || `/docs${pageFilename}/${filename}`;
-      const title = headers.title || getTitle(markdown);
-      const description = headers.description || getDescription(markdown);
-
-      if (title == null || title === '') {
-        throw new Error(`Missing title in the page: ${location}`);
-      }
-
-      if (title.length > 70) {
-        throw new Error(
-          [
-            `The title "${title}" is too long (${title.length} characters).`,
-            'It needs to have fewer than 70 characters—ideally less than 60. For more details, see:',
-            'https://developers.google.com/search/docs/advanced/appearance/title-link',
-          ].join('\n'),
-        );
-      }
-
-      if (description == null || description === '') {
-        throw new Error(`Missing description in the page: ${location}`);
-      }
-
-      const contents = getContents(markdown);
-
-      if (headers.unstyled) {
-        contents.push(`
-## Unstyled
-
-:::success
-[Base UI](/base/getting-started/overview/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
-:::
-        `);
-      }
-
-      if (headers.components.length > 0) {
-        contents.push(`
-## API
-
-See the documentation below for a complete reference to all of the props and classes available to the components mentioned here.
-
-${headers.components
-  .map((component) => {
-    const componentPkgMap = componentPackageMapping[headers.product];
-    const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
-    return `- [\`<${component} />\`](${resolveComponentApiUrl(
-      headers.product,
-      componentPkg,
-      component,
-    )})`;
-  })
-  .join('\n')}
-${headers.hooks
-  .map((hook) => {
-    const componentPkgMap = componentPackageMapping[headers.product];
-    const componentPkg = componentPkgMap ? componentPkgMap[hook] : null;
-    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.product, componentPkg, hook)})`;
-  })
-  .join('\n')}
-  `);
-      }
-
-      const toc = [];
-      const render = createRender({
-        headingHashes,
-        toc,
-        userLanguage,
-        location,
-        options,
-      });
-
-      const rendered = contents.map((content) => {
-        if (/^"(demo|component)": "(.*)"/.test(content)) {
-          try {
-            return JSON.parse(`{${content}}`);
-          } catch (err) {
-            console.error('JSON.parse fails with: ', `{${content}}`);
-            console.error(err);
-            return null;
-          }
-        }
-
-        return render(content);
-      });
-
-      // fragment link symbol
-      rendered.unshift(`<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
-  <symbol id="anchor-link-icon" viewBox="0 0 16 16">
-    <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" />
-  </symbol>
-</svg>`);
-      rendered.unshift(`<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
-<symbol id="comment-link-icon" viewBox="0 0 24 24">
-  <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 14v-2.47l6.88-6.88c.2-.2.51-.2.71 0l1.77 1.77c.2.2.2.51 0 .71L8.47 14H6zm12 0h-7.5l2-2H18v2z" />
-</symbol>
-</svg>`);
-
-      docs[userLanguage] = {
-        description,
-        location,
-        rendered,
-        toc,
-        title,
-        headers,
-      };
-    });
-
-  return { demos, docs };
 }
 
 module.exports = {
   createRender,
   getContents,
   getDescription,
+  getCodeblock,
   getHeaders,
   getTitle,
-  prepareMarkdown,
-  renderInline,
+  renderMarkdown,
 };

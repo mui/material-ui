@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -20,11 +21,11 @@ function getContainer(container: PortalProps['container']) {
  *
  * Demos:
  *
- * - [Portal](https://mui.com/base/react-portal/)
+ * - [Portal](https://mui.com/base-ui/react-portal/)
  *
  * API:
  *
- * - [Portal API](https://mui.com/base/react-portal/components-api/#portal)
+ * - [Portal API](https://mui.com/base-ui/react-portal/components-api/#portal)
  */
 const Portal = React.forwardRef(function Portal(
   props: PortalProps,
@@ -82,6 +83,9 @@ Portal.propTypes /* remove-proptypes */ = {
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
+   *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
@@ -101,4 +105,4 @@ if (process.env.NODE_ENV !== 'production') {
   (Portal as any)['propTypes' + ''] = exactProp((Portal as any).propTypes);
 }
 
-export default Portal;
+export { Portal };

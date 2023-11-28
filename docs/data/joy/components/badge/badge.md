@@ -1,16 +1,16 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Badge component
 components: Badge
 githubLabel: 'component: badge'
-unstyled: /base/react-badge/
+unstyled: /base-ui/react-badge/
 ---
 
 # Badge
 
 <p class="description">The Badge component generates a small label that is attached to its child element.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 

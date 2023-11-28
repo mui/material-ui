@@ -32,7 +32,7 @@ export default function HeroLeft09() {
       </Typography>
 
       <Typography
-        level="body3"
+        level="body-xs"
         sx={{
           position: 'absolute',
           top: '2rem',

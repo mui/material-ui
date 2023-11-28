@@ -29,9 +29,8 @@ export default function HeroLeft01() {
       <Typography>
         Already a member? <Link fontWeight="lg">Sign in</Link>
       </Typography>
-
       <Typography
-        level="body3"
+        level="body-xs"
         sx={{
           position: 'absolute',
           top: '2rem',

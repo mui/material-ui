@@ -1,10 +1,10 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Text Field component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
 materialDesign: https://m2.material.io/components/text-fields
-unstyled: /base/react-input/
+unstyled: /base-ui/react-input/
 ---
 
 # Text Field
@@ -95,6 +95,14 @@ Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense
 ## Uncontrolled vs. Controlled
 
 The component can be controlled or uncontrolled.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 {{"demo": "StateTextFields.js"}}
 
@@ -216,20 +224,17 @@ Make sure that the input is larger than the label to display correctly.
 
 ### type="number"
 
-Inputs of type="number" have potential usability issues:
+:::warning
+We do not recommend using `type="number"` with a Text Field due to potential usability issues:
 
-- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
-- The functionality of scrolling to increment/decrement the number can cause accidental and hard-to-notice changes
+- it allows certain non-numeric characters ('e', '+', '-', '.') and silently discards others
+- the functionality of scrolling to increment/decrement the number can cause accidental and hard-to-notice changes
+- and more—see [Why the GOV.UK Design System team changed the input type for numbers](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) for a more detailed explanation of the limitations of `<input type="number">`
+  :::
 
-and more - see [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV.UK Design System team for a more detailed explanation.
+If you need a text field with number validation, you can use Base UI's [Number Input](/base-ui/react-number-input/) instead.
 
-For number validation, one viable alternative is to use the default input type="text" with the _pattern_ attribute, for example:
-
-```jsx
-<TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
-```
-
-In the future, we might provide a [number input component](https://github.com/mui/material-ui/issues/19154).
+You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/19154) to track the progress of introducing the Number Input component to Material UI.
 
 ### Helper text
 

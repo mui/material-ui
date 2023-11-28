@@ -2,11 +2,11 @@ import * as React from 'react';
 import { useColorScheme } from '@mui/joy/styles';
 import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
 
-export default function ColorSchemeToggle({
-  onClick,
-  sx,
-  ...props
-}: IconButtonProps) {
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
+import LightModeIcon from '@mui/icons-material/LightMode';
+
+export default function ColorSchemeToggle(props: IconButtonProps) {
+  const { onClick, sx, ...other } = props;
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -18,7 +18,7 @@ export default function ColorSchemeToggle({
         size="sm"
         variant="outlined"
         color="neutral"
-        {...props}
+        {...other}
         sx={sx}
         disabled
       />
@@ -30,7 +30,7 @@ export default function ColorSchemeToggle({
       size="sm"
       variant="outlined"
       color="neutral"
-      {...props}
+      {...other}
       onClick={(event) => {
         if (mode === 'light') {
           setMode('dark');
@@ -51,8 +51,8 @@ export default function ColorSchemeToggle({
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <i data-feather="moon" />
-      <i data-feather="sun" />
+      <DarkModeRoundedIcon />
+      <LightModeIcon />
     </IconButton>
   );
 }
