@@ -89,5 +89,5 @@ When set to `"fixed"`, the fixed CSS position will be used and the Popup won't b
 ### Floating UI middleware
 
 If you need to modify the underlying [Floating UI middleware](https://floating-ui.com/docs/middleware), you can do so via the `middleware` prop.
-By default, the Popup uses the [`offset`](https://floating-ui.com/docs/offset) (with the value provided in the `offset` prop) and [`flip`](https://floating-ui.com/docs/flip) functions.
+By default, the Popup uses the [`offset`](https://floating-ui.com/docs/offset) (with the value provided in the `offset` prop), [`flip`](https://floating-ui.com/docs/flip) and [`shift`](https://floating-ui.com/docs/shift) functions.
 If you provide your own middleware array, these defaults won't be applied.
