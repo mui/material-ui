@@ -23,15 +23,16 @@ const code = `
 export default function XChartsDemo() {
   return (
     <Frame sx={{ height: '100%' }}>
-      <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
+      <Frame.Demo sx={{ p: 2 }}>
         <Paper
           variant="outlined"
           sx={(theme) => ({
             p: 2,
+            display: 'flex',
+            alignItems: 'center',
             maxWidth: '100%',
             mx: 'auto',
             bgcolor: '#FFF',
-            height: '100%',
             borderRadius: '8px',
             ...theme.applyDarkStyles({
               bgcolor: 'primaryDark.900',

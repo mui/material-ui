@@ -133,12 +133,7 @@ export default function XDataGrid() {
           />
           <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
-              <Highlighter
-                selectedBg="comfort"
-                key={name}
-                selected={name === demo}
-                onClick={() => setDemo(name)}
-              >
+              <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={icons[name]} title={name} />
               </Highlighter>
             ))}
