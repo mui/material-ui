@@ -20,8 +20,8 @@
       "@mui/icons-material": ["./mui-icons-material/build"],
       "@mui/icons-material/*": ["./mui-icons-material/build/*"],
       "@mui/utils": ["./mui-utils/src"],
-      "@mui/utils/*": ["./mui-utils/src/*"],
-    },
+      "@mui/utils/*": ["./mui-utils/src/*"]
+    }
   },
   "exclude": ["**/node_modules/"]
 }
