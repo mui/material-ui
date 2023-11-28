@@ -16,18 +16,21 @@ const content = [
     title: 'Community version',
     description:
       'Free forever. This version contains features that we believe are maintainable by contributions from the open-source community.',
+    link: '/x/introduction/licensing/#community-plan',
   },
   {
     icon: <IconImage name="pricing/x-plan-pro" mode="" loading="eager" />,
     title: 'Pro plan',
     description:
       'More advanced capabilities such as multi-filtering, multi-sorting, and more for the Data Grid; as well as the other components.',
+    link: '/x/introduction/licensing/#pro-plan',
   },
   {
     icon: <IconImage name="pricing/x-plan-premium" mode="" loading="eager" />,
     title: 'Premium plan',
     description:
       'The most advanced features for every component, including row grouping and Excel export for the Data Grid, plus everything included in the Pro plan.',
+    link: '/x/introduction/licensing/#premium-plan',
   },
 ];
 
@@ -54,8 +57,8 @@ export default function XPlans2() {
         </Grid>
         <Grid item xs={12} md={6}>
           <Stack spacing={2} useFlexGap>
-            {content.map(({ icon, title, description }) => (
-              <InfoCard title={title} icon={icon} description={description} dense />
+            {content.map(({ icon, title, description, link }) => (
+              <InfoCard dense title={title} icon={icon} description={description} link={link} />
             ))}
           </Stack>
         </Grid>
