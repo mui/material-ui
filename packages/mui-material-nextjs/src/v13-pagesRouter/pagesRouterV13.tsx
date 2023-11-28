@@ -67,7 +67,7 @@ export function createGetInitialProps(plugins: Plugin[]) {
   };
 }
 
-interface DocumentHeadTagsProps {
+export interface DocumentHeadTagsProps {
   emotionStyleTags: React.JSX.Element[];
 }
 

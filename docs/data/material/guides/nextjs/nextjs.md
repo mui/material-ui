@@ -96,7 +96,7 @@ Inside `pages/_document.tsx`:
    return (
      <Html lang="en">
        <Head>
-+        <DocumentHeadTags />
++        <DocumentHeadTags {...props} />
          ...
        </Head>
        <body>
@@ -125,5 +125,17 @@ Then inside `pages/_app.tsx`, import the `AppCacheProvider` and render it as the
        ...
 +    </AppCacheProvider>
    );
+ }
+```
+
+### TypeScript
+
+If you are using TypeScript, you will need to add `DocumentHeadTagsProps` to the Document's props interface:
+
+```diff
++ import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v13-pagesRouter';
+
++ export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
+   ...
  }
 ```
