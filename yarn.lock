@@ -3335,17 +3335,6 @@
     "@styled-system/core" "^5.1.2"
     "@styled-system/css" "^5.1.5"
 
-"@stylistic/eslint-plugin-js@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@stylistic/eslint-plugin-js/-/eslint-plugin-js-1.4.1.tgz#c86a861b9858ee9e25b3d51792ef2f8ac5089048"
-  integrity sha512-WXHPEVw5PB7OML7cLwHJDEcCyLiP7vzKeBbSwmpHLK0oh0JYkoJfTg2hEdFuQT5rQxFy3KzCy9R1mZ0wgLjKrA==
-  dependencies:
-    acorn "^8.11.2"
-    escape-string-regexp "^4.0.0"
-    eslint-visitor-keys "^3.4.3"
-    espree "^9.6.1"
-    graphemer "^1.4.0"
-
 "@swc/helpers@0.5.1":
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.5.1.tgz#e9031491aa3f26bfcc974a67f48bd456c8a5357a"
@@ -4435,7 +4424,7 @@ acorn@^5.7.3:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.4.tgz#3e8d8a9947d0599a1796d10225d7432f4a4acf5e"
   integrity sha512-1D++VG7BhrtvQpNbBzovKNc1FLGGEE/oGe7b9xJm/RFHMBeUaUGpluV9RLjZa47YFdPcDAenEYuq9pQPcMdLJg==
 
-acorn@^8.0.4, acorn@^8.11.2, acorn@^8.4.1, acorn@^8.5.0, acorn@^8.7.1, acorn@^8.9.0:
+acorn@^8.0.4, acorn@^8.4.1, acorn@^8.5.0, acorn@^8.7.1, acorn@^8.9.0:
   version "8.11.2"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.11.2.tgz#ca0d78b51895be5390a5903c5b3bdcdaf78ae40b"
   integrity sha512-nc0Axzp/0FILLEVsm4fNwLCwMttvhEI263QtVPQcbpfZZ3ts0hLsZGOpE6czNlid7CJ9MlyH8reXkpsf3YUY4w==
