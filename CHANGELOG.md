@@ -6,7 +6,7 @@
 
 _Nov 29, 2023_
 
-A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🐛 Fix Material UI Autocomplete behavior when there are duplicate labels (#36426) @islandryu
 - 🚀 Added Material You Linear Progress to `material-next` package (#39807) @lhilgert9
@@ -51,6 +51,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 19 -->[material-ui] Fix theme prop in v5 migration guide (#39976) @sai6855
 - &#8203;<!-- 43 -->[base-ui] Improve Next.js Link docs (#39838) @oliviertassinari
 - &#8203;<!-- 39 -->[base-ui] Export Base UI theme in stylesheet (#39694) @mnajdova
+- &#8203;<!-- 52 -->[joy-ui] Fix the date min & max slot props values on the Input demo (#40018) @avikalpg
 - &#8203;<!-- 35 -->[joy-ui][ButtonGroup] Fix orientation prop description (#39876) @sai6855
 - &#8203;<!-- 25 -->[joy-ui] Update gif from the Dark Mode Optimization page (#39726) @danilo-leal
 - &#8203;<!-- 24 -->[joy-ui] Fix h1 template (#40017) @oliviertassinari
@@ -60,6 +61,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 15 -->[joy-ui][templates] Fix layout shift on Profile template (#40022) @zanivan
 - &#8203;<!-- 14 -->[joy-ui][Templates] Update thumbnails (#39938) @zanivan
 - &#8203;<!-- 20 -->[material-next] Add contributing guide (#39944) @mj12albert
+- &#8203;<!-- 51 -->End v6 blogpost notification (#39879) @joserodolfofreitas
 - &#8203;<!-- 31 -->Fix nested CSS warning (#39932) @mnajdova
 - &#8203;<!-- 30 -->Make integration searchable (#39967) @oliviertassinari
 - &#8203;<!-- 29 -->Fix use of quote in markdown (#39953) @oliviertassinari
@@ -74,6 +76,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 32 -->Rename OpenCollective @oliviertassinari
 - &#8203;<!-- 48 -->[docs-infra] Env variables should be string (#39991) @oliviertassinari
 - &#8203;<!-- 10 -->[Portal] Improve docs for container prop (#39180) @oliviertassinari
+- &#8203;<!-- 50 -->[website] Update pricing table (#40023) @cherniavskii
 - &#8203;<!-- 49 -->[website][docs] Update the product identifier menu and X page (#39832) @danilo-leal
 - &#8203;<!-- 07 -->[website] Mark TreeView and Charts as stable (#39975) @flaviendelangle
 - &#8203;<!-- 06 -->[website] Update career page (#40015) @oliviertassinari
@@ -83,7 +86,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 02 -->[website] Fix 301 link @oliviertassinari
 - &#8203;<!-- 01 -->[website] Fix modal not being closed with the escape key on the Base UI page (#39880) @ZeeshanTamboli
 
-All contributors of this release in alphabetical order: @brijeshb42, @danilo-leal, @DarhkVoyd, @dhaub-exelixis, @DiegoAndai, @flaviendelangle, @islandryu, @lhilgert9, @mj12albert, @mnajdova, @oliviertassinari, @sadik-malik, @sai6855, @zanivan, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @avikalpg, @brijeshb42, @cherniavskii, @danilo-leal, @DarhkVoyd, @dhaub-exelixis, @DiegoAndai, @flaviendelangle, @islandryu, @joserodolfofreitas, @lhilgert9, @mj12albert, @mnajdova, @oliviertassinari, @sadik-malik, @sai6855, @zanivan, @ZeeshanTamboli
 
 ## 5.14.18
 
