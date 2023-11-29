@@ -42,7 +42,6 @@ describe('<Slider />', () => {
   const { render } = createRenderer();
 
   describe('<Slider />', () => {
-
     it('should apply the correct classes when track="inverted"', () => {
       const { container } = render(<Slider track="inverted" value={50} />);
 
