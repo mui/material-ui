@@ -34,6 +34,7 @@ function BasicSwitch(props) {
 const blue = {
   200: '#99CCF3',
   500: '#007FFF',
+  700: '#0059B2',
 };
 
 const grey = {
@@ -70,7 +71,7 @@ const BasicSwitchRoot = styled('span')(
   }
     
   &.Switch-focusVisible {
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? grey[700] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
   }
 
   &.Switch-disabled {
@@ -79,11 +80,14 @@ const BasicSwitchRoot = styled('span')(
   }
 
   &.Switch-checked {
-    border: 1px solid transparent;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     background: ${blue[500]};
     box-shadow: inset 0px 1px 1px ${
       theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.05)'
     };
+    &.Switch-focusVisible {
+      box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
+    }
   }
   
   `,
@@ -110,7 +114,7 @@ const BasicSwitchThumb = styled('span')(
   left: 2px;
   border-radius: 16px;
   background-color: #fff;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
   position: relative;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -121,7 +125,7 @@ const BasicSwitchThumb = styled('span')(
   &.Switch-checked {
     left: 17px;
     background-color: #fff;
-    border: 1px solid transparent;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
   }
 `,
 );

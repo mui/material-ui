@@ -93,9 +93,9 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     <Form onSubmit={handleSubmit} sx={sx}>
       <FormLabel
         htmlFor="email-subscribe"
-        sx={{ typography: 'caption', color: 'text.secondary', fontWeight: 500 }}
+        sx={{ typography: 'caption', color: 'text.secondary', fontWeight: 'medium' }}
       >
-        Enter your email:
+        Your email
       </FormLabel>
       <Box
         sx={{
@@ -104,7 +104,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           mt: 1,
           gap: 1.5,
           width: { xs: '100%', sm: 'auto' },
-          maxWidth: 320,
+          maxWidth: { xs: '100%', sm: 320 },
         }}
       >
         <InputBase

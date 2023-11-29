@@ -609,12 +609,12 @@ const Dialog = styled(AnimatedElement)({
   width: 'auto',
   transform: 'translateY(8px)',
   opacity: 0,
-  transition: 'all 0.2s ease-out',
+  transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
   '&[data-open="true"]': {
     transform: 'translateY(0)',
     opacity: 1,
     boxShadow: 'var(--Panel-shadow)',
-    transition: 'all 0.3s ease',
+    transition: 'opacity 0.3s ease, transform 0.3s ease',
   },
 });
 
@@ -622,7 +622,7 @@ const StyledBadge = styled(Badge)(
   ({ theme }) => `
   box-sizing: border-box;
   list-style: none;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   position: relative;
   display: inline-block;
 
@@ -692,7 +692,7 @@ const StyledMenuItem = styled(MenuItem)(
 );
 
 const StyledMenuListbox = styled('ul')(`
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;

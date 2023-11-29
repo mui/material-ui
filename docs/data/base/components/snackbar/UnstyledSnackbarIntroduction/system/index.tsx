@@ -108,7 +108,7 @@ const blue = {
 
 const TriggerButton = styled('button')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -153,7 +153,7 @@ const SnackbarContent = styled('div')(
   display: flex;
   gap: 8px;
   overflow: hidden;
-  background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
+  background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border-radius: 8px;
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   box-shadow: ${
@@ -163,7 +163,7 @@ const SnackbarContent = styled('div')(
   };
   padding: 0.75rem;
   color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 500;
   text-align: start;
   position: relative;
