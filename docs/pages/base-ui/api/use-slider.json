@@ -43,6 +43,12 @@
     },
     "step": { "type": { "name": "number | null", "description": "number | null" }, "default": "1" },
     "tabIndex": { "type": { "name": "number", "description": "number" } },
+    "track": {
+      "type": {
+        "name": "&#39;normal&#39; | &#39;inverted&#39; | false",
+        "description": "&#39;normal&#39; | &#39;inverted&#39; | false"
+      }
+    },
     "value": { "type": { "name": "number | number[]", "description": "number | number[]" } }
   },
   "returnValue": {
@@ -95,6 +101,13 @@
       "type": {
         "name": "React.RefCallback&lt;Element&gt; | null",
         "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
+    "track": {
+      "type": {
+        "name": "&#39;normal&#39; | &#39;inverted&#39; | false",
+        "description": "&#39;normal&#39; | &#39;inverted&#39; | false"
       },
       "required": true
     },
