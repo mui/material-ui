@@ -64,6 +64,13 @@
       "type": { "name": "func" },
       "signature": { "type": "function(option: Value) => boolean", "describedArgs": ["option"] }
     },
+    "getOptionKey": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(option: Value) => string | number",
+        "describedArgs": ["option"]
+      }
+    },
     "getOptionLabel": {
       "type": { "name": "func" },
       "default": "(option) => option.label ?? option",

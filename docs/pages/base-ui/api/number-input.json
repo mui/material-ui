@@ -41,7 +41,7 @@
     },
     "startAdornment": { "type": { "name": "node" } },
     "step": { "type": { "name": "number" } },
-    "value": { "type": { "name": "any" } }
+    "value": { "type": { "name": "number" } }
   },
   "name": "NumberInput",
   "imports": [
