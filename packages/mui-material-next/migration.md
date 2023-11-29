@@ -390,3 +390,73 @@ The `MuiDivider-withChildrenVertical` class has been removed. To replace it, you
 - .MuiDivider-withChildrenVertical
 + .MuiDivider-withChildren.MuiDivider-vertical
 ```
+
+## LinearProgress
+
+### Removed combined styleOverrides keys
+
+The following `styleOverrides` `MuiLinearProgress` keys were removed:
+
+- `dashedColorPrimary`
+- `dashedColorSecondary`
+- `barColorPrimary`
+- `barColorSecondary`
+- `bar1Indeterminate`
+- `bar1Determinate`
+- `bar1Buffer`
+- `bar2Indeterminate`
+- `bar2Buffer`
+
+The following `styleOverrides` `MuiLinearProgress` keys were added:
+
+- `bar1`
+- `bar2`
+
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `dashedPrimary` with the variants API:
+
+```diff
+ const theme = extendTheme({
+   components: {
+     MuiLinearProgress: {
+       styleOverrides: {
+-        dashedColorPrimary: {
+-          background: "fuchsia"
+-        }
++        root: {
++          "&.MuiLinearProgress-colorPrimary > .MuiLinearProgress-dashed": {
++            background: "fuchsia"
++          }
++        }
+       }
+     }
+   }
+ });
+```
+
+### Removed combined classes
+
+The following classes were removed:
+
+- `MuiLinearProgress-dashedColorPrimary`
+- `MuiLinearProgress-dashedColorSecondary`
+- `MuiLinearProgress-barColorPrimary`
+- `MuiLinearProgress-barColorSecondary`
+- `MuiLinearProgress-bar1Indeterminate`
+- `MuiLinearProgress-bar1Determinate`
+- `MuiLinearProgress-bar1Buffer`
+- `MuiLinearProgress-bar2Indeterminate`
+- `MuiLinearProgress-bar2Buffer`
+
+The following classes were added:
+
+- `MuiLinearProgress-bar1`
+- `MuiLinearProgress-bar2`
+
+You can replace them by combining classes with a CSS selector.
+The following example replaces the `MuiLinearProgress-dashedColorPrimary` class using `MuiLinearProgress-dashed` and `MuiLinearProgress-colorPrimary`:
+
+```diff
+- .MuiLinearProgress-dashedColorPrimary
++ .MuiLinearProgress-colorPrimary .MuiLinearProgress-dashed
+```

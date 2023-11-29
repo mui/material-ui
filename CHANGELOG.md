@@ -10204,7 +10204,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
   This is a follow-up effort after we have merged `material-ui-pickers`. The components are written in TypeScript which required us to upgrade our infra.
 - 👌 Improve the Slider thumb and track animation (#24968) @remyoudemans.
   The thumb is now moving with a light transition between different values unless it's dragged.
-  <img src="https://user-images.githubusercontent.com/3165635/109394906-b7405a00-7929-11eb-829a-3b5246c30c08.gif" width="412" height="110" />
+  <img src="https://user-images.githubusercontent.com/3165635/109394906-b7405a00-7929-11eb-829a-3b5246c30c08.gif" width="412" height="110" alt="thumb-animation" />
 - 💅 Convert 5 components with custom colors support (#25099, #25088) @mngu.
   This change makes it easier to leverage custom palettes
 - And many more 🐛 bug fixes and 📚 improvements.
