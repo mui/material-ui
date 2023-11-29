@@ -4,9 +4,12 @@
 
 <!-- generated comparing v5.14.18..master -->
 
-_Nov 28, 2023_
+_Nov 29, 2023_
 
-A big thanks to the 15 contributors who made this release possible.
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🐛 Fix Material UI Autocomplete behavior when there are duplicate labels (#36426) @islandryu
+- 🚀 Added Material You Linear Progress to `material-next` package (#39807) @lhilgert9
 
 ### `@mui/material@5.14.19`
 
@@ -18,6 +21,7 @@ A big thanks to the 15 contributors who made this release possible.
 
 ### `@mui/base@5.0.0-beta.25`
 
+- &#8203;<!-- 46 -->[Menu] Fix navigation of items when 1st item is disabled (#39828) @sai6855
 - &#8203;<!-- 42 -->[Modal] Refine demos (#39824) @zanivan
 - &#8203;<!-- 41 -->[NumberInput] Implement `numberInputReducer` (#38723) @mj12albert
 - &#8203;<!-- 40 -->[useNumberInput] Fix change handlers passed through slotProps (#39407) @mj12albert
@@ -37,6 +41,7 @@ A big thanks to the 15 contributors who made this release possible.
 
 ### `@mui/material-next@6.0.0-alpha.111`
 
+- &#8203;<!-- 47 -->[ProgressIndicator] Apply MD3 style to `LinearProgress` (#39807) @lhilgert9
 - &#8203;<!-- 17 -->[FormHelperText] Add FormHelperText component (#39503) @mj12albert
 - &#8203;<!-- 16 -->[IconButton] Copy IconButton to material-next (#39945) @mj12albert
 - &#8203;<!-- 13 -->[Switch] Copy `Switch` to material next (#39887) @lhilgert9
@@ -64,10 +69,12 @@ A big thanks to the 15 contributors who made this release possible.
 
 ### Core
 
+- &#8203;<!-- 45 -->Improve lerna's renovate package rules (#40029) @DiegoAndai
 - &#8203;<!-- 34 -->Downgrade lerna to 7.2.0 (#40026) @DiegoAndai
-- &#8203;<!-- 33 -->Rename OpenCollective @oliviertassinari
 - &#8203;<!-- 32 -->Rename OpenCollective @oliviertassinari
+- &#8203;<!-- 48 -->[docs-infra] Env variables should be string (#39991) @oliviertassinari
 - &#8203;<!-- 10 -->[Portal] Improve docs for container prop (#39180) @oliviertassinari
+- &#8203;<!-- 49 -->[website][docs] Update the product identifier menu and X page (#39832) @danilo-leal
 - &#8203;<!-- 07 -->[website] Mark TreeView and Charts as stable (#39975) @flaviendelangle
 - &#8203;<!-- 06 -->[website] Update career page (#40015) @oliviertassinari
 - &#8203;<!-- 05 -->[website] Sync about dataset @oliviertassinari
