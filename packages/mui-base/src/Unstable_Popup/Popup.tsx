@@ -12,8 +12,9 @@ import { Portal } from '../Portal';
 import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getPopupUtilityClass } from './popupClasses';
-import { PopupChildrenProps, PopupOwnerState, PopupProps } from './Popup.types';
+import { PopupOwnerState, PopupProps } from './Popup.types';
 import { useTransitionableElement, TransitionContext } from '../useTransition';
+import { PopupContext, PopupContextValue } from './PopupContext';
 
 function useUtilityClasses(ownerState: PopupOwnerState) {
   const { open } = ownerState;
@@ -36,6 +37,7 @@ function resolveAnchor(
 ): HTMLElement | VirtualElement | null | undefined {
   return typeof anchor === 'function' ? anchor() : anchor;
 }
+
 /**
  *
  * Demos:
@@ -126,22 +128,25 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     },
   });
 
+  const popupContextValue: PopupContextValue = React.useMemo(
+    () => ({
+      placement: finalPlacement,
+    }),
+    [finalPlacement],
+  );
+
   const shouldRender = keepMounted || !hasTransitionExited;
   if (!shouldRender) {
     return null;
   }
 
-  const childProps: PopupChildrenProps = {
-    placement: finalPlacement,
-  };
-
   return (
     <Portal disablePortal={disablePortal} container={container}>
-      <TransitionContext.Provider value={contextValue}>
-        <Root {...rootProps}>
-          {typeof children === 'function' ? children(childProps) : children}
-        </Root>
-      </TransitionContext.Provider>
+      <PopupContext.Provider value={popupContextValue}>
+        <TransitionContext.Provider value={contextValue}>
+          <Root {...rootProps}>{children}</Root>
+        </TransitionContext.Provider>
+      </PopupContext.Provider>
     </Portal>
   );
 });

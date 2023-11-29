@@ -8,26 +8,20 @@ import {
   screen,
   fireEvent,
 } from '@mui-internal/test-utils';
-import {
-  Unstable_Popup as Popup,
-  popupClasses,
-  PopupProps,
-  PopupChildrenProps,
-} from '@mui/base/Unstable_Popup';
-
-type FakeTransitionProps = Omit<PopupChildrenProps, 'placement'> & {
-  children: React.ReactNode;
-};
+import { Unstable_Popup as Popup, popupClasses, PopupProps } from '@mui/base/Unstable_Popup';
+import { PopupContext } from './PopupContext';
+import { useTransitionStateManager } from '../useTransition';
 
 const TRANSITION_DURATION = 100;
 
-function FakeTransition(props: FakeTransitionProps) {
-  const { children: transitionChildren, requestOpen, onExited, onEnter } = props;
+function FakeTransition(props: React.PropsWithChildren<{}>) {
+  const { children: transitionChildren } = props;
+  const { requestedEnter, onExited, onEntering } = useTransitionStateManager();
 
   React.useEffect(() => {
     let timeoutId: NodeJS.Timeout | null = null;
-    if (requestOpen) {
-      onEnter();
+    if (requestedEnter) {
+      onEntering();
     } else {
       timeoutId = setTimeout(() => {
         act(() => onExited());
@@ -41,7 +35,7 @@ function FakeTransition(props: FakeTransitionProps) {
         timeoutId = null;
       }
     };
-  }, [requestOpen, onExited, onEnter]);
+  }, [requestedEnter, onExited, onEntering]);
 
   return <div>{transitionChildren}</div>;
 }
@@ -88,11 +82,19 @@ describe('<Popup />', () => {
 
   describe('prop: placement', () => {
     it('should have top placement', async () => {
+      function PlacementTester() {
+        const context = React.useContext(PopupContext);
+        if (!context) {
+          throw new Error('Missing context');
+        }
+
+        const { placement } = context;
+        return <span data-testid="renderSpy" data-placement={placement} />;
+      }
+
       render(
         <Popup {...defaultProps} placement="top">
-          {({ placement }: PopupChildrenProps) => {
-            return <span data-testid="renderSpy" data-placement={placement} />;
-          }}
+          <PlacementTester />
         </Popup>,
       );
 
@@ -170,6 +172,11 @@ describe('<Popup />', () => {
           containerRef.current!.scrollTop = 30;
         };
 
+        const popupContext = React.useContext(PopupContext);
+        if (!popupContext) {
+          throw new Error('Missing PopupContext');
+        }
+
         return (
           <div
             style={{ height: '100px', overflow: 'scroll', position: 'relative' }}
@@ -180,7 +187,7 @@ describe('<Popup />', () => {
                 Scroll
               </button>
               <Popup anchor={anchor} open placement="top" disablePortal>
-                {({ placement }: PopupChildrenProps) => <span>{placement}</span>}
+                <span>{popupContext.placement}</span>
               </Popup>
             </div>
           </div>
@@ -232,7 +239,7 @@ describe('<Popup />', () => {
 
       const tooltip = document.querySelector('[role="tooltip"]') as HTMLElement;
       expect(tooltip).to.have.text('Hello World');
-      expect(tooltip.style.display).to.equal('none');
+      expect(tooltip.style.visibility).to.equal('hidden');
     });
   });
 
@@ -242,11 +249,9 @@ describe('<Popup />', () => {
     it('should work', async () => {
       const { queryByRole, getByRole, setProps } = render(
         <Popup {...defaultProps} withTransition>
-          {({ requestOpen, onExited, onEnter }: PopupChildrenProps) => (
-            <FakeTransition requestOpen={requestOpen} onExited={onExited} onEnter={onEnter}>
-              <span>Hello World</span>
-            </FakeTransition>
-          )}
+          <FakeTransition>
+            <span>Hello World</span>
+          </FakeTransition>
         </Popup>,
       );
 
@@ -280,11 +285,9 @@ describe('<Popup />', () => {
                 Toggle Tooltip
               </button>
               <Popup {...defaultProps} open={this.state.open} withTransition>
-                {({ requestOpen, onExited, onEnter }: PopupChildrenProps) => (
-                  <FakeTransition requestOpen={requestOpen} onExited={onExited} onEnter={onEnter}>
-                    <p>Hello World</p>
-                  </FakeTransition>
-                )}
+                <FakeTransition>
+                  <p>Hello World</p>
+                </FakeTransition>
               </Popup>
             </div>
           );
@@ -338,16 +341,14 @@ describe('<Popup />', () => {
     it('should keep display:none when not toggled and transition/keepMounted/disablePortal props are set', async () => {
       const { getByRole, setProps } = render(
         <Popup {...defaultProps} open={false} keepMounted withTransition disablePortal>
-          {({ requestOpen, onExited, onEnter }: PopupChildrenProps) => (
-            <FakeTransition requestOpen={requestOpen} onExited={onExited} onEnter={onEnter}>
-              <span>Hello World</span>
-            </FakeTransition>
-          )}
+          <FakeTransition>
+            <span>Hello World</span>
+          </FakeTransition>
         </Popup>,
       );
 
       await waitForPosition();
-      expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
+      expect(getByRole('tooltip', { hidden: true }).style.visibility).to.equal('hidden');
 
       setProps({ open: true });
       await waitForPosition();
@@ -356,7 +357,7 @@ describe('<Popup />', () => {
       setProps({ open: false });
       await waitForPosition();
       clock.tick(TRANSITION_DURATION);
-      expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
+      expect(getByRole('tooltip', { hidden: true }).style.visibility).to.equal('hidden');
     });
   });
 });
