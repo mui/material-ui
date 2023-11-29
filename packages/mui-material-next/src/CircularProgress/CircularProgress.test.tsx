@@ -62,7 +62,8 @@ describe('<CircularProgress />', () => {
     const circularProgress = getByRole('progressbar');
     const circle = container.querySelector<SVGCircleElement>('circle');
     expect(circularProgress).to.have.class(classes.root);
-    expect(circle).to.have.class(classes.circleIndeterminate);
+    expect(circularProgress).to.have.class(classes.indeterminate);
+    expect(circle).to.have.class(classes.circle);
   });
 
   it('should render with a different size', async function test() {
@@ -93,7 +94,7 @@ describe('<CircularProgress />', () => {
       const svg = container.querySelector<SVGElement>('svg');
       expect(svg).to.have.tagName('svg');
       const circle = container.querySelector<SVGCircleElement>('circle');
-      expect(circle).not.to.have.class(classes.circleIndeterminate);
+      expect(circle).to.have.class(classes.circle);
     });
 
     it('should set strokeDasharray of circle', () => {
@@ -120,9 +121,10 @@ describe('<CircularProgress />', () => {
       const { container, getByRole } = render(<CircularProgress variant="indeterminate" />);
       const circularProgress = getByRole('progressbar');
       expect(circularProgress).to.have.class(classes.root);
+      expect(circularProgress).not.to.have.class(classes.disableShrink);
       const circle = container.querySelector<SVGCircleElement>('circle');
       expect(circle).to.have.tagName('circle');
-      expect(circle).not.to.have.class(classes.circleDisableShrink);
+      expect(circle).to.have.class(classes.circle);
     });
 
     it('should render without disableShrink class when set to false', () => {
@@ -131,9 +133,10 @@ describe('<CircularProgress />', () => {
       );
       const circularProgress = getByRole('progressbar');
       expect(circularProgress).to.have.class(classes.root);
+      expect(circularProgress).not.to.have.class(classes.disableShrink);
       const circle = container.querySelector<SVGCircleElement>('circle');
       expect(circle).to.have.tagName('circle');
-      expect(circle).not.to.have.class(classes.circleDisableShrink);
+      expect(circle).to.have.class(classes.circle);
     });
 
     it('should render with disableShrink class when set to true', () => {
@@ -142,9 +145,10 @@ describe('<CircularProgress />', () => {
       );
       const circularProgress = getByRole('progressbar');
       expect(circularProgress).to.have.class(classes.root);
+      expect(circularProgress).to.have.class(classes.disableShrink);
       const circle = container.querySelector<SVGCircleElement>('circle');
       expect(circle).to.have.tagName('circle');
-      expect(circle).to.have.class(classes.circleDisableShrink);
+      expect(circle).to.have.class(classes.circle);
     });
   });
 
@@ -156,7 +160,7 @@ describe('<CircularProgress />', () => {
       expect(circularProgress).not.to.have.class(classes.fourColor);
       const circle = container.querySelector<SVGCircleElement>('circle');
       expect(circle).to.have.tagName('circle');
-      expect(circle).not.to.have.class(classes.circleFourColor);
+      expect(circle).to.have.class(classes.circle);
     });
 
     it('should render without fourColor class when set to false', () => {
@@ -168,7 +172,7 @@ describe('<CircularProgress />', () => {
       expect(circularProgress).not.to.have.class(classes.fourColor);
       const circle = container.querySelector<SVGCircleElement>('circle');
       expect(circle).to.have.tagName('circle');
-      expect(circle).not.to.have.class(classes.circleFourColor);
+      expect(circle).to.have.class(classes.circle);
     });
 
     it('should render with fourColor class when set to true', () => {
@@ -180,7 +184,7 @@ describe('<CircularProgress />', () => {
       expect(circularProgress).to.have.class(classes.fourColor);
       const circle = container.querySelector<SVGCircleElement>('circle');
       expect(circle).to.have.tagName('circle');
-      expect(circle).to.have.class(classes.circleFourColor);
+      expect(circle).to.have.class(classes.circle);
     });
   });
 });

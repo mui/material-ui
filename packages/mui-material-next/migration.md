@@ -460,3 +460,25 @@ The following example replaces the `MuiLinearProgress-dashedColorPrimary` class 
 - .MuiLinearProgress-dashedColorPrimary
 + .MuiLinearProgress-colorPrimary .MuiLinearProgress-dashed
 ```
+
+## CircularProgress
+
+### Removed combined classes
+
+The following classes were removed:
+
+- `MuiCircularProgress-circleDeterminate`
+- `MuiCircularProgress-circleIndeterminate`
+- `MuiCircularProgress-circleDisableShrink`
+
+The following classes were added:
+
+- `MuiCircularProgress-disableShrink`
+
+You can replace them by combining classes with a CSS selector.
+The following example replaces the `MuiCircularProgress-circleDeterminate` class using `MuiCircularProgress-circle` and `MuiCircularProgress-determinate`:
+
+```diff
+- .MuiCircularProgress-circleDeterminate
++ .MuiCircularProgress-determinate .MuiCircularProgress-circle
+```

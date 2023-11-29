@@ -77,14 +77,15 @@ const useUtilityClasses = (ownerState: CircularProgressOwnerState) => {
   const { classes, variant, color, disableShrink, fourColor } = ownerState;
 
   const slots = {
-    root: ['root', variant, `color${capitalize(color)}`, fourColor && 'fourColor'],
-    svg: ['svg'],
-    circle: [
-      'circle',
-      `circle${capitalize(variant)}`,
-      disableShrink && 'circleDisableShrink',
-      fourColor && 'circleFourColor',
+    root: [
+      'root',
+      variant,
+      `color${capitalize(color)}`,
+      fourColor && 'fourColor',
+      disableShrink && 'disableShrink',
     ],
+    svg: ['svg'],
+    circle: ['circle'],
   };
 
   return composeClasses(slots, getCircularProgressUtilityClass, classes);
