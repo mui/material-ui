@@ -100,6 +100,10 @@ export interface UseSliderParameters {
    * For ranged sliders, provide an array with two values.
    */
   value?: number | number[];
+  /**
+   * Inverted var to track if the slider should be inverted
+   */
+  track?: 'normal' | 'inverted' | false;
 }
 
 export interface Mark {
@@ -251,4 +255,8 @@ export interface UseSliderReturnValue {
    * The possible values of the slider.
    */
   values: number[];
+  /**
+   * The bool value for the inverted track
+   */
+  track: 'normal' | 'inverted' | false;
 }

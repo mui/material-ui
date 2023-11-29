@@ -221,6 +221,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     step = 1,
     tabIndex,
     value: valueProp,
+    track = 'normal', // add this line
   } = parameters;
 
   const touchId = React.useRef<number>();
@@ -605,9 +606,14 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       doc.addEventListener('mousemove', handleTouchMove);
       doc.addEventListener('mouseup', handleTouchEnd);
     };
+  const isInverted = track === 'inverted';
+  let trackOffset = valueToPercent(range ? values[0] : min, min, max);
+  let trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
 
-  const trackOffset = valueToPercent(range ? values[0] : min, min, max);
-  const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
+  if (isInverted) {
+    trackLeap = 100 - trackOffset - trackLeap;
+    trackOffset = 100 - trackLeap;
+  }
 
   const getRootProps = <ExternalProps extends Record<string, unknown> = {}>(
     externalProps: ExternalProps = {} as ExternalProps,
@@ -724,6 +730,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     rootRef: handleRef,
     trackLeap,
     trackOffset,
+    track,
     values,
     getThumbStyle,
   };
