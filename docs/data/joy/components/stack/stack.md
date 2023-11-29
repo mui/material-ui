@@ -9,7 +9,7 @@ githubLabel: 'component: Stack'
 
 <p class="description">Stack is a container component for arranging elements vertically or horizontally.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 

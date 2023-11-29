@@ -27,14 +27,12 @@ import AccordionSummary, {
   accordionSummaryClasses,
 } from '@mui/joy/AccordionSummary';
 
-// Icons import
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 
-// custom
 import Layout from './components/Layout';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
@@ -211,7 +209,6 @@ export default function TeamExample() {
             <Typography level="title-lg" textColor="text.secondary">
               People
             </Typography>
-
             <Button startDecorator={<PersonRoundedIcon />} size="sm">
               Add new
             </Button>
