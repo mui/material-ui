@@ -3146,17 +3146,17 @@
   resolved "https://registry.yarnpkg.com/@sinonjs/text-encoding/-/text-encoding-0.7.2.tgz#5981a8db18b56ba38ef0efb7d995b12aa7b51918"
   integrity sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==
 
-"@siriwatknp/zero-next-plugin@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@siriwatknp/zero-next-plugin/-/zero-next-plugin-0.0.1.tgz#655d6548e2f0e7bf90bc15fcdc6a239896d9a5ac"
-  integrity sha512-kgUbphFeDoEVbc5rc1yR22/H0whKcD13m+9pY/t1UyXqbuELJ3HPebIx/khlxWuTTRxtqn9nhxTFhOUeF6HQbg==
+"@siriwatknp/zero-next-plugin@0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@siriwatknp/zero-next-plugin/-/zero-next-plugin-0.0.3.tgz#32a948d8a12edf4774098bb5d2820368e93132ff"
+  integrity sha512-bwLhuI7+VdWgUU+d8Nd4F6pFsSMoy2IIaYPkjMxXg3JBs3zQIqTY4/dRngztDTqHbMIrNwE7HVQo6UgC7bLksw==
   dependencies:
-    "@siriwatknp/zero-unplugin" "^0.0.1"
+    "@siriwatknp/zero-unplugin" "^0.0.2"
 
-"@siriwatknp/zero-runtime@0.0.1", "@siriwatknp/zero-runtime@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@siriwatknp/zero-runtime/-/zero-runtime-0.0.1.tgz#3d2757683e4698608fe837fe058a7f93708cb4d5"
-  integrity sha512-jOgra/MsayKc4Kv3Mi5PznwqsqHFnMAGFGxwVko51ME1o4eRPRmhmYY1etcUkm+X4xHss537RdInZUbZmvt+jg==
+"@siriwatknp/zero-runtime@0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@siriwatknp/zero-runtime/-/zero-runtime-0.0.3.tgz#35be5bd150b7c1b558d48a0eebf76d1519a61f57"
+  integrity sha512-MKaZSo6M4/0qgN81goDV3We13CvAm1DTuJi7LmGA7Yk0OrFDpHheRNgQbO6ojJhk7Fa4qK60YC0vg+sbrx5KvA==
   dependencies:
     "@babel/core" "^7.23.2"
     "@babel/helper-module-imports" "^7.22.15"
@@ -3174,16 +3174,37 @@
     lodash.set "^4.3.2"
     stylis "^4.2.0"
 
-"@siriwatknp/zero-unplugin@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@siriwatknp/zero-unplugin/-/zero-unplugin-0.0.1.tgz#36a68d2ba6da0c194984160a362ae20ff6901dca"
-  integrity sha512-+ogBlWOYH9DnyxlRLTuxAojkpwSMfVNxFY02Ptw/FHbUiAFiWtTrgxbu7FQqkYxcRV8JVE/tAUMXjBHWkc5HKg==
+"@siriwatknp/zero-runtime@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@siriwatknp/zero-runtime/-/zero-runtime-0.0.2.tgz#a50bc92cd26452bba3811fd416d82cfc24e45999"
+  integrity sha512-eU6Wkg/ujy2UcIdcoaofFnMsHmAKi6nNl9MX9RZhd9dRfGOGGVZT82V0TlQPXp0C9rJH8TkEeoC3XkFqbwx+xA==
+  dependencies:
+    "@babel/core" "^7.23.2"
+    "@babel/helper-module-imports" "^7.22.15"
+    "@babel/helper-plugin-utils" "^7.22.5"
+    "@babel/parser" "^7.23.0"
+    "@babel/types" "^7.23.0"
+    "@emotion/css" "^11.11.2"
+    "@emotion/styled" "^11.11.0"
+    "@linaria/tags" "^4.5.4"
+    "@linaria/utils" "^4.5.3"
+    "@mui/system" "^5.14.16"
+    clsx "^2.0.0"
+    csstype "^3.1.2"
+    lodash.get "^4.4.2"
+    lodash.set "^4.3.2"
+    stylis "^4.2.0"
+
+"@siriwatknp/zero-unplugin@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@siriwatknp/zero-unplugin/-/zero-unplugin-0.0.2.tgz#3fcd01b960d33be62fad474333cb8fdafe71b138"
+  integrity sha512-odpjQ+Td0HfSmh2Xtn5fHFRB9EYI4Ny4EapV0HJkt+5dHJ4IlPwYZifjg+WaXG31LbRZMqtw9+Ya8RijrZF4kg==
   dependencies:
     "@babel/core" "^7.23.2"
     "@linaria/babel-preset" "^4.5.4"
     "@linaria/logger" "^4.5.0"
     "@linaria/utils" "^4.5.3"
-    "@siriwatknp/zero-runtime" "^0.0.1"
+    "@siriwatknp/zero-runtime" "^0.0.2"
     unplugin "^1.5.0"
 
 "@slack/bolt@^3.15.0":
