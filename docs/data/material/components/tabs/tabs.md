@@ -67,13 +67,13 @@ The `centered` prop should be used for larger views.
 
 ### Automatic scroll buttons
 
-By default, left and right scroll buttons are automatically presented on desktop and hidden on mobile. (based on viewport width)
+Using the attributes `variant="scrollable"` and `scrollButtons="auto"`, left and right scroll buttons are automatically displayed on desktop, while on mobile they are hidden based on the viewport width.
 
 {{"demo": "ScrollableTabsButtonAuto.js", "bg": true}}
 
 ### Forced scroll buttons
 
-Left and right scroll buttons be presented (reserve space) regardless of the viewport width with `scrollButtons={true}` `allowScrollButtonsMobile`:
+To present the Left and right scroll buttons (reserve space) regardless of the viewport, use `scrollButtons={true}` and `allowScrollButtonsMobile`:
 
 {{"demo": "ScrollableTabsButtonForce.js", "bg": true}}
 
