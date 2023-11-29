@@ -196,11 +196,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
   const size = vertical ? 'height' : 'width';
 
-  const { contextValue: tabsContextValue } = useTabs({
-    ...props,
-    direction: theme.direction ?? 'ltr',
-  });
-
   const ownerState = {
     ...props,
     component,
@@ -219,6 +214,11 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     centered: centered && !scrollable,
     scrollButtonsHideMobile: !allowScrollButtonsMobile,
   };
+
+  const { contextValue: tabsContextValue } = useTabs({
+    ...ownerState,
+    direction: theme.direction ?? 'ltr',
+  });
 
   const classes = useUtilityClasses(ownerState);
 
