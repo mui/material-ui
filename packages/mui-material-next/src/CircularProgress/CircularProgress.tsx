@@ -104,7 +104,8 @@ const CircularProgressRoot = styled('span', {
     ];
   },
 })<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme: { vars: tokens } }) => ({
-  '--md-comp-linear-progress-indicator-active-indicator-color': tokens.sys.color[ownerState.color],
+  '--md-comp-linear-progress-indicator-active-indicator-color':
+    ownerState.color !== 'inherit' ? tokens.sys.color[ownerState.color] : 'currentColor',
   '--md-comp-linear-progress-indicator-active-indicator-width': ownerState.thickness,
   '--md-comp-linear-progress-indicator-size': ownerState.size,
   '--md-comp-linear-progress-indicator-four-color-active-indicator-one-color':
@@ -285,7 +286,16 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
+  color: PropTypes.oneOf([
+    'error',
+    'info',
+    'inherit',
+    'primary',
+    'secondary',
+    'success',
+    'tertiary',
+    'warning',
+  ]),
   /**
    * If `true`, the shrink animation is disabled.
    * This only works if variant is `indeterminate`.
