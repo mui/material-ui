@@ -45,8 +45,12 @@ describe('<Slider />', () => {
     it('should apply the correct classes when track="inverted"', () => {
       const { container } = render(<Slider track="inverted" value={50} />);
 
-      // Assuming the component correctly applies a class based on the 'track' prop
-      expect(container.firstChild).to.have.class(getSliderUtilityClass('trackInverted'));
+      const sliderRoot = container.firstChild as HTMLElement; // Cast to HTMLElement
+
+      // Now that sliderRoot is typed, you can check its classList
+      expect(sliderRoot).to.satisfy((node: HTMLElement) => {
+        return node.classList.contains(getSliderUtilityClass('trackInverted'));
+      });
     });
   });
 
