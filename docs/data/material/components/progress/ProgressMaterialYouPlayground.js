@@ -49,7 +49,7 @@ export default function ProgressMaterialYouPlayground() {
       ]}
       renderDemo={({ type: progressType, ...props }) => {
         const Progress =
-        progressType === 'CircularProgress' ? CircularProgress : LinearProgress;
+          progressType === 'CircularProgress' ? CircularProgress : LinearProgress;
 
         return (
           <Box sx={{ width: 300, display: 'flex', flexDirection: 'column', gap: 1 }}>
