@@ -42,14 +42,12 @@ describe('<Slider />', () => {
   const { render } = createRenderer();
 
   describe('<Slider />', () => {
+
     it('should apply the correct classes when track="inverted"', () => {
       const { container } = render(<Slider track="inverted" value={50} />);
 
-      // Get the root element of the Slider component
-      const sliderRoot = container.firstChild;
-
-      // Expect the root element to have the 'trackInverted' class
-      expect(sliderRoot).to.have.class(getSliderUtilityClass('trackInverted'));
+      // Assuming the component correctly applies a class based on the 'track' prop
+      expect(container.firstChild).to.have.class(getSliderUtilityClass('trackInverted'));
     });
   });
 
