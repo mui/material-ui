@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import { useTransitionStateManager, TransitionContext } from '../useTransition';

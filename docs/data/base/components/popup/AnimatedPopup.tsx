@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { styled, Theme } from '@mui/system';
-import {
-  Unstable_Popup as BasePopup,
-  PopupChildrenProps,
-} from '@mui/base/Unstable_Popup';
+import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
+import { useTransitionStateManager } from '@mui/base/useTransition';
 
 export default function AnimatedPopup() {
   const [anchor, setAnchor] = React.useState<HTMLButtonElement | null>(null);
@@ -14,12 +12,10 @@ export default function AnimatedPopup() {
       <Button ref={setAnchor} onClick={() => setOpen((o) => !o)} type="button">
         Toggle Popup
       </Button>
-      <BasePopup anchor={anchor} open={open} withTransition>
-        {(props: PopupChildrenProps) => (
-          <PopAnimation {...props}>
-            <PopupBody>This is an animated popup.</PopupBody>
-          </PopAnimation>
-        )}
+      <BasePopup anchor={anchor} open={open}>
+        <PopAnimation>
+          <PopupBody>This is an animated popup.</PopupBody>
+        </PopAnimation>
       </BasePopup>
     </div>
   );
@@ -28,29 +24,27 @@ export default function AnimatedPopup() {
 function Animated(
   props: React.PropsWithChildren<{
     className?: string;
-    requestOpen: boolean;
-    onEnter: () => void;
-    onExited: () => void;
   }>,
 ) {
-  const { requestOpen, onEnter, onExited, children, className } = props;
+  const { children, className } = props;
+  const { requestedEnter, onEntering, onExited } = useTransitionStateManager();
 
   React.useEffect(() => {
-    if (requestOpen) {
-      onEnter();
+    if (requestedEnter) {
+      onEntering();
     }
-  }, [onEnter, requestOpen]);
+  }, [onEntering, requestedEnter]);
 
   const handleAnimationEnd = React.useCallback(() => {
-    if (!requestOpen) {
+    if (!requestedEnter) {
       onExited();
     }
-  }, [onExited, requestOpen]);
+  }, [onExited, requestedEnter]);
 
   return (
     <div
       onAnimationEnd={handleAnimationEnd}
-      className={className + (requestOpen ? ' open' : ' close')}
+      className={className + (requestedEnter ? ' open' : ' close')}
     >
       {children}
     </div>

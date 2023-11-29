@@ -81,17 +81,17 @@ describe('<Popup />', () => {
   }));
 
   describe('prop: placement', () => {
-    it('should have top placement', async () => {
-      function PlacementTester() {
-        const context = React.useContext(PopupContext);
-        if (!context) {
-          throw new Error('Missing context');
-        }
-
-        const { placement } = context;
-        return <span data-testid="renderSpy" data-placement={placement} />;
+    function PlacementTester() {
+      const context = React.useContext(PopupContext);
+      if (!context) {
+        throw new Error('Missing context');
       }
 
+      const { placement } = context;
+      return <span data-testid="placement-tester">{placement}</span>;
+    }
+
+    it('should have top placement', async () => {
       render(
         <Popup {...defaultProps} placement="top">
           <PlacementTester />
@@ -100,7 +100,7 @@ describe('<Popup />', () => {
 
       await waitForPosition();
 
-      expect(screen.getByTestId('renderSpy')).to.have.attribute('data-placement', 'top');
+      expect(screen.getByTestId('placement-tester')).to.have.text('top');
     });
 
     it('should respect the RTL setting', async function test() {
@@ -172,11 +172,6 @@ describe('<Popup />', () => {
           containerRef.current!.scrollTop = 30;
         };
 
-        const popupContext = React.useContext(PopupContext);
-        if (!popupContext) {
-          throw new Error('Missing PopupContext');
-        }
-
         return (
           <div
             style={{ height: '100px', overflow: 'scroll', position: 'relative' }}
@@ -187,7 +182,7 @@ describe('<Popup />', () => {
                 Scroll
               </button>
               <Popup anchor={anchor} open placement="top" disablePortal>
-                <span>{popupContext.placement}</span>
+                <PlacementTester />
               </Popup>
             </div>
           </div>
