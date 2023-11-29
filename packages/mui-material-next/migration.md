@@ -463,6 +463,40 @@ The following example replaces the `MuiLinearProgress-dashedColorPrimary` class 
 
 ## CircularProgress
 
+### Removed combined styleOverrides keys
+
+The following `styleOverrides` `MuiCircularProgress` keys were removed:
+
+- `circleDeterminate`
+- `circleIndeterminate`
+- `circleDisableShrink`
+
+The following `styleOverrides` `MuiCircularProgress` keys were added:
+
+- `disableShrink`
+
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `circleDeterminate` with the variants API:
+
+```diff
+ const theme = extendTheme({
+   components: {
+     MuiCircularProgress: {
+       styleOverrides: {
+-        circleDeterminate: {
+-          background: "fuchsia"
+-        }
++        root: {
++          "&.MuiCircularProgress-determinate .MuiCircularProgress-circle": {
++            background: "fuchsia"
++          }
++        }
+       }
+     }
+   }
+ });
+```
+
 ### Removed combined classes
 
 The following classes were removed:

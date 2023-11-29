@@ -102,6 +102,7 @@ const CircularProgressRoot = styled('span', {
       styles[ownerState.variant],
       styles[`color${capitalize(ownerState.color)}`],
       ownerState.fourColor && styles.fourColor,
+      ownerState.disableShrink && styles.disableShrink,
     ];
   },
 })<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme: { vars: tokens } }) => ({
@@ -140,16 +141,7 @@ const CircularProgressSVG = styled('svg', {
 const CircularProgressCircle = styled('circle', {
   name: 'MuiCircularProgress',
   slot: 'Circle',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.circle,
-      styles[`circle${capitalize(ownerState.variant)}`],
-      ownerState.disableShrink && styles.circleDisableShrink,
-      ownerState.fourColor && styles.circleFourColor,
-    ];
-  },
+  overridesResolver: (props, styles) => styles.circle,
 })<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme: { vars: tokens } }) => ({
   stroke: 'var(--md-comp-linear-progress-indicator-active-indicator-color)',
   strokeWidth: 'var(--md-comp-linear-progress-indicator-active-indicator-width)',
