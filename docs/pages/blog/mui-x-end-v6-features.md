@@ -176,7 +176,7 @@ We will also keep expanding our portfolio of charts, with types such as [Heat ma
 
 We encourage you to upvote issues on GitHub to help us prioritize.
 Your input directly influences our development schedule, so don't hesitate to let us know what matters most to you!
-You can use the following list to quickly access each component's issues.
+Use the following list to quickly access each component's issues:
 
 - [Charts](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+charts%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
 - [Tree View](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+treeview%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
