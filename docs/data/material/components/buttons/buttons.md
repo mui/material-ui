@@ -19,6 +19,12 @@ Buttons communicate actions that users can take. They are typically placed throu
 - Cards
 - Toolbars
 
+```yaml
+# myPage.yml
+hello:
+  - 'world'
+```
+
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic button
