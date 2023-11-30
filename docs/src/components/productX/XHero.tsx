@@ -114,11 +114,12 @@ export default function XHero() {
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             Build complex and data-rich applications using a growing list of advanced React
-            components. We&apos;re kicking it off with the most powerful Data Grid on the market.
+            components, like the Data Grid, Date and Time Pickers, Charts, and more!
           </Typography>
           <GetStartedButtons
-            primaryUrl={ROUTES.advancedComponents}
-            sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
+            primaryUrl={ROUTES.xIntro}
+            secondaryLabel="Learn about licensing"
+            secondaryUrl={ROUTES.xLicensing}
           />
         </Box>
       }
@@ -129,41 +130,37 @@ export default function XHero() {
       right={
         <React.Fragment>
           <Paper
+            variant="outlined"
             sx={(theme) => ({
               backgroundColor: '#fff',
               border: '1px solid',
-              borderColor: 'grey.200',
-              boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+              borderColor: 'divider',
+              boxShadow: `0px 4px 12px ${alpha(theme.palette.grey[200], 0.6)}`,
               mb: { md: 2, lg: 3, xl: 4 },
               overflow: 'hidden',
               ...theme.applyDarkStyles({
+                borderColor: 'divider',
                 backgroundColor: 'primaryDark.800',
-                borderColor: 'primaryDark.600',
-                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
               }),
             })}
           >
-            <Box
-              sx={(theme) => ({
+            <Typography
+              variant="body2"
+              fontWeight="semiBold"
+              sx={{
                 textAlign: 'center',
                 py: 1.5,
-                position: 'relative',
-                borderRadius: 0,
-                borderBottom: '1px solid',
-                borderColor: 'grey.200',
-                ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.600',
-                }),
-              })}
+              }}
             >
-              <Typography fontWeight={500}>Trades, March 2023</Typography>
-            </Box>
+              Trades, March 2023
+            </Typography>
+            <Divider />
             <Box
               sx={[
                 {
                   height: { md: 300, xl: 370 },
                   '& .MuiDataGrid-root': {
-                    borderRadius: 1,
                     border: 0,
                     color: 'text.secondary',
                     '& .MuiCheckbox-root': {
@@ -289,33 +286,33 @@ export default function XHero() {
             }}
           >
             <Paper
+              variant="outlined"
               sx={(theme) => ({
-                backgroundColor: '#fff',
-                border: '1px solid',
-                borderColor: 'grey.200',
-                boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
-                ...theme.applyDarkStyles({
-                  backgroundColor: 'primaryDark.800',
-                  borderColor: 'primaryDark.600',
-                  boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
-                }),
                 minWidth: 300,
                 mr: { md: 2, lg: 3, xl: 4 },
                 flexGrow: 1,
+                backgroundColor: '#fff',
+                borderColor: 'divider',
+                boxShadow: `0px 4px 12px ${alpha(theme.palette.grey[200], 0.6)}`,
+                ...theme.applyDarkStyles({
+                  borderColor: 'divider',
+                  backgroundColor: 'primaryDark.800',
+                  boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
+                }),
               })}
             >
-              <Typography fontWeight={500} p={2}>
+              <Typography variant="body2" fontWeight="semiBold" p={2}>
                 Cool UI project
               </Typography>
               <Divider />
               <FolderTreeView />
             </Paper>
             <Paper
+              variant="outlined"
               sx={[
                 {
-                  border: '1px solid',
-                  borderColor: 'grey.200',
-                  boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+                  borderColor: 'divider',
+                  boxShadow: (theme) => `0px 4px 12px ${alpha(theme.palette.grey[200], 0.6)}`,
                   '& > div': {
                     borderRadius: 1,
                     overflow: 'auto',
@@ -356,11 +353,9 @@ export default function XHero() {
                 },
                 (theme) =>
                   theme.applyDarkStyles({
-                    borderColor: 'primaryDark.600',
-                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
-                    '& > div': {
-                      backgroundColor: 'primaryDark.800',
-                    },
+                    borderColor: 'divider',
+                    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
+                    backgroundColor: 'primaryDark.800',
                     '& .MuiDateRangePickerDay-day.Mui-selected': {
                       color: '#FFF',
                     },

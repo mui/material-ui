@@ -129,19 +129,17 @@ export default function MaterialTemplates() {
 
   return (
     <Section bg="gradient" cozy>
-      <Box sx={{ maxWidth: 550, m: 'auto' }}>
-        <SectionHeadline
-          alwaysCenter
-          overline="Templates"
-          title={
-            <Typography variant="h2">
-              The right template for your
-              <br /> <GradientText>specific use case</GradientText>
-            </Typography>
-          }
-          description="A collection of 4.5 average rating templates, for multiple use cases, all powered by Material UI components and carefully curated by MUI's team."
-        />
-      </Box>
+      <SectionHeadline
+        alwaysCenter
+        overline="Templates"
+        title={
+          <Typography variant="h2">
+            The right template for your
+            <br /> <GradientText>specific use case</GradientText>
+          </Typography>
+        }
+        description="A carefully curated collection of gorgeous, fully functional templates, all powered by Material UI."
+      />
       <Group rowLayout desktopColumns={2} sx={{ mt: 3 }}>
         {DEMOS.map((name) => (
           <Highlighter

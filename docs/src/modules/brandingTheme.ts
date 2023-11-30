@@ -886,6 +886,7 @@ export function getThemedComponents(): ThemeOptions {
         styleOverrides: {
           root: ({ ownerState: { color, variant }, theme }) => ({
             fontWeight: theme.typography.fontWeightSemiBold,
+            paddingBottom: 0.2,
             ...(variant === 'outlined' &&
               color === 'default' && {
                 backgroundColor: alpha(theme.palette.grey[50], 0.5),
@@ -907,9 +908,22 @@ export function getThemedComponents(): ThemeOptions {
               }),
             ...(variant === 'outlined' &&
               color === 'primary' && {
-                borderColor: (theme.vars || theme).palette.primary[200],
+                borderColor: (theme.vars || theme).palette.primary[100],
+                backgroundColor: (theme.vars || theme).palette.primary[50],
                 ...theme.applyDarkStyles({
-                  borderColor: alpha(theme.palette.primary[500], 0.3),
+                  color: (theme.vars || theme).palette.primary[300],
+                  borderColor: alpha(theme.palette.primary[500], 0.2),
+                  backgroundColor: alpha(theme.palette.primary[700], 0.2),
+                }),
+              }),
+            ...(variant === 'outlined' &&
+              color === 'success' && {
+                borderColor: (theme.vars || theme).palette.success[100],
+                backgroundColor: (theme.vars || theme).palette.success[50],
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.success[300],
+                  borderColor: alpha(theme.palette.success[300], 0.3),
+                  background: alpha(theme.palette.success[800], 0.3),
                 }),
               }),
             ...(variant === 'filled' && {
