@@ -1,4 +1,5 @@
 import * as React from 'react';
+import CircularProgress from '@mui/material-next/CircularProgress';
 import LinearProgress from '@mui/material-next/LinearProgress';
 import Box from '@mui/material/Box';
 import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDemo';
@@ -6,6 +7,7 @@ import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDe
 export default function ProgressMaterialYouPlayground() {
   const [value, setValue] = React.useState(0);
   const [valueBuffer, setValueBuffer] = React.useState(0);
+  const [type, setType] = React.useState('CircularProgress');
   React.useEffect(() => {
     const interval = setInterval(() => {
       setValue((val) => (val >= 100 ? 0 : val + 10));
@@ -17,12 +19,24 @@ export default function ProgressMaterialYouPlayground() {
   }, []);
   return (
     <MaterialYouUsageDemo
-      componentName="Slider"
+      componentName={type}
       data={[
+        {
+          propName: 'type',
+          knob: 'select',
+          options: ['CircularProgress', 'LinearProgress'],
+          defaultValue: 'CircularProgress',
+          codeBlockDisplay: false,
+          onChange: (e) => setType(e.target.value),
+        },
         {
           propName: 'variant',
           knob: 'select',
-          options: ['buffer', 'determinate', 'indeterminate', 'query'],
+          options: [
+            'indeterminate',
+            'determinate',
+            ...(type === 'LinearProgress' ? ['buffer', 'query'] : []),
+          ],
           defaultValue: 'indeterminate',
         },
         {
@@ -33,13 +47,26 @@ export default function ProgressMaterialYouPlayground() {
         },
         { propName: 'fourColor', knob: 'switch', defaultValue: false },
       ]}
-      renderDemo={(props) => (
-        <Box sx={{ width: 300 }}>
-          <LinearProgress
-            {...props}
-            value={value}
-            valueBuffer={valueBuffer + value}
-          />
+      renderDemo={({ type: progressType, ...props }) => (
+        <Box
+          sx={{
+            width: 300,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1,
+            alignItems: 'center',
+          }}
+        >
+          {type === 'CircularProgress' ? (
+            <CircularProgress {...props} value={value} />
+          ) : (
+            <LinearProgress
+              {...props}
+              value={value}
+              valueBuffer={valueBuffer + value}
+              sx={{ width: 300 }}
+            />
+          )}
         </Box>
       )}
     />
