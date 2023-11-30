@@ -61,7 +61,7 @@ From the perspective of that framework, you would pioneer the Content layer whil
 
 - Create inspiring educational materials (demo apps, how-to guides, integration examples, tutorials) for devs of all skill levels
 - Seek out and implement improvements to the documentation
-- Contribute to the docs infrastructure, docs UX, or directly the product depending on where the problem is best solved (the closer to the root the better).
+- Contribute to the docs infrastructure, docs UX, or directly to the product depending on where the problem is best solved (the closer to the root the better).
 - Engage with the community and gather feedback for product teams
 - Serve as the "voice" of the company through social media, conferences, and events
 
