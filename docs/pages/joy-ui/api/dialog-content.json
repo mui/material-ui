@@ -28,15 +28,15 @@
     "import DialogContent from '@mui/joy/DialogContent';",
     "import { DialogContent } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogContent" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiDialogContent-root"
+      "class": "MuiDialogContent-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyDialogContent",

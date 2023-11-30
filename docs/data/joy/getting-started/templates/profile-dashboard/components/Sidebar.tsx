@@ -70,10 +70,7 @@ export default function Sidebar() {
     <Sheet
       className="Sidebar"
       sx={{
-        position: {
-          xs: 'fixed',
-          md: 'sticky',
-        },
+        position: { xs: 'fixed', md: 'sticky' },
         transform: {
           xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1)))',
           md: 'none',
@@ -179,7 +176,6 @@ export default function Sidebar() {
               </ListItemContent>
             </ListItemButton>
           </ListItem>
-
           <ListItem nested>
             <Toggler
               renderToggle={({ open, setOpen }) => (
@@ -210,7 +206,6 @@ export default function Sidebar() {
               </List>
             </Toggler>
           </ListItem>
-
           <ListItem>
             <ListItemButton
               role="menuitem"
@@ -226,7 +221,6 @@ export default function Sidebar() {
               </Chip>
             </ListItemButton>
           </ListItem>
-
           <ListItem nested>
             <Toggler
               defaultExpanded
@@ -256,7 +250,6 @@ export default function Sidebar() {
             </Toggler>
           </ListItem>
         </List>
-
         <List
           size="sm"
           sx={{

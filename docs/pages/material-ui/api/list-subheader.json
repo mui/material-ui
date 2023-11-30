@@ -26,11 +26,44 @@
     "import ListSubheader from '@mui/material/ListSubheader';",
     "import { ListSubheader } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "colorPrimary", "colorInherit", "gutters", "inset", "sticky"],
-    "globalClasses": {},
-    "name": "MuiListSubheader"
-  },
+  "classes": [
+    {
+      "key": "colorInherit",
+      "className": "MuiListSubheader-colorInherit",
+      "description": "Styles applied to the root element if `color=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiListSubheader-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "gutters",
+      "className": "MuiListSubheader-gutters",
+      "description": "Styles applied to the inner `component` element unless `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "inset",
+      "className": "MuiListSubheader-inset",
+      "description": "Styles applied to the root element if `inset={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListSubheader-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sticky",
+      "className": "MuiListSubheader-sticky",
+      "description": "Styles applied to the root element unless `disableSticky={true}`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiListSubheader",

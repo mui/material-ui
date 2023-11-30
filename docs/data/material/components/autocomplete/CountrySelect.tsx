@@ -419,7 +419,7 @@ const countries: readonly CountryType[] = [
   { code: 'TV', label: 'Tuvalu', phone: '688' },
   {
     code: 'TW',
-    label: 'Taiwan, Republic of China',
+    label: 'Taiwan',
     phone: '886',
   },
   {

@@ -6,7 +6,7 @@ import Button from '@mui/joy/Button';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
-// icons
+
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
@@ -21,7 +21,7 @@ const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 export default function JoyOrderDashboardTemplate() {
-  const status = useScript(`https://unpkg.com/feather-icons`);
+  const status = useScript('https://unpkg.com/feather-icons');
 
   useEnhancedEffect(() => {
     // Feather icon setup: https://github.com/feathericons/feather#4-replace
@@ -42,20 +42,13 @@ export default function JoyOrderDashboardTemplate() {
           component="main"
           className="MainContent"
           sx={{
-            px: {
-              xs: 2,
-              md: 6,
-            },
+            px: { xs: 2, md: 6 },
             pt: {
               xs: 'calc(12px + var(--Header-height))',
               sm: 'calc(12px + var(--Header-height))',
               md: 3,
             },
-            pb: {
-              xs: 2,
-              sm: 2,
-              md: 3,
-            },
+            pb: { xs: 2, sm: 2, md: 3 },
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
@@ -96,7 +89,7 @@ export default function JoyOrderDashboardTemplate() {
           <Box
             sx={{
               display: 'flex',
-              my: 1,
+              mb: 1,
               gap: 1,
               flexDirection: { xs: 'column', sm: 'row' },
               alignItems: { xs: 'start', sm: 'center' },
@@ -104,7 +97,9 @@ export default function JoyOrderDashboardTemplate() {
               justifyContent: 'space-between',
             }}
           >
-            <Typography level="h2">Orders</Typography>
+            <Typography level="h2" component="h1">
+              Orders
+            </Typography>
             <Button
               color="primary"
               startDecorator={<DownloadRoundedIcon />}

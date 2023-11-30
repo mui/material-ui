@@ -5,20 +5,40 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import TableChartRounded from '@mui/icons-material/TableChartRounded';
-import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
+import PivotTableChartRoundedIcon from '@mui/icons-material/PivotTableChartRounded';
+import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
-import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
 import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import PendingActionsRounded from '@mui/icons-material/PendingActions';
-import InsertDriveFileOutlined from '@mui/icons-material/InsertDriveFileOutlined';
+import FormatSizeRoundedIcon from '@mui/icons-material/FormatSizeRounded';
+import AutoGraphRoundedIcon from '@mui/icons-material/AutoGraphRounded';
 import SpeedRounded from '@mui/icons-material/SpeedRounded';
 import { alpha } from '@mui/material/styles';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
+import GradientText from 'docs/src/components/typography/GradientText';
+
+interface RoadmapStatusDotProps {
+  color: string;
+}
+
+function RoadmapStatusDot({ color }: RoadmapStatusDotProps) {
+  return (
+    <Box
+      sx={{
+        ml: 1,
+        display: 'inline-block',
+        width: 8,
+        height: 8,
+        borderRadius: 10,
+        bgcolor: `${color}`,
+      }}
+    />
+  );
+}
 
 export default function XRoadmap() {
   function renderList(content: React.ReactElement, nested?: boolean) {
@@ -84,8 +104,12 @@ export default function XRoadmap() {
         <Grid item xs={12} md={5}>
           <SectionHeadline
             overline="Roadmap"
-            title="Follow the MUI X roadmap for future updates"
-            description="It's just the beginning of the MUI X components. Stay tuned for the exciting news and updates coming soon!"
+            title={
+              <Typography variant="h2">
+                Follow the <GradientText>MUI X roadmap</GradientText> for future updates
+              </Typography>
+            }
+            description="It's just the beginning for the MUI X components. Stay tuned for exciting news and updates coming soon!"
           />
           <Button
             component={Link}
@@ -119,24 +143,15 @@ export default function XRoadmap() {
         >
           <Grid item xs={12} sm={4} lg="auto">
             <Paper variant="outlined">
-              <Typography fontWeight="bold" variant="body2" color="text.primary">
-                Released
-                <Box
-                  sx={{
-                    ml: 1,
-                    display: 'inline-block',
-                    width: 8,
-                    height: 8,
-                    borderRadius: 10,
-                    bgcolor: 'success.main',
-                  }}
-                />
+              <Typography component="div" fontWeight="bold" variant="body2" color="text.primary">
+                Stable
+                <RoadmapStatusDot color="success.main" />
               </Typography>
               {renderList(
                 <React.Fragment>
-                  <TableChartRounded sx={{ fontSize: 16 }} />
+                  <PivotTableChartRoundedIcon sx={{ fontSize: 16 }} />
                   Data Grid
-                  <DateRangeRounded sx={{ fontSize: 16 }} />
+                  <CalendarMonthRoundedIcon sx={{ fontSize: 16 }} />
                   Date and Time Pickers
                   <BarChartRounded sx={{ fontSize: 16 }} />
                   Charts
@@ -148,18 +163,9 @@ export default function XRoadmap() {
           </Grid>
           <Grid item xs={12} sm={4} lg="auto">
             <Paper variant="outlined">
-              <Typography fontWeight="bold" variant="body2" color="text.primary">
+              <Typography component="div" fontWeight="bold" variant="body2" color="text.primary">
                 Work in progress
-                <Box
-                  sx={{
-                    ml: 1,
-                    display: 'inline-block',
-                    width: 8,
-                    height: 8,
-                    borderRadius: 10,
-                    bgcolor: 'warning.main',
-                  }}
-                />
+                <RoadmapStatusDot color="warning.main" />
               </Typography>
               {renderList(
                 <React.Fragment>
@@ -168,13 +174,17 @@ export default function XRoadmap() {
                       lineHeight: 0,
                     }}
                   >
-                    <TableChartRounded sx={{ fontSize: 16 }} />
+                    <PivotTableChartRoundedIcon sx={{ fontSize: 16 }} />
                   </Box>
                   Data Grid
                   {bullet}
-                  Pivoting
+                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
+                    Pivoting
+                  </Typography>
                   {bullet}
-                  Charts integration
+                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
+                    Charts integration
+                  </Typography>
                   {bullet}
                   <Link href={ROUTES.dataGridFeaturesComparison} sx={{ color: 'primary.300' }}>
                     And more!
@@ -193,9 +203,13 @@ export default function XRoadmap() {
                   </Box>
                   Tree View
                   {bullet}
-                  Virtualization
+                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
+                    Virtualization
+                  </Typography>
                   {bullet}
-                  Drag and Drop
+                  <Typography variant="body2" color="text.secondary" fontWeight="medium">
+                    Drag and Drop
+                  </Typography>
                 </React.Fragment>,
                 true,
               )}
@@ -203,24 +217,15 @@ export default function XRoadmap() {
           </Grid>
           <Grid item xs={12} sm={4} lg="auto">
             <Paper variant="outlined">
-              <Typography fontWeight="bold" variant="body2" color="text.primary">
-                Sometime soon
-                <Box
-                  sx={{
-                    ml: 1,
-                    display: 'inline-block',
-                    width: 8,
-                    height: 8,
-                    borderRadius: 10,
-                    bgcolor: 'primaryDark.400',
-                  }}
-                />
+              <Typography component="div" fontWeight="bold" variant="body2" color="text.primary">
+                Future components
+                <RoadmapStatusDot color="primaryDark.400" />
               </Typography>
               {renderList(
                 <React.Fragment>
-                  <ShowChartRounded sx={{ fontSize: 16 }} />
+                  <AutoGraphRoundedIcon sx={{ fontSize: 16 }} />
                   Sparkline
-                  <InsertDriveFileOutlined sx={{ fontSize: 16 }} />
+                  <FormatSizeRoundedIcon sx={{ fontSize: 16 }} />
                   Rich Text Editor
                   <FileUploadRounded sx={{ fontSize: 16 }} />
                   Upload

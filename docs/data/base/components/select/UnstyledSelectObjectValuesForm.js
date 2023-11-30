@@ -156,7 +156,7 @@ Button.propTypes = {
 
 const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-width: 320px;
@@ -199,7 +199,7 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
 
 const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 8px;
@@ -260,7 +260,7 @@ const Popper = styled(BasePopper)`
 
 const Label = styled('label')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.85rem;
   display: block;
   margin-bottom: 4px;
@@ -271,7 +271,7 @@ const Label = styled('label')(
 
 const SubmitButton = styled('button')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;

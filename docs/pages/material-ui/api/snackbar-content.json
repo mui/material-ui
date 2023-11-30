@@ -17,11 +17,26 @@
     "import SnackbarContent from '@mui/material/SnackbarContent';",
     "import { SnackbarContent } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "message", "action"],
-    "globalClasses": {},
-    "name": "MuiSnackbarContent"
-  },
+  "classes": [
+    {
+      "key": "action",
+      "className": "MuiSnackbarContent-action",
+      "description": "Styles applied to the action wrapper element if `action` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "message",
+      "className": "MuiSnackbarContent-message",
+      "description": "Styles applied to the message wrapper element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiSnackbarContent-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiSnackbarContent",
