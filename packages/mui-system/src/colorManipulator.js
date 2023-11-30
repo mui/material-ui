@@ -208,7 +208,7 @@ export function rgbToHsl(color) {
   const hsl = [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
   const type = color.type === 'rgba' ? 'hsla' : 'hsl';
 
-  if (color.type === 'rgba') {
+  if (color.type === 'rgba' || values[3] !== 'undefined') {
     hsl.push(values[3]);
   }
 
@@ -229,11 +229,10 @@ export function hslToRgb(color) {
   const a = s * Math.min(l, 1 - l);
   const f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
 
-  let type = 'rgb';
+  let type = color.type === 'hsla' ? 'rgba' : 'rgb';
   const rgb = [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
 
-  if (color.type === 'hsla') {
-    type += 'a';
+  if (values[3]) {
     rgb.push(values[3]);
   }
 
