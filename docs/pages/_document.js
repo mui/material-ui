@@ -263,6 +263,8 @@ MyDocument.getInitialProps = async (ctx) => {
       canonicalAsServer: pathnameToLanguage(url).canonicalAsServer,
       userLanguage: ctx.query.userLanguage || 'en',
       styles: [
+        <style id="material-icon-font" key="material-icon-font" />,
+        <style id="font-awesome-css" key="font-awesome-css" />,
         ...finalProps.emotionStyleTags,
         <style id="app-search" key="app-search" />,
         <style id="prismjs" key="prismjs" />,
