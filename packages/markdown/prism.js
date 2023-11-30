@@ -6,6 +6,7 @@ require('prismjs/components/prism-javascript');
 require('prismjs/components/prism-json');
 require('prismjs/components/prism-jsx');
 require('prismjs/components/prism-markup');
+require('prismjs/components/prism-yaml');
 require('prismjs/components/prism-tsx');
 
 function highlight(code, language) {
@@ -17,6 +18,10 @@ function highlight(code, language) {
 
     case 'js':
       prismLanguage = prism.languages.jsx;
+      break;
+
+    case 'yaml':
+      prismLanguage = prism.languages.yaml;
       break;
 
     case 'sh':
