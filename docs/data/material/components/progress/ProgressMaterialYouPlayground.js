@@ -47,16 +47,28 @@ export default function ProgressMaterialYouPlayground() {
         },
         { propName: 'fourColor', knob: 'switch', defaultValue: false },
       ]}
-      renderDemo={({ type: progressType, ...props }) => {
-        const Progress =
-          progressType === 'CircularProgress' ? CircularProgress : LinearProgress;
-
-        return (
-          <Box sx={{ width: 300, display: 'flex', flexDirection: 'column', gap: 1 }}>
-            <Progress {...props} value={value} valueBuffer={valueBuffer + value} />
-          </Box>
-        );
-      }}
+      renderDemo={({ type: progressType, ...props }) => (
+        <Box
+          sx={{
+            width: 300,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1,
+            alignItems: 'center',
+          }}
+        >
+          {type === 'CircularProgress' ? (
+            <CircularProgress {...props} value={value} />
+          ) : (
+            <LinearProgress
+              {...props}
+              value={value}
+              valueBuffer={valueBuffer + value}
+              sx={{ width: 300 }}
+            />
+          )}
+        </Box>
+      )}
     />
   );
 }
