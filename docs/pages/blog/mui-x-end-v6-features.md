@@ -111,7 +111,7 @@ We're continuously improving our docs, and we're starting to add more advanced e
 
 ### Sparkline as a column type
 
-Based on `@mui/x-charts` package, you can now add sparkline columns to your Data Grid.
+Integrate the MUI X Charts, using the `@mui/x-charts` package, to the Data Grid to add sparkline chars to columns.
 
 <img alt="Sparkline charts on the MUI X Data Grid" src="/static/blog/mui-x-end-v6-features/sparkline-datagrid.png" width="1200" height="840" loading="lazy" style="margin-bottom: 16px;" />
 
