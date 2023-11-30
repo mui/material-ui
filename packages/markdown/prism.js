@@ -20,10 +20,6 @@ function highlight(code, language) {
       prismLanguage = prism.languages.jsx;
       break;
 
-    case 'yaml':
-      prismLanguage = prism.languages.yaml;
-      break;
-
     case 'sh':
       throw new Error(
         [
