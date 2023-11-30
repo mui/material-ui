@@ -192,6 +192,7 @@ const CircularProgress = React.forwardRef(function CircularProgress<
     color = 'primary',
     disableShrink = false,
     fourColor = false,
+    style,
     size = 48,
     thickness = 4,
     value = 0,
@@ -230,7 +231,7 @@ const CircularProgress = React.forwardRef(function CircularProgress<
   return (
     <CircularProgressRoot
       className={clsx(classes.root, className)}
-      style={{ ...rootStyle }}
+      style={{ ...rootStyle, ...style }}
       ownerState={ownerState}
       ref={ref}
       role="progressbar"
