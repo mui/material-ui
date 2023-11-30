@@ -30,15 +30,15 @@
     "import { Snackbar } from '@mui/base/Snackbar';",
     "import { Snackbar } from '@mui/base';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiSnackbar-root"
+      "class": "MuiSnackbar-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "muiName": "MuiSnackbar",
   "forwardsRefTo": "HTMLDivElement",

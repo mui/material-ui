@@ -18,11 +18,38 @@
     "import TableRow from '@mui/material/TableRow';",
     "import { TableRow } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "selected", "hover", "head", "footer"],
-    "globalClasses": { "selected": "Mui-selected" },
-    "name": "MuiTableRow"
-  },
+  "classes": [
+    {
+      "key": "footer",
+      "className": "MuiTableRow-footer",
+      "description": "Styles applied to the root element if table variant=\"footer\".",
+      "isGlobal": false
+    },
+    {
+      "key": "head",
+      "className": "MuiTableRow-head",
+      "description": "Styles applied to the root element if table variant=\"head\".",
+      "isGlobal": false
+    },
+    {
+      "key": "hover",
+      "className": "MuiTableRow-hover",
+      "description": "State class applied to the root element if `hover={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiTableRow-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if `selected={true}`.",
+      "isGlobal": true
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTableRow",
