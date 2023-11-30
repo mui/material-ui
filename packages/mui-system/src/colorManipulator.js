@@ -179,7 +179,9 @@ export function rgbToHsl(color) {
 
   const max = Math.max(r, g, b);
   const min = Math.min(r, g, b);
-  let h, s, l;
+  let h = 0;
+  let s = 0;
+  let l = 0;
 
   l = (max + min) / 2;
 
@@ -200,12 +202,14 @@ export function rgbToHsl(color) {
       case b:
         h = (r - g) / d + 4;
         break;
+      default:
+        break;
     }
 
     h /= 6;
   }
 
-  const hsl = [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
+  const hsl = [h * 360, s * 100, l * 100];
   const type = color.type === 'rgba' ? 'hsla' : 'hsl';
 
   if (color.type === 'rgba' || values[3] !== 'undefined') {
@@ -229,7 +233,7 @@ export function hslToRgb(color) {
   const a = s * Math.min(l, 1 - l);
   const f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
 
-  let type = color.type === 'hsla' ? 'rgba' : 'rgb';
+  const type = color.type === 'hsla' ? 'rgba' : 'rgb';
   const rgb = [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
 
   if (values[3]) {
