@@ -153,7 +153,8 @@ To illustrate some of these improvements, the following table displays a benchma
   </tr>
 </table>
 
-As we can see, the current version operates 7.9 times faster; the average time has dropped from 400.7 milliseconds in the previous version to just 50.4 milliseconds in the current one.
+As we can see, the current version operates 7.9 times faster;
+the average time has dropped from 400.7 milliseconds in the previous version to just 50.4 milliseconds in the current one.
 
 :::info
 Note that these results are based on raw filtering speed and not end-to-end operation (which includes user typing, filtering, and rerender).
@@ -173,7 +174,8 @@ Most notably:
 
 We will also keep expanding our portfolio of chart types, such as [Heat map](/x/react-charts/heat-map/), [Funnel](/x/react-charts/funnel/), and [Gantt](/x/react-charts/gantt/), and explore virtualization and other advanced use cases for Tree view.
 
-We encourage you to upvote issues on GitHub to help us prioritize. Your input directly influences our development schedule, so don't hesitate to let us know what matters most to you!
+We encourage you to upvote issues on GitHub to help us prioritize.
+Your input directly influences our development schedule, so don't hesitate to let us know what matters most to you!
 You can use the following list to quickly access each component's issues.
 
 - [Charts](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+charts%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
@@ -186,8 +188,10 @@ At the same time, v6 will transition to [Long-Term Support](/versions/#long-term
 
 ## Give us feedback
 
-We're excited to hear from you about improving MUI X! Please share your requests, suggestions, pain points, and use cases through [this Google Form](https://forms.gle/vsBv6CLPz9h57xg8A).
+We're excited to hear from you about improving MUI X!
+Please share your requests, suggestions, pain points, and use cases through [this Google Form](https://forms.gle/vsBv6CLPz9h57xg8A).
 
-Or, as always, you're welcome to request new features, share bug reports, and join any discussions in [the MUI X GitHub repository](https://github.com/mui/mui-x/issues). Lastly, we've recently released [the MUI Discord server](https://mui.com/r/discord/), and we'd love to see you there.
+Or, as always, you're welcome to request new features, share bug reports, and join any discussions in [the MUI X GitHub repository](https://github.com/mui/mui-x/issues).
+Lastly, we've recently released [the MUI Discord server](https://mui.com/r/discord/), and we'd love to see you there.
 
 Cheers!
