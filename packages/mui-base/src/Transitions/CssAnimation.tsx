@@ -1,7 +1,8 @@
 'use client';
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useTransitionStateManager, TransitionContext } from '../useTransition';
+import { useTransitionStateManager } from '../useTransition';
 
 export interface CssAnimationProps {
   children?: React.ReactNode;
@@ -28,7 +29,17 @@ export interface CssAnimationProps {
   exitClassName?: string;
 }
 
-export function CssAnimation(props: CssAnimationProps) {
+/**
+ *
+ * Demos:
+ *
+ * - [Popup](https://mui.com/base-ui/react-popup/)
+ *
+ * API:
+ *
+ * - [CssAnimation API](https://mui.com/base-ui/react-popup/components-api/#css-animation)
+ */
+function CssAnimation(props: CssAnimationProps) {
   const {
     children,
     className,
@@ -38,28 +49,28 @@ export function CssAnimation(props: CssAnimationProps) {
     exitClassName,
   } = props;
 
-  const transitionContext = React.useContext(TransitionContext);
-  if (!transitionContext) {
-    throw new Error('Missing transition context');
-  }
-
-  const { requestedEnter, onEntering, onEntered, onExiting, onExited, hasExited } =
+  const { requestedEnter, onEntering, onEntered, onExiting, onExited } =
     useTransitionStateManager();
 
+  const hasExited = React.useRef(true);
+
   React.useEffect(() => {
-    if (requestedEnter && !hasExited) {
+    if (requestedEnter && hasExited.current) {
       onEntering();
-    } else if (!requestedEnter && hasExited) {
+      hasExited.current = false;
+    } else if (!requestedEnter && !hasExited.current) {
       onExiting();
     }
-  }, [onEntering, onExiting, requestedEnter, hasExited]);
+  }, [onEntering, onExiting, requestedEnter]);
 
   const handleAnimationEnd = React.useCallback(
     (event: React.AnimationEvent) => {
       if (event.animationName === exitAnimationName) {
         onExited();
+        hasExited.current = true;
       } else if (event.animationName === enterAnimationName) {
         onEntered();
+        hasExited.current = false;
       }
     },
     [onExited, onEntered, exitAnimationName, enterAnimationName],
@@ -74,3 +85,14 @@ export function CssAnimation(props: CssAnimationProps) {
     </div>
   );
 }
+
+CssAnimation.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  enterAnimationName: PropTypes.string,
+  enterClassName: PropTypes.string,
+  exitAnimationName: PropTypes.string,
+  exitClassName: PropTypes.string,
+};
+
+export { CssAnimation };

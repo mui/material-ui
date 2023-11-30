@@ -1,7 +1,8 @@
 ---
 productId: base-ui
 title: React Popup component
-components: Popup
+components: Popup, CssAnimation, CssTransition
+hooks: useTransitionableElement, useTransitionStateManager
 githubLabel: 'component: popup'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---

@@ -1,7 +1,8 @@
 'use client';
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useTransitionStateManager, TransitionContext } from '../useTransition';
+import { useTransitionStateManager } from '../useTransition';
 
 export interface CssTransitionProps {
   children?: React.ReactNode;
@@ -35,8 +36,16 @@ export interface CssTransitionProps {
 /**
  * A utility component that hooks up to the Base UI transitions API and
  * applies a CSS transition to its children when necessary.
+ *
+ * Demos:
+ *
+ * - [Popup](https://mui.com/base-ui/react-popup/)
+ *
+ * API:
+ *
+ * - [CssTransition API](https://mui.com/base-ui/react-popup/components-api/#css-transition)
  */
-export function CssTransition(props: CssTransitionProps) {
+function CssTransition(props: CssTransitionProps) {
   const {
     children,
     className,
@@ -46,21 +55,19 @@ export function CssTransition(props: CssTransitionProps) {
     exitClassName,
   } = props;
 
-  const transitionContext = React.useContext(TransitionContext);
-  if (!transitionContext) {
-    throw new Error('Missing transition context');
-  }
-
-  const { requestedEnter, onEntering, onEntered, onExiting, onExited, hasExited } =
+  const { requestedEnter, onEntering, onEntered, onExiting, onExited } =
     useTransitionStateManager();
 
+  const hasExited = React.useRef(true);
+
   React.useEffect(() => {
-    if (requestedEnter && !hasExited) {
+    if (requestedEnter && hasExited.current) {
       onEntering();
-    } else if (!requestedEnter && hasExited) {
+      hasExited.current = false;
+    } else if (!requestedEnter && !hasExited.current) {
       onExiting();
     }
-  }, [onEntering, onExiting, requestedEnter, hasExited]);
+  }, [onEntering, onExiting, requestedEnter]);
 
   const handleTransitionEnd = React.useCallback(
     (event: React.TransitionEvent) => {
@@ -70,12 +77,14 @@ export function CssTransition(props: CssTransitionProps) {
           event.propertyName === lastTransitionedPropertyOnEnter
         ) {
           onEntered();
+          hasExited.current = false;
         }
       } else if (
         lastTransitionedPropertyOnExit == null ||
         event.propertyName === lastTransitionedPropertyOnExit
       ) {
         onExited();
+        hasExited.current = true;
       }
     },
     [
@@ -96,3 +105,14 @@ export function CssTransition(props: CssTransitionProps) {
     </div>
   );
 }
+
+CssTransition.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  enterClassName: PropTypes.string,
+  exitClassName: PropTypes.string,
+  lastTransitionedPropertyOnEnter: PropTypes.string,
+  lastTransitionedPropertyOnExit: PropTypes.string,
+};
+
+export { CssTransition };

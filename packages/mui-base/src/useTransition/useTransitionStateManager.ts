@@ -2,27 +2,49 @@
 import * as React from 'react';
 import { TransitionContext } from './TransitionContext';
 
+export type UseTransitionStateManagerReturnValue = {
+  /**
+   * `true`, if the current element should be visible.
+   */
+  requestedEnter: boolean;
+  /**
+   * Callback to be called when the element has started entering.
+   */
+  onEntering: () => void;
+  /**
+   * Callback to be called when the element has completely entered.
+   */
+  onEntered: () => void;
+  /**
+   * Callback to be called when the element has started exiting.
+   */
+  onExiting: () => void;
+  /**
+   * Callback to be called when the element has completely exited.
+   */
+  onExited: () => void;
+};
+
 /**
+ * Allows an element to be transitioned in and out.
+ * The transition is triggerred by a `TransitionContext` placed above in the component tree.
+ *
+ * Demos:
+ *
+ * - [Popup](https://mui.com/base-ui/react-popup/#hooks)
  *
  * API:
  *
- * - [useTransitionStateManager API](https://mui.com/base-ui/api/use-transition/)
+ * - [useTransitionStateManager API](https://mui.com/base-ui/react-popup/hooks-api/#use-transition-state-manager)
  */
-export function useTransitionStateManager() {
+export function useTransitionStateManager(): UseTransitionStateManagerReturnValue {
   const transitionContext = React.useContext(TransitionContext);
   if (!transitionContext) {
     throw new Error('Missing transition context');
   }
 
-  const {
-    registerTransition,
-    requestEnter: requestOpen,
-    onEntering,
-    onEntered,
-    onExiting,
-    onExited,
-    hasExited,
-  } = transitionContext;
+  const { registerTransition, requestEnter, onEntering, onEntered, onExiting, onExited } =
+    transitionContext;
 
   React.useEffect(() => {
     return registerTransition();
@@ -33,7 +55,6 @@ export function useTransitionStateManager() {
     onEntered,
     onExiting,
     onExited,
-    requestedEnter: requestOpen,
-    hasExited,
+    requestedEnter: requestEnter,
   };
 }

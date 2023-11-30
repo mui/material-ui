@@ -42,7 +42,35 @@ function transitionStateReducer(_: TransitionState, action: TransitionAction): T
   }
 }
 
-export function useTransitionableElement(requestEnter: boolean) {
+export type UseTransitionableElementReturnValue = {
+  /**
+   * The value of a `TransitionContext` to be placed around children that will be transitioned.
+   */
+  contextValue: TransitionContextValue;
+  /**
+   * `true`, if the transitioned element has exited completely (or not entered yet).
+   */
+  hasExited: boolean;
+  /**
+   * `true`, if the transition is in progress.
+   */
+  transitionInProgress: boolean;
+};
+
+/**
+ * Allows child elements to be transitioned in and out.
+ *
+ * Demos:
+ *
+ * - [Popup](https://mui.com/base-ui/react-popup/#hooks)
+ *
+ * API:
+ *
+ * - [useTransitionableElement API](https://mui.com/base-ui/react-popup/hooks-api/#use-transitionable-element)
+ */
+export function useTransitionableElement(
+  requestEnter: boolean,
+): UseTransitionableElementReturnValue {
   const [state, dispatch] = React.useReducer(transitionStateReducer, {
     elementExited: false,
     inProgress: false,

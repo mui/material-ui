@@ -1,0 +1,5 @@
+{
+  "hookDescription": "Allows an element to be transitioned in and out.\nThe transition is triggerred by a `TransitionContext` placed above in the component tree.",
+  "parametersDescriptions": {},
+  "returnValueDescriptions": {}
+}
