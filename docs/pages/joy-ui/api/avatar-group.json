@@ -48,15 +48,15 @@
     "import AvatarGroup from '@mui/joy/AvatarGroup';",
     "import { AvatarGroup } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAvatarGroup" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiAvatarGroup-root"
+      "class": "MuiAvatarGroup-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAvatarGroup",

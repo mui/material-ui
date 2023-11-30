@@ -13,7 +13,14 @@
   },
   "name": "TabPanel",
   "imports": ["import TabPanel from '@mui/lab/TabPanel';", "import { TabPanel } from '@mui/lab';"],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTabPanel" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiTabPanel-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiTabPanel",

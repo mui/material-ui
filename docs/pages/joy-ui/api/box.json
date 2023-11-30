@@ -11,7 +11,14 @@
   },
   "name": "Box",
   "imports": ["import Box from '@mui/joy/Box';", "import { Box } from '@mui/joy';"],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiBox" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiBox-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "JoyBox",
