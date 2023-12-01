@@ -86,7 +86,7 @@ const InputLabelRoot = styled(FormLabel, {
     // zIndex: 1 will raise the label above opaque background-colors of input.
     zIndex: 1,
     pointerEvents: 'none',
-    transform: 'translate(12px, 16px) scale(1)',
+    transform: 'translate(16px, 16px) scale(1)',
     maxWidth: 'calc(100% - 24px)',
     ...(ownerState.size === 'small' && {
       transform: 'translate(12px, 13px) scale(1)',
@@ -94,7 +94,7 @@ const InputLabelRoot = styled(FormLabel, {
     ...(ownerState.shrink && {
       userSelect: 'none',
       pointerEvents: 'auto',
-      transform: 'translate(12px, 7px) scale(0.75)',
+      transform: 'translate(16px, 7px) scale(0.75)',
       maxWidth: 'calc(133% - 24px)',
       ...(ownerState.size === 'small' && {
         transform: 'translate(12px, 4px) scale(0.75)',

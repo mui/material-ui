@@ -50,10 +50,14 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "fab": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Fab component" },
-    "directionUp": {
-      "description": "Styles applied to the root element if direction=&quot;up&quot;"
+    "actions": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the actions (<code>children</code> wrapper) element"
+    },
+    "actionsClosed": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the actions (<code>children</code> wrapper) element",
+      "conditions": "<code>open={false}</code>"
     },
     "directionDown": {
       "description": "Styles applied to the root element if direction=&quot;down&quot;"
@@ -64,14 +68,10 @@
     "directionRight": {
       "description": "Styles applied to the root element if direction=&quot;right&quot;"
     },
-    "actions": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the actions (<code>children</code> wrapper) element"
+    "directionUp": {
+      "description": "Styles applied to the root element if direction=&quot;up&quot;"
     },
-    "actionsClosed": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the actions (<code>children</code> wrapper) element",
-      "conditions": "<code>open={false}</code>"
-    }
+    "fab": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Fab component" },
+    "root": { "description": "Styles applied to the root element." }
   }
 }

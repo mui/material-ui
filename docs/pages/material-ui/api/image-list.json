@@ -29,11 +29,38 @@
     "import ImageList from '@mui/material/ImageList';",
     "import { ImageList } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "masonry", "quilted", "standard", "woven"],
-    "globalClasses": {},
-    "name": "MuiImageList"
-  },
+  "classes": [
+    {
+      "key": "masonry",
+      "className": "MuiImageList-masonry",
+      "description": "Styles applied to the root element if `variant=\"masonry\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "quilted",
+      "className": "MuiImageList-quilted",
+      "description": "Styles applied to the root element if `variant=\"quilted\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiImageList-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "standard",
+      "className": "MuiImageList-standard",
+      "description": "Styles applied to the root element if `variant=\"standard\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "woven",
+      "className": "MuiImageList-woven",
+      "description": "Styles applied to the root element if `variant=\"woven\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiImageList",

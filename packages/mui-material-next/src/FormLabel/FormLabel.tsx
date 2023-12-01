@@ -67,7 +67,7 @@ export const FormLabelRoot = styled('label', {
     },
     [`&.${formLabelClasses.disabled}`]: {
       color:
-        'color-mix(in srgb, var(--md-comp-form-label-disabled-color), transparent calc(var(--md-comp-form-label-disabled-opacity) * 100%))',
+        'color-mix(in srgb, var(--md-comp-form-label-disabled-color) calc(var(--md-comp-form-label-disabled-opacity) * 100%), transparent)',
     },
     [`&.${formLabelClasses.error}`]: {
       color: 'var(--md-comp-form-label-error-color)',

@@ -60,7 +60,7 @@ Featuring lines, areas, bars, pie charts and scatter plots, the latest versions 
   Customize the legend text to your heart's content, making your charts more readable and visually
   appealing.
 
-Get started with charts [now](/x/react-charts/#getting-started)!
+[Get started with MUI X Charts now](/x/react-charts/getting-started/)!
 
 ### Tree view
 

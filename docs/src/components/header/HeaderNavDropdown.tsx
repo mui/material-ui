@@ -107,7 +107,7 @@ const DOCS = [
   {
     name: 'MUI X',
     description: 'Advanced and powerful components for complex use cases.',
-    href: ROUTES.advancedComponents,
+    href: ROUTES.xIntro,
   },
   {
     name: 'MUI Toolpad',

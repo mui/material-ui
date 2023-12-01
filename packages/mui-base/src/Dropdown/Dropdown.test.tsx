@@ -6,6 +6,8 @@ import { DropdownContext } from '@mui/base/useDropdown';
 import { MenuButton } from '@mui/base/MenuButton';
 import { MenuItem } from '@mui/base/MenuItem';
 import { Menu } from '@mui/base/Menu';
+import { MenuProvider, useMenu } from '@mui/base/useMenu';
+import { Popper } from '@mui/base/Popper';
 
 describe('<Dropdown />', () => {
   const { render } = createRenderer();
@@ -77,6 +79,50 @@ describe('<Dropdown />', () => {
     const menuItems = getAllByRole('menuitem');
 
     expect(menuItems[0]).toHaveFocus();
+  });
+
+  it('should focus on second item when 1st item is disabled and disabledItemsFocusable set to false', () => {
+    const CustomMenu = React.forwardRef(function CustomMenu(
+      props: React.ComponentPropsWithoutRef<'ul'>,
+      ref: React.Ref<HTMLUListElement>,
+    ) {
+      const { children, ...other } = props;
+
+      const { open, triggerElement, contextValue, getListboxProps } = useMenu({
+        listboxRef: ref,
+        disabledItemsFocusable: false,
+      });
+
+      return (
+        <Popper open={open} anchorEl={triggerElement}>
+          <ul className="menu-root" {...other} {...getListboxProps()}>
+            <MenuProvider value={contextValue}>{children}</MenuProvider>
+          </ul>
+        </Popper>
+      );
+    });
+
+    const { getByRole, getAllByRole } = render(
+      <div>
+        <Dropdown>
+          <MenuButton>Toggle</MenuButton>
+          <CustomMenu>
+            <MenuItem disabled>One</MenuItem>
+            <MenuItem>Two</MenuItem>
+            <MenuItem>Three</MenuItem>
+          </CustomMenu>
+        </Dropdown>
+      </div>,
+    );
+
+    const button = getByRole('button');
+    act(() => {
+      button.click();
+    });
+
+    const menuItems = getAllByRole('menuitem');
+
+    expect(menuItems[1]).toHaveFocus();
   });
 
   it('focuses the trigger after the menu is closed', () => {

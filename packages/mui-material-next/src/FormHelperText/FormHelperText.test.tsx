@@ -1,10 +1,29 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from '@mui-internal/test-utils';
-import FormHelperText, { formHelperTextClasses as classes } from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
+import FormHelperText, {
+  formHelperTextClasses as classes,
+  FormHelperTextClasses,
+} from '@mui/material-next/FormHelperText';
+import FormControl from '@mui/material-next/FormControl';
+import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
 describe('<FormHelperText />', () => {
+  let originalMatchmedia: typeof window.matchMedia;
+
+  beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
+    window.matchMedia = () =>
+      ({
+        addListener: () => {},
+        removeListener: () => {},
+      } as unknown as MediaQueryList);
+  });
+
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
+  });
+
   const { render } = createRenderer();
 
   describeConformance(<FormHelperText />, () => ({
@@ -15,6 +34,13 @@ describe('<FormHelperText />', () => {
     testComponentPropWith: 'div',
     muiName: 'MuiFormHelperText',
     testVariantProps: { size: 'small' },
+    ThemeProvider: CssVarsProvider,
+    createTheme: extendTheme,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
     skip: ['componentsProp'],
   }));
 
@@ -28,7 +54,7 @@ describe('<FormHelperText />', () => {
   describe('with FormControl', () => {
     ['error', 'disabled'].forEach((visualState) => {
       describe(visualState, () => {
-        function FormHelperTextInFormControl(props) {
+        function FormHelperTextInFormControl(props: { children: React.ReactNode }) {
           return (
             <FormControl {...{ [visualState]: true }}>
               <FormHelperText {...props}>Foo</FormHelperText>
@@ -41,20 +67,26 @@ describe('<FormHelperText />', () => {
             <FormHelperTextInFormControl>Foo</FormHelperTextInFormControl>,
           );
 
-          expect(getByText(/Foo/)).to.have.class(classes[visualState]);
+          expect(getByText(/Foo/)).to.have.class(
+            classes[visualState as keyof FormHelperTextClasses],
+          );
         });
 
-        it('should be overridden by props', () => {
+        it('should be overrideable by props', () => {
           const { getByText, setProps } = render(
             <FormHelperTextInFormControl {...{ [visualState]: false }}>
               Foo
             </FormHelperTextInFormControl>,
           );
 
-          expect(getByText(/Foo/)).not.to.have.class(classes[visualState]);
+          expect(getByText(/Foo/)).not.to.have.class(
+            classes[visualState as keyof FormHelperTextClasses],
+          );
 
           setProps({ [visualState]: true });
-          expect(getByText(/Foo/)).to.have.class(classes[visualState]);
+          expect(getByText(/Foo/)).to.have.class(
+            classes[visualState as keyof FormHelperTextClasses],
+          );
         });
       });
     });
@@ -72,8 +104,8 @@ describe('<FormHelperText />', () => {
         });
       });
 
-      it('should be overridden by props', () => {
-        function FormHelperTextInFormControl(props) {
+      it('should be overrideable by props', () => {
+        function FormHelperTextInFormControl(props: { children: React.ReactNode }) {
           return (
             <FormControl size="medium">
               <FormHelperText {...props}>Foo</FormHelperText>

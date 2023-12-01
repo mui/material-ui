@@ -449,6 +449,9 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/column-resizing': (
     <ColumnHead label="Column resizing" href="/x/react-data-grid/column-dimensions/#resizing" />
   ),
+  'data-grid/column-autosizing': (
+    <ColumnHead label="Column autosizing" href="/x/react-data-grid/column-dimensions/#autosizing" />
+  ),
   'data-grid/column-reorder': (
     <ColumnHead label="Column reorder" href="/x/react-data-grid/column-ordering/" />
   ),
@@ -586,7 +589,9 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': <ColumnHead label="Zoom on mouse" />,
   'charts/export': <ColumnHead label="Export" />,
   // -- charts - datagrid --
-  'charts/cell-with-charts': <ColumnHead label="Cell with chart" />,
+  'charts/cell-with-charts': (
+    <ColumnHead label="Cell with chart" href="/x/react-data-grid/custom-columns/#sparkline" />
+  ),
   'charts/filter-interaction': <ColumnHead label="Row filtering" />,
   'charts/selection-interaction': <ColumnHead label="Range selection" />,
 
@@ -697,6 +702,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': no,
+  'data-grid/column-autosizing': no,
   'data-grid/column-reorder': no,
   'data-grid/column-pinning': no,
   // -- data grid - rows --
@@ -763,7 +769,7 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': no,
   'charts/export': no,
   // -- charts - datagrid --
-  'charts/cell-with-charts': pending,
+  'charts/cell-with-charts': yes,
   'charts/filter-interaction': no,
   'charts/selection-interaction': no,
 
@@ -794,6 +800,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
   // -- data grid - rows --
@@ -858,7 +865,7 @@ const proData: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': pending,
   'charts/export': pending,
   // -- charts - datagrid --
-  'charts/cell-with-charts': pending,
+  'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': no,
 
@@ -894,6 +901,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
   // -- data grid - rows --
@@ -958,7 +966,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/mouse-zoom': pending,
   'charts/export': pending,
   // -- charts - datagrid --
-  'charts/cell-with-charts': pending,
+  'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': pending,
 
@@ -1365,6 +1373,8 @@ export default function PricingTable({
         {renderNestedRow('data-grid/column-spanning')}
         {divider}
         {renderNestedRow('data-grid/column-resizing')}
+        {divider}
+        {renderNestedRow('data-grid/column-autosizing')}
         {divider}
         {renderNestedRow('data-grid/column-reorder')}
         {divider}

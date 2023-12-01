@@ -1,5 +1,93 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.19
+
+<!-- generated comparing v5.14.18..master -->
+
+_Nov 29, 2023_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 🐛 Fix Material UI Autocomplete behavior when there are duplicate labels (#36426) @islandryu
+- 🚀 Added Material You Linear Progress to `material-next` package (#39807) @lhilgert9
+
+### `@mui/material@5.14.19`
+
+- &#8203;<!-- 44 -->[Autocomplete] Fix behavior when there are duplicate labels (#36426) @islandryu
+- &#8203;<!-- 37 -->[Box] Added boxClasses (#39889) @sadik-malik
+- &#8203;<!-- 18 -->[FilledInput] Fix slot props deepmerge order (#38922) @dhaub-exelixis
+- &#8203;<!-- 12 -->[Select] Add id to hidden input element (#39414) @DarhkVoyd
+- &#8203;<!-- 11 -->[Select] Remove unnecessary picking of `onChange` type from SelectInputProps (#39891) @ZeeshanTamboli
+
+### `@mui/base@5.0.0-beta.25`
+
+- &#8203;<!-- 46 -->[Menu] Fix navigation of items when 1st item is disabled (#39828) @sai6855
+- &#8203;<!-- 42 -->[Modal] Refine demos (#39824) @zanivan
+- &#8203;<!-- 41 -->[NumberInput] Implement `numberInputReducer` (#38723) @mj12albert
+- &#8203;<!-- 40 -->[useNumberInput] Fix change handlers passed through slotProps (#39407) @mj12albert
+
+### `@mui/joy@5.0.0-beta.16`
+
+- &#8203;<!-- 38 -->[Box] Added boxClasses (#39895) @sadik-malik
+
+### `@mui/system@5.14.19`
+
+- &#8203;<!-- 36 -->[Box] Added boxClasses (#39896) @sadik-malik
+- &#8203;<!-- 09 -->Add outlineColor to defaultSxConfig (#39962) @brijeshb42
+
+### `@mui/types@7.2.10`
+
+- &#8203;<!-- 08 -->Add `PartiallyRequired` type (#39939) @lhilgert9
+
+### `@mui/material-next@6.0.0-alpha.111`
+
+- &#8203;<!-- 47 -->[ProgressIndicator] Apply MD3 style to `LinearProgress` (#39807) @lhilgert9
+- &#8203;<!-- 17 -->[FormHelperText] Add FormHelperText component (#39503) @mj12albert
+- &#8203;<!-- 16 -->[IconButton] Copy IconButton to material-next (#39945) @mj12albert
+- &#8203;<!-- 13 -->[Switch] Copy `Switch` to material next (#39887) @lhilgert9
+
+### Docs
+
+- &#8203;<!-- 19 -->[material-ui] Fix theme prop in v5 migration guide (#39976) @sai6855
+- &#8203;<!-- 43 -->[base-ui] Improve Next.js Link docs (#39838) @oliviertassinari
+- &#8203;<!-- 39 -->[base-ui] Export Base UI theme in stylesheet (#39694) @mnajdova
+- &#8203;<!-- 52 -->[joy-ui] Fix the date min & max slot props values on the Input demo (#40018) @avikalpg
+- &#8203;<!-- 35 -->[joy-ui][ButtonGroup] Fix orientation prop description (#39876) @sai6855
+- &#8203;<!-- 25 -->[joy-ui] Update gif from the Dark Mode Optimization page (#39726) @danilo-leal
+- &#8203;<!-- 24 -->[joy-ui] Fix h1 template (#40017) @oliviertassinari
+- &#8203;<!-- 23 -->[joy-ui] Fix wrong product id @oliviertassinari
+- &#8203;<!-- 22 -->[joy-ui] Fixes in theme scoping documentation (#39899) @ZeeshanTamboli
+- &#8203;<!-- 21 -->[joy-ui] Refine the Email, Teams and Files templates (#39579) @zanivan
+- &#8203;<!-- 15 -->[joy-ui][templates] Fix layout shift on Profile template (#40022) @zanivan
+- &#8203;<!-- 14 -->[joy-ui][Templates] Update thumbnails (#39938) @zanivan
+- &#8203;<!-- 20 -->[material-next] Add contributing guide (#39944) @mj12albert
+- &#8203;<!-- 51 -->End v6 blogpost notification (#39879) @joserodolfofreitas
+- &#8203;<!-- 31 -->Fix nested CSS warning (#39932) @mnajdova
+- &#8203;<!-- 30 -->Make integration searchable (#39967) @oliviertassinari
+- &#8203;<!-- 29 -->Fix use of quote in markdown (#39953) @oliviertassinari
+- &#8203;<!-- 28 -->Show design links on Joy UI (#39955) @oliviertassinari
+- &#8203;<!-- 27 -->Restore Algolia results when searching for "Figma" (#39956) @oliviertassinari
+- &#8203;<!-- 26 -->Fix two tone icon dark mode color (#39868) @mnajdova
+
+### Core
+
+- &#8203;<!-- 45 -->Improve lerna's renovate package rules (#40029) @DiegoAndai
+- &#8203;<!-- 34 -->Downgrade lerna to 7.2.0 (#40026) @DiegoAndai
+- &#8203;<!-- 32 -->Rename OpenCollective @oliviertassinari
+- &#8203;<!-- 48 -->[docs-infra] Env variables should be string (#39991) @oliviertassinari
+- &#8203;<!-- 10 -->[Portal] Improve docs for container prop (#39180) @oliviertassinari
+- &#8203;<!-- 50 -->[website] Update pricing table (#40023) @cherniavskii
+- &#8203;<!-- 49 -->[website][docs] Update the product identifier menu and X page (#39832) @danilo-leal
+- &#8203;<!-- 07 -->[website] Mark TreeView and Charts as stable (#39975) @flaviendelangle
+- &#8203;<!-- 06 -->[website] Update career page (#40015) @oliviertassinari
+- &#8203;<!-- 05 -->[website] Sync about dataset @oliviertassinari
+- &#8203;<!-- 04 -->[website] Fix 301 redirection to X tree-view @oliviertassinari
+- &#8203;<!-- 03 -->[website] Change redirection prefixes @oliviertassinari
+- &#8203;<!-- 02 -->[website] Fix 301 link @oliviertassinari
+- &#8203;<!-- 01 -->[website] Fix modal not being closed with the escape key on the Base UI page (#39880) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @avikalpg, @brijeshb42, @cherniavskii, @danilo-leal, @DarhkVoyd, @dhaub-exelixis, @DiegoAndai, @flaviendelangle, @islandryu, @joserodolfofreitas, @lhilgert9, @mj12albert, @mnajdova, @oliviertassinari, @sadik-malik, @sai6855, @zanivan, @ZeeshanTamboli
+
 ## 5.14.18
 
 <!-- generated comparing v5.14.17..master -->
@@ -10204,7 +10292,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
   This is a follow-up effort after we have merged `material-ui-pickers`. The components are written in TypeScript which required us to upgrade our infra.
 - 👌 Improve the Slider thumb and track animation (#24968) @remyoudemans.
   The thumb is now moving with a light transition between different values unless it's dragged.
-  <img src="https://user-images.githubusercontent.com/3165635/109394906-b7405a00-7929-11eb-829a-3b5246c30c08.gif" width="412" height="110" />
+  <img src="https://user-images.githubusercontent.com/3165635/109394906-b7405a00-7929-11eb-829a-3b5246c30c08.gif" width="412" height="110" alt="thumb-animation" />
 - 💅 Convert 5 components with custom colors support (#25099, #25088) @mngu.
   This change makes it easier to leverage custom palettes
 - And many more 🐛 bug fixes and 📚 improvements.

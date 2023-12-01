@@ -16,21 +16,46 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "rounded": {
-      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+    "elevation": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>square={true}</code>"
+      "conditions": "<code>variant=\"elevation\"</code>"
     },
+    "elevation0": { "description": "" },
+    "elevation1": { "description": "" },
+    "elevation10": { "description": "" },
+    "elevation11": { "description": "" },
+    "elevation12": { "description": "" },
+    "elevation13": { "description": "" },
+    "elevation14": { "description": "" },
+    "elevation15": { "description": "" },
+    "elevation16": { "description": "" },
+    "elevation17": { "description": "" },
+    "elevation18": { "description": "" },
+    "elevation19": { "description": "" },
+    "elevation2": { "description": "" },
+    "elevation20": { "description": "" },
+    "elevation21": { "description": "" },
+    "elevation22": { "description": "" },
+    "elevation23": { "description": "" },
+    "elevation24": { "description": "" },
+    "elevation3": { "description": "" },
+    "elevation4": { "description": "" },
+    "elevation5": { "description": "" },
+    "elevation6": { "description": "" },
+    "elevation7": { "description": "" },
+    "elevation8": { "description": "" },
+    "elevation9": { "description": "" },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
-    "elevation": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+    "root": { "description": "Styles applied to the root element." },
+    "rounded": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"elevation\"</code>"
+      "conditions": "<code>square={true}</code>"
     }
   }
 }

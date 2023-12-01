@@ -23,26 +23,26 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "avatar": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the avatar element"
-    },
     "action": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the action element"
+    },
+    "avatar": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the avatar element"
     },
     "content": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the content wrapper element"
     },
-    "title": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the title Typography element"
-    },
+    "root": { "description": "Styles applied to the root element." },
     "subheader": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the subheader Typography element"
+    },
+    "title": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the title Typography element"
     }
   }
 }

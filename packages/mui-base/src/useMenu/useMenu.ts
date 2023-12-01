@@ -122,8 +122,8 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
   }, [listboxId, registerPopup]);
 
   React.useEffect(() => {
-    if (open && autoFocus && highlightedValue === subitemKeys[0] && !isInitiallyOpen.current) {
-      subitems.get(subitemKeys[0])?.ref?.current?.focus();
+    if (open && autoFocus && highlightedValue && !isInitiallyOpen.current) {
+      subitems.get(highlightedValue)?.ref?.current?.focus();
     }
   }, [open, highlightedValue, subitems, subitemKeys]);
 

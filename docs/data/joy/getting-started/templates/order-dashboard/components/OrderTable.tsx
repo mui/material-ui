@@ -24,7 +24,7 @@ import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
 import Dropdown from '@mui/joy/Dropdown';
-// icons
+
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -297,7 +297,6 @@ export default function OrderTable() {
           <Option value="cancelled">Cancelled</Option>
         </Select>
       </FormControl>
-
       <FormControl size="sm">
         <FormLabel>Category</FormLabel>
         <Select size="sm" placeholder="All">
@@ -307,7 +306,6 @@ export default function OrderTable() {
           <Option value="debit">Debit</Option>
         </Select>
       </FormControl>
-
       <FormControl size="sm">
         <FormLabel>Customer</FormLabel>
         <Select size="sm" placeholder="All">
@@ -327,10 +325,7 @@ export default function OrderTable() {
       <Sheet
         className="SearchAndFilters-mobile"
         sx={{
-          display: {
-            xs: 'flex',
-            sm: 'none',
-          },
+          display: { xs: 'flex', sm: 'none' },
           my: 1,
           gap: 1,
         }}
@@ -370,17 +365,11 @@ export default function OrderTable() {
         sx={{
           borderRadius: 'sm',
           py: 2,
-          display: {
-            xs: 'none',
-            sm: 'flex',
-          },
+          display: { xs: 'none', sm: 'flex' },
           flexWrap: 'wrap',
           gap: 1.5,
           '& > *': {
-            minWidth: {
-              xs: '120px',
-              md: '160px',
-            },
+            minWidth: { xs: '120px', md: '160px' },
           },
         }}
       >

@@ -39,7 +39,6 @@ export default function HeroLeft05() {
           <b>Privacy Policy</b>
         </Link>
       </Typography>
-
       <Typography
         level="body-xs"
         sx={{

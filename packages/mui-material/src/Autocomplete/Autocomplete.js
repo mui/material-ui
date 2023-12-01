@@ -411,6 +411,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     fullWidth = false,
     getLimitTagsText = (more) => `+${more}`,
     getOptionDisabled,
+    getOptionKey,
     getOptionLabel: getOptionLabelProp,
     isOptionEqualToValue,
     groupBy,
@@ -894,6 +895,14 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @returns {boolean}
    */
   getOptionDisabled: PropTypes.func,
+  /**
+   * Used to determine the key for a given option.
+   * This can be useful when the labels of options are not unique (since labels are used as keys by default).
+   *
+   * @param {Value} option The option to get the key for.
+   * @returns {string | number}
+   */
+  getOptionKey: PropTypes.func,
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).

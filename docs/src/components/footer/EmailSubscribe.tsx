@@ -104,7 +104,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           mt: 1,
           gap: 1.5,
           width: { xs: '100%', sm: 'auto' },
-          maxWidth: 320,
+          maxWidth: { xs: '100%', sm: 320 },
         }}
       >
         <InputBase

@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "5.14.18",
+  "version": "5.14.19",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -46,12 +46,12 @@
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.2"
+    "@babel/runtime": "^7.23.4"
   },
   "devDependencies": {
     "@mui/internal-waterfall": "^1.0.0",
-    "@types/chai": "^4.3.10",
-    "@types/react": "^18.2.37",
+    "@types/chai": "^4.3.11",
+    "@types/react": "^18.2.38",
     "chai": "^4.3.10",
     "chalk": "^5.3.0",
     "cross-fetch": "^4.0.0",
