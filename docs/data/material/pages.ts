@@ -207,10 +207,7 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/guides/nextjs',
         title: 'Next.js Integration',
-      },
-      {
-        pathname: '/material-ui/guides/next-js-app-router',
-        title: 'Next.js App Router',
+        newFeature: true,
       },
     ],
   },
