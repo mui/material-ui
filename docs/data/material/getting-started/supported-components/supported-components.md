@@ -1,6 +1,6 @@
 # Supported components
 
-<p class="description">The following is a list of Material Design components & features. Those currently supported by Material UI are highlighted ✓.</p>
+<p class="description">The following is a list of Material Design components & features.</p>
 
 While we strive to follow the Material Design guidelines where practical (applying
 common sense where guidelines contradict - a more common occurrence than
