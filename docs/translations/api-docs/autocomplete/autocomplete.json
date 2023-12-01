@@ -197,11 +197,13 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "fullWidth": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>fullWidth={true}</code>"
+    "clearIndicator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the clear indicator"
+    },
+    "endAdornment": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the endAdornment element"
     },
     "expanded": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -218,62 +220,30 @@
       "nodeName": "the option elements",
       "conditions": "they are keyboard focused"
     },
-    "tag": {
-      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the tag elements",
-      "conditions": "e.g. the chips"
+    "fullWidth": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>fullWidth={true}</code>"
     },
-    "tagSizeSmall": {
-      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the tag elements",
-      "conditions": "e.g. the chips if <code>size=\"small\"</code>"
-    },
-    "tagSizeMedium": {
-      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the tag elements",
-      "conditions": "e.g. the chips if <code>size=\"medium\"</code>"
-    },
-    "hasPopupIcon": { "description": "Styles applied when the popup icon is rendered." },
-    "hasClearIcon": { "description": "Styles applied when the clear icon is rendered." },
-    "inputRoot": {
+    "groupLabel": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Input element"
+      "nodeName": "the group&#39;s label elements"
     },
+    "groupUl": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the group&#39;s ul elements"
+    },
+    "hasClearIcon": { "description": "Styles applied when the clear icon is rendered." },
+    "hasPopupIcon": { "description": "Styles applied when the popup icon is rendered." },
     "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
     "inputFocused": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
       "conditions": "the input is focused"
     },
-    "endAdornment": {
+    "inputRoot": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the endAdornment element"
-    },
-    "clearIndicator": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the clear indicator"
-    },
-    "popupIndicator": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the popup indicator"
-    },
-    "popupIndicatorOpen": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the popup indicator",
-      "conditions": "the popup is open"
-    },
-    "popper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the popper element"
-    },
-    "popperDisablePortal": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the popper element",
-      "conditions": "<code>disablePortal={true}</code>"
-    },
-    "paper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Paper component"
+      "nodeName": "the Input element"
     },
     "listbox": {
       "description": "Styles applied to {{nodeName}}.",
@@ -291,13 +261,43 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the option elements"
     },
-    "groupLabel": {
+    "paper": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the group&#39;s label elements"
+      "nodeName": "the Paper component"
     },
-    "groupUl": {
+    "popper": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the group&#39;s ul elements"
+      "nodeName": "the popper element"
+    },
+    "popperDisablePortal": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the popper element",
+      "conditions": "<code>disablePortal={true}</code>"
+    },
+    "popupIndicator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the popup indicator"
+    },
+    "popupIndicatorOpen": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the popup indicator",
+      "conditions": "the popup is open"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "tag": {
+      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the tag elements",
+      "conditions": "e.g. the chips"
+    },
+    "tagSizeMedium": {
+      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the tag elements",
+      "conditions": "e.g. the chips if <code>size=\"medium\"</code>"
+    },
+    "tagSizeSmall": {
+      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the tag elements",
+      "conditions": "e.g. the chips if <code>size=\"small\"</code>"
     }
   }
 }

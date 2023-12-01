@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 interface SectionHeadlineProps {
@@ -16,7 +17,7 @@ interface SectionHeadlineProps {
 export default function SectionHeadline(props: SectionHeadlineProps) {
   const { description, id, overline, title, alwaysCenter = false, inverted = false } = props;
   return (
-    <React.Fragment>
+    <Box sx={{ maxWidth: 500, m: alwaysCenter ? 'auto' : 'none' }}>
       {overline && (
         <Typography
           id={id}
@@ -93,6 +94,6 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
           {description}
         </Typography>
       )}
-    </React.Fragment>
+    </Box>
   );
 }

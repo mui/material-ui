@@ -40,7 +40,8 @@ Fluid grids use columns that scale and resize content. A fluid grid's layout can
 
 Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
 
-A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
+A value passed to any given breakpoint also applies to all wider breakpoints (if they have no values explicitly defined).
+For example, `xs={12}` sizes a component to occupy the full width of its parent container, regardless of the viewport size.
 
 {{"demo": "BasicGrid.js", "bg": true}}
 
