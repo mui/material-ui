@@ -243,9 +243,9 @@ If you'd like to set a `max-height` for a long list of options, make sure to spe
 
 ## Accessibility
 
-In order for the select to be accessible, **it should be linked to a label**.
+To ensure the Select is accessible, make sure to add label linked to it.
 
-The `FormControl` automatically generates a unique id that links the select with the `FormLabel` component:
+If you use the Form Label component, together with the Form Control, Joy UI automatically generates a unique id that links the Select to it.
 
 {{"demo": "SelectFieldDemo.js"}}
 

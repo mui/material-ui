@@ -8,9 +8,7 @@ import Option from '@mui/joy/Option';
 export default function SelectFieldDemo() {
   return (
     <FormControl sx={{ width: 240 }}>
-      <FormLabel id="select-field-demo-label" htmlFor="select-field-demo-button">
-        Favorite pet
-      </FormLabel>
+      <FormLabel htmlFor="select-field-demo-button">Favorite pet</FormLabel>
       <Select
         defaultValue="dog"
         slotProps={{
