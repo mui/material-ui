@@ -5,9 +5,8 @@ import { MenuProviderValue } from './MenuProvider';
 
 export interface UseMenuParameters {
   /**
-   * If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled
-   * children are not focusable. If you set this prop to `false` focus will be placed
-   * on the parent modal container. This has severe accessibility implications
+   * If `true` (Default) will focus the highligted item. If you set this prop to `false`
+   * the focus will not be moved inside the Menu component. This has severe accessibility implications
    * and should only be considered if you manage focus otherwise.
    * @default true
    */
