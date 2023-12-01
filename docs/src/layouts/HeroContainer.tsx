@@ -78,7 +78,7 @@ export default function HeroContainer(props: HeroContainerProps) {
             ...(linearGradient && {
               background: `radial-gradient(farthest-corner circle at 0% 0%, ${alpha(
                 theme.palette.primary[900],
-                0.3,
+                0.2,
               )} 0%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
             }),
           }),
