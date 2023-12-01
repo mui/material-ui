@@ -13,7 +13,7 @@ tags: ['MUI X', 'News']
   </a>
 </div>
 
-We are happy to share the newest MUI X features with the release of [MUI X v6.18.0](https://github.com/mui/mui-x/releases/tag/v6.18.0), sealing v6 with new components and solid functionalities.
+We are happy to share the newest MUI X features with the release of [MUI X v6.18.0](https://github.com/mui/mui-x/releases/tag/v6.18.0), sealing v6 with new components and solid functionality.
 
 As we gear up to focus on the next major version, let's review the notable new features introduced since [our last blog post](/blog/mui-x-mid-v6-features/).
 
@@ -40,20 +40,20 @@ As we gear up to focus on the next major version, let's review the notable new f
 
 The stable version of MUI X Charts supports the most commonly used chart plots you'll need in your day-to-day applications.
 It features lines, areas, bars, pie charts, and scatter plots.
-And the latest version also include:
+And the latest version also includes:
 
 #### Animations
 
-Bar and pie chars are the ones currently supporting it.
+Bar and Pie Charts currently support animations.
 More to come!
 
   <video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline width="680" height="306">
     <source src="/static/blog/mui-x-end-v6-features/bar-chart-animations.mp4" type="video/mp4">
   </video>
 
-#### Horizontal bar Chart support
+#### Horizontal Bar Chart support
 
-Recently added, the horizontal bars can broaden your data visualization spectrum, especially when you need to display long labels for multiple categories.
+Recently added: horizontal bars for broadening your data visualization spectrum, especially when you need to display long labels for multiple categories.
 Check out [the Bar Chart layout documentation](/x/react-charts/bars/#layout) for more details.
 
 #### Improved text customization
@@ -71,7 +71,7 @@ After an extensive period of development and refinement in the lab and pre-relea
   <source src="/static/blog/mui-x-end-v6-features/tree-view-gmail.mp4" type="video/mp4">
 </video>
 
-👉 [Get started with MUI X Tree view now](/x/react-tree-view/getting-started/)!
+👉 [Get started with MUI X Tree View now](/x/react-tree-view/getting-started/)!
 
 ## Date Pickers
 
@@ -86,7 +86,7 @@ Learn how to use it by visiting the [clearable behavior documentation](/x/react-
 
 ### Smoothened animations
 
-The Date Pickers animations have been significantly smoothened to ensure a much more fluid experience, especially on Android mobile devices.
+The Date Picker animations have been significantly smoothened to ensure a much more fluid experience, especially on Android mobile devices.
 
 ### Customization playgrounds
 
@@ -111,15 +111,15 @@ We're continuously improving our docs, and we're starting to add more advanced e
 
 ### Sparkline as a column type
 
-Integrate the MUI X Charts, using the `@mui/x-charts` package, to the Data Grid to add sparkline chars to columns.
+You can integrate the MUI X Charts with the Data Grid to add Sparkline Charts to columns.
 
 <img alt="Sparkline charts on the MUI X Data Grid" src="/static/blog/mui-x-end-v6-features/sparkline-datagrid.png" width="1200" height="840" loading="lazy" style="margin-bottom: 16px;" />
 
-👉 [Get started with Sparkline charts on the MUI X Data Grid now](/x/react-data-grid/custom-columns/#sparkline)!
+👉 [Get started with Sparkline Charts in the Data Grid now](/x/react-data-grid/custom-columns/#sparkline)!
 
 ### Performance improvements
 
-In our pursuit to enhance user experience, one of the most significant changes in the latest v6 versions is related to performance boosts on filtering and scrolling.
+In our endless pursuit of an enhanced user experience, we've significantly boosted filtering and scrolling performance.
 
 To illustrate some of these improvements, the following table displays a benchmark comparing the latest v5 (v5.17.26) with v6.18.0. The focus is to assess the raw filtering speed in a use case involving a one-column string filter over 100,000 rows.
 
@@ -153,11 +153,10 @@ To illustrate some of these improvements, the following table displays a benchma
   </tr>
 </table>
 
-As we can see, the current version operates 7.9 times faster;
-the average time has dropped from 400.7 milliseconds in the previous version to just 50.4 milliseconds in the current one.
+As you can see, the current version performs 7.9 times faster—the average time has dropped from 400.7 to just 50.4 milliseconds.
 
 :::info
-Note that these results are based on raw filtering speed and not end-to-end operation (which includes user typing, filtering, and rerender).
+Note that these results are based on raw filtering speed—not end-to-end operation (which includes user typing, filtering, and rerender).
 :::
 
 ## What's next?
@@ -165,14 +164,14 @@ Note that these results are based on raw filtering speed and not end-to-end oper
 We're now working on the next MUI X major, v7, which will include many new features and improvements.
 Most notably:
 
-- [Date and Time pickers](/x/react-date-pickers/) iteration:
-  - New component: `DateTime` and `TimeRangePicker`
-  - Improve accessibility on date and time fields
+- [Date and Time Picker](/x/react-date-pickers/) improvements:
+  - New components: Date Time, and Time Range Picker
+  - Improved accessibility on date and time fields
 - [Data Grid](/x/react-data-grid/) iterations:
   - New UI for column management
   - Pivoting for the [Premium](/x/react-data-grid/#premium-plan) version
 
-We will also keep expanding our portfolio of charts, with types such as [Heat map](/x/react-charts/heat-map/), [Funnel](/x/react-charts/funnel/), and [Gantt](/x/react-charts/gantt/), and explore virtualization and other advanced use cases for the Tree view component.
+We'll continue to expand our portfolio of Charts, including [Heat Map](/x/react-charts/heat-map/), [Funnel](/x/react-charts/funnel/), and [Gantt](/x/react-charts/gantt/); and explore virtualization and other advanced use cases for the Tree View component.
 
 We encourage you to upvote issues on GitHub to help us prioritize.
 Your input directly influences our development schedule, so don't hesitate to let us know what matters most to you!
@@ -183,7 +182,7 @@ Use the following list to quickly access each component's issues:
 - [Data Grid](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+data+grid%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
 - [Date and Time pickers](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+label%3A%22component%3A+pickers%22+label%3A%22waiting+for+%F0%9F%91%8D%22)
 
-The next MUI X major version, v7, is available through alpha and beta versions until March 2024, when we plan to promote it to stable.
+Going forward, the next major version—v7—will be released in alpha and then beta between now and March 2024, at which point we'll bump it to a stable release.
 At the same time, v6 will transition to [Long-Term Support](/versions/#long-term-support-lts), while support for v5 will be discontinued.
 
 ## Give us feedback
@@ -191,7 +190,7 @@ At the same time, v6 will transition to [Long-Term Support](/versions/#long-term
 We're excited to hear from you about improving MUI X!
 Please share your requests, suggestions, pain points, and use cases through [this Google Form](https://forms.gle/vsBv6CLPz9h57xg8A).
 
-Or, as always, you're welcome to request new features, share bug reports, and join any discussions in [the MUI X GitHub repository](https://github.com/mui/mui-x/issues).
+As always, you're welcome to request new features, share bug reports, and join in on the discussion in [the MUI X GitHub repository](https://github.com/mui/mui-x/issues).
 Lastly, we've recently released [the MUI Discord server](https://mui.com/r/discord/), and we'd love to see you there.
 
 Cheers!
