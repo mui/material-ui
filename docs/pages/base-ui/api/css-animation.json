@@ -16,6 +16,6 @@
   "muiName": "MuiCssAnimation",
   "filename": "/packages/mui-base/src/Transitions/CssAnimation.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base-ui/react-popup/\">Popup</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base-ui/react-transitions/\">Transitions</a></li></ul>",
   "cssComponent": false
 }

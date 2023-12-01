@@ -62,11 +62,11 @@ export type UseTransitionableElementReturnValue = {
  *
  * Demos:
  *
- * - [Popup](https://mui.com/base-ui/react-popup/#hooks)
+ * - [Transitions](https://mui.com/base-ui/react-transitions/#hooks)
  *
  * API:
  *
- * - [useTransitionableElement API](https://mui.com/base-ui/react-popup/hooks-api/#use-transitionable-element)
+ * - [useTransitionableElement API](https://mui.com/base-ui/react-transitions/hooks-api/#use-transitionable-element)
  */
 export function useTransitionableElement(
   requestEnter: boolean,

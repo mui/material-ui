@@ -7,11 +7,11 @@ module.exports = [
     title: 'ClickAwayListener',
   },
   {
-    pathname: '/base-ui/react-popup/components-api/#css-animation',
+    pathname: '/base-ui/react-transitions/components-api/#css-animation',
     title: 'CssAnimation',
   },
   {
-    pathname: '/base-ui/react-popup/components-api/#css-transition',
+    pathname: '/base-ui/react-transitions/components-api/#css-transition',
     title: 'CssTransition',
   },
   { pathname: '/base-ui/react-menu/components-api/#dropdown', title: 'Dropdown' },
@@ -107,11 +107,11 @@ module.exports = [
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tabs', title: 'useTabs' },
   { pathname: '/base-ui/react-tabs/hooks-api/#use-tabs-list', title: 'useTabsList' },
   {
-    pathname: '/base-ui/react-popup/hooks-api/#use-transition-state-manager',
+    pathname: '/base-ui/react-transitions/hooks-api/#use-transition-state-manager',
     title: 'useTransitionStateManager',
   },
   {
-    pathname: '/base-ui/react-popup/hooks-api/#use-transitionable-element',
+    pathname: '/base-ui/react-transitions/hooks-api/#use-transitionable-element',
     title: 'useTransitionableElement',
   },
 ];

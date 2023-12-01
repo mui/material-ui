@@ -39,11 +39,11 @@ export interface CssTransitionProps {
  *
  * Demos:
  *
- * - [Popup](https://mui.com/base-ui/react-popup/)
+ * - [Transitions](https://mui.com/base-ui/react-transitions/)
  *
  * API:
  *
- * - [CssTransition API](https://mui.com/base-ui/react-popup/components-api/#css-transition)
+ * - [CssTransition API](https://mui.com/base-ui/react-transitions/components-api/#css-transition)
  */
 function CssTransition(props: CssTransitionProps) {
   const {

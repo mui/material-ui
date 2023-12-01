@@ -33,11 +33,11 @@ export interface CssAnimationProps {
  *
  * Demos:
  *
- * - [Popup](https://mui.com/base-ui/react-popup/)
+ * - [Transitions](https://mui.com/base-ui/react-transitions/)
  *
  * API:
  *
- * - [CssAnimation API](https://mui.com/base-ui/react-popup/components-api/#css-animation)
+ * - [CssAnimation API](https://mui.com/base-ui/react-transitions/components-api/#css-animation)
  */
 function CssAnimation(props: CssAnimationProps) {
   const {

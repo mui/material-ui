@@ -31,11 +31,11 @@ export type UseTransitionStateManagerReturnValue = {
  *
  * Demos:
  *
- * - [Popup](https://mui.com/base-ui/react-popup/#hooks)
+ * - [Transitions](https://mui.com/base-ui/react-transitions/#hooks)
  *
  * API:
  *
- * - [useTransitionStateManager API](https://mui.com/base-ui/react-popup/hooks-api/#use-transition-state-manager)
+ * - [useTransitionStateManager API](https://mui.com/base-ui/react-transitions/hooks-api/#use-transition-state-manager)
  */
 export function useTransitionStateManager(): UseTransitionStateManagerReturnValue {
   const transitionContext = React.useContext(TransitionContext);

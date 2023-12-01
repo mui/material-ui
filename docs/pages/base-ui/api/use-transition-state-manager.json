@@ -7,5 +7,5 @@
     "import { useTransitionStateManager } from '@mui/base/useTransition';",
     "import { useTransitionStateManager } from '@mui/base';"
   ],
-  "demos": "<ul><li><a href=\"/base-ui/react-popup/#hooks\">Popup</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base-ui/react-transitions/#hooks\">Transitions</a></li></ul>"
 }
