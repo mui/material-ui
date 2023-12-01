@@ -15,11 +15,20 @@
     "import ListItemIcon from '@mui/material/ListItemIcon';",
     "import { ListItemIcon } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "alignItemsFlexStart"],
-    "globalClasses": {},
-    "name": "MuiListItemIcon"
-  },
+  "classes": [
+    {
+      "key": "alignItemsFlexStart",
+      "className": "MuiListItemIcon-alignItemsFlexStart",
+      "description": "Styles applied to the root element when the parent `ListItem` uses `alignItems=\"flex-start\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListItemIcon-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiListItemIcon",

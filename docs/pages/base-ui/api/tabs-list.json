@@ -16,16 +16,28 @@
     "import { TabsList } from '@mui/base/TabsList';",
     "import { TabsList } from '@mui/base';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiTabsList-root"
+      "class": "MuiTabsList-root"
     }
   ],
-  "classes": { "classes": ["horizontal", "vertical"], "globalClasses": {} },
+  "classes": [
+    {
+      "key": "horizontal",
+      "className": "MuiTabsList-horizontal",
+      "description": "Class name applied to the root element if `orientation='horizontal'`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiTabsList-vertical",
+      "description": "Class name applied to the root element if `orientation='vertical'`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "muiName": "MuiTabsList",
   "forwardsRefTo": "HTMLDivElement",

@@ -1,5 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { styled, alpha } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
@@ -68,15 +69,17 @@ interface SlotsTableProps {
 
 export default function SlotsTable(props: SlotsTableProps) {
   const { slots } = props;
+  const t = useTranslate();
+
   return (
     <StyledTableContainer>
       <StyledTable>
         <thead>
           <tr>
-            <th>Slot name</th>
-            <th>Class name</th>
-            <th>Default</th>
-            <th>Description</th>
+            <th>{t('api-docs.slotName')}</th>
+            <th>{t('api-docs.className')}</th>
+            <th>{t('api-docs.defaultComponent')}</th>
+            <th>{t('api-docs.description')}</th>
           </tr>
         </thead>
         <tbody>
@@ -89,7 +92,7 @@ export default function SlotsTable(props: SlotsTableProps) {
                   {name}
                 </td>
                 <td className="MuiApi-table-class-name">
-                  <span className="class-name">{className}</span>
+                  {className && <span className="class-name">{`.${className}`}</span>}
                 </td>
                 <td>{defaultValue && <code className="item-default">{defaultValue}</code>}</td>
                 <td className="description-column">

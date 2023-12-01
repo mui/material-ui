@@ -23,15 +23,23 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "determinate": {
+    "circle": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the <code>circle</code> svg path"
+    },
+    "circleDeterminate": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
+      "nodeName": "the <code>circle</code> svg path",
       "conditions": "<code>variant=\"determinate\"</code>"
     },
-    "indeterminate": {
+    "circleDisableShrink": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
+      "nodeName": "the <code>circle</code> svg path",
+      "conditions": "<code>disableShrink={true}</code>"
+    },
+    "circleIndeterminate": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the <code>circle</code> svg path",
       "conditions": "<code>variant=\"indeterminate\"</code>"
     },
     "colorPrimary": {
@@ -44,25 +52,17 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
-    "svg": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the svg element" },
-    "circle": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the <code>circle</code> svg path"
-    },
-    "circleDeterminate": {
+    "determinate": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the <code>circle</code> svg path",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"determinate\"</code>"
     },
-    "circleIndeterminate": {
+    "indeterminate": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the <code>circle</code> svg path",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"indeterminate\"</code>"
     },
-    "circleDisableShrink": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the <code>circle</code> svg path",
-      "conditions": "<code>disableShrink={true}</code>"
-    }
+    "root": { "description": "Styles applied to the root element." },
+    "svg": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the svg element" }
   }
 }
