@@ -123,7 +123,7 @@ In our pursuit to enhance user experience, one of the most significant changes i
 To illustrate some of these improvements, the following table display a benchmark comparing the latest v5 (v5.17.26) with v6.18.0. The focus is to assess the raw filtering speed in a use case involving a one-column string filter over 100,000 rows.
 
 | Version  | N# of Tests | Min time (ms) | Max time (ms) | Median (ms) | Average (ms) | Deviation |
-| -------- | ----------: | ------------: | ------------: | ----------: | -----------: | --------: |
+| :------- | ----------: | ------------: | ------------: | ----------: | -----------: | --------: |
 | v5.17.26 |          22 |           396 |           409 |       400.0 |        400.7 |      3.96 |
 | v6.18.0  |          20 |            44 |            66 |        49.5 |         50.4 |      5.63 |
 
