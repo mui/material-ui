@@ -93,6 +93,6 @@ CssAnimation.propTypes = {
   enterClassName: PropTypes.string,
   exitAnimationName: PropTypes.string,
   exitClassName: PropTypes.string,
-};
+} as any;
 
 export { CssAnimation };

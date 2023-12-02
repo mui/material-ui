@@ -113,6 +113,6 @@ CssTransition.propTypes = {
   exitClassName: PropTypes.string,
   lastTransitionedPropertyOnEnter: PropTypes.string,
   lastTransitionedPropertyOnExit: PropTypes.string,
-};
+} as any;
 
 export { CssTransition };
