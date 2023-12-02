@@ -38,12 +38,12 @@ For additional details about the culture you can check our [careers](https://mui
 
 ## Why we're hiring
 
-[According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criterion used by developers & designers to pick their next general-purpose UI library.
+[According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criterion used by developers & designers to choose a component UI library.
 
-We hear an even bigger pain around _design_ from developers who adopt projects specialized into one UI component, e.g. data grid. For them, it's not only the default behaviors that need to be great but also the ease of customizing the components to their needs and integrating into the rest of their application.
+It's an even bigger problem when developers work on projects around a single major component, like the Data Grid. It's not just the interaction that needs to feel great but the developer experience of working with that component also needs to be excellent, to allow a smooth integration with the rest of their app.
 
-Up until now, we solved a subset of these problems by specializing in a MUI X Data Grid that deeply integrates with Material UI.
-We feel that the timing is right to take a step further and invest in the design of MUI X to have the best data grid not only for Material UI but for **any** React project.
+Up until now, we're solving a subset of these problems by smoothly integrating the MUI X Data Grid with Material UI.
+But the time has come to take a step further and double-down on design by expanding the Data Grid capacities to integrate nicely with _any_ React project rather than just a Material UI-based one.
 
 The MUI X Data Grid team has no dedicated designer, so we are opening this role to give us the means of this objective.
 
