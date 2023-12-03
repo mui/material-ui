@@ -89,6 +89,7 @@ const RatingRoot = styled('span', {
   color: '#faaf00',
   cursor: 'pointer',
   textAlign: 'left',
+  maxWidth: 'max-content',
   WebkitTapHighlightColor: 'transparent',
   [`&.${ratingClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,
