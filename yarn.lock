@@ -3146,10 +3146,10 @@
   resolved "https://registry.yarnpkg.com/@sinonjs/text-encoding/-/text-encoding-0.7.2.tgz#5981a8db18b56ba38ef0efb7d995b12aa7b51918"
   integrity sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==
 
-"@slack/bolt@^3.15.0":
-  version "3.15.0"
-  resolved "https://registry.yarnpkg.com/@slack/bolt/-/bolt-3.15.0.tgz#2e464e0e8e11f2b9e6ad855e434ca4d08d2a68a8"
-  integrity sha512-B+N6oaEb1BuXXzP9eb0Yc5J/vLII+ZNYgKewia3+lAoiWTSbQ3cto6SCmglMnihsmZM6wjZUrKEK9Hg0+l90QQ==
+"@slack/bolt@^3.16.0":
+  version "3.16.0"
+  resolved "https://registry.yarnpkg.com/@slack/bolt/-/bolt-3.16.0.tgz#14060f4259528c9f530f09fe6933445ec6d5979e"
+  integrity sha512-87mxCkxJMd5nJ2hp3LyLJKWfGkrdqDhBPQnCtbE6bPJ/BS2VIllkWzSqZg4K/ZGFJMmq/GzR6/PlY4ZX+FY79Q==
   dependencies:
     "@slack/logger" "^4.0.0"
     "@slack/oauth" "^2.6.1"
