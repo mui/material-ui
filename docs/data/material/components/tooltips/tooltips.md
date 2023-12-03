@@ -26,6 +26,16 @@ They don't have directional arrows; instead, they rely on motion emanating from 
 
 {{"demo": "PositionedTooltips.js"}}
 
+## Distance from anchor
+
+To adjust the distance between the tooltip and its anchor, you can use the `slotProps` prop to modify the [offset](https://popper.js.org/docs/v2/modifiers/offset/) of the popper slot.
+
+{{"demo": "TooltipOffset.js"}}
+
+Alternatively, you can use the `slotProps` prop to customize the margin of the popper slot.
+
+{{"demo": "TooltipMargin.js"}}
+
 ## Customization
 
 Here are some examples of customizing the component.
