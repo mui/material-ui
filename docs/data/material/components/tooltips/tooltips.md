@@ -41,11 +41,11 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 ## Distance from anchor
 
-To adjust the distance between the tooltip and its anchor, you can use the `slotProps` prop to modify the [offset](https://popper.js.org/docs/v2/modifiers/offset/) of the popper slot.
+To adjust the distance between the tooltip and its anchor, you can use the `slotProps` prop to modify the [offset](https://popper.js.org/docs/v2/modifiers/offset/) of the popper.
 
 {{"demo": "TooltipOffset.js"}}
 
-Alternatively, you can use the `slotProps` prop to customize the margin of the popper slot.
+Alternatively, you can use the `slotProps` prop to customize the margin of the popper.
 
 {{"demo": "TooltipMargin.js"}}
 
