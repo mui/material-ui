@@ -146,7 +146,9 @@ describe('ModalManager', () => {
     it('should handle the scroll on custom scroll target', () => {
       const html = document.querySelector('html')!;
       html.style.paddingRight = '32px';
+      html.style.height = '1000px';
 
+      const scrollbarSize = getScrollbarSize(document);
       const modal = getDummyModal();
       modalManager.add(modal, container1);
       modalManager.mount(modal, {
@@ -155,7 +157,7 @@ describe('ModalManager', () => {
       expect(container1.style.overflow).to.equal('');
       expect(container1.style.paddingRight).to.equal('20px');
       expect(html.style.overflow).to.equal('hidden');
-      expect(html.style.paddingRight).to.equal(`${32 + getScrollbarSize(document)}px`);
+      expect(html.style.paddingRight).to.equal(`${32 + scrollbarSize}px`);
       modalManager.remove(modal);
       expect(html.style.overflow).to.equal('');
       expect(html.style.paddingRight).to.equal('32px');
