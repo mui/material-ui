@@ -57,7 +57,7 @@ When using the `Divider` component for visual decoration, such as in a heading, 
 :::
 
 ## Vertical divider
-
+  
 You can also render a divider vertically using the `orientation` prop.
 
 {{"demo": "VerticalDividers.js", "bg": true}}
