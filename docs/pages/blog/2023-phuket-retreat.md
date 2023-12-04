@@ -1,6 +1,6 @@
 ---
 title: Together Week lands in Phuket, Thailand
-description: The latest team retreat left MUIers feeling more connected and invigorated than ever. Here's how it went down...
+description: The latest team retreat left MUIers feeling more connected and invigorated than ever. Here's how it went down.
 date: 2023-11-30T00:00:00.000Z
 authors: ['mikailaread']
 card: true
@@ -9,18 +9,18 @@ tags: ['Company']
 
 ## What is MUI's Together Week?
 
-At MUI, we take team connection seriously, with core values urging us to "Put #community first." In part, this is a reference to the user base we seerve; it's also a call to foster a strong sense of belonging within our internal team. 
+At MUI, we take team connection seriously, with core values urging us to "Put #community first." In part, this is a reference to the user base we serve; it's also a call to foster a strong sense of belonging within our internal team. 
 
-Some say driving team connectedness can be difficult against the backdrop of a distributed, async work environment. We say embracing the power of remote work and flexibility will cost you neither culture nor community as long as your *intentional* about building both. 
+Some say driving team connectedness can be difficult against the backdrop of a distributed, async work environment. We say embracing the power of remote work and flexibility will cost you neither culture nor community as long as you're *intentional* about building both. 
 
 Enter: MUI's Together Week.
 
 Every 8 months, we bring MUIers from all corners of the world together to pursue many worthy outcomes at once.
 
-🤝 Strengthening bonds and relationships<br>
-🌱 Growing as individuals and a team<br>
-⚙️ Tackling important challenges<br>
-💡 Sparking new ideas<br>
+- 🤝 Strengthening bonds and relationships
+- 🌱 Growing as individuals and a team
+- ⚙️ Tackling important challenges
+- 💡 Sparking new ideas
 
 Together Week invites a new level of intentionality to go after goals while offering more unique methods to achieve them.
 
@@ -28,15 +28,15 @@ Together Week invites a new level of intentionality to go after goals while offe
 
 ## Destination
 
-In usual MUI fashion, deciding where to go was a team effort. We crowdsourced ideas, encouraging people to think about locations that would offer a high-contrast to Chamonix (where our last retreat took place).
+In usual MUI fashion, deciding where to go was a team effort. We crowdsourced ideas, encouraging people to think about locations that would offer a high contrast to [Chamonix (where our last retreat took place)](https://mui.com/blog/2023-chamonix-retreat/).
 
-The shortlist included places like Costa Rica, Mexico, Madagascar, and Bali...but in the end, Thailand garndered the most interest and excitement.
+The shortlist included places like Costa Rica, Mexico, Madagascar, and Bali—but in the end, Thailand garnered the most interest and excitement.
 
-Given the great distance some team members would be travelling to atttend, we wanted to prioritise their comfort and ability to make the most of their stay. For that reason, we chose to go South and let the stunning beaches of Phuket drape the background of our time together.
+Given the great distance some team members would be traveling to attend, we wanted to prioritize their comfort and ability to make the most of their stay. For that reason, we chose to go South and let the stunning beaches of Phuket drape the background of our time together.
 
 ## Accommodation
 
-The Nai Harn is a 5* beachfront property boasting incredible luxury balanced with a homely feel.
+The Nai Harn is a five-star beachfront property boasting incredible luxury balanced with a cozy feel.
 
 <img alt="Entrance to the Nai Harn property at night. A lit sign on a leafy backdrop reads: The Nai Harn - Phuket." src="/static/blog/2023-phuket-retreat/hotel-entrance.png" width="1200" height="840" loading="lazy" />
 
@@ -48,15 +48,15 @@ Special callout: the on-site rental equipment was no small perk. Within our agen
 
 We follow a 30/30/30 principle when building our retreat agendas. This means 30% of time is allocated to conscious team-building events; 30% is allocated to working sessions; and 30% is allocated for down-time or total team freedom. (You: "Wait, what happened to the other 10%, Mikaila?" It's better to underestimate and be able to embrace more if there's time than it is to feel rushed through anything. We expect disruptions that make us start late or run over in different agenda items, so we intentionally bake this bit of a grace window into it.)
 
-For this retreat we wanted to focus on intentional conversations in a couple different areas: product vision, leadership and management, marketing, and more. To kick things off though, everyone was invited to "Win the Conversational Lottery." I leveraged the incredible WeConnect cards (which you can find a <a href="https://weconnectcards.com/">free digital version of here</a> for all your remote team-building needs) to get people talking. 
+For this retreat we wanted to focus on intentional conversations in a few different areas, including product vision, leadership and management, and marketing. To kick things off though, everyone was invited to "Win the Conversational Lottery." I leveraged the incredible WeConnect cards ([check out the free digital version here](https://weconnectcards.com) for your own remote team-building needs) to get people talking. 
 
-Everyone picked up a card once the exercise was explained—choosing from green, purple, or blue. The green cards were light and fun questions; purple, more self-relective; and blue, a bit deeper. Crucially, as part of this exercise, everyone choose what color card they wanted and could answer the questions posed however they wanted. After a brief chat, participants would trade cards and find another person they hadn't yet spoken to.
+Everyone picked up a card once the exercise was explained, choosing from green, purple, or blue. The green cards were light and fun questions; purple, more self-reflective; and blue, a bit deeper. Crucially, as part of this exercise, everyone chose what color card they wanted, and could answer the questions posed however they wanted. After a brief chat, participants would trade cards and find another person they hadn't yet spoken to.
 
 <img alt="We Connect cards spread out on a table. Each card poses a different question." src="/static/blog/2023-phuket-retreat/we-connect-cards.png" width="1200" height="840" loading="lazy" />
 
-After the kickoff, we broke out into teams to delve deep into issues and opportunities across teams.
+After the kickoff, we broke out into groups to delve deep into issues and opportunities across the organization.
 
-It gave us a valuable space to make important decisions together in a rapid fire way, and to build greater trust and psychological safety with one another along the way.
+It gave us a valuable space to make important decisions together in a rapid-fire way, and to build greater trust and psychological safety with one another along the way.
 
 ## Transformative experiences
 
@@ -74,9 +74,9 @@ A picture is worth a thousand words they say, so here's a whole heap of our happ
 
 ## Outcomes
 
-In experience surveys, all respondents rated this Together Week 5* out of 5. (What a win!)
+In experience surveys, all respondents rated this Together Week five stars out of five. (What a win!)
 
-To highlight some of the glowing feedback received and illustrate why we invest in these types of gatherings:
+It's worth highlighting some of the glowing feedback received, to illustrate why we invest in these types of gatherings:
 
 "I want to share how impactful the retreat was for my sense of belonging. This marks a before and after in my time at MUI. I really appreciate everyone who worked on making it possible, so thank you so much."
 
@@ -84,17 +84,17 @@ To highlight some of the glowing feedback received and illustrate why we invest 
 
 "Honestly, the bonding through cards and games was so important and made me feel much more a part of the team. I feel like on this trip the people I work with became true friends and I expect this is going to have a big effect on how we work together."
 
-(You're dang right, it is—<a href="https://hbr.org/2022/10/the-power-of-work-friends">here's the proof</a>.)
+(You're dang right it is—there's plenty of research to back up [the power of work friends](https://hbr.org/2022/10/the-power-of-work-friends).)
 
 <img alt="Tina, Raffaella, and Mikaila enjoy a catered coffee break on the terrace between work sessions." src="/static/blog/2023-phuket-retreat/tina-raffaella-mikaila.png" width="1200" height="840" loading="lazy" />
 
-Reflecting on the whole team experience, many MUIers shared heart-felt messages of thanks and gratitude in our Slack workspace and their own social media channels. One thing is clear from the entire trip: we simply can't wait to be together again.
+Reflecting on the whole team experience, many MUIers shared heartfelt messages of thanks and gratitude in our Slack workspace and their own social media channels. One thing is clear from the entire trip: we simply can't wait to be together again.
 
 ## Will you join us for the next Together Week?
 
 If you're seeking a workplace where community, innovation, and teamwork truly take priority, you belong at MUI.
 
-We're not just shaping the future of design tools; we're cultivating a forward-thinking, community-driven, remote-first culture that promises the freedom to build your dream work-life.
+We're not just shaping the future of developer tools; we're cultivating a forward-thinking, community-driven, remote-first culture that promises the freedom to build your dream work-life.
 
 Sounds compelling? Apply now and be part of something extraordinary!
 
