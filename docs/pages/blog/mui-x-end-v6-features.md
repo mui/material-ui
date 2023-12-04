@@ -7,7 +7,7 @@ card: true
 tags: ['MUI X', 'News']
 ---
 
-<div style="overflow: hidden; margin-bottom: 16px;">
+<div style="max-width: 692px; width: 100%; height: 230px; overflow: hidden; margin-bottom: 16px;">
   <a href="https://github.com/mui/mui-x/releases/tag/v6.18.0">
     <img src="/static/blog/mui-x-end-v6-features/intro.png" alt="MUI X v6.18.0 release" width="1200" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
   </a>
