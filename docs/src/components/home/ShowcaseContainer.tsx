@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import NoSsr from '@mui/material/NoSsr';
@@ -44,7 +45,7 @@ export default function ShowcaseContainer({
             },
             (theme) =>
               theme.applyDarkStyles({
-                bgcolor: 'primaryDark.700',
+                bgcolor: alpha(theme.palette.primaryDark[800], 0.5),
                 borderColor: 'divider',
               }),
             ...(Array.isArray(previewSx) ? previewSx : [previewSx]),
@@ -64,14 +65,10 @@ export default function ShowcaseContainer({
               borderWidth: '0 1px 1px 1px',
               borderStyle: 'solid',
               borderColor: 'divider',
-              bgcolor: 'primaryDark.800',
-              borderBottomLeftRadius: 10,
-              borderBottomRightRadius: 10,
+              bgcolor: 'common.black',
+              borderBottomLeftRadius: 12,
+              borderBottomRightRadius: 12,
             },
-            (theme) =>
-              theme.applyDarkStyles({
-                borderColor: 'divider',
-              }),
             ...(Array.isArray(codeSx) ? codeSx : [codeSx]),
           ]}
         >
