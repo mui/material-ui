@@ -34,7 +34,7 @@ Inside `app/layout.tsx`, import the `AppRouterCacheProvider` and wrap all of the
 
 ```diff
  // app/layout.tsx
-+ import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
++ import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'; // or `v14-appRouter` if you are using Next.js v14
 
  export default function RootLayout(props) {
    const { children } = props;
@@ -92,7 +92,7 @@ Inside `pages/_document.tsx`:
 - import the `DocumentHeadTags` and render it inside the `<Head>`.
 
 ```diff
-+ import { DocumentHeadTags, documentGetInitialProps } from '@mui/material-nextjs/v13-pagesRouter';
++ import { DocumentHeadTags, documentGetInitialProps } from '@mui/material-nextjs/v13-pagesRouter'; // or `v14-pagesRouter` if you are using Next.js v14
 
  export default function MyDocument(props) {
    return (
@@ -115,7 +115,7 @@ Inside `pages/_document.tsx`:
 Then inside `pages/_app.tsx`, import the `AppCacheProvider` and render it as the root element:
 
 ```diff
-+ import { AppCacheProvider } from '@mui/material-nextjs/pagesRouterV13';
++ import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter'; // or `v14-pages` if you are using Next.js v14
 
  export default function MyApp(props) {
    return (
@@ -134,7 +134,7 @@ Then inside `pages/_app.tsx`, import the `AppCacheProvider` and render it as the
 If you are using TypeScript, you will need to add `DocumentHeadTagsProps` to the Document's props interface:
 
 ```diff
-+ import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v13-pagesRouter';
++ import type { DocumentHeadTagsProps } from '@mui/material-nextjs/v13-pagesRouter'; // or `v14-pagesRouter` if you are using Next.js v14
 
 + export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
    ...
