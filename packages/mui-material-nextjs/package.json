@@ -3,7 +3,7 @@
   "version": "5.14.18",
   "private": false,
   "author": "MUI Team",
-  "description": "A tiny wrapper for Material UI integration with Next.js.",
+  "description": "Collection of utilities for integration between Material UI and Next.js.",
   "keywords": [
     "react",
     "react-component",

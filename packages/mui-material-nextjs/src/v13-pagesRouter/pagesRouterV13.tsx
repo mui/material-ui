@@ -45,7 +45,6 @@ interface Plugin {
 
 /**
  * A utility to compose multiple `getInitialProps` functions.
- * The example usage is the mui docs site that contains `styled-components` and `jss`.
  */
 export function createGetInitialProps(plugins: Plugin[]) {
   return async function getInitialProps(ctx: DocumentContext) {
