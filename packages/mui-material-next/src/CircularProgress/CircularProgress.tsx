@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { keyframes, css } from '@mui/system';
+import { keyframes } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
@@ -15,42 +15,77 @@ import {
   CircularProgressTypeMap,
 } from './CircularProgress.types';
 
-const SIZE = 44;
+const SIZE = 48;
+const ARC_DURATION = 1333; // milliseconds
+const CYCLE_DURATION = 4 * ARC_DURATION; // milliseconds
+const LINEAR_ROTATE_DURATION = (ARC_DURATION * 360) / 306; // milliseconds
 
 const circularRotateKeyframe = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
+  to {
     transform: rotate(360deg);
   }
 `;
 
 const circularDashKeyframe = keyframes`
   0% {
-    stroke-dasharray: 1px, 200px;
-    stroke-dashoffset: 0;
+    stroke-dasharray: 10px, 200px;
+    stroke-dashoffset: 0px;
   }
 
   50% {
-    stroke-dasharray: 100px, 200px;
-    stroke-dashoffset: -15px;
+    stroke-dasharray: 139px, 10px;
+    stroke-dashoffset: -10px;
   }
 
   100% {
-    stroke-dasharray: 100px, 200px;
-    stroke-dashoffset: -125px;
+    stroke-dasharray: 139px, 129px;
+    stroke-dashoffset: -139px;
+  }
+`;
+
+const fourColorKeyframe = keyframes`
+  0% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-one-color);
+  }
+  15% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-one-color);
+  }
+  25% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-two-color);
+  }
+  40% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-two-color);
+  }
+  50% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-three-color);
+  }
+  65% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-three-color);
+  }
+  75% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-four-color);
+  }
+  90% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-four-color);
+  }
+  100% {
+    stroke: var(--md-comp-linear-progress-indicator-four-color-active-indicator-one-color);
   }
 `;
 
 const useUtilityClasses = (ownerState: CircularProgressOwnerState) => {
-  const { classes, variant = 'indeterminate', color = 'primary', disableShrink } = ownerState;
+  const { classes, variant, color, disableShrink, fourColor } = ownerState;
 
   const slots = {
-    root: ['root', variant, `color${capitalize(color)}`],
+    root: [
+      'root',
+      variant,
+      `color${capitalize(color)}`,
+      fourColor && 'fourColor',
+      disableShrink && 'disableShrink',
+    ],
     svg: ['svg'],
-    circle: ['circle', `circle${capitalize(variant)}`, disableShrink && 'circleDisableShrink'],
+    circle: ['circle'],
   };
 
   return composeClasses(slots, getCircularProgressUtilityClass, classes);
@@ -66,24 +101,34 @@ const CircularProgressRoot = styled('span', {
       styles.root,
       styles[ownerState.variant],
       styles[`color${capitalize(ownerState.color)}`],
+      ownerState.fourColor && styles.fourColor,
+      ownerState.disableShrink && styles.disableShrink,
     ];
   },
-})<{ ownerState: CircularProgressOwnerState }>(
-  ({ ownerState, theme }) => ({
-    display: 'inline-block',
-    ...(ownerState.variant === 'determinate' && {
-      transition: theme.transitions.create('transform'),
-    }),
-    ...(ownerState.color !== 'inherit' && {
-      color: (theme.vars || theme).palette[ownerState.color ?? 'primary'].main,
-    }),
+})<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme: { vars: tokens } }) => ({
+  '--md-comp-linear-progress-indicator-active-indicator-color':
+    ownerState.color !== 'inherit' ? tokens.sys.color[ownerState.color] : 'currentColor',
+  '--md-comp-linear-progress-indicator-active-indicator-width': ownerState.thickness,
+  '--md-comp-linear-progress-indicator-size': ownerState.size,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-one-color':
+    tokens.sys.color.primary,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-two-color':
+    tokens.sys.color.onPrimaryContainer,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-three-color':
+    tokens.sys.color.tertiary,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-four-color':
+    tokens.sys.color.onTertiaryContainer,
+  display: 'inline-block',
+  height: 'var(--md-comp-linear-progress-indicator-size)',
+  width: 'var(--md-comp-linear-progress-indicator-size)',
+  ...(ownerState.variant === 'determinate' && {
+    transition: `transform ${tokens.sys.motion.duration.medium2} ${tokens.sys.motion.easing.legacy}`,
   }),
-  ({ ownerState }) =>
-    ownerState.variant === 'indeterminate' &&
-    css`
-      animation: ${circularRotateKeyframe} 1.4s linear infinite;
-    `,
-);
+  ...(ownerState.variant === 'indeterminate' && {
+    animation: `linear infinite ${circularRotateKeyframe}`,
+    animationDuration: `${LINEAR_ROTATE_DURATION}ms`,
+  }),
+}));
 
 const CircularProgressSVG = styled('svg', {
   name: 'MuiCircularProgress',
@@ -96,36 +141,32 @@ const CircularProgressSVG = styled('svg', {
 const CircularProgressCircle = styled('circle', {
   name: 'MuiCircularProgress',
   slot: 'Circle',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.circle,
-      styles[`circle${capitalize(ownerState.variant)}`],
-      ownerState.disableShrink && styles.circleDisableShrink,
-    ];
-  },
-})<{ ownerState: CircularProgressOwnerState }>(
-  ({ ownerState, theme }) => ({
-    stroke: 'currentColor',
-    // Use butt to follow the specification, by chance, it's already the default CSS value.
-    // strokeLinecap: 'butt',
-    ...(ownerState.variant === 'determinate' && {
-      transition: theme.transitions.create('stroke-dashoffset'),
-    }),
-    ...(ownerState.variant === 'indeterminate' && {
-      // Some default value that looks fine waiting for the animation to kicks in.
-      strokeDasharray: '80px, 200px',
-      strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
-    }),
+  overridesResolver: (props, styles) => styles.circle,
+})<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme: { vars: tokens } }) => ({
+  stroke: 'var(--md-comp-linear-progress-indicator-active-indicator-color)',
+  strokeWidth: 'var(--md-comp-linear-progress-indicator-active-indicator-width)',
+  // Use butt to follow the specification, by chance, it's already the default CSS value.
+  // strokeLinecap: 'butt',
+  ...(ownerState.variant === 'determinate' && {
+    transition: `stroke-dashoffset ${tokens.sys.motion.duration.medium2} ${tokens.sys.motion.easing.legacy}`,
   }),
-  ({ ownerState }) =>
-    ownerState.variant === 'indeterminate' &&
-    !ownerState.disableShrink &&
-    css`
-      animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
-    `,
-);
+  ...(ownerState.variant === 'indeterminate' && {
+    // Some default value that looks fine waiting for the animation to kicks in.
+    strokeDasharray: '10px, 200px',
+    strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
+  }),
+  ...(ownerState.variant === 'indeterminate' &&
+    !ownerState.disableShrink && {
+      animation: circularDashKeyframe,
+      animationDuration: `${ARC_DURATION}ms, ${CYCLE_DURATION}ms`,
+      animationIterationCount: 'infinite',
+      animationFillMode: 'both',
+      animationTimingFunction: tokens.sys.motion.easing.legacy,
+      ...(ownerState.fourColor && {
+        animationName: `${circularDashKeyframe}, ${fourColorKeyframe}`,
+      }),
+    }),
+}));
 
 /**
  * ## ARIA
@@ -150,9 +191,10 @@ const CircularProgress = React.forwardRef(function CircularProgress<
     className,
     color = 'primary',
     disableShrink = false,
-    size = 40,
+    fourColor = false,
     style,
-    thickness = 3.6,
+    size = 48,
+    thickness = 4,
     value = 0,
     variant = 'indeterminate',
     ...other
@@ -162,7 +204,8 @@ const CircularProgress = React.forwardRef(function CircularProgress<
     ...props,
     color,
     disableShrink,
-    size,
+    fourColor,
+    size: typeof size === 'number' ? `${size}px` : size,
     thickness,
     value,
     variant,
@@ -188,7 +231,7 @@ const CircularProgress = React.forwardRef(function CircularProgress<
   return (
     <CircularProgressRoot
       className={clsx(classes.root, className)}
-      style={{ width: size, height: size, ...rootStyle, ...style }}
+      style={{ ...rootStyle, ...style }}
       ownerState={ownerState}
       ref={ref}
       role="progressbar"
@@ -208,7 +251,6 @@ const CircularProgress = React.forwardRef(function CircularProgress<
           cy={SIZE}
           r={(SIZE - thickness) / 2}
           fill="none"
-          strokeWidth={thickness}
         />
       </CircularProgressSVG>
     </CircularProgressRoot>
@@ -238,9 +280,15 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
-    PropTypes.string,
+  color: PropTypes.oneOf([
+    'error',
+    'info',
+    'inherit',
+    'primary',
+    'secondary',
+    'success',
+    'tertiary',
+    'warning',
   ]),
   /**
    * If `true`, the shrink animation is disabled.
@@ -254,14 +302,27 @@ CircularProgress.propTypes /* remove-proptypes */ = {
           'with a variant other than `indeterminate`. This will have no effect.',
       );
     }
-
+    return null;
+  }),
+  /**
+   * If `true`, the component render indeterminate mode using four colors instead of one.
+   * This only works if variant is `indeterminate`.
+   * @default false
+   */
+  fourColor: chainPropTypes(PropTypes.bool, (props) => {
+    if (props.fourColor && props.variant && props.variant !== 'indeterminate') {
+      return new Error(
+        'MUI: You have provided the `fourColor` prop ' +
+          'with a variant other than `indeterminate`. This will have no effect.',
+      );
+    }
     return null;
   }),
   /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
    * If using a string, you need to provide the CSS unit, e.g. '3rem'.
-   * @default 40
+   * @default 48
    */
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
@@ -278,7 +339,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The thickness of the circle.
-   * @default 3.6
+   * @default 4
    */
   thickness: PropTypes.number,
   /**

@@ -159,6 +159,7 @@ The default Material UI Progress components follows the Material Design 2 specs.
 To get the Material You ([Material Design 3](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
 
 ```js
+import CircularProgress from '@mui/material-next/CircularProgress';
 import LinearProgress from '@mui/material-next/LinearProgress';
 ```
 
