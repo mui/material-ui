@@ -88,7 +88,7 @@ const variantsResolver = (props, styles, variants) => {
       }
 
       if (typeof variant.props === 'function') {
-        numOfCallbacks++;
+        numOfCallbacks += 1;
       }
     });
   }

@@ -433,7 +433,7 @@ describe('styled', () => {
     });
 
     it('should support variants with props callbacks', () => {
-      const theme = createTheme({
+      const customTheme = createTheme({
         components: {
           MuiTest: {
             variants: [
@@ -456,7 +456,7 @@ describe('styled', () => {
         },
       });
       const { getByTestId } = render(
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={customTheme}>
           <TestObj data-testid="large" size="large">
             Test
           </TestObj>
