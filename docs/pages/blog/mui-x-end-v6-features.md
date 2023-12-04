@@ -122,35 +122,10 @@ In our pursuit to enhance user experience, one of the most significant changes i
 
 To illustrate some of these improvements, the following table display a benchmark comparing the latest v5 (v5.17.26) with v6.18.0. The focus is to assess the raw filtering speed in a use case involving a one-column string filter over 100,000 rows.
 
-<table border="0" style="text-align:center;width:100%;display:table">
-  <tr>
-    <th>Version</th>
-    <th>N# of Tests</th>
-    <th>Min time (ms)</th>
-    <th>Max time (ms)</th>
-    <th>Median (ms)</th>
-    <th>Average (ms)</th>
-    <th>Deviation</th>
-  </tr>
-  <tr>
-    <td>v5.17.26</td>
-    <td>22</td>
-    <td>396</td>
-    <td>409</td>
-    <td>400</td>
-    <td>400.7</td>
-    <td>3.96</td>
-  </tr>
-  <tr>
-    <td>v6.18.0</td>
-    <td>20</td>
-    <td>44</td>
-    <td>66</td>
-    <td>49.5</td>
-    <td>50.4</td>
-    <td>5.63</td>
-  </tr>
-</table>
+| Version  | N# of Tests | Min time (ms) | Max time (ms) | Median (ms) | Average (ms) | Deviation |
+| :------- | ----------: | ------------: | ------------: | ----------: | -----------: | --------: |
+| v5.17.26 |          22 |           396 |           409 |       400.0 |        400.7 |      3.96 |
+| v6.18.0  |          20 |            44 |            66 |        49.5 |         50.4 |      5.63 |
 
 As we can see, the current version operates 7.9 times faster; the average time has dropped from 400.7 milliseconds in the previous version to just 50.4 milliseconds in the current one.
 
