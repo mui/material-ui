@@ -45,7 +45,8 @@ export const FormControlLabelRoot = styled('label', {
     ];
   },
 })(({ theme, ownerState }) => ({
-  display: 'inline-flex',
+  display: 'flex',
+  flexDirection: 'row',
   alignItems: 'flex-start',
   cursor: 'pointer',
   // For correct alignment with the text.
@@ -53,6 +54,12 @@ export const FormControlLabelRoot = styled('label', {
   WebkitTapHighlightColor: 'transparent',
   marginLeft: -11,
   marginRight: 16, // used for row presentation of radio/checkbox
+  [`& .MuiCheckbox-root`]: {
+    ...(ownerState.labelPlacement !== 'top' &&
+      ownerState.labelPlacement !== 'bottom' && {
+        marginTop: '-9px', // Adjust only if labelPlacement is not 'top' or 'bottom'
+      }),
+  },
   [`&.${formControlLabelClasses.disabled}`]: {
     cursor: 'default',
   },
@@ -62,10 +69,12 @@ export const FormControlLabelRoot = styled('label', {
     marginRight: -11,
   }),
   ...(ownerState.labelPlacement === 'top' && {
+    alignItems: 'center',
     flexDirection: 'column-reverse',
     marginLeft: 16,
   }),
   ...(ownerState.labelPlacement === 'bottom' && {
+    alignItems: 'center',
     flexDirection: 'column',
     marginLeft: 16,
   }),
@@ -163,16 +172,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       ref={ref}
       {...other}
     >
-      {ownerState.labelPlacement === 'top' || ownerState.labelPlacement === 'bottom' ? (
-        <Stack direction="row" alignSelf="center">
-          {React.cloneElement(control, controlProps)}
-        </Stack>
-      ) : (
-        <Stack direction="row" mt="-9px">
-          {React.cloneElement(control, controlProps)}
-        </Stack>
-      )}
-
+      {React.cloneElement(control, controlProps)}
       {required ? (
         <Stack display="block">
           {label}
