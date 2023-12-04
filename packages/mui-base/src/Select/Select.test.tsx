@@ -973,7 +973,7 @@ describe('<Select />', () => {
       expect(select).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('closes the listbox when the select is clicked again', () => {
+    it('closes the listbox when the select is clicked again', async () => {
       const { getByRole } = render(
         <Select>
           <Option value={1}>One</Option>
@@ -981,13 +981,12 @@ describe('<Select />', () => {
       );
 
       const select = getByRole('combobox');
-      act(() => {
-        select.click();
-      });
 
-      act(() => {
-        select.click();
-      });
+      await userEvent.pointer({ keys: '[MouseLeft]', target: select });
+
+      expect(select).to.have.attribute('aria-expanded', 'true');
+
+      await userEvent.pointer({ keys: '[MouseLeft]', target: select });
 
       expect(select).to.have.attribute('aria-expanded', 'false');
     });

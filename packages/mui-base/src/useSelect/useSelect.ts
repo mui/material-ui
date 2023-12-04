@@ -408,13 +408,8 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         listboxRef.current?.contains(event.relatedTarget as HTMLElement) ||
         event.relatedTarget === buttonRef.current
       ) {
-        return;
+        event.defaultMuiPrevented = true;
       }
-
-      dispatch({
-        type: ListActionTypes.blur,
-        event,
-      });
     };
 
   const getOwnListboxHandlers = (otherHandlers: EventHandlers = {}) => ({
