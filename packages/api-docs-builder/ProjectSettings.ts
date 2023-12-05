@@ -36,4 +36,8 @@ export interface ProjectSettings {
    * Fuction called to detemine whether to skip the generation of a particular component's API docs
    */
   skipComponent: (filename: string) => boolean;
+  /**
+   * Determine is the component definition should be updated.
+   */
+  skipAnnotateComponentDefinition?: boolean | ((filename: string) => boolean);
 }

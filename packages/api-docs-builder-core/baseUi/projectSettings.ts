@@ -34,4 +34,5 @@ export const projectSettings: ProjectSettings = {
 
     return source;
   },
+  skipAnnotateComponentDefinition: true,
 };

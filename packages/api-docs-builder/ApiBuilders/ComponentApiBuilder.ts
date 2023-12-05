@@ -147,11 +147,6 @@ async function annotateComponentDefinition(api: ReactApi) {
   let end = null;
   traverse(typesAST, {
     ExportDefaultDeclaration(babelPath) {
-      if (api.filename.includes('mui-base')) {
-        // Base UI does not use default exports.
-        return;
-      }
-
       /**
        * export default function Menu() {}
        */
@@ -205,10 +200,6 @@ async function annotateComponentDefinition(api: ReactApi) {
     },
 
     ExportNamedDeclaration(babelPath) {
-      if (!api.filename.includes('mui-base')) {
-        return;
-      }
-
       let node: babel.Node = babelPath.node;
 
       if (node.declaration == null) {
@@ -830,8 +821,15 @@ export default async function generateComponentApi(
     const generateOnlyJsonFile = normalizedApiPathname.startsWith('/base');
     generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi, generateOnlyJsonFile);
 
-    // Add comment about demo & api links (including inherited component) to the component file
-    await annotateComponentDefinition(reactApi);
+    const { skipAnnotateComponentDefinition } = projectSettings;
+    if (
+      typeof skipAnnotateComponentDefinition === 'function'
+        ? !skipAnnotateComponentDefinition(reactApi.filename)
+        : !skipAnnotateComponentDefinition
+    ) {
+      // Add comment about demo & api links (including inherited component) to the component file
+      await annotateComponentDefinition(reactApi);
+    }
   }
 
   return reactApi;
