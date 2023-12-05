@@ -1,14 +1,14 @@
 :root {
-  --cyan-50: #e9f9fc;
-  --cyan-100: #c1ecf4;
-  --cyan-200: #99dae5;
-  --cyan-300: #66bbca;
-  --cyan-400: #1f91a5;
-  --cyan-500: #0d535f;
-  --cyan-600: #094651;
-  --cyan-700: #063b44;
-  --cyan-800: #042f37;
-  --cyan-900: #022126;
+  --primary-50: #e9f9fc;
+  --primary-100: #c1ecf4;
+  --primary-200: #99dae5;
+  --primary-300: #66bbca;
+  --primary-400: #1f91a5;
+  --primary-500: #0d535f;
+  --primary-600: #094651;
+  --primary-700: #063b44;
+  --primary-800: #042f37;
+  --primary-900: #022126;
 
   --grey-50: #f3f6f9;
   --grey-100: #e5eaf2;
@@ -50,7 +50,7 @@
   white-space: nowrap;
   text-align: center;
   border-radius: 12px;
-  background: var(--cyan-500);
+  background: var(--primary-500);
   box-shadow: 0px 4px 8px var(--GalleryBadge-badge-boxShadow-color, var(--grey-300));
   transform: translate(50%, -50%);
   transform-origin: 100% 0;
@@ -77,25 +77,25 @@
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
-  background-color: var(--cyan-500);
+  background-color: var(--primary-500);
   padding: 8px 16px;
   border-radius: 8px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
-  border: 1px solid var(--cyan-500);
+  border: 1px solid var(--primary-500);
   box-shadow: 0 2px 4px var(--GalleryButton-boxShadow-color, rgba(13, 84, 99, 0.5)),
-    inset 0 1.5px 1px var(--cyan-400), inset 0 -2px 1px var(--cyan-600);
+    inset 0 1.5px 1px var(--primary-400), inset 0 -2px 1px var(--primary-600);
 }
 .GalleryButton:hover {
-  background-color: var(--cyan-600);
+  background-color: var(--primary-600);
 }
 .GalleryButton:active {
-  background-color: var(--cyan-700);
+  background-color: var(--primary-700);
   box-shadow: none;
 }
 .GalleryButton:focus-visible {
-  box-shadow: 0 0 0 4px var(--GalleryButton-focusVisible-boxShadow-color, var(--cyan-200));
+  box-shadow: 0 0 0 4px var(--GalleryButton-focusVisible-boxShadow-color, var(--primary-200));
   outline: none;
 }
 .GalleryButton:disabled {
@@ -112,7 +112,7 @@
 @media (prefers-color-scheme: dark) {
   .GalleryButton {
     --GalleryButton-boxShadow-color: rgba(0, 0, 0, 0.5);
-    --GalleryButton-focusVisible-boxShadow-color: var(--cyan-300);
+    --GalleryButton-focusVisible-boxShadow-color: var(--primary-300);
     --GalleryButton-disabled-color: var(--grey-200);
     --GalleryButton-disabled-background-color: var(--grey-700);
     --GaleryButton-disabled-hover-background-color: var(--grey-700);
@@ -133,12 +133,12 @@
   box-shadow: 0px 2px 2px var(--GalleryInput-input-boxShadow-color, var(--grey-50));
 }
 .GalleryInput .MuiInput-input:hover {
-  border-color: var(--cyan-400);
+  border-color: var(--primary-400);
 }
 .GalleryInput .MuiInput-input:focus {
   outline: 0;
-  border-color: var(--cyan-400);
-  box-shadow: 0 0 0 3px var(--GalleryInput-input-focus-boxShadow-color, var(--cyan-200));
+  border-color: var(--primary-400);
+  box-shadow: 0 0 0 3px var(--GalleryInput-input-focus-boxShadow-color, var(--primary-200));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -147,7 +147,7 @@
     --GalleryInput-input-background-color: var(--grey-900);
     --GalleryInput-input-border-color: var(--grey-700);
     --GalleryInput-input-boxShadow-color: var(--grey-900);
-    --GalleryInput-input-focus-boxShadow-color: var(--cyan-600);
+    --GalleryInput-input-focus-boxShadow-color: var(--primary-600);
   }
 }
 
@@ -180,7 +180,7 @@
 }
 
 .GalleryMenu-item.Mui-focusVisible {
-  outline: 3px solid var(--GalleryMenu-item-outline-color, var(--cyan-200));
+  outline: 3px solid var(--GalleryMenu-item-outline-color, var(--primary-200));
   background-color: var(--GalleryMenu-item-background-color, var(--grey-100));
   color: var(--GalleryMenu-item-color, var(--grey-900));
 }
@@ -190,7 +190,7 @@
 }
 
 .GalleryMenu-item:hover:not(.Mui-disabled) {
-  background-color: var(--GalleryMenu-item-hover-background-color, var(--cyan-50));
+  background-color: var(--GalleryMenu-item-hover-background-color, var(--primary-50));
   color: var(--GalleryMenu-item-hover-color, var(--grey-900));
 }
 
@@ -204,11 +204,11 @@
     --GalleryMenu-listbox-border-color: var(--grey-700);
     --GalleryMenu-listbox-color: var(--grey-300);
     --GalleryMenu-listbox-boxShadow-color: var(--grey-900);
-    --GalleryMenu-item-outline-color: var(--cyan-600);
+    --GalleryMenu-item-outline-color: var(--primary-600);
     --GalleryMenu-item-background-color: var(--grey-800);
     --GalleryMenu-item-color: var(--grey-300);
     --GalleryMenu-item-disabled-color: var(--grey-700);
-    --GalleryMenu-item-hover-background-color: var(--cyan-800);
+    --GalleryMenu-item-hover-background-color: var(--primary-800);
     --GalleryMenu-item-hover-color: var(--grey-300);
   }
 }
@@ -230,12 +230,12 @@
 }
 
 .GalleryNumberInput:hover {
-  border-color: var(--cyan-400);
+  border-color: var(--primary-400);
 }
 
 .GalleryNumberInput.Mui-focused {
-  border-color: var(--cyan-400);
-  box-shadow: 0 0 0 3px var(--GalleryNumberInput-focused-boxShadow-color, var(--cyan-200));
+  border-color: var(--primary-400);
+  box-shadow: 0 0 0 3px var(--GalleryNumberInput-focused-boxShadow-color, var(--primary-200));
 }
 
 .GalleryNumberInput .input {
@@ -298,8 +298,8 @@
   &:hover {
     cursor: pointer;
     color: #fff;
-    background: var(--GalleryNumberInput-btn-increment-hover-background-color, var(--cyan-500));
-    border-color: var(--GalleryNumberInput-btn-increment-hover-color, var(--cyan-600));
+    background: var(--GalleryNumberInput-btn-increment-hover-background-color, var(--primary-500));
+    border-color: var(--GalleryNumberInput-btn-increment-hover-color, var(--primary-600));
   }
 }
 
@@ -317,8 +317,8 @@
 .GalleryNumberInput .btn.decrement:hover {
   cursor: pointer;
   color: #fff;
-  background: var(--GalleryNumberInput-btn-decrement-hover-background-color, var(--cyan-500));
-  border-color: var(--GalleryNumberInput-btn-decrement-hover-border-color, var(--cyan-600));
+  background: var(--GalleryNumberInput-btn-decrement-hover-background-color, var(--primary-500));
+  border-color: var(--GalleryNumberInput-btn-decrement-hover-border-color, var(--primary-600));
 }
 .GalleryNumberInput .btn.decrement .arrow {
   transform: translateY(-1px);
@@ -330,16 +330,16 @@
     --GalleryNumberInput-background-color: var(--grey-900);
     --GalleryNumberInput-border-color: var(--grey-700);
     --GalleryNumberInput-boxShadow-color: gba(0, 0, 0, 0.5);
-    --GalleryNumberInput-focused-boxShadow-color: var(--cyan-500);
+    --GalleryNumberInput-focused-boxShadow-color: var(--primary-500);
     --GalleryNumberInput-input-color: var(--grey-300);
     --GalleryNumberInput-btn-color: var(--grey-300);
     --GalleryNumberInput-btn-increment-border-color: var(--grey-800);
     --GalleryNumberInput-btn-increment-background-color: var(--grey-900);
     --GalleryNumberInput-btn-increment-color: var(--grey-200);
-    --GalleryNumberInput-btn-increment-hover-background-color: var(--cyan-100);
-    --GalleryNumberInput-btn-increment-hover-color: var(--cyan-400);
-    --GalleryNumberInput-btn-decrement-hover-background-color: var(--cyan-100);
-    --GalleryNumberInput-btn-decrement-hover-border-color: var(--cyan-400);
+    --GalleryNumberInput-btn-increment-hover-background-color: var(--primary-100);
+    --GalleryNumberInput-btn-increment-hover-color: var(--primary-400);
+    --GalleryNumberInput-btn-decrement-hover-background-color: var(--primary-100);
+    --GalleryNumberInput-btn-decrement-hover-border-color: var(--primary-400);
     --GalleryNumberInput-btn-decrement-border-color: var(--grey-800);
     --GalleryNumberInput-btn-decrement-background-color: var(--grey-900);
     --GalleryNumberInput-btn-decrement-color: var(--grey-200);
@@ -415,8 +415,8 @@
 
   &.Mui-focusVisible {
     outline: 0;
-    border-color: var(--cyan-400);
-    box-shadow: 0 0 0 3px var(--GallerySelect-focusVisible-boxShadow-color, var(--cyan-200));
+    border-color: var(--primary-400);
+    box-shadow: 0 0 0 3px var(--GallerySelect-focusVisible-boxShadow-color, var(--primary-200));
   }
 
   & > svg {
@@ -456,8 +456,8 @@
   }
 
   &.Mui-selected {
-    background-color: var(--GallerySelect-option-selected-background-color, var(--cyan-100));
-    color: var(--GallerySelect-option-selected-color, var(--cyan-900));
+    background-color: var(--GallerySelect-option-selected-background-color, var(--primary-100));
+    color: var(--GallerySelect-option-selected-color, var(--primary-900));
   }
 
   &.MuiOption-highlighted {
@@ -468,9 +468,9 @@
   &.MuiOption-highlighted.Mui-selected {
     background-color: var(
       --GallerySelect-option-highlighted-selected-background-color,
-      var(--cyan-100)
+      var(--primary-100)
     );
-    color: var(--GallerySelect-option-highlighted-selected-color, var(--cyan-900));
+    color: var(--GallerySelect-option-highlighted-selected-color, var(--primary-900));
   }
 
   &.Mui-disabled {
@@ -491,25 +491,25 @@
     --GallerySelect-boxShadow-color: rgba(0, 0, 0, 0.5);
     --GallerySelect-hover-background-color: var(--grey-800);
     --GallerySelect-hover-border-color: var(--grey-600);
-    --GallerySelect-focusVisible-boxShadow-color: var(--cyan-600);
+    --GallerySelect-focusVisible-boxShadow-color: var(--primary-600);
     --GallerySelect-listbox-background-color: var(--grey-900);
     --GallerySelect-listbox-border-color: var(--grey-700);
     --GallerySelect-listbox-color: var(--grey-300);
     --GallerySelect-listbox-boxShadow-color: rgba(0, 0, 0, 0.5);
-    --GallerySelect-option-selected-background-color: var(--cyan-700);
-    --GallerySelect-option-selected-color: var(--cyan-50);
+    --GallerySelect-option-selected-background-color: var(--primary-700);
+    --GallerySelect-option-selected-color: var(--primary-50);
     --GallerySelect-option-disabled-background-color: var(--grey-800);
     --GallerySelect-option-disabled-color: var(--grey-300);
     --SelectGallery-option-highlighted-background-color: var(--grey-800);
     --SelectGallery-option-highlighted-color: var(--grey-300);
-    --GallerySelect-option-highlighted-selected-background-color: var(--cyan-700);
-    --GallerySelect-option-highlighted-selected-color: var(--cyan-50);
+    --GallerySelect-option-highlighted-selected-background-color: var(--primary-700);
+    --GallerySelect-option-highlighted-selected-color: var(--primary-50);
     --GallerySelect-option-disabled-color: var(--grey-700);
   }
 }
 
 .GallerySlider {
-  color: var(--GallerySlider-color, var(--cyan-500));
+  color: var(--GallerySlider-color, var(--primary-500));
   height: 6px;
   width: 100%;
   padding: 16px 0;
@@ -565,23 +565,23 @@
 
 /* TODO: alpha used, needs to be changed */
 /* .GallerySlider-thumb:hover {
-  box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? var(--cyan-300) : var(--cyan-200), 0.5)};
+  box-shadow: 0 0 0 0.25rem ${alpha(isDarkMode ? var(--primary-300) : var(--primary-200), 0.5)};
 } */
 
 .GallerySlider-thumb:focus-visible {
-  box-shadow: 0 0 0 4px var(--GallerySlider-focusVisible-boxShadow-color, var(--cyan-200));
+  box-shadow: 0 0 0 4px var(--GallerySlider-focusVisible-boxShadow-color, var(--primary-200));
 }
 
 .GallerySlider-thumb.Mui-active {
-  box-shadow: 0 0 0 4px var(--GallerySlider-active-boxShadow-color, var(--cyan-300));
+  box-shadow: 0 0 0 4px var(--GallerySlider-active-boxShadow-color, var(--primary-300));
 }
 
 @media (prefers-color-scheme: dark) {
   .GallerySlider {
-    --GallerySlider-color: var(--cyan-300);
+    --GallerySlider-color: var(--primary-300);
     --GallerySlider-disabled-color: var(--grey-600);
-    --GallerySlider-focusVisible-boxShadow-color: var(--cyan-700);
-    --GallerySlider-active-boxShadow-color: var(--cyan-600);
+    --GallerySlider-focusVisible-boxShadow-color: var(--primary-700);
+    --GallerySlider-active-boxShadow-color: var(--primary-600);
   }
 }
 
@@ -708,7 +708,7 @@
 }
 
 .GallerySwitch.Mui-focusVisible .GallerySwitch-track {
-  box-shadow: 0 0 0 3px var(--GallerySwitch-focusVisible-track, var(--cyan-200));
+  box-shadow: 0 0 0 3px var(--GallerySwitch-focusVisible-track, var(--primary-200));
 }
 
 .GallerySwitch.Mui-checked .GallerySwitch-thumb {
@@ -718,7 +718,7 @@
 }
 
 .GallerySwitch.Mui-checked .GallerySwitch-track {
-  background: var(--cyan-500);
+  background: var(--primary-500);
 }
 
 .GallerySwitch-input {
@@ -740,7 +740,7 @@
     --GallerySwitch-hover-track-background-color: var(--grey-800);
     --GallerySwitch-hover-track-border-color: var(--grey-600);
     --GallerySwitch-track-boxShadow-color: rgba(0, 0, 0, 0.5);
-    --GallerySwitch-focusVisible-track: var(--cyan-400);
+    --GallerySwitch-focusVisible-track: var(--primary-400);
   }
 }
 
@@ -821,7 +821,7 @@
 }
 
 .GalleryTablePagination .MuiTablePagination-select:focus {
-  outline: 1px solid var(--GalleryTablePagination-select-focus-outline-color, var(--cyan-200));
+  outline: 1px solid var(--GalleryTablePagination-select-focus-outline-color, var(--primary-200));
 }
 
 .GalleryTablePagination .MuiTablePagination-displayedRows {
@@ -855,7 +855,7 @@
 
 .GalleryTablePagination .MuiTablePagination-actions > button:focus {
   outline: 1px solid
-    var(--GalleryTablePagination-actions-button-focus-outline-color, var(--cyan-200));
+    var(--GalleryTablePagination-actions-button-focus-outline-color, var(--primary-200));
 }
 
 .GalleryTablePagination .MuiTablePagination-actions > button:disabled {
@@ -866,16 +866,16 @@
   .GalleryTablePagination {
     --GalleryTablePagination-select-border-color: var(--grey-800);
     --GalleryTablePagination-select-hover-background-color: var(--grey-800);
-    --GalleryTablePagination-select-focus-outline-color: var(--cyan-400);
+    --GalleryTablePagination-select-focus-outline-color: var(--primary-400);
     --GalleryTablePagination-actions-border-color: var(--grey-800);
     --GalleryTablePagination-actions-button-hover-background-color: var(--grey-800);
-    --GalleryTablePagination-actions-button-focus-outline-color: var(--cyan-400);
+    --GalleryTablePagination-actions-button-focus-outline-color: var(--primary-400);
   }
 }
 
 .GalleryTabsList {
   min-width: 400px;
-  background-color: var(--cyan-500);
+  background-color: var(--primary-500);
   border-radius: 12px;
   margin-bottom: 16px;
   display: flex;
@@ -902,17 +902,17 @@
 }
 
 .GalleryTab:hover {
-  background-color: var(--cyan-400);
+  background-color: var(--primary-400);
 }
 
 .GalleryTab:focus {
   color: #fff;
-  outline: 3px solid var(--cyan-200);
+  outline: 3px solid var(--primary-200);
 }
 
 .GalleryTab.Mui-selected {
   background-color: #fff;
-  color: var(--cyan-600);
+  color: var(--primary-600);
 }
 
 .GalleryTab.Mui-disabled {
@@ -956,12 +956,12 @@
 }
 
 .GalleryTextarea:hover {
-  border-color: var(--cyan-400);
+  border-color: var(--primary-400);
 }
 
 .GalleryTextarea:focus {
-  border-color: var(--cyan-400);
-  box-shadow: 0 0 0 3px var(--GalleryTextarea-focus-boxShadow-color, var(--cyan-200));
+  border-color: var(--primary-400);
+  box-shadow: 0 0 0 3px var(--GalleryTextarea-focus-boxShadow-color, var(--primary-200));
   outline: none;
 }
 
@@ -975,7 +975,7 @@
     --GalleryTextarea-color: var(--grey-300);
     --GalleryTextarea-background-color: var(--grey-900);
     --GalleryTextarea-border-color: var(--grey-700);
-    --GalleryTextarea-boxShadow-color: var(--cyan-900);
-    --GalleryTextarea-focus-boxShadow-color: var(--cyan-600);
+    --GalleryTextarea-boxShadow-color: var(--primary-900);
+    --GalleryTextarea-focus-boxShadow-color: var(--primary-600);
   }
 }
