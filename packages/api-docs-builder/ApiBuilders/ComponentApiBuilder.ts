@@ -774,12 +774,19 @@ export default async function generateComponentApi(
     );
   }
 
-  const testInfo = await parseTest(filename);
-  // no Object.assign to visually check for collisions
-  reactApi.forwardsRefTo = testInfo.forwardsRefTo;
-  reactApi.spread = testInfo.spread ?? spread;
-  reactApi.themeDefaultProps = testInfo.themeDefaultProps;
-  reactApi.inheritance = getInheritance(testInfo.inheritComponent);
+  try {
+    const testInfo = await parseTest(reactApi.filename);
+    // no Object.assign to visually check for collisions
+    reactApi.forwardsRefTo = testInfo.forwardsRefTo;
+    reactApi.spread = testInfo.spread ?? spread;
+    reactApi.themeDefaultProps = testInfo.themeDefaultProps;
+    reactApi.inheritance = getInheritance(testInfo.inheritComponent);
+  } catch (e) {
+    if (project.name.includes('grid')) {
+      // TODO: Use `describeConformance` for the DataGrid components
+      reactApi.forwardsRefTo = 'GridRoot';
+    }
+  }
 
   const { slots, classes } = parseSlotsAndClasses({
     project,
