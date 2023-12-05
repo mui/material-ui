@@ -17,6 +17,7 @@ import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
 import createDescribeableProp, {
+  CreateDescribeablePropSettings,
   DescribeablePropDescriptor,
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
@@ -473,7 +474,7 @@ const generateApiPage = (
   }
 };
 
-const attachTranslations = (reactApi: ReactApi) => {
+const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePropSettings) => {
   const translations: ReactApi['translations'] = {
     componentDescription: reactApi.description,
     propDescriptions: {},
@@ -482,7 +483,7 @@ const attachTranslations = (reactApi: ReactApi) => {
   Object.entries(reactApi.props!).forEach(([propName, propDescriptor]) => {
     let prop: DescribeablePropDescriptor | null;
     try {
-      prop = createDescribeableProp(propDescriptor, propName);
+      prop = createDescribeableProp(propDescriptor, propName, settings);
     } catch (error) {
       prop = null;
     }
@@ -528,14 +529,14 @@ const attachTranslations = (reactApi: ReactApi) => {
   reactApi.translations = translations;
 };
 
-const attachPropsTable = (reactApi: ReactApi) => {
+const attachPropsTable = (reactApi: ReactApi, settings?: CreateDescribeablePropSettings) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
   type Pair = [string, ReactApi['propsTable'][string]];
   const componentProps: ReactApi['propsTable'] = _.fromPairs(
     Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
       let prop: DescribeablePropDescriptor | null;
       try {
-        prop = createDescribeableProp(propDescriptor, propName);
+        prop = createDescribeableProp(propDescriptor, propName, settings);
       } catch (error) {
         propErrors.push([`[${reactApi.name}] \`${propName}\``, error as Error]);
         prop = null;
@@ -797,8 +798,8 @@ export default async function generateComponentApi(
   reactApi.slots = slots;
   reactApi.classes = classes;
 
-  attachPropsTable(reactApi);
-  attachTranslations(reactApi);
+  attachPropsTable(reactApi, projectSettings.propsSettings);
+  attachTranslations(reactApi, projectSettings.propsSettings);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);

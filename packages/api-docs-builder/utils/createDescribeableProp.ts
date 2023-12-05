@@ -8,6 +8,17 @@ export interface DescribeablePropDescriptor {
   type: PropTypeDescriptor;
 }
 
+export type CreateDescribeablePropSettings = {
+  /**
+   * name of props which do not require default annotation.
+   */
+  propsWithoutMandatoryDefaultAnnotation?: string[];
+  /**
+   * name of props which do not check the annotation equal runtime default.
+   */
+  propsWithoutDefaultVerification?: string[];
+};
+
 /**
  * Returns `null` if the prop should be ignored.
  * Throws if it is invalid.
@@ -17,8 +28,12 @@ export interface DescribeablePropDescriptor {
 export default function createDescribeableProp(
   prop: PropDescriptor,
   propName: string,
+  settings: CreateDescribeablePropSettings = {},
 ): DescribeablePropDescriptor | null {
   const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
+
+  const { propsWithoutMandatoryDefaultAnnotation = [], propsWithoutDefaultVerification = [] } =
+    settings;
 
   const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
   const renderDefaultValue = Boolean(
@@ -53,14 +68,17 @@ export default function createDescribeableProp(
     const shouldHaveDefaultAnnotation =
       // Discriminator for polymorphism which is not documented at the component level.
       // The documentation of `component` does not know in which component it is used.
-      propName !== 'component';
+      propName !== 'component' && !propsWithoutMandatoryDefaultAnnotation.includes(propName);
 
     if (shouldHaveDefaultAnnotation) {
       throw new Error(
         `JSDoc @default annotation not found. Add \`@default ${defaultValue.value}\` to the JSDoc of this prop.`,
       );
     }
-  } else if (jsdocDefaultValue !== undefined) {
+  } else if (
+    jsdocDefaultValue !== undefined &&
+    !propsWithoutDefaultVerification.includes(propName)
+  ) {
     // `defaultValue` can't be undefined or we would've thrown earlier.
     if (jsdocDefaultValue.value !== defaultValue!.value) {
       throw new Error(

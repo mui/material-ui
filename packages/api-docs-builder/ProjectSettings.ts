@@ -1,5 +1,6 @@
 import { ComponentInfo, HookInfo } from './buildApiUtils';
 import { CreateTypeScriptProjectOptions } from './utils/createTypeScriptProject';
+import { CreateDescribeablePropSettings } from './utils/createDescribeableProp';
 import { ReactApi as ComponentReactApi } from './ApiBuilders/ComponentApiBuilder';
 import { ReactApi as HookReactApi } from './ApiBuilders/HookApiBuilder';
 
@@ -44,4 +45,8 @@ export interface ProjectSettings {
    * The path to the translation directory.
    */
   translationPagesDirectory: string;
+  /**
+   * Settings to configure props definition tests.
+   */
+  propsSettings?: CreateDescribeablePropSettings;
 }
