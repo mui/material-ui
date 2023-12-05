@@ -797,22 +797,13 @@ export default async function generateComponentApi(
   console.log('Built API docs for', reactApi.apiPathname);
 
   const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
-  const normalizedFilename = reactApi.filename.replace(/\\/g, '/');
+  // const normalizedFilename = reactApi.filename.replace(/\\/g, '/');
 
   if (!skipApiGeneration) {
-    // Generate pages, json and translations
-    let translationPagesDirectory = 'docs/translations/api-docs';
-    if (normalizedApiPathname.startsWith('/joy-ui') && normalizedFilename.includes('mui-joy/src')) {
-      translationPagesDirectory = 'docs/translations/api-docs-joy';
-    } else if (
-      normalizedApiPathname.startsWith('/base') &&
-      normalizedFilename.includes('mui-base/src')
-    ) {
-      translationPagesDirectory = 'docs/translations/api-docs-base';
-    }
+    const { skipAnnotateComponentDefinition, translationPagesDirectory } = projectSettings;
 
     generateApiTranslations(
-      path.join(process.cwd(), translationPagesDirectory),
+      path.join(process.cwd(), projectSettings.translationPagesDirectory),
       reactApi,
       projectSettings.translationLanguages,
     );
@@ -821,7 +812,6 @@ export default async function generateComponentApi(
     const generateOnlyJsonFile = normalizedApiPathname.startsWith('/base');
     generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi, generateOnlyJsonFile);
 
-    const { skipAnnotateComponentDefinition } = projectSettings;
     if (
       typeof skipAnnotateComponentDefinition === 'function'
         ? !skipAnnotateComponentDefinition(reactApi.filename)

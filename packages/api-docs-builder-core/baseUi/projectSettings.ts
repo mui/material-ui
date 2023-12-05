@@ -35,4 +35,5 @@ export const projectSettings: ProjectSettings = {
     return source;
   },
   skipAnnotateComponentDefinition: true,
+  translationPagesDirectory: 'docs/translations/api-docs-base',
 };

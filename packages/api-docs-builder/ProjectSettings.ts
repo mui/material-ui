@@ -40,4 +40,8 @@ export interface ProjectSettings {
    * Determine is the component definition should be updated.
    */
   skipAnnotateComponentDefinition?: boolean | ((filename: string) => boolean);
+  /**
+   * The path to the translation directory.
+   */
+  translationPagesDirectory: string;
 }

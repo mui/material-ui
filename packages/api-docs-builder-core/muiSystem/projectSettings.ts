@@ -21,4 +21,5 @@ export const projectSettings: ProjectSettings = {
   skipComponent(filename) {
     return filename.match(/(ThemeProvider|CssVarsProvider|GlobalStyles)/) !== null;
   },
+  translationPagesDirectory: 'docs/translations/api-docs',
 };
