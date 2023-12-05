@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
@@ -83,7 +83,8 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
   transition: theme.transitions.create('box-shadow'),
   borderRadius: theme.shape.borderRadius,
   '&:hover': {
-    boxShadow: '0 4px 8px 0 rgb(90 105 120 / 20%)',
+    borderColor: theme.palette.primary[300],
+    boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
   },
   '&:not(:last-of-type)': {
     marginBottom: theme.spacing(2),
@@ -94,6 +95,12 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
   '&:after': {
     display: 'none',
   },
+  ...theme.applyDarkStyles({
+    '&:hover': {
+      borderColor: alpha(theme.palette.primary[600], 0.6),
+      boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.8)',
+    },
+  }),
 }));
 
 const AccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
@@ -469,7 +476,7 @@ function CareersContent() {
       <Divider />
       {/* Next roles */}
       {nextRolesData.length > 0 && (
-        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
+        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
           <Section bg="transparent">
             <SectionHeadline
               title={
