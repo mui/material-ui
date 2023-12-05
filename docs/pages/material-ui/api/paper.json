@@ -22,41 +22,182 @@
   },
   "name": "Paper",
   "imports": ["import Paper from '@mui/material/Paper';", "import { Paper } from '@mui/material';"],
-  "styles": {
-    "classes": [
-      "root",
-      "rounded",
-      "outlined",
-      "elevation",
-      "elevation0",
-      "elevation1",
-      "elevation2",
-      "elevation3",
-      "elevation4",
-      "elevation5",
-      "elevation6",
-      "elevation7",
-      "elevation8",
-      "elevation9",
-      "elevation10",
-      "elevation11",
-      "elevation12",
-      "elevation13",
-      "elevation14",
-      "elevation15",
-      "elevation16",
-      "elevation17",
-      "elevation18",
-      "elevation19",
-      "elevation20",
-      "elevation21",
-      "elevation22",
-      "elevation23",
-      "elevation24"
-    ],
-    "globalClasses": {},
-    "name": "MuiPaper"
-  },
+  "classes": [
+    {
+      "key": "elevation",
+      "className": "MuiPaper-elevation",
+      "description": "Styles applied to the root element if `variant=\"elevation\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation0",
+      "className": "MuiPaper-elevation0",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation1",
+      "className": "MuiPaper-elevation1",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation10",
+      "className": "MuiPaper-elevation10",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation11",
+      "className": "MuiPaper-elevation11",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation12",
+      "className": "MuiPaper-elevation12",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation13",
+      "className": "MuiPaper-elevation13",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation14",
+      "className": "MuiPaper-elevation14",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation15",
+      "className": "MuiPaper-elevation15",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation16",
+      "className": "MuiPaper-elevation16",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation17",
+      "className": "MuiPaper-elevation17",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation18",
+      "className": "MuiPaper-elevation18",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation19",
+      "className": "MuiPaper-elevation19",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation2",
+      "className": "MuiPaper-elevation2",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation20",
+      "className": "MuiPaper-elevation20",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation21",
+      "className": "MuiPaper-elevation21",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation22",
+      "className": "MuiPaper-elevation22",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation23",
+      "className": "MuiPaper-elevation23",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation24",
+      "className": "MuiPaper-elevation24",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation3",
+      "className": "MuiPaper-elevation3",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation4",
+      "className": "MuiPaper-elevation4",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation5",
+      "className": "MuiPaper-elevation5",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation6",
+      "className": "MuiPaper-elevation6",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation7",
+      "className": "MuiPaper-elevation7",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation8",
+      "className": "MuiPaper-elevation8",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation9",
+      "className": "MuiPaper-elevation9",
+      "description": "",
+      "isGlobal": false
+    },
+    {
+      "key": "outlined",
+      "className": "MuiPaper-outlined",
+      "description": "Styles applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiPaper-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "rounded",
+      "className": "MuiPaper-rounded",
+      "description": "Styles applied to the root element unless `square={true}`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiPaper",

@@ -28,11 +28,50 @@
     "import Avatar from '@mui/material/Avatar';",
     "import { Avatar } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "colorDefault", "circular", "rounded", "square", "img", "fallback"],
-    "globalClasses": {},
-    "name": "MuiAvatar"
-  },
+  "classes": [
+    {
+      "key": "circular",
+      "className": "MuiAvatar-circular",
+      "description": "Styles applied to the root element if `variant=\"circular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDefault",
+      "className": "MuiAvatar-colorDefault",
+      "description": "Styles applied to the root element if not `src` or `srcSet`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fallback",
+      "className": "MuiAvatar-fallback",
+      "description": "Styles applied to the fallback icon",
+      "isGlobal": false
+    },
+    {
+      "key": "img",
+      "className": "MuiAvatar-img",
+      "description": "Styles applied to the img element if either `src` or `srcSet` is defined.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAvatar-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "rounded",
+      "className": "MuiAvatar-rounded",
+      "description": "Styles applied to the root element if `variant=\"rounded\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "square",
+      "className": "MuiAvatar-square",
+      "description": "Styles applied to the root element if `variant=\"square\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAvatar",

@@ -34,12 +34,9 @@ The majority of our work is asynchronous, and we rely on written communication t
 We're radically transparent: nearly all of our work happens in public.
 Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
 
-For additional details about the culture you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
-
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
 
 We need a Community Engineer to solve friction points of users.
 We face challenges on multiple fronts:
@@ -48,6 +45,9 @@ We face challenges on multiple fronts:
 - The commercial version of the library is growing, but our community of developers is still small and has a reduced incentive to contribute compared to the community plan.
 - Software engineers at MUI are tasked with doing support, however, they could benefit from the help of a dedicated person in the company, for instance to improve the workflows and tooling.
 - The MUI X Premium plan will offer a technical advisor service, we need a Community Engineer to help deliver it.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ## The role
 

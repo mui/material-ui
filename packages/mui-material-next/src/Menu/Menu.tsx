@@ -102,8 +102,6 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
 
   // TODO v6: Handle the rest of the props from the MenuListProps prop
   const {
-    // autoFocus,
-    // autoFocusItem,
     // varaint
     className: menuListPropsClassName,
     disabledItemsFocusable,
@@ -115,7 +113,7 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
     // onItemsChange,
     disabledItemsFocusable: Boolean(disabledItemsFocusable),
     disableListWrap: Boolean(disableListWrap),
-    // autoFocus,
+    autoFocus,
   });
 
   const ownerState = {
@@ -141,9 +139,6 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
   );
 
   const classes = useUtilityClasses(ownerState);
-
-  // Used in the legacy MenuList component
-  // const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
 
   const handleEntering = (element: HTMLElement, isAppearing: boolean) => {
     // adjust styles for scrollbar

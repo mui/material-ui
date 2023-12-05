@@ -8,7 +8,6 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import CSSSection from 'docs/src/modules/components/ApiPage/sections/CssSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 
@@ -84,11 +83,14 @@ export default function ComponentsApiContent(props) {
       name: componentName,
       props: componentProps,
       spread,
-      styles: componentStyles,
       slots: componentSlots,
-      classes: componentClasses,
+      classes,
       imports,
     } = pageContent;
+
+    const componentClasses = [...classes].sort((c1, c2) =>
+      c1.className.localeCompare(c2.className),
+    );
 
     const { classDescriptions, propDescriptions, slotDescriptions } =
       descriptions[key][userLanguage];
@@ -98,9 +100,6 @@ export default function ComponentsApiContent(props) {
     const defaultPropsLink = isJoyComponent
       ? '/joy-ui/customization/themed-components/#theme-default-props'
       : '/material-ui/customization/theme-components/#theme-default-props';
-    const styleOverridesLink = isJoyComponent
-      ? '/joy-ui/customization/themed-components/#theme-style-overrides'
-      : '/material-ui/customization/theme-components/#theme-style-overrides';
     let slotGuideLink = '';
     if (isJoyComponent) {
       slotGuideLink = '/joy-ui/customization/overriding-component-structure/';
@@ -213,15 +212,6 @@ export default function ComponentsApiContent(props) {
               />
             </React.Fragment>
           )}
-
-          <CSSSection
-            componentStyles={componentStyles}
-            classDescriptions={classDescriptions}
-            componentName={componentName}
-            styleOverridesLink={styleOverridesLink}
-            titleHash={`${componentName}-css`}
-            level="h3"
-          />
 
           <SlotsSection
             componentSlots={componentSlots}

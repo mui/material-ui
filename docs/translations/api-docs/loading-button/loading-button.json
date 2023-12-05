@@ -19,91 +19,25 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "text": {
+    "colorInherit": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code>"
-    },
-    "textInherit": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"inherit\"</code>"
-    },
-    "textPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>"
-    },
-    "textSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
-    },
-    "textSuccess": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"success\"</code>"
-    },
-    "textError": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"error\"</code>"
-    },
-    "textInfo": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"info\"</code>"
-    },
-    "textWarning": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"warning\"</code>"
-    },
-    "outlined": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code>"
-    },
-    "outlinedInherit": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"inherit\"</code>"
-    },
-    "outlinedPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
-    },
-    "outlinedSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
-    },
-    "outlinedSuccess": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"success\"</code>"
-    },
-    "outlinedError": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"error\"</code>"
-    },
-    "outlinedInfo": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"info\"</code>"
-    },
-    "outlinedWarning": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"warning\"</code>"
+      "conditions": "<code>color=\"inherit\"</code>"
     },
     "contained": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"contained\"</code>"
+    },
+    "containedError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"error\"</code>"
+    },
+    "containedInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"info\"</code>"
     },
     "containedInherit": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -120,135 +54,75 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>"
     },
-    "containedSuccess": {
+    "containedSizeLarge": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"success\"</code>"
-    },
-    "containedInfo": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"info\"</code>"
-    },
-    "containedError": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"error\"</code>"
-    },
-    "containedWarning": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"warning\"</code>"
-    },
-    "disableElevation": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disableElevation={true}</code>"
-    },
-    "focusVisible": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the ButtonBase root element",
-      "conditions": "the button is keyboard focused"
-    },
-    "disabled": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disabled={true}</code>"
-    },
-    "colorInherit": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"inherit\"</code>"
-    },
-    "textSizeSmall": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"small\"</code> and <code>variant=\"text\"</code>"
-    },
-    "textSizeMedium": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"medium\"</code> and <code>variant=\"text\"</code>"
-    },
-    "textSizeLarge": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"large\"</code> and <code>variant=\"text\"</code>"
-    },
-    "outlinedSizeSmall": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"small\"</code> and <code>variant=\"outlined\"</code>"
-    },
-    "outlinedSizeMedium": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"medium\"</code> and <code>variant=\"outlined\"</code>"
-    },
-    "outlinedSizeLarge": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"large\"</code> and <code>variant=\"outlined\"</code>"
-    },
-    "containedSizeSmall": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"small\"</code> and <code>variant=\"contained\"</code>"
+      "conditions": "<code>size=\"large\"</code> and <code>variant=\"contained\"</code>"
     },
     "containedSizeMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"medium\"</code> and <code>variant=\"contained\"</code>"
     },
-    "containedSizeLarge": {
+    "containedSizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"large\"</code> and <code>variant=\"contained\"</code>"
+      "conditions": "<code>size=\"small\"</code> and <code>variant=\"contained\"</code>"
     },
-    "sizeSmall": {
+    "containedSuccess": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"small\"</code>"
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"success\"</code>"
     },
-    "sizeMedium": {
+    "containedWarning": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"medium\"</code>"
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"warning\"</code>"
     },
-    "sizeLarge": {
+    "disabled": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "disableElevation": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"large\"</code>"
-    },
-    "fullWidth": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>fullWidth={true}</code>"
-    },
-    "startIcon": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the startIcon element",
-      "conditions": "supplied"
+      "conditions": "<code>disableElevation={true}</code>"
     },
     "endIcon": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the endIcon element",
       "conditions": "supplied"
     },
-    "iconSizeSmall": {
+    "endIconLoadingEnd": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the endIcon element",
+      "conditions": "<code>loading={true}</code> and <code>loadingPosition=\"end\"</code>"
+    },
+    "focusVisible": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the ButtonBase root element",
+      "conditions": "the button is keyboard focused"
+    },
+    "fullWidth": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>fullWidth={true}</code>"
+    },
+    "iconSizeLarge": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon element",
-      "conditions": "supplied and <code>size=\"small\"</code>"
+      "conditions": "supplied and <code>size=\"large\"</code>"
     },
     "iconSizeMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon element",
       "conditions": "supplied and <code>size=\"medium\"</code>"
     },
-    "iconSizeLarge": {
+    "iconSizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon element",
-      "conditions": "supplied and <code>size=\"large\"</code>"
+      "conditions": "supplied and <code>size=\"small\"</code>"
     },
     "loading": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -264,25 +138,151 @@
       "nodeName": "the loadingIndicator element",
       "conditions": "<code>loadingPosition=\"center\"</code>"
     },
-    "loadingIndicatorStart": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the loadingIndicator element",
-      "conditions": "<code>loadingPosition=\"start\"</code>"
-    },
     "loadingIndicatorEnd": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the loadingIndicator element",
       "conditions": "<code>loadingPosition=\"end\"</code>"
     },
-    "endIconLoadingEnd": {
+    "loadingIndicatorStart": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the endIcon element",
-      "conditions": "<code>loading={true}</code> and <code>loadingPosition=\"end\"</code>"
+      "nodeName": "the loadingIndicator element",
+      "conditions": "<code>loadingPosition=\"start\"</code>"
+    },
+    "outlined": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "outlinedError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"error\"</code>"
+    },
+    "outlinedInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"info\"</code>"
+    },
+    "outlinedInherit": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"inherit\"</code>"
+    },
+    "outlinedPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
+    },
+    "outlinedSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "outlinedSizeLarge": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"large\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "outlinedSizeMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"medium\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "outlinedSizeSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"small\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "outlinedSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"success\"</code>"
+    },
+    "outlinedWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"warning\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "sizeLarge": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"large\"</code>"
+    },
+    "sizeMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"medium\"</code>"
+    },
+    "sizeSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "startIcon": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the startIcon element",
+      "conditions": "supplied"
     },
     "startIconLoadingStart": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the startIcon element",
       "conditions": "<code>loading={true}</code> and <code>loadingPosition=\"start\"</code>"
+    },
+    "text": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code>"
+    },
+    "textError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"error\"</code>"
+    },
+    "textInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"info\"</code>"
+    },
+    "textInherit": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"inherit\"</code>"
+    },
+    "textPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>"
+    },
+    "textSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "textSizeLarge": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"large\"</code> and <code>variant=\"text\"</code>"
+    },
+    "textSizeMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"medium\"</code> and <code>variant=\"text\"</code>"
+    },
+    "textSizeSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"small\"</code> and <code>variant=\"text\"</code>"
+    },
+    "textSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"success\"</code>"
+    },
+    "textWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"warning\"</code>"
     }
   }
 }
