@@ -165,7 +165,4 @@ At the same time, v6 will transition to [Long-Term Support](/versions/#long-term
 We're excited to hear from you about improving MUI X!
 Please share your requests, suggestions, pain points, and use cases through [this Google Form](https://forms.gle/vsBv6CLPz9h57xg8A).
 
-As always, you're welcome to request new features, share bug reports, and join in on the discussion in [the MUI X GitHub repository](https://github.com/mui/mui-x/issues).
-Lastly, we've recently released [the MUI Discord server](https://mui.com/r/discord/), and we'd love to see you there.
-
 Cheers!
