@@ -129,7 +129,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    *
    * @default {}
    */
-  SelectProps?: SelectPropsVariant;
+  SelectProps?: Partial<SelectProps>;
   /**
    * If `true`, show the first-page button.
    * @default false
@@ -146,7 +146,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   slotProps?: {
     actions?: TablePaginationActionsProps['slotProps'];
-    select?: Partial<SelectProps>;
+    select?: SelectPropsVariant<TablePaginationVariants>;
   };
   /**
    * The components used for each slot inside the TablePagination.
@@ -164,19 +164,13 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
 
 type TablePaginationVariants = 'filled' | 'standard' | 'outlined';
 
-type SelectInputProps<Variant extends TablePaginationVariants> = Variant extends 'filled'
-  ? Partial<FilledInputProps>
-  : Variant extends 'standard'
-  ? Partial<StandardInputProps>
-  : Partial<OutlinedInputProps>;
-
-export interface SelectPropsVariant<
-  Variant extends TablePaginationVariants = TablePaginationVariants,
-> extends Partial<SelectProps> {
-  variant?: Variant;
-  InputProps?: SelectInputProps<Variant>;
-  // ... (other variant-specific props)
-}
+// Extend SelectProps based on the variant
+type SelectPropsVariant<Variant extends TablePaginationVariants> = Partial<SelectProps> &
+  (Variant extends 'filled'
+    ? Partial<FilledInputProps>
+    : Variant extends 'standard'
+    ? Partial<StandardInputProps>
+    : Partial<OutlinedInputProps>);
 
 export interface TablePaginationTypeMap<AdditionalProps, RootComponent extends React.ElementType> {
   props: AdditionalProps & TablePaginationOwnProps;
