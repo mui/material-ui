@@ -7,6 +7,8 @@ import { useListItem } from '../useList';
 import { useCompoundItem } from '../useCompound';
 import { useButton } from '../useButton';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import { EventHandlers } from '../utils/types';
 
 /**
  *
@@ -53,12 +55,31 @@ export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionR
 
   const handleRef = useForkRef(optionRefParam, optionRef, buttonRefHandler)!;
 
+  const createHandleKeyDown =
+    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent & MuiCancellableEvent) => {
+      otherHandlers.onKeyDown?.(event);
+      if (event.defaultMuiPrevented) {
+        return;
+      }
+
+      if ([' ', 'Enter'].includes(event.key)) {
+        event.defaultMuiPrevented = true; // prevent listbox onKeyDown
+      }
+    };
+
+  const getOwnHandlers = (otherHandlers: EventHandlers = {}) => ({
+    onKeyDown: createHandleKeyDown(otherHandlers),
+  });
+
   return {
     getRootProps: <ExternalProps extends Record<string, unknown> = {}>(
       externalProps: ExternalProps = {} as ExternalProps,
     ) => {
       const externalEventHandlers = extractEventHandlers(externalProps);
-      const getCombinedRootProps = combineHooksSlotProps(getListItemProps, getButtonProps);
+      const getCombinedRootProps = combineHooksSlotProps(
+        getListItemProps,
+        combineHooksSlotProps(getButtonProps, getOwnHandlers),
+      );
       return {
         ...externalProps,
         ...externalEventHandlers,

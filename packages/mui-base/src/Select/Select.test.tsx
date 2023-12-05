@@ -111,7 +111,7 @@ describe('<Select />', () => {
 
     describe('item selection', () => {
       ['Enter', ' '].forEach((key) =>
-        it(`selects a highlighted item using the "${key}" key`, async () => {
+        it(`selects a highlighted item using the "${key}" key in single mode`, async () => {
           const { getByRole } = render(
             <Select>
               <Option value={1}>1</Option>
@@ -120,14 +120,32 @@ describe('<Select />', () => {
           );
 
           const select = getByRole('combobox');
-          act(() => {
-            select.click();
-          });
 
+          await userEvent.pointer({ target: select, keys: '[MouseLeft]' });
           await userEvent.keyboard('{ArrowDown}');
           await userEvent.keyboard(`{${key}}`);
 
           expect(select).to.have.text('2');
+        }),
+      );
+
+      ['Enter', ' '].forEach((key) =>
+        it(`selects a highlighted item using the "${key}" key in multiple mode`, async () => {
+          const { getByRole } = render(
+            <Select multiple>
+              <Option value={1}>1</Option>
+              <Option value={2}>2</Option>
+            </Select>,
+          );
+
+          const select = getByRole('combobox');
+
+          await userEvent.pointer({ target: select, keys: '[MouseLeft]' });
+          await userEvent.keyboard(`{${key}}`);
+          await userEvent.keyboard('{ArrowDown}');
+          await userEvent.keyboard(`{${key}}`);
+
+          expect(select).to.have.text('1, 2');
         }),
       );
     });
@@ -318,6 +336,25 @@ describe('<Select />', () => {
 
       expect(select).to.have.attribute('aria-expanded', 'false');
       expect(select).to.have.text('1');
+      expect(queryByRole('listbox', { hidden: true })).not.toBeVisible();
+    });
+
+    it('closes the listbox after selecting with keyboard', async () => {
+      const { getByRole, queryByRole } = render(
+        <Select defaultValue={1}>
+          <Option value={1}>1</Option>
+          <Option value={2}>2</Option>
+        </Select>,
+      );
+
+      const select = getByRole('combobox');
+
+      await userEvent.pointer({ target: select, keys: '[MouseLeft]' });
+      await userEvent.keyboard('{ArrowDown}'); // highlights '2'
+      await userEvent.keyboard('{Enter}');
+
+      expect(select).to.have.attribute('aria-expanded', 'false');
+      expect(select).to.have.text('2');
       expect(queryByRole('listbox', { hidden: true })).not.toBeVisible();
     });
 
