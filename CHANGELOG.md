@@ -1,5 +1,42 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.14.20
+
+<!-- generated comparing v5.14.19..master -->
+
+_Dec 5, 2023_
+
+A big thanks to the 14 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material-next@6.0.0-alpha.112`
+
+- &#8203;<!-- 07 -->[Menu] Enable again the usage of the autoFocus prop (#39960) @mnajdova
+- &#8203;<!-- 06 -->[ProgressIndicator] Apply MD3 style to `CircularProgress` (#39825) @lhilgert9
+
+### Docs
+
+- &#8203;<!-- 15 -->Remove outdated showcase (#40063) @oliviertassinari
+- &#8203;<!-- 14 -->Support yaml as prism language (#40044) @Janpot
+- &#8203;<!-- 12 -->[material-ui] Fix SearchAppBar width on `sm` screens (#40049) @DiegoAndai
+- &#8203;<!-- 11 -->[material-ui] Update the basic Grid section copy (#40035) @REX500
+- &#8203;<!-- 10 -->[material-ui] Add a react-admin example project (#39972) @fzaninotto
+- &#8203;<!-- 09 -->[material-ui][TextField] Add a performance section (#39692) @anle9650
+- &#8203;<!-- 05 -->[material-ui][tabs] Refine scrollable tabs description (#40037) @zanivan
+- &#8203;<!-- 08 -->[system] Fix typo on the CSS theme variables page (#40040) @caweidmann
+
+### Core
+
+- &#8203;<!-- 17 -->[blog] Fix scrollbar on mobile (#40057) @oliviertassinari
+- &#8203;<!-- 16 -->[blog] Fix link to charts getting started page (#40043) @alexfauquette
+- &#8203;<!-- 13 -->[docs-infra] Simplify CSS classes extraction in API docs generator (#39808) @michaldudak
+- &#8203;<!-- 04 -->[website] Polish dark mode colors (#40052) @danilo-leal
+- &#8203;<!-- 03 -->[website] Add why Design Engineer for data grid (#40016) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Add stray fixes to the Base UI page (#40051) @danilo-leal
+- &#8203;<!-- 01 -->[website] Revise the Developer Advocate job posting (#39210) @samuelsycamore
+
+All contributors of this release in alphabetical order: @alexfauquette, @anle9650, @caweidmann, @danilo-leal, @DiegoAndai, @fzaninotto, @Janpot, @lhilgert9, @michaldudak, @mnajdova, @oliviertassinari, @REX500, @samuelsycamore, @zanivan
+
 ## 5.14.19
 
 <!-- generated comparing v5.14.18..master -->
