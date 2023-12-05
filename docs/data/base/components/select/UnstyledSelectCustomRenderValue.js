@@ -12,13 +12,13 @@ export default function UnstyledSelectCustomRenderValue() {
     <Select
       defaultValue={10}
       renderValue={(option) => {
-        if (option == null || option.value === null) {
+        if (option == null || option.value === 0) {
           return 'Select an option…';
         }
         return `${option.label} (${option.value})`;
       }}
     >
-      <Option value={null}>None</Option>
+      <Option value={0}>None</Option>
       <Option value={10}>Ten</Option>
       <Option value={20}>Twenty</Option>
       <Option value={30}>Thirty</Option>
@@ -175,6 +175,10 @@ const Option = styled(BaseOption)(
   &.${optionClasses.highlighted}.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
+  }
+
+  &:focus-visible {
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
   &.${optionClasses.disabled} {

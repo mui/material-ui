@@ -134,6 +134,10 @@ const Option = styled('li')(
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
+  &:focus-visible {
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+  }
+
   &:before {
     content: '';
     width: 1ex;
@@ -188,12 +192,6 @@ function CustomSelect({ options, placeholder }) {
     onOpenChange: setListboxVisible,
     open: listboxVisible,
   });
-
-  React.useEffect(() => {
-    if (listboxVisible) {
-      listboxRef.current?.focus();
-    }
-  }, [listboxVisible]);
 
   return (
     <Root>
