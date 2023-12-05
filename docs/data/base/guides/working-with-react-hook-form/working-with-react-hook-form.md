@@ -200,6 +200,47 @@ TODO: Switch demo
 
 ### Number Input
 
+The Number Input component accepts numeric values from the user, and provides two props–`onChange` and `onInputChange`–that accept event handlers to update the form with the component's latest value.
+
+It's meant to be a customizable replacement for the native HTML `<input type="number">`.
+
+This snippet shows how to update a numeric value in React Hook Form using `onChange`, a custom event that fires when the `<input>` element loses focus, or when the stepper buttons are clicked:
+
+```jsx
+import { Controller } from 'react-hook-form';
+import { Unstable_NumberInput as NumberInput } from '@mui/base';
+
+<Controller
+  name="number"
+  control={control}
+  render={({ field, fieldState }) => {
+    const { ref, value, onChange, name, ...fieldProps } = field;
+
+    return (
+      <NumberInput
+        value={value}
+        slotProps={{
+          input: {
+            ref,
+            id: name,
+          },
+        }}
+        onChange={(ev, newValue) => {
+          onChange(newValue);
+        }}
+        {...fieldProps}
+      />
+    );
+  }}
+/>;
+```
+
+Here's a complete demo of a Number Input:
+
+:::warning
+TODO: Number Input demo
+:::
+
 ### Slider
 
 Sliders are great for progressively enhancing a number input, especially when it's important to show the immediate effects of the change where the value is a numeric range.
