@@ -21,8 +21,8 @@ function Testimonials() {
       ref={ref}
       sx={(theme) => ({
         background: `linear-gradient(180deg, ${
-          (theme.vars || theme).palette.primaryDark[900]
-        } 2%, ${alpha(theme.palette.primaryDark[700], 0.5)} 80%),
+          (theme.vars || theme).palette.primaryDark[800]
+        } 2%, ${alpha(theme.palette.primaryDark[700], 0.4)} 80%),
         ${(theme.vars || theme).palette.primaryDark[900]}
         `,
       })}

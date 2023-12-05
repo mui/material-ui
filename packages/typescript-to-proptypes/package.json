@@ -29,7 +29,7 @@
     "@mui-internal/api-docs-builder": "^1.0.0",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
-    "typescript": "^5.1.6",
+    "typescript": "^5.3.2",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

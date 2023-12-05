@@ -1,5 +1,6 @@
 {
   "parameters": {
+    "autoFocus": { "type": { "name": "boolean", "description": "boolean" }, "default": "true" },
     "disabledItemsFocusable": {
       "type": { "name": "boolean", "description": "boolean" },
       "default": "true"

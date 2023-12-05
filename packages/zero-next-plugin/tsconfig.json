@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig",
-  "include": ["src/**/*", "test/**/*"],
+  "include": ["src/**/*"],
   "compilerOptions": {
     "lib": ["ES2022", "DOM"],
     "target": "ES2015",

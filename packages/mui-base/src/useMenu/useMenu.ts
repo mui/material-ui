@@ -43,7 +43,7 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     id: idParam,
     disabledItemsFocusable = true,
     disableListWrap = false,
-    // autoFocus = true,
+    autoFocus = true,
   } = parameters;
 
   const rootRef = React.useRef<HTMLElement>(null);
@@ -122,11 +122,10 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
   }, [listboxId, registerPopup]);
 
   React.useEffect(() => {
-    if (open && highlightedValue && !isInitiallyOpen.current) {
-      // TODO v6: focus only if autoFocus is true
+    if (open && autoFocus && highlightedValue && !isInitiallyOpen.current) {
       subitems.get(highlightedValue)?.ref?.current?.focus();
     }
-  }, [open, highlightedValue, subitems, subitemKeys]);
+  }, [open, autoFocus, highlightedValue, subitems, subitemKeys]);
 
   React.useEffect(() => {
     // set focus to the highlighted item (but prevent stealing focus from other elements on the page)

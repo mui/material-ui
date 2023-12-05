@@ -144,11 +144,11 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
             }),
             (theme) =>
               theme.applyDarkStyles({
-                bgcolor: 'primaryDark.900',
+                bgcolor: 'primaryDark.800',
                 boxShadow: `inset 0 1px 1px ${
                   (theme.vars || theme).palette.primaryDark[900]
                 }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
-                borderColor: 'primaryDark.500',
+                borderColor: 'primaryDark.600',
                 '&:hover': {
                   borderColor: 'primaryDark.400',
                   boxShadow: `inset 0 1px 1px ${
