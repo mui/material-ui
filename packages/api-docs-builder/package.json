@@ -36,6 +36,6 @@
     "@types/sinon": "^10.0.20",
     "chai": "^4.3.10",
     "sinon": "^15.2.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.3.2"
   }
 }
