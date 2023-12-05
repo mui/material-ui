@@ -28,7 +28,7 @@
   font-size: 14px;
   font-variant: tabular-nums;
   list-style: none;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   position: relative;
   display: inline-block;
   line-height: 1;
@@ -73,7 +73,7 @@
 }
 
 .GalleryButton {
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -121,7 +121,7 @@
 
 .GalleryInput .MuiInput-input {
   width: 320px;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
@@ -152,7 +152,7 @@
 }
 
 .GalleryMenu-listbox {
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -214,7 +214,7 @@
 }
 
 .GalleryNumberInput {
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
   border-radius: 8px;
   color: var(--GalleryNumberInput-color, var(--grey-900));
@@ -391,7 +391,7 @@
 }
 
 .GallerySelect {
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-width: 320px;
@@ -428,7 +428,7 @@
   }
 }
 .GallerySelect-listbox {
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -615,7 +615,7 @@
   box-shadow: 0 2px 16px var(--GallerySnackbar-content-boxShadow-color, var(--grey-200));
   padding: 0.75rem;
   color: var(--GallerySnackbar-content-color, var(--grey-900));
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 500;
   text-align: start;
   position: relative;
@@ -756,7 +756,7 @@
 }
 
 .GalleryTablePaginationDemo table {
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   width: 100%;
   background-color: var(--GalleryTablePainationDemo-table-background-color, #fff);
@@ -792,7 +792,7 @@
 }
 
 .GalleryTablePagination .MuiTablePagination-toolbar {
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   display: flex;
   flex-direction: column;
@@ -943,7 +943,7 @@
 
 .GalleryTextarea {
   width: 320px;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;

@@ -18,7 +18,6 @@
     "value": { "description": "The value of the form element." }
   },
   "classDescriptions": {
-    "root": { "description": "Class applied to the root element." },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -43,6 +42,7 @@
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>required={true}</code>"
-    }
+    },
+    "root": { "description": "Class applied to the root element." }
   }
 }

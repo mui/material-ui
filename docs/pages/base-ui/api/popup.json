@@ -50,16 +50,22 @@
     "import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';",
     "import { Unstable_Popup as Popup } from '@mui/base';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiPopup-root"
+      "class": "MuiPopup-root"
     }
   ],
-  "classes": { "classes": ["open"], "globalClasses": { "open": "Mui-open" } },
+  "classes": [
+    {
+      "key": "open",
+      "className": "Mui-open",
+      "description": "Class name applied to the root element when the popup is open.",
+      "isGlobal": true
+    }
+  ],
   "spread": true,
   "muiName": "MuiPopup",
   "forwardsRefTo": "HTMLDivElement",

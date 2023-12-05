@@ -6,14 +6,14 @@
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [4 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
+- **Level**: [IC4 or above](https://mui-org.notion.site/Levelling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## The company
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub, and has paved the way for the fully fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 35+ people as of late 2023, and we're growing.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
@@ -34,15 +34,15 @@ The majority of our work is asynchronous, and we rely on written communication t
 We're radically transparent: nearly all of our work happens in public.
 Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
 
-For additional details about the culture you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
-
 We are aiming to make high-end design accessible to the many, empowering developers that lack access to a designer as well as saving time for designers with a source they can trust.
 [According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criteria used by developers & designers to pick their next UI library.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ### Why this is interesting
 
@@ -64,15 +64,15 @@ Depending on the day, you'll:
 - Extend our different design systems (Material UI, Joy UI).
 - Create appealing new demos in the docs.
 
-## About you
+## Who we're looking for
 
-### Skills you should have
+### Required
 
 - 3+ years of relevant web front-end development experience at a tech-forward, product-driven company.
 - Advanced knowledge of modern React, HTML, and CSS.
-- Experience designing and building public facing-sites that work elegantly.
+- Experience designing and building public-facing sites that work elegantly.
 
-### What would be nice if you had, but isn't required
+### Nice to have (but not required)
 
 - A good understanding of the formal elements of design, not just limited to the web and including typography, layout, balance, and proportion.
 
@@ -88,6 +88,6 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 Don't meet every requirement?
 Apply anyway!
-Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+Research shows that certain folks are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
 If this role excites you, we want to hear from you.
 We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

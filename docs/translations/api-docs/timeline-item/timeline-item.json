@@ -9,16 +9,10 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "positionLeft": {
+    "missingOppositeContent": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>position=\"left\"</code>"
-    },
-    "positionRight": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>position=\"right\"</code>"
+      "conditions": "TimelineOppositeContent isn&#39;t provided"
     },
     "positionAlternate": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -30,10 +24,16 @@
       "nodeName": "the root element",
       "conditions": "<code>position=\"alternate-reverse\"</code>"
     },
-    "missingOppositeContent": {
+    "positionLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "TimelineOppositeContent isn&#39;t provided"
-    }
+      "conditions": "<code>position=\"left\"</code>"
+    },
+    "positionRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"right\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." }
   }
 }

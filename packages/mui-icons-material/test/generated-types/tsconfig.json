@@ -1,4 +1,5 @@
 {
+  "extends": "../../../../tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
@@ -10,10 +11,16 @@
     "baseUrl": "../../../",
     "noErrorTruncation": true,
     "paths": {
+      "@mui/base": ["./mui-base/src"],
+      "@mui/base/*": ["./mui-base/src/*"],
       "@mui/material": ["./mui-material/src"],
       "@mui/material/*": ["./mui-material/src/*"],
+      "@mui/system": ["./mui-system/src"],
+      "@mui/system/*": ["./mui-system/src/*"],
       "@mui/icons-material": ["./mui-icons-material/build"],
-      "@mui/icons-material/*": ["./mui-icons-material/build/*"]
+      "@mui/icons-material/*": ["./mui-icons-material/build/*"],
+      "@mui/utils": ["./mui-utils/src"],
+      "@mui/utils/*": ["./mui-utils/src/*"]
     }
   },
   "exclude": ["**/node_modules/"]

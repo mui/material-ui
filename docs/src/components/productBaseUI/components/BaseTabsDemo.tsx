@@ -21,13 +21,13 @@ const StyledTabsList = styled('div')(tabListStyles);
 
 const tabPanelStyles = `
   width: 100%;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
 `;
 const StyledTabPanel = styled('div')(tabPanelStyles);
 
 const tabStyles = `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   color: white;
   cursor: pointer;
   font-size: 0.875rem;
@@ -174,39 +174,39 @@ import { TabUnstyled } from '@mui/base/Tab';
 
 <TabsUnstyled selectionFollowsFocus defaultValue={0}>
   <TabsListUnstyled
-    className="mb-[16px] flex min-w-[300px] content-between 
-      items-center justify-center rounded-[12px] 
+    className="mb-[16px] flex min-w-[300px] content-between
+      items-center justify-center rounded-[12px]
       bg-[--palette-primary] [box-shadow:var(--shadow)]">
-    <TabUnstyled 
-      className="m-[6px] flex w-full cursor-pointer 
-        justify-center rounded-[7px] border-none 
-        bg-transparent p-[12px] text-[0.875rem] 
-        font-bold text-white [font-family:IBM_Plex_sans] 
-        focus:text-white 
-        focus:[outline:3px_solid_var(--focus-ring)] 
-        ui-selected:bg-white 
+    <TabUnstyled
+      className="m-[6px] flex w-full cursor-pointer
+        justify-center rounded-[7px] border-none
+        bg-transparent p-[12px] text-[0.875rem]
+        font-bold text-white [font-family:IBM_Plex_sans]
+        focus:text-white
+        focus:[outline:3px_solid_var(--focus-ring)]
+        ui-selected:bg-white
         ui-selected:text-[--palette-primary]">
       One
     </TabUnstyled>
-    <TabUnstyled 
-      className="m-[6px] flex w-full cursor-pointer 
-        justify-center rounded-[7px] border-none 
-        bg-transparent p-[12px] text-[0.875rem] 
-        font-bold text-white [font-family:IBM_Plex_sans] 
-        focus:text-white 
-        focus:[outline:3px_solid_var(--focus-ring)] 
-        ui-selected:bg-white 
+    <TabUnstyled
+      className="m-[6px] flex w-full cursor-pointer
+        justify-center rounded-[7px] border-none
+        bg-transparent p-[12px] text-[0.875rem]
+        font-bold text-white [font-family:IBM_Plex_sans]
+        focus:text-white
+        focus:[outline:3px_solid_var(--focus-ring)]
+        ui-selected:bg-white
         ui-selected:text-[--palette-primary]">
       Two
     </TabUnstyled>
-    <TabUnstyled 
-      className="m-[6px] flex w-full cursor-pointer 
-        justify-center rounded-[7px] border-none 
-        bg-transparent p-[12px] text-[0.875rem] 
-        font-bold text-white [font-family:IBM_Plex_sans] 
-        focus:text-white 
-        focus:[outline:3px_solid_var(--focus-ring)] 
-        ui-selected:bg-white 
+    <TabUnstyled
+      className="m-[6px] flex w-full cursor-pointer
+        justify-center rounded-[7px] border-none
+        bg-transparent p-[12px] text-[0.875rem]
+        font-bold text-white [font-family:IBM_Plex_sans]
+        focus:text-white
+        focus:[outline:3px_solid_var(--focus-ring)]
+        ui-selected:bg-white
         ui-selected:text-[--palette-primary]">
       Three
     </TabUnstyled>

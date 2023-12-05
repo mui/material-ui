@@ -44,14 +44,14 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "list": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the List component via <code>MenuList</code>"
+    },
     "paper": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Paper component"
     },
-    "list": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the List component via <code>MenuList</code>"
-    }
+    "root": { "description": "Styles applied to the root element." }
   }
 }

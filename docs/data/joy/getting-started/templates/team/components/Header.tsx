@@ -17,7 +17,6 @@ import Drawer from '@mui/joy/Drawer';
 import ModalClose from '@mui/joy/ModalClose';
 import DialogTitle from '@mui/joy/DialogTitle';
 
-// Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
@@ -29,7 +28,6 @@ import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
-// Custom
 import TeamNav from './Navigation';
 
 function ColorSchemeToggle() {

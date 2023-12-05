@@ -6,7 +6,7 @@
   },
   "name": "NoSsr",
   "imports": ["import { NoSsr } from '@mui/base/NoSsr';", "import { NoSsr } from '@mui/base';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "classes": [],
   "spread": false,
   "themeDefaultProps": null,
   "muiName": "MuiNoSsr",
