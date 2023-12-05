@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
-import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
+import { LineChart, axisClasses } from '@mui/x-charts';
+import { ChartsTextStyle } from '@mui/x-charts/internals/components/ChartsText';
 import Title from './Title';
 
 // Generate Sales Data
-function createData(time: string, amount?: number) {
+function createData(
+  time: string,
+  amount?: number,
+): { time: string; amount?: number } {
   return { time, amount };
 }
 
@@ -17,7 +21,7 @@ const data = [
   createData('15:00', 2000),
   createData('18:00', 2400),
   createData('21:00', 2400),
-  createData('24:00', undefined),
+  createData('24:00'),
 ];
 
 export default function Chart() {
@@ -26,8 +30,53 @@ export default function Chart() {
   return (
     <React.Fragment>
       <Title>Today</Title>
-      <ResponsiveContainer>
+      <div style={{ width: '100%', height: '100%' }}>
         <LineChart
+          dataset={data}
+          margin={{
+            top: 16,
+            right: 20,
+            left: 70,
+            bottom: 30,
+          }}
+          xAxis={[
+            {
+              scaleType: 'point',
+              dataKey: 'time',
+              tickNumber: 2,
+              tickLabelStyle: theme.typography.body2 as ChartsTextStyle,
+            },
+          ]}
+          yAxis={[
+            {
+              label: 'Sales ($)',
+              labelStyle: {
+                ...(theme.typography.body1 as ChartsTextStyle),
+                fill: theme.palette.text.primary,
+              },
+              tickLabelStyle: theme.typography.body2 as ChartsTextStyle,
+              max: 2500,
+              tickNumber: 3,
+            },
+          ]}
+          series={[
+            {
+              dataKey: 'amount',
+              showMark: false,
+              color: theme.palette.primary.light,
+            },
+          ]}
+          sx={{
+            [`.${axisClasses.root} line`]: { stroke: theme.palette.text.secondary },
+            [`.${axisClasses.root} text`]: { fill: theme.palette.text.secondary },
+            [`& .${axisClasses.left} .${axisClasses.label}`]: {
+              transform: 'translateX(-25px)',
+            },
+          }}
+        />
+      </div>
+      {/* <ResponsiveContainer>
+        <RechartLineChart
           data={data}
           margin={{
             top: 16,
@@ -64,8 +113,8 @@ export default function Chart() {
             stroke={theme.palette.primary.main}
             dot={false}
           />
-        </LineChart>
-      </ResponsiveContainer>
+        </RechartLineChart>
+      </ResponsiveContainer> */}
     </React.Fragment>
   );
 }
