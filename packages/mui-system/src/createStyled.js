@@ -1,4 +1,6 @@
 /* eslint-disable no-underscore-dangle */
+import * as React from 'react';
+import clsx from 'clsx';
 import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
 import {
   getDisplayName,
@@ -310,7 +312,39 @@ export default function createStyled(input = {}) {
         transformedStyleArg = [...styleArg, ...placeholders];
         transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
       }
-      const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
+      const DefaultComponent = defaultStyledResolver(
+        transformedStyleArg,
+        ...expressionsWithDefaultTheme,
+      );
+
+      const Component = React.forwardRef(function Component(props, ref) {
+        const sxClass = typeof props.sx === 'string' ? props.sx : props.sx?.className;
+        const sxVars = props.sx && typeof props.sx !== 'string' ? props.sx.vars : undefined;
+        const sxVarsStyles = {};
+        if (sxVars) {
+          Object.entries(sxVars).forEach(([cssVariable, [value, isUnitLess]]) => {
+            if (typeof value === 'string' || isUnitLess) {
+              sxVarsStyles[`--${cssVariable}`] = value;
+            } else {
+              sxVarsStyles[`--${cssVariable}`] = `${value}px`;
+            }
+          });
+        }
+        return (
+          <DefaultComponent
+            {...props}
+            className={clsx(props.className, sxClass)}
+            style={{ ...sxVarsStyles, ...props.style }}
+            ref={ref}
+          />
+        );
+      });
+
+      Object.keys(DefaultComponent).forEach((key) => {
+        if (!key.startsWith('$$') && key !== 'render') {
+          Component[key] = DefaultComponent[key];
+        }
+      });
 
       if (process.env.NODE_ENV !== 'production') {
         let displayName;
