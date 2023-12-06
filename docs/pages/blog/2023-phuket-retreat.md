@@ -24,7 +24,7 @@ Every 8 months, we bring MUIers from all corners of the world together to pursue
 
 Together Week invites a new level of intentionality to go after goals while offering more unique methods to achieve them.
 
-<img alt="The MUI team stands together at the hotel Reflections bar. A sign to the left reads: The Nai Harn." src="/static/blog/2023-phuket-retreat/whole-team-photo.png" width="1200" height="840" loading="lazy" />
+<img alt="The MUI team stands together at the hotel Reflections bar. A sign to the left reads: The Nai Harn." src="/static/blog/2023-phuket-retreat/whole-team-photo.jpg" width="1200" height="840" loading="lazy" />
 
 ## Destination
 
@@ -38,7 +38,7 @@ Given the great distance some team members would be traveling to attend, we want
 
 The Nai Harn is a five-star beachfront property boasting incredible luxury balanced with a cozy feel.
 
-<img alt="Entrance to the Nai Harn property at night. A lit sign on a leafy backdrop reads: The Nai Harn - Phuket." src="/static/blog/2023-phuket-retreat/hotel-entrance.png" width="1200" height="840" loading="lazy"  />
+<img alt="Entrance to the Nai Harn property at night. A lit sign on a leafy backdrop reads: The Nai Harn - Phuket." src="/static/blog/2023-phuket-retreat/hotel-entrance.jpg" width="1200" height="840" loading="lazy"  />
 
 A blend of Thai and international cuisines, plus free rental of kayaks, bicycles, stand-up paddle boards, and an on-site spa were just the ticket to ensure our team could be nourished and relaxed outside of scheduled working sessions and activity.
 
@@ -52,7 +52,7 @@ For this retreat we wanted to focus on intentional conversations in a few differ
 
 Everyone picked up a card once the exercise was explained, choosing from green, purple, or blue. The green cards were light and fun questions; purple, more self-reflective; and blue, a bit deeper. Crucially, as part of this exercise, everyone chose what color card they wanted, and could answer the questions posed however they wanted. After a brief chat, participants would trade cards and find another person they hadn't yet spoken to.
 
-<img alt="We Connect cards spread out on a table. Each card poses a different question." src="/static/blog/2023-phuket-retreat/we-connect-cards.png" width="1200" height="840" loading="lazy"  />
+<img alt="We Connect cards spread out on a table. Each card poses a different question." src="/static/blog/2023-phuket-retreat/we-connect-cards.jpg" width="1200" height="840" loading="lazy"  />
 
 After the kickoff, we broke out into groups to delve deep into issues and opportunities across the organization.
 
@@ -62,15 +62,15 @@ It gave us a valuable space to make important decisions together in a rapid-fire
 
 A picture is worth a thousand words they say, so here's a whole heap of our happy faces in far off places!
 
-<img alt="MUI team members stand at the steps leading up to Phuket's infamous 'Big Buddha.'" src="/static/blog/2023-phuket-retreat/big-buddha.png" width="1200" height="840" loading="lazy"  />
+<img alt="MUI team members stand at the steps leading up to Phuket's infamous 'Big Buddha.'" src="/static/blog/2023-phuket-retreat/big-buddha.jpg" width="1200" height="840" loading="lazy"  />
 
-<img alt="MUI team members enjoy a private catamaran trip. A rainbow appears over the team's boat." src="/static/blog/2023-phuket-retreat/rainbow-boat.png" width="1200" height="840" loading="lazy"  />
+<img alt="MUI team members enjoy a private catamaran trip. A rainbow appears over the team's boat." src="/static/blog/2023-phuket-retreat/rainbow-boat.jpg" width="1200" height="840" loading="lazy"  />
 
-<img alt="MUI team members seated for a team lunch on the Nai Harn's Cosmo dining hall terrace." src="/static/blog/2023-phuket-retreat/lunch-service.png" width="1200" height="840" loading="lazy"  />
+<img alt="MUI team members seated for a team lunch on the Nai Harn's Cosmo dining hall terrace." src="/static/blog/2023-phuket-retreat/lunch-service.jpg" width="1200" height="840" loading="lazy"  />
 
-<img alt="Bharat & Raffaella enjoy the views from the top of a lookout point." src="/static/blog/2023-phuket-retreat/bharat-raffaella.png" width="1200" height="840" loading="lazy"  />
+<img alt="Bharat & Raffaella enjoy the views from the top of a lookout point." src="/static/blog/2023-phuket-retreat/bharat-raffaella.jpg" width="1200" height="840" loading="lazy"  />
 
-<img alt="Andrew, Lukas, & Jose enjoy the views from the top of a lookout point." src="/static/blog/2023-phuket-retreat/andrii-lukas-jose.png" width="1200" height="840" loading="lazy"  />
+<img alt="Andrew, Lukas, & Jose enjoy the views from the top of a lookout point." src="/static/blog/2023-phuket-retreat/andrii-lukas-jose.jpg" width="1200" height="840" loading="lazy"  />
 
 ## Outcomes
 
@@ -86,7 +86,7 @@ It's worth highlighting some of the glowing feedback received, to illustrate why
 
 (You're dang right it is—there's plenty of research to back up [the power of work friends](https://hbr.org/2022/10/the-power-of-work-friends).)
 
-<img alt="Tina, Raffaella, and Mikaila enjoy a catered coffee break on the terrace between work sessions." src="/static/blog/2023-phuket-retreat/tina-raffaella-mikaila.png" width="1200" height="840" loading="lazy" />
+<img alt="Tina, Raffaella, and Mikaila enjoy a catered coffee break on the terrace between work sessions." src="/static/blog/2023-phuket-retreat/tina-raffaella-mikaila.jpg" width="1200" height="840" loading="lazy" />
 
 Reflecting on the whole team experience, many MUIers shared heartfelt messages of thanks and gratitude in our Slack workspace and their own social media channels. One thing is clear from the entire trip: we simply can't wait to be together again.
 
@@ -100,4 +100,4 @@ Sounds compelling? Apply now and be part of something extraordinary!
 
 Visit: www.mui.com/careers 👈
 
-<img alt="MUIers lined up at Banana Beach, enjoying the sand, scenery, and soft drinks." src="/static/blog/2023-phuket-retreat/banana-beach.png" width="1200" height="840" loading="lazy" />
+<img alt="MUIers lined up at Banana Beach, enjoying the sand, scenery, and soft drinks." src="/static/blog/2023-phuket-retreat/banana-beach.jpg" width="1200" height="840" loading="lazy" />
