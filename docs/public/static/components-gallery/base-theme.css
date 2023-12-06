@@ -118,14 +118,14 @@
   min-width: 22px;
   height: 22px;
   padding: 0 6px;
-  color: #fff;
+  color: white;
   font-weight: 600;
   font-size: 12px;
   line-height: 22px;
   white-space: nowrap;
   text-align: center;
   border-radius: 12px;
-  background: var(--background-surface-light-highlight);
+  background: var(--GalleryBadge-badge-background-color, var(--background-surface-light-highlight));
   box-shadow: var(--GalleryBadge-badge-boxShadow-color, var(--shadow-elevation-light-level-2));
   transform: translate(50%, -50%);
   transform-origin: 100% 0;
@@ -134,7 +134,7 @@
 .GalleryBadge-content {
   width: 40px;
   height: 40px;
-  border-radius: 12px;
+  border-radius: var(--border-radius-sm);
   background: var(--GalleryBadge-content-background-color, var(--background-surface-light-hard));
   display: inline-block;
   vertical-align: middle;
@@ -142,6 +142,7 @@
 
 @media (prefers-color-scheme: dark) {
   .GalleryBadge {
+    --GalleryBadge-badge-background-color: var(--background-surface-dark-highlight);
     --GalleryBadge-badge-boxShadow-color: var(--shadow-elevation-dark-level-2);
     --GalleryBadge-content-background-color: var(--background-surface-dark-hard);
   }
@@ -204,28 +205,28 @@
   font-weight: 400;
   line-height: 1.5;
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
   color: var(--GalleryInput-input-color, var(--grey-900));
-  background: var(--GalleryInput-input-background-color, '#fff');
-  border: 1px solid var(--GalleryInput-input-border-color, var(--grey-200));
-  box-shadow: 0px 2px 2px var(--GalleryInput-input-boxShadow-color, var(--grey-50));
+  background: var(--GalleryInput-input-background-color, var(--background-interactive-light-input-base));
+  border: var(--GalleryInput-input-border-color, var(--border-light-default));
+  box-shadow: var(--GalleryInput-input-boxShadow-color, var(--shadow-interactive-light-input));
 }
 .GalleryInput .MuiInput-input:hover {
-  border-color: var(--primary-400);
+  border: var(--GalleryInput-input-hover-border-color, var(--border-light-hard));
 }
 .GalleryInput .MuiInput-input:focus {
   outline: 0;
-  border-color: var(--primary-400);
-  box-shadow: 0 0 0 3px var(--GalleryInput-input-focus-boxShadow-color, var(--primary-200));
+  box-shadow: var(--GalleryInput-input-focus-boxShadow-color, var(--shadow-interactive-light-focus-visible));
 }
 
 @media (prefers-color-scheme: dark) {
   .GalleryInput {
     --GalleryInput-input-color: var(--grey-300);
-    --GalleryInput-input-background-color: var(--grey-900);
-    --GalleryInput-input-border-color: var(--grey-700);
-    --GalleryInput-input-boxShadow-color: var(--grey-900);
-    --GalleryInput-input-focus-boxShadow-color: var(--primary-600);
+    --GalleryInput-input-background-color: var(--background-interactive-dark-input-base);
+    --GalleryInput-input-border-color: var(--border-dark-default);
+    --GalleryInput-input-hover-border-color: var(--border-dark-hard); 
+    --GalleryInput-input-boxShadow-color: var(--shadow-interactive-dark-input);
+    --GalleryInput-input-focus-boxShadow-color:  var(--shadow-interactive-dark-focus-visible);
   }
 }
 
@@ -236,19 +237,19 @@
   padding: 6px;
   margin: 12px 0;
   min-width: 200px;
-  border-radius: 12px;
+  border-radius: var(--border-radius-lg);
   overflow: auto;
   outline: 0px;
-  background: var(--GalleryMenu-listbox-background, #fff);
-  border: 1px solid var(--GalleryMenu-listbox-border-color, var(--grey-200));
+  background: var(--GalleryMenu-listbox-background, var(--background-surface-light-default));
+  border: var(--GalleryMenu-listbox-border-color, var(--border-light-soft));
   color: var(--GalleryMenu-listbox-color, var(--grey-900));
-  box-shadow: 0px 4px 30px var(--GalleryMenu-listbox-boxShadow-color, var(--grey-200));
+  box-shadow: var(--GalleryMenu-listbox-boxShadow-color, var(--shadow-elevation-light-level-2));
 }
 
 .GalleryMenu-item {
   list-style: none;
   padding: 8px;
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
   cursor: default;
   user-select: none;
 }
@@ -258,8 +259,9 @@
 }
 
 .GalleryMenu-item.Mui-focusVisible {
-  outline: 3px solid var(--GalleryMenu-item-outline-color, var(--primary-200));
-  background-color: var(--GalleryMenu-item-background-color, var(--grey-100));
+  outline: none;
+  box-shadow: var(--GalleryMenu-item-focusVisible-color, var(--shadow-interactive-light-focus-visible));
+  background-color: var(--GalleryMenu-item-background-color, var(--background-surface-light-soft));
   color: var(--GalleryMenu-item-color, var(--grey-900));
 }
 
@@ -268,7 +270,7 @@
 }
 
 .GalleryMenu-item:hover:not(.Mui-disabled) {
-  background-color: var(--GalleryMenu-item-hover-background-color, var(--primary-50));
+  background-color: var(--GalleryMenu-item-hover-background-color, var(--background-surface-light-soft));
   color: var(--GalleryMenu-item-hover-color, var(--grey-900));
 }
 
@@ -277,16 +279,16 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .GalleryInput {
-    --GalleryMenu-listbox-background: var(--grey-900);
-    --GalleryMenu-listbox-border-color: var(--grey-700);
+  .GalleryMenu {
+    --GalleryMenu-listbox-background: var(--background-surface-dark-default);
+    --GalleryMenu-listbox-border-color: var(--border-dark-soft);
     --GalleryMenu-listbox-color: var(--grey-300);
-    --GalleryMenu-listbox-boxShadow-color: var(--grey-900);
-    --GalleryMenu-item-outline-color: var(--primary-600);
-    --GalleryMenu-item-background-color: var(--grey-800);
+    --GalleryMenu-listbox-boxShadow-color: var(--shadow-elevation-dark-level-2);
+    --GalleryMenu-item-focusVisible-color: var(--shadow-interactive-dark-focus-visible);
+    --GalleryMenu-item-background-color: var(--background-surface-dark-soft);
     --GalleryMenu-item-color: var(--grey-300);
     --GalleryMenu-item-disabled-color: var(--grey-700);
-    --GalleryMenu-item-hover-background-color: var(--primary-800);
+    --GalleryMenu-item-hover-background-color: var(--background-surface-dark-soft);
     --GalleryMenu-item-hover-color: var(--grey-300);
   }
 }
