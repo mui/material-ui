@@ -31,7 +31,7 @@
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",
-    "typescript": "tslint -p tsconfig.json \"*.{ts,tsx}\""
+    "typescript": "tsc -p tsconfig.json"
   },
   "sideEffects": false,
   "publishConfig": {

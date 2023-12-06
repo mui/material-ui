@@ -94,9 +94,9 @@ export default function XRoadmap() {
       sx={{
         color: 'text.secondary',
         background: (theme) =>
-          `linear-gradient(180deg, ${(theme.vars || theme).palette.primaryDark[800]} 50%, 
+          `linear-gradient(180deg, ${(theme.vars || theme).palette.primaryDark[900]} 50%, 
         ${alpha(theme.palette.primary[800], 0.2)} 100%), ${
-            (theme.vars || theme).palette.primaryDark[800]
+            (theme.vars || theme).palette.primaryDark[900]
           }`,
       }}
     >

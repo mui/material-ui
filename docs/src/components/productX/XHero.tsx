@@ -135,13 +135,13 @@ export default function XHero() {
               backgroundColor: '#fff',
               border: '1px solid',
               borderColor: 'divider',
-              boxShadow: `0px 4px 12px ${alpha(theme.palette.grey[200], 0.6)}`,
+              boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
               mb: { md: 2, lg: 3, xl: 4 },
               overflow: 'hidden',
               ...theme.applyDarkStyles({
-                borderColor: 'divider',
-                backgroundColor: 'primaryDark.800',
-                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
+                borderColor: 'primaryDark.700',
+                backgroundColor: 'primaryDark.900',
+                boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
               }),
             })}
           >
@@ -293,11 +293,11 @@ export default function XHero() {
                 flexGrow: 1,
                 backgroundColor: '#fff',
                 borderColor: 'divider',
-                boxShadow: `0px 4px 12px ${alpha(theme.palette.grey[200], 0.6)}`,
+                boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
                 ...theme.applyDarkStyles({
-                  borderColor: 'divider',
-                  backgroundColor: 'primaryDark.800',
-                  boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
+                  borderColor: 'primaryDark.700',
+                  backgroundColor: 'primaryDark.900',
+                  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
                 }),
               })}
             >
@@ -353,9 +353,9 @@ export default function XHero() {
                 },
                 (theme) =>
                   theme.applyDarkStyles({
-                    borderColor: 'divider',
-                    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
-                    backgroundColor: 'primaryDark.800',
+                    borderColor: 'primaryDark.700',
+                    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+                    backgroundColor: 'primaryDark.900',
                     '& .MuiDateRangePickerDay-day.Mui-selected': {
                       color: '#FFF',
                     },
