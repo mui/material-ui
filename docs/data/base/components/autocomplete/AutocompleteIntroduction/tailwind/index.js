@@ -137,7 +137,7 @@ Autocomplete.propTypes = {
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
    * @param {Value} option The option to test.
-   * @param {Value} value The value to test against.
+   * @param {Value|string} value The value to test against.
    * @returns {boolean}
    */
   isOptionEqualToValue: PropTypes.func,

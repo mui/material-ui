@@ -27,7 +27,9 @@ export function createFilterOptions<Value>(
 
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
 
-export type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo extends true ? Value | string : Value;
+export type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo extends true
+  ? Value | string
+  : Value;
 
 export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Multiple extends true
   ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
