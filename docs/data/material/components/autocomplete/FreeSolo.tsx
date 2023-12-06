@@ -33,14 +33,16 @@ export default function FreeSolo() {
         freeSolo
         options={top100Films}
         renderInput={(params) => <TextField {...params} label="freeSolo" />}
-        getOptionLabel={option => typeof option ==='string' ? option : option.title}
+        getOptionLabel={(option) =>
+          typeof option === 'string' ? option : option.title
+        }
         // this demo demonstrates how the value can be of both types, typeof option and a string
         // it could become a string if you, for example, would press "Enter" within input field
         isOptionEqualToValue={(option, value) => {
           if (typeof value === 'string') {
-            return option.title === value
+            return option.title === value;
           }
-          return option.title === value?.title
+          return option.title === value?.title;
         }}
       />
     </Stack>
