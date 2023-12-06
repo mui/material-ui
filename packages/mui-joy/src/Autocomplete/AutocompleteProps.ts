@@ -3,9 +3,9 @@ import {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
-  AutocompleteFreeSoloValueMapping,
   AutocompleteInputChangeReason,
   AutocompleteValue,
+  AutocompleteValueOrFreeSoloValueMapping,
   UseAutocompleteProps,
 } from '@mui/base/useAutocomplete';
 import { PopperOwnProps } from '@mui/base/Popper';
@@ -380,7 +380,7 @@ export interface AutocompleteOwnerState<
   FreeSolo extends boolean | undefined,
 > extends ApplyColorInversion<AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>> {
   focused?: boolean;
-  getOptionLabel: (option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
+  getOptionLabel: (option: AutocompleteValueOrFreeSoloValueMapping<T, FreeSolo>) => string;
   hasClearIcon?: boolean;
   hasPopupIcon?: boolean;
   hasOptions?: boolean;
