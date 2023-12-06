@@ -231,7 +231,7 @@ const Root = styled('div')(
           color: (theme.vars || theme).palette.grey[300],
         },
         '& img, & video': {
-          borderColor: (theme.vars || theme).palette.primaryDark[600],
+          borderColor: alpha(theme.palette.primaryDark[600], 0.5),
         },
         '& details': {
           background: alpha(theme.palette.primary[900], 0.3),
