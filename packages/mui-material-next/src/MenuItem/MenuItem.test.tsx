@@ -70,7 +70,7 @@ describe('<MenuItem />', () => {
     renderWithMenu(<MenuItem />);
     const menuitem = screen.getByRole('menuitem');
 
-    expect(menuitem).to.have.property('tabIndex', -1);
+    expect(menuitem).to.have.property('tabIndex', 0);
   });
 
   it('has a ripple when clicked', () => {

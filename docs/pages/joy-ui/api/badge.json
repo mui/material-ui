@@ -63,46 +63,142 @@
   },
   "name": "Badge",
   "imports": ["import Badge from '@mui/joy/Badge';", "import { Badge } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiBadge" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'span'",
-      "class": ".MuiBadge-root"
+      "class": "MuiBadge-root"
     },
     {
       "name": "badge",
       "description": "The component that renders the badge.",
       "default": "'span'",
-      "class": ".MuiBadge-badge"
+      "class": "MuiBadge-badge"
     }
   ],
-  "classes": {
-    "classes": [
-      "anchorOriginBottomLeft",
-      "anchorOriginBottomRight",
-      "anchorOriginTopLeft",
-      "anchorOriginTopRight",
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "invisible",
-      "locationInside",
-      "locationOutside",
-      "sizeLg",
-      "sizeMd",
-      "sizeSm",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": {}
-  },
+  "classes": [
+    {
+      "key": "anchorOriginBottomLeft",
+      "className": "MuiBadge-anchorOriginBottomLeft",
+      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginBottomRight",
+      "className": "MuiBadge-anchorOriginBottomRight",
+      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopLeft",
+      "className": "MuiBadge-anchorOriginTopLeft",
+      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopRight",
+      "className": "MuiBadge-anchorOriginTopRight",
+      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorContext",
+      "className": "MuiBadge-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiBadge-colorDanger",
+      "description": "Class name applied to the badge `span` element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiBadge-colorNeutral",
+      "description": "Class name applied to the badge `span` element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiBadge-colorPrimary",
+      "description": "Class name applied to the badge `span` element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiBadge-colorSuccess",
+      "description": "Class name applied to the badge `span` element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiBadge-colorWarning",
+      "description": "Class name applied to the badge `span` element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "invisible",
+      "className": "MuiBadge-invisible",
+      "description": "State class applied to the badge `span` element if `invisible={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "locationInside",
+      "className": "MuiBadge-locationInside",
+      "description": "State class applied to the badge `span` element if `location=\"inside\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "locationOutside",
+      "className": "MuiBadge-locationOutside",
+      "description": "State class applied to the badge `span` element if `location=\"outside\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLg",
+      "className": "MuiBadge-sizeLg",
+      "description": "Class name applied to the badge `span` element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiBadge-sizeMd",
+      "description": "Class name applied to the badge `span` element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiBadge-sizeSm",
+      "description": "Class name applied to the badge `span` element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiBadge-variantOutlined",
+      "description": "Class name applied to the badge `span` element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiBadge-variantPlain",
+      "description": "Class name applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiBadge-variantSoft",
+      "description": "Class name applied to the badge `span` element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiBadge-variantSolid",
+      "description": "Class name applied to the badge `span` element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyBadge",

@@ -41,7 +41,7 @@ function withDocsInfra(nextConfig) {
     reactStrictMode: true,
     ...nextConfig,
     env: {
-      BUILD_ONLY_ENGLISH_LOCALE: true, // disable translations by default
+      BUILD_ONLY_ENGLISH_LOCALE: 'true', // disable translations by default
       // production | staging | pull-request | development
       DEPLOY_ENV,
       ...nextConfig.env,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps, PartiallyRequired } from '@mui/types';
 import { Theme } from '../styles';
 import { LinearProgressClasses } from './linearProgressClasses';
 
@@ -18,9 +18,15 @@ export interface LinearProgressOwnProps {
    * @default 'primary'
    */
   color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'inherit',
+    'primary' | 'secondary' | 'tertiary' | 'error' | 'info' | 'success' | 'warning' | 'inherit',
     LinearProgressPropsColorOverrides
   >;
+  /**
+   * If `true`, the component render indeterminate or query mode using four colors instead of one.
+   * This only works if variant is `indeterminate` or `query`.
+   * @default false
+   */
+  fourColor?: boolean;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -56,4 +62,5 @@ export type LinearProgressProps<
   AdditionalProps = {},
 > = OverrideProps<LinearProgressTypeMap<AdditionalProps, RootComponentType>, RootComponentType>;
 
-export interface LinearProgressOwnerState extends LinearProgressProps {}
+export interface LinearProgressOwnerState
+  extends PartiallyRequired<LinearProgressProps, 'color' | 'variant'> {}

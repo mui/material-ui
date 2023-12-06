@@ -84,7 +84,7 @@ The type of value can be:
 
 ### Vertical group
 
-The Button Group component can be displayed vertically using the `orientation="horizontal"` prop.
+The Button Group component can be displayed vertically using the `orientation="vertical"` prop.
 Note that this prop has no effect on `IconButton` component.
 
 {{"demo": "GroupOrientation.js"}}

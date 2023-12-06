@@ -17,7 +17,6 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
     "masonry": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -28,6 +27,7 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"quilted\"</code>"
     },
+    "root": { "description": "Styles applied to the root element." },
     "standard": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

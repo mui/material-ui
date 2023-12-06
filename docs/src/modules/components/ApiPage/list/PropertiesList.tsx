@@ -9,11 +9,11 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
-import ExpendableApiItem, {
+import ExpandableApiItem, {
   ApiItemContaier,
-} from 'docs/src/modules/components/ApiPage/list/ExpendableApiItem';
+} from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
 
-const StyledApiItem = styled(ExpendableApiItem)(
+const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
     '& .prop-list-description': {
       marginBottom: 10,
@@ -91,7 +91,7 @@ function PropDescription({ description }: { description: string }) {
 
   return (
     <ComponentToRender
-      className="prop-list-description" // This className is used by Algolia
+      className="prop-list-description algolia-content" // This className is used by Algolia
       dangerouslySetInnerHTML={{
         __html: description,
       }}
@@ -144,7 +144,7 @@ export interface PropDescriptionParams {
 
 interface PropertiesListProps {
   properties: PropDescriptionParams[];
-  displayOption: 'collapsed' | 'expended';
+  displayOption: 'collapsed' | 'expanded';
 }
 
 export default function PropertiesList(props: PropertiesListProps) {

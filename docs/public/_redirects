@@ -523,4 +523,5 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 
 ### MUI Design kits
 /figma/getting-started/ https://mui-org.notion.site/MUI-for-Figma-docs-4eb22360388047a9a31fc19d300a285e 302
-/r/figma-* https://mui-store.netlify.app/r/figma-:splat 200
+/r/material-ui-figma-* https://mui-store.netlify.app/r/material-ui-figma-:splat 200
+/r/joy-ui-figma-* https://mui-store.netlify.app/r/joy-ui-figma-:splat 200

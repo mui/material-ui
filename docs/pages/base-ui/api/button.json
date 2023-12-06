@@ -20,23 +20,34 @@
   },
   "name": "Button",
   "imports": ["import { Button } from '@mui/base/Button';", "import { Button } from '@mui/base';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "props.href || props.to ? 'a' : 'button'",
-      "class": ".MuiButton-root"
+      "class": "MuiButton-root"
     }
   ],
-  "classes": {
-    "classes": ["active", "disabled", "focusVisible"],
-    "globalClasses": {
-      "active": "Mui-active",
-      "disabled": "Mui-disabled",
-      "focusVisible": "Mui-focusVisible"
+  "classes": [
+    {
+      "key": "active",
+      "className": "Mui-active",
+      "description": "State class applied to the root `button` element if `active={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root `button` element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the root `button` element if `focusVisible={true}`.",
+      "isGlobal": true
     }
-  },
+  ],
   "spread": true,
   "muiName": "MuiButton",
   "forwardsRefTo": "HTMLButtonElement",

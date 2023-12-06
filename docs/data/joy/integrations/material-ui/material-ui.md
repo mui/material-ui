@@ -25,7 +25,7 @@ Additionally, keep these in mind when using them together:
 
 ## Set up the providers
 
-Render Material UI's `CssVarsProvider` inside Joy UI's provider and use `THEME_ID` to separate the themes from each other.
+Render Joy UI's `CssVarsProvider` inside Material UI's provider and use `THEME_ID` to separate the themes from each other.
 
 ```js
 import {
@@ -80,7 +80,7 @@ const ModeToggle = () => {
   return (
     <IconButton
       onClick={() => {
-        setMode(mode === 'dark' ? 'light' : 'dark');
+        setMaterialMode(mode === 'dark' ? 'light' : 'dark');
         setJoyMode(mode === 'dark' ? 'light' : 'dark');
       }}
     >
@@ -113,7 +113,7 @@ Both libraries have the same class name prefix:
 
 ```js
 import MaterialTypography, {
-  typographyClasses as muiTypographyClasses,
+  typographyClasses as materialTypographyClasses,
 } from '@mui/material/Typography';
 import JoyTypography, {
   typographyClasses as joyTyographyClasses,
@@ -123,7 +123,7 @@ import Stack from '@mui/material/Stack';
 <Stack
   sx={{
     // similar to `& .${joyTyographyClasses.root}`
-    [`& .${muiTypographyClasses.root}`]: {
+    [`& .${materialTypographyClasses.root}`]: {
       color: 'red',
     },
   }}

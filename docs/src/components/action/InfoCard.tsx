@@ -39,15 +39,21 @@ export function GlowingIconContainer({ icon }: GlowingIconContainerProps) {
 
 interface InfoCardProps {
   title: string;
+  classNameTitle?: string;
   description?: string;
+  classNameDescription?: string;
   link?: string;
   icon?: React.ReactNode;
   svg?: React.ReactNode;
+  dense?: boolean;
 }
 
-export default function InfoCard({ icon, svg, title, description, link }: InfoCardProps) {
+export default function InfoCard(props: InfoCardProps) {
+  const { icon, svg, title, classNameTitle, description, classNameDescription, link, dense } =
+    props;
   return (
     <Paper
+      variant="outlined"
       component={link ? Link : 'div'}
       href={link}
       {...(link
@@ -55,9 +61,8 @@ export default function InfoCard({ icon, svg, title, description, link }: InfoCa
             noLinkStyle: true,
           }
         : {})}
-      variant="outlined"
       sx={(theme) => ({
-        p: 3.5,
+        p: dense ? 2.5 : 3.5,
         height: '100%',
         background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
         ...theme.applyDarkStyles({
@@ -76,10 +81,11 @@ export default function InfoCard({ icon, svg, title, description, link }: InfoCa
         variant="body2"
         mt={icon ? 2 : 0}
         mb={description ? 0.5 : 0}
+        className={classNameTitle}
       >
         {title}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography variant="body2" color="text.secondary" className={classNameDescription}>
         {description}
       </Typography>
     </Paper>
