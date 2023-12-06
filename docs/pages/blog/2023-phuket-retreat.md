@@ -9,11 +9,11 @@ tags: ['Company']
 
 ## What is MUI's Together Week?
 
-At MUI, we take team connection seriously, with core values urging us to "Put #community first." In part, this is a reference to the user base we serve; it's also a call to foster a strong sense of belonging within our internal team. 
+At MUI, we take team connection seriously, with core values urging us to "Put #community first." In part, this is a reference to the user base we serve; it's also a call to foster a strong sense of belonging within our internal team.
 
-Some say driving team connectedness can be difficult against the backdrop of a distributed, async work environment. We say embracing the power of remote work and flexibility will cost you neither culture nor community as long as you're *intentional* about building both. 
+Some say driving team connectedness can be difficult against the backdrop of a distributed, async work environment. We say embracing the power of remote work and flexibility will cost you neither culture nor community as long as you're _intentional_ about building both.
 
-Enter: MUI's Together Week.
+Enter: **MUI's Together Week**.
 
 Every 8 months, we bring MUIers from all corners of the world together to pursue many worthy outcomes at once.
 
@@ -38,7 +38,7 @@ Given the great distance some team members would be traveling to attend, we want
 
 The Nai Harn is a five-star beachfront property boasting incredible luxury balanced with a cozy feel.
 
-<img alt="Entrance to the Nai Harn property at night. A lit sign on a leafy backdrop reads: The Nai Harn - Phuket." src="/static/blog/2023-phuket-retreat/hotel-entrance.png" width="1200" height="840" loading="lazy" />
+<img alt="Entrance to the Nai Harn property at night. A lit sign on a leafy backdrop reads: The Nai Harn - Phuket." src="/static/blog/2023-phuket-retreat/hotel-entrance.png" width="1200" height="840" loading="lazy"  />
 
 A blend of Thai and international cuisines, plus free rental of kayaks, bicycles, stand-up paddle boards, and an on-site spa were just the ticket to ensure our team could be nourished and relaxed outside of scheduled working sessions and activity.
 
@@ -48,11 +48,11 @@ Special callout: the on-site rental equipment was no small perk. Within our agen
 
 We follow a 30/30/30 principle when building our retreat agendas. This means 30% of time is allocated to conscious team-building events; 30% is allocated to working sessions; and 30% is allocated for down-time or total team freedom. (You: "Wait, what happened to the other 10%, Mikaila?" It's better to underestimate and be able to embrace more if there's time than it is to feel rushed through anything. We expect disruptions that make us start late or run over in different agenda items, so we intentionally bake this bit of a grace window into it.)
 
-For this retreat we wanted to focus on intentional conversations in a few different areas, including product vision, leadership and management, and marketing. To kick things off though, everyone was invited to "Win the Conversational Lottery." I leveraged the incredible WeConnect cards ([check out the free digital version here](https://weconnectcards.com) for your own remote team-building needs) to get people talking. 
+For this retreat we wanted to focus on intentional conversations in a few different areas, including product vision, leadership and management, and marketing. To kick things off though, everyone was invited to "Win the Conversational Lottery." I leveraged the incredible WeConnect cards ([check out the free digital version here](https://weconnectcards.com) for your own remote team-building needs) to get people talking.
 
 Everyone picked up a card once the exercise was explained, choosing from green, purple, or blue. The green cards were light and fun questions; purple, more self-reflective; and blue, a bit deeper. Crucially, as part of this exercise, everyone chose what color card they wanted, and could answer the questions posed however they wanted. After a brief chat, participants would trade cards and find another person they hadn't yet spoken to.
 
-<img alt="We Connect cards spread out on a table. Each card poses a different question." src="/static/blog/2023-phuket-retreat/we-connect-cards.png" width="1200" height="840" loading="lazy" />
+<img alt="We Connect cards spread out on a table. Each card poses a different question." src="/static/blog/2023-phuket-retreat/we-connect-cards.png" width="1200" height="840" loading="lazy"  />
 
 After the kickoff, we broke out into groups to delve deep into issues and opportunities across the organization.
 
@@ -62,15 +62,15 @@ It gave us a valuable space to make important decisions together in a rapid-fire
 
 A picture is worth a thousand words they say, so here's a whole heap of our happy faces in far off places!
 
-<img alt="MUI team members stand at the steps leading up to Phuket's infamous 'Big Buddha.'" src="/static/blog/2023-phuket-retreat/big-buddha.png" width="1200" height="840" loading="lazy" />
+<img alt="MUI team members stand at the steps leading up to Phuket's infamous 'Big Buddha.'" src="/static/blog/2023-phuket-retreat/big-buddha.png" width="1200" height="840" loading="lazy"  />
 
-<img alt="MUI team members enjoy a private catamaran trip. A rainbow appears over the team's boat." src="/static/blog/2023-phuket-retreat/rainbow-boat.png" width="1200" height="840" loading="lazy" />
+<img alt="MUI team members enjoy a private catamaran trip. A rainbow appears over the team's boat." src="/static/blog/2023-phuket-retreat/rainbow-boat.png" width="1200" height="840" loading="lazy"  />
 
-<img alt="MUI team members seated for a team lunch on the Nai Harn's Cosmo dining hall terrace." src="/static/blog/2023-phuket-retreat/lunch-service.png" width="1200" height="840" loading="lazy" />
+<img alt="MUI team members seated for a team lunch on the Nai Harn's Cosmo dining hall terrace." src="/static/blog/2023-phuket-retreat/lunch-service.png" width="1200" height="840" loading="lazy"  />
 
-<img alt="Bharat & Raffaella enjoy the views from the top of a lookout point." src="/static/blog/2023-phuket-retreat/bharat-raffaella.png" width="1200" height="840" loading="lazy" />
+<img alt="Bharat & Raffaella enjoy the views from the top of a lookout point." src="/static/blog/2023-phuket-retreat/bharat-raffaella.png" width="1200" height="840" loading="lazy"  />
 
-<img alt="Andrew, Lukas, & Jose enjoy the views from the top of a lookout point." src="/static/blog/2023-phuket-retreat/andrii-lukas-jose.png" width="1200" height="840" loading="lazy" />
+<img alt="Andrew, Lukas, & Jose enjoy the views from the top of a lookout point." src="/static/blog/2023-phuket-retreat/andrii-lukas-jose.png" width="1200" height="840" loading="lazy"  />
 
 ## Outcomes
 
