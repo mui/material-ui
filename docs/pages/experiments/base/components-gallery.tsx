@@ -176,7 +176,7 @@ export default function ComponentsGallery() {
       })
       .forEach((cssVarDeclaration) => {
         const cssVar = cssVarDeclaration.split(':')[0].trim();
-        css = css.replace(new RegExp(cssVar + ':.*;'), cssVarDeclaration);
+        css = css.replace(new RegExp(`${cssVar}:.*;`), cssVarDeclaration);
       });
 
     // Copy the text inside the text field

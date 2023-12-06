@@ -44,6 +44,7 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     disabledItemsFocusable = true,
     disableListWrap = false,
     autoFocus = true,
+    componentName = 'useMenu',
   } = parameters;
 
   const rootRef = React.useRef<HTMLElement>(null);
@@ -115,6 +116,7 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     reducerActionContext,
     selectionMode: 'none',
     stateReducer: menuReducer,
+    componentName,
   });
 
   useEnhancedEffect(() => {
