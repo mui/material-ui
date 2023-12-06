@@ -314,12 +314,12 @@ export default function ComponentsGallery() {
           <span className="GalleryBadge-content" />
         </Badge>
       </div>
-      <div>
+      <Stack direction="row" spacing={1}>
         <Button className="GalleryButton">Button</Button>
         <Button className="GalleryButton" disabled>
           Disabled
         </Button>
-      </div>
+      </Stack>
       <div>
         <Input placeholder="Write your name here" className="GalleryInput" />
       </div>
