@@ -4,19 +4,20 @@ import { createRenderer, describeConformance, screen } from '@mui-internal/test-
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material-next/ButtonGroup';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import Button, { buttonClasses } from '@mui/material-next/Button';
-import ButtonGroupContext from './ButtonGroupContext';
+import ButtonGroupContext, { ButtonGroupContextType } from './ButtonGroupContext';
 
 describe('<ButtonGroup />', () => {
   const { render } = createRenderer();
 
-  let originalMatchmedia;
+  let originalMatchmedia: typeof window.matchMedia;
 
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
-    window.matchMedia = () => ({
-      addListener: () => {},
-      removeListener: () => {},
-    });
+    window.matchMedia = () =>
+      ({
+        addListener: () => {},
+        removeListener: () => {},
+      } as unknown as MediaQueryList);
   });
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
@@ -119,9 +120,10 @@ describe('<ButtonGroup />', () => {
   });
 
   it('should have a ripple by default', () => {
+    const props = { TouchRippleProps: { classes: { root: 'touchRipple' } } };
     const { container } = render(
       <ButtonGroup>
-        <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
+        <Button {...props}>Hello World</Button>
       </ButtonGroup>,
     );
     expect(container.querySelector('.touchRipple')).not.to.equal(null);
@@ -138,9 +140,10 @@ describe('<ButtonGroup />', () => {
   });
 
   it('can disable the ripple', () => {
+    const props = { TouchRippleProps: { classes: { root: 'touchRipple' } } };
     const { container } = render(
       <ButtonGroup disableRipple>
-        <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
+        <Button {...props}>Hello World</Button>
       </ButtonGroup>,
     );
     expect(container.querySelector('.touchRipple')).to.equal(null);
@@ -181,24 +184,25 @@ describe('<ButtonGroup />', () => {
   });
 
   it('should forward the context to children', () => {
-    let context;
+    let context: ButtonGroupContextType | null;
     render(
       <ButtonGroup size="large" variant="contained">
         <ButtonGroupContext.Consumer>
           {(value) => {
             context = value;
+            return <Button />;
           }}
         </ButtonGroupContext.Consumer>
       </ButtonGroup>,
     );
-    expect(context.variant).to.equal('contained');
-    expect(context.size).to.equal('large');
-    expect(context.fullWidth).to.equal(false);
-    expect(context.disableRipple).to.equal(false);
-    expect(context.disableTouchRipple).to.equal(false);
-    expect(context.disableElevation).to.equal(false);
-    expect(context.disabled).to.equal(false);
-    expect(context.color).to.equal('primary');
+    expect(context!.variant).to.equal('contained');
+    expect(context!.size).to.equal('large');
+    expect(context!.fullWidth).to.equal(false);
+    expect(context!.disableRipple).to.equal(false);
+    expect(context!.disableTouchRipple).to.equal(false);
+    expect(context!.disableElevation).to.equal(false);
+    expect(context!.disabled).to.equal(false);
+    expect(context!.color).to.equal('primary');
   });
 
   describe('theme default props on Button', () => {
