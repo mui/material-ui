@@ -76,8 +76,8 @@
     },
     "getOptionLabel": {
       "type": {
-        "name": "(option: Value | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string",
-        "description": "(option: Value | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string"
+        "name": "(option: AutocompleteValueOrFreeSoloValueMapping&lt;Value, FreeSolo&gt;) =&gt; string",
+        "description": "(option: AutocompleteValueOrFreeSoloValueMapping&lt;Value, FreeSolo&gt;) =&gt; string"
       },
       "default": "(option) => option.label ?? option"
     },
@@ -99,8 +99,8 @@
     "inputValue": { "type": { "name": "string", "description": "string" } },
     "isOptionEqualToValue": {
       "type": {
-        "name": "(option: Value, value: Value) =&gt; boolean",
-        "description": "(option: Value, value: Value) =&gt; boolean"
+        "name": "(option: Value, value: AutocompleteValueOrFreeSoloValueMapping&lt;Value, FreeSolo&gt;) =&gt; boolean",
+        "description": "(option: Value, value: AutocompleteValueOrFreeSoloValueMapping&lt;Value, FreeSolo&gt;) =&gt; boolean"
       }
     },
     "multiple": { "type": { "name": "Multiple", "description": "Multiple" }, "default": "false" },
