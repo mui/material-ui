@@ -161,9 +161,12 @@ const Root = styled('div')(
         lineHeight: 1.7,
       },
       '& img, & video': {
-        borderRadius: 4,
+        border: '1px solid',
+        borderColor: (theme.vars || theme).palette.grey[200],
+        borderRadius: 12,
         display: 'block',
         margin: 'auto',
+        marginBottom: 16,
       },
       '& strong': {
         color: (theme.vars || theme).palette.grey[900],
@@ -226,6 +229,9 @@ const Root = styled('div')(
         },
         '& summary': {
           color: (theme.vars || theme).palette.grey[300],
+        },
+        '& img, & video': {
+          borderColor: alpha(theme.palette.primaryDark[600], 0.5),
         },
         '& details': {
           background: alpha(theme.palette.primary[900], 0.3),
