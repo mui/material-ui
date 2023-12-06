@@ -114,6 +114,7 @@ const MenuInner = React.forwardRef(function Menu(inProps, ref) {
     disabledItemsFocusable: Boolean(disabledItemsFocusable),
     disableListWrap: Boolean(disableListWrap),
     autoFocus,
+    componentName: 'Menu',
   });
 
   const ownerState = {
@@ -302,6 +303,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const { contextValue: dropdownContextValue } = useDropdown({
     open,
+    componentName: 'Menu',
   });
 
   return !upperDropdownContext ? (
