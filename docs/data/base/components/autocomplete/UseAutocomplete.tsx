@@ -78,7 +78,7 @@ const StyledLabel = styled('label')`
 
 const StyledAutocompleteRoot = styled('div')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
   border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
@@ -126,7 +126,7 @@ const StyledInput = styled('input')(
 
 const StyledListbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;

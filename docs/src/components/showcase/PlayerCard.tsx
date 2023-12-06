@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -33,7 +34,10 @@ export default function PlayerCard({
             alignItems: 'center',
             borderColor: extraStyles ? 'primary.200' : 'grey.200',
             gap: 2,
-            boxShadow: extraStyles ? '0 2px 4px rgba(0, 127, 255, 0.15)' : 'none',
+            boxShadow: (theme) =>
+              extraStyles
+                ? '0 2px 4px rgba(0, 127, 255, 0.2)'
+                : `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
             ...(!disableTheming && {
               [`& .${iconButtonClasses.root}`]: {
                 border: '1px solid',
@@ -58,6 +62,9 @@ export default function PlayerCard({
               theme.applyDarkStyles({
                 bgcolor: 'primaryDark.900',
                 borderColor: extraStyles ? 'primary.800' : 'primaryDark.700',
+                boxShadow: extraStyles
+                  ? '0 2px 4px rgba(0, 127, 255, 0.2)'
+                  : '0px 4px 8px rgba(0, 0, 0, 0.4)',
                 [`& .${iconButtonClasses.root}`]: {
                   bgcolor: 'primary.900',
                   color: 'primary.200',

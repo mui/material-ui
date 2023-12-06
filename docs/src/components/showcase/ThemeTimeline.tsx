@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Fade from '@mui/material/Fade';
@@ -20,9 +21,11 @@ export default function BasicTimeline() {
           pb: 1,
           display: 'flex',
           alignItems: 'flex-start',
+          boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
           ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
             borderColor: 'primaryDark.700',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
           }),
         })}
       >

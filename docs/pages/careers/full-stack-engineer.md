@@ -6,7 +6,7 @@
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [4 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
+- **Level**: [IC4 or above](https://mui-org.notion.site/Levelling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## About the company
@@ -23,18 +23,18 @@ We are building [a low-code platform](https://mui.com/toolpad/) for developers t
 We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
 Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
-For additional details about the culture you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
-
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
 
 Our mission is to empower as many people as possible to build great UIs, faster.
 The faster and simpler it is, and the broader the audience that can create custom UIs, the better.
 We believe that the best way to improve on these dimensions is to eliminate [80%](https://www.youtube.com/watch?v=GnO7D5UaDig&t=2451s) of the code that has to be written.
 
 We're in the early stages of exploring what our role could be in the currently emerging low-code space. We've assembled a team to work on a new product and plan to bring it to market in 2022. We have made our initial research and need help to accelerate the development of our MVP.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ## The role
 
@@ -73,13 +73,13 @@ Depending on the day, you'll:
 - **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
 - As **The product is in very early stages of development**, expect to enter an environment with incomplete and quickly changing requirements.
 
-## About you
+## Who we're looking for
 
 We're looking for someone with both strong front-end and back-end skills. More important than specific technical skills though is that you're a strong problem solver who loves to learn. Details matter to you.
 
-### Skills you should have
+### Required
 
-- **Expertise in the modern JavaScript ecosystem**. MUI Toolpad is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, webpack, and Babel.
+- **Expertise in the modern JavaScript ecosystem**. MUI Toolpad is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, Webpack, and Babel.
 - **Expertise in backend development**. MUI Toolpad interfaces with multiple databases, both SQL and NoSQL, as well as APIs such as REST and GraphQL. You'll need to be comfortable in learning and integrating new backend technologies fast. You'll need to have a good understanding of distributed systems and some knowledge of CRDTs is a plus.
 - **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
@@ -88,10 +88,10 @@ We're looking for someone with both strong front-end and back-end skills. More i
 - **Ready and willing to ask and answer questions**. If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team. We thrive because of continuous learning. First-time mistakes should be celebrated, not blamed.
 - **Avoid monolithic deliverables**. You scope and stage your work into well-defined milestones to ship.
 
-### What would be nice if you had, but isn't required
+### Nice to have (but not required)
 
 - **You've maintained an active repository before**. Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams. Previous experience with highly active repository workflows is a definite plus for this role.
-- **You have contributed code to MUI before**. A history of contributing to MUI would be a definite plus.
+- **You have contributed code**. A history of contributing to MUI's open-source projects is a plus.
 
 ## Benefits and compensation
 
@@ -120,6 +120,6 @@ We look forward to hearing from you! ☺️
 
 Don't meet every requirement?
 Apply anyway!
-Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+Research shows that certain folks are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
 If this role excites you, we want to hear from you.
 We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

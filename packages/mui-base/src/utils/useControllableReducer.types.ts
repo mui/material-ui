@@ -55,6 +55,11 @@ export interface ControllableReducerParameters<
    * Additional properties that will be added to the action.
    */
   actionContext?: ActionContext;
+  /**
+   * The name of the component using useControllableReducer.
+   * For debugging purposes.
+   */
+  componentName?: string;
 }
 
 /*

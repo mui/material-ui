@@ -2654,6 +2654,27 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  it('should specify option key for duplicate options', () => {
+    const { getAllByRole } = render(
+      <Autocomplete
+        open
+        options={[
+          { name: 'one', id: '1' },
+          { name: 'two', id: '2' },
+          { name: 'three', id: '3' },
+          { name: 'three', id: '4' },
+        ]}
+        getOptionLabel={(option) => option.name}
+        getOptionKey={(option) => option.id}
+        renderInput={(params) => <TextField {...params} autoFocus />}
+      />,
+    );
+
+    fireEvent.change(document.activeElement, { target: { value: 'th' } });
+    const options = getAllByRole('option');
+    expect(options.length).to.equal(2);
+  });
+
   describe('prop: fullWidth', () => {
     it('should have the fullWidth class', () => {
       const { container } = render(

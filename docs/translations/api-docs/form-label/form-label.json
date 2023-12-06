@@ -25,16 +25,14 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "asterisk": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the asterisk element"
+    },
     "colorSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "the color is secondary"
-    },
-    "focused": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>focused={true}</code>"
     },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -51,14 +49,16 @@
       "nodeName": "the root element",
       "conditions": "<code>filled={true}</code>"
     },
+    "focused": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>focused={true}</code>"
+    },
     "required": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>required={true}</code>"
     },
-    "asterisk": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the asterisk element"
-    }
+    "root": { "description": "Styles applied to the root element." }
   }
 }

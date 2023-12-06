@@ -187,7 +187,7 @@ Now, the Button's `backgroundColor`, `borderColor` and text `color` values will 
 
 For framework or language specific setup, see [this](https://mui.com/material-ui/experimental-api/css-theme-variables/usage/#server-side-rendering)
 
-See the complete usage of `createVssVarsProvider` in [Material UI](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/CssVarsProvider.tsx) and [Joy UI](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/CssVarsProvider.tsx).
+See the complete usage of `createCssVarsProvider` in [Material UI](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/CssVarsProvider.tsx) and [Joy UI](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/CssVarsProvider.tsx).
 
 ## API
 

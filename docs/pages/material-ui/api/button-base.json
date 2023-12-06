@@ -32,11 +32,26 @@
     "import ButtonBase from '@mui/material/ButtonBase';",
     "import { ButtonBase } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "disabled", "focusVisible"],
-    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
-    "name": "MuiButtonBase"
-  },
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the root element if keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiButtonBase-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiButtonBase",

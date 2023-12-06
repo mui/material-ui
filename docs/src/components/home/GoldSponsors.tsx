@@ -100,17 +100,13 @@ export default function GoldSponsors() {
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <Paper
             variant="outlined"
-            sx={(theme) => ({
+            sx={{
               p: 2,
               display: 'flex',
               alignItems: 'center',
               height: '100%',
               borderStyle: 'dashed',
-              borderColor: 'grey.300',
-              ...theme.applyDarkStyles({
-                borderColor: 'primaryDark.400',
-              }),
-            })}
+            }}
           >
             <IconButton
               aria-label="Sponsor MUI"
@@ -124,7 +120,7 @@ export default function GoldSponsors() {
                 border: '1px solid',
                 borderColor: 'grey.300',
                 ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.400',
+                  borderColor: 'primaryDark.600',
                 }),
               })}
             >

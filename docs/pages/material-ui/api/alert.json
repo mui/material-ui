@@ -71,31 +71,122 @@
   },
   "name": "Alert",
   "imports": ["import Alert from '@mui/material/Alert';", "import { Alert } from '@mui/material';"],
-  "styles": {
-    "classes": [
-      "root",
-      "filled",
-      "outlined",
-      "standard",
-      "standardSuccess",
-      "standardInfo",
-      "standardWarning",
-      "standardError",
-      "outlinedSuccess",
-      "outlinedInfo",
-      "outlinedWarning",
-      "outlinedError",
-      "filledSuccess",
-      "filledInfo",
-      "filledWarning",
-      "filledError",
-      "icon",
-      "message",
-      "action"
-    ],
-    "globalClasses": {},
-    "name": "MuiAlert"
-  },
+  "classes": [
+    {
+      "key": "action",
+      "className": "MuiAlert-action",
+      "description": "Styles applied to the action wrapper element if `action` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "filled",
+      "className": "MuiAlert-filled",
+      "description": "Styles applied to the root element if `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "filledError",
+      "className": "MuiAlert-filledError",
+      "description": "Styles applied to the root element if `variant=\"filled\"` and `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "filledInfo",
+      "className": "MuiAlert-filledInfo",
+      "description": "Styles applied to the root element if `variant=\"filled\"` and `color=\"info\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "filledSuccess",
+      "className": "MuiAlert-filledSuccess",
+      "description": "Styles applied to the root element if `variant=\"filled\"` and `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "filledWarning",
+      "className": "MuiAlert-filledWarning",
+      "description": "Styles applied to the root element if `variant=\"filled\"` and `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "icon",
+      "className": "MuiAlert-icon",
+      "description": "Styles applied to the icon wrapper element.",
+      "isGlobal": false
+    },
+    {
+      "key": "message",
+      "className": "MuiAlert-message",
+      "description": "Styles applied to the message wrapper element.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlined",
+      "className": "MuiAlert-outlined",
+      "description": "Styles applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlinedError",
+      "className": "MuiAlert-outlinedError",
+      "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlinedInfo",
+      "className": "MuiAlert-outlinedInfo",
+      "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"info\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlinedSuccess",
+      "className": "MuiAlert-outlinedSuccess",
+      "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlinedWarning",
+      "className": "MuiAlert-outlinedWarning",
+      "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAlert-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "standard",
+      "className": "MuiAlert-standard",
+      "description": "Styles applied to the root element if `variant=\"standard\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "standardError",
+      "className": "MuiAlert-standardError",
+      "description": "Styles applied to the root element if `variant=\"standard\"` and `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "standardInfo",
+      "className": "MuiAlert-standardInfo",
+      "description": "Styles applied to the root element if `variant=\"standard\"` and `color=\"info\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "standardSuccess",
+      "className": "MuiAlert-standardSuccess",
+      "description": "Styles applied to the root element if `variant=\"standard\"` and `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "standardWarning",
+      "className": "MuiAlert-standardWarning",
+      "description": "Styles applied to the root element if `variant=\"standard\"` and `color=\"warning\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAlert",

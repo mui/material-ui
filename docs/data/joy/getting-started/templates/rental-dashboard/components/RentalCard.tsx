@@ -23,13 +23,8 @@ type RentalCardProps = {
   title: React.ReactNode;
 };
 
-export default function RentalCard({
-  category,
-  title,
-  rareFind = false,
-  liked = false,
-  image,
-}: RentalCardProps) {
+export default function RentalCard(props: RentalCardProps) {
+  const { category, title, rareFind = false, liked = false, image } = props;
   const [isLiked, setIsLiked] = React.useState(liked);
   return (
     <Card
@@ -129,7 +124,6 @@ export default function RentalCard({
             <FavoriteRoundedIcon />
           </IconButton>
         </Stack>
-
         <Stack
           spacing="0.25rem 1rem"
           direction="row"

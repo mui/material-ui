@@ -264,6 +264,7 @@ const excludeUseAutocompleteParams = <
   disabledItemsFocusable,
   disableListWrap,
   filterSelectedOptions,
+  getOptionKey,
   handleHomeEndKeys,
   includeInputInList,
   openOnFocus,
