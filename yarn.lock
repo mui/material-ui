@@ -1494,26 +1494,26 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-3.0.0.tgz#798622546b63847e82389e473fd67f2707d82247"
   integrity sha512-hBI9tfBtuPIi885ZsZ32IMEU/5nlZH/KOVYJCOh7gyMxaVLGmLedYqFN6Ui1LXkI8JlC8IsuC0rF0btcRZKd5g==
 
-"@definitelytyped/header-parser@^0.0.189":
-  version "0.0.189"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.189.tgz#9e7a62778973728e63caa854a25466f23c169798"
-  integrity sha512-5zzTaVAJayCJXWgm6T3kn0V/J/TGY/5mqkfio9bGI0dlKvV/xt0gXCBUFpUT6a0buPcqpsr5eS540XftHvgThQ==
+"@definitelytyped/header-parser@^0.0.190":
+  version "0.0.190"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.190.tgz#6be25a3083ede33b3a926a0e56508da0a7434114"
+  integrity sha512-awWRynVpFt6uAVDzgOa1Ry0ttjQywtt4nh9wa3/MbSTEx6PNohL1X6xDjifUElLSTIUMDSAJyWO9FuKBjnX7IQ==
   dependencies:
-    "@definitelytyped/typescript-versions" "0.0.181"
-    "@definitelytyped/utils" "0.0.187"
+    "@definitelytyped/typescript-versions" "0.0.182"
+    "@definitelytyped/utils" "0.0.188"
     semver "^7.5.4"
 
-"@definitelytyped/typescript-versions@0.0.181", "@definitelytyped/typescript-versions@^0.0.181":
-  version "0.0.181"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.181.tgz#104320db46b4ce69bfcbfa7f10e5b0d034471d2f"
-  integrity sha512-D3iVQSPLNg8r9xissfcrBP0dsv9hsexz1z/KXBJ97fsqSLIGIiAzaDJJnY9NLzbAOzeazk6Ezetn8k0sIlXetg==
+"@definitelytyped/typescript-versions@0.0.182", "@definitelytyped/typescript-versions@^0.0.182":
+  version "0.0.182"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.182.tgz#06d2abacbe3bc979cd375f69e1758efe9fcd77f9"
+  integrity sha512-ebGzGyZJW3ZSuE/nfAokKBo40HKnq/XvBbBnmCTR/3FCDX4aT7/6pQYEu2ihVI/2tf4+76GMoq0jRE69QWJ93g==
 
-"@definitelytyped/utils@0.0.187", "@definitelytyped/utils@^0.0.187":
-  version "0.0.187"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.187.tgz#26c123209a03df938f0b669aa95db16dd0c9ea72"
-  integrity sha512-sJlAKn7Rnqrw4qvgYudjs8vyqsOzgwWmqX20QWt7EW1c3Z1Pt7JkeaaSA3TSWDlwjP6gLGbf2pmDOBnQkAdR5w==
+"@definitelytyped/utils@0.0.188", "@definitelytyped/utils@^0.0.188":
+  version "0.0.188"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.188.tgz#343c0d357b6cfbb929550481dea90f998b23fd98"
+  integrity sha512-NPUP1FvRbpac09qETtr1dw3Ri7Q07hp9WGOBjqhzXeXOSxfKs7c3BY6I+XJ2yxexG05LKrCKwgKRKgZlj+Zjzw==
   dependencies:
-    "@definitelytyped/typescript-versions" "0.0.181"
+    "@definitelytyped/typescript-versions" "0.0.182"
     "@qiwi/npm-registry-client" "^8.9.1"
     "@types/node" "^16.18.61"
     charm "^1.0.2"
