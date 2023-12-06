@@ -143,7 +143,7 @@ describe('ModalManager', () => {
       expect(fixedNode.style.paddingRight).to.equal('14px');
     });
 
-    it('should handle the scroll on custom scroll target', function () {
+    it('should handle the scroll on custom scroll target', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // jsdom cannot emulate scrollbar, we'll test this in real browser.
         this.skip();
@@ -190,7 +190,7 @@ describe('ModalManager', () => {
       document.body.removeChild(container2);
     });
 
-    it('should restore styles correctly if none existed before', function () {
+    it('should restore styles correctly if none existed before', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // jsdom cannot emulate scrollbar, we'll test this in real browser.
         this.skip();
