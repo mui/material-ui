@@ -11,7 +11,7 @@ unstyled: /base-ui/react-tabs/
 
 <p class="description">Tabs make it easy to explore and switch between different views.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 

@@ -104,7 +104,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           mt: 1,
           gap: 1.5,
           width: { xs: '100%', sm: 'auto' },
-          maxWidth: 320,
+          maxWidth: { xs: '100%', sm: 320 },
         }}
       >
         <InputBase
@@ -144,11 +144,11 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
             }),
             (theme) =>
               theme.applyDarkStyles({
-                bgcolor: 'primaryDark.900',
+                bgcolor: 'primaryDark.800',
                 boxShadow: `inset 0 1px 1px ${
                   (theme.vars || theme).palette.primaryDark[900]
                 }, 0 1px 0.5px ${(theme.vars || theme).palette.common.black}`,
-                borderColor: 'primaryDark.500',
+                borderColor: 'primaryDark.600',
                 '&:hover': {
                   borderColor: 'primaryDark.400',
                   boxShadow: `inset 0 1px 1px ${

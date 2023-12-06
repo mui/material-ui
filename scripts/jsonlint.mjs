@@ -19,7 +19,7 @@ async function run() {
   const filenames = await globby('**/*.json', {
     cwd: workspaceRoot,
     gitignore: true,
-    ignore: [...eslintignore, '**/tsconfig*.json', '**/tslint.json'],
+    ignore: [...eslintignore, '**/tsconfig*.json'],
   });
 
   let passed = true;

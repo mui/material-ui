@@ -9,6 +9,10 @@
     "buttonRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
+    "componentName": {
+      "type": { "name": "string", "description": "string" },
+      "default": "'useSelect'"
+    },
     "defaultOpen": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "defaultValue": {
       "type": {

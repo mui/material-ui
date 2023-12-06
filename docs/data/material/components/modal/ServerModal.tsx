@@ -34,7 +34,7 @@ export default function ServerModal() {
           alignItems: 'center',
           justifyContent: 'center',
         }}
-        container={() => rootRef.current}
+        container={() => rootRef.current!}
       >
         <Box
           sx={{

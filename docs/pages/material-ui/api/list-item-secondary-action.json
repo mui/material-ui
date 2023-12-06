@@ -15,11 +15,20 @@
     "import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';",
     "import { ListItemSecondaryAction } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "disableGutters"],
-    "globalClasses": {},
-    "name": "MuiListItemSecondaryAction"
-  },
+  "classes": [
+    {
+      "key": "disableGutters",
+      "className": "MuiListItemSecondaryAction-disableGutters",
+      "description": "Styles applied to the root element when the parent `ListItem` has `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListItemSecondaryAction-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiListItemSecondaryAction",

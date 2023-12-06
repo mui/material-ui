@@ -31,20 +31,15 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "focusVisible": {
-      "description": "State class applied to {{nodeName}}.",
-      "nodeName": "the <code>component</code>&#39;s <code>focusVisibleClassName</code> prop"
+    "alignItemsFlexStart": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the component element",
+      "conditions": "<code>alignItems=\"flex-start\"</code>"
     },
     "dense": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the component element",
       "conditions": "dense"
-    },
-    "alignItemsFlexStart": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the component element",
-      "conditions": "<code>alignItems=\"flex-start\"</code>"
     },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -56,11 +51,16 @@
       "nodeName": "the inner <code>component</code> element",
       "conditions": "<code>divider={true}</code>"
     },
+    "focusVisible": {
+      "description": "State class applied to {{nodeName}}.",
+      "nodeName": "the <code>component</code>&#39;s <code>focusVisibleClassName</code> prop"
+    },
     "gutters": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the inner <code>component</code> element",
       "conditions": "<code>disableGutters={true}</code>"
     },
+    "root": { "description": "Styles applied to the root element." },
     "selected": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

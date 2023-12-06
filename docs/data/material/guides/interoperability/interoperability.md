@@ -448,7 +448,7 @@ bundling solution people are using.
 ```jsx
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
-// webpack, parcel or else will inject the CSS into the page
+// Webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSlider.module.css';
 
 export default function CssModulesSlider() {
@@ -532,7 +532,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 
 ```jsx
 import * as React from 'react';
-// webpack, parcel or else will inject the CSS into the page
+// Webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep1.module.css';
 import Slider from '@mui/material/Slider';
 
@@ -568,7 +568,7 @@ The above demo relies on the [default `className` values](/system/styles/advance
 
 ```jsx
 import * as React from 'react';
-// webpack, parcel or else will inject the CSS into the page
+// Webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep2.module.css';
 import Slider from '@mui/material/Slider';
 

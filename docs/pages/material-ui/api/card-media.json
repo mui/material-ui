@@ -18,7 +18,26 @@
     "import CardMedia from '@mui/material/CardMedia';",
     "import { CardMedia } from '@mui/material';"
   ],
-  "styles": { "classes": ["root", "media", "img"], "globalClasses": {}, "name": "MuiCardMedia" },
+  "classes": [
+    {
+      "key": "img",
+      "className": "MuiCardMedia-img",
+      "description": "Styles applied to the root element if `component=\"picture or img\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "media",
+      "className": "MuiCardMedia-media",
+      "description": "Styles applied to the root element if `component=\"video, audio, picture, iframe, or img\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiCardMedia-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiCardMedia",

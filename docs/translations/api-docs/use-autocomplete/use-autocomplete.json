@@ -48,6 +48,9 @@
     "getOptionDisabled": {
       "description": "Used to determine the disabled state for a given option."
     },
+    "getOptionKey": {
+      "description": "Used to determine the key for a given option. This can be useful when the labels of options are not unique (since labels are used as keys by default)."
+    },
     "getOptionLabel": {
       "description": "Used to determine the string value for a given option. It&#39;s used to fill the input (and the list box options if <code>renderOption</code> is not provided).<br>If used in free solo mode, it must accept both the type of the options and a string."
     },

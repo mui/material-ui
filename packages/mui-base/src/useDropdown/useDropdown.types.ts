@@ -17,6 +17,12 @@ export interface UseDropdownParameters {
    * This is a controlled counterpart of `defaultOpen`.
    */
   open?: boolean;
+  /**
+   * The name of the component using useDropdown.
+   * For debugging purposes.
+   * @default 'useDropdown'
+   */
+  componentName?: string;
 }
 
 export interface UseDropdownReturnValue {
