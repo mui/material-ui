@@ -7,8 +7,14 @@ import MaterialYouUsageDemo from 'docs/src/modules/components/MaterialYouUsageDe
 export default function ButtonGroupMaterialYouPlayground() {
   return (
     <MaterialYouUsageDemo
-      componentName="Button"
+      componentName="ButtonGroup"
       data={[
+        {
+          propName: 'color',
+          knob: 'select',
+          defaultValue: 'primary',
+          options: ['primary', 'secondary', 'tertiary'],
+        },
         {
           propName: 'variant',
           knob: 'select',
