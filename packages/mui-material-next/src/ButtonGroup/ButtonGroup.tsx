@@ -72,90 +72,94 @@ const ButtonGroupRoot = styled('div', {
       orientation === 'vertical' && styles.vertical,
     ];
   },
-})<{ ownerState: ButtonGroupOwnerState }>(({ theme, ownerState }) => ({
-  display: 'inline-flex',
-  borderRadius: (theme.vars || theme).shape.borderRadius,
-  ...(ownerState.disableElevation && {
-    boxShadow: 'none',
-  }),
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
-  ...(ownerState.orientation === 'vertical' && {
-    flexDirection: 'column',
-  }),
-  [`& .${buttonGroupClasses.grouped}`]: {
-    minWidth: 40,
-  },
-  [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
-    ...(ownerState.orientation === 'horizontal' && {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
+})<{ ownerState: ButtonGroupOwnerState }>(
+  ({
+    theme: { vars: tokens },
+    ownerState: { disabled, disableElevation, fullWidth, orientation, variant },
+  }) => ({
+    display: 'inline-flex',
+    borderRadius: tokens.sys.shape.corner.full,
+    ...(variant === 'elevated' && {
+      boxShadow: tokens.sys.elevation[1],
     }),
-    ...(ownerState.orientation === 'vertical' && {
-      borderBottomRightRadius: 0,
-      borderBottomLeftRadius: 0,
+    ...((disableElevation || disabled) && {
+      boxShadow: 'none',
     }),
-    ...(ownerState.variant === 'text' &&
-      ownerState.orientation === 'horizontal' && {
-        borderRight: theme.vars
-          ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
-          : `1px solid ${
-              theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-            }`,
-        [`&.${buttonGroupClasses.disabled}`]: {
-          borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
-        },
+    ...(fullWidth && {
+      width: '100%',
+    }),
+    ...(orientation === 'vertical' && {
+      flexDirection: 'column',
+    }),
+    [`& .${buttonGroupClasses.grouped}`]: {
+      minWidth: 40,
+      '&:hover, &:focus': {
+        boxShadow: 'none',
+      },
+      boxShadow: 'none',
+    },
+    [`.${buttonGroupClasses.firstButton}, .${buttonGroupClasses.middleButton}`]: {
+      ...(orientation === 'horizontal' && {
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
       }),
-    ...(ownerState.variant === 'text' &&
-      ownerState.orientation === 'vertical' && {
-        borderBottom: theme.vars
-          ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
-          : `1px solid ${
-              theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-            }`,
-        [`&.${buttonGroupClasses.disabled}`]: {
-          borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
-        },
+      ...(orientation === 'vertical' && {
+        borderBottomRightRadius: 0,
+        borderBottomLeftRadius: 0,
       }),
-    ...(ownerState.variant === 'outlined' &&
-      ownerState.orientation === 'horizontal' && {
-        borderRightColor: 'transparent',
-      }),
-    ...(ownerState.variant === 'outlined' &&
-      ownerState.orientation === 'vertical' && {
-        borderBottomColor: 'transparent',
-      }),
-    '&:hover': {
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.orientation === 'horizontal' && {
-          borderRightColor: 'currentColor',
+      ...(variant === 'text' &&
+        orientation === 'horizontal' && {
+          borderRight: `1px solid ${tokens.sys.color.outline}`,
+          [`&.${buttonGroupClasses.disabled}`]: {
+            borderRightColor: `rgba(${tokens.sys.color.onSurface}, 0.12)`,
+          },
         }),
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.orientation === 'vertical' && {
-          borderBottomColor: 'currentColor',
+      ...(variant === 'text' &&
+        orientation === 'vertical' && {
+          borderBottom: `1px solid ${tokens.sys.color.outline}`,
+          [`&.${buttonGroupClasses.disabled}`]: {
+            borderBottomColor: `rgba(${tokens.sys.color.onSurface}, 0.12)`,
+          },
+        }),
+      ...(variant === 'outlined' &&
+        orientation === 'horizontal' && {
+          borderRightColor: 'transparent',
+        }),
+      ...(variant === 'outlined' &&
+        orientation === 'vertical' && {
+          borderBottomColor: 'transparent',
+        }),
+      '&:hover': {
+        ...(variant === 'outlined' &&
+          orientation === 'horizontal' && {
+            borderRightColor: 'currentColor',
+          }),
+        ...(variant === 'outlined' &&
+          orientation === 'vertical' && {
+            borderBottomColor: 'currentColor',
+          }),
+      },
+    },
+    [`.${buttonGroupClasses.lastButton}, .${buttonGroupClasses.middleButton}`]: {
+      ...(orientation === 'horizontal' && {
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+      }),
+      ...(orientation === 'vertical' && {
+        borderTopRightRadius: 0,
+        borderTopLeftRadius: 0,
+      }),
+      ...(variant === 'outlined' &&
+        orientation === 'horizontal' && {
+          marginLeft: -1,
+        }),
+      ...(variant === 'outlined' &&
+        orientation === 'vertical' && {
+          marginTop: -1,
         }),
     },
-  },
-  [`& .${buttonGroupClasses.lastButton},& .${buttonGroupClasses.middleButton}`]: {
-    ...(ownerState.orientation === 'horizontal' && {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-    }),
-    ...(ownerState.orientation === 'vertical' && {
-      borderTopRightRadius: 0,
-      borderTopLeftRadius: 0,
-    }),
-    ...(ownerState.variant === 'outlined' &&
-      ownerState.orientation === 'horizontal' && {
-        marginLeft: -1,
-      }),
-    ...(ownerState.variant === 'outlined' &&
-      ownerState.orientation === 'vertical' && {
-        marginTop: -1,
-      }),
-  },
-}));
+  }),
+);
 
 /**
  *
