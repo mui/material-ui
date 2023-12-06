@@ -143,7 +143,11 @@ describe('ModalManager', () => {
       expect(fixedNode.style.paddingRight).to.equal('14px');
     });
 
-    it('should handle the scroll on custom scroll target', () => {
+    it('should handle the scroll on custom scroll target', function () {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // jsdom cannot emulate scrollbar, we'll test this in real browser.
+        this.skip();
+      }
       const html = document.querySelector('html')!;
       html.style.paddingRight = '32px';
       html.style.height = '1000px';
@@ -186,7 +190,11 @@ describe('ModalManager', () => {
       document.body.removeChild(container2);
     });
 
-    it('should restore styles correctly if none existed before', () => {
+    it('should restore styles correctly if none existed before', function () {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // jsdom cannot emulate scrollbar, we'll test this in real browser.
+        this.skip();
+      }
       const modal = getDummyModal();
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});

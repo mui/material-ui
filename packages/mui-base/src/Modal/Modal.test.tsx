@@ -132,7 +132,11 @@ describe('<Modal />', () => {
     expect(element!.getAttribute('aria-hidden'), 'null when modal closed').to.equal(null);
   });
 
-  it('should work with scrollLockContainer', () => {
+  it('should work with scrollLockContainer', function () {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // jsdom cannot emulate scrollbar, we'll test this in real browser.
+      this.skip();
+    }
     const scrollLockContainer = document.body.parentElement!;
     scrollLockContainer.style.paddingRight = '344px';
     const { setProps } = render(
