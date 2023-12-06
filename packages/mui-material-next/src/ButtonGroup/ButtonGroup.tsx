@@ -296,7 +296,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
     PropTypes.string,
   ]),
   /**
@@ -356,7 +356,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'outlined', 'text']),
+    PropTypes.oneOf(['elevated', 'filled', 'filledTonal', 'outlined', 'text']),
     PropTypes.string,
   ]),
 } as any;
