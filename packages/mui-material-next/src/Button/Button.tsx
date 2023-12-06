@@ -92,10 +92,7 @@ export const ButtonRoot = styled(ButtonBase, {
 
   const labelTextColor = {
     elevated: tokens.sys.color.primary,
-    filled:
-      tokens.sys.color[
-        `on${capitalize(ownerState.color)}` as keyof MD3ColorSchemeTokens
-      ],
+    filled: tokens.sys.color[`on${capitalize(ownerState.color)}` as keyof MD3ColorSchemeTokens],
     filledTonal: tokens.sys.color.onSecondaryContainer,
     outlined: tokens.sys.color[ownerState.color],
     text: tokens.sys.color[ownerState.color],
@@ -123,10 +120,7 @@ export const ButtonRoot = styled(ButtonBase, {
       ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / calc(1 - ${
           tokens.sys.state.hover.stateLayerOpacity
         }))`
-      : alpha(
-          theme.sys.color[ownerState.color],
-          1 - theme.sys.state.hover.stateLayerOpacity,
-        ),
+      : alpha(theme.sys.color[ownerState.color], 1 - theme.sys.state.hover.stateLayerOpacity),
     filledTonal: theme.vars
       ? `rgba(${tokens.sys.color.secondaryContainerChannel} / calc(1 - ${tokens.sys.state.hover.stateLayerOpacity}))`
       : alpha(theme.sys.color.secondaryContainer, 1 - theme.sys.state.hover.stateLayerOpacity),
@@ -134,18 +128,12 @@ export const ButtonRoot = styled(ButtonBase, {
       ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / ${
           tokens.sys.state.hover.stateLayerOpacity
         })`
-      : alpha(
-          theme.sys.color[ownerState.color],
-          theme.sys.state.hover.stateLayerOpacity,
-        ),
+      : alpha(theme.sys.color[ownerState.color], theme.sys.state.hover.stateLayerOpacity),
     text: theme.vars
       ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / ${
           tokens.sys.state.hover.stateLayerOpacity
         })`
-      : alpha(
-          theme.sys.color[ownerState.color],
-          theme.sys.state.hover.stateLayerOpacity,
-        ),
+      : alpha(theme.sys.color[ownerState.color], theme.sys.state.hover.stateLayerOpacity),
   };
 
   const pressedContainerColor = {
@@ -156,10 +144,7 @@ export const ButtonRoot = styled(ButtonBase, {
       ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / calc(1 - ${
           tokens.sys.state.pressed.stateLayerOpacity
         }))`
-      : alpha(
-          theme.sys.color[ownerState.color],
-          1 - theme.sys.state.pressed.stateLayerOpacity,
-        ),
+      : alpha(theme.sys.color[ownerState.color], 1 - theme.sys.state.pressed.stateLayerOpacity),
     filledTonal: theme.vars
       ? `rgba(${tokens.sys.color.secondaryContainerChannel} / calc(1 - ${tokens.sys.state.pressed.stateLayerOpacity}))`
       : alpha(theme.sys.color.secondaryContainer, 1 - theme.sys.state.pressed.stateLayerOpacity),
@@ -167,18 +152,12 @@ export const ButtonRoot = styled(ButtonBase, {
       ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / ${
           tokens.sys.state.pressed.stateLayerOpacity
         })`
-      : alpha(
-          theme.sys.color[ownerState.color],
-          theme.sys.state.pressed.stateLayerOpacity,
-        ),
+      : alpha(theme.sys.color[ownerState.color], theme.sys.state.pressed.stateLayerOpacity),
     text: theme.vars
       ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / ${
           tokens.sys.state.pressed.stateLayerOpacity
         })`
-      : alpha(
-          theme.sys.color[ownerState.color],
-          theme.sys.state.pressed.stateLayerOpacity,
-        ),
+      : alpha(theme.sys.color[ownerState.color], theme.sys.state.pressed.stateLayerOpacity),
   };
 
   const focusedContainerColor = {
@@ -189,10 +168,7 @@ export const ButtonRoot = styled(ButtonBase, {
       ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / calc(1 - ${
           tokens.sys.state.focus.stateLayerOpacity
         }))`
-      : alpha(
-          theme.sys.color[ownerState.color],
-          1 - theme.sys.state.focus.stateLayerOpacity,
-        ),
+      : alpha(theme.sys.color[ownerState.color], 1 - theme.sys.state.focus.stateLayerOpacity),
     // According to the spec, this should be: secondaryContainerChannel / 1 - focusStateLayerOpacity, but this doesn't have the enough contrast
     filledTonal: theme.vars
       ? `rgba(${tokens.sys.color.primaryChannel} / 0.3)`
@@ -201,18 +177,12 @@ export const ButtonRoot = styled(ButtonBase, {
       ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / ${
           tokens.sys.state.focus.stateLayerOpacity
         })`
-      : alpha(
-          theme.sys.color[ownerState.color],
-          theme.sys.state.focus.stateLayerOpacity,
-        ),
+      : alpha(theme.sys.color[ownerState.color], theme.sys.state.focus.stateLayerOpacity),
     text: theme.vars
       ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / ${
           tokens.sys.state.focus.stateLayerOpacity
         })`
-      : alpha(
-          theme.sys.color[ownerState.color],
-          theme.sys.state.focus.stateLayerOpacity,
-        ),
+      : alpha(theme.sys.color[ownerState.color], theme.sys.state.focus.stateLayerOpacity),
   };
 
   const containerElevation = {
