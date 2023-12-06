@@ -1,7 +1,7 @@
 ---
 title: Together Week lands in Phuket, Thailand
 description: The latest team retreat left MUIers feeling more connected and invigorated than ever. Here's how it went down.
-date: 2023-11-30T00:00:00.000Z
+date: 2023-12-13T00:00:00.000Z
 authors: ['mikailaread']
 card: true
 tags: ['Company']
