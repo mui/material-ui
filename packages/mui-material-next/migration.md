@@ -516,3 +516,45 @@ The following example replaces the `MuiCircularProgress-circleDeterminate` class
 - .MuiCircularProgress-circleDeterminate
 + .MuiCircularProgress-determinate .MuiCircularProgress-circle
 ```
+
+## ButtonGroup
+
+### Removed combined classes
+
+The following classes were removed:
+
+- `MuiButtonGroup-contained`
+- `MuiButtonGroup-groupedHorizontal`
+- `MuiButtonGroup-groupedVertical`
+- `MuiButtonGroup-groupedText`
+- `MuiButtonGroup-groupedTextHorizontal`
+- `MuiButtonGroup-groupedTextVertical`
+- `MuiButtonGroup-groupedTextPrimary`
+- `MuiButtonGroup-groupedTextSecondary`
+- `MuiButtonGroup-groupedOutlined`
+- `MuiButtonGroup-groupedOutlinedHorizontal`
+- `MuiButtonGroup-groupedOutlinedVertical`
+- `MuiButtonGroup-groupedOutlinedPrimary`
+- `MuiButtonGroup-groupedOutlinedSecondary`
+- `MuiButtonGroup-groupedContained`
+- `MuiButtonGroup-groupedContainedHorizontal`
+- `MuiButtonGroup-groupedContainedVertical`
+- `MuiButtonGroup-groupedContainedPrimary`
+- `MuiButtonGroup-groupedContainedSecondary`
+
+The following classes were added:
+
+- `MuiButtonGroup-filled`
+- `MuiButtonGroup-filledTonal`
+- `MuiButtonGroup-elevated`
+- `MuiButtonGroup-primary`
+- `MuiButtonGroup-secondary`
+- `MuiButtonGroup-tertiary`
+
+You can replace them by combining classes with a CSS selector.
+The following example replaces the `MuiButtonGroup-groupedOutlined` class using `MuiButtonGroup-grouped` and `MuiButtonGroup-outline`:
+
+```diff
+- .MuiButtonGroup-groupedOutlined
++ .MuiButtonGroup-outlined .MuiButtonGroup-grouped
+```
