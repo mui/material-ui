@@ -1,14 +1,14 @@
 :root {
-  --primary-50: #e9f9fc;
-  --primary-100: #c1ecf4;
-  --primary-200: #99dae5;
-  --primary-300: #66bbca;
-  --primary-400: #1f91a5;
-  --primary-500: #0d535f;
-  --primary-600: #094651;
-  --primary-700: #063b44;
-  --primary-800: #042f37;
-  --primary-900: #022126;
+  --primary-50: #f5fbfe;
+  --primary-100: #d6f0f9;
+  --primary-200: #abdbec;
+  --primary-300: #75bcd5;
+  --primary-400: #1d93bd;
+  --primary-500: #0c5b78;
+  --primary-600: #08516c;
+  --primary-700: #054860;
+  --primary-800: #033d52;
+  --primary-900: #012f40;  
 
   --grey-50: #f3f6f9;
   --grey-100: #e5eaf2;
@@ -70,22 +70,31 @@
   --shadow-elevation-dark-level-3: 0px 4px 8px 0px rgba(0, 0, 0, 0.32), 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
   --shadow-elevation-dark-level-4: 0px 2px 24px 0px rgba(0, 0, 0, 0.32), 0px 16px 32px 0px rgba(0, 0, 0, 0.32);
 
-  --shadow-interactive-light-button: 0px -2px 1px 0px #094651 inset, 0px 1.5px 1px 0px #1F91A5 inset, 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+  --shadow-interactive-light-button: 0px -2px 1px 0px var(--primary-600) inset, 0px 1.5px 1px 0px var(--primary-400) inset, 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
   --shadow-interactive-light-input: 0px 2px 2px 0px rgba(0, 0, 0, 0.05);
   --shadow-interactive-light-switch-track: 0px 1px 1px 0px rgba(0, 0, 0, 0.05) inset;
   --shadow-interactive-light-switch-thumb: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
-  --shadow-interactive-light-focus-visible: 0px 0px 0px 4px #99DAE5, 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
-  --shadow-interactive-dark-button: 0px -2px 1px 0px #094651 inset, 0px 1.5px 1px 0px #1F91A5 inset, 0px 2px 4px 0px rgba(0, 0, 0, 0.50);
+  --shadow-interactive-light-focus-visible: 0px 0px 0px 4px var(--primary-200), 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+  --shadow-interactive-dark-button: 0px -2px 1px 0px var(--primary-600) inset, 0px 1.5px 1px 0px var(--primary-400) inset, 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
   --shadow-interactive-dark-input: 0px 2px 2px 0px rgba(0, 0, 0, 0.35);
   --shadow-interactive-dark-switch-track: 0px 1px 1px 0px rgba(0, 0, 0, 0.35) inset;
   --shadow-interactive-dark-switch-thumb: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
-  --shadow-interactive-dark-focus-visible: 0px 0px 0px 4px #0D535F, 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+  --shadow-interactive-dark-focus-visible: 0px 0px 0px 4px var(--primary-600), 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
 
   --border-radius-sm: 4px;
   --border-radius-md: 8px;
   --border-radius-lg: 12px;
   --border-radius-xl: 24px;
   --border-radius-full: 999px;
+}
+
+.GalleryStack {
+  background-color: var(--GalleryStack-background-color, var(--background-surface-light-default));
+}
+@media (prefers-color-scheme: dark) {
+  .GalleryStack {
+    --GalleryStack-background-color: var(--background-surface-dark-default);
+  }
 }
 
 .GalleryBadge {
@@ -143,45 +152,48 @@
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
-  background-color: var(--primary-500);
+  background-color: var(--GalleryButton-default-background-color, var(--background-interactive-light-button-base));
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
-  border: 1px solid var(--primary-500);
-  box-shadow: 0 2px 4px var(--GalleryButton-boxShadow-color, rgba(13, 84, 99, 0.5)),
-    inset 0 1.5px 1px var(--primary-400), inset 0 -2px 1px var(--primary-600);
+  border: var(--GalleryButton-default-border, var(--border-light-interactive));
+  box-shadow: var(--GalleryButton-boxShadow-color, var(--shadow-interactive-light-button));
 }
 .GalleryButton:hover {
-  background-color: var(--primary-600);
+  background-color: var(--GalleryButton-default-hover-background-color, var(--background-interactive-light-button-hover));
 }
 .GalleryButton:active {
-  background-color: var(--primary-700);
+  background-color: var(--GalleryButton-default-active-background-color, var(--background-interactive-light-button-active));
   box-shadow: none;
 }
 .GalleryButton:focus-visible {
-  box-shadow: 0 0 0 4px var(--GalleryButton-focusVisible-boxShadow-color, var(--primary-200));
+  box-shadow: var(--GalleryButton-boxShadow-color, var(--shadow-interactive-light-button)), var(--GalleryButton-focusVisible-boxShadow-color, var(--shadow-interactive-light-focus-visible));
   outline: none;
 }
 .GalleryButton:disabled {
-  background-color: var(--GalleryButton-disabled-background-color, var(--grey-200));
+  background-color: var(--GalleryButton-disabled-background-color, var(--background-interactive-light-button-disabled));
   color: var(--GalleryButton-disabled-color, var(--grey-700));
   border: 0;
   cursor: not-allowed;
   box-shadow: none;
 }
 .GalleryButton:disabled:hover {
-  background-color: var(--GaleryButton-disabled-hover-background-color, var(--grey-200));
+  background-color: var(--GaleryButton-disabled-hover-background-color, var(--background-interactive-light-button-disabled));
 }
 
 @media (prefers-color-scheme: dark) {
   .GalleryButton {
-    --GalleryButton-boxShadow-color: rgba(0, 0, 0, 0.5);
-    --GalleryButton-focusVisible-boxShadow-color: var(--primary-300);
+    --GalleryButton-default-background-color: var(--background-interactive-dark-button-base);
+    --GalleryButton-default-hover-background-color: var(--background-interactive-dark-button-hover);
+    --GalleryButton-default-active-background-color: var(--background-interactive-dark-button-active);
+    --GalleryButton-default-border: var(--border-dark-interactive);
+    --GalleryButton-boxShadow-color: var(--shadow-interactive-dark-button);
+    --GalleryButton-focusVisible-boxShadow-color: var(--shadow-interactive-dark-focus-visible);
     --GalleryButton-disabled-color: var(--grey-200);
-    --GalleryButton-disabled-background-color: var(--grey-700);
-    --GaleryButton-disabled-hover-background-color: var(--grey-700);
+    --GalleryButton-disabled-background-color: var(--background-interactive-dark-button-disabled);
+    --GaleryButton-disabled-hover-background-color:var(--background-interactive-dark-button-disabled);
   }
 }
 
