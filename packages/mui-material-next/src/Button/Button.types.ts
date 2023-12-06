@@ -4,6 +4,7 @@ import {
   OverrideProps,
   OverridableComponent,
   OverridableTypeMap,
+  PartiallyRequired,
 } from '@mui/types';
 import { SxProps } from '../styles/Theme.types';
 import { ButtonClasses } from './buttonClasses';
@@ -92,7 +93,11 @@ export type ButtonTypeMap<
   defaultComponent: DefaultComponent;
 };
 
-export interface ButtonOwnerState extends ButtonProps {}
+export interface ButtonOwnerState
+  extends PartiallyRequired<
+    ButtonProps,
+    'color' | 'disableElevation' | 'fullWidth' | 'size' | 'variant'
+  > {}
 
 /**
  * A utility to create component types that inherit props from the Button.
