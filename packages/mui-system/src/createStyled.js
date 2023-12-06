@@ -84,7 +84,7 @@ const themeVariantsResolver = (props, styles, theme, name) => {
 
 // Update /system/styled/#api in case if this changes
 export function shouldForwardProp(prop) {
-  return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
+  return prop !== 'ownerState' && prop !== 'theme' && prop !== 'as';
 }
 
 export const systemDefaultTheme = createTheme();
@@ -156,6 +156,7 @@ export default function createStyled(input = {}) {
       // TODO v6: remove `lowercaseFirstLetter()` in the next major release
       // For more details: https://github.com/mui/material-ui/pull/37908
       overridesResolver = defaultOverridesResolver(lowercaseFirstLetter(componentSlot)),
+      shouldForwardProp: shouldForwardPropInput,
       ...options
     } = inputOptions;
 
@@ -193,10 +194,48 @@ export default function createStyled(input = {}) {
       shouldForwardPropOption = undefined;
     }
 
-    const defaultStyledResolver = styledEngineStyled(tag, {
-      shouldForwardProp: shouldForwardPropOption,
+    if (shouldForwardPropInput) {
+      shouldForwardPropOption = shouldForwardPropInput;
+    }
+
+    // Always propagated the sx prop, the augmented component will make sure to intercept if needed
+    const shouldForwardPropEmotionOption = (prop) =>
+      prop === 'sx' ||
+      shouldForwardPropOption === undefined ||
+      (typeof shouldForwardPropOption === 'function' && shouldForwardPropOption(prop));
+
+    // This is needed in order to intercept the transformed sx values potentially done by the zero-runtime library
+    const AugmentedTag = React.forwardRef(function Component(props, ref) {
+      const { sx, ...other } = props;
+      const sxClass = typeof sx === 'string' ? sx : sx?.className;
+      const sxVars = sx && typeof sx !== 'string' ? sx.vars : undefined;
+      const sxVarsStyles = {};
+
+      if (sxVars) {
+        Object.entries(sxVars).forEach(([cssVariable, [value, isUnitLess]]) => {
+          if (typeof value === 'string' || isUnitLess) {
+            sxVarsStyles[`--${cssVariable}`] = value;
+          } else {
+            sxVarsStyles[`--${cssVariable}`] = `${value}px`;
+          }
+        });
+      }
+
+      const propsToFrward =
+        shouldForwardPropOption === undefined || !shouldForwardPropOption('sx') ? other : props;
+
+      return React.createElement(tag, {
+        ...propsToFrward,
+        className: clsx(props.className, sxClass),
+        style: { ...sxVarsStyles, ...props.style },
+        ref,
+      });
+    });
+
+    const defaultStyledResolver = styledEngineStyled(AugmentedTag, {
       label,
       ...options,
+      shouldForwardProp: shouldForwardPropEmotionOption,
     });
     const muiStyledResolver = (styleArg, ...expressions) => {
       const expressionsWithDefaultTheme = expressions
@@ -312,39 +351,7 @@ export default function createStyled(input = {}) {
         transformedStyleArg = [...styleArg, ...placeholders];
         transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
       }
-      const DefaultComponent = defaultStyledResolver(
-        transformedStyleArg,
-        ...expressionsWithDefaultTheme,
-      );
-
-      const Component = React.forwardRef(function Component(props, ref) {
-        const sxClass = typeof props.sx === 'string' ? props.sx : props.sx?.className;
-        const sxVars = props.sx && typeof props.sx !== 'string' ? props.sx.vars : undefined;
-        const sxVarsStyles = {};
-        if (sxVars) {
-          Object.entries(sxVars).forEach(([cssVariable, [value, isUnitLess]]) => {
-            if (typeof value === 'string' || isUnitLess) {
-              sxVarsStyles[`--${cssVariable}`] = value;
-            } else {
-              sxVarsStyles[`--${cssVariable}`] = `${value}px`;
-            }
-          });
-        }
-        return (
-          <DefaultComponent
-            {...props}
-            className={clsx(props.className, sxClass)}
-            style={{ ...sxVarsStyles, ...props.style }}
-            ref={ref}
-          />
-        );
-      });
-
-      Object.keys(DefaultComponent).forEach((key) => {
-        if (!key.startsWith('$$') && key !== 'render') {
-          Component[key] = DefaultComponent[key];
-        }
-      });
+      const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
 
       if (process.env.NODE_ENV !== 'production') {
         let displayName;

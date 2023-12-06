@@ -647,4 +647,42 @@ describe('styled', () => {
       expect(containsValidClass).to.equal(true);
     });
   });
+
+  it('should support sx as string', () => {
+    const Component = styled('div', {
+      shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+      name: 'MuiComponent',
+    })`
+      width: 200px;
+      height: 300px;
+    `;
+
+    const { container } = render(<Component sx="sx-classname">Test</Component>);
+
+    const classList = Array.from(container.firstChild.classList);
+
+    expect(classList).to.contain('sx-classname');
+  });
+
+  it('should support sx as string', () => {
+    const Component = styled('div', {
+      shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+      name: 'MuiComponent',
+    })`
+      width: 200px;
+      height: 300px;
+    `;
+
+    const { container } = render(
+      <Component sx={{ className: 'sx-classname', vars: { spacing: [10, false] } }}>
+        Test
+      </Component>,
+    );
+
+    const classList = Array.from(container.firstChild.classList);
+    console.log(container.firstChild.getAttribute('style'));
+
+    expect(classList).to.contain('sx-classname');
+    expect(container.firstChild.getAttribute('style')).to.equal('--spacing: 10px;');
+  });
 });
