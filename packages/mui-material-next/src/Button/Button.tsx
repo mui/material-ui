@@ -24,14 +24,14 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
     root: [
       'root',
       variant,
-      `color${capitalize(color ?? '')}`,
-      `size${capitalize(size ?? '')}`,
+      `color${capitalize(color)}`,
+      `size${capitalize(size)}`,
       disableElevation && 'disableElevation',
       fullWidth && 'fullWidth',
     ],
     label: ['label'],
-    startIcon: ['startIcon', `iconSize${capitalize(size ?? '')}`],
-    endIcon: ['endIcon', `iconSize${capitalize(size ?? '')}`],
+    startIcon: ['startIcon', `iconSize${capitalize(size)}`],
+    endIcon: ['endIcon', `iconSize${capitalize(size)}`],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
@@ -84,7 +84,7 @@ export const ButtonRoot = styled(ButtonBase, {
 
   const containerColor = {
     elevated: `linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), ${tokens.sys.color.surface}`,
-    filled: tokens.sys.color[ownerState.color ?? 'primary'],
+    filled: tokens.sys.color[ownerState.color],
     filledTonal: tokens.sys.color.secondaryContainer,
     outlined: 'transparent',
     text: 'transparent',
@@ -94,11 +94,11 @@ export const ButtonRoot = styled(ButtonBase, {
     elevated: tokens.sys.color.primary,
     filled:
       tokens.sys.color[
-        `on${capitalize(ownerState.color ?? 'primary')}` as keyof MD3ColorSchemeTokens
+        `on${capitalize(ownerState.color)}` as keyof MD3ColorSchemeTokens
       ],
     filledTonal: tokens.sys.color.onSecondaryContainer,
-    outlined: tokens.sys.color[ownerState.color ?? 'primary'],
-    text: tokens.sys.color[ownerState.color ?? 'primary'],
+    outlined: tokens.sys.color[ownerState.color],
+    text: tokens.sys.color[ownerState.color],
   };
 
   const disabledContainerColor = {
@@ -120,30 +120,30 @@ export const ButtonRoot = styled(ButtonBase, {
       ? `rgba(${tokens.sys.color.primaryChannel} / ${tokens.sys.state.hover.stateLayerOpacity})`
       : alpha(theme.sys.color.primary, theme.sys.state.hover.stateLayerOpacity),
     filled: theme.vars
-      ? `rgba(${tokens.sys.color[`${ownerState.color ?? 'primary'}Channel`]} / calc(1 - ${
+      ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / calc(1 - ${
           tokens.sys.state.hover.stateLayerOpacity
         }))`
       : alpha(
-          theme.sys.color[ownerState.color ?? 'primary'],
+          theme.sys.color[ownerState.color],
           1 - theme.sys.state.hover.stateLayerOpacity,
         ),
     filledTonal: theme.vars
       ? `rgba(${tokens.sys.color.secondaryContainerChannel} / calc(1 - ${tokens.sys.state.hover.stateLayerOpacity}))`
       : alpha(theme.sys.color.secondaryContainer, 1 - theme.sys.state.hover.stateLayerOpacity),
     outlined: theme.vars
-      ? `rgba(${tokens.sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
+      ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / ${
           tokens.sys.state.hover.stateLayerOpacity
         })`
       : alpha(
-          theme.sys.color[ownerState.color ?? 'primary'],
+          theme.sys.color[ownerState.color],
           theme.sys.state.hover.stateLayerOpacity,
         ),
     text: theme.vars
-      ? `rgba(${tokens.sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
+      ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / ${
           tokens.sys.state.hover.stateLayerOpacity
         })`
       : alpha(
-          theme.sys.color[ownerState.color ?? 'primary'],
+          theme.sys.color[ownerState.color],
           theme.sys.state.hover.stateLayerOpacity,
         ),
   };
@@ -153,30 +153,30 @@ export const ButtonRoot = styled(ButtonBase, {
       ? `rgba(${tokens.sys.color.primaryChannel} / ${tokens.sys.state.pressed.stateLayerOpacity})`
       : alpha(theme.sys.color.primary, theme.sys.state.pressed.stateLayerOpacity),
     filled: theme.vars
-      ? `rgba(${tokens.sys.color[`${ownerState.color ?? 'primary'}Channel`]} / calc(1 - ${
+      ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / calc(1 - ${
           tokens.sys.state.pressed.stateLayerOpacity
         }))`
       : alpha(
-          theme.sys.color[ownerState.color ?? 'primary'],
+          theme.sys.color[ownerState.color],
           1 - theme.sys.state.pressed.stateLayerOpacity,
         ),
     filledTonal: theme.vars
       ? `rgba(${tokens.sys.color.secondaryContainerChannel} / calc(1 - ${tokens.sys.state.pressed.stateLayerOpacity}))`
       : alpha(theme.sys.color.secondaryContainer, 1 - theme.sys.state.pressed.stateLayerOpacity),
     outlined: theme.vars
-      ? `rgba(${tokens.sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
+      ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / ${
           tokens.sys.state.pressed.stateLayerOpacity
         })`
       : alpha(
-          theme.sys.color[ownerState.color ?? 'primary'],
+          theme.sys.color[ownerState.color],
           theme.sys.state.pressed.stateLayerOpacity,
         ),
     text: theme.vars
-      ? `rgba(${tokens.sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
+      ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / ${
           tokens.sys.state.pressed.stateLayerOpacity
         })`
       : alpha(
-          theme.sys.color[ownerState.color ?? 'primary'],
+          theme.sys.color[ownerState.color],
           theme.sys.state.pressed.stateLayerOpacity,
         ),
   };
@@ -186,11 +186,11 @@ export const ButtonRoot = styled(ButtonBase, {
       ? `rgba(${tokens.sys.color.primaryChannel} / ${tokens.sys.state.focus.stateLayerOpacity})`
       : alpha(theme.sys.color.primary, theme.sys.state.focus.stateLayerOpacity),
     filled: theme.vars
-      ? `rgba(${tokens.sys.color[`${ownerState.color ?? 'primary'}Channel`]} / calc(1 - ${
+      ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / calc(1 - ${
           tokens.sys.state.focus.stateLayerOpacity
         }))`
       : alpha(
-          theme.sys.color[ownerState.color ?? 'primary'],
+          theme.sys.color[ownerState.color],
           1 - theme.sys.state.focus.stateLayerOpacity,
         ),
     // According to the spec, this should be: secondaryContainerChannel / 1 - focusStateLayerOpacity, but this doesn't have the enough contrast
@@ -198,19 +198,19 @@ export const ButtonRoot = styled(ButtonBase, {
       ? `rgba(${tokens.sys.color.primaryChannel} / 0.3)`
       : alpha(theme.sys.color.primary, 0.3),
     outlined: theme.vars
-      ? `rgba(${tokens.sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
+      ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / ${
           tokens.sys.state.focus.stateLayerOpacity
         })`
       : alpha(
-          theme.sys.color[ownerState.color ?? 'primary'],
+          theme.sys.color[ownerState.color],
           theme.sys.state.focus.stateLayerOpacity,
         ),
     text: theme.vars
-      ? `rgba(${tokens.sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
+      ? `rgba(${tokens.sys.color[`${ownerState.color}Channel`]} / ${
           tokens.sys.state.focus.stateLayerOpacity
         })`
       : alpha(
-          theme.sys.color[ownerState.color ?? 'primary'],
+          theme.sys.color[ownerState.color],
           theme.sys.state.focus.stateLayerOpacity,
         ),
   };
@@ -262,10 +262,10 @@ export const ButtonRoot = styled(ButtonBase, {
 
   return {
     // Icon variables default values
-    '--md-comp-button-icon-color': labelTextColor[ownerState.variant ?? 'text'],
-    '--md-comp-button-hovered-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
-    '--md-comp-button-pressed-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
-    '--md-comp-button-focused-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
+    '--md-comp-button-icon-color': labelTextColor[ownerState.variant],
+    '--md-comp-button-hovered-icon-color': labelTextColor[ownerState.variant],
+    '--md-comp-button-pressed-icon-color': labelTextColor[ownerState.variant],
+    '--md-comp-button-focused-icon-color': labelTextColor[ownerState.variant],
     '--md-comp-button-disabled-icon-color': disabledLabelTextColor,
     padding: '10px 24px',
     minWidth: 64,
@@ -281,9 +281,9 @@ export const ButtonRoot = styled(ButtonBase, {
     fontSize: theme.typography.pxToRem(theme.sys.typescale.label.large.size), // the pxToRem should be moved to typescale in the future
     lineHeight: `calc(${tokens.sys.typescale.label.large.lineHeight} / ${theme.sys.typescale.label.large.size})`,
     borderRadius: `var(--Button-radius, ${borderRadius})`,
-    backgroundColor: containerColor[ownerState.variant ?? 'text'],
-    color: labelTextColor[ownerState.variant ?? 'text'],
-    boxShadow: containerElevation[ownerState.variant ?? 'text'],
+    backgroundColor: containerColor[ownerState.variant],
+    color: labelTextColor[ownerState.variant],
+    boxShadow: containerElevation[ownerState.variant],
     // Outlined variant
     ...(ownerState.variant === 'outlined' && {
       border: `1px solid ${tokens.sys.color.outline}`,
@@ -309,26 +309,26 @@ export const ButtonRoot = styled(ButtonBase, {
     }),
     '&:hover': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-hovered-icon-color)',
-      backgroundColor: hoveredContainerColor[ownerState.variant ?? 'text'],
-      boxShadow: hoveredContainerElevation[ownerState.variant ?? 'text'],
+      backgroundColor: hoveredContainerColor[ownerState.variant],
+      boxShadow: hoveredContainerElevation[ownerState.variant],
     },
     '&:active': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-pressed-icon-color)',
       ...((ownerState.disableRipple || ownerState.disableTouchRipple) && {
-        backgroundColor: pressedContainerColor[ownerState.variant ?? 'text'],
+        backgroundColor: pressedContainerColor[ownerState.variant],
       }),
-      boxShadow: pressedContainerElevation[ownerState.variant ?? 'text'],
+      boxShadow: pressedContainerElevation[ownerState.variant],
     },
     [`&.${buttonBaseClasses.focusVisible}`]: {
       '--md-comp-button-icon-color': 'var(--md-comp-button-focused-icon-color)',
-      backgroundColor: focusedContainerColor[ownerState.variant ?? 'text'],
-      boxShadow: focusedContainerElevation[ownerState.variant ?? 'text'],
+      backgroundColor: focusedContainerColor[ownerState.variant],
+      boxShadow: focusedContainerElevation[ownerState.variant],
     },
     [`&.${buttonBaseClasses.disabled}`]: {
       // Allows developer to specify the disabled icon color var
       '--md-comp-button-icon-color': 'var(--md-comp-button-disabled-icon-color)',
       color: disabledLabelTextColor,
-      backgroundColor: disabledContainerColor[ownerState.variant ?? 'text'],
+      backgroundColor: disabledContainerColor[ownerState.variant],
       boxShadow: tokens.sys.elevation[0],
       ...(ownerState.variant === 'outlined' && {
         border: `1px solid ${
