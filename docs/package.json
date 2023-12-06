@@ -20,10 +20,10 @@
     "link-check": "node ./scripts/reportBrokenLinks.js"
   },
   "dependencies": {
-    "@babel/core": "^7.23.3",
+    "@babel/core": "^7.23.5",
     "@babel/plugin-transform-object-assign": "^7.23.3",
-    "@babel/runtime": "^7.23.4",
-    "@babel/runtime-corejs2": "^7.23.4",
+    "@babel/runtime": "^7.23.5",
+    "@babel/runtime-corejs2": "^7.23.5",
     "@docsearch/react": "^3.5.2",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
