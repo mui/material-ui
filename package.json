@@ -93,7 +93,7 @@
     "@next/eslint-plugin-next": "^13.5.6",
     "@octokit/rest": "^20.0.2",
     "@playwright/test": "1.40.0",
-    "@slack/bolt": "^3.15.0",
+    "@slack/bolt": "^3.16.0",
     "@slack/web-api": "^6.10.0",
     "@types/enzyme": "^3.10.16",
     "@types/fs-extra": "^11.0.4",
