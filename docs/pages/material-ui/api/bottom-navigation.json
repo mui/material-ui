@@ -25,7 +25,14 @@
     "import BottomNavigation from '@mui/material/BottomNavigation';",
     "import { BottomNavigation } from '@mui/material';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiBottomNavigation" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiBottomNavigation-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiBottomNavigation",

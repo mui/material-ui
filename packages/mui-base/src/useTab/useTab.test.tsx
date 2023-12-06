@@ -18,7 +18,7 @@ describe('useTab', () => {
 
       function Test() {
         return (
-          <Tabs>
+          <Tabs defaultValue={1}>
             <TabsList>
               <TestTab />
             </TabsList>
@@ -43,7 +43,7 @@ describe('useTab', () => {
 
       function Test() {
         return (
-          <Tabs>
+          <Tabs defaultValue={1}>
             <TabsList>
               <TestTab />
             </TabsList>

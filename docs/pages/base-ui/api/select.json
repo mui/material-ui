@@ -36,36 +36,52 @@
   },
   "name": "Select",
   "imports": ["import { Select } from '@mui/base/Select';", "import { Select } from '@mui/base';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'button'",
-      "class": ".MuiSelect-root"
+      "class": "MuiSelect-root"
     },
     {
       "name": "listbox",
       "description": "The component that renders the listbox.",
       "default": "'ul'",
-      "class": ".MuiSelect-listbox"
+      "class": "MuiSelect-listbox"
     },
     {
       "name": "popper",
       "description": "The component that renders the popper.",
       "default": "Popper",
-      "class": ".MuiSelect-popper"
+      "class": "MuiSelect-popper"
     }
   ],
-  "classes": {
-    "classes": ["active", "disabled", "expanded", "focusVisible"],
-    "globalClasses": {
-      "active": "Mui-active",
-      "expanded": "Mui-expanded",
-      "disabled": "Mui-disabled",
-      "focusVisible": "Mui-focusVisible"
+  "classes": [
+    {
+      "key": "active",
+      "className": "Mui-active",
+      "description": "State class applied to the root `button` element if `active={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root `button` element and the listbox 'ul' element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "expanded",
+      "className": "Mui-expanded",
+      "description": "State class applied to the root `button` element if `expanded={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the root `button` element if `focusVisible={true}`.",
+      "isGlobal": true
     }
-  },
+  ],
   "spread": true,
   "muiName": "MuiSelect",
   "forwardsRefTo": "HTMLButtonElement",

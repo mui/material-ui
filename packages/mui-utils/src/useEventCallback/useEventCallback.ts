@@ -21,7 +21,6 @@ function useEventCallback<Args extends unknown[], Return>(
   });
   return React.useRef((...args: Args) =>
     // @ts-expect-error hide `this`
-    // tslint:disable-next-line:ban-comma-operator
     (0, ref.current!)(...args),
   ).current;
 }

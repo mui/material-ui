@@ -28,15 +28,15 @@
     "import CardContent from '@mui/joy/CardContent';",
     "import { CardContent } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiCardContent" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiCardContent-root"
+      "class": "MuiCardContent-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyCardContent",

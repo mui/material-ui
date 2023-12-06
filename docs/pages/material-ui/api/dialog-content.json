@@ -16,7 +16,20 @@
     "import DialogContent from '@mui/material/DialogContent';",
     "import { DialogContent } from '@mui/material';"
   ],
-  "styles": { "classes": ["root", "dividers"], "globalClasses": {}, "name": "MuiDialogContent" },
+  "classes": [
+    {
+      "key": "dividers",
+      "className": "MuiDialogContent-dividers",
+      "description": "Styles applied to the root element if `dividers={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiDialogContent-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiDialogContent",

@@ -22,6 +22,6 @@
       "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use."
     }
   },
-  "classDescriptions": { "root": { "description": "Class name applied to the root element." } },
+  "classDescriptions": {},
   "slotDescriptions": { "root": "The component that renders the root." }
 }

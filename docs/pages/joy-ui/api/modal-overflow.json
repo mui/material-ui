@@ -13,15 +13,15 @@
     "import ModalOverflow from '@mui/joy/ModalOverflow';",
     "import { ModalOverflow } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiModalOverflow" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiModalOverflow-root"
+      "class": "MuiModalOverflow-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyModalOverflow",

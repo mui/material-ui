@@ -1,6 +1,9 @@
 {
   "hookDescription": "",
   "parametersDescriptions": {
+    "componentName": {
+      "description": "The name of the component using useDropdown. For debugging purposes."
+    },
     "defaultOpen": { "description": "If <code>true</code>, the dropdown is initially open." },
     "onOpenChange": {
       "description": "Callback fired when the component requests to be opened or closed."

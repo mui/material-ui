@@ -24,15 +24,15 @@
     "import FormHelperText from '@mui/joy/FormHelperText';",
     "import { FormHelperText } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiFormHelperText" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'p'",
-      "class": ".MuiFormHelperText-root"
+      "class": "MuiFormHelperText-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyFormHelperText",
