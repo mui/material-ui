@@ -212,16 +212,16 @@ export default function ComponentsGallery() {
   const colorPickerSliderChangeHandler = (e: Event, value: number | number[]) => {
     setRootStyles(`
 :root {
-  --primary-50: hsl(${value}, 76%, 95%);
-  --primary-100: hsl(${value}, 70%, 86%);
-  --primary-200: hsl(${value}, 59%, 75%);
-  --primary-300: hsl(${value}, 49%, 60%);
-  --primary-400: hsl(${value}, 68%, 38%);
-  --primary-500: hsl(${value}, 76%, 21%);
-  --primary-600: hsl(${value}, 80%, 18%);
-  --primary-700: hsl(${value}, 84%, 15%);
-  --primary-800: hsl(${value}, 86%, 12%);
-  --primary-900: hsl(${value}, 90%, 8%);
+  --primary-50: hsl(${value}, 81%, 98%);
+  --primary-100: hsl(${value}, 75%, 91%);
+  --primary-200: hsl(${value}, 64%, 80%);
+  --primary-300: hsl(${value}, 54%, 65%);
+  --primary-400: hsl(${value}, 73%, 43%);
+  --primary-500: hsl(${value}, 81%, 26%);
+  --primary-600: hsl(${value}, 85%, 23%);
+  --primary-700: hsl(${value}, 89%, 20%);
+  --primary-800: hsl(${value}, 91%, 17%);
+  --primary-900: hsl(${value}, 95%, 13%);
 }
     `);
 
@@ -233,7 +233,7 @@ export default function ComponentsGallery() {
   };
 
   return (
-    <Stack gap={2} sx={{ padding: 1 }}>
+    <Stack className="GalleryStack" gap={2} sx={{ padding: 2 }}>
       {/* Copy theme button */}
       <Box sx={{ position: 'absolute', right: '10px' }}>
         <CopyButton className="GalleryButton" style={{ float: 'right' }} onClick={copyTheme}>
