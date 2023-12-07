@@ -42,6 +42,7 @@ const Button = React.forwardRef(function Button<RootComponentType extends React.
     onFocusVisible,
     slotProps = {},
     slots = {},
+    hostElementName,
     ...other
   } = props;
 

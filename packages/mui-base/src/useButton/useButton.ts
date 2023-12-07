@@ -31,6 +31,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     tabIndex,
     to,
     type,
+    hostElementName: hostElementNameProp = '',
   } = parameters;
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
@@ -52,7 +53,18 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     isFocusVisibleRef.current = focusVisible;
   }, [focusVisible, isFocusVisibleRef]);
 
-  const [hostElementName, setHostElementName] = React.useState<string>('');
+  const [hostElementName, setHostElementName] = React.useState<string>(
+    hostElementNameProp.toUpperCase(),
+  );
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (hostElementNameProp && hostElementName !== hostElementNameProp.toUpperCase()) {
+        console.warn(`expected: ${hostElementNameProp}, actual ${hostElementName}`);
+      }
+    }, [hostElementNameProp, hostElementName]);
+  }
 
   const createHandleMouseLeave = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
     if (focusVisible) {
@@ -197,6 +209,14 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
       buttonProps['aria-disabled'] = disabled;
     } else {
       buttonProps.disabled = disabled;
+    }
+  } else if (hostElementName === 'INPUT') {
+    if (type && ['button', 'submit', 'reset'].includes(type)) {
+      if (focusableWhenDisabled) {
+        buttonProps['aria-disabled'] = disabled;
+      } else {
+        buttonProps.disabled = disabled;
+      }
     }
   } else if (hostElementName !== '') {
     if (!href && !to) {

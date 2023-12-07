@@ -22,6 +22,11 @@ export interface UseButtonParameters {
    * @default 'button'
    */
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  /**
+   * The HTML element, e.g. 'a'
+   * @default ''
+   */
+  hostElementName?: string;
 }
 
 export interface UseButtonRootSlotOwnProps {
