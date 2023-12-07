@@ -21,11 +21,11 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/core": "^7.23.3",
+    "@babel/core": "^7.23.5",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-jsx": "^7.23.3",
     "@babel/plugin-syntax-typescript": "^7.23.3",
-    "@babel/types": "^7.23.4",
+    "@babel/types": "^7.23.5",
     "@mui-internal/api-docs-builder": "^1.0.0",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
