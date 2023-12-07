@@ -91,12 +91,12 @@
   --border-radius-full: 999px;
 }
 
-.GalleryStack {
-  background-color: var(--GalleryStack-background-color, var(--background-surface-light-default));
+.GalleryContainer {
+  background-color: var(--GalleryContainer-background-color, var(--background-surface-light-default));
 }
 @media (prefers-color-scheme: dark) {
-  .GalleryStack {
-    --GalleryStack-background-color: var(--background-surface-dark-default);
+  .GalleryContainer {
+    --GalleryContainer-background-color: var(--background-surface-dark-default);
   }
 }
 

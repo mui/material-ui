@@ -233,7 +233,7 @@ export default function ComponentsGallery() {
   };
 
   return (
-    <Stack className="GalleryStack" gap={2} sx={{ padding: 2 }}>
+    <Stack className="GalleryContainer" gap={2} sx={{ padding: 2 }}>
       {/* Copy theme button */}
       <Box sx={{ position: 'absolute', right: '10px' }}>
         <CopyButton className="GalleryButton" style={{ float: 'right' }} onClick={copyTheme}>
