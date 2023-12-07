@@ -519,6 +519,60 @@ The following example replaces the `MuiCircularProgress-circleDeterminate` class
 
 ## ButtonGroup
 
+### Removed combined styleOverrides keys
+
+The following `styleOverrides` `MuiButtonGroup` keys were removed:
+
+- `contained`
+- `groupedHorizontal`
+- `groupedVertical`
+- `groupedContained`
+- `groupedText`
+- `groupedOutlined`
+- `groupedContainedHorizontal`
+- `groupedTextHorizontal`
+- `groupedOutlinedHorizontal`
+- `groupedContainedVertical`
+- `groupedTextVertical`
+- `groupedOutlinedVertical`
+- `groupedContainedPrimary`
+- `groupedTextPrimary`
+- `groupedOutlinedPrimary`
+- `groupedContainedSecondary`
+- `groupedTextSecondary`
+- `groupedOutlinedSecondary`
+
+The following `styleOverrides` `MuiButtonGroup` keys were added:
+
+- `primary`
+- `secondary`
+- `tertiary`
+- `filled`
+- `filledPartial`
+- `elevated`
+
+You can replace them by using the variants API and CSS Selectors.
+The following example replaces the usage of `groupedOutlined` with the variants API:
+
+```diff
+ const theme = extendTheme({
+   components: {
+     MuiButtonGroup: {
+       styleOverrides: {
+-        groupedOutlined: {
+-          background: "fuchsia"
+-        }
++        outlined: {
++          ".MuiButtonGroup-grouped": {
++            background: "fuchsia"
++          }
++        }
+       }
+     }
+   }
+ });
+```
+
 ### Removed combined classes
 
 The following classes were removed:

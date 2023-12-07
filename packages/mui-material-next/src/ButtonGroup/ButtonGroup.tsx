@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { getValidReactChildren, unstable_capitalize as capitalize } from '@mui/utils';
+import { getValidReactChildren } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -45,18 +45,6 @@ const ButtonGroupRoot = styled('div', {
     return [
       { [`& .${buttonGroupClasses.grouped}`]: styles.grouped },
       {
-        [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(orientation)}`],
-      },
-      { [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(variant)}`] },
-      {
-        [`& .${buttonGroupClasses.grouped}`]:
-          styles[`grouped${capitalize(variant)}${capitalize(orientation)}`],
-      },
-      {
-        [`& .${buttonGroupClasses.grouped}`]:
-          styles[`grouped${capitalize(variant)}${capitalize(color)}`],
-      },
-      {
         [`& .${buttonGroupClasses.firstButton}`]: styles.firstButton,
       },
       {
@@ -66,6 +54,7 @@ const ButtonGroupRoot = styled('div', {
         [`& .${buttonGroupClasses.middleButton}`]: styles.middleButton,
       },
       styles.root,
+      styles[color],
       styles[variant],
       disableElevation === true && styles.disableElevation,
       fullWidth && styles.fullWidth,
