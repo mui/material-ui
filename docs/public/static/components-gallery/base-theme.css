@@ -778,10 +778,14 @@
   }
 
   & .snackbar-close-icon {
+    font-size: var(--button-font-size);
+    font-weight: var(--button-font-weight);
+    line-height: var(--button-line-height);
+    color: var(--GallerySnackbar-close-icon-color, var(--font-color-light-hard));
     cursor: pointer;
     flex-shrink: 0;
-    padding: 2px;
-    border-radius: var(--border-radius-md);
+    padding: 6px;
+    border-radius: var(--border-radius-sm);
 
     &:hover {
       background: var(--GallerySnackbar-closeIcon-background-color, var(--background-surface-light-hard));
@@ -796,6 +800,7 @@
     --GallerySnackbar-title-color: var(--font-color-dark-hard);
     --GallerySnackbar-description-color: var(--font-color-dark-soft);
     --GallerySnackbar-closeIcon-background-color: var(--background-surface-dark-hard);
+    --GallerySnackbar-close-icon-color: var(--font-color-dark-hard);
     --GallerySnackbar-content-boxShadow-color: var(--shadow-elevation-dark-level-3);
   }
 }
