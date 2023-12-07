@@ -59,7 +59,7 @@ export default function AppFooter(props: AppFooterProps) {
           <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
             Join our newsletter for regular updates. No spam ever.
           </Typography>
-          <EmailSubscribe sx={{ mb: 4 }} />
+          <EmailSubscribe />
         </div>
         <Box
           sx={{

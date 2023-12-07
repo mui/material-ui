@@ -49,7 +49,7 @@ export default function BaseUITestimonial() {
           </Box>
           <Typography variant="body2" sx={{ mt: 2 }}>
             Nhost&apos;s new dashboard, powered by Base UI &nbsp;&nbsp;
-            <Typography component="span" variant="inherit" color="divider">
+            <Typography component="span" variant="inherit" color="grey.500" sx={{ opacity: '50%' }}>
               /
             </Typography>
             &nbsp;&nbsp;
