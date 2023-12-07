@@ -680,7 +680,6 @@ describe('styled', () => {
     );
 
     const classList = Array.from(container.firstChild.classList);
-    console.log(container.firstChild.getAttribute('style'));
 
     expect(classList).to.contain('sx-classname');
     expect(container.firstChild.getAttribute('style')).to.equal('--spacing: 10px;');
