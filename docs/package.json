@@ -20,10 +20,10 @@
     "link-check": "node ./scripts/reportBrokenLinks.js"
   },
   "dependencies": {
-    "@babel/core": "^7.23.3",
+    "@babel/core": "^7.23.5",
     "@babel/plugin-transform-object-assign": "^7.23.3",
-    "@babel/runtime": "^7.23.4",
-    "@babel/runtime-corejs2": "^7.23.4",
+    "@babel/runtime": "^7.23.5",
+    "@babel/runtime-corejs2": "^7.23.5",
     "@docsearch/react": "^3.5.2",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
@@ -137,7 +137,7 @@
     "cross-fetch": "^4.0.0",
     "gm": "^1.25.0",
     "marked": "^5.1.2",
-    "playwright": "^1.40.0",
+    "playwright": "^1.40.1",
     "prettier": "^2.8.8",
     "tailwindcss": "^3.3.5",
     "typescript-to-proptypes": "^5.0.0",
