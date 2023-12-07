@@ -21,6 +21,51 @@
   --grey-800: #303740;
   --grey-900: #1c2025;
 
+  --font-color-light-soft: var(--grey-700);
+  --font-color-light-hard: var(--grey-900);
+  --font-color-dark-soft: var(--grey-300);
+  --font-color-dark-hard: var(--grey-50);
+
+  --h1-font-family: 'Inter', sans-serif;
+  --h1-font-weight: 500;
+  --h1-font-size: 2rem;
+  --h1-line-height: 1.25;
+
+  --h2-font-family: 'Inter', sans-serif;
+  --h2-font-weight: 500;
+  --h2-font-size: 1.5rem;
+  --h2-line-height: 1.25;
+
+  --h3-font-family: 'Inter', sans-serif;
+  --h3-font-weight: 500;
+  --h3-font-size: 1.25rem;
+  --h3-line-height: 1.5;
+
+  --h4-font-family: 'Inter', sans-serif;
+  --h4-font-weight: 300;
+  --h4-font-size: 1.125rem;
+  --h4-line-height: 1.5;
+
+  --h5-font-family: 'Inter', sans-serif;
+  --h5-font-weight: 600;
+  --h5-font-size: 0.875rem;;
+  --h5-line-height: 1.5;
+
+  --button-font-family: 'Inter', sans-serif;
+  --button-font-weight: 400;
+  --button-font-size: 0.875rem;
+  --button-line-height: 1.5;
+
+  --body-font-family: 'Inter', sans-serif;
+  --body-font-weight: 400;
+  --body-font-size: 0.875rem;
+  --body-line-height: 1.75;
+
+  --caption-font-family: 'Inter', sans-serif;
+  --caption-font-weight: 400;
+  --caption-font-size: 0.75rem;
+  --caption-line-height: 1.5;
+
   --background-surface-light-default: #fff;
   --background-surface-light-soft: var(--grey-50);
   --background-surface-light-hard: var(--grey-300);
@@ -85,7 +130,7 @@
   --shadow-interactive-dark-focus-visible: 0px 0px 0px 1px rgba(0, 0, 0, 0.25), 0px 0px 0px 4px var(--primary-600);
 
   --border-radius-sm: 4px;
-  --border-radius-md: 8px;
+  --border-radius-md: 6px;
   --border-radius-lg: 12px;
   --border-radius-xl: 24px;
   --border-radius-full: 999px;
@@ -101,33 +146,32 @@
 }
 
 .GalleryBadge {
+  font-size: var(--caption-font-size);
+  font-family: var(--caption-font-family);
+  line-height: var(--caption-line-height);
   margin: 0;
   padding: 0;
-  font-size: 14px;
-  font-variant: tabular-nums;
   list-style: none;
-  font-family: 'IBM Plex Sans', sans-serif;
   position: relative;
   display: inline-block;
-  line-height: 1;
 }
 
 .GalleryBadge-badge {
+  font-size: var(--caption-font-size);
+  line-height: var(--caption-line-height);
+  font-weight: var(--caption-font-weight);
+  color: var(--font-color-dark-hard);  
   box-sizing: border-box;
   z-index: auto;
   position: absolute;
   top: 0;
   right: 0;
-  min-width: 22px;
-  height: 22px;
-  padding: 0 6px;
-  color: white;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 22px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;  
   white-space: nowrap;
   text-align: center;
-  border-radius: 12px;
+  border-radius: var(--border-radius-full);
   background: var(--GalleryBadge-badge-background-color, var(--background-surface-light-highlight));
   box-shadow: var(--GalleryBadge-badge-boxShadow-color, var(--shadow-elevation-light-level-2));
   transform: translate(50%, -50%);
@@ -152,14 +196,14 @@
 }
 
 .GalleryButton {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 600;
-  font-size: 0.875rem;
-  line-height: 1.5;
+  font-family: var(--button-font-family);
+  font-weight: var(--button-font-weight);
+  font-size: var(--button-font-size);
+  line-height: var(--button-line-height);
+  color: var(--font-color-dark-hard);
   background-color: var(--GalleryButton-default-background-color, var(--background-interactive-light-button-base));
   padding: 6px 10px;
   border-radius: var(--border-radius-md);
-  color: white;
   transition: all 150ms ease;
   cursor: pointer;
   border: var(--GalleryButton-default-border, var(--border-light-interactive));
@@ -178,7 +222,7 @@
 }
 .GalleryButton:disabled {
   background-color: var(--GalleryButton-disabled-background-color, var(--background-interactive-light-button-disabled));
-  color: var(--GalleryButton-disabled-color, var(--grey-700));
+  color: var(--GalleryButton-disabled-color, var(--font-color-light-soft));
   border: 0;
   cursor: not-allowed;
   box-shadow: none;
@@ -195,7 +239,7 @@
     --GalleryButton-default-border: var(--border-dark-interactive);
     --GalleryButton-boxShadow-color: var(--shadow-interactive-dark-button);
     --GalleryButton-focusVisible-boxShadow-color: var(--shadow-interactive-dark-focus-visible);
-    --GalleryButton-disabled-color: var(--grey-200);
+    --GalleryButton-disabled-color: var(--font-color-dark-soft);
     --GalleryButton-disabled-background-color: var(--background-interactive-dark-button-disabled);
     --GaleryButton-disabled-hover-background-color:var(--background-interactive-dark-button-disabled);
   }
@@ -203,13 +247,13 @@
 
 .GalleryInput .MuiInput-input {
   width: 320px;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.5;
+  font-family: var(--body-font-family);
+  font-size:var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--button-line-height);
+  color: var(--GalleryInput-input-color, var(--font-color-light-soft));
   padding: 6px 10px;
   border-radius: var(--border-radius-md);
-  color: var(--GalleryInput-input-color, var(--grey-900));
   background: var(--GalleryInput-input-background-color, var(--background-interactive-light-input-base));
   border: var(--GalleryInput-input-border-color, var(--border-light-default));
   box-shadow: var(--GalleryInput-input-boxShadow-color, var(--shadow-interactive-light-input));
@@ -224,7 +268,7 @@
 
 @media (prefers-color-scheme: dark) {
   .GalleryInput {
-    --GalleryInput-input-color: var(--grey-300);
+    --GalleryInput-input-color: var(--font-color-dark-soft);
     --GalleryInput-input-background-color: var(--background-interactive-dark-input-base);
     --GalleryInput-input-border-color: var(--border-dark-default);
     --GalleryInput-input-hover-border-color: var(--border-dark-hard); 
@@ -234,8 +278,9 @@
 }
 
 .GalleryMenu-listbox {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  color: var(--GalleryMenu-listbox-color, var(--font-color-light-soft));
   box-sizing: border-box;
   padding: 6px;
   margin: 12px 0;
@@ -245,7 +290,6 @@
   outline: 0px;
   background: var(--GalleryMenu-listbox-background, var(--background-surface-light-default));
   border: var(--GalleryMenu-listbox-border-color, var(--border-light-soft));
-  color: var(--GalleryMenu-listbox-color, var(--grey-900));
   box-shadow: var(--GalleryMenu-listbox-boxShadow-color, var(--shadow-elevation-light-level-2));
 }
 
@@ -265,16 +309,16 @@
   outline: none;
   box-shadow: var(--GalleryMenu-item-focusVisible-color, var(--shadow-interactive-light-focus-visible));
   background-color: var(--GalleryMenu-item-background-color, var(--background-surface-light-soft));
-  color: var(--GalleryMenu-item-color, var(--grey-900));
+  color: var(--GalleryMenu-item-color, var(--font-color-light-soft));
 }
 
 .GalleryMenu-item.Mui-disabled {
-  color: var(--GalleryMenu-item-disabled-color, var(--grey-400));
+  color: var(--GalleryMenu-item-disabled-color, var(--font-color-light-soft));
 }
 
 .GalleryMenu-item:hover:not(.Mui-disabled) {
   background-color: var(--GalleryMenu-item-hover-background-color, var(--background-surface-light-soft));
-  color: var(--GalleryMenu-item-hover-color, var(--grey-900));
+  color: var(--GalleryMenu-item-hover-color, var(--font-color-light-soft));
 }
 
 .GalleryMenu {
@@ -285,23 +329,23 @@
   .GalleryMenu {
     --GalleryMenu-listbox-background: var(--background-surface-dark-default);
     --GalleryMenu-listbox-border-color: var(--border-dark-soft);
-    --GalleryMenu-listbox-color: var(--grey-300);
+    --GalleryMenu-listbox-color: var(--font-color-dark-soft);
     --GalleryMenu-listbox-boxShadow-color: var(--shadow-elevation-dark-level-2);
     --GalleryMenu-item-focusVisible-color: var(--shadow-interactive-dark-focus-visible);
     --GalleryMenu-item-background-color: var(--background-surface-dark-soft);
-    --GalleryMenu-item-color: var(--grey-300);
-    --GalleryMenu-item-disabled-color: var(--grey-700);
+    --GalleryMenu-item-color: var(--font-color-dark-soft);
+    --GalleryMenu-item-disabled-color: var(--font-color-dark-soft);
     --GalleryMenu-item-hover-background-color: var(--background-surface-dark-soft);
-    --GalleryMenu-item-hover-color: var(--grey-300);
+    --GalleryMenu-item-hover-color: var(--font-color-dark-soft);
   }
 }
 
 .GalleryNumberInput {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 400;
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+  color: var(--GalleryNumberInput-color, var(--font-color-light-hard));
   border-radius: var(--border-radius-md);
   padding: 4px;
-  color: var(--GalleryNumberInput-color, var(--grey-900));
   background: var(--GalleryNumberInput-background-color, var(--background-interactive-light-input-base));
   border: var(--GalleryNumberInput-border-color, var(--border-light-default));
   box-shadow: var(--GalleryNumberInput-boxShadow-color, var(--shadow-interactive-light-input));
@@ -322,13 +366,12 @@
 }
 
 .GalleryNumberInput .input {
-  font-size: 0.875rem;
   font-family: inherit;
-  font-weight: 400;
-  line-height: 1.5;
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
   grid-column: 1/2;
   grid-row: 1/3;
-  color: var(--GalleryNumberInput-input-color, var(--grey-900));
+  color: var(--GalleryNumberInput-input-color, var(--font-color-light-soft));
   background: inherit;
   border: none;
   border-radius: inherit;
@@ -338,10 +381,13 @@
 
 .GalleryNumberInput .input:focus-visible {
   outline: 0;
-  
 }
 
 .GalleryNumberInput .btn {
+  font-family: system-ui, sans-serif;
+  font-size: var(--caption-font-size);
+  line-height: var(--caption-line-height);
+  color: var(--GalleryNumberInput-btn-color, var(--font-color-light-soft));
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -350,13 +396,9 @@
   padding: 0;
   width: 19px;
   height: 19px;
-  font-family: system-ui, sans-serif;
-  font-size: 0.875rem;
-  line-height: 1;
   box-sizing: border-box;
   background: var(--GalleryNumberInput-btn-background-color, var(--background-surface-light-soft));
   border: 0;
-  color: var(--GalleryNumberInput-btn-color, var(--grey-900));
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
@@ -376,11 +418,11 @@
   border-bottom: 0;
   background: var(--GalleryNumberInput-btn-increment-background-color, var(--background-surface-light-default));
   border: var(--GalleryNumberInput-btn-increment-border-color, var(--border-light-soft));
-  color: var(--GalleryNumberInput-btn-increment-color, var(--grey-900));
+  color: var(--GalleryNumberInput-btn-increment-color, var(--font-color-light-soft));
 
   &:hover {
     cursor: pointer;
-    color: #fff;
+    color: var(--font-color-dark-hard);
     background: var(--GalleryNumberInput-btn-increment-hover-background-color, var(--background-surface-light-highlight));
     border: var(--GalleryNumberInput-btn-increment-hover-color, var(--border-light-interactive));
   }
@@ -393,12 +435,12 @@
   border-bottom-right-radius: var(--border-radius-sm);
   background: var(--GalleryNumberInput-btn-decrement-background-color, var(--background-surface-light-default));
   border: var(--GalleryNumberInput-btn-decrement-border-color, var(--border-light-soft));  
-  color: var(--GalleryNumberInput-btn-decrement-color, var(--grey-900));
+  color: var(--GalleryNumberInput-btn-decrement-color, var(--font-color-light-soft));
 }
 
 .GalleryNumberInput .btn.decrement:hover {
   cursor: pointer;
-  color: #fff;
+  color: var(--font-color-dark-hard);
   background: var(--GalleryNumberInput-btn-decrement-hover-background-color, var(--background-surface-light-highlight));
   border: var(--GalleryNumberInput-btn-decrement-hover-border-color, var(--border-light-interactive));
 }
@@ -408,37 +450,37 @@
 
 @media (prefers-color-scheme: dark) {
   .GalleryNumberInput {
-    --GalleryNumberInput-color: var(--grey-300);
+    --GalleryNumberInput-color: var(--font-color-dark-soft);
     --GalleryNumberInput-background-color: var(--background-interactive-dark-input-base);
     --GalleryNumberInput-border-color: var(--border-dark-default);
     --GalleryNumberInput-hover-border-color: var(--border-dark-hard);
     --GalleryNumberInput-boxShadow-color: var(--shadow-interactive-dark-input);
     --GalleryNumberInput-focused-boxShadow-color: var(--shadow-interactive-dark-focus-visible);
-    --GalleryNumberInput-input-color: var(--grey-300);
-    --GalleryNumberInput-btn-color: var(--grey-300);
+    --GalleryNumberInput-input-color: var(--font-color-dark-soft);
+    --GalleryNumberInput-btn-color: var(--font-color-dark-soft);
     --GalleryNumberInput-btn-increment-border-color: var(--border-dark-soft);;
     --GalleryNumberInput-btn-increment-background-color: var(--background-surface-dark-default);
-    --GalleryNumberInput-btn-increment-color: var(--grey-200);
+    --GalleryNumberInput-btn-increment-color: var(--font-color-dark-soft);
     --GalleryNumberInput-btn-increment-hover-background-color: var(--background-surface-dark-highlight);
-    --GalleryNumberInput-btn-increment-hover-color: var(--primary-400);
+    --GalleryNumberInput-btn-increment-hover-color: var(--border-light-interactive);
     --GalleryNumberInput-btn-decrement-hover-background-color: var(--background-surface-dark-highlight);
     --GalleryNumberInput-btn-decrement-hover-border-color: var(--border-dark-interactive);
     --GalleryNumberInput-btn-decrement-border-color: var(--border-dark-soft);
     --GalleryNumberInput-btn-decrement-background-color: var(--background-surface-dark-default);
-    --GalleryNumberInput-btn-decrement-color: var(--grey-200);
+    --GalleryNumberInput-btn-decrement-color: var(--font-color-dark-soft);
     --GalleryNumberInput-btn-hover-background-color: var(--background-surface-dark-highlight);
     --GalleryNumberInput-btn-hover-border-color: var(--border-dark-interactive);
-    --GalleryNumberInput-btn-background-color: var(--grey-900);
+    --GalleryNumberInput-btn-background-color: var(--background-surface-dark-soft);
   }
 }
 
 .GalleryPopper,
 .GalleryPopup {
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
   border-radius: var(--border-radius-md);
   padding: 0.75rem;
-  font-size: 0.875rem;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 500;
   opacity: 1;
   margin: 0.25rem 0px;
 }
@@ -447,44 +489,45 @@
   background-color: var(--GalleryPopper-background-color, var(--background-surface-light-soft));
   border: var(--GalleryPopper-border-color, var(--border-light-default));
   box-shadow: var(--GalleryPopper-boxShadow-color, var(--shadow-elevation-light-level-3));
-  color: var(--GalleryPopper-color, var(--grey-700));
+  color: var(--GalleryPopper-color, var(--font-color-light-soft));
 }
 
 .GalleryPopup {
   background-color: var(--GalleryPopup-background-color,var(--background-surface-light-soft));
   border: var(--GalleryPopup-border-color, var(--border-light-default));
   box-shadow: var(--GalleryPopup-boxShadow-color, var(--shadow-elevation-light-level-3));
-  color: var(--GalleryPopup-color, var(--grey-700));
+  color: var(--GalleryPopup-color, var(--font-color-light-soft));
 }
 
 @media (prefers-color-scheme: dark) {
   .GalleryPopper {
     --GalleryPopper-background-color: var(--background-surface-dark-soft);
     --GalleryPopper-border-color: var(--border-dark-default);
-    --GalleryPopper-color: var(--grey-100);
+    --GalleryPopper-color: var(--font-color-dark-soft);
     --GalleryPopper-boxShadow-color:  var(--shadow-elevation-dark-level-3);
   }
 
   .GalleryPopup {
     --GalleryPopup-background-color: var(--background-surface-dark-soft);
     --GalleryPopup-border-color: var(--border-dark-default);
-    --GalleryPopup-color: var(--grey-100);
+    --GalleryPopup-color: var(--font-color-dark-soft);
     --GalleryPopup-boxShadow-color:  var(--shadow-elevation-dark-level-3);
   }
 }
 
 .GallerySelect {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--button-line-height);
+  text-align: left;
+  color: var(--GallerySelect-color, var(--font-color-light-soft));
   box-sizing: border-box;
   min-width: 320px;
   padding: 6px 10px;
   border-radius: var(--border-radius-md);
-  text-align: left;
-  line-height: 1.5;
   background: var(--GallerySelect-background-color, var(--background-interactive-light-input-base));
   border: var(--GallerySelect-border-color, var(--border-light-default));
-  color: var(--GallerySelect-color, var(--grey-900));
   position: relative;
   box-shadow: var(--GallerySelect-boxShadow-color, var(--shadow-interactive-light-input));
   transition-property: all;
@@ -511,8 +554,11 @@
   }
 }
 .GallerySelect-listbox {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--button-line-height);
+  color: var(--GallerySelect-listbox-color, var(--font-color-light-soft));
   box-sizing: border-box;
   padding: 6px;
   margin: 12px 0;
@@ -522,7 +568,6 @@
   outline: 0px;
   background: var(--GallerySelect-listbox-background-color, var(--background-surface-light-default));
   border: var(--GallerySelect-listbox-border-color, var(--border-light-soft));
-  color: var(--GallerySelect-listbox-color, var(--grey-900));
   box-shadow: var(--GallerySelect-listbox-boxShadow-color, var(--shadow-elevation-light-level-2));
 }
 .GallerySelect-popper {
@@ -540,26 +585,26 @@
 
   &.Mui-selected {
     background-color: var(--GallerySelect-option-selected-background-color, var(--background-surface-light-hard));
-    color: var(--GallerySelect-option-selected-color, var(--primary-900));
+    color: var(--GallerySelect-option-selected-color, var(--font-color-light-soft));
   }
 
   &.MuiOption-highlighted {
     background-color: var(--SelectGallery-option-highlighted-background-color, var(--background-surface-light-soft));
-    color: var(--SelectGallery-option-highlighted-color, var(--grey-900));
+    color: var(--SelectGallery-option-highlighted-color, var(--font-color-light-soft));
   }
 
   &.MuiOption-highlighted.Mui-selected {
     background-color: var(--GallerySelect-option-highlighted-selected-background-color, var(--background-surface-light-hard));
-    color: var(--GallerySelect-option-highlighted-selected-color, var(--primary-900));
+    color: var(--GallerySelect-option-highlighted-selected-color, var(--font-color-light-hard));
   }
 
   &.Mui-disabled {
-    color: var(--GallerySelect-option-disabled-color var(--grey-700), var(--grey-400));
+    color: var(--GallerySelect-option-disabled-color, var(--font-color-light-soft));
   }
 
   &:hover:not(.Mui-disabled) {
     background-color: var(--GallerySelect-option-disabled-background-color, var(--background-surface-light-soft));
-    color: var(--GallerySelect-option-disabled-color, var(--grey-900));
+    color: var(--GallerySelect-option-disabled-color, var(--font-color-light-soft));
   }
 }
 
@@ -567,35 +612,31 @@
   .GallerySelect {
     --GallerySelect-background-color:  var(--background-interactive-dark-input-base);
     --GallerySelect-border-color: var(--border-dark-default);
-    --GallerySelect-color: var(--grey-300);
+    --GallerySelect-color: var(--font-color-dark-soft);
     --GallerySelect-boxShadow-color: var(--shadow-interactive-dark-input);
     --GallerySelect-hover-background-color: var(--background-interactive-dark-input-hover);
     --GallerySelect-hover-border-color: var(--border-dark-hard);
     --GallerySelect-focusVisible-boxShadow-color:  var(--shadow-interactive-dark-focus-visible);
-    --GallerySelect-listbox-background-color: var(--background-surface-dark-default);
-    --GallerySelect-listbox-border-color: var(--border-dark-soft);
-    --GallerySelect-listbox-color: var(--grey-300);
-    --GallerySelect-listbox-boxShadow-color: var(--shadow-elevation-dark-level-2);
   }
 }
 @media (prefers-color-scheme: dark) {
   .GallerySelect-listbox {
     --GallerySelect-listbox-background-color: var(--background-surface-dark-default);
     --GallerySelect-listbox-border-color: var(--border-dark-soft);
-    --GallerySelect-listbox-color: var(--grey-300);
+    --GallerySelect-listbox-color: var(--font-color-dark-soft);
     --GallerySelect-listbox-boxShadow-color: var(--shadow-elevation-dark-level-2);
   }
 }
 @media (prefers-color-scheme: dark) {
   .GallerySelect-option {
     --GallerySelect-option-selected-background-color:  var(--background-surface-dark-hard);
-    --GallerySelect-option-selected-color: var(--primary-50);
+    --GallerySelect-option-selected-color: var(--font-color-dark-soft);
     --GallerySelect-option-disabled-background-color: var(--background-surface-dark-soft);
-    --GallerySelect-option-disabled-color: var(--grey-50);
-    --SelectGallery-option-highlighted-background-color: var(--grey-800);
-    --SelectGallery-option-highlighted-color: var(--grey-300);
+    --GallerySelect-option-disabled-color: var(--font-color-dark-soft);
+    --SelectGallery-option-highlighted-background-color: var(--border-dark-soft);
+    --SelectGallery-option-highlighted-color: var(--font-color-dark-soft);
     --GallerySelect-option-highlighted-selected-background-color: var(--background-surface-dark-hard);
-    --GallerySelect-option-highlighted-selected-color: var(--primary-50);
+    --GallerySelect-option-highlighted-selected-color: var(--font-color-dark-hard);
   }
 }
 
@@ -702,6 +743,8 @@
 }
 
 .GallerySnackbar-content {
+  font-family: var(--body-font-family);
+  text-align: start;
   display: flex;
   gap: 8px;
   overflow: hidden;
@@ -710,10 +753,6 @@
   border: var(--GallerySnackbar-content-border-color, var(--border-light-default));
   box-shadow: var(--GallerySnackbar-content-boxShadow-color, var(--shadow-elevation-light-level-3));
   padding: 0.75rem;
-  color: var(--GallerySnackbar-content-color, var(--grey-900));
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 500;
-  text-align: start;
   position: relative;
 
   & .snackbar-message {
@@ -723,15 +762,19 @@
 
   & .snackbar-title {
     margin: 0;
-    line-height: 1.5rem;
+    font-size: var(--h5-font-size);
+    font-weight: var(--h5-font-weight);
+    line-height: var(--h5-line-height);
+    color: var(--GallerySnackbar-title-color, var(--font-color-light-hard));
     margin-right: 0.5rem;
   }
 
   & .snackbar-description {
     margin: 0;
-    line-height: 1.5rem;
-    font-weight: 400;
-    color: var(--GallerySnackbar-description-color, var(--grey-800));
+    font-size: var(--body-font-size);
+    font-weight: var(--body-font-weight);
+    line-height: var(--body-line-height);
+    color: var(--GallerySnackbar-description-color, var(--border-light-soft));
   }
 
   & .snackbar-close-icon {
@@ -750,8 +793,8 @@
   .GallerySnackbar {
     --GallerySnackbar-content-background-color: var(--background-surface-dark-soft);
     --GallerySnackbar-content-border-color: var(--border-dark-default);
-    --GallerySnackbar-content-color: var(--grey-50);
-    --GallerySnackbar-description-color: var(--grey-400);
+    --GallerySnackbar-title-color: var(--font-color-dark-hard);
+    --GallerySnackbar-description-color: var(--font-color-dark-soft);
     --GallerySnackbar-closeIcon-background-color: var(--background-surface-dark-hard);
     --GallerySnackbar-content-boxShadow-color: var(--shadow-elevation-dark-level-3);
   }
@@ -857,8 +900,8 @@
 }
 
 .GalleryTablePaginationDemo table {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
   width: 100%;
   background-color: var(--GalleryTablePainationDemo-table-background-color, var(--background-surface-light-default));
   box-shadow: var(--GalleryTablePainationDemo-table-boxShadow-color, var(--shadow-elevation-dark-level-3));
@@ -892,8 +935,9 @@
 }
 
 .GalleryTablePagination .MuiTablePagination-toolbar {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  color: var(--GalleryTablePagination-color, var(--font-color-light-soft));
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -910,7 +954,10 @@
 }
 
 .GalleryTablePagination .MuiTablePagination-select {
-  padding: 2px 6px;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  color: var(--GalleryTablePagination-color, var(--font-color-light-soft));
+  padding: 4px 6px;
   border: var(--GalleryTablePagination-select-border-color, var(--border-light-default));
   border-radius: var(--border-radius-full);
   background-color: var(--GalleryTablePagination-select-background-color, var(--background-surface-light-soft));
@@ -934,7 +981,7 @@
 }
 
 .GalleryTablePagination .MuiTablePagination-actions {
-  padding: 2px 6px;
+  padding: 4px 6px;
   border: var(--GalleryTablePagination-actions-border-color, var(--border-light-default));
   border-radius: var(--border-radius-full);
   background-color: var(--GalleryTablePagination-actions-background-color, var(--background-surface-light-soft));
@@ -942,6 +989,9 @@
 }
 
 .GalleryTablePagination .MuiTablePagination-actions > button {
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  color: var(--GalleryTablePagination-color, var(--font-color-light-soft));
   margin: 0 8px;
   border: transparent;
   border-radius: var(--border-radius-sm);
@@ -961,11 +1011,12 @@
 }
 
 .GalleryTablePagination .MuiTablePagination-actions > button:disabled {
-  opacity: 0.7;
+  opacity: 0.3;
 }
 
 @media (prefers-color-scheme: dark) {
   .GalleryTablePagination {
+    --GalleryTablePagination-color: var(--font-color-dark-soft);
     --GalleryTablePagination-select-border-color: var(--border-dark-default);
     --GalleryTablePagination-select-background-color: var(--background-surface-dark-soft);
     --GalleryTablePagination-select-hover-background-color: var(--background-surface-dark-hard);
@@ -991,11 +1042,12 @@
 }
 
 .GalleryTab {
-  font-family: 'IBM Plex Sans', sans-serif;
-  color: #000;
+  font-family: var(--button-font-family);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  line-height: var(--button-line-height);
+  color: var(--GalleryTab-color, var(--font-color-light-hard));
   cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 600;
   background-color: transparent;
   width: 100%;
   padding: 8px;
@@ -1017,7 +1069,7 @@
 
 .GalleryTab.Mui-selected {
   background-color: var(--GalleryTabsList-selected-background-color,var(--background-surface-light-highlight));
-  color: var(--grey-50);
+  color: var(--font-color-dark-hard);
 }
 
 .GalleryTab.Mui-disabled {
@@ -1026,8 +1078,11 @@
 }
 
 .GalleryTabPanel {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  color: var(--GalleryTabPanel-color, var(--font-color-light-hard));
   padding: 24px;
   background: var(--GalleryTabPanel-background-color, var(--background-surface-light-soft));
   border-radius: var(--border-radius-md);
@@ -1035,6 +1090,7 @@
 
 @media (prefers-color-scheme: dark) {
   .GalleryTabsList {
+    --GalleryTab-color: var(--font-color-dark-soft);
     --GalleryTabsList-background-color: var(--background-surface-dark-soft);
     --GalleryTabsList-border-color: var(--border-dark-soft);
     --GalleryTabsList-boxShadow: var(--shadow-interactive-dark-switch-track);
@@ -1044,19 +1100,20 @@
   }
   .GalleryTabPanel {
     --GalleryTabPanel-background-color: var(--background-surface-dark-soft);
+    --GalleryTabPanel-color: var(--font-color-dark-hard);
   }
 }
 
 .GalleryTextarea {
   width: 320px;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  color: var(--GalleryTextarea-color, var(--font-color-light-soft));
   min-height: 100px;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.5;
   padding: 6px 10px;
   border-radius: var(--border-radius-md) var(--border-radius-md) 0 var(--border-radius-md);
-  color: var(--GalleryTextarea-color, var(--grey-900));
   background: var(--GalleryTextarea-background-color, var(--background-interactive-light-input-base));
   border: var(--GalleryTextarea-border-color, var(--border-light-default));
   box-shadow: var(--GalleryTextarea-boxShadow-color, var(--shadow-interactive-light-input));
@@ -1079,7 +1136,7 @@
 
 @media (prefers-color-scheme: dark) {
   .GalleryTextarea {
-    --GalleryTextarea-color: var(--grey-300);
+    --GalleryTextarea-color: var(--font-color-dark-soft);
     --GalleryTextarea-background-color: var(--background-interactive-dark-input-base);
     --GalleryTextarea-border-color: var(--border-dark-default);
     --GalleryTextarea-hover-border-color: var(--border-dark-hard);
