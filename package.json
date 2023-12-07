@@ -133,7 +133,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "fast-glob": "^3.3.2",
-    "fs-extra": "^11.1.1",
+    "fs-extra": "^11.2.0",
     "globby": "^13.2.2",
     "google-auth-library": "^9.2.0",
     "karma": "^6.4.2",
