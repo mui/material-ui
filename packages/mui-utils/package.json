@@ -52,7 +52,7 @@
     "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.6",
     "@types/node": "^18.18.13",
-    "@types/react": "^18.2.38",
+    "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
     "@types/react-is": "^18.2.4",
     "@types/sinon": "^10.0.20",
