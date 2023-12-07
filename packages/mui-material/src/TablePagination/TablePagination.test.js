@@ -7,8 +7,6 @@ import TableFooter from '@mui/material/TableFooter';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import TablePagination, { tablePaginationClasses as classes } from '@mui/material/TablePagination';
-import ArrowForwardIosRounded from '@mui/icons-material/ArrowForwardIosRounded';
-import ArrowBackIosRounded from '@mui/icons-material/ArrowBackIosRounded';
 import { inputClasses } from '@mui/material/Input';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { filledInputClasses } from '@mui/material/FilledInput';
@@ -687,105 +685,6 @@ describe('<TablePagination />', () => {
     });
   });
 
-  describe('prop: slots', () => {
-    it('should change the icon for First item type', () => {
-      const handleChangePage = spy();
-      const { getByTestId, getByRole } = render(
-        <table>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                slots={{ First: ArrowBackIosRounded }}
-                showFirstButton
-                showLastButton
-                page={1}
-                rowsPerPage={10}
-                count={50}
-                onPageChange={handleChangePage}
-              />
-            </TableRow>
-          </TableFooter>
-        </table>,
-      );
-
-      expect(getByRole('button', { name: 'Go to first page' }).children[0]).to.be.equal(
-        getByTestId('ArrowBackIosRoundedIcon'),
-      );
-    });
-
-    it('should change the icon for Last item type', () => {
-      const handleChangePage = spy();
-      const { getByTestId, getByRole } = render(
-        <table>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                slots={{ Last: ArrowForwardIosRounded }}
-                showFirstButton
-                showLastButton
-                page={1}
-                rowsPerPage={10}
-                count={50}
-                onPageChange={handleChangePage}
-              />
-            </TableRow>
-          </TableFooter>
-        </table>,
-      );
-
-      expect(getByRole('button', { name: 'Go to last page' }).children[0]).to.be.equal(
-        getByTestId('ArrowForwardIosRoundedIcon'),
-      );
-    });
-  });
-
-  describe('prop: slotProps', () => {
-    it('should render first with custom data test id', () => {
-      const handleChangePage = spy();
-      const { getAllByTestId } = render(
-        <table>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                slotProps={{ first: { 'data-testid': 'custom-first-test-id' } }}
-                showFirstButton
-                showLastButton
-                page={1}
-                rowsPerPage={10}
-                count={50}
-                onPageChange={handleChangePage}
-              />
-            </TableRow>
-          </TableFooter>
-        </table>,
-      );
-
-      expect(getAllByTestId('custom-first-test-id')).to.be.lengthOf(1);
-    });
-
-    it('should render last with custom data test id', () => {
-      const handleChangePage = spy();
-      const { getAllByTestId } = render(
-        <table>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                slotProps={{ last: { 'data-testid': 'custom-last-test-id' } }}
-                showFirstButton
-                showLastButton
-                page={1}
-                rowsPerPage={10}
-                count={50}
-                onPageChange={handleChangePage}
-              />
-            </TableRow>
-          </TableFooter>
-        </table>,
-      );
-
-      expect(getAllByTestId('custom-last-test-id')).to.be.lengthOf(1);
-    });
-  });
   it('should not have "variant" attribute on TablePaginationSelect', () => {
     const { getAllByRole } = render(
       <table>

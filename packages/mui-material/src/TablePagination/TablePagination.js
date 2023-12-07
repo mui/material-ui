@@ -14,11 +14,6 @@ import Toolbar from '../Toolbar';
 import TablePaginationActions from './TablePaginationActions';
 import useId from '../utils/useId';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
-import FirstPageIcon from '../internal/svg-icons/FirstPage';
-import LastPageIcon from '../internal/svg-icons/LastPage';
-import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
-import useTheme from '../styles/useTheme';
 
 const TablePaginationRoot = styled(TableCell, {
   name: 'MuiTablePagination',
@@ -149,13 +144,6 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     className,
     colSpan: colSpanProp,
     component = TableCell,
-    slots = {
-      First: FirstPageIcon,
-      Last: LastPageIcon,
-      Next: KeyboardArrowRight,
-      Previous: KeyboardArrowLeft,
-    },
-    slotProps = {},
     count,
     disabled = false,
     getItemAriaLabel = defaultGetAriaLabel,
@@ -175,7 +163,6 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   } = props;
 
   const ownerState = props;
-  const theme = useTheme();
   const classes = useUtilityClasses(ownerState);
 
   const selectProps = slotProps?.select ?? SelectProps;
@@ -196,21 +183,6 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     }
     return rowsPerPage === -1 ? count : Math.min(count, (page + 1) * rowsPerPage);
   };
-
-  const normalizedIcons =
-    theme.direction === 'rtl'
-      ? {
-          Previous: slots.Next || KeyboardArrowRight,
-          Next: slots.Previous || KeyboardArrowLeft,
-          Last: slots.First || FirstPageIcon,
-          First: slots.Last || LastPageIcon,
-        }
-      : {
-          Previous: slots.Previous || KeyboardArrowLeft,
-          Next: slots.Next || KeyboardArrowRight,
-          First: slots.First || FirstPageIcon,
-          Last: slots.Last || LastPageIcon,
-        };
 
   return (
     <TablePaginationRoot
@@ -283,8 +255,6 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           showLastButton={showLastButton}
           slotProps={slotProps?.actions}
           getItemAriaLabel={getItemAriaLabel}
-          slots={normalizedIcons}
-          slotProps={slotProps}
           disabled={disabled}
         />
       </TablePaginationToolbar>

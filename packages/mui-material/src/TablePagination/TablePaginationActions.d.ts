@@ -11,37 +11,6 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    * Override or extend the styles applied to the component.
    */
   classes?: {};
-  /**
-   * The components used for First, Last, Next & Previous item type
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
-   * @default {
-   *   First: FirstPageIcon,
-   *   Last: LastPageIcon,
-   *   Next: KeyboardArrowRight,
-   *   Previous: KeyboardArrowLeft,
-   * }
-   */
-  slots?: {
-    First?: React.ElementType;
-    Last?: React.ElementType;
-    Next?: React.ElementType;
-    Previous?: React.ElementType;
-  };
-  /**
-   * The props used for each slot inside.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slotProps?: {
-    first?: React.HTMLProps<HTMLButtonElement>;
-    last?: React.HTMLProps<HTMLButtonElement>;
-    next?: React.HTMLProps<HTMLButtonElement>;
-    previous?: React.HTMLProps<HTMLButtonElement>;
-  };
   count: number;
   /**
    * If `true`, the component is disabled.

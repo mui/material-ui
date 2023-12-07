@@ -1,8 +1,12 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import useTheme from '../styles/useTheme';
 import IconButton from '../IconButton';
+import LastPageIcon from '../internal/svg-icons/LastPage';
+import FirstPageIcon from '../internal/svg-icons/FirstPage';
 
 /**
  * @ignore - internal component.
@@ -41,11 +45,6 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
-  const LastIcon = slots.Last;
-  const FirstIcon = slots.First;
-  const PreviousIcon = slots.Previous;
-  const NextIcon = slots.Next;
-
   return (
     <div ref={ref} {...other}>
       {showFirstButton && (
@@ -56,11 +55,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           title={getItemAriaLabel('first', page)}
           {...(slotProps?.firstButton ?? {})}
         >
-          {theme.direction === 'rtl' ? (
-            <LastIcon {...slotProps?.last} />
-          ) : (
-            <FirstIcon {...slotProps?.first} />
-          )}
+          {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
         </IconButton>
       )}
       <IconButton
@@ -71,11 +66,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         title={getItemAriaLabel('previous', page)}
         {...(slotProps?.previousButton ?? backIconButtonProps)}
       >
-        {theme.direction === 'rtl' ? (
-          <NextIcon {...slotProps?.next} />
-        ) : (
-          <PreviousIcon {...slotProps?.previous} />
-        )}
+        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
@@ -85,11 +76,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         title={getItemAriaLabel('next', page)}
         {...(slotProps?.nextButton ?? nextIconButtonProps)}
       >
-        {theme.direction === 'rtl' ? (
-          <PreviousIcon {...slotProps?.previous} />
-        ) : (
-          <NextIcon {...slotProps?.next} />
-        )}
+        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
       </IconButton>
       {showLastButton && (
         <IconButton
@@ -99,11 +86,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           title={getItemAriaLabel('last', page)}
           {...(slotProps?.lastButton ?? {})}
         >
-          {theme.direction === 'rtl' ? (
-            <FirstIcon {...slotProps?.first} />
-          ) : (
-            <LastIcon {...slotProps?.last} />
-          )}
+          {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
         </IconButton>
       )}
     </div>
@@ -162,37 +145,6 @@ TablePaginationActions.propTypes = {
    */
   showLastButton: PropTypes.bool.isRequired,
   /**
-<<<<<<< HEAD
-   * The props used for each slot inside.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    first: PropTypes.object,
-    last: PropTypes.object,
-    next: PropTypes.object,
-    previous: PropTypes.object,
-  }),
-  /**
-   * The components used for First, Last, Next & Previous item type
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
-   * @default {
-   *   First: FirstPageIcon,
-   *   Last: LastPageIcon,
-   *   Next: KeyboardArrowRight,
-   *   Previous: KeyboardArrowLeft,
-   * }
-   */
-  slots: PropTypes.shape({
-    First: PropTypes.elementType,
-    Last: PropTypes.elementType,
-    Next: PropTypes.elementType,
-    Previous: PropTypes.elementType,
-=======
    * The props used for each slot inside the TablePaginationActions.
    * @default {}
    */
@@ -201,7 +153,6 @@ TablePaginationActions.propTypes = {
     lastButton: PropTypes.object,
     nextButton: PropTypes.object,
     previousButton: PropTypes.object,
->>>>>>> master
   }),
 };
 
