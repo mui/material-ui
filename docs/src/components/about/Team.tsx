@@ -378,7 +378,7 @@ export default function Team() {
       </Section>
       <Divider />
       {/* Community contributors */}
-      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
+      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
         <Container sx={{ py: { xs: 4, sm: 8 } }}>
           <Typography component="h3" variant="h4" color="primary.200" fontWeight="semiBold">
             Community contributors

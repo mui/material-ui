@@ -342,7 +342,7 @@ export function buildTheme(): ThemeOptions {
               },
             },
             theme.applyDarkStyles({
-              backgroundColor: alpha(theme.palette.primaryDark[900], 0.5),
+              backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
               color: (theme.vars || theme).palette.primaryDark[50],
               borderColor: alpha(theme.palette.primaryDark[500], 0.2),
               '& .MuiAlert-icon': {
@@ -419,17 +419,17 @@ export function buildTheme(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.primary[300],
               },
               '& .MuiOutlinedInput-input': {
-                backgroundColor: 'transparent',
+                backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               },
               '& .MuiFilledInput-root': {
-                borderColor: (theme.vars || theme).palette.primaryDark[800],
-                backgroundColor: alpha(theme.palette.primaryDark[800], 0.5),
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+                backgroundColor: alpha(theme.palette.primaryDark[900], 0.5),
                 '&:after': {
                   borderColor: (theme.vars || theme).palette.primary[300],
                 },
                 '&:hover': {
                   backgroundColor: alpha(theme.palette.primaryDark[700], 0.8),
-                  borderColor: (theme.vars || theme).palette.primaryDark[500],
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
                 },
               },
               '& .MuiInputLabel-filled.Mui-focused': {
@@ -437,7 +437,7 @@ export function buildTheme(): ThemeOptions {
               },
               '& .MuiInput-root.Mui-focused': {
                 '&:after': {
-                  borderColor: (theme.vars || theme).palette.primaryDark[800],
+                  borderColor: (theme.vars || theme).palette.primaryDark[400],
                 },
               },
               '& .MuiInputLabel-root.Mui-focused': {

@@ -1,5 +1,8 @@
 import * as React from 'react';
 import Stack from '@mui/system/Stack';
+import Box from '@mui/system/Box';
+import styled from '@mui/system/styled';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { Transition } from 'react-transition-group';
 import { Badge } from '@mui/base/Badge';
 import { Button } from '@mui/base/Button';
@@ -51,6 +54,45 @@ const SelectButton = React.forwardRef(function SelectButton<
   );
 });
 
+const hslPickerLinearGradient = [...new Array(36)]
+  .map((_, i) => `hsl(${i * 10}, 68%, 38%)`)
+  .join(',');
+
+const ColorPickerSlider = styled(Slider)({
+  width: '100%',
+  background: `-webkit-linear-gradient(left, ${hslPickerLinearGradient})`,
+  margin: '16px 0',
+  height: '6px',
+  '& .MuiSlider-thumb': {
+    position: 'absolute',
+    width: '16px',
+    height: '16px',
+    marginLeft: '-6px',
+    marginTop: '-6px',
+    borderRadius: '50%',
+    border: '1px solid black',
+    backgroundColor: 'white',
+  },
+});
+
+const CopyButton = styled(Button)({
+  float: 'right',
+});
+
+const SettingsButton = styled(Button)({
+  marginTop: '10px',
+  display: 'flex',
+  alignItems: 'center',
+  float: 'right',
+  padding: '6px !important',
+});
+
+const SettingsPopup = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '300px',
+});
+
 export default function ComponentsGallery() {
   // Popper demo
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -70,7 +112,7 @@ export default function ComponentsGallery() {
   };
 
   const popupOpen = Boolean(popupAnchor);
-  const popupId = open ? 'simple-popup' : undefined;
+  const popupId = popupOpen ? 'simple-popup' : undefined;
 
   // Snackbar demo
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
@@ -115,8 +157,152 @@ export default function ComponentsGallery() {
     setPage(0);
   };
 
+  // Copy button logic
+  const [copySnackbarOpen, setCopySnackbarOpen] = React.useState(false);
+  const [copySnackbarExited, setCopySnackbarExited] = React.useState(true);
+  const [rootStyles, setRootStyles] = React.useState('');
+  const copyNodeRef = React.useRef(null);
+
+  async function copyTheme() {
+    const response = await fetch('/static/components-gallery/base-theme.css');
+    let css = await response.text();
+
+    // Replace the CSS variables declarations with the ones from the overrides
+    rootStyles
+      .split('\n')
+      .map((str) => str.trim())
+      .filter((rowString) => {
+        return rowString.startsWith('--') && rowString.endsWith(';');
+      })
+      .forEach((cssVarDeclaration) => {
+        const cssVar = cssVarDeclaration.split(':')[0].trim();
+        css = css.replace(new RegExp(`${cssVar}:.*;`), cssVarDeclaration);
+      });
+
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(css);
+    setCopySnackbarOpen(true);
+  }
+
+  const handleCopyClose = (_: any, reason: SnackbarCloseReason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setCopySnackbarOpen(false);
+  };
+
+  const handleCopyOnEnter = () => {
+    setCopySnackbarExited(false);
+  };
+
+  const handleCopyOnExited = () => {
+    setCopySnackbarExited(true);
+  };
+
+  const [settingsAnchor, setSettingsAnchor] = React.useState<null | HTMLElement>(null);
+
+  const settingsButtonHandleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setSettingsAnchor(settingsAnchor ? null : event.currentTarget);
+  };
+
+  const settingsOpen = Boolean(settingsAnchor);
+  const settingsId = settingsOpen ? 'settings-popup' : undefined;
+
+  const colorPickerSliderChangeHandler = (e: Event, value: number | number[]) => {
+    setRootStyles(`
+:root {
+  --primary-50: hsl(${value}, 76%, 95%);
+  --primary-100: hsl(${value}, 70%, 86%);
+  --primary-200: hsl(${value}, 59%, 75%);
+  --primary-300: hsl(${value}, 49%, 60%);
+  --primary-400: hsl(${value}, 68%, 38%);
+  --primary-500: hsl(${value}, 76%, 21%);
+  --primary-600: hsl(${value}, 80%, 18%);
+  --primary-700: hsl(${value}, 84%, 15%);
+  --primary-800: hsl(${value}, 86%, 12%);
+  --primary-900: hsl(${value}, 90%, 8%);
+}
+    `);
+
+    const styleTag =
+      document.getElementById('gallery-overrides') ?? document.createElement('style');
+    styleTag.id = 'gallery-overrides';
+    styleTag.innerHTML = rootStyles;
+    document.getElementsByTagName('head')[0].appendChild(styleTag);
+  };
+
   return (
-    <Stack gap={2} style={{ padding: '8px' }}>
+    <Stack gap={2} sx={{ padding: 1 }}>
+      {/* Copy theme button */}
+      <Box sx={{ position: 'absolute', right: '10px' }}>
+        <CopyButton className="GalleryButton" style={{ float: 'right' }} onClick={copyTheme}>
+          Export theme
+        </CopyButton>
+        <Snackbar
+          autoHideDuration={2000}
+          open={copySnackbarOpen}
+          onClose={handleCopyClose}
+          exited={copySnackbarExited}
+          className="GallerySnackbar"
+        >
+          <Transition
+            timeout={{ enter: 400, exit: 400 }}
+            in={copySnackbarOpen}
+            appear
+            unmountOnExit
+            onEnter={handleCopyOnEnter}
+            onExited={handleCopyOnExited}
+            nodeRef={copyNodeRef}
+          >
+            {(status) => (
+              <div
+                className="GallerySnackbar-content"
+                style={{
+                  transform: positioningStyles[status],
+                  transition: 'transform 300ms ease',
+                }}
+                ref={copyNodeRef}
+              >
+                <CheckRoundedIcon
+                  sx={{
+                    color: 'success.main',
+                    flexShrink: 0,
+                    width: '1.25rem',
+                    height: '1.5rem',
+                  }}
+                />
+                <div className="snackbar-message">
+                  <p className="snackbar-title">Done!</p>
+                  <p className="snackbar-description">
+                    The theme stylesheet has been copied to clipboard!
+                  </p>
+                </div>
+                <CloseIcon onClick={handleCopyClose} className="snackbar-close-icon" />
+              </div>
+            )}
+          </Transition>
+        </Snackbar>
+        <br />
+        <SettingsButton
+          aria-describedby={settingsId}
+          className="GalleryButton"
+          onClick={settingsButtonHandleClick}
+        >
+          <SettingsIcon />
+        </SettingsButton>
+        <Popper id={settingsId} open={settingsOpen} anchorEl={settingsAnchor}>
+          <SettingsPopup className="GalleryPopup">
+            <h3>Primary color</h3>
+            <ColorPickerSlider
+              defaultValue={189}
+              min={0}
+              max={360}
+              onChange={colorPickerSliderChangeHandler}
+            />
+          </SettingsPopup>
+        </Popper>
+      </Box>
       <div>
         <Badge
           slotProps={{
