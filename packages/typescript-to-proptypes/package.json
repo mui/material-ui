@@ -20,30 +20,31 @@
     "test": "cd ../../ && cross-env NODE_ENV=test mocha --config packages/typescript-to-proptypes/.mocharc.js 'packages/typescript-to-proptypes/**/*.test.ts'",
     "typescript": "tsc -p tsconfig.json"
   },
-  "devDependencies": {
-    "@types/babel__core": "^7.20.0",
-    "@types/doctrine": "^0.0.5",
-    "@types/lodash": "^4.14.194",
-    "@types/node": "^16.18.26",
-    "@types/prettier": "^2.7.2",
-<<<<<<< HEAD
-    "@types/react": "^18.2.5",
-=======
-    "@types/react": "^18.2.6",
->>>>>>> 8da7f56c9be03c7598013b0b6d0fad4ef3d77249
-    "@types/uuid": "^8.3.4",
-    "fast-glob": "^3.2.12",
-    "prettier": "^2.8.8",
-    "rimraf": "^3.0.2"
-  },
   "dependencies": {
-    "@babel/core": "^7.21.4",
+    "@babel/core": "^7.23.3",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
-    "@babel/plugin-syntax-jsx": "^7.21.4",
-    "@babel/types": "^7.21.4",
+    "@babel/plugin-syntax-jsx": "^7.23.3",
+    "@babel/plugin-syntax-typescript": "^7.23.3",
+    "@babel/types": "^7.23.4",
+    "@mui-internal/api-docs-builder": "^1.0.0",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
-    "typescript": "^4.9.5",
-    "uuid": "^8.3.2"
+    "typescript": "^5.3.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@babel/register": "^7.22.15",
+    "@types/babel__core": "^7.20.5",
+    "@types/chai": "^4.3.11",
+    "@types/doctrine": "^0.0.9",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^18.18.13",
+    "@types/prettier": "^2.7.3",
+    "@types/react": "^18.2.42",
+    "@types/uuid": "^9.0.7",
+    "chai": "^4.3.10",
+    "fast-glob": "^3.3.2",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.5"
   }
 }

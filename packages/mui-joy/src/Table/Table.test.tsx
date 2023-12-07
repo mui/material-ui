@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Table, { tableClasses as classes } from '@mui/joy/Table';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<Table />', () => {
   const { render } = createRenderer();
@@ -35,8 +35,6 @@ describe('<Table />', () => {
     },
   }));
 
-  describeJoyColorInversion(<Table />, { muiName: 'JoyTable', classes });
-
   describe('prop: variant', () => {
     it('plain by default', () => {
       const { getByRole } = render(<Table />);
@@ -62,7 +60,7 @@ describe('<Table />', () => {
       expect(getByRole('table')).to.have.class(classes.colorNeutral);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByRole } = render(<Table color={color} />);
 
@@ -125,5 +123,11 @@ describe('<Table />', () => {
     const { getByRole } = render(<Table stickyHeader />);
 
     expect(getByRole('table')).to.have.class(classes.stickyHeader);
+  });
+
+  it('adds `stickyFooter` class', () => {
+    const { getByRole } = render(<Table stickyFooter />);
+
+    expect(getByRole('table')).to.have.class(classes.stickyFooter);
   });
 });

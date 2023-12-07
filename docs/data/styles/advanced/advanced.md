@@ -2,17 +2,24 @@
 
 <p class="description">This section covers more advanced usage of @mui/styles.</p>
 
-> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for Material UI.
-> It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5.
-> If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/overview/) documentation which is the recommended alternative.
+:::error
+`@mui/styles` was deprecated with the release of MUI Core v5 in late 2021.
+It depended on [JSS](https://cssinjs.org/) as a styling solution, which is no longer used in `@mui/material`.
 
-> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18.
+`@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18, and it will not be updated.
+
+This documentation remains here for those working on legacy projects, but we **strongly discourage** you from using `@mui/styles` when creating a new app with Material UI—you _will_ face unresolvable dependency issues.
+
+Please use [`@mui/system`](/system/getting-started/) instead.
+:::
 
 ## Theming
 
 Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Then, you can access the theme object in style functions.
 
-> This example creates a theme object for custom-built components. If you intend to use some of Material UI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/material-ui/customization/theming/) to learn how to build your custom Material UI theme.
+:::info
+This example creates a theme object for custom-built components. If you intend to use some of Material UI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/material-ui/customization/theming/) to learn how to build your custom Material UI theme.
+:::
 
 ```jsx
 import { ThemeProvider } from '@mui/styles';
@@ -227,9 +234,10 @@ Note that this doesn't support selectors, or nested rules.
 
 ## CSS injection order
 
-> It's **really important** to understand how the CSS specificity is calculated by the browser,
-> as it's one of the key elements to know when overriding styles.
-> You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+:::warning
+It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles.
+Read this section from the MDN docs for more information: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+:::
 
 By default, the style tags are injected **last** in the `<head>` element of the page.
 They gain more specificity than any other style tags on your page e.g. CSS modules, styled components.
@@ -393,6 +401,17 @@ function render() {
 
 You can [follow the server side guide](/material-ui/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets` API documentation](/system/styles/api/#serverstylesheets).
 
+### CSS prefixing
+
+Be aware that some CSS features [require](https://github.com/cssinjs/jss/issues/279) an additional postprocessing step
+that adds vendor-specific prefixes.
+These prefixes are automatically added to the client thanks to [`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer).
+
+The CSS served on this documentation is processed with [`autoprefixer`](https://www.npmjs.com/package/autoprefixer).
+You can use [the documentation implementation](https://github.com/mui/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123) as inspiration.
+Be aware that it has an implication with the performance of the page.
+It's a must-do for static pages, but it needs to be put in balance with not doing anything when rendering dynamic pages.
+
 ### Gatsby
 
 There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@mui/styles`.
@@ -402,7 +421,7 @@ Refer to the plugin's page for setup and usage instructions.
 
 Refer to [this example Gatsby project](https://github.com/mui/material-ui/tree/v4.x/examples/gatsby) for an usage example.
 
-### Next.js
+### Next.js Pages Router
 
 You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui/material-ui/blob/v4.x/examples/nextjs/pages/_document.js#L52-L59) to inject the server-side rendered styles into the `<head>` element.
 

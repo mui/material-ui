@@ -1,6 +1,9 @@
 # Themed components
 
-<p class="description">You can customize a component's styles, default props, and more by using its keys inside the theme. This helps to achieve styling consistency across your application.</p>
+<p class="description">You can customize a component's styles, default props, and more by using its component key inside the theme.</p>
+
+The `components` key in the theme helps to achieve styling consistency across your application.
+However, the theme isn't tree-shakable, prefer creating new components for heavy customizations.
 
 ## Theme default props
 

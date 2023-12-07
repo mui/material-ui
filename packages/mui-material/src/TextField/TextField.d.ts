@@ -44,7 +44,7 @@ export interface BaseTextFieldProps
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color?: OverridableStringUnion<
@@ -111,10 +111,6 @@ export interface BaseTextFieldProps
   name?: string;
   onBlur?: InputBaseProps['onBlur'];
   onFocus?: StandardInputProps['onFocus'];
-  /**
-   * @ignore
-   */
-  onClick?: InputBaseProps['onClick'];
   /**
    * The short hint displayed in the `input` before the user enters a value.
    */

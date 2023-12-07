@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import isHostComponent from '../utils/isHostComponent';
+import { isHostComponent } from '../utils/isHostComponent';
 import { getInputUtilityClass } from './inputClasses';
 import {
   InputInputSlotProps,
@@ -10,9 +11,9 @@ import {
   InputRootSlotProps,
   InputTypeMap,
 } from './Input.types';
-import useInput from '../useInput';
+import { useInput } from '../useInput';
 import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: InputOwnerState) => {
@@ -40,11 +41,11 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
  *
  * Demos:
  *
- * - [Input](https://mui.com/base/react-input/)
+ * - [Input](https://mui.com/base-ui/react-input/)
  *
  * API:
  *
- * - [Input API](https://mui.com/base/react-input/components-api/#input)
+ * - [Input API](https://mui.com/base-ui/react-input/components-api/#input)
  */
 const Input = React.forwardRef(function Input<RootComponentType extends React.ElementType>(
   props: InputProps<RootComponentType>,
@@ -147,8 +148,12 @@ const Input = React.forwardRef(function Input<RootComponentType extends React.El
   const InputComponent = multiline ? slots.textarea ?? 'textarea' : slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<InputInputSlotProps> = useSlotProps({
     elementType: InputComponent,
-    getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsToForward }),
+    getSlotProps: (otherHandlers: EventHandlers) => {
+      return getInputProps({
+        ...propsToForward,
+        ...otherHandlers,
+      });
+    },
     externalSlotProps: slotProps.input,
     additionalProps: {
       rows: multiline ? rows : undefined,
@@ -360,4 +365,4 @@ Input.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export default Input;
+export { Input };

@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Chip from '@mui/material/Chip';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
@@ -79,7 +79,7 @@ const PRODUCTS = [
     name: 'MUI Toolpad',
     description: 'Low-code admin builder.',
     href: ROUTES.productToolpad,
-    chip: 'Alpha',
+    chip: 'Beta',
   },
 ];
 
@@ -107,13 +107,13 @@ const DOCS = [
   {
     name: 'MUI X',
     description: 'Advanced and powerful components for complex use cases.',
-    href: ROUTES.advancedComponents,
+    href: ROUTES.xIntro,
   },
   {
     name: 'MUI Toolpad',
     description: 'Low-code admin builder.',
     href: ROUTES.toolpadDocs,
-    chip: 'Alpha',
+    chip: 'Beta',
   },
 ];
 
@@ -121,7 +121,7 @@ export default function HeaderNavDropdown() {
   const [open, setOpen] = React.useState(false);
   const [productsOpen, setProductsOpen] = React.useState(true);
   const [docsOpen, setDocsOpen] = React.useState(false);
-  const hambugerRef = React.useRef<HTMLButtonElement | null>(null);
+  const hambugerRef = React.useRef<HTMLButtonElement>(null);
   return (
     <React.Fragment>
       <IconButton
@@ -150,7 +150,7 @@ export default function HeaderNavDropdown() {
       </IconButton>
       <ClickAwayListener
         onClickAway={(event) => {
-          if (hambugerRef.current && !hambugerRef.current.contains(event.target as Node)) {
+          if (!hambugerRef.current!.contains(event.target as Node)) {
             setOpen(false);
           }
         }}
@@ -164,7 +164,7 @@ export default function HeaderNavDropdown() {
             right: 0,
             boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
             ...theme.applyDarkStyles({
-              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.8)',
             }),
           })}
         >

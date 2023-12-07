@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from '@mui/system';
 import defaultTheme from './defaultTheme';

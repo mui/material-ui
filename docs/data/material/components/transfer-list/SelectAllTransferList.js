@@ -22,7 +22,7 @@ function union(a, b) {
   return [...a, ...not(b, a)];
 }
 
-export default function TransferList() {
+export default function SelectAllTransferList() {
   const [checked, setChecked] = React.useState([]);
   const [left, setLeft] = React.useState([0, 1, 2, 3]);
   const [right, setRight] = React.useState([4, 5, 6, 7]);

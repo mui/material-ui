@@ -1,3 +1,4 @@
+'use client';
 import PropTypes from 'prop-types';
 import { createContainer } from '@mui/system';
 import capitalize from '../utils/capitalize';

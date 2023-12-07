@@ -47,7 +47,7 @@ Here are the most significant improvements since early July 2021.
 
 - [Masonry](/material-ui/react-masonry/). We introduced a new component for use when the `Grid` component leads to wasted space. It's frequently used in dashboards.
 
-  <a href="/material-ui/react-masonry/"><img loading="lazy" src="/static/blog/2021-q3-update/masonry.png" style="width: 700px; margin-bottom: 16px;" /></a>
+  <a href="/material-ui/react-masonry/"><img loading="lazy" src="/static/blog/2021-q3-update/masonry.png" style="width: 700px; margin-bottom: 16px;" alt="react-masonry" /></a>
 
 - We introduced a new [package of components without styles](https://www.npmjs.com/package/@mui/base), laying the foundations for supporting multiple design systems with headless components.
   While it was tough to balance the time between working on v5 stable and developing the unstyled components, we still managed to introduce the first few:
@@ -67,13 +67,13 @@ Here are the most significant improvements since early July 2021.
   - [Modal](/material-ui/react-modal/#unstyled)
 
   ```jsx
-  import ModalUnstyled from '@mui/base/ModalUnstyled';
+  import { ModalUnstyled } from '@mui/base/ModalUnstyled';
   ```
 
   - [Slider](/material-ui/react-slider/#unstyled)
 
   ```jsx
-  import SliderUnstyled from '@mui/base/SliderUnstyled';
+  import { SliderUnstyled } from '@mui/base/SliderUnstyled';
   ```
 
   - [Switch](/material-ui/react-switch/#unstyled)
@@ -85,13 +85,13 @@ Here are the most significant improvements since early July 2021.
   - [Portal](/material-ui/react-portal/#unstyled)
 
   ```jsx
-  import Portal from '@mui/base/Portal';
+  import { Portal } from '@mui/base/Portal';
   ```
 
-  - [TrapFocus](/base/react-focus-trap/)
+  - [FocusTrap](/base-ui/react-focus-trap/)
 
   ```jsx
-  import TrapFocus from '@mui/base/TrapFocus';
+  import { FocusTrap } from '@mui/base/FocusTrap';
   ```
 
 ### MUI X
@@ -111,15 +111,15 @@ The date picker sits at the border between the core component and advanced compo
 - 🎉 We released the first stable version: [v4.0.0](https://github.com/mui/mui-x/releases/tag/v4.0.0)!
   We also released the first v5-beta, to support MUI Core v5,
   and will be working almost exclusively on the v5 release line going forward.
-- 🔎 We also added a [quick-filter demo](/x/react-data-grid/filtering/#quick-filter) to illustrate how it can be implemented,
+- 🔎 We also added a [quick-filter demo](/x/react-data-grid/filtering/quick-filter/) to illustrate how it can be implemented,
   and will add a [built-in](https://github.com/mui/mui-x/issues/202) solution later on.
 
-  <a href="/x/react-data-grid/filtering/#quick-filter"><img loading="lazy" src="/static/blog/2021-q3-update/quick-filter.png" style="width: 700px; margin-bottom: 16px;" /></a>
+  <a href="/x/react-data-grid/filtering/quick-filter/"><img loading="lazy" src="/static/blog/2021-q3-update/quick-filter.png" style="width: 700px; margin-bottom: 16px;" alt="react-data-grid-quick-filter" /></a>
 
 - 🐛 We fixed several non-idiomatic React patterns, for instance we were not handling controllable props by the book, and as we do in MUI Core.
 - 🚀 We introduced the [row editing](/x/react-data-grid/editing/#row-editing) feature.
 
-  <img src="/static/blog/2021-q3-update/row-edit.gif" width="851" />
+  <img src="/static/blog/2021-q3-update/row-edit.gif" alt="row-editing" width="851" />
 
 - 🦺 We added a [`disableVirtualization`](/x/react-data-grid/virtualization/#disable-virtualization) prop to make it easier to test the data grid without a real browser environment, for example in jsdom with Jest.
 - 🚛 We have added an `onViewportRowsChange` prop as a first step toward being able to lazy load a large dataset.
@@ -194,7 +194,7 @@ We'll do our best, no guarantee!
   In the last few weeks, we have seen a strong influx of feedback from the community.
   We need to make the most of this feedback to solve regressions, improve the documentation for the new APIs, adjust the tradeoffs we took in the light of more information, and more.
   [15%](https://npm-stat.com/charts.html?package=%40material-ui%2Fcore&package=%40mui%2Fmaterial&from=2020-10-25&to=2021-10-15) of the community has migrated, so far.
-- 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Button](https://mui.com/base/react-button/).
+- 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Button](https://mui.com/base-ui/react-button/).
   You can follow our progress in the [umbrella issue](https://github.com/mui/material-ui/issues/27170).
 - 🎨 We are [exploring](https://github.com/mui/material-ui/discussions/29024) the introduction of CSS variables.
   Since v5, MUI is no longer actively supporting IE 11. Dropping this browser requirement unlocks new capabilities of the web platform.

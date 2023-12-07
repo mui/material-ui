@@ -2,11 +2,8 @@
 
 <p class="description">We have learned a great deal regarding how Material UI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 
-:::info
-API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
-:::
-
-[@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
+> API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
+> [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
 
 As Sebastian Markbage [pointed out](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html), no abstraction is superior to wrong abstractions.
 We are providing low-level components to maximize composition capabilities.
@@ -82,7 +79,7 @@ Nested components inside a component have:
 
 - their own flattened props when these are key to the top level component abstraction,
   for instance an `id` prop for the `Input` component.
-- their own `xxxProps` prop when users might need to tweak the internal render method's sub-components,
+- their own `xxxProps` prop when users might need to tweak the internal render method's subcomponents,
   for instance, exposing the `inputProps` and `InputProps` props on components that use `Input` internally.
 - their own `xxxComponent` prop for performing component injection.
 - their own `xxxRef` prop when you might need to perform imperative actions,
@@ -111,9 +108,17 @@ Nested components inside a component have:
 
 ### Controlled components
 
-Most of the controlled component are controlled via the `value` and the `onChange` props,
-however, the `open` / `onClose` / `onOpen` combination is used for display related state.
-In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
+Most controlled components are controlled by the `value` and the `onChange` props.
+The `open` / `onClose` / `onOpen` combination is also used for displaying related state.
+In the cases where there are more events, the noun comes first, and then the verb—for example: `onPageChange`, `onRowsChange`.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 ### boolean vs. enum
 

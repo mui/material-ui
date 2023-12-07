@@ -19,7 +19,8 @@
     }
   },
   "name": "Grow",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import Grow from '@mui/material/Grow';", "import { Grow } from '@mui/material';"],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiGrow",

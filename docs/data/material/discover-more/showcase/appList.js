@@ -406,16 +406,6 @@ const appList = [
     dateAdded: '2021-05-06',
   },
   {
-    title: 'Saleor Store Dashboard',
-    description: 'Dashboard application for Saleor headless e-commerce platform',
-    image: 'saleor.jpg',
-    link: 'https://demo.saleor.io/dashboard/',
-    source: 'https://github.com/saleor/saleor-dashboard',
-    stars: 15079,
-    similarWebVisits: 62,
-    dateAdded: '2022-02-05',
-  },
-  {
     title: 'MQTT Explorer',
     description:
       'A comprehensive MQTT Client which visualizes broker traffic in a hierarchical view. ' +
@@ -430,11 +420,11 @@ const appList = [
   {
     title: 'refine FineFoods demo',
     description: 'A full-featured Admin panel app',
-    image: 'refine-finefoods.jpg',
+    image: 'refine-finefoods.png',
     link: 'https://example.mui.admin.refine.dev/',
     source:
-      'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
-    stars: 2415,
+      'https://github.com/refinedev/refine/tree/next/examples/finefoods-material-ui',
+    stars: 10646,
     dateAdded: '2022-06-21',
   },
 ];

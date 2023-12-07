@@ -4,7 +4,7 @@ import AvatarGroup from '@mui/joy/AvatarGroup';
 import IconButton from '@mui/joy/IconButton';
 import SvgIcon from '@mui/joy/SvgIcon';
 
-export default function GroupedAvatars() {
+export default function EllipsisAvatarAction() {
   return (
     <AvatarGroup>
       <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />

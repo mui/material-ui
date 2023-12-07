@@ -54,7 +54,7 @@ export default function ContainerResponsive() {
         >
           <Box sx={{ display: 'flex' }}>
             <div>
-              <Typography level="h2" sx={{ fontSize: 'md' }} mb={0.5}>
+              <Typography level="title-lg">
                 <Link
                   href="#container-responsive"
                   overlay
@@ -67,7 +67,7 @@ export default function ContainerResponsive() {
                   Yosemite National Park
                 </Link>
               </Typography>
-              <Typography level="body2">California, USA</Typography>
+              <Typography level="body-sm">California, USA</Typography>
             </div>
             <IconButton
               size="sm"
@@ -96,10 +96,8 @@ export default function ContainerResponsive() {
               Y
             </Avatar>
             <div>
-              <Typography level="body2">Designed by</Typography>
-              <Typography fontWeight="lg" level="body2">
-                Nature itself
-              </Typography>
+              <Typography level="body-xs">Designed by</Typography>
+              <Typography level="body-sm">Nature itself</Typography>
             </div>
           </Box>
         </Box>

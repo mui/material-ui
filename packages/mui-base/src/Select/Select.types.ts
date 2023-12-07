@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Simplify } from '@mui/types';
 import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
 import { SelectOption } from '../useOption';
-import Popper, { PopperProps } from '../Popper';
+import { Popper, PopperProps } from '../Popper';
 import { PolymorphicProps, SlotComponentProps, WithOptionalOwnerState } from '../utils';
 
 export interface SelectRootSlotPropsOverrides {}
@@ -10,6 +10,20 @@ export interface SelectListboxSlotPropsOverrides {}
 export interface SelectPopperSlotPropsOverrides {}
 
 export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean> {
+  /**
+   * A function used to determine if two options' values are equal.
+   * By default, reference equality is used.
+   *
+   * There is a performance impact when using the `areOptionsEqual` prop (proportional to the number of options).
+   * Therefore, it's recommented to use the default reference equality comparison whenever possible.
+   */
+  areOptionsEqual?: (a: OptionValue, b: OptionValue) => boolean;
+  /**
+   * This prop helps users to fill forms faster, especially on mobile devices.
+   * The name can be confusing, as it's more like an autofill.
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+   */
+  autoComplete?: string;
   /**
    * If `true`, the select element is focused during the first mount
    * @default false
@@ -64,7 +78,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    * Callback fired when an option is selected.
    */
   onChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
     value: SelectValue<OptionValue, Multiple>,
   ) => void;
   /**
@@ -84,6 +98,10 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    * Function that customizes the rendering of the selected value.
    */
   renderValue?: (option: SelectValue<SelectOption<OptionValue>, Multiple>) => React.ReactNode;
+  /**
+   * Text to show when there is no selected value.
+   */
+  placeholder?: React.ReactNode;
   /**
    * The props used for each slot inside the Input.
    * @default {}
@@ -105,6 +123,11 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
       SelectOwnerState<OptionValue, Multiple>
     >;
   };
+  /**
+   * If `true`, the Select cannot be empty when submitting form.
+   * @default false
+   */
+  required?: boolean;
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.

@@ -7,7 +7,7 @@ import { styled } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
 
 const Item = styled(Sheet)(({ theme }) => ({
-  ...theme.typography.body2,
+  ...theme.typography['body-sm'],
   padding: theme.spacing(1),
   textAlign: 'center',
   borderRadius: 4,
@@ -22,6 +22,7 @@ export default function ZeroWidthStack() {
   return (
     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
       <Item
+        variant="outlined"
         sx={{
           my: 1,
           mx: 'auto',
@@ -34,6 +35,7 @@ export default function ZeroWidthStack() {
         </Stack>
       </Item>
       <Item
+        variant="outlined"
         sx={{
           my: 1,
           mx: 'auto',

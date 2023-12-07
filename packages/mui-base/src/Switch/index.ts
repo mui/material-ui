@@ -1,5 +1,5 @@
-export { default } from './Switch';
+'use client';
+export { Switch } from './Switch';
 export * from './Switch.types';
 
-export { default as switchClasses } from './switchClasses';
 export * from './switchClasses';

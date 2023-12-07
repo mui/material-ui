@@ -1,4 +1,4 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 import generateUtilityClass from '../generateUtilityClass';
 
 export interface ListSubheaderClasses {

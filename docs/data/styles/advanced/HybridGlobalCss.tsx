@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HybridCss() {
+export default function HybridGlobalCss() {
   const classes = useStyles();
 
   return (

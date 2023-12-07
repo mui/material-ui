@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
@@ -9,15 +10,15 @@ import {
   SelectRootSlotProps,
   SelectType,
 } from './Select.types';
-import useSelect, { SelectValue } from '../useSelect';
+import { useSelect, SelectValue } from '../useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import Popper from '../Popper';
-import composeClasses from '../composeClasses';
+import { Popper } from '../Popper';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSelectUtilityClass } from './selectClasses';
-import defaultOptionStringifier from '../useSelect/defaultOptionStringifier';
+import { defaultOptionStringifier } from '../useSelect/defaultOptionStringifier';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { SelectOption } from '../useOption';
-import SelectProvider from '../useSelect/SelectProvider';
+import { SelectProvider } from '../useSelect/SelectProvider';
 
 function defaultRenderValue<OptionValue>(
   selectedOptions: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
@@ -26,40 +27,7 @@ function defaultRenderValue<OptionValue>(
     return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
   }
 
-  return selectedOptions?.label ?? '';
-}
-
-function defaultFormValueProvider<OptionValue>(
-  selectedOption: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
-) {
-  if (Array.isArray(selectedOption)) {
-    if (selectedOption.length === 0) {
-      return '';
-    }
-
-    if (
-      selectedOption.every(
-        (o) =>
-          typeof o.value === 'string' ||
-          typeof o.value === 'number' ||
-          typeof o.value === 'boolean',
-      )
-    ) {
-      return selectedOption.map((o) => String(o.value));
-    }
-
-    return JSON.stringify(selectedOption.map((o) => o.value));
-  }
-
-  if (selectedOption?.value == null) {
-    return '';
-  }
-
-  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
-    return selectedOption.value;
-  }
-
-  return JSON.stringify(selectedOption.value);
+  return selectedOptions?.label ?? null;
 }
 
 function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
@@ -87,11 +55,11 @@ function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Select](https://mui.com/base-ui/react-select/)
  *
  * API:
  *
- * - [Select API](https://mui.com/base/react-select/components-api/#select)
+ * - [Select API](https://mui.com/base-ui/react-select/components-api/#select)
  */
 const Select = React.forwardRef(function Select<
   OptionValue extends {},
@@ -102,20 +70,24 @@ const Select = React.forwardRef(function Select<
   forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
+    areOptionsEqual,
+    autoComplete,
     autoFocus,
     children,
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
-    getSerializedValue = defaultFormValueProvider,
+    getSerializedValue,
     listboxId,
     listboxOpen: listboxOpenProp,
     multiple = false as Multiple,
     name,
+    required = false,
     onChange,
     onListboxOpenChange,
     getOptionAsString = defaultOptionStringifier,
     renderValue: renderValueProp,
+    placeholder,
     slotProps = {},
     slots = {},
     value: valueProp,
@@ -126,7 +98,7 @@ const Select = React.forwardRef(function Select<
     renderValueProp ?? defaultRenderValue;
 
   const [buttonDefined, setButtonDefined] = React.useState(false);
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
 
   const Button = slots.root ?? 'button';
@@ -152,10 +124,15 @@ const Select = React.forwardRef(function Select<
     disabled,
     getButtonProps,
     getListboxProps,
+    getHiddenInputProps,
     getOptionMetadata,
     value,
     open,
   } = useSelect({
+    name,
+    required,
+    getSerializedValue,
+    areOptionsEqual,
     buttonRef: handleButtonRef,
     defaultOpen: defaultListboxOpen,
     defaultValue,
@@ -167,6 +144,7 @@ const Select = React.forwardRef(function Select<
     onOpenChange: onListboxOpenChange,
     getOptionAsString,
     value: valueProp,
+    componentName: 'Select',
   });
 
   const ownerState: SelectOwnerState<OptionValue, Multiple> = {
@@ -234,7 +212,13 @@ const Select = React.forwardRef(function Select<
 
   return (
     <React.Fragment>
-      <Button {...buttonProps}>{renderValue(selectedOptionsMetadata)}</Button>
+      <Button {...buttonProps}>
+        {renderValue(selectedOptionsMetadata) ?? placeholder ?? (
+          // fall back to a zero-width space to prevent layout shift
+          // from https://github.com/mui/material-ui/pull/24563
+          <span className="notranslate">&#8203;</span>
+        )}
+      </Button>
       {buttonDefined && (
         <PopperComponent {...popperProps}>
           <ListboxRoot {...listboxProps}>
@@ -243,9 +227,7 @@ const Select = React.forwardRef(function Select<
         </PopperComponent>
       )}
 
-      {name && (
-        <input type="hidden" name={name} value={getSerializedValue(selectedOptionsMetadata)} />
-      )}
+      <input {...getHiddenInputProps()} autoComplete={autoComplete} />
     </React.Fragment>
   );
 }) as SelectType;
@@ -256,6 +238,20 @@ Select.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * A function used to determine if two options' values are equal.
+   * By default, reference equality is used.
+   *
+   * There is a performance impact when using the `areOptionsEqual` prop (proportional to the number of options).
+   * Therefore, it's recommented to use the default reference equality comparison whenever possible.
+   */
+  areOptionsEqual: PropTypes.func,
+  /**
+   * This prop helps users to fill forms faster, especially on mobile devices.
+   * The name can be confusing, as it's more like an autofill.
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+   */
+  autoComplete: PropTypes.string,
+  /**
    * If `true`, the select element is focused during the first mount
    * @default false
    */
@@ -264,6 +260,10 @@ Select.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * If `true`, the select will be initially open.
    * @default false
@@ -323,9 +323,18 @@ Select.propTypes /* remove-proptypes */ = {
    */
   onListboxOpenChange: PropTypes.func,
   /**
+   * Text to show when there is no selected value.
+   */
+  placeholder: PropTypes.node,
+  /**
    * Function that customizes the rendering of the selected value.
    */
   renderValue: PropTypes.func,
+  /**
+   * If `true`, the Select cannot be empty when submitting form.
+   * @default false
+   */
+  required: PropTypes.bool,
   /**
    * The props used for each slot inside the Input.
    * @default {}
@@ -352,4 +361,4 @@ Select.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export default Select;
+export { Select };

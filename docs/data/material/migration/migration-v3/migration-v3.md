@@ -37,7 +37,7 @@ You need to update your `package.json` to use the latest version of Material UI.
 
 Or run
 
-```sh
+```bash
 npm install @material-ui/core
 
 or
@@ -62,7 +62,7 @@ If you were previously using `@material-ui/styles` with v3 you need to update yo
 
 Or run
 
-```sh
+```bash
 npm install @material-ui/styles
 
 or

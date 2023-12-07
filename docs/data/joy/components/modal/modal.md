@@ -1,7 +1,7 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Modal component
-components: Modal, ModalClose, ModalDialog, ModalOverflow
+components: Modal, ModalClose, ModalDialog, ModalOverflow, DialogTitle, DialogContent, DialogActions
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
 <p class="description">The modal component provides a solid foundation for creating dialogs, popovers, lightboxes, or whatever else.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
@@ -213,6 +213,14 @@ React [doesn't support](https://github.com/facebook/react/issues/13097) the [`cr
 Therefore, in order to display a modal rendered on the server, disable the portal feature with the `disablePortal` prop, as shown in the following demo:
 
 {{"demo": "ServerModal.js", "defaultCodeOpen": false}}
+
+## Common examples
+
+### Mobile modal
+
+Use `sx` prop with `theme.breakpoints.only('xs')` to customize the styles of the modal dialog to stick at the bottom in mobile viewport.
+
+{{"demo": "ResponsiveModal.js"}}
 
 ## Limitations
 

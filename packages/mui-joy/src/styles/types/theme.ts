@@ -17,15 +17,13 @@ import {
   FontSize,
   FontWeight,
   LineHeight,
-  LetterSpacing,
   TypographySystem,
   DefaultFontFamily,
   DefaultFontSize,
   DefaultFontWeight,
   DefaultLineHeight,
-  DefaultLetterSpacing,
 } from './typography';
-import { Variants, ColorInversion, ColorInversionConfig } from './variants';
+import { Variants } from './variants';
 import { DefaultZIndex, ZIndex } from './zIndex';
 import { MergeDefault } from './utils';
 
@@ -64,7 +62,6 @@ export interface ThemeScales {
   fontSize: FontSize;
   fontWeight: FontWeight;
   lineHeight: LineHeight;
-  letterSpacing: LetterSpacing;
   zIndex: ZIndex;
 }
 export type ThemeScalesOptions = MergeDefault<
@@ -76,7 +73,6 @@ export type ThemeScalesOptions = MergeDefault<
     fontSize: DefaultFontSize;
     fontWeight: DefaultFontWeight;
     lineHeight: DefaultLineHeight;
-    letterSpacing: DefaultLetterSpacing;
     zIndex: DefaultZIndex;
   }
 >;
@@ -102,8 +98,6 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   focus: Focus;
   typography: TypographySystem;
   variants: Variants;
-  colorInversion: ColorInversion;
-  colorInversionConfig: ColorInversionConfig;
   spacing: Spacing;
   breakpoints: Breakpoints;
   cssVarPrefix: string;

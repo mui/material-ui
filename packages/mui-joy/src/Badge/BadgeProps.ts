@@ -8,12 +8,12 @@ export type BadgeSlot = 'root' | 'badge';
 export interface BadgeSlots {
   /**
    * The component that renders the root.
-   * @default 'div'
+   * @default 'span'
    */
   root?: React.ElementType;
   /**
    * The component that renders the badge.
-   * @default 'div'
+   * @default 'span'
    */
   badge?: React.ElementType;
 }

@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useTab from '@mui/base/useTab';
+import { useTab } from '@mui/base/useTab';
 // TODO: use useButton hook here
 import ButtonBase from '@mui/material/ButtonBase';
 import {

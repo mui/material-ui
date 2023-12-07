@@ -1,5 +1,5 @@
-import generateUtilityClass from '../generateUtilityClass';
-import generateUtilityClasses from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
 
 export interface OptionGroupClasses {
   /** Class name applied to the root element. */
@@ -18,11 +18,9 @@ export function getOptionGroupUtilityClass(slot: string): string {
   return generateUtilityClass('MuiOptionGroup', slot);
 }
 
-const optionGroupClasses: OptionGroupClasses = generateUtilityClasses('MuiOptionGroup', [
+export const optionGroupClasses: OptionGroupClasses = generateUtilityClasses('MuiOptionGroup', [
   'root',
   'disabled',
   'label',
   'list',
 ]);
-
-export default optionGroupClasses;

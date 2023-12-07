@@ -22,7 +22,6 @@ The following is an up-to-date list of `@mui` public packages.
 - `@mui/system`
 - `@mui/styled-engine`
 - `@mui/styled-engine-sc`
-- `@mui/styles`
 
 ### Understanding MUI's products
 
@@ -31,7 +30,7 @@ These projects live within two product lines: MUI Core and MUI X.
 
 The following chart illustrates how MUI's packages are related to one another:
 
-<img src="/static/images/packages/mui-packages.png" style="width: 600px; margin-top: 4px; margin-bottom: 8px;" alt="The first half of the image shows @mui/material and @mui/base as component libraries, and @mui/system and styled engines as styling solutions, both under the MUI Core umbrella. The second half shows @mui/x-data-grid and @mui/x-date-pickers as components from MUI X." width="1200" height="600" />
+<img src="/static/images/packages/mui-packages.png" style="width: 814px; margin-top: 4px; margin-bottom: 8px;" alt="The first half of the image shows @mui/material and @mui/base as component libraries, and @mui/system and styled engines as styling solutions, both under the MUI Core umbrella. The second half shows @mui/x-data-grid and @mui/x-date-pickers as components from MUI X." width="1628" height="400" />
 
 In this article, we'll only cover the MUI Core packages.
 Visit the [MUI X Overview](/x/introduction/) for more information about our collection of advanced components.
@@ -46,8 +45,8 @@ Material UI is a comprehensive library of components that features our implement
 
 ### Base UI
 
-[Base UI](/base/getting-started/overview/) is our library of "unstyled" components and hooks.
-With Base, you gain complete control over your app's CSS and accessibility features.
+[Base UI](/base-ui/) is a library of unstyled React UI components and hooks.
+With Base UI, you gain complete control over your app's CSS and accessibility features.
 
 The Base package includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
 
@@ -59,7 +58,7 @@ In this case, instead of overriding all the styles on the Material UI `Switch` c
 
 ```js
 import { styled } from '@mui/material/styles';
-import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
+import { SwitchUnstyled, switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
 
 const Root = styled('span')(`
   position: relative;
@@ -97,7 +96,7 @@ By default, Material UI uses [Emotion](https://emotion.sh/docs/styled) as its st
 If you plan to stick with Emotion, then `@mui/styled-engine` is a dependency in your app, and you don't need to install it separately.
 
 If you prefer to use [styled-components](https://styled-components.com/docs/basics#getting-started), then you need to install `@mui/styled-engine-sc` in place of the Emotion packages.
-See the [Styled engine guide](/material-ui/guides/styled-engine/) for more details.
+See the [styled-components guide](/material-ui/guides/styled-components/) for more details.
 
 In either case, you won't interact much with either of these packages beyond installation—they're used internally in `@mui/system`.
 
@@ -122,4 +121,4 @@ It uses the Emotion adapter (`@mui/styled-engine`) as the default style engine t
 To use MUI System, you must install either Emotion or styled-components, because the respective `styled-engine` package depends on it.
 :::
 
-<img src="/static/images/packages/mui-system.png" style="width: 600px; margin-top: 4px; margin-bottom: 8px;" alt="A diagram showing an arrow going from @mui/system to @mui/styled-engine, with a note that it is the default engine. Then, from @mui/styled-engine a solid arrow points to @emotion/react and @emotion/styled while a dashed arrow points to @mui/styled-engine-sc, which points to styled-components." width="1200" height="600" />
+<img src="/static/images/packages/mui-system.png" style="width: 814px; margin-top: 4px; margin-bottom: 8px;" alt="A diagram showing an arrow going from @mui/system to @mui/styled-engine, with a note that it is the default engine. Then, from @mui/styled-engine a solid arrow points to @emotion/react and @emotion/styled while a dashed arrow points to @mui/styled-engine-sc, which points to styled-components." width="1628" height="400" />

@@ -38,6 +38,7 @@ export function unstable_createStyleFunctionSx() {
       return null;
     }
 
+    // TODO v6: remove, see https://github.com/mui/material-ui/pull/38123
     if (themeKey === 'typography' && val === 'inherit') {
       return { [prop]: val };
     }

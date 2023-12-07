@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import selectReducer from './selectReducer';
+import { selectReducer } from './selectReducer';
 import { SelectAction, SelectActionTypes, SelectInternalState } from './useSelect.types';
 import { ActionWithContext } from '../utils/useControllableReducer.types';
 import { ListActionContext } from '../useList';
@@ -26,7 +26,7 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: ActionWithContext<SelectAction, ListActionContext<unknown>> = {
+      const action: ActionWithContext<SelectAction<string>, ListActionContext<unknown>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: irrelevantConfig,
@@ -43,7 +43,7 @@ describe('selectReducer', () => {
         open: true,
       };
 
-      const action: ActionWithContext<SelectAction, ListActionContext<unknown>> = {
+      const action: ActionWithContext<SelectAction<string>, ListActionContext<unknown>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: {
@@ -62,7 +62,7 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: ActionWithContext<SelectAction, ListActionContext<string>> = {
+      const action: ActionWithContext<SelectAction<string>, ListActionContext<string>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: {
@@ -82,7 +82,7 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: ActionWithContext<SelectAction, ListActionContext<string>> = {
+      const action: ActionWithContext<SelectAction<string>, ListActionContext<string>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: {
@@ -96,72 +96,27 @@ describe('selectReducer', () => {
     });
   });
 
-  describe('action: buttonArrowKeyDown', () => {
-    [
-      { key: 'ArrowDown', expectedHighlight: '1' },
-      { key: 'ArrowUp', expectedHighlight: '3' },
-    ].forEach((testCase) => {
-      describe(`after ${testCase.key} was pressed`, () => {
-        it('opens the select if it was closed', () => {
-          const state: SelectInternalState<unknown> = {
-            highlightedValue: null,
-            selectedValues: [],
-            open: false,
-          };
+  describe('action: browserAutoFill', () => {
+    it('selects the item and highlights it', () => {
+      const state: SelectInternalState<string> = {
+        highlightedValue: null,
+        selectedValues: [],
+        open: false,
+      };
 
-          const action: ActionWithContext<SelectAction, ListActionContext<unknown>> = {
-            type: SelectActionTypes.buttonArrowKeyDown,
-            key: testCase.key,
-            event: {} as any, // not relevant
-            context: irrelevantConfig,
-          };
+      const action: ActionWithContext<SelectAction<string>, ListActionContext<string>> = {
+        type: SelectActionTypes.browserAutoFill,
+        event: {} as any, // not relevant
+        item: '1',
+        context: {
+          ...irrelevantConfig,
+          items: ['1', '2', '3'],
+        },
+      };
 
-          const result = selectReducer(state, action);
-          expect(result.open).to.equal(true);
-        });
-
-        it('highlights the first selected value if the select was closed', () => {
-          const state: SelectInternalState<string> = {
-            highlightedValue: null,
-            selectedValues: ['2'],
-            open: false,
-          };
-
-          const action: ActionWithContext<SelectAction, ListActionContext<string>> = {
-            type: SelectActionTypes.buttonArrowKeyDown,
-            key: testCase.key,
-            event: {} as any, // not relevant
-            context: {
-              ...irrelevantConfig,
-              items: ['1', '2', '3'],
-            },
-          };
-
-          const result = selectReducer(state, action);
-          expect(result.highlightedValue).to.equal('2');
-        });
-
-        it(`highlights the ${testCase.expectedHighlight} value if the select was closed and nothing was selected`, () => {
-          const state: SelectInternalState<string> = {
-            highlightedValue: null,
-            selectedValues: [],
-            open: false,
-          };
-
-          const action: ActionWithContext<SelectAction, ListActionContext<string>> = {
-            type: SelectActionTypes.buttonArrowKeyDown,
-            key: testCase.key,
-            event: {} as any, // not relevant
-            context: {
-              ...irrelevantConfig,
-              items: ['1', '2', '3'],
-            },
-          };
-
-          const result = selectReducer(state, action);
-          expect(result.highlightedValue).to.equal(testCase.expectedHighlight);
-        });
-      });
+      const result = selectReducer(state, action);
+      expect(result.highlightedValue).to.equal('1');
+      expect(result.selectedValues).to.deep.equal(['1']);
     });
   });
 });

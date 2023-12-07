@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { unstable_useId as useId } from '@mui/utils';
 import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
@@ -125,7 +126,7 @@ const DialogPaper = styled(Paper, {
     maxWidth:
       theme.breakpoints.unit === 'px'
         ? Math.max(theme.breakpoints.values.xs, 444)
-        : `${theme.breakpoints.values.xs}${theme.breakpoints.unit}`,
+        : `max(${theme.breakpoints.values.xs}${theme.breakpoints.unit}, 444px)`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
         maxWidth: 'calc(100% - 64px)',

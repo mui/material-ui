@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer, describeConformance, screen, within } from 'test/utils';
+import { createRenderer, describeConformance, screen, within } from '@mui-internal/test-utils';
 import { expect } from 'chai';
 import Button from '@mui/material/Button';
 import LoadingButton, { loadingButtonClasses as classes } from '@mui/lab/LoadingButton';

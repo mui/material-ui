@@ -8,7 +8,6 @@ export default function CheckboxColors() {
       <Checkbox label="Primary" color="primary" defaultChecked />
       <Checkbox label="Neutral" color="neutral" defaultChecked />
       <Checkbox label="Danger" color="danger" defaultChecked />
-      <Checkbox label="Info" color="info" defaultChecked />
       <Checkbox label="Success" color="success" defaultChecked />
       <Checkbox label="Warning" color="warning" defaultChecked />
     </Box>

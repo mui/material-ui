@@ -56,9 +56,9 @@ const ListboxComponent = React.forwardRef<
   React.HTMLAttributes<HTMLElement>
 >(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
-  const itemData: React.ReactChild[] = [];
-  (children as React.ReactChild[]).forEach(
-    (item: React.ReactChild & { children?: React.ReactChild[] }) => {
+  const itemData: React.ReactElement[] = [];
+  (children as React.ReactElement[]).forEach(
+    (item: React.ReactElement & { children?: React.ReactElement[] }) => {
       itemData.push(item);
       itemData.push(...(item.children || []));
     },
@@ -71,7 +71,7 @@ const ListboxComponent = React.forwardRef<
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 
-  const getChildSize = (child: React.ReactChild) => {
+  const getChildSize = (child: React.ReactElement) => {
     if (child.hasOwnProperty('group')) {
       return 48;
     }
@@ -149,8 +149,7 @@ export default function Virtualize() {
       renderOption={(props, option, state) =>
         [props, option, state.index] as React.ReactNode
       }
-      // TODO: Post React 18 update - validate this conversion, look like a hidden bug
-      renderGroup={(params) => params as unknown as React.ReactNode}
+      renderGroup={(params) => params as any}
     />
   );
 }

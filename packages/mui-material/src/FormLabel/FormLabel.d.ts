@@ -7,6 +7,11 @@ import { FormLabelClasses } from './formLabelClasses';
 
 export interface FormLabelPropsColorOverrides {}
 
+/**
+ * This type is kept for compatibility. Use `FormLabelOwnProps` instead.
+ */
+export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
+
 export interface FormLabelOwnProps {
   /**
    * The content of the component.
@@ -19,7 +24,7 @@ export interface FormLabelOwnProps {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color?: OverridableStringUnion<
     'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
@@ -51,9 +56,12 @@ export interface FormLabelOwnProps {
   sx?: SxProps<Theme>;
 }
 
-export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
-  props: P & FormLabelBaseProps & FormLabelOwnProps;
-  defaultComponent: D;
+export interface FormLabelTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'label',
+> {
+  props: AdditionalProps & FormLabelBaseProps & FormLabelOwnProps;
+  defaultComponent: RootComponent;
 }
 
 /**
@@ -70,16 +78,16 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
  */
 declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
 
-export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
-
-export interface ExtendFormLabelTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & Pick<FormLabelOwnProps, 'filled' | 'color'>;
-  defaultComponent: M['defaultComponent'];
+export interface ExtendFormLabelTypeMap<TypeMap extends OverridableTypeMap> {
+  props: TypeMap['props'] & Pick<FormLabelOwnProps, 'filled' | 'color'>;
+  defaultComponent: TypeMap['defaultComponent'];
 }
 
 export type FormLabelProps<
-  D extends React.ElementType = FormLabelTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<FormLabelTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = FormLabelTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<FormLabelTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default FormLabel;

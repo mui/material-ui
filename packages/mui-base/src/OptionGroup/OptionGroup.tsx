@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getOptionGroupUtilityClass } from './optionGroupClasses';
 import {
   OptionGroupLabelSlotProps,
@@ -28,11 +29,11 @@ function useUtilityClasses(disabled: boolean) {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Select](https://mui.com/base-ui/react-select/)
  *
  * API:
  *
- * - [OptionGroup API](https://mui.com/base/react-select/components-api/#option-group)
+ * - [OptionGroup API](https://mui.com/base-ui/react-select/components-api/#option-group)
  */
 const OptionGroup = React.forwardRef(function OptionGroup<
   RootComponentType extends React.ElementType,
@@ -88,6 +89,10 @@ OptionGroup.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * If `true` all the options in the group will be disabled.
    * @default false
    */
@@ -117,4 +122,4 @@ OptionGroup.propTypes /* remove-proptypes */ = {
   }),
 } as any;
 
-export default OptionGroup;
+export { OptionGroup };

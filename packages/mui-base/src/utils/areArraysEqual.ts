@@ -1,9 +1,9 @@
-type ItemComparer<T> = (a: T, b: T) => boolean;
+type ItemComparer<Item> = (a: Item, b: Item) => boolean;
 
-export default function areArraysEqual<T>(
-  array1: T[],
-  array2: T[],
-  itemComparer: ItemComparer<T> = (a, b) => a === b,
+export function areArraysEqual<Item>(
+  array1: Item[],
+  array2: Item[],
+  itemComparer: ItemComparer<Item> = (a, b) => a === b,
 ) {
   return (
     array1.length === array2.length &&

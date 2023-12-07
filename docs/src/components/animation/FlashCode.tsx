@@ -16,10 +16,11 @@ const FlashCode = styled('div', {
     transition: '0.3s',
     ...theme.typography.caption,
     backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / 0.2)`
-      : alpha(theme.palette.primary.main, 0.2),
+      ? `rgba(${theme.vars.palette.primary.mainChannel} / 0.15)`
+      : alpha(theme.palette.primary.main, 0.1),
     border: '1px solid',
     borderColor: (theme.vars || theme).palette.primary.dark,
+    zIndex: 1,
   }),
 );
 

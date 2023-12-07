@@ -1,7 +1,7 @@
 const childProcess = require('child_process');
 const fs = require('fs');
-const glob = require('fast-glob');
 const path = require('path');
+const glob = require('fast-glob');
 const yargs = require('yargs');
 
 async function run(argv) {

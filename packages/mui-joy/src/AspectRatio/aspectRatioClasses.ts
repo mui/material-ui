@@ -11,8 +11,6 @@ export interface AspectRatioClasses {
   colorNeutral: string;
   /** Class name applied to the content element if `color="danger"`. */
   colorDanger: string;
-  /** Class name applied to the content element if `color="info"`. */
-  colorInfo: string;
   /** Class name applied to the content element if `color="success"`. */
   colorSuccess: string;
   /** Class name applied to the content element if `color="warning"`. */
@@ -41,7 +39,6 @@ const aspectRatioClasses: AspectRatioClasses = generateUtilityClasses('MuiAspect
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
   'colorContext',

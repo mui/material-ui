@@ -15,7 +15,6 @@ import Alert, { AlertOwnerState } from '@mui/joy/Alert';
 // `color`
 <Alert color="primary" />;
 <Alert color="danger" />;
-<Alert color="info" />;
 <Alert color="success" />;
 <Alert color="warning" />;
 <Alert color="neutral" />;

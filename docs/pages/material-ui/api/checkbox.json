@@ -2,7 +2,7 @@
   "props": {
     "checked": { "type": { "name": "bool" } },
     "checkedIcon": { "type": { "name": "node" }, "default": "<CheckBoxIcon />" },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -19,7 +19,13 @@
     "indeterminateIcon": { "type": { "name": "node" }, "default": "<IndeterminateCheckBoxIcon />" },
     "inputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "required": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
@@ -32,16 +38,66 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "value": { "type": { "name": "any" } }
   },
   "name": "Checkbox",
-  "styles": {
-    "classes": ["root", "checked", "disabled", "indeterminate", "colorPrimary", "colorSecondary"],
-    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
-    "name": "MuiCheckbox"
-  },
+  "imports": [
+    "import Checkbox from '@mui/material/Checkbox';",
+    "import { Checkbox } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "checked",
+      "className": "Mui-checked",
+      "description": "State class applied to the root element if `checked={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiCheckbox-colorPrimary",
+      "description": "State class applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiCheckbox-colorSecondary",
+      "description": "State class applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "indeterminate",
+      "className": "MuiCheckbox-indeterminate",
+      "description": "State class applied to the root element if `indeterminate={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiCheckbox-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMedium",
+      "className": "MuiCheckbox-sizeMedium",
+      "description": "State class applied to the root element if `size=\"medium\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiCheckbox-sizeSmall",
+      "description": "State class applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiCheckbox",

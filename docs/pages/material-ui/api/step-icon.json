@@ -1,7 +1,7 @@
 {
   "props": {
     "active": { "type": { "name": "bool" }, "default": "false" },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "completed": { "type": { "name": "bool" }, "default": "false" },
     "error": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" } },
@@ -9,15 +9,47 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "StepIcon",
-  "styles": {
-    "classes": ["root", "text", "active", "completed", "error"],
-    "globalClasses": { "active": "Mui-active", "completed": "Mui-completed", "error": "Mui-error" },
-    "name": "MuiStepIcon"
-  },
+  "imports": [
+    "import StepIcon from '@mui/material/StepIcon';",
+    "import { StepIcon } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "active",
+      "className": "Mui-active",
+      "description": "State class applied to the root element if `active={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "completed",
+      "className": "Mui-completed",
+      "description": "State class applied to the root element if `completed={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiStepIcon-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "text",
+      "className": "MuiStepIcon-text",
+      "description": "Styles applied to the SVG text element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiStepIcon",

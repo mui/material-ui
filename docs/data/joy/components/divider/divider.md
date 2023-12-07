@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Divider component
 components: Divider
 githubLabel: 'component: divider'
@@ -9,7 +9,7 @@ githubLabel: 'component: divider'
 
 <p class="description">A divider is a thin line that groups content in lists and layouts.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 

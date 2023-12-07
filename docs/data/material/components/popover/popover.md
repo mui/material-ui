@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Popover component
 components: Grow, Popover
 githubLabel: 'component: Popover'
@@ -18,7 +18,7 @@ Things to know when using the `Popover` component:
 
 ## Basic Popover
 
-{{"demo": "BasicPopover.js" }}
+{{"demo": "BasicPopover.js"}}
 
 ## Anchor playground
 
@@ -35,6 +35,33 @@ the position of the popover.
 This demo demonstrates how to use the `Popover` component and the mouseover event to achieve popover behavior.
 
 {{"demo": "MouseOverPopover.js"}}
+
+## Virtual element
+
+The value of the `anchorEl` prop can be a reference to a fake DOM element.
+You need to provide an object with the following interface:
+
+```ts
+interface PopoverVirtualElement {
+  nodeType: 1;
+  getBoundingClientRect: () => DOMRect;
+}
+```
+
+Highlight part of the text to see the popover:
+
+{{"demo": "VirtualElementPopover.js"}}
+
+For more information on the virtual element's properties, see the following resources:
+
+- [getBoundingClientRect](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)
+- [DOMRect](https://drafts.fxtf.org/geometry-1/#domrectreadonly)
+- [Node types](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType)
+
+:::warning
+The usage of a virtual element for the Popover component requires the `nodeType` property.
+This is different from virtual elements used for the [`Popper`](/material-ui/react-popper/#virtual-element) or [`Tooltip`](/material-ui/react-tooltip/#virtual-element) components, both of which don't require the property.
+:::
 
 ## Complementary projects
 

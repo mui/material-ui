@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TablePagination, {
+import {
+  TablePagination,
   tablePaginationClasses as classes,
 } from '@mui/base/TablePagination';
 
-export default function UnstyledTable() {
+export default function TableUnstyled() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -53,7 +54,7 @@ export default function UnstyledTable() {
           ))}
           {emptyRows > 0 && (
             <tr style={{ height: 41 * emptyRows }}>
-              <td colSpan={3} />
+              <td colSpan={3} aria-hidden />
             </tr>
           )}
         </tbody>
@@ -104,24 +105,40 @@ const rows = [
   createData('Oreo', 437, 18.0),
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
-const Root = styled('div')`
+const grey = {
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
+};
+
+const Root = styled('div')(
+  ({ theme }) => `
   table {
-    font-family: arial, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.875rem;
     border-collapse: collapse;
     width: 100%;
   }
 
   td,
   th {
-    border: 1px solid #ddd;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     text-align: left;
     padding: 8px;
   }
 
   th {
-    background-color: #ddd;
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   }
-`;
+  `,
+);
 
 const CustomTablePagination = styled(TablePagination)`
   & .${classes.toolbar} {

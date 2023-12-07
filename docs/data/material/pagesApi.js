@@ -133,8 +133,6 @@ module.exports = [
   { pathname: '/material-ui/api/toggle-button-group' },
   { pathname: '/material-ui/api/toolbar' },
   { pathname: '/material-ui/api/tooltip' },
-  { pathname: '/material-ui/api/tree-item' },
-  { pathname: '/material-ui/api/tree-view' },
   { pathname: '/material-ui/api/typography' },
   { pathname: '/material-ui/api/zoom' },
 ];

@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
@@ -122,6 +123,15 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
     variant,
   };
 
+  let value;
+  if (variant === 'progress') {
+    if (steps === 1) {
+      value = 100;
+    } else {
+      value = Math.ceil((activeStep / (steps - 1)) * 100);
+    }
+  }
+
   const classes = useUtilityClasses(ownerState);
 
   return (
@@ -158,7 +168,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
           ownerState={ownerState}
           className={classes.progress}
           variant="determinate"
-          value={Math.ceil((activeStep / (steps - 1)) * 100)}
+          value={value}
           {...LinearProgressProps}
         />
       )}

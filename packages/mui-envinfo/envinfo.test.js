@@ -1,6 +1,6 @@
-const { expect } = require('chai');
 const { execFileSync } = require('child_process');
 const path = require('path');
+const { expect } = require('chai');
 
 const isRunningOnWindows = process.platform === 'win32';
 

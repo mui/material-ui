@@ -2,7 +2,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import {
+  describeConformance,
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+} from '@mui-internal/test-utils';
 import Input, { inputClasses as classes } from '@mui/material-next/Input';
 
 describe('<Input />', () => {

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import ListItem, { ListItemOwnerState } from '@mui/joy/ListItem';
 import { expectType } from '@mui/types';
+import ListItem, { ListItemOwnerState } from '@mui/joy/ListItem';
 
 <ListItem component="div" />;
 

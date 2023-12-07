@@ -9,5 +9,7 @@ module.exports = {
     'import/default': 'off',
     'import/no-named-as-default-member': 'off',
     'import/order': 'off',
+    // create-vite generates .jsx
+    'react/jsx-filename-extension': 'off',
   },
 };

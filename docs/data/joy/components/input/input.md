@@ -1,15 +1,15 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Input component
 components: FormControl, FormHelperText, FormLabel, Input
-unstyled: /base/react-input/
+unstyled: /base-ui/react-input/
 ---
 
 # Input
 
 <p class="description">The Input component facilitates the entry of text data from the user.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
@@ -56,15 +56,57 @@ Every palette included in the theme is available via the `color` prop.
 
 {{"demo": "InputColors.js"}}
 
-### Form props
+### Form submission
 
 You can add standard form attributes such as `required` and `disabled` to the Input component:
 
 {{"demo": "InputFormProps.js"}}
 
+### Focused ring
+
+Provide these CSS variables to `sx` prop to control the focused ring appearance:
+
+- `--Input-focusedInset`: the focused ring's **position**, either inside(`inset`) or outside(`var(--any, )`) of the Input.
+- `--Input-focusedThickness`: the **size** of the focused ring.
+- `--Input-focusedHighlight`: the **color** of the focused ring.
+
+{{"demo": "FocusedRingInput.js"}}
+
+:::success
+To get full control of the focused ring, customize the `box-shadow` of the `::before` pseudo element directly
+
+```js
+<Input sx={{ '&:focus-within::before': { boxShadow: '...your custom value' } }} />
+```
+
+:::
+
+#### Debugging the focus ring
+
+To display the Input's focus ring by simulating user's focus, inspect the Input element and toggle the [pseudostate panel](https://developer.chrome.com/docs/devtools/css/#pseudostates).
+
+- If you inspect the Input's root element, with `.MuiInput-root` class, you have to toggle on the `:focus-within` state.
+- If you inspect the `<input>` element, you can toggle with either `:focus` or `:focus-within` states.
+
+### Triggering the focus ring
+
+To trigger the focus ring programmatically, set the CSS variable `--Input-focused: 1`.
+
+{{"demo": "TriggerFocusInput.js"}}
+
+:::info
+The focus ring still appear on focus even though you set `--Input-focused: 0`.
+:::
+
+### Label and helper text
+
+Group Input with the Form label and Form helper text in a Form control component to create a text field.
+
+{{"demo": "InputField.js"}}
+
 ### Validation
 
-Use the `error` prop to toggle the error state:
+Use the `error` prop on Input or Form Control to toggle the error state:
 
 {{"demo": "InputValidation.js"}}
 
@@ -91,18 +133,63 @@ These props may include HTML attributes such as `ref`, `min`, `max`, and `autoco
 
 {{"demo": "InputSlotProps.js"}}
 
+## CSS variables playground
+
+Play around with the CSS variables available to the Input component to see how the design changes.
+You can use these to customize the component with both the `sx` prop and the theme.
+
+{{"demo": "InputVariables.js", "hideToolbar": true, "bg": "gradient"}}
+
 ## Common examples
+
+### Focus outline
+
+This example shows how to replace the default focus ring (using `::before`) with CSS `outline`.
+
+{{"demo": "FocusOutlineInput.js"}}
+
+### Floating label
+
+To create a floating label input, a custom component (combination of `<input>` and `<label>`) is required to replace the default input slot.
+
+{{"demo": "FloatingLabelInput.js"}}
+
+### Underline input
+
+{{"demo": "UnderlineInput.js"}}
 
 ### Newsletter Subscription
 
 {{"demo": "InputSubscription.js"}}
 
-## CSS variable playground
+### Password meter
 
-Play around with the CSS variables available to the Input component to see how the design changes.
-You can use these to customize the component with both the `sx` prop and the theme.
+{{"demo": "PasswordMeterInput.js"}}
 
-{{"demo": "InputVariables.js", "hideToolbar": true}}
+### Debounced Input
+
+{{"demo": "DebouncedInput.js"}}
+
+### Third-party formatting
+
+The Input component can be integrated with third-party formatting libraries for more complex use cases.
+
+Create an adapter component to get the props from the Input component and map them to the third-party component APIs.
+Then use that adapter as a value to the `slotProps.input.component` property of the Joy UI Input.
+
+The demos below illustrate how to do this with two popular libraries.
+
+#### React imask
+
+[react-imask](https://github.com/uNmAnNeR/imaskjs/tree/master/packages/react-imask) provides the `IMaskInput` component for complex formatting options.
+
+{{"demo": "InputReactImask.js"}}
+
+#### React number format
+
+[react-number-format](https://github.com/s-yadav/react-number-format) provides the `NumericFormat` component for enforcing text formatting that follows a specific number or string pattern.
+
+{{"demo": "InputReactNumberFormat.js"}}
 
 ## Accessibility
 

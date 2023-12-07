@@ -33,7 +33,6 @@ export default function IconlessRadio() {
               p: 2,
               borderRadius: 'md',
               boxShadow: 'sm',
-              bgcolor: 'background.body',
             }}
           >
             <Radio

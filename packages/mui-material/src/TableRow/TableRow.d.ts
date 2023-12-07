@@ -4,32 +4,37 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TableRowClasses } from './tableRowClasses';
 
-export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
-  props: P & {
-    /**
-     * Should be valid <tr> children such as `TableCell`.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<TableRowClasses>;
-    /**
-     * If `true`, the table row will shade on hover.
-     * @default false
-     */
-    hover?: boolean;
-    /**
-     * If `true`, the table row will have the selected shading.
-     * @default false
-     */
-    selected?: boolean;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
-  defaultComponent: D;
+export interface TableRowOwnProps {
+  /**
+   * Should be valid <tr> children such as `TableCell`.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<TableRowClasses>;
+  /**
+   * If `true`, the table row will shade on hover.
+   * @default false
+   */
+  hover?: boolean;
+  /**
+   * If `true`, the table row will have the selected shading.
+   * @default false
+   */
+  selected?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
+export interface TableRowTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'tr',
+> {
+  props: AdditionalProps & TableRowOwnProps;
+  defaultComponent: RootComponent;
 }
 /**
  * Will automatically set dynamic row height
@@ -46,8 +51,10 @@ export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
 declare const TableRow: OverridableComponent<TableRowTypeMap>;
 
 export type TableRowProps<
-  D extends React.ElementType = TableRowTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TableRowTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = TableRowTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<TableRowTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default TableRow;

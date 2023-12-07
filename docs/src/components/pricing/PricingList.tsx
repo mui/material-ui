@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
 import Fade from '@mui/material/Fade';
 import Paper, { PaperProps } from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -11,6 +10,7 @@ import Tab from '@mui/material/Tab';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Link from 'docs/src/modules/components/Link';
 import PricingTable, { PlanName, PlanPrice } from 'docs/src/components/pricing/PricingTable';
+import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
 
 const Plan = React.forwardRef<
   HTMLDivElement,
@@ -22,6 +22,8 @@ const Plan = React.forwardRef<
 >(function Plan({ plan, benefits, unavailable, sx, ...props }, ref) {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
+  const { licensingModel } = useLicensingModel();
+
   return (
     <Paper
       ref={ref}
@@ -51,8 +53,14 @@ const Plan = React.forwardRef<
           href={
             {
               community: '/material-ui/getting-started/usage/',
-              pro: 'https://mui.com/store/items/mui-x-pro/',
-              premium: 'https://mui.com/store/items/mui-x-premium/',
+              pro:
+                licensingModel === 'annual'
+                  ? 'https://mui.com/store/items/mui-x-pro/'
+                  : 'https://mui.com/store/items/mui-x-pro-perpetual/',
+              premium:
+                licensingModel === 'annual'
+                  ? 'https://mui.com/store/items/mui-x-premium/'
+                  : 'https://mui.com/store/items/mui-x-premium-perpetual/',
             }[plan]
           }
           endIcon={<KeyboardArrowRightRounded />}
@@ -82,7 +90,7 @@ const Plan = React.forwardRef<
 export default function PricingList() {
   const [planIndex, setPlanIndex] = React.useState(0);
   return (
-    <Container sx={{ pb: 2, mt: '-1px', display: { xs: 'block', md: 'none' } }}>
+    <React.Fragment>
       <Tabs
         value={planIndex}
         variant="fullWidth"
@@ -146,6 +154,6 @@ export default function PricingList() {
           </div>
         </Fade>
       )}
-    </Container>
+    </React.Fragment>
   );
 }

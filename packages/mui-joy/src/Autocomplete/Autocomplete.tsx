@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -7,20 +8,22 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_capitalize as capitalize,
 } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
-import useAutocomplete, {
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import {
+  useAutocomplete,
   AutocompleteGroupedOption,
   UseAutocompleteProps,
 } from '@mui/base/useAutocomplete';
-import Popper from '@mui/base/Popper';
+import { Popper } from '@mui/base/Popper';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import styled from '../styles/styled';
+import { VariantColorProvider, getChildVariantAndColor } from '../styles/variantColorInheritance';
 // slot components
 import { StyledIconButton } from '../IconButton/IconButton';
 // default render components
-import Chip, { chipClasses } from '../Chip';
+import Chip from '../Chip';
 import ChipDelete from '../ChipDelete';
 import {
   StyledInputRoot,
@@ -43,7 +46,6 @@ import FormControlContext from '../FormControl/FormControlContext';
 import { StyledAutocompleteListbox } from '../AutocompleteListbox/AutocompleteListbox';
 import { StyledAutocompleteOption } from '../AutocompleteOption/AutocompleteOption';
 import useSlot from '../utils/useSlot';
-import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 'defaultValue'>;
 
@@ -58,13 +60,6 @@ const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
     <List>{params.children}</List>
   </ListItem>
 );
-
-const defaultVariantMapping = {
-  plain: 'plain',
-  outlined: 'plain',
-  soft: 'soft',
-  solid: 'solid',
-};
 
 const useUtilityClasses = (ownerState: OwnerState) => {
   const {
@@ -110,7 +105,12 @@ const AutocompleteRoot = styled(StyledInputRoot as unknown as 'div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
-  '--Autocomplete-wrapperGap': '3px',
+  ...(ownerState.size === 'sm' && {
+    '--Autocomplete-wrapperGap': '3px',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Autocomplete-wrapperGap': '3px',
+  }),
   ...(ownerState.size === 'lg' && {
     '--Autocomplete-wrapperGap': '4px',
   }),
@@ -140,24 +140,15 @@ const AutocompleteWrapper = styled('div', {
   display: 'flex',
   alignItems: 'center',
   flexWrap: 'wrap',
+  gap: 'var(--Autocomplete-wrapperGap)',
   [`&.${autocompleteClasses.multiple}`]: {
-    paddingBlockEnd: 'min(var(--_Input-paddingBlock), var(--Autocomplete-wrapperGap))',
-    // TODO: use [CSS :has](https://caniuse.com/?search=%3Ahas) later
-    ...(ownerState.startDecorator &&
-      Array.isArray(ownerState.value) &&
-      (ownerState.value as Array<unknown>).length > 0 && {
-        marginBlockStart: 'min(var(--_Input-paddingBlock) - var(--Autocomplete-wrapperGap), 0px)',
-        marginInlineStart: 'calc(-1 * var(--Autocomplete-wrapperGap))',
-        [`& .${autocompleteClasses.input}`]: {
-          marginInlineStart: 'max(var(--Autocomplete-wrapperGap), var(--Input-gap))',
-        },
-      }),
-  },
-  [`& .${chipClasses.root}`]: {
-    // TODO: use flexbox `gap` later.
-    minWidth: 0,
-    marginInlineStart: 'var(--Autocomplete-wrapperGap)',
-    marginBlockStart: 'var(--Autocomplete-wrapperGap)',
+    paddingBlock: 'var(--Autocomplete-wrapperGap)',
+    ...(!ownerState.startDecorator && {
+      paddingInlineStart: 'var(--Autocomplete-wrapperGap)',
+    }),
+    ...(!ownerState.endDecorator && {
+      paddingInlineEnd: 'var(--Autocomplete-wrapperGap)',
+    }),
   },
 }));
 
@@ -169,20 +160,17 @@ const AutocompleteInput = styled(StyledInputHtml as unknown as 'input', {
   minWidth: 30,
   minHeight: 'var(--Chip-minHeight)',
   ...(ownerState.multiple && {
-    marginBlockStart: 'var(--Autocomplete-wrapperGap)',
-    ...(!ownerState.startDecorator && {
-      marginInlineStart: 'var(--Input-paddingInline)',
-    }),
+    marginInlineStart: 'calc(var(--Autocomplete-wrapperGap) * 2.5)',
   }),
 }));
 
-const AutocompleteStartDecorator = styled(StyledInputStartDecorator as unknown as 'span', {
+const AutocompleteStartDecorator = styled(StyledInputStartDecorator as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: OwnerState }>({});
 
-const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'span', {
+const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
@@ -200,6 +188,7 @@ const AutocompleteClearIndicator = styled(StyledIconButton as unknown as 'button
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
+  alignSelf: 'center',
   ...(!ownerState.hasPopupIcon && {
     marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
   }),
@@ -211,19 +200,24 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   name: 'JoyAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
-})<{ ownerState: OwnerState }>(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>({
+  alignSelf: 'center',
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
-  ...(ownerState.popupOpen && {
+  [`&.${autocompleteClasses.popupIndicatorOpen}`]: {
     transform: 'rotate(180deg)',
-  }),
-}));
+    '--Icon-color': 'currentColor',
+  },
+});
 
 const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})<{ ownerState: OwnerState }>({});
+})<{ ownerState: OwnerState }>(({ theme }) => ({
+  // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+  zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
+}));
 
 const AutocompleteOption = styled(StyledAutocompleteOption, {
   name: 'JoyAutocomplete',
@@ -247,7 +241,7 @@ const AutocompleteNoOptions = styled(ListItem, {
   color: (theme.vars || theme).palette.text.secondary,
 }));
 
-const AutocompleteLimitTag = styled('span', {
+const AutocompleteLimitTag = styled('div', {
   name: 'JoyAutocomplete',
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
@@ -270,6 +264,7 @@ const excludeUseAutocompleteParams = <
   disabledItemsFocusable,
   disableListWrap,
   filterSelectedOptions,
+  getOptionKey,
   handleHomeEndKeys,
   includeInputInList,
   openOnFocus,
@@ -351,11 +346,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   } = props;
   const other = excludeUseAutocompleteParams(otherProps);
 
-  const { getColor } = useColorInversion(variant);
   const formControl = React.useContext(FormControlContext);
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
   const disabled = disabledProp ?? formControl?.disabled ?? false;
 
   const {
@@ -379,7 +373,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ...props,
     id: id ?? formControl?.htmlFor,
     componentName: 'Autocomplete',
-    unstable_classNamePrefix: 'Joy',
+    unstable_classNamePrefix: 'Mui',
     unstable_isActiveElementInListbox: defaultIsActiveElementInListbox,
   });
 
@@ -388,11 +382,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
+  // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
+    instanceColor: inProps.color,
     ...props,
     value,
     disabled,
     focused,
+    getOptionLabel,
     hasOptions: !!groupedOptions.length,
     hasClearIcon,
     hasPopupIcon,
@@ -428,7 +425,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             key={index}
             size={size}
             variant="soft"
-            color={color === 'context' ? undefined : 'neutral'}
+            color="neutral"
             endDecorator={<ChipDelete {...getCustomizedTagProps({ index })} />}
           >
             {getOptionLabel(option)}
@@ -537,8 +534,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || defaultVariantMapping[variant] || 'plain',
-      color: mergedProps.color || 'neutral',
+      variant: mergedProps.variant || getChildVariantAndColor(variant, color).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, color).color || 'neutral',
+      disableColorInversion: !!inProps.color,
     }),
     additionalProps: {
       'aria-label': clearText,
@@ -554,8 +552,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || defaultVariantMapping[variant] || 'plain',
-      color: mergedProps.color || 'neutral',
+      variant: mergedProps.variant || getChildVariantAndColor(variant, color).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, color).color || 'neutral',
+      disableColorInversion: !!inProps.color,
     }),
     additionalProps: {
       disabled,
@@ -573,8 +572,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || 'outlined',
-      color: mergedProps.color || 'neutral',
+      variant: mergedProps.variant || variant,
+      color: mergedProps.color || color,
       disableColorInversion: !mergedProps.disablePortal,
     }),
     additionalProps: {
@@ -634,8 +633,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     externalForwardedProps,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
-      variant: mergedProps.variant || 'plain',
-      color: mergedProps.color || 'neutral',
+      variant: mergedProps.variant || getChildVariantAndColor(variant, color).variant || 'plain',
+      color: mergedProps.color || getChildVariantAndColor(variant, color).color || 'neutral',
       disableColorInversion: !listboxProps.disablePortal,
     }),
     additionalProps: {
@@ -677,47 +676,41 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   let popup = null;
   if (anchorEl) {
     popup = (
-      <ListProvider nested>
-        <SlotListbox
-          {...listboxProps}
-          className={clsx(
-            listboxProps.className,
-            listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
-          )}
-          // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
-          modifiers={modifiers}
-          {...(!props.slots?.listbox && {
-            as: Popper,
-            slots: { root: listboxProps.as || 'ul' },
-          })}
-        >
-          {groupedOptions.map((option, index) => {
-            if (groupBy) {
-              const typedOption = option as AutocompleteGroupedOption;
-              return renderGroup({
-                key: String(typedOption.key),
-                group: typedOption.group,
-                children: typedOption.options.map((option2, index2) =>
-                  renderListOption(option2, typedOption.index + index2),
-                ),
-              });
-            }
-            return renderListOption(option, index);
-          })}
-          {loading && groupedOptions.length === 0 ? (
-            <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
-          ) : null}
-          {groupedOptions.length === 0 && !freeSolo && !loading ? (
-            <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
-          ) : null}
-        </SlotListbox>
-      </ListProvider>
+      <VariantColorProvider variant={variant} color={color}>
+        <ListProvider nested>
+          <SlotListbox
+            {...listboxProps}
+            className={clsx(listboxProps.className)}
+            // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
+            modifiers={modifiers}
+            {...(!props.slots?.listbox && {
+              as: Popper,
+              slots: { root: listboxProps.as || 'ul' },
+            })}
+          >
+            {groupedOptions.map((option, index) => {
+              if (groupBy) {
+                const typedOption = option as AutocompleteGroupedOption;
+                return renderGroup({
+                  key: String(typedOption.key),
+                  group: typedOption.group,
+                  children: typedOption.options.map((option2, index2) =>
+                    renderListOption(option2, typedOption.index + index2),
+                  ),
+                });
+              }
+              return renderListOption(option, index);
+            })}
+            {loading && groupedOptions.length === 0 ? (
+              <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
+            ) : null}
+            {groupedOptions.length === 0 && !freeSolo && !loading ? (
+              <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
+            ) : null}
+          </SlotListbox>
+        </ListProvider>
+      </VariantColorProvider>
     );
-
-    if (!listboxProps.disablePortal) {
-      // For portal popup, the children should not inherit color inversion from the upper parent.
-      popup = <ColorInversion.Provider value={undefined}>{popup}</ColorInversion.Provider>;
-    }
   }
 
   return (
@@ -803,7 +796,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
@@ -842,9 +835,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * A function that determines the filtered options to be rendered on search.
    *
-   * @param {T[]} options The options to render.
+   * @default createFilterOptions()
+   * @param {Value[]} options The options to render.
    * @param {object} state The state of the component.
-   * @returns {T[]}
+   * @returns {Value[]}
    */
   filterOptions: PropTypes.func,
   /**
@@ -868,7 +862,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Used to determine the disabled state for a given option.
    *
-   * @param {T} option The option to test.
+   * @param {Value} option The option to test.
    * @returns {boolean}
    */
   getOptionDisabled: PropTypes.func,
@@ -878,7 +872,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * If used in free solo mode, it must accept both the type of the options and a string.
    *
-   * @param {T} option
+   * @param {Value} option
    * @returns {string}
    * @default (option) => option.label ?? option
    */
@@ -887,7 +881,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {T} options The options to group.
+   * @param {Value} options The options to group.
    * @returns {string}
    */
   groupBy: PropTypes.func,
@@ -905,8 +899,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Uses strict equality by default.
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
-   * @param {T} option The option to test.
-   * @param {T} value The value to test against.
+   * @param {Value} option The option to test.
+   * @param {Value} value The value to test against.
    * @returns {boolean}
    */
   isOptionEqualToValue: PropTypes.func,
@@ -949,7 +943,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Callback fired when the value changes.
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {T|T[]} value The new value of the component.
+   * @param {Value|Value[]} value The new value of the component.
    * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
    * @param {string} [details]
    */
@@ -966,7 +960,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Callback fired when the highlight option changes.
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
-   * @param {T} option The highlighted option.
+   * @param {Value} option The highlighted option.
    * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange: PropTypes.func,

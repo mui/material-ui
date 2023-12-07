@@ -13,7 +13,7 @@ export default function LoadingButtonsTransition() {
   }
 
   return (
-    <Box>
+    <div>
       <FormControlLabel
         sx={{
           display: 'block',
@@ -107,6 +107,6 @@ export default function LoadingButtonsTransition() {
           <span>Save</span>
         </LoadingButton>
       </Box>
-    </Box>
+    </div>
   );
 }

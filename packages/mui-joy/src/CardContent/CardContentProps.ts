@@ -28,6 +28,11 @@ export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     children?: React.ReactNode;
     /**
+     * The component orientation.
+     * @default 'vertical'
+     */
+    orientation?: 'horizontal' | 'vertical';
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
-import Slider, { sliderClasses } from '@mui/base/Slider';
+import { Slider as BaseSlider, sliderClasses } from '@mui/base/Slider';
 
 export default function DiscreteSliderMarks() {
   return (
     <Box sx={{ width: 300 }}>
-      <StyledSlider
+      <Slider
         aria-label="Temperature"
         defaultValue={37}
         getAriaValueText={valuetext}
@@ -45,25 +45,26 @@ const blue = {
   300: '#66B2FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B3',
   900: '#003A75',
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
-const StyledSlider = styled(Slider)(
+const Slider = styled(BaseSlider)(
   ({ theme }) => `
-  color: ${theme.palette.mode === 'light' ? blue[500] : blue[300]};
+  color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   height: 6px;
   width: 100%;
   padding: 16px 0;
@@ -72,10 +73,6 @@ const StyledSlider = styled(Slider)(
   cursor: pointer;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
-
-  &:hover {
-    opacity: 1;
-  }
 
   &.${sliderClasses.disabled} { 
     pointer-events: none;
@@ -90,8 +87,7 @@ const StyledSlider = styled(Slider)(
     width: 100%;
     height: 4px;
     border-radius: 2px;
-    background-color: currentColor;
-    opacity: 0.4;
+    background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
   }
 
   & .${sliderClasses.track} {
@@ -114,39 +110,44 @@ const StyledSlider = styled(Slider)(
     border: 3px solid currentColor;
     background-color: #fff;
 
-    :hover,
-    &.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 0.25rem ${alpha(
-        theme.palette.mode === 'light' ? blue[400] : blue[300],
-        0.15,
-      )};
-    }
-
-    &.${sliderClasses.active} {
-      box-shadow: 0 0 0 0.25rem ${alpha(
+    &:hover{
+      box-shadow: 0 0 0 4px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[300],
         0.3,
       )};
+    }
+    
+    &.${sliderClasses.focusVisible} {
+      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
+      outline: none;
+    }
+
+    &.${sliderClasses.active} {
+      box-shadow: 0 0 0 5px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[300],
+        0.5,
+      )};
+      outline: none;
     }
   }
 
   & .${sliderClasses.mark} {
     position: absolute;
-    width: 4px;
-    height: 4px;
-    border-radius: 2px;
-    background-color: currentColor;
-    top: 50%;
-    opacity: 0.7;
+    width: 8px;
+    height: 8px;
+    border-radius: 99%;
+    background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
+    top: 43%;
     transform: translateX(-50%);
   }
 
   & .${sliderClasses.markActive} {
-    background-color: #fff;
+    background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   }
 
   & .${sliderClasses.markLabel} {
     font-family: IBM Plex Sans;
+    font-weight: 600;
     font-size: 12px;
     position: absolute;
     top: 20px;

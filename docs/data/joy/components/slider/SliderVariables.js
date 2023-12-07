@@ -1,6 +1,6 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import Slider from '@mui/joy/Slider';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function SliderVariables() {
   return (

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Modal, { ModalBackdropSlotProps, ModalRootSlotProps } from '@mui/base/Modal';
 import { expectType } from '@mui/types';
+import { Modal, ModalBackdropSlotProps, ModalRootSlotProps } from '@mui/base/Modal';
 
 function Root(props: ModalRootSlotProps) {
   const { ownerState, ...other } = props;

@@ -1,9 +1,23 @@
 {
   "props": {
-    "onClose": { "type": { "name": "func" }, "required": true },
-    "onOpen": { "type": { "name": "func" }, "required": true },
+    "onClose": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": {
+        "type": "function(event: React.SyntheticEvent<{}>) => void",
+        "describedArgs": ["event"]
+      }
+    },
+    "onOpen": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": {
+        "type": "function(event: React.SyntheticEvent<{}>) => void",
+        "describedArgs": ["event"]
+      }
+    },
     "allowSwipeInChildren": {
-      "type": { "name": "union", "description": "bool<br>&#124;&nbsp;func" },
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;bool" },
       "default": "false"
     },
     "children": { "type": { "name": "node" } },
@@ -27,7 +41,84 @@
     }
   },
   "name": "SwipeableDrawer",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import SwipeableDrawer from '@mui/material/SwipeableDrawer';",
+    "import { SwipeableDrawer } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "docked",
+      "className": "MuiSwipeableDrawer-docked",
+      "description": "Styles applied to the root element if `variant=\"permanent or persistent\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "modal",
+      "className": "MuiSwipeableDrawer-modal",
+      "description": "Styles applied to the Modal component.",
+      "isGlobal": false
+    },
+    {
+      "key": "paper",
+      "className": "MuiSwipeableDrawer-paper",
+      "description": "Styles applied to the Paper component.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorBottom",
+      "className": "MuiSwipeableDrawer-paperAnchorBottom",
+      "description": "Styles applied to the Paper component if `anchor=\"bottom\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorDockedBottom",
+      "className": "MuiSwipeableDrawer-paperAnchorDockedBottom",
+      "description": "Styles applied to the Paper component if `anchor=\"bottom\"` and `variant` is not \"temporary\".",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorDockedLeft",
+      "className": "MuiSwipeableDrawer-paperAnchorDockedLeft",
+      "description": "Styles applied to the Paper component if `anchor=\"left\"` and `variant` is not \"temporary\".",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorDockedRight",
+      "className": "MuiSwipeableDrawer-paperAnchorDockedRight",
+      "description": "Styles applied to the Paper component if `anchor=\"right\"` and `variant` is not \"temporary\".",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorDockedTop",
+      "className": "MuiSwipeableDrawer-paperAnchorDockedTop",
+      "description": "Styles applied to the Paper component if `anchor=\"top\"` and `variant` is not \"temporary\".",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorLeft",
+      "className": "MuiSwipeableDrawer-paperAnchorLeft",
+      "description": "Styles applied to the Paper component if `anchor=\"left\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorRight",
+      "className": "MuiSwipeableDrawer-paperAnchorRight",
+      "description": "Styles applied to the Paper component if `anchor=\"right\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorTop",
+      "className": "MuiSwipeableDrawer-paperAnchorTop",
+      "description": "Styles applied to the Paper component if `anchor=\"top\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiSwipeableDrawer-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiSwipeableDrawer",

@@ -1,5 +1,5 @@
-export { default } from './TabPanel';
+'use client';
+export { TabPanel } from './TabPanel';
 export * from './TabPanel.types';
 
-export { default as tabPanelClasses } from './tabPanelClasses';
 export * from './tabPanelClasses';

@@ -41,7 +41,7 @@ export interface AlertTypeMap<P = {}, D extends React.ElementType = 'div'> {
     AlertSlotsAndSlotProps & {
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
-       * @default 'primary'
+       * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, AlertPropsColorOverrides>;
       /**

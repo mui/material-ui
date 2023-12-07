@@ -3,6 +3,7 @@ import { DataGrid, GridCellParams, GridRenderEditCellParams, GridColDef } from '
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
@@ -1690,30 +1691,26 @@ export default function DataTable() {
           sx={(theme) => ({
             overflow: 'hidden',
             width: '100%',
-            boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
+            boxShadow: '0px 4px 16px rgba(61, 71, 82, 0.15)',
             bgcolor: '#fff',
+            border: '1px solid',
+            borderColor: 'grey.200',
             ...theme.applyDarkStyles({
               bgcolor: 'primaryDark.800',
+              boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.4)',
             }),
           })}
         >
           <XGridGlobalStyles />
-          <Box
-            sx={(theme) => ({
-              textAlign: 'center',
-              py: 1,
-              position: 'relative',
-              borderBottom: '1px solid',
-              borderColor: 'grey.100',
-              ...theme.applyDarkStyles({
-                borderColor: 'primaryDark.600',
-              }),
-            })}
+          <Typography
+            variant="body2"
+            color="text.primary"
+            fontWeight="semiBold"
+            sx={{ position: 'relative', textAlign: 'center', py: 1.5 }}
           >
-            <Typography color="primary.main" fontWeight={700}>
-              Trades, October 2020
-            </Typography>
-          </Box>
+            Trades, October 2020
+          </Typography>
+          <Divider />
           <Box sx={{ height: 200 }}>
             <DataGrid rows={rows} columns={columns} hideFooter density="compact" />
           </Box>
@@ -1729,6 +1726,7 @@ export default function DataTable() {
               display: 'none',
             },
             '& pre': {
+              bgcolor: 'transparent !important',
               '&::-webkit-scrollbar': {
                 display: 'none',
               },
