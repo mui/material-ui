@@ -5,8 +5,8 @@ import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import useTheme from '../styles/useTheme';
 import IconButton from '../IconButton';
-import LastPageIcon from '../internal/svg-icons/LastPage';
-import FirstPageIcon from '../internal/svg-icons/FirstPage';
+import LastPageIconDefault from '../internal/svg-icons/LastPage';
+import FirstPageIconDefault from '../internal/svg-icons/FirstPage';
 
 /**
  * @ignore - internal component.
@@ -23,7 +23,8 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     rowsPerPage,
     showFirstButton,
     showLastButton,
-    slotProps,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -45,6 +46,11 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
+  const FirstPageIcon = slots.firstPageIcon ?? FirstPageIconDefault;
+  const LastPageIcon = slots.lastPageIcon ?? LastPageIconDefault;
+  const NextPageIcon = slots.nextPageIcon ?? KeyboardArrowRight;
+  const PreviousPageIcon = slots.previousPageIcon ?? KeyboardArrowLeft;
+
   return (
     <div ref={ref} {...other}>
       {showFirstButton && (
@@ -53,7 +59,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           disabled={disabled || page === 0}
           aria-label={getItemAriaLabel('first', page)}
           title={getItemAriaLabel('first', page)}
-          {...(slotProps?.firstButton ?? {})}
+          {...(slotProps.firstButton ?? {})}
         >
           {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
         </IconButton>
@@ -64,9 +70,9 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         color="inherit"
         aria-label={getItemAriaLabel('previous', page)}
         title={getItemAriaLabel('previous', page)}
-        {...(slotProps?.previousButton ?? backIconButtonProps)}
+        {...(slotProps.previousButton ?? backIconButtonProps)}
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        {theme.direction === 'rtl' ? <NextPageIcon /> : <PreviousPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
@@ -74,9 +80,9 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         color="inherit"
         aria-label={getItemAriaLabel('next', page)}
         title={getItemAriaLabel('next', page)}
-        {...(slotProps?.nextButton ?? nextIconButtonProps)}
+        {...(slotProps.nextButton ?? nextIconButtonProps)}
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === 'rtl' ? <PreviousPageIcon /> : <NextPageIcon />}
       </IconButton>
       {showLastButton && (
         <IconButton
@@ -84,7 +90,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           disabled={disabled || page >= Math.ceil(count / rowsPerPage) - 1}
           aria-label={getItemAriaLabel('last', page)}
           title={getItemAriaLabel('last', page)}
-          {...(slotProps?.lastButton ?? {})}
+          {...(slotProps.lastButton ?? {})}
         >
           {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
         </IconButton>
@@ -153,6 +159,17 @@ TablePaginationActions.propTypes = {
     lastButton: PropTypes.object,
     nextButton: PropTypes.object,
     previousButton: PropTypes.object,
+  }),
+   /**
+   * The components used for each slot inside the TablePaginationActions.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    firstPageIcon: PropTypes.elementType,
+    lastPageIcon: PropTypes.elementType,
+    nextPageIcon: PropTypes.elementType,
+    previousPageIcon: PropTypes.elementType,
   }),
 };
 

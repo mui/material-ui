@@ -430,6 +430,19 @@ TablePagination.propTypes /* remove-proptypes */ = {
     select: PropTypes.object,
   }),
   /**
+   * The components used for each slot inside the TablePagination.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    actions: PropTypes.shape({
+      firstPageIcon: PropTypes.elementType,
+      lastPageIcon: PropTypes.elementType,
+      nextPageIcon: PropTypes.elementType,
+      previousPageIcon: PropTypes.elementType,
+    }),
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([

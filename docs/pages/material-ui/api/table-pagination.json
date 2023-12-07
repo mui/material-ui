@@ -64,6 +64,13 @@
       },
       "default": "{}"
     },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ actions?: { firstPageIcon?: elementType, lastPageIcon?: elementType, nextPageIcon?: elementType, previousPageIcon?: elementType } }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",

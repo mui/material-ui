@@ -42,6 +42,30 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
     nextButton?: Partial<IconButtonProps>;
     previousButton?: Partial<IconButtonProps>;
   };
+  slots?: TablePaginationActionsSlots;
+}
+
+export interface TablePaginationActionsSlots {
+  /**
+   * The component that renders the first page icon.
+   * @default FirstPageIcon
+   */
+  firstPageIcon?: React.ElementType;
+  /**
+   * The component that renders the last page icon.
+   * @default LastPageIcon
+   */
+  lastPageIcon?: React.ElementType;
+  /**
+   * The component that renders the next page icon.
+   * @default KeyboardArrowRight
+   */
+  nextPageIcon?: React.ElementType;
+  /**
+   * The component that renders the back page icon.
+   * @default KeyboardArrowLeft
+   */
+  previousPageIcon?: React.ElementType;
 }
 
 declare const TablePaginationActions: React.JSXElementConstructor<TablePaginationActionsProps>;
