@@ -130,7 +130,7 @@
   --shadow-interactive-dark-focus-visible: 0px 0px 0px 1px rgba(0, 0, 0, 0.25), 0px 0px 0px 4px var(--primary-600);
 
   --border-radius-sm: 4px;
-  --border-radius-md: 6px;
+  --border-radius-md: 8px;
   --border-radius-lg: 12px;
   --border-radius-xl: 24px;
   --border-radius-full: 999px;
@@ -1059,16 +1059,16 @@
 }
 
 .GalleryTab:hover {
-  background-color: var(--GalleryTabsList-hover-background-color,var(--background-surface-light-hard));
+  background-color: var(--GalleryTabsList-hover-background-color, var(--background-surface-light-hard));
 }
 
 .GalleryTab:focus {
   outline: none;
-  box-shadow: var(--GalleryTabsList-focus-boxShadow,var(--shadow-interactive-light-focus-visible));
+  box-shadow: var(--GalleryTabsList-focus-boxShadow, var(--shadow-interactive-light-focus-visible));
 }
 
 .GalleryTab.Mui-selected {
-  background-color: var(--GalleryTabsList-selected-background-color,var(--background-surface-light-highlight));
+  background-color: var(--GalleryTabsList-selected-background-color, var(--background-surface-light-highlight));
   color: var(--font-color-dark-hard);
 }
 
