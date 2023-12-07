@@ -10,28 +10,36 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
-import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import { alpha } from '@mui/material/styles';
+import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
+import DiscordIcon from 'docs/src/icons/DiscordIcon';
 import Link from 'docs/src/modules/components/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
-export default function AppFooter() {
+interface AppFooterProps {
+  stackOverflowUrl?: string;
+}
+
+export default function AppFooter(props: AppFooterProps) {
+  const { stackOverflowUrl } = props;
+
   return (
     <Container component="footer">
       <Box
         sx={{
-          pt: 4,
-          pb: 8,
+          py: { xs: 4, sm: 8 },
           display: 'grid',
           gridAutoColumns: '1fr',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           justifyContent: 'space-between',
           gap: 4,
           gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
           gridTemplateRows: 'auto',
           '& a:not(.MuiIconButton-root)': {
-            mt: 1,
+            pt: 0.5,
+            pb: 0.5,
             color: 'text.secondary',
             typography: 'body2',
             '&:hover': {
@@ -42,14 +50,16 @@ export default function AppFooter() {
         }}
       >
         <div>
-          <SvgMuiLogo width={32} />
-          <Typography variant="body2" fontWeight="bold" sx={{ pt: 2 }}>
+          <Link href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
+            <SvgMuiLogotype height={28} width={91} />
+          </Link>
+          <Typography variant="body2" fontWeight="bold" gutterBottom>
             Keep up to date
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
             Join our newsletter for regular updates. No spam ever.
           </Typography>
-          <EmailSubscribe sx={{ mb: 1 }} />
+          <EmailSubscribe />
         </div>
         <Box
           sx={{
@@ -60,17 +70,18 @@ export default function AppFooter() {
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2">
+            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Products
             </Typography>
-            <Link href={ROUTES.productCore}>MUI Core</Link>
+            <Link href={ROUTES.productMaterial}>Material UI</Link>
+            <Link href={ROUTES.productBase}>Base UI</Link>
             <Link href={ROUTES.productAdvanced}>MUI X</Link>
+            <Link href={ROUTES.productToolpad}>MUI Toolpad</Link>
             <Link href={ROUTES.productTemplates}>Templates</Link>
             <Link href={ROUTES.productDesignKits}>Design kits</Link>
-            <Link href={ROUTES.productToolpad}>MUI Toolpad</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2">
+            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Resources
             </Typography>
             <Link href={ROUTES.materialIcons}>Material Icons</Link>
@@ -80,18 +91,17 @@ export default function AppFooter() {
             <Link href={ROUTES.theming}>Theming</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2">
+            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Explore
             </Typography>
             <Link href={ROUTES.documentation}>Documentation</Link>
             <Link href={ROUTES.store}>Store</Link>
             <Link href={ROUTES.blog}>Blog</Link>
             <Link href={ROUTES.showcase}>Showcase</Link>
-            <Link href={ROUTES.roadmap}>Roadmap</Link>
-            <Link href={ROUTES.languages}>Languages</Link>
+            <Link href={ROUTES.coreRoadmap}>Roadmap</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography fontWeight="bold" variant="body2">
+            <Typography fontWeight="bold" variant="body2" sx={{ mb: 0.5 }}>
               Company
             </Typography>
             <Link href={ROUTES.about}>About</Link>
@@ -101,18 +111,24 @@ export default function AppFooter() {
               <Box
                 sx={(theme) => ({
                   px: 0.5,
-                  py: '3px',
+                  py: 0.1,
                   ml: 1,
                   mb: '1px',
-                  borderRadius: 0.5,
-                  fontSize: theme.typography.pxToRem(9),
-                  fontWeight: 700,
+                  position: 'relative',
+                  top: theme.spacing(-0.5),
+                  fontSize: theme.typography.pxToRem(10),
+                  fontWeight: 'Bold',
                   textTransform: 'uppercase',
-                  color: '#fff',
-                  letterSpacing: '0.1rem',
-                  bgcolor: 'success.main',
+                  letterSpacing: '.04rem',
+                  borderRadius: 8,
+                  border: 1,
+                  borderColor: 'success.300',
+                  bgcolor: alpha(theme.palette.success[100], 0.4),
+                  color: 'success.700',
                   ...theme.applyDarkStyles({
-                    bgcolor: 'success.900',
+                    borderColor: alpha(theme.palette.success[800], 0.5),
+                    bgcolor: alpha(theme.palette.success[800], 0.2),
+                    color: 'success.200',
                   }),
                 })}
               >
@@ -128,82 +144,91 @@ export default function AppFooter() {
         </Box>
       </Box>
       <Divider />
-      <Box
-        sx={{
-          py: 4,
-          display: { xs: 'block', sm: 'flex' },
-          alignItems: { sm: 'center' },
-          justifyContent: { sm: 'space-between' },
-        }}
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        alignItems="center"
+        justifyContent={{ sm: 'space-between' }}
+        gap={{ xs: 2, sm: 1 }}
+        sx={{ my: 4 }}
       >
-        <Typography color="text.secondary" variant="body2">
-          Copyright © {new Date().getFullYear()} Material UI SAS.
+        <Typography color="text.tertiary" variant="caption" fontWeight={400}>
+          Copyright © {new Date().getFullYear()} Material UI SAS, trading as MUI.
         </Typography>
-        <Box sx={{ py: { xs: 2, sm: 0 } }}>
-          <Stack spacing={2} direction="row">
+        <Stack spacing={1} direction="row" flexWrap="wrap" useFlexGap>
+          <IconButton
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/mui"
+            aria-label="github"
+            title="GitHub"
+            size="small"
+          >
+            <GitHubIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            target="_blank"
+            rel="noopener noreferrer"
+            href={ROUTES.rssFeed}
+            aria-label="RSS Feed"
+            title="RSS Feed"
+            size="small"
+          >
+            <RssFeedIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://twitter.com/MUI_hq"
+            aria-label="twitter"
+            title="Twitter"
+            size="small"
+          >
+            <TwitterIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.linkedin.com/company/mui/"
+            aria-label="linkedin"
+            title="LinkedIn"
+            size="small"
+          >
+            <LinkedInIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.youtube.com/@MUI_hq"
+            aria-label="YouTube"
+            title="YouTube"
+            size="small"
+          >
+            <YouTubeIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://mui.com/r/discord/"
+            aria-label="Discord"
+            title="Discord"
+            size="small"
+          >
+            <DiscordIcon fontSize="small" />
+          </IconButton>
+          {stackOverflowUrl ? (
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/mui"
-              aria-label="github"
-              title="GitHub"
-              size="small"
-            >
-              <GitHubIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href={ROUTES.rssFeed}
-              aria-label="RSS Feed"
-              title="RSS Feed"
-              size="small"
-            >
-              <RssFeedIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://stackoverflow.com/questions/tagged/mui"
+              href={stackOverflowUrl}
               aria-label="Stack Overflow"
               title="Stack Overflow"
               size="small"
             >
               <SvgStackOverflow fontSize="small" />
             </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://twitter.com/MUI_hq"
-              aria-label="twitter"
-              title="Twitter"
-              size="small"
-            >
-              <TwitterIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.linkedin.com/company/mui/"
-              aria-label="linkedin"
-              title="LinkedIn"
-              size="small"
-            >
-              <LinkedInIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.youtube.com/@MUI_hq"
-              aria-label="YouTube"
-              title="YouTube"
-              size="small"
-            >
-              <YouTubeIcon fontSize="small" />
-            </IconButton>
-          </Stack>
-        </Box>
-      </Box>
+          ) : null}
+        </Stack>
+      </Stack>
     </Container>
   );
 }

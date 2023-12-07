@@ -25,7 +25,7 @@ export default function SelectCustomValueAppearance() {
       slotProps={{
         listbox: {
           sx: {
-            '--List-decoratorSize': '48px',
+            '--ListItemDecorator-size': '48px',
           },
         },
       }}
@@ -43,8 +43,10 @@ export default function SelectCustomValueAppearance() {
             <Avatar src={`/static/images/avatar/${index + 1}.jpg`} />
           </ListItemDecorator>
           <Box component="span" sx={{ display: 'block' }}>
-            <Typography component="span">{data.name}</Typography>
-            <Typography level="body4">{data.status}</Typography>
+            <Typography component="span" level="title-sm">
+              {data.name}
+            </Typography>
+            <Typography level="body-xs">{data.status}</Typography>
           </Box>
           <Chip
             size="sm"

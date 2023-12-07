@@ -7,15 +7,15 @@ export type BadgeSlot = 'root' | 'badge';
 
 export interface BadgeSlots {
   /**
-   * The component used to render the root.
-   * @default 'div'
+   * The component that renders the root.
+   * @default 'span'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
-   * The component used to render the badge.
-   * @default 'div'
+   * The component that renders the badge.
+   * @default 'span'
    */
-  badge: React.ElementType;
+  badge?: React.ElementType;
 }
 
 export interface BadgePropsVariantOverrides {}

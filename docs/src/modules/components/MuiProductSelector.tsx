@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
-import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
-import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 interface ProductSubMenuProp extends BoxProps {
   icon: React.ReactNode;
@@ -31,18 +31,7 @@ function ProductSubMenu(props: ProductSubMenuProp) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <Box
-        sx={{
-          '& circle': {
-            fill: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.grey[100],
-          },
-        }}
-      >
-        {icon}
-      </Box>
+      {icon}
       <Box sx={{ flexGrow: 1 }}>
         <Typography color="text.primary" variant="body2" fontWeight="700">
           {name}
@@ -56,46 +45,61 @@ function ProductSubMenu(props: ProductSubMenuProp) {
   );
 }
 
-const products = [
+const coreProducts = [
   {
     name: 'Material UI',
     href: ROUTES.materialDocs,
-    slug: 'material-ui',
+    id: 'material-ui',
   },
   {
     name: 'Joy UI',
     href: ROUTES.joyDocs,
-    slug: 'joy-ui',
+    id: 'joy-ui',
   },
   {
-    name: 'MUI Base',
+    name: 'Base UI',
     href: ROUTES.baseDocs,
-    slug: 'base',
+    id: 'base-ui',
   },
   {
     name: 'MUI System',
     href: ROUTES.systemDocs,
-    slug: 'system',
+    id: 'system',
+  },
+];
+
+const advancedProducts = [
+  {
+    name: 'Data Grid',
+    href: ROUTES.dataGridOverview,
+    id: 'x-data-grid',
+  },
+  {
+    name: 'Date and Time Pickers',
+    href: ROUTES.datePickersOverview,
+    id: 'x-date-pickers',
+  },
+  {
+    name: 'Charts',
+    href: ROUTES.chartsOverview,
+    id: 'x-charts',
+  },
+  {
+    name: 'Tree View',
+    href: ROUTES.treeViewOverview,
+    id: 'x-tree-view',
   },
 ];
 
 export default function MuiProductSelector() {
-  const routerExtra = useRouterExtra();
+  const pageContext = React.useContext(PageContext);
 
   return (
     <React.Fragment>
       <Box
         component="li"
         role="none"
-        sx={{
-          p: 2,
-          pr: 3,
-          borderBottom: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark'
-              ? alpha(theme.palette.primary[100], 0.08)
-              : theme.palette.grey[100],
-        }}
+        sx={{ p: 2, pr: 3, borderBottom: '1px solid', borderColor: 'divider' }}
       >
         <ProductSubMenu
           role="menuitem"
@@ -103,91 +107,106 @@ export default function MuiProductSelector() {
           name="MUI Core"
           description="Ready-to-use foundational React components, free forever."
         />
-        <Box sx={{ ml: '36px', pl: 2, pt: 1.5, position: 'relative' }}>
-          <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            alignItems="flex-start"
-            spacing={1}
-            sx={{
-              '& > .MuiChip-root': {
-                position: 'initial',
-                '&:hover': {
-                  '& .product-description': {
-                    opacity: 1,
-                  },
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems="flex-start"
+          spacing={1}
+          sx={{
+            ml: '36px',
+            pl: 2,
+            pt: 1.5,
+            position: 'relative',
+            '& > .MuiChip-root': {
+              position: 'initial',
+              '&:hover': {
+                '& .product-description': {
+                  opacity: 1,
                 },
               },
-            }}
-          >
-            {products.map((product) => (
-              <Chip
-                key={product.name}
-                color={routerExtra.product === product.slug ? 'default' : undefined}
-                variant={routerExtra.product === product.slug ? 'filled' : 'outlined'}
-                component={Link}
-                href={product.href}
-                label={product.name}
-                clickable
-                size="small"
-              />
-            ))}
-          </Stack>
-        </Box>
-      </Box>
-      <li role="none">
-        <Link
-          href={ROUTES.advancedComponents}
-          sx={{
-            p: 2,
-            pr: 3,
-            borderBottom: '1px solid',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primary[100], 0.08)
-                : theme.palette.grey[100],
-            width: '100%',
-            '&:hover': {
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primaryDark[700], 0.4)
-                  : theme.palette.grey[50],
             },
           }}
         >
-          <ProductSubMenu
-            role="menuitem"
-            icon={<IconImage name="product-advanced" />}
-            name="MUI X"
-            description="Advanced and powerful components for complex use cases."
-          />
-        </Link>
-      </li>
+          {coreProducts.map((product) => (
+            <Chip
+              key={product.name}
+              color={pageContext.productId === product.id ? 'primary' : undefined}
+              variant={pageContext.productId === product.id ? 'filled' : 'outlined'}
+              component={Link}
+              href={product.href}
+              label={product.name}
+              clickable
+              size="small"
+            />
+          ))}
+        </Stack>
+      </Box>
+      <Box
+        component="li"
+        role="none"
+        sx={{ p: 2, pr: 3, borderBottom: '1px solid', borderColor: 'divider' }}
+      >
+        <ProductSubMenu
+          role="menuitem"
+          icon={<IconImage name="product-advanced" />}
+          name="MUI X"
+          description="Advanced and powerful components for complex use cases."
+        />
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems="flex-start"
+          spacing={1}
+          sx={{
+            ml: '36px',
+            pl: 2,
+            pt: 1.5,
+            position: 'relative',
+            '& > .MuiChip-root': {
+              position: 'initial',
+              '&:hover': {
+                '& .product-description': {
+                  opacity: 1,
+                },
+              },
+            },
+          }}
+        >
+          {advancedProducts.map((product) => (
+            <Chip
+              key={product.name}
+              color={pageContext.productId === product.id ? 'primary' : undefined}
+              variant={pageContext.productId === product.id ? 'filled' : 'outlined'}
+              component={Link}
+              href={product.href}
+              label={product.name}
+              clickable
+              size="small"
+            />
+          ))}
+        </Stack>
+      </Box>
       <li role="none">
         <Link
           href={ROUTES.toolpadDocs}
-          sx={{
+          sx={(theme) => ({
             p: 2,
             pr: 3,
-            borderBottom: '1px solid',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primary[100], 0.08)
-                : theme.palette.grey[100],
             width: '100%',
             '&:hover': {
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primaryDark[700], 0.4)
-                  : theme.palette.grey[50],
+              backgroundColor: 'grey.50',
             },
-          }}
+            ...theme.applyDarkStyles({
+              '&:hover': {
+                backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+              },
+            }),
+          })}
         >
           <ProductSubMenu
             role="menuitem"
             icon={<IconImage name="product-toolpad" />}
             name="MUI Toolpad"
             description="Low-code admin builder."
-            chip={<Chip size="small" label="Alpha" color="grey" />}
+            chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
           />
         </Link>
       </li>

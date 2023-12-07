@@ -11,8 +11,8 @@ import { LANGUAGES_IGNORE_PAGES } from 'docs/config';
  * File to keep in sync with:
  *
  * - /docs/src/modules/components/Link.tsx
- * - /examples/material-next/src/Link.js
- * - /examples/material-next-ts/src/Link.tsx
+ * - /examples/material-ui-nextjs-pages-router/src/Link.js
+ * - /examples/material-ui-nextjs-pages-router-ts/src/Link.tsx
  */
 
 // Add support for the sx prop for consistency with the other branches.
@@ -66,8 +66,8 @@ export type LinkProps = {
 } & Omit<NextLinkComposedProps, 'to' | 'linkAs' | 'href'> &
   Omit<MuiLinkProps, 'href'>;
 
-// A styled version of the Next.js Link component:
-// https://nextjs.org/docs/api-reference/next/link
+// A styled version of the Next.js Pages Router Link component:
+// https://nextjs.org/docs/pages/api-reference/components/link
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props, ref) {
   const {
     activeClassName = 'active',
@@ -88,8 +88,12 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
 
   const router = useRouter();
   const pathname = typeof href === 'string' ? href : href?.pathname;
+  const routerPathname = router.pathname.replace('/[docsTab]', '');
+
+  const shouldBeActive = routerPathname === pathname;
+
   const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === pathname && activeClassName,
+    [activeClassName]: shouldBeActive && activeClassName,
   });
 
   const isExternal =

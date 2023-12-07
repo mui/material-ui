@@ -8,11 +8,17 @@
       "default": "'left'"
     },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "16" },
     "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
     "ModalProps": { "type": { "name": "object" }, "default": "{}" },
-    "onClose": { "type": { "name": "func" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
     "open": { "type": { "name": "bool" }, "default": "false" },
     "PaperProps": { "type": { "name": "object" }, "default": "{}" },
     "SlideProps": { "type": { "name": "object" } },
@@ -20,7 +26,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "transitionDuration": {
       "type": {
@@ -38,25 +45,87 @@
     }
   },
   "name": "Drawer",
-  "styles": {
-    "classes": [
-      "root",
-      "docked",
-      "paper",
-      "paperAnchorLeft",
-      "paperAnchorRight",
-      "paperAnchorTop",
-      "paperAnchorBottom",
-      "paperAnchorDockedLeft",
-      "paperAnchorDockedTop",
-      "paperAnchorDockedRight",
-      "paperAnchorDockedBottom",
-      "modal"
-    ],
-    "globalClasses": {},
-    "name": "MuiDrawer"
-  },
+  "imports": [
+    "import Drawer from '@mui/material/Drawer';",
+    "import { Drawer } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "docked",
+      "className": "MuiDrawer-docked",
+      "description": "Styles applied to the root element if `variant=\"permanent or persistent\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "modal",
+      "className": "MuiDrawer-modal",
+      "description": "Styles applied to the Modal component.",
+      "isGlobal": false
+    },
+    {
+      "key": "paper",
+      "className": "MuiDrawer-paper",
+      "description": "Styles applied to the Paper component.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorBottom",
+      "className": "MuiDrawer-paperAnchorBottom",
+      "description": "Styles applied to the Paper component if `anchor=\"bottom\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorDockedBottom",
+      "className": "MuiDrawer-paperAnchorDockedBottom",
+      "description": "Styles applied to the Paper component if `anchor=\"bottom\"` and `variant` is not \"temporary\".",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorDockedLeft",
+      "className": "MuiDrawer-paperAnchorDockedLeft",
+      "description": "Styles applied to the Paper component if `anchor=\"left\"` and `variant` is not \"temporary\".",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorDockedRight",
+      "className": "MuiDrawer-paperAnchorDockedRight",
+      "description": "Styles applied to the Paper component if `anchor=\"right\"` and `variant` is not \"temporary\".",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorDockedTop",
+      "className": "MuiDrawer-paperAnchorDockedTop",
+      "description": "Styles applied to the Paper component if `anchor=\"top\"` and `variant` is not \"temporary\".",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorLeft",
+      "className": "MuiDrawer-paperAnchorLeft",
+      "description": "Styles applied to the Paper component if `anchor=\"left\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorRight",
+      "className": "MuiDrawer-paperAnchorRight",
+      "description": "Styles applied to the Paper component if `anchor=\"right\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperAnchorTop",
+      "className": "MuiDrawer-paperAnchorTop",
+      "description": "Styles applied to the Paper component if `anchor=\"top\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiDrawer-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiDrawer",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Drawer/Drawer.js",
   "inheritance": null,

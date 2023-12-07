@@ -19,14 +19,14 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
-import SliderUnstyled from '@mui/base/SliderUnstyled';
+import { SliderUnstyled } from '@mui/base/SliderUnstyled';
 import FooBar, { Qux } from '@foo-bar/bip';
 const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
   },
-  formContro
+  formControl
 `;
 
   it('should handle @ dependencies', () => {
@@ -529,7 +529,7 @@ export default function EmailExample() {
           <Box sx={{ py: 10 }}>
             <Typography
               textColor="text.tertiary"
-              level="body2"
+              level="body-sm"
               sx={{ textAlign: 'center' }}
             >
               You&apos;ve read all messages in your inbox.

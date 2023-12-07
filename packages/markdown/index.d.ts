@@ -16,4 +16,4 @@ export function getHeaders(markdown: string): Record<string, string | string[]>;
 
 export function getTitle(markdown: string): string;
 
-export function renderInline(markdown: string): string;
+export function renderMarkdown(markdown: string): string;

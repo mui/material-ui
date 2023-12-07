@@ -94,8 +94,8 @@ export function expectType<Expected, Actual>(actual: IfEquals<Actual, Expected, 
 export interface OverridableComponent<M extends OverridableTypeMap> {
   // If you make any changes to this interface, please make sure to update the
   // `OverridableComponent` type in `mui-material/src/OverridableComponent.d.ts` as well.
-  // Also, there are types in MUI Base that have a similar shape to this interface
-  // (e.g. SelectUnstyledType, OptionUnstyledType, etc.).
+  // Also, there are types in Base UI that have a similar shape to this interface
+  // (e.g. SelectType, OptionType, etc.).
   <C extends React.ElementType>(
     props: {
       /**
@@ -144,5 +144,11 @@ export interface OverridableTypeMap {
  * Simplifies the display of a type (without modifying it).
  * Taken from https://effectivetypescript.com/2022/02/25/gentips-4-display/
  */
-// tslint:disable-next-line: ban-types
 export type Simplify<T> = T extends Function ? T : { [K in keyof T]: T[K] };
+
+/**
+ * Changes the properties K from T to required
+ */
+export type PartiallyRequired<T, K extends keyof T> = DistributiveOmit<T, K> & {
+  [P in K]-?: T[P];
+};

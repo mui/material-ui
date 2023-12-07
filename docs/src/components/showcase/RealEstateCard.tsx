@@ -14,11 +14,12 @@ export default function RealEstateCard({ sx, ...props }: CardProps) {
         (theme) => ({
           display: 'flex',
           flexWrap: 'wrap',
-          bgcolor: '#fff',
-          p: 1,
+          p: 2,
           zIndex: 1,
+          boxShadow: '0 2px 4px rgba(0, 127, 255, 0.1)',
           ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.800',
+            bgcolor: 'primaryDark.900',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.8)',
           }),
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -35,31 +36,35 @@ export default function RealEstateCard({ sx, ...props }: CardProps) {
           width: 'clamp(100px, (304px - 100%) * 999 , 100%)',
         }}
       />
-      <Box width="clamp(15px, (304px - 100%) * 999 , 100%)" height={15} />
+      <Box sx={{ width: 'clamp(15px, (304px - 100%) * 999 , 100%)', height: 15 }} />
       <Box sx={{ alignSelf: 'center' }}>
-        <Typography variant="body2" color="text.secondary" noWrap>
+        <Typography variant="caption" color="text.secondary" fontWeight="medium">
           123 Main St, Phoenix, AZ
         </Typography>
-        <Typography component="div" fontWeight="bold" noWrap>
+        <Typography fontWeight="bold" noWrap>
           $280k - $310k
         </Typography>
         <Box
           sx={(theme) => ({
-            mt: 0.75,
-            px: 1,
-            py: 0.5,
+            mt: 1,
+            py: 0.4,
+            pl: 0.5,
+            pr: 1,
             typography: 'caption',
-            borderRadius: 1,
+            borderRadius: 10,
             display: 'flex',
             bgcolor: 'primary.50',
+            border: '1px solid',
+            borderColor: 'primary.100',
             color: 'primary.700',
             ...theme.applyDarkStyles({
-              bgcolor: 'primary.900',
+              bgcolor: 'primaryDark.700',
               color: 'primary.200',
+              borderColor: 'primary.900',
             }),
           })}
         >
-          <InfoRounded sx={{ fontSize: 16, mr: 0.5, mt: '1px' }} /> Confidence score of 85%
+          <InfoRounded sx={{ fontSize: 16, mr: 0.5, mt: '1px' }} /> Confidence score: 85%
         </Box>
       </Box>
     </Card>

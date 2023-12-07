@@ -29,7 +29,7 @@ const rows = [
 export default function TableScrollingShadows() {
   return (
     <div>
-      <Typography level="body2" textAlign="center" sx={{ mb: 2 }}>
+      <Typography level="body-sm" textAlign="center" sx={{ mb: 2 }}>
         The table body is scrollable.
       </Typography>
       <Sheet

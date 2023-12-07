@@ -154,12 +154,12 @@ const NewStartScreen = () => {
   );
 };
 
-function DocSearcHit(props) {
+function DocSearchHit(props) {
   const { children, hit } = props;
 
   function displayTag(pathname) {
     // does not need to show product label for MUI X because they are grouped by the product name in the search
-    // ie. Data Grid, Date Picker
+    // i.e. Data Grid, Date Picker
     if (!pathname.match(/^\/(material-ui|joy-ui|base)\//)) {
       return null;
     }
@@ -171,7 +171,7 @@ function DocSearcHit(props) {
       text = 'Joy UI';
     }
     if (pathname.startsWith('/base/')) {
-      text = 'MUI Base';
+      text = 'Base UI';
     }
     return <Chip label={text} size="small" variant="outlined" sx={{ mr: 1 }} />;
   }
@@ -194,7 +194,7 @@ function DocSearcHit(props) {
   return <Link href={hit.url}>{children}</Link>;
 }
 
-DocSearcHit.propTypes = {
+DocSearchHit.propTypes = {
   children: PropTypes.node,
   hit: PropTypes.object.isRequired,
 };
@@ -338,7 +338,7 @@ export default function AppSearch() {
                 };
               });
             }}
-            hitComponent={DocSearcHit}
+            hitComponent={DocSearchHit}
             initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
             onClose={onClose}
             navigator={keyboardNavigator}

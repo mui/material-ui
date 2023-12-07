@@ -111,13 +111,13 @@ function writeUsage(outStream) {
         outStream.write(
           `console.assert(${getValidator(
             getMuiLocal(topLevelPackageName, packageName),
-          )}, '${topLevelPackageName} named import is not consumeable.');\n`,
+          )}, '${topLevelPackageName} named import is not consumable.');\n`,
         );
       }
       outStream.write(
         `console.assert(${getValidator(
           `${getMuiLocal(topLevelPackageName, packageName)}__pathImport`,
-        )}, '${topLevelPackageName} path import is not consumeable.');\n`,
+        )}, '${topLevelPackageName} path import is not consumable.');\n`,
       );
     });
   });

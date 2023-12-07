@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOM from 'react-dom';
@@ -49,22 +50,22 @@ function isEmpty(obj: State) {
  *
  * Demos:
  *
- * - [Textarea Autosize](https://mui.com/base/react-textarea-autosize/)
+ * - [Textarea Autosize](https://mui.com/base-ui/react-textarea-autosize/)
  * - [Textarea Autosize](https://mui.com/material-ui/react-textarea-autosize/)
  *
  * API:
  *
- * - [TextareaAutosize API](https://mui.com/base/api/textarea-autosize/)
+ * - [TextareaAutosize API](https://mui.com/base-ui/react-textarea-autosize/components-api/#textarea-autosize)
  */
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   props: TextareaAutosizeProps,
-  ref: React.ForwardedRef<Element>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const { onChange, maxRows, minRows = 1, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const handleRef = useForkRef(ref, inputRef);
+  const handleRef = useForkRef(forwardedRef, inputRef);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
   const renders = React.useRef(0);
   const [state, setState] = React.useState<State>({
@@ -162,60 +163,66 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       return;
     }
 
-    setState((prevState) => {
-      return updateState(prevState, newState);
-    });
+    setState((prevState) => updateState(prevState, newState));
   }, [getUpdatedState]);
 
-  const syncHeightWithFlushSycn = () => {
-    const newState = getUpdatedState();
+  useEnhancedEffect(() => {
+    const syncHeightWithFlushSync = () => {
+      const newState = getUpdatedState();
 
-    if (isEmpty(newState)) {
-      return;
-    }
-
-    // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
-    // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
-    // Related issue - https://github.com/facebook/react/issues/24331
-    ReactDOM.flushSync(() => {
-      setState((prevState) => {
-        return updateState(prevState, newState);
-      });
-    });
-  };
-
-  React.useEffect(() => {
-    const handleResize = debounce(() => {
-      renders.current = 0;
-
-      // If the TextareaAutosize component is replaced by Suspense with a fallback, the last
-      // ResizeObserver's handler that runs because of the change in the layout is trying to
-      // access a dom node that is no longer there (as the fallback component is being shown instead).
-      // See https://github.com/mui/material-ui/issues/32640
-      if (inputRef.current) {
-        syncHeightWithFlushSycn();
+      if (isEmpty(newState)) {
+        return;
       }
-    });
-    let resizeObserver: ResizeObserver;
 
+      // In React 18, state updates in a ResizeObserver's callback are happening after
+      // the paint, this leads to an infinite rendering.
+      //
+      // Using flushSync ensures that the states is updated before the next pain.
+      // Related issue - https://github.com/facebook/react/issues/24331
+      ReactDOM.flushSync(() => {
+        setState((prevState) => updateState(prevState, newState));
+      });
+    };
+
+    const handleResize = () => {
+      renders.current = 0;
+      syncHeightWithFlushSync();
+    };
+    // Workaround a "ResizeObserver loop completed with undelivered notifications" error
+    // in test.
+    // Note that we might need to use this logic in production per https://github.com/WICG/resize-observer/issues/38
+    // Also see https://github.com/mui/mui-x/issues/8733
+    let rAF: any;
+    const rAFHandleResize = () => {
+      cancelAnimationFrame(rAF);
+      rAF = requestAnimationFrame(() => {
+        handleResize();
+      });
+    };
+    const debounceHandleResize = debounce(handleResize);
     const input = inputRef.current!;
     const containerWindow = ownerWindow(input);
 
-    containerWindow.addEventListener('resize', handleResize);
+    containerWindow.addEventListener('resize', debounceHandleResize);
+
+    let resizeObserver: ResizeObserver;
 
     if (typeof ResizeObserver !== 'undefined') {
-      resizeObserver = new ResizeObserver(handleResize);
+      resizeObserver = new ResizeObserver(
+        process.env.NODE_ENV === 'test' ? rAFHandleResize : handleResize,
+      );
       resizeObserver.observe(input);
     }
 
     return () => {
-      handleResize.clear();
-      containerWindow.removeEventListener('resize', handleResize);
+      debounceHandleResize.clear();
+      cancelAnimationFrame(rAF);
+      containerWindow.removeEventListener('resize', debounceHandleResize);
       if (resizeObserver) {
         resizeObserver.disconnect();
       }
     };
-  });
+  }, [getUpdatedState]);
 
   useEnhancedEffect(() => {
     syncHeight();
@@ -263,12 +270,13 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         style={{
           ...styles.shadow,
           ...style,
-          padding: 0,
+          paddingTop: 0,
+          paddingBottom: 0,
         }}
       />
     </React.Fragment>
   );
-});
+}) as React.ForwardRefExoticComponent<TextareaAutosizeProps & React.RefAttributes<Element>>;
 
 TextareaAutosize.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -310,4 +318,4 @@ TextareaAutosize.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export default TextareaAutosize;
+export { TextareaAutosize };

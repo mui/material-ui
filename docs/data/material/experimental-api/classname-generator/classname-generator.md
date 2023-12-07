@@ -120,7 +120,7 @@ Now, the `Mui` class is gone.
 
 ## Framework examples
 
-Always create an intializer file to hoist the `ClassNameGenerator` call to the top.
+Always create an initializer file to hoist the `ClassNameGenerator` call to the top.
 
 ```js
 // create a new file called `MuiClassNameSetup.js` at the root or src folder.
@@ -134,7 +134,7 @@ ClassNameGenerator.configure(
 
 Then import the file in the main JavaScript source based on the framework.
 
-### Next.js
+### Next.js Pages Router
 
 Import the initializer in `/pages/_app.js`.
 
@@ -164,16 +164,4 @@ Import the initializer in `/src/index.js`.
  import App from './App';
 
  ReactDOM.render(<App />);
-```
-
-### Gatsby
-
-Import the initializer in `gatsby-ssr.js` at the root folder.
-
-```diff
-+import './MuiClassNameSetup';
-
- export const wrapPageElement = ({ element }) => {
-   return element;
- };
 ```

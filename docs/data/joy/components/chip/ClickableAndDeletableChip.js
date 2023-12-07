@@ -4,7 +4,7 @@ import Chip from '@mui/joy/Chip';
 import ChipDelete from '@mui/joy/ChipDelete';
 import DeleteForever from '@mui/icons-material/DeleteForever';
 
-export default function ClickableChip() {
+export default function ClickableAndDeletableChip() {
   return (
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
       <Chip

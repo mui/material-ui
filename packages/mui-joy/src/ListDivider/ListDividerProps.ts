@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ListDividerSlot = 'root';
+
+export interface ListDividerSlots {
+  /**
+   * The component that renders the root.
+   * @default 'li'
+   */
+  root?: React.ElementType;
+}
+
+export type ListDividerSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ListDividerSlots,
+  {
+    root: SlotProps<'li', {}, ListDividerOwnerState>;
+  }
+>;
 
 export interface ListDividerInsetOverrides {}
 
@@ -31,7 +47,7 @@ export interface ListDividerTypeMap<P = {}, D extends React.ElementType = 'li'> 
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-  };
+  } & ListDividerSlotsAndSlotProps;
   defaultComponent: D;
 }
 

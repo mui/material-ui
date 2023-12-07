@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, fireEvent } from 'test/utils';
+import { spy } from 'sinon';
+import { describeConformance, createRenderer, fireEvent, act } from '@mui-internal/test-utils';
+import { camelCase } from 'lodash';
 import Button, { buttonClasses as classes } from '@mui/material-next/Button';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 
@@ -171,12 +173,66 @@ describe('<Button />', () => {
     expect(container.querySelector('button')).to.have.class(disabledClassName);
   });
 
-  it('should render active class', () => {
-    const { container } = render(<Button />);
+  it('should render focused class', () => {
+    const focusedClassName = 'testFocusedClassName';
+    const { container } = render(<Button classes={{ focusVisible: focusedClassName }} />);
 
     const button = container.querySelector('button');
+    expect(button).not.to.equal(null);
+    expect(button).not.to.have.class(focusedClassName);
+
+    act(() => {
+      button.focus();
+    });
+
+    expect(button).to.have.class(focusedClassName);
+  });
+
+  it('should render active class', () => {
+    const activeClassName = 'testActiveClassName';
+    const { container } = render(<Button classes={{ active: activeClassName }} />);
+
+    const button = container.querySelector('button');
+    expect(button).not.to.equal(null);
+    expect(button).not.to.have.class(activeClassName);
+
     fireEvent.mouseDown(button);
 
-    expect(button).to.have.class(classes.active);
+    expect(button).to.have.class(activeClassName);
+  });
+
+  describe('Event handlers', () => {
+    const events = ['click', 'focus', 'mouse-down', 'mouse-up'];
+    const withFocusEvents = ['key-down', 'key-up'];
+
+    const eventHandlers = [
+      ...events.map((event) => ({
+        name: camelCase(`on-${event}`),
+        triggerFunction: fireEvent[camelCase(event)],
+      })),
+      ...withFocusEvents.map((event) => ({
+        name: camelCase(`on-${event}`),
+        triggerFunction: (target) => {
+          target.focus();
+          fireEvent[camelCase(event)](document.activeElement);
+        },
+      })),
+    ];
+
+    eventHandlers.forEach(({ name, triggerFunction }) => {
+      it(`should call ${name} handler`, () => {
+        const handleSpy = spy();
+        const handlerProp = { [name]: handleSpy };
+
+        const { container } = render(<Button {...handlerProp} />);
+        const button = container.querySelector('button');
+
+        act(() => {
+          triggerFunction(button);
+        });
+
+        expect(handleSpy.callCount).to.equal(1);
+      });
+    });
   });
 });

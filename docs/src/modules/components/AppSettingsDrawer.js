@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled, useTheme, alpha } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -40,7 +40,7 @@ const IconToggleButton = styled(ToggleButton)({
 function AppSettingsDrawer(props) {
   const { onClose, open = false, ...other } = props;
   const t = useTranslate();
-  const theme = useTheme();
+  const upperTheme = useTheme();
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -65,17 +65,25 @@ function AppSettingsDrawer(props) {
     setMode(paletteMode);
 
     if (paletteMode === 'system') {
-      localStorage.setItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      try {
+        localStorage.setItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      } catch (error) {
+        // thrown when cookies are disabled.
+      }
       changeTheme({ paletteMode: preferredMode });
     } else {
-      localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      try {
+        localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      } catch (error) {
+        // thrown when cookies are disabled.
+      }
       changeTheme({ paletteMode });
     }
   };
 
   const handleChangeDirection = (event, direction) => {
     if (direction === null) {
-      direction = theme.direction;
+      direction = upperTheme.direction;
     }
 
     changeTheme({ direction });
@@ -96,7 +104,7 @@ function AppSettingsDrawer(props) {
         <Typography variant="body1" fontWeight="500">
           {t('settings.settings')}
         </Typography>
-        <IconButton color="inherit" onClick={onClose} edge="end">
+        <IconButton color="inherit" onClick={onClose} edge="end" aria-label={t('close')}>
           <CloseIcon color="primary" fontSize="small" />
         </IconButton>
       </Box>
@@ -146,7 +154,7 @@ function AppSettingsDrawer(props) {
         </Heading>
         <ToggleButtonGroup
           exclusive
-          value={theme.direction}
+          value={upperTheme.direction}
           onChange={handleChangeDirection}
           aria-labelledby="settings-direction"
           color="primary"
@@ -154,7 +162,7 @@ function AppSettingsDrawer(props) {
         >
           <IconToggleButton
             value="ltr"
-            aria-label={t('settings.light')}
+            aria-label={t('settings.ltr')}
             data-ga-event-category="settings"
             data-ga-event-action="ltr"
           >
@@ -163,7 +171,7 @@ function AppSettingsDrawer(props) {
           </IconToggleButton>
           <IconToggleButton
             value="rtl"
-            aria-label={t('settings.system')}
+            aria-label={t('settings.rtl')}
             data-ga-event-category="settings"
             data-ga-event-action="rtl"
           >
@@ -177,33 +185,9 @@ function AppSettingsDrawer(props) {
           href="/material-ui/customization/color/#playground"
           data-ga-event-category="settings"
           data-ga-event-action="colors"
-          size="small"
+          size="medium"
           variant="outlined"
-          sx={{
-            width: '100%',
-            mx: 0,
-            py: 1,
-            fontWeight: 500,
-            border: `1px solid  ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.grey[200]
-            }`,
-            color:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[300]
-                : theme.palette.primary[500],
-            '&:hover': {
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[600]
-                  : theme.palette.grey[300],
-              background:
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primaryDark[700], 0.4)
-                  : theme.palette.grey[50],
-            },
-          }}
+          fullWidth
         >
           {t('settings.editWebsiteColors')}
         </Button>

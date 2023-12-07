@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import { extendTheme, useTheme, CssVarsProvider } from '@mui/joy/styles';
 
 describe('extendTheme', () => {
@@ -15,7 +15,6 @@ describe('extendTheme', () => {
         'fontSize',
         'fontFamily',
         'fontWeight',
-        'letterSpacing',
         'lineHeight',
         'getCssVar',
         'spacing',
@@ -23,13 +22,11 @@ describe('extendTheme', () => {
         'shadow',
         'zIndex',
         'typography',
-        'colorInversionConfig',
         'variants',
         'cssVarPrefix',
         'palette',
         'vars',
         'getColorSchemeSelector',
-        'colorInversion',
         'unstable_sxConfig',
         'unstable_sx',
         'shouldSkipGeneratingVar',
@@ -48,7 +45,6 @@ describe('extendTheme', () => {
       'fontSize',
       'fontWeight',
       'lineHeight',
-      'letterSpacing',
       'palette',
       'shadowRing',
       'shadowChannel',
@@ -62,25 +58,25 @@ describe('extendTheme', () => {
   it('should have joy default css var prefix', () => {
     const theme = extendTheme();
     expect(theme.cssVarPrefix).to.equal('joy');
-    expect(theme.typography.body1.fontSize).to.equal('var(--joy-fontSize-md, 1rem)');
+    expect(theme.typography['body-md'].fontSize).to.equal('var(--joy-fontSize-md, 1rem)');
   });
 
   it('should have custom css var prefix', () => {
     const theme = extendTheme({ cssVarPrefix: 'foo' });
     expect(theme.cssVarPrefix).to.equal('foo');
-    expect(theme.typography.body1.fontSize).to.equal('var(--foo-fontSize-md, 1rem)');
+    expect(theme.typography['body-md'].fontSize).to.equal('var(--foo-fontSize-md, 1rem)');
   });
 
   it('should have no css var prefix', () => {
     const theme = extendTheme({ cssVarPrefix: '' });
     expect(theme.cssVarPrefix).to.equal('');
-    expect(theme.typography.body1.fontSize).to.equal('var(--fontSize-md, 1rem)');
+    expect(theme.typography['body-md'].fontSize).to.equal('var(--fontSize-md, 1rem)');
   });
 
   it('should accept custom fontSize value', () => {
     const theme = extendTheme({ fontSize: { md: '2rem' } });
     expect(theme.cssVarPrefix).to.equal('joy');
-    expect(theme.typography.body1.fontSize).to.equal('var(--joy-fontSize-md, 2rem)');
+    expect(theme.typography['body-md'].fontSize).to.equal('var(--joy-fontSize-md, 2rem)');
   });
 
   it('should have custom --variant-borderWidth', () => {
@@ -89,6 +85,16 @@ describe('extendTheme', () => {
     });
     expect(theme.variants.outlined.primary).to.contain({
       '--variant-borderWidth': '3px',
+    });
+  });
+
+  it('should have correct font family', () => {
+    const theme = extendTheme({ fontFamily: { body: 'JetBrains Mono' } });
+    expect(theme.typography['body-md']).to.deep.equal({
+      fontFamily: 'var(--joy-fontFamily-body, JetBrains Mono)',
+      fontSize: 'var(--joy-fontSize-md, 1rem)',
+      lineHeight: 'var(--joy-lineHeight-md, 1.5)',
+      color: 'var(--joy-palette-text-secondary, var(--joy-palette-neutral-700, #32383E))',
     });
   });
 

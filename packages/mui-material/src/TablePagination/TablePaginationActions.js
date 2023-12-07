@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import useTheme from '../styles/useTheme';
@@ -10,6 +11,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
   const {
     backIconButtonProps,
     count,
+    disabled = false,
     getItemAriaLabel,
     nextIconButtonProps,
     onPageChange,
@@ -17,7 +19,6 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     rowsPerPage,
     showFirstButton,
     showLastButton,
-    slots,
     slotProps,
     ...other
   } = props;
@@ -50,9 +51,10 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       {showFirstButton && (
         <IconButton
           onClick={handleFirstPageButtonClick}
-          disabled={page === 0}
+          disabled={disabled || page === 0}
           aria-label={getItemAriaLabel('first', page)}
           title={getItemAriaLabel('first', page)}
+          {...(slotProps?.firstButton ?? {})}
         >
           {theme.direction === 'rtl' ? (
             <LastIcon {...slotProps?.last} />
@@ -63,11 +65,11 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       )}
       <IconButton
         onClick={handleBackButtonClick}
-        disabled={page === 0}
+        disabled={disabled || page === 0}
         color="inherit"
         aria-label={getItemAriaLabel('previous', page)}
         title={getItemAriaLabel('previous', page)}
-        {...backIconButtonProps}
+        {...(slotProps?.previousButton ?? backIconButtonProps)}
       >
         {theme.direction === 'rtl' ? (
           <NextIcon {...slotProps?.next} />
@@ -77,11 +79,11 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
-        disabled={count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false}
+        disabled={disabled || (count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false)}
         color="inherit"
         aria-label={getItemAriaLabel('next', page)}
         title={getItemAriaLabel('next', page)}
-        {...nextIconButtonProps}
+        {...(slotProps?.nextButton ?? nextIconButtonProps)}
       >
         {theme.direction === 'rtl' ? (
           <PreviousIcon {...slotProps?.previous} />
@@ -92,9 +94,10 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
       {showLastButton && (
         <IconButton
           onClick={handleLastPageButtonClick}
-          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          disabled={disabled || page >= Math.ceil(count / rowsPerPage) - 1}
           aria-label={getItemAriaLabel('last', page)}
           title={getItemAriaLabel('last', page)}
+          {...(slotProps?.lastButton ?? {})}
         >
           {theme.direction === 'rtl' ? (
             <FirstIcon {...slotProps?.first} />
@@ -116,6 +119,11 @@ TablePaginationActions.propTypes = {
    * The total number of rows.
    */
   count: PropTypes.number.isRequired,
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    *
@@ -154,6 +162,7 @@ TablePaginationActions.propTypes = {
    */
   showLastButton: PropTypes.bool.isRequired,
   /**
+<<<<<<< HEAD
    * The props used for each slot inside.
    *
    * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
@@ -183,6 +192,16 @@ TablePaginationActions.propTypes = {
     Last: PropTypes.elementType,
     Next: PropTypes.elementType,
     Previous: PropTypes.elementType,
+=======
+   * The props used for each slot inside the TablePaginationActions.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    firstButton: PropTypes.object,
+    lastButton: PropTypes.object,
+    nextButton: PropTypes.object,
+    previousButton: PropTypes.object,
+>>>>>>> master
   }),
 };
 

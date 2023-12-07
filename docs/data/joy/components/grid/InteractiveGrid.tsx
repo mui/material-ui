@@ -5,9 +5,9 @@ import FormLabel from '@mui/joy/FormLabel';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Sheet from '@mui/joy/Sheet';
+import { GridDirection } from '@mui/system';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import { GridDirection } from '@mui/system';
 
 type GridItemsAlignment =
   | 'flex-start'

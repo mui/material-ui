@@ -7,15 +7,15 @@ export type AspectRatioSlot = 'root' | 'content';
 
 export interface AspectRatioSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
-   * The component used to render the content.
+   * The component that renders the content.
    * @default 'div'
    */
-  content: React.ElementType;
+  content?: React.ElementType;
 }
 
 export interface AspectRatioPropsColorOverrides {}
@@ -42,6 +42,12 @@ export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'>
        * This can be an element, or just a string.
        */
       children?: React.ReactNode;
+      /**
+       * By default, the AspectRatio will maintain the aspect ratio of its content.
+       * Set this prop to `true` when the container is a flex row and you want the AspectRatio to fill the height of its container.
+       * @default false
+       */
+      flex?: boolean;
       /**
        * The minimum calculated height of the element (not the CSS height).
        */

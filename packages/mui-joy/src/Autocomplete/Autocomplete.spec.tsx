@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Autocomplete, { AutocompleteOwnerState } from '@mui/joy/Autocomplete';
 import { expectType } from '@mui/types';
+import Autocomplete, { AutocompleteOwnerState } from '@mui/joy/Autocomplete';
 
 const top100Films = [{ title: 'The Shawshank Redemption', year: 1994 }];
 

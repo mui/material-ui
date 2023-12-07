@@ -145,8 +145,8 @@ describe('utils/colorManipulator', () => {
     });
 
     it('should throw error with inexistent color color space', () => {
-      const decimposeWithError = () => decomposeColor('color(foo 0 1 0)');
-      expect(decimposeWithError).to.throw();
+      const decomposeWithError = () => decomposeColor('color(foo 0 1 0)');
+      expect(decomposeWithError).to.throw();
     });
 
     it('idempotent', () => {

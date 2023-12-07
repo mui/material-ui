@@ -10,20 +10,27 @@
     },
     "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
     "children": { "type": { "name": "element" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "ClickAwayListenerProps": { "type": { "name": "object" } },
     "ContentProps": { "type": { "name": "object" } },
     "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
     "key": { "type": { "name": "custom", "description": "any" } },
     "message": { "type": { "name": "node" } },
-    "onClose": { "type": { "name": "func" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent<any> | Event, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
     "open": { "type": { "name": "bool" } },
     "resumeHideDuration": { "type": { "name": "number" } },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
     "transitionDuration": {
@@ -36,20 +43,57 @@
     "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
   },
   "name": "Snackbar",
-  "styles": {
-    "classes": [
-      "root",
-      "anchorOriginTopCenter",
-      "anchorOriginBottomCenter",
-      "anchorOriginTopRight",
-      "anchorOriginBottomRight",
-      "anchorOriginTopLeft",
-      "anchorOriginBottomLeft"
-    ],
-    "globalClasses": {},
-    "name": "MuiSnackbar"
-  },
+  "imports": [
+    "import Snackbar from '@mui/material/Snackbar';",
+    "import { Snackbar } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "anchorOriginBottomCenter",
+      "className": "MuiSnackbar-anchorOriginBottomCenter",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginBottomLeft",
+      "className": "MuiSnackbar-anchorOriginBottomLeft",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginBottomRight",
+      "className": "MuiSnackbar-anchorOriginBottomRight",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopCenter",
+      "className": "MuiSnackbar-anchorOriginTopCenter",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopLeft",
+      "className": "MuiSnackbar-anchorOriginTopLeft",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopRight",
+      "className": "MuiSnackbar-anchorOriginTopRight",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiSnackbar-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSnackbar",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Snackbar/Snackbar.js",
   "inheritance": null,

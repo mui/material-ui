@@ -1,19 +1,98 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "allowSwipeInChildren": "If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer&#39;s children. This can be useful in scenarios where the drawer is partially visible. You can customize it further with a callback that determines which children the user can drag over to open the drawer (for example, to ignore other elements that handle touch move events, like sliders).",
-    "children": "The content of the component.",
-    "disableBackdropTransition": "Disable the backdrop transition. This can improve the FPS on low-end devices.",
-    "disableDiscovery": "If <code>true</code>, touching the screen near the edge of the drawer will not slide in the drawer a bit to promote accidental discovery of the swipe gesture.",
-    "disableSwipeToOpen": "If <code>true</code>, swipe to open is disabled. This is useful in browsers where swiping triggers navigation actions. Swipe to open is disabled on iOS browsers by default.",
-    "hysteresis": "Affects how far the drawer must be opened/closed to change its state. Specified as percent (0-1) of the width of the drawer",
-    "minFlingVelocity": "Defines, from which (average) velocity on, the swipe is defined as complete although hysteresis isn&#39;t reached. Good threshold is between 250 - 1000 px/s",
-    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><em>event:</em> The event source of the callback.",
-    "onOpen": "Callback fired when the component requests to be opened.<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><em>event:</em> The event source of the callback.",
-    "open": "If <code>true</code>, the component is shown.",
-    "SwipeAreaProps": "The element is used to intercept the touch events on the edge.",
-    "swipeAreaWidth": "The width of the left most (or right most) area in <code>px</code> that the drawer can be swiped open from.",
-    "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
+    "allowSwipeInChildren": {
+      "description": "If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer&#39;s children. This can be useful in scenarios where the drawer is partially visible. You can customize it further with a callback that determines which children the user can drag over to open the drawer (for example, to ignore other elements that handle touch move events, like sliders)."
+    },
+    "children": { "description": "The content of the component." },
+    "disableBackdropTransition": {
+      "description": "Disable the backdrop transition. This can improve the FPS on low-end devices."
+    },
+    "disableDiscovery": {
+      "description": "If <code>true</code>, touching the screen near the edge of the drawer will not slide in the drawer a bit to promote accidental discovery of the swipe gesture."
+    },
+    "disableSwipeToOpen": {
+      "description": "If <code>true</code>, swipe to open is disabled. This is useful in browsers where swiping triggers navigation actions. Swipe to open is disabled on iOS browsers by default."
+    },
+    "hysteresis": {
+      "description": "Affects how far the drawer must be opened/closed to change its state. Specified as percent (0-1) of the width of the drawer"
+    },
+    "minFlingVelocity": {
+      "description": "Defines, from which (average) velocity on, the swipe is defined as complete although hysteresis isn&#39;t reached. Good threshold is between 250 - 1000 px/s"
+    },
+    "onClose": {
+      "description": "Callback fired when the component requests to be closed.",
+      "typeDescriptions": { "event": "The event source of the callback." }
+    },
+    "onOpen": {
+      "description": "Callback fired when the component requests to be opened.",
+      "typeDescriptions": { "event": "The event source of the callback." }
+    },
+    "open": { "description": "If <code>true</code>, the component is shown." },
+    "SwipeAreaProps": {
+      "description": "The element is used to intercept the touch events on the edge."
+    },
+    "swipeAreaWidth": {
+      "description": "The width of the left most (or right most) area in <code>px</code> that the drawer can be swiped open from."
+    },
+    "transitionDuration": {
+      "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
+    }
   },
-  "classDescriptions": {}
+  "classDescriptions": {
+    "docked": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"permanent or persistent\"</code>"
+    },
+    "modal": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Modal component"
+    },
+    "paper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Paper component"
+    },
+    "paperAnchorBottom": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>anchor=\"bottom\"</code>"
+    },
+    "paperAnchorDockedBottom": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>anchor=\"bottom\"</code> and <code>variant</code> is not &quot;temporary&quot;"
+    },
+    "paperAnchorDockedLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>anchor=\"left\"</code> and <code>variant</code> is not &quot;temporary&quot;"
+    },
+    "paperAnchorDockedRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>anchor=\"right\"</code> and <code>variant</code> is not &quot;temporary&quot;"
+    },
+    "paperAnchorDockedTop": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>anchor=\"top\"</code> and <code>variant</code> is not &quot;temporary&quot;"
+    },
+    "paperAnchorLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>anchor=\"left\"</code>"
+    },
+    "paperAnchorRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>anchor=\"right\"</code>"
+    },
+    "paperAnchorTop": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Paper component",
+      "conditions": "<code>anchor=\"top\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." }
+  }
 }

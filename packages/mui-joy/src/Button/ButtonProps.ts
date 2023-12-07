@@ -12,25 +12,25 @@ export type ButtonSlot = 'root' | 'startDecorator' | 'endDecorator' | 'loadingIn
 
 export interface ButtonSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'button'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
-   * The component used to render the start decorator.
+   * The component that renders the start decorator.
    * @default 'span'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
-   * The component used to render the end decorator.
+   * The component that renders the end decorator.
    * @default 'span'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
   /**
-   * The component used to render the loading indicator center.
+   * The component that renders the loading indicator center.
    * @default 'span'
    */
-  loadingIndicatorCenter: React.ElementType;
+  loadingIndicatorCenter?: React.ElementType;
 }
 
 export interface ButtonPropsVariantOverrides {}
@@ -107,7 +107,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
        */
       variant?: OverridableStringUnion<VariantProp, ButtonPropsVariantOverrides>;
       /**
-       * If `true`, the loading indicator is shown.
+       * If `true`, the loading indicator is shown and the button becomes disabled.
        * @default false
        */
       loading?: boolean;

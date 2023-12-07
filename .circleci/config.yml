@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
-  aws-s3: circleci/aws-s3@3.0.0
+  aws-cli: circleci/aws-cli@4.1
+  aws-s3: circleci/aws-s3@4.0
 
 parameters:
   browserstack-force:
@@ -44,7 +45,7 @@ defaults: &defaults
     AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:14.21
+    - image: cimg/node:18.19
 
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
@@ -103,8 +104,14 @@ commands:
       - run:
           name: Install js dependencies
           command: yarn install
-          environment:
-            PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: <<# parameters.browsers >>0<</ parameters.browsers >><<^ parameters.browsers >>1<</ parameters.browsers >>
+      - when:
+          condition: << parameters.browsers >>
+          steps:
+            - run:
+                name: Install playwright browsers
+                command: yarn playwright install --with-deps
+                environment:
+                  PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
       - save_cache:
           name: Save yarn cache
           key: v8-yarn-{{ checksum "yarn.lock" }}
@@ -136,7 +143,7 @@ jobs:
           steps:
             - run:
                 name: Should not have any git not staged
-                command: git diff --exit-code
+                command: git add -A && git diff --exit-code --staged
             - run:
                 name: Check for duplicated packages
                 command: yarn deduplicate
@@ -199,7 +206,7 @@ jobs:
       - install_js
       - run:
           name: Eslint
-          command: yarn lint:ci
+          command: yarn eslint:ci
       - run:
           name: Stylelint
           command: yarn stylelint
@@ -222,29 +229,35 @@ jobs:
           command: yarn proptypes
       - run:
           name: '`yarn proptypes` changes committed?'
-          command: git diff --exit-code
+          command: git add -A && git diff --exit-code --staged
+      - run:
+          name: 'Write "use client" directive'
+          command: yarn rsc:build
+      - run:
+          name: '`yarn rsc:build` changes committed?'
+          command: git add -A && git diff --exit-code --staged
       - run:
           name: Generate the documentation
           command: yarn docs:api
       - run:
           name: '`yarn docs:api` changes committed?'
-          command: git diff --exit-code
+          command: git add -A && git diff --exit-code --staged
       - run:
           name: Update the navigation translations
           command: yarn docs:i18n
       - run:
           name: '`yarn docs:i18n` changes committed?'
-          command: git diff --exit-code
+          command: git add -A && git diff --exit-code --staged
       - run:
           name: '`yarn extract-error-codes` changes committed?'
           command: |
             yarn extract-error-codes
-            git diff --exit-code
+            git add -A && git diff --exit-code --staged
       - run:
           name: '`yarn docs:link-check` changes committed?'
           command: |
             yarn docs:link-check
-            git diff --exit-code
+            git add -A && git diff --exit-code --staged
   test_types:
     <<: *defaults
     resource_class: 'medium+'
@@ -261,20 +274,11 @@ jobs:
           name: Tests TypeScript definitions
           command: yarn typescript:ci
       - run:
-          name: Test module augmenation
+          name: Test module augmentation
           command: |
             yarn workspace @mui/material typescript:module-augmentation
             yarn workspace @mui/base typescript:module-augmentation
             yarn workspace @mui/joy typescript:module-augmentation
-
-      - restore_cache:
-          name: Restore generated declaration files
-          keys:
-            # #default-branch-switch
-            # We assume that the target branch is `master` and that declaration files are persisted in commit order.
-            # "If there are multiple matches, the most recently generated cache will be used."
-            - typescript-declaration-files-master
-
       - run:
           name: Diff declaration files
           command: |
@@ -283,7 +287,6 @@ jobs:
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
             yarn lerna run build:types
             git --no-pager diff
-
       - run:
           name: Any defect declaration files?
           command: node scripts/testBuiltTypes.mjs
@@ -348,7 +351,7 @@ jobs:
     <<: *defaults
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.31.1-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -378,7 +381,7 @@ jobs:
   test_e2e:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.31.1-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -397,7 +400,7 @@ jobs:
   test_e2e_website:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.31.1-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -412,7 +415,7 @@ jobs:
   test_profile:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.31.1-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -439,7 +442,7 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.31.1-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -493,7 +496,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.31.1-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -517,7 +520,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.31.1-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -541,7 +544,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.31.1-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -565,7 +568,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.31.1-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -589,7 +592,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.31.1-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -613,7 +616,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.31.1-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -641,7 +644,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.31.1-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -672,7 +675,7 @@ jobs:
             DANGER_COMMAND: prepareBundleSizeReport
       - run:
           name: build @mui packages
-          command: yarn lerna run --ignore @mui/icons-material --parallel --scope "@mui/*" build
+          command: yarn lerna run --ignore @mui/icons-material --concurrency 8 --scope "@mui/*" build
       - run:
           name: create @mui/material canary distributable
           command: |
@@ -691,11 +694,12 @@ jobs:
                 pattern: '^pull/.+$'
                 value: << pipeline.git.branch >>
           steps:
+            - aws-cli/setup:
+                aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                region: ${AWS_REGION_ARTIFACTS}
             # Upload distributables to S3
             - aws-s3/copy:
-                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws-region: AWS_REGION_ARTIFACTS
-                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: mui-material.tgz
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
       - store_artifacts:
@@ -719,20 +723,18 @@ jobs:
                 pattern: '^pull/.+$'
                 value: << pipeline.git.branch >>
           steps:
+            - aws-cli/setup:
+                aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                region: ${AWS_REGION_ARTIFACTS}
             # persist size snapshot on S3
             - aws-s3/copy:
                 arguments: --content-type application/json
-                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws-region: AWS_REGION_ARTIFACTS
-                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: size-snapshot.json
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
             # symlink size-snapshot to latest
             - aws-s3/copy:
                 arguments: --content-type application/json
-                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws-region: AWS_REGION_ARTIFACTS
-                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: size-snapshot.json
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/latest/
       - run:
@@ -743,7 +745,7 @@ jobs:
   test_benchmark:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.31.1-focal
+      - image: mcr.microsoft.com/playwright:v1.40.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:

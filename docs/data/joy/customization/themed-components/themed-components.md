@@ -15,7 +15,7 @@ To customize a specific component in the theme, specify the component identifier
 - Use `styleOverrides` to apply styles to each component slots.
   - Every Joy UI component contains the `root` slot.
 
-Visit the [`components.d.ts`](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/components.d.ts) file to see all component identifiers.
+Visit the [`components.d.ts`](https://github.com/mui/material-ui/blob/-/packages/mui-joy/src/styles/components.d.ts) file to see all component identifiers.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -40,7 +40,7 @@ function App() {
 }
 ```
 
-## Default props
+## Theme default props
 
 The values specified in the theme as `defaultProps` affect all instances of the component:
 
@@ -61,7 +61,7 @@ extendTheme({
 <IconButton>...</IconButton>;
 ```
 
-## Style overrides
+## Theme style overrides
 
 ### Change styles based on props
 
@@ -101,9 +101,6 @@ extendTheme({
               '&:hover': {
                 color: '#fff',
               },
-              '&.Mui-disabled': {
-                opacity: 0.6,
-              },
             }),
         }),
       },
@@ -111,6 +108,32 @@ extendTheme({
   },
 });
 ```
+
+### Change styles based on state
+
+Joy UI components increase the CSS specificity of the styles when they are in a given state such as `selected`, `disabled`, `focusVisible`, etc.
+
+To override styles of a specific state, import the component's class selector using its name in camel-case followed by `Classes`.
+
+```js
+import { listItemButtonClasses } from '@mui/joy/ListItemButton';
+
+extendTheme({
+  components: {
+    JoyListItemButton: {
+      styleOverrides: {
+        root: {
+          [`&.${listItemButtonClasses.selected}`]: {
+            color: 'rgba(255 255 255 / 0.7)',
+          },
+        },
+      },
+    },
+  },
+});
+```
+
+The available states are: `active`, `checked`, `completed`, `disabled`, `error`, `expanded`, `focused`, `focusVisible`, `readOnly`, `required`, `selected`.
 
 ### Extend colors
 
@@ -143,10 +166,6 @@ Once these values are defined as above, you can make use of them directly on ins
 <Button color="secondary">Secondary color</Button>
 <Button color="tertiary">Tertiary color</Button>
 ```
-
-:::info
-To learn how to extend size properties, check out the [Extend sizes](#extend-sizes) section in this document.
-:::
 
 #### TypeScript
 
@@ -211,10 +230,8 @@ Once these values are defined as above, you can make use of them directly on ins
 <Button size="xl">Extra large</Button>
 ```
 
-:::info
 The properties used for extending sizes should only relate to the density or the dimensions of the component.
 To learn how to extend variant properties, check out the [Extend variants](#extend-variants) section in this document.
-:::
 
 #### TypeScript
 

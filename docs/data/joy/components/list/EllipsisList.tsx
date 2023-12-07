@@ -12,36 +12,34 @@ export default function EllipsisList() {
     <Box sx={{ width: 320 }}>
       <Typography
         id="ellipsis-list-demo"
-        level="body4"
+        level="body-xs"
         textTransform="uppercase"
-        fontWeight="xl"
-        mb={1}
         sx={{ letterSpacing: '0.15rem' }}
       >
         Inbox
       </Typography>
       <List
         aria-labelledby="ellipsis-list-demo"
-        sx={{ '--List-decoratorSize': '56px' }}
+        sx={{ '--ListItemDecorator-size': '56px' }}
       >
         <ListItem>
-          <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+          <ListItemDecorator>
             <Avatar src="/static/images/avatar/1.jpg" />
           </ListItemDecorator>
           <ListItemContent>
-            <Typography>Brunch this weekend?</Typography>
-            <Typography level="body2" noWrap>
+            <Typography level="title-sm">Brunch this weekend?</Typography>
+            <Typography level="body-sm" noWrap>
               I&apos;ll be in your neighborhood doing errands this Tuesday.
             </Typography>
           </ListItemContent>
         </ListItem>
         <ListItem>
-          <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+          <ListItemDecorator>
             <Avatar src="/static/images/avatar/2.jpg" />
           </ListItemDecorator>
           <ListItemContent>
-            <Typography>Summer BBQ</Typography>
-            <Typography level="body2" noWrap>
+            <Typography level="title-sm">Summer BBQ</Typography>
+            <Typography level="body-sm" noWrap>
               Wish I could come, but I&apos;m out of town this Friday.
             </Typography>
           </ListItemContent>

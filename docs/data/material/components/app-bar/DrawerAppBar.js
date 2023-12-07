@@ -76,7 +76,7 @@ function DrawerAppBar(props) {
           </Box>
         </Toolbar>
       </AppBar>
-      <Box component="nav">
+      <nav>
         <Drawer
           container={container}
           variant="temporary"
@@ -92,7 +92,7 @@ function DrawerAppBar(props) {
         >
           {drawer}
         </Drawer>
-      </Box>
+      </nav>
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
         <Typography>

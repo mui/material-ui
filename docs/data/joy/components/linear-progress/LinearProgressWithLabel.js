@@ -31,7 +31,7 @@ export default function LinearProgressWithLabel() {
       }}
     >
       <Typography
-        level="body3"
+        level="body-xs"
         fontWeight="xl"
         textColor="common.white"
         sx={{ mixBlendMode: 'difference' }}

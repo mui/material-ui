@@ -6,20 +6,22 @@
  */
 
 /**
- * List of demos or folders to ignore when transpiling
- * Example: "app-bar/BottomAppBar.tsx"
+ * List of demos or folders to ignore when transpiling.
+ * Only ignore files that aren't used in the UI.
  */
 const ignoreList = ['/pages.ts', 'docs/data/joy/getting-started/templates'];
 
-const fse = require('fs-extra');
 const path = require('path');
+const fse = require('fs-extra');
 const babel = require('@babel/core');
 const prettier = require('prettier');
-const typescriptToProptypes = require('typescript-to-proptypes');
+const { getPropTypesFromFile, injectPropTypesInFile } = require('typescript-to-proptypes');
+const {
+  createTypeScriptProjectBuilder,
+} = require('@mui-internal/api-docs-builder/utils/createTypeScriptProject');
 const yargs = require('yargs');
 const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui-internal/docs-utilities');
-
-const tsConfig = typescriptToProptypes.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
+const { default: CORE_TYPESCRIPT_PROJECTS } = require('../../scripts/coreTypeScriptProjects');
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],
@@ -27,6 +29,7 @@ const babelConfig = {
   generatorOpts: { retainLines: true },
   babelrc: false,
   configFile: false,
+  shouldPrintComment: (comment) => !comment.startsWith(' @babel-ignore-comment-in-output'),
 };
 
 const workspaceRoot = path.join(__dirname, '../../');
@@ -74,7 +77,7 @@ const TranspileResult = {
   Failed: 1,
 };
 
-async function transpileFile(tsxPath, program) {
+async function transpileFile(tsxPath, project) {
   const jsPath = tsxPath.replace(/\.tsx?$/, '.js');
   try {
     const source = await fse.readFile(tsxPath, 'utf8');
@@ -95,24 +98,28 @@ async function transpileFile(tsxPath, program) {
       throw new Error('TypeScript demo contains prop-types, please remove them');
     }
 
-    const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program, {
+    console.log(tsxPath);
+
+    const propTypesAST = getPropTypesFromFile({
+      project,
+      filePath: tsxPath,
       shouldResolveObject: ({ name }) => {
-        if (name === 'classes') {
+        if (name === 'classes' || name === 'ownerState' || name === 'popper') {
           return false;
         }
 
         return undefined;
       },
     });
-    const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code);
-
+    const codeWithPropTypes = injectPropTypesInFile({ components: propTypesAST, target: code });
     const prettierConfig = prettier.resolveConfig.sync(jsPath, {
       config: path.join(workspaceRoot, 'prettier.config.js'),
     });
     const prettierFormat = (jsSource) =>
       prettier.format(jsSource, { ...prettierConfig, filepath: jsPath });
 
-    const prettified = prettierFormat(codeWithPropTypes);
+    const codeWithoutTsIgnoreComments = codeWithPropTypes.replace(/^\s*\/\/ @ts-ignore.*$/gm, '');
+    const prettified = prettierFormat(codeWithoutTsIgnoreComments);
     const formatted = fixBabelGeneratorIssues(prettified);
     const correctedLineEndings = fixLineEndings(source, formatted);
 
@@ -145,15 +152,20 @@ async function main(argv) {
   const tsxFiles = [
     ...(await getFiles(path.join(workspaceRoot, 'docs/src/pages'))), // old structure
     ...(await getFiles(path.join(workspaceRoot, 'docs/data'))), // new structure
-  ].filter((fileName) => {
-    return filePattern.test(fileName);
-  });
+  ].filter((fileName) => filePattern.test(fileName));
 
-  const program = typescriptToProptypes.createTSProgram(tsxFiles, tsConfig);
+  const buildProject = createTypeScriptProjectBuilder(CORE_TYPESCRIPT_PROJECTS);
+  const project = buildProject('docs', { files: tsxFiles });
 
   let successful = 0;
   let failed = 0;
-  (await Promise.all(tsxFiles.map((file) => transpileFile(file, program)))).forEach((result) => {
+  (
+    await Promise.all(
+      tsxFiles.map((file) => {
+        return transpileFile(file, project);
+      }),
+    )
+  ).forEach((result) => {
     switch (result) {
       case TranspileResult.Success: {
         successful += 1;
@@ -188,7 +200,7 @@ async function main(argv) {
 
   tsxFiles.forEach((filePath) => {
     fse.watchFile(filePath, { interval: 500 }, async () => {
-      if ((await transpileFile(filePath, program, true)) === 0) {
+      if ((await transpileFile(filePath, project, true)) === 0) {
         console.log('Success - %s', filePath);
       }
     });

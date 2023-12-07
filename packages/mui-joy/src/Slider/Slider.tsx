@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -6,10 +7,9 @@ import {
   unstable_capitalize as capitalize,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import useSlider, { valueToPercent } from '@mui/base/useSlider';
+import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderTypeMap, SliderOwnerState } from './SliderProps';
@@ -58,9 +58,7 @@ const sliderColorVariables =
     const styles =
       theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
-      ...(styles.border && {
-        '--variant-borderWidth': styles['--variant-borderWidth'],
-      }),
+      ...(!data.state && { '--variant-borderWidth': styles['--variant-borderWidth'] ?? '0px' }),
       '--Slider-trackColor': styles.color,
       '--Slider-thumbBackground': styles.color,
       '--Slider-thumbColor': styles.backgroundColor || theme.vars.palette.background.surface,
@@ -78,7 +76,6 @@ const SliderRoot = styled('span', {
   const getColorVariables = sliderColorVariables({ theme, ownerState });
   return [
     {
-      '--variant-borderWidth': '0px', // prevent using --variant-borderWidth from the outer scope
       '--Slider-size': 'max(42px, max(var(--Slider-thumbSize), var(--Slider-trackSize)))', // Reach 42px touch target, about ~8mm on screen.
       '--Slider-trackRadius': 'var(--Slider-size)',
       '--Slider-markBackground': theme.vars.palette.text.tertiary,
@@ -88,26 +85,28 @@ const SliderRoot = styled('span', {
       ...(ownerState.size === 'sm' && {
         '--Slider-markSize': '2px',
         '--Slider-trackSize': '4px',
-        '--Slider-thumbSize': '10px',
+        '--Slider-thumbSize': '14px',
         '--Slider-valueLabelArrowSize': '6px',
       }),
       ...(ownerState.size === 'md' && {
         '--Slider-markSize': '2px',
         '--Slider-trackSize': '6px',
-        '--Slider-thumbSize': '14px',
+        '--Slider-thumbSize': '18px',
         '--Slider-valueLabelArrowSize': '8px',
       }),
       ...(ownerState.size === 'lg' && {
         '--Slider-markSize': '3px',
-        '--Slider-trackSize': '10px',
-        '--Slider-thumbSize': '20px',
+        '--Slider-trackSize': '8px',
+        '--Slider-thumbSize': '24px',
         '--Slider-valueLabelArrowSize': '10px',
       }),
       '--Slider-thumbRadius': 'calc(var(--Slider-thumbSize) / 2)',
       '--Slider-thumbWidth': 'var(--Slider-thumbSize)',
       ...getColorVariables(),
       '&:hover': {
-        ...getColorVariables({ state: 'Hover' }),
+        '@media (hover: hover)': {
+          ...getColorVariables({ state: 'Hover' }),
+        },
       },
       '&:active': {
         ...getColorVariables({ state: 'Active' }),
@@ -134,7 +133,7 @@ const SliderRoot = styled('span', {
       '@media print': {
         colorAdjust: 'exact',
       },
-    },
+    } as const,
   ];
 });
 
@@ -172,7 +171,7 @@ const SliderRail = styled('span', {
     ...(ownerState.track === 'inverted' && {
       opacity: 1,
     }),
-  },
+  } as const,
 ]);
 
 const SliderTrack = styled('span', {
@@ -208,7 +207,7 @@ const SliderTrack = styled('span', {
       ...(ownerState.track === false && {
         display: 'none',
       }),
-    },
+    } as const,
   ];
 });
 
@@ -230,7 +229,12 @@ const SliderThumb = styled('span', {
   boxShadow: 'var(--Slider-thumbShadow)',
   color: 'var(--Slider-thumbColor)',
   backgroundColor: 'var(--Slider-thumbBackground)',
-  [theme.focus.selector]: theme.focus.default,
+  [theme.focus.selector]: {
+    ...theme.focus.default,
+    outlineOffset: 0,
+    outlineWidth: 'max(4px, var(--Slider-thumbSize) / 3.6)',
+    outlineColor: `rgba(${theme.vars.palette?.[ownerState.color!]?.mainChannel} / 0.32)`,
+  },
   ...(ownerState.orientation === 'horizontal' && {
     top: '50%',
     transform: 'translate(-50%, -50%)',
@@ -425,13 +429,14 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     isRtl = false,
-    color: colorProp = 'primary',
+    color = 'primary',
     size = 'md',
     variant = 'solid',
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion('solid');
-  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -439,6 +444,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     classes: classesProp,
     disabled,
     defaultValue,
+    disableSwap,
     isRtl,
     max,
     min,
@@ -468,7 +474,8 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     values,
     trackOffset,
     trackLeap,
-  } = useSlider({ ...ownerState, ref });
+    getThumbStyle,
+  } = useSlider({ ...ownerState, rootRef: ref });
 
   ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
   ownerState.dragging = dragging;
@@ -479,12 +486,13 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: SliderRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getRootProps,
     ownerState,
   });
@@ -492,7 +500,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotRail, railProps] = useSlot('rail', {
     className: classes.rail,
     elementType: SliderRail,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -502,21 +510,21 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     },
     className: classes.track,
     elementType: SliderTrack,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotMark, markProps] = useSlot('mark', {
     className: classes.mark,
     elementType: SliderMark,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotMarkLabel, markLabelProps] = useSlot('markLabel', {
     className: classes.markLabel,
     elementType: SliderMarkLabel,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       'aria-hidden': true,
@@ -526,7 +534,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotThumb, thumbProps] = useSlot('thumb', {
     className: classes.thumb,
     elementType: SliderThumb,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getThumbProps,
     ownerState,
   });
@@ -534,7 +542,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotInput, inputProps] = useSlot('input', {
     className: classes.input,
     elementType: SliderInput,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getHiddenInputProps,
     ownerState,
   });
@@ -542,7 +550,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotValueLabel, valueLabelProps] = useSlot('valueLabel', {
     className: classes.valueLabel,
     elementType: SliderValueLabel,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -613,7 +621,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
             })}
             style={{
               ...style,
-              pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+              ...getThumbStyle(index),
               ...thumbProps.style,
             }}
           >
@@ -677,9 +685,14 @@ Slider.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -789,6 +802,34 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    valueLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    mark: PropTypes.elementType,
+    markLabel: PropTypes.elementType,
+    rail: PropTypes.elementType,
+    root: PropTypes.elementType,
+    thumb: PropTypes.elementType,
+    track: PropTypes.elementType,
+    valueLabel: PropTypes.elementType,
+  }),
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.

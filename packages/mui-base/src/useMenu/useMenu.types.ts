@@ -1,45 +1,84 @@
 import * as React from 'react';
-import { MenuItemMetadata } from '../MenuItemUnstyled/MenuItemUnstyled.types';
-import { MenuUnstyledContextType } from '../MenuUnstyled/MenuUnstyledContext';
-import { UseListboxRootSlotProps } from '../useListbox';
-import { EventHandlers } from '../utils/types';
+import { ListAction, ListState, UseListRootSlotProps } from '../useList';
+import { MenuItemMetadata } from '../useMenuItem';
+import { MenuProviderValue } from './MenuProvider';
 
 export interface UseMenuParameters {
-  open?: boolean;
-  onClose?: () => void;
-  listboxId?: string;
-  listboxRef?: React.Ref<any>;
+  /**
+   * If `true` (Default) will focus the highligted item. If you set this prop to `false`
+   * the focus will not be moved inside the Menu component. This has severe accessibility implications
+   * and should only be considered if you manage focus otherwise.
+   * @default true
+   */
+  autoFocus?: boolean;
+  /**
+   * The id of the menu. If not provided, it will be generated.
+   */
+  id?: string;
+  /**
+   * If `true`, it will be possible to highlight disabled items.
+   * @default true
+   */
+  disabledItemsFocusable?: boolean;
+  /**
+   * If `true`, the highlight will not wrap around the list if arrow keys are used.
+   * @default false
+   */
+  disableListWrap?: boolean;
+  /**
+   * Callback fired when the menu items change.
+   */
+  onItemsChange?: (items: string[]) => void;
+  /**
+   * The ref to the menu's listbox node.
+   */
+  listboxRef?: React.Ref<Element>;
+  /**
+   * The name of the component using useMenu.
+   * For debugging purposes.
+   * @default 'useMenu'
+   */
+  componentName?: string;
 }
 
 export interface UseMenuReturnValue {
   /**
-   * The value for the menu context.
+   * The value to be passed into the MenuProvider.
    */
-  contextValue: MenuUnstyledContextType;
+  contextValue: MenuProviderValue;
   /**
-   * Resolver for the listbox component's props.
-   * @param otherHandlers event handlers for the listbox component
+   * Action dispatcher for the menu component.
+   * Allows to programmatically control the menu.
+   */
+  dispatch: (action: ListAction<string>) => void;
+  /**
+   * Resolver for the listbox slot's props.
+   * @param externalProps additional props for the listbox component
    * @returns props that should be spread on the listbox component
    */
-  getListboxProps: <TOther extends EventHandlers>(
-    otherHandlers?: TOther,
+  getListboxProps: <ExternalProps extends Record<string, unknown> = {}>(
+    externalProps?: ExternalProps,
   ) => UseMenuListboxSlotProps;
   /**
    * The highlighted option in the menu listbox.
    */
-  highlightedOption: string | null;
+  highlightedValue: string | null;
   /**
-   * Callback for highlighting the first item in the menu listbox.
+   * The ref to the menu's listbox node.
    */
-  highlightFirstItem: () => void;
-  /**
-   * Callback for highlighting the last item in the menu listbox.
-   */
-  highlightLastItem: () => void;
+  listboxRef: React.RefCallback<Element> | null;
   /**
    * Items in the menu listbox.
    */
-  menuItems: Record<string, MenuItemMetadata>;
+  menuItems: Map<string, MenuItemMetadata>;
+  /**
+   * If `true`, the menu is open.
+   */
+  open: boolean;
+  /**
+   * An element that triggers the visibility of the menu.
+   */
+  triggerElement: HTMLElement | null;
 }
 
 interface UseMenuListboxSlotEventHandlers {
@@ -47,9 +86,11 @@ interface UseMenuListboxSlotEventHandlers {
   onKeyDown: React.KeyboardEventHandler;
 }
 
-export type UseMenuListboxSlotProps<TOther = {}> = UseListboxRootSlotProps<
-  Omit<TOther, keyof UseMenuListboxSlotEventHandlers> & UseMenuListboxSlotEventHandlers
+export type UseMenuListboxSlotProps<ExternalProps = {}> = UseListRootSlotProps<
+  Omit<ExternalProps, keyof UseMenuListboxSlotEventHandlers> & UseMenuListboxSlotEventHandlers
 > & {
-  ref: React.Ref<any>;
+  ref: React.RefCallback<Element> | null;
   role: React.AriaRole;
 };
+
+export interface MenuInternalState extends ListState<string> {}

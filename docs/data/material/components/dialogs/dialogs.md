@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Dialog component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
@@ -27,7 +27,7 @@ Touch mechanics:
 - Choosing an option immediately commits the option and closes the menu
 - Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
 
-{{"demo": "SimpleDialog.js"}}
+{{"demo": "SimpleDialogDemo.js"}}
 
 ## Alerts
 
@@ -108,6 +108,15 @@ Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action
 
 {{"demo": "ConfirmationDialog.js"}}
 
+## Non-modal dialog
+
+Dialogs can also be non-modal, meaning they don't interrupt user interaction behind it.
+Visit [the Nielsen Norman Group article](https://www.nngroup.com/articles/modal-nonmodal-dialog/) for more in-depth guidance about modal vs. non-modal dialog usage.
+
+The demo below shows a persistent cookie banner, a common non-modal dialog use case.
+
+{{"demo": "CookiesBanner.js", "iframe": true}}
+
 ## Draggable dialog
 
 You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable).
@@ -137,12 +146,14 @@ Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
 
 ## Complementary projects
 
-### Material UI Confirm
+For more advanced use cases you might be able to take advantage of:
 
-![stars](https://img.shields.io/github/stars/jonatanklosko/material-ui-confirm)
+### material-ui-confirm
+
+![stars](https://img.shields.io/github/stars/jonatanklosko/material-ui-confirm?style=social&label=Star)
 ![npm downloads](https://img.shields.io/npm/dm/material-ui-confirm.svg)
 
-This package provides dialogs for confirming user actions without writing boilerplate code.
+The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui-confirm/) provides dialogs for confirming user actions without writing boilerplate code.
 
 ## Accessibility
 

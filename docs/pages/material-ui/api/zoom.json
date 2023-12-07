@@ -19,8 +19,11 @@
     }
   },
   "name": "Zoom",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": ["import Zoom from '@mui/material/Zoom';", "import { Zoom } from '@mui/material';"],
+  "classes": [],
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiZoom",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Zoom/Zoom.js",
   "inheritance": {

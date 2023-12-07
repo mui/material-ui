@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import CardActionArea, { cardActionAreaClasses as classes } from '@mui/material/CardActionArea';
 import ButtonBase from '@mui/material/ButtonBase';
 

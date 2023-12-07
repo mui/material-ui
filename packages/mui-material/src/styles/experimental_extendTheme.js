@@ -10,6 +10,7 @@ import {
   unstable_styleFunctionSx as styleFunctionSx,
   unstable_prepareCssVars as prepareCssVars,
 } from '@mui/system';
+import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
 
@@ -58,11 +59,6 @@ const silent = (fn) => {
 };
 
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
-
-export const defaultShouldSkipGeneratingVar = (keys) =>
-  !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
-  !!keys[0].match(/sxConfig$/) || // ends with sxConfig
-  (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
 
 export default function extendTheme(options = {}, ...args) {
   const {
@@ -138,6 +134,7 @@ export default function extendTheme(options = {}, ...args) {
       'Alert',
       'AppBar',
       'Avatar',
+      'Button',
       'Chip',
       'FilledInput',
       'LinearProgress',
@@ -190,6 +187,8 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Alert, 'warningIconColor', setCssVarColor('palette-warning-main'));
       setColor(palette.AppBar, 'defaultBg', setCssVarColor('palette-grey-100'));
       setColor(palette.Avatar, 'defaultBg', setCssVarColor('palette-grey-400'));
+      setColor(palette.Button, 'inheritContainedBg', setCssVarColor('palette-grey-300'));
+      setColor(palette.Button, 'inheritContainedHoverBg', setCssVarColor('palette-grey-A100'));
       setColor(palette.Chip, 'defaultBorder', setCssVarColor('palette-grey-400'));
       setColor(palette.Chip, 'defaultAvatarColor', setCssVarColor('palette-grey-700'));
       setColor(palette.Chip, 'defaultIconColor', setCssVarColor('palette-grey-700'));
@@ -278,6 +277,8 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.AppBar, 'darkBg', setCssVarColor('palette-background-paper')); // specific for dark mode
       setColor(palette.AppBar, 'darkColor', setCssVarColor('palette-text-primary')); // specific for dark mode
       setColor(palette.Avatar, 'defaultBg', setCssVarColor('palette-grey-600'));
+      setColor(palette.Button, 'inheritContainedBg', setCssVarColor('palette-grey-800'));
+      setColor(palette.Button, 'inheritContainedHoverBg', setCssVarColor('palette-grey-700'));
       setColor(palette.Chip, 'defaultBorder', setCssVarColor('palette-grey-700'));
       setColor(palette.Chip, 'defaultAvatarColor', setCssVarColor('palette-grey-300'));
       setColor(palette.Chip, 'defaultIconColor', setCssVarColor('palette-grey-300'));

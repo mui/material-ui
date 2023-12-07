@@ -4,7 +4,7 @@
 
 _Synthetic benchmark_
 
-```sh
+```bash
 yarn server:core
 
 ButtonBase x 40,724 ops/sec ±1.58% (189 runs sampled)
@@ -19,7 +19,7 @@ Markdown x 954 ops/sec ±1.35% (187 runs sampled)
 
 _Synthetic benchmark_
 
-```sh
+```bash
 yarn server:docs
 
 Markdown x 946 ops/sec ±4.04% (176 runs sampled)
@@ -30,7 +30,7 @@ MarkdownElement x 3,941 ops/sec ±5.53% (185 runs sampled)
 
 _Synthetic benchmark_
 
-```sh
+```bash
 yarn server:styles
 
 Box x 3,850 ops/sec ±3.58% (178 runs sampled)
@@ -48,7 +48,7 @@ Naked x 58,694 ops/sec ±0.86% (188 runs sampled)
 
 _Synthetic benchmark_
 
-```sh
+```bash
 yarn server:system
 
 @styled-system/css x 64,606 ops/sec ±0.45% (188 runs sampled)
@@ -58,7 +58,7 @@ yarn server:system
 
 ## Real-world benchmark
 
-```sh
+```bash
 yarn server:server
 
 bombardier \

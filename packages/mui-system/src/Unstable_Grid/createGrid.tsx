@@ -5,6 +5,7 @@ import { OverridableComponent } from '@mui/types';
 import {
   unstable_composeClasses as composeClasses,
   unstable_generateUtilityClass as generateUtilityClass,
+  unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
@@ -24,7 +25,7 @@ import {
   generateDirectionClasses,
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
-import { GridTypeMap, GridOwnerState } from './GridProps';
+import { GridTypeMap, GridOwnerState, GridProps } from './GridProps';
 import type { Breakpoint } from '../createTheme';
 
 const defaultTheme = createTheme();
@@ -58,7 +59,6 @@ export default function createGrid(
     componentName = 'MuiGrid',
   } = options;
 
-  const NestedContext = React.createContext<number>(0);
   const OverflowContext = React.createContext<boolean | undefined>(undefined);
 
   const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
@@ -92,11 +92,11 @@ export default function createGrid(
   const Grid = React.forwardRef(function Grid(inProps, ref) {
     const theme = useTheme();
     const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
-    const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'>; // `color` type conflicts with html color attribute.
-    const level = React.useContext(NestedContext);
+    const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'> & GridOwnerState; // `color` type conflicts with html color attribute.
     const overflow = React.useContext(OverflowContext);
     const {
       className,
+      children,
       columns: columnsProp = 12,
       container = false,
       component = 'div',
@@ -106,6 +106,7 @@ export default function createGrid(
       rowSpacing: rowSpacingProp = spacingProp,
       columnSpacing: columnSpacingProp = spacingProp,
       disableEqualOverflow: themeDisableEqualOverflow,
+      unstable_level: level = 0,
       ...rest
     } = props;
     // Because `disableEqualOverflow` can be set from the theme's defaultProps, the **nested** grid should look at the instance props instead.
@@ -159,12 +160,17 @@ export default function createGrid(
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         {...other}
-      />
+      >
+        {React.Children.map(children, (child) => {
+          if (React.isValidElement(child) && isMuiElement(child, ['Grid'])) {
+            return React.cloneElement(child, {
+              unstable_level: child.props.unstable_level ?? level + 1,
+            } as GridProps);
+          }
+          return child;
+        })}
+      </GridRoot>
     );
-
-    if (container) {
-      result = <NestedContext.Provider value={level + 1}>{result}</NestedContext.Provider>;
-    }
 
     if (disableEqualOverflow !== undefined && disableEqualOverflow !== (overflow ?? false)) {
       // There are 2 possibilities that should wrap with the OverflowContext to communicate with the nested grids:
@@ -229,6 +235,9 @@ export default function createGrid(
     xs: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
     xsOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   };
+
+  // @ts-ignore internal logic for nested grid
+  Grid.muiName = 'Grid';
 
   return Grid;
 }

@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "disableTypography": { "type": { "name": "bool" }, "default": "false" },
     "inset": { "type": { "name": "bool" }, "default": "false" },
     "primary": { "type": { "name": "node" } },
@@ -12,16 +12,56 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "ListItemText",
-  "styles": {
-    "classes": ["root", "multiline", "dense", "inset", "primary", "secondary"],
-    "globalClasses": {},
-    "name": "MuiListItemText"
-  },
+  "imports": [
+    "import ListItemText from '@mui/material/ListItemText';",
+    "import { ListItemText } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "dense",
+      "className": "MuiListItemText-dense",
+      "description": "Styles applied to the Typography component if dense.",
+      "isGlobal": false
+    },
+    {
+      "key": "inset",
+      "className": "MuiListItemText-inset",
+      "description": "Styles applied to the root element if `inset={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "multiline",
+      "className": "MuiListItemText-multiline",
+      "description": "Styles applied to the Typography component if primary and secondary are set.",
+      "isGlobal": false
+    },
+    {
+      "key": "primary",
+      "className": "MuiListItemText-primary",
+      "description": "Styles applied to the primary `Typography` component.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListItemText-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "secondary",
+      "className": "MuiListItemText-secondary",
+      "description": "Styles applied to the secondary `Typography` component.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListItemText",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ListItemText/ListItemText.js",
   "inheritance": null,

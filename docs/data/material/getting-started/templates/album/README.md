@@ -12,4 +12,4 @@
 
 <!-- #default-branch-switch -->
 
-View the demo at https://mui.com/getting-started/templates/album/.
+View the demo at https://mui.com/material-ui/getting-started/templates/album/.

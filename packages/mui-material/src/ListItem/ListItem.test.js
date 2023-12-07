@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { describeConformance, act, createRenderer, fireEvent, queries } from 'test/utils';
+import {
+  describeConformance,
+  act,
+  createRenderer,
+  fireEvent,
+  queries,
+} from '@mui-internal/test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
@@ -175,7 +181,7 @@ describe('<ListItem />', () => {
               classes: {},
               children: [
                 <ListItemSecondaryAction>I should have come last :(</ListItemSecondaryAction>,
-                <ListItemText>My position doesn not matter.</ListItemText>,
+                <ListItemText>My position does not matter.</ListItemText>,
               ],
             },
             'prop',

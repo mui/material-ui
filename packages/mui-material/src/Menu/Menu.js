@@ -1,12 +1,13 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useSlotProps } from '@mui/base/utils';
 import { HTMLElementType } from '@mui/utils';
 import MenuList from '../MenuList';
-import Paper from '../Paper';
-import Popover from '../Popover';
+import Popover, { PopoverPaper } from '../Popover';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
@@ -41,13 +42,13 @@ const MenuRoot = styled(Popover, {
   overridesResolver: (props, styles) => styles.root,
 })({});
 
-const MenuPaper = styled(Paper, {
+export const MenuPaper = styled(PopoverPaper, {
   name: 'MuiMenu',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
 })({
   // specZ: The maximum height of a simple menu should be one or more rows less than the view
-  // height. This ensures a tapable area outside of the simple menu with which to dismiss
+  // height. This ensures a tappable area outside of the simple menu with which to dismiss
   // the menu.
   maxHeight: 'calc(100% - 96px)',
   // Add iOS momentum scrolling for iOS < 13.0
@@ -69,6 +70,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const {
     autoFocus = true,
     children,
+    className,
     disableAutoFocusItem = false,
     MenuListProps = {},
     onClose,
@@ -78,6 +80,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     transitionDuration = 'auto',
     TransitionProps: { onEntering, ...TransitionProps } = {},
     variant = 'selectedMenu',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -156,6 +160,23 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     }
   });
 
+  const PaperSlot = slots.paper ?? MenuPaper;
+  const paperExternalSlotProps = slotProps.paper ?? PaperProps;
+
+  const rootSlotProps = useSlotProps({
+    elementType: slots.root,
+    externalSlotProps: slotProps.root,
+    ownerState,
+    className: [classes.root, className],
+  });
+
+  const paperSlotProps = useSlotProps({
+    elementType: PaperSlot,
+    externalSlotProps: paperExternalSlotProps,
+    ownerState,
+    className: classes.paper,
+  });
+
   return (
     <MenuRoot
       onClose={onClose}
@@ -164,15 +185,14 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
         horizontal: isRtl ? 'right' : 'left',
       }}
       transformOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
-      PaperProps={{
-        as: MenuPaper,
-        ...PaperProps,
-        classes: {
-          ...PaperProps.classes,
-          root: classes.paper,
-        },
+      slots={{
+        paper: PaperSlot,
+        root: slots.root,
       }}
-      className={classes.root}
+      slotProps={{
+        root: rootSlotProps,
+        paper: paperSlotProps,
+      }}
       open={open}
       ref={ref}
       transitionDuration={transitionDuration}
@@ -226,6 +246,10 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * When opening the menu will not focus the active item but the `[role="menu"]`
    * unless `autoFocus` is also set to `false`. Not using the default means not
    * following WAI-ARIA authoring practices. Please be considerate about possible
@@ -257,6 +281,25 @@ Menu.propTypes /* remove-proptypes */ = {
    * `classes` prop applied to the [`Popover`](/material-ui/api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    paper: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

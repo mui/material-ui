@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import appendOwnerState from './appendOwnerState';
+import { appendOwnerState } from './appendOwnerState';
 
 const ownerState = {
   className: 'bar',

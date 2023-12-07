@@ -57,31 +57,29 @@ export default function getInitColorSchemeScript(options?: GetInitColorSchemeScr
       key="mui-color-scheme-init"
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
-        __html: `(function() { try {
-        var mode = localStorage.getItem('${modeStorageKey}') || '${defaultMode}';
-        var cssColorScheme = mode;
-        var colorScheme = '';
-        if (mode === 'system') {
-          // handle system mode
-          var mql = window.matchMedia('(prefers-color-scheme: dark)');
-          if (mql.matches) {
-            cssColorScheme = 'dark';
-            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
-          } else {
-            cssColorScheme = 'light';
-            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
-          }
-        }
-        if (mode === 'light') {
-          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
-        }
-        if (mode === 'dark') {
-          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
-        }
-        if (colorScheme) {
-          ${colorSchemeNode}.setAttribute('${attribute}', colorScheme);
-        }
-      } catch (e) {} })();`,
+        __html: `(function() {
+try {
+  var mode = localStorage.getItem('${modeStorageKey}') || '${defaultMode}';
+  var colorScheme = '';
+  if (mode === 'system') {
+    // handle system mode
+    var mql = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mql.matches) {
+      colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
+    } else {
+      colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
+    }
+  }
+  if (mode === 'light') {
+    colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
+  }
+  if (mode === 'dark') {
+    colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
+  }
+  if (colorScheme) {
+    ${colorSchemeNode}.setAttribute('${attribute}', colorScheme);
+  }
+} catch(e){}})();`,
       }}
     />
   );

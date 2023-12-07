@@ -15,7 +15,7 @@ describe('@mui/codemod', () => {
         const actual = transform(
           {
             source: read('./rename-css-variables.test/actual.js'),
-            path: require.resolve('./joy-rename-components-to-slots.test/actual.js'),
+            path: require.resolve('./rename-css-variables.test/actual.js'),
           },
           { jscodeshift },
           {},

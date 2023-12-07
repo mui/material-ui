@@ -3,11 +3,12 @@ import {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
+  AutocompleteFreeSoloValueMapping,
   AutocompleteInputChangeReason,
   AutocompleteValue,
   UseAutocompleteProps,
 } from '@mui/base/useAutocomplete';
-import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
+import { PopperOwnProps } from '@mui/base/Popper';
 import { OverridableStringUnion } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -28,65 +29,65 @@ export type AutocompleteSlot =
 
 export interface AutocompleteSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
-   * The component used to render the wrapper.
+   * The component that renders the wrapper.
    * @default 'div'
    */
-  wrapper: React.ElementType;
+  wrapper?: React.ElementType;
   /**
-   * The component used to render the input.
+   * The component that renders the input.
    * @default 'input'
    */
-  input: React.ElementType;
+  input?: React.ElementType;
   /**
-   * The component used to render the start decorator.
-   * @default 'span'
+   * The component that renders the start decorator.
+   * @default 'div'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
-   * The component used to render the end decorator.
-   * @default 'span'
+   * The component that renders the end decorator.
+   * @default 'div'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
   /**
-   * The component used to render the clear indicator.
+   * The component that renders the clear indicator.
    * @default 'button'
    */
-  clearIndicator: React.ElementType;
+  clearIndicator?: React.ElementType;
   /**
-   * The component used to render the popup indicator.
+   * The component that renders the popup indicator.
    * @default 'button'
    */
-  popupIndicator: React.ElementType;
+  popupIndicator?: React.ElementType;
   /**
-   * The component used to render the listbox.
+   * The component that renders the listbox.
    * @default 'ul'
    */
-  listbox: React.ElementType;
+  listbox?: React.ElementType;
   /**
-   * The component used to render the option.
+   * The component that renders the option.
    * @default 'li'
    */
-  option: React.ElementType;
+  option?: React.ElementType;
   /**
-   * The component used to render the loading.
+   * The component that renders the loading.
    * @default 'li'
    */
-  loading: React.ElementType;
+  loading?: React.ElementType;
   /**
-   * The component used to render the no-options.
+   * The component that renders the no-options.
    * @default 'li'
    */
-  noOptions: React.ElementType;
+  noOptions?: React.ElementType;
   /**
-   * The component used to render the limit tag.
-   * @default 'span'
+   * The component that renders the limit tag.
+   * @default 'div'
    */
-  limitTag: React.ElementType;
+  limitTag?: React.ElementType;
 }
 
 export interface AutocompletePropsVariantOverrides {}
@@ -154,7 +155,7 @@ export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
         color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
         variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
         size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
-      } & Omit<PopperUnstyledOwnProps, 'slots' | 'slotProps' | 'open'>,
+      } & Omit<PopperOwnProps, 'slots' | 'slotProps' | 'open'>,
       AutocompleteOwnerState<any, any, any, any>
     >;
     option: SlotProps<
@@ -379,6 +380,7 @@ export interface AutocompleteOwnerState<
   FreeSolo extends boolean | undefined,
 > extends ApplyColorInversion<AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>> {
   focused?: boolean;
+  getOptionLabel: (option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
   hasClearIcon?: boolean;
   hasPopupIcon?: boolean;
   hasOptions?: boolean;

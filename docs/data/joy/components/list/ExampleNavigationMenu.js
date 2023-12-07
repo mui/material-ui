@@ -1,6 +1,6 @@
 import * as React from 'react';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { Popper } from '@mui/base/Popper';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import Chip from '@mui/joy/Chip';
@@ -26,7 +26,6 @@ const useRovingIndex = (options) => {
     },
   } = options || {};
   const [activeIndex, setActiveIndex] = React.useState(initialActiveIndex);
-
   const targetRefs = React.useRef([]);
   const targets = targetRefs.current;
   const focusNext = () => {
@@ -107,7 +106,7 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
   const id = open ? 'about-popper' : undefined;
   return (
     <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-      <Box onMouseLeave={() => setAnchorEl(null)}>
+      <div onMouseLeave={() => setAnchorEl(null)}>
         <ListItemButton
           aria-haspopup
           aria-expanded={open ? 'true' : 'false'}
@@ -136,13 +135,7 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
         >
           About <KeyboardArrowDown />
         </ListItemButton>
-        <PopperUnstyled
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          disablePortal
-          keepMounted
-        >
+        <Popper id={id} open={open} anchorEl={anchorEl} disablePortal keepMounted>
           <List
             role="menu"
             aria-label="About"
@@ -154,7 +147,7 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
               '--List-radius': '8px',
               '--List-padding': '4px',
               '--ListDivider-gap': '4px',
-              '--List-decoratorSize': '32px',
+              '--ListItemDecorator-size': '32px',
             }}
           >
             <ListItem role="none">
@@ -182,8 +175,8 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
               </ListItemButton>
             </ListItem>
           </List>
-        </PopperUnstyled>
-      </Box>
+        </Popper>
+      </div>
     </ClickAwayListener>
   );
 });
@@ -219,7 +212,7 @@ const AdmissionsMenu = React.forwardRef(
     const id = open ? 'admissions-popper' : undefined;
     return (
       <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-        <Box onMouseLeave={() => setAnchorEl(null)}>
+        <div onMouseLeave={() => setAnchorEl(null)}>
           <ListItemButton
             aria-haspopup
             aria-expanded={open ? 'true' : 'false'}
@@ -248,13 +241,7 @@ const AdmissionsMenu = React.forwardRef(
           >
             Admissions <KeyboardArrowDown />
           </ListItemButton>
-          <PopperUnstyled
-            id={id}
-            open={open}
-            anchorEl={anchorEl}
-            disablePortal
-            keepMounted
-          >
+          <Popper id={id} open={open} anchorEl={anchorEl} disablePortal keepMounted>
             <List
               role="menu"
               aria-label="About"
@@ -296,8 +283,8 @@ const AdmissionsMenu = React.forwardRef(
                 </ListItemButton>
               </ListItem>
             </List>
-          </PopperUnstyled>
-        </Box>
+          </Popper>
+        </div>
       </ClickAwayListener>
     );
   },
@@ -315,6 +302,7 @@ export default function ExampleNavigationMenu() {
           '--List-radius': '8px',
           '--List-padding': '4px',
           '--List-gap': '8px',
+          '--ListItem-gap': '0px',
         }}
       >
         <ListItem role="none">

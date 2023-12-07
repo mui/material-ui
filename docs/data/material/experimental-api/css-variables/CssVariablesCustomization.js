@@ -25,7 +25,7 @@ const CssVarsCustomButton = styled(Button)({
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
-export default function App() {
+export default function CssVariablesCustomization() {
   // the `node` is used for attaching CSS variables to this demo, you might not need it in your application.
   const [node, setNode] = React.useState(null);
   useEnhancedEffect(() => {

@@ -2,11 +2,11 @@ import * as React from 'react';
 import Grid from '@mui/joy/Grid';
 import FormLabel from '@mui/joy/FormLabel';
 import FormControl from '@mui/joy/FormControl';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Sheet from '@mui/joy/Sheet';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import BrandingProvider from 'docs/src/BrandingProvider';
 
 export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState(2);
@@ -40,7 +40,7 @@ export default function SpacingGrid() {
           <Grid container>
             <Grid>
               <FormControl>
-                <FormLabel sx={{ mb: 1.5 }}>spacing</FormLabel>
+                <FormLabel>spacing</FormLabel>
                 <RadioGroup
                   name="spacing"
                   aria-label="spacing"

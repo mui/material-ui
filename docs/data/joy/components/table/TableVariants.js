@@ -57,13 +57,11 @@ export default function TableVariants() {
             value={color}
             onChange={(event, newValue) => setColor(newValue)}
           >
-            {['neutral', 'primary', 'danger', 'info', 'success', 'warning'].map(
-              (item) => (
-                <Option key={item} value={item}>
-                  {item}
-                </Option>
-              ),
-            )}
+            {['neutral', 'primary', 'danger', 'success', 'warning'].map((item) => (
+              <Option key={item} value={item}>
+                {item}
+              </Option>
+            ))}
           </Select>
         </FormControl>
       </Box>

@@ -1,3 +1,4 @@
+'use client';
 import PropTypes from 'prop-types';
 import { createGrid as createGrid2 } from '@mui/system/Unstable_Grid';
 import { OverridableComponent } from '@mui/types';
@@ -7,6 +8,7 @@ import { Grid2TypeMap } from './Grid2Props';
 const Grid2 = createGrid2({
   createStyledComponent: styled('div', {
     name: 'MuiGrid2',
+    slot: 'Root',
     overridesResolver: (props, styles) => styles.root,
   }),
   componentName: 'MuiGrid2',

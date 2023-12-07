@@ -7,20 +7,20 @@ export type ListItemSlot = 'root' | 'startAction' | 'endAction';
 
 export interface ListItemSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'li'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
-   * The component used to render the start action.
+   * The component that renders the start action.
    * @default 'div'
    */
-  startAction: React.ElementType;
+  startAction?: React.ElementType;
   /**
-   * The component used to render the end action.
+   * The component that renders the end action.
    * @default 'div'
    */
-  endAction: React.ElementType;
+  endAction?: React.ElementType;
 }
 
 export interface ListItemPropsVariantOverrides {}

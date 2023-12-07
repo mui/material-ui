@@ -84,13 +84,13 @@ Note that if you want to add additional `@font-face` declarations, you need to u
 
 ## Font size
 
-MUI uses `rem` units for the font size.
+Material UI uses `rem` units for the font size.
 The browser `<html>` element default font size is `16px`, but browsers have an option to change this value,
 so `rem` units allow us to accommodate the user's settings, resulting in a better accessibility support.
 Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings
 for devices that can be vastly different in size and viewing distance.
 
-To change the font-size of MUI you can provide a `fontSize` property.
+To change the font-size of Material UI you can provide a `fontSize` property.
 The default value is `14px`.
 
 ```js
@@ -106,10 +106,10 @@ const theme = createTheme({
 The computed font size by the browser follows this mathematical equation:
 
 <div class="only-light-mode">
-  <img alt="font size calculation" style="width: 458px;" src="/static/images/font-size.svg" />
+  <img alt="font size calculation" style="width: 550px;" src="/static/images/font-size.svg" width="436" height="48" />
 </div>
 <div class="only-dark-mode">
-  <img alt="font size calculation" style="width: 458px;" src="/static/images/font-size-dark.svg" />
+  <img alt="font size calculation" style="width: 550px;" src="/static/images/font-size-dark.svg" width="436" height="48" />
 </div>
 
 <!-- https://latex.codecogs.com/svg.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
@@ -163,13 +163,13 @@ Changing the font size can harm accessibility ♿️. Most browsers agree on the
 :::
 
 The `theme.typography.htmlFontSize` property is provided for this use case,
-which tells MUI what the font-size on the `<html>` element is.
+which tells Material UI what the font-size on the `<html>` element is.
 This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createTheme({
   typography: {
-    // Tell MUI what's the font-size on the html element is.
+    // Tell Material UI what the font-size on the html element is.
     htmlFontSize: 10,
   },
 });

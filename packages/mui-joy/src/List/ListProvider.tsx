@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import RowListContext from './RowListContext';
 import WrapListContext from './WrapListContext';
@@ -18,10 +19,10 @@ import NestedListContext from './NestedListContext';
 export const scopedVariables = {
   '--NestedList-marginRight': '0px',
   '--NestedList-marginLeft': '0px',
-  '--NestedList-item-paddingLeft': 'var(--ListItem-paddingX)',
+  '--NestedListItem-paddingLeft': 'var(--ListItem-paddingX)',
   // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
-  '--List-itemButtonMarginBlock': '0px',
-  '--List-itemButtonMarginInline': '0px',
+  '--ListItemButton-marginBlock': '0px',
+  '--ListItemButton-marginInline': '0px',
   '--ListItem-marginBlock': '0px',
   '--ListItem-marginInline': '0px',
 };
@@ -59,6 +60,7 @@ function ListProvider(props: React.PropsWithChildren<ListProviderProps>) {
             ? React.cloneElement(child, {
                 // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
                 ...(index === 0 && { 'data-first-child': '' }),
+                ...(index === React.Children.count(children) - 1 && { 'data-last-child': '' }),
               })
             : child,
         )}

@@ -1,4 +1,4 @@
-import { SxProps as SystemSxProps, SxConfig, CSSObject } from '@mui/system';
+import { SxProps as SystemSxProps } from '@mui/system';
 import {
   CssVarsTheme as MD2Theme,
   SupportedColorScheme,
@@ -21,13 +21,24 @@ export interface MD3Tones {
   99: string;
   100: string;
 }
+
+export interface MD3NeutralTones extends MD3Tones {
+  17: string;
+  22: string;
+  92: string;
+  96: string;
+}
+
 export interface MD3Palettes {
   primary: MD3Tones;
   secondary: MD3Tones;
   tertiary: MD3Tones;
-  neutral: MD3Tones;
+  neutral: MD3NeutralTones;
   neutralVariant: MD3Tones;
   error: MD3Tones;
+  info: MD3Tones;
+  warning: MD3Tones;
+  success: MD3Tones;
   common: {
     black: string;
     white: string;
@@ -55,6 +66,21 @@ export interface MD3ColorSchemeTokens {
   errorContainer: string;
   onErrorContainer: string;
 
+  info: string;
+  onInfo: string;
+  infoContainer: string;
+  onInfoContainer: string;
+
+  warning: string;
+  onWarning: string;
+  warningContainer: string;
+  onWarningContainer: string;
+
+  success: string;
+  onSuccess: string;
+  successContainer: string;
+  onSuccessContainer: string;
+
   background: string;
   onBackground: string;
 
@@ -62,6 +88,9 @@ export interface MD3ColorSchemeTokens {
   onSurface: string;
   surfaceVariant: string;
   onSurfaceVariant: string;
+  surfaceContainerLow: string;
+  surfaceContainerHigh: string;
+  surfaceContainerHighest: string;
 
   inverseSurface: string;
   inverseOnSurface: string;
@@ -69,6 +98,7 @@ export interface MD3ColorSchemeTokens {
   surfaceTint?: string;
 
   outline: string;
+  outlineVariant: string;
   shadow: string;
 
   // channels
@@ -108,10 +138,16 @@ export interface TypescaleValue {
   small: {
     family: string;
     weight: string;
+    lineHeight: number;
+    size: number;
+    tracking: number;
   };
   medium: {
     family: string;
     weight: string;
+    lineHeight: number;
+    size: number;
+    tracking: number;
   };
   large: {
     family: string;
@@ -263,16 +299,6 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
     css: Record<string, string | number>;
     vars: Theme['vars'];
   };
-  /**
-   * A function to determine if the key, value should be attached as CSS Variable
-   * `keys` is an array that represents the object path keys.
-   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
-   *  then, keys = ['foo', 'bar']
-   *        value = 'var(--test)'
-   */
-  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
-  unstable_sxConfig: SxConfig;
-  unstable_sx: (props: SystemSxProps<Theme>) => CSSObject;
 }
 
 export type SxProps = SystemSxProps<Theme>;

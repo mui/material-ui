@@ -186,6 +186,7 @@ async function run(context) {
         fixtureTemplateValues,
       });
       break;
+    // TODO remove, no longer relevant since https://github.com/mui/material-ui/pull/38567
     case 'gatsby':
       await writeGatsbyFixture({
         fixtureUrl: resolveFixtureUrl('gatsby'),

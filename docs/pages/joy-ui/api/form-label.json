@@ -3,30 +3,49 @@
     "children": { "type": { "name": "node" } },
     "component": { "type": { "name": "elementType" } },
     "required": { "type": { "name": "bool" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ asterisk?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ asterisk?: elementType, root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "FormLabel",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "imports": [
+    "import FormLabel from '@mui/joy/FormLabel';",
+    "import { FormLabel } from '@mui/joy';"
+  ],
   "slots": [
     {
-      "name": "asterisk",
-      "description": "The component used to render the asterisk.",
-      "default": "'span'",
-      "class": ".MuiFormLabel-asterisk"
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'label'",
+      "class": "MuiFormLabel-root"
     },
     {
-      "name": "root",
-      "description": "The component used to render the root.",
-      "default": "'label'",
-      "class": ".MuiFormLabel-root"
+      "name": "asterisk",
+      "description": "The component that renders the asterisk.",
+      "default": "'span'",
+      "class": "MuiFormLabel-asterisk"
     }
   ],
+  "classes": [],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyFormLabel",
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-joy/src/FormLabel/FormLabel.tsx",
   "inheritance": null,

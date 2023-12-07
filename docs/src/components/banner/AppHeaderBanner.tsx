@@ -28,7 +28,7 @@ function getSurveyMessage() {
 function getDefaultHiringMessage() {
   return (
     <React.Fragment>
-      🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and
+      🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Community Engineer, and
       more!&nbsp;&#160;
       <Link
         href={ROUTES.careers} // Fix me!

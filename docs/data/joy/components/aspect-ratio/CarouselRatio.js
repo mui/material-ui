@@ -39,25 +39,17 @@ export default function CarouselRatio() {
       }}
     >
       {data.map((item) => (
-        <Card
-          orientation="horizontal"
-          key={item.title}
-          variant="outlined"
-          sx={{
-            gap: 2,
-            '--Card-padding': (theme) => theme.spacing(2),
-          }}
-        >
+        <Card orientation="horizontal" size="sm" key={item.title} variant="outlined">
           <AspectRatio ratio="1" sx={{ minWidth: 60 }}>
             <img
-              src={`${item.src}?h=120&fit=crop&auto=format`}
               srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
+              src={`${item.src}?h=120&fit=crop&auto=format`}
               alt={item.title}
             />
           </AspectRatio>
-          <Box sx={{ whiteSpace: 'nowrap' }}>
-            <Typography fontWeight="md">{item.title}</Typography>
-            <Typography level="body2">{item.description}</Typography>
+          <Box sx={{ whiteSpace: 'nowrap', mx: 1 }}>
+            <Typography level="title-md">{item.title}</Typography>
+            <Typography level="body-sm">{item.description}</Typography>
           </Box>
         </Card>
       ))}

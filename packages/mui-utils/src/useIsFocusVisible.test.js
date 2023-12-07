@@ -1,13 +1,13 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
 import {
   act,
   createRenderer,
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import useIsFocusVisible, { teardown as teardownFocusVisible } from './useIsFocusVisible';
 import useForkRef from './useForkRef';
 
@@ -67,15 +67,20 @@ describe('useIsFocusVisible', () => {
     });
 
     let rootElement;
+    let reactRoot;
 
     beforeEach(() => {
       rootElement = document.createElement('div');
       document.body.appendChild(rootElement);
       rootElement.attachShadow({ mode: 'open' });
+      reactRoot = ReactDOMClient.createRoot(rootElement.shadowRoot);
     });
 
     afterEach(() => {
-      ReactDOM.unmountComponentAtNode(rootElement.shadowRoot);
+      act(() => {
+        reactRoot.unmount();
+      });
+
       teardownFocusVisible(rootElement.shadowRoot);
       document.body.removeChild(rootElement);
     });

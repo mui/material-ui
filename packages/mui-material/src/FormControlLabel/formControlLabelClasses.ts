@@ -16,6 +16,10 @@ export interface FormControlLabelClasses {
   label: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
+  /** State class applied to the root element if `required={true}`. */
+  required: string;
+  /** Styles applied to the asterisk element. */
+  asterisk: string;
 }
 
 export type FormControlLabelClassKey = keyof FormControlLabelClasses;
@@ -34,6 +38,8 @@ const formControlLabelClasses: FormControlLabelClasses = generateUtilityClasses(
     'disabled',
     'label',
     'error',
+    'required',
+    'asterisk',
   ],
 );
 
