@@ -62,7 +62,7 @@ export interface TablePaginationActionsSlots {
    */
   nextPageIcon?: React.ElementType;
   /**
-   * The component that renders the back page icon.
+   * The component that renders the previous page icon.
    * @default KeyboardArrowLeft
    */
   previousPageIcon?: React.ElementType;
