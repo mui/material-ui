@@ -5064,9 +5064,9 @@ aws-sign2@~0.7.0:
   integrity sha512-08kcGqnYf/YmjoRhfxyu+CLxBjUtHLXLXX/vUfx9l2LYzG3c1m61nrpyFUZI6zeS+Li/wWMMidD9KgrqtGq3mA==
 
 aws4@^1.8.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
-  integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.12.0.tgz#ce1c9d143389679e253b314241ea9aa5cec980d3"
+  integrity sha512-NmWvPnx0F1SfrQbYwOi7OeaNGokp9XhzNioJ/CSBs8Qa4vxug81mhJEAVZwxXuBmYB5KDRfMq/F3RR0BIU7sWg==
 
 axe-core@^4.6.2:
   version "4.6.3"
@@ -15772,9 +15772,9 @@ sprintf-js@~1.0.2:
   integrity sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==
 
 sshpk@^1.7.0:
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.17.0.tgz#578082d92d4fe612b13007496e543fa0fbcbe4c5"
-  integrity sha512-/9HIEs1ZXGhSPE8X6Ccm7Nam1z8KcoCqPdI7ecm1N33EzAetWahvQWVqLZtaZQ+IDKX4IyA2o0gBzqIMkAagHQ==
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.18.0.tgz#1663e55cddf4d688b86a46b77f0d5fe363aba028"
+  integrity sha512-2p2KJZTSqQ/I3+HX42EpYOa2l3f8Erv8MWKsy2I9uf4wA7yFIkXRffYdsx86y6z4vHtV8u7g+pPlr8/4ouAxsQ==
   dependencies:
     asn1 "~0.2.3"
     assert-plus "^1.0.0"
@@ -17286,9 +17286,9 @@ victory-vendor@^36.6.8:
     d3-timer "^3.0.1"
 
 vite@^4.4.11:
-  version "4.4.11"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-4.4.11.tgz#babdb055b08c69cfc4c468072a2e6c9ca62102b0"
-  integrity sha512-ksNZJlkcU9b0lBwAGZGGaZHCMqHsc8OpgtoYhsQ4/I2v5cnpmmmqe5pM4nv/4Hn6G/2GhTdj0DhZh2e+Er1q5A==
+  version "4.4.12"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-4.4.12.tgz#e9c355d5a0d8a47afa46cb4bad10820da333da5c"
+  integrity sha512-KtPlUbWfxzGVul8Nut8Gw2Qe8sBzWY+8QVc5SL8iRFnpnrcoCaNlzO40c1R6hPmcdTwIPEDkq0Y9+27a5tVbdQ==
   dependencies:
     esbuild "^0.18.10"
     postcss "^8.4.27"
