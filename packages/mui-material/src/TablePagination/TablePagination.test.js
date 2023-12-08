@@ -10,6 +10,10 @@ import TablePagination, { tablePaginationClasses as classes } from '@mui/materia
 import { inputClasses } from '@mui/material/Input';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { filledInputClasses } from '@mui/material/FilledInput';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import KeyboardDoubleArrowLeftRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftRounded';
+import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
 
 describe('<TablePagination />', () => {
   const noop = () => {};
@@ -658,6 +662,41 @@ describe('<TablePagination />', () => {
         expect(slotPropsDisabled).not.to.equal(SelectPropsDisabled);
         expect(combobox.parentElement).not.to.have.class(inputClasses.disabled);
       });
+    });
+  });
+
+  describe('prop: slots', () => {
+    it('should render custom page actions icons', () => {
+      const { getByTestId } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={1}
+                page={0}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
+                rowsPerPage={10}
+                showFirstButton
+                showLastButton
+                slots={{
+                  actions: {
+                    firstPageIcon: KeyboardDoubleArrowLeftRoundedIcon,
+                    lastPageIcon: KeyboardDoubleArrowRightRoundedIcon,
+                    previousPageIcon: ArrowBackIcon,
+                    nextPageIcon: ArrowForwardIcon,
+                  },
+                }}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      expect(getByTestId('KeyboardDoubleArrowLeftRoundedIcon')).not.to.equal(null);
+      expect(getByTestId('KeyboardDoubleArrowRightRoundedIcon')).not.to.equal(null);
+      expect(getByTestId('ArrowBackIcon')).not.to.equal(null);
+      expect(getByTestId('ArrowForwardIcon')).not.to.equal(null);
     });
   });
 
