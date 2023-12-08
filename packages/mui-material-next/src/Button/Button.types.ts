@@ -88,6 +88,11 @@ export type ButtonTypeMap<
       'text' | 'outlined' | 'filled' | 'filledTonal' | 'elevated',
       ButtonPropsVariantOverrides
     >;
+    /**
+     * The underlying HTML element. To make SSR stable.
+     * @default 'button'
+     */
+    hostElementName?: string;
   };
   defaultComponent: DefaultComponent;
 };

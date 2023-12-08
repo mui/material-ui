@@ -108,8 +108,15 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     TouchRippleProps,
     touchRippleRef,
     type,
+    hostElementName: hostElementNameProp,
     ...other
   } = props;
+
+  let hostElementName = hostElementNameProp;
+
+  if (other.href || other.to) {
+    hostElementName = 'a';
+  }
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
@@ -120,6 +127,7 @@ const ButtonBase = React.forwardRef(function ButtonBase<
     to: props.to,
     tabIndex,
     rootRef: handleRef,
+    hostElementName,
   });
 
   let ComponentProp = component;
