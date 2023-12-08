@@ -25,6 +25,8 @@
   --font-color-light-hard: var(--grey-900);
   --font-color-dark-soft: var(--grey-300);
   --font-color-dark-hard: var(--grey-50);
+  --font-color-light-interactive: var(--primary-500);
+  --font-color-dark-interactive: var(--primary-300);
 
   --h1-font-family: 'Inter', sans-serif;
   --h1-font-weight: 500;
@@ -52,7 +54,7 @@
   --h5-line-height: 1.5;
 
   --button-font-family: 'Inter', sans-serif;
-  --button-font-weight: 400;
+  --button-font-weight: 500;
   --button-font-size: 0.875rem;
   --button-line-height: 1.5;
 
@@ -78,13 +80,13 @@
   --background-surface-dark-overlay: rgba(0,0,0,0.6);
 
   --background-interactive-light-button-base: var(--primary-500);
-  --background-interactive-light-button-hover: var(--primary-600);
-  --background-interactive-light-button-active: var(--primary-700);
-  --background-interactive-light-button-disabled: var(--grey-200);
+  --background-interactive-light-button-hover: var(--primary-700);
+  --background-interactive-light-button-active: var(--primary-800);
+  --background-interactive-light-button-disabled: var(--grey-100);
   --background-interactive-dark-button-base: var(--primary-500);
   --background-interactive-dark-button-hover: var(--primary-600);
   --background-interactive-dark-button-active: var(--primary-700);
-  --background-interactive-dark-button-disabled: var(--grey-700);
+  --background-interactive-dark-button-disabled: var(--grey-800);
 
   --background-interactive-light-input-base: var(--grey-50);
   --background-interactive-light-input-hover: var(--grey-100);
@@ -202,7 +204,7 @@
   line-height: var(--button-line-height);
   color: var(--font-color-dark-hard);
   background-color: var(--GalleryButton-default-background-color, var(--background-interactive-light-button-base));
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: var(--border-radius-md);
   transition: all 150ms ease;
   cursor: pointer;
@@ -242,6 +244,107 @@
     --GalleryButton-disabled-color: var(--font-color-dark-soft);
     --GalleryButton-disabled-background-color: var(--background-interactive-dark-button-disabled);
     --GaleryButton-disabled-hover-background-color:var(--background-interactive-dark-button-disabled);
+  }
+}
+.GalleryButtonSoft {
+  font-family: var(--button-font-family);
+  font-weight: var(--button-font-weight);
+  font-size: var(--button-font-size);
+  line-height: var(--button-line-height);
+  color: var(--GalleryButtonSoft-default-color, var(--font-color-light-hard));
+  background-color: var(--GalleryButtonSoft-default-background-color, var(--background-surface-light-soft));
+  padding: 6px 12px;
+  border-radius: var(--border-radius-md);
+  transition: all 150ms ease;
+  cursor: pointer;
+  border: var(--GalleryButtonSoft-default-border, var(--border-light-default));
+  box-shadow: var(--GalleryButtonSoft-boxShadow-color, var(--shadow-elevation-light-level-1));
+}
+.GalleryButtonSoft:hover {
+  background-color: var(--GalleryButtonSoft-default-hover-background-color, var(--background-surface-light-default));
+  border: var(--GalleryButtonSoft-default-hover-border, var(--border-light-soft));
+}
+.GalleryButtonSoft:active {
+  background-color: var(--GalleryButtonSoft-default-active-background-color, var(--background-surface-light-hard));
+  box-shadow: none;
+}
+.GalleryButtonSoft:focus-visible {
+  box-shadow: var(--GalleryButtonSoft-focusVisible-boxShadow-color, var(--shadow-interactive-light-focus-visible));
+  outline: none;
+}
+.GalleryButtonSoft:disabled {
+  background-color: var(--GalleryButtonSoft-disabled-background-color, var(--background-interactive-light-button-disabled));
+  color: var(--GalleryButtonSoft-disabled-color, var(--font-color-light-soft));
+  border: 0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.GalleryButtonSoft:disabled:hover {
+  background-color: var(--GalleryButtonSoft-disabled-hover-background-color, var(--background-interactive-light-button-disabled));
+}
+
+@media (prefers-color-scheme: dark) {
+  .GalleryButtonSoft {
+    --GalleryButtonSoft-default-color: var(--font-color-dark-hard);
+    --GalleryButtonSoft-default-background-color: var(--background-surface-dark-soft);
+    --GalleryButtonSoft-default-border: var(--border-dark-default);
+    --GalleryButtonSoft-boxShadow-color: var(--shadow-elevation-dark-level-1);
+    --GalleryButtonSoft-default-hover-background-color: var(--background-surface-dark-default);
+    --GalleryButtonSoft-default-hover-border: var(--border-dark-soft);
+    --GalleryButtonSoft-default-active-background-color: var(--background-surface-dark-hard);
+    --GalleryButtonSoft-focusVisible-boxShadow-color: var(--shadow-interactive-dark-focus-visible);  
+    --GalleryButtonSoft-disabled-background-color: var(--background-interactive-dark-button-disabled);
+    --GalleryButtonSoft-disabled-color: var(--font-color-dark-soft);  
+    --GalleryButtonSoft-disabled-hover-background-color: var(--background-interactive-dark-button-disabled); 
+  }
+}
+
+.GalleryButtonPlain {
+  font-family: var(--button-font-family);
+  font-weight: var(--button-font-weight);
+  font-size: var(--button-font-size);
+  line-height: var(--button-line-height);
+  color: var(--GalleryButtonPlain-default-color, var(--font-color-light-interactive));
+  background-color: rgba(0, 0, 0, 0.0);
+  padding: 6px 12px;
+  border-radius: var(--border-radius-md);
+  border: var(--GalleryButtonPlain-default-border, var(--border-light-transparent));
+  transition: all 150ms ease;
+  cursor: pointer; 
+}
+.GalleryButtonPlain:hover {
+  background-color: var(--GalleryButtonPlain-default-hover-background-color, var(--background-surface-light-soft));
+  border: var(--GalleryButtonPlain-default-hover-border, var(--border-light-transparent));
+}
+.GalleryButtonPlain:active {
+  background-color: var(--GalleryButtonPlain-default-active-background-color, var(--background-surface-light-hard));
+}
+.GalleryButtonPlain:focus-visible {
+  box-shadow: var(--GalleryButtonPlain-focusVisible-boxShadow-color, var(--shadow-interactive-light-focus-visible));
+  outline: none;
+}
+.GalleryButtonPlain:disabled {
+  background-color: var(--GalleryButtonPlain-disabled-background-color, var(--background-interactive-light-button-disabled));
+  color: var(--GalleryButtonPlain-disabled-color, var(--font-color-light-soft));
+  border: 0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.GalleryButtonPlain:disabled:hover {
+  background-color: var(--GalleryButtonPlain-disabled-hover-background-color, var(--background-interactive-light-button-disabled));
+}
+
+@media (prefers-color-scheme: dark) {
+  .GalleryButtonPlain {
+    --GalleryButtonPlain-default-color: var(--font-color-dark-interactive);
+    --GalleryButtonPlain-default-border: var(--border-dark-transparent);
+    --GalleryButtonPlain-default-hover-background-color: var(--background-surface-dark-soft);
+    --GalleryButtonPlain-default-hover-border: var(--border-dark-transparent);
+    --GalleryButtonPlain-default-active-background-color: var(--background-surface-dark-hard);
+    --GalleryButtonPlain-focusVisible-boxShadow-color: var(--shadow-interactive-dark-focus-visible);
+    --GalleryButtonPlain-disabled-background-color: var(--background-interactive-dark-button-disabled);
+    --GalleryButtonPlain-disabled-color: var(--font-color-dark-soft);
+    --GalleryButtonPlain-disabled-hover-background-color: var(--background-interactive-dark-button-disabled);
   }
 }
 

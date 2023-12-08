@@ -315,7 +315,9 @@ export default function ComponentsGallery() {
         </Badge>
       </div>
       <Stack direction="row" spacing={1}>
-        <Button className="GalleryButton">Button</Button>
+        <Button className="GalleryButton">Solid</Button>
+        <Button className="GalleryButtonSoft">Soft</Button>
+        <Button className="GalleryButtonPlain">Plain</Button>
         <Button className="GalleryButton" disabled>
           Disabled
         </Button>
