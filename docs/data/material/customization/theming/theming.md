@@ -33,7 +33,7 @@ You can check out the [default theme section](/material-ui/customization/default
 
 ### Custom variables
 
-When using Material UI's theme with [MUI System](/system/getting-started/overview/) or [any other styling solution](/material-ui/guides/interoperability/), it can be convenient to add additional variables to the theme so you can use them everywhere.
+When using Material UI's theme with [MUI System](/system/getting-started/) or [any other styling solution](/material-ui/guides/interoperability/), it can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
 ```jsx

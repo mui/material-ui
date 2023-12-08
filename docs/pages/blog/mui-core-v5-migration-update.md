@@ -87,6 +87,6 @@ You can check out the progress on this effort [in this GitHub issue](https://git
 ## Upgrade now
 
 What are you waiting for?
-Jump into the [newly revised migration documention](/material-ui/migration/migration-v4/) and get started today.
+Jump into the [newly revised migration documentation](/material-ui/migration/migration-v4/) and get started today.
 
 Let us know if you have any questions along the way!

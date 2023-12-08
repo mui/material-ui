@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, visuallyHidden } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import useTheme from '../styles/useTheme';
 import {
   capitalize,
@@ -366,14 +367,14 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     }
 
     const rootNode = rootRef.current;
-    const { right, left } = rootNode.getBoundingClientRect();
-    const { width } = rootNode.firstChild.getBoundingClientRect();
+    const { right, left, width: containerWidth } = rootNode.getBoundingClientRect();
+
     let percent;
 
     if (theme.direction === 'rtl') {
-      percent = (right - event.clientX) / (width * max);
+      percent = (right - event.clientX) / containerWidth;
     } else {
-      percent = (event.clientX - left) / (width * max);
+      percent = (event.clientX - left) / containerWidth;
     }
 
     let newHover = roundValueToPrecision(max * percent + precision / 2, precision);

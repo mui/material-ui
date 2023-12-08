@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { DividerOwnerState, DividerTypeMap } from './DividerProps';
 import { getDividerUtilityClass } from './dividerClasses';
@@ -47,8 +48,7 @@ export const DividerRoot = styled('hr', {
         whiteSpace: 'nowrap',
         textAlign: 'center',
         border: 0,
-        fontFamily: theme.vars.fontFamily.body,
-        fontSize: theme.vars.fontSize.sm,
+        ...theme.typography['body-sm'],
         '&::before, &::after': {
           position: 'relative',
           inlineSize:

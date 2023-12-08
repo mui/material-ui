@@ -28,7 +28,7 @@ export default function ResponsiveModal() {
             },
           })}
         >
-          <Typography id="nested-modal-title" component="h2">
+          <Typography id="nested-modal-title" level="h2">
             Are you absolutely sure?
           </Typography>
           <Typography id="nested-modal-description" textColor="text.tertiary">
@@ -43,7 +43,7 @@ export default function ResponsiveModal() {
               flexDirection: { xs: 'column', sm: 'row-reverse' },
             }}
           >
-            <Button variant="solid" color="neutral" onClick={() => setOpen(false)}>
+            <Button variant="solid" color="primary" onClick={() => setOpen(false)}>
               Continue
             </Button>
             <Button

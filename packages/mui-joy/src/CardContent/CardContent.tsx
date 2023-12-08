@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -18,23 +19,27 @@ const useUtilityClasses = () => {
   return composeClasses(slots, getCardContentUtilityClass, {});
 };
 
-const CardContentRoot = styled('div', {
+export const StyledCardContentRoot = styled('div')<{ ownerState: CardContentProps }>(
+  ({ ownerState }) => ({
+    display: 'flex',
+    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+    flex: 9999, // fill the available space in the Card and also shrink if needed
+    zIndex: 1,
+    columnGap: 'var(--Card-padding)',
+    rowGap: 'max(2px, calc(0.1875 * var(--Card-padding)))',
+    padding: 'var(--unstable_padding)',
+    [`.${cardOverflowClasses.root} > &`]: {
+      '--unstable_padding': 'calc(var(--Card-padding) * 0.75) 0px',
+    },
+  }),
+);
+
+const CardContentRoot = styled(StyledCardContentRoot, {
   name: 'JoyCardContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardContentProps }>(({ ownerState }) => ({
-  display: 'flex',
-  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
-  flex: 1, // fill the available space in the Card and also shrink if needed
-  zIndex: 1,
-  columnGap: 'calc(0.75 * var(--Card-padding))',
-  padding: 'var(--CardContent-padding)',
-  [`.${cardOverflowClasses.root} > &`]: {
-    '--CardContent-padding': 'calc(var(--Card-padding) * 0.75) 0px',
-  },
-}));
+})<{ ownerState: CardContentProps }>({});
 /**
- * ⚠️ CardContent must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
  * Demos:
  *

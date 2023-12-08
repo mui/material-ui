@@ -1,4 +1,5 @@
-export { default } from './Button';
-export { default as buttonClasses } from './buttonClasses';
+'use client';
+export { Button } from './Button';
+
 export * from './buttonClasses';
 export * from './Button.types';

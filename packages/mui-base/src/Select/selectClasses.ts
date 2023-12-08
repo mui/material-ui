@@ -1,5 +1,5 @@
-import generateUtilityClass from '../generateUtilityClass';
-import generateUtilityClasses from '../generateUtilityClasses';
+import { generateUtilityClass } from '../generateUtilityClass';
+import { generateUtilityClasses } from '../generateUtilityClasses';
 
 export interface SelectClasses {
   /** Class name applied to the root element. */
@@ -24,7 +24,7 @@ export function getSelectUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSelect', slot);
 }
 
-const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
+export const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
   'root',
   'button',
   'listbox',
@@ -34,5 +34,3 @@ const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
   'disabled',
   'focusVisible',
 ]);
-
-export default selectClasses;

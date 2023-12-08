@@ -1,0 +1,9 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "defaultOpen": "If <code>true</code>, the menu is initially open.",
+    "onOpenChange": "Callback fired when the component requests to be opened or closed.",
+    "open": "Allows to control whether the menu is open. This is a controlled counterpart of <code>defaultOpen</code>."
+  },
+  "classDescriptions": {}
+}

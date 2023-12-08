@@ -1,8 +1,9 @@
+'use client';
 // @inheritedComponent ButtonBase
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha } from '../styles';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
@@ -185,7 +186,7 @@ ToggleButton.propTypes /* remove-proptypes */ = {
   /**
    * The color of the button when it is in an active state.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'standard'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

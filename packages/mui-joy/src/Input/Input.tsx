@@ -1,14 +1,15 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import useForwardedInput from './useForwardedInput';
+import { INVERTED_COLORS_ATTR } from '../colorInversion/colorInversionUtils';
 
 const useUtilityClasses = (ownerState: InputOwnerState) => {
   const { disabled, fullWidth, variant, color, size } = ownerState;
@@ -38,37 +39,39 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--Input-radius': theme.vars.radius.sm,
         '--Input-gap': '0.5rem',
         '--Input-placeholderColor': 'inherit',
-        '--Input-placeholderOpacity': 0.5,
+        '--Input-placeholderOpacity': 0.64,
+        '--Input-decoratorColor': theme.vars.palette.text.icon,
         '--Input-focused': '0',
         '--Input-focusedThickness': theme.vars.focus.thickness,
-        ...(ownerState.color === 'context'
-          ? {
-              '--Input-focusedHighlight': theme.vars.palette.focusVisible,
-            }
-          : {
-              '--Input-focusedHighlight':
-                theme.vars.palette[
-                  ownerState.color === 'neutral' ? 'primary' : ownerState.color!
-                ]?.[500],
-            }),
+        '--Input-focusedHighlight':
+          theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+        [`&:not([${INVERTED_COLORS_ATTR}])`]: {
+          ...(ownerState.instanceColor && {
+            '--_Input-focusedHighlight':
+              theme.vars.palette[
+                ownerState.instanceColor === 'neutral' ? 'primary' : ownerState.instanceColor
+              ]?.[500],
+          }),
+          '--Input-focusedHighlight': `var(--_Input-focusedHighlight, ${theme.vars.palette.focusVisible})`,
+        },
         ...(ownerState.size === 'sm' && {
           '--Input-minHeight': '2rem',
           '--Input-paddingInline': '0.5rem',
           '--Input-decoratorChildHeight': 'min(1.5rem, var(--Input-minHeight))',
-          '--Icon-fontSize': '1.25rem',
+          '--Icon-fontSize': theme.vars.fontSize.xl,
         }),
         ...(ownerState.size === 'md' && {
-          '--Input-minHeight': '2.5rem',
+          '--Input-minHeight': '2.25rem',
           '--Input-paddingInline': '0.75rem',
-          '--Input-decoratorChildHeight': 'min(2rem, var(--Input-minHeight))',
-          '--Icon-fontSize': '1.5rem',
+          '--Input-decoratorChildHeight': 'min(1.75rem, var(--Input-minHeight))',
+          '--Icon-fontSize': theme.vars.fontSize.xl2,
         }),
         ...(ownerState.size === 'lg' && {
-          '--Input-minHeight': '3rem',
+          '--Input-minHeight': '2.75rem',
           '--Input-paddingInline': '1rem',
           '--Input-gap': '0.75rem',
-          '--Input-decoratorChildHeight': 'min(2.375rem, var(--Input-minHeight))',
-          '--Icon-fontSize': '1.75rem',
+          '--Input-decoratorChildHeight': 'min(2.25rem, var(--Input-minHeight))',
+          '--Icon-fontSize': theme.vars.fontSize.xl2,
         }),
         // variables for controlling child components
         '--Input-decoratorChildOffset':
@@ -78,10 +81,14 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--Input-decoratorChildRadius':
           'max(var(--Input-radius) - var(--variant-borderWidth, 0px) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) + var(--variant-borderWidth, 0px), var(--Input-radius) / 2))',
         '--Button-minHeight': 'var(--Input-decoratorChildHeight)',
+        '--Button-paddingBlock': '0px', // to ensure that the height of the button is equal to --Button-minHeight
         '--IconButton-size': 'var(--Input-decoratorChildHeight)',
         '--Button-radius': 'var(--Input-decoratorChildRadius)',
         '--IconButton-radius': 'var(--Input-decoratorChildRadius)',
         boxSizing: 'border-box',
+        ...(ownerState.variant !== 'plain' && {
+          boxShadow: theme.shadow.xs,
+        }),
         minWidth: 0,
         minHeight: 'var(--Input-minHeight)',
         ...(ownerState.fullWidth && {
@@ -92,11 +99,9 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         display: 'flex',
         paddingInline: `var(--Input-paddingInline)`,
         borderRadius: 'var(--Input-radius)',
-        fontFamily: theme.vars.fontFamily.body,
-        fontSize: theme.vars.fontSize.md,
-        ...(ownerState.size === 'sm' && {
-          fontSize: theme.vars.fontSize.sm,
-        }),
+        ...theme.typography[`body-${ownerState.size!}`],
+        ...variantStyle,
+        backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
         '&:before': {
           boxSizing: 'border-box',
           content: '""',
@@ -112,11 +117,8 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
           boxShadow: `var(--Input-focusedInset, inset) 0 0 0 calc(var(--Input-focused) * var(--Input-focusedThickness)) var(--Input-focusedHighlight)`,
         },
-      },
+      } as const,
       {
-        // variant styles
-        ...variantStyle,
-        backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
         '&:hover': {
           ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
           backgroundColor: null, // it is not common to change background on hover for Input
@@ -181,42 +183,29 @@ export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>(
   }),
 );
 
-export const StyledInputStartDecorator = styled('div')<{ ownerState: InputOwnerState }>(
-  ({ theme, ownerState }) => ({
-    '--Button-margin': '0 0 0 calc(var(--Input-decoratorChildOffset) * -1)',
-    '--IconButton-margin': '0 0 0 calc(var(--Input-decoratorChildOffset) * -1)',
-    '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
-    display: 'inherit',
-    alignItems: 'center',
-    paddingBlock: 'var(--unstable_InputPaddingBlock)', // for wrapping Autocomplete's tags
-    flexWrap: 'wrap', // for wrapping Autocomplete's tags
-    marginInlineEnd: 'var(--Input-gap)',
-    color: theme.vars.palette.text.tertiary,
-    cursor: 'initial',
-    ...(ownerState.focused && {
-      color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
-    }),
-    ...(ownerState.disabled && {
-      color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
-    }),
-  }),
-);
+export const StyledInputStartDecorator = styled('div')<{ ownerState: InputOwnerState }>({
+  '--Button-margin': '0 0 0 calc(var(--Input-decoratorChildOffset) * -1)',
+  '--IconButton-margin': '0 0 0 calc(var(--Input-decoratorChildOffset) * -1)',
+  '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
+  display: 'inherit',
+  alignItems: 'center',
+  paddingBlock: 'var(--unstable_InputPaddingBlock)', // for wrapping Autocomplete's tags
+  flexWrap: 'wrap', // for wrapping Autocomplete's tags
+  marginInlineEnd: 'var(--Input-gap)',
+  color: 'var(--Input-decoratorColor)',
+  cursor: 'initial',
+});
 
-export const StyledInputEndDecorator = styled('div')<{ ownerState: InputOwnerState }>(
-  ({ theme, ownerState }) => ({
-    '--Button-margin': '0 calc(var(--Input-decoratorChildOffset) * -1) 0 0',
-    '--IconButton-margin': '0 calc(var(--Input-decoratorChildOffset) * -1) 0 0',
-    '--Icon-margin': '0 calc(var(--Input-paddingInline) / -4) 0 0',
-    display: 'inherit',
-    alignItems: 'center',
-    marginInlineStart: 'var(--Input-gap)',
-    color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
-    cursor: 'initial',
-    ...(ownerState.disabled && {
-      color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
-    }),
-  }),
-);
+export const StyledInputEndDecorator = styled('div')<{ ownerState: InputOwnerState }>({
+  '--Button-margin': '0 calc(var(--Input-decoratorChildOffset) * -1) 0 0',
+  '--IconButton-margin': '0 calc(var(--Input-decoratorChildOffset) * -1) 0 0',
+  '--Icon-margin': '0 calc(var(--Input-paddingInline) / -4) 0 0',
+  display: 'inherit',
+  alignItems: 'center',
+  marginInlineStart: 'var(--Input-gap)',
+  color: 'var(--Input-decoratorColor)',
+  cursor: 'initial',
+});
 
 const InputRoot = styled(StyledInputRoot, {
   name: 'JoyInput',
@@ -293,10 +282,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
+  const color = inProps.color ?? (error ? 'danger' : formControl?.color ?? colorProp);
 
   const ownerState = {
+    instanceColor: error ? 'danger' : inProps.color,
     ...props,
     fullWidth,
     color,
@@ -386,7 +375,7 @@ Input.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -412,7 +401,7 @@ Input.propTypes /* remove-proptypes */ = {
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the button will take up the full width of its container.
+   * If `true`, the input will take up the full width of its container.
    * @default false
    */
   fullWidth: PropTypes.bool,

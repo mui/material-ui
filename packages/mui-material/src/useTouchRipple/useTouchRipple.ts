@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { TouchRippleActions } from '../ButtonBase/TouchRipple';
 import { useEventCallback } from '../utils';

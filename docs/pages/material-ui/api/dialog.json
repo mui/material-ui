@@ -10,7 +10,7 @@
       "deprecationInfo": "Use <code>slots.backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
     },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
     "fullScreen": { "type": { "name": "bool" }, "default": "false" },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
@@ -26,7 +26,13 @@
       "deprecated": true,
       "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
     },
-    "onClose": { "type": { "name": "func" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
     "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
     "PaperProps": { "type": { "name": "object" }, "default": "{}" },
     "scroll": {
@@ -37,7 +43,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
     "transitionDuration": {
@@ -50,27 +57,102 @@
     "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "Dialog",
-  "styles": {
-    "classes": [
-      "root",
-      "scrollPaper",
-      "scrollBody",
-      "container",
-      "paper",
-      "paperScrollPaper",
-      "paperScrollBody",
-      "paperWidthFalse",
-      "paperWidthXs",
-      "paperWidthSm",
-      "paperWidthMd",
-      "paperWidthLg",
-      "paperWidthXl",
-      "paperFullWidth",
-      "paperFullScreen"
-    ],
-    "globalClasses": {},
-    "name": "MuiDialog"
-  },
+  "imports": [
+    "import Dialog from '@mui/material/Dialog';",
+    "import { Dialog } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "container",
+      "className": "MuiDialog-container",
+      "description": "Styles applied to the container element.",
+      "isGlobal": false
+    },
+    {
+      "key": "paper",
+      "className": "MuiDialog-paper",
+      "description": "Styles applied to the Paper component.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperFullScreen",
+      "className": "MuiDialog-paperFullScreen",
+      "description": "Styles applied to the Paper component if `fullScreen={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperFullWidth",
+      "className": "MuiDialog-paperFullWidth",
+      "description": "Styles applied to the Paper component if `fullWidth={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperScrollBody",
+      "className": "MuiDialog-paperScrollBody",
+      "description": "Styles applied to the Paper component if `scroll=\"body\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperScrollPaper",
+      "className": "MuiDialog-paperScrollPaper",
+      "description": "Styles applied to the Paper component if `scroll=\"paper\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperWidthFalse",
+      "className": "MuiDialog-paperWidthFalse",
+      "description": "Styles applied to the Paper component if `maxWidth=false`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperWidthLg",
+      "className": "MuiDialog-paperWidthLg",
+      "description": "Styles applied to the Paper component if `maxWidth=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperWidthMd",
+      "className": "MuiDialog-paperWidthMd",
+      "description": "Styles applied to the Paper component if `maxWidth=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperWidthSm",
+      "className": "MuiDialog-paperWidthSm",
+      "description": "Styles applied to the Paper component if `maxWidth=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperWidthXl",
+      "className": "MuiDialog-paperWidthXl",
+      "description": "Styles applied to the Paper component if `maxWidth=\"xl\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "paperWidthXs",
+      "className": "MuiDialog-paperWidthXs",
+      "description": "Styles applied to the Paper component if `maxWidth=\"xs\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiDialog-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "scrollBody",
+      "className": "MuiDialog-scrollBody",
+      "description": "Styles applied to the container element if `scroll=\"body\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "scrollPaper",
+      "className": "MuiDialog-scrollPaper",
+      "description": "Styles applied to the container element if `scroll=\"paper\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiDialog",

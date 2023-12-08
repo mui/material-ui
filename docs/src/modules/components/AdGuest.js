@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Portal from '@mui/material/Portal';
 import { AdContext } from 'docs/src/modules/components/AdManager';
 
-export default function AdGuest({ classSelector = '.description', ...props }) {
+export default function AdGuest(props) {
+  const { classSelector = '.description', children } = props;
   const ad = React.useContext(AdContext);
 
   if (!ad.element) {
@@ -24,7 +25,7 @@ export default function AdGuest({ classSelector = '.description', ...props }) {
         return ad.element;
       }}
     >
-      {props.children}
+      {children}
     </Portal>
   );
 }

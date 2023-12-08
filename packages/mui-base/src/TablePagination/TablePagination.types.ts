@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
-import TablePaginationActions from './TablePaginationActions';
+import { TablePaginationActions } from './TablePaginationActions';
 import { ItemAriaLabelType } from './common.types';
 
 export interface LabelDisplayedRowsArgs {

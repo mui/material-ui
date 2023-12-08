@@ -19,7 +19,7 @@ const MyThemeComponent = styled('div')(({ theme }) =>
   }),
 );
 
-export default function ThemeUsage() {
+export default function UsingWithSx() {
   return (
     <ThemeProvider theme={customTheme}>
       <MyThemeComponent>Styled div with theme</MyThemeComponent>

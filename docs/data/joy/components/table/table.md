@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Table component
 components: Table
 githubLabel: 'component: table'
@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 
 <p class="description">Tables display sets of data organized in rows and columns.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
@@ -113,7 +113,7 @@ For example, you can use `3n` as a value to create stripes on row numbers three,
 
 ### Hover
 
-To highlight a row of the table body when hovering over it, set the `hoverAxis` prop to true.
+To highlight a row of the table body when hovering over it, set the `hoverRow` prop to true.
 
 {{"demo": "TableHover.js"}}
 
@@ -239,12 +239,12 @@ The header cells always truncate the text to keep the header's height predictabl
 
 {{"demo": "TableTextEllipsis.js"}}
 
-## CSS variable playground
+## CSS variables playground
 
 Play around with the CSS variables available to the Table component to see how the design changes.
 You can use these to customize the components with both the `sx` prop and the theme.
 
-{{"demo": "TableVariables.js"}}
+{{"demo": "TableVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Usage with Sheet
 
@@ -283,6 +283,6 @@ Use `theme.variants.*` to apply global variant styles to the Table.
 
 ### Scrolling shadows
 
-Inspired by this article from Lea Verou on [CSS scrolling shadows](https://lea.verou.me/2012/04/background-attachment-local/), the shadows appear and hide when scrolling on the Table.
+Inspired by this article from Lea Verou on [CSS scrolling shadows](https://lea.verou.me/blog/2012/04/background-attachment-local/), the shadows appear and hide when scrolling on the Table.
 
 {{"demo": "TableScrollingShadows.js"}}

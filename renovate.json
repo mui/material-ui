@@ -19,7 +19,7 @@
     },
     {
       "groupName": "babel",
-      "matchPackagePatterns": "@babel/*"
+      "matchPackagePatterns": ["^@babel/", "^@types/babel"]
     },
     {
       "groupName": "Emotion",
@@ -67,13 +67,13 @@
       "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"]
     },
     {
-      "groupName": "tslint",
-      "matchPackageNames": ["tslint"],
-      "allowedVersions": "<= 5.14.0"
-    },
-    {
       "groupName": "typescript-eslint",
       "matchPackagePatterns": "@typescript-eslint/*"
+    },
+    {
+      "groupName": "@types/node",
+      "matchPackageNames": ["@types/node"],
+      "allowedVersions": "< 19.0.0"
     },
     {
       "groupName": "bundling fixtures",
@@ -105,6 +105,12 @@
     {
       "groupName": "@definitelytyped tools",
       "matchPackagePatterns": ["@definitelytyped/*"]
+    },
+    {
+      "groupName": "Lerna",
+      "matchPackageNames": ["lerna"],
+      "description": "Limited at 7.2.0 until https://github.com/mui/material-ui/issues/40025 is fixed",
+      "allowedVersions": "<=7.2.0"
     }
   ],
   "postUpdateOptions": ["yarnDedupeHighest"],

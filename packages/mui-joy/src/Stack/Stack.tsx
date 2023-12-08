@@ -1,3 +1,4 @@
+'use client';
 import { createStack } from '@mui/system';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';

@@ -24,7 +24,7 @@ const customTheme = createTheme({
   },
 });
 
-export default function ExtendSxProp() {
+export default function ExtendTheSxProp() {
   return (
     <ThemeProvider theme={customTheme}>
       <Box

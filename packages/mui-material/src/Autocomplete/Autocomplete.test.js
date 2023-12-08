@@ -8,8 +8,10 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import { spy } from 'sinon';
+import userEvent from '@testing-library/user-event';
+import Box from '@mui/system/Box';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Chip, { chipClasses } from '@mui/material/Chip';
@@ -21,7 +23,6 @@ import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Tooltip from '@mui/material/Tooltip';
-import Box from '@mui/system/Box';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -822,6 +823,83 @@ describe('<Autocomplete />', () => {
       expect(handleSubmit.callCount).to.equal(0);
       expect(handleChange.callCount).to.equal(1);
     });
+
+    it('should skip disabled options when navigating via keyboard', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          getOptionDisabled={(option) => option === 'two'}
+          openOnFocus
+          options={['one', 'two', 'three']}
+          renderInput={(props) => <TextField {...props} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'one');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'three');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'one');
+    });
+
+    it('should skip disabled options at the end of the list when navigating via keyboard', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          getOptionDisabled={(option) => option === 'three' || option === 'four'}
+          openOnFocus
+          options={['one', 'two', 'three', 'four']}
+          renderInput={(props) => <TextField {...props} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'one');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'two');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'one');
+    });
+
+    it('should skip the first and last disabled options in the list when navigating via keyboard', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          getOptionDisabled={(option) => option === 'one' || option === 'five'}
+          openOnFocus
+          options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(props) => <TextField {...props} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'two');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'four');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'two');
+      fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+      checkHighlightIs(getByRole('listbox'), 'four');
+    });
+
+    it('should not focus any option when all the options are disabled', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          getOptionDisabled={() => true}
+          openOnFocus
+          options={['one', 'two', 'three']}
+          renderInput={(props) => <TextField {...props} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), null);
+      fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+      checkHighlightIs(getByRole('listbox'), null);
+    });
   });
 
   describe('WAI-ARIA conforming markup', () => {
@@ -1385,6 +1463,70 @@ describe('<Autocomplete />', () => {
       expect(queryByTitle('Open').disabled).to.equal(true);
     });
 
+    it('clicks should not toggle the listbox open state when disabled', () => {
+      const { getByTestId, queryByRole } = render(
+        <Autocomplete
+          disabled
+          options={['one', 'two', 'three']}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              InputProps={{
+                ...params.InputProps,
+                'data-testid': 'test-input-root',
+              }}
+            />
+          )}
+        />,
+      );
+      const textbox = queryByRole('combobox');
+      const listbox = queryByRole('listbox', { hidden: true });
+
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+      expect(listbox).to.equal(null);
+
+      const inputBase = getByTestId('test-input-root');
+      fireEvent.click(inputBase);
+
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+      expect(listbox).to.equal(null);
+    });
+
+    it('mouseup should not toggle the listbox open state when disabled', async () => {
+      const { container, queryByRole } = render(
+        <Autocomplete
+          disabled
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = queryByRole('combobox');
+      const listbox = queryByRole('listbox', { hidden: true });
+
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+      expect(listbox).to.equal(null);
+
+      // userEvent will fail at releasing MouseLeft if we target the
+      // <button> since it has "pointer-events: none"
+      const popupIndicator = container.querySelector(`.${classes.endAdornment}`);
+
+      // TODO v6: refactor using userEvent.setup() which doesn't work until we drop
+      //  iOS Safari 12.x support, see: https://github.com/mui/material-ui/pull/38325
+      await userEvent.pointer([
+        // this sequence does not work with fireEvent
+        // 1. point the cursor somewhere in the textbox and hold down MouseLeft
+        { keys: '[MouseLeft>]', target: textbox },
+        // 2. move the cursor over the popupIndicator
+        { pointerName: 'mouse', target: popupIndicator },
+        // 3. release MouseLeft
+        { keys: '[/MouseLeft]' },
+      ]);
+
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+      expect(listbox).to.equal(null);
+    });
+
     it('should not render the clear button', () => {
       const { queryByTitle } = render(
         <Autocomplete
@@ -1696,6 +1838,31 @@ describe('<Autocomplete />', () => {
       // three option is added and autocomplete re-renders, restore the highlight
       setProps({ options: [{ label: 'one' }, { label: 'two' }, { label: 'three' }] });
       checkHighlightIs(listbox, 'two');
+    });
+
+    it('should reset the highlight when the input changed', () => {
+      const filterOptions = createFilterOptions({});
+      render(
+        <Autocomplete
+          open
+          autoFocus
+          autoHighlight
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          filterOptions={filterOptions}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const listbox = screen.getByRole('listbox');
+
+      fireEvent.change(textbox, { target: { value: 't' } });
+      checkHighlightIs(listbox, 'two');
+
+      fireEvent.change(textbox, { target: { value: '' } });
+      checkHighlightIs(listbox, 'one');
+
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(textbox).has.value('one');
     });
 
     it("should reset the highlight when previously highlighted option doesn't exists in new options", () => {
@@ -2487,6 +2654,27 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  it('should specify option key for duplicate options', () => {
+    const { getAllByRole } = render(
+      <Autocomplete
+        open
+        options={[
+          { name: 'one', id: '1' },
+          { name: 'two', id: '2' },
+          { name: 'three', id: '3' },
+          { name: 'three', id: '4' },
+        ]}
+        getOptionLabel={(option) => option.name}
+        getOptionKey={(option) => option.id}
+        renderInput={(params) => <TextField {...params} autoFocus />}
+      />,
+    );
+
+    fireEvent.change(document.activeElement, { target: { value: 'th' } });
+    const options = getAllByRole('option');
+    expect(options.length).to.equal(2);
+  });
+
   describe('prop: fullWidth', () => {
     it('should have the fullWidth class', () => {
       const { container } = render(
@@ -2998,6 +3186,46 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // open listbox
 
       expect(root).to.have.class(classes.expanded);
+    });
+  });
+
+  describe('prop: renderOption', () => {
+    it('should pass getOptionLabel through ownerState in renderOption callback', () => {
+      render(
+        <Autocomplete
+          open
+          options={[{ name: 'Max' }]}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderOption={(props, option, optionState, ownerState) => (
+            <li key={option.name} data-testid="optionLi">
+              {ownerState.getOptionLabel(option)}
+            </li>
+          )}
+        />,
+      );
+
+      const renderedOption = screen.getByTestId('optionLi');
+      expect(renderedOption).to.have.text('Max');
+    });
+
+    // https://github.com/mui/material-ui/issues/38048
+    it('should pass getOptionLabel default value through ownerState when no custom getOptionLabel prop provided', () => {
+      render(
+        <Autocomplete
+          open
+          options={[{ label: 'Max' }]}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderOption={(props, option, optionState, ownerState) => (
+            <li key={option.label} data-testid="optionLi">
+              {ownerState.getOptionLabel(option)}
+            </li>
+          )}
+        />,
+      );
+
+      const renderedOption = screen.getByTestId('optionLi');
+      expect(renderedOption).to.have.text('Max');
     });
   });
 

@@ -1,3 +1,4 @@
+'use client';
 export { default } from './ListItemAvatar';
 
 export { default as listItemAvatarClasses } from './listItemAvatarClasses';

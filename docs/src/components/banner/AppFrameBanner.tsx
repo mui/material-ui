@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Link from 'docs/src/modules/components/Link';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
-import { alpha } from '@mui/material/styles';
 
 export default function AppFrameBanner() {
   return FEATURE_TOGGLE.enable_docsnav_banner ? (

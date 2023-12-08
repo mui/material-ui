@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Aspect Ratio component
 components: AspectRatio
 ---
@@ -46,7 +46,7 @@ Note that you lose the global variants when you add custom variants.
 
 ### Ratio
 
-Use the `ratio` prop to change the aspect ratio, following the pattern `height/width`.
+Use the `ratio` prop to change the aspect ratio, following the pattern `width/height`.
 For example, the demo below uses a ratio of `4/3`, which is a common alternative to the default `16/9`:
 
 {{"demo": "CustomRatio.js"}}
@@ -82,6 +82,10 @@ When the Aspect Ratio component is a child of a flexbox `row` container, use `fl
 
 {{"demo": "FlexRowRatio.js"}}
 
+By default, the Aspect Ratio component will retain the provided aspect ratio. If you want the Aspect Ratio component to fill the vertical space, set the `flex` prop to `true`:
+
+{{"demo": "FlexAspectRatio.js"}}
+
 ## Using with Next.js Image
 
 The Aspect Ratio component can be used with a [Next.js Image](https://nextjs.org/docs/app/building-your-application/optimizing/images) component as a child.
@@ -105,8 +109,6 @@ function App() {
 ## Using with an icon
 
 The Aspect Ratio component can be a handy tool for creating a square container for an icon.
-
-The example below show
 
 {{"demo": "IconWrapper.js"}}
 

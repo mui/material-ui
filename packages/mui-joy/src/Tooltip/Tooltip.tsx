@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -14,7 +15,6 @@ import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
-import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
 
@@ -45,34 +45,29 @@ const TooltipRoot = styled('div', {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     ...(ownerState.size === 'sm' && {
-      '--Icon-fontSize': '1rem',
+      '--Icon-fontSize': theme.vars.fontSize.md,
       '--Tooltip-arrowSize': '8px',
-      padding: theme.spacing(0.5, 0.625),
-      fontSize: theme.vars.fontSize.xs,
+      padding: theme.spacing(0.25, 0.625),
     }),
     ...(ownerState.size === 'md' && {
-      '--Icon-fontSize': '1.125rem',
+      '--Icon-fontSize': theme.vars.fontSize.lg,
       '--Tooltip-arrowSize': '10px',
-      padding: theme.spacing(0.625, 0.75),
-      fontSize: theme.vars.fontSize.sm,
+      padding: theme.spacing(0.5, 0.75),
     }),
     ...(ownerState.size === 'lg' && {
-      '--Icon-fontSize': '1.25rem',
+      '--Icon-fontSize': theme.vars.fontSize.xl,
       '--Tooltip-arrowSize': '12px',
       padding: theme.spacing(0.75, 1),
-      fontSize: theme.vars.fontSize.md,
     }),
     zIndex: theme.vars.zIndex.tooltip,
-    borderRadius: theme.vars.radius.xs,
+    borderRadius: theme.vars.radius.sm,
     boxShadow: theme.shadow.sm,
-    fontFamily: theme.vars.fontFamily.body,
-    fontWeight: theme.vars.fontWeight.md,
-    lineHeight: theme.vars.lineHeight.sm,
     wordWrap: 'break-word',
     position: 'relative',
     ...(ownerState.disableInteractive && {
       pointerEvents: 'none',
     }),
+    ...theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`],
     ...variantStyle,
     ...(!variantStyle.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
@@ -236,15 +231,13 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     modifiers: modifiersProp,
     placement = 'bottom',
     title,
-    color: colorProp = 'neutral',
+    color = 'neutral',
     variant = 'solid',
     size = 'md',
     slots = {},
     slotProps = {},
     ...other
   } = props;
-  const { getColor } = useColorInversion(variant);
-  const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   const [childNode, setChildNode] = React.useState<Element>();
   const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
@@ -623,30 +616,21 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ownerState,
   });
 
-  const result = (
-    <SlotRoot
-      {...rootProps}
-      {...(!props.slots?.root && {
-        as: Popper,
-        slots: {
-          root: component || 'div',
-        },
-      })}
-    >
-      {title}
-      {arrow ? <SlotArrow {...arrowProps} /> : null}
-    </SlotRoot>
-  );
-
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
-      {disablePortal ? (
-        result
-      ) : (
-        // For portal popup, the children should not inherit color inversion from the upper parent.
-        <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
-      )}
+      <SlotRoot
+        {...rootProps}
+        {...(!props.slots?.root && {
+          as: Popper,
+          slots: {
+            root: component || 'div',
+          },
+        })}
+      >
+        {title}
+        {arrow ? <SlotArrow {...arrowProps} /> : null}
+      </SlotRoot>
     </React.Fragment>
   );
 }) as OverridableComponent<TooltipTypeMap>;
@@ -673,7 +657,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

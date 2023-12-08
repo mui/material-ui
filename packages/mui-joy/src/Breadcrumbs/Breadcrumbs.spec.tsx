@@ -1,6 +1,6 @@
-import Breadcrumbs, { BreadcrumbsOwnerState } from '@mui/joy/Breadcrumbs';
 import { expectType } from '@mui/types';
 import * as React from 'react';
+import Breadcrumbs, { BreadcrumbsOwnerState } from '@mui/joy/Breadcrumbs';
 
 <Breadcrumbs />;
 

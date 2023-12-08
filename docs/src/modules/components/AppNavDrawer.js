@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, ThemeProvider } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import Menu from '@mui/material/Menu';
@@ -13,15 +13,34 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
-import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
-import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import DoneRounded from '@mui/icons-material/DoneRounded';
+import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import DoneRounded from '@mui/icons-material/DoneRounded';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
+
+// TODO: Collapse should expose an API to customize the duration based on the height.
+function transitionTheme(theme) {
+  return {
+    ...theme,
+    transitions: {
+      ...theme.transitions,
+      getAutoHeightDuration: (height) => {
+        if (!height) {
+          return 0;
+        }
+
+        const constant = height / 80;
+
+        // https://www.wolframalpha.com/input/?i=(4+%2B+15+*+(x+%2F+36+)+**+0.25+%2B+(x+%2F+36)+%2F+5)+*+10
+        return Math.round((4 + 15 * constant ** 0.25 + constant / 5) * 10);
+      },
+    },
+  };
+}
 
 const savedScrollTop = {};
 
@@ -39,8 +58,8 @@ function ProductDrawerButton(props) {
     <React.Fragment>
       <Button
         id="mui-product-selector"
-        aria-controls="drawer-open-button"
         aria-haspopup="true"
+        aria-controls={open ? 'drawer-open-button' : undefined}
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
@@ -89,12 +108,13 @@ ProductDrawerButton.propTypes = {
   productName: PropTypes.string,
 };
 
-function ProductIdentifier({ name, metadata, versionSelector }) {
+function ProductIdentifier(props) {
+  const { name, metadata, versionSelector } = props;
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Typography
         sx={(theme) => ({
-          ml: 1,
+          ml: 1.5,
           color: (theme.vars || theme).palette.grey[600],
           fontSize: theme.typography.pxToRem(11),
           fontWeight: 700,
@@ -114,8 +134,8 @@ function ProductIdentifier({ name, metadata, versionSelector }) {
 
 ProductIdentifier.propTypes = {
   metadata: PropTypes.string,
-  name: PropTypes.string,
-  versionSelector: PropTypes.element,
+  name: PropTypes.string.isRequired,
+  versionSelector: PropTypes.element.isRequired,
 };
 
 // To match scrollMarginBottom
@@ -157,12 +177,12 @@ PersistScroll.propTypes = {
 };
 
 const ToolbarDiv = styled('div')(({ theme }) => ({
-  padding: theme.spacing(1.45, 2),
+  padding: theme.spacing(1.6, 2),
   paddingRight: 0,
+  flexShrink: 0,
   height: 'var(--MuiDocs-header-height)',
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
-  flexGrow: 1,
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -177,18 +197,13 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-const AppNavPaperComponent = styled('div')(({ theme }) => {
+const AppNavPaperComponent = styled('div')(() => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
+    border: '0 !important', // TODO add a Paper slot
+    overflowY: 'unset !important', // TODO add a Paper slot
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
-    paddingBottom: theme.spacing(5),
-    [theme.breakpoints.up('xs')]: {
-      borderRadius: '0px 10px 10px 0px',
-    },
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: '0px',
-    },
   };
 });
 
@@ -196,13 +211,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List sx={{ my: 0.5 }}>
-      {pages.reduce(
-        // eslint-disable-next-line @typescript-eslint/no-use-before-define
-        (items, page) => reduceChildRoutes({ items, page, ...params }),
-        [],
-      )}
-    </List>
+    <List>{pages.reduce((items, page) => reduceChildRoutes({ items, page, ...params }), [])}</List>
   );
 }
 
@@ -212,7 +221,7 @@ function renderNavItems(options) {
  */
 function reduceChildRoutes(context) {
   const { onClose, activePageParents, items, depth, t } = context;
-  let { page } = context;
+  const { page } = context;
   if (page.inSideNav === false) {
     return items;
   }
@@ -243,12 +252,14 @@ function reduceChildRoutes(context) {
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
-        comingSoon={page.comingSoon}
+        planned={page.planned}
+        unstable={page.unstable}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
         topLevel={topLevel && !page.subheader}
-        openImmediately={topLevel || subheader}
+        initiallyExpanded={topLevel || subheader}
+        expandable={!subheader}
       >
         {renderNavItems({
           onClose,
@@ -260,7 +271,6 @@ function reduceChildRoutes(context) {
       </AppNavDrawerItem>,
     );
   } else {
-    page = page.children && page.children.length === 1 ? page.children[0] : page;
     const [path, hash] = page.pathname.split('#');
     items.push(
       <AppNavDrawerItem
@@ -275,7 +285,8 @@ function reduceChildRoutes(context) {
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
-        comingSoon={page.comingSoon}
+        planned={page.planned}
+        unstable={page.unstable}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -298,6 +309,7 @@ export default function AppNavDrawer(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const t = useTranslate();
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
+  const swipeableDrawer = disablePermanent || mobile;
 
   const drawer = React.useMemo(() => {
     const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
@@ -388,79 +400,86 @@ export default function AppNavDrawer(props) {
               component="a"
               onClick={onClose}
               aria-label={t('goToHome')}
-              sx={(theme) => ({
+              sx={{
                 pr: '12px',
                 mr: '4px',
                 borderRight: '1px solid',
-                borderColor: (theme.vars || theme).palette.grey[200],
-                ...theme.applyDarkStyles({
-                  borderColor: alpha(theme.palette.primary[100], 0.08),
-                }),
-              })}
+                borderColor: 'divider',
+              }}
             >
-              <SvgMuiLogo width={30} />
+              <SvgMuiLogomark width={30} />
             </Box>
           </NextLink>
-          {productIdentifier && (
-            <ProductIdentifier
-              name={productIdentifier.name}
-              metadata={productIdentifier.metadata}
-              versionSelector={
-                productIdentifier.versions ? renderVersionSelector(productIdentifier.versions) : []
-              }
-            />
-          )}
+          <ProductIdentifier
+            name={productIdentifier.name}
+            metadata={productIdentifier.metadata}
+            versionSelector={renderVersionSelector(productIdentifier.versions)}
+          />
         </ToolbarDiv>
-        <Divider
-          sx={(theme) => ({
-            borderColor: (theme.vars || theme).palette.grey[100],
-            ...theme.applyDarkStyles({
-              borderColor: alpha(theme.palette.primary[100], 0.08),
-            }),
-          })}
-        />
-        <DiamondSponsors />
-        {navItems}
-      </React.Fragment>
-    );
-  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);
-
-  return (
-    <nav className={className} aria-label={t('mainNavigation')}>
-      {disablePermanent || mobile ? (
-        <SwipeableDrawer
-          disableBackdropTransition={!iOS}
-          variant="temporary"
-          open={mobileOpen}
-          onOpen={onOpen}
-          onClose={onClose}
-          ModalProps={{
-            keepMounted: true,
+        <Divider />
+        <Box
+          sx={{
+            pt: 0.5,
+            pb: 5,
+            overflowY: 'auto',
+            flexGrow: 1,
+            ...(swipeableDrawer
+              ? {}
+              : {
+                  borderRight: '1px solid',
+                  borderColor: 'divider',
+                }),
           }}
-          PaperProps={{
-            className: 'algolia-drawer',
-            component: AppNavPaperComponent,
-          }}
-        >
-          <PersistScroll slot="swipeable" enabled={mobileOpen}>
-            {drawer}
-          </PersistScroll>
-        </SwipeableDrawer>
-      ) : null}
-      {disablePermanent || mobile ? null : (
-        <StyledDrawer
-          variant="permanent"
-          PaperProps={{
-            component: AppNavPaperComponent,
-          }}
-          open
         >
           <PersistScroll slot="side" enabled>
-            {drawer}
+            {navItems}
           </PersistScroll>
-        </StyledDrawer>
-      )}
-    </nav>
+        </Box>
+      </React.Fragment>
+    );
+  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl, swipeableDrawer]);
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (!productIdentifier) {
+      throw new Error('docs-infra: missing productIdentifier in PageContext');
+    }
+    if (!productIdentifier.versions) {
+      throw new Error('docs-infra: missing productIdentifier.versions in PageContext');
+    }
+  }
+
+  return (
+    <ThemeProvider theme={transitionTheme}>
+      <nav className={className} aria-label={t('mainNavigation')}>
+        {swipeableDrawer ? (
+          <SwipeableDrawer
+            disableBackdropTransition={!iOS}
+            variant="temporary"
+            open={mobileOpen}
+            onOpen={onOpen}
+            onClose={onClose}
+            ModalProps={{
+              keepMounted: true,
+            }}
+            PaperProps={{
+              component: AppNavPaperComponent,
+            }}
+          >
+            {drawer}
+          </SwipeableDrawer>
+        ) : (
+          <StyledDrawer
+            variant="permanent"
+            PaperProps={{
+              component: AppNavPaperComponent,
+            }}
+            open
+          >
+            {drawer}
+          </StyledDrawer>
+        )}
+      </nav>
+    </ThemeProvider>
   );
 }
 

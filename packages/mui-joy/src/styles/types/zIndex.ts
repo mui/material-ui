@@ -15,6 +15,7 @@ export interface DefaultZIndex {
   popup: number;
   modal: number;
   tooltip: number;
+  snackbar: number;
 }
 export interface ZIndexOverrides {}
 export interface ZIndex extends OverridableRecord<DefaultZIndex, ZIndexOverrides, number> {}

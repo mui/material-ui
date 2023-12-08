@@ -1,5 +1,5 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Sheet component
 components: Sheet
 ---
@@ -8,7 +8,7 @@ components: Sheet
 
 <p class="description">Sheet is a generic container that supports Joy UI's global variants.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 

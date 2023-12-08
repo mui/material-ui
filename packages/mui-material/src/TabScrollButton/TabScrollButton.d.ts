@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { SlotComponentProps } from '@mui/base';
-import { InternalStandardProps as StandardProps, SvgIcon, Theme } from '..';
+import { ButtonBaseProps } from '../ButtonBase';
+import { SvgIcon, Theme } from '..';
 import { TabScrollButtonClasses } from './tabScrollButtonClasses';
 
 export interface TabScrollButtonStartIconSlotPropsOverrides {}
@@ -11,7 +12,7 @@ export interface TabScrollButtonOwnerState extends TabScrollButtonProps {
   isRtl: boolean;
 }
 
-export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface TabScrollButtonProps extends ButtonBaseProps {
   /**
    * The content of the component.
    */

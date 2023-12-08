@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
-import { ThemeProvider } from '@mui/joy/styles';
-import Tooltip, { tooltipClasses as classes, TooltipClassKey } from '@mui/joy/Tooltip';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { PopperProps } from '@mui/base';
+import { ThemeProvider } from '@mui/joy/styles';
+import Tooltip, { tooltipClasses as classes, TooltipClassKey } from '@mui/joy/Tooltip';
 
 describe('<Tooltip />', () => {
   const { render } = createRenderer();
@@ -54,18 +54,6 @@ describe('<Tooltip />', () => {
     }),
   );
 
-  describeJoyColorInversion(
-    <Tooltip
-      title="Hello world"
-      open
-      disablePortal
-      slotProps={{ root: { 'data-testid': 'test-element' } as any }}
-    >
-      <button>Hello World</button>
-    </Tooltip>,
-    { muiName: 'JoyTooltip', classes, portalSlot: 'root' },
-  );
-
   describe('prop: variant', () => {
     it('solid by default', () => {
       const { getByRole } = render(
@@ -101,7 +89,7 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).to.have.class(classes.colorNeutral);
     });
 
-    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+    (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByRole } = render(
           <Tooltip title="Add" color={color} open>

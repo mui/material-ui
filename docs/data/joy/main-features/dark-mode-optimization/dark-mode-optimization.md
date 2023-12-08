@@ -16,9 +16,9 @@ Indeed, this light-mode "flash" will occur _every_ time you load up the app in t
 
 This can cause eye fatigue in a low-light setting, not to mention a frustrating interruption of the user experience—especially for those who interact with the app when it's in between modes.
 
-The gif below illustrates this problem as it would appear on [mui.com](https://mui.com/) without a fix:
+The GIF below illustrates this problem:
 
-<img src="https://media.giphy.com/media/9hvxemkpotSiQGzLo8/giphy.gif" style="margin-bottom: 24px; width: 240px;" alt="The dark-mode flashing problem at mui.com." width="480" height="294" />
+<img src="/static/joy-ui/dark-mode/dark-mode-flicker.gif" style="width: 814px; border-radius: 8px;" alt="An example video that shows a page that initially loads correctly in dark mode but quickly flickers to light mode." width="1628" height="400" />
 
 ## The solution: CSS variables
 
@@ -27,10 +27,10 @@ Solving this problem required us to take a novel approach to styling and theming
 
 Thanks to Joy UI's built-in support for CSS variables, your app can render all of its color schemes at build time, so that the user's preference can be injected _before_ the DOM is rendered in the browser.
 
-Joy UI provides the `getInitColorSchemeScript()` function to make this flash-free dark mode possible with React frameworks like Next.js, Remix, and Gatsby.
+Joy UI provides the `getInitColorSchemeScript()` function to make this flash-free dark mode possible with React frameworks like Next.js or Remix.
 This function must be placed before the main script so it can apply the correct stylesheet before your components are rendered.
 
-The code snippet below shows how this works with Next.js—see the [Applying dark mode](/joy-ui/customization/dark-mode/) page for more details on usage with other frameworks:
+The code snippet below shows how this works with the Next.js Pages Router:
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';
@@ -39,7 +39,7 @@ import { getInitColorSchemeScript } from '@mui/joy/styles';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html data-color-scheme="light">
         <Head>...</Head>
         <body>
           {getInitColorSchemeScript()}
@@ -51,3 +51,5 @@ export default class MyDocument extends Document {
   }
 }
 ```
+
+See the [Applying dark mode](/joy-ui/customization/dark-mode/) page for more details on usage with other frameworks.

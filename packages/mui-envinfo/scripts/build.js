@@ -1,6 +1,6 @@
 const childProcess = require('child_process');
-const fse = require('fs-extra');
 const path = require('path');
+const fse = require('fs-extra');
 const { promisify } = require('util');
 
 const packageRoot = path.resolve(__dirname, '../');

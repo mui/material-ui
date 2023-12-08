@@ -57,6 +57,8 @@ module.exports = withDocsInfra({
             '@mui/x-date-pickers',
             '@mui/x-date-pickers-pro',
             '@mui/x-data-grid-generator',
+            '@mui/x-charts',
+            '@mui/x-tree-view',
             '@mui/x-license-pro',
           ].some((dep) => request.startsWith(dep));
 
@@ -118,7 +120,7 @@ module.exports = withDocsInfra({
             test: /\.(js|mjs|jsx)$/,
             resourceQuery: { not: [/raw/] },
             include:
-              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers|@mui(\/|\\)x-charts|@mui(\/|\\)x-tree-view)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -173,10 +175,10 @@ module.exports = withDocsInfra({
       : null,
     LIB_VERSION: pkg.version,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master', // #default-branch-switch
+    SOURCE_GITHUB_BRANCH: 'master', // #default-branch-switch
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
-    BUILD_ONLY_ENGLISH_LOCALE: buildOnlyEnglishLocale,
+    BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.

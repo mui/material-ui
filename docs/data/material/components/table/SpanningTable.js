@@ -63,7 +63,6 @@ export default function SpanningTable() {
               <TableCell align="right">{ccyFormat(row.price)}</TableCell>
             </TableRow>
           ))}
-
           <TableRow>
             <TableCell rowSpan={3} />
             <TableCell colSpan={2}>Subtotal</TableCell>

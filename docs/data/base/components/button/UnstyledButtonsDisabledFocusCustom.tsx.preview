@@ -1,6 +1,6 @@
-<CustomButton slots={{ root: 'span' }} disabled>
-  focusableWhenDisabled = false
-</CustomButton>
-<CustomButton slots={{ root: 'span' }} disabled focusableWhenDisabled>
-  focusableWhenDisabled = true
-</CustomButton>
+<Button slots={{ root: 'span' }} disabled>
+  {'focusableWhenDisabled = false'}
+</Button>
+<Button slots={{ root: 'span' }} disabled focusableWhenDisabled>
+  {'focusableWhenDisabled = true'}
+</Button>

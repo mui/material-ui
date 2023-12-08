@@ -1,3 +1,4 @@
+'use client';
 export { default } from './Toolbar';
 
 export { default as toolbarClasses } from './toolbarClasses';

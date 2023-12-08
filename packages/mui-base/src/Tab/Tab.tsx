@@ -1,10 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import composeClasses from '../composeClasses';
+import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getTabUtilityClass } from './tabClasses';
 import { TabProps, TabTypeMap, TabRootSlotProps, TabOwnerState } from './Tab.types';
-import useTab from '../useTab';
+import { useTab } from '../useTab';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
@@ -21,11 +22,11 @@ const useUtilityClasses = (ownerState: TabOwnerState) => {
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/base/react-tabs/)
+ * - [Tabs](https://mui.com/base-ui/react-tabs/)
  *
  * API:
  *
- * - [Tab API](https://mui.com/base/react-tabs/components-api/#tab)
+ * - [Tab API](https://mui.com/base-ui/react-tabs/components-api/#tab)
  */
 const Tab = React.forwardRef(function Tab<RootComponentType extends React.ElementType>(
   props: TabProps<RootComponentType>,
@@ -34,13 +35,13 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
   const {
     action,
     children,
-    value: valueProp,
     disabled = false,
     onChange,
     onClick,
     onFocus,
     slotProps = {},
     slots = {},
+    value,
     ...other
   } = props;
 
@@ -50,6 +51,7 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
   const { active, highlighted, selected, getRootProps } = useTab({
     ...props,
     rootRef: handleRef,
+    value,
   });
 
   const ownerState: TabOwnerState = {
@@ -128,4 +130,4 @@ Tab.propTypes /* remove-proptypes */ = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;
 
-export default Tab;
+export { Tab };

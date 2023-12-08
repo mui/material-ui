@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 import { extendTheme, styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Link from '@mui/joy/Link';
@@ -10,7 +9,8 @@ import Sheet from '@mui/joy/Sheet';
 import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
-import Check from '@mui/icons-material/Check';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 
 const defaultTheme = extendTheme();
 
@@ -37,9 +37,6 @@ const collator = new Intl.Collator(undefined, {
 });
 
 const Table = styled('table')(({ theme }) => ({
-  border: '1px solid',
-  borderColor: theme.vars.palette.divider,
-  borderRadius: theme.vars.radius.md,
   borderCollapse: 'separate',
   borderSpacing: 0,
   display: 'block',
@@ -47,7 +44,7 @@ const Table = styled('table')(({ theme }) => ({
   overflowY: 'scroll',
   th: {
     textAlign: 'left',
-    padding: '8px 6px',
+    padding: 8,
     position: 'sticky',
     top: 0,
     zIndex: 1,
@@ -102,7 +99,18 @@ export default function PaletteThemeViewer() {
   );
 
   return (
-    <Box sx={{ width: '100%', overflow: 'hidden', position: 'relative' }}>
+    <Box
+      sx={{
+        marginBottom: '-9px',
+        width: '100%',
+        overflow: 'hidden',
+        position: 'relative',
+        border: '1px solid',
+        borderColor: 'divider',
+        borderTopLeftRadius: '12px',
+        borderTopRightRadius: '12px',
+      }}
+    >
       <Sheet
         variant="solid"
         color="success"
@@ -115,13 +123,18 @@ export default function PaletteThemeViewer() {
           })`,
           transition: '0.3s',
           p: 0.5,
-          px: 0.75,
-          borderRadius: 'xs',
-          boxShadow: 'sm',
+          pl: 0.5,
+          pr: 1,
+          borderRadius: 'xl',
+          boxShadow: 'md',
           zIndex: 1,
         }}
       >
-        <Typography level="body3" textColor="inherit" startDecorator={<Check />}>
+        <Typography
+          level="body-xs"
+          textColor="inherit"
+          startDecorator={<CheckCircleRoundedIcon fontSize="small" />}
+        >
           Copied
         </Typography>
       </Sheet>
@@ -164,6 +177,7 @@ export default function PaletteThemeViewer() {
                     color="neutral"
                     textColor="inherit"
                     fontSize="sm"
+                    fontWeight="md"
                     textAlign="left"
                     onClick={() => copy(token)}
                     endDecorator={
@@ -203,7 +217,6 @@ export default function PaletteThemeViewer() {
                     fontSize="xs"
                     startDecorator={renderSwatch('light', token)}
                     fontFamily="code"
-                    letterSpacing="sm"
                     textAlign="left"
                     sx={{ alignItems: 'flex-start', cursor: 'copy' }}
                     onClick={() => copy(light[token])}
@@ -219,7 +232,6 @@ export default function PaletteThemeViewer() {
                     fontSize="xs"
                     startDecorator={renderSwatch('dark', token)}
                     fontFamily="code"
-                    letterSpacing="sm"
                     textAlign="left"
                     sx={{ alignItems: 'flex-start', cursor: 'copy' }}
                     onClick={() => copy(dark[token])}

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Input, { InputInputSlotProps, InputRootSlotProps } from '@mui/base/Input';
 import { expectType } from '@mui/types';
+import { Input, InputInputSlotProps, InputRootSlotProps } from '@mui/base/Input';
 
 const InputRoot = React.forwardRef(function InputRoot(
   props: InputRootSlotProps,

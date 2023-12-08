@@ -1,3 +1,4 @@
+'use client';
 import getThemeProps from './getThemeProps';
 import useTheme from '../useTheme';
 

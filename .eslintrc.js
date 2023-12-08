@@ -34,6 +34,7 @@ module.exports = {
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
     '@typescript-eslint/eslint-plugin',
+    'eslint-plugin-filenames',
   ],
   settings: {
     'import/resolver': {
@@ -66,13 +67,6 @@ module.exports = {
       {
         patterns: [
           '@mui/*/*/*',
-          // Begin block: Packages with files instead of packages in the top level
-          // Importing from the top level pulls in CommonJS instead of ES modules
-          // Allowing /icons as to reduce cold-start of dev builds significantly.
-          // There's nothing to tree-shake when importing from /icons this way:
-          // '@mui/icons-material/*/',
-          '@mui/utils/*',
-          // End block
           // Macros are fine since their import path is transpiled away
           '!@mui/utils/macros',
           '@mui/utils/macros/*',
@@ -80,6 +74,7 @@ module.exports = {
         ],
       },
     ],
+    'no-continue': 'off',
     'no-constant-condition': 'error',
     // Use the proptype inheritance chain
     'no-prototype-builtins': 'off',
@@ -88,6 +83,16 @@ module.exports = {
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     // Destructuring harm grep potential.
     'prefer-destructuring': 'off',
+
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      {
+        functions: false,
+        classes: true,
+        variables: true,
+      },
+    ],
+    'no-use-before-define': 'off',
 
     // disabled type-aware linting due to performance considerations
     '@typescript-eslint/dot-notation': 'off',
@@ -124,6 +129,8 @@ module.exports = {
 
     'material-ui/docgen-ignore-before-comment': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
+    'material-ui/no-empty-box': 'error',
+    'material-ui/straight-quotes': 'error',
 
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
     'react-hooks/rules-of-hooks': 'error',
@@ -200,6 +207,7 @@ module.exports = {
     'react/no-invalid-html-attribute': 'off',
 
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
+    'lines-around-directive': 'off',
   },
   overrides: [
     {
@@ -215,15 +223,6 @@ module.exports = {
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
-        'no-restricted-imports': [
-          'error',
-          {
-            // Use named import from `test/utils` instead.
-            // The other files are private.
-            patterns: ['test/utils/*'],
-          },
-        ],
-
         'material-ui/disallow-active-element-as-key-event-target': 'error',
 
         // upgraded level from recommended
@@ -274,6 +273,21 @@ module.exports = {
         ],
       },
     },
+    // Next.js plugin
+    {
+      files: ['docs/**/*'],
+      extends: ['plugin:@next/next/recommended'],
+      settings: {
+        next: {
+          rootDir: 'docs',
+        },
+      },
+      rules: {
+        // We're not using the Image component at the moment
+        '@next/next/no-img-element': 'off',
+      },
+    },
+    // Next.js entry points pages
     {
       files: ['docs/pages/**/*.js'],
       rules: {
@@ -282,12 +296,7 @@ module.exports = {
     },
     // demos
     {
-      files: [
-        'docs/src/pages/**/*.js',
-        'docs/src/pages/**/*.tsx',
-        'docs/data/**/*.js',
-        'docs/data/**/*.tsx',
-      ],
+      files: ['docs/src/pages/**/*{.tsx,.js}', 'docs/data/**/*{.tsx,.js}'],
       rules: {
         // This most often reports data that is defined after the component definition.
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
@@ -295,6 +304,28 @@ module.exports = {
         'react/prop-types': 'off',
         'no-alert': 'off',
         'no-console': 'off',
+      },
+    },
+    // demos - proptype generation
+    {
+      files: ['docs/data/base/components/modal/UseModal.js'],
+      rules: {
+        'consistent-return': 'off',
+        'func-names': 'off',
+        'no-else-return': 'off',
+        'prefer-template': 'off',
+      },
+    },
+    {
+      files: ['docs/data/**/*{.tsx,.js}'],
+      excludedFiles: [
+        'docs/data/joy/getting-started/templates/**/*.tsx',
+        'docs/data/**/css/*{.tsx,.js}',
+        'docs/data/**/system/*{.tsx,.js}',
+        'docs/data/**/tailwind/*{.tsx,.js}',
+      ],
+      rules: {
+        'filenames/match-exported': ['error'],
       },
     },
     {
@@ -312,7 +343,7 @@ module.exports = {
           'error',
           {
             patterns: [
-              // Allow deeper imports for TypeScript types. TODO?
+              // Allow deeper imports for TypeScript types. TODO remove
               '@mui/*/*/*/*',
               // Macros are fine since they're transpiled into something else
               '!@mui/utils/macros/*.macro',
@@ -444,6 +475,13 @@ module.exports = {
       files: ['scripts/**/*.mjs', 'packages/**/*.mjs'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
+      },
+    },
+    {
+      files: ['packages/mui-base/src/**/**{.ts,.tsx}'],
+      rules: {
+        'import/no-default-export': 'error',
+        'import/prefer-default-export': 'off',
       },
     },
   ],

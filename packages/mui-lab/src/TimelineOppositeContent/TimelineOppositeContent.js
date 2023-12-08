@@ -2,17 +2,17 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled, useThemeProps } from '@mui/material/styles';
-import { capitalize } from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import Typography from '@mui/material/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineOppositeContentUtilityClass } from './timelineOppositeContentClasses';
+import convertTimelinePositionToClass from '../internal/convertTimelinePositionToClass';
 
 const useUtilityClasses = (ownerState) => {
   const { position, classes } = ownerState;
 
   const slots = {
-    root: ['root', `position${capitalize(position)}`],
+    root: ['root', convertTimelinePositionToClass(position)],
   };
 
   return composeClasses(slots, getTimelineOppositeContentUtilityClass, classes);
@@ -23,7 +23,7 @@ const TimelineOppositeContentRoot = styled(Typography, {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    return [styles.root, styles[`position${capitalize(ownerState.position)}`]];
+    return [styles.root, styles[convertTimelinePositionToClass(ownerState.position)]];
   },
 })(({ ownerState }) => ({
   padding: '6px 16px',

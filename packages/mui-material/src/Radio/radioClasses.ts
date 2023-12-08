@@ -12,6 +12,8 @@ export interface RadioClasses {
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary: string;
+  /** Styles applied to the root element if `size="small"`. */
+  sizeSmall: string;
 }
 
 export type RadioClassKey = keyof RadioClasses;
@@ -26,6 +28,7 @@ const radioClasses: RadioClasses = generateUtilityClasses('MuiRadio', [
   'disabled',
   'colorPrimary',
   'colorSecondary',
+  'sizeSmall',
 ]);
 
 export default radioClasses;

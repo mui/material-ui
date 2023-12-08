@@ -2,7 +2,7 @@
   "props": {
     "action": { "type": { "name": "node" } },
     "avatar": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "disableTypography": { "type": { "name": "bool" }, "default": "false" },
     "subheader": { "type": { "name": "node" } },
@@ -11,17 +11,55 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "title": { "type": { "name": "node" } },
     "titleTypographyProps": { "type": { "name": "object" } }
   },
   "name": "CardHeader",
-  "styles": {
-    "classes": ["root", "avatar", "action", "content", "title", "subheader"],
-    "globalClasses": {},
-    "name": "MuiCardHeader"
-  },
+  "imports": [
+    "import CardHeader from '@mui/material/CardHeader';",
+    "import { CardHeader } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "action",
+      "className": "MuiCardHeader-action",
+      "description": "Styles applied to the action element.",
+      "isGlobal": false
+    },
+    {
+      "key": "avatar",
+      "className": "MuiCardHeader-avatar",
+      "description": "Styles applied to the avatar element.",
+      "isGlobal": false
+    },
+    {
+      "key": "content",
+      "className": "MuiCardHeader-content",
+      "description": "Styles applied to the content wrapper element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiCardHeader-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "subheader",
+      "className": "MuiCardHeader-subheader",
+      "description": "Styles applied to the subheader Typography element.",
+      "isGlobal": false
+    },
+    {
+      "key": "title",
+      "className": "MuiCardHeader-title",
+      "description": "Styles applied to the title Typography element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiCardHeader",

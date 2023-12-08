@@ -1,6 +1,6 @@
 # Transitions
 
-<p class="description">The theme key enables you to customize the durations and easings of the various transitions used across Material UI components, and offers a utility for creating custom transitions.</p>
+<p class="description">These theme helpers allow you to create custom CSS transitions, you can customize the durations, easings and more.</p>
 
 ## API
 

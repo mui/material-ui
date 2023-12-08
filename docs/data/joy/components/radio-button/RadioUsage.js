@@ -1,9 +1,9 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function RadioUsage() {
   return (
@@ -12,14 +12,14 @@ export default function RadioUsage() {
       data={[
         {
           propName: 'variant',
-          knob: 'select',
-          defaultValue: 'soft',
+          knob: 'radio',
+          defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'primary',
+          defaultValue: 'neutral',
         },
         {
           propName: 'size',
@@ -41,7 +41,6 @@ export default function RadioUsage() {
             orientation={orientation}
             defaultValue="1"
             name="radio-button-usage"
-            sx={{ mt: 1 }}
           >
             <Radio label="Regular crust" value="1" {...props} />
             <Radio label="Deep dish" value="2" {...props} />

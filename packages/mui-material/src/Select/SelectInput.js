@@ -1,10 +1,11 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { refType } from '@mui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { refType, unstable_useId as useId } from '@mui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
@@ -481,12 +482,22 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const paperProps = {
+    ...MenuProps.PaperProps,
+    ...MenuProps.slotProps?.paper,
+  };
+
+  const listboxId = useId();
+
+  const hiddenInputId = useId();
+
   return (
     <React.Fragment>
       <SelectSelect
         ref={handleDisplayRef}
         tabIndex={tabIndex}
-        role="button"
+        role="combobox"
+        aria-controls={listboxId}
         aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : 'false'}
         aria-haspopup="listbox"
@@ -514,7 +525,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <SelectNativeInput
         aria-invalid={error}
         value={Array.isArray(value) ? value.join(',') : value}
-        name={name}
+        name={name ?? hiddenInputId}
         ref={inputRef}
         aria-hidden
         onChange={handleChange}
@@ -543,14 +554,19 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         MenuListProps={{
           'aria-labelledby': labelId,
           role: 'listbox',
+          'aria-multiselectable': multiple ? 'true' : undefined,
           disableListWrap: true,
+          id: listboxId,
           ...MenuProps.MenuListProps,
         }}
-        PaperProps={{
-          ...MenuProps.PaperProps,
-          style: {
-            minWidth: menuMinWidth,
-            ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
+        slotProps={{
+          ...MenuProps.slotProps,
+          paper: {
+            ...paperProps,
+            style: {
+              minWidth: menuMinWidth,
+              ...(paperProps != null ? paperProps.style : null),
+            },
           },
         }}
       >

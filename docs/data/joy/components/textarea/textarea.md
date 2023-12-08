@@ -1,9 +1,9 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Textarea component
 components: Textarea
 githubLabel: 'component: TextareaAutosize'
-unstyled: /base/react-textarea-autosize/
+unstyled: /base-ui/react-textarea-autosize/
 ---
 
 # Textarea
@@ -14,7 +14,7 @@ unstyled: /base/react-textarea-autosize/
 
 ## Introduction
 
-Joy UI's textarea component is built on top of the Base UI [`TextareaAutoSize`](/base/react-textarea-autosize/) component.
+Joy UI's textarea component is built on top of the Base UI [`TextareaAutoSize`](/base-ui/react-textarea-autosize/) component.
 
 {{"demo": "TextareaUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -87,7 +87,7 @@ To trigger the focus ring programmatically, set the CSS variable `--Textarea-foc
 {{"demo": "TriggerFocusTextarea.js"}}
 
 :::info
-💡 The focus ring still appear on focus even though you set `--Textarea-focused: 0`.
+The focus ring still appear on focus even though you set `--Textarea-focused: 0`.
 :::
 
 ### Validation
@@ -114,6 +114,12 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons or 
 It's usually more common to see textarea components using decorators at the top and bottom.
 
 {{"demo": "TextareaDecorators.js"}}
+
+### HTML textarea ref
+
+Use the `slotProps.textarea` attribute to pass props to the `ref` and other [supported HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attributes) to the textarea element.
+
+{{"demo": "TextareaRef.js"}}
 
 ## Accessibility
 

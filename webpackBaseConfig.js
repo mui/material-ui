@@ -9,9 +9,10 @@ module.exports = {
   resolve: {
     modules: [__dirname, 'node_modules'],
     alias: {
+      '@mui/markdown': path.resolve(__dirname, './packages/markdown'),
       '@mui/material': path.resolve(__dirname, './packages/mui-material/src'),
       '@mui/docs': path.resolve(__dirname, './packages/mui-docs/src'),
-      '@mui/icons-material': path.resolve(__dirname, './packages/mui-icons-material/lib'),
+      '@mui/icons-material': path.resolve(__dirname, './packages/mui-icons-material/lib/esm'),
       '@mui/lab': path.resolve(__dirname, './packages/mui-lab/src'),
       '@mui/styled-engine': path.resolve(__dirname, './packages/mui-styled-engine/src'),
       '@mui/styled-engine-sc': path.resolve(__dirname, './packages/mui-styled-engine-sc/src'),

@@ -2,13 +2,13 @@ import * as React from 'react';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Paper from '@mui/material/Paper';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import Grid from '@mui/system/Unstable_Grid';
 import Stack from '@mui/system/Stack';
 import { styled } from '@mui/system';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 const Item = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#262B32' : '#fff',

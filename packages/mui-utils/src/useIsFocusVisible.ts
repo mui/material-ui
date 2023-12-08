@@ -1,3 +1,4 @@
+'use client';
 // based on https://github.com/WICG/focus-visible/blob/v4.1.5/src/focus-visible.js
 import * as React from 'react';
 

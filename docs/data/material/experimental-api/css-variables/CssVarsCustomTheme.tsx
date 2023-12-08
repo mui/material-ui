@@ -56,7 +56,7 @@ const theme = experimental_extendTheme({
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
-export default function Page() {
+export default function CssVarsCustomTheme() {
   // the `node` is used for attaching CSS variables to this demo, you might not need it in your application.
   const [node, setNode] = React.useState<null | HTMLElement>(null);
   useEnhancedEffect(() => {

@@ -1,11 +1,11 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Select component
 components: Select, NativeSelect
 githubLabel: 'component: select'
 materialDesign: https://m2.material.io/components/menus#exposed-dropdown-menu
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
-unstyled: /base/react-select/
+unstyled: /base-ui/react-select/
 ---
 
 # Select
@@ -30,7 +30,7 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 ## Props
 
 The Select component is implemented as a custom `<input>` element of the [InputBase](/material-ui/api/input-base/).
-It extends the [text field components](/material-ui/react-text-field/) sub-components, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected.
+It extends the [text field components](/material-ui/react-text-field/) subcomponents, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected.
 It shares the same styles and many of the same props. Refer to the respective component's API page for details.
 
 ### Filled and standard variants
@@ -62,7 +62,7 @@ Note that when using FormControl with the outlined variant of the Select, you ne
 As the user experience can be improved on mobile using the native select of the platform,
 we allow such pattern.
 
-{{"demo": "NativeSelect.js"}}
+{{"demo": "NativeSelectDemo.js"}}
 
 ## TextField
 
@@ -112,6 +112,14 @@ Like with the single selection, you can pull out the new value by accessing `eve
 ## Controlling the open state
 
 You can control the open state of the select with the `open` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultOpen` prop.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 {{"demo": "ControlledOpenSelect.js"}}
 

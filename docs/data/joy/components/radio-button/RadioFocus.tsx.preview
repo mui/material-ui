@@ -1,6 +1,6 @@
 <FormControl>
   <FormLabel>Focus</FormLabel>
-  <RadioGroup name="radio-buttons-group-focus" sx={{ my: 1 }}>
+  <RadioGroup name="radio-buttons-group-focus">
     <Radio value="default" label="Default" />
     <Radio
       value="relative"

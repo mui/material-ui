@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/base';
-import BaseTablePagination from '@mui/base/TablePagination';
+import { TablePagination as BaseTablePagination } from '@mui/base/TablePagination';
 import { styled, useThemeProps } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';

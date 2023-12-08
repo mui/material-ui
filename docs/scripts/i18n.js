@@ -19,7 +19,7 @@ async function run() {
   output.pages = {};
 
   /**
-   * @param {readonly import('docs/src/pages').MuiPage[]} pages
+   * @param {readonly import('docs/src/MuiPage').MuiPage[]} pages
    */
   const traverse = (pages) => {
     pages.forEach((page) => {

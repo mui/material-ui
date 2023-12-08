@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Chip component
 components: Chip
 githubLabel: 'component: chip'
@@ -96,6 +96,19 @@ gain depth while clicked or touched.
 ## Chip playground
 
 {{"demo": "ChipsPlayground.js", "hideToolbar": true}}
+
+## Experimental API
+
+### Material You version
+
+The default Material UI Chip component follows the Material Design 2 specs.
+To get the Material You ([Material Design 3](https://m3.material.io/)) version, use the new experimental `@mui/material-next` package:
+
+```js
+import Chip from '@mui/material-next/Chip';
+```
+
+{{"demo": "ChipMaterialYouPlayground.js", "hideToolbar": true, "bg": "playground"}}
 
 ## Accessibility
 

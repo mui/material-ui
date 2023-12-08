@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useAutocomplete from '@mui/base/useAutocomplete';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 import { styled } from '@mui/system';
 
 export default function UseAutocomplete() {
@@ -14,6 +14,7 @@ export default function UseAutocomplete() {
     getListboxProps,
     getOptionProps,
     groupedOptions,
+    focused,
   } = useAutocomplete({
     id: 'use-autocomplete-demo',
     options: top100Films,
@@ -24,8 +25,11 @@ export default function UseAutocomplete() {
 
   return (
     <div style={{ marginBottom: 24 }}>
-      <Label {...getInputLabelProps()}>Label</Label>
-      <StyledAutocompleteRoot {...getRootProps()}>
+      <StyledLabel {...getInputLabelProps()}>Pick a movie</StyledLabel>
+      <StyledAutocompleteRoot
+        {...getRootProps()}
+        className={focused ? 'focused' : ''}
+      >
         <StyledInput {...getInputProps()} />
       </StyledAutocompleteRoot>
       {groupedOptions.length > 0 && (
@@ -47,23 +51,24 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0059B2',
   900: '#003A75',
 };
 
 const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
-const Label = styled('label')`
+const StyledLabel = styled('label')`
   display: block;
   font-family: sans-serif;
   font-size: 14px;
@@ -73,13 +78,15 @@ const Label = styled('label')`
 
 const StyledAutocompleteRoot = styled('div')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
-  border-radius: 12px;
+  border-radius: 8px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  box-shadow: 0px 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+  };
   display: flex;
   gap: 5px;
   padding-right: 5px;
@@ -88,7 +95,7 @@ const StyledAutocompleteRoot = styled('div')(
 
   &.focused {
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
   &:hover {
@@ -111,7 +118,7 @@ const StyledInput = styled('input')(
   background: inherit;
   border: none;
   border-radius: inherit;
-  padding: 12px 12px;
+  padding: 8px 12px;
   outline: 0;
   flex: 1 0 auto;
 `,
@@ -119,12 +126,12 @@ const StyledInput = styled('input')(
 
 const StyledListbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
   margin: 12px 0;
-  max-width: 320px;
+  width: 320px;
   border-radius: 12px;
   overflow: auto;
   outline: 0px;
@@ -134,7 +141,9 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 2px 3px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 

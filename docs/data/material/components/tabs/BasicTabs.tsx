@@ -10,7 +10,7 @@ interface TabPanelProps {
   value: number;
 }
 
-function TabPanel(props: TabPanelProps) {
+function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -53,15 +53,15 @@ export default function BasicTabs() {
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
+      <CustomTabPanel value={value} index={0}>
         Item One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
         Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
         Item Three
-      </TabPanel>
+      </CustomTabPanel>
     </Box>
   );
 }

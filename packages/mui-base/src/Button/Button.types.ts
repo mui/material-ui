@@ -10,7 +10,7 @@ export interface ButtonActions {
 
 export interface ButtonRootSlotPropsOverrides {}
 
-export interface ButtonOwnProps extends Omit<UseButtonParameters, 'ref'> {
+export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
