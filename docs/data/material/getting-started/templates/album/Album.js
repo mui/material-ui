@@ -1,9 +1,11 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import CameraIcon from '@mui/icons-material/PhotoCamera';
+import IconButton from '@mui/material/IconButton';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
+import { CardActionArea } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -38,34 +40,81 @@ export default function Album() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
+      <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
           <CameraIcon sx={{ mr: 2 }} />
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography
+            variant="h6"
+            color="inherit"
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+            }}
+          >
             Album layout
           </Typography>
-        </Toolbar>
-      </AppBar>
+        </Box>
+
+        <Button color="inherit">About</Button>
+        <Button color="inherit">Contact</Button>
+
+        <Box sx={{ flexGrow: 0 }}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="primary"
+          >
+            <AccountCircle />
+          </IconButton>
+        </Box>
+      </Toolbar>
+
       <main>
         {/* Hero unit */}
         <Box
           sx={{
-            bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
+            width: '100%',
+            height: '480px',
+            backgroundImage: `url("https://source.unsplash.com/random?wallpapers")`,
+            backgroundSize: 'cover',
+            color: 'white',
           }}
         >
-          <Container maxWidth="sm">
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 'inherit',
+              width: '100%',
+              height: '480px',
+              backgroundColor: 'rgba(0, 0, 0, 0.6)',
+            }}
+          />
+          <Container
+            maxWidth="sm"
+            sx={{ position: 'relative', pt: { xs: 8, md: 10 }, zIndex: 1 }}
+          >
             <Typography
               component="h1"
               variant="h2"
               align="center"
-              color="text.primary"
+              color="inherit"
               gutterBottom
+              sx={{
+                textShadow: '0px 0px 4px rgba(0, 0, 0, 0.9)',
+              }}
             >
               Album layout
             </Typography>
-            <Typography variant="h5" align="center" color="text.secondary" paragraph>
+            <Typography
+              variant="h5"
+              align="center"
+              color="inherit"
+              sx={{
+                textShadow: '0px 0px 4px rgba(0, 0, 0, 0.9)',
+              }}
+              paragraph
+            >
               Something short and leading about the collection below—its contents,
               the creator, etc. Make it short and sweet, but not too short so folks
               don&apos;t simply skip over it entirely.
@@ -76,39 +125,45 @@ export default function Album() {
               spacing={2}
               justifyContent="center"
             >
-              <Button variant="contained">Main call to action</Button>
-              <Button variant="outlined">Secondary action</Button>
+              <Button variant="contained">Main action</Button>
             </Stack>
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 8 }} maxWidth="lg">
           {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card
+                  variant="outlined"
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
-                  <CardMedia
-                    component="div"
-                    sx={{
-                      // 16:9
-                      pt: '56.25%',
-                    }}
-                    image="https://source.unsplash.com/random?wallpapers"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Heading
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
-                    </Typography>
-                  </CardContent>
+                  <CardActionArea>
+                    <CardMedia
+                      component="div"
+                      sx={{
+                        // 16:9
+                        pt: '56.25%',
+                      }}
+                      image="https://source.unsplash.com/random?wallpapers"
+                    />
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography gutterBottom variant="h6" component="h2">
+                        Heading
+                      </Typography>
+                      <Typography variant="body1" color="text.secondary">
+                        This is a media card. You can use this section to describe
+                        the content.
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
                   <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
+                    <Button size="small" color="primary">
+                      View
+                    </Button>
+                    <Button size="small" color="primary">
+                      Edit
+                    </Button>
                   </CardActions>
                 </Card>
               </Grid>
