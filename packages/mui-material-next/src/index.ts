@@ -35,17 +35,26 @@ export * from './InputLabel';
 
 export { default as Input } from './Input';
 
+export { default as LinearProgress } from './LinearProgress';
+export * from './LinearProgress';
+
 export { default as Menu } from './Menu';
 export * from './Menu';
 
 export { default as MenuItem } from './MenuItem';
 export * from './MenuItem';
 
+export { default as OutlinedInput } from './OutlinedInput';
+export * from './OutlinedInput';
+
 export { default as Select } from './Select';
 export * from './Select';
 
 export { default as Slider } from './Slider';
 export * from './Slider';
+
+export { default as SnackbarContent } from './SnackbarContent';
+export * from './SnackbarContent';
 
 export { default as Divider } from './Divider';
 export * from './Divider';

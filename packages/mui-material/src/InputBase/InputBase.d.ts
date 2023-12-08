@@ -209,8 +209,10 @@ export interface InputBaseProps
    * @default {}
    */
   slotProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement> & InputBaseComponentsPropsOverrides;
-    input?: React.InputHTMLAttributes<HTMLInputElement> & InputBaseComponentsPropsOverrides;
+    root?: React.HTMLAttributes<HTMLDivElement> &
+      InputBaseComponentsPropsOverrides & { sx?: SxProps<Theme> };
+    input?: React.InputHTMLAttributes<HTMLInputElement> &
+      InputBaseComponentsPropsOverrides & { sx?: SxProps<Theme> };
   };
   /**
    * The components used for each slot inside.

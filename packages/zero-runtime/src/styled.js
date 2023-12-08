@@ -29,7 +29,10 @@ function defaultShouldForwardProp(propKey) {
  * @TODO - Filter props and only pass necessary props to children
  *
  * This is the runtime `styled` function that finally renders the component
- * after transpilation through linaria. It makes sure to add the base classes, variant classes if they satisfy the prop value and also adds dynamic css variables at runtime, if any.
+ * after transpilation through linaria. It makes sure to add the base classes,
+ * variant classes if they satisfy the prop value and also adds dynamic css
+ * variables at runtime, if any.
+ * @param {string | Function} tag
  * @param {Object} options
  * @param {string} options.displayName Set by linaria. Mostly is same as the variable name. For this code, ```const Comp = styled(...)(...)```, `displayName` will be `Comp`.
  * @param {string[]} options.classes List of class names that reference the inline css object styles.
@@ -105,14 +108,20 @@ export default function styled(tag, options = {}) {
 
     const finalClassName = clsx(classes, sxClass, className, getVariantClasses(props, variants));
     const toPassProps = Object.keys(restProps)
-      .filter((item) => shouldForwardProp(item))
+      .filter((item) => {
+        const res = shouldForwardProp(item);
+        if (res) {
+          return defaultShouldForwardProp(item);
+        }
+        return false;
+      })
       .reduce((acc, key) => {
         acc[key] = restProps[key];
         return acc;
       }, {});
 
     // eslint-disable-next-line no-underscore-dangle
-    if (!Component.__isStyled) {
+    if (!Component.__isStyled || typeof Component === 'string') {
       return (
         <Component
           {...toPassProps}

@@ -5653,7 +5653,7 @@ It's a stability release after v3.6.0. It contains tons of bug fixes 🐛.
 ### Docs
 
 - [docs] Add support for changing react version in codesandbox demos (#13686) @joshwooding
-- [CHANGELOG] Add deprecation notice for Divider (#13700) @eps1lon
+- [changelog] Add deprecation notice for Divider (#13700) @eps1lon
 - [docs] Add notistack demo to the snackbar page (#13685) @iamhosseindhv
 - [docs] Remove Grid List dead code (#13731) @akhil-gautam
 - [docs] Reduce the no-results rate on Algolia (#13741) @oliviertassinari
@@ -9377,7 +9377,7 @@ Here are some highlights ✨:
   - We have reduced the size of the bundle by ~8 kB gzipped.
   - The propTypes runtime checks are back. You might experience new warnings.
 - We have introduced 4 breaking changes.
-- You can support me on [Patreon](https://www.patreon.com/oliviertassinari) and the community on [Open Collective](https://opencollective.com/mui) (#9460).
+- You can support me on [Patreon](https://www.patreon.com/oliviertassinari) and the community on [Open Collective](https://opencollective.com/mui-org) (#9460).
   Blog posts are coming.
 - And many more bug fixes and documentation improvements.
 
@@ -10322,7 +10322,7 @@ When `withStyles()` is used as a decorator and `strictNullChecks` is enabled, on
 - [docs] Tooltips are supported (#8282) @skirunman
 - [docs] Autosuggest example typo fix (#8315) @the-noob
 - [docs] Changing type 'Alignement' to Alignment (#8335) @apearson
-- [CHANGELOG] Add info for withStyles BC (#8342) @sebald
+- [changelog] Add info for withStyles BC (#8342) @sebald
 
 ### Core
 

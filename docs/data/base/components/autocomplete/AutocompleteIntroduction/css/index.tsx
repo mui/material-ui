@@ -162,14 +162,14 @@ function Styles() {
     <style>
       {`
       .Autocomplete__root {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-weight: 400;
         border-radius: 8px;
         background: ${isDarkMode ? grey[900] : '#fff'};
         border: 1px solid ${isDarkMode ? grey[700] : grey[200]};
         color: ${isDarkMode ? grey[300] : grey[900]};
-        box-shadow: 0px 4px 6px ${
-          isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+        box-shadow: 0px 2px 4px ${
+          isDarkMode ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
         };
         display: flex;
         gap: 5px;
@@ -244,7 +244,7 @@ function Styles() {
       }
 
       .Autocomplete__listbox {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
         padding: 6px;

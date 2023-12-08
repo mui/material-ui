@@ -119,6 +119,11 @@ const InputLabelRoot = styled(FormLabel, {
       transform: 'translate(14px, -9px) scale(0.75)',
     }),
   }),
+  ...(ownerState.variant === 'standard' && {
+    '&:not(label) + div': {
+      marginTop: 16,
+    },
+  }),
 }));
 
 const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {

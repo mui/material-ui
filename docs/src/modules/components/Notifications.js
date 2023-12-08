@@ -31,21 +31,25 @@ const Paper = styled(MuiPaper)({
   transformOrigin: 'top right',
   backgroundImage: 'none',
 });
+
 const List = styled(MuiList)(({ theme }) => ({
   width: theme.spacing(40),
   maxHeight: 540,
   overflow: 'auto',
   padding: theme.spacing(1, 0),
 }));
+
 const ListItem = styled(MuiListItem)({
   display: 'flex',
   flexDirection: 'column',
 });
+
 const Loading = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   margin: theme.spacing(3, 0),
 }));
+
 const Divider = styled(MuiDivider)(({ theme }) => ({
   margin: theme.spacing(1, 0),
 }));
@@ -152,23 +156,31 @@ export default function Notifications() {
     <React.Fragment>
       <Tooltip
         open={tooltipOpen}
+        title={t('toggleNotifications')}
+        enterDelay={300}
         onOpen={() => {
           setTooltipOpen(!open);
         }}
         onClose={() => {
           setTooltipOpen(false);
         }}
-        title={t('toggleNotifications')}
-        enterDelay={300}
       >
         <IconButton
           color="primary"
           ref={anchorRef}
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
-          onClick={handleToggle}
+          aria-label={`${
+            messageList
+              ? messageList.reduce(
+                  (count, message) => (message.id > lastSeen ? count + 1 : count),
+                  0,
+                )
+              : 0
+          } ${t('toggleNotifications')}`}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
+          onClick={handleToggle}
         >
           <Badge
             color="error"

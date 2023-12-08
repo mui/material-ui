@@ -295,7 +295,7 @@ If, however, you would like to use styled-components, you can configure your app
 <!-- #default-branch-switch -->
 
 - [Create React App with styled-components](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
-- [Create React App with styled-components and typescript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
+- [Create React App with styled-components and TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
 
 Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
 
@@ -448,7 +448,7 @@ bundling solution people are using.
 ```jsx
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
-// webpack, parcel or else will inject the CSS into the page
+// Webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSlider.module.css';
 
 export default function CssModulesSlider() {
@@ -532,7 +532,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 
 ```jsx
 import * as React from 'react';
-// webpack, parcel or else will inject the CSS into the page
+// Webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep1.module.css';
 import Slider from '@mui/material/Slider';
 
@@ -568,7 +568,7 @@ The above demo relies on the [default `className` values](/system/styles/advance
 
 ```jsx
 import * as React from 'react';
-// webpack, parcel or else will inject the CSS into the page
+// Webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep2.module.css';
 import Slider from '@mui/material/Slider';
 

@@ -8,7 +8,7 @@ import {
   UseTabsListRootSlotProps,
   ValueChangeAction,
 } from './useTabsList.types';
-import { useCompoundParent } from '../utils/useCompound';
+import { useCompoundParent } from '../useCompound';
 import { TabMetadata } from '../useTabs/useTabs';
 import { useList, ListState, UseListParameters } from '../useList';
 import { tabsListReducer } from './tabsListReducer';

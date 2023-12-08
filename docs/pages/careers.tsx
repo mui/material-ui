@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
@@ -83,7 +83,8 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
   transition: theme.transitions.create('box-shadow'),
   borderRadius: theme.shape.borderRadius,
   '&:hover': {
-    boxShadow: '0 4px 8px 0 rgb(90 105 120 / 20%)',
+    borderColor: theme.palette.primary[300],
+    boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
   },
   '&:not(:last-of-type)': {
     marginBottom: theme.spacing(2),
@@ -94,6 +95,12 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
   '&:after': {
     display: 'none',
   },
+  ...theme.applyDarkStyles({
+    '&:hover': {
+      borderColor: alpha(theme.palette.primary[600], 0.6),
+      boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.8)',
+    },
+  }),
 }));
 
 const AccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
@@ -160,6 +167,17 @@ const openRolesData = [
         description:
           'You will design and implement a great user and developer experience for the MUI X Data Grid.',
         url: '/careers/design-engineer-x-grid/',
+      },
+    ],
+  },
+  {
+    title: 'Developer Experience',
+    roles: [
+      {
+        title: 'Developer Advocate',
+        description:
+          'You will strategize and implement educational initiatives from end to end to help developers build better UIs, faster.',
+        url: '/careers/developer-advocate/',
       },
     ],
   },
@@ -458,7 +476,7 @@ function CareersContent() {
       <Divider />
       {/* Next roles */}
       {nextRolesData.length > 0 && (
-        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
+        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
           <Section bg="transparent">
             <SectionHeadline
               title={
@@ -468,12 +486,11 @@ function CareersContent() {
               }
               description={
                 <React.Fragment>
-                  We hire in batches, we collect applications a few months before we actively aim to
-                  fill the roles. If none of them fit with what you are looking for, apply to the{' '}
+                  If none of the roles below fit with what you are looking for, apply to the{' '}
                   <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
                     Dream job
                   </Link>{' '}
-                  role.
+                  role!
                 </React.Fragment>
               }
             />
@@ -536,7 +553,8 @@ function CareersContent() {
                 </Typography>
               </Box>
               <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
-                We&apos;re to help you with any other question you have about our hiring process.
+                We&apos;re here to help you with any other question you have about our hiring
+                process.
               </Typography>
               <Link href="mailto:job@mui.com" variant="body2">
                 Contact us <KeyboardArrowRightRounded fontSize="small" />

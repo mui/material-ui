@@ -7,6 +7,7 @@ export const ListActionTypes = {
   keyDown: 'list:keyDown',
   resetHighlight: 'list:resetHighlight',
   textNavigation: 'list:textNavigation',
+  clearSelection: 'list:clearSelection',
 } as const;
 
 interface ItemClickAction<ItemValue> {
@@ -55,6 +56,10 @@ interface ResetHighlightAction {
   event: React.SyntheticEvent | null;
 }
 
+interface ClearSelectionAction {
+  type: typeof ListActionTypes.clearSelection;
+}
+
 /**
  * A union of all standard actions that can be dispatched to the list reducer.
  */
@@ -66,4 +71,5 @@ export type ListAction<ItemValue> =
   | ItemsChangeAction<ItemValue>
   | KeyDownAction
   | ResetHighlightAction
-  | TextNavigationAction;
+  | TextNavigationAction
+  | ClearSelectionAction;

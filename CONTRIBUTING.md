@@ -285,7 +285,7 @@ docs/src/pages/components/buttons/
 
 ### 2. Write the demo code
 
-MUI Core uses TypeScript to document our components.
+We uses TypeScript to document our components.
 We prefer demos written in TS (using the `.tsx` file format).
 
 After creating a TypeScript demo, run `yarn docs:typescript:formatted` to automatically create the JavaScript version, which is also required.

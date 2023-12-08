@@ -59,7 +59,6 @@ const DialogTitleRoot = styled('h2', {
 const sizeToLevel = { sm: 'title-md', md: 'title-lg', lg: 'h4' } as const;
 
 /**
- * ⚠️ DialogTitle must be used as a direct child of the [Card](https://mui.com/joy-ui/react-card/) component.
  *
  * Demos:
  *

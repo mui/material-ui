@@ -23,28 +23,34 @@
     "import { OptionGroup } from '@mui/base/OptionGroup';",
     "import { OptionGroup } from '@mui/base';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'li'",
-      "class": ".MuiOptionGroup-root"
+      "class": "MuiOptionGroup-root"
     },
     {
       "name": "label",
       "description": "The component that renders the label.",
       "default": "'span'",
-      "class": ".MuiOptionGroup-label"
+      "class": "MuiOptionGroup-label"
     },
     {
       "name": "list",
       "description": "The component that renders the list.",
       "default": "'ul'",
-      "class": ".MuiOptionGroup-list"
+      "class": "MuiOptionGroup-list"
     }
   ],
-  "classes": { "classes": ["disabled"], "globalClasses": { "disabled": "Mui-disabled" } },
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root `li` element if `disabled={true}`.",
+      "isGlobal": true
+    }
+  ],
   "spread": true,
   "muiName": "MuiOptionGroup",
   "forwardsRefTo": "HTMLLIElement",

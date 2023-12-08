@@ -240,7 +240,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/discover-more/related-projects' },
       { pathname: '/material-ui/discover-more/design-kits' },
       { pathname: '/material-ui/discover-more/roadmap' },
-      { pathname: '/material-ui/discover-more/backers', title: 'Sponsors & Backers' },
+      { pathname: '/material-ui/discover-more/backers', title: 'Sponsors and Backers' },
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
     ],
