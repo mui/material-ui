@@ -158,7 +158,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     SelectProps = {},
     showFirstButton = false,
     showLastButton = false,
-    slotProps,
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
@@ -253,7 +254,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           rowsPerPage={rowsPerPage}
           showFirstButton={showFirstButton}
           showLastButton={showLastButton}
-          slotProps={slotProps?.actions}
+          slotProps={slotProps.actions}
+          slots={slots.actions}
           getItemAriaLabel={getItemAriaLabel}
           disabled={disabled}
         />
