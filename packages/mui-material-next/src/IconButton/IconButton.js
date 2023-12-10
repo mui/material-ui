@@ -120,7 +120,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     className,
     color = 'default',
     disabled = false,
-    disableFocusRipple = false,
+    disableTouchRipple = false,
     size = 'medium',
     ...other
   } = props;
@@ -130,7 +130,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     edge,
     color,
     disabled,
-    disableFocusRipple,
+    disableTouchRipple,
     size,
   };
 
@@ -140,7 +140,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     <IconButtonRoot
       className={clsx(classes.root, className)}
       centerRipple
-      focusRipple={!disableFocusRipple}
+      touchRipple={!disableTouchRipple}
       disabled={disabled}
       ref={ref}
       ownerState={ownerState}
