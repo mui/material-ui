@@ -58,12 +58,14 @@ export interface IconButtonOwnProps {
   sx?: SxProps<Theme>;
 }
 
+export interface IconButtonOwnerState extends IconButtonProps {}
+
 export type IconButtonTypeMap<
   AdditionalProps = {},
-  RootComponent extends React.ElementType = 'button',
+  DefaultComponent extends React.ElementType = 'button',
 > = ExtendButtonBaseTypeMap<{
   props: AdditionalProps & IconButtonOwnProps;
-  defaultComponent: RootComponent;
+  defaultComponent: DefaultComponent;
 }>;
 
 /**
