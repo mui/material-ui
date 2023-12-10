@@ -19,7 +19,6 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
     "disableGutters": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -30,30 +29,31 @@
       "nodeName": "the root element",
       "conditions": "<code>fixed={true}</code>"
     },
-    "maxWidthXs": {
+    "maxWidthLg": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>maxWidth=\"xs\"</code>"
-    },
-    "maxWidthSm": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>maxWidth=\"sm\"</code>"
+      "conditions": "<code>maxWidth=\"lg\"</code>"
     },
     "maxWidthMd": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>maxWidth=\"md\"</code>"
     },
-    "maxWidthLg": {
+    "maxWidthSm": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>maxWidth=\"lg\"</code>"
+      "conditions": "<code>maxWidth=\"sm\"</code>"
     },
     "maxWidthXl": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>maxWidth=\"xl\"</code>"
-    }
+    },
+    "maxWidthXs": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>maxWidth=\"xs\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." }
   }
 }

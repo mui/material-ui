@@ -159,18 +159,12 @@ export default function BaseUIComponents() {
               image={component.srcLight}
               sx={(theme) => ({
                 aspectRatio: '16 / 9',
-                background: `linear-gradient(180deg, ${alpha(
-                  theme.palette.grey[50],
-                  0.5,
-                )} 20%, #FFF 100%)`,
+                background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
                 borderBottom: '1px solid',
                 borderColor: 'divider',
                 ...theme.applyDarkStyles({
                   content: `url(${component.srcDark})`,
-                  background: `linear-gradient(180deg, ${alpha(
-                    theme.palette.primaryDark[800],
-                    0.5,
-                  )} 20%, ${theme.palette.primaryDark[900]} 100%)`,
+                  background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
                   borderColor: 'divider',
                 }),
               })}

@@ -1,6 +1,6 @@
 {
   "name": "@mui/types",
-  "version": "7.2.9",
+  "version": "7.2.10",
   "private": false,
   "author": "MUI Team",
   "description": "Utility types for MUI.",
@@ -31,14 +31,14 @@
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",
-    "typescript": "tslint -p tsconfig.json \"*.{ts,tsx}\""
+    "typescript": "tsc -p tsconfig.json"
   },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
-    "@types/react": "^18.2.37"
+    "@types/react": "^18.2.42"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0"

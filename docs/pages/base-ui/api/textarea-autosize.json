@@ -11,7 +11,7 @@
     "import { TextareaAutosize } from '@mui/base/TextareaAutosize';",
     "import { TextareaAutosize } from '@mui/base';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "classes": [],
   "spread": false,
   "muiName": "MuiTextareaAutosize",
   "forwardsRefTo": "HTMLTextAreaElement",

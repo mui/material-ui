@@ -42,46 +42,17 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "toolbar": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the Toolbar component"
-    },
-    "spacer": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the spacer element"
-    },
-    "selectLabel": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the select label Typography element"
-    },
-    "selectRoot": {
+    "input": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the Select component <code>root</code> element"
-    },
-    "select": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the Select component <code>select</code> class"
     },
     "selectIcon": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the Select component <code>icon</code> class"
     },
-    "input": {
+    "selectRoot": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the Select component <code>root</code> element"
-    },
-    "menuItem": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the MenuItem component"
-    },
-    "displayedRows": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the displayed rows Typography element"
-    },
-    "actions": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the internal <code>TablePaginationActions</code> component"
     }
   },
   "slotDescriptions": {

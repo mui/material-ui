@@ -100,7 +100,7 @@ function Styles() {
       }
 
       .TablePaginationIntroductionDemo table {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         width: 100%;
         background-color: ${isDarkMode ? grey[900] : '#fff'};

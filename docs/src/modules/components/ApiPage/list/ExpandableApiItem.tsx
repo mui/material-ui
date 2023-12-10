@@ -180,7 +180,7 @@ export type ApiItemProps = {
   className?: string;
   children?: React.ReactNode;
   sx?: SxProps;
-  displayOption?: 'collapsed' | 'expended';
+  displayOption?: 'collapsed' | 'expanded';
 };
 
 function ApiItem(props: ApiItemProps) {
@@ -197,10 +197,10 @@ function ApiItem(props: ApiItemProps) {
     ...other
   } = props;
 
-  const [isExtended, setIsExtended] = React.useState(() => displayOption === 'expended');
+  const [isExtended, setIsExtended] = React.useState(() => displayOption === 'expanded');
 
   React.useEffect(() => {
-    setIsExtended(displayOption === 'expended');
+    setIsExtended(displayOption === 'expanded');
   }, [displayOption]);
   return (
     <Root
