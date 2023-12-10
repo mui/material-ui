@@ -5,8 +5,8 @@ import { createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import Icon from '@mui/material/Icon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import ButtonBase from '@mui/material/ButtonBase';
-import { iconButtonClasses as classes } from '@mui/material/IconButton';
+import ButtonBase from '../ButtonBase';
+import { iconButtonClasses as classes } from '@mui/material-next/IconButton';
 import IconButton from '.';
 
 describe('<IconButton />', () => {

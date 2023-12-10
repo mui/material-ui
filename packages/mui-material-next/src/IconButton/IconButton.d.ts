@@ -34,10 +34,10 @@ export interface IconButtonOwnProps {
    */
   disabled?: boolean;
   /**
-   * If `true`, the  keyboard focus ripple is disabled.
+   * If `true`, the touch ripple effect is disabled.
    * @default false
    */
-  disableFocusRipple?: boolean;
+  disableTouchRipple?: boolean;
   /**
    * If given, uses a negative margin to counteract the padding on one
    * side (this is often helpful for aligning the left or right
