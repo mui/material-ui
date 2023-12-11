@@ -489,8 +489,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const listboxId = useId();
 
-  const hiddenInputId = useId();
-
   return (
     <React.Fragment>
       <SelectSelect
@@ -525,7 +523,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <SelectNativeInput
         aria-invalid={error}
         value={Array.isArray(value) ? value.join(',') : value}
-        name={name ?? hiddenInputId}
+        name={name}
         ref={inputRef}
         aria-hidden
         onChange={handleChange}
