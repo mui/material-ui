@@ -21,12 +21,10 @@
   --grey-800: #303740;
   --grey-900: #1c2025;
 
-  --font-color-light-soft: var(--grey-700);
-  --font-color-light-hard: var(--grey-900);
-  --font-color-dark-soft: var(--grey-300);
-  --font-color-dark-hard: var(--grey-50);
-  --font-color-light-interactive: var(--primary-500);
-  --font-color-dark-interactive: var(--primary-300);
+  --font-color-soft: var(--grey-700);
+  --font-color-hard: var(--grey-900);
+  --font-color-onDark: #fff;
+  --font-color-interactive: var(--primary-500);
 
   --h1-font-family: 'Inter', sans-serif;
   --h1-font-weight: 500;
@@ -68,68 +66,40 @@
   --caption-font-size: 0.75rem;
   --caption-line-height: 1.5;
 
-  --background-surface-light-default: #fff;
-  --background-surface-light-soft: var(--grey-50);
-  --background-surface-light-hard: var(--grey-300);
-  --background-surface-light-highlight: var(--primary-500);
-  --background-surface-light-overlay: rgba(0,0,0,0.3);
-  --background-surface-dark-default: var(--grey-900);
-  --background-surface-dark-soft: var(--grey-800);
-  --background-surface-dark-hard: var(--grey-700);
-  --background-surface-dark-highlight: var(--primary-500);
-  --background-surface-dark-overlay: rgba(0,0,0,0.6);
+  --background-surface-default: #fff;
+  --background-surface-soft: var(--grey-50);
+  --background-surface-hard: var(--grey-300);
+  --background-surface-highlight: var(--primary-500);
+  --background-surface-overlay: rgba(0,0,0,0.3);
 
-  --background-interactive-light-button-base: var(--primary-500);
-  --background-interactive-light-button-hover: var(--primary-700);
-  --background-interactive-light-button-active: var(--primary-800);
-  --background-interactive-light-button-disabled: var(--grey-100);
-  --background-interactive-dark-button-base: var(--primary-500);
-  --background-interactive-dark-button-hover: var(--primary-600);
-  --background-interactive-dark-button-active: var(--primary-700);
-  --background-interactive-dark-button-disabled: var(--grey-800);
+  --background-interactive-button-base: var(--primary-500);
+  --background-interactive-button-hover: var(--primary-700);
+  --background-interactive-button-active: var(--primary-800);
+  --background-interactive-button-disabled: var(--grey-100);
 
-  --background-interactive-light-input-base: var(--grey-50);
-  --background-interactive-light-input-hover: var(--grey-100);
-  --background-interactive-light-input-active: var(--grey-200);
-  --background-interactive-light-input-disabled: var(--grey-100);
-  --background-interactive-dark-input-base: var(--grey-900);
-  --background-interactive-dark-input-hover: var(--grey-800);
-  --background-interactive-dark-input-active: var(--grey-700);
-  --background-interactive-dark-input-disabled: var(--grey-800);
+  --background-interactive-input-base: var(--grey-50);
+  --background-interactive-input-hover: var(--grey-100);
+  --background-interactive-input-active: var(--grey-200);
+  --background-interactive-input-disabled: var(--grey-100);
   
-  --background-interactive-light-thumb: var(--background-surface-light-default);
-  --background-interactive-dark-thumb: var(--background-surface-light-default);
+  --background-interactive-thumb: var(--background-surface-default);
 
-  --border-light-default: 1px solid var(--grey-200);
-  --border-light-soft: 1px solid var(--grey-300);
-  --border-light-hard: 1px solid var(--grey-500);
-  --border-light-interactive: 1px solid var(--primary-500);
-  --border-light-transparent: 1px solid rgba(0,0,0,0);
-  --border-dark-default: 1px solid var(--grey-700);
-  --border-dark-soft: 1px solid var(--grey-700);
-  --border-dark-hard: 1px solid var(--grey-600);
-  --border-dark-interactive: 1px solid var(--primary-500);
-  --border-dark-transparent: 1px solid rgba(0,0,0,0);
+  --border-default: 1px solid var(--grey-200);
+  --border-soft: 1px solid var(--grey-300);
+  --border-hard: 1px solid var(--grey-500);
+  --border-interactive: 1px solid var(--primary-500);
+  --border-transparent: 1px solid rgba(0,0,0,0);
 
-  --shadow-elevation-light-level-1: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
-  --shadow-elevation-light-level-2: 0px 2px 8px 0px rgba(0, 0, 0, 0.15), 0px 1px 2px -1px rgba(0, 0, 0, 0.15);
-  --shadow-elevation-light-level-3: 0px 4px 16px -4px rgba(0, 0, 0, 0.25), 0px 1px 2px -1px rgba(0, 0, 0, 0.15);
-  --shadow-elevation-light-level-4: 0px 8px 32px -4px rgba(0, 0, 0, 0.25), 0px 1px 2px -1px rgba(0, 0, 0, 0.15);
-  --shadow-elevation-dark-level-1: 0px 2px 4px -0.5px rgba(0, 0, 0, 0.40);
-  --shadow-elevation-dark-level-2: 0px 2px 8px 0px rgba(0, 0, 0, 0.30), 0px 2px 4px -0.5px rgba(0, 0, 0, 0.40);
-  --shadow-elevation-dark-level-3: 0px 4px 8px 0px rgba(0, 0, 0, 0.32), 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
-  --shadow-elevation-dark-level-4: 0px 2px 24px 0px rgba(0, 0, 0, 0.32), 0px 16px 32px 0px rgba(0, 0, 0, 0.32);
+  --shadow-elevation-level-1: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  --shadow-elevation-level-2: 0px 2px 8px 0px rgba(0, 0, 0, 0.15), 0px 1px 2px -1px rgba(0, 0, 0, 0.15);
+  --shadow-elevation-level-3: 0px 4px 16px -4px rgba(0, 0, 0, 0.25), 0px 1px 2px -1px rgba(0, 0, 0, 0.15);
+  --shadow-elevation-level-4: 0px 8px 32px -4px rgba(0, 0, 0, 0.25), 0px 1px 2px -1px rgba(0, 0, 0, 0.15);
 
-  --shadow-interactive-light-button: 0px -1.5px 1px 0px var(--primary-700) inset, 0px 1.5px 1px 0px rgba(255, 255, 255, 0.3) inset, 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
-  --shadow-interactive-light-input: 0px 2px 2px 0px rgba(0, 0, 0, 0.05);
-  --shadow-interactive-light-switch-track: 0px 1px 1px 0px rgba(0, 0, 0, 0.05) inset;
-  --shadow-interactive-light-switch-thumb: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
-  --shadow-interactive-light-focus-visible: 0px 0px 0px 1px rgba(0, 0, 0, 0.15), 0px 0px 0px 4px var(--primary-300);
-  --shadow-interactive-dark-button: 0px -1.5px 1px 0px var(--primary-700) inset, 0px 1.5px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-  --shadow-interactive-dark-input: 0px 2px 2px 0px rgba(0, 0, 0, 0.35);
-  --shadow-interactive-dark-switch-track: 0px 1px 1px 0px rgba(0, 0, 0, 0.35) inset;
-  --shadow-interactive-dark-switch-thumb: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
-  --shadow-interactive-dark-focus-visible: 0px 0px 0px 1px rgba(0, 0, 0, 0.25), 0px 0px 0px 4px var(--primary-600);
+  --shadow-interactive-button: 0px -1.5px 1px 0px var(--primary-700) inset, 0px 1.5px 1px 0px rgba(255, 255, 255, 0.3) inset, 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+  --shadow-interactive-input: 0px 2px 2px 0px rgba(0, 0, 0, 0.05);
+  --shadow-interactive-switch-track: 0px 1px 1px 0px rgba(0, 0, 0, 0.05) inset;
+  --shadow-interactive-switch-thumb: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+  --shadow-interactive-focus-visible: 0px 0px 0px 1px rgba(0, 0, 0, 0.15), 0px 0px 0px 4px var(--primary-300);
 
   --border-radius-sm: 4px;
   --border-radius-md: 8px;
@@ -138,13 +108,55 @@
   --border-radius-full: 999px;
 }
 
-.GalleryContainer {
-  background-color: var(--GalleryContainer-background-color, var(--background-surface-light-default));
-}
 @media (prefers-color-scheme: dark) {
-  .GalleryContainer {
-    --GalleryContainer-background-color: var(--background-surface-dark-default);
+  .GalleryContainer,
+  .GalleryMenu,
+  .GalleryPopper,
+  .GalleryPopup,
+  .GallerySelect-listbox {
+    --font-color-soft: var(--grey-300);
+    --font-color-hard: var(--grey-50);
+    --font-color-onDark: #fff;  
+    --font-color-interactive: var(--primary-300);    
+
+    --background-surface-default: var(--grey-900);
+    --background-surface-soft: var(--grey-800);
+    --background-surface-hard: var(--grey-700);
+    --background-surface-highlight: var(--primary-500);
+    --background-surface-overlay: rgba(0,0,0,0.6);
+
+    --background-interactive-button-base: var(--primary-500);
+    --background-interactive-button-hover: var(--primary-600);
+    --background-interactive-button-active: var(--primary-700);
+    --background-interactive-button-disabled: var(--grey-800);
+
+    --background-interactive-input-base: var(--grey-900);
+    --background-interactive-input-hover: var(--grey-800);
+    --background-interactive-input-active: var(--grey-700);
+    --background-interactive-input-disabled: var(--grey-800);
+    --background-interactive-thumb: var(--grey-50);
+  
+    --border-default: 1px solid var(--grey-700);
+    --border-soft: 1px solid var(--grey-700);
+    --border-hard: 1px solid var(--grey-600);
+    --border-interactive: 1px solid var(--primary-500);
+    --border-transparent:  1px solid rgba(0,0,0,0);
+  
+    --shadow-elevation-level-1: 0px 2px 4px -0.5px rgba(0, 0, 0, 0.40);
+    --shadow-elevation-level-2: 0px 2px 8px 0px rgba(0, 0, 0, 0.30), 0px 2px 4px -0.5px rgba(0, 0, 0, 0.40);
+    --shadow-elevation-level-3: 0px 4px 8px 0px rgba(0, 0, 0, 0.32), 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+    --shadow-elevation-level-4: 0px 2px 24px 0px rgba(0, 0, 0, 0.32), 0px 16px 32px 0px rgba(0, 0, 0, 0.32);
+  
+    --shadow-interactive-button: 0px -1.5px 1px 0px var(--primary-700) inset, 0px 1.5px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    --shadow-interactive-input: 0px 2px 2px 0px rgba(0, 0, 0, 0.35);
+    --shadow-interactive-switch-track: 0px 1px 1px 0px rgba(0, 0, 0, 0.35) inset;
+    --shadow-interactive-switch-thumb: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+    --shadow-interactive-focus-visible: 0px 0px 0px 1px rgba(0, 0, 0, 0.25), 0px 0px 0px 4px var(--primary-600);
   }
+}
+
+.GalleryContainer {
+  background-color: var(--background-surface-default);
 }
 
 .GalleryBadge {
@@ -162,7 +174,7 @@
   font-size: var(--caption-font-size);
   line-height: var(--caption-line-height);
   font-weight: var(--caption-font-weight);
-  color: var(--font-color-dark-hard);  
+  color: var(--font-color-onDark);  
   box-sizing: border-box;
   z-index: auto;
   position: absolute;
@@ -174,8 +186,8 @@
   white-space: nowrap;
   text-align: center;
   border-radius: var(--border-radius-full);
-  background: var(--GalleryBadge-badge-background-color, var(--background-surface-light-highlight));
-  box-shadow: var(--GalleryBadge-badge-boxShadow-color, var(--shadow-elevation-light-level-2));
+  background: var(--background-surface-highlight);
+  box-shadow: var(--shadow-elevation-level-2);
   transform: translate(50%, -50%);
   transform-origin: 100% 0;
 }
@@ -184,17 +196,9 @@
   width: 40px;
   height: 40px;
   border-radius: var(--border-radius-sm);
-  background: var(--GalleryBadge-content-background-color, var(--background-surface-light-hard));
+  background: var(--background-surface-hard);
   display: inline-block;
   vertical-align: middle;
-}
-
-@media (prefers-color-scheme: dark) {
-  .GalleryBadge {
-    --GalleryBadge-badge-background-color: var(--background-surface-dark-highlight);
-    --GalleryBadge-badge-boxShadow-color: var(--shadow-elevation-dark-level-2);
-    --GalleryBadge-content-background-color: var(--background-surface-dark-hard);
-  }
 }
 
 .GalleryButton {
@@ -202,101 +206,72 @@
   font-weight: var(--button-font-weight);
   font-size: var(--button-font-size);
   line-height: var(--button-line-height);
-  color: var(--font-color-dark-hard);
-  background-color: var(--GalleryButton-default-background-color, var(--background-interactive-light-button-base));
+  color: var(--font-color-onDark);  
+  background-color: var(--background-interactive-button-base);
   padding: 6px 12px;
   border-radius: var(--border-radius-md);
   transition: all 150ms ease;
   cursor: pointer;
-  border: var(--GalleryButton-default-border, var(--border-light-interactive));
-  box-shadow: var(--GalleryButton-boxShadow-color, var(--shadow-interactive-light-button));
+  border: var(--border-interactive);
+  box-shadow: var(--shadow-interactive-button);
 }
 .GalleryButton:hover {
-  background-color: var(--GalleryButton-default-hover-background-color, var(--background-interactive-light-button-hover));
+  background-color: var(--background-interactive-button-hover);
 }
 .GalleryButton:active {
-  background-color: var(--GalleryButton-default-active-background-color, var(--background-interactive-light-button-active));
+  background-color: var(--background-interactive-button-active);
   box-shadow: none;
 }
 .GalleryButton:focus-visible {
-  box-shadow: var(--GalleryButton-boxShadow-color, var(--shadow-interactive-light-button)), var(--GalleryButton-focusVisible-boxShadow-color, var(--shadow-interactive-light-focus-visible));
+  box-shadow: var(--shadow-interactive-button), var(--shadow-interactive-focus-visible);
   outline: none;
 }
 .GalleryButton:disabled {
-  background-color: var(--GalleryButton-disabled-background-color, var(--background-interactive-light-button-disabled));
-  color: var(--GalleryButton-disabled-color, var(--font-color-light-soft));
+  background-color: var(--background-interactive-button-disabled);
+  color: var(--font-color-soft);
   border: 0;
   cursor: not-allowed;
   box-shadow: none;
 }
 .GalleryButton:disabled:hover {
-  background-color: var(--GaleryButton-disabled-hover-background-color, var(--background-interactive-light-button-disabled));
+  background-color: var(--background-interactive-button-disabled);
 }
 
-@media (prefers-color-scheme: dark) {
-  .GalleryButton {
-    --GalleryButton-default-background-color: var(--background-interactive-dark-button-base);
-    --GalleryButton-default-hover-background-color: var(--background-interactive-dark-button-hover);
-    --GalleryButton-default-active-background-color: var(--background-interactive-dark-button-active);
-    --GalleryButton-default-border: var(--border-dark-interactive);
-    --GalleryButton-boxShadow-color: var(--shadow-interactive-dark-button);
-    --GalleryButton-focusVisible-boxShadow-color: var(--shadow-interactive-dark-focus-visible);
-    --GalleryButton-disabled-color: var(--font-color-dark-soft);
-    --GalleryButton-disabled-background-color: var(--background-interactive-dark-button-disabled);
-    --GaleryButton-disabled-hover-background-color:var(--background-interactive-dark-button-disabled);
-  }
-}
 .GalleryButtonSoft {
   font-family: var(--button-font-family);
   font-weight: var(--button-font-weight);
   font-size: var(--button-font-size);
   line-height: var(--button-line-height);
-  color: var(--GalleryButtonSoft-default-color, var(--font-color-light-hard));
-  background-color: var(--GalleryButtonSoft-default-background-color, var(--background-surface-light-soft));
+  color: var(--font-color-hard);
+  background-color: var(--background-surface-soft);
   padding: 6px 12px;
   border-radius: var(--border-radius-md);
   transition: all 150ms ease;
   cursor: pointer;
-  border: var(--GalleryButtonSoft-default-border, var(--border-light-default));
-  box-shadow: var(--GalleryButtonSoft-boxShadow-color, var(--shadow-elevation-light-level-1));
+  border: var(--border-default);
+  box-shadow: var(--shadow-elevation-level-1);
 }
 .GalleryButtonSoft:hover {
-  background-color: var(--GalleryButtonSoft-default-hover-background-color, var(--background-surface-light-default));
-  border: var(--GalleryButtonSoft-default-hover-border, var(--border-light-soft));
+  background-color: var(--background-surface-default);
+  border: var(--border-soft);
 }
 .GalleryButtonSoft:active {
-  background-color: var(--GalleryButtonSoft-default-active-background-color, var(--background-surface-light-hard));
+  background-color: var(--background-surface-hard);
   box-shadow: none;
 }
 .GalleryButtonSoft:focus-visible {
-  box-shadow: var(--GalleryButtonSoft-focusVisible-boxShadow-color, var(--shadow-interactive-light-focus-visible));
+  box-shadow: var(--shadow-interactive-focus-visible);
   outline: none;
 }
 .GalleryButtonSoft:disabled {
-  background-color: var(--GalleryButtonSoft-disabled-background-color, var(--background-interactive-light-button-disabled));
-  color: var(--GalleryButtonSoft-disabled-color, var(--font-color-light-soft));
+  background-color: var(--background-interactive-button-disabled);
+  color: var(--font-color-soft);
   border: 0;
   cursor: not-allowed;
   box-shadow: none;
 }
 .GalleryButtonSoft:disabled:hover {
-  background-color: var(--GalleryButtonSoft-disabled-hover-background-color, var(--background-interactive-light-button-disabled));
-}
-
-@media (prefers-color-scheme: dark) {
-  .GalleryButtonSoft {
-    --GalleryButtonSoft-default-color: var(--font-color-dark-hard);
-    --GalleryButtonSoft-default-background-color: var(--background-surface-dark-soft);
-    --GalleryButtonSoft-default-border: var(--border-dark-default);
-    --GalleryButtonSoft-boxShadow-color: var(--shadow-elevation-dark-level-1);
-    --GalleryButtonSoft-default-hover-background-color: var(--background-surface-dark-default);
-    --GalleryButtonSoft-default-hover-border: var(--border-dark-soft);
-    --GalleryButtonSoft-default-active-background-color: var(--background-surface-dark-hard);
-    --GalleryButtonSoft-focusVisible-boxShadow-color: var(--shadow-interactive-dark-focus-visible);  
-    --GalleryButtonSoft-disabled-background-color: var(--background-interactive-dark-button-disabled);
-    --GalleryButtonSoft-disabled-color: var(--font-color-dark-soft);  
-    --GalleryButtonSoft-disabled-hover-background-color: var(--background-interactive-dark-button-disabled); 
-  }
+  background-color: var(--background-interactive-button-disabled);
 }
 
 .GalleryButtonPlain {
@@ -304,48 +279,34 @@
   font-weight: var(--button-font-weight);
   font-size: var(--button-font-size);
   line-height: var(--button-line-height);
-  color: var(--GalleryButtonPlain-default-color, var(--font-color-light-interactive));
+  color: var(--font-color-interactive);
   background-color: rgba(0, 0, 0, 0.0);
   padding: 6px 12px;
   border-radius: var(--border-radius-md);
-  border: var(--GalleryButtonPlain-default-border, var(--border-light-transparent));
+  border: var(--border-transparent);
   transition: all 150ms ease;
   cursor: pointer; 
 }
 .GalleryButtonPlain:hover {
-  background-color: var(--GalleryButtonPlain-default-hover-background-color, var(--background-surface-light-soft));
-  border: var(--GalleryButtonPlain-default-hover-border, var(--border-light-transparent));
+  background-color: var(--background-surface-soft);
+  border: var(--border-transparent);
 }
 .GalleryButtonPlain:active {
-  background-color: var(--GalleryButtonPlain-default-active-background-color, var(--background-surface-light-hard));
+  background-color: var(--background-surface-hard);
 }
 .GalleryButtonPlain:focus-visible {
-  box-shadow: var(--GalleryButtonPlain-focusVisible-boxShadow-color, var(--shadow-interactive-light-focus-visible));
+  box-shadow: var(--shadow-interactive-focus-visible);
   outline: none;
 }
 .GalleryButtonPlain:disabled {
-  background-color: var(--GalleryButtonPlain-disabled-background-color, var(--background-interactive-light-button-disabled));
-  color: var(--GalleryButtonPlain-disabled-color, var(--font-color-light-soft));
+  background-color: var(--background-interactive-button-disabled);
+  color: var(--font-color-soft);
   border: 0;
   cursor: not-allowed;
   box-shadow: none;
 }
 .GalleryButtonPlain:disabled:hover {
-  background-color: var(--GalleryButtonPlain-disabled-hover-background-color, var(--background-interactive-light-button-disabled));
-}
-
-@media (prefers-color-scheme: dark) {
-  .GalleryButtonPlain {
-    --GalleryButtonPlain-default-color: var(--font-color-dark-interactive);
-    --GalleryButtonPlain-default-border: var(--border-dark-transparent);
-    --GalleryButtonPlain-default-hover-background-color: var(--background-surface-dark-soft);
-    --GalleryButtonPlain-default-hover-border: var(--border-dark-transparent);
-    --GalleryButtonPlain-default-active-background-color: var(--background-surface-dark-hard);
-    --GalleryButtonPlain-focusVisible-boxShadow-color: var(--shadow-interactive-dark-focus-visible);
-    --GalleryButtonPlain-disabled-background-color: var(--background-interactive-dark-button-disabled);
-    --GalleryButtonPlain-disabled-color: var(--font-color-dark-soft);
-    --GalleryButtonPlain-disabled-hover-background-color: var(--background-interactive-dark-button-disabled);
-  }
+  background-color: var(--background-interactive-button-disabled);
 }
 
 .GalleryInput .MuiInput-input {
@@ -354,36 +315,25 @@
   font-size:var(--body-font-size);
   font-weight: var(--body-font-weight);
   line-height: var(--button-line-height);
-  color: var(--GalleryInput-input-color, var(--font-color-light-soft));
+  color: var(--GalleryInput-input-color, var(--font-color-soft));
   padding: 6px 10px;
   border-radius: var(--border-radius-md);
-  background: var(--GalleryInput-input-background-color, var(--background-interactive-light-input-base));
-  border: var(--GalleryInput-input-border-color, var(--border-light-default));
-  box-shadow: var(--GalleryInput-input-boxShadow-color, var(--shadow-interactive-light-input));
+  background: var(--background-interactive-input-base);
+  border: var(--border-default);
+  box-shadow: var(--shadow-interactive-input);
 }
 .GalleryInput .MuiInput-input:hover {
-  border: var(--GalleryInput-input-hover-border-color, var(--border-light-hard));
+  border: var(--border-hard);
 }
 .GalleryInput .MuiInput-input:focus {
   outline: 0;
-  box-shadow: var(--GalleryInput-input-focus-boxShadow-color, var(--shadow-interactive-light-focus-visible));
-}
-
-@media (prefers-color-scheme: dark) {
-  .GalleryInput {
-    --GalleryInput-input-color: var(--font-color-dark-soft);
-    --GalleryInput-input-background-color: var(--background-interactive-dark-input-base);
-    --GalleryInput-input-border-color: var(--border-dark-default);
-    --GalleryInput-input-hover-border-color: var(--border-dark-hard); 
-    --GalleryInput-input-boxShadow-color: var(--shadow-interactive-dark-input);
-    --GalleryInput-input-focus-boxShadow-color:  var(--shadow-interactive-dark-focus-visible);
-  }
+  box-shadow: var(--shadow-interactive-focus-visible);
 }
 
 .GalleryMenu-listbox {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
-  color: var(--GalleryMenu-listbox-color, var(--font-color-light-soft));
+  color: var(--GalleryMenu-listbox-color, var(--font-color-soft));
   box-sizing: border-box;
   padding: 6px;
   margin: 12px 0;
@@ -391,9 +341,9 @@
   border-radius: var(--border-radius-lg);
   overflow: auto;
   outline: 0px;
-  background: var(--GalleryMenu-listbox-background, var(--background-surface-light-default));
-  border: var(--GalleryMenu-listbox-border-color, var(--border-light-soft));
-  box-shadow: var(--GalleryMenu-listbox-boxShadow-color, var(--shadow-elevation-light-level-2));
+  background: var(--background-surface-default);
+  border: var(--border-soft);
+  box-shadow: var(--shadow-elevation-level-2);
 }
 
 .GalleryMenu-item {
@@ -410,48 +360,33 @@
 
 .GalleryMenu-item.Mui-focusVisible {
   outline: none;
-  box-shadow: var(--GalleryMenu-item-focusVisible-color, var(--shadow-interactive-light-focus-visible));
-  background-color: var(--GalleryMenu-item-background-color, var(--background-surface-light-soft));
-  color: var(--GalleryMenu-item-color, var(--font-color-light-soft));
+  box-shadow: var(--shadow-interactive-focus-visible);
+  background-color: var(--background-surface-soft);
+  color: var(--font-color-soft);
 }
 
 .GalleryMenu-item.Mui-disabled {
-  color: var(--GalleryMenu-item-disabled-color, var(--font-color-light-soft));
+  color: var(--font-color-soft);
 }
 
 .GalleryMenu-item:hover:not(.Mui-disabled) {
-  background-color: var(--GalleryMenu-item-hover-background-color, var(--background-surface-light-soft));
-  color: var(--GalleryMenu-item-hover-color, var(--font-color-light-soft));
+  background-color: var(--background-surface-soft);
+  color: var(--font-color-soft);
 }
 
 .GalleryMenu {
   z-index: 1;
 }
 
-@media (prefers-color-scheme: dark) {
-  .GalleryMenu {
-    --GalleryMenu-listbox-background: var(--background-surface-dark-default);
-    --GalleryMenu-listbox-border-color: var(--border-dark-soft);
-    --GalleryMenu-listbox-color: var(--font-color-dark-soft);
-    --GalleryMenu-listbox-boxShadow-color: var(--shadow-elevation-dark-level-2);
-    --GalleryMenu-item-focusVisible-color: var(--shadow-interactive-dark-focus-visible);
-    --GalleryMenu-item-background-color: var(--background-surface-dark-soft);
-    --GalleryMenu-item-color: var(--font-color-dark-soft);
-    --GalleryMenu-item-disabled-color: var(--font-color-dark-soft);
-    --GalleryMenu-item-hover-background-color: var(--background-surface-dark-soft);
-    --GalleryMenu-item-hover-color: var(--font-color-dark-soft);
-  }
-}
-
 .GalleryNumberInput {
   font-family: var(--body-font-family);
   font-weight: var(--body-font-weight);
-  color: var(--GalleryNumberInput-color, var(--font-color-light-hard));
+  color: var(--font-color-hard);
   border-radius: var(--border-radius-md);
   padding: 4px;
-  background: var(--GalleryNumberInput-background-color, var(--background-interactive-light-input-base));
-  border: var(--GalleryNumberInput-border-color, var(--border-light-default));
-  box-shadow: var(--GalleryNumberInput-boxShadow-color, var(--shadow-interactive-light-input));
+  background: var(--background-interactive-input-base);
+  border: var(--border-default);
+  box-shadow: var(--shadow-interactive-input);
   display: grid;
   grid-template-columns: 1fr 19px;
   grid-template-rows: 1fr 1fr;
@@ -460,12 +395,12 @@
 }
 
 .GalleryNumberInput:hover {
-  border: var(--GalleryNumberInput-hover-border-color, var(--border-light-hard));
+  border: var(--border-hard);
 }
 
 .GalleryNumberInput.Mui-focused {
   outline: 0;
-  box-shadow: var(--GalleryNumberInput-focused-boxShadow-color, var(--shadow-interactive-light-focus-visible));
+  box-shadow: var(--shadow-interactive-focus-visible);
 }
 
 .GalleryNumberInput .input {
@@ -474,7 +409,7 @@
   font-weight: var(--body-font-weight);
   grid-column: 1/2;
   grid-row: 1/3;
-  color: var(--GalleryNumberInput-input-color, var(--font-color-light-soft));
+  color: var(--font-color-soft);
   background: inherit;
   border: none;
   border-radius: inherit;
@@ -490,7 +425,7 @@
   font-family: system-ui, sans-serif;
   font-size: var(--caption-font-size);
   line-height: var(--caption-line-height);
-  color: var(--GalleryNumberInput-btn-color, var(--font-color-light-soft));
+  color: var(--font-color-soft);
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -500,7 +435,7 @@
   width: 19px;
   height: 19px;
   box-sizing: border-box;
-  background: var(--GalleryNumberInput-btn-background-color, var(--background-surface-light-soft));
+  background: var(--background-surface-soft);
   border: 0;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -508,8 +443,8 @@
 }
 
 .GalleryNumberInput .btn:hover {
-  background: var(--GalleryNumberInput-btn-hover-background-color, var(--background-surface-light-soft));
-  border: var(--GalleryNumberInput-btn-hover-border-color, var(--border-light-soft));
+  background: var(--background-surface-soft);
+  border: var(--border-soft);
   cursor: pointer;
 }
 
@@ -519,15 +454,15 @@
   border-top-left-radius: var(--border-radius-sm);
   border-top-right-radius: var(--border-radius-sm);
   border-bottom: 0;
-  background: var(--GalleryNumberInput-btn-increment-background-color, var(--background-surface-light-default));
-  border: var(--GalleryNumberInput-btn-increment-border-color, var(--border-light-soft));
-  color: var(--GalleryNumberInput-btn-increment-color, var(--font-color-light-soft));
+  background: var(--background-surface-default);
+  border: var(--border-soft);
+  color: var(--font-color-soft);
 
   &:hover {
     cursor: pointer;
-    color: var(--font-color-dark-hard);
-    background: var(--GalleryNumberInput-btn-increment-hover-background-color, var(--background-surface-light-highlight));
-    border: var(--GalleryNumberInput-btn-increment-hover-color, var(--border-light-interactive));
+    color: var(--font-color-hard);
+    background: var(--background-surface-highlight);
+    border: var(--border-interactive);
   }
 }
 
@@ -536,45 +471,19 @@
   grid-row: 2/3;
   border-bottom-left-radius: var(--border-radius-sm);
   border-bottom-right-radius: var(--border-radius-sm);
-  background: var(--GalleryNumberInput-btn-decrement-background-color, var(--background-surface-light-default));
-  border: var(--GalleryNumberInput-btn-decrement-border-color, var(--border-light-soft));  
-  color: var(--GalleryNumberInput-btn-decrement-color, var(--font-color-light-soft));
+  background: var(--background-surface-default);
+  border: var(--border-soft);  
+  color: var(--font-color-soft);
 }
 
 .GalleryNumberInput .btn.decrement:hover {
   cursor: pointer;
-  color: var(--font-color-dark-hard);
-  background: var(--GalleryNumberInput-btn-decrement-hover-background-color, var(--background-surface-light-highlight));
-  border: var(--GalleryNumberInput-btn-decrement-hover-border-color, var(--border-light-interactive));
+  color: var(--font-color-hard);
+  background: var(--background-surface-highlight);
+  border: var(--border-interactive);
 }
 .GalleryNumberInput .btn.decrement .arrow {
   transform: translateY(-1px);
-}
-
-@media (prefers-color-scheme: dark) {
-  .GalleryNumberInput {
-    --GalleryNumberInput-color: var(--font-color-dark-soft);
-    --GalleryNumberInput-background-color: var(--background-interactive-dark-input-base);
-    --GalleryNumberInput-border-color: var(--border-dark-default);
-    --GalleryNumberInput-hover-border-color: var(--border-dark-hard);
-    --GalleryNumberInput-boxShadow-color: var(--shadow-interactive-dark-input);
-    --GalleryNumberInput-focused-boxShadow-color: var(--shadow-interactive-dark-focus-visible);
-    --GalleryNumberInput-input-color: var(--font-color-dark-soft);
-    --GalleryNumberInput-btn-color: var(--font-color-dark-soft);
-    --GalleryNumberInput-btn-increment-border-color: var(--border-dark-soft);;
-    --GalleryNumberInput-btn-increment-background-color: var(--background-surface-dark-default);
-    --GalleryNumberInput-btn-increment-color: var(--font-color-dark-soft);
-    --GalleryNumberInput-btn-increment-hover-background-color: var(--background-surface-dark-highlight);
-    --GalleryNumberInput-btn-increment-hover-color: var(--border-light-interactive);
-    --GalleryNumberInput-btn-decrement-hover-background-color: var(--background-surface-dark-highlight);
-    --GalleryNumberInput-btn-decrement-hover-border-color: var(--border-dark-interactive);
-    --GalleryNumberInput-btn-decrement-border-color: var(--border-dark-soft);
-    --GalleryNumberInput-btn-decrement-background-color: var(--background-surface-dark-default);
-    --GalleryNumberInput-btn-decrement-color: var(--font-color-dark-soft);
-    --GalleryNumberInput-btn-hover-background-color: var(--background-surface-dark-highlight);
-    --GalleryNumberInput-btn-hover-border-color: var(--border-dark-interactive);
-    --GalleryNumberInput-btn-background-color: var(--background-surface-dark-soft);
-  }
 }
 
 .GalleryPopper,
@@ -589,33 +498,17 @@
 }
 
 .GalleryPopper {
-  background-color: var(--GalleryPopper-background-color, var(--background-surface-light-soft));
-  border: var(--GalleryPopper-border-color, var(--border-light-default));
-  box-shadow: var(--GalleryPopper-boxShadow-color, var(--shadow-elevation-light-level-3));
-  color: var(--GalleryPopper-color, var(--font-color-light-soft));
+  background-color: var(--background-surface-soft);
+  border: var(--border-default);
+  box-shadow: var(--shadow-elevation-level-3);
+  color: var(--font-color-soft);
 }
 
 .GalleryPopup {
-  background-color: var(--GalleryPopup-background-color,var(--background-surface-light-soft));
-  border: var(--GalleryPopup-border-color, var(--border-light-default));
-  box-shadow: var(--GalleryPopup-boxShadow-color, var(--shadow-elevation-light-level-3));
-  color: var(--GalleryPopup-color, var(--font-color-light-soft));
-}
-
-@media (prefers-color-scheme: dark) {
-  .GalleryPopper {
-    --GalleryPopper-background-color: var(--background-surface-dark-soft);
-    --GalleryPopper-border-color: var(--border-dark-default);
-    --GalleryPopper-color: var(--font-color-dark-soft);
-    --GalleryPopper-boxShadow-color:  var(--shadow-elevation-dark-level-3);
-  }
-
-  .GalleryPopup {
-    --GalleryPopup-background-color: var(--background-surface-dark-soft);
-    --GalleryPopup-border-color: var(--border-dark-default);
-    --GalleryPopup-color: var(--font-color-dark-soft);
-    --GalleryPopup-boxShadow-color:  var(--shadow-elevation-dark-level-3);
-  }
+  background-color: var(--background-surface-soft);
+  border: var(--border-default);
+  box-shadow: var(--shadow-elevation-level-3);
+  color: var(--font-color-soft);
 }
 
 .GallerySelect {
@@ -624,28 +517,28 @@
   font-weight: var(--body-font-weight);
   line-height: var(--button-line-height);
   text-align: left;
-  color: var(--GallerySelect-color, var(--font-color-light-soft));
+  color: var(--font-color-soft);
   box-sizing: border-box;
   min-width: 320px;
   padding: 6px 10px;
   border-radius: var(--border-radius-md);
-  background: var(--GallerySelect-background-color, var(--background-interactive-light-input-base));
-  border: var(--GallerySelect-border-color, var(--border-light-default));
+  background: var(--background-interactive-input-base);
+  border: var(--border-default);
   position: relative;
-  box-shadow: var(--GallerySelect-boxShadow-color, var(--shadow-interactive-light-input));
+  box-shadow: var(--shadow-interactive-input);
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
   cursor: pointer;
 
   &:hover {
-    background: var(--GallerySelect-hover-background-color, var(--background-interactive-light-input-hover));
-    border: var(--GallerySelect-hover-border-color, var(--border-light-hard));
+    background: var(--background-interactive-input-hover);
+    border: var(--border-hard);
   }
 
   &.Mui-focusVisible {
     outline: 0;
-    box-shadow: var(--GallerySelect-focusVisible-boxShadow-color, var(--shadow-interactive-light-focus-visible));
+    box-shadow: var(--shadow-interactive-focus-visible);
   }
 
   & > svg {
@@ -656,12 +549,13 @@
     right: 10px;
   }
 }
+
 .GallerySelect-listbox {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
   font-weight: var(--body-font-weight);
   line-height: var(--button-line-height);
-  color: var(--GallerySelect-listbox-color, var(--font-color-light-soft));
+  color: var(--font-color-soft);
   box-sizing: border-box;
   padding: 6px;
   margin: 12px 0;
@@ -669,10 +563,11 @@
   border-radius: var(--border-radius-lg);
   overflow: auto;
   outline: 0px;
-  background: var(--GallerySelect-listbox-background-color, var(--background-surface-light-default));
-  border: var(--GallerySelect-listbox-border-color, var(--border-light-soft));
-  box-shadow: var(--GallerySelect-listbox-boxShadow-color, var(--shadow-elevation-light-level-2));
+  background: var(--background-surface-default);
+  border: var(--border-soft);
+  box-shadow: var(--shadow-elevation-level-2);
 }
+
 .GallerySelect-popper {
   z-index: 1;
 }
@@ -687,64 +582,32 @@
   }
 
   &.Mui-selected {
-    background-color: var(--GallerySelect-option-selected-background-color, var(--background-surface-light-hard));
-    color: var(--GallerySelect-option-selected-color, var(--font-color-light-soft));
+    background-color: var(--background-surface-hard);
+    color: var(--font-color-soft);
   }
 
   &.MuiOption-highlighted {
-    background-color: var(--SelectGallery-option-highlighted-background-color, var(--background-surface-light-soft));
-    color: var(--SelectGallery-option-highlighted-color, var(--font-color-light-soft));
+    background-color: var(--background-surface-soft);
+    color: var(--font-color-soft);
   }
 
   &.MuiOption-highlighted.Mui-selected {
-    background-color: var(--GallerySelect-option-highlighted-selected-background-color, var(--background-surface-light-hard));
-    color: var(--GallerySelect-option-highlighted-selected-color, var(--font-color-light-hard));
+    background-color: var(--background-surface-hard);
+    color: var(--font-color-hard);
   }
 
   &.Mui-disabled {
-    color: var(--GallerySelect-option-disabled-color, var(--font-color-light-soft));
+    color: var(--font-color-soft);
   }
 
   &:hover:not(.Mui-disabled) {
-    background-color: var(--GallerySelect-option-disabled-background-color, var(--background-surface-light-soft));
-    color: var(--GallerySelect-option-disabled-color, var(--font-color-light-soft));
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .GallerySelect {
-    --GallerySelect-background-color:  var(--background-interactive-dark-input-base);
-    --GallerySelect-border-color: var(--border-dark-default);
-    --GallerySelect-color: var(--font-color-dark-soft);
-    --GallerySelect-boxShadow-color: var(--shadow-interactive-dark-input);
-    --GallerySelect-hover-background-color: var(--background-interactive-dark-input-hover);
-    --GallerySelect-hover-border-color: var(--border-dark-hard);
-    --GallerySelect-focusVisible-boxShadow-color:  var(--shadow-interactive-dark-focus-visible);
-  }
-}
-@media (prefers-color-scheme: dark) {
-  .GallerySelect-listbox {
-    --GallerySelect-listbox-background-color: var(--background-surface-dark-default);
-    --GallerySelect-listbox-border-color: var(--border-dark-soft);
-    --GallerySelect-listbox-color: var(--font-color-dark-soft);
-    --GallerySelect-listbox-boxShadow-color: var(--shadow-elevation-dark-level-2);
-  }
-}
-@media (prefers-color-scheme: dark) {
-  .GallerySelect-option {
-    --GallerySelect-option-selected-background-color:  var(--background-surface-dark-hard);
-    --GallerySelect-option-selected-color: var(--font-color-dark-soft);
-    --GallerySelect-option-disabled-background-color: var(--background-surface-dark-soft);
-    --GallerySelect-option-disabled-color: var(--font-color-dark-soft);
-    --SelectGallery-option-highlighted-background-color: var(--border-dark-soft);
-    --SelectGallery-option-highlighted-color: var(--font-color-dark-soft);
-    --GallerySelect-option-highlighted-selected-background-color: var(--background-surface-dark-hard);
-    --GallerySelect-option-highlighted-selected-color: var(--font-color-dark-hard);
+    background-color: var(--background-surface-soft);
+    color: var(--font-color-soft);
   }
 }
 
 .GallerySlider {
-  color: var(--GallerySlider-color, var(--background-surface-light-highlight));
+  color: var(--background-surface-highlight);
   height: 6px;
   width: 100%;
   padding: 16px 0;
@@ -762,7 +625,7 @@
 .GallerySlider.Mui-disabled {
   pointer-events: none;
   cursor: default;
-  color: var(--GallerySlider-disabled-color, var(--background-interactive-light-input-disabled));
+  color: var(--background-interactive-input-disabled);
   outline: none;
 }
 
@@ -772,7 +635,7 @@
   width: 100%;
   height: 4px;
   border-radius: var(--border-radius-sm);
-  background-color: var(--GallerySlider-rail-background-color, var(--background-surface-light-soft));
+  background-color: var(--background-surface-soft);
 }
 
 .GallerySlider-track {
@@ -793,8 +656,8 @@
   border-radius: var(--border-radius-full);
   outline: 0;
   border: 3px solid;
-  background-color: var(--GallerySlider-thumb-background-color, var(--background-interactive-light-thumb));
-  box-shadow: var(--GallerySlider-thumb-boxShadow, var(--shadow-interactive-light-switch-thumb));
+  background-color: var(--background-interactive-thumb);
+  box-shadow: var(--shadow-interactive-switch-thumb);
 }
 
 /* TODO: alpha used, needs to be changed */
@@ -806,23 +669,11 @@
 } 
 
 .GallerySlider-thumb:focus-visible {
-  box-shadow: var(--GallerySlider-focusVisible-boxShadow-color, var(--shadow-interactive-light-focus-visible));
+  box-shadow: var(--shadow-interactive-focus-visible);
 }
 
 .GallerySlider-thumb.Mui-active {
-  box-shadow: var(--GallerySlider-active-boxShadow-color, var(--shadow-interactive-light-focus-visible));
-}
-
-@media (prefers-color-scheme: dark) {
-  .GallerySlider {
-    --GallerySlider-color: var(--background-surface-dark-highlight);
-    --GallerySlider-disabled-color: var(--background-interactive-dark-input-disabled);
-    --GallerySlider-focusVisible-boxShadow-color: var(--shadow-interactive-dark-focus-visible);
-    --GallerySlider-active-boxShadow-color: var(--shadow-interactive-dark-focus-visible);
-    --GallerySlider-thumb-background-color: var(--background-interactive-dark-thumb);
-    --GallerySlider-thumb-boxShadow: var(--shadow-interactive-dark-switch-thumb);
-    --GallerySlider-rail-background-color: var(--background-surface-dark-soft);
-  }
+  box-shadow:var(--shadow-interactive-focus-visible);
 }
 
 @keyframes in-right {
@@ -851,10 +702,10 @@
   display: flex;
   gap: 8px;
   overflow: hidden;
-  background-color: var(--GallerySnackbar-content-background-color, var(--background-surface-light-soft));
+  background-color: var(--background-surface-soft);
   border-radius: var(--border-radius-md);
-  border: var(--GallerySnackbar-content-border-color, var(--border-light-default));
-  box-shadow: var(--GallerySnackbar-content-boxShadow-color, var(--shadow-elevation-light-level-3));
+  border: var(--border-default);
+  box-shadow: var(--shadow-elevation-level-3);
   padding: 0.75rem;
   position: relative;
 
@@ -868,7 +719,7 @@
     font-size: var(--h5-font-size);
     font-weight: var(--h5-font-weight);
     line-height: var(--h5-line-height);
-    color: var(--GallerySnackbar-title-color, var(--font-color-light-hard));
+    color: var(--font-color-hard);
     margin-right: 0.5rem;
   }
 
@@ -877,34 +728,22 @@
     font-size: var(--body-font-size);
     font-weight: var(--body-font-weight);
     line-height: var(--body-line-height);
-    color: var(--GallerySnackbar-description-color, var(--border-light-soft));
+    color: var(--font-color-soft);
   }
 
   & .snackbar-close-icon {
     font-size: var(--button-font-size);
     font-weight: var(--button-font-weight);
     line-height: var(--button-line-height);
-    color: var(--GallerySnackbar-close-icon-color, var(--font-color-light-hard));
+    color: var(--font-color-hard);
     cursor: pointer;
     flex-shrink: 0;
     padding: 6px;
     border-radius: var(--border-radius-sm);
 
     &:hover {
-      background: var(--GallerySnackbar-closeIcon-background-color, var(--background-surface-light-hard));
+      background: var(--background-surface-hard);
     }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .GallerySnackbar {
-    --GallerySnackbar-content-background-color: var(--background-surface-dark-soft);
-    --GallerySnackbar-content-border-color: var(--border-dark-default);
-    --GallerySnackbar-title-color: var(--font-color-dark-hard);
-    --GallerySnackbar-description-color: var(--font-color-dark-soft);
-    --GallerySnackbar-closeIcon-background-color: var(--background-surface-dark-hard);
-    --GallerySnackbar-close-icon-color: var(--font-color-dark-hard);
-    --GallerySnackbar-content-boxShadow-color: var(--shadow-elevation-dark-level-3);
   }
 }
 
@@ -924,19 +763,19 @@
 }
 
 .GallerySwitch-track {
-  background: var(--GallerySwitch-track-background-color, var(--background-surface-light-soft));
-  border: var(--GallerySwitch-track-border-color, var(--border-light-soft));
+  background: var(--background-surface-soft);
+  border: var(--border-soft);
   border-radius: var(--border-radius-full);
   display: block;
   height: 100%;
   width: 100%;
   position: absolute;
-  box-shadow: var(--GallerySwitch-track-boxShadow-color, var(--shadow-interactive-light-switch-track));
+  box-shadow: var(--shadow-interactive-switch-track);
 }
 
 .GallerySwitch:hover .GallerySwitch-track {
-  background: var(--GallerySwitch-hover-track-background-color, var(--background-interactive-light-input-hover));
-  border: var(--GallerySwitch-hover-track-border-color, var(--border-light-hard));
+  background: var(--background-interactive-input-hover);
+  border: var(--border-hard);
 }
 
 .GallerySwitch-thumb {
@@ -946,8 +785,8 @@
   top: 4px;
   left: 4px;
   border-radius: var(--border-radius-full);
-  border: var(--GallerySwitch-thumb-border-color, var(--border-light-soft));
-  background-color: var(--GallerySwitch-thumb-background-color, var(--background-interactive-light-thumb));
+  border: var(--border-soft);
+  background-color: var(--background-interactive-thumb);
   position: relative;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -955,17 +794,17 @@
 }
 
 .GallerySwitch.Mui-focusVisible .GallerySwitch-track {
-  box-shadow: var(--GallerySwitch-focusVisible-track, var(--shadow-interactive-light-focus-visible));
+  box-shadow: var(--shadow-interactive-focus-visible);
 }
 
 .GallerySwitch.Mui-checked .GallerySwitch-thumb {
   left: 18px;
-  background-color: var(--GallerySwitch-thumb-background-color-checked, var(--background-interactive-light-thumb));
-  box-shadow: var(--GallerySwitch-thumb-boxShadow-color, var(--shadow-interactive-light-switch-thumb));
+  background-color: var(--background-interactive-thumb);
+  box-shadow: var(--shadow-interactive-switch-thumb);
 }
 
 .GallerySwitch.Mui-checked .GallerySwitch-track {
-  background: var(--GallerySwitch-track-background-color-checked, var(--background-surface-light-highlight));
+  background: var(--background-surface-highlight);
 }
 
 .GallerySwitch-input {
@@ -980,22 +819,6 @@
   margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  .GallerySwitch {
-    --GallerySwitch-track-background-color: var(--background-surface-dark-soft);
-    --GallerySwitch-track-border-color: var(--border-dark-soft);
-    --GallerySwitch-thumb-background-color: var(--background-interactive-dark-thumb);
-    --GallerySwitch-thumb-border-color:  var(--border-dark-soft);
-    --GallerySwitch-hover-track-background-color: var(--background-interactive-dark-input-hover);
-    --GallerySwitch-hover-track-border-color: var(--border-dark-hard);
-    --GallerySwitch-track-boxShadow-color: var(--shadow-interactive-dark-switch-track);
-    --GallerySwitch-focusVisible-track: var(--shadow-interactive-dark-focus-visible);
-    --GallerySwitch-track-background-color-checked: var(--background-surface-dark-highlight);
-    --GallerySwitch-thumb-background-color-checked: var(--background-interactive-dark-thumb);
-    --GallerySwitch-thumb-boxShadow-color: var(--shadow-interactive-dark-switch-thumb);
-  }
-}
-
 /* Demo's table styles start */
 
 .GalleryTablePaginationDemo {
@@ -1004,18 +827,18 @@
 }
 
 .GalleryTablePaginationDemo th {
-  background-color: var(--GalleryTablePaginationDemo-th-background-color, var(--background-surface-light-default));
+  background-color: var(--background-surface-default);
 }
 
 .GalleryTablePaginationDemo table {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
   width: 100%;
-  background-color: var(--GalleryTablePainationDemo-table-background-color, var(--background-surface-light-default));
-  box-shadow: var(--GalleryTablePainationDemo-table-boxShadow-color, var(--shadow-elevation-dark-level-3));
+  background-color: var(--background-surface-default);
+  box-shadow: var(--shadow-elevation-level-3);
   border-radius: var(--border-radius-md);
   overflow: hidden;
-  border: var(--GalleryTablePainationDemo-table-border-color, var(--border-light-default));
+  border: var(--border-default);
 }
 
 .GalleryTablePaginationDemo td,
@@ -1024,16 +847,7 @@
 }
 
 .GalleryTablePaginationDemo th {
-  background-color: var(--GalleryTablePaginationDemo-th-background-color, var(--background-surface-light-default));
-}
-
-@media (prefers-color-scheme: dark) {
-  .GalleryTablePaginationDemo {
-    --GalleryTablePainationDemo-table-background-color: var(--background-surface-dark-default);
-    --GalleryTablePainationDemo-table-boxShadow-color: var(--shadow-elevation-dark-level-3);
-    --GalleryTablePainationDemo-table-border-color: var(--border-dark-default);
-    --GalleryTablePaginationDemo-th-background-color: var(--background-surface-dark-default);
-  }
+  background-color: var(--background-surface-default);
 }
 
 /* Demo's table styles end */
@@ -1045,7 +859,7 @@
 .GalleryTablePagination .MuiTablePagination-toolbar {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
-  color: var(--GalleryTablePagination-color, var(--font-color-light-soft));
+  color: var(--font-color-soft);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1064,19 +878,19 @@
 .GalleryTablePagination .MuiTablePagination-select {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
-  color: var(--GalleryTablePagination-color, var(--font-color-light-soft));
+  color: var(--font-color-soft);
   padding: 4px 6px;
-  border: var(--GalleryTablePagination-select-border-color, var(--border-light-default));
+  border: var(--border-default);
   border-radius: var(--border-radius-full);
-  background-color: var(--GalleryTablePagination-select-background-color, var(--background-surface-light-soft));
+  background-color: var(--background-surface-soft);
 }
 
 .GalleryTablePagination .MuiTablePagination-select:hover {
-  background-color: var(--GalleryTablePagination-select-hover-background-color, var(--background-surface-light-hard));
+  background-color: var(--background-surface-hard);
 }
 
 .GalleryTablePagination .MuiTablePagination-select:focus {
-  box-shadow: var(--GalleryTablePagination-select-focus-outline-color, var(--shadow-interactive-light-focus-visible));
+  box-shadow: var(--shadow-interactive-focus-visible);
   outline: none;
 }
 
@@ -1090,16 +904,16 @@
 
 .GalleryTablePagination .MuiTablePagination-actions {
   padding: 4px 6px;
-  border: var(--GalleryTablePagination-actions-border-color, var(--border-light-default));
+  border: var(--border-default);
   border-radius: var(--border-radius-full);
-  background-color: var(--GalleryTablePagination-actions-background-color, var(--background-surface-light-soft));
+  background-color: var(--background-surface-soft);
   text-align: center;
 }
 
 .GalleryTablePagination .MuiTablePagination-actions > button {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
-  color: var(--GalleryTablePagination-color, var(--font-color-light-soft));
+  color: var(--font-color-soft);
   margin: 0 8px;
   border: transparent;
   border-radius: var(--border-radius-sm);
@@ -1107,14 +921,11 @@
 }
 
 .GalleryTablePagination .MuiTablePagination-actions > button:hover {
-  background-color: var(
-    --GalleryTablePagination-actions-button-hover-background-color,
-    var(--background-surface-light-hard)
-  );
+  background-color: var(--background-surface-hard);
 }
 
 .GalleryTablePagination .MuiTablePagination-actions > button:focus {
-  box-shadow: var(--GalleryTablePagination-actions-button-focus-outline-color, var(--shadow-interactive-light-focus-visible));
+  box-shadow: var(--shadow-interactive-focus-visible);
   outline: none;
 }
 
@@ -1122,26 +933,12 @@
   opacity: 0.3;
 }
 
-@media (prefers-color-scheme: dark) {
-  .GalleryTablePagination {
-    --GalleryTablePagination-color: var(--font-color-dark-soft);
-    --GalleryTablePagination-select-border-color: var(--border-dark-default);
-    --GalleryTablePagination-select-background-color: var(--background-surface-dark-soft);
-    --GalleryTablePagination-select-hover-background-color: var(--background-surface-dark-hard);
-    --GalleryTablePagination-select-focus-outline-color: var(--shadow-interactive-dark-focus-visible);
-    --GalleryTablePagination-actions-border-color: var(--border-dark-default);
-    --GalleryTablePagination-actions-button-hover-background-color: var(--background-surface-dark-hard);
-    --GalleryTablePagination-actions-button-focus-outline-color: var(--shadow-interactive-dark-focus-visible);
-    --GalleryTablePagination-actions-background-color: var(--background-surface-dark-soft);
-  }
-}
-
 .GalleryTabsList {
   min-width: 400px;
-  background-color: var(--GalleryTabsList-background-color, var(--background-surface-light-soft));
-  border: var(--GalleryTabsList-border-color, var(--border-light-soft));
+  background-color: var(--background-surface-soft);
+  border: var(--border-soft);
   border-radius: var(--border-radius-lg);
-  box-shadow: var(--GalleryTabsList-boxShadow, var(--shadow-interactive-light-switch-track));
+  box-shadow: var(--shadow-interactive-switch-track);
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -1154,7 +951,7 @@
   font-size: var(--button-font-size);
   font-weight: var(--button-font-weight);
   line-height: var(--button-line-height);
-  color: var(--GalleryTab-color, var(--font-color-light-hard));
+  color: var(--font-color-hard);
   cursor: pointer;
   background-color: transparent;
   width: 100%;
@@ -1167,17 +964,17 @@
 }
 
 .GalleryTab:hover {
-  background-color: var(--GalleryTabsList-hover-background-color, var(--background-surface-light-hard));
+  background-color: var(--background-surface-hard);
 }
 
 .GalleryTab:focus {
   outline: none;
-  box-shadow: var(--GalleryTabsList-focus-boxShadow, var(--shadow-interactive-light-focus-visible));
+  box-shadow: var(--shadow-interactive-focus-visible);
 }
 
 .GalleryTab.Mui-selected {
-  background-color: var(--GalleryTabsList-selected-background-color, var(--background-surface-light-highlight));
-  color: var(--font-color-dark-hard);
+  background-color: var(--background-surface-highlight);
+  color: var(--font-color-onDark);
 }
 
 .GalleryTab.Mui-disabled {
@@ -1190,26 +987,10 @@
   font-size: var(--body-font-size);
   font-weight: var(--body-font-weight);
   line-height: var(--body-line-height);
-  color: var(--GalleryTabPanel-color, var(--font-color-light-hard));
+  color: var(--font-color-hard);
   padding: 24px;
-  background: var(--GalleryTabPanel-background-color, var(--background-surface-light-soft));
+  background: var(--background-surface-soft);
   border-radius: var(--border-radius-md);
-}
-
-@media (prefers-color-scheme: dark) {
-  .GalleryTabsList {
-    --GalleryTab-color: var(--font-color-dark-soft);
-    --GalleryTabsList-background-color: var(--background-surface-dark-soft);
-    --GalleryTabsList-border-color: var(--border-dark-soft);
-    --GalleryTabsList-boxShadow: var(--shadow-interactive-dark-switch-track);
-    --GalleryTabsList-hover-background-color: var(--background-surface-dark-hard);
-    --GalleryTabsList-focus-boxShadow: var(--shadow-interactive-dark-focus-visible);
-    --GalleryTabsList-selected-background-color: var(--background-surface-dark-highlight);
-  }
-  .GalleryTabPanel {
-    --GalleryTabPanel-background-color: var(--background-surface-dark-soft);
-    --GalleryTabPanel-color: var(--font-color-dark-hard);
-  }
 }
 
 .GalleryTextarea {
@@ -1218,37 +999,26 @@
   font-size: var(--body-font-size);
   font-weight: var(--body-font-weight);
   line-height: var(--body-line-height);
-  color: var(--GalleryTextarea-color, var(--font-color-light-soft));
+  color: var(--font-color-soft);
   min-height: 100px;
   padding: 6px 10px;
   border-radius: var(--border-radius-md) var(--border-radius-md) 0 var(--border-radius-md);
-  background: var(--GalleryTextarea-background-color, var(--background-interactive-light-input-base));
-  border: var(--GalleryTextarea-border-color, var(--border-light-default));
-  box-shadow: var(--GalleryTextarea-boxShadow-color, var(--shadow-interactive-light-input));
+  background: var(--background-interactive-input-base);
+  border: var(--border-default);
+  box-shadow: var(--shadow-interactive-input);
 }
 
 .GalleryTextarea:hover {
-  border: var(--GalleryTextarea-hover-border-color, var(--border-light-hard));
+  border: var(--border-hard);
 }
 
 .GalleryTextarea:focus {
   border-color: var(--primary-400);
-  box-shadow: var(--GalleryTextarea-focus-boxShadow-color, var(--shadow-interactive-light-focus-visible));
+  box-shadow: var(--shadow-interactive-focus-visible);
   outline: none;
 }
 
 /* firefox */
 .GalleryTextarea:focus-visible {
   outline: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-  .GalleryTextarea {
-    --GalleryTextarea-color: var(--font-color-dark-soft);
-    --GalleryTextarea-background-color: var(--background-interactive-dark-input-base);
-    --GalleryTextarea-border-color: var(--border-dark-default);
-    --GalleryTextarea-hover-border-color: var(--border-dark-hard);
-    --GalleryTextarea-boxShadow-color: var(--shadow-interactive-dark-input);
-    --GalleryTextarea-focus-boxShadow-color: var(--shadow-interactive-dark-focus-visible);
-  }
 }
