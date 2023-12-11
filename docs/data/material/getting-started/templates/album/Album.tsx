@@ -16,7 +16,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import albumTheme from './albumTheme';
 
 function Copyright() {
   return (
@@ -33,12 +34,9 @@ function Copyright() {
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
-
 export default function Album() {
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={albumTheme}>
       <CssBaseline />
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
