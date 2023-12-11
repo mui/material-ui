@@ -164,7 +164,7 @@ export default function HeaderNavDropdown() {
             right: 0,
             boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
             ...theme.applyDarkStyles({
-              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.8)',
             }),
           })}
         >

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableComponent, OverridableStringUnion, OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps, PartiallyRequired } from '@mui/types';
 import { Theme } from '../styles';
 import { ButtonGroupClasses } from './buttonGroupClasses';
 
@@ -85,18 +85,6 @@ export interface ButtonGroupTypeMap<
   defaultComponent: RootComponent;
 }
 
-/**
- *
- * Demos:
- *
- * - [Button Group](https://mui.com/material-ui/react-button-group/)
- *
- * API:
- *
- * - [ButtonGroup API](https://mui.com/material-ui/api/button-group/)
- */
-declare const ButtonGroup: OverridableComponent<ButtonGroupTypeMap>;
-
 export type ButtonGroupProps<
   RootComponent extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
   AdditionalProps = {},
@@ -104,4 +92,16 @@ export type ButtonGroupProps<
   component?: React.ElementType;
 };
 
-export default ButtonGroup;
+export interface ButtonGroupOwnerState
+  extends PartiallyRequired<
+    ButtonGroupProps,
+    | 'color'
+    | 'disabled'
+    | 'disableElevation'
+    | 'disableRipple'
+    | 'disableTouchRipple'
+    | 'fullWidth'
+    | 'orientation'
+    | 'size'
+    | 'variant'
+  > {}

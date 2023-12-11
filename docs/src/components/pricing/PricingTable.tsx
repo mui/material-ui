@@ -339,7 +339,7 @@ function ColumnHeadHighlight(props: BoxProps) {
         (theme) =>
           theme.applyDarkStyles({
             borderColor: 'primaryDark.700',
-            background: alpha(theme.palette.primaryDark[900], 0.5),
+            background: alpha(theme.palette.primaryDark[700], 0.3),
           }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
@@ -373,7 +373,7 @@ function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
           theme.applyDarkStyles({
             ...(highlighted && {
               borderColor: 'primaryDark.700',
-              bgcolor: alpha(theme.palette.primaryDark[900], 0.5),
+              bgcolor: alpha(theme.palette.primaryDark[700], 0.3),
             }),
           }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
@@ -402,7 +402,7 @@ function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: Rea
         },
         (theme) =>
           theme.applyDarkStyles({
-            bgcolor: 'primaryDark.900',
+            bgcolor: 'primaryDark.800',
           }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
@@ -1118,7 +1118,7 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
           },
           ...theme.applyDarkStyles({
             '&:hover > div': {
-              bgcolor: alpha(theme.palette.primaryDark[900], 0.5),
+              bgcolor: theme.palette.primaryDark[800],
             },
           }),
         }),

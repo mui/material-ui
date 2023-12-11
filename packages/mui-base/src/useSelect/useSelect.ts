@@ -101,6 +101,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getOptionAsString = defaultOptionStringifier,
     getSerializedValue = defaultFormValueProvider,
     value: valueProp,
+    componentName = 'useSelect',
   } = props;
 
   const buttonRef = React.useRef<HTMLElement>(null);
@@ -287,6 +288,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getItemAsString: stringifyOption,
     selectionMode: multiple ? 'multiple' : 'single',
     stateReducer: selectReducer,
+    componentName,
   };
 
   const {

@@ -215,6 +215,12 @@ export interface UseListParameters<
       ListActionContext<ItemValue> & CustomActionContext
     >,
   ) => State;
+  /**
+   * The name of the component using useList.
+   * For debugging purposes.
+   * @default 'useList'
+   */
+  componentName?: string;
 }
 
 export interface ListItemState {
