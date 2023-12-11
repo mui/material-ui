@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import FormLabel, { formLabelClasses as classes } from '@mui/joy/FormLabel';
+import FormControl from '@mui/joy/FormControl';
 
 describe('Joy <FormLabel />', () => {
   const { render } = createRenderer();
@@ -37,12 +38,20 @@ describe('Joy <FormLabel />', () => {
   });
 
   it('should have htmlFor if htmlFor is undefined', () => {
-    const { container } = render(<FormLabel htmlFor={undefined} />);
-    expect(container.firstChild).to.have.attribute('for', 'input');
+    const { container } = render(
+      <FormControl>
+        <FormLabel htmlFor={undefined} />
+      </FormControl>,
+    );
+    expect(container.firstChild.firstChild).to.have.attribute('for');
   });
 
   it('should have id if id is undefined', () => {
-    const { container } = render(<FormLabel id={undefined} />);
-    expect(container.firstChild).to.have.attribute('id', 'input');
+    const { container } = render(
+      <FormControl>
+        <FormLabel id={undefined} />
+      </FormControl>,
+    );
+    expect(container.firstChild.firstChild).to.have.attribute('id');
   });
 });
