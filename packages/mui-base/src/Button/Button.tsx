@@ -125,6 +125,11 @@ Button.propTypes /* remove-proptypes */ = {
    */
   focusableWhenDisabled: PropTypes.bool,
   /**
+   * The HTML element, e.g. 'a'
+   * @default ''
+   */
+  hostElementName: PropTypes.string,
+  /**
    * @ignore
    */
   href: PropTypes.string,
