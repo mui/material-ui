@@ -832,28 +832,4 @@ describe('<TablePagination />', () => {
 
     expect(combobox.parentElement).not.to.have.attribute('variant');
   });
-
-  it('should not raise a warning for hiddenLabel when the variant is filled', () => {
-    expect(() => {
-      PropTypes.checkPropTypes(
-        TablePagination.propTypes,
-        {
-          // Other required props
-          count: 10,
-          page: 0,
-          rowsPerPage: 10,
-          onPageChange: () => {},
-          // Additional props for the test
-          slotProps: {
-            select: {
-              variant: 'filled',
-              hiddenLabel: true,
-            },
-          },
-        },
-        'prop',
-        'MockedTablePagination',
-      );
-    }).not.toErrorDev();
-  });
 });

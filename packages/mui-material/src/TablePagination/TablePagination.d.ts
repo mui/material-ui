@@ -1,8 +1,5 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { FilledInputProps } from '@mui/material/FilledInput';
-import { OutlinedInputProps } from '@mui/material/OutlinedInput';
-import { InputProps as StandardInputProps } from '../Input';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TablePaginationActionsProps } from './TablePaginationActions';
@@ -146,7 +143,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   slotProps?: {
     actions?: TablePaginationActionsProps['slotProps'];
-    select?: SelectPropsVariant<TablePaginationVariants>;
+    select?: Partial<SelectProps>;
   };
   /**
    * The components used for each slot inside the TablePagination.
@@ -161,16 +158,6 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   sx?: SxProps<Theme>;
 }
-
-type TablePaginationVariants = 'filled' | 'standard' | 'outlined';
-
-// Extend SelectProps based on the variant
-type SelectPropsVariant<Variant extends TablePaginationVariants> = Partial<SelectProps> &
-  (Variant extends 'filled'
-    ? Partial<FilledInputProps>
-    : Variant extends 'standard'
-    ? Partial<StandardInputProps>
-    : Partial<OutlinedInputProps>);
 
 export interface TablePaginationTypeMap<AdditionalProps, RootComponent extends React.ElementType> {
   props: AdditionalProps & TablePaginationOwnProps;
