@@ -21,7 +21,7 @@ export default function PositionedPopper() {
   return (
     <Box sx={{ width: 500 }}>
       <Popper
-        // Note: The zIndex below is needed for our documentation, but shouldn't be necessary in your app.
+        // Note: The following zIndex style is specifically for documentation purposes and may not be necessary in your application.
         sx={{ zIndex: 1200 }}
         open={open}
         anchorEl={anchorEl}
