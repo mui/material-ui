@@ -5,6 +5,7 @@
     "focusableWhenDisabled": {
       "description": "If <code>true</code>, allows a disabled button to receive focus."
     },
+    "hostElementName": { "description": "The HTML element, e.g. &#39;a&#39;" },
     "type": {
       "description": "Type attribute applied when the <code>component</code> is <code>button</code>."
     }

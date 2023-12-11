@@ -5,6 +5,7 @@
       "type": { "name": "boolean", "description": "boolean" },
       "default": "false"
     },
+    "hostElementName": { "type": { "name": "string", "description": "string" }, "default": "''" },
     "href": { "type": { "name": "string", "description": "string" } },
     "onFocusVisible": {
       "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
