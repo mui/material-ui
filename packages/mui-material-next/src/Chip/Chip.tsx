@@ -349,7 +349,7 @@ const Chip = React.forwardRef(function Chip<
     }
   };
 
-  const clickable = clickableProp !== false && onClick ? true : clickableProp;
+  const clickable = clickableProp !== false && (onClick || onDelete) ? true : clickableProp;
   const isButton = clickable || !!onDelete;
 
   const component = isButton ? ButtonBase : ComponentProp || 'div';
