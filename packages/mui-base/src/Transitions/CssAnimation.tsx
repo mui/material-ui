@@ -47,6 +47,7 @@ function CssAnimation(props: CssAnimationProps) {
     enterClassName,
     exitAnimationName,
     exitClassName,
+    ...other
   } = props;
 
   const { requestedEnter, onEntering, onEntered, onExiting, onExited } =
@@ -80,6 +81,7 @@ function CssAnimation(props: CssAnimationProps) {
     <div
       onAnimationEnd={handleAnimationEnd}
       className={clsx(className, requestedEnter ? enterClassName : exitClassName)}
+      {...other}
     >
       {children}
     </div>
