@@ -35,4 +35,14 @@ describe('Joy <FormLabel />', () => {
     const { container } = render(<FormLabel htmlFor="input" className="foo-bar" />);
     expect(container.firstChild).to.have.attribute('for', 'input');
   });
+
+  it('should have htmlFor if htmlFor is undefined', () => {
+    const { container } = render(<FormLabel htmlFor={undefined} />);
+    expect(container.firstChild).to.have.attribute('for', 'input');
+  });
+
+  it('should have id if id is undefined', () => {
+    const { container } = render(<FormLabel id={undefined} />);
+    expect(container.firstChild).to.have.attribute('id', 'input');
+  });
 });

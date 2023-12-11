@@ -62,7 +62,16 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     name: 'JoyFormLabel',
   });
 
-  const { children, component = 'label', slots = {}, slotProps = {}, ...other } = props;
+  const {
+    children,
+    component = 'label',
+    slots = {},
+    slotProps = {},
+    htmlFor,
+    id,
+    ...other
+  } = props;
+
   const formControl = React.useContext(FormControlContext);
   const required = inProps.required ?? formControl?.required ?? false;
 
@@ -72,7 +81,14 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   };
 
   const classes = useUtilityClasses();
-  const externalForwardedProps = { ...other, component, slots, slotProps };
+  const externalForwardedProps = {
+    ...other,
+    component,
+    slots,
+    slotProps,
+    ...(htmlFor !== undefined && { htmlFor }),
+    ...(id !== undefined && { id }),
+  };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
