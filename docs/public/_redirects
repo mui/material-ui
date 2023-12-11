@@ -495,6 +495,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /material-ui/api/tree-item/ /x/api/tree-view/tree-item/ 301
 /material-ui/guides/styled-engine/ /material-ui/guides/styled-components/ 301
 /material-ui/guides/themeable-component/ /material-ui/guides/creating-themed-components/ 301
+/material-ui/guides/next-js-app-router/ /material-ui/guides/nextjs/ 301
 
 # Proxies
 
