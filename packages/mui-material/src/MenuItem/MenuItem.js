@@ -210,6 +210,11 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
             menuItemRef.current.classList.add(menuItemClasses.focusVisible);
           }
         }}
+        onBlur={() => {
+          if (menuItemRef.current) {
+            menuItemRef.current.classList.remove(menuItemClasses.focusVisible);
+          }
+        }}
         component={component}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         className={clsx(classes.root, className)}
