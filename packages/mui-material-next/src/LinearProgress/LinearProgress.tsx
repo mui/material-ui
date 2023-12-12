@@ -3,8 +3,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { keyframes, css, darken, lighten } from '@mui/system';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { keyframes, css } from '@mui/system';
+import { unstable_capitalize as capitalize, chainPropTypes } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import useTheme from '../styles/useTheme';
 import styled from '../styles/styled';
@@ -15,7 +15,6 @@ import {
   LinearProgressProps,
   LinearProgressTypeMap,
 } from './LinearProgress.types';
-import { Theme } from '../styles';
 
 const TRANSITION_DURATION = 4; // seconds
 const indeterminate1Keyframe = keyframes`
@@ -54,56 +53,53 @@ const indeterminate2Keyframe = keyframes`
 
 const bufferKeyframe = keyframes`
   0% {
-    opacity: 1;
-    background-position: 0 -23px;
+    transform: translateX(calc(var(--md-comp-linear-progress-indicator-active-indicator-height) / 2 * 5));
+  }
+`;
+
+const fourColorKeyframe = keyframes`
+  0% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-one-color);
   }
 
-  60% {
-    opacity: 0;
-    background-position: 0 -23px;
+  15% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-one-color);
+  }
+  25% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-two-color);
+  }
+  40% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-two-color);
   }
 
+  50% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-three-color);
+  }
+  65% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-three-color);
+  }
+  75% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-four-color);
+  }
+  90% {
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-four-color);
+  }
   100% {
-    opacity: 1;
-    background-position: -200px -23px;
+    background: var(--md-comp-linear-progress-indicator-four-color-active-indicator-one-color);
   }
 `;
 
 const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
-  const { classes, variant, color = 'primary' } = ownerState;
+  const { classes, variant, color, fourColor } = ownerState;
 
   const slots = {
-    root: ['root', `color${capitalize(color)}`, variant],
-    dashed: ['dashed', `dashedColor${capitalize(color)}`],
-    bar1: [
-      'bar',
-      `barColor${capitalize(color)}`,
-      (variant === 'indeterminate' || variant === 'query') && 'bar1Indeterminate',
-      variant === 'determinate' && 'bar1Determinate',
-      variant === 'buffer' && 'bar1Buffer',
-    ],
-    bar2: [
-      'bar',
-      variant !== 'buffer' && `barColor${capitalize(color)}`,
-      variant === 'buffer' && `color${capitalize(color)}`,
-      (variant === 'indeterminate' || variant === 'query') && 'bar2Indeterminate',
-      variant === 'buffer' && 'bar2Buffer',
-    ],
+    root: ['root', `color${capitalize(color)}`, variant, fourColor && 'fourColor'],
+    dashed: ['dashed'],
+    bar1: ['bar', `bar1`],
+    bar2: ['bar', `bar2`],
   };
 
   return composeClasses(slots, getLinearProgressUtilityClass, classes);
-};
-
-const getColorShade = (theme: Theme, color: LinearProgressOwnerState['color'] = 'primary') => {
-  if (color === 'inherit') {
-    return 'currentColor';
-  }
-  if (theme.vars) {
-    return theme.vars.palette.LinearProgress[`${color}Bg`];
-  }
-  return theme.palette.mode === 'light'
-    ? lighten(theme.palette[color].main, 0.62)
-    : darken(theme.palette[color].main, 0.5);
 };
 
 const LinearProgressRoot = styled('span', {
@@ -118,16 +114,28 @@ const LinearProgressRoot = styled('span', {
       styles[ownerState.variant],
     ];
   },
-})<{ ownerState: LinearProgressOwnerState }>(({ ownerState, theme }) => ({
+})<{ ownerState: LinearProgressOwnerState }>(({ ownerState, theme: { vars: tokens } }) => ({
+  '--md-comp-linear-progress-indicator-track-color': tokens.sys.color.surfaceContainerHighest,
+  '--md-comp-linear-progress-indicator-active-indicator-height': '4px',
+  '--md-comp-linear-progress-indicator-active-indicator-color':
+    ownerState.color !== 'inherit' ? tokens.sys.color[ownerState.color] : 'currentColor',
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-one-color':
+    tokens.sys.color.primary,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-two-color':
+    tokens.sys.color.onPrimaryContainer,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-three-color':
+    tokens.sys.color.tertiary,
+  '--md-comp-linear-progress-indicator-four-color-active-indicator-four-color':
+    tokens.sys.color.onTertiaryContainer,
   position: 'relative',
   overflow: 'hidden',
   display: 'block',
-  height: 4,
+  height: 'var(--md-comp-linear-progress-indicator-active-indicator-height)',
   zIndex: 0, // Fix Safari's bug during composition of different paint.
   '@media print': {
     colorAdjust: 'exact',
   },
-  backgroundColor: getColorShade(theme, ownerState.color),
+  backgroundColor: 'var(--md-comp-linear-progress-indicator-track-color)',
   ...(ownerState.color === 'inherit' &&
     ownerState.variant !== 'buffer' && {
       backgroundColor: 'none',
@@ -149,30 +157,23 @@ const LinearProgressRoot = styled('span', {
 const LinearProgressDashed = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Dashed',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [styles.dashed, styles[`dashedColor${capitalize(ownerState.color)}`]];
-  },
+  overridesResolver: (props, styles) => styles.dashed,
 })<{ ownerState: LinearProgressOwnerState }>(
-  ({ ownerState, theme }) => {
-    const backgroundColor = getColorShade(theme, ownerState.color);
-
-    return {
-      position: 'absolute',
-      marginTop: 0,
-      height: '100%',
-      width: '100%',
-      ...(ownerState.color === 'inherit' && {
-        opacity: 0.3,
-      }),
-      backgroundImage: `radial-gradient(${backgroundColor} 0%, ${backgroundColor} 16%, transparent 42%)`,
-      backgroundSize: '10px 10px',
-      backgroundPosition: '0 -23px',
-    };
-  },
+  ({ ownerState }) => ({
+    position: 'absolute',
+    marginTop: 0,
+    height: '100%',
+    width: '100%',
+    inset: '0px',
+    backgroundColor: 'var(--md-comp-linear-progress-indicator-track-color)',
+    ...(ownerState.color === 'inherit' && {
+      opacity: 0.3,
+    }),
+    maskImage: `url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 2' preserveAspectRatio='xMinYMin slice'%3E%3Ccircle cx='1' cy='1' r='1'/%3E%3C/svg%3E")`,
+    backgroundRepeat: 'repeat-x',
+  }),
   css`
-    animation: ${bufferKeyframe} 3s infinite linear;
+    animation: 250ms ${bufferKeyframe} infinite linear;
   `,
 );
 
@@ -180,90 +181,68 @@ const LinearProgressBar1 = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Bar1',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.bar,
-      styles[`barColor${capitalize(ownerState.color)}`],
-      (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-        styles.bar1Indeterminate,
-      ownerState.variant === 'determinate' && styles.bar1Determinate,
-      ownerState.variant === 'buffer' && styles.bar1Buffer,
-    ];
+    return [styles.bar, styles.bar1];
   },
-})<{ ownerState: LinearProgressOwnerState }>(
-  ({ ownerState, theme }) => ({
-    width: '100%',
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    top: 0,
-    transition: 'transform 0.2s linear',
-    transformOrigin: 'left',
-    backgroundColor:
-      ownerState.color === 'inherit'
-        ? 'currentColor'
-        : (theme.vars || theme).palette[ownerState.color ?? 'primary'].main,
-    ...(ownerState.variant === 'determinate' && {
-      transition: `transform .${TRANSITION_DURATION}s linear`,
-    }),
-    ...(ownerState.variant === 'buffer' && {
-      zIndex: 1,
-      transition: `transform .${TRANSITION_DURATION}s linear`,
+})<{ ownerState: LinearProgressOwnerState }>(({ ownerState }) => ({
+  width: '100%',
+  position: 'absolute',
+  left: 0,
+  bottom: 0,
+  top: 0,
+  transition: 'transform 0.2s linear',
+  transformOrigin: 'left',
+  backgroundColor: 'var(--md-comp-linear-progress-indicator-active-indicator-color)',
+  ...(ownerState.variant === 'determinate' && {
+    transition: `transform .${TRANSITION_DURATION}s linear`,
+  }),
+  ...(ownerState.variant === 'buffer' && {
+    zIndex: 1,
+    transition: `transform .${TRANSITION_DURATION}s linear`,
+  }),
+  ...((ownerState.variant === 'indeterminate' || ownerState.variant === 'query') && {
+    width: 'auto',
+    animation: `${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
+    ...(ownerState.fourColor && {
+      animationName: `${indeterminate1Keyframe}, ${fourColorKeyframe}`,
+      animationDuration: '2.1s, 4.2s',
+      animationTimingFunction: 'cubic-bezier(0.65, 0.815, 0.735, 0.395), linear',
     }),
   }),
-  ({ ownerState }) =>
-    (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-    css`
-      width: auto;
-      animation: ${indeterminate1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
-    `,
-);
+}));
 
 const LinearProgressBar2 = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Bar2',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.bar,
-      styles[`barColor${capitalize(ownerState.color)}`],
-      (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-        styles.bar2Indeterminate,
-      ownerState.variant === 'buffer' && styles.bar2Buffer,
-    ];
+    return [styles.bar, styles.bar2];
   },
-})<{ ownerState: LinearProgressOwnerState }>(
-  ({ ownerState, theme }) => ({
-    width: '100%',
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    top: 0,
-    transition: 'transform 0.2s linear',
-    transformOrigin: 'left',
-    ...(ownerState.variant !== 'buffer' && {
-      backgroundColor:
-        ownerState.color === 'inherit'
-          ? 'currentColor'
-          : (theme.vars || theme).palette[ownerState.color ?? 'primary'].main,
-    }),
-    ...(ownerState.color === 'inherit' && {
-      opacity: 0.3,
-    }),
-    ...(ownerState.variant === 'buffer' && {
-      backgroundColor: getColorShade(theme, ownerState.color),
-      transition: `transform .${TRANSITION_DURATION}s linear`,
+})<{ ownerState: LinearProgressOwnerState }>(({ ownerState }) => ({
+  width: '100%',
+  position: 'absolute',
+  left: 0,
+  bottom: 0,
+  top: 0,
+  transition: 'transform 0.2s linear',
+  transformOrigin: 'left',
+  backgroundColor: 'var(--md-comp-linear-progress-indicator-active-indicator-color)',
+  ...(ownerState.color === 'inherit' && {
+    opacity: 0.3,
+  }),
+  ...(ownerState.variant === 'buffer' && {
+    backgroundColor: 'var(--md-comp-linear-progress-indicator-track-color)',
+    transition: `transform .${TRANSITION_DURATION}s linear`,
+  }),
+  ...((ownerState.variant === 'indeterminate' || ownerState.variant === 'query') && {
+    width: 'auto',
+    animation: `${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite`,
+    ...(ownerState.fourColor && {
+      animationName: `${indeterminate2Keyframe}, ${fourColorKeyframe}`,
+      animationDuration: '2.1s, 4.2s',
+      animationDelay: '1.15s, 0s',
+      animationTimingFunction: 'cubic-bezier(0.165, 0.84, 0.44, 1), linear',
     }),
   }),
-  ({ ownerState }) =>
-    (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-    css`
-      width: auto;
-      animation: ${indeterminate2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
-    `,
-);
+}));
 
 /**
  * ## ARIA
@@ -287,6 +266,7 @@ const LinearProgress = React.forwardRef(function LinearProgress<
   const {
     className,
     color = 'primary',
+    fourColor = false,
     value,
     valueBuffer,
     variant = 'indeterminate',
@@ -295,6 +275,7 @@ const LinearProgress = React.forwardRef(function LinearProgress<
   const ownerState = {
     ...props,
     color,
+    fourColor,
     variant,
   };
 
@@ -400,8 +381,28 @@ LinearProgress.propTypes /* remove-proptypes */ = {
     'primary',
     'secondary',
     'success',
+    'tertiary',
     'warning',
   ]),
+  /**
+   * If `true`, the component render indeterminate or query mode using four colors instead of one.
+   * This only works if variant is `indeterminate` or `query`.
+   * @default false
+   */
+  fourColor: chainPropTypes(PropTypes.bool, (props) => {
+    if (
+      props.fourColor &&
+      props.variant &&
+      props.variant !== 'indeterminate' &&
+      props.variant !== 'query'
+    ) {
+      return new Error(
+        'MUI: You have provided the `fourColor` prop ' +
+          'with a variant other than `indeterminate` or `query`. This will have no effect.',
+      );
+    }
+    return null;
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

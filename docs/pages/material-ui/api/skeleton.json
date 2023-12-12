@@ -32,22 +32,68 @@
     "import Skeleton from '@mui/material/Skeleton';",
     "import { Skeleton } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "text",
-      "rectangular",
-      "rounded",
-      "circular",
-      "pulse",
-      "wave",
-      "withChildren",
-      "fitContent",
-      "heightAuto"
-    ],
-    "globalClasses": {},
-    "name": "MuiSkeleton"
-  },
+  "classes": [
+    {
+      "key": "circular",
+      "className": "MuiSkeleton-circular",
+      "description": "Styles applied to the root element if `variant=\"circular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fitContent",
+      "className": "MuiSkeleton-fitContent",
+      "description": "Styles applied when the component is passed children and no width.",
+      "isGlobal": false
+    },
+    {
+      "key": "heightAuto",
+      "className": "MuiSkeleton-heightAuto",
+      "description": "Styles applied when the component is passed children and no height.",
+      "isGlobal": false
+    },
+    {
+      "key": "pulse",
+      "className": "MuiSkeleton-pulse",
+      "description": "Styles applied to the root element if `animation=\"pulse\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "rectangular",
+      "className": "MuiSkeleton-rectangular",
+      "description": "Styles applied to the root element if `variant=\"rectangular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiSkeleton-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "rounded",
+      "className": "MuiSkeleton-rounded",
+      "description": "Styles applied to the root element if `variant=\"rounded\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "text",
+      "className": "MuiSkeleton-text",
+      "description": "Styles applied to the root element if `variant=\"text\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "wave",
+      "className": "MuiSkeleton-wave",
+      "description": "Styles applied to the root element if `animation=\"wave\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "withChildren",
+      "className": "MuiSkeleton-withChildren",
+      "description": "Styles applied when the component is passed children.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiSkeleton",

@@ -26,15 +26,15 @@
   },
   "name": "Stack",
   "imports": ["import Stack from '@mui/joy/Stack';", "import { Stack } from '@mui/joy';"],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiStack" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiStack-root"
+      "class": "MuiStack-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyStack",

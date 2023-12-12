@@ -35,6 +35,9 @@ export * from './InputLabel';
 
 export { default as Input } from './Input';
 
+export { default as LinearProgress } from './LinearProgress';
+export * from './LinearProgress';
+
 export { default as Menu } from './Menu';
 export * from './Menu';
 

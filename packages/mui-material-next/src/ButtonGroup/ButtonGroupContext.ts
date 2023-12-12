@@ -1,7 +1,7 @@
 import * as React from 'react';
-import type { ButtonGroupProps } from './ButtonGroup';
+import type { ButtonGroupProps } from './ButtonGroup.types';
 
-interface ButtonGroupContextType {
+export interface ButtonGroupContextType {
   className?: string;
   color?: ButtonGroupProps['color'];
   disabled?: boolean;
@@ -16,7 +16,7 @@ interface ButtonGroupContextType {
 /**
  * @ignore - internal component.
  */
-const ButtonGroupContext = React.createContext<ButtonGroupContextType>({});
+const ButtonGroupContext = React.createContext<ButtonGroupContextType | null>(null);
 
 if (process.env.NODE_ENV !== 'production') {
   ButtonGroupContext.displayName = 'ButtonGroupContext';

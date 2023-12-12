@@ -144,6 +144,7 @@ const Select = React.forwardRef(function Select<
     onOpenChange: onListboxOpenChange,
     getOptionAsString,
     value: valueProp,
+    componentName: 'Select',
   });
 
   const ownerState: SelectOwnerState<OptionValue, Multiple> = {

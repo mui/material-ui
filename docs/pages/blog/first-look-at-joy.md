@@ -139,21 +139,21 @@ They are also available in the docs [Templates page](/joy-ui/getting-started/tem
 <a href="/joy-ui/getting-started/templates/email/"><img src="/static/blog/first-look-at-joy/email.png" style="width: 692px; margin-top: 8px; margin-bottom: 16px;" loading="lazy" alt="Screenshot of an email application mockup built with Joy UI" /></a>
 
 - [Live demo](/joy-ui/getting-started/templates/email/)
-- [CodeSandbox](https://codesandbox.io/s/8gtttr?file=/App.tsx)
+- [CodeSandbox](https://codesandbox.io/p/sandbox/8gtttr?file=/App.tsx)
 
 ### File management
 
 <a href="/joy-ui/getting-started/templates/files/"><img src="/static/blog/first-look-at-joy/files.png" style="width: 692px; margin-top: 8px; margin-bottom: 16px;" loading="lazy" alt="Screenshot of file management application mockup built with Joy UI" /></a>
 
 - [Live demo](/joy-ui/getting-started/templates/files/)
-- [CodeSandbox](https://codesandbox.io/s/ro2b1t?file=/App.tsx)
+- [CodeSandbox](https://codesandbox.io/p/sandbox/ro2b1t?file=/App.tsx)
 
 ### Team management
 
 <a href="/joy-ui/getting-started/templates/team/"><img src="/static/blog/first-look-at-joy/people.png" style="width: 692px; margin-top: 8px; margin-bottom: 16px;" loading="lazy" alt="Screenshot of a team management application mockup built with Joy UI" /></a>
 
 - [Live demo](/joy-ui/getting-started/templates/team/)
-- [CodeSandbox](https://codesandbox.io/s/dclgbp?file=/App.tsx)
+- [CodeSandbox](https://codesandbox.io/p/sandbox/dclgbp?file=/App.tsx)
 
 Joy UI is just getting started and we hope you're as excited as we are－stay tuned for more news in the near future!
 

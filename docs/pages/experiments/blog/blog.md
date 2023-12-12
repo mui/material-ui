@@ -24,6 +24,6 @@ More text below.
 <Slider sx={{ my: 1 }} />
 ```
 
-<p class="blog-description"><a href="https://codesandbox.io/s/nostalgic-williams-zmo5r?file=/src/App.js">CodeSandbox</a></p>
+<p class="blog-description"><a href="https://codesandbox.io/p/sandbox/nostalgic-williams-zmo5r?file=/src/App.js">CodeSandbox</a></p>
 
 More text below.

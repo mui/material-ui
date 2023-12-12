@@ -456,7 +456,7 @@ const Root = styled('div')(
       cursor: 'pointer',
       position: 'absolute',
       top: theme.spacing(1),
-      right: theme.spacing(1),
+      right: 20,
       padding: theme.spacing(0.5),
       fontFamily: 'inherit',
       fontWeight: 500,

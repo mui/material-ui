@@ -45,12 +45,15 @@ interface InfoCardProps {
   link?: string;
   icon?: React.ReactNode;
   svg?: React.ReactNode;
+  dense?: boolean;
 }
 
 export default function InfoCard(props: InfoCardProps) {
-  const { icon, svg, title, classNameTitle, description, classNameDescription, link } = props;
+  const { icon, svg, title, classNameTitle, description, classNameDescription, link, dense } =
+    props;
   return (
     <Paper
+      variant="outlined"
       component={link ? Link : 'div'}
       href={link}
       {...(link
@@ -58,9 +61,8 @@ export default function InfoCard(props: InfoCardProps) {
             noLinkStyle: true,
           }
         : {})}
-      variant="outlined"
       sx={(theme) => ({
-        p: 3.5,
+        p: dense ? 2.5 : 3.5,
         height: '100%',
         background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
         ...theme.applyDarkStyles({

@@ -61,6 +61,8 @@ describe('styleFunctionSx', () => {
         sx: {
           color: 'primary.main',
           bgcolor: 'secondary.main',
+          outline: 1,
+          outlineColor: 'secondary.main',
           m: 2,
           p: 1,
           fontFamily: 'default',
@@ -75,6 +77,8 @@ describe('styleFunctionSx', () => {
       expect(result).to.deep.equal({
         color: 'rgb(0, 0, 255)',
         backgroundColor: 'rgb(0, 255, 0)',
+        outline: '1px solid',
+        outlineColor: 'rgb(0, 255, 0)',
         margin: '20px',
         padding: '10px',
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
