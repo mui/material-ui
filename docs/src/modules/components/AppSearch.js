@@ -6,6 +6,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import Chip from '@mui/material/Chip';
+import Divider from '@mui/material/Divider';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
@@ -436,7 +437,7 @@ export default function AppSearch(props) {
               display: 'flex',
               flexDirection: 'column',
               gap: theme.spacing(2),
-              padding: theme.spacing(2, 1),
+              padding: theme.spacing(2, 0),
             },
             '& .DocSearch-NewStartScreenCategory': {
               display: 'flex',
@@ -445,7 +446,7 @@ export default function AppSearch(props) {
             '& .DocSearch-NewStartScreenTitle': {
               display: 'flex',
               alignItems: 'center',
-              paddingBottom: theme.spacing(1),
+              padding: theme.spacing(0, 3, 1.5, 2),
               fontSize: theme.typography.pxToRem(11),
               fontWeight: theme.typography.fontWeightBold,
               textTransform: 'uppercase',
@@ -619,7 +620,21 @@ export default function AppSearch(props) {
               borderColor: (theme.vars || theme).palette.primary[300],
             },
             '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
+              display: 'flex',
               color: (theme.vars || theme).palette.primary[500],
+              '& .DocSearch-Hit-action-button': {
+                display: 'flex',
+                width: '24px',
+                borderRadius: '6px',
+                border: '1px solid transparent',
+                '> svg': {
+                  margin: 0,
+                },
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primary[100],
+                  borderColor: (theme.vars || theme).palette.primary[300],
+                },
+              },
             },
             '& .DocSearch-Footer': {
               borderTop: '1px solid',
