@@ -6,13 +6,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import Chip from '@mui/material/Chip';
-import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
-import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
-import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import SearchIcon from '@mui/icons-material/Search';
-
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import StickyNote2RoundedIcon from '@mui/icons-material/StickyNote2Rounded';
 import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
@@ -23,7 +17,6 @@ import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookm
 import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
-
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -743,7 +736,7 @@ export default function AppSearch(props) {
           {
             [theme.vars ? '[data-mui-color-scheme="dark"] body' : '.mode-dark']: {
               '.DocSearch-Container': {
-                backgroundColor: alpha(theme.palette.grey[900], 0.4),
+                backgroundColor: alpha(theme.palette.grey[900], 0.6),
               },
               '& .DocSearch-NewStartScreenTitleIcon': {
                 color: (theme.vars || theme).palette.primary[300],
