@@ -8,8 +8,8 @@ import Title from './Title';
 function createData(
   time: string,
   amount?: number,
-): { time: string; amount?: number } {
-  return { time, amount };
+): { time: string; amount: number | null } {
+  return { time, amount: amount ?? null };
 }
 
 const data = [
@@ -30,7 +30,7 @@ export default function Chart() {
   return (
     <React.Fragment>
       <Title>Today</Title>
-      <div style={{ width: '100%', height: '100%' }}>
+      <div style={{ width: '100%', flexGrow: 1, overflow: 'hidden' }}>
         <LineChart
           dataset={data}
           margin={{
