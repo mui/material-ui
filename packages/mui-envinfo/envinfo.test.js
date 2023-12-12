@@ -1,6 +1,6 @@
-const { expect } = require('chai');
 const { execFileSync } = require('child_process');
 const path = require('path');
+const { expect } = require('chai');
 
 const isRunningOnWindows = process.platform === 'win32';
 
@@ -26,7 +26,7 @@ describe('@mui/envinfo', () => {
       isRunningOnWindows ? 'npx.cmd' : 'npx',
       ['--package', buildPath, 'envinfo', ...args],
       {
-        encoding: 'utf-8',
+        encoding: 'utf8',
         stdio: 'pipe',
       },
     );

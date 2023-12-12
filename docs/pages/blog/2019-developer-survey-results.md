@@ -184,14 +184,14 @@ above 0 is considered "good", +50 is "Excellent", and above 70 is considered "wo
 Multiple options were allowed.
 
 | Channel(s)                  | Number |
-| --------------------------- | ------ |
-| Search                      | 344    |
-| Word of mouth               | 112    |
-| Search, Word of mouth       | 47     |
-| Search, Social              | 25     |
-| Social                      | 22     |
-| Blog                        | 14     |
-| Search, Word of mouth, Blog | 11     |
+| :-------------------------- | -----: |
+| Search                      |    344 |
+| Word of mouth               |    112 |
+| Search, Word of mouth       |     47 |
+| Search, Social              |     25 |
+| Social                      |     22 |
+| Blog                        |     14 |
+| Search, Word of mouth, Blog |     11 |
 
 <br /><br />
 <img src="/static/blog/2019-survey/6.png" style="display: block; margin: 0 auto;" alt="Bar chart: 74.3% search, 29.6% word of mouth, 8.2% Social, 4.3% blog." />
@@ -215,7 +215,7 @@ designers to give it a bespoke look and feel for their organization.
 
 <img src="/static/blog/2019-survey/9.png" style="display: block; margin: 0 auto;" alt="Bar chart: 26 x I'm just getting started!, 43 x 6 months +, 150 x 1 year +, 179 x 3 years +, 155 x 5 years, 82 x 10 years +, 47 x 15 years +" />
 
-A nice bell curve, with the majority of developers having 1 to 5 years experience with Javascript.
+A nice bell curve, with the majority of developers having 1 to 5 years experience with JavaScript.
 
 ### 10. How long have you been developing with React?
 
@@ -313,7 +313,7 @@ However, styled components is popular. We will work on better supporting it.
 This data is **incredibly valuable** for our team.
 Again, thank you for participating!
 We want to work on the problems that resonate the most with our users.
-[It's clear](#4-how-can-we-improve-material-ui-for-you) that we should:
+[It's clear](#4-how-can-we-improve-mui-for-you) that we should:
 
 1. Support more components
 2. Improve the customization

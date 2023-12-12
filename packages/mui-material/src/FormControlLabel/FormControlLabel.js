@@ -1,9 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useFormControl } from '../FormControl';
+import Stack from '../Stack';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
@@ -14,15 +16,17 @@ import formControlLabelClasses, {
 import formControlState from '../FormControl/formControlState';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, labelPlacement, error } = ownerState;
+  const { classes, disabled, labelPlacement, error, required } = ownerState;
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
       `labelPlacement${capitalize(labelPlacement)}`,
       error && 'error',
+      required && 'required',
     ],
     label: ['label', disabled && 'disabled'],
+    asterisk: ['asterisk', error && 'error'],
   };
 
   return composeClasses(slots, getFormControlLabelUtilityClasses, classes);
@@ -67,8 +71,18 @@ export const FormControlLabelRoot = styled('label', {
   }),
   [`& .${formControlLabelClasses.label}`]: {
     [`&.${formControlLabelClasses.disabled}`]: {
-      color: theme.palette.text.disabled,
+      color: (theme.vars || theme).palette.text.disabled,
     },
+  },
+}));
+
+const AsteriskComponent = styled('span', {
+  name: 'MuiFormControlLabel',
+  slot: 'Asterisk',
+  overridesResolver: (props, styles) => styles.asterisk,
+})(({ theme }) => ({
+  [`&.${formControlLabelClasses.error}`]: {
+    color: (theme.vars || theme).palette.error.main,
   },
 }));
 
@@ -90,22 +104,20 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     labelPlacement = 'end',
     name,
     onChange,
+    required: requiredProp,
+    slotProps = {},
     value,
     ...other
   } = props;
 
   const muiFormControl = useFormControl();
 
-  let disabled = disabledProp;
-  if (typeof disabled === 'undefined' && typeof control.props.disabled !== 'undefined') {
-    disabled = control.props.disabled;
-  }
-  if (typeof disabled === 'undefined' && muiFormControl) {
-    disabled = muiFormControl.disabled;
-  }
+  const disabled = disabledProp ?? control.props.disabled ?? muiFormControl?.disabled;
+  const required = requiredProp ?? control.props.required;
 
   const controlProps = {
     disabled,
+    required,
   };
 
   ['checked', 'name', 'onChange', 'value', 'inputRef'].forEach((key) => {
@@ -124,15 +136,22 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     ...props,
     disabled,
     labelPlacement,
+    required,
     error: fcs.error,
   };
 
   const classes = useUtilityClasses(ownerState);
 
+  const typographySlotProps = slotProps.typography ?? componentsProps.typography;
+
   let label = labelProp;
   if (label != null && label.type !== Typography && !disableTypography) {
     label = (
-      <Typography component="span" className={classes.label} {...componentsProps.typography}>
+      <Typography
+        component="span"
+        {...typographySlotProps}
+        className={clsx(classes.label, typographySlotProps?.className)}
+      >
         {label}
       </Typography>
     );
@@ -146,7 +165,16 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       {...other}
     >
       {React.cloneElement(control, controlProps)}
-      {label}
+      {required ? (
+        <Stack display="block">
+          {label}
+          <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
+            &thinsp;{'*'}
+          </AsteriskComponent>
+        </Stack>
+      ) : (
+        label
+      )}
     </FormControlLabelRoot>
   );
 });
@@ -211,6 +239,17 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,
+  /**
+   * If `true`, the label will indicate that the `input` is required.
+   */
+  required: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    typography: PropTypes.object,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -16,57 +15,48 @@ const GOLDs = [
     srcSet: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
     description: 'Enterprise-ready open-source software.',
-    // Tidelift requests this format.
-    href: 'https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
+    href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
   },
   {
-    src: 'https://avatars.githubusercontent.com/u/24789812?size=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/24789812?size=80 2x',
-    name: 'Bit',
-    description: 'A component-driven development platform.',
-    href: 'https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/callemall/a6946da/logo/40.png',
-    srcSet: 'https://images.opencollective.com/callemall/a6946da/logo/80.png 2x',
+    src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
+    srcSet: 'https://avatars.githubusercontent.com/u/1262264?s=80 2x',
     name: 'Text-em-all',
     description: 'The easy way to message your group.',
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://images.opencollective.com/laststance/daffd6c/logo/40.png',
-    srcSet: 'https://images.opencollective.com/laststance/daffd6c/logo/80.png 2x',
-    name: 'Laststance',
-    description: 'An organization for OSS activity in Tokyo.',
-    href: 'https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    src: 'https://images.opencollective.com/spotify/f37ea28/logo/40.png',
+    srcSet: 'https://images.opencollective.com/spotify/f37ea28/logo/80.png 2x',
+    name: 'Spotify',
+    description: 'Music service to access to millions of songs.',
+    href: 'https://open.spotify.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://images.opencollective.com/movavi-software/a1d0167/logo/40.png',
-    srcSet: 'https://images.opencollective.com/movavi-software/a1d0167/logo/80.png 2x',
-    name: 'Movavi',
-    description: 'An all-in-one video maker for Mac.',
-    href: 'https://www.movavi.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
-    srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
-    name: 'CasinoHEX Australia',
-    description: 'A guide to online gambling in Australia.',
-    href: 'https://online-aussie-casino.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/40.png',
-    srcSet: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/80.png 2x',
-    name: 'SunmatoSoft',
-    description: 'Custom software development company.',
-    href: 'https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=40',
-    srcSet: 'https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=80 2x',
+    src: '/static/sponsors//megafamous.png',
     name: 'MegaFamous',
-    description: 'The best place to buy Instagram followers & likes.',
+    description: 'Buy Instagram followers & likes.',
     href: 'https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/40.png',
+    srcSet: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/80.png 2x',
+    name: 'DialMyCalls',
+    description: 'Send text messages, calls to thousands.',
+    href: 'https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/goread_io/eb6337d/logo/40.png',
+    srcSet: 'https://images.opencollective.com/goread_io/eb6337d/logo/80.png 2x',
+    name: 'Goread.io',
+    description: 'Instagram followers, likes, views, comments.',
+    href: 'https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/icons8/7fa1641/logo/40.png',
+    srcSet: 'https://images.opencollective.com/icons8/7fa1641/logo/80.png 2x',
+    name: 'Icons8',
+    description: 'Icons, illustrations, design tools, and more.',
+    href: 'https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
 
@@ -77,22 +67,30 @@ export default function GoldSponsors() {
     rootMargin: '500px',
   });
   return (
-    <Box ref={ref}>
-      <Box sx={{ mb: 1 }}>
-        <Typography
-          component="h3"
-          variant="h5"
-          fontWeight="extraBold"
-          sx={{
-            color: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.warning[500]
-                : theme.palette.warning[700],
-          }}
-        >
-          Gold
-        </Typography>
-      </Box>
+    <div ref={ref}>
+      <Typography
+        component="h3"
+        variant="h6"
+        fontWeight="bold"
+        sx={(theme) => ({
+          mt: 4,
+          mb: 1.5,
+          background: `linear-gradient(90deg, ${(theme.vars || theme).palette.warning[500]} 50%, ${
+            (theme.vars || theme).palette.warning[700]
+          } 100%)`,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          ...theme.applyDarkStyles({
+            background: `linear-gradient(90deg, ${
+              (theme.vars || theme).palette.warning[400]
+            } 50%, ${(theme.vars || theme).palette.warning[700]} 100%)`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }),
+        })}
+      >
+        Gold
+      </Typography>
       <Grid container spacing={{ xs: 2, md: 3 }}>
         {GOLDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
@@ -108,8 +106,6 @@ export default function GoldSponsors() {
               alignItems: 'center',
               height: '100%',
               borderStyle: 'dashed',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
             }}
           >
             <IconButton
@@ -119,12 +115,14 @@ export default function GoldSponsors() {
               target="_blank"
               rel="noopener noreferrer"
               color="primary"
-              sx={{
+              sx={(theme) => ({
                 mr: 2,
                 border: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-              }}
+                borderColor: 'grey.300',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.600',
+                }),
+              })}
             >
               <AddRounded />
             </IconButton>
@@ -142,6 +140,6 @@ export default function GoldSponsors() {
           </Paper>
         </Grid>
       </Grid>
-    </Box>
+    </div>
   );
 }

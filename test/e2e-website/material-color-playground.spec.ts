@@ -5,12 +5,7 @@ import { TestFixture } from './playwright.config';
 const test = base.extend<TestFixture>({});
 
 test('should be able to change color without crash', async ({ page }) => {
-  await page.goto(
-    FEATURE_TOGGLE.enable_redirects
-      ? '/material-ui/customization/color/#playground'
-      : '/customization/color/#playground',
-    { waitUntil: 'networkidle' },
-  );
+  await page.goto('/material-ui/customization/color/#playground', { waitUntil: 'networkidle' });
 
   await page.fill('#primary', ''); // clear the input
   await page.type('#primary', '#e91e63');

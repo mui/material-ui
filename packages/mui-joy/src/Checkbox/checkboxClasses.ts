@@ -1,42 +1,48 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface CheckboxClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the input element. */
+  /** Class name applied to the checkbox element. */
+  checkbox: string;
+  /** Class name applied to the action element. */
+  action: string;
+  /** Class name applied to the input element. */
   input: string;
+  /** Class name applied to the label element. */
+  label: string;
   /** State class applied to the input component's `checked` class. */
   checked: string;
   /** State class applied to the input component's disabled class. */
   disabled: string;
-  /** Class applied to the root element if the switch has visible focus */
+  /** Class name applied to the root element if the switch has visible focus */
   focusVisible: string;
   /** State class applied to the root element if `indeterminate={true}`. */
   indeterminate: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `size="sm"`. */
+  /** Class name applied to the root element when color inversion is triggered. */
+  colorContext: string;
+  /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
-  /** Styles applied to the root element if `size="md"`. */
+  /** Class name applied to the root element if `size="md"`. */
   sizeMd: string;
-  /** Styles applied to the root element if `size="lg"`. */
+  /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `variant="outlined"`. */
+  /** Class name applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** Class name applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Class name applied to the root element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type CheckboxClassKey = keyof CheckboxClasses;
@@ -47,23 +53,26 @@ export function getCheckboxUtilityClass(slot: string): string {
 
 const checkboxClasses: CheckboxClasses = generateUtilityClasses('MuiCheckbox', [
   'root',
+  'checkbox',
+  'action',
   'input',
+  'label',
   'checked',
   'disabled',
   'focusVisible',
   'indeterminate',
   'colorPrimary',
   'colorDanger',
-  'colorInfo',
   'colorNeutral',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'sizeSm',
   'sizeMd',
   'sizeLg',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
 ]);
 
 export default checkboxClasses;

@@ -5,29 +5,31 @@ import { OverrideProps } from '../OverridableComponent';
 import { Theme } from '..';
 import { AccordionSummaryClasses } from './accordionSummaryClasses';
 
+export interface AccordionSummaryOwnProps {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<AccordionSummaryClasses>;
+  /**
+   * The icon to display as the expand indicator.
+   */
+  expandIcon?: React.ReactNode;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export type AccordionSummaryTypeMap<
-  P = {},
-  D extends React.ElementType = 'div',
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
 > = ExtendButtonBaseTypeMap<{
-  props: P & {
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<AccordionSummaryClasses>;
-    /**
-     * The icon to display as the expand indicator.
-     */
-    expandIcon?: React.ReactNode;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
-  defaultComponent: D;
+  props: AdditionalProps & AccordionSummaryOwnProps;
+  defaultComponent: RootComponent;
 }>;
 
 /**
@@ -44,8 +46,10 @@ export type AccordionSummaryTypeMap<
 declare const AccordionSummary: ExtendButtonBase<AccordionSummaryTypeMap>;
 
 export type AccordionSummaryProps<
-  D extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<AccordionSummaryTypeMap<P, D>, D>;
+  RootComponent extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<AccordionSummaryTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default AccordionSummary;

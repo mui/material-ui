@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import generateUtilityClass from '../generateUtilityClass';
 
 export interface SvgIconClasses {
   /** Styles applied to the root element. */
@@ -17,6 +18,8 @@ export interface SvgIconClasses {
   fontSizeInherit: string;
   /** Styles applied to the root element if `fontSize="small"`. */
   fontSizeSmall: string;
+  /** Styles applied to the root element if `fontSize="medium"`. */
+  fontSizeMedium: string;
   /** Styles applied to the root element if `fontSize="large"`. */
   fontSizeLarge: string;
 }

@@ -19,13 +19,13 @@ Here are the most significant improvements since June 2020. This was a dense qua
 - 🧪 We have promoted 7 components from the lab to the core: Alert, Autocomplete, Pagination, Rating, Skeleton, SpeedDial, and ToggleButton.
   Thank you for all your feedback on these components.
   While we still plan a couple of breaking changes on them, we are confident that they have reached the same level of quality as the other core components.
-- 👮 We have introduced a new component in the lab, the [TrapFocus](https://mui.com/components/trap-focus/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
+- 👮 We have introduced a new component in the lab, the [FocusTrap](https://mui.com/base-ui/react-focus-trap/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
 
-  <video autoplay muted loop style="max-height: 416px; margin-bottom: 24px;">
+  <video style="max-height: 416px; margin-bottom: 24px;" autoplay muted loop playsinline>
     <source src="/static/blog/2020-q3-update/trap-focus.mp4" type="video/mp4" />
   </video>
 
-- ⚛️ We have prepared the support for the upcoming release of [React v17](https://reactjs.org/blog/2020/08/10/react-v17-rc.html). Most of the work was about better handling events, and updating our test infrastructure to run the whole test suite with the _latest_ and _next_ version of React.<br />We have also improved `StrictMode` support. The last standing issues are being addressed with the work on the style engine. More on that later in the post.
+- ⚛️ We have prepared the support for the upcoming release of [React v17](https://legacy.reactjs.org/blog/2020/08/10/react-v17-rc.html). Most of the work was about better handling events, and updating our test infrastructure to run the whole test suite with the _latest_ and _next_ version of React.<br />We have also improved `StrictMode` support. The last standing issues are being addressed with the work on the style engine. More on that later in the post.
 - 💅 We have introduced a new dynamic variant API. This API allows developers to add new variants to MUI components right from the theme, without having to wrap the components. For instance with the Button:
 
   ```tsx
@@ -104,21 +104,21 @@ Here are the most significant improvements since June 2020. This was a dense qua
   Note that we have experimented with headless components (hooks only) in the past. For instance, you can leverage the [useAutocomplete](/material-ui/react-autocomplete/#useautocomplete), and [usePagination](/material-ui/react-pagination/#usepagination) hooks. However, we are pushing with unstyled first as a required step for the next item: ⬇️.
 
 - 👩‍🎨 We have completed the first iteration of the new styling solution of v5.<br />
-  You can find a [new version](/material-ui/react-slider/) of the slider in the lab powered by [emotion](https://emotion.sh/docs/introduction).<br />
-  If you are already using styled-components in your application, you can swap emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui/material-ui/tree/HEAD/examples/create-react-app-with-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
-  The new styling solution saves 2kB+ gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using styled-components or emotion.<br />
+  You can find a [new version](/material-ui/react-slider/) of the slider in the lab powered by [Emotion](https://emotion.sh/docs/introduction).<br />
+  If you are already using styled-components in your application, you can swap Emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/p/sandbox/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-cra-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
+  The new styling solution saves 2kB+ gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using styled-components or Emotion.<br />
   Last but not least, this change allows us to take advantage of dynamic style props. We will use them for dynamic color props, variant props, and new style props available in the core components.
 
   <img src="/static/blog/2020-q3-update/emotion.png" alt="" style="width: 329px;" />
 
-  <p class="blog-description">Slider powered by emotion</p>
+  <p class="blog-description">Slider powered by Emotion</p>
 
   <img src="/static/blog/2020-q3-update/styled-components.png" alt="" style="width: 323px;" />
 
   <p class="blog-description">Slider powered by styled-components</p>
 
 - ♿︎ We have kept investing in accessibility, we have fixed [13 bugs](https://github.com/mui/material-ui/pulls?q=is%3Apr+label%3Aaccessibility+is%3Aclosed+sort%3Aupdated-desc).
-- 🗓 We have introduced public quarterly roadmaps, both for [MUI Core](https://github.com/mui/material-ui/projects/25) and [MUI X](https://github.com/mui/mui-x/projects/1).
+- 🗓 We have introduced public quarterly roadmaps, both for [MUI Core](https://github.com/orgs/mui/projects/18/views/1) and [MUI X](https://github.com/mui/mui-x/projects/1).
 
 ## Company
 
@@ -126,11 +126,11 @@ We are thrilled to welcome two new full-time developers to MUI:
 
 - [Marija Najdova](https://github.com/mnajdova). Marija joins us from the Fluent-UI React team at Microsoft. She's allowing the community team to move faster. You can learn more about her in the [introduction blog post](/blog/marija-najdova-joining/).
 
-  <img src="https://avatars3.githubusercontent.com/u/4512430?s=320" alt="marija" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+  <img src="https://avatars.githubusercontent.com/u/4512430?s=320" alt="marija" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 - [Danail Hadjiatanasov](https://github.com/DanailH). Danail comes to us from the Fintech industry. He's allowing the enterprise team to move faster, he's helping Damien push the data grid further.
 
-  <img src="https://avatars3.githubusercontent.com/u/5858539?s=320" alt="marija" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+  <img src="https://avatars.githubusercontent.com/u/5858539?s=320" alt="marija" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 ### Growth between Q2 2020 and Q3 2020
 
@@ -151,7 +151,7 @@ We'll do our best, no guarantee!
 
 ### Community
 
-- 🗓 Execute on all the items of the [public roadmap](https://github.com/mui/material-ui/projects/25).
+- 🗓 Execute on all the items of the [public roadmap](https://github.com/orgs/mui/projects/18/views/1).
 - 👩‍🎨 Simplify the migration experience from v4 to v5.
 - ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 

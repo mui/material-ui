@@ -199,7 +199,7 @@ Decreasing pain:
 Growing pains:
 
 - ∞: Forms is a new item. It seems that we should at least work more closely with react-hook-form, formik, and react-final-form.
-- ∞: Charts is a new item. Material Design even has a page dedicated to [date visualization](https://material.io/design/communication/data-visualization.html).
+- ∞: Charts is a new item. Material Design even has a page dedicated to [date visualization](https://m2.material.io/design/communication/data-visualization.html).
 - x5: Custom themes.
 - x5: Simpler customization. We have improved customizability this year by introducing global class names and reducing the CSS specificity of some selectors. However, it seems that we are now tapping into a new audience. We need to do better.
 - x1.5: Animations.
@@ -274,7 +274,7 @@ section.
 
 ### 18. Which JS framework are you using, if any?
 
-<img src="/static/blog/2020-survey/18.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 57.34% Create React App, 16.40% Custom webpack, 12.35% Next.js, 5.40% Gatsby, 8.51% Other." />
+<img src="/static/blog/2020-survey/18.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 57.34% Create React App, 16.40% Custom Webpack, 12.35% Next.js, 5.40% Gatsby, 8.51% Other." />
 
 ### 19. What styling system are you using?
 
@@ -298,7 +298,7 @@ Almost half of the community is using TypeScript. Next year, it might even becom
 This data is **incredibly valuable** for our team.
 Thank you again for participating!
 We want to work on the problems that resonate the most with our users.
-[It's clear](#5-how-can-we-improve-material-ui-for-you) that we should:
+[It's clear](#5-how-can-we-improve-mui-for-you) that we should:
 
 1. Provide more flexibility on the components, unstyled components (pure hooks?).
 1. Make the customization easier and implement custom themes with MUI. Maybe provide a theme builder.

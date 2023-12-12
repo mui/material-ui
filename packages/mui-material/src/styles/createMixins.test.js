@@ -5,7 +5,7 @@ import createMixins from './createMixins';
 describe('createMixins', () => {
   it('should be able add other mixins', () => {
     const theme = createTheme();
-    const mixins = createMixins(theme.breakpoints, theme.spacing, { test: { display: 'block' } });
+    const mixins = createMixins(theme.breakpoints, { test: { display: 'block' } });
 
     expect(mixins.test).to.deep.equal({
       display: 'block',

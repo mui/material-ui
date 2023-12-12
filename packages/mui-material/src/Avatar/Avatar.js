@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Person from '../internal/svg-icons/Person';
@@ -46,15 +47,21 @@ const AvatarRoot = styled('div', {
   overflow: 'hidden',
   userSelect: 'none',
   ...(ownerState.variant === 'rounded' && {
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
   }),
   ...(ownerState.variant === 'square' && {
     borderRadius: 0,
   }),
   ...(ownerState.colorDefault && {
-    color: theme.palette.background.default,
-    backgroundColor:
-      theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+    color: (theme.vars || theme).palette.background.default,
+    ...(theme.vars
+      ? {
+          backgroundColor: theme.vars.palette.Avatar.defaultBg,
+        }
+      : {
+          backgroundColor:
+            theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+        }),
   }),
 }));
 
@@ -157,8 +164,8 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     children = (
       <AvatarImg
         alt={alt}
-        src={src}
         srcSet={srcSet}
+        src={src}
         sizes={sizes}
         ownerState={ownerState}
         className={classes.img}
@@ -170,7 +177,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <AvatarFallback className={classes.fallback} />;
+    children = <AvatarFallback ownerState={ownerState} className={classes.fallback} />;
   }
 
   return (

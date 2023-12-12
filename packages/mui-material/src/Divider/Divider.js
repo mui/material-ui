@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -59,7 +60,7 @@ const DividerRoot = styled('div', {
     flexShrink: 0,
     borderWidth: 0,
     borderStyle: 'solid',
-    borderColor: theme.palette.divider,
+    borderColor: (theme.vars || theme).palette.divider,
     borderBottomWidth: 'thin',
     ...(ownerState.absolute && {
       position: 'absolute',
@@ -68,7 +69,9 @@ const DividerRoot = styled('div', {
       width: '100%',
     }),
     ...(ownerState.light && {
-      borderColor: alpha(theme.palette.divider, 0.08),
+      borderColor: theme.vars
+        ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
+        : alpha(theme.palette.divider, 0.08),
     }),
     ...(ownerState.variant === 'inset' && {
       marginLeft: 72,
@@ -93,21 +96,26 @@ const DividerRoot = styled('div', {
       height: 'auto',
     }),
   }),
-  ({ theme, ownerState }) => ({
+  ({ ownerState }) => ({
     ...(ownerState.children && {
       display: 'flex',
       whiteSpace: 'nowrap',
       textAlign: 'center',
       border: 0,
       '&::before, &::after': {
-        position: 'relative',
-        width: '100%',
-        borderTop: `thin solid ${theme.palette.divider}`,
-        top: '50%',
         content: '""',
-        transform: 'translateY(50%)',
+        alignSelf: 'center',
       },
     }),
+  }),
+  ({ theme, ownerState }) => ({
+    ...(ownerState.children &&
+      ownerState.orientation !== 'vertical' && {
+        '&::before, &::after': {
+          width: '100%',
+          borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
+        },
+      }),
   }),
   ({ theme, ownerState }) => ({
     ...(ownerState.children &&
@@ -115,11 +123,7 @@ const DividerRoot = styled('div', {
         flexDirection: 'column',
         '&::before, &::after': {
           height: '100%',
-          top: '0%',
-          left: '50%',
-          borderTop: 0,
-          borderLeft: `thin solid ${theme.palette.divider}`,
-          transform: 'translateX(0%)',
+          borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
         },
       }),
   }),
@@ -210,6 +214,12 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     </DividerRoot>
   );
 });
+
+/**
+ * The following flag is used to ensure that this component isn't tabbable i.e.
+ * does not get highlight/focus inside of MUI List.
+ */
+Divider.muiSkipListHighlight = true;
 
 Divider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

@@ -11,7 +11,6 @@ export type SpacingArgument = number | string;
 
 // The different signatures imply different meaning for their arguments that can't be expressed structurally.
 // We express the difference with variable names.
-/* tslint:disable:unified-signatures */
 export interface Spacing {
   (): string;
   (value: number): string;
@@ -24,7 +23,6 @@ export interface Spacing {
     left: SpacingArgument,
   ): string;
 }
-/* tslint:enable:unified-signatures */
 
 export default function createSpacing(spacingInput: SpacingOptions = 8): Spacing {
   // Already transformed.
@@ -34,7 +32,7 @@ export default function createSpacing(spacingInput: SpacingOptions = 8): Spacing
 
   // Material Design layouts are visually balanced. Most measurements align to an 8dp grid, which aligns both spacing and the overall layout.
   // Smaller components, such as icons, can align to a 4dp grid.
-  // https://material.io/design/layout/understanding-layout.html#usage
+  // https://m2.material.io/design/layout/understanding-layout.html
   const transform = createUnarySpacing({
     spacing: spacingInput,
   });

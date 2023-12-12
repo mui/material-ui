@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getBottomNavigationUtilityClass } from './bottomNavigationClasses';
@@ -25,7 +26,7 @@ const BottomNavigationRoot = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   height: 56,
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
 }));
 
 const BottomNavigation = React.forwardRef(function BottomNavigation(inProps, ref) {

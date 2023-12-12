@@ -18,7 +18,7 @@ export default function AlertDialog() {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open alert dialog
       </Button>
@@ -44,6 +44,6 @@ export default function AlertDialog() {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </React.Fragment>
   );
 }

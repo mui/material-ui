@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "5.6.0",
+  "version": "5.15.0",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
@@ -24,29 +24,35 @@
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",
-    "build:legacy": "node ../../scripts/build legacy",
+    "build:legacy": "node ../../scripts/build.mjs legacy",
     "build:modern": "echo 'Skip modern build'",
-    "build:node": "node ../../scripts/build node",
-    "build:stable": "node ../../scripts/build stable",
-    "build:copy-files": "node ../../scripts/copy-files.js",
+    "build:node": "node ../../scripts/build.mjs node",
+    "build:stable": "node ../../scripts/build.mjs stable",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
     "test": "exit 0"
   },
+  "dependencies": {
+    "@babel/runtime": "^7.23.5",
+    "@mui/base": "5.0.0-beta.27",
+    "@mui/utils": "^5.15.0",
+    "nprogress": "^0.2.0",
+    "prop-types": "^15.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.42",
+    "react": "^18.2.0"
+  },
   "peerDependencies": {
     "@mui/material": "^5.0.0",
-    "@types/react": "^16.8.6 || ^17.0.0 || ^18.0.0",
+    "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
       "optional": true
     }
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.17.2",
-    "@mui/utils": "^5.6.0",
-    "nprogress": "^0.2.0"
   },
   "publishConfig": {
     "access": "public"

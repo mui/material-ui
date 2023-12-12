@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
@@ -10,11 +10,11 @@
       "default": "'primary'"
     },
     "component": { "type": { "name": "elementType" } },
-    "disabled": { "type": { "name": "bool" } },
-    "error": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "error": { "type": { "name": "bool" }, "default": "false" },
     "focused": { "type": { "name": "bool" } },
-    "fullWidth": { "type": { "name": "bool" } },
-    "hiddenLabel": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
+    "hiddenLabel": { "type": { "name": "bool" }, "default": "false" },
     "margin": {
       "type": {
         "name": "enum",
@@ -22,7 +22,7 @@
       },
       "default": "'none'"
     },
-    "required": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",
@@ -34,7 +34,8 @@
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     },
     "variant": {
       "type": {
@@ -45,15 +46,42 @@
     }
   },
   "name": "FormControl",
-  "styles": {
-    "classes": ["root", "marginNormal", "marginDense", "fullWidth"],
-    "globalClasses": {},
-    "name": "MuiFormControl"
-  },
+  "imports": [
+    "import FormControl from '@mui/material/FormControl';",
+    "import { FormControl } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "fullWidth",
+      "className": "MuiFormControl-fullWidth",
+      "description": "Styles applied to the root element if `fullWidth={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "marginDense",
+      "className": "MuiFormControl-marginDense",
+      "description": "Styles applied to the root element if `margin=\"dense\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "marginNormal",
+      "className": "MuiFormControl-marginNormal",
+      "description": "Styles applied to the root element if `margin=\"normal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiFormControl-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFormControl",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/FormControl/FormControl.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-checkbox/\">Checkboxes</a></li>\n<li><a href=\"/material-ui/react-radio-button/\">Radio Buttons</a></li>\n<li><a href=\"/material-ui/react-switch/\">Switches</a></li>\n<li><a href=\"/material-ui/react-text-field/\">Text Fields</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-checkbox/\">Checkbox</a></li>\n<li><a href=\"/material-ui/react-radio-button/\">Radio Group</a></li>\n<li><a href=\"/material-ui/react-switch/\">Switch</a></li>\n<li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
   "cssComponent": false
 }

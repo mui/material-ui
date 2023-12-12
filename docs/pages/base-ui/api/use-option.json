@@ -1,0 +1,40 @@
+{
+  "parameters": {
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "label": {
+      "type": { "name": "string | React.ReactNode", "description": "string | React.ReactNode" },
+      "required": true
+    },
+    "value": { "type": { "name": "Value", "description": "Value" }, "required": true },
+    "id": { "type": { "name": "string", "description": "string" } },
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    }
+  },
+  "returnValue": {
+    "getRootProps": {
+      "type": {
+        "name": "&lt;ExternalProps extends Record&lt;string, unknown&gt;&gt;(externalProps?: ExternalProps) =&gt; UseOptionRootSlotProps&lt;ExternalProps&gt;",
+        "description": "&lt;ExternalProps extends Record&lt;string, unknown&gt;&gt;(externalProps?: ExternalProps) =&gt; UseOptionRootSlotProps&lt;ExternalProps&gt;"
+      },
+      "required": true
+    },
+    "highlighted": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "index": { "type": { "name": "number", "description": "number" }, "required": true },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
+    "selected": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
+  },
+  "name": "useOption",
+  "filename": "/packages/mui-base/src/useOption/useOption.ts",
+  "imports": [
+    "import { useOption } from '@mui/base/useOption';",
+    "import { useOption } from '@mui/base';"
+  ],
+  "demos": "<ul><li><a href=\"/base-ui/react-select/#hooks\">Select</a></li></ul>"
+}

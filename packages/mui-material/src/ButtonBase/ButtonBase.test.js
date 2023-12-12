@@ -11,7 +11,7 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-} from 'test/utils';
+} from '@mui-internal/test-utils';
 import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBase';
@@ -92,11 +92,8 @@ describe('<ButtonBase />', () => {
 
     it('should use custom LinkComponent when provided in the theme', () => {
       const CustomLink = React.forwardRef((props, ref) => {
-        return (
-          <a data-testid="customLink" ref={ref} {...props}>
-            {props.children}
-          </a>
-        );
+        // eslint-disable-next-line jsx-a11y/anchor-has-content
+        return <a data-testid="customLink" ref={ref} {...props} />;
       });
       const theme = createTheme({
         components: {
@@ -129,11 +126,8 @@ describe('<ButtonBase />', () => {
 
     it('should not add role="button" if custom component and href are used', () => {
       const CustomLink = React.forwardRef((props, ref) => {
-        return (
-          <a data-testid="customLink" ref={ref} {...props}>
-            {props.children}
-          </a>
-        );
+        // eslint-disable-next-line jsx-a11y/anchor-has-content
+        return <a data-testid="customLink" ref={ref} {...props} />;
       });
 
       const { container } = render(
@@ -153,11 +147,8 @@ describe('<ButtonBase />', () => {
       const CustomLink = React.forwardRef((props, ref) => {
         // @ts-expect-error missing types in CustomLink
         const { to, ...other } = props;
-        return (
-          <a data-testid="customLink" ref={ref} {...other} href={to}>
-            {props.children}
-          </a>
-        );
+        // eslint-disable-next-line jsx-a11y/anchor-has-content
+        return <a data-testid="customLink" ref={ref} {...other} href={to} />;
       });
 
       const { container } = render(
@@ -1245,7 +1236,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('prop: touchRipplepRef', () => {
+  describe('prop: touchRippleRef', () => {
     it('should return a ref', () => {
       const ref = React.createRef();
       render(<ButtonBase touchRippleRef={ref} />);

@@ -1,4 +1,5 @@
 import { CSSObject, CSSInterpolation } from '@mui/system';
+import { PopperClassKey } from '@mui/base/Popper';
 import { ComponentsPropsList } from './props';
 import { AccordionActionsClassKey } from '../AccordionActions';
 import { AccordionClassKey } from '../Accordion';
@@ -44,6 +45,7 @@ import { FormGroupClassKey } from '../FormGroup';
 import { FormHelperTextClassKey } from '../FormHelperText';
 import { FormLabelClassKey } from '../FormLabel';
 import { GridClassKey } from '../Grid';
+import { Grid2Slot } from '../Unstable_Grid2';
 import { IconButtonClassKey } from '../IconButton';
 import { IconClassKey } from '../Icon';
 import { ImageListClassKey } from '../ImageList';
@@ -65,6 +67,7 @@ import { ListItemTextClassKey } from '../ListItemText';
 import { ListSubheaderClassKey } from '../ListSubheader';
 import { MenuClassKey } from '../Menu';
 import { MenuItemClassKey } from '../MenuItem';
+import { MenuListClassKey } from '../MenuList';
 import { MobileStepperClassKey } from '../MobileStepper';
 import { ModalClassKey } from '../Modal';
 import { NativeSelectClassKey } from '../NativeSelect';
@@ -84,6 +87,7 @@ import { SnackbarContentClassKey } from '../SnackbarContent';
 import { SpeedDialClassKey } from '../SpeedDial';
 import { SpeedDialActionClassKey } from '../SpeedDialAction';
 import { SpeedDialIconClassKey } from '../SpeedDialIcon';
+import { StackClassKey } from '../Stack';
 import { StepButtonClasskey } from '../StepButton';
 import { StepClasskey } from '../Step';
 import { StepConnectorClasskey } from '../StepConnector';
@@ -133,7 +137,7 @@ export type ComponentsOverrides<Theme = unknown> = {
     OverridesStyleRules<ComponentNameToClassKey[Name], Name, Theme>
   >;
 } & {
-  MuiCssBaseline?: CSSObject | string;
+  MuiCssBaseline?: CSSObject | string | ((theme: Theme) => CSSInterpolation);
 };
 
 export interface ComponentNameToClassKey {
@@ -181,6 +185,7 @@ export interface ComponentNameToClassKey {
   MuiFormHelperText: FormHelperTextClassKey;
   MuiFormLabel: FormLabelClassKey;
   MuiGrid: GridClassKey;
+  MuiGrid2: Grid2Slot;
   MuiIcon: IconClassKey;
   MuiIconButton: IconButtonClassKey;
   MuiImageList: ImageListClassKey;
@@ -202,6 +207,7 @@ export interface ComponentNameToClassKey {
   MuiListSubheader: ListSubheaderClassKey;
   MuiMenu: MenuClassKey;
   MuiMenuItem: MenuItemClassKey;
+  MuiMenuList: MenuListClassKey;
   MuiMobileStepper: MobileStepperClassKey;
   MuiModal: ModalClassKey;
   MuiNativeSelect: NativeSelectClassKey;
@@ -210,6 +216,7 @@ export interface ComponentNameToClassKey {
   MuiPaginationItem: PaginationItemClassKey;
   MuiPaper: PaperClassKey;
   MuiPopover: PopoverClassKey;
+  MuiPopper: PopperClassKey;
   MuiRadio: RadioClassKey;
   MuiRating: RatingClassKey;
   MuiScopedCssBaseline: ScopedCssBaselineClassKey;
@@ -221,6 +228,7 @@ export interface ComponentNameToClassKey {
   MuiSpeedDial: SpeedDialClassKey;
   MuiSpeedDialAction: SpeedDialActionClassKey;
   MuiSpeedDialIcon: SpeedDialIconClassKey;
+  MuiStack: StackClassKey;
   MuiStep: StepClasskey;
   MuiStepButton: StepButtonClasskey;
   MuiStepConnector: StepConnectorClasskey;

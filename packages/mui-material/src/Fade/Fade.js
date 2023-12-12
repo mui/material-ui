@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
@@ -47,8 +48,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
 
   const enableStrictModeCompat = true;
   const nodeRef = React.useRef(null);
-  const foreignRef = useForkRef(children.ref, ref);
-  const handleRef = useForkRef(nodeRef, foreignRef);
+  const handleRef = useForkRef(nodeRef, children.ref, ref);
 
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {

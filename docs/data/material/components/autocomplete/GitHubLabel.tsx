@@ -39,9 +39,10 @@ const StyledAutocompletePopper = styled('div')(({ theme }) => ({
       '&[aria-selected="true"]': {
         backgroundColor: 'transparent',
       },
-      '&[data-focus="true"], &[data-focus="true"][aria-selected="true"]': {
-        backgroundColor: theme.palette.action.hover,
-      },
+      [`&.${autocompleteClasses.focused}, &.${autocompleteClasses.focused}[aria-selected="true"]`]:
+        {
+          backgroundColor: theme.palette.action.hover,
+        },
     },
   },
   [`&.${autocompleteClasses.popperDisablePortal}`]: {

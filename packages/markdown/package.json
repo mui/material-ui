@@ -1,0 +1,22 @@
+{
+  "name": "@mui/markdown",
+  "version": "5.0.0",
+  "private": true,
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": "./index.js",
+    "./loader": "./loader.js",
+    "./prism": "./prism.js"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.23.5",
+    "lodash": "^4.17.21",
+    "marked": "^5.1.2",
+    "prismjs": "^1.29.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.11",
+    "chai": "^4.3.10"
+  }
+}

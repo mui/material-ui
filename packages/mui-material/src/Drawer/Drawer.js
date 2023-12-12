@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import Modal from '../Modal';
 import Slide from '../Slide';
 import Paper from '../Paper';
@@ -44,7 +45,7 @@ const DrawerRoot = styled(Modal, {
   slot: 'Root',
   overridesResolver,
 })(({ theme }) => ({
-  zIndex: theme.zIndex.drawer,
+  zIndex: (theme.vars || theme).zIndex.drawer,
 }));
 
 const DrawerDockedRoot = styled('div', {
@@ -76,7 +77,7 @@ const DrawerPaper = styled(Paper, {
   flexDirection: 'column',
   height: '100%',
   flex: '1 0 auto',
-  zIndex: theme.zIndex.drawer,
+  zIndex: (theme.vars || theme).zIndex.drawer,
   // Add iOS momentum scrolling for iOS < 13.0
   WebkitOverflowScrolling: 'touch',
   // temporary style
@@ -109,19 +110,19 @@ const DrawerPaper = styled(Paper, {
   }),
   ...(ownerState.anchor === 'left' &&
     ownerState.variant !== 'temporary' && {
-      borderRight: `1px solid ${theme.palette.divider}`,
+      borderRight: `1px solid ${(theme.vars || theme).palette.divider}`,
     }),
   ...(ownerState.anchor === 'top' &&
     ownerState.variant !== 'temporary' && {
-      borderBottom: `1px solid ${theme.palette.divider}`,
+      borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
     }),
   ...(ownerState.anchor === 'right' &&
     ownerState.variant !== 'temporary' && {
-      borderLeft: `1px solid ${theme.palette.divider}`,
+      borderLeft: `1px solid ${(theme.vars || theme).palette.divider}`,
     }),
   ...(ownerState.anchor === 'bottom' &&
     ownerState.variant !== 'temporary' && {
-      borderTop: `1px solid ${theme.palette.divider}`,
+      borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
     }),
 }));
 
@@ -308,8 +309,10 @@ Drawer.propTypes /* remove-proptypes */ = {
   ModalProps: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
+   * The `reason` parameter can optionally be used to control the response to `onClose`.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
   /**

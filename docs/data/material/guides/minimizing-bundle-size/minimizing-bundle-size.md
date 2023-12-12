@@ -4,15 +4,15 @@
 
 ## Bundle size matters
 
-The bundle size of MUI is taken very seriously. Size snapshots are taken
-on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot)).
+Material UI's maintainers take bundle size very seriously. Size snapshots are taken
+on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot/)).
 Combined with [dangerJS](https://danger.systems/js/) we can inspect
 [detailed bundle size changes](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
 
 ## When and how to use tree-shaking?
 
-Tree-shaking of MUI works out of the box in modern frameworks.
-MUI exposes its full API on the top-level `@mui` imports.
+Tree-shaking Material UI works out of the box in modern frameworks.
+Material UI exposes its full API on the top-level `@mui` imports.
 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
@@ -25,12 +25,22 @@ that doesn't support tree-shaking.
 ## Development environment
 
 Development bundles can contain the full library which can lead to **slower startup times**.
-This is especially noticeable if you import from `@mui/icons-material`.
-Startup times can be approximately 6x slower than without named imports from the top-level API.
+This is especially noticeable if you use named imports from `@mui/icons-material`, which can be up to six times slower than the default import.
+For example, between the following two imports, the first (named) can be significantly slower than the second (default):
 
-If this is an issue for you, you have various options:
+```js
+// 🐌 Named
+import { Delete } from '@mui/icons-material';
+```
 
-### Option 1
+```js
+// 🚀 Default
+import Delete from '@mui/icons-material/Delete';
+```
+
+If this is an issue for you, you have two options:
+
+### Option one: use path imports
 
 You can use path imports to avoid pulling in unused modules.
 For instance, use:
@@ -49,7 +59,7 @@ import { Button, TextField } from '@mui/material';
 
 This is the option we document in all the demos since it requires no configuration.
 It is encouraged for library authors that are extending the components.
-Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
+Head to [Option 2](#option-two-use-a-babel-plugin) for the approach that yields the best DX and UX.
 
 While importing directly in this manner doesn't use the exports in [the main file of `@mui/material`](https://unpkg.com/@mui/material), this file can serve as a handy reference as to which modules are public.
 
@@ -72,7 +82,7 @@ import TabIndicator from '@mui/material/Tabs/TabIndicator';
 //                                           ^^^^^^^^^^^^ 3rd level
 ```
 
-If you're using `eslint` you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/rules/no-restricted-imports). The following `.eslintrc` configuration will highlight problematic imports from `@mui` packages:
+If you're using `eslint` you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/latest/rules/no-restricted-imports). The following `.eslintrc` configuration will highlight problematic imports from `@mui` packages:
 
 ```json
 {
@@ -80,16 +90,16 @@ If you're using `eslint` you can catch problematic imports with the [`no-restric
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
+        "patterns": ["@mui/*/*/*"]
       }
     ]
   }
 }
 ```
 
-### Option 2
+### Option two: use a Babel plugin
 
-This option provides the best User Experience and Developer Experience:
+This option provides the best user experience and developer experience:
 
 - UX: The Babel plugin enables top-level tree-shaking even if your bundler doesn't support it.
 - DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
@@ -137,7 +147,7 @@ Pick one of the following plugins:
   module.exports = { plugins };
   ```
 
-- [babel-plugin-direct-import](https://github.com/umidbekk/babel-plugin-direct-import) with the following configuration:
+- [babel-plugin-direct-import](https://github.com/avocadowastaken/babel-plugin-direct-import) with the following configuration:
 
   `yarn add -D babel-plugin-direct-import`
 
@@ -173,15 +183,15 @@ If you wish, `babel-plugin-import` can be configured through `config-overrides.j
 Modify your `package.json` commands:
 
 ```diff
-  "scripts": {
--   "start": "react-scripts start",
-+   "start": "react-app-rewired start",
--   "build": "react-scripts build",
-+   "build": "react-app-rewired build",
--   "test": "react-scripts test",
-+   "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
-}
+   "scripts": {
+-    "start": "react-scripts start",
+-    "build": "react-scripts build",
+-    "test": "react-scripts test",
++    "start": "react-app-rewired start",
++    "build": "react-app-rewired build",
++    "test": "react-app-rewired test",
+     "eject": "react-scripts eject"
+  }
 ```
 
 Enjoy significantly faster start times.
@@ -199,21 +209,49 @@ It will perform the following diffs:
 
 ## Available bundles
 
-The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/material-ui/getting-started/supported-platforms/).
+### Default bundle
 
-⚠️ Developers are **strongly discouraged** to import from any of the other bundles directly.
-Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles.
-Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
+The packages published on npm are **transpiled** with [Babel](https://github.com/babel/babel), optimized for performance with the [supported platforms](/material-ui/getting-started/supported-platforms/).
+
+Custom bundles are also available:
+
+- [Modern bundle](#modern-bundle)
+- [Legacy bundle](#legacy-bundle)
+
+### How to use custom bundles?
+
+:::error
+You are strongly discouraged to:
+
+- Import from any of the custom bundles directly. Do not do this:
+
+  ```js
+  import { Button } from '@mui/material/legacy';
+  ```
+
+  You have no guarantee that the dependencies also use legacy or modern bundles, leading to module duplication in your JavaScript files.
+
+- Import from any of the undocumented files or folders. Do not do this:
+
+  ```js
+  import { Button } from '@mui/material/esm';
+  ```
+
+  You have no guarantee that these imports will continue to work from one version to the next.
+  :::
+
+A great way to use these bundles is to configure bundler aliases, for example with [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
 
 ```js
 {
   resolve: {
     alias: {
-      '@mui/base': '@mui/base/legacy',
-      '@mui/lab': '@mui/lab/legacy',
       '@mui/material': '@mui/material/legacy',
       '@mui/styled-engine': '@mui/styled-engine/legacy',
       '@mui/system': '@mui/system/legacy',
+      '@mui/base': '@mui/base/legacy',
+      '@mui/utils': '@mui/utils/legacy',
+      '@mui/lab': '@mui/lab/legacy',
     }
   }
 }

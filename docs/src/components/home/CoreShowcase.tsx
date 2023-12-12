@@ -1,58 +1,16 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import Button, { buttonClasses } from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import TouchAppRounded from '@mui/icons-material/TouchAppRounded';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
-import TouchAppRounded from '@mui/icons-material/TouchAppRounded';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
 import FlashCode from 'docs/src/components/animation/FlashCode';
-
-const darkDesignTokens = getDesignTokens('dark');
-
-let darkBrandingTheme = createTheme(darkDesignTokens);
-
-darkBrandingTheme = createTheme(darkBrandingTheme, {
-  components: {
-    ...getThemedComponents(darkBrandingTheme).components,
-    MuiButtonBase: {
-      defaultProps: {
-        disableTouchRipple: true,
-      },
-    },
-    MuiButton: {
-      defaultProps: {
-        disableElevation: true,
-      },
-      styleOverrides: {
-        root: {
-          borderRadius: 40,
-          padding: darkBrandingTheme.spacing('2px', 1),
-        },
-        sizeSmall: {
-          fontSize: darkBrandingTheme.typography.pxToRem(12),
-          lineHeight: 18 / 12,
-        },
-        text: {
-          color: darkBrandingTheme.palette.grey[400],
-        },
-        outlined: {
-          color: '#fff',
-          backgroundColor: darkBrandingTheme.palette.primary[700],
-          borderColor: darkBrandingTheme.palette.primary[500],
-          '&:hover': {
-            backgroundColor: darkBrandingTheme.palette.primary[700],
-          },
-        },
-      },
-    },
-  },
-});
 
 const lineMapping: Record<string, number | number[]> = {
   avatar: 2,
@@ -70,7 +28,7 @@ const lineMapping: Record<string, number | number[]> = {
 };
 
 export default function CoreShowcase() {
-  const globalTheme = useTheme();
+  const { vars, ...globalTheme } = useTheme();
   const mode = globalTheme.palette.mode;
   const [element, setElement] = React.useState<Data>({ id: null, name: null, target: null });
   const [customized, setCustomized] = React.useState(false);
@@ -103,7 +61,7 @@ export default function CoreShowcase() {
                     border: '1px solid',
                     borderColor:
                       mode === 'dark'
-                        ? globalTheme.palette.primaryDark[500]
+                        ? globalTheme.palette.primaryDark[600]
                         : globalTheme.palette.grey[200],
                   },
                 },
@@ -113,6 +71,7 @@ export default function CoreShowcase() {
                   root: {
                     width: 60,
                     height: 60,
+                    borderRadius: 99,
                   },
                 },
               },
@@ -144,17 +103,17 @@ export default function CoreShowcase() {
                     '&.MuiChip-colorSuccess': {
                       backgroundColor:
                         mode === 'dark'
-                          ? globalTheme.palette.success[900]
+                          ? globalTheme.palette.success[800]
                           : globalTheme.palette.success[100],
                       color:
                         mode === 'dark'
                           ? globalTheme.palette.success[100]
-                          : globalTheme.palette.success[900],
+                          : globalTheme.palette.success[800],
                     },
                     '&.MuiChip-colorDefault': {
                       backgroundColor:
                         mode === 'dark'
-                          ? globalTheme.palette.grey[900]
+                          ? globalTheme.palette.primaryDark[600]
                           : globalTheme.palette.grey[200],
                       color:
                         mode === 'dark'
@@ -219,7 +178,7 @@ export default function CoreShowcase() {
         </React.Fragment>
       }
       code={
-        <ThemeProvider theme={darkBrandingTheme}>
+        <div data-mui-color-scheme="dark">
           <Box
             sx={{
               p: { xs: 2, sm: 1 },
@@ -227,6 +186,23 @@ export default function CoreShowcase() {
               alignItems: 'center',
               right: 0,
               zIndex: 10,
+              [`& .${buttonClasses.root}`]: {
+                borderRadius: 40,
+                padding: '2px 10px',
+                fontSize: '0.75rem',
+                lineHeight: 18 / 12,
+              },
+              [`& .${buttonClasses.outlined}`]: {
+                color: '#fff',
+                backgroundColor: 'primary.700',
+                borderColor: 'primary.500',
+                '&:hover': {
+                  backgroundColor: 'primary.700',
+                },
+              },
+              [`& .${buttonClasses.text}`]: {
+                color: 'grey.400',
+              },
             }}
           >
             <Button
@@ -235,6 +211,7 @@ export default function CoreShowcase() {
               onClick={() => {
                 setCustomized(false);
               }}
+              sx={{ ml: 0 }}
             >
               Material Design
             </Button>
@@ -244,7 +221,6 @@ export default function CoreShowcase() {
               onClick={() => {
                 setCustomized(true);
               }}
-              sx={{ ml: 1 }}
             >
               Custom Theme
             </Button>
@@ -265,9 +241,6 @@ export default function CoreShowcase() {
                 '&::-webkit-scrollbar': {
                   display: 'none',
                 },
-                '& code[class*="language-"]': {
-                  fontSize: 'inherit',
-                },
               },
             }}
           >
@@ -275,11 +248,16 @@ export default function CoreShowcase() {
               {startLine !== undefined && (
                 <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -2 }} />
               )}
-              <HighlightedCode component={MarkdownElement} code={componentCode} language="jsx" />
+              <HighlightedCode
+                copyButtonHidden
+                component={MarkdownElement}
+                code={componentCode}
+                language="jsx"
+              />
               <StylingInfo appeared={customized} sx={{ mb: -2, mx: -2 }} />
             </Box>
           </Box>
-        </ThemeProvider>
+        </div>
       }
     />
   );

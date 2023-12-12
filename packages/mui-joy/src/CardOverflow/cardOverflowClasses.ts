@@ -1,28 +1,28 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface CardOverflowClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
-  colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `variant="text"`. */
-  variantText: string;
-  /** Styles applied to the root element if `variant="outlined"`. */
+  /** Class name applied to the root element when color inversion is triggered. */
+  colorContext: string;
+  /** Class name applied to the root element if `variant="plain"`. */
+  variantPlain: string;
+  /** Class name applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** Class name applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Class name applied to the root element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type CardOverflowClassKey = keyof CardOverflowClasses;
@@ -36,13 +36,13 @@ const aspectRatioClasses: CardOverflowClasses = generateUtilityClasses('MuiCardO
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
-  'colorInfo',
   'colorSuccess',
   'colorWarning',
-  'variantText',
+  'colorContext',
+  'variantPlain',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
 ]);
 
 export default aspectRatioClasses;

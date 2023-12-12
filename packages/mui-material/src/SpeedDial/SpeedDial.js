@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
@@ -58,7 +59,7 @@ const SpeedDialRoot = styled('div', {
     return [styles.root, styles[`direction${capitalize(ownerState.direction)}`]];
   },
 })(({ theme, ownerState }) => ({
-  zIndex: theme.zIndex.speedDial,
+  zIndex: (theme.vars || theme).zIndex.speedDial,
   display: 'flex',
   alignItems: 'center',
   pointerEvents: 'none',

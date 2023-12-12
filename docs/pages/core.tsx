@@ -1,37 +1,35 @@
 import * as React from 'react';
+import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import CssBaseline from '@mui/material/CssBaseline';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import CoreHero from 'docs/src/components/productCore/CoreHero';
-import CoreComponents from 'docs/src/components/productCore/CoreComponents';
-import CoreTheming from 'docs/src/components/productCore/CoreTheming';
-import CoreStyling from 'docs/src/components/productCore/CoreStyling';
+import CoreProducts from 'docs/src/components/productCore/CoreProducts';
 import CoreHeroEnd from 'docs/src/components/productCore/CoreHeroEnd';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
-export default function Home() {
+export default function Core() {
   return (
-    <BrandingProvider>
+    <BrandingCssVarsProvider>
       <Head
         title="MUI Core: Ready to use components, free forever"
-        description="Get a growing list of components, ready-to-use, free forever and with accessibility always in mind. We've built the foundational UI blocks for your design system so you don't have to."
+        description="Get a growing list of React components, ready-to-use, free forever and with accessibility always in mind."
         card="/static/social-previews/core-preview.jpg"
       />
-      <CssBaseline />
       <AppHeaderBanner />
-      <AppHeader />
-      <main>
+      <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
+      <main id="main-content">
         <CoreHero />
+        <CoreProducts />
+        <Divider />
         <References companies={CORE_CUSTOMERS} />
-        <CoreComponents />
-        <CoreTheming />
-        <CoreStyling />
+        <Divider />
         <CoreHeroEnd />
+        <Divider />
       </main>
-      <AppFooter />
-    </BrandingProvider>
+      <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/material-ui" />
+    </BrandingCssVarsProvider>
   );
 }

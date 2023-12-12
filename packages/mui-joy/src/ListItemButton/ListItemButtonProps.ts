@@ -5,14 +5,27 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
-import { ListItemButtonClasses } from './listItemButtonClasses';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ListItemButtonSlot = 'root';
 
-export interface ListItemButtonPropsVariantOverrides {}
+export interface ListItemButtonSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+}
 
+export type ListItemButtonSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ListItemButtonSlots,
+  {
+    root: SlotProps<'div', {}, ListItemButtonOwnerState>;
+  }
+>;
+
+export interface ListItemButtonPropsVariantOverrides {}
 export interface ListItemButtonPropsColorOverrides {}
 
 export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -39,10 +52,6 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      */
     children?: React.ReactNode;
     /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ListItemButtonClasses>;
-    /**
      * If `true`, the component is disabled.
      * @default false
      */
@@ -57,17 +66,18 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      */
     focusVisibleClassName?: string;
     /**
-     * The empty space on the side(s) of the separator.
+     * The content direction flow.
+     * @default 'horizontal'
      */
-    inset?: 'gutter' | 'leftGutter' | 'startAdornment';
+    orientation?: 'horizontal' | 'vertical';
     /**
-     * Use to apply selected styling.
+     * If `true`, the component is selected.
      * @default false
      */
     selected?: boolean;
     /**
-     * The variant to use.
-     * @default 'text'
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+     * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListItemButtonPropsVariantOverrides>;
     /**
@@ -78,7 +88,7 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      * @default 0
      */
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
-  };
+  } & ListItemButtonSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -93,6 +103,23 @@ export type ListItemButtonProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListItemButtonTypeMap<P, D>, D>;
+
+export interface ListItemButtonOwnerState extends ApplyColorInversion<ListItemButtonProps> {
+  /**
+   * If `true`, the element's focus is visible.
+   */
+  focusVisible?: boolean;
+  /**
+   * If `true`, the element is rendered in a horizontal list.
+   * @internal
+   */
+  row?: boolean;
+  /**
+   * @internal
+   * The internal prop for controlling CSS margin of the element.
+   */
+  'data-first-child'?: boolean;
+}
 
 export type ExtendListItemButton<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendListItemButtonTypeMap<M>, 'a'>,

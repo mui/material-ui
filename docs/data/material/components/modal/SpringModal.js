@@ -5,38 +5,47 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-// web.cjs is required for IE11 support
-import { useSpring, animated } from 'react-spring/web.cjs';
+import { useSpring, animated } from '@react-spring/web';
 
 const Fade = React.forwardRef(function Fade(props, ref) {
-  const { in: open, children, onEnter, onExited, ...other } = props;
+  const {
+    children,
+    in: open,
+    onClick,
+    onEnter,
+    onExited,
+    ownerState,
+    ...other
+  } = props;
   const style = useSpring({
     from: { opacity: 0 },
     to: { opacity: open ? 1 : 0 },
     onStart: () => {
       if (open && onEnter) {
-        onEnter();
+        onEnter(null, true);
       }
     },
     onRest: () => {
       if (!open && onExited) {
-        onExited();
+        onExited(null, true);
       }
     },
   });
 
   return (
     <animated.div ref={ref} style={style} {...other}>
-      {children}
+      {React.cloneElement(children, { onClick })}
     </animated.div>
   );
 });
 
 Fade.propTypes = {
-  children: PropTypes.element,
-  in: PropTypes.bool.isRequired,
+  children: PropTypes.element.isRequired,
+  in: PropTypes.bool,
+  onClick: PropTypes.any,
   onEnter: PropTypes.func,
   onExited: PropTypes.func,
+  ownerState: PropTypes.any,
 };
 
 const style = {
@@ -65,9 +74,11 @@ export default function SpringModal() {
         open={open}
         onClose={handleClose}
         closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            TransitionComponent: Fade,
+          },
         }}
       >
         <Fade in={open}>

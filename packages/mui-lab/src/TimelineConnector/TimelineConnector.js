@@ -22,7 +22,7 @@ const TimelineConnectorRoot = styled('span', {
 })(({ theme }) => {
   return {
     width: 2,
-    backgroundColor: theme.palette.grey[400],
+    backgroundColor: (theme.vars || theme).palette.grey[400],
     flexGrow: 1,
   };
 });

@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "5.6.0",
+  "version": "5.15.0",
   "bin": "./codemod.js",
   "private": false,
   "author": "MUI Team",
@@ -15,7 +15,7 @@
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-codemod/**/*.test.js'",
     "prebuild": "rimraf build",
-    "build": "node ../../scripts/build node --out-dir ./build && cpy README.md build && cpy package.json build && cpy codemod.js build",
+    "build": "node ../../scripts/build.mjs node --out-dir ./build && cpy README.md build && cpy package.json build && cpy codemod.js build",
     "release": "yarn build && npm publish"
   },
   "repository": {
@@ -27,18 +27,20 @@
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-codemod",
   "funding": {
     "type": "opencollective",
-    "url": "https://opencollective.com/mui"
+    "url": "https://opencollective.com/mui-org"
   },
   "dependencies": {
-    "@babel/core": "^7.17.5",
-    "@babel/runtime": "^7.17.2",
-    "@babel/traverse": "^7.17.3",
+    "@babel/core": "^7.23.5",
+    "@babel/runtime": "^7.23.5",
+    "@babel/traverse": "^7.23.5",
     "jscodeshift": "^0.13.1",
     "jscodeshift-add-imports": "^1.0.10",
-    "yargs": "^17.4.0"
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@types/jscodeshift": "0.11.3"
+    "@types/chai": "^4.3.11",
+    "@types/jscodeshift": "0.11.5",
+    "chai": "^4.3.10"
   },
   "sideEffects": false,
   "publishConfig": {

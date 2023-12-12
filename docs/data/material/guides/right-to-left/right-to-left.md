@@ -1,30 +1,33 @@
 # Right-to-left
 
-<p class="description">Right-to-left languages such as Arabic, Persian, or Hebrew are supported. To change the direction of MUI components you must follow the following steps.</p>
+<p class="description">Right-to-left languages such as Arabic, Persian, or Hebrew are supported. To change the direction of Material UI components you must follow the following steps.</p>
 
 ## Steps
 
 ### 1. HTML
 
-Make sure the `dir` attribute is set on the body, otherwise native components will break:
+Make sure the `dir` attribute is set on the `html` tag, otherwise native components will break:
 
 ```html
-<body dir="rtl"></body>
+<html dir="rtl"></html>
 ```
 
-As an alternative to the above, you can also wrap your application in an element with the `dir` attribute:
+If you need to change the direction of the text at runtime, but React does not control the root HTML element, you may use the JS API:
+
+```js
+document.dir = 'rtl';
+```
+
+As an alternative to the above, you can also wrap your application (or part of it) in an element with the `dir` attribute.
+This, however, will not work correctly with portaled elements, such as Dialogs, as they will render outside of the element with the `dir` attribute.
+
+To fix the portaled components, add an explicit `dir` attribute to them:
 
 ```jsx
-function App() {
-  return (
-    <div dir="rtl">
-      <MyComponent />
-    </div>
-  );
-}
+<Dialog dir="rtl">
+  <MyComponent />
+</Dialog>
 ```
-
-This can be helpful for creating components to toggle language settings in the live application.
 
 ### 2. Theme
 
@@ -42,25 +45,29 @@ const theme = createTheme({
 
 When using either `emotion` or `styled-components`, you need [`stylis-plugin-rtl`](https://github.com/styled-components/stylis-plugin-rtl) to flip the styles.
 
-```sh
+```bash
 npm install stylis stylis-plugin-rtl
 ```
 
-> **Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as a [styled engine](/material-ui/guides/styled-engine/), make sure to install the correct version.
+:::warning
+Only Emotion is compatible with version 2 of the plugin.
+styled-components requires version 1.
+If you're using [styled-components instead of Emotion](/material-ui/guides/styled-components/), make sure to install the correct version.
+:::
 
 In case you are using `jss` (up to v4) or with the legacy `@mui/styles` package, you need [`jss-rtl`](https://github.com/alitaheri/jss-rtl) to flip the styles.
 
-```sh
+```bash
 npm install jss-rtl
 ```
 
-Having installed the plugin in your project, MUI components still require it to be loaded by the style engine instance that you use. Find bellow guides on how you can load it.
+Having installed the plugin in your project, Material UI components still require it to be loaded by the style engine instance that you use. Find bellow guides on how you can load it.
 
 ### 4. Load the rtl plugin
 
-#### 4.1 emotion
+#### 4.1 Emotion
 
-If you use emotion as your style engine, you should create a new cache instance that uses the `stylis-plugin-rtl` (the default `prefixer` plugin must also be included in order to retain vendor prefixing) and provide that on the top of your application tree.
+If you use Emotion as your style engine, you should create a new cache instance that uses the `stylis-plugin-rtl` (the default `prefixer` plugin must also be included in order to retain vendor prefixing) and provide that on the top of your application tree.
 The [CacheProvider](https://emotion.sh/docs/cache-provider) component enables this:
 
 ```jsx
@@ -129,7 +136,7 @@ _Use the direction toggle button on the top right corner to flip the whole docum
 
 ## Opting out of rtl transformation
 
-### emotion & styled-components
+### Emotion & styled-components
 
 You have to use the template literal syntax and add the `/* @noflip */` directive before the rule or property for which you want to disable right-to-left styles.
 

@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -63,6 +64,7 @@ const useUtilityClasses = (ownerState) => {
     fullWidth,
     hiddenLabel,
     multiline,
+    readOnly,
     size,
     startAdornment,
     type,
@@ -76,11 +78,12 @@ const useUtilityClasses = (ownerState) => {
       fullWidth && 'fullWidth',
       focused && 'focused',
       formControl && 'formControl',
-      size === 'small' && 'sizeSmall',
+      size && size !== 'medium' && `size${capitalize(size)}`,
       multiline && 'multiline',
       startAdornment && 'adornedStart',
       endAdornment && 'adornedEnd',
       hiddenLabel && 'hiddenLabel',
+      readOnly && 'readOnly',
     ],
     input: [
       'input',
@@ -91,6 +94,7 @@ const useUtilityClasses = (ownerState) => {
       hiddenLabel && 'inputHiddenLabel',
       startAdornment && 'inputAdornedStart',
       endAdornment && 'inputAdornedEnd',
+      readOnly && 'readOnly',
     ],
   };
 
@@ -103,7 +107,7 @@ export const InputBaseRoot = styled('div', {
   overridesResolver: rootOverridesResolver,
 })(({ theme, ownerState }) => ({
   ...theme.typography.body1,
-  color: theme.palette.text.primary,
+  color: (theme.vars || theme).palette.text.primary,
   lineHeight: '1.4375em', // 23px
   boxSizing: 'border-box', // Prevent padding issue with fullWidth.
   position: 'relative',
@@ -111,7 +115,7 @@ export const InputBaseRoot = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
   [`&.${inputBaseClasses.disabled}`]: {
-    color: theme.palette.text.disabled,
+    color: (theme.vars || theme).palette.text.disabled,
     cursor: 'default',
   },
   ...(ownerState.multiline && {
@@ -133,7 +137,13 @@ export const InputBaseComponent = styled('input', {
   const light = theme.palette.mode === 'light';
   const placeholder = {
     color: 'currentColor',
-    opacity: light ? 0.42 : 0.5,
+    ...(theme.vars
+      ? {
+          opacity: theme.vars.opacity.inputPlaceholder,
+        }
+      : {
+          opacity: light ? 0.42 : 0.5,
+        }),
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.shorter,
     }),
@@ -143,9 +153,13 @@ export const InputBaseComponent = styled('input', {
     opacity: '0 !important',
   };
 
-  const placeholderVisible = {
-    opacity: light ? 0.42 : 0.5,
-  };
+  const placeholderVisible = theme.vars
+    ? {
+        opacity: theme.vars.opacity.inputPlaceholder,
+      }
+    : {
+        opacity: light ? 0.42 : 0.5,
+      };
 
   return {
     font: 'inherit',
@@ -192,7 +206,7 @@ export const InputBaseComponent = styled('input', {
     },
     [`&.${inputBaseClasses.disabled}`]: {
       opacity: 1, // Reset iOS opacity
-      WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
+      WebkitTextFillColor: (theme.vars || theme).palette.text.disabled, // Fix opacity Safari bug
     },
     '&:-webkit-autofill': {
       animationDuration: '5000s',
@@ -264,6 +278,8 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     renderSuffix,
     rows,
     size,
+    slotProps = {},
+    slots = {},
     startAdornment,
     type = 'text',
     value: valueProp,
@@ -287,9 +303,13 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       }
     }
   }, []);
-  const handleInputPropsRefProp = useForkRef(inputPropsProp.ref, handleInputRefWarning);
-  const handleInputRefProp = useForkRef(inputRefProp, handleInputPropsRefProp);
-  const handleInputRef = useForkRef(inputRef, handleInputRefProp);
+
+  const handleInputRef = useForkRef(
+    inputRef,
+    inputRefProp,
+    inputPropsProp.ref,
+    handleInputRefWarning,
+  );
 
   const [focused, setFocused] = React.useState(false);
   const muiFormControl = useFormControl();
@@ -484,11 +504,11 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = components.Root || InputBaseRoot;
-  const rootProps = componentsProps.root || {};
+  const Root = slots.root || components.Root || InputBaseRoot;
+  const rootProps = slotProps.root || componentsProps.root || {};
 
-  const Input = components.Input || InputBaseComponent;
-  inputProps = { ...inputProps, ...componentsProps.input };
+  const Input = slots.input || components.Input || InputBaseComponent;
+  inputProps = { ...inputProps, ...(slotProps.input ?? componentsProps.input) };
 
   return (
     <React.Fragment>
@@ -501,7 +521,15 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         ref={ref}
         onClick={handleClick}
         {...other}
-        className={clsx(classes.root, rootProps.className, className)}
+        className={clsx(
+          classes.root,
+          {
+            // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
+            'MuiInputBase-readOnly': readOnly,
+          },
+          rootProps.className,
+          className,
+        )}
       >
         {startAdornment}
         <FormControlContext.Provider value={null}>
@@ -530,7 +558,14 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
               ownerState: { ...ownerState, ...inputProps.ownerState },
             })}
             ref={handleInputRef}
-            className={clsx(classes.input, inputProps.className)}
+            className={clsx(
+              classes.input,
+              {
+                // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
+                'MuiInputBase-readOnly': readOnly,
+              },
+              inputProps.className,
+            )}
             onBlur={handleBlur}
             onChange={handleChange}
             onFocus={handleFocus}
@@ -578,7 +613,7 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -586,8 +621,11 @@ InputBase.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -595,7 +633,12 @@ InputBase.propTypes /* remove-proptypes */ = {
     Root: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Input.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -695,6 +738,10 @@ InputBase.propTypes /* remove-proptypes */ = {
    */
   onFocus: PropTypes.func,
   /**
+   * Callback fired when the `input` doesn't satisfy its constraints.
+   */
+  onInvalid: PropTypes.func,
+  /**
    * @ignore
    */
   onKeyDown: PropTypes.func,
@@ -731,6 +778,29 @@ InputBase.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * Start `InputAdornment` for this component.
    */

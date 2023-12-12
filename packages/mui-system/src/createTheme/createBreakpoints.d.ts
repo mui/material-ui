@@ -61,6 +61,11 @@ export interface Breakpoints {
    *          the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive).
    */
   not: (key: Breakpoint) => string;
+  /**
+   * The unit used for the breakpoint's values.
+   * @default 'px'
+   */
+  unit?: string | undefined;
 }
 
 export interface BreakpointsOptions extends Partial<Breakpoints> {

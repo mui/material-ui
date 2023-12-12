@@ -13,7 +13,7 @@ const finalTheme = createTheme({
             color: theme.palette.grey[500],
             fontWeight: 700,
             padding: 0,
-            left: '2rem',
+            left: '3rem',
           }),
           [`&.${sliderClasses.valueLabelOpen}`]: {
             transform: 'none',
@@ -29,7 +29,7 @@ function valuetext(value: number) {
   return `${value}°C`;
 }
 
-export default function GlobalThemeOverride() {
+export default function GlobalThemeOverrideCallback() {
   return (
     <ThemeProvider theme={finalTheme}>
       <Box sx={{ height: 180, display: 'inline-block' }}>

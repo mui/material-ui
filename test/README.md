@@ -7,7 +7,7 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 1. Add a unit test to `packages/*/src/TheUnitInQuestion/TheUnitInQuestion.test.js` or an integration test `packages/*/test/`.
 2. Run `yarn t TheUnitInQuestion`.
 3. Implement the tested behavior
-4. Open a PR once the test passes or you want somebody to review your work
+4. Open a PR once the test passes or if you want somebody to review your work
 
 ## Tools we use
 
@@ -22,7 +22,7 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 
 ## Writing tests
 
-For all unit tests, please use the return value from `test/utils/createRenderer`.
+For all unit tests, please use the return value from `@mui-internal/test-utils/createRenderer`.
 It prepares the test suite and returns a function with the same interface as
 [`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
 
@@ -133,7 +133,7 @@ If you want to `grep` for certain tests add `-g STRING_TO_GREP` though for devel
 
 First, we have the **unit test** suite.
 It uses [mocha](https://mochajs.org) and a thin wrapper around `@testing-library/react`.
-Here is an [example](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/packages/mui-material/src/Dialog/Dialog.test.js#L71-L80) with the `Dialog` component.
+Here is an [example](https://github.com/mui/material-ui/blob/6d9f42a637184a3b3cb552d2591e2cf39653025d/packages/mui-material/src/Dialog/Dialog.test.js#L60-L69) with the `Dialog` component.
 
 Next, we have the **integration** tests. They are mostly used for components that
 act as composite widgets like `Select` or `Menu`.
@@ -162,7 +162,7 @@ Our tests run on different browsers to increase the coverage:
 
 ##### BrowserStack
 
-We only use BrowserStack for non-PR commits to save ressources.
+We only use BrowserStack for non-PR commits to save resources.
 BrowserStack rarely reports actual issues so we only use it as a stop-gap for releases not merges.
 
 To force a run of BrowserStack on a PR you have to run the pipeline with `browserstack-force` set to `true`.
@@ -198,7 +198,7 @@ You can pass the same arguments as you could to `mocha`.
 For example, `yarn test:regressions:run --watch --grep "docs-system-basic"` to take new screenshots of every demo in `docs/src/pages/system/basic`.
 You can view the screenshots in `test/regressions/screenshots/chrome`.
 
-Alternatively, you might want to open `http://localhost:3000` (while `yarn test:regressions:dev` is running) to view individual views separately.
+Alternatively, you might want to open `http://localhost:5001` (while `yarn test:regressions:dev` is running) to view individual views separately.
 
 ### Caveats
 
@@ -242,16 +242,17 @@ For example, in https://app.circleci.com/pipelines/github/mui/material-ui/32796/
 
 ### Testing multiple versions of React
 
-You can check integration of different versions of React (e.g. different [release channels](https://reactjs.org/docs/release-channels.html) or PRs to React) by running `node scripts/use-react-dist-tag <dist-tag>`.
+You can check integration of different versions of React (e.g. different [release channels](https://react.dev/community/versioning-policy) or PRs to React) by running `node scripts/useReactVersion.mjs <version>`.
 
-Possible values for `dist-tag`:
+Possible values for `version`:
 
 - default: `stable` (minimum supported React version)
 - a tag on npm e.g. `next`, `experimental` or `latest`
+- an older version e.g. `^17.0.0`
 
 #### CI
 
-You can pass the same `dist-tag` to our CircleCI pipeline as well:
+You can pass the same `version` to our CircleCI pipeline as well:
 
 With the following API request we're triggering a run of the default workflow in
 PR #24289 for `react@next`
@@ -261,5 +262,5 @@ curl --request POST \
   --url https://circleci.com/api/v2/project/gh/mui/material-ui/pipeline \
   --header 'content-type: application/json' \
   --header 'Circle-Token: $CIRCLE_TOKEN' \
-  --data-raw '{"branch":"pull/24289/head","parameters":{"react-dist-tag":"next"}}'
+  --data-raw '{"branch":"pull/24289/head","parameters":{"react-version":"next"}}'
 ```

@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Skeleton component
 components: Skeleton
 githubLabel: 'component: skeleton'
@@ -37,7 +37,10 @@ For instance:
 
 ## Variants
 
-The component supports 3 shape variants.
+The component supports 4 shape variants:
+
+- `text` (default): represents a single line of text (you can adjust the height via font size).
+- `circular`, `rectangular`, and `rounded`: come with different border radius to let you take control of the size.
 
 {{"demo": "Variants.js"}}
 

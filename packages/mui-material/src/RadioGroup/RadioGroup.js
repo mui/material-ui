@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import FormGroup from '../FormGroup';
@@ -46,18 +47,25 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
 
   const handleRef = useForkRef(ref, rootRef);
 
-  const handleChange = (event) => {
-    setValueState(event.target.value);
-
-    if (onChange) {
-      onChange(event, event.target.value);
-    }
-  };
-
   const name = useId(nameProp);
 
+  const contextValue = React.useMemo(
+    () => ({
+      name,
+      onChange(event) {
+        setValueState(event.target.value);
+
+        if (onChange) {
+          onChange(event, event.target.value);
+        }
+      },
+      value,
+    }),
+    [name, onChange, setValueState, value],
+  );
+
   return (
-    <RadioGroupContext.Provider value={{ name, onChange: handleChange, value }}>
+    <RadioGroupContext.Provider value={contextValue}>
       <FormGroup role="radiogroup" ref={handleRef} {...other}>
         {children}
       </FormGroup>

@@ -13,7 +13,7 @@ Here are the most significant improvements in March:
 - The community has helped us to add many TypeScript demo variants. In order to minimize the overhead of handling two variants per demo (JavaScript & TypeScript), the JavaScript variant is generated from the TypeScript variant. If you are using TypeScript, you can ignore the `.propTypes =` assignations.
 - We have migrated a few demos from the `withStyles()` API to the `makeStyles()` API.
   If you are wondering which you should use, we would encourage the use of `makeStyles()` where possible. `withStyles()` is interesting for overriding component styles or for handling legacy class logics.
-- We have made the [Box API](/system/basics/) stable 🥳.
+- We have made the [Box API](/system/react-box/) stable 🥳.
 
   ```diff
   -import { unstable_Box as Box } from '@material-ui/core/Box';
@@ -28,7 +28,7 @@ Here are the most significant improvements in March:
 
 _(We'll do our best, no guarantee!)_
 
-- We are almost done with [the v4.0.0-alpha breaking changes](https://github.com/mui/material-ui/issues/13663). You can already find [the upgrade path](/material-ui/guides/migration-v3/) from v3 to v4 in the documentation. Next, we will release the first beta version (no more breaking changes).
+- We are almost done with [the v4.0.0-alpha breaking changes](https://github.com/mui/material-ui/issues/13663). You can already find [the upgrade path](/material-ui/migration/migration-v3/) from v3 to v4 in the documentation. Next, we will release the first beta version (no more breaking changes).
   The results of the MUI developer survey suggested that there are too many breaking changes.
   Don't worry, it's almost over! We will focus on providing more components once we have released v4 stable.
 - We will continue, and hopefully complete, the tasks we undertook:

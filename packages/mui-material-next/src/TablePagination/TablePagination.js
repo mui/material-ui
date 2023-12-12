@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/base';
-import TablePaginationUnstyled from '@mui/base/TablePaginationUnstyled';
+import { TablePagination as BaseTablePagination } from '@mui/base/TablePagination';
 import { styled, useThemeProps } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
@@ -170,34 +171,34 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   const toolbarProps = appendOwnerState(TablePaginationToolbar, {}, ownerState);
 
   return (
-    <TablePaginationUnstyled
-      components={{
-        Root: TablePaginationRoot,
-        Actions: ActionsComponent,
-        Toolbar: TablePaginationToolbar,
-        Spacer: TablePaginationSpacer,
-        SelectLabel: TablePaginationSelectLabel,
-        Select: TablePaginationSelect,
-        MenuItem: MenuItemComponent,
-        DisplayedRows: TablePaginationDisplayedRows,
+    <BaseTablePagination
+      slots={{
+        root: TablePaginationRoot,
+        actions: ActionsComponent,
+        toolbar: TablePaginationToolbar,
+        spacer: TablePaginationSpacer,
+        selectLabel: TablePaginationSelectLabel,
+        select: TablePaginationSelect,
+        menuItem: MenuItemComponent,
+        displayedRows: TablePaginationDisplayedRows,
       }}
-      componentsProps={{
+      slotProps={{
         root: {
           as: component,
           ...rootProps,
         },
         actions: {
-          components: {
-            FirstButton: CustomIconButton,
-            LastButton: CustomIconButton,
-            NextButton: CustomIconButton,
-            BackButton: CustomIconButton,
-            LastPageIcon,
-            FirstPageIcon,
-            NextPageIcon: KeyboardArrowRight,
-            BackPageIcon: KeyboardArrowLeft,
+          slots: {
+            firstButton: CustomIconButton,
+            lastButton: CustomIconButton,
+            nextButton: CustomIconButton,
+            backButton: CustomIconButton,
+            lastPageIcon: LastPageIcon,
+            firstPageIcon: FirstPageIcon,
+            nextPageIcon: KeyboardArrowRight,
+            backPageIcon: KeyboardArrowLeft,
           },
-          componentsProps: {
+          slotProps: {
             backButton: backIconButtonProps,
             nextButton: nextIconButtonProps,
           },
@@ -211,7 +212,6 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           variant: 'standard',
           input: <InputBase />,
           ...selectProps,
-          id: selectId,
           ...(SelectProps.native ? {} : { labelId }),
           'aria-labelledby': labelId,
           className: clsx(classes.select, SelectProps.className),
@@ -242,6 +242,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           ...toolbarProps,
         },
       }}
+      selectId={selectId}
+      labelId={labelId}
       ref={ref}
       {...other}
       className={clsx(classes.root, className)}

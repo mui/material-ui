@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { act, createRenderer, describeConformance } from 'test/utils';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { act, createRenderer, describeConformance } from '@mui-internal/test-utils';
 import { Transition } from 'react-transition-group';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Collapse, { collapseClasses as classes } from '@mui/material/Collapse';
 
 describe('<Collapse />', () => {
@@ -145,13 +145,15 @@ describe('<Collapse />', () => {
       });
 
       const next1 = spy();
-      const Test = (props) => (
-        <ThemeProvider theme={theme}>
-          <Collapse timeout="auto" onEntered={next1} {...props}>
-            <div />
-          </Collapse>
-        </ThemeProvider>
-      );
+      function Test(props) {
+        return (
+          <ThemeProvider theme={theme}>
+            <Collapse timeout="auto" onEntered={next1} {...props}>
+              <div />
+            </Collapse>
+          </ThemeProvider>
+        );
+      }
       const renderProps1 = render(<Test />);
       const collapse = renderProps1.container.firstChild;
       // Gets wrapper

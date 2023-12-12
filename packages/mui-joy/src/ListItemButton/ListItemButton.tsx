@@ -1,20 +1,24 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { useButton } from '@mui/base/useButton';
 import { styled, useThemeProps } from '../styles';
+
 import {
-  ListItemButtonProps,
+  ListItemButtonOwnerState,
   ExtendListItemButton,
   ListItemButtonTypeMap,
 } from './ListItemButtonProps';
-import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 import listItemClasses from '../ListItem/listItemClasses';
+import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
+import ListItemButtonOrientationContext from './ListItemButtonOrientationContext';
 import RowListContext from '../List/RowListContext';
+import useSlot from '../utils/useSlot';
 
-const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
 
   const slots = {
@@ -37,74 +41,99 @@ const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boo
   return composedClasses;
 };
 
-const ListItemButtonRoot = styled('div', {
-  name: 'MuiListItemButton',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemButtonProps & { row: boolean } }>(({ theme, ownerState }) => [
-  {
-    ...(ownerState.selected && {
-      '--List-decorator-color': 'initial',
-    }),
+export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOwnerState }>(
+  ({ theme, ownerState }) => ({
+    '--Icon-margin': 'initial', // reset the icon's margin.
+    '--Icon-color':
+      ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+        ? 'currentColor'
+        : theme.vars.palette.text.icon,
+    WebkitTapHighlightColor: 'transparent',
     boxSizing: 'border-box',
+    position: 'relative',
+    font: 'inherit',
     display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
+    alignSelf: 'stretch', // always stretch itself to fill the parent (List|ListItem)
+    gap: 'var(--ListItem-gap)',
+    ...(ownerState.orientation === 'vertical' && {
+      flexDirection: 'column',
+      justifyContent: 'center',
+    }),
     textAlign: 'initial',
     textDecoration: 'initial', // reset native anchor tag
+    backgroundColor: 'initial', // reset button background
+    cursor: 'pointer',
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
-    margin: 'var(--List-itemButton-margin)',
-    padding: 'var(--List-item-paddingY)',
-    paddingLeft:
-      'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
-    paddingRight:
-      'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
-    minHeight: 'var(--List-item-minHeight)',
-    border: 'none',
-    borderRadius: 'var(--List-item-radius)',
-    flex: ownerState.row ? 'none' : 1,
-    minWidth: 0,
-    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-    transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    fontSize: 'var(--List-item-fontSize)',
-    fontFamily: theme.vars.fontFamily.body,
-    ...(ownerState.selected && {
-      fontWeight: theme.vars.fontWeight.md,
+    marginInline: 'var(--ListItemButton-marginInline)',
+    marginBlock: 'var(--ListItemButton-marginBlock)',
+    ...(ownerState['data-first-child'] === undefined && {
+      marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
+      marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
     }),
-    // Can't use :last-child or :first-child selector because ListItemButton can be inside ListItem with start/end action
-    // We want to be specific on what siblings the gap should be added.
-    [`& + .${listItemButtonClasses.root}`]: ownerState.row
-      ? { marginLeft: 'var(--List-gap)' }
-      : {
-          marginTop: 'var(--List-gap)',
-        },
-    [`& + .${listItemClasses.root}`]: ownerState.row
-      ? { marginLeft: 'var(--List-gap)' }
-      : {
-          marginTop: 'var(--List-gap)',
-        },
-  },
-  {
-    ...(ownerState.variant === 'outlined' && {
-      // account for the border width
-      padding: 'calc(var(--List-item-paddingY) - var(--variant-outlinedBorderWidth))',
-      paddingLeft:
-        'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
-      paddingRight:
-        'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
-    }),
-  },
-  theme.focus.default,
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-]);
+    // account for the border width, so that all of the ListItemButtons content aligned horizontally
+    paddingBlock: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
+    // account for the border width, so that all of the ListItemButtons content aligned vertically
+    paddingInlineStart:
+      'calc(var(--ListItem-paddingLeft) + var(--ListItem-startActionWidth, var(--unstable_startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+    paddingInlineEnd:
+      'calc(var(--ListItem-paddingRight) + var(--ListItem-endActionWidth, var(--unstable_endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+    minBlockSize: 'var(--ListItem-minHeight)',
+    border: '1px solid transparent', // use `transparent` as a placeholder to prevent the button from jumping when switching to `outlined` variant
+    borderRadius: 'var(--ListItem-radius)',
+    flex: 'var(--unstable_ListItem-flex, none)', // prevent children from shrinking when the List's height is limited.
+    fontSize: 'inherit', // prevent user agent style when component="button"
+    lineHeight: 'inherit', // prevent user agent style when component="button"
+    minInlineSize: 0,
+    [theme.focus.selector]: {
+      ...theme.focus.default,
+      zIndex: 1, // to be above of the next element. For example, the first Tab item should be above the second so that the outline is above the second Tab.
+    },
+    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+    [`.${listItemClasses.root} > &`]: {
+      '--unstable_ListItem-flex': '1 0 0%', // grow to fill the available space of ListItem
+    },
+    [`&.${listItemButtonClasses.selected}`]: {
+      ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      '--Icon-color': 'currentColor',
+    },
+    [`&:not(.${listItemButtonClasses.selected}, [aria-selected="true"])`]: {
+      '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+    },
+    [`&.${listItemButtonClasses.disabled}`]: {
+      ...theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    },
+  }),
+);
 
+const ListItemButtonRoot = styled(StyledListItemButton, {
+  name: 'JoyListItemButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ ownerState, theme }) => ({
+  ...(!ownerState.row && {
+    [`&.${listItemButtonClasses.selected}`]: {
+      fontWeight: theme.vars.fontWeight.md,
+    },
+  }),
+}));
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListItemButton API](https://mui.com/joy-ui/api/list-item-button/)
+ */
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListItemButton',
+    name: 'JoyListItemButton',
   });
 
   const row = React.useContext(RowListContext);
@@ -113,23 +142,23 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     children,
     className,
     action,
-    role,
     component = 'div',
+    orientation = 'horizontal',
+    role,
     selected = false,
-    color = selected ? 'primary' : 'neutral',
-    variant = 'text',
+    color = 'neutral',
+    variant = 'plain',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
-  const buttonRef = React.useRef<HTMLElement | null>(null);
+  const buttonRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
-
-  const ComponentProp = component;
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    component: ComponentProp,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   React.useImperativeHandle(
@@ -148,26 +177,30 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     component,
     color,
     focusVisible,
+    orientation,
     row,
     selected,
     variant,
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const rootProps = getRootProps();
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListItemButtonRoot,
+    externalForwardedProps,
+    ownerState,
+    getSlotProps: getRootProps,
+  });
 
   return (
-    <ListItemButtonRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-      {...rootProps}
-      role={role ?? rootProps.role}
-    >
-      {children}
-    </ListItemButtonRoot>
+    <ListItemButtonOrientationContext.Provider value={orientation}>
+      <SlotRoot {...rootProps} role={role ?? rootProps.role}>
+        {children}
+      </SlotRoot>
+    </ListItemButtonOrientationContext.Provider>
   );
 }) as ExtendListItemButton<ListItemButtonTypeMap>;
 
@@ -188,6 +221,12 @@ ListItemButton.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
+   * If `true`, the list item is focused during the first mount.
+   * Focus will also be triggered if the value changes from false to true.
+   * @default false
+   */
+  autoFocus: PropTypes.bool,
+  /**
    * The content of the component.
    */
   children: PropTypes.node,
@@ -200,7 +239,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -209,20 +248,65 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * This prop can help identify which element has keyboard focus.
+   * The class name will be applied when the element gains the focus through keyboard interaction.
+   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).
+   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+   * if needed.
+   */
+  focusVisibleClassName: PropTypes.string,
+  /**
+   * The content direction flow.
+   * @default 'horizontal'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
-   * Use to apply selected styling.
+   * If `true`, the component is selected.
    * @default false
    */
   selected: PropTypes.bool,
   /**
-   * The variant to use.
-   * @default 'text'
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * @default 0
+   */
+  tabIndex: PropTypes.number,
+  /**
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

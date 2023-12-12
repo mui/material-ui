@@ -1,56 +1,74 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/system';
-import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
+import { Badge as BaseBadge, badgeClasses } from '@mui/base/Badge';
 import MailIcon from '@mui/icons-material/Mail';
-
-const StyledBadge = styled(BadgeUnstyled)`
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  color: rgba(0, 0, 0, 0.85);
-  font-size: 14px;
-  list-style: none;
-  font-family: IBM Plex Sans, sans-serif;
-  position: relative;
-  display: inline-block;
-  line-height: 1;
-
-  & .${badgeUnstyledClasses.badge} {
-    z-index: auto;
-    min-width: 20px;
-    height: 20px;
-    padding: 0 6px;
-    color: #fff;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 20px;
-    white-space: nowrap;
-    text-align: center;
-    background: #07f;
-    border-radius: 10px;
-    box-shadow: 0 0 0 1px #fff;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(50%, -50%);
-    transform-origin: 100% 0;
-  }
-
-  & .${badgeUnstyledClasses.invisible} {
-    display: none;
-  }
-`;
 
 export default function ShowZeroBadge() {
   return (
     <Stack spacing={4} direction="row">
-      <StyledBadge badgeContent={0}>
+      <Badge badgeContent={0}>
         <MailIcon />
-      </StyledBadge>
-      <StyledBadge badgeContent={0} showZero>
+      </Badge>
+      <Badge badgeContent={0} showZero>
         <MailIcon />
-      </StyledBadge>
+      </Badge>
     </Stack>
   );
 }
+
+const blue = {
+  500: '#007FFF',
+};
+
+const grey = {
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
+};
+
+const Badge = styled(BaseBadge)(
+  ({ theme }) => `
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  list-style: none;
+  font-family: 'IBM Plex Sans', sans-serif;
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+
+  & .${badgeClasses.badge} {
+    z-index: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 22px;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 12px;
+    background: ${blue[500]};
+    box-shadow: 0px 4px 6x ${theme.palette.mode === 'dark' ? grey[900] : grey[300]};
+    transform: translate(50%, -50%);
+    transform-origin: 100% 0;
+  }
+
+  & .${badgeClasses.invisible} {
+    display: none;
+  }
+  `,
+);

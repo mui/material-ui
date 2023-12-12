@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import generateUtilityClass from '../generateUtilityClass';
 
 export interface ListItemClasses {
   /** Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */

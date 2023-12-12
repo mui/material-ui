@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@mui/utils';
-import composeClasses from '@mui/base/composeClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
@@ -259,7 +260,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const handleKeyUp = useEventCallback((event) => {
     // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
-    // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
+    // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
     if (
       focusRipple &&
       event.key === ' ' &&
@@ -307,8 +308,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }
   }
 
-  const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
-  const handleRef = useForkRef(ref, handleOwnRef);
+  const handleRef = useForkRef(ref, focusVisibleRef, buttonRef);
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks

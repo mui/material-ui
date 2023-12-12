@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 /* eslint-disable no-await-in-loop */
-const fse = require('fs-extra');
 const path = require('path');
+const http = require('http');
+const fse = require('fs-extra');
 const playwright = require('playwright');
 const handler = require('serve-handler');
-const http = require('http');
 
 const PORT = 1122;
 
@@ -153,6 +153,18 @@ async function run() {
       {
         name: 'noop (baseline)',
         path: './noop/index.js',
+      },
+      {
+        name: 'Grid (html)',
+        path: './grid-simple/index.js',
+      },
+      {
+        name: 'Grid System',
+        path: './grid-system/index.js',
+      },
+      {
+        name: 'Grid Material UI',
+        path: './grid-material-ui/index.js',
       },
       {
         name: 'Table',

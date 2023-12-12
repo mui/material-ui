@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import generateUtilityClass from '../generateUtilityClass';
 
 export interface PaginationItemClasses {
   /** Styles applied to the root element. */
@@ -25,9 +26,9 @@ export interface PaginationItemClasses {
   rounded: string;
   /** Styles applied to the root element if `type="start-ellipsis"` or `type="end-ellipsis"`. */
   ellipsis: string;
-  /** Styles applyed to the root element if `type="first"` or type="last". */
+  /** Styles applied to the root element if `type="first"` or type="last". */
   firstLast: string;
-  /** Styles applyed to the root element if `type="previous"` or type="next". */
+  /** Styles applied to the root element if `type="previous"` or type="next". */
   previousNext: string;
   /** State class applied to the root element if keyboard focused. */
   focusVisible: string;

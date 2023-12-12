@@ -9,12 +9,8 @@ type JoyExtendedColorScheme = OverridableStringUnion<never, JoyColorSchemeOverri
 type JoyColorScheme = 'light' | 'dark' | JoyExtendedColorScheme;
 
 interface JoyThemeInput {
-  colorSchemes?: Partial<
-    Record<
-      JoyColorScheme,
-      { palette?: { primary?: { main?: string } }; fontSize?: { md?: string } }
-    >
-  >;
+  colorSchemes?: Partial<Record<JoyColorScheme, { palette?: { primary?: { main?: string } } }>>;
+  fontSize?: { md?: string };
 }
 
 // Simulate color scheme extending, same as module augmentation in real application
@@ -23,7 +19,19 @@ interface JoyColorSchemeOverrides {
   trueDark: true;
 }
 
-const { CssVarsProvider, useColorScheme } = createCssVarsProvider<JoyColorScheme, JoyThemeInput>({
+const extendTheme = (themeInput: JoyThemeInput) =>
+  ({
+    colorSchemes: {
+      light: { palette: { primary: { main: '' } } },
+      dark: { palette: { primary: { main: '' } } },
+    },
+    fontSize: { md: '' },
+  } as {
+    colorSchemes: Record<JoyColorScheme, { palette: { primary: { main: string } } }>;
+    fontSize: { md: string };
+  });
+
+const { CssVarsProvider, useColorScheme } = createCssVarsProvider<JoyColorScheme>({
   defaultColorScheme: 'light',
   theme: {
     fontSize: {
@@ -56,14 +64,14 @@ function Content() {
 function App() {
   return (
     <CssVarsProvider
-      theme={{
+      theme={extendTheme({
         colorSchemes: {
           comfort: {},
           trueDark: {},
           // @ts-expect-error `yellow` is not an extended color scheme
           yellow: {},
         },
-      }}
+      })}
     />
   );
 }
@@ -71,14 +79,14 @@ function App() {
 function App2() {
   return (
     <CssVarsProvider
-      theme={{
+      theme={extendTheme({
         colorSchemes: {
           comfort: {},
           trueDark: {},
         },
         // @ts-expect-error `fontSize` should be an object
         fontSize: '12px',
-      }}
+      })}
       // @ts-expect-error `yellow` is not an extended color scheme
       defaultColorScheme="yellow"
     />

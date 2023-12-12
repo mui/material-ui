@@ -8,6 +8,7 @@ const Root = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   color: theme.palette.text.primary,
   padding: theme.spacing(2),
+  borderRadius: 4,
   [theme.breakpoints.up('md')]: {
     padding: theme.spacing(3),
   },
@@ -17,10 +18,10 @@ const Color = styled(Grid)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   '& div:first-of-type': {
-    width: theme.spacing(6),
-    height: theme.spacing(6),
+    width: theme.spacing(5),
+    height: theme.spacing(5),
     flexShrink: 0,
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(1.5),
     borderRadius: theme.shape.borderRadius,
   },
 }));
@@ -47,13 +48,15 @@ function Demo() {
 
   return (
     <Root>
-      <Typography gutterBottom>Typography</Typography>
+      <Typography gutterBottom sx={{ mb: 1.5 }}>
+        Typography
+      </Typography>
       <Grid container spacing={1}>
         {item(theme.palette.text.primary, 'palette.text.primary')}
         {item(theme.palette.text.secondary, 'palette.text.secondary')}
         {item(theme.palette.text.disabled, 'palette.text.disabled')}
       </Grid>
-      <Typography gutterBottom sx={{ mt: 3 }}>
+      <Typography gutterBottom sx={{ mt: 4, mb: 1.5 }}>
         Buttons
       </Typography>
       <Grid container spacing={1}>
@@ -67,7 +70,7 @@ function Demo() {
           true,
         )}
       </Grid>
-      <Typography gutterBottom sx={{ mt: 3 }}>
+      <Typography gutterBottom sx={{ mt: 4, mb: 1.5 }}>
         Background
       </Typography>
       <Grid container spacing={1}>
@@ -77,9 +80,14 @@ function Demo() {
           false,
           true,
         )}
-        {item(theme.palette.background.paper, 'palette.background.paper')}
+        {item(
+          theme.palette.background.paper,
+          'palette.background.paper',
+          false,
+          true,
+        )}
       </Grid>
-      <Typography gutterBottom sx={{ mt: 3 }}>
+      <Typography gutterBottom sx={{ mt: 4, mb: 1.5 }}>
         Divider
       </Typography>
       <Grid container spacing={1}>

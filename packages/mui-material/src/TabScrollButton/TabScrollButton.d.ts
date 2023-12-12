@@ -1,9 +1,18 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { SlotComponentProps } from '@mui/base';
+import { ButtonBaseProps } from '../ButtonBase';
+import { SvgIcon, Theme } from '..';
 import { TabScrollButtonClasses } from './tabScrollButtonClasses';
 
-export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface TabScrollButtonStartIconSlotPropsOverrides {}
+export interface TabScrollButtonEndIconSlotPropsOverrides {}
+
+export interface TabScrollButtonOwnerState extends TabScrollButtonProps {
+  isRtl: boolean;
+}
+
+export interface TabScrollButtonProps extends ButtonBaseProps {
   /**
    * The content of the component.
    */
@@ -13,11 +22,37 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
    */
   classes?: Partial<TabScrollButtonClasses>;
   /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots?: {
+    StartScrollButtonIcon?: React.ElementType;
+    EndScrollButtonIcon?: React.ElementType;
+  };
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   * @default {}
+   */
+  slotProps?: {
+    startScrollButtonIcon?: SlotComponentProps<
+      typeof SvgIcon,
+      TabScrollButtonStartIconSlotPropsOverrides,
+      TabScrollButtonOwnerState
+    >;
+    endScrollButtonIcon?: SlotComponentProps<
+      typeof SvgIcon,
+      TabScrollButtonEndIconSlotPropsOverrides,
+      TabScrollButtonOwnerState
+    >;
+  };
+  /**
    * The direction the button should indicate.
    */
   direction: 'left' | 'right';
   /**
    * If `true`, the component is disabled.
+   * @default false
    */
   disabled?: boolean;
   /**

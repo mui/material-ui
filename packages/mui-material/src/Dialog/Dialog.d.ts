@@ -49,6 +49,7 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
   maxWidth?: Breakpoint | false;
   /**
    * Callback fired when the backdrop is clicked.
+   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
    */
   onBackdropClick?: ModalProps['onBackdropClick'];
   /**
@@ -71,7 +72,7 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
-  PaperProps?: Partial<PaperProps>;
+  PaperProps?: Partial<PaperProps<React.ElementType>>;
   /**
    * Determine the container for scrolling the dialog.
    * @default 'paper'
@@ -110,7 +111,7 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
  *
  * Demos:
  *
- * - [Dialogs](https://mui.com/material-ui/react-dialog/)
+ * - [Dialog](https://mui.com/material-ui/react-dialog/)
  *
  * API:
  *

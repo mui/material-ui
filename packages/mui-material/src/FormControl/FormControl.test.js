@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer } from 'test/utils';
+import { describeConformance, act, createRenderer } from '@mui-internal/test-utils';
 import FormControl, { formControlClasses as classes } from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import Select from '@mui/material/Select';
@@ -136,6 +136,17 @@ describe('<FormControl />', () => {
       render(
         <FormControl>
           <Input value="bar" />
+          <TestComponent contextCallback={readContext} />
+        </FormControl>,
+      );
+      expect(readContext.args[0][0]).to.have.property('filled', true);
+    });
+
+    it('should be filled when a value is set through inputProps', () => {
+      const readContext = spy();
+      render(
+        <FormControl>
+          <Input inputProps={{ value: 'bar' }} />
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );

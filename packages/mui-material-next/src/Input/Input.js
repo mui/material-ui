@@ -1,16 +1,17 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled } from '@mui/material/styles';
 import { shouldForwardProp, useThemeProps } from '@mui/system';
 import {
-  InputUnstyled,
-  inputUnstyledClasses,
+  Input as BaseInput,
+  inputClasses,
   unstable_composeClasses as composeClasses,
   appendOwnerState,
 } from '@mui/base';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { getInputUtilityClass } from './inputClasses';
 
 const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !== 'classes';
@@ -94,7 +95,7 @@ const InputRoot = styled('div', {
     cursor: 'text',
     display: 'inline-flex',
     alignItems: 'center',
-    [`&.${inputUnstyledClasses.disabled}`]: {
+    [`&.${inputClasses.disabled}`]: {
       color: theme.palette.text.disabled,
       cursor: 'default',
     },
@@ -128,10 +129,10 @@ const InputRoot = styled('div', {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      [`&.${inputUnstyledClasses.focused}:after`]: {
+      [`&.${inputClasses.focused}:after`]: {
         transform: 'scaleX(1)',
       },
-      [`&.${inputUnstyledClasses.error}:after`]: {
+      [`&.${inputClasses.error}:after`]: {
         borderBottomColor: theme.palette.error.main,
         transform: 'scaleX(1)', // error is always underlined in red
       },
@@ -148,14 +149,14 @@ const InputRoot = styled('div', {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      [`&:hover:not(.${inputUnstyledClasses.disabled}):before`]: {
+      [`&:hover:not(.${inputClasses.disabled}):before`]: {
         borderBottom: `2px solid ${theme.palette.text.primary}`,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           borderBottom: `1px solid ${bottomLineColor}`,
         },
       },
-      [`&.${inputUnstyledClasses.disabled}:before`]: {
+      [`&.${inputClasses.disabled}:before`]: {
         borderBottomStyle: 'dotted',
       },
     }),
@@ -217,7 +218,7 @@ const InputInput = styled('input', {
       WebkitAppearance: 'none',
     },
     // Show and hide the placeholder logic
-    [`label[data-shrink=false] + .${inputUnstyledClasses.formControl} &`]: {
+    [`label[data-shrink=false] + .${inputClasses.formControl} &`]: {
       '&::-webkit-input-placeholder': placeholderHidden,
       '&::-moz-placeholder': placeholderHidden, // Firefox 19+
       '&:-ms-input-placeholder': placeholderHidden, // IE11
@@ -227,7 +228,7 @@ const InputInput = styled('input', {
       '&:focus:-ms-input-placeholder': placeholderVisible, // IE11
       '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
     },
-    [`&.${inputUnstyledClasses.disabled}`]: {
+    [`&.${inputClasses.disabled}`]: {
       opacity: 1, // Reset iOS opacity
       WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
     },
@@ -270,15 +271,21 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     fullWidth = false,
     hiddenLabel = false,
     size,
+    slotProps,
+    slots,
     startAdornment,
     ...other
   } = props;
 
   const components = {
-    Root: component ?? componentsProp.Root ?? InputRoot,
-    Input: componentsProp.Input ?? InputInput,
-    Textarea: componentsProp.Textarea ?? InputTextarea,
+    root: component ?? slots?.root ?? componentsProp.Root ?? InputRoot,
+    input: slots?.input ?? componentsProp.Input ?? InputInput,
+    textarea: slots?.textarea ?? componentsProp.Textarea ?? InputTextarea,
   };
+
+  const rootSlotProps = slotProps?.root ?? componentsProps.root;
+  const inputSlotProps = slotProps?.input ?? componentsProps.input;
+  const textareaSlotProps = slotProps?.textarea ?? componentsProps.textarea;
 
   const ownerState = {
     ...props,
@@ -293,32 +300,40 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const amendedComponentsProps = {
     root: appendOwnerState(
-      components.Root,
+      components.root,
       {
-        ...componentsProps.root,
-        className: clsx(classes.root, className, componentsProps.root?.className),
+        ...rootSlotProps,
+        className: clsx(classes.root, className, rootSlotProps?.className),
       },
       ownerState,
     ),
     input: appendOwnerState(
-      components.Input,
+      components.input,
       {
         type: 'text',
-        ...componentsProps.input,
-        className: clsx(classes.input, componentsProps.input?.className),
+        ...inputSlotProps,
+        className: clsx(classes.input, inputSlotProps?.className),
+      },
+      ownerState,
+    ),
+    textarea: appendOwnerState(
+      components.textarea,
+      {
+        ...textareaSlotProps,
+        className: textareaSlotProps?.className,
       },
       ownerState,
     ),
   };
 
   return (
-    <InputUnstyled
+    <BaseInput
       startAdornment={startAdornment}
       endAdornment={endAdornment}
       {...other}
       ref={ref}
-      components={components}
-      componentsProps={amendedComponentsProps}
+      slots={components}
+      slotProps={amendedComponentsProps}
     />
   );
 });
@@ -358,7 +373,10 @@ Input.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -372,6 +390,7 @@ Input.propTypes /* remove-proptypes */ = {
   components: PropTypes.shape({
     Input: PropTypes.elementType,
     Root: PropTypes.elementType,
+    Textarea: PropTypes.elementType,
   }),
   /**
    * The props used for each slot inside the Input.
@@ -380,6 +399,7 @@ Input.propTypes /* remove-proptypes */ = {
   componentsProps: PropTypes.shape({
     input: PropTypes.object,
     root: PropTypes.object,
+    textarea: PropTypes.object,
   }),
   /**
    * The default value. Use when the component is not controlled.
@@ -491,6 +511,25 @@ Input.propTypes /* remove-proptypes */ = {
    * The size of the component.
    */
   size: PropTypes.oneOf(['small', 'medium']),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+    textarea: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside the Input.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+    textarea: PropTypes.elementType,
+  }),
   /**
    * Start `InputAdornment` for this component.
    */

@@ -50,6 +50,7 @@ export interface InputOwnProps {
   components?: {
     Root?: React.ElementType;
     Input?: React.ElementType;
+    Textarea?: React.ElementType;
   };
   /**
    * The props used for each slot inside the Input.
@@ -58,6 +59,7 @@ export interface InputOwnProps {
   componentsProps?: {
     root?: React.HTMLAttributes<HTMLDivElement> & InputComponentsPropsOverrides;
     input?: React.InputHTMLAttributes<HTMLInputElement> & InputComponentsPropsOverrides;
+    textarea?: React.TextareaHTMLAttributes<HTMLTextAreaElement> & InputComponentsPropsOverrides;
   };
   /**
    * The default value. Use when the component is not controlled.
@@ -162,6 +164,25 @@ export interface InputOwnProps {
    */
   size?: OverridableStringUnion<'small' | 'medium', InputBasePropsSizeOverrides>;
   /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  slotProps?: {
+    root?: React.HTMLAttributes<HTMLDivElement> & InputComponentsPropsOverrides;
+    input?: React.InputHTMLAttributes<HTMLInputElement> & InputComponentsPropsOverrides;
+    textarea?: React.TextareaHTMLAttributes<HTMLTextAreaElement> & InputComponentsPropsOverrides;
+  };
+  /**
+   * The components used for each slot inside the Input.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    input?: React.ElementType;
+    textarea?: React.ElementType;
+  };
+  /**
    * Start `InputAdornment` for this component.
    */
   startAdornment?: React.ReactNode;
@@ -180,33 +201,36 @@ export interface InputOwnProps {
   value?: unknown;
 }
 
-export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & InputOwnProps;
-  defaultComponent: D;
+export interface InputTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & InputOwnProps;
+  defaultComponent: RootComponent;
 }
 
 export type InputProps<
-  D extends React.ElementType = InputTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<InputTypeMap<P, D>, D> & {
+  RootComponent extends React.ElementType = InputTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = OverrideProps<InputTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   /**
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.
    * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
-  component?: D;
+  component?: RootComponent;
 };
 
 /**
  *
  * Demos:
  *
- * - [Text Fields](https://mui.com/components/text-fields/)
+ * - [Text Fields](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [Input API](https://mui.com/api/input/)
- * - inherits [InputBase API](https://mui.com/api/input-base/)
+ * - [Input API](https://mui.com/material-ui/api/input/)
+ * - inherits [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
 declare const Input: OverridableComponent<InputTypeMap> & { muiName: string };
 

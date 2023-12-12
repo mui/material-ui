@@ -1,9 +1,9 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Snackbar component
 components: Snackbar, SnackbarContent
 githubLabel: 'component: snackbar'
-materialDesign: https://material.io/components/snackbars
+materialDesign: https://m2.material.io/components/snackbars
 waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 ---
 
@@ -73,7 +73,7 @@ You can change the direction of the [Slide](/material-ui/transitions/#slide) tra
 Example of making the slide transition to the left:
 
 ```jsx
-import Slide from '@material-ui/core/Slide';
+import Slide from '@mui/material/Slide';
 
 function TransitionLeft(props) {
   return <Slide {...props} direction="left" />;
@@ -94,7 +94,7 @@ For more advanced use cases you might be able to take advantage of:
 
 ### notistack
 
-![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars)
+![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Star)
 ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
 This example demonstrates how to use [notistack](https://github.com/iamhosseindhv/notistack).

@@ -23,7 +23,7 @@ Enforce correct usage of `@ignore` in the prop-types block comments.
 ### no-hardcoded-labels
 
 Prevent the usage of hardcoded labels.
-The docs are translated via crowdin, we prefer to use `t` from the redux store.
+The docs are translated via Crowdin, we prefer to use `t` from the redux store.
 
 ### rules-of-use-theme-variants
 
@@ -32,7 +32,7 @@ as their resolved default values.
 
 ### ~~restricted-path-imports~~
 
-Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/rules/no-restricted-imports) using the following configuration:
+Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/latest/rules/no-restricted-imports) using the following configuration:
 
 ```json
 {
@@ -40,7 +40,7 @@ Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/rules/no-r
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
+        "patterns": ["@mui/*/*/*"]
       }
     ]
   }

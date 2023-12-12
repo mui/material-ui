@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 describe('<Snackbar />', () => {
   const { clock, render: clientRender } = createRenderer({ clock: 'fake' });
   /**
-   * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
+   * @type  {typeof plainRender extends (...args: infer T) => any ? T : never} args
    *
    * @remarks
    * This is for all intents and purposes the same as our client render method.
@@ -43,7 +43,7 @@ describe('<Snackbar />', () => {
       const handleClose = spy();
       render(<Snackbar open onClose={handleClose} message="message" />);
 
-      const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
+      const event = new window.Event('click', { bubbles: true, cancelable: true });
       document.body.dispatchEvent(event);
 
       expect(handleClose.callCount).to.equal(1);
@@ -437,7 +437,6 @@ describe('<Snackbar />', () => {
 
       act(() => {
         const bEvent = new window.Event('blur', {
-          view: window,
           bubbles: false,
           cancelable: false,
         });
@@ -452,7 +451,6 @@ describe('<Snackbar />', () => {
 
       act(() => {
         const fEvent = new window.Event('focus', {
-          view: window,
           bubbles: false,
           cancelable: false,
         });
@@ -481,7 +479,7 @@ describe('<Snackbar />', () => {
       );
 
       act(() => {
-        const event = new window.Event('blur', { view: window, bubbles: false, cancelable: false });
+        const event = new window.Event('blur', { bubbles: false, cancelable: false });
         window.dispatchEvent(event);
       });
 
@@ -530,7 +528,9 @@ describe('<Snackbar />', () => {
 
     it('accepts a different component that handles the transition', () => {
       const transitionRef = React.createRef();
-      const Transition = () => <div className="cloned-element-class" ref={transitionRef} />;
+      function Transition() {
+        return <div className="cloned-element-class" ref={transitionRef} />;
+      }
       const { container } = render(<Snackbar open TransitionComponent={Transition} />);
       expect(container).to.contain(transitionRef.current);
     });

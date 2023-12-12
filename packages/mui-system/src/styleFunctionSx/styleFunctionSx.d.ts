@@ -1,4 +1,5 @@
 import * as CSS from 'csstype';
+import { CSSObject } from '@mui/styled-engine';
 import { StandardCSSProperties } from './StandardCssProperties';
 import { AliasesCSSProperties } from './AliasesCSSProperties';
 import { OverwriteCSSProperties } from './OverwriteCSSProperties';
@@ -69,10 +70,12 @@ export type SystemStyleObject<Theme extends object = {}> =
 export type SxProps<Theme extends object = {}> =
   | SystemStyleObject<Theme>
   | ((theme: Theme) => SystemStyleObject<Theme>)
-  | Array<boolean | SystemStyleObject<Theme> | ((theme: Theme) => SystemStyleObject<Theme>)>;
+  | ReadonlyArray<
+      boolean | SystemStyleObject<Theme> | ((theme: Theme) => SystemStyleObject<Theme>)
+    >;
 
 export interface StyleFunctionSx {
-  (props: object): object;
+  (props: object): CSSObject;
   filterProps?: string[];
 }
 

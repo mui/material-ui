@@ -5,7 +5,9 @@ import { capitalize, unstable_useId as useId } from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import { ButtonGroupContext } from '@mui/material/ButtonGroup';
 import CircularProgress from '@mui/material/CircularProgress';
+import resolveProps from '@mui/utils/resolveProps';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -87,7 +89,7 @@ const LoadingButtonRoot = styled(Button, {
     }),
 }));
 
-const LoadingButtonLoadingIndicator = styled('div', {
+const LoadingButtonLoadingIndicator = styled('span', {
   name: 'MuiLoadingButton',
   slot: 'LoadingIndicator',
   overridesResolver: (props, styles) => {
@@ -112,7 +114,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
   ...(ownerState.loadingPosition === 'center' && {
     left: '50%',
     transform: 'translate(-50%)',
-    color: theme.palette.action.disabled,
+    color: (theme.vars || theme).palette.action.disabled,
   }),
   ...(ownerState.loadingPosition === 'end' &&
     (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
@@ -135,7 +137,9 @@ const LoadingButtonLoadingIndicator = styled('div', {
 }));
 
 const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiLoadingButton' });
+  const contextProps = React.useContext(ButtonGroupContext);
+  const resolvedProps = resolveProps(contextProps, inProps);
+  const props = useThemeProps({ props: resolvedProps, name: 'MuiLoadingButton' });
   const {
     children,
     disabled = false,
@@ -163,6 +167,12 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const loadingButtonLoadingIndicator = loading ? (
+    <LoadingButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
+      {loadingIndicator}
+    </LoadingButtonLoadingIndicator>
+  ) : null;
+
   return (
     <LoadingButtonRoot
       disabled={disabled || loading}
@@ -173,32 +183,8 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
       classes={classes}
       ownerState={ownerState}
     >
-      {ownerState.loadingPosition === 'end' ? (
-        <React.Fragment>
-          {children}
-          {loading && (
-            <LoadingButtonLoadingIndicator
-              className={classes.loadingIndicator}
-              ownerState={ownerState}
-            >
-              {loadingIndicator}
-            </LoadingButtonLoadingIndicator>
-          )}
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          {loading && (
-            <LoadingButtonLoadingIndicator
-              className={classes.loadingIndicator}
-              ownerState={ownerState}
-            >
-              {loadingIndicator}
-            </LoadingButtonLoadingIndicator>
-          )}
-
-          {children}
-        </React.Fragment>
-      )}
+      {ownerState.loadingPosition === 'end' ? children : loadingButtonLoadingIndicator}
+      {ownerState.loadingPosition === 'end' ? loadingButtonLoadingIndicator : children}
     </LoadingButtonRoot>
   );
 });
@@ -226,7 +212,7 @@ LoadingButton.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * If `true`, the loading indicator is shown.
+   * If `true`, the loading indicator is shown and the button becomes disabled.
    * @default false
    */
   loading: PropTypes.bool,

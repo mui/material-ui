@@ -54,11 +54,11 @@ interface LinkRouterProps extends LinkProps {
   replace?: boolean;
 }
 
-const LinkRouter = (props: LinkRouterProps) => (
-  <Link {...props} component={RouterLink as any} />
-);
+function LinkRouter(props: LinkRouterProps) {
+  return <Link {...props} component={RouterLink as any} />;
+}
 
-const Page = () => {
+function Page() {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
 
@@ -83,7 +83,7 @@ const Page = () => {
       })}
     </Breadcrumbs>
   );
-};
+}
 
 export default function RouterBreadcrumbs() {
   const [open, setOpen] = React.useState(true);

@@ -1,10 +1,13 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import FormLabel, { formLabelClasses } from '../FormLabel';
 import useThemeProps from '../styles/useThemeProps';
+import capitalize from '../utils/capitalize';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
@@ -16,7 +19,7 @@ const useUtilityClasses = (ownerState) => {
       formControl && 'formControl',
       !disableAnimation && 'animated',
       shrink && 'shrink',
-      size === 'small' && 'sizeSmall',
+      size && size !== 'normal' && `size${capitalize(size)}`,
       variant,
     ],
     asterisk: [required && 'asterisk'],
@@ -43,6 +46,7 @@ const InputLabelRoot = styled(FormLabel, {
       ownerState.size === 'small' && styles.sizeSmall,
       ownerState.shrink && styles.shrink,
       !ownerState.disableAnimation && styles.animated,
+      ownerState.focused && styles.focused,
       styles[ownerState.variant],
     ];
   },
@@ -109,7 +113,9 @@ const InputLabelRoot = styled(FormLabel, {
     ...(ownerState.shrink && {
       userSelect: 'none',
       pointerEvents: 'auto',
-      maxWidth: 'calc(133% - 24px)',
+      // Theoretically, we should have (8+5)*2/0.75 = 34px
+      // but it feels a better when it bleeds a bit on the left, so 32px.
+      maxWidth: 'calc(133% - 32px)',
       transform: 'translate(14px, -9px) scale(0.75)',
     }),
   }),
@@ -117,7 +123,14 @@ const InputLabelRoot = styled(FormLabel, {
 
 const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   const props = useThemeProps({ name: 'MuiInputLabel', props: inProps });
-  const { disableAnimation = false, margin, shrink: shrinkProp, variant, ...other } = props;
+  const {
+    disableAnimation = false,
+    margin,
+    shrink: shrinkProp,
+    variant,
+    className,
+    ...other
+  } = props;
 
   const muiFormControl = useFormControl();
 
@@ -129,7 +142,7 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['size', 'variant', 'required'],
+    states: ['size', 'variant', 'required', 'focused'],
   });
 
   const ownerState = {
@@ -140,14 +153,17 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
     size: fcs.size,
     variant: fcs.variant,
     required: fcs.required,
+    focused: fcs.focused,
   };
 
   const classes = useUtilityClasses(ownerState);
+
   return (
     <InputLabelRoot
       data-shrink={shrink}
       ownerState={ownerState}
       ref={ref}
+      className={clsx(classes.root, className)}
       {...other}
       classes={classes}
     />
@@ -168,9 +184,13 @@ InputLabel.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
@@ -206,6 +226,14 @@ InputLabel.propTypes /* remove-proptypes */ = {
    * If `true`, the label is shrunk.
    */
   shrink: PropTypes.bool,
+  /**
+   * The size of the component.
+   * @default 'normal'
+   */
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['normal', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

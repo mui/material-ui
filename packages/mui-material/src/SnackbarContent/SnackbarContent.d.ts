@@ -33,7 +33,7 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
  *
  * Demos:
  *
- * - [Snackbars](https://mui.com/material-ui/react-snackbar/)
+ * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
  *
  * API:
  *

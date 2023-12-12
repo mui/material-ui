@@ -43,6 +43,7 @@ import { FormGroupProps } from '../FormGroup';
 import { FormHelperTextProps } from '../FormHelperText';
 import { FormLabelProps } from '../FormLabel';
 import { GridProps } from '../Grid';
+import { Grid2Props } from '../Unstable_Grid2';
 import { IconButtonProps } from '../IconButton';
 import { IconProps } from '../Icon';
 import { ImageListProps } from '../ImageList';
@@ -68,7 +69,7 @@ import { MenuProps } from '../Menu';
 import { MobileStepperProps } from '../MobileStepper';
 import { ModalProps } from '../Modal';
 import { NativeSelectProps } from '../NativeSelect';
-import { Options as useMediaQueryOptions } from '../useMediaQuery';
+import { UseMediaQueryOptions } from '../useMediaQuery';
 import { OutlinedInputProps } from '../OutlinedInput';
 import { PaginationProps } from '../Pagination';
 import { PaginationItemProps } from '../PaginationItem';
@@ -167,6 +168,7 @@ export interface ComponentsPropsList {
   MuiFormHelperText: FormHelperTextProps;
   MuiFormLabel: FormLabelProps;
   MuiGrid: GridProps;
+  MuiGrid2: Grid2Props;
   MuiImageList: ImageListProps;
   MuiImageListItem: ImageListItemProps;
   MuiImageListItemBar: ImageListItemBarProps;
@@ -239,5 +241,5 @@ export interface ComponentsPropsList {
   MuiTooltip: TooltipProps;
   MuiTouchRipple: TouchRippleProps;
   MuiTypography: TypographyProps;
-  MuiUseMediaQuery: useMediaQueryOptions;
+  MuiUseMediaQuery: UseMediaQueryOptions;
 }

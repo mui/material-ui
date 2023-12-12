@@ -5,13 +5,14 @@ import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { LANGUAGES_IGNORE_PAGES } from 'docs/config';
 
 /**
  * File to keep in sync with:
  *
  * - /docs/src/modules/components/Link.tsx
- * - /examples/nextjs/src/Link.tsx
- * - /examples/nextjs-with-typescript/src/Link.tsx
+ * - /examples/material-ui-nextjs-pages-router/src/Link.js
+ * - /examples/material-ui-nextjs-pages-router-ts/src/Link.tsx
  */
 
 // Add support for the sx prop for consistency with the other branches.
@@ -19,14 +20,24 @@ const Anchor = styled('a')({});
 
 interface NextLinkComposedProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    Omit<NextLinkProps, 'href' | 'as' | 'passHref'> {
+    Omit<NextLinkProps, 'href' | 'as' | 'passHref' | 'onMouseEnter' | 'onClick' | 'onTouchStart'> {
   to: NextLinkProps['href'];
   linkAs?: NextLinkProps['as'];
 }
 
 const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
   function NextLinkComposed(props, ref) {
-    const { to, linkAs, replace, scroll, shallow, prefetch, locale, ...other } = props;
+    const {
+      to,
+      linkAs,
+      replace,
+      scroll,
+      shallow,
+      prefetch,
+      legacyBehavior = true,
+      locale,
+      ...other
+    } = props;
 
     return (
       <NextLink
@@ -38,6 +49,7 @@ const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedPro
         shallow={shallow}
         passHref
         locale={locale}
+        legacyBehavior={legacyBehavior}
       >
         <Anchor data-no-markdown-link="true" ref={ref} {...other} />
       </NextLink>
@@ -54,14 +66,15 @@ export type LinkProps = {
 } & Omit<NextLinkComposedProps, 'to' | 'linkAs' | 'href'> &
   Omit<MuiLinkProps, 'href'>;
 
-// A styled version of the Next.js Link component:
-// https://nextjs.org/docs/api-reference/next/link
+// A styled version of the Next.js Pages Router Link component:
+// https://nextjs.org/docs/pages/api-reference/components/link
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props, ref) {
   const {
     activeClassName = 'active',
     as,
     className: classNameProps,
     href,
+    legacyBehavior,
     linkAs: linkAsProp,
     locale,
     noLinkStyle,
@@ -75,8 +88,12 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
 
   const router = useRouter();
   const pathname = typeof href === 'string' ? href : href?.pathname;
+  const routerPathname = router.pathname.replace('/[docsTab]', '');
+
+  const shouldBeActive = routerPathname === pathname;
+
   const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === pathname && activeClassName,
+    [activeClassName]: shouldBeActive && activeClassName,
   });
 
   const isExternal =
@@ -96,13 +113,22 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     userLanguage !== 'en' &&
     pathname &&
     pathname.indexOf('/') === 0 &&
-    pathname.indexOf('/blog') !== 0 &&
+    !LANGUAGES_IGNORE_PAGES(pathname) &&
     !pathname.startsWith(`/${userLanguage}/`)
   ) {
     linkAs = `/${userLanguage}${linkAs}`;
   }
 
-  const nextjsProps = { to: href, linkAs, replace, scroll, shallow, prefetch, locale };
+  const nextjsProps = {
+    to: href,
+    linkAs,
+    replace,
+    scroll,
+    shallow,
+    legacyBehavior,
+    prefetch,
+    locale,
+  };
 
   if (noLinkStyle) {
     return <NextLinkComposed className={className} ref={ref} {...nextjsProps} {...other} />;

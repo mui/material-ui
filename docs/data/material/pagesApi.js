@@ -13,6 +13,7 @@ module.exports = [
   { pathname: '/material-ui/api/badge' },
   { pathname: '/material-ui/api/bottom-navigation' },
   { pathname: '/material-ui/api/bottom-navigation-action' },
+  { pathname: '/material-ui/api/box' },
   { pathname: '/material-ui/api/breadcrumbs' },
   { pathname: '/material-ui/api/button' },
   { pathname: '/material-ui/api/button-base' },
@@ -132,8 +133,6 @@ module.exports = [
   { pathname: '/material-ui/api/toggle-button-group' },
   { pathname: '/material-ui/api/toolbar' },
   { pathname: '/material-ui/api/tooltip' },
-  { pathname: '/material-ui/api/tree-item' },
-  { pathname: '/material-ui/api/tree-view' },
   { pathname: '/material-ui/api/typography' },
   { pathname: '/material-ui/api/zoom' },
 ];

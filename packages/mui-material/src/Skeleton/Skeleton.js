@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { keyframes, css } from '@mui/system';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -77,10 +78,9 @@ const SkeletonRoot = styled('span', {
     return {
       display: 'block',
       // Create a "on paper" color with sufficient contrast retaining the color
-      backgroundColor: alpha(
-        theme.palette.text.primary,
-        theme.palette.mode === 'light' ? 0.11 : 0.13,
-      ),
+      backgroundColor: theme.vars
+        ? theme.vars.palette.Skeleton.bg
+        : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
       height: '1.2em',
       ...(ownerState.variant === 'text' && {
         marginTop: 0,
@@ -97,6 +97,9 @@ const SkeletonRoot = styled('span', {
       }),
       ...(ownerState.variant === 'circular' && {
         borderRadius: '50%',
+      }),
+      ...(ownerState.variant === 'rounded' && {
+        borderRadius: (theme.vars || theme).shape.borderRadius,
       }),
       ...(ownerState.hasChildren && {
         '& > *': {
@@ -116,7 +119,7 @@ const SkeletonRoot = styled('span', {
   ({ ownerState }) =>
     ownerState.animation === 'pulse' &&
     css`
-      animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
+      animation: ${pulseKeyframe} 2s ease-in-out 0.5s infinite;
     `,
   ({ ownerState, theme }) =>
     ownerState.animation === 'wave' &&
@@ -128,8 +131,13 @@ const SkeletonRoot = styled('span', {
       -webkit-mask-image: -webkit-radial-gradient(white, black);
 
       &::after {
-        animation: ${waveKeyframe} 1.6s linear 0.5s infinite;
-        background: linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent);
+        animation: ${waveKeyframe} 2s linear 0.5s infinite;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          ${(theme.vars || theme).palette.action.hover},
+          transparent
+        );
         content: '';
         position: absolute;
         transform: translateX(-100%); /* Avoid flash during server-side hydration */
@@ -230,7 +238,7 @@ Skeleton.propTypes /* remove-proptypes */ = {
    * @default 'text'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['circular', 'rectangular', 'text']),
+    PropTypes.oneOf(['circular', 'rectangular', 'rounded', 'text']),
     PropTypes.string,
   ]),
   /**

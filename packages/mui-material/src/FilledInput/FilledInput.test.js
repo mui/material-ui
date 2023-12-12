@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { styled } from '@mui/material/styles';
 import FilledInput, { filledInputClasses as classes } from '@mui/material/FilledInput';
 import InputBase from '@mui/material/InputBase';
 
@@ -16,13 +17,29 @@ describe('<FilledInput />', () => {
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'contained', fullWidth: true },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
-    skip: ['componentProp', 'componentsProp'],
+    testLegacyComponentsProp: true,
+    slots: {
+      // can't test with DOM element as Input places an ownerState prop on it unconditionally.
+      root: { expectedClassName: classes.root, testWithElement: null },
+      input: { expectedClassName: classes.input, testWithElement: null },
+    },
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   it('should have the underline class', () => {
     const { container } = render(<FilledInput />);
     const root = container.firstChild;
-    expect(root).to.have.class(classes.underline);
+    expect(root).not.to.equal(null);
+  });
+
+  it('color={undefined} should not result in crash', () => {
+    expect(() => {
+      render(<FilledInput color={undefined} />);
+    }).not.toErrorDev();
   });
 
   it('can disable the underline', () => {
@@ -50,5 +67,11 @@ describe('<FilledInput />', () => {
       />,
     );
     expect(document.querySelector('[data-test=test]')).toHaveComputedStyle({ marginTop: '10px' });
+  });
+
+  it('should not throw: "Maximum call stack size exceeded" if both slotProps and an adornment are passed', () => {
+    const Adornment = styled('div')({});
+    render(<FilledInput endAdornment={<Adornment />} slotProps={{}} />);
+    render(<FilledInput startAdornment={<Adornment />} slotProps={{}} />);
   });
 });

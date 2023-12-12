@@ -1,9 +1,9 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: autocomplete'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#combobox
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 ---
 
 # Autocomplete
@@ -69,9 +69,38 @@ The component has two states that can be controlled:
 1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-> ⚠️ These two states are isolated, they should be controlled independently.
+These two states are isolated, and should be controlled independently.
+
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
 
 {{"demo": "ControllableStates.js"}}
+
+:::warning
+
+If you control the `value`, make sure it's referentially stable between renders.
+In other words, the reference to the value shouldn't change if the value itself doesn't change.
+
+```tsx
+// ⚠️ BAD
+return <Autocomplete multiple value={allValues.filter((v) => v.selected)} />;
+
+// 👍 GOOD
+const selectedValues = React.useMemo(
+  () => allValues.filter((v) => v.selected),
+  [allValues],
+);
+return <Autocomplete multiple value={selectedValues} />;
+```
+
+In the first example, `allValues.filter` is called and returns **a new array** every render.
+The fix includes memoizing the value, so it changes only when needed.
+:::
 
 ## Free solo
 
@@ -82,6 +111,12 @@ Set `freeSolo` to true so the textbox can contain any arbitrary value.
 The prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
 
 {{"demo": "FreeSolo.js"}}
+
+:::warning
+Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
+
+The value created by typing into the textbox is always a string, regardless of the type of the options.
+:::
 
 ### Creatable
 
@@ -106,6 +141,16 @@ otherwise, you will notice duplicate headers.
 
 {{"demo": "Grouped.js"}}
 
+To control how the groups are rendered, provide a custom `renderGroup` prop.
+This is a function that accepts an object with two fields:
+
+- `group`—a string representing a group name
+- `children`—a collection of list items that belong to the group
+
+The following demo shows how to use this prop to define custom markup and override the styles of the default groups:
+
+{{"demo": "RenderGroup.js"}}
+
 ## Disabled options
 
 {{"demo": "DisabledOptions.js"}}
@@ -118,7 +163,7 @@ related to the rendering of JSX.
 The Autocomplete component is built on this hook.
 
 ```tsx
-import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 ```
 
 The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
@@ -127,7 +172,7 @@ The `useAutocomplete` hook is also reexported from @mui/material for convenience
 import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
-- 📦 [4.5 kB gzipped](/size-snapshot).
+- 📦 [4.5 kB gzipped](/size-snapshot/).
 
 {{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -169,7 +214,9 @@ For this demo, we need to load the [Google Maps JavaScript](https://developers.g
 
 {{"demo": "GoogleMaps.js"}}
 
-> ⚠️ Before you can start using the Google Maps JavaScript API and Places API, you must sign up and create a billing account.
+:::error
+Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+:::
 
 ## Multiple values
 
@@ -207,7 +254,21 @@ The `renderInput` prop allows you to customize the rendered input.
 The first argument of this render prop contains props that you need to forward.
 Pay specific attention to the `ref` and `inputProps` keys.
 
+:::warning
+If you're using a custom input component inside the Autocomplete, make sure that you forward the ref to the underlying DOM element.
+:::
+
 {{"demo": "CustomInputAutocomplete.js"}}
+
+### Globally Customized Options
+
+To globally customize the Autocomplete options for all components in your app,
+you can use the [theme default props](/material-ui/customization/theme-components/#theme-default-props) and set the `renderOption` property in the `defaultProps` key.
+The `renderOption` property takes the `ownerState` as the fourth parameter, which includes props and internal component state.
+To display the label, you can use the `getOptionLabel` prop from the `ownerState`.
+This approach enables different options for each Autocomplete component while keeping the options styling consistent.
+
+{{"demo": "GloballyCustomizedOptions.js"}}
 
 ### GitHub's picker
 
@@ -216,6 +277,12 @@ This demo reproduces GitHub's label picker:
 {{"demo": "GitHubLabel.js"}}
 
 Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
+
+### Hint
+
+The following demo shows how to add a hint feature to the Autocomplete using the `renderInput` and `filterOptions` props:
+
+{{"demo": "AutocompleteHint.js"}}
 
 ## Highlights
 
@@ -336,7 +403,7 @@ If you provide a custom `ListboxComponent` prop, you need to make sure that the 
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
 
 We encourage the usage of a label for the textbox.
 The component implements the WAI-ARIA authoring practices.

@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Button, { ButtonProps } from '@mui/material/Button';
 import { Link as ReactRouterLink, LinkProps } from 'react-router-dom';
 import { expectType } from '@mui/types';
+import Button, { ButtonProps } from '@mui/material/Button';
+import MaterialUiLink, { LinkProps as MaterialUiLinkProps } from '@mui/material/Link';
 
 const log = console.log;
 
@@ -9,9 +10,48 @@ const TestOverride = React.forwardRef<HTMLDivElement, { x?: number }>((props, re
   <div ref={ref} />
 ));
 
-const FakeIcon = () => <div>Icon</div>;
+type CustomLinkProps = MaterialUiLinkProps<typeof ReactRouterLink, LinkProps>;
+const CustomLink: React.FC<React.PropsWithChildren<CustomLinkProps>> = ({ children, ...props }) => {
+  return (
+    <MaterialUiLink component={ReactRouterLink} {...props}>
+      {children}
+    </MaterialUiLink>
+  );
+};
 
-const ButtonTest = () => (
+function FakeIcon() {
+  return <div>Icon</div>;
+}
+
+const props1: ButtonProps<'div'> = {
+  component: 'div',
+  onChange: (event) => {
+    expectType<React.FormEvent<HTMLDivElement>, typeof event>(event);
+  },
+};
+
+const props2: ButtonProps = {
+  onChange: (event) => {
+    expectType<React.FormEvent<HTMLButtonElement>, typeof event>(event);
+  },
+};
+
+const props3: ButtonProps<typeof TestOverride> = {
+  component: TestOverride,
+  x: 2,
+};
+
+const props4: ButtonProps<typeof TestOverride> = {
+  component: TestOverride,
+  // @ts-expect-error TestOverride does not accept incorrectProp
+  incorrectProp: 3,
+};
+
+const props5: ButtonProps<typeof TestOverride> = {
+  component: TestOverride,
+};
+
+const buttonTest = () => (
   <div>
     <Button>I am a button!</Button>
     <Button color="inherit">Contrast</Button>
@@ -26,12 +66,15 @@ const ButtonTest = () => (
       Title
     </Button>
     <Button component="a">Simple Link</Button>
-    <Button component={(props) => <a {...props} />}>Complex Link</Button>
+    <Button component={(props: any) => <a {...props} />}>Complex Link</Button>
     <Button component={ReactRouterLink} to="/open-collective">
       Link
     </Button>
     <Button href="/open-collective">Link</Button>
     <Button component={ReactRouterLink} to="/open-collective">
+      Link
+    </Button>
+    <Button component={CustomLink} to="/some-route">
       Link
     </Button>
     <Button href="/open-collective">Link</Button>
@@ -86,9 +129,9 @@ const ButtonTest = () => (
 );
 
 const ReactRouterLinkTest = () => {
-  const ButtonLink = (props: ButtonProps<typeof ReactRouterLink>) => (
-    <Button {...props} component={ReactRouterLink} />
-  );
+  function ButtonLink(props: ButtonProps<typeof ReactRouterLink>) {
+    return <Button {...props} component={ReactRouterLink} />;
+  }
 
   const reactRouterButtonLink1 = <ButtonLink to="/">Go Home</ButtonLink>;
 

@@ -1,25 +1,57 @@
-import generateUtilityClasses from '@mui/base/generateUtilityClasses';
-import generateUtilityClass from '@mui/base/generateUtilityClass';
+import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import generateUtilityClass from '../generateUtilityClass';
 
 export interface BadgeClasses {
-  /** Class name applied to the root element. */
+  /** Styles applied to the root element. */
   root: string;
-  /** Class name applied to the badge `span` element. */
+  /** Styles applied to the badge `span` element. */
   badge: string;
-  /** Class name applied to the badge `span` element if `variant="dot"`. */
+  /** Styles applied to the badge `span` element if `variant="dot"`. */
   dot: string;
-  /** Class name applied to the badge `span` element if `variant="standard"`. */
+  /** Styles applied to the badge `span` element if `variant="standard"`. */
   standard: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }}`. */
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }}`. */
   anchorOriginTopRight: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }}`. */
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }}`. */
   anchorOriginBottomRight: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }}`. */
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }}`. */
   anchorOriginTopLeft: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }}`. */
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }}`. */
   anchorOriginBottomLeft: string;
   /** State class applied to the badge `span` element if `invisible={true}`. */
   invisible: string;
+  /** Styles applied to the badge `span` element if `color="primary"`. */
+  colorPrimary: string;
+  /** Styles applied to the badge `span` element if `color="secondary"`. */
+  colorSecondary: string;
+  /** Styles applied to the badge `span` element if `color="error"`. */
+  colorError: string;
+  /** Styles applied to the badge `span` element if `color="info"`. */
+  colorInfo: string;
+  /** Styles applied to the badge `span` element if `color="success"`. */
+  colorSuccess: string;
+  /** Styles applied to the badge `span` element if `color="warning"`. */
+  colorWarning: string;
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
+  anchorOriginTopRightRectangular: string;
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
+  anchorOriginBottomRightRectangular: string;
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
+  anchorOriginTopLeftRectangular: string;
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
+  anchorOriginBottomLeftRectangular: string;
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
+  anchorOriginTopRightCircular: string;
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
+  anchorOriginBottomRightCircular: string;
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
+  anchorOriginTopLeftCircular: string;
+  /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
+  anchorOriginBottomLeftCircular: string;
+  /** Styles applied to the badge `span` element if `overlap="rectangular"`. */
+  overlapRectangular: string;
+  /** Styles applied to the badge `span` element if `overlap="circular"`. */
+  overlapCircular: string;
 }
 
 export type BadgeClassKey = keyof BadgeClasses;

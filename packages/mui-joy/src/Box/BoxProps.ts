@@ -1,19 +1,12 @@
 import { OverrideProps } from '@mui/types';
-import { SxProps, SystemProps } from '@mui/system';
-import { JoyTheme as Theme } from '../styles/defaultTheme';
+import { BoxTypeMap } from '@mui/system';
+import { Theme } from '../styles/types';
 
-export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    SystemProps<Theme> & {
-      children?: React.ReactNode;
-      component?: React.ElementType;
-      ref?: React.Ref<unknown>;
-      sx?: SxProps<Theme>;
-    };
-  defaultComponent: D;
-}
+export type BoxSlot = 'root';
 
 export type BoxProps<
   D extends React.ElementType = BoxTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<BoxTypeMap<P, D>, D>;
+> = OverrideProps<BoxTypeMap<P, D, Theme>, D>;
+
+export interface BoxOwnerState extends BoxProps {}

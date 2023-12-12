@@ -52,11 +52,6 @@ const BpCheckedIcon = styled(BpIcon)({
 function BpRadio(props: RadioProps) {
   return (
     <Radio
-      sx={{
-        '&:hover': {
-          bgcolor: 'transparent',
-        },
-      }}
       disableRipple
       color="default"
       checkedIcon={<BpCheckedIcon />}

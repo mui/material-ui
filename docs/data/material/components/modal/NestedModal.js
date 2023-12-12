@@ -30,7 +30,6 @@ function ChildModal() {
     <React.Fragment>
       <Button onClick={handleOpen}>Open Child Modal</Button>
       <Modal
-        hideBackdrop
         open={open}
         onClose={handleClose}
         aria-labelledby="child-modal-title"

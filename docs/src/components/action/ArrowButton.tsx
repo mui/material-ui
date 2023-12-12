@@ -16,23 +16,37 @@ export default function ArrowButton({
       size="small"
       aria-label={label[direction]}
       {...props}
-      sx={{
-        color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : 'primary.main'),
-        border: '1px solid',
-        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.300' : 'grey.200'),
-        '&:hover': {
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.200' : 'grey.300'),
+      sx={[
+        {
+          border: '1px solid',
+          color: 'primary.main',
+          borderColor: 'grey.200',
+          '&:hover': {
+            borderColor: 'grey.300',
+          },
+          '&.Mui-disabled': {
+            opacity: 0.5,
+            color: 'grey.700',
+            borderColor: 'grey.300',
+          },
+          '& + .MuiIconButton-root': {
+            ml: 2,
+          },
         },
-        '&.Mui-disabled': {
-          opacity: 0.5,
-          color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : 'grey.700'),
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primary.700' : 'grey.300'),
-        },
-        '& + .MuiIconButton-root': {
-          ml: 2,
-        },
-        ...props.sx,
-      }}
+        (theme) =>
+          theme.applyDarkStyles({
+            color: 'primary.200',
+            borderColor: 'primaryDark.400',
+            '&:hover': {
+              borderColor: 'primary.300',
+            },
+            '&.Mui-disabled': {
+              color: 'primaryDark.200',
+              borderColor: 'primaryDark.400',
+            },
+          }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
     >
       {direction === 'left' && <KeyboardArrowLeftRounded fontSize="small" />}
       {direction === 'right' && <KeyboardArrowRightRounded fontSize="small" />}

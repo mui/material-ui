@@ -1,26 +1,26 @@
 ---
-product: material-ui
+productId: material-ui
 title: Bottom Navigation React component
 components: BottomNavigation, BottomNavigationAction
 githubLabel: 'component: bottom navigation'
-materialDesign: https://material.io/components/bottom-navigation
+materialDesign: https://m2.material.io/components/bottom-navigation
 ---
 
 # Bottom Navigation
 
-<p class="description">Bottom navigation bars allow movement between primary destinations in an app.</p>
+<p class="description">The Bottom Navigation bar allows movement between primary destinations in an app.</p>
 
 Bottom navigation bars display three to five destinations at the bottom of a screen. Each destination is represented by an icon and an optional text label. When a bottom navigation icon is tapped, the user is taken to the top-level navigation destination associated with that icon.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Bottom Navigation
+## Bottom navigation
 
 When there are only **three** actions, display both icons and text labels at all times.
 
 {{"demo": "SimpleBottomNavigation.js", "bg": true}}
 
-## Bottom Navigation with no label
+## Bottom navigation with no label
 
 If there are **four** or **five** actions, display inactive views as icons only.
 

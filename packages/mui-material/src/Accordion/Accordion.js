@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Collapse from '../Collapse';
@@ -60,7 +61,7 @@ const AccordionRoot = styled(Paper, {
         height: 1,
         content: '""',
         opacity: 1,
-        backgroundColor: theme.palette.divider,
+        backgroundColor: (theme.vars || theme).palette.divider,
         transition: theme.transitions.create(['opacity', 'background-color'], transition),
       },
       '&:first-of-type': {
@@ -85,7 +86,7 @@ const AccordionRoot = styled(Paper, {
         },
       },
       [`&.${accordionClasses.disabled}`]: {
-        backgroundColor: theme.palette.action.disabledBackground,
+        backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
       },
     };
   },
@@ -93,12 +94,12 @@ const AccordionRoot = styled(Paper, {
     ...(!ownerState.square && {
       borderRadius: 0,
       '&:first-of-type': {
-        borderTopLeftRadius: theme.shape.borderRadius,
-        borderTopRightRadius: theme.shape.borderRadius,
+        borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+        borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
       },
       '&:last-of-type': {
-        borderBottomLeftRadius: theme.shape.borderRadius,
-        borderBottomRightRadius: theme.shape.borderRadius,
+        borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+        borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
         // Fix a rendering issue on Edge
         '@supports (-ms-ime-align: auto)': {
           borderBottomLeftRadius: 0,

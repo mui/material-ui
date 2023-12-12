@@ -24,7 +24,9 @@ describe('utils/getDisplayName.js', () => {
         return <div />;
       }
 
-      const AndAnotherComponent = () => <div />;
+      function AndAnotherComponent() {
+        return <div />;
+      }
 
       const AnonymousForwardRefComponent = React.forwardRef<HTMLDivElement>((props, ref) => (
         <div {...props} ref={ref} />

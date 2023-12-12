@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
@@ -37,21 +38,21 @@ const MobileStepperRoot = styled(Paper, {
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
-  background: theme.palette.background.default,
+  background: (theme.vars || theme).palette.background.default,
   padding: 8,
   ...(ownerState.position === 'bottom' && {
     position: 'fixed',
     bottom: 0,
     left: 0,
     right: 0,
-    zIndex: theme.zIndex.mobileStepper,
+    zIndex: (theme.vars || theme).zIndex.mobileStepper,
   }),
   ...(ownerState.position === 'top' && {
     position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
-    zIndex: theme.zIndex.mobileStepper,
+    zIndex: (theme.vars || theme).zIndex.mobileStepper,
   }),
 }));
 
@@ -80,13 +81,13 @@ const MobileStepperDot = styled('div', {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
-    backgroundColor: theme.palette.action.disabled,
+    backgroundColor: (theme.vars || theme).palette.action.disabled,
     borderRadius: '50%',
     width: 8,
     height: 8,
     margin: '0 2px',
     ...(dotActive && {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: (theme.vars || theme).palette.primary.main,
     }),
   }),
 }));
@@ -121,6 +122,15 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
     position,
     variant,
   };
+
+  let value;
+  if (variant === 'progress') {
+    if (steps === 1) {
+      value = 100;
+    } else {
+      value = Math.ceil((activeStep / (steps - 1)) * 100);
+    }
+  }
 
   const classes = useUtilityClasses(ownerState);
 
@@ -158,7 +168,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
           ownerState={ownerState}
           className={classes.progress}
           variant="determinate"
-          value={Math.ceil((activeStep / (steps - 1)) * 100)}
+          value={value}
           {...LinearProgressProps}
         />
       )}

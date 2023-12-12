@@ -13,7 +13,7 @@ const warn = () => {
         "You should use `import { StaticDateRangePicker } from '@mui/x-date-pickers-pro'`",
         "or `import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker'`",
         '',
-        'More information about this migration on our [blog](https://mui.com/blog/lab-pickers-to-mui-x/)',
+        'More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.',
       ].join('\n'),
     );
 
@@ -26,6 +26,7 @@ type StaticDateRangePickerComponent = (<TDate>(
 ) => JSX.Element) & { propTypes?: any };
 
 /**
+ * @deprecated The StaticDateRangePicker component was moved from `@mui/lab` to `@mui/x-date-pickers-pro`. More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.
  * @ignore - do not document.
  */
 const StaticDateRangePicker = React.forwardRef(function DeprecatedStaticDateRangePicker() {
@@ -33,17 +34,6 @@ const StaticDateRangePicker = React.forwardRef(function DeprecatedStaticDateRang
 
   return null;
 }) as StaticDateRangePickerComponent;
-
-StaticDateRangePicker.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-} as any;
 
 export default StaticDateRangePicker;
 

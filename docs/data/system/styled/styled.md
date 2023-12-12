@@ -4,8 +4,8 @@
 
 ## Introduction
 
-All the MUI components are styled with this `styled()` utility.
-This utility is built on top of the `styled()` module of [`@mui/styled-engine`](/material-ui/guides/styled-engine/) and provides additional features.
+All MUI components are styled with the `styled()` utility.
+This utility is built on top of the `styled()` module of `@mui/styled-engine`and provides additional features.
 
 ### Import path
 
@@ -18,8 +18,8 @@ The utility can be used as a replacement for emotion's or styled-components' sty
 It aims to solve the same problem, but also provides the following benefits:
 
 1. It uses MUI's default `theme` if no theme is available in React context.
-2. It supports the theme's [`styleOverrides`](/material-ui/customization/theme-components/#global-style-overrides) and [`variants`](/material-ui/customization/theme-components/#adding-new-component-variants) to be applied, based on the `name` applied in the options (can be skipped).
-3. It adds support for the [the `sx` prop](/system/basics/#the-sx-prop) (can be skipped).
+2. It supports the theme's [`styleOverrides`](/material-ui/customization/theme-components/#theme-style-overrides) and [`variants`](/material-ui/customization/theme-components/#creating-new-component-variants) to be applied, based on the `name` applied in the options (can be skipped).
+3. It adds support for the [the `sx` prop](/system/getting-started/the-sx-prop/) (can be skipped).
 4. It adds by default the `shouldForwardProp` option (that can be overridden), taking into account all props used internally in the MUI components: `ownerState`, `theme`, `sx`, and `as`.
 
 ## API
@@ -39,6 +39,9 @@ It aims to solve the same problem, but also provides the following benefits:
    - `options.skipVariantsResolver` (_bool_): Disables the automatic resolver for the `theme.components[name].variants`.
    - `options.skipSx` (_bool_ [optional]): Disables the `sx` prop on the component.
    - The other keys are forwarded to the `options` argument of emotion's [`styled([Component], [options])`](https://emotion.sh/docs/styled).
+
+3. `styles` (_object | `({ ...props, theme }) => object`_ [optional]): A styles object or a function returning a styles object.
+   The function receives the theme and component's props in an object which is its single argument.
 
 #### Returns
 
@@ -60,7 +63,7 @@ This example demonstrates how you can use the `styled` API to create custom comp
 
 If you inspect this element with the browser DevTools in development mode, you will notice that the class of the component now ends with the `MyThemeComponent-root`, which comes from the `name` and `slot` options that were provided.
 
-<img src="/static/images/system/styled-options.png" alt="browser DevTools showing the rendered component" width="327" />
+<img src="/static/images/system/styled-options.png" alt="browser DevTools showing the rendered component" width="654" height="258" style="width: 327px" />
 
 In addition to this, the `color`, `sx`, and `variant` props are not propagated to the generated `div` element.
 
@@ -96,10 +99,10 @@ export default styled;
 
 ## Difference with the `sx` prop
 
-The `styled` function is an extension of the `styled` utility provided by the underlying style library used – either emotion or styled-components.
+The `styled` function is an extension of the `styled` utility provided by the underlying style library used – either Emotion or styled-components.
 It is guaranteed that it will produce the same output as the `styled` function coming from the style library for the same input.
 
-The [`sx`](/system/the-sx-prop/) prop, on the other hand, is a new way of styling your components, focused on fast customization. `styled` is a function, while `sx` is a prop of the MUI components.
+The [`sx`](/system/getting-started/the-sx-prop/) prop, on the other hand, is a new way of styling your components, focused on fast customization. `styled` is a function, while `sx` is a prop of the MUI components.
 
 Therefore, you will notice the following differences:
 
@@ -116,14 +119,16 @@ const MyStyledButton = styled('button')({
 With `sx`:
 
 ```js
+import Button from '@mui/material/Button';
+
 const MyStyledButton = (props) => (
-  <button
+  <Button
     sx={{
       mx: 1, // ✔️ this shortcut is specific to the `sx` prop,
     }}
   >
     {props.children}
-  </button>
+  </Button>
 );
 ```
 
@@ -140,13 +145,17 @@ const MyStyledButton = styled('button')({
 With `sx`:
 
 ```js
+import Button from '@mui/material/Button';
+
 const MyStyledButton = (props) => (
-  <button sx={{
-    padding: 1 // means "theme.spacing(1)", NOT "1px"
-  }}>
-     {props.children}
-  </button>
-})
+  <Button
+    sx={{
+      padding: 1, // means "theme.spacing(1)", NOT "1px"
+    }}
+  >
+    {props.children}
+  </Button>
+);
 ```
 
 ### Patterns for how to use props differ
@@ -162,11 +171,11 @@ const MyStyledButton = styled('button')((props) => ({
 With `sx`:
 
 ```js
+import Button from '@mui/material/Button';
+
 const MyStyledButton = (props) => (
-  <button sx={{backgroundColor: props.myCustomColor}}>
-     {props.children}
-  </button>
-})
+  <Button sx={{ backgroundColor: props.myCustomColor }}>{props.children}</Button>
+);
 ```
 
 ### Parameter when using function are different for each field
@@ -184,29 +193,31 @@ const MyStyledButtonPropsPerField = styled('button')({
 With `sx`:
 
 ```js
-import { lighten } from "polished"
+import Button from '@mui/material/Button';
+import { lighten } from 'polished';
+
 const MyStyledButton = (props) => (
-  <button sx={{backgroundColor: theme => lighten(0.2,theme.palette.primary.main)}}>
-     {props.children}
-  </button>
-})
+  <Button
+    sx={{ backgroundColor: (theme) => lighten(0.2, theme.palette.primary.main) }}
+  >
+    {props.children}
+  </Button>
+);
 // Note: for direct theme access without modification, you can also use a shortcut by providing the key as a string
 const MyStyledButton = (props) => (
-  <button sx={{backgroundColor: "primary.main"}}>
-     {props.children}
-  </button>
-})
+  <Button sx={{ backgroundColor: 'primary.main' }}>{props.children}</Button>
+);
 ```
 
 ### How can I use the `sx` syntax with the `styled()` utility?
 
-If you are one of those who prefers the `sx` syntax and wants to use it in both the `sx` prop and the `styled()` utility, you can use the `experimental_sx` utility from the `@mui/system`:
+If you prefer the `sx` syntax and want to use it in both the `sx` prop and the `styled()` utility, you can use the `unstable_sx` utility from the `theme`:
 
 {{"demo": "UsingWithSx.js", "defaultCodeOpen": true}}
 
-The overhead added by using the `experimental_sx` utility is the same as if you were to use the `sx` prop on the component.
+The overhead added by using the `unstable_sx` utility is the same as if you were to use the `sx` prop on the component.
 
-> Note: You can use `experimental_sx` outside of the `styled()` utility, too; e.g., for defining `variants` in your custom theme.
+> Note: You can use `unstable_sx` outside of the `styled()` utility, too; e.g., for defining `variants` in your custom theme.
 
 ## How to use components selector API
 
@@ -239,7 +250,7 @@ With MUI's `styled()` utility, you can use components as selectors, too. When us
 
 First, you should install [`@emotion/babel-plugin`](https://emotion.sh/docs/@emotion/babel-plugin).
 
-```sh
+```bash
 npm install @emotion/babel-plugin
 ```
 

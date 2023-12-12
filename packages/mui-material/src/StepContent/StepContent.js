@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Collapse from '../Collapse';
@@ -29,9 +30,11 @@ const StepContentRoot = styled('div', {
   marginLeft: 12, // half icon
   paddingLeft: 8 + 12, // margin + half icon
   paddingRight: 8,
-  borderLeft: `1px solid ${
-    theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
-  }`,
+  borderLeft: theme.vars
+    ? `1px solid ${theme.vars.palette.StepContent.border}`
+    : `1px solid ${
+        theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
+      }`,
   ...(ownerState.last && {
     borderLeft: 'none',
   }),

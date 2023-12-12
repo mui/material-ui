@@ -7,11 +7,14 @@ import type {
   MatcherOptions,
   SelectorMatcherOptions,
 } from '@testing-library/dom';
-import '../utils/initPlaywrightMatchers';
+import '@mui-internal/test-utils/initMatchers';
+import '@mui-internal/test-utils/initPlaywrightMatchers';
 
-function sleep(timeoutMS: number): Promise<void> {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(), timeoutMS);
+function sleep(duration: number): Promise<void> {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, duration);
   });
 }
 
@@ -61,7 +64,7 @@ async function attemptGoto(page: playwright.Page, url: string): Promise<boolean>
 }
 
 describe('e2e', () => {
-  const baseUrl = 'http://localhost:3000';
+  const baseUrl = 'http://localhost:5001';
   let browser: playwright.Browser;
   let page: playwright.Page;
   const screen: PlaywrightScreen = {
@@ -115,9 +118,9 @@ describe('e2e', () => {
     await browser.close();
   });
 
-  describe('<TrapFocus />', () => {
+  describe('<FocusTrap />', () => {
     it('should loop the tab key', async () => {
-      await renderFixture('TrapFocus/OpenTrapFocus');
+      await renderFixture('FocusTrap/OpenFocusTrap');
 
       await expect(screen.getByTestId('root')).toHaveFocus();
 
@@ -138,7 +141,7 @@ describe('e2e', () => {
     });
 
     it('should loop the tab key after activation', async () => {
-      await renderFixture('TrapFocus/DefaultOpenLazyTrapFocus');
+      await renderFixture('FocusTrap/DefaultOpenLazyFocusTrap');
 
       await expect(screen.getByTestId('initial-focus')).toHaveFocus();
 
@@ -153,7 +156,7 @@ describe('e2e', () => {
     });
 
     it('should focus on first focus element after last has received a tab click', async () => {
-      await renderFixture('TrapFocus/OpenTrapFocus');
+      await renderFixture('FocusTrap/OpenFocusTrap');
 
       await page.keyboard.press('Tab');
       await expect(screen.getByText('x')).toHaveFocus();
@@ -161,6 +164,36 @@ describe('e2e', () => {
       await expect(screen.getByText('cancel')).toHaveFocus();
       await page.keyboard.press('Tab');
       await expect(screen.getByText('ok')).toHaveFocus();
+    });
+
+    it('should be able to be tabbed straight through when rendered closed', async () => {
+      await renderFixture('FocusTrap/ClosedFocusTrap');
+
+      await expect(screen.getByText('initial focus')).toHaveFocus();
+      await page.keyboard.press('Tab');
+      await expect(screen.getByText('inside focusable')).toHaveFocus();
+      await page.keyboard.press('Tab');
+      await expect(screen.getByText('final tab target')).toHaveFocus();
+    });
+
+    it('should not trap focus when clicking outside when disableEnforceFocus is set', async () => {
+      await renderFixture('FocusTrap/DisableEnforceFocusFocusTrap');
+
+      // initial focus is on the button outside of the trap focus
+      await expect(screen.getByTestId('initial-focus')).toHaveFocus();
+
+      // focus the button inside the trap focus
+      await page.keyboard.press('Tab');
+      await expect(screen.getByTestId('inside-trap-focus')).toHaveFocus();
+
+      // the focus is now trapped inside
+      await page.keyboard.press('Tab');
+      await expect(screen.getByTestId('inside-trap-focus')).toHaveFocus();
+
+      const initialFocus = (await screen.getByTestId('initial-focus'))!;
+      await initialFocus.click();
+
+      await expect(screen.getByTestId('initial-focus')).toHaveFocus();
     });
   });
 
@@ -180,6 +213,79 @@ describe('e2e', () => {
         'value',
         '5',
       );
+    });
+  });
+
+  describe('<Autocomplete/>', () => {
+    it('[Material Autocomplete] should highlight correct option when initial navigation through options starts from mouse move', async () => {
+      await renderFixture('Autocomplete/HoverMaterialAutocomplete');
+
+      const combobox = (await screen.getByRole('combobox'))!;
+      await combobox.click();
+
+      const firstOption = (await screen.getByText('one'))!;
+
+      const dimensions = (await firstOption.boundingBox())!;
+
+      await page.mouse.move(dimensions.x + 10, dimensions.y + 10); // moves to 1st option
+      await page.keyboard.down('ArrowDown'); // moves to 2nd option
+      await page.keyboard.down('ArrowDown'); // moves to 3rd option
+      await page.keyboard.down('ArrowDown'); // moves to 4th option
+
+      const listbox = (await screen.getByRole('listbox'))!;
+      const focusedOption = (await listbox.$('.Mui-focused'))!;
+      const focusedOptionText = await focusedOption.innerHTML();
+
+      expect(focusedOptionText).to.equal('four');
+    });
+
+    it('[Joy Autocomplete] should highlight correct option when initial navigation through options starts from mouse move', async () => {
+      await renderFixture('Autocomplete/HoverJoyAutocomplete');
+
+      const combobox = (await screen.getByRole('combobox'))!;
+      await combobox.click();
+
+      const firstOption = (await screen.getByText('one'))!;
+
+      const dimensions = (await firstOption.boundingBox())!;
+
+      await page.mouse.move(dimensions.x + 10, dimensions.y + 10); // moves to 1st option
+      await page.keyboard.down('ArrowDown'); // moves to 2nd option
+      await page.keyboard.down('ArrowDown'); // moves to 3rd option
+      await page.keyboard.down('ArrowDown'); // moves to 4th option
+
+      const listbox = (await screen.getByRole('listbox'))!;
+      const focusedOption = (await listbox.$('.Mui-focused'))!;
+      const focusedOptionText = await focusedOption.innerHTML();
+
+      expect(focusedOptionText).to.equal('four');
+    });
+  });
+
+  describe('<TextareaAutosize />', () => {
+    // https://github.com/mui/material-ui/issues/32640
+    it('should handle suspense without error', async () => {
+      const pageErrors: string[] = [];
+      page.on('pageerror', (err) => pageErrors.push(err.name));
+
+      await renderFixture('TextareaAutosize/TextareaAutosizeSuspense');
+      expect(await page.isVisible('textarea')).to.equal(true);
+      await page.click('button');
+      expect(await page.isVisible('textarea')).to.equal(false);
+      await page.waitForTimeout(200); // Wait for debounce to fire (166)
+
+      expect(pageErrors.length).to.equal(0);
+    });
+  });
+
+  describe('<TextField />', () => {
+    it('should fire `onClick` when clicking on the focused label position', async () => {
+      await renderFixture('TextField/OutlinedTextFieldOnClick');
+
+      // execute the click on the focused label position
+      await page.getByRole('textbox').click({ position: { x: 10, y: 10 } });
+      const errorSelector = page.locator('.MuiInputBase-root.Mui-error');
+      await errorSelector.waitFor();
     });
   });
 });

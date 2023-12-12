@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import { refType, deepmerge } from '@mui/utils';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import InputBase from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -44,31 +45,35 @@ const FilledInputRoot = styled(InputBaseRoot, {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
+  const hoverBackground = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.13)';
+  const disabledBackground = light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)';
   return {
     position: 'relative',
-    backgroundColor,
-    borderTopLeftRadius: theme.shape.borderRadius,
-    borderTopRightRadius: theme.shape.borderRadius,
+    backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
+    borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+    borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shorter,
       easing: theme.transitions.easing.easeOut,
     }),
     '&:hover': {
-      backgroundColor: light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.13)',
+      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.hoverBg : hoverBackground,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor,
+        backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
       },
     },
     [`&.${filledInputClasses.focused}`]: {
-      backgroundColor,
+      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
     },
     [`&.${filledInputClasses.disabled}`]: {
-      backgroundColor: light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)',
+      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.disabledBg : disabledBackground,
     },
     ...(!ownerState.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
+        borderBottom: `2px solid ${
+          (theme.vars || theme).palette[ownerState.color || 'primary']?.main
+        }`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -83,14 +88,21 @@ const FilledInputRoot = styled(InputBaseRoot, {
         pointerEvents: 'none', // Transparent to the hover style.
       },
       [`&.${filledInputClasses.focused}:after`]: {
-        transform: 'scaleX(1)',
+        // translateX(0) is a workaround for Safari transform scale bug
+        // See https://github.com/mui/material-ui/issues/31766
+        transform: 'scaleX(1) translateX(0)',
       },
-      [`&.${filledInputClasses.error}:after`]: {
-        borderBottomColor: theme.palette.error.main,
-        transform: 'scaleX(1)', // error is always underlined in red
+      [`&.${filledInputClasses.error}`]: {
+        '&:before, &:after': {
+          borderBottomColor: (theme.vars || theme).palette.error.main,
+        },
       },
       '&:before': {
-        borderBottom: `1px solid ${bottomLineColor}`,
+        borderBottom: `1px solid ${
+          theme.vars
+            ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
+            : bottomLineColor
+        }`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -102,8 +114,8 @@ const FilledInputRoot = styled(InputBaseRoot, {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      [`&:hover:not(.${filledInputClasses.disabled}):before`]: {
-        borderBottom: `1px solid ${theme.palette.text.primary}`,
+      [`&:hover:not(.${filledInputClasses.disabled}, .${filledInputClasses.error}):before`]: {
+        borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
       },
       [`&.${filledInputClasses.disabled}:before`]: {
         borderBottomStyle: 'dotted',
@@ -125,6 +137,11 @@ const FilledInputRoot = styled(InputBaseRoot, {
         paddingTop: 16,
         paddingBottom: 17,
       }),
+      ...(ownerState.hiddenLabel &&
+        ownerState.size === 'small' && {
+          paddingTop: 8,
+          paddingBottom: 9,
+        }),
     }),
   };
 });
@@ -138,13 +155,28 @@ const FilledInputInput = styled(InputBaseInput, {
   paddingRight: 12,
   paddingBottom: 8,
   paddingLeft: 12,
-  '&:-webkit-autofill': {
-    WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
-    WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
-    caretColor: theme.palette.mode === 'light' ? null : '#fff',
-    borderTopLeftRadius: 'inherit',
-    borderTopRightRadius: 'inherit',
-  },
+  ...(!theme.vars && {
+    '&:-webkit-autofill': {
+      WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
+      WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
+      caretColor: theme.palette.mode === 'light' ? null : '#fff',
+      borderTopLeftRadius: 'inherit',
+      borderTopRightRadius: 'inherit',
+    },
+  }),
+  ...(theme.vars && {
+    '&:-webkit-autofill': {
+      borderTopLeftRadius: 'inherit',
+      borderTopRightRadius: 'inherit',
+    },
+    [theme.getColorSchemeSelector('dark')]: {
+      '&:-webkit-autofill': {
+        WebkitBoxShadow: '0 0 0 100px #266798 inset',
+        WebkitTextFillColor: '#fff',
+        caretColor: '#fff',
+      },
+    },
+  }),
   ...(ownerState.size === 'small' && {
     paddingTop: 21,
     paddingBottom: 4,
@@ -152,12 +184,6 @@ const FilledInputInput = styled(InputBaseInput, {
   ...(ownerState.hiddenLabel && {
     paddingTop: 16,
     paddingBottom: 17,
-  }),
-  ...(ownerState.multiline && {
-    paddingTop: 0,
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
   }),
   ...(ownerState.startAdornment && {
     paddingLeft: 0,
@@ -170,6 +196,12 @@ const FilledInputInput = styled(InputBaseInput, {
       paddingTop: 8,
       paddingBottom: 9,
     }),
+  ...(ownerState.multiline && {
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+  }),
 }));
 
 const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
@@ -183,6 +215,8 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
     multiline = false,
+    slotProps,
+    slots = {},
     type = 'text',
     ...other
   } = props;
@@ -198,13 +232,17 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   const classes = useUtilityClasses(props);
   const filledInputComponentsProps = { root: { ownerState }, input: { ownerState } };
 
-  const componentsProps = componentsPropsProp
-    ? deepmerge(componentsPropsProp, filledInputComponentsProps)
-    : filledInputComponentsProps;
+  const componentsProps =
+    slotProps ?? componentsPropsProp
+      ? deepmerge(filledInputComponentsProps, slotProps ?? componentsPropsProp)
+      : filledInputComponentsProps;
+
+  const RootSlot = slots.root ?? components.Root ?? FilledInputRoot;
+  const InputSlot = slots.input ?? components.Input ?? FilledInputInput;
 
   return (
     <InputBase
-      components={{ Root: FilledInputRoot, Input: FilledInputInput, ...components }}
+      slots={{ root: RootSlot, input: InputSlot }}
       componentsProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
@@ -239,7 +277,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -247,8 +285,11 @@ FilledInput.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -256,7 +297,12 @@ FilledInput.propTypes /* remove-proptypes */ = {
     Root: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Input.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -364,6 +410,29 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * Start `InputAdornment` for this component.
    */

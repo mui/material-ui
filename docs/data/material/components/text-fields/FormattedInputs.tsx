@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IMaskInput } from 'react-imask';
-import NumberFormat from 'react-number-format';
-import Box from '@mui/material/Box';
+import { NumericFormat, NumericFormatProps } from 'react-number-format';
+import Stack from '@mui/material/Stack';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
@@ -12,7 +12,7 @@ interface CustomProps {
   name: string;
 }
 
-const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(
+const TextMaskCustom = React.forwardRef<HTMLInputElement, CustomProps>(
   function TextMaskCustom(props, ref) {
     const { onChange, ...other } = props;
     return (
@@ -30,12 +30,12 @@ const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(
   },
 );
 
-const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
-  function NumberFormatCustom(props, ref) {
+const NumericFormatCustom = React.forwardRef<NumericFormatProps, CustomProps>(
+  function NumericFormatCustom(props, ref) {
     const { onChange, ...other } = props;
 
     return (
-      <NumberFormat
+      <NumericFormat
         {...other}
         getInputRef={ref}
         onValueChange={(values) => {
@@ -47,20 +47,15 @@ const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
           });
         }}
         thousandSeparator
-        isNumericString
+        valueIsNumericString
         prefix="$"
       />
     );
   },
 );
 
-interface State {
-  textmask: string;
-  numberformat: string;
-}
-
 export default function FormattedInputs() {
-  const [values, setValues] = React.useState<State>({
+  const [values, setValues] = React.useState({
     textmask: '(100) 000-0000',
     numberformat: '1320',
   });
@@ -73,13 +68,7 @@ export default function FormattedInputs() {
   };
 
   return (
-    <Box
-      sx={{
-        '& > :not(style)': {
-          m: 1,
-        },
-      }}
-    >
+    <Stack direction="row" spacing={2}>
       <FormControl variant="standard">
         <InputLabel htmlFor="formatted-text-mask-input">react-imask</InputLabel>
         <Input
@@ -97,10 +86,10 @@ export default function FormattedInputs() {
         name="numberformat"
         id="formatted-numberformat-input"
         InputProps={{
-          inputComponent: NumberFormatCustom as any,
+          inputComponent: NumericFormatCustom as any,
         }}
         variant="standard"
       />
-    </Box>
+    </Stack>
   );
 }

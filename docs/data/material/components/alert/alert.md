@@ -1,16 +1,18 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Alert component
 components: Alert, AlertTitle
 githubLabel: 'component: alert'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 ---
 
 # Alert
 
 <p class="description">An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task.</p>
 
-**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but MUI supports it.
+:::info
+This component is not documented in the [Material Design guidelines](https://m2.material.io/), but it is available in Material UI.
+:::
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -46,7 +48,7 @@ You can use a [transition component](/material-ui/transitions/) such as `Collaps
 The `icon` prop allows you to add an icon to the beginning of the alert component.
 This will override the default icon for the specified severity.
 
-You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/material-ui/customization/theme-components/#default-props).
+You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/material-ui/customization/theme-components/#theme-default-props).
 
 Setting the icon prop to `false` will remove the icon altogether.
 
@@ -60,13 +62,16 @@ Two additional variants are available – outlined, and filled:
 
 {{"demo": "OutlinedAlerts.js"}}
 
+When using an outlined alert with the [`Snackbar` component](/material-ui/react-snackbar/#customization), background content will be visible and bleed through the alert by default.
+You can prevent this by adding `bgcolor: 'background.paper'` to the[`sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) on the `Alert` component.
+
 ### Filled
 
 {{"demo": "FilledAlerts.js"}}
 
 ## Toast
 
-You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customized-snackbars) with the Alert.
+You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customization) with the Alert.
 
 ## Color
 
@@ -76,7 +81,7 @@ The `color` prop will override the default color for the specified severity.
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#alert)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
 
 When the component is dynamically displayed, the content is automatically announced by most screen readers. At this time, screen readers do not inform users of alerts that are present when the page loads.
 

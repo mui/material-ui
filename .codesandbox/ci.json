@@ -1,7 +1,7 @@
 {
   "buildCommand": "build:codesandbox",
   "installCommand": "install:codesandbox",
-  "node": "12",
+  "node": "18",
   "packages": [
     "packages/mui-material",
     "packages/mui-codemod",
@@ -16,6 +16,7 @@
     "packages/mui-styled-engine",
     "packages/mui-styled-engine-sc",
     "packages/mui-material-next",
+    "packages/mui-material-nextjs",
     "packages/mui-joy"
   ],
   "publishDirectory": {
@@ -32,13 +33,15 @@
     "@mui/utils": "packages/mui-utils/build",
     "@mui/base": "packages/mui-base/build",
     "@mui/material-next": "packages/mui-material-next/build",
+    "@mui/material-nextjs": "packages/mui-material-nextjs/build",
     "@mui/joy": "packages/mui-joy/build"
   },
   "sandboxes": [
     "material-ui-issue-latest-s2dsx",
-    "github/mui/material-ui/tree/HEAD/examples/create-react-app",
-    "github/mui/material-ui/tree/HEAD/examples/create-react-app-with-typescript",
-    "github/mui/material-ui/tree/HEAD/examples/joy-cra-typescript"
+    "/examples/material-ui-cra",
+    "/examples/material-ui-cra-ts",
+    "/examples/joy-ui-cra-ts",
+    "/examples/base-ui-cra-ts"
   ],
   "silent": true
 }

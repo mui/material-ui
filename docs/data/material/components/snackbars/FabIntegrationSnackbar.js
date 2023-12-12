@@ -15,7 +15,6 @@ export default function FabIntegrationSnackbar() {
   return (
     <React.Fragment>
       <CssBaseline />
-      {/* TODO: Fix theme type in GlobalStyles */}
       <GlobalStyles
         styles={(theme) => ({
           body: { backgroundColor: theme.palette.background.paper },
@@ -33,7 +32,7 @@ export default function FabIntegrationSnackbar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" component="div">
-              App Bar
+              App bar
             </Typography>
           </Toolbar>
         </AppBar>

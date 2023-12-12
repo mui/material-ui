@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 
-export default function SxProp() {
+export default function DevTools() {
   return (
     <Slider
       defaultValue={30}

@@ -1,8 +1,6 @@
-import * as ts from 'typescript';
-
-export { default as loadConfig } from './loadConfig';
-export * from './generator';
-export * from './parser';
-export * from './injector';
-export * from './types';
-export { ts };
+export { getPropTypesFromFile } from './getPropTypesFromFile';
+export type { GetPropTypesFromFileOptions } from './getPropTypesFromFile';
+export { injectPropTypesInFile } from './injectPropTypesInFile';
+export type { InjectPropTypesInFileOptions } from './injectPropTypesInFile';
+export { generatePropTypes } from './generatePropTypes';
+export type { GeneratePropTypesOptions } from './generatePropTypes';

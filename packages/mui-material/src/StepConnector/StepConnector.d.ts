@@ -24,7 +24,7 @@ export type StepConnectorClasskey = keyof NonNullable<StepConnectorProps['classe
  *
  * Demos:
  *
- * - [Steppers](https://mui.com/material-ui/react-stepper/)
+ * - [Stepper](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *

@@ -1,39 +1,40 @@
+'use client';
 import * as React from 'react';
-import { deepmerge } from '@mui/utils';
 import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from '@mui/system';
-import defaultTheme, { JoyTheme } from './defaultTheme';
-import { Components } from './components';
+import defaultTheme from './defaultTheme';
+import extendTheme from './extendTheme';
+import THEME_ID from './identifier';
+import type { Theme } from './types';
+import type { CssVarsThemeOptions } from './extendTheme';
 
-type Partial3Level<T> = {
-  [K in keyof T]?: T[K] extends Record<any, any>
-    ? {
-        [J in keyof T[K]]?: T[K][J] extends Record<any, any>
-          ? {
-              [P in keyof T[K][J]]?: T[K][J][P];
-            }
-          : T[K][J];
-      }
-    : T[K];
-};
+export const useTheme = (): Theme => {
+  const theme = useSystemTheme(defaultTheme);
 
-export const useTheme = () => {
-  return useSystemTheme(defaultTheme);
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useDebugValue(theme);
+  }
+
+  // @ts-ignore internal logic
+  return theme[THEME_ID] || theme;
 };
 
 export default function ThemeProvider({
   children,
-  theme,
+  theme: themeInput,
 }: React.PropsWithChildren<{
-  theme?: Partial3Level<Omit<JoyTheme, 'vars'>> & {
-    components?: Components;
-  };
+  theme?: CssVarsThemeOptions | { [k in typeof THEME_ID]: CssVarsThemeOptions };
 }>) {
-  const { components, ...filteredTheme } = theme || {};
-  let mergedTheme = deepmerge(defaultTheme, filteredTheme);
-  mergedTheme = {
-    ...mergedTheme,
-    vars: mergedTheme,
-    components,
-  } as JoyTheme & { components: Components };
-  return <SystemThemeProvider theme={mergedTheme}>{children}</SystemThemeProvider>;
+  let theme = defaultTheme;
+  if (themeInput) {
+    theme = extendTheme(THEME_ID in themeInput ? themeInput[THEME_ID] : themeInput);
+  }
+  return (
+    <SystemThemeProvider
+      theme={theme}
+      themeId={themeInput && THEME_ID in themeInput ? THEME_ID : undefined}
+    >
+      {children}
+    </SystemThemeProvider>
+  );
 }

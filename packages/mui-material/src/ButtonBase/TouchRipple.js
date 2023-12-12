@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
@@ -136,7 +137,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   const ignoringMouseDown = React.useRef(false);
   // We use a timer in order to only show the ripples for touch "click" like events.
   // We don't want to display the ripple for touch scroll events.
-  const startTimer = React.useRef(null);
+  const startTimer = React.useRef(0);
 
   // This is the hook called once the previous timeout is ready.
   const startTimerCommit = React.useRef(null);
@@ -144,7 +145,9 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
 
   React.useEffect(() => {
     return () => {
-      clearTimeout(startTimer.current);
+      if (startTimer.current) {
+        clearTimeout(startTimer.current);
+      }
     };
   }, []);
 
@@ -178,19 +181,19 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   );
 
   const start = React.useCallback(
-    (event = {}, options = {}, cb) => {
+    (event = {}, options = {}, cb = () => {}) => {
       const {
         pulsate = false,
         center = centerProp || options.pulsate,
         fakeElement = false, // For test purposes
       } = options;
 
-      if (event.type === 'mousedown' && ignoringMouseDown.current) {
+      if (event?.type === 'mousedown' && ignoringMouseDown.current) {
         ignoringMouseDown.current = false;
         return;
       }
 
-      if (event.type === 'touchstart') {
+      if (event?.type === 'touchstart') {
         ignoringMouseDown.current = true;
       }
 
@@ -211,13 +214,15 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
 
       if (
         center ||
+        event === undefined ||
         (event.clientX === 0 && event.clientY === 0) ||
         (!event.clientX && !event.touches)
       ) {
         rippleX = Math.round(rect.width / 2);
         rippleY = Math.round(rect.height / 2);
       } else {
-        const { clientX, clientY } = event.touches ? event.touches[0] : event;
+        const { clientX, clientY } =
+          event.touches && event.touches.length > 0 ? event.touches[0] : event;
         rippleX = Math.round(clientX - rect.left);
         rippleY = Math.round(clientY - rect.top);
       }
@@ -238,7 +243,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
       }
 
       // Touche devices
-      if (event.touches) {
+      if (event?.touches) {
         // check that this isn't another touchstart due to multitouch
         // otherwise we will only clear a single timer when unmounting while two
         // are running
@@ -271,7 +276,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
 
     // The touch interaction occurs too quickly.
     // We still want to show ripple effect.
-    if (event.type === 'touchend' && startTimerCommit.current) {
+    if (event?.type === 'touchend' && startTimerCommit.current) {
       startTimerCommit.current();
       startTimerCommit.current = null;
       startTimer.current = setTimeout(() => {
@@ -303,7 +308,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
 
   return (
     <TouchRippleRoot
-      className={clsx(classes.root, touchRippleClasses.root, className)}
+      className={clsx(touchRippleClasses.root, classes.root, className)}
       ref={container}
       {...other}
     >

@@ -5,7 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function SimpleAccordion() {
+export default function BasicAccordion() {
   return (
     <div>
       <Accordion>

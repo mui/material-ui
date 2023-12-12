@@ -7,6 +7,8 @@ import { TimelineDotClasses } from './timelineDotClasses';
 
 export interface TimelineDotPropsVariantOverrides {}
 
+export interface TimelineDotPropsColorOverrides {}
+
 export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTMLSpanElement>> {
   /**
    * The content of the component.
@@ -20,7 +22,10 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
    * The dot can have a different colors.
    * @default 'grey'
    */
-  color?: 'inherit' | 'grey' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
+  color?: OverridableStringUnion<
+    'inherit' | 'grey' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    TimelineDotPropsColorOverrides
+  >;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -37,37 +37,37 @@ Here are the most significant improvements since March 2021.
 
 - 👩‍🎤 We have rolled out the new **style engine** to all the components.
   The community provided invaluable assistance in completing this effort.
-  In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, and introduced the [the `sx` prop](https://mui.com/system/the-sx-prop/) for one-off customizations.
-  The `styled()` API is loved by the community, and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all with [adapters](https://mui.com/material-ui/guides/styled-engine/#how-to-switch-to-styled-components).
+  In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, and introduced the [the `sx` prop](https://mui.com/system/getting-started/the-sx-prop/) for one-off customizations.
+  The `styled()` API is loved by the community, and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all with [adapters](https://mui.com/material-ui/guides/styled-components/).
 
 - ⚒️ We added a [codemod CLI](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod) and 17 transformations (so far) to automatically migrate codebases from v4 to v5.
   If you're not familiar with what a codemod is, check out [Effective Refactoring with Codemods by Edd Yerburgh](https://www.youtube.com/watch?v=H9qtLutnT_g).
 
-- 💄 We have [updated the style of the Slider](https://mui.com/components/slider/#sizes) to better match the Material Design guidelines, and kept a similar style as before under `size="small"`:
+- 💄 We have [updated the style of the Slider](https://mui.com/material-ui/react-slider/#sizes) to better match the Material Design guidelines, and kept a similar style as before under `size="small"`:
 
-  <a href="https://mui.com/components/slider/#sizes"><img loading="lazy" src="/static/blog/2021-q2-update/slider.png" alt="" style="width: 838px; margin-bottom: 16px;" /></a>
+  <a href="https://mui.com/material-ui/react-slider/#sizes"><img loading="lazy" src="/static/blog/2021-q2-update/slider.png" alt="" style="width: 838px; margin-bottom: 16px;" /></a>
 
 - ✨ The new style engine has unlocked problems on the `Grid` component that we couldn't solve before with JSS:
 
-  We have added support for [row & column](https://mui.com/components/grid/#row-amp-column-spacing) spacing:
+  We have added support for [row & column](https://mui.com/material-ui/react-grid/#row-amp-column-spacing) spacing:
 
 ```jsx
 <Grid container rowSpacing={1} columnSpacing={2} />
 ```
 
-We have added support for [responsive values](https://mui.com/components/grid/#responsive-values) on all the props:
+We have added support for [responsive values](https://mui.com/material-ui/react-grid/#responsive-values) on all the props:
 
 ```jsx
 <Grid container spacing={{ xs: 2, md: 3 }} />
 ```
 
-We have added support for a different [number of columns](https://mui.com/components/grid/#columns) than 12:
+We have added support for a different [number of columns](https://mui.com/material-ui/react-grid/#columns) than 12:
 
 ```jsx
 <Grid container columns={16}>
 ```
 
-We have added an alternative implementation that uses [CSS grid](https://mui.com/components/grid/#css-grid-layout):
+We have added an alternative implementation that uses [CSS grid](https://mui.com/material-ui/react-grid/#css-grid-layout):
 
 ```jsx
 <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
@@ -88,7 +88,7 @@ We have added an alternative implementation that uses [CSS grid](https://mui.com
 
 - 💄 We have improved the accessibility of the Link component:
 
-  <a href="https://mui.com/components/links/">
+  <a href="https://mui.com/material-ui/react-link/">
     <img loading="lazy" src="/static/blog/2021-q2-update/link.png" alt="" style="width: 129px; margin-bottom: 16px;" />
   </a>
 
@@ -116,11 +116,11 @@ The date picker is at the border between the core component and advanced compone
 - 🐛 We have focused on fixing bugs and regressions to ensure early users have a great experience with the component.
   This was done instead of taking on ambitious new features.
   We want our users to be able to adopt new features as fast as we build them.
-- 🔘 We have added support for a built-in [single select](/x/react-data-grid/columns/#column-types) column type:
+- 🔘 We have added support for a built-in [single select](/x/react-data-grid/column-definition/#column-types) column type:
 
   <img loading="lazy" src="/static/blog/2021-q2-update/single-select.png" alt="" style="width: 481px; margin-bottom: 16px;" />
 
-  <p class="blog-description">the <a href="https://codesandbox.io/s/material-demo-forked-iuyo5?file=/demo.js">codesandbox</a></p>
+  <p class="blog-description">the <a href="https://codesandbox.io/p/sandbox/material-demo-forked-iuyo5?file=/demo.js">codesandbox</a></p>
 
   and the **boolean** column type.
 
@@ -214,13 +214,13 @@ We have the following objectives:
   It has a lot of accumulated value not being realized. We're aiming for 25% of the community to have migrated by the end of the quarter.
 - ♨️ Fix the friction the community has during the upgrade to v5.
   We want to make the upgrade feel painless.
-- ⚛️ Support [React 18](https://reactjs.org/blog/2021/06/08/the-plan-for-react-18.html). [Sebastian](https://github.com/eps1lon) is part of the React [Working Group](https://github.com/reactwg/react-18/discussions), focusing on making us ready ahead of time.
+- ⚛️ Support [React 18](https://legacy.reactjs.org/blog/2021/06/08/the-plan-for-react-18.html). [Sebastian](https://github.com/eps1lon) is part of the React [Working Group](https://github.com/reactwg/react-18/discussions), focusing on making us ready ahead of time.
   We want our most demanding users to feel empowered by MUI, not slowed down by a third-party.
-- 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Switch](https://mui.com/components/switches/#unstyled).
+- 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Switch](https://mui.com/base-ui/react-switch/).
   You can follow our progress in the [umbrella issue](https://github.com/mui/material-ui/issues/27170).
 - 🌈 Do a proof of concept on supporting a second design system.
   Some of our users (and potential users) dislike Material Design. We will try to make the second design system one that they love!
-- 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui/material-ui/projects/25).
+- 🗓 Execute on all of the items in the [public roadmap](https://github.com/orgs/mui/projects/18/views/1).
 - ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Advanced components

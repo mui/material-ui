@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import capitalize from '../utils/capitalize';
 import Typography from '../Typography';
 import FormControlContext from '../FormControl/FormControlContext';
@@ -47,7 +48,7 @@ const InputAdornmentRoot = styled('div', {
   maxHeight: '2em',
   alignItems: 'center',
   whiteSpace: 'nowrap',
-  color: theme.palette.action.active,
+  color: (theme.vars || theme).palette.action.active,
   ...(ownerState.variant === 'filled' && {
     // Styles applied to the root element if `variant="filled"`.
     [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {

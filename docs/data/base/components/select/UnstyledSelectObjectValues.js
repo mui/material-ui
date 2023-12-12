@@ -1,9 +1,62 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
-import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
+import { Option as BaseOption, optionClasses } from '@mui/base/Option';
+import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+
+export default function UnstyledSelectObjectValues() {
+  const [character, setCharacter] = React.useState(characters[0]);
+  return (
+    <div>
+      <Select
+        value={character}
+        onChange={(event, newValue) => setCharacter(newValue)}
+      >
+        {characters.map((c) => (
+          <Option key={c.name} value={c}>
+            {c.name}
+          </Option>
+        ))}
+      </Select>
+      <Paragraph>Selected character:</Paragraph>
+      <Pre>{JSON.stringify(character, null, 2)}</Pre>
+    </div>
+  );
+}
+
+function Select(props) {
+  const slots = {
+    root: Button,
+    listbox: Listbox,
+    popper: Popper,
+    ...props.slots,
+  };
+
+  return <BaseSelect {...props} slots={slots} />;
+}
+
+Select.propTypes = {
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.func,
+    root: PropTypes.elementType,
+  }),
+};
+
+const characters = [
+  { name: 'Frodo', race: 'Hobbit' },
+  { name: 'Sam', race: 'Hobbit' },
+  { name: 'Merry', race: 'Hobbit' },
+  { name: 'Gandalf', race: 'Maia' },
+  { name: 'Gimli', race: 'Dwarf' },
+];
 
 const blue = {
   100: '#DAECFF',
@@ -16,182 +69,147 @@ const blue = {
 
 const grey = {
   50: '#F3F6F9',
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7',
-  400: '#B2BAC2',
-  500: '#A0AAB4',
-  600: '#6F7E8C',
-  700: '#3E5060',
-  800: '#2D3843',
-  900: '#1A2027',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
 };
 
-const StyledButton = styled('button')(
+const Button = React.forwardRef(function Button(props, ref) {
+  const { ownerState, ...other } = props;
+  return (
+    <StyledButton type="button" {...other} ref={ref}>
+      {other.children}
+      <UnfoldMoreRoundedIcon />
+    </StyledButton>
+  );
+});
+
+Button.propTypes = {
+  children: PropTypes.node,
+  ownerState: PropTypes.object.isRequired,
+};
+
+const StyledButton = styled('button', { shouldForwardProp: () => true })(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
   min-width: 320px;
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  border-radius: 0.75em;
-  margin: 0.5em;
-  padding: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
   text-align: left;
   line-height: 1.5;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  position: relative;
+  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 120ms;
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? '' : grey[100]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
+    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
-  &.${selectUnstyledClasses.focusVisible} {
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
+  &.${selectClasses.focusVisible} {
+    outline: 0;
+    border-color: ${blue[400]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
-  &.${selectUnstyledClasses.expanded} {
-    &::after {
-      content: '▴';
-    }
-  }
-
-  &::after {
-    content: '▾';
-    float: right;
+  & > svg {
+    font-size: 1rem;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 10px;
   }
   `,
 );
 
-const StyledListbox = styled('ul')(
+const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  padding: 5px;
-  margin: 10px 0;
+  padding: 6px;
+  margin: 12px 0;
   min-width: 320px;
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  border-radius: 0.75em;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  border-radius: 12px;
   overflow: auto;
   outline: 0px;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  box-shadow: 0px 2px 6px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
+  };
   `,
 );
 
-const StyledOption = styled(OptionUnstyled)(
+const Option = styled(BaseOption)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
-  border-radius: 0.45em;
+  border-radius: 8px;
   cursor: default;
 
   &:last-of-type {
     border-bottom: none;
   }
 
-  &.${optionUnstyledClasses.selected} {
+  &.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.${optionUnstyledClasses.highlighted} {
+  &.${optionClasses.highlighted} {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
+  &.${optionClasses.highlighted}.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.${optionUnstyledClasses.disabled} {
+  &.${optionClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
 
-  &:hover:not(.${optionUnstyledClasses.disabled}) {
+  &:hover:not(.${optionClasses.disabled}) {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
   `,
 );
 
-const StyledPopper = styled(PopperUnstyled)`
+const Popper = styled(BasePopper)`
   z-index: 1;
 `;
 
 const Paragraph = styled('p')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
-  margin: 10px 0;
-  color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
+  margin: 12px 0;
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
   `,
 );
 
 const Pre = styled('pre')(
   ({ theme }) => `
   font-family: monospace;
-  font-size: 0.875rem;
-  margin: 0px;
-  padding: 5px 10px;
-  border-radius: 10px;
-  background-color: ${
-    theme.palette.mode === 'dark' ? 'rgba(0, 30, 60, 0.5)' : grey[50]
-  };
-  color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
+  font-size: 0.75rem;
+  color: ${theme.palette.mode === 'dark' ? '#FFF' : '#000'};
   `,
 );
-
-function CustomSelect(props) {
-  const components = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
-  };
-
-  return <SelectUnstyled {...props} components={components} />;
-}
-
-CustomSelect.propTypes = {
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Listbox: PropTypes.elementType,
-    Popper: PropTypes.func,
-    Root: PropTypes.elementType,
-  }),
-};
-
-const characters = [
-  { name: 'Frodo', race: 'Hobbit' },
-  { name: 'Sam', race: 'Hobbit' },
-  { name: 'Merry', race: 'Hobbit' },
-  { name: 'Gandalf', race: 'Maia' },
-  { name: 'Gimli', race: 'Dwarf' },
-];
-
-export default function UnstyledSelectObjectValues() {
-  const [character, setCharacter] = React.useState(characters[0]);
-  return (
-    <div>
-      <CustomSelect value={character} onChange={setCharacter}>
-        {characters.map((c) => (
-          <StyledOption key={c.name} value={c}>
-            {c.name}
-          </StyledOption>
-        ))}
-      </CustomSelect>
-
-      <Paragraph>Selected character:</Paragraph>
-      <Pre>{JSON.stringify(character, null, 2)}</Pre>
-    </div>
-  );
-}

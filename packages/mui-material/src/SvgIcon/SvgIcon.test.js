@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import SvgIcon, { svgIconClasses as classes } from '@mui/material/SvgIcon';
 
 describe('<SvgIcon />', () => {
@@ -42,6 +42,21 @@ describe('<SvgIcon />', () => {
 
     expect(queryByTestId('test-path')).not.to.equal(null);
     expect(container.firstChild).to.have.attribute('aria-hidden', 'true');
+  });
+
+  it('renders children of provided svg and merge the props', () => {
+    const { container } = render(
+      <SvgIcon>
+        <svg viewBox="0 0 48 48" strokeWidth="1.5">
+          {path}
+        </svg>
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).to.have.tagName('svg');
+    expect(container.firstChild.firstChild).to.have.tagName('path');
+    expect(container.firstChild).to.have.attribute('viewBox', '0 0 48 48');
+    expect(container.firstChild).to.have.attribute('stroke-width', '1.5');
   });
 
   describe('prop: titleAccess', () => {
@@ -98,11 +113,13 @@ describe('<SvgIcon />', () => {
   });
 
   describe('prop: inheritViewBox', () => {
-    const CustomSvg = (props) => (
-      <svg viewBox="-4 -4 24 24" {...props}>
-        {path}
-      </svg>
-    );
+    function CustomSvg(props) {
+      return (
+        <svg viewBox="-4 -4 24 24" {...props}>
+          {path}
+        </svg>
+      );
+    }
 
     it('should render with the default viewBox if neither inheritViewBox nor viewBox are provided', () => {
       const { container } = render(<SvgIcon component={CustomSvg} />);
@@ -118,5 +135,42 @@ describe('<SvgIcon />', () => {
       const { container } = render(<SvgIcon component={CustomSvg} inheritViewBox />);
       expect(container.firstChild).to.have.attribute('viewBox', '-4 -4 24 24');
     });
+  });
+
+  it('should not override internal ownerState with the ownerState passed to the icon', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { container } = render(<SvgIcon ownerState={{ fontSize: 'large' }}>{path}</SvgIcon>);
+    expect(container.firstChild).toHaveComputedStyle({ fontSize: '24px' }); // fontSize: medium -> 1.5rem = 24px
+  });
+
+  it('should have `fill="currentColor"`', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+    const { container } = render(
+      <SvgIcon>
+        <path />
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({ fill: 'currentColor' });
+  });
+
+  it('should not add `fill` if svg is a direct child', function test() {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+    const { container } = render(
+      <SvgIcon>
+        <svg>
+          <path />
+        </svg>
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).not.toHaveComputedStyle({ fill: 'currentColor' });
   });
 });

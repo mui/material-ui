@@ -1,7 +1,8 @@
 import * as React from 'react';
 import NextLink from 'next/link';
-import MuiLink from '@mui/material/Link';
-import Button from '@mui/joy/Button';
+import JoyLink from '@mui/material/Link';
+import { expectType } from '@mui/types';
+import Button, { ButtonOwnerState } from '@mui/joy/Button';
 
 <Button>Button</Button>;
 
@@ -18,17 +19,16 @@ function handleClick4(event: React.MouseEvent<HTMLDivElement>) {}
 // @ts-expect-error should be HTMLAnchorElement | HTMLButtonElement
 <Button onClick={handleClick4}>Button</Button>;
 
-<Button variant="text">Button</Button>;
+<Button variant="plain">Button</Button>;
 <Button variant="outlined">Button</Button>;
-<Button variant="light">Button</Button>;
-<Button variant="contained">Button</Button>;
+<Button variant="soft">Button</Button>;
+<Button variant="solid">Button</Button>;
 // @ts-expect-error no `custom` variant
 <Button variant="custom">Button</Button>;
 
 <Button color="primary">Button</Button>;
 <Button color="neutral">Button</Button>;
 <Button color="danger">Button</Button>;
-<Button color="info">Button</Button>;
 <Button color="success">Button</Button>;
 <Button color="warning">Button</Button>;
 // @ts-expect-error no `black` color
@@ -41,7 +41,7 @@ function handleClick4(event: React.MouseEvent<HTMLDivElement>) {}
 
 <Button component="a" href="/" />;
 <Button component={NextLink} href="/" />;
-<Button component={MuiLink} href="/" />;
+<Button component={JoyLink} href="/" />;
 
 function CustomLink({
   children,
@@ -71,16 +71,88 @@ function Icon() {
   <Icon />
 </Button>;
 <Button
-  variant="contained"
+  variant="solid"
   color="success"
-  endIcon={<Icon />}
+  endDecorator={<Icon />}
   sx={{ width: 'var(--Button-minHeight)' }}
 >
   <Icon />
 </Button>;
-<Button variant="contained" startIcon={<Icon />} size="sm">
+<Button variant="solid" startDecorator={<Icon />} size="sm">
   Add to cart
 </Button>;
-<Button variant="outlined" endIcon={<Icon />} color="success">
+<Button variant="outlined" endDecorator={<Icon />} color="success">
   Checkout
 </Button>;
+
+<Button loading variant="outlined" disabled>
+  disabled
+</Button>;
+<Button loading loadingIndicator="Loading…" variant="outlined">
+  Fetch data
+</Button>;
+<Button endDecorator={<Icon />} loading loadingPosition="end">
+  Send
+</Button>;
+<Button loading loadingPosition="start" startDecorator={<Icon />}>
+  Save
+</Button>;
+
+<Button
+  slots={{
+    root: 'div',
+    startDecorator: 'div',
+    endDecorator: 'div',
+    loadingIndicatorCenter: 'div',
+  }}
+/>;
+
+<Button
+  slotProps={{
+    root: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    startDecorator: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    endDecorator: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    loadingIndicatorCenter: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+  }}
+/>;
+
+<Button
+  slotProps={{
+    root: (ownerState) => {
+      expectType<ButtonOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    startDecorator: (ownerState) => {
+      expectType<ButtonOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    endDecorator: (ownerState) => {
+      expectType<ButtonOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    loadingIndicatorCenter: (ownerState) => {
+      expectType<ButtonOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+  }}
+/>;

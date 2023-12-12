@@ -1,9 +1,10 @@
+'use client';
 // @inheritedComponent IconButton
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { alpha, darken, lighten } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
@@ -102,7 +103,9 @@ const SwitchSwitchBase = styled(SwitchBase, {
     top: 0,
     left: 0,
     zIndex: 1, // Render above the focus ripple.
-    color: theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.grey[300],
+    color: theme.vars
+      ? theme.vars.palette.Switch.defaultColor
+      : `${theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.grey[300]}`,
     transition: theme.transitions.create(['left', 'transform'], {
       duration: theme.transitions.duration.shortest,
     }),
@@ -110,13 +113,17 @@ const SwitchSwitchBase = styled(SwitchBase, {
       transform: 'translateX(20px)',
     },
     [`&.${switchClasses.disabled}`]: {
-      color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600],
+      color: theme.vars
+        ? theme.vars.palette.Switch.defaultDisabledColor
+        : `${theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600]}`,
     },
     [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
       opacity: 0.5,
     },
     [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
-      opacity: theme.palette.mode === 'light' ? 0.12 : 0.2,
+      opacity: theme.vars
+        ? theme.vars.opacity.switchTrackDisabled
+        : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
     },
     [`& .${switchClasses.input}`]: {
       left: '-100%',
@@ -125,7 +132,9 @@ const SwitchSwitchBase = styled(SwitchBase, {
   }),
   ({ theme, ownerState }) => ({
     '&:hover': {
-      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
+        : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -133,25 +142,29 @@ const SwitchSwitchBase = styled(SwitchBase, {
     },
     ...(ownerState.color !== 'default' && {
       [`&.${switchClasses.checked}`]: {
-        color: theme.palette[ownerState.color].main,
+        color: (theme.vars || theme).palette[ownerState.color].main,
         '&:hover': {
-          backgroundColor: alpha(
-            theme.palette[ownerState.color].main,
-            theme.palette.action.hoverOpacity,
-          ),
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
+                theme.vars.palette.action.hoverOpacity
+              })`
+            : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
           '@media (hover: none)': {
             backgroundColor: 'transparent',
           },
         },
         [`&.${switchClasses.disabled}`]: {
-          color:
-            theme.palette.mode === 'light'
-              ? lighten(theme.palette[ownerState.color].main, 0.62)
-              : darken(theme.palette[ownerState.color].main, 0.55),
+          color: theme.vars
+            ? theme.vars.palette.Switch[`${ownerState.color}DisabledColor`]
+            : `${
+                theme.palette.mode === 'light'
+                  ? lighten(theme.palette[ownerState.color].main, 0.62)
+                  : darken(theme.palette[ownerState.color].main, 0.55)
+              }`,
         },
       },
       [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
-        backgroundColor: theme.palette[ownerState.color].main,
+        backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
       },
     }),
   }),
@@ -169,9 +182,12 @@ const SwitchTrack = styled('span', {
   transition: theme.transitions.create(['opacity', 'background-color'], {
     duration: theme.transitions.duration.shortest,
   }),
-  backgroundColor:
-    theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white,
-  opacity: theme.palette.mode === 'light' ? 0.38 : 0.3,
+  backgroundColor: theme.vars
+    ? theme.vars.palette.common.onBackground
+    : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+  opacity: theme.vars
+    ? theme.vars.opacity.switchTrack
+    : `${theme.palette.mode === 'light' ? 0.38 : 0.3}`,
 }));
 
 const SwitchThumb = styled('span', {
@@ -179,7 +195,7 @@ const SwitchThumb = styled('span', {
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
 })(({ theme }) => ({
-  boxShadow: theme.shadows[1],
+  boxShadow: (theme.vars || theme).shadows[1],
   backgroundColor: 'currentColor',
   width: 20,
   height: 20,
@@ -243,7 +259,7 @@ Switch.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -260,6 +276,7 @@ Switch.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the ripple effect is disabled.
+   * @default false
    */
   disableRipple: PropTypes.bool,
   /**
@@ -296,6 +313,7 @@ Switch.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   /**
    * If `true`, the `input` element is required.
+   * @default false
    */
   required: PropTypes.bool,
   /**

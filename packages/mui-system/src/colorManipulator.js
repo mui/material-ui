@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import MuiError from '@mui/utils/macros/MuiError.macro';
 
 /**
@@ -50,7 +51,7 @@ function intToHex(int) {
  * Returns an object with the type and values of a color.
  *
  * Note: Does not support rgb % values.
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @returns {object} - A MUI color object: {type: string, values: number[]}
  */
 export function decomposeColor(color) {
@@ -101,7 +102,7 @@ export function decomposeColor(color) {
 /**
  * Returns a channel created from the input color.
  *
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @returns {string} - The channel for the color, that can be used in rgba or hsla colors
  */
 export const colorChannel = (color) => {
@@ -111,11 +112,21 @@ export const colorChannel = (color) => {
     .map((val, idx) => (decomposedColor.type.indexOf('hsl') !== -1 && idx !== 0 ? `${val}%` : val))
     .join(' ');
 };
+export const private_safeColorChannel = (color, warning) => {
+  try {
+    return colorChannel(color);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
+};
 
 /**
  * Converts a color object with type and values to a string.
  * @param {object} color - Decomposed color
- * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla'
+ * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla', 'color'
  * @param {array} color.values - [n,n,n] or [n,n,n,n]
  * @returns {string} A CSS color string
  */
@@ -189,7 +200,10 @@ export function hslToRgb(color) {
 export function getLuminance(color) {
   color = decomposeColor(color);
 
-  let rgb = color.type === 'hsl' ? decomposeColor(hslToRgb(color)).values : color.values;
+  let rgb =
+    color.type === 'hsl' || color.type === 'hsla'
+      ? decomposeColor(hslToRgb(color)).values
+      : color.values;
   rgb = rgb.map((val) => {
     if (color.type !== 'color') {
       val /= 255; // normalized
@@ -237,6 +251,16 @@ export function alpha(color, value) {
 
   return recomposeColor(color);
 }
+export function private_safeAlpha(color, value, warning) {
+  try {
+    return alpha(color, value);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
+}
 
 /**
  * Darkens a color.
@@ -256,6 +280,16 @@ export function darken(color, coefficient) {
     }
   }
   return recomposeColor(color);
+}
+export function private_safeDarken(color, coefficient, warning) {
+  try {
+    return darken(color, coefficient);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
 }
 
 /**
@@ -282,6 +316,16 @@ export function lighten(color, coefficient) {
 
   return recomposeColor(color);
 }
+export function private_safeLighten(color, coefficient, warning) {
+  try {
+    return lighten(color, coefficient);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
+}
 
 /**
  * Darken or lighten a color, depending on its luminance.
@@ -292,4 +336,14 @@ export function lighten(color, coefficient) {
  */
 export function emphasize(color, coefficient = 0.15) {
   return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
+}
+export function private_safeEmphasize(color, coefficient, warning) {
+  try {
+    return private_safeEmphasize(color, coefficient);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
 }

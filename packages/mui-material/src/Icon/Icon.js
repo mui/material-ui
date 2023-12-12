@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
@@ -51,14 +52,14 @@ const IconRoot = styled('span', {
   }[ownerState.fontSize],
   // TODO v5 deprecate, v6 remove for sx
   color: {
-    primary: theme.palette.primary.main,
-    secondary: theme.palette.secondary.main,
-    info: theme.palette.info.main,
-    success: theme.palette.success.main,
-    warning: theme.palette.warning.main,
-    action: theme.palette.action.active,
-    error: theme.palette.error.main,
-    disabled: theme.palette.action.disabled,
+    primary: (theme.vars || theme).palette.primary.main,
+    secondary: (theme.vars || theme).palette.secondary.main,
+    info: (theme.vars || theme).palette.info.main,
+    success: (theme.vars || theme).palette.success.main,
+    warning: (theme.vars || theme).palette.warning.main,
+    action: (theme.vars || theme).palette.action.active,
+    error: (theme.vars || theme).palette.error.main,
+    disabled: (theme.vars || theme).palette.action.disabled,
     inherit: undefined,
   }[ownerState.color],
 }));
@@ -129,7 +130,7 @@ Icon.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'inherit'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

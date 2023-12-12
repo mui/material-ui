@@ -1,7 +1,8 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { keyframes, css, darken, lighten } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import useTheme from '../styles/useTheme';
@@ -89,6 +90,9 @@ const useUtilityClasses = (ownerState) => {
 const getColorShade = (theme, color) => {
   if (color === 'inherit') {
     return 'currentColor';
+  }
+  if (theme.vars) {
+    return theme.vars.palette.LinearProgress[`${color}Bg`];
   }
   return theme.palette.mode === 'light'
     ? lighten(theme.palette[color].main, 0.62)
@@ -190,7 +194,9 @@ const LinearProgressBar1 = styled('span', {
     transition: 'transform 0.2s linear',
     transformOrigin: 'left',
     backgroundColor:
-      ownerState.color === 'inherit' ? 'currentColor' : theme.palette[ownerState.color].main,
+      ownerState.color === 'inherit'
+        ? 'currentColor'
+        : (theme.vars || theme).palette[ownerState.color].main,
     ...(ownerState.variant === 'determinate' && {
       transition: `transform .${TRANSITION_DURATION}s linear`,
     }),
@@ -232,7 +238,9 @@ const LinearProgressBar2 = styled('span', {
     transformOrigin: 'left',
     ...(ownerState.variant !== 'buffer' && {
       backgroundColor:
-        ownerState.color === 'inherit' ? 'currentColor' : theme.palette[ownerState.color].main,
+        ownerState.color === 'inherit'
+          ? 'currentColor'
+          : (theme.vars || theme).palette[ownerState.color].main,
     }),
     ...(ownerState.color === 'inherit' && {
       opacity: 0.3,
@@ -355,7 +363,7 @@ LinearProgress.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

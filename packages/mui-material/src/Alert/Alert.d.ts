@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { IconButtonProps, InternalStandardProps as StandardProps, SvgIconProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { AlertClasses } from './alertClasses';
 
@@ -30,9 +30,34 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
    * The color of the component. Unless provided, the value is taken from the `severity` prop.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides>;
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
+   * @default {}
+   */
+  components?: {
+    CloseButton?: React.ElementType;
+    CloseIcon?: React.ElementType;
+  };
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
+   * @default {}
+   */
+  componentsProps?: {
+    closeButton?: IconButtonProps;
+    closeIcon?: SvgIconProps;
+  };
   /**
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'
@@ -67,6 +92,29 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * @default 'standard'
    */
   variant?: OverridableStringUnion<'standard' | 'filled' | 'outlined', AlertPropsVariantOverrides>;
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    closeButton?: IconButtonProps;
+    closeIcon?: SvgIconProps;
+  };
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots?: {
+    closeButton?: React.ElementType;
+    closeIcon?: React.ElementType;
+  };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
