@@ -216,14 +216,6 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
 
   const classes = useUtilityClasses(props);
 
-  let hostElementName: string | undefined;
-
-  if (other.to || other.href || component === 'a') {
-    hostElementName = undefined;
-  } else {
-    hostElementName = 'li';
-  }
-
   const Root = /* slots.root ?? */ MenuItemRoot;
   const rootProps = useSlotProps({
     elementType: Root,
@@ -236,7 +228,6 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
       component,
       focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),
       classes,
-      hostElementName,
     },
     className: clsx(classes.root, className),
     ownerState,
