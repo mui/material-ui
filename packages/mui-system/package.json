@@ -40,7 +40,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.4",
+    "@babel/runtime": "^7.23.5",
     "@mui/private-theming": "^5.14.20",
     "@mui/styled-engine": "^5.14.19",
     "@mui/types": "^7.2.10",
@@ -58,7 +58,7 @@
     "@mui/material-next": "6.0.0-alpha.112",
     "@types/chai": "^4.3.11",
     "@types/prop-types": "^15.7.11",
-    "@types/react": "^18.2.38",
+    "@types/react": "^18.2.42",
     "@types/sinon": "^10.0.20",
     "chai": "^4.3.10",
     "fast-glob": "^3.3.2",
