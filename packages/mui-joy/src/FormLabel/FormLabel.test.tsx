@@ -43,7 +43,7 @@ describe('Joy <FormLabel />', () => {
         <FormLabel htmlFor={undefined} />
       </FormControl>,
     );
-    expect(container.firstChild.firstChild).to.have.attribute('for');
+    expect(container.firstChild?.firstChild).to.have.attribute('for');
   });
 
   it('should inherit id from FormControl if id is undefined', () => {
@@ -52,6 +52,6 @@ describe('Joy <FormLabel />', () => {
         <FormLabel id={undefined} />
       </FormControl>,
     );
-    expect(container.firstChild.firstChild).to.have.attribute('id');
+    expect(container.firstChild?.firstChild).to.have.attribute('id');
   });
 });
