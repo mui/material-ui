@@ -53,6 +53,7 @@ function CssTransition(props: CssTransitionProps) {
     lastTransitionedPropertyOnExit,
     enterClassName,
     exitClassName,
+    ...other
   } = props;
 
   const { requestedEnter, onEntering, onEntered, onExiting, onExited } =
@@ -100,6 +101,7 @@ function CssTransition(props: CssTransitionProps) {
     <div
       onTransitionEnd={handleTransitionEnd}
       className={clsx(className, requestedEnter ? enterClassName : exitClassName)}
+      {...other}
     >
       {children}
     </div>
