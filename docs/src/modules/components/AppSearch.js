@@ -6,13 +6,24 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import Chip from '@mui/material/Chip';
-import Divider from '@mui/material/Divider';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import SearchIcon from '@mui/icons-material/Search';
+
+import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
+import StickyNote2RoundedIcon from '@mui/icons-material/StickyNote2Rounded';
+import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
+import IntegrationInstructionsRoundedIcon from '@mui/icons-material/IntegrationInstructionsRounded';
+import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
+import CopyrightRoundedIcon from '@mui/icons-material/CopyrightRounded';
+import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded';
+import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
+
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -98,58 +109,136 @@ function NewStartScreen() {
   const startScreenOptions = [
     {
       category: {
-        name: 'Getting started',
-        icon: <ArticleRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        name: 'Material UI',
       },
       items: [
         {
           name: 'Installation',
           href: '/material-ui/getting-started/installation/',
-          icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Available components',
+          href: '/material-ui/getting-started/supported-components/',
+          icon: <SmartButtonRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Example projects',
+          href: '/material-ui/getting-started/example-projects/',
+          icon: <LibraryBooksRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Templates',
+          href: '/material-ui/getting-started/templates/',
+          icon: <CollectionsBookmarkRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+      ],
+    },
+    {
+      category: {
+        name: 'Base UI',
+      },
+      items: [
+        {
+          name: 'Quickstart',
+          href: '/base-ui/getting-started/quickstart/',
+          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Available components',
+          href: '/base-ui/all-components/',
+          icon: <SmartButtonRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Customization',
+          href: '/base-ui/getting-started/customization/',
+          icon: <DesignServicesRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+      ],
+    },
+    {
+      category: {
+        name: 'Joy UI',
+      },
+      items: [
+        {
+          name: 'Installation',
+          href: '/joy-ui/getting-started/installation/',
+          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Templates',
+          href: '/joy-ui/getting-started/templates/',
+          icon: <CollectionsBookmarkRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Customization',
+          href: '/joy-ui/customization/approaches/',
+          icon: <DesignServicesRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+      ],
+    },
+    {
+      category: {
+        name: 'MUI X',
+      },
+      items: [
+        {
+          name: 'Overview',
+          href: '/x/introduction/',
+          icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Licensing',
+          href: '/x/introduction/licensing/',
+          icon: <CopyrightRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+      ],
+    },
+    {
+      category: {
+        name: 'MUI Toolpad',
+      },
+      items: [
+        {
+          name: 'Overview',
+          href: '/toolpad/getting-started/overview/',
+          icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Why Toolpad?',
+          href: '/toolpad/getting-started/why-toolpad/',
+          icon: <ChecklistRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Example applications',
+          href: '/toolpad/examples/',
+          icon: <LibraryBooksRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+      ],
+    },
+    {
+      category: {
+        name: 'MUI System',
+      },
+      items: [
+        {
+          name: 'Overview',
+          href: '/system/getting-started/',
+          icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Usage',
-          href: '/material-ui/getting-started/usage/',
-          icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+          href: '/system/getting-started/usage/',
+          icon: (
+            <IntegrationInstructionsRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />
+          ),
         },
         {
-          name: 'Learn',
-          href: '/material-ui/getting-started/learn/',
-          icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+          name: 'The sx prop',
+          href: '/system/getting-started/the-sx-prop/',
+          icon: <SettingsRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
-      ],
-    },
-    {
-      category: {
-        name: 'Popular searches',
-        icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-      },
-      items: [
-        { name: 'Material Icons', href: '/material-ui/material-icons/' },
-        { name: 'Text Field', href: '/material-ui/react-text-field/' },
-        { name: 'Button', href: '/material-ui/react-button/' },
-      ],
-    },
-    {
-      category: {
-        name: 'Customization',
-        icon: <EditRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-      },
-      items: [
-        { name: 'How to customize', href: '/material-ui/customization/how-to-customize/' },
-        { name: 'Theming', href: '/material-ui/customization/theming/' },
-        { name: 'Default theme', href: '/material-ui/customization/default-theme/' },
-      ],
-    },
-    {
-      category: {
-        name: 'System',
-        icon: <HandymanRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-      },
-      items: [
-        { name: 'Overview', href: '/system/getting-started/' },
-        { name: 'Properties', href: '/system/properties/' },
-        { name: 'The sx prop', href: '/system/getting-started/the-sx-prop/' },
       ],
     },
   ];
@@ -162,7 +251,6 @@ function NewStartScreen() {
             <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
               {icon}
               {name}
-              <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
             </NextLink>
           ))}
         </div>
@@ -316,7 +404,7 @@ export default function AppSearch(props) {
     return () => {};
   }, [isOpen]);
 
-  const search = `${t('algoliaSearch')}…`;
+  const search = `${t('algoliaSearch')}`;
 
   const optionalFilters = [];
   if (pageContext.productId !== 'null') {
@@ -456,6 +544,7 @@ export default function AppSearch(props) {
             '& .DocSearch-NewStartScreenTitleIcon': {
               color: (theme.vars || theme).palette.primary[500],
               marginRight: theme.spacing(1),
+              opacity: 0.8,
             },
             '& .DocSearch-NewStartScreenItem': {
               display: 'flex',
@@ -486,7 +575,7 @@ export default function AppSearch(props) {
             '& .DocSearch-NewStartScreenItemIcon': {
               fontSize: theme.typography.pxToRem(16),
               marginLeft: theme.spacing(0.5),
-              transition: 'margin 0.2s',
+              opacity: 0.5,
             },
             '& .DocSearch-Modal': {
               // docsearch.css: <= 750px will be full screen modal
