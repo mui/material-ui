@@ -111,7 +111,7 @@ module.exports = [
     title: 'useTransitionStateManager',
   },
   {
-    pathname: '/base-ui/react-transitions/hooks-api/#use-transitionable-element',
-    title: 'useTransitionableElement',
+    pathname: '/base-ui/react-transitions/hooks-api/#use-transition-trigger',
+    title: 'useTransitionTrigger',
   },
 ];

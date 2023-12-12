@@ -2,7 +2,7 @@
 productId: base-ui
 title: React Transitions components
 components: CssAnimation, CssTransition
-hooks: useTransitionableElement, useTransitionStateManager
+hooks: useTransitionTrigger, useTransitionStateManager
 ---
 
 # Transitions
@@ -42,13 +42,13 @@ The CssAnimation component triggers an animation by applying a CSS class (either
 
 ## Hooks
 
-If the built-in components don't cover your needs, or when you want to trigger transitions from your components, you can use the hooks: `useTransitionableElement` and `useTransitionStateManager`.
-The `useTransitionableElement` is used in a component that controls transitions (for example, the Popup uses it internally to request appearance of its contents).
+If the built-in components don't cover your needs, or when you want to trigger transitions from your components, you can use the hooks: `useTransitionTrigger` and `useTransitionStateManager`.
+The `useTransitionTrigger` is used in a component that controls transitions (for example, the Popup uses it internally to request appearance of its contents).
 
 `useTransitionStateManager`, on the other hand, is used by components that need to be transitioned.
 The CssAnimation and CssTransition call this hook when being rendered.
 
-In a nutshell, calling `useTransitionableElement` returns a context (among other properties), that is being read by `useTransitionStateManager`.
+In a nutshell, calling `useTransitionTrigger` returns a context (among other properties), that is being read by `useTransitionStateManager`.
 
 {{"demo": "TransitionHooks.js"}}
 

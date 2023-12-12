@@ -42,7 +42,7 @@ function transitionStateReducer(_: TransitionState, action: TransitionAction): T
   }
 }
 
-export type UseTransitionableElementReturnValue = {
+export type UseTransitionTriggerReturnValue = {
   /**
    * The value of a `TransitionContext` to be placed around children that will be transitioned.
    */
@@ -66,13 +66,11 @@ export type UseTransitionableElementReturnValue = {
  *
  * API:
  *
- * - [useTransitionableElement API](https://mui.com/base-ui/react-transitions/hooks-api/#use-transitionable-element)
+ * - [useTransitionTrigger API](https://mui.com/base-ui/react-transitions/hooks-api/#use-transition-trigger)
  */
-export function useTransitionableElement(
-  requestEnter: boolean,
-): UseTransitionableElementReturnValue {
+export function useTransitionTrigger(requestEnter: boolean): UseTransitionTriggerReturnValue {
   const [state, dispatch] = React.useReducer(transitionStateReducer, {
-    elementExited: false,
+    elementExited: !requestEnter,
     inProgress: false,
   });
 

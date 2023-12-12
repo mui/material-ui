@@ -6,7 +6,7 @@ import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslation
 import CssAnimationApiJsonPageContent from '../../api/css-animation.json';
 import CssTransitionApiJsonPageContent from '../../api/css-transition.json';
 import useTransitionStateManagerApiJsonPageContent from '../../api/use-transition-state-manager.json';
-import useTransitionableElementApiJsonPageContent from '../../api/use-transitionable-element.json';
+import useTransitionTriggerApiJsonPageContent from '../../api/use-transition-trigger.json';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -48,14 +48,12 @@ export const getStaticProps = () => {
     useTransitionStateManagerApiReq,
   );
 
-  const useTransitionableElementApiReq = require.context(
-    'docs/translations/api-docs/use-transitionable-element',
+  const useTransitionTriggerApiReq = require.context(
+    'docs/translations/api-docs/use-transition-trigger',
     false,
-    /use-transitionable-element.*.json$/,
+    /use-transition-trigger.*.json$/,
   );
-  const useTransitionableElementApiDescriptions = mapApiPageTranslations(
-    useTransitionableElementApiReq,
-  );
+  const useTransitionTriggerApiDescriptions = mapApiPageTranslations(useTransitionTriggerApiReq);
 
   return {
     props: {
@@ -69,11 +67,11 @@ export const getStaticProps = () => {
       },
       hooksApiDescriptions: {
         useTransitionStateManager: useTransitionStateManagerApiDescriptions,
-        useTransitionableElement: useTransitionableElementApiDescriptions,
+        useTransitionTrigger: useTransitionTriggerApiDescriptions,
       },
       hooksApiPageContents: {
         useTransitionStateManager: useTransitionStateManagerApiJsonPageContent,
-        useTransitionableElement: useTransitionableElementApiJsonPageContent,
+        useTransitionTrigger: useTransitionTriggerApiJsonPageContent,
       },
     },
   };

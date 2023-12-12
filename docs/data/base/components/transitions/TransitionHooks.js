@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   TransitionContext,
   useTransitionStateManager,
-  useTransitionableElement,
+  useTransitionTrigger,
 } from '@mui/base/useTransition';
 import { styled } from '@mui/system';
 
@@ -78,7 +78,7 @@ const Root = styled('div')`
 function Trivia(props) {
   const { label, children } = props;
   const [open, setOpen] = React.useState(false);
-  const { contextValue } = useTransitionableElement(open);
+  const { contextValue } = useTransitionTrigger(open);
   const containerId = React.useId();
 
   return (

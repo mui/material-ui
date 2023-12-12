@@ -13,7 +13,7 @@ import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getPopupUtilityClass } from './popupClasses';
 import { PopupOwnerState, PopupProps } from './Popup.types';
-import { useTransitionableElement, TransitionContext } from '../useTransition';
+import { useTransitionTrigger, TransitionContext } from '../useTransition';
 import { PopupContext, PopupContextValue } from './PopupContext';
 
 function useUtilityClasses(ownerState: PopupOwnerState) {
@@ -109,7 +109,7 @@ const Popup = React.forwardRef(function Popup<RootComponentType extends React.El
     withTransition,
   };
 
-  const { contextValue, hasExited: hasTransitionExited } = useTransitionableElement(open);
+  const { contextValue, hasExited: hasTransitionExited } = useTransitionTrigger(open);
 
   const visibility = keepMounted && hasTransitionExited ? 'hidden' : undefined;
   const classes = useUtilityClasses(ownerState);

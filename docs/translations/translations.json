@@ -336,7 +336,6 @@
     "/base-ui/react-tabs/hooks-api/#use-tabs": "useTabs",
     "/base-ui/react-tabs/hooks-api/#use-tabs-list": "useTabsList",
     "/base-ui/react-transitions/hooks-api/#use-transition-state-manager": "useTransitionStateManager",
-    "/base-ui/react-transitions/hooks-api/#use-transitionable-element": "useTransitionableElement",
     "/base-ui/guides": "How-to guides",
     "/base-ui/guides/working-with-tailwind-css": "Working with Tailwind CSS",
     "/base-ui/guides/overriding-component-structure": "Overriding component structure",
