@@ -676,8 +676,6 @@ export default function AppSearch(props) {
               color: (theme.vars || theme).palette.text.primary,
             },
             '& .DocSearch-Hit-path': {
-              // display: 'flex',
-              // gap: theme.spacing(1),
               fontSize: theme.typography.pxToRem(12),
               color: (theme.vars || theme).palette.text.secondary,
             },
@@ -697,7 +695,6 @@ export default function AppSearch(props) {
               borderColor: (theme.vars || theme).palette.primary[300],
             },
             '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
-              // display: 'flex',
               color: (theme.vars || theme).palette.primary[500],
               '& .DocSearch-Hit-action-button': {
                 display: 'flex',
