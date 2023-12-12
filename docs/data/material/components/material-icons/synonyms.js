@@ -2948,6 +2948,7 @@ const synonyms = {
     'cancel close destination direction exit maps no pin place quit remove stop',
   Wysiwyg:
     'composer mode screen software system text view visibility website window',
+  X: 'twitter brand logo social',
   Yard: 'backyard flower garden home house nature pettle plants',
   YouTube: 'brand logo social video',
   YoutubeSearchedFor:

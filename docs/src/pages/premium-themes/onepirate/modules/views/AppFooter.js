@@ -67,8 +67,8 @@ export default function AppFooter() {
                 </Box>
                 <Box component="a" href="https://twitter.com/MUI_hq" sx={iconStyle}>
                   <img
-                    src="/static/themes/onepirate/appFooterTwitter.png"
-                    alt="Twitter"
+                    src="/static/themes/onepirate/appFooterX.png"
+                    alt="X"
                   />
                 </Box>
               </Grid>

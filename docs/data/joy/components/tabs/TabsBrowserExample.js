@@ -42,9 +42,9 @@ export default function TabsBrowserExample() {
         </Tab>
         <Tab indicatorPlacement="top">
           <ListItemDecorator>
-            <TwitterIcon />
+            <XIcon />
           </ListItemDecorator>
-          Twitter
+          X
         </Tab>
         <Tab indicatorPlacement="top">
           <ListItemDecorator>
@@ -103,7 +103,7 @@ function GoogleIcon() {
     </SvgIcon>
   );
 }
-function TwitterIcon() {
+function XIcon() {
   return (
     <SvgIcon>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248 204">
