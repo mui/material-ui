@@ -14,12 +14,11 @@ function TestTransitionContextProvider(props: {
 }) {
   const contextValue: TransitionContextValue = React.useMemo(
     () => ({
-      requestEnter: props.requestEnter,
+      requestedEnter: props.requestEnter,
       onEntering: spy(),
       onEntered: onEnteredSpy,
       onExiting: spy(),
       onExited: onExitedSpy,
-      hasExited: false,
       registerTransition: () => () => {},
     }),
     [props.requestEnter],

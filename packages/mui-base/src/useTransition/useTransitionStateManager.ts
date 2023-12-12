@@ -43,7 +43,7 @@ export function useTransitionStateManager(): UseTransitionStateManagerReturnValu
     throw new Error('Missing transition context');
   }
 
-  const { registerTransition, requestEnter, onEntering, onEntered, onExiting, onExited } =
+  const { registerTransition, requestedEnter, onEntering, onEntered, onExiting, onExited } =
     transitionContext;
 
   React.useEffect(() => {
@@ -55,6 +55,6 @@ export function useTransitionStateManager(): UseTransitionStateManagerReturnValu
     onEntered,
     onExiting,
     onExited,
-    requestedEnter: requestEnter,
+    requestedEnter,
   };
 }

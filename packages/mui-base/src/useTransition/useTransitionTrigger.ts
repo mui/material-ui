@@ -111,7 +111,7 @@ export function useTransitionTrigger(requestEnter: boolean): UseTransitionTrigge
 
   const contextValue: TransitionContextValue = React.useMemo(
     () => ({
-      requestEnter,
+      requestedEnter: requestEnter,
       onEntering: handleEntering,
       onEntered: handleEntered,
       onExiting: handleExiting,
