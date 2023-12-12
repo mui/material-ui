@@ -37,7 +37,7 @@ describe('Joy <FormLabel />', () => {
     expect(container.firstChild).to.have.attribute('for', 'input');
   });
 
-  it('should have htmlFor if htmlFor is undefined', () => {
+  it('should inherit htmlFor from FormControl if htmlFor is undefined', () => {
     const { container } = render(
       <FormControl>
         <FormLabel htmlFor={undefined} />
@@ -46,7 +46,7 @@ describe('Joy <FormLabel />', () => {
     expect(container.firstChild.firstChild).to.have.attribute('for');
   });
 
-  it('should have id if id is undefined', () => {
+  it('should inherit id from FormControl if id is undefined', () => {
     const { container } = render(
       <FormControl>
         <FormLabel id={undefined} />
