@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "5.14.20",
+  "version": "5.15.0",
   "private": false,
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
@@ -38,8 +38,8 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "@emotion/server": "^11.11.0",
     "@emotion/cache": "^11.11.0",
+    "@emotion/server": "^11.11.0",
     "@mui/material": "^5.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",
     "next": "^13.0.0 || ^14.0.0",
