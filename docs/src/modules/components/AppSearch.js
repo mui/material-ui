@@ -476,9 +476,11 @@ export default function AppSearch(props) {
               '&:hover, &:focus': {
                 backgroundColor: (theme.vars || theme).palette.primary[50],
                 borderColor: (theme.vars || theme).palette.primary[300],
-                '.DocSearch-NewStartScreenItemIcon': {
-                  marginLeft: theme.spacing(1),
-                },
+              },
+              '&:focus-visible': {
+                outline: '3px solid',
+                outlineColor: (theme.vars || theme).palette.primary[200],
+                outlineOffset: 0,
               },
             },
             '& .DocSearch-NewStartScreenItemIcon': {
@@ -542,12 +544,15 @@ export default function AppSearch(props) {
               '&::-webkit-scrollbar-track': {
                 backgroundColor: (theme.vars || theme).palette.background.paper,
               },
+              '* ul': {
+                marginTop: theme.spacing(1),
+              },
             },
             '& .DocSearch-Dropdown-Container': {
               '& .DocSearch-Hits:first-of-type': {
                 '& .DocSearch-Hit-source': {
                   paddingTop: theme.spacing(2.5),
-                  paddingBottom: theme.spacing(1),
+                  paddingBottom: theme.spacing(0.5),
                 },
               },
             },
@@ -578,6 +583,13 @@ export default function AppSearch(props) {
               borderRadius: theme.shape.borderRadius,
               backgroundColor: alpha(theme.palette.grey[50], 0.4),
               borderColor: alpha(theme.palette.grey[100], 0.5),
+              '&:focus-visible': {
+                outline: '3px solid',
+                outlineColor: (theme.vars || theme).palette.primary[200],
+                outlineOffset: 0,
+                backgroundColor: (theme.vars || theme).palette.primary[50],
+                borderColor: (theme.vars || theme).palette.primary[300],
+              },
             },
             '& .DocSearch-Hit-content-wrapper': {
               paddingLeft: theme.spacing(1),
