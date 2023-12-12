@@ -13,7 +13,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
 A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
 
-Dialogs are purposefully interruptive, so they should be used sparingly.
+Dialogs are perfect for scenarios where you need the user's input, confirmation, or a detailed display of information. They are useful when you want to temporarily block the main application flow to address critical actions, such as confirming a deletion. While Dialogs offer more flexibility and interaction, they are generally heavier than Snackbars and are purposefully interruptive, so they should be used sparingly.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

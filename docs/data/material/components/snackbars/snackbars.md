@@ -14,7 +14,8 @@ waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 Snackbars inform users of a process that an app has performed or will perform. They appear temporarily, towards the bottom of the screen. They shouldn't interrupt the user experience, and they don't require user input to disappear.
 
 Snackbars contain a single line of text directly related to the operation performed.
-They may contain a text action, but no icons. You can use them to display notifications.
+They may contain a text action, but no icons. You can use them to display notifications like success or warning messages.
+Due to the non-intrusive nature of Snackbars, for more urgent or interactive messages, use the Alert or Dialog components.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

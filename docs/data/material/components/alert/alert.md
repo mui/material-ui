@@ -10,6 +10,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 <p class="description">An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task.</p>
 
+An Alert is designed for immediate attention and user interaction. It is perfect for displaying critical information that requires user acknowledgement. Alerts are disruptive and should be used sparingly to capture the user's focus when important actions or updates occur, such as form submission success or error alerts. For less intrusive notifications, consider using Snackbar or Dialogs.
+
 :::info
 This component is not documented in the [Material Design guidelines](https://m2.material.io/), but it is available in Material UI.
 :::
