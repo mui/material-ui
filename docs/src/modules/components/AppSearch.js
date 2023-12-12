@@ -101,9 +101,21 @@ function NewStartScreen() {
         icon: <ArticleRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Installation', href: '/material-ui/getting-started/installation/' },
-        { name: 'Usage', href: '/material-ui/getting-started/usage/' },
-        { name: 'Learn', href: '/material-ui/getting-started/learn/' },
+        {
+          name: 'Installation',
+          href: '/material-ui/getting-started/installation/',
+          icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Usage',
+          href: '/material-ui/getting-started/usage/',
+          icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Learn',
+          href: '/material-ui/getting-started/learn/',
+          icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
       ],
     },
     {
@@ -144,12 +156,10 @@ function NewStartScreen() {
     <div className="DocSearch-NewStartScreen">
       {startScreenOptions.map(({ category, items }) => (
         <div key={category.name} className="DocSearch-NewStartScreenCategory">
-          <div className="DocSearch-NewStartScreenTitle">
-            {category.icon}
-            {category.name}
-          </div>
-          {items.map(({ name, href }) => (
+          <div className="DocSearch-NewStartScreenTitle">{category.name}</div>
+          {items.map(({ name, icon, href }) => (
             <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
+              {icon}
               {name}
               <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
             </NextLink>
@@ -423,8 +433,8 @@ export default function AppSearch(props) {
               display: 'none',
             },
             '& .DocSearch-NewStartScreen': {
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
+              display: 'flex',
+              flexDirection: 'column',
               gap: theme.spacing(2),
               padding: theme.spacing(2, 1),
             },
@@ -435,56 +445,72 @@ export default function AppSearch(props) {
             '& .DocSearch-NewStartScreenTitle': {
               display: 'flex',
               alignItems: 'center',
-              padding: theme.spacing(1, 1),
-              fontSize: theme.typography.pxToRem(14),
-              color: (theme.vars || theme).palette.text.secondary,
+              paddingBottom: theme.spacing(1),
+              fontSize: theme.typography.pxToRem(11),
+              fontWeight: theme.typography.fontWeightBold,
+              textTransform: 'uppercase',
+              letterSpacing: '.08rem',
+              color: theme.palette.grey[600],
             },
             '& .DocSearch-NewStartScreenTitleIcon': {
               color: (theme.vars || theme).palette.primary[500],
-              marginRight: theme.spacing(1.5),
-              fontSize: theme.typography.pxToRem(16),
+              marginRight: theme.spacing(1),
+              // fontSize: theme.typography.pxToRem(16),
             },
             '& .DocSearch-NewStartScreenItem': {
               display: 'flex',
               alignItems: 'center',
               cursor: 'pointer',
               width: '100%',
-              padding: theme.spacing(0.5, 4.6),
+              height: '48px',
               color: (theme.vars || theme).palette.primary[500],
-              fontWeight: 500,
               fontSize: theme.typography.pxToRem(14),
+              fontWeight: theme.typography.fontWeightSemiBold,
+              padding: theme.spacing(0.25, 0),
+              paddingLeft: theme.spacing(2),
+              border: '1px solid transparent',
+              borderRadius: theme.shape.borderRadius,
+              backgroundColor: alpha(theme.palette.grey[50], 0.4),
+              borderColor: alpha(theme.palette.grey[100], 0.5),
+              marginBottom: theme.spacing(1),
               '&:hover, &:focus': {
+                backgroundColor: (theme.vars || theme).palette.primary[50],
+                borderColor: (theme.vars || theme).palette.primary[300],
                 '.DocSearch-NewStartScreenItemIcon': {
                   marginLeft: theme.spacing(1),
                 },
               },
             },
             '& .DocSearch-NewStartScreenItemIcon': {
+              fontSize: theme.typography.pxToRem(16),
               marginLeft: theme.spacing(0.5),
               transition: 'margin 0.2s',
-              fontSize: theme.typography.pxToRem(16),
             },
             '& .DocSearch-Modal': {
-              maxWidth: '700px',
-              boxShadow: `0px 4px 20px ${alpha(theme.palette.grey[700], 0.2)}`,
               // docsearch.css: <= 750px will be full screen modal
-              borderRadius: `clamp(0px, (100vw - 750px) * 9999, ${theme.shape.borderRadius}px)`,
+              maxWidth: '640px',
+              boxShadow: `0px 4px 16px ${alpha(theme.palette.grey[900], 0.2)}`,
+              borderRadius: theme.shape.borderRadius,
+              border: '1px solid',
+              borderColor: (theme.vars || theme).palette.grey[300],
             },
             '& .DocSearch-SearchBar': {
               borderBottom: '1px solid',
               borderColor: (theme.vars || theme).palette.grey[200],
-              padding: theme.spacing(1),
+              padding: theme.spacing(0.5, 1),
             },
             '& .DocSearch-Form': {
               '& .DocSearch-Reset': {
                 display: 'none',
               },
               '& .DocSearch-Input': {
-                paddingLeft: theme.spacing(2.5),
+                paddingLeft: theme.spacing(2),
+                fontSize: theme.typography.pxToRem(16),
+                fontWeight: theme.typography.fontWeightMedium,
               },
               '& .DocSearch-Search-Icon': {
-                width: '20px',
-                height: '20px',
+                width: '18px',
+                height: '18px',
               },
             },
             '& .DocSearch-Cancel': {
@@ -495,15 +521,15 @@ export default function AppSearch(props) {
               marginRight: theme.spacing(1),
               padding: theme.spacing(0.3, 0.8, 0.6, 0.8),
               fontSize: 0,
-              borderRadius: 5,
+              borderRadius: 6,
               backgroundColor: (theme.vars || theme).palette.grey[50],
               border: '1px solid',
-              borderColor: (theme.vars || theme).palette.grey[300],
+              borderColor: (theme.vars || theme).palette.grey[200],
               '&::before': {
                 content: '"esc"',
+                fontFamily: theme.typography.fontFamilyCode,
                 fontSize: theme.typography.pxToRem(12),
-                letterSpacing: '.08rem',
-                fontWeight: 700,
+                fontWeight: theme.typography.fontWeightBold,
                 color: (theme.vars || theme).palette.text.secondary,
               },
             },
@@ -520,50 +546,65 @@ export default function AppSearch(props) {
             '& .DocSearch-Dropdown-Container': {
               '& .DocSearch-Hits:first-of-type': {
                 '& .DocSearch-Hit-source': {
-                  paddingTop: theme.spacing(1),
+                  paddingTop: theme.spacing(2.5),
+                  paddingBottom: theme.spacing(1),
                 },
               },
             },
             '& .DocSearch-Hit-source': {
               top: 'initial',
-              paddingTop: theme.spacing(2),
+              padding: theme.spacing(1.5, 3, 1.5, 3),
               background: (theme.vars || theme).palette.background.paper,
-              fontSize: theme.typography.pxToRem(13),
-              fontWeight: 500,
-              color: (theme.vars || theme).palette.text.secondary,
+              fontSize: theme.typography.pxToRem(11),
+              fontWeight: theme.typography.fontWeightBold,
+              textTransform: 'uppercase',
+              lineHeight: 1,
+              letterSpacing: '.08rem',
+              color: theme.palette.grey[600],
             },
             '& .DocSearch-Hit': {
-              paddingBottom: 0,
+              paddingBottom: 8,
               '&:not(:first-of-type)': {
                 marginTop: -1,
               },
+              '& .DocSearch-Hit-Container': {
+                height: '52px',
+              },
             },
             '& .DocSearch-Hit a': {
-              backgroundColor: 'transparent',
               padding: theme.spacing(0.25, 0),
               paddingLeft: theme.spacing(2),
               border: '1px solid transparent',
-              borderBottomColor: (theme.vars || theme).palette.grey[100],
+              borderRadius: theme.shape.borderRadius,
+              backgroundColor: alpha(theme.palette.grey[50], 0.4),
+              borderColor: alpha(theme.palette.grey[100], 0.5),
             },
             '& .DocSearch-Hit-content-wrapper': {
-              paddingLeft: theme.spacing(2),
+              paddingLeft: theme.spacing(1),
             },
             '& .DocSearch-Hit-title': {
               fontSize: theme.typography.pxToRem(14),
-              color: `${theme.palette.text.primary}`,
+              fontWeight: theme.typography.fontWeightSemiBold,
+              color: (theme.vars || theme).palette.text.primary,
             },
             '& .DocSearch-Hit-path': {
               fontSize: theme.typography.pxToRem(12),
               color: `${theme.palette.text.secondary}`,
             },
+            '& .DocSearch-Hit-icon': {
+              '> svg': {
+                height: '16px',
+                width: '16px',
+                margin: 0,
+              },
+            },
             '& .DocSearch-Hit-Select-Icon': {
-              height: '15px',
-              width: '15px',
+              height: '14px',
+              width: '14px',
             },
             '& .DocSearch-Hit[aria-selected="true"] a': {
               backgroundColor: (theme.vars || theme).palette.primary[50],
-              borderColor: (theme.vars || theme).palette.primary[500],
-              borderRadius: theme.shape.borderRadius,
+              borderColor: (theme.vars || theme).palette.primary[300],
             },
             '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
               color: (theme.vars || theme).palette.primary[500],
