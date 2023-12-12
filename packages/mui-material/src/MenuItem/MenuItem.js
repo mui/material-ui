@@ -205,6 +205,11 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
         ref={handleRef}
         role={role}
         tabIndex={tabIndex}
+        onFocus={() => {
+          if (menuItemRef.current) {
+            menuItemRef.current.classList.add(menuItemClasses.focusVisible);
+          }
+        }}
         component={component}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         className={clsx(classes.root, className)}
