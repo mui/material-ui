@@ -456,7 +456,6 @@ export default function AppSearch(props) {
             '& .DocSearch-NewStartScreenTitleIcon': {
               color: (theme.vars || theme).palette.primary[500],
               marginRight: theme.spacing(1),
-              // fontSize: theme.typography.pxToRem(16),
             },
             '& .DocSearch-NewStartScreenItem': {
               display: 'flex',
@@ -560,7 +559,7 @@ export default function AppSearch(props) {
             '& .DocSearch-Hit-source': {
               top: 'initial',
               padding: theme.spacing(1.5, 3, 1.5, 3),
-              background: (theme.vars || theme).palette.background.paper,
+              background: 'transparent',
               fontSize: theme.typography.pxToRem(11),
               fontWeight: theme.typography.fontWeightBold,
               textTransform: 'uppercase',
@@ -601,8 +600,10 @@ export default function AppSearch(props) {
               color: (theme.vars || theme).palette.text.primary,
             },
             '& .DocSearch-Hit-path': {
+              display: 'flex',
+              gap: theme.spacing(1),
               fontSize: theme.typography.pxToRem(12),
-              color: `${theme.palette.text.secondary}`,
+              color: (theme.vars || theme).palette.text.secondary,
             },
             '& .DocSearch-Hit-icon': {
               '> svg': {
@@ -657,16 +658,26 @@ export default function AppSearch(props) {
           {
             [theme.vars ? '[data-mui-color-scheme="dark"] body' : '.mode-dark']: {
               '.DocSearch-Container': {
-                backgroundColor: alpha(theme.palette.grey[900], 0.7),
+                backgroundColor: alpha(theme.palette.grey[900], 0.4),
               },
               '& .DocSearch-NewStartScreenTitleIcon': {
-                color: (theme.vars || theme).palette.primaryDark[300],
+                color: (theme.vars || theme).palette.primary[300],
               },
               '& .DocSearch-NewStartScreenItem': {
-                color: (theme.vars || theme).palette.primaryDark[300],
+                color: (theme.vars || theme).palette.primary[300],
+                backgroundColor: alpha(theme.palette.primaryDark[800], 0.5),
+                borderColor: alpha(theme.palette.primaryDark[700], 0.8),
+                '&:hover, &:focus': {
+                  backgroundColor: alpha(theme.palette.primary[900], 0.4),
+                  borderColor: alpha(theme.palette.primary[700], 0.6),
+                },
+                '&:focus-visible': {
+                  outlineColor: (theme.vars || theme).palette.primary[700],
+                },
               },
               '& .DocSearch-Modal': {
-                boxShadow: `0px 4px 20px ${alpha(theme.palette.background.paper, 0.7)}`,
+                backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+                boxShadow: `0px 4px 16px ${alpha(theme.palette.common.black, 0.8)}`,
                 border: '1px solid',
                 borderColor: (theme.vars || theme).palette.primaryDark[700],
               },
@@ -680,15 +691,22 @@ export default function AppSearch(props) {
               '& .DocSearch-Dropdown': {
                 '&::-webkit-scrollbar-thumb': {
                   borderColor: (theme.vars || theme).palette.primaryDark[900],
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[100],
                 },
               },
               '& .DocSearch-Hit a': {
-                borderBottomColor: (theme.vars || theme).palette.primaryDark[700],
+                backgroundColor: alpha(theme.palette.primaryDark[800], 0.5),
+                borderColor: alpha(theme.palette.primaryDark[700], 0.8),
+                '&:focus-visible': {
+                  outlineColor: alpha(theme.palette.primary[400], 0.5),
+                  backgroundColor: alpha(theme.palette.primary[900], 0.4),
+                  borderColor: alpha(theme.palette.primary[700], 0.6),
+                },
               },
               '& .DocSearch-Hit[aria-selected="true"] a': {
-                backgroundColor: (theme.vars || theme).palette.primaryDark[800],
-                borderColor: (theme.vars || theme).palette.primaryDark[400],
+                color: (theme.vars || theme).palette.primary[300],
+                backgroundColor: alpha(theme.palette.primary[900], 0.4),
+                borderColor: alpha(theme.palette.primary[700], 0.6),
               },
               '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
                 color: (theme.vars || theme).palette.primary[400],
