@@ -1,6 +1,6 @@
 # [Versions](https://mui.com/versions/)
 
-## 5.14.21
+## 5.15.0
 
 <!-- generated comparing v5.14.20..master -->
 
@@ -10,12 +10,12 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - 🚀 Added [a new package for a better Material UI integration with Next.js](https://mui.com/material-ui/guides/nextjs) (#39947) @siriwatknp
 
-### `@mui/material@5.14.21`
+### `@mui/material@5.15.0`
 
 - &#8203;<!-- 12 -->Revert "[Select][material-ui] Add name to hidden input element" (#40174) @mj12albert
 - &#8203;<!-- 02 -->[material-ui] Refactor ComponentsVariants type into a generic (#39623) @blakenetz
 
-### `@mui/material-nextjs@5.14.21`
+### `@mui/material-nextjs@5.15.0`
 
 - &#8203;<!-- 01 -->[material-ui] Add new Next.js integration package (#39947) @siriwatknp
 
@@ -24,7 +24,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 11 -->[Badge][material-next] Apply new OwnerState type to Badge (#40119) @lhilgert9
 - &#8203;<!-- 06 -->[material-next][ButtonGroup] Change `ButtonGroup` files to ts (#39794) @lhilgert9
 
-### `@mui/icons-material@5.14.21`
+### `@mui/icons-material@5.15.0`
 
 - &#8203;<!-- 05 -->[icons] Add X logo (#38811) @abreel
 
