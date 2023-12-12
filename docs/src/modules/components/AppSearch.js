@@ -397,8 +397,6 @@ export default function AppSearch(props) {
     return () => {};
   }, [isOpen]);
 
-  const search = `${t('algoliaSearch')}`;
-
   const optionalFilters = [];
   if (pageContext.productId !== 'null') {
     optionalFilters.push(`productId:${pageContext.productId}`);
@@ -423,7 +421,7 @@ export default function AppSearch(props) {
             }),
           })}
         />
-        <SearchLabel id="app-search-label">{search}</SearchLabel>
+        <SearchLabel id="app-search-label">{t('searchButton')}</SearchLabel>
         <Shortcut aria-hidden="true">
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {macOS ? '⌘' : 'Ctrl+'}K
@@ -458,7 +456,7 @@ export default function AppSearch(props) {
               analyticsTags: [facetFilterLanguage, `product:${pageContext.productId}`],
               hitsPerPage: 40,
             }}
-            placeholder={search}
+            placeholder={`${t('algoliaSearch')}`}
             transformItems={(items) => {
               return items.map((item) => {
                 // `url` contains the domain
@@ -678,8 +676,8 @@ export default function AppSearch(props) {
               color: (theme.vars || theme).palette.text.primary,
             },
             '& .DocSearch-Hit-path': {
-              display: 'flex',
-              gap: theme.spacing(1),
+              // display: 'flex',
+              // gap: theme.spacing(1),
               fontSize: theme.typography.pxToRem(12),
               color: (theme.vars || theme).palette.text.secondary,
             },
@@ -699,7 +697,7 @@ export default function AppSearch(props) {
               borderColor: (theme.vars || theme).palette.primary[300],
             },
             '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
-              display: 'flex',
+              // display: 'flex',
               color: (theme.vars || theme).palette.primary[500],
               '& .DocSearch-Hit-action-button': {
                 display: 'flex',
