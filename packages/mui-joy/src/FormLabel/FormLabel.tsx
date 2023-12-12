@@ -133,6 +133,14 @@ FormLabel.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * @ignore
+   */
+  htmlFor: PropTypes.string,
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
    * The asterisk is added if required=`true`
    */
   required: PropTypes.bool,
