@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, unstable_capitalize as capitalize } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import ButtonBase from '../ButtonBase';
 import { styled } from '../styles';
 import { useThemeProps, alpha } from '@mui/system';
@@ -26,10 +26,15 @@ const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
     ],
   };
 
-  return composeClasses(slots, getIconButtonUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getIconButtonUtilityClass, classes);
+
+  return {
+    ...classes, // forward the focused, disabled, etc. classes to the ButtonBase
+    ...composedClasses,
+  };
 };
 
-const IconButtonRoot = styled(ButtonBase, {
+export const IconButtonRoot = styled(ButtonBase, {
   name: 'MuiIconButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -127,14 +132,12 @@ const IconButton = React.forwardRef(function IconButton<
       (contextProps ?? {}) as IconButtonProps<BaseComponentType>,
       inProps,
     );
-  const props = useThemeProps({ props: inProps, name: 'MuiIconButton' });
+  const props = useThemeProps({ props: resolvedProps, name: 'MuiIconButton' });
   const {
     edge = false,
     children,
     className,
     color = 'default',
-    disabled = false,
-    disableTouchRipple = false,
     size = 'medium',
     ...other
   } = props;
@@ -143,23 +146,27 @@ const IconButton = React.forwardRef(function IconButton<
     ...props,
     edge,
     color,
-    disabled,
-    disableTouchRipple,
     size,
   };
 
   const classes = useUtilityClasses(ownerState);
 
+  const positionClassName = buttonGroupButtonContextPositionClassName ?? '';
+
+  const rootProps = useSlotProps({
+    elementType: IconButtonRoot,
+    externalForwardedProps: other,
+    externalSlotProps: {},
+    additionalProps: {
+      classes,
+      ref,
+    },
+    ownerState,
+    className: clsx(contextProps?.className, positionClassName),
+  });
+
   return (
-    <IconButtonRoot
-      className={clsx(classes.root, className)}
-      centerRipple
-      touchRipple={!disableTouchRipple}
-      disabled={disabled}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    >
+    <IconButtonRoot {...rootProps}>
       {children}
     </IconButtonRoot>
   );
