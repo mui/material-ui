@@ -45,7 +45,7 @@ describe('<Slider />', () => {
     it('should apply the correct classes when track="inverted"', () => {
       const { container } = render(<Slider track="inverted" value={50} />);
 
-      const sliderRoot = container.firstChild as HTMLElement; // Cast to HTMLElement
+      const sliderRoot = container.firstChild as HTMLElement;
 
       // Now that sliderRoot is typed, you can check its classList
       expect(sliderRoot).to.satisfy((node: HTMLElement) => {
