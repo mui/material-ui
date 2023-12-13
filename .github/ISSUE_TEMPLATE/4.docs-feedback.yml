@@ -1,6 +1,6 @@
 name: Docs feedback
 description: Improve documentation about MUI Core.
-labels: ['status: needs triage', 'support: docs-feedback']
+labels: ['status: waiting for maintainer', 'support: docs-feedback']
 title: '[docs] '
 body:
   - type: markdown
