@@ -425,9 +425,13 @@ TablePagination.propTypes /* remove-proptypes */ = {
   slotProps: PropTypes.shape({
     actions: PropTypes.shape({
       firstButton: PropTypes.object,
+      firstButtonIcon: PropTypes.object,
       lastButton: PropTypes.object,
+      lastButtonIcon: PropTypes.object,
       nextButton: PropTypes.object,
+      nextButtonIcon: PropTypes.object,
       previousButton: PropTypes.object,
+      previousButtonIcon: PropTypes.object,
     }),
     select: PropTypes.object,
   }),
@@ -438,10 +442,14 @@ TablePagination.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     actions: PropTypes.shape({
-      firstPageIcon: PropTypes.elementType,
-      lastPageIcon: PropTypes.elementType,
-      nextPageIcon: PropTypes.elementType,
-      previousPageIcon: PropTypes.elementType,
+      firstButton: PropTypes.elementType,
+      firstButtonIcon: PropTypes.elementType,
+      lastButton: PropTypes.elementType,
+      lastButtonIcon: PropTypes.elementType,
+      nextButton: PropTypes.elementType,
+      nextButtonIcon: PropTypes.elementType,
+      previousButton: PropTypes.elementType,
+      previousButtonIcon: PropTypes.elementType,
     }),
   }),
   /**
