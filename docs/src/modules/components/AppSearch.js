@@ -17,6 +17,8 @@ import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookm
 import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
+import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
+import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -99,6 +101,7 @@ const Shortcut = styled('div')(({ theme }) => {
 });
 
 function NewStartScreen() {
+  const t = useTranslate();
   const startScreenOptions = [
     {
       category: {
@@ -147,6 +150,11 @@ function NewStartScreen() {
           href: '/base-ui/getting-started/customization/',
           icon: <DesignServicesRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
+        {
+          name: 'Usage',
+          href: '/base-ui/getting-started/usage/',
+          icon: <DriveFileRenameOutlineRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
       ],
     },
     {
@@ -185,6 +193,11 @@ function NewStartScreen() {
           name: 'Licensing',
           href: '/x/introduction/licensing/',
           icon: <CopyrightRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'What is new in MUI X',
+          href: '/x/whats-new/',
+          icon: <NewspaperRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],
     },
@@ -236,19 +249,22 @@ function NewStartScreen() {
     },
   ];
   return (
-    <div className="DocSearch-NewStartScreen">
-      {startScreenOptions.map(({ category, items }) => (
-        <div key={category.name} className="DocSearch-NewStartScreenCategory">
-          <div className="DocSearch-NewStartScreenTitle">{category.name}</div>
-          {items.map(({ name, icon, href }) => (
-            <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
-              {icon}
-              {name}
-            </NextLink>
-          ))}
-        </div>
-      ))}
-    </div>
+    <React.Fragment>
+      <p className="DocSearch-NewStartScreenHeader">{t('algoliaSearchHeader')}</p>
+      <div className="DocSearch-NewStartScreen">
+        {startScreenOptions.map(({ category, items }) => (
+          <div key={category.name} className="DocSearch-NewStartScreenCategory">
+            <div className="DocSearch-NewStartScreenTitle">{category.name}</div>
+            {items.map(({ name, icon, href }) => (
+              <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
+                {icon}
+                {name}
+              </NextLink>
+            ))}
+          </div>
+        ))}
+      </div>
+    </React.Fragment>
   );
 }
 
@@ -509,14 +525,20 @@ export default function AppSearch(props) {
               backgroundColor: alpha(theme.palette.grey[700], 0.5),
               backdropFilter: 'blur(2px)',
             },
+            '& .DocSearch-NewStartScreenHeader': {
+              fontSize: theme.typography.pxToRem(16),
+              fontWeight: theme.typography.fontWeightSemiBold,
+              color: theme.palette.text.secondary,
+              paddingLeft: theme.spacing(2),
+            },
             '& .DocSearch-StartScreen': {
               display: 'none',
             },
             '& .DocSearch-NewStartScreen': {
-              display: 'flex',
-              flexDirection: 'column',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
               gap: theme.spacing(2),
-              padding: theme.spacing(2, 0),
+              paddingBottom: theme.spacing(2),
             },
             '& .DocSearch-NewStartScreenCategory': {
               display: 'flex',
@@ -543,7 +565,7 @@ export default function AppSearch(props) {
               alignItems: 'center',
               cursor: 'pointer',
               width: '100%',
-              height: '48px',
+              height: '42px',
               color: (theme.vars || theme).palette.primary[600],
               fontSize: theme.typography.pxToRem(14),
               fontWeight: theme.typography.fontWeightMedium,

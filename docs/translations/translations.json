@@ -63,6 +63,7 @@
   "albumTitle": "Album",
   "searchButton": "Search…",
   "algoliaSearch": "What are you looking for?",
+  "algoliaSearchHeader": "Quick links",
   "appFrame": {
     "changeLanguage": "Change language",
     "github": "GitHub repository",
