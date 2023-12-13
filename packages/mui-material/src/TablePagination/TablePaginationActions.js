@@ -60,6 +60,15 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
   const NextButtonSlot = theme.direction === 'rtl' ? PreviousButton : NextButton;
   const LastButtonSlot = theme.direction === 'rtl' ? FirstButton : LastButton;
 
+  const firstButtonSlotProps =
+    theme.direction === 'rtl' ? slotProps.lastButton : slotProps.firstButton;
+  const previousButtonSlotProps =
+    theme.direction === 'rtl' ? slotProps.nextButton : slotProps.previousButton;
+  const nextButtonSlotProps =
+    theme.direction === 'rtl' ? slotProps.previousButton : slotProps.nextButton;
+  const lastButtonSlotProps =
+    theme.direction === 'rtl' ? slotProps.firstButton : slotProps.lastButton;
+
   return (
     <div ref={ref} {...other}>
       {showFirstButton && (
@@ -68,7 +77,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           disabled={disabled || page === 0}
           aria-label={getItemAriaLabel('first', page)}
           title={getItemAriaLabel('first', page)}
-          {...slotProps.firstButton}
+          {...firstButtonSlotProps}
         >
           {theme.direction === 'rtl' ? (
             <LastButtonIcon {...slotProps.lastButtonIcon} />
@@ -83,7 +92,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         color="inherit"
         aria-label={getItemAriaLabel('previous', page)}
         title={getItemAriaLabel('previous', page)}
-        {...(slotProps.previousButton ?? backIconButtonProps)}
+        {...(previousButtonSlotProps ?? backIconButtonProps)}
       >
         {theme.direction === 'rtl' ? (
           <NextButtonIcon {...slotProps.nextButtonIcon} />
@@ -97,7 +106,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         color="inherit"
         aria-label={getItemAriaLabel('next', page)}
         title={getItemAriaLabel('next', page)}
-        {...(slotProps.nextButton ?? nextIconButtonProps)}
+        {...(nextButtonSlotProps ?? nextIconButtonProps)}
       >
         {theme.direction === 'rtl' ? (
           <PreviousButtonIcon {...slotProps.previousButtonIcon} />
@@ -111,7 +120,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           disabled={disabled || page >= Math.ceil(count / rowsPerPage) - 1}
           aria-label={getItemAriaLabel('last', page)}
           title={getItemAriaLabel('last', page)}
-          {...slotProps.lastButton}
+          {...lastButtonSlotProps}
         >
           {theme.direction === 'rtl' ? (
             <FirstButtonIcon {...slotProps.firstButtonIcon} />
