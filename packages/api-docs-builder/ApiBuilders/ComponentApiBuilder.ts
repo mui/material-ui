@@ -804,11 +804,9 @@ export default async function generateComponentApi(
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);
 
-  const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
-  // const normalizedFilename = reactApi.filename.replace(/\\/g, '/');
-
   if (!skipApiGeneration) {
-    const { skipAnnotateComponentDefinition, translationPagesDirectory } = projectSettings;
+    const { skipAnnotateComponentDefinition, translationPagesDirectory, generateOnlyJsonFile } =
+      projectSettings;
 
     generateApiTranslations(
       path.join(process.cwd(), projectSettings.translationPagesDirectory),
@@ -816,8 +814,6 @@ export default async function generateComponentApi(
       projectSettings.translationLanguages,
     );
 
-    // Once we have the tabs API in all projects, we can make this default
-    const generateOnlyJsonFile = normalizedApiPathname.startsWith('/base');
     generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi, generateOnlyJsonFile);
 
     if (

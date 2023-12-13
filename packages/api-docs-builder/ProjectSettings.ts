@@ -49,4 +49,10 @@ export interface ProjectSettings {
    * Settings to configure props definition tests.
    */
   propsSettings?: CreateDescribeablePropSettings;
+  /**
+   * If `true`, the script do not generat js page file
+   * Once we have the tabs API in all projects, we can make this default true
+   * @default false
+   */
+  generateOnlyJsonFile?: boolean;
 }
