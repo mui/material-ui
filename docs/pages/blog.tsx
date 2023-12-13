@@ -459,8 +459,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                   GitHub
                 </Link>
                 <Link href="https://twitter.com/MUI_hq" target="_blank" fontSize={14}>
-                  <XIcon fontSize="small" />
-                  X
+                  <XIcon fontSize="small" />X
                 </Link>
                 <Link href="https://mui.com/r/discord/" target="_blank" fontSize={14}>
                   <DiscordIcon fontSize="small" />
