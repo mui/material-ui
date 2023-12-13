@@ -51,7 +51,7 @@ export interface UseAutocompleteProps<
    */
   unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement>) => boolean;
   /**
-   * If `true`, the portion of the selected suggestion that has not been typed by the user,
+   * If `true`, the portion of the selected suggestion that the user hasn't typed,
    * known as the completion string, appears inline after the input cursor in the textbox.
    * The inline completion string is visually highlighted and has a selected state.
    * @default false
@@ -67,7 +67,7 @@ export interface UseAutocompleteProps<
    * when the Autocomplete loses focus unless the user chooses
    * a different option or changes the character string in the input.
    *
-   * When using `freeSolo` mode, the typed value will be the input value
+   * When using the `freeSolo` mode, the typed value will be the input value
    * if the Autocomplete loses focus without highlighting an option.
    * @default false
    */
@@ -85,8 +85,8 @@ export interface UseAutocompleteProps<
   /**
    * If `true`, the input's text is cleared on blur if no value is selected.
    *
-   * Set to `true` if you want to help the user enter a new value.
-   * Set to `false` if you want to help the user resume their search.
+   * Set it to `true` if you want to help the user enter a new value.
+   * Set it to `false` if you want to help the user resume their search.
    * @default !props.freeSolo
    */
   clearOnBlur?: boolean;

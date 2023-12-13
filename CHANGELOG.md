@@ -1,5 +1,63 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.15.0
+
+<!-- generated comparing v5.14.20..master -->
+
+_Dec 11, 2023_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added [a new package for a better Material UI integration with Next.js](https://mui.com/material-ui/guides/nextjs) (#39947) @siriwatknp
+
+### `@mui/material@5.15.0`
+
+- &#8203;<!-- 12 -->Revert "[Select][material-ui] Add name to hidden input element" (#40174) @mj12albert
+- &#8203;<!-- 02 -->[material-ui] Refactor ComponentsVariants type into a generic (#39623) @blakenetz
+
+### `@mui/material-nextjs@5.15.0`
+
+- &#8203;<!-- 01 -->[material-ui] Add new Next.js integration package (#39947) @siriwatknp
+
+### `@mui/material-next@6.0.0-alpha.113`
+
+- &#8203;<!-- 11 -->[Badge][material-next] Apply new OwnerState type to Badge (#40119) @lhilgert9
+- &#8203;<!-- 06 -->[material-next][ButtonGroup] Change `ButtonGroup` files to ts (#39794) @lhilgert9
+
+### `@mui/icons-material@5.15.0`
+
+- &#8203;<!-- 05 -->[icons] Add X logo (#38811) @abreel
+
+### `@mui/base@5.0.0-beta.27`
+
+- &#8203;<!-- 10 -->[base-ui] useControllableReducer warns when controlled props become uncontrolled (and vice versa) (#39096) @mj12albert
+
+### `@mui/joy@5.0.0-beta.18`
+
+- &#8203;<!-- 04 -->[joy-ui][Radio][Input] Fix inheritance of disabled prop (#39934) @sai6855
+
+### `@mui/lab@5.0.0-alpha.156`
+
+- &#8203;<!-- 03 -->[lab][LoadingButton] LoadingButton now inherits props from ButtonGroup (#39679) @lhilgert9
+
+### Docs
+
+- &#8203;<!-- 09 -->[docs] Fix reference to non-existent checkmark in supported-components.md (#40056) @mbrookes
+- &#8203;<!-- 09 -->[docs][base-ui] Add copy button & primary color picker to the component gallery page (#39884) @mnajdova
+- &#8203;<!-- 08 -->[docs-infra] Update CodeSandbox links (#39992) @anle9650
+- &#8203;<!-- 04 -->[material-ui][docs] Fix wrong root element for emotion styles in shadow DOM (#35326) @EloB
+- &#8203;<!-- 03 -->[material-ui][docs] Move the responsive font charts from recharts to MUI X (#40097) @alexfauquette
+- &#8203;<!-- 02 -->[joy-ui][templates] Remove outdated code (#40095) @zanivan
+- &#8203;<!-- 05 -->[material-ui][docs][Popper] Update Positioned Popper demo styles (#40170) @sai6855
+
+### Core
+
+- &#8203;<!-- 08 -->[blog] Add a Phuket retreat blog post (#40055) @mikailaread
+- &#8203;<!-- 07 -->[blog] Adjust the latest MUI X blog post (#40046) @danilo-leal
+- &#8203;<!-- 05 -->[core] Migrate from tslint to eslint (#40020) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @abreel, @alexfauquette, @anle9650, @blakenetz, @danilo-leal, @EloB, @lhilgert9, @mbrookes, @mikailaread, @mj12albert, @mnajdova, @sai6855, @siriwatknp, @zanivan, @ZeeshanTamboli
+
 ## 5.14.20
 
 <!-- generated comparing v5.14.19..master -->
@@ -11056,7 +11114,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   <Typography variant="poster">poster</Typography>;
   ```
 
-  [A full demo](https://codesandbox.io/s/fontsizetheme-material-demo-forked-l9u05?file=/demo.tsx:725-773)
+  [A full demo](https://codesandbox.io/p/sandbox/fontsizetheme-material-demo-forked-l9u05?file=/demo.tsx:725-773)
 
 - 📚 Add a shortcut to open the Algolia search (#23959) @hmaddisb.
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -12250,7 +12308,7 @@ Here are some highlights ✨:
 
   You can find a [new version](https://mui.com/components/slider-styled/) of the slider in the lab powered by [emotion](https://emotion.sh/).
 
-  In the event that you are already using styled-components in your application, you can swap emotion for styled-components 💅. Check [this CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) for a demo. It relies on aliases to prevent any bundle size overhead.
+  In the event that you are already using styled-components in your application, you can swap emotion for styled-components 💅. Check [this CodeSandbox](https://codesandbox.io/p/sandbox/sliderstyled-with-styled-components-forked-olc27?file=/package.json) for a demo. It relies on aliases to prevent any bundle size overhead.
 
   The new styling solution saves 2kB gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using emotion or styled-components.
 
