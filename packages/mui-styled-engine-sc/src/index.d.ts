@@ -257,17 +257,11 @@ export interface ThemedStyledFunctionBase<
 > {
   (first: TemplateStringsArray): StyledComponent<C, T, O, A>;
   (
-    first:
-      | TemplateStringsArray
-      | CSSObject
-      | InterpolationFunction<ThemedStyledProps<O, T>>,
+    first: TemplateStringsArray | CSSObject | InterpolationFunction<ThemedStyledProps<O, T>>,
     ...rest: Array<Interpolation<ThemedStyledProps<O, T>>>
   ): StyledComponent<C, T, O, A>;
   <U extends object>(
-    first:
-      | TemplateStringsArray
-      | CSSObject
-      | InterpolationFunction<ThemedStyledProps<O & U, T>>,
+    first: TemplateStringsArray | CSSObject | InterpolationFunction<ThemedStyledProps<O & U, T>>,
     ...rest: Array<Interpolation<ThemedStyledProps<O & U, T>>>
   ): StyledComponent<C, T, O & U, A>;
 }
