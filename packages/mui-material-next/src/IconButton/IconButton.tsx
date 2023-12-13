@@ -47,76 +47,82 @@ export const IconButtonRoot = styled(ButtonBase, {
       styles[`size${capitalize(ownerState.size)}`],
     ];
   },
-})<{ ownerState: IconButtonOwnerState }>(({ theme, ownerState }) => ({
-        textAlign: 'center',
-        flex: '0 0 auto',
-        fontSize: theme.typography.pxToRem(24),
-        padding: 8,
-        borderRadius: '50%',
-        overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
-        color: (theme.vars || theme).palette.action.active,
-        transition: theme.transitions.create('background-color', {
-        duration: theme.transitions.duration.shortest,
-        }),
-        ...(!ownerState.disableRipple && {
-        '&:hover': {
-            backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-            : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-            // Reset on touch devices, it doesn't add specificity
-            '@media (hover: none)': {
-            backgroundColor: 'transparent',
-            },
-        },
-        }),
-        ...(ownerState.edge === 'start' && {
-        marginLeft: ownerState.size === 'small' ? -3 : -12,
-        }),
-        ...(ownerState.edge === 'end' && {
-        marginRight: ownerState.size === 'small' ? -3 : -12,
-        }),
+})<{ ownerState: IconButtonOwnerState }>(
+  ({ theme, ownerState }) => ({
+    textAlign: 'center',
+    flex: '0 0 auto',
+    fontSize: theme.typography.pxToRem(24),
+    padding: 8,
+    borderRadius: '50%',
+    overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
+    color: (theme.vars || theme).palette.action.active,
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.shortest,
     }),
-    ({ theme, ownerState }) => {
-        const tokens = theme.vars || theme;
-        const palette = tokens.palette?.[
-            ownerState.color ? ((ownerState.color === 'inherit' || ownerState.color === 'default') ? 'primary' : ownerState.color) : 'primary'
-        ];
+    ...(!ownerState.disableRipple && {
+      '&:hover': {
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
+          : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+    }),
+    ...(ownerState.edge === 'start' && {
+      marginLeft: ownerState.size === 'small' ? -3 : -12,
+    }),
+    ...(ownerState.edge === 'end' && {
+      marginRight: ownerState.size === 'small' ? -3 : -12,
+    }),
+  }),
+  ({ theme, ownerState }) => {
+    const tokens = theme.vars || theme;
+    const palette =
+      tokens.palette?.[
+        ownerState.color
+          ? ownerState.color === 'inherit' || ownerState.color === 'default'
+            ? 'primary'
+            : ownerState.color
+          : 'primary'
+      ];
 
-        return {
-            ...(ownerState.color === 'inherit' && {
-            color: 'inherit',
-            }),
-            ...(ownerState.color !== 'inherit' &&
-            ownerState.color !== 'default' && {
-                color: palette?.main,
-                ...(!ownerState.disableRipple && {
-                '&:hover': {
-                    ...(palette && {
-                    backgroundColor: theme.vars
-                        ? `rgba(${palette.mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                        : alpha(palette.main, theme.palette.action.hoverOpacity),
-                    }),
-                    // Reset on touch devices, it doesn't add specificity
-                    '@media (hover: none)': {
-                    backgroundColor: 'transparent',
-                    },
-                },
-                }),
-            }),
-            ...(ownerState.size === 'small' && {
-            padding: 5,
-            fontSize: theme.typography.pxToRem(18),
-            }),
-            ...(ownerState.size === 'large' && {
-            padding: 12,
-            fontSize: theme.typography.pxToRem(28),
-            }),
-            [`&.${iconButtonClasses.disabled}`]: {
-            backgroundColor: 'transparent',
-            color: (theme.vars || theme).palette.action.disabled,
+    return {
+      ...(ownerState.color === 'inherit' && {
+        color: 'inherit',
+      }),
+      ...(ownerState.color !== 'inherit' &&
+        ownerState.color !== 'default' && {
+          color: palette?.main,
+          ...(!ownerState.disableRipple && {
+            '&:hover': {
+              ...(palette && {
+                backgroundColor: theme.vars
+                  ? `rgba(${palette.mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+                  : alpha(palette.main, theme.palette.action.hoverOpacity),
+              }),
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                backgroundColor: 'transparent',
+              },
             },
-        };
-    },
+          }),
+        }),
+      ...(ownerState.size === 'small' && {
+        padding: 5,
+        fontSize: theme.typography.pxToRem(18),
+      }),
+      ...(ownerState.size === 'large' && {
+        padding: 12,
+        fontSize: theme.typography.pxToRem(28),
+      }),
+      [`&.${iconButtonClasses.disabled}`]: {
+        backgroundColor: 'transparent',
+        color: (theme.vars || theme).palette.action.disabled,
+      },
+    };
+  },
 );
 
 /**
@@ -124,23 +130,16 @@ export const IconButtonRoot = styled(ButtonBase, {
  * regarding the available icon options.
  */
 const IconButton = React.forwardRef(function IconButton<
-    BaseComponentType extends React.ElementType = IconButtonTypeMap['defaultComponent'],
-  >(inProps: IconButtonProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
-    const contextProps = React.useContext(ButtonGroupContext);
-    const buttonGroupButtonContextPositionClassName = React.useContext(ButtonGroupButtonContext);
-    const resolvedProps = resolveProps(
-      (contextProps ?? {}) as IconButtonProps<BaseComponentType>,
-      inProps,
-    );
+  BaseComponentType extends React.ElementType = IconButtonTypeMap['defaultComponent'],
+>(inProps: IconButtonProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
+  const contextProps = React.useContext(ButtonGroupContext);
+  const buttonGroupButtonContextPositionClassName = React.useContext(ButtonGroupButtonContext);
+  const resolvedProps = resolveProps(
+    (contextProps ?? {}) as IconButtonProps<BaseComponentType>,
+    inProps,
+  );
   const props = useThemeProps({ props: resolvedProps, name: 'MuiIconButton' });
-  const {
-    edge = false,
-    children,
-    className,
-    color = 'default',
-    size = 'medium',
-    ...other
-  } = props;
+  const { edge = false, children, className, color = 'default', size = 'medium', ...other } = props;
 
   const ownerState = {
     ...props,
@@ -165,11 +164,7 @@ const IconButton = React.forwardRef(function IconButton<
     className: clsx(contextProps?.className, positionClassName),
   });
 
-  return (
-    <IconButtonRoot {...rootProps}>
-      {children}
-    </IconButtonRoot>
-  );
+  return <IconButtonRoot {...rootProps}>{children}</IconButtonRoot>;
 });
 
 IconButton.propTypes /* remove-proptypes */ = {
