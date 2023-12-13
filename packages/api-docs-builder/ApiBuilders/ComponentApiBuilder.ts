@@ -12,7 +12,7 @@ import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-doc
 import { renderMarkdown } from '@mui/markdown';
 import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
 import { ProjectSettings } from '../ProjectSettings';
-import { ComponentInfo, writePrettifiedFile } from '../buildApiUtils';
+import { ComponentInfo, toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
@@ -340,15 +340,6 @@ function extractClassConditions(descriptions: any) {
     }
   });
   return classConditions;
-}
-
-/**
- * @param filepath - absolute path
- * @example toGitHubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
- * @example toGitHubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
- */
-export function toGitHubPath(filepath: string): string {
-  return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }
 
 const generateApiTranslations = (
