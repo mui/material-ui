@@ -64,8 +64,6 @@ In a nutshell, calling `useTransitionTrigger` returns a context (among other pro
 
 {{"demo": "TransitionHooks.js"}}
 
-
-
 ## Using third-party libraries
 
 It's easy to create adapters for 3rd party animation libraries.
