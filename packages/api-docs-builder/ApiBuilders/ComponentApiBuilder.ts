@@ -394,7 +394,7 @@ const generateApiTranslations = (
 
 const generateApiPage = (
   apiPagesDirectory: string,
-  translationPagesDirectory: string,
+  importTranslationPagesDirectory: string,
   reactApi: ReactApi,
   onlyJsonFile: boolean = false,
 ) => {
@@ -458,7 +458,7 @@ const generateApiPage = (
 
   Page.getInitialProps = () => {
     const req = require.context(
-      '${translationPagesDirectory}/${kebabCase(reactApi.name)}',
+      '${importTranslationPagesDirectory}/${kebabCase(reactApi.name)}',
       false,
       /${kebabCase(reactApi.name)}.*.json$/,
     );
@@ -805,16 +805,25 @@ export default async function generateComponentApi(
   console.log('Built API docs for', reactApi.apiPathname);
 
   if (!skipApiGeneration) {
-    const { skipAnnotateComponentDefinition, translationPagesDirectory, generateOnlyJsonFile } =
-      projectSettings;
+    const {
+      skipAnnotateComponentDefinition,
+      translationPagesDirectory,
+      importTranslationPagesDirectory,
+      generateOnlyJsonFile,
+    } = projectSettings;
 
     generateApiTranslations(
-      path.join(process.cwd(), projectSettings.translationPagesDirectory),
+      path.join(process.cwd(), translationPagesDirectory),
       reactApi,
       projectSettings.translationLanguages,
     );
 
-    generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi, generateOnlyJsonFile);
+    generateApiPage(
+      apiPagesDirectory,
+      importTranslationPagesDirectory ?? translationPagesDirectory,
+      reactApi,
+      generateOnlyJsonFile,
+    );
 
     if (
       typeof skipAnnotateComponentDefinition === 'function'

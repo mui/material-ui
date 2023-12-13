@@ -46,6 +46,11 @@ export interface ProjectSettings {
    */
   translationPagesDirectory: string;
   /**
+   * The path to import the translation directory.
+   * @default the `translationPagesDirectory` alue
+   */
+  importTranslationPagesDirectory?: string;
+  /**
    * Settings to configure props definition tests.
    */
   propsSettings?: CreateDescribeablePropSettings;
