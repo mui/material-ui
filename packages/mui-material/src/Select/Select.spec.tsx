@@ -44,7 +44,7 @@ function genericValueTest() {
   <Select notched />;
 
   // disabledUnderline prop should be available (inherited from InputProps) and NOT throw typescript error
-  <Select variant="standard" disableUnderline />;
+  <Select disableUnderline />;
 
   // Tests presence of `root` class in SelectClasses
   const theme = createTheme({

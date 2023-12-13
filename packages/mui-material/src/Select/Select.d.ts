@@ -10,7 +10,8 @@ import { FilledInputProps } from '../FilledInput';
 
 export { SelectChangeEvent };
 
-export interface BaseSelectProps<Value> {
+export interface BaseSelectProps<Value = unknown>
+  extends StandardProps<InputProps, 'value' | 'onChange'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -150,7 +151,7 @@ export interface BaseSelectProps<Value> {
   variant?: 'filled' | 'standard' | 'outlined';
 }
 
-export interface FilledSelectProps extends StandardProps<FilledInputProps, 'value' | 'onChange'> {
+export interface FilledSelectProps extends Omit<FilledInputProps, 'value' | 'onChange'> {
   /**
    * The variant to use.
    * @default 'outlined'
@@ -158,7 +159,7 @@ export interface FilledSelectProps extends StandardProps<FilledInputProps, 'valu
   variant: 'filled';
 }
 
-export interface StandardSelectProps extends StandardProps<InputProps, 'value' | 'onChange'> {
+export interface StandardSelectProps extends Omit<InputProps, 'value' | 'onChange'> {
   /**
    * The variant to use.
    * @default 'outlined'
@@ -166,8 +167,7 @@ export interface StandardSelectProps extends StandardProps<InputProps, 'value' |
   variant: 'standard';
 }
 
-export interface OutlinedSelectProps
-  extends StandardProps<OutlinedInputProps, 'value' | 'onChange'> {
+export interface OutlinedSelectProps extends Omit<OutlinedInputProps, 'value' | 'onChange'> {
   /**
    * The variant to use.
    * @default 'outlined'
@@ -179,7 +179,7 @@ export type SelectVariants = 'outlined' | 'standard' | 'filled';
 
 export type SelectProps<
   Value = unknown,
-  Variant extends SelectVariants = 'outlined',
+  Variant extends SelectVariants = SelectVariants,
 > = BaseSelectProps<Value> &
   (Variant extends 'filled'
     ? FilledSelectProps
