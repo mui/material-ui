@@ -1,8 +1,6 @@
 import * as React from 'react';
 import Stack from '@mui/system/Stack';
-import Box from '@mui/system/Box';
 import styled from '@mui/system/styled';
-import SettingsIcon from '@mui/icons-material/Settings';
 import { Transition } from 'react-transition-group';
 import { Badge } from '@mui/base/Badge';
 import { Button } from '@mui/base/Button';
@@ -19,6 +17,7 @@ import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { Option } from '@mui/base/Option';
 import { Slider } from '@mui/base/Slider';
 import { Snackbar } from '@mui/base/Snackbar';
+import FormatColorFillRoundedIcon from '@mui/icons-material/FormatColorFillRounded';
 // TODO: re-export from the @mui/base/Snackbar, if developer only uses the component
 // it is not intuitive to import types from a different module
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
@@ -235,7 +234,25 @@ export default function ComponentsGallery() {
   return (
     <Stack className="GalleryContainer" gap={2} sx={{ padding: 2 }}>
       {/* Copy theme button */}
-      <Box sx={{ position: 'absolute', right: '10px' }}>
+      <Stack direction="row" spacing={1} sx={{ position: 'absolute', right: '10px' }}>
+        <SettingsButton
+          aria-describedby={settingsId}
+          className="GalleryButtonOutlined"
+          onClick={settingsButtonHandleClick}
+        >
+          <FormatColorFillRoundedIcon />
+        </SettingsButton>
+        <Popper id={settingsId} open={settingsOpen} anchorEl={settingsAnchor}>
+          <SettingsPopup className="GalleryPopup">
+            <h3>Primary color</h3>
+            <ColorPickerSlider
+              defaultValue={189}
+              min={0}
+              max={360}
+              onChange={colorPickerSliderChangeHandler}
+            />
+          </SettingsPopup>
+        </Popper>
         <CopyButton className="GalleryButton" style={{ float: 'right' }} onClick={copyTheme}>
           Export theme
         </CopyButton>
@@ -284,29 +301,11 @@ export default function ComponentsGallery() {
           </Transition>
         </Snackbar>
         <br />
-        <SettingsButton
-          aria-describedby={settingsId}
-          className="GalleryButton"
-          onClick={settingsButtonHandleClick}
-        >
-          <SettingsIcon />
-        </SettingsButton>
-        <Popper id={settingsId} open={settingsOpen} anchorEl={settingsAnchor}>
-          <SettingsPopup className="GalleryPopup">
-            <h3>Primary color</h3>
-            <ColorPickerSlider
-              defaultValue={189}
-              min={0}
-              max={360}
-              onChange={colorPickerSliderChangeHandler}
-            />
-          </SettingsPopup>
-        </Popper>
-      </Box>
+      </Stack>
       <div>
         <Badge
           slotProps={{
-            root: { className: 'GalleryBadge' },
+            root: { className: 'GalleryBadge-root' },
             badge: { className: 'GalleryBadge-badge' },
           }}
           badgeContent={5}
@@ -315,87 +314,88 @@ export default function ComponentsGallery() {
         </Badge>
       </div>
       <Stack direction="row" spacing={1}>
-        <Button className="GalleryButton">Solid</Button>
-        <Button className="GalleryButtonSoft">Soft</Button>
-        <Button className="GalleryButtonPlain">Plain</Button>
+        <Button className="GalleryButton">Solid button</Button>
+        <Button className="GalleryButtonOutlined">Outlined button</Button>
+        <Button className="GalleryButtonPlain">Plain button</Button>
         <Button className="GalleryButton" disabled>
-          Disabled
+          Disabled button
         </Button>
       </Stack>
-      <div>
-        <Input placeholder="Write your name here" className="GalleryInput" />
-      </div>
-      <div>
-        <Dropdown>
-          <MenuButton className="GalleryButton">My account</MenuButton>
-          <Menu
-            className="GalleryMenu"
-            slotProps={{
-              listbox: { className: 'GalleryMenu-listbox' },
-            }}
+      <Input placeholder="Write something here" className="GalleryInput" />
+      <NumberInput
+        slotProps={{
+          root: { className: 'GalleryNumberInput' },
+          input: { className: 'input' },
+          decrementButton: { className: 'btn decrement', children: '▾' },
+          incrementButton: { className: 'btn increment', children: '▴' },
+        }}
+        aria-label="Demo number input"
+        placeholder="Type a number…"
+      />
+      <Select
+        className="GallerySelect"
+        slots={{
+          root: SelectButton,
+        }}
+        slotProps={{
+          listbox: { className: 'GallerySelect-listbox' },
+          popper: { className: 'GallerySelect-popper' },
+        }}
+        defaultValue={10}
+      >
+        <Option className="GallerySelect-option" value={10}>
+          Documentation
+        </Option>
+        <Option className="GallerySelect-option" value={20}>
+          Components
+        </Option>
+        <Option className="GallerySelect-option" value={30}>
+          Features
+        </Option>
+      </Select>
+      <Stack direction="row" spacing={1}>
+        <div>
+          <Dropdown>
+            <MenuButton className="GalleryButtonOutlined">Open menu</MenuButton>
+            <Menu
+              className="GalleryMenu"
+              slotProps={{
+                listbox: { className: 'GalleryMenu-listbox' },
+              }}
+            >
+              <MenuItem className="GalleryMenu-item">Profile</MenuItem>
+              <MenuItem className="GalleryMenu-item">Language settings</MenuItem>
+              <MenuItem className="GalleryMenu-item">Log out</MenuItem>
+            </Menu>
+          </Dropdown>
+        </div>
+        <div>
+          <button
+            type="button"
+            aria-describedby={id}
+            className="GalleryButtonOutlined"
+            onClick={handleClick}
           >
-            <MenuItem className="GalleryMenu-item">Profile</MenuItem>
-            <MenuItem className="GalleryMenu-item">Language settings</MenuItem>
-            <MenuItem className="GalleryMenu-item">Log out</MenuItem>
-          </Menu>
-        </Dropdown>
-      </div>
-      <div style={{ maxWidth: '350px' }}>
-        <NumberInput
-          slotProps={{
-            root: { className: 'GalleryNumberInput' },
-            input: { className: 'input' },
-            decrementButton: { className: 'btn decrement', children: '▾' },
-            incrementButton: { className: 'btn increment', children: '▴' },
-          }}
-          aria-label="Demo number input"
-          placeholder="Type a number…"
-        />
-      </div>
-      <div>
-        <button type="button" aria-describedby={id} className="GalleryButton" onClick={handleClick}>
-          Toggle Popper
-        </button>
-        <Popper id={id} open={open} anchorEl={anchorEl}>
-          <div className="GalleryPopper">The content of the Popper.</div>
-        </Popper>
-      </div>
-      <div>
-        <button
-          type="button"
-          aria-describedby={id}
-          className="GalleryButton"
-          onClick={popupButtonHandleClick}
-        >
-          Toggle Popup
-        </button>
-        <Popup id={popupId} open={popupOpen} anchor={popupAnchor}>
-          <div className="GalleryPopup">The content of the Popup.</div>
-        </Popup>
-      </div>
-      <div>
-        <Select
-          className="GallerySelect"
-          slots={{
-            root: SelectButton,
-          }}
-          slotProps={{
-            listbox: { className: 'GallerySelect-listbox' },
-            popper: { className: 'GallerySelect-popper' },
-          }}
-          defaultValue={10}
-        >
-          <Option className="GallerySelect-option" value={10}>
-            Documentation
-          </Option>
-          <Option className="GallerySelect-option" value={20}>
-            Components
-          </Option>
-          <Option className="GallerySelect-option" value={30}>
-            Features
-          </Option>
-        </Select>
-      </div>
+            Open Popper
+          </button>
+          <Popper id={id} open={open} anchorEl={anchorEl}>
+            <div className="GalleryPopper">The content of the Popper.</div>
+          </Popper>
+        </div>
+        <div>
+          <button
+            type="button"
+            aria-describedby={id}
+            className="GalleryButtonOutlined"
+            onClick={popupButtonHandleClick}
+          >
+            Open Popup
+          </button>
+          <Popup id={popupId} open={popupOpen} anchor={popupAnchor}>
+            <div className="GalleryPopup">The content of the Popup.</div>
+          </Popup>
+        </div>
+      </Stack>
       <div style={{ width: 320 }}>
         <Slider
           slotProps={{
@@ -418,7 +418,7 @@ export default function ComponentsGallery() {
         />
       </div>
       <div>
-        <button className="GalleryButton" type="button" onClick={handleSnackbarButtonClick}>
+        <button className="GalleryButtonOutlined" type="button" onClick={handleSnackbarButtonClick}>
           Open snackbar
         </button>
         <Snackbar
