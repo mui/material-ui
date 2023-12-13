@@ -31,11 +31,11 @@
     "dom-accessibility-api": "^0.6.3",
     "enzyme": "^3.11.0",
     "format-util": "^1.0.5",
-    "fs-extra": "^11.1.1",
+    "fs-extra": "^11.2.0",
     "jsdom": "^22.1.0",
     "lodash": "^4.17.21",
     "mocha": "^10.2.0",
-    "playwright": "^1.40.0",
+    "playwright": "^1.40.1",
     "prop-types": "^15.8.1",
     "react-test-renderer": "^18.2.0",
     "sinon": "^15.2.0"
@@ -43,14 +43,14 @@
   "devDependencies": {
     "@types/chai": "^4.3.11",
     "@types/chai-dom": "^1.11.3",
-    "@types/enzyme": "^3.10.16",
+    "@types/enzyme": "^3.10.18",
     "@types/format-util": "^1.0.4",
     "@types/prop-types": "^15.7.11",
-    "@types/react": "^18.2.38",
+    "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
     "@types/react-test-renderer": "^18.0.7",
     "@types/sinon": "^10.0.20",
-    "typescript": "^5.1.6"
+    "typescript": "^5.3.2"
   },
   "peerDependencies": {
     "react": "^18.2.0",

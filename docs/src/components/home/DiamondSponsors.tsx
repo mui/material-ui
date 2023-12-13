@@ -59,17 +59,13 @@ export default function DiamondSponsors() {
           <Grid item xs={12} sm={6} md={4}>
             <Paper
               variant="outlined"
-              sx={(theme) => ({
+              sx={{
                 p: 2,
                 display: 'flex',
                 alignItems: 'center',
                 height: '100%',
                 borderStyle: 'dashed',
-                borderColor: 'grey.300',
-                ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.400',
-                }),
-              })}
+              }}
             >
               <IconButton
                 aria-label="Become MUI sponsor"
@@ -83,7 +79,7 @@ export default function DiamondSponsors() {
                   border: '1px solid',
                   borderColor: 'grey.300',
                   ...theme.applyDarkStyles({
-                    borderColor: 'primaryDark.400',
+                    borderColor: 'primaryDark.600',
                   }),
                 })}
               >

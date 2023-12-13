@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps, PartiallyRequired } from '@mui/types';
 import { SlotComponentProps } from '@mui/base';
 import { Theme } from '../styles';
 import { BadgeClasses } from './badgeClasses';
@@ -126,10 +126,8 @@ export type BadgeProps<
   AdditionalProps = {},
 > = OverrideProps<BadgeTypeMap<RootComponent, AdditionalProps>, RootComponent>;
 
-export interface BadgeOwnerState extends BadgeProps {
-  size: NonNullable<BadgeProps['size']>;
-  variant: NonNullable<BadgeProps['variant']>;
-  anchorOrigin: NonNullable<BadgeProps['anchorOrigin']>;
-  overlap: NonNullable<BadgeProps['overlap']>;
-  color: NonNullable<BadgeProps['color']>;
-}
+export interface BadgeOwnerState
+  extends PartiallyRequired<
+    BadgeProps,
+    'anchorOrigin' | 'color' | 'overlap' | 'size' | 'variant'
+  > {}
