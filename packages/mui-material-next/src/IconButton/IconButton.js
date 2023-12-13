@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { useThemeProps, alpha } from '@mui/system';
 import ButtonBase from '../ButtonBase';
 import { styled } from '../styles';
-import { useThemeProps, alpha } from '@mui/system';
-import iconButtonClasses from '../IconButton/iconButtonClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import { getIconButtonUtilityClass } from './iconButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -100,7 +100,7 @@ const IconButtonRoot = styled(ButtonBase, {
         padding: 12,
         fontSize: theme.typography.pxToRem(28),
       }),
-      [`&.${iconButtonClasses.disabled}`]: {
+      [`&.${buttonBaseClasses.disabled}`]: {
         backgroundColor: 'transparent',
         color: (theme.vars || theme).palette.action.disabled,
       },
