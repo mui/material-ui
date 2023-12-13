@@ -61,7 +61,7 @@ export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp
 
   const buildTypeScriptProject = createTypeScriptProjectBuilder(allTypeScriptProjects);
 
-  let allBuilds: Array<PromiseSettledResult<ComponentReactApi | null>> = [];
+  let allBuilds: Array<PromiseSettledResult<ComponentReactApi | null | never[]>> = [];
   for (let i = 0; i < projectsSettings.length; i += 1) {
     const setting = projectsSettings[i];
     // eslint-disable-next-line no-await-in-loop
@@ -74,7 +74,7 @@ export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp
   if (grep === null) {
     const componentApis = allBuilds
       .filter((build): build is PromiseFulfilledResult<ComponentReactApi> => {
-        return build.status === 'fulfilled' && build.value !== null;
+        return build.status === 'fulfilled' && build.value !== null && !Array.isArray(build.value);
       })
       .map((build) => {
         return build.value;
