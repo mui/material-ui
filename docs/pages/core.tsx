@@ -14,9 +14,9 @@ export default function Core() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="MUI Core: Ready to use components, free forever"
+        title="MUI Core: Ready-to-use foundational React components, free forever."
         description="Get a growing list of React components, ready-to-use, free forever and with accessibility always in mind."
-        card="/static/social-previews/core-preview.jpg"
+        card="/static/social-previews/core-preview.png"
       />
       <AppHeaderBanner />
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />

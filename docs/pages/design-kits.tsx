@@ -19,7 +19,7 @@ export default function DesignKits() {
       <Head
         title="Material UI in your favorite design tool"
         description="Pick your favorite design tool to enjoy and use Material UI components. Boost consistency and facilitate communication when working with developers."
-        card="/static/social-previews/designkits-preview.jpg"
+        card="/static/social-previews/designkits-preview.png"
       />
       <AppHeaderBanner />
       <AppHeader gitHubRepository="https://github.com/mui/mui-design-kits" />
