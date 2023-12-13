@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { Theme } from '@mui/material';
+import { Theme } from '../styles/Theme.types';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase/ButtonBase.types';
 import { IconButtonClasses } from './iconButtonClasses';
 

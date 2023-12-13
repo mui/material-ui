@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
+import { useThemeProps, alpha } from '@mui/system';
+import resolveProps from '@mui/utils/resolveProps';
 import ButtonBase from '../ButtonBase';
 import { styled } from '../styles';
-import { useThemeProps, alpha } from '@mui/system';
-import iconButtonClasses from '../IconButton/iconButtonClasses';
 import { getIconButtonUtilityClass } from './iconButtonClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import { IconButtonOwnerState, IconButtonProps, IconButtonTypeMap } from './IconButton.types';
-import resolveProps from '@mui/utils/resolveProps';
 import { ButtonGroupButtonContext, ButtonGroupContext } from '../ButtonGroup';
 
 const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
@@ -79,13 +79,12 @@ export const IconButtonRoot = styled(ButtonBase, {
   }),
   ({ theme, ownerState }) => {
     const tokens = theme.vars || theme;
+
     const palette =
       tokens.palette?.[
-        ownerState.color
-          ? ownerState.color === 'inherit' || ownerState.color === 'default'
-            ? 'primary'
-            : ownerState.color
-          : 'primary'
+        !ownerState.color || ownerState.color === 'inherit' || ownerState.color === 'default'
+          ? 'primary'
+          : ownerState.color
       ];
 
     return {
@@ -117,7 +116,7 @@ export const IconButtonRoot = styled(ButtonBase, {
         padding: 12,
         fontSize: theme.typography.pxToRem(28),
       }),
-      [`&.${iconButtonClasses.disabled}`]: {
+      [`&.${buttonBaseClasses.disabled}`]: {
         backgroundColor: 'transparent',
         color: (theme.vars || theme).palette.action.disabled,
       },
