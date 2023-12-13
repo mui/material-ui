@@ -108,7 +108,7 @@ export interface CSSObject
     Omit<CSSOthersObject, 'variants'> {}
 
 interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
-  variants?: Array<{ props: Props; variants: CSSObject }>;
+  variants: Array<{ props: Props; variants: CSSObject }>;
 }
 
 export type FalseyValue = undefined | null | false;
@@ -260,15 +260,15 @@ export interface ThemedStyledFunctionBase<
     first:
       | TemplateStringsArray
       | CSSObject
-      | InterpolationFunction<ThemedStyledProps<StyledComponentPropsWithRef<C> & O, T>>,
-    ...rest: Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O, T>>>
+      | InterpolationFunction<ThemedStyledProps<O, T>>,
+    ...rest: Array<Interpolation<ThemedStyledProps<O, T>>>
   ): StyledComponent<C, T, O, A>;
   <U extends object>(
     first:
       | TemplateStringsArray
       | CSSObject
-      | InterpolationFunction<ThemedStyledProps<StyledComponentPropsWithRef<C> & O & U, T>>,
-    ...rest: Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O & U, T>>>
+      | InterpolationFunction<ThemedStyledProps<O & U, T>>,
+    ...rest: Array<Interpolation<ThemedStyledProps<O & U, T>>>
   ): StyledComponent<C, T, O & U, A>;
 }
 
