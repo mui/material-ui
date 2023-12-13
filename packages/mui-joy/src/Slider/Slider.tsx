@@ -147,7 +147,7 @@ const SliderRail = styled('span', {
     position: 'absolute',
     backgroundColor:
       ownerState.track === 'inverted'
-        ? 'var(--Slider-trackBackground)'
+        ? 'var(--Slider-railBackground)'
         : 'var(--Slider-railBackground)',
     border:
       ownerState.track === 'inverted'
@@ -190,7 +190,7 @@ const SliderTrack = styled('span', {
           : 'var(--variant-borderWidth, 0px) solid var(--Slider-trackBorderColor)',
       backgroundColor:
         ownerState.track === 'inverted'
-          ? 'var(--Slider-railBackground)'
+          ? 'var(--Slider-trackBackground)'
           : 'var(--Slider-trackBackground)',
       ...(ownerState.orientation === 'horizontal' && {
         height: 'var(--Slider-trackSize)',
