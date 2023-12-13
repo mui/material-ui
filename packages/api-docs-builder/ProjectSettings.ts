@@ -51,6 +51,10 @@ export interface ProjectSettings {
    */
   importTranslationPagesDirectory?: string;
   /**
+   * Returns an array of import commands used for the API page header.
+   */
+  getComponentImports?: (name: string, filename: string) => string[];
+  /**
    * Settings to configure props definition tests.
    */
   propsSettings?: CreateDescribeablePropSettings;

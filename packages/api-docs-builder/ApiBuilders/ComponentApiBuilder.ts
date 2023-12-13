@@ -638,7 +638,7 @@ const attachPropsTable = (reactApi: ReactApi, settings?: CreateDescribeablePropS
  * @param filename The filename where its defined (to infer the package)
  * @returns an array of import command
  */
-const getComponentImports = (name: string, filename: string) => {
+const defaultGetComponentImports = (name: string, filename: string) => {
   const githubPath = toGitHubPath(filename);
   const rootImportPath = githubPath.replace(
     /\/packages\/mui(?:-(.+?))?\/src\/.*/,
@@ -760,6 +760,8 @@ export default async function generateComponentApi(
   if (annotatedDescriptionMatch !== null) {
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
+
+  const { getComponentImports = defaultGetComponentImports } = projectSettings;
   reactApi.filename = filename;
   reactApi.name = name;
   reactApi.imports = getComponentImports(name, filename);
