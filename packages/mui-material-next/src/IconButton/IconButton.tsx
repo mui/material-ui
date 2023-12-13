@@ -169,7 +169,7 @@ const IconButton = React.forwardRef(function IconButton<
 IconButton.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The icon to display.
@@ -196,10 +196,6 @@ IconButton.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
@@ -218,6 +214,10 @@ IconButton.propTypes /* remove-proptypes */ = {
     ]),
     PropTypes.string,
   ]),
+  /**
+   * @ignore
+   */
+  component: PropTypes.elementType,
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -261,6 +261,6 @@ IconButton.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default IconButton;
