@@ -2,61 +2,6 @@
 import * as React from 'react';
 import { TransitionContextValue } from './TransitionContext';
 
-interface TransitionState {
-  /**
-   * `true`, if the transitioned element has exited completely.
-   */
-  elementExited: boolean;
-  /**
-   * `true`, if the transition is in progress.
-   */
-  inProgress: boolean;
-}
-
-type TransitionAction = 'entering' | 'entered' | 'exiting' | 'exited';
-
-function transitionStateReducer(_: TransitionState, action: TransitionAction): TransitionState {
-  switch (action) {
-    case 'entering':
-      return {
-        elementExited: false,
-        inProgress: true,
-      };
-    case 'entered':
-      return {
-        elementExited: false,
-        inProgress: false,
-      };
-    case 'exiting':
-      return {
-        elementExited: false,
-        inProgress: true,
-      };
-    case 'exited':
-      return {
-        elementExited: true,
-        inProgress: false,
-      };
-    default:
-      throw new Error(`Unhandled action: ${action}`);
-  }
-}
-
-export type UseTransitionTriggerReturnValue = {
-  /**
-   * The value of a `TransitionContext` to be placed around children that will be transitioned.
-   */
-  contextValue: TransitionContextValue;
-  /**
-   * `true`, if the transitioned element has exited completely (or not entered yet).
-   */
-  hasExited: boolean;
-  /**
-   * `true`, if the transition is in progress.
-   */
-  transitionInProgress: boolean;
-};
-
 /**
  * Allows child elements to be transitioned in and out.
  *
@@ -135,4 +80,59 @@ export function useTransitionTrigger(requestEnter: boolean): UseTransitionTrigge
     hasExited: state.elementExited,
     transitionInProgress: state.inProgress,
   };
+}
+
+export type UseTransitionTriggerReturnValue = {
+  /**
+   * The value of a `TransitionContext` to be placed around children that will be transitioned.
+   */
+  contextValue: TransitionContextValue;
+  /**
+   * `true`, if the transitioned element has exited completely (or not entered yet).
+   */
+  hasExited: boolean;
+  /**
+   * `true`, if the transition is in progress.
+   */
+  transitionInProgress: boolean;
+};
+
+function transitionStateReducer(_: TransitionState, action: TransitionAction): TransitionState {
+  switch (action) {
+    case 'entering':
+      return {
+        elementExited: false,
+        inProgress: true,
+      };
+    case 'entered':
+      return {
+        elementExited: false,
+        inProgress: false,
+      };
+    case 'exiting':
+      return {
+        elementExited: false,
+        inProgress: true,
+      };
+    case 'exited':
+      return {
+        elementExited: true,
+        inProgress: false,
+      };
+    default:
+      throw new Error(`Unhandled action: ${action}`);
+  }
+}
+
+type TransitionAction = 'entering' | 'entered' | 'exiting' | 'exited';
+
+interface TransitionState {
+  /**
+   * `true`, if the transitioned element has exited completely.
+   */
+  elementExited: boolean;
+  /**
+   * `true`, if the transition is in progress.
+   */
+  inProgress: boolean;
 }
