@@ -118,7 +118,7 @@ export const IconButtonRoot = styled(ButtonBase, {
       }),
       [`&.${buttonBaseClasses.disabled}`]: {
         backgroundColor: 'transparent',
-        color: (theme.vars || theme).palette.action.disabled,
+        color: tokens.palette.action.disabled,
       },
     };
   },
