@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
-import { useThemeProps, alpha } from '@mui/system';
+import { useThemeProps, alpha, shouldForwardProp } from '@mui/system';
 import resolveProps from '@mui/utils/resolveProps';
 import ButtonBase from '../ButtonBase';
 import { styled } from '../styles';
@@ -14,16 +14,16 @@ import { IconButtonOwnerState, IconButtonProps, IconButtonTypeMap } from './Icon
 import { ButtonGroupButtonContext, ButtonGroupContext } from '../ButtonGroup';
 
 const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
-  const { classes, disabled, color, edge, size } = ownerState;
+  const { classes, color, edge, size } = ownerState;
 
   const slots = {
     root: [
       'root',
-      disabled && 'disabled',
-      color !== 'default' && `color${capitalize(color ?? '')}`,
-      edge && `edge${capitalize(edge)}`,
+      `color${capitalize(color ?? '')}`,
       `size${capitalize(size ?? '')}`,
+      edge && `edge${capitalize(edge)}`,
     ],
+    label: ['label'],
   };
 
   const composedClasses = composeClasses(slots, getIconButtonUtilityClass, classes);
@@ -37,14 +37,15 @@ const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
 export const IconButtonRoot = styled(ButtonBase, {
   name: 'MuiIconButton',
   slot: 'Root',
+  shouldForwardProp: (prop) => shouldForwardProp(prop),
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
     return [
       styles.root,
-      ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
-      ownerState.edge && styles[`edge${capitalize(ownerState.edge)}`],
+      styles[`color${capitalize(ownerState.color)}`],
       styles[`size${capitalize(ownerState.size)}`],
+      ownerState.edge && styles[`edge${capitalize(ownerState.edge)}`],
     ];
   },
 })<{ ownerState: IconButtonOwnerState }>(
@@ -138,10 +139,18 @@ const IconButton = React.forwardRef(function IconButton<
     inProps,
   );
   const props = useThemeProps({ props: resolvedProps, name: 'MuiIconButton' });
-  const { edge = false, children, className, color = 'default', size = 'medium', ...other } = props;
+  const {
+    edge = false,
+    children,
+    classes: classesProp,
+    color = 'default',
+    size = 'medium',
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
+    classes: classesProp,
     edge,
     color,
     size,
