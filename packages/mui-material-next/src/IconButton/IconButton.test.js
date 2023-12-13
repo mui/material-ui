@@ -6,6 +6,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import Icon from '@mui/material/Icon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material-next/IconButton';
+import ButtonBase from '../ButtonBase';
 
 describe('<IconButton />', () => {
   const { render } = createRenderer();
