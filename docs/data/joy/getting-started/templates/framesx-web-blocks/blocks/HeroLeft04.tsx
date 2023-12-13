@@ -45,7 +45,6 @@ export default function HeroLeft04() {
           Watch Video
         </Button>
       </Box>
-
       <Typography
         level="body-xs"
         sx={{

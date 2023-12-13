@@ -39,26 +39,92 @@
     "import IconButton from '@mui/material/IconButton';",
     "import { IconButton } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "edgeStart",
-      "edgeEnd",
-      "colorInherit",
-      "colorPrimary",
-      "colorSecondary",
-      "colorError",
-      "colorInfo",
-      "colorSuccess",
-      "colorWarning",
-      "disabled",
-      "sizeSmall",
-      "sizeMedium",
-      "sizeLarge"
-    ],
-    "globalClasses": { "disabled": "Mui-disabled" },
-    "name": "MuiIconButton"
-  },
+  "classes": [
+    {
+      "key": "colorError",
+      "className": "MuiIconButton-colorError",
+      "description": "Styles applied to the root element if `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorInfo",
+      "className": "MuiIconButton-colorInfo",
+      "description": "Styles applied to the root element if `color=\"info\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorInherit",
+      "className": "MuiIconButton-colorInherit",
+      "description": "Styles applied to the root element if `color=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiIconButton-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiIconButton-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiIconButton-colorSuccess",
+      "description": "Styles applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiIconButton-colorWarning",
+      "description": "Styles applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "edgeEnd",
+      "className": "MuiIconButton-edgeEnd",
+      "description": "Styles applied to the root element if `edge=\"end\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "edgeStart",
+      "className": "MuiIconButton-edgeStart",
+      "description": "Styles applied to the root element if `edge=\"start\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiIconButton-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLarge",
+      "className": "MuiIconButton-sizeLarge",
+      "description": "Styles applied to the root element if `size=\"large\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMedium",
+      "className": "MuiIconButton-sizeMedium",
+      "description": "Styles applied to the root element if `size=\"medium\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiIconButton-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiIconButton",

@@ -4,7 +4,7 @@ import { Button } from '@mui/base/Button';
 import { styled, GlobalStyles } from '@mui/system';
 
 const buttonStyles = `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
   background-color: var(--palette-primary);
@@ -111,22 +111,22 @@ import './styles.css';
 <Button
   className="transition-all-[150ms_ease] cursor-pointer
     rounded-[8px] border-none bg-[--palette-primary]
-    p-[10px_16px] text-[0.875rem] font-bold 
-    text-white [font-family:IBM_Plex_sans] 
+    p-[10px_16px] text-[0.875rem] font-bold
+    text-white [font-family:IBM_Plex_sans]
     hover:bg-[--palette-primary-hover]
     shadow-[--shadow]
-    ui-active:bg-[--palette-primary-dark] 
-    ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
+    ui-active:bg-[--palette-primary-dark]
+    ui-disabled:cursor-not-allowed ui-disabled:opacity-50
     ui-focus-visible:[outline:4px_solid_var(--focus-ring) transition">
   Button
 </Button>
 <Button
   className="transition-all-[150ms_ease] cursor-pointer
     rounded-[8px] border-none bg-[--palette-primary]
-    p-[10px_16px] text-[0.875rem] font-bold 
-    text-white [font-family:IBM_Plex_sans] 
-    ui-active:bg-[--palette-primary-dark] 
-    ui-disabled:cursor-not-allowed ui-disabled:opacity-50 
+    p-[10px_16px] text-[0.875rem] font-bold
+    text-white [font-family:IBM_Plex_sans]
+    ui-active:bg-[--palette-primary-dark]
+    ui-disabled:cursor-not-allowed ui-disabled:opacity-50
     ui-focus-visible:[outline:4px_solid_var(--focus-ring)]">
   Disabled
 </Button>`;
