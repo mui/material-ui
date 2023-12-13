@@ -47,6 +47,7 @@
     "size:why": "yarn size:snapshot --analyze",
     "start": "yarn && yarn docs:dev",
     "t": "node test/cli.js",
+    "test:ci": "node scripts/check-ci.js",
     "test": "yarn eslint && yarn typescript && yarn test:coverage",
     "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
     "test:coverage:ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}'",
