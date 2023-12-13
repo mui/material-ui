@@ -40,6 +40,18 @@ The CssAnimation component triggers an animation by applying a CSS class (either
 
 {{"demo": "CssAnimationComponent.js"}}
 
+:::warning
+
+There is one important difference between CSS animations and transitions: how they are played initially.
+An animation will play when there's a CSS `animation` rule applied on an element.
+It doesn't matter if an element has just been added to the document or existed before and only got a new class name.
+
+Transitions, on the other hand, change CSS properties' values from an old state to a new one.
+This means that if we create a new element with a CSS class that has a transition applied, the transition won't initially be played.
+Transitions are only executed when a CSS property changes on **an existing element**.
+
+:::
+
 ## Hooks
 
 If the built-in components don't cover your needs, or when you want to trigger transitions from your components, you can use the hooks: `useTransitionTrigger` and `useTransitionStateManager`.
@@ -51,6 +63,8 @@ The CssAnimation and CssTransition call this hook when being rendered.
 In a nutshell, calling `useTransitionTrigger` returns a context (among other properties), that is being read by `useTransitionStateManager`.
 
 {{"demo": "TransitionHooks.js"}}
+
+
 
 ## Using third-party libraries
 
