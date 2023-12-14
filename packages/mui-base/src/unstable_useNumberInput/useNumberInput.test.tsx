@@ -263,14 +263,14 @@ describe('useNumberInput', () => {
     });
   });
 
-  // eslint-disable-next-line mocha/no-skipped-tests
-  describe.skip('warnings', () => {
+  describe('warnings', () => {
     it('should warn when switching from uncontrolled to controlled', () => {
       const handleChange = spy();
       function NumberInput({ value }: { value?: number }) {
         const { getInputProps } = useNumberInput({
           onChange: handleChange,
           value,
+          componentName: 'TestNumberInput',
         });
 
         return <input {...getInputProps()} />;
@@ -279,8 +279,7 @@ describe('useNumberInput', () => {
       expect(() => {
         setProps({ value: 5 });
       }).to.toErrorDev(
-        // TODO: change this to useControllableReducer's error message
-        'MUI: A component is changing the uncontrolled value state of NumberInput to be controlled',
+        'useControllableReducer: The TestNumberInput component is changing a controlled prop to be uncontrolled: value',
       );
     });
 
@@ -290,6 +289,7 @@ describe('useNumberInput', () => {
         const { getInputProps } = useNumberInput({
           onChange: handleChange,
           value,
+          componentName: 'TestNumberInput',
         });
 
         return <input {...getInputProps()} />;
@@ -298,8 +298,7 @@ describe('useNumberInput', () => {
       expect(() => {
         setProps({ value: undefined });
       }).to.toErrorDev(
-        // TODO: change this to useControllableReducer's error message
-        'MUI: A component is changing the controlled value state of NumberInput to be uncontrolled',
+        'useControllableReducer: The TestNumberInput component is changing a controlled prop to be uncontrolled: value',
       );
     });
   });

@@ -115,6 +115,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     readOnly,
     value,
     inputId: id,
+    componentName: 'NumberInput',
   });
 
   const ownerState: NumberInputOwnerState = {
