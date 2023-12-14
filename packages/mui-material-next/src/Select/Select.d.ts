@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 // TODO v6: replace material Theme with material-next Theme when Material You design is implemented
-import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { PopoverProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
 // TODO v6: replace with material-next Input components props https://github.com/mui/material-ui/pull/39188#discussion_r1339645381
 import { InputProps } from '@mui/material/Input';
-// TODO v6: replace with material-next Menu https://github.com/mui/material-ui/pull/38934
-import { MenuProps } from '@mui/material/Menu';
 // TODO v6: replace with material-next OutlinedInput when available
 import { OutlinedInputProps } from '@mui/material/OutlinedInput';
 import { SelectChangeEvent, SelectInputProps } from './SelectInput';
@@ -83,9 +81,9 @@ export interface SelectProps<Value = unknown>
    */
   labelId?: string;
   /**
-   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
+   * Props applied to the [`Popover`](/material-ui/api/popover/) element.
    */
-  MenuProps?: Partial<MenuProps>;
+  PopoverProps?: Partial<PopoverProps>;
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    * @default false

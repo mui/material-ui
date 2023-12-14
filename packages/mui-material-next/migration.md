@@ -353,6 +353,11 @@ The `Option` component was added to be used instead of `MenuItem` inside `Select
 You should replace all `MenuItem`s inside `Select` components with `Option`s.
 See the [`Option`](https://github.com/mui/material-ui/blob/master/packages/mui-material-next/migration.md#option) section of this guide for details.
 
+### Removed Menu dependency
+
+The menu dependency was removed, and the `MenuProps` prop was removed with it.
+
+(Section WIP)
 
 ## Slider
 

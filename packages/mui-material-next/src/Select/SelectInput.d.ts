@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 // TODO v6: replace with material-next MenuProps when available https://github.com/mui/material-ui/pull/38934
-import { MenuProps } from '@mui/material/Menu';
+import { PopoverProps } from '@mui/material/Popover';
 import { Theme } from '..';
 
 /**
@@ -23,7 +23,7 @@ export interface SelectInputProps<Value = unknown> {
   inputRef?: (
     ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps<Value>['value'] },
   ) => void;
-  MenuProps?: Partial<MenuProps>;
+  PopoverProps?: Partial<PopoverProps>;
   multiple: boolean;
   name?: string;
   native: boolean;
@@ -41,6 +41,8 @@ export interface SelectInputProps<Value = unknown> {
   value?: Value;
   variant?: 'standard' | 'outlined' | 'filled';
 }
+
+export const Option: React.FC;
 
 declare const SelectInput: React.JSXElementConstructor<SelectInputProps>;
 

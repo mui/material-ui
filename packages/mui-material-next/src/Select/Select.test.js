@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
+import userEvent from '@testing-library/user-event';
 import {
   describeConformance,
   ErrorBoundary,
@@ -22,7 +23,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 // TODO v6: replace with material-next Divider when available
 import Divider from '@mui/material/Divider';
-import Select from '@mui/material-next/Select';
+import Select, { Option } from '@mui/material-next/Select';
 import classes from './selectClasses';
 
 describe('<Select />', () => {
@@ -54,12 +55,12 @@ describe('<Select />', () => {
   it('should be able to mount the component', () => {
     const { container } = render(
       <Select value={10}>
-        <MenuItem value="">
+        <Option value="">
           <em>None</em>
-        </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        </Option>
+        <Option value={10}>Ten</Option>
+        <Option value={20}>Twenty</Option>
+        <Option value={30}>Thirty</Option>
       </Select>,
     );
 
@@ -69,7 +70,7 @@ describe('<Select />', () => {
   specify('the trigger is in tab order', () => {
     const { getByRole } = render(
       <Select value="">
-        <MenuItem value="">None</MenuItem>
+        <Option value="">None</Option>
       </Select>,
     );
 
@@ -80,7 +81,7 @@ describe('<Select />', () => {
     render(
       <Select open value={10}>
         {null}
-        <MenuItem value={10}>Ten</MenuItem>
+        <Option value={10}>Ten</Option>
       </Select>,
     );
   });
@@ -89,8 +90,8 @@ describe('<Select />', () => {
     it(`should support conditional rendering with "${value}"`, () => {
       render(
         <Select open value={2}>
-          {value && <MenuItem value={1}>One</MenuItem>}
-          <MenuItem value={2}>Two</MenuItem>
+          {value && <Option value={1}>One</Option>}
+          <Option value={2}>Two</Option>
         </Select>,
       );
     }),
@@ -100,7 +101,7 @@ describe('<Select />', () => {
     it('should have [aria-hidden] by default', () => {
       const { container } = render(
         <Select value="10">
-          <MenuItem value="10">Ten</MenuItem>
+          <Option value="10">Ten</Option>
         </Select>,
       );
 
@@ -110,7 +111,7 @@ describe('<Select />', () => {
     it('should have tabIndex -1', () => {
       const { container } = render(
         <Select value="10">
-          <MenuItem value="10">Ten</MenuItem>
+          <Option value="10">Ten</Option>
         </Select>,
       );
 
@@ -133,8 +134,8 @@ describe('<Select />', () => {
           }
         }}
       >
-        <MenuItem value="">none</MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
+        <Option value="">none</Option>
+        <Option value={10}>Ten</Option>
       </Select>,
     );
     const trigger = getByRole('combobox');
@@ -157,8 +158,8 @@ describe('<Select />', () => {
   it('options should have a data-value attribute', () => {
     render(
       <Select open value={10}>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
+        <Option value={10}>Ten</Option>
+        <Option value={20}>Twenty</Option>
       </Select>,
     );
     const options = screen.getAllByRole('option');
@@ -167,23 +168,25 @@ describe('<Select />', () => {
     expect(options[1]).to.have.attribute('data-value', '20');
   });
 
-  [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {
-    it(`should open menu when pressed ${key} key on select`, () => {
-      render(
-        <Select value="">
-          <MenuItem value="">none</MenuItem>
-        </Select>,
-      );
-      const trigger = screen.getByRole('combobox');
-      act(() => {
-        trigger.focus();
+  describe('combobox keydown', () => {
+    clock.withRealTimers();
+
+    [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {
+      it(`should open listbox when pressed ${key} key on combobox`, async () => {
+        render(
+          <Select value="">
+            <Option value="">none</Option>
+          </Select>,
+        );
+        const trigger = screen.getByRole('combobox');
+        act(() => {
+          trigger.focus();
+        });
+
+        await userEvent.keyboard(`{${key}}`);
+
+        expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
       });
-
-      fireEvent.keyDown(trigger, { key });
-      expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
-
-      fireEvent.keyUp(screen.getAllByRole('option')[0], { key });
-      expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
     });
   });
 
@@ -191,7 +194,7 @@ describe('<Select />', () => {
     const handleBlur = stub().callsFake((event) => event.target.name);
     const { getByRole } = render(
       <Select onBlur={handleBlur} name="blur-testing" value="">
-        <MenuItem value="">none</MenuItem>
+        <Option value="">none</Option>
       </Select>,
     );
     const button = getByRole('combobox');
@@ -207,37 +210,46 @@ describe('<Select />', () => {
     expect(handleBlur.firstCall.returnValue).to.equal('blur-testing');
   });
 
-  it('should call onClose when the backdrop is clicked', () => {
-    const handleClose = spy();
-    const { getByTestId } = render(
-      <Select
-        MenuProps={{ BackdropProps: { 'data-testid': 'backdrop' } }}
-        onClose={handleClose}
-        open
-        value=""
-      >
-        <MenuItem value="">none</MenuItem>
-      </Select>,
-    );
+  describe('backdrop', () => {
+    clock.withRealTimers();
 
-    act(() => {
-      getByTestId('backdrop').click();
+    it('should call onClose when the backdrop is clicked', async () => {
+      const handleClose = spy();
+      const { getByRole, getByTestId } = render(
+        <Select
+          PopoverProps={{
+            slotProps: {
+              root: { slotProps: { backdrop: { 'data-testid': 'backdrop' } } },
+            },
+          }}
+          onClose={handleClose}
+          value=""
+        >
+          <Option value="">none</Option>
+        </Select>,
+      );
+
+      await userEvent.click(getByRole('combobox'));
+
+      await userEvent.click(getByTestId('backdrop'));
+
+      expect(handleClose.callCount).to.equal(1);
     });
-
-    expect(handleClose.callCount).to.equal(1);
   });
 
-  it('should call onClose when the same option is selected', () => {
+  it('should call onClose when the same option is selected', async () => {
     const handleChange = spy();
     const handleClose = spy();
     render(
       <Select open onChange={handleChange} onClose={handleClose} value="second">
-        <MenuItem value="first" />
-        <MenuItem value="second" />
+        <Option value="first" />
+        <Option value="second" />
       </Select>,
     );
 
-    screen.getByRole('option', { selected: true }).click();
+    act(() => {
+      screen.getByRole('option', { selected: true }).click();
+    });
 
     expect(handleChange.callCount).to.equal(0);
     expect(handleClose.callCount).to.equal(1);
@@ -256,34 +268,39 @@ describe('<Select />', () => {
     expect(getByRole('combobox')).toHaveFocus();
   });
 
-  it('should focus list if no selection', () => {
-    const { getByRole } = render(<Select value="" autoFocus />);
+  it('should focus first option if no selection', () => {
+    const { getByRole } = render(
+      <Select value="" autoFocus>
+        <Option value="1">One</Option>
+      </Select>,
+    );
 
-    fireEvent.mouseDown(getByRole('combobox'));
+    fireEvent.click(getByRole('combobox'));
 
-    // TODO not matching WAI-ARIA authoring practices. It should focus the first (or selected) item.
-    expect(getByRole('listbox')).toHaveFocus();
+    expect(getByRole('option')).toHaveFocus();
   });
 
   describe('prop: onChange', () => {
-    it('should get selected element from arguments', () => {
-      const onChangeHandler = spy();
-      const { getAllByRole, getByRole } = render(
-        <Select onChange={onChangeHandler} value="0">
-          <MenuItem value="0" />
-          <MenuItem value="1" />
-          <MenuItem value="2" />
-        </Select>,
-      );
-      fireEvent.mouseDown(getByRole('combobox'));
-      act(() => {
-        getAllByRole('option')[1].click();
-      });
+    // TODO v6: deprecate onChange's signature
+    // TODO v7: update onChange to have Base's signature
+    // it.skip('should get selected element from arguments', () => {
+    //   const onChangeHandler = spy();
+    //   const { getAllByRole, getByRole } = render(
+    //     <Select onChange={onChangeHandler} value="0">
+    //       <Option value="0" />
+    //       <Option value="1" />
+    //       <Option value="2" />
+    //     </Select>,
+    //   );
+    //   fireEvent.mouseDown(getByRole('combobox'));
+    //   act(() => {
+    //     getAllByRole('option')[1].click();
+    //   });
 
-      expect(onChangeHandler.calledOnce).to.equal(true);
-      const selected = onChangeHandler.args[0][1];
-      expect(React.isValidElement(selected)).to.equal(true);
-    });
+    //   expect(onChangeHandler.calledOnce).to.equal(true);
+    //   const selected = onChangeHandler.args[0][1];
+    //   expect(React.isValidElement(selected)).to.equal(true);
+    // });
 
     it('should call onChange before onClose', () => {
       const eventLog = [];
@@ -291,12 +308,12 @@ describe('<Select />', () => {
       const onCloseHandler = spy(() => eventLog.push('CLOSE_EVENT'));
       const { getAllByRole, getByRole } = render(
         <Select onChange={onChangeHandler} onClose={onCloseHandler} value="0">
-          <MenuItem value="0" />
-          <MenuItem value="1" />
+          <Option value="0" />
+          <Option value="1" />
         </Select>,
       );
 
-      fireEvent.mouseDown(getByRole('combobox'));
+      fireEvent.click(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -308,9 +325,9 @@ describe('<Select />', () => {
       const onChangeHandler = spy();
       const { getAllByRole, getByRole } = render(
         <Select onChange={onChangeHandler} value="1">
-          <MenuItem value="0" />
-          <MenuItem value="1" />
-          <MenuItem value="2" />
+          <Option value="0" />
+          <Option value="1" />
+          <Option value="2" />
         </Select>,
       );
       fireEvent.mouseDown(getByRole('combobox'));
@@ -333,9 +350,9 @@ describe('<Select />', () => {
     it('should select the option based on the number value', () => {
       render(
         <Select open value={20}>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
         </Select>,
       );
       const options = screen.getAllByRole('option');
@@ -348,9 +365,9 @@ describe('<Select />', () => {
     it('should select the option based on the string value', () => {
       render(
         <Select open value="20">
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
         </Select>,
       );
       const options = screen.getAllByRole('option');
@@ -365,8 +382,8 @@ describe('<Select />', () => {
       const obj2 = { id: 2 };
       render(
         <Select open value={obj1}>
-          <MenuItem value={obj1}>1</MenuItem>
-          <MenuItem value={obj2}>2</MenuItem>
+          <Option value={obj1}>1</Option>
+          <Option value={obj2}>2</Option>
         </Select>,
       );
       const options = screen.getAllByRole('option');
@@ -379,35 +396,79 @@ describe('<Select />', () => {
       const value = {};
       const { getByRole } = render(
         <Select value={value}>
-          <MenuItem value="">
+          <Option value="">
             <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={value}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          </Option>
+          <Option value={10}>Ten</Option>
+          <Option value={value}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
         </Select>,
       );
 
       expect(getByRole('combobox')).to.have.text('Twenty');
     });
+  });
 
-    describe('warnings', () => {
-      it('warns when the value is not present in any option', () => {
-        expect(() =>
-          render(
-            <Select value={20}>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>,
-          ),
-        ).toWarnDev([
-          'MUI: You have provided an out-of-range value `20` for the select component.',
-          // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') &&
-            'MUI: You have provided an out-of-range value `20` for the select component.',
-          'MUI: You have provided an out-of-range value `20` for the select component.',
-        ]);
-      });
+  describe('prop: defaultValue', () => {
+    it('should select the option based on the number value', () => {
+      render(
+        <Select open defaultValue={20}>
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
+        </Select>,
+      );
+      const options = screen.getAllByRole('option');
+
+      expect(options[0]).not.to.have.attribute('aria-selected', 'true');
+      expect(options[1]).to.have.attribute('aria-selected', 'true');
+      expect(options[2]).not.to.have.attribute('aria-selected', 'true');
+    });
+
+    it('should select the option based on the string value', () => {
+      render(
+        <Select open defaultValue="20">
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
+        </Select>,
+      );
+      const options = screen.getAllByRole('option');
+
+      expect(options[0]).not.to.have.attribute('aria-selected', 'true');
+      expect(options[1]).to.have.attribute('aria-selected', 'true');
+      expect(options[2]).not.to.have.attribute('aria-selected', 'true');
+    });
+
+    it('should select only the option that matches the object', () => {
+      const obj1 = { id: 1 };
+      const obj2 = { id: 2 };
+      render(
+        <Select open defaultValue={obj1}>
+          <Option value={obj1}>1</Option>
+          <Option value={obj2}>2</Option>
+        </Select>,
+      );
+      const options = screen.getAllByRole('option');
+
+      expect(options[0]).to.have.attribute('aria-selected', 'true');
+      expect(options[1]).not.to.have.attribute('aria-selected', 'true');
+    });
+
+    it('should be able to use an object', () => {
+      const value = {};
+      const { getByRole } = render(
+        <Select defaultValue={value}>
+          <Option value="">
+            <em>None</em>
+          </Option>
+          <Option value={10}>Ten</Option>
+          <Option value={value}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('Twenty');
     });
   });
 
@@ -415,10 +476,10 @@ describe('<Select />', () => {
     render(
       <Select open value="">
         <ListSubheader>Category 1</ListSubheader>
-        <MenuItem value={10}>Ten</MenuItem>
+        <Option value={10}>Ten</Option>
         <ListSubheader>Category 2</ListSubheader>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        <Option value={20}>Twenty</Option>
+        <Option value={30}>Thirty</Option>
       </Select>,
     );
 
@@ -465,10 +526,10 @@ describe('<Select />', () => {
       expect(getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
     });
 
-    it('sets aria-disabled="true" when component is disabled', () => {
+    it('sets disabled attribute when component is disabled', () => {
       const { getByRole } = render(<Select disabled value="" />);
 
-      expect(getByRole('combobox')).to.have.attribute('aria-disabled', 'true');
+      expect(getByRole('combobox')).to.have.attribute('disabled');
     });
 
     it('sets disabled attribute in input when component is disabled', () => {
@@ -515,8 +576,8 @@ describe('<Select />', () => {
     it('identifies each selectable element containing an option', () => {
       const { getAllByRole } = render(
         <Select open value="">
-          <MenuItem value="1">First</MenuItem>
-          <MenuItem value="2">Second</MenuItem>
+          <Option value="1">First</Option>
+          <Option value="2">Second</Option>
         </Select>,
       );
 
@@ -528,8 +589,8 @@ describe('<Select />', () => {
     it('indicates the selected option', () => {
       const { getAllByRole } = render(
         <Select open value="2">
-          <MenuItem value="1">First</MenuItem>
-          <MenuItem value="2">Second</MenuItem>
+          <Option value="1">First</Option>
+          <Option value="2">Second</Option>
         </Select>,
       );
 
@@ -537,109 +598,119 @@ describe('<Select />', () => {
     });
 
     describe('when the first child is a ListSubheader', () => {
-      it('first selectable option is focused to use the arrow', () => {
-        const { getAllByRole } = render(
-          <Select defaultValue="" open>
+      clock.withRealTimers();
+
+      it('first selectable option is focused to use the arrow', async () => {
+        const { getByRole, getAllByRole } = render(
+          <Select defaultValue="">
             <ListSubheader>Category 1</ListSubheader>
-            <MenuItem value={1}>Option 1</MenuItem>
-            <MenuItem value={2}>Option 2</MenuItem>
+            <Option value={1}>Option 1</Option>
+            <Option value={2}>Option 2</Option>
             <ListSubheader>Category 2</ListSubheader>
-            <MenuItem value={3}>Option 3</MenuItem>
-            <MenuItem value={4}>Option 4</MenuItem>
+            <Option value={3}>Option 3</Option>
+            <Option value={4}>Option 4</Option>
           </Select>,
         );
 
+        const trigger = getByRole('combobox');
         const options = getAllByRole('option');
-        expect(options[1]).to.have.attribute('tabindex', '0');
 
-        act(() => {
-          fireEvent.keyDown(options[1], { key: 'ArrowDown' });
-          fireEvent.keyDown(options[2], { key: 'ArrowDown' });
-          fireEvent.keyDown(options[4], { key: 'Enter' });
-        });
+        await userEvent.click(trigger);
 
-        expect(options[4]).to.have.attribute('aria-selected', 'true');
+        expect(options[0]).to.have.attribute('tabindex', '0');
+
+        await userEvent.keyboard('{ArrowDown}');
+        await userEvent.keyboard('{ArrowDown}');
+        await userEvent.keyboard('{Enter}');
+
+        expect(options[2]).to.have.attribute('aria-selected', 'true');
       });
 
       describe('when also the second child is a ListSubheader', () => {
-        it('first selectable option is focused to use the arrow', () => {
-          const { getAllByRole } = render(
-            <Select defaultValue="" open>
+        it('first selectable option is focused to use the arrow', async () => {
+          const { getByRole, getAllByRole } = render(
+            <Select defaultValue="">
               <ListSubheader>Empty category</ListSubheader>
               <ListSubheader>Category 1</ListSubheader>
-              <MenuItem value={1}>Option 1</MenuItem>
-              <MenuItem value={2}>Option 2</MenuItem>
+              <Option value={1}>Option 1</Option>
+              <Option value={2}>Option 2</Option>
               <ListSubheader>Category 2</ListSubheader>
-              <MenuItem value={3}>Option 3</MenuItem>
-              <MenuItem value={4}>Option 4</MenuItem>
+              <Option value={3}>Option 3</Option>
+              <Option value={4}>Option 4</Option>
             </Select>,
           );
 
+          const trigger = getByRole('combobox');
           const options = getAllByRole('option');
-          expect(options[2]).to.have.attribute('tabindex', '0');
 
-          act(() => {
-            fireEvent.keyDown(options[2], { key: 'ArrowDown' });
-            fireEvent.keyDown(options[3], { key: 'ArrowDown' });
-            fireEvent.keyDown(options[5], { key: 'Enter' });
-          });
+          await userEvent.click(trigger);
 
-          expect(options[5]).to.have.attribute('aria-selected', 'true');
+          expect(options[0]).to.have.attribute('tabindex', '0');
+
+          await userEvent.keyboard('{ArrowDown}');
+          await userEvent.keyboard('{ArrowDown}');
+          await userEvent.keyboard('{Enter}');
+
+          expect(options[2]).to.have.attribute('aria-selected', 'true');
         });
       });
 
       describe('when the second child is null', () => {
-        it('first selectable option is focused to use the arrow', () => {
-          const { getAllByRole } = render(
-            <Select defaultValue="" open>
+        it('first selectable option is focused to use the arrow', async () => {
+          const { getByRole, getAllByRole } = render(
+            <Select defaultValue="">
               <ListSubheader>Category 1</ListSubheader>
               {null}
-              <MenuItem value={1}>Option 1</MenuItem>
-              <MenuItem value={2}>Option 2</MenuItem>
+              <Option value={1}>Option 1</Option>
+              <Option value={2}>Option 2</Option>
               <ListSubheader>Category 2</ListSubheader>
-              <MenuItem value={3}>Option 3</MenuItem>
-              <MenuItem value={4}>Option 4</MenuItem>
+              <Option value={3}>Option 3</Option>
+              <Option value={4}>Option 4</Option>
             </Select>,
           );
 
+          const trigger = getByRole('combobox');
           const options = getAllByRole('option');
-          expect(options[1]).to.have.attribute('tabindex', '0');
 
-          act(() => {
-            fireEvent.keyDown(options[1], { key: 'ArrowDown' });
-            fireEvent.keyDown(options[2], { key: 'ArrowDown' });
-            fireEvent.keyDown(options[4], { key: 'Enter' });
-          });
+          await userEvent.click(trigger);
 
-          expect(options[4]).to.have.attribute('aria-selected', 'true');
+          expect(options[0]).to.have.attribute('tabindex', '0');
+
+          await userEvent.keyboard('{ArrowDown}');
+          await userEvent.keyboard('{ArrowDown}');
+          await userEvent.keyboard('{Enter}');
+
+          expect(options[2]).to.have.attribute('aria-selected', 'true');
         });
       });
 
       ['', 0, false, undefined, NaN].forEach((value) =>
         describe(`when the second child is conditionally rendering with "${value}"`, () => {
-          it('first selectable option is focused to use the arrow', () => {
-            const { getAllByRole } = render(
-              <Select defaultValue="" open>
+          it('first selectable option is focused to use the arrow', async () => {
+            const { getByRole, getAllByRole } = render(
+              <Select defaultValue="">
                 <ListSubheader>Category 1</ListSubheader>
-                {value && <MenuItem value={1}>One</MenuItem>}
-                <MenuItem value={1}>Option 1</MenuItem>
-                <MenuItem value={2}>Option 2</MenuItem>
+                {value && <Option value={1}>One</Option>}
+                <Option value={1}>Option 1</Option>
+                <Option value={2}>Option 2</Option>
                 <ListSubheader>Category 2</ListSubheader>
-                <MenuItem value={3}>Option 3</MenuItem>
-                <MenuItem value={4}>Option 4</MenuItem>
+                <Option value={3}>Option 3</Option>
+                <Option value={4}>Option 4</Option>
               </Select>,
             );
 
+            const trigger = getByRole('combobox');
             const options = getAllByRole('option');
-            expect(options[1]).to.have.attribute('tabindex', '0');
 
-            act(() => {
-              fireEvent.keyDown(options[1], { key: 'ArrowDown' });
-              fireEvent.keyDown(options[2], { key: 'ArrowDown' });
-              fireEvent.keyDown(options[4], { key: 'Enter' });
-            });
+            await userEvent.click(trigger);
 
-            expect(options[4]).to.have.attribute('aria-selected', 'true');
+            expect(options[0]).to.have.attribute('tabindex', '0');
+
+            await userEvent.keyboard('{ArrowDown}');
+            await userEvent.keyboard('{ArrowDown}');
+            await userEvent.keyboard('{Enter}');
+
+            expect(options[2]).to.have.attribute('aria-selected', 'true');
           });
         }),
       );
@@ -657,11 +728,11 @@ describe('<Select />', () => {
           const { getByText } = render(
             <Select defaultValue="" open>
               <WrappedListSubheader>Category 1</WrappedListSubheader>
-              <MenuItem value={1}>Option 1</MenuItem>
-              <MenuItem value={2}>Option 2</MenuItem>
+              <Option value={1}>Option 1</Option>
+              <Option value={2}>Option 2</Option>
               <WrappedListSubheader>Category 2</WrappedListSubheader>
-              <MenuItem value={3}>Option 3</MenuItem>
-              <MenuItem value={4}>Option 4</MenuItem>
+              <Option value={3}>Option 3</Option>
+              <Option value={4}>Option 4</Option>
             </Select>,
           );
 
@@ -680,11 +751,11 @@ describe('<Select />', () => {
           const { getByText } = render(
             <Select defaultValue="" open>
               <WrappedListSubheader muiSkipListHighlight>Category 1</WrappedListSubheader>
-              <MenuItem value={1}>Option 1</MenuItem>
-              <MenuItem value={2}>Option 2</MenuItem>
+              <Option value={1}>Option 1</Option>
+              <Option value={2}>Option 2</Option>
               <WrappedListSubheader muiSkipListHighlight>Category 2</WrappedListSubheader>
-              <MenuItem value={3}>Option 3</MenuItem>
-              <MenuItem value={4}>Option 4</MenuItem>
+              <Option value={3}>Option 3</Option>
+              <Option value={4}>Option 4</Option>
             </Select>,
           );
 
@@ -694,32 +765,36 @@ describe('<Select />', () => {
       });
     });
 
-    describe('when the first child is a MenuItem disabled', () => {
-      it('highlights the first selectable option below the header', () => {
-        const { getAllByRole } = render(
-          <Select defaultValue="" open>
-            <MenuItem value="" disabled>
+    describe('when the first child is a disabled Option', () => {
+      clock.withRealTimers();
+
+      it('highlights the first selectable option below the header', async () => {
+        const { getByRole, getAllByRole } = render(
+          <Select defaultValue="">
+            <Option value="" disabled>
               <em>None</em>
-            </MenuItem>
+            </Option>
             <ListSubheader>Category 1</ListSubheader>
-            <MenuItem value={1}>Option 1</MenuItem>
-            <MenuItem value={2}>Option 2</MenuItem>
+            <Option value={1}>Option 1</Option>
+            <Option value={2}>Option 2</Option>
             <ListSubheader>Category 2</ListSubheader>
-            <MenuItem value={3}>Option 3</MenuItem>
-            <MenuItem value={4}>Option 4</MenuItem>
+            <Option value={3}>Option 3</Option>
+            <Option value={4}>Option 4</Option>
           </Select>,
         );
 
+        const trigger = getByRole('combobox');
         const options = getAllByRole('option');
-        expect(options[2]).to.have.attribute('tabindex', '0');
 
-        act(() => {
-          fireEvent.keyDown(options[2], { key: 'ArrowDown' });
-          fireEvent.keyDown(options[3], { key: 'ArrowDown' });
-          fireEvent.keyDown(options[5], { key: 'Enter' });
-        });
+        await userEvent.click(trigger);
 
-        expect(options[5]).to.have.attribute('aria-selected', 'true');
+        expect(options[1]).to.have.attribute('tabindex', '0');
+
+        await userEvent.keyboard('{ArrowDown}');
+        await userEvent.keyboard('{ArrowDown}');
+        await userEvent.keyboard('{Enter}');
+
+        expect(options[3]).to.have.attribute('aria-selected', 'true');
       });
     });
 
@@ -810,8 +885,8 @@ describe('<Select />', () => {
     it('should not trigger any event with readOnly', () => {
       render(
         <Select readOnly value="10">
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
         </Select>,
       );
       const trigger = screen.getByRole('combobox');
@@ -820,23 +895,41 @@ describe('<Select />', () => {
       });
 
       fireEvent.keyDown(trigger, { key: 'ArrowDown' });
-      expect(screen.queryByRole('listbox')).to.equal(null);
+      expect(screen.getByRole('listbox')).to.have.attribute('aria-hidden', 'true');
 
       fireEvent.keyUp(trigger, { key: 'ArrowDown' });
-      expect(screen.queryByRole('listbox')).to.equal(null);
+      expect(screen.getByRole('listbox')).to.have.attribute('aria-hidden', 'true');
     });
-  });
 
-  describe('prop: MenuProps', () => {
-    it('should apply additional props to the Menu component', () => {
-      const onEntered = spy();
-      const { getByRole } = render(
-        <Select MenuProps={{ TransitionProps: { onEntered }, transitionDuration: 100 }} value="10">
-          <MenuItem value="10">Ten</MenuItem>
+    it('should not open on combobox click when readOnly', () => {
+      render(
+        <Select readOnly value="10">
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
         </Select>,
       );
 
-      fireEvent.mouseDown(getByRole('combobox'));
+      act(() => {
+        screen.getByRole('combobox').click();
+      });
+
+      expect(screen.getByRole('listbox')).to.have.attribute('aria-hidden', 'true');
+    });
+  });
+
+  describe('prop: PopoverProps', () => {
+    it('should apply additional props to the Popover component', () => {
+      const onEntered = spy();
+      const { getByRole } = render(
+        <Select
+          PopoverProps={{ TransitionProps: { onEntered }, transitionDuration: 100 }}
+          value="10"
+        >
+          <Option value="10">Ten</Option>
+        </Select>,
+      );
+
+      fireEvent.click(getByRole('combobox'));
       clock.tick(99);
 
       expect(onEntered.callCount).to.equal(0);
@@ -849,11 +942,11 @@ describe('<Select />', () => {
     it('should be able to override PaperProps minWidth', () => {
       const { getByTestId } = render(
         <Select
-          MenuProps={{ PaperProps: { 'data-testid': 'paper', style: { minWidth: 12 } } }}
+          PopoverProps={{ PaperProps: { 'data-testid': 'paper', style: { minWidth: 12 } } }}
           open
           value="10"
         >
-          <MenuItem value="10">Ten</MenuItem>
+          <Option value="10">Ten</Option>
         </Select>,
       );
 
@@ -867,8 +960,8 @@ describe('<Select />', () => {
       }
 
       const { getByTestId, getByRole } = render(
-        <Select MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }} open value="10">
-          <MenuItem value="10">Ten</MenuItem>
+        <Select PopoverProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }} open value="10">
+          <Option value="10">Ten</Option>
         </Select>,
       );
 
@@ -882,7 +975,7 @@ describe('<Select />', () => {
     it('should forward `slotProps` to menu', function test() {
       const { getByTestId } = render(
         <Select
-          MenuProps={{
+          PopoverProps={{
             slotProps: {
               root: {
                 slotProps: {
@@ -894,7 +987,7 @@ describe('<Select />', () => {
           open
           value="10"
         >
-          <MenuItem value="10">Ten</MenuItem>
+          <Option value="10">Ten</Option>
         </Select>,
       );
 
@@ -908,7 +1001,7 @@ describe('<Select />', () => {
     it('should apply additional props to trigger element', () => {
       const { getByRole } = render(
         <Select SelectDisplayProps={{ 'data-test': 'SelectDisplay' }} value="10">
-          <MenuItem value="10">Ten</MenuItem>
+          <Option value="10">Ten</Option>
         </Select>,
       );
 
@@ -920,9 +1013,9 @@ describe('<Select />', () => {
     it('should display the selected item even if its value is empty', () => {
       const { getByRole } = render(
         <Select value="" displayEmpty>
-          <MenuItem value="">Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <Option value="">Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
         </Select>,
       );
 
@@ -935,8 +1028,8 @@ describe('<Select />', () => {
       const renderValue = (x) => `0b${x.toString(2)}`;
       const { getByRole } = render(
         <Select renderValue={renderValue} value={4}>
-          <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={4}>4</MenuItem>
+          <Option value={2}>2</Option>
+          <Option value={4}>4</Option>
         </Select>,
       );
 
@@ -955,12 +1048,14 @@ describe('<Select />', () => {
               Open select
             </button>
             <Select
-              MenuProps={{ transitionDuration: 0 }}
+              PopoverProps={{ transitionDuration: 0 }}
               open={open}
               onClose={() => setOpen(false)}
               value=""
             >
-              <MenuItem onClick={() => setOpen(false)}>close</MenuItem>
+              <Option value="close" onClick={() => setOpen(false)}>
+                close
+              </Option>
             </Select>
           </div>
         );
@@ -986,13 +1081,15 @@ describe('<Select />', () => {
 
         return (
           <Select
-            MenuProps={{ transitionDuration: 0 }}
+            PopoverProps={{ transitionDuration: 0 }}
             open={open}
             onClose={() => setOpen(false)}
             onOpen={() => setOpen(true)}
             value=""
           >
-            <MenuItem onClick={() => setOpen(false)}>close</MenuItem>
+            <Option onClick={() => setOpen(false)} value="close">
+              close
+            </Option>
           </Select>
         );
       }
@@ -1004,20 +1101,17 @@ describe('<Select />', () => {
       act(() => {
         getByRole('option').click();
       });
-      // react-transition-group uses one extra commit for exit to completely remove
-      // it from the DOM. but it's at least immediately inaccessible.
-      // It's desired that this fails one day. The additional tick required to remove
-      // this from the DOM is not a feature
+
       expect(getByRole('listbox', { hidden: true })).toBeInaccessible();
       clock.tick(0);
 
-      expect(queryByRole('listbox', { hidden: true })).to.equal(null);
+      expect(queryByRole('listbox', { hidden: true })).not.to.equal(null);
     });
 
     it('should be open when initially true', () => {
       const { getByRole } = render(
         <Select open value="">
-          <MenuItem>Hello</MenuItem>
+          <Option value="hello">Hello</Option>
         </Select>,
       );
 
@@ -1029,45 +1123,48 @@ describe('<Select />', () => {
       // Right/middle mouse click shouldn't open the Select
       const { getByRole, queryByRole } = render(
         <Select value="">
-          <MenuItem value="">
+          <Option value="">
             <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          </Option>
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
         </Select>,
       );
 
       const trigger = getByRole('combobox');
 
       // If clicked by the right/middle mouse button, no options list should be opened
-      fireEvent.mouseDown(trigger, { button: 1 });
-      expect(queryByRole('listbox')).to.equal(null);
+      fireEvent.click(trigger, { button: 1 });
+      expect(queryByRole('listbox')).to.have.attribute('aria-hidden', 'true');
 
-      fireEvent.mouseDown(trigger, { button: 2 });
-      expect(queryByRole('listbox')).to.equal(null);
+      fireEvent.click(trigger, { button: 2 });
+      expect(queryByRole('listbox')).to.have.attribute('aria-hidden', 'true');
+
+      fireEvent.click(trigger, { button: 0 });
+      expect(queryByRole('listbox')).to.have.attribute('aria-hidden', 'false');
     });
   });
 
   describe('prop: autoWidth', () => {
     it('should take the trigger parent element width into account by default', () => {
       const { container, getByRole, getByTestId } = render(
-        <Select MenuProps={{ PaperProps: { 'data-testid': 'paper' } }} value="">
-          <MenuItem>Only</MenuItem>
+        <Select PopoverProps={{ PaperProps: { 'data-testid': 'paper' } }} value="">
+          <Option value="only">Only</Option>
         </Select>,
       );
       const parentEl = container.querySelector('.MuiInputBase-root');
       const button = getByRole('combobox');
       stub(parentEl, 'clientWidth').get(() => 14);
 
-      fireEvent.mouseDown(button);
+      fireEvent.click(button);
       expect(getByTestId('paper').style).to.have.property('minWidth', '14px');
     });
 
     it('should not take the trigger parent element width into account when autoWidth is true', () => {
       const { container, getByRole, getByTestId } = render(
-        <Select autoWidth MenuProps={{ PaperProps: { 'data-testid': 'paper' } }} value="">
-          <MenuItem>Only</MenuItem>
+        <Select autoWidth PopoverProps={{ PaperProps: { 'data-testid': 'paper' } }} value="">
+          <Option value="only">Only</Option>
         </Select>,
       );
       const parentEl = container.querySelector('.MuiInputBase-root');
@@ -1083,9 +1180,9 @@ describe('<Select />', () => {
     it('should serialize multiple select value', () => {
       const { container, getAllByRole } = render(
         <Select multiple open value={[10, 30]}>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
         </Select>,
       );
       const options = getAllByRole('option');
@@ -1099,9 +1196,9 @@ describe('<Select />', () => {
     it('should have aria-multiselectable=true when multiple is true', () => {
       const { getByRole } = render(
         <Select multiple value={[10, 30]}>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
         </Select>,
       );
 
@@ -1113,11 +1210,11 @@ describe('<Select />', () => {
     it('should serialize multiple select display value', () => {
       const { getByRole } = render(
         <Select multiple value={[10, 20, 30]}>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>
+          <Option value={10}>Ten</Option>
+          <Option value={20}>
             <strong>Twenty</strong>
-          </MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          </Option>
+          <Option value={30}>Thirty</Option>
         </Select>,
       );
 
@@ -1139,9 +1236,9 @@ describe('<Select />', () => {
     it("selects value based on their stringified equality when they're not objects", () => {
       const { getAllByRole } = render(
         <Select multiple open value={['10', '20']}>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
         </Select>,
       );
       const options = getAllByRole('option');
@@ -1157,9 +1254,9 @@ describe('<Select />', () => {
       const obj3 = { id: 3 };
       const { getAllByRole } = render(
         <Select multiple open value={[obj1, obj3]}>
-          <MenuItem value={obj1}>ID: 1</MenuItem>
-          <MenuItem value={obj2}>ID: 2</MenuItem>
-          <MenuItem value={obj3}>ID: 3</MenuItem>
+          <Option value={obj1}>ID: 1</Option>
+          <Option value={obj2}>ID: 2</Option>
+          <Option value={obj3}>ID: 3</Option>
         </Select>,
       );
       const options = getAllByRole('option');
@@ -1183,9 +1280,9 @@ describe('<Select />', () => {
           render(
             <ErrorBoundary ref={errorRef}>
               <Select multiple value="10,20">
-                <MenuItem value="10">Ten</MenuItem>
-                <MenuItem value="20">Twenty</MenuItem>
-                <MenuItem value="30">Thirty</MenuItem>
+                <Option value="10">Ten</Option>
+                <Option value="20">Twenty</Option>
+                <Option value="30">Thirty</Option>
               </Select>
             </ErrorBoundary>,
           );
@@ -1194,11 +1291,14 @@ describe('<Select />', () => {
           // React 18 Strict Effects run mount effects twice
           React.version.startsWith('18') && 'MUI: The `value` prop must be an array',
           'The above error occurred in the <ForwardRef(SelectInput)> component',
+          // React 18 Strict Effects run mount effects twice
+          React.version.startsWith('18') &&
+            'The above error occurred in the <ForwardRef(SelectInput)> component',
         ]);
         const {
           current: { errors },
         } = errorRef;
-        expect(errors).to.have.length(1);
+        expect(errors).to.have.length(2);
         expect(errors[0].toString()).to.include('MUI: The `value` prop must be an array');
       });
     });
@@ -1223,9 +1323,9 @@ describe('<Select />', () => {
 
           return (
             <Select multiple name="age" onChange={handleChange} value={values}>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Ten</MenuItem>
-              <MenuItem value={30}>Ten</MenuItem>
+              <Option value={10}>Ten</Option>
+              <Option value={20}>Ten</Option>
+              <Option value={30}>Ten</Option>
             </Select>
           );
         }
@@ -1256,9 +1356,9 @@ describe('<Select />', () => {
     it('should apply multiple class to `select` slot', () => {
       const { container } = render(
         <Select multiple open value={[10, 30]}>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <Option value={10}>Ten</Option>
+          <Option value={20}>Twenty</Option>
+          <Option value={30}>Thirty</Option>
         </Select>,
       );
 
@@ -1382,29 +1482,13 @@ describe('<Select />', () => {
     });
   });
 
-  it('prevents the default when releasing Space on the children', () => {
-    const keyUpSpy = spy();
-    render(
-      <Select value="one" open>
-        <MenuItem onKeyUp={keyUpSpy} value="one">
-          One
-        </MenuItem>
-      </Select>,
-    );
-
-    fireEvent.keyUp(screen.getAllByRole('option')[0], { key: ' ' });
-
-    expect(keyUpSpy.callCount).to.equal(1);
-    expect(keyUpSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
-  });
-
-  it('should pass onClick prop to MenuItem', () => {
+  it('should pass onClick prop to Option', () => {
     const onClick = spy();
     const { getAllByRole } = render(
       <Select open value="30">
-        <MenuItem onClick={onClick} value={30}>
+        <Option onClick={onClick} value={30}>
           Thirty
-        </MenuItem>
+        </Option>
       </Select>,
     );
 
@@ -1420,9 +1504,9 @@ describe('<Select />', () => {
     const onChangeHandler = spy();
     const { container, getByRole } = render(
       <Select onChange={onChangeHandler} defaultValue="germany" name="country">
-        <MenuItem value="france">France</MenuItem>
-        <MenuItem value="germany">Germany</MenuItem>
-        <MenuItem value="china">China</MenuItem>
+        <Option value="france">France</Option>
+        <Option value="germany">Germany</Option>
+        <Option value="china">China</Option>
       </Select>,
     );
     fireEvent.change(container.querySelector('input[name="country"]'), {
@@ -1449,10 +1533,10 @@ describe('<Select />', () => {
       return (
         <form onSubmit={handleSubmit}>
           <Select required name="country" {...props}>
-            <MenuItem value="" />
-            <MenuItem value="france">France</MenuItem>
-            <MenuItem value="germany">Germany</MenuItem>
-            <MenuItem value="china">China</MenuItem>
+            <Option value="" />
+            <Option value="france">France</Option>
+            <Option value="germany">Germany</Option>
+            <Option value="china">China</Option>
           </Select>
           <button type="submit" />
         </form>
@@ -1478,8 +1562,8 @@ describe('<Select />', () => {
           }
         }}
       >
-        <MenuItem value={1}>1</MenuItem>
-        <MenuItem value={2}>2</MenuItem>
+        <Option value={1}>1</Option>
+        <Option value={2}>2</Option>
       </Select>,
     );
     expect(document.activeElement).to.equal(getByRole('combobox'));
@@ -1491,14 +1575,17 @@ describe('<Select />', () => {
     render(
       <div onClick={handleClick}>
         <Select open onChange={handleChange} value="second">
-          <MenuItem value="first" />
-          <MenuItem value="second" />
+          <Option value="first" />
+          <Option value="second" />
         </Select>
       </div>,
     );
 
     const options = screen.getAllByRole('option');
-    options[0].click();
+
+    act(() => {
+      options[0].click();
+    });
 
     expect(handleChange.callCount).to.equal(1);
     expect(handleClick.callCount).to.equal(1);
@@ -1509,9 +1596,9 @@ describe('<Select />', () => {
     const handleChange = spy();
     render(
       <Select open onChange={handleChange} value="second">
-        <MenuItem value="first" />
+        <Option value="first" />
         <Divider />
-        <MenuItem value="second" />
+        <Option value="second" />
       </Select>,
     );
 
@@ -1563,8 +1650,8 @@ describe('<Select />', () => {
     const { container, getByTestId } = render(
       <ThemeProvider theme={theme}>
         <Select open value="first" data-testid="select">
-          <MenuItem value="first" />
-          <MenuItem value="second" />
+          <Option value="first" />
+          <Option value="second" />
         </Select>
       </ThemeProvider>,
     );
@@ -1665,8 +1752,8 @@ describe('<Select />', () => {
       const { getByTestId } = render(
         <ThemeProvider theme={theme}>
           <Select variant={variant} value="first" data-testid="input">
-            <MenuItem value="first" />
-            <MenuItem value="second" />
+            <Option value="first" />
+            <Option value="second" />
           </Select>
         </ThemeProvider>,
       );

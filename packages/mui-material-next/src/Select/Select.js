@@ -51,7 +51,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     inputProps,
     label,
     labelId,
-    MenuProps,
+    PopoverProps,
     multiple = false,
     native = false,
     onClose,
@@ -108,7 +108,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
                 defaultOpen,
                 displayEmpty,
                 labelId,
-                MenuProps,
+                PopoverProps,
                 onClose,
                 onOpen,
                 open,
@@ -206,10 +206,6 @@ Select.propTypes /* remove-proptypes */ = {
    */
   labelId: PropTypes.string,
   /**
-   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
-   */
-  MenuProps: PropTypes.object,
-  /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    * @default false
    */
@@ -247,6 +243,10 @@ Select.propTypes /* remove-proptypes */ = {
    * You can only use it when the `native` prop is `false` (default).
    */
   open: PropTypes.bool,
+  /**
+   * Props applied to the [`Popover`](/material-ui/api/popover/) element.
+   */
+  PopoverProps: PropTypes.object,
   /**
    * Render the selected value.
    * You can only use it when the `native` prop is `false` (default).
