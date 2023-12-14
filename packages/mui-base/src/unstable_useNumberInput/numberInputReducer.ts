@@ -8,12 +8,12 @@ import { NumberInputActionTypes } from './numberInputAction.types';
 import { clamp, isNumber } from './utils';
 
 // extracted from handleValueChange
-function getClampedValues(rawValue: number | undefined, context: NumberInputActionContext) {
+function getClampedValues(rawValue: number | null, context: NumberInputActionContext) {
   const { min, max, step } = context;
 
-  const clampedValue = rawValue === undefined ? '' : clamp(rawValue, min, max, step);
+  const clampedValue = rawValue === null ? null : clamp(rawValue, min, max, step);
 
-  const newInputValue = clampedValue === undefined ? '' : String(clampedValue);
+  const newInputValue = clampedValue === null ? '' : String(clampedValue);
 
   return {
     value: clampedValue,
@@ -54,7 +54,7 @@ function handleClamp<State extends NumberInputState>(
 
   const intermediateValue =
     numberValueAsString === '' || numberValueAsString === '-'
-      ? undefined
+      ? null
       : parseInt(numberValueAsString, 10);
 
   const clampedValues = getClampedValues(intermediateValue, context);

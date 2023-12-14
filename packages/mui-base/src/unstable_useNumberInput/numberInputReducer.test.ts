@@ -95,7 +95,7 @@ describe('numberInputReducer', () => {
 
     it('empty value', () => {
       const state: NumberInputState = {
-        value: '',
+        value: null,
         inputValue: '',
       };
 
@@ -110,7 +110,7 @@ describe('numberInputReducer', () => {
 
       const result = numberInputReducer(state, action);
 
-      expect(result.value).to.equal('');
+      expect(result.value).to.equal(null);
       expect(result.inputValue).to.equal('');
     });
   });

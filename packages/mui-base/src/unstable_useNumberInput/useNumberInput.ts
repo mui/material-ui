@@ -1,11 +1,7 @@
 'use client';
 import * as React from 'react';
 import MuiError from '@mui-internal/babel-macros/MuiError.macro';
-import {
-  unstable_useForkRef as useForkRef,
-  unstable_useId as useId,
-  unstable_useControlled as useControlled,
-} from '@mui/utils';
+import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { EventHandlers } from '../utils/types';
@@ -18,8 +14,16 @@ import {
   UseNumberInputDecrementButtonSlotProps,
   UseNumberInputReturnValue,
   StepDirection,
+  NumberInputState,
+  NumberInputActionContext,
+  NumberInputReducerAction,
 } from './useNumberInput.types';
-import { clamp, isNumber } from './utils';
+import { isNumber } from './utils';
+
+import { numberInputReducer } from './numberInputReducer';
+import { useControllableReducer } from '../utils/useControllableReducer';
+import { StateChangeCallback } from '../utils/useControllableReducer.types';
+import { NumberInputActionTypes, NumberInputAction } from './numberInputAction.types';
 
 const STEP_KEYS = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown'];
 
@@ -57,6 +61,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     value: valueProp,
     inputRef: inputRefProp,
     inputId: inputIdProp,
+    componentName = 'useNumberInput',
   } = parameters;
 
   // TODO: make it work with FormControl
@@ -85,17 +90,67 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
 
   const [focused, setFocused] = React.useState(false);
 
-  // the "final" value
-  const [value, setValue] = useControlled({
-    controlled: valueProp,
-    default: defaultValueProp,
-    name: 'NumberInput',
+  const handleStateChange: StateChangeCallback<NumberInputState> = React.useCallback(
+    (event, _field, _fieldValue, reason, state) => {
+      switch (reason) {
+        // case 'numberInput:inputChange':
+        //   onInputChange?.(event as React.ChangeEvent<HTMLInputElement>);
+        //   break;
+        // only a blur event will dispatch `numberInput:clamp`
+        case 'numberInput:clamp':
+          onChange?.(event as React.FocusEvent<HTMLInputElement>, state.value);
+          break;
+        case 'numberInput:increment':
+        case 'numberInput:decrement':
+        case 'numberInput:incrementToMax':
+        case 'numberInput:decrementToMin':
+          onChange?.(event as React.PointerEvent | React.KeyboardEvent, state.value);
+          break;
+        default:
+          break;
+      }
+    },
+    [onChange],
+  );
+
+  const numberInputActionContext: NumberInputActionContext = React.useMemo(() => {
+    return {
+      min,
+      max,
+      step,
+      shiftMultiplier,
+      getInputValueAsString,
+    };
+  }, [min, max, step, shiftMultiplier]);
+
+  const initialValue = defaultValueProp ?? null;
+
+  const initialState = {
+    value: initialValue,
+    inputValue: initialValue ? String(initialValue) : null,
+  };
+
+  const controlledState = React.useMemo(
+    () => ({
+      value: valueProp,
+    }),
+    [valueProp],
+  );
+
+  const [state, dispatch] = useControllableReducer<
+    NumberInputState,
+    NumberInputAction,
+    NumberInputActionContext
+  >({
+    reducer: numberInputReducer as React.Reducer<NumberInputState, NumberInputReducerAction>,
+    actionContext: React.useMemo(() => numberInputActionContext, [numberInputActionContext]),
+    initialState,
+    controlledProps: controlledState,
+    onStateChange: handleStateChange,
+    componentName,
   });
 
-  // the (potentially) dirty or invalid input value
-  const [dirtyValue, setDirtyValue] = React.useState<string | undefined>(
-    value ? String(value) : undefined,
-  );
+  const { value, inputValue } = state;
 
   React.useEffect(() => {
     if (!formControlContext && disabledProp && focused) {
@@ -120,31 +175,6 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       setFocused(true);
     };
 
-  const handleValueChange =
-    () =>
-    (
-      event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent,
-      val: number | undefined,
-    ) => {
-      let newValue;
-
-      if (val === undefined) {
-        newValue = val;
-        setDirtyValue('');
-      } else {
-        newValue = clamp(val, min, max, step);
-        setDirtyValue(String(newValue));
-      }
-
-      setValue(newValue);
-
-      if (isNumber(newValue)) {
-        onChange?.(event, newValue);
-      } else {
-        onChange?.(event, undefined);
-      }
-    };
-
   const createHandleInputChange =
     (otherHandlers: Partial<EventHandlers>) =>
     (event: React.ChangeEvent<HTMLInputElement> & MuiCancellableEvent) => {
@@ -164,41 +194,27 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
         return;
       }
 
-      // TODO: event.currentTarget.value will be passed straight into the InputChange action
-      const val = getInputValueAsString(event.currentTarget.value);
-
-      if (val === '' || val === '-') {
-        setDirtyValue(val);
-        setValue(undefined);
-      }
-
-      if (val.match(/^-?\d+?$/)) {
-        setDirtyValue(val);
-        setValue(parseInt(val, 10));
-      }
+      dispatch({
+        type: NumberInputActionTypes.inputChange,
+        inputValue: event.currentTarget.value,
+      });
     };
 
   const createHandleBlur =
     (otherHandlers: Partial<EventHandlers>) =>
     (event: React.FocusEvent<HTMLInputElement> & MuiCancellableEvent) => {
+      formControlContext?.onBlur();
+
       otherHandlers.onBlur?.(event);
 
       if (event.defaultMuiPrevented || event.defaultPrevented) {
         return;
       }
 
-      // TODO: event.currentTarget.value will be passed straight into the Blur action, or just pass inputValue from state
-      const val = getInputValueAsString(event.currentTarget.value);
-
-      if (val === '' || val === '-') {
-        handleValueChange()(event, undefined);
-      } else {
-        handleValueChange()(event, parseInt(val, 10));
-      }
-
-      if (formControlContext && formControlContext.onBlur) {
-        formControlContext.onBlur();
-      }
+      dispatch({
+        type: NumberInputActionTypes.clamp,
+        inputValue: event.currentTarget.value,
+      });
 
       setFocused(false);
     };
@@ -219,27 +235,17 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
 
   const handleStep =
     (direction: StepDirection) => (event: React.PointerEvent | React.KeyboardEvent) => {
-      let newValue;
+      const applyMultiplier = Boolean(event.shiftKey);
 
-      if (isNumber(value)) {
-        const multiplier =
-          event.shiftKey ||
-          (event as React.KeyboardEvent).key === 'PageUp' ||
-          (event as React.KeyboardEvent).key === 'PageDown'
-            ? shiftMultiplier
-            : 1;
-        newValue = {
-          up: value + (step ?? 1) * multiplier,
-          down: value - (step ?? 1) * multiplier,
-        }[direction];
-      } else {
-        // no value
-        newValue = {
-          up: min ?? 0,
-          down: max ?? 0,
-        }[direction];
-      }
-      handleValueChange()(event, newValue);
+      const actionType = {
+        up: NumberInputActionTypes.increment,
+        down: NumberInputActionTypes.decrement,
+      }[direction];
+
+      dispatch({
+        type: actionType,
+        applyMultiplier,
+      });
     };
 
   const createHandleKeyDown =
@@ -251,31 +257,48 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
         return;
       }
 
-      if (event.defaultPrevented) {
-        return;
-      }
-
+      // this prevents unintended page scrolling
       if (SUPPORTED_KEYS.includes(event.key)) {
         event.preventDefault();
       }
 
-      if (STEP_KEYS.includes(event.key)) {
-        const direction = {
-          ArrowUp: 'up',
-          ArrowDown: 'down',
-          PageUp: 'up',
-          PageDown: 'down',
-        }[event.key] as StepDirection;
-
-        handleStep(direction)(event);
-      }
-
-      if (event.key === 'Home' && isNumber(max)) {
-        handleValueChange()(event, max);
-      }
-
-      if (event.key === 'End' && isNumber(min)) {
-        handleValueChange()(event, min);
+      switch (event.key) {
+        case 'ArrowUp':
+          dispatch({
+            type: NumberInputActionTypes.increment,
+            applyMultiplier: !!event.shiftKey,
+          });
+          break;
+        case 'ArrowDown':
+          dispatch({
+            type: NumberInputActionTypes.decrement,
+            applyMultiplier: !!event.shiftKey,
+          });
+          break;
+        case 'PageUp':
+          dispatch({
+            type: NumberInputActionTypes.increment,
+            applyMultiplier: true,
+          });
+          break;
+        case 'PageDown':
+          dispatch({
+            type: NumberInputActionTypes.decrement,
+            applyMultiplier: true,
+          });
+          break;
+        case 'Home':
+          dispatch({
+            type: NumberInputActionTypes.incrementToMax,
+          });
+          break;
+        case 'End':
+          dispatch({
+            type: NumberInputActionTypes.decrementToMin,
+          });
+          break;
+        default:
+          break;
       }
     };
 
@@ -333,7 +356,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       onKeyDown: createHandleKeyDown(externalEventHandlers),
     };
 
-    const displayValue = (focused ? dirtyValue : value) ?? '';
+    const displayValue = (focused ? inputValue : value) ?? '';
 
     // get rid of slotProps.input.onInputChange before returning to prevent it from entering the DOM
     // if it was passed, it will be in mergedEventHandlers and throw
@@ -417,9 +440,9 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     getDecrementButtonProps,
     getRootProps,
     required: requiredProp,
-    value: focused ? dirtyValue : value,
+    value: focused ? inputValue : value,
     isIncrementDisabled,
     isDecrementDisabled,
-    inputValue: dirtyValue,
+    inputValue,
   };
 }
