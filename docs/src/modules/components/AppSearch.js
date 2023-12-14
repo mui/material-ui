@@ -250,7 +250,10 @@ function NewStartScreen() {
   ];
   return (
     <React.Fragment>
-      <p className="DocSearch-NewStartScreenHeader">{t('algoliaSearchHeader')}</p>
+      <p className="DocSearch-NewStartScreenHeader">
+        {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+        {'Quick links'}
+      </p>
       <div className="DocSearch-NewStartScreen">
         {startScreenOptions.map(({ category, items }) => (
           <div key={category.name} className="DocSearch-NewStartScreenCategory">
