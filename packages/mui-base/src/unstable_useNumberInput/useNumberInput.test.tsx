@@ -279,7 +279,7 @@ describe('useNumberInput', () => {
       expect(() => {
         setProps({ value: 5 });
       }).to.toErrorDev(
-        'useControllableReducer: The TestNumberInput component is changing a controlled prop to be uncontrolled: value',
+        'useControllableReducer: The TestNumberInput component is changing an uncontrolled prop to be controlled: value',
       );
     });
 
