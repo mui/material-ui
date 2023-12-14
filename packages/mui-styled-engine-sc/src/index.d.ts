@@ -244,7 +244,9 @@ type ThemedStyledComponentFactories<T extends object> = {
 
 export type StyledComponentPropsWithRef<
   C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
-> = React.ComponentPropsWithRef<C>;
+> = C extends AnyStyledComponent
+? React.ComponentPropsWithRef<StyledComponentInnerComponent<C>>
+: React.ComponentPropsWithRef<C>;
 
 // Same as in styled-components, but copied here so that it would use the Interpolation & CSS typings from above
 export interface ThemedStyledFunctionBase<
