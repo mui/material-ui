@@ -13,8 +13,6 @@ import {
 import { nativeSelectClasses } from '@mui/material/NativeSelect';
 // TODO v6: replace with material-next's extendTheme and provider when implementing Material You design
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// TODO v6: replace with material-next Menu components when available https://github.com/mui/material-ui/pull/38934
-import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 // TODO v6: replace with material-next ListSubheader when available
 import ListSubheader from '@mui/material/ListSubheader';
 // TODO v6: replace with material-next OutlinedInput when available
@@ -23,7 +21,8 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 // TODO v6: replace with material-next Divider when available
 import Divider from '@mui/material/Divider';
-import Select, { Option } from '@mui/material-next/Select';
+import Select from '@mui/material-next/Select';
+import Option, { optionClasses } from '@mui/material-next/Option';
 import classes from './selectClasses';
 
 describe('<Select />', () => {
@@ -119,7 +118,7 @@ describe('<Select />', () => {
     });
   });
 
-  it('should ignore onBlur when the menu opens', () => {
+  it('should ignore onBlur when the listbox opens', () => {
     // mousedown calls focus while click opens moving the focus to an item
     // this means the trigger is blurred immediately
     const handleBlur = spy();
@@ -140,7 +139,7 @@ describe('<Select />', () => {
     );
     const trigger = getByRole('combobox');
 
-    fireEvent.mouseDown(trigger);
+    fireEvent.click(trigger);
 
     expect(handleBlur.callCount).to.equal(0);
     expect(getByRole('listbox')).not.to.equal(null);
@@ -330,7 +329,7 @@ describe('<Select />', () => {
           <Option value="2" />
         </Select>,
       );
-      fireEvent.mouseDown(getByRole('combobox'));
+      fireEvent.click(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -484,7 +483,7 @@ describe('<Select />', () => {
     );
 
     const options = screen.getAllByRole('option');
-    expect(options[1]).not.to.have.class(menuItemClasses.selected);
+    expect(options[1]).not.to.have.class(optionClasses.selected);
   });
 
   describe('SVG icon', () => {
@@ -902,7 +901,7 @@ describe('<Select />', () => {
     });
 
     it('should not open on combobox click when readOnly', () => {
-      render(
+      const { getByRole } = render(
         <Select readOnly value="10">
           <Option value={10}>Ten</Option>
           <Option value={20}>Twenty</Option>
@@ -910,7 +909,7 @@ describe('<Select />', () => {
       );
 
       act(() => {
-        screen.getByRole('combobox').click();
+        fireEvent.click(getByRole('combobox'));
       });
 
       expect(screen.getByRole('listbox')).to.have.attribute('aria-hidden', 'true');
@@ -972,7 +971,7 @@ describe('<Select />', () => {
     });
 
     // https://github.com/mui/material-ui/issues/38949
-    it('should forward `slotProps` to menu', function test() {
+    it('should forward `slotProps` to popover', function test() {
       const { getByTestId } = render(
         <Select
           PopoverProps={{
@@ -1095,7 +1094,7 @@ describe('<Select />', () => {
       }
       const { getByRole, queryByRole } = render(<ControlledWrapper />);
 
-      fireEvent.mouseDown(getByRole('combobox'));
+      fireEvent.click(getByRole('combobox'));
       expect(getByRole('listbox')).not.to.equal(null);
 
       act(() => {
@@ -1171,7 +1170,7 @@ describe('<Select />', () => {
       const button = getByRole('combobox');
       stub(parentEl, 'clientWidth').get(() => 14);
 
-      fireEvent.mouseDown(button);
+      fireEvent.click(button);
       expect(getByTestId('paper').style).to.have.property('minWidth', '');
     });
   });
@@ -1202,7 +1201,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      fireEvent.mouseDown(getByRole('combobox'));
+      fireEvent.click(getByRole('combobox'));
 
       expect(getByRole('listbox')).to.have.attribute('aria-multiselectable', 'true');
     });
@@ -1337,7 +1336,7 @@ describe('<Select />', () => {
         });
         const { getByRole, getAllByRole } = render(<ControlledSelectInput onChange={onChange} />);
 
-        fireEvent.mouseDown(getByRole('combobox'));
+        fireEvent.click(getByRole('combobox'));
         const options = getAllByRole('option');
         fireEvent.click(options[2]);
 
@@ -1393,8 +1392,8 @@ describe('<Select />', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
           <Select open value={['first']} multiple>
-            <MenuItem value="first" />
-            <MenuItem value="second" />
+            <Option value="first" />
+            <Option value="second" />
           </Select>
         </ThemeProvider>,
       );

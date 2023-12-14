@@ -276,7 +276,8 @@ Option.propTypes /* remove-proptypes */ = {
    */
   dense: PropTypes.bool,
   /**
-   * @ignore
+   * If `true`, the component is disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -290,15 +291,6 @@ Option.propTypes /* remove-proptypes */ = {
    */
   divider: PropTypes.bool,
   /**
-   * This prop can help identify which element has keyboard focus.
-   * The class name will be applied when the element gains the focus through keyboard interaction.
-   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
-   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).
-   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
-   * if needed.
-   */
-  focusVisibleClassName: PropTypes.string,
-  /**
    * A text representation of the option's content.
    * Used for keyboard text navigation matching.
    */
@@ -307,11 +299,6 @@ Option.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
-  /**
-   * If `true`, the component is selected.
-   * @default false
-   */
-  selected: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -324,6 +311,14 @@ Option.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.number,
+  /**
+   * @ignore
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 } as any;
 
 export default Option;

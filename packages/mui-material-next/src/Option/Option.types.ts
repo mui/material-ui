@@ -5,7 +5,7 @@ import { ExtendButtonBaseTypeMap } from '@mui/material/ButtonBase';
 import { Theme } from '@mui/material/styles';
 import { OptionClasses } from './optionClasses';
 
-export interface OptionOwnProps {
+export interface OptionOwnProps<OptionValue = unknown> {
   /**
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
@@ -46,6 +46,10 @@ export interface OptionOwnProps {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
+  /**
+   * The value of the option.
+   */
+  value: OptionValue;
 }
 
 export type OptionTypeMap<
