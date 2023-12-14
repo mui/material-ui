@@ -114,7 +114,7 @@ function NewStartScreen() {
           icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
-          name: 'Available components',
+          name: 'Components',
           href: '/material-ui/getting-started/supported-components/',
           icon: <SmartButtonRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
@@ -141,7 +141,7 @@ function NewStartScreen() {
           icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
-          name: 'Available components',
+          name: 'Components',
           href: '/base-ui/all-components/',
           icon: <SmartButtonRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
