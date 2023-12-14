@@ -158,9 +158,6 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
   });
 
   const { value, inputValue } = state;
-  // console.log(
-  //   `value: ${value} (${typeof value}), inputValue: ${inputValue} (${typeof inputValue})`,
-  // );
 
   React.useEffect(() => {
     if (!formControlContext && disabledProp && focused) {
@@ -448,6 +445,10 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       onClick: handleStep('down'),
     };
   };
+
+  // console.log(
+  //   `value: ${value} (${typeof value}), inputValue: ${inputValue} (${typeof inputValue})`,
+  // );
 
   return {
     disabled: disabledProp,

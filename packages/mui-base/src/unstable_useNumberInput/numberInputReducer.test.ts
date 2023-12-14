@@ -187,7 +187,7 @@ describe('numberInputReducer', () => {
 
       const result = numberInputReducer(state, action);
 
-      expect(result.value).to.equal('');
+      expect(result.value).to.equal(-1);
       expect(result.inputValue).to.equal('-');
     });
 
@@ -209,7 +209,7 @@ describe('numberInputReducer', () => {
 
       const result = numberInputReducer(state, action);
 
-      expect(result.value).to.equal('');
+      expect(result.value).to.equal(1);
       expect(result.inputValue).to.equal('');
     });
   });

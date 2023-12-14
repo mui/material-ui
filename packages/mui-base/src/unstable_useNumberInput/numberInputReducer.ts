@@ -74,19 +74,14 @@ function handleInputChange<State extends NumberInputState>(
 
   const numberValueAsString = getInputValueAsString(inputValue);
 
-  if (numberValueAsString === '' || numberValueAsString === '-') {
+  if (
+    numberValueAsString.match(/^-?\d+?$/) ||
+    numberValueAsString === '' ||
+    numberValueAsString === '-'
+  ) {
     return {
       ...state,
       inputValue: numberValueAsString,
-      value: '',
-    };
-  }
-
-  if (numberValueAsString.match(/^-?\d+?$/)) {
-    return {
-      ...state,
-      inputValue: numberValueAsString,
-      value: parseInt(numberValueAsString, 10),
     };
   }
 

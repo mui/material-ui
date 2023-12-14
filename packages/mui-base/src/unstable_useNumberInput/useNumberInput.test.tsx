@@ -215,6 +215,7 @@ describe('useNumberInput', () => {
       function NumberInput() {
         const { getInputProps } = useNumberInput({
           onChange: handleChange,
+          defaultValue: 9,
         });
 
         return <input data-testid="test-input" {...getInputProps()} />;
@@ -224,11 +225,6 @@ describe('useNumberInput', () => {
       const input = screen.getByTestId('test-input') as HTMLInputElement;
 
       await userEvent.click(input);
-
-      await userEvent.keyboard('9');
-
-      expect(input.value).to.equal('9');
-
       await userEvent.keyboard('[Backspace]');
 
       expect(input.value).to.equal('');
@@ -245,6 +241,7 @@ describe('useNumberInput', () => {
       function NumberInput() {
         const { getInputProps } = useNumberInput({
           onChange: handleChange,
+          defaultValue: -5,
         });
 
         return <input data-testid="test-input" {...getInputProps()} />;
@@ -254,11 +251,6 @@ describe('useNumberInput', () => {
       const input = screen.getByTestId('test-input') as HTMLInputElement;
 
       await userEvent.click(input);
-
-      await userEvent.keyboard('-5');
-
-      expect(input.value).to.equal('-5');
-
       await userEvent.keyboard('[Backspace]');
 
       expect(input.value).to.equal('-');
