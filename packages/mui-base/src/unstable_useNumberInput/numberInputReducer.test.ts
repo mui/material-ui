@@ -4,6 +4,10 @@ import { NumberInputActionTypes } from './numberInputAction.types';
 import { numberInputReducer } from './numberInputReducer';
 import { getInputValueAsString as defaultGetInputValueAsString } from './useNumberInput';
 
+// the actual event is irrelevant to the reducer
+// it's only part of the action object so it can be passed to the state change callback
+const MOCK_EVENT: any = {};
+
 describe('numberInputReducer', () => {
   describe('action: clamp', () => {
     it('clamps the inputValue', () => {
@@ -14,7 +18,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.clamp,
-        event: {} as any,
+        event: MOCK_EVENT,
         inputValue: '1',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -36,7 +40,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.clamp,
-        event: {} as any,
+        event: MOCK_EVENT,
         inputValue: '3',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -59,7 +63,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.clamp,
-        event: {} as any,
+        event: MOCK_EVENT,
         inputValue: '0',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -82,7 +86,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.clamp,
-        event: {} as any,
+        event: MOCK_EVENT,
         inputValue: '10',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -105,7 +109,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.clamp,
-        event: {} as any,
+        event: MOCK_EVENT,
         inputValue: '',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -129,7 +133,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.inputChange,
-        event: {} as any,
+        event: MOCK_EVENT,
         inputValue: '1',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -151,7 +155,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.inputChange,
-        event: {} as any,
+        event: MOCK_EVENT,
         inputValue: '1a',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -173,7 +177,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.inputChange,
-        event: {} as any,
+        event: MOCK_EVENT,
         inputValue: '-',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -195,7 +199,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.inputChange,
-        event: {} as any,
+        event: MOCK_EVENT,
         inputValue: '',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -219,7 +223,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.increment,
-        event: {} as any,
+        event: MOCK_EVENT,
         applyMultiplier: false,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -241,7 +245,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.increment,
-        event: {} as any,
+        event: MOCK_EVENT,
         applyMultiplier: false,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -264,7 +268,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.increment,
-        event: {} as any,
+        event: MOCK_EVENT,
         applyMultiplier: true,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -289,7 +293,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.decrement,
-        event: {} as any,
+        event: MOCK_EVENT,
         applyMultiplier: false,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -311,7 +315,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.decrement,
-        event: {} as any,
+        event: MOCK_EVENT,
         applyMultiplier: false,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -334,7 +338,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.decrement,
-        event: {} as any,
+        event: MOCK_EVENT,
         applyMultiplier: true,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -359,7 +363,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.incrementToMax,
-        event: {} as any,
+        event: MOCK_EVENT,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           max: 99,
@@ -381,7 +385,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.incrementToMax,
-        event: {} as any,
+        event: MOCK_EVENT,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           shiftMultiplier: 10,
@@ -403,7 +407,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.decrementToMin,
-        event: {} as any,
+        event: MOCK_EVENT,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           min: 1,
@@ -425,7 +429,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.decrementToMin,
-        event: {} as any,
+        event: MOCK_EVENT,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           shiftMultiplier: 10,
