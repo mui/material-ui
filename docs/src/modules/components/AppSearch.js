@@ -101,7 +101,6 @@ const Shortcut = styled('div')(({ theme }) => {
 });
 
 function NewStartScreen() {
-  const t = useTranslate();
   const startScreenOptions = [
     {
       category: {
