@@ -4,8 +4,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { ThemeProvider } from '@mui/material/styles';
-// import albumTheme from './albumTheme';
-import { createTheme } from '@mui/material/styles';
+import albumTheme from './albumTheme';
+// import { createTheme } from '@mui/material/styles';
 
 import AppBar from './components/AppBar';
 import Hero from './components/Hero';
@@ -28,11 +28,11 @@ function Copyright() {
   );
 }
 
-const defaultTheme = createTheme();
+// const defaultTheme = createTheme();
 
 export default function Album() {
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={albumTheme}>
       <CssBaseline />
       <AppBar />
       <Hero />

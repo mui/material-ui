@@ -60,7 +60,7 @@ export default function ProductHero() {
           </Typography>
           <Stack sx={{ pt: 4 }} direction="row" spacing={2} justifyContent="center">
             <Button variant="contained">Main action</Button>
-            <Button variant="text" color="inherit">
+            <Button variant="outlined" color="inherit">
               Secondary action
             </Button>
           </Stack>

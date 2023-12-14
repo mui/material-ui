@@ -43,20 +43,27 @@ const albumTheme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: 'none',
-          border:'1px solid',
-          borderColor:'rgba(0,0,0,0.1)',
+          border:'1px solid rgba(0,0,0,0.1)',
           borderRadius: '8px',
         },
       },
     },
-    MuiButtonBase: {
+    MuiButton: {
       styleOverrides: {
-        root: {
-          border:'1px solid',
-          borderColor:'rgba(0,0,0,0.1)'
-        },
+        root: ({ ownerState }) => ({
+            ...(ownerState.variant === 'outlined' && {
+                border:'1px solid',
+                borderColor:'rgba(0,0,0,0.1)',
+              }),
+              textTransform: 'none',
+          }),
       },
     },
+    MuiLink: {
+        defaultProps: {
+            underline: 'none',
+          },
+      },
     },
 });
 
@@ -64,7 +71,6 @@ const fontHeader = {
   color: albumTheme.palette.text.primary,
   fontWeight: albumTheme.typography.fontWeightMedium,
   fontFamily: "'Inter', sans-serif",
-  textTransform: 'uppercase',
 };
 
 const theme = {
