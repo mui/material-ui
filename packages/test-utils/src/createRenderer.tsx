@@ -97,7 +97,7 @@ class NoopProfiler implements Profiler {
 
 type RenderMark = [
   id: string,
-  phase: 'mount' | 'update',
+  phase: 'mount' | 'update' | 'nested-update',
   actualDuration: number,
   baseDuration: number,
   startTime: number,

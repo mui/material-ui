@@ -22,15 +22,50 @@
     "import MenuItem from '@mui/material/MenuItem';",
     "import { MenuItem } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "focusVisible", "dense", "disabled", "divider", "gutters", "selected"],
-    "globalClasses": {
-      "focusVisible": "Mui-focusVisible",
-      "disabled": "Mui-disabled",
-      "selected": "Mui-selected"
+  "classes": [
+    {
+      "key": "dense",
+      "className": "MuiMenuItem-dense",
+      "description": "Styles applied to the root element if dense.",
+      "isGlobal": false
     },
-    "name": "MuiMenuItem"
-  },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "divider",
+      "className": "MuiMenuItem-divider",
+      "description": "Styles applied to the root element if `divider={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the root element if keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "gutters",
+      "className": "MuiMenuItem-gutters",
+      "description": "Styles applied to the inner `component` element unless `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiMenuItem-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if `selected={true}`.",
+      "isGlobal": true
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiMenuItem",

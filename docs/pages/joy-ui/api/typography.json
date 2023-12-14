@@ -60,55 +60,166 @@
     "import Typography from '@mui/joy/Typography';",
     "import { Typography } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTypography" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'a'",
-      "class": ".MuiTypography-root"
+      "class": "MuiTypography-root"
     },
     {
       "name": "startDecorator",
       "description": "The component that renders the start decorator.",
       "default": "'span'",
-      "class": ".MuiTypography-startDecorator"
+      "class": "MuiTypography-startDecorator"
     },
     {
       "name": "endDecorator",
       "description": "The component that renders the end decorator.",
       "default": "'span'",
-      "class": ".MuiTypography-endDecorator"
+      "class": "MuiTypography-endDecorator"
     }
   ],
-  "classes": {
-    "classes": [
-      "body-lg",
-      "body-md",
-      "body-sm",
-      "body-xs",
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "gutterBottom",
-      "h1",
-      "h2",
-      "h3",
-      "h4",
-      "noWrap",
-      "title-lg",
-      "title-md",
-      "title-sm",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": {}
-  },
+  "classes": [
+    {
+      "key": "body-lg",
+      "className": "MuiTypography-body-lg",
+      "description": "Class name applied to the root element if `level=\"body-lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body-md",
+      "className": "MuiTypography-body-md",
+      "description": "Class name applied to the root element if `level=\"body-md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body-sm",
+      "className": "MuiTypography-body-sm",
+      "description": "Class name applied to the root element if `level=\"body-sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body-xs",
+      "className": "MuiTypography-body-xs",
+      "description": "Class name applied to the root element if `level=\"body-xs\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorContext",
+      "className": "MuiTypography-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiTypography-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiTypography-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiTypography-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiTypography-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiTypography-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "gutterBottom",
+      "className": "MuiTypography-gutterBottom",
+      "description": "Class name applied to the root element if `gutterBottom={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h1",
+      "className": "MuiTypography-h1",
+      "description": "Class name applied to the root element if `level=\"h1\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h2",
+      "className": "MuiTypography-h2",
+      "description": "Class name applied to the root element if `level=\"h2\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h3",
+      "className": "MuiTypography-h3",
+      "description": "Class name applied to the root element if `level=\"h3\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h4",
+      "className": "MuiTypography-h4",
+      "description": "Class name applied to the root element if `level=\"h4\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "noWrap",
+      "className": "MuiTypography-noWrap",
+      "description": "Class name applied to the root element if `nowrap={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "title-lg",
+      "className": "MuiTypography-title-lg",
+      "description": "Class name applied to the root element if `level=\"title-lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "title-md",
+      "className": "MuiTypography-title-md",
+      "description": "Class name applied to the root element if `level=\"title-md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "title-sm",
+      "className": "MuiTypography-title-sm",
+      "description": "Class name applied to the root element if `level=\"title-sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiTypography-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiTypography-variantPlain",
+      "description": "Class name applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiTypography-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiTypography-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyTypography",
