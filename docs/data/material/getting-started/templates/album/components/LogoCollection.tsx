@@ -19,10 +19,16 @@ const logoStyle = {
 const LogoCollection = () => {
   return (
     <Box
-      sx={{ my: 6, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      sx={{ my: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
-      <Typography color="GrayText" variant="h6" sx={{ textAlign: 'center' }}>
-        Used by the best companies
+      <Typography
+        component="h2"
+        variant="h6"
+        align="center"
+        color="text.secondary"
+        gutterBottom
+      >
+        Trusted by the best companies
       </Typography>
       <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
         {logos.map((logo, index) => (

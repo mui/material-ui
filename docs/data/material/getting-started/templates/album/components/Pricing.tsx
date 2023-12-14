@@ -53,29 +53,36 @@ const tiers = [
 export default function Pricing() {
   return (
     <div>
-      <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
-        <Typography
-          component="h1"
-          variant="h6"
-          align="center"
-          color="text.primary"
-          gutterBottom
-        >
-          Pricing
-        </Typography>
-        <Typography
-          variant="body1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        >
-          Quickly build an effective pricing table for your potential customers with
-          this layout. It&apos;s built with default MUI components with little
-          customization.
-        </Typography>
-      </Container>
-
-      <Container maxWidth="md" component="main">
+      <Container
+        sx={{
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          py: 10,
+        }}
+      >
+        <Box sx={{ width: '40%', mb: 8 }}>
+          <Typography
+            component="h2"
+            variant="h4"
+            align="center"
+            color="text.primary"
+            gutterBottom
+          >
+            Pricing
+          </Typography>
+          <Typography
+            variant="body1"
+            align="center"
+            color="text.secondary"
+            component="p"
+          >
+            Quickly build an effective pricing table for your potential customers
+            with this layout. It&apos;s built with default MUI components with little
+            customization.
+          </Typography>
+        </Box>
         <Grid container spacing={5} alignItems="flex-end">
           {tiers.map((tier) => (
             // Enterprise card is full width at sm breakpoint

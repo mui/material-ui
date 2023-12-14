@@ -44,6 +44,15 @@ const albumTheme = createTheme({
         root: {
           boxShadow: 'none',
           border:'1px solid',
+          borderColor:'rgba(0,0,0,0.1)',
+          borderRadius: '8px',
+        },
+      },
+    },
+    MuiButtonBase: {
+      styleOverrides: {
+        root: {
+          border:'1px solid',
           borderColor:'rgba(0,0,0,0.1)'
         },
       },
