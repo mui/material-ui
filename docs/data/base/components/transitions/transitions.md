@@ -73,7 +73,7 @@ See the examples below.
 
 ### Material UI (React Transition Group)
 
-You can use any of the [transitions from Material UI](http://localhost:3000/material-ui/transitions/) or custom ones build with React Transition Group using an adapter shown in the following demo.
+You can use any of the [transitions from Material UI](https://mui.com/material-ui/transitions/) or custom ones build with React Transition Group using an adapter shown in the following demo.
 
 {{"demo": "ReactTransitionGroup.js"}}
 
