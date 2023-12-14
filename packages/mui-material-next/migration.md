@@ -333,6 +333,27 @@ If you were using the `skipFocusWhenDisabled` prop to explicitly make disabled c
  />
 ```
 
+## Option
+
+Added the `Option` component to be used within `Select` instead of `MenuItem`.
+You should replace all `MenuItem`s inside `Select` components with `Option`s.
+The `Option` component supports the same API as the `MenuItem`, except:
+
+### No selected prop
+
+The `Option` component doesn't support the `selected` prop.
+You should remove it if you have it.
+This won't have any impact as the `selected` prop doesn't have any effect when the `MenuItem` is inside a `Select` component.
+
+## Select
+
+### Replaced MenuItem with new Option component
+
+The `Option` component was added to be used instead of `MenuItem` inside `Select`.
+You should replace all `MenuItem`s inside `Select` components with `Option`s.
+See the [`Option`](https://github.com/mui/material-ui/blob/master/packages/mui-material-next/migration.md#option) section of this guide for details.
+
+
 ## Slider
 
 ### Thumb and Value Label slots must accept refs

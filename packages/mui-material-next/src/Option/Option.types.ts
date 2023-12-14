@@ -43,11 +43,6 @@ export interface OptionOwnProps {
    */
   label?: string;
   /**
-   * If `true`, the component is selected.
-   * @default false
-   */
-  selected?: boolean;
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -68,4 +63,7 @@ export type OptionProps<
   component?: React.ElementType;
 };
 
-export interface OptionOwnerState extends OptionProps {}
+export interface OptionOwnerState extends OptionProps {
+  highlighted: boolean;
+  selected: boolean;
+}

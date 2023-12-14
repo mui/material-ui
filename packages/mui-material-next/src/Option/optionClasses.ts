@@ -6,8 +6,6 @@ import {
 export interface OptionClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** State class applied to the root element if keyboard focused. */
-  focusVisible: string;
   /** Styles applied to the root element if dense. */
   dense: string;
   /** State class applied to the root element if `disabled={true}`. */
@@ -16,7 +14,7 @@ export interface OptionClasses {
   divider: string;
   /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
   gutters: string;
-  /** State class applied to the root element if `selected={true}`. */
+  /** State class applied to the root element if selected. */
   selected: string;
 }
 
@@ -28,7 +26,6 @@ export function getOptionUtilityClass(slot: string): string {
 
 const optionClasses: OptionClasses = generateUtilityClasses('MuiOption', [
   'root',
-  'focusVisible',
   'dense',
   'disabled',
   'divider',

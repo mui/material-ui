@@ -8,9 +8,9 @@ import {
   fireEvent,
   screen,
 } from '@mui-internal/test-utils';
-import { MenuProvider } from '@mui/base/useMenu';
+import { SelectProvider } from '@mui/base/useSelect';
 import Option, { optionClasses as classes } from '@mui/material-next/Option';
-import Menu from '@mui/material-next/Menu';
+import Select from '@mui/material-next/Select';
 import ButtonBase from '@mui/material-next/ButtonBase';
 
 const dummyGetItemState = () => ({
@@ -42,9 +42,10 @@ describe('<Option />', () => {
 
   describeConformance(<Option data-testid="option">1</Option>, () => ({
     render: (node) => {
-      return render(<MenuProvider value={testContext}>{node}</MenuProvider>);
+      return render(<SelectProvider value={testContext}>{node}</SelectProvider>);
     },
-    wrapMount: (mount) => (node) => mount(<MenuProvider value={testContext}>{node}</MenuProvider>),
+    wrapMount: (mount) => (node) =>
+      mount(<SelectProvider value={testContext}>{node}</SelectProvider>),
     classes,
     inheritComponent: ButtonBase,
     refInstanceof: window.HTMLLIElement,
@@ -54,47 +55,31 @@ describe('<Option />', () => {
     skip: ['componentsProp', 'reactTestRenderer'],
   }));
 
-  const renderWithMenu = (node: React.ReactNode) => {
+  const renderWithSelect = (node: React.ReactNode) => {
     function Test() {
-      return (
-        <Menu anchorEl={document.createElement('div')} open>
-          {node}
-        </Menu>
-      );
+      return <Select open>{node}</Select>;
     }
 
     return render(<Test />);
   };
 
   it('should render a focusable option', () => {
-    renderWithMenu(<Option />);
+    renderWithSelect(<Option value={1} />);
     const option = screen.getByRole('option');
 
     expect(option).to.have.property('tabIndex', 0);
   });
 
   it('has a ripple when clicked', () => {
-    renderWithMenu(<Option TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />);
+    renderWithSelect(
+      <Option TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />,
+    );
     const option = screen.getByRole('option');
 
     // ripple starts on mousedown
     fireEvent.mouseDown(option);
 
     expect(option.querySelectorAll('.ripple-visible')).to.have.length(1);
-  });
-
-  it('should render with the selected class but not aria-selected when `selected`', () => {
-    renderWithMenu(<Option selected />);
-    const option = screen.getByRole('option');
-
-    expect(option).to.have.class(classes.selected);
-    expect(option).not.to.have.attribute('aria-selected');
-  });
-
-  it('can have a role of option', () => {
-    renderWithMenu(<Option role="option" aria-selected={false} />);
-
-    expect(screen.queryByRole('option')).not.to.equal(null);
   });
 
   describe('event callbacks', () => {
@@ -111,7 +96,7 @@ describe('<Option />', () => {
       it(`should fire ${eventName}`, () => {
         const handlerName = `on${eventName[0].toUpperCase()}${eventName.slice(1)}`;
         const handler = spy();
-        renderWithMenu(<Option {...{ [handlerName]: handler }} />);
+        renderWithSelect(<Option value={1} {...{ [handlerName]: handler }} />);
 
         fireEvent[eventName](screen.getByRole('option'));
 
@@ -124,7 +109,7 @@ describe('<Option />', () => {
       const handleKeyDown = spy();
       const handleKeyUp = spy();
       const handleBlur = spy();
-      renderWithMenu(
+      renderWithSelect(
         <Option
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
@@ -158,7 +143,7 @@ describe('<Option />', () => {
       }
 
       const handleTouchStart = spy();
-      renderWithMenu(<Option onTouchStart={handleTouchStart} />);
+      renderWithSelect(<Option onTouchStart={handleTouchStart} />);
       const option = screen.getByRole('option');
 
       const touch = new Touch({ identifier: 0, target: option, clientX: 0, clientY: 0 });
@@ -169,33 +154,38 @@ describe('<Option />', () => {
   });
 
   it('can be disabled', () => {
-    renderWithMenu(<Option disabled />);
+    renderWithSelect(<Option disabled />);
     const option = screen.getByRole('option');
 
     expect(option).to.have.attribute('aria-disabled', 'true');
   });
 
   it('can be selected', () => {
-    renderWithMenu(<Option selected />);
+    render(
+      <Select value={1}>
+        <Option value={1} />
+      </Select>,
+    );
     const option = screen.getByRole('option');
 
     expect(option).to.have.class(classes.selected);
+    expect(option).to.have.attribute('aria-selected', 'true');
   });
 
   it('prop: disableGutters', () => {
     const { rerender } = render(
-      <Menu anchorEl={document.createElement('div')} open>
+      <Select open>
         <Option />
-      </Menu>,
+      </Select>,
     );
     const option = screen.getByRole('option');
 
     expect(option).to.have.class(classes.gutters);
 
     rerender(
-      <Menu anchorEl={document.createElement('div')} open>
+      <Select open>
         <Option disableGutters />
-      </Menu>,
+      </Select>,
     );
 
     expect(option).not.to.have.class(classes.gutters);

@@ -9,8 +9,8 @@ import {
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
 import { useSlotProps } from '@mui/base/utils';
+import { useOption } from '@mui/base';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { useMenuItem } from '@mui/base/useMenuItem';
 // TODO v6: Replace with @mui/material-next when the List components are available
 import ListContext from '@mui/material/List/ListContext';
 import { listItemIconClasses } from '@mui/material/ListItemIcon';
@@ -86,36 +86,36 @@ const OptionRoot = styled(ButtonBase, {
       backgroundColor: 'transparent',
     },
   },
-  [`&.${optionClasses.selected}`]: {
+  ...(ownerState.highlighted && {
+    backgroundColor: (theme.vars || theme).palette.action.focus,
+  }),
+  ...(ownerState.selected && {
     backgroundColor: theme.vars
       ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
       : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    [`&.${optionClasses.focusVisible}`]: {
+    ...(ownerState.highlighted && {
       backgroundColor: theme.vars
         ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
         : alpha(
             theme.palette.primary.main,
             theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
           ),
-    },
-  },
-  [`&.${optionClasses.selected}:hover`]: {
-    backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-      : alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
+    }),
+    '&:hover': {
       backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+        : alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+          ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      },
     },
-  },
-  [`&.${optionClasses.focusVisible}`]: {
-    backgroundColor: (theme.vars || theme).palette.action.focus,
-  },
+  }),
   [`&.${optionClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,
   },
@@ -158,15 +158,18 @@ const Option = React.forwardRef(function Option<RootComponentType extends React.
 ) {
   const props = useThemeProps({ props: inProps, name: 'MuiOption' });
   const {
+    children,
     autoFocus = false,
     component = 'li',
     dense = false,
     divider = false,
     disableGutters = false,
-    focusVisibleClassName,
+    // focusVisibleClassName,
     role = 'option',
+    tabIndex: tabIndexProp,
     className,
     disabled: disabledProp,
+    value: valueProp,
     label: labelProp,
     ...other
   } = props;
@@ -183,10 +186,11 @@ const Option = React.forwardRef(function Option<RootComponentType extends React.
   const optionRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(optionRef, ref);
 
-  const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({
-    disabled: disabledProp,
+  const { getRootProps, selected, highlighted } = useOption({
     rootRef: handleRef,
-    label: labelProp,
+    value: valueProp,
+    disabled: !!disabledProp,
+    label: labelProp ?? children,
   });
 
   useEnhancedEffect(() => {
@@ -203,15 +207,16 @@ const Option = React.forwardRef(function Option<RootComponentType extends React.
 
   const ownerState = {
     ...props,
+    // TODO v7: implement dense properly, probably share with menu item
     dense: childContext.dense,
     divider,
     disableGutters,
-    disabled,
-    focusVisible,
+    disabled: disabledProp,
+    selected,
     highlighted,
   };
 
-  const classes = useUtilityClasses(props);
+  const classes = useUtilityClasses(ownerState);
 
   const Root = /* slots.root ?? */ OptionRoot;
   const rootProps = useSlotProps({
@@ -219,11 +224,11 @@ const Option = React.forwardRef(function Option<RootComponentType extends React.
     getSlotProps: getRootProps,
     // TODO v6: Add support for slotProps.root
     externalSlotProps: {},
-    externalForwardedProps: other,
+    externalForwardedProps: { children, ...other },
     additionalProps: {
       role,
+      'data-value': valueProp,
       component,
-      focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),
       classes,
     },
     className: clsx(classes.root, className),
@@ -231,7 +236,7 @@ const Option = React.forwardRef(function Option<RootComponentType extends React.
   });
   return (
     <ListContext.Provider value={childContext}>
-      <OptionRoot {...rootProps} />
+      <Root {...rootProps} />
     </ListContext.Provider>
   );
 }) as OverridableComponent<OptionTypeMap>;
@@ -271,8 +276,7 @@ Option.propTypes /* remove-proptypes */ = {
    */
   dense: PropTypes.bool,
   /**
-   * If `true`, the component is disabled.
-   * @default false
+   * @ignore
    */
   disabled: PropTypes.bool,
   /**
@@ -316,6 +320,10 @@ Option.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * @default 0
+   */
+  tabIndex: PropTypes.number,
 } as any;
 
 export default Option;
