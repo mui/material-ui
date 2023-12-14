@@ -17,7 +17,7 @@ export interface NumberInputState {
   /**
    * The dirty `value` of the `input` element when it is in focus.
    */
-  inputValue: string | null;
+  inputValue: string;
 }
 
 /**

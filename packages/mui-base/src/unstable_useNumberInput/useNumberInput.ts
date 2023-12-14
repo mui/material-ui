@@ -127,7 +127,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
 
   const initialState = {
     value: initialValue,
-    inputValue: initialValue ? String(initialValue) : null,
+    inputValue: initialValue ? String(initialValue) : '',
   };
 
   const controlledState = React.useMemo(
