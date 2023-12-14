@@ -91,23 +91,23 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
   const [focused, setFocused] = React.useState(false);
 
   const handleStateChange: StateChangeCallback<NumberInputState> = React.useCallback(
-    (event, _field, _fieldValue, reason, state) => {
-      switch (reason) {
-        // case 'numberInput:inputChange':
-        //   onInputChange?.(event as React.ChangeEvent<HTMLInputElement>);
-        //   break;
-        // only a blur event will dispatch `numberInput:clamp`
-        case 'numberInput:clamp':
-          onChange?.(event as React.FocusEvent<HTMLInputElement>, state.value);
-          break;
-        case 'numberInput:increment':
-        case 'numberInput:decrement':
-        case 'numberInput:incrementToMax':
-        case 'numberInput:decrementToMin':
-          onChange?.(event as React.PointerEvent | React.KeyboardEvent, state.value);
-          break;
-        default:
-          break;
+    (event, field, fieldValue, reason) => {
+      // console.log('stateChange', field, fieldValue, reason);
+      if (field === 'value' && typeof fieldValue !== 'string') {
+        switch (reason) {
+          // only a blur event will dispatch `numberInput:clamp`
+          case 'numberInput:clamp':
+            onChange?.(event as React.FocusEvent<HTMLInputElement>, fieldValue);
+            break;
+          case 'numberInput:increment':
+          case 'numberInput:decrement':
+          case 'numberInput:incrementToMax':
+          case 'numberInput:decrementToMin':
+            onChange?.(event as React.PointerEvent | React.KeyboardEvent, fieldValue);
+            break;
+          default:
+            break;
+        }
       }
     },
     [onChange],
@@ -147,10 +147,20 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     initialState,
     controlledProps: controlledState,
     onStateChange: handleStateChange,
+    stateComparers: React.useMemo(
+      () => ({
+        // temporary hack to fix firing custom onChange when the input is blurred
+        value: () => false,
+      }),
+      [],
+    ),
     componentName,
   });
 
   const { value, inputValue } = state;
+  // console.log(
+  //   `value: ${value} (${typeof value}), inputValue: ${inputValue} (${typeof inputValue})`,
+  // );
 
   React.useEffect(() => {
     if (!formControlContext && disabledProp && focused) {
@@ -196,6 +206,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
 
       dispatch({
         type: NumberInputActionTypes.inputChange,
+        event,
         inputValue: event.currentTarget.value,
       });
     };
@@ -213,6 +224,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
 
       dispatch({
         type: NumberInputActionTypes.clamp,
+        event,
         inputValue: event.currentTarget.value,
       });
 
@@ -244,6 +256,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
 
       dispatch({
         type: actionType,
+        event,
         applyMultiplier,
       });
     };
@@ -266,35 +279,41 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
         case 'ArrowUp':
           dispatch({
             type: NumberInputActionTypes.increment,
+            event,
             applyMultiplier: !!event.shiftKey,
           });
           break;
         case 'ArrowDown':
           dispatch({
             type: NumberInputActionTypes.decrement,
+            event,
             applyMultiplier: !!event.shiftKey,
           });
           break;
         case 'PageUp':
           dispatch({
             type: NumberInputActionTypes.increment,
+            event,
             applyMultiplier: true,
           });
           break;
         case 'PageDown':
           dispatch({
             type: NumberInputActionTypes.decrement,
+            event,
             applyMultiplier: true,
           });
           break;
         case 'Home':
           dispatch({
             type: NumberInputActionTypes.incrementToMax,
+            event,
           });
           break;
         case 'End':
           dispatch({
             type: NumberInputActionTypes.decrementToMin,
+            event,
           });
           break;
         default:

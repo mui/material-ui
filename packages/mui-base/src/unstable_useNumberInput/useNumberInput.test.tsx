@@ -116,12 +116,12 @@ describe('useNumberInput', () => {
   describe('prop: onChange', () => {
     it('should call onChange when the input is blurred', async () => {
       const handleChange = spy();
-      function NumberInput() {
-        const { getInputProps } = useNumberInput({ onChange: handleChange });
+      function NumberInput(props: { defaultValue: number }) {
+        const { getInputProps } = useNumberInput({ ...props, onChange: handleChange });
 
         return <input data-testid="test-input" {...getInputProps()} />;
       }
-      render(<NumberInput />);
+      render(<NumberInput defaultValue={0} />);
 
       const input = screen.getByTestId('test-input');
 
@@ -210,7 +210,7 @@ describe('useNumberInput', () => {
       expect(handleChange.args[0][1]).to.equal(5);
     });
 
-    it('should call onChange with undefined when the value is cleared', async () => {
+    it('should call onChange with null when the value is cleared', async () => {
       const handleChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({
@@ -237,10 +237,10 @@ describe('useNumberInput', () => {
       expect(document.activeElement).to.equal(document.body);
 
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.equal(undefined);
+      expect(handleChange.args[0][1]).to.equal(null);
     });
 
-    it('should call onChange with undefined when input value is -', async () => {
+    it('should call onChange with null when input value is -', async () => {
       const handleChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({
@@ -267,7 +267,7 @@ describe('useNumberInput', () => {
       expect(document.activeElement).to.equal(document.body);
 
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.equal(undefined);
+      expect(handleChange.args[0][1]).to.equal(null);
     });
   });
 

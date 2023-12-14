@@ -14,6 +14,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.clamp,
+        event: {} as any,
         inputValue: '1',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -35,6 +36,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.clamp,
+        event: {} as any,
         inputValue: '3',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -57,6 +59,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.clamp,
+        event: {} as any,
         inputValue: '0',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -79,6 +82,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.clamp,
+        event: {} as any,
         inputValue: '10',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -101,6 +105,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.clamp,
+        event: {} as any,
         inputValue: '',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -124,6 +129,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.inputChange,
+        event: {} as any,
         inputValue: '1',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -145,6 +151,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.inputChange,
+        event: {} as any,
         inputValue: '1a',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -166,6 +173,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.inputChange,
+        event: {} as any,
         inputValue: '-',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -187,6 +195,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.inputChange,
+        event: {} as any,
         inputValue: '',
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -210,6 +219,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.increment,
+        event: {} as any,
         applyMultiplier: false,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -231,6 +241,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.increment,
+        event: {} as any,
         applyMultiplier: false,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -253,6 +264,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.increment,
+        event: {} as any,
         applyMultiplier: true,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -277,6 +289,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.decrement,
+        event: {} as any,
         applyMultiplier: false,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -298,6 +311,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.decrement,
+        event: {} as any,
         applyMultiplier: false,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -320,6 +334,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.decrement,
+        event: {} as any,
         applyMultiplier: true,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
@@ -344,6 +359,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.incrementToMax,
+        event: {} as any,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           max: 99,
@@ -365,6 +381,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.incrementToMax,
+        event: {} as any,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           shiftMultiplier: 10,
@@ -386,6 +403,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.decrementToMin,
+        event: {} as any,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           min: 1,
@@ -407,6 +425,7 @@ describe('numberInputReducer', () => {
 
       const action: NumberInputReducerAction = {
         type: NumberInputActionTypes.decrementToMin,
+        event: {} as any,
         context: {
           getInputValueAsString: defaultGetInputValueAsString,
           shiftMultiplier: 10,
