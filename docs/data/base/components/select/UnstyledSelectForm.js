@@ -10,13 +10,13 @@ export default function UnstyledSelectForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    alert(formData.get('demo-select'));
+    alert(new URLSearchParams(formData).toString());
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <Label htmlFor="named-select">
-        With the <code>name</code> prop
+        With the <code>name</code> prop set to <code>&quot;demo-select&quot;</code>
       </Label>
       <Select defaultValue={10} id="named-select" name="demo-select">
         <Option value={10}>Ten</Option>
