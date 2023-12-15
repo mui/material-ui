@@ -247,11 +247,11 @@ export interface UseNumberInputReturnValue {
   /**
    * The clamped `value` of the `input` element.
    */
-  value: unknown;
+  value: number | null | string;
   /**
    * The dirty `value` of the `input` element when it is in focus.
    */
-  inputValue: string | null | undefined;
+  inputValue: string;
   /**
    * If `true`, the increment button will be disabled.
    * e.g. when the `value` is already at `max`

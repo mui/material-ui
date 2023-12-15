@@ -100,10 +100,7 @@
       },
       "required": true
     },
-    "inputValue": {
-      "type": { "name": "string | null | undefined", "description": "string | null | undefined" },
-      "required": true
-    },
+    "inputValue": { "type": { "name": "string", "description": "string" }, "required": true },
     "isDecrementDisabled": {
       "type": { "name": "boolean", "description": "boolean" },
       "default": "false",
@@ -119,7 +116,10 @@
       "default": "false",
       "required": true
     },
-    "value": { "type": { "name": "unknown", "description": "unknown" }, "required": true }
+    "value": {
+      "type": { "name": "number | null | string", "description": "number | null | string" },
+      "required": true
+    }
   },
   "name": "useNumberInput",
   "filename": "/packages/mui-base/src/unstable_useNumberInput/useNumberInput.ts",
