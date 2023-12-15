@@ -17,4 +17,4 @@ She is now actively working on the unstyled components and [the update of the st
 
 The community team will continue developing the foundations on which to build great design systems. Here's a quick view of [the community roadmap](https://github.com/orgs/mui/projects/18/views/1).
 
-We couldn't be more excited to have Marija on the team! You can follow her on [Twitter](https://twitter.com/marijanajdova).
+We couldn't be more excited to have Marija on the team! You can follow her on [X](https://twitter.com/marijanajdova).
