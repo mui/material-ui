@@ -49,7 +49,6 @@ export default function RootLayout(props) {
   );
 }
 ```
-Please refer to this page to learn about theme customization.
 
 ## Props serialization
 
