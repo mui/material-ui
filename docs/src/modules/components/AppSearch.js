@@ -158,28 +158,6 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'Joy UI',
-      },
-      items: [
-        {
-          name: 'Installation',
-          href: '/joy-ui/getting-started/installation/',
-          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Templates',
-          href: '/joy-ui/getting-started/templates/',
-          icon: <CollectionsBookmarkRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Customization',
-          href: '/joy-ui/customization/approaches/',
-          icon: <DesignServicesRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-      ],
-    },
-    {
-      category: {
         name: 'MUI X',
       },
       items: [
@@ -197,6 +175,28 @@ function NewStartScreen() {
           name: 'What is new in MUI X',
           href: '/x/whats-new/',
           icon: <NewspaperRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+      ],
+    },
+    {
+      category: {
+        name: 'Joy UI',
+      },
+      items: [
+        {
+          name: 'Installation',
+          href: '/joy-ui/getting-started/installation/',
+          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Templates',
+          href: '/joy-ui/getting-started/templates/',
+          icon: <CollectionsBookmarkRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        },
+        {
+          name: 'Customization',
+          href: '/joy-ui/customization/approaches/',
+          icon: <DesignServicesRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],
     },
@@ -248,25 +248,19 @@ function NewStartScreen() {
     },
   ];
   return (
-    <React.Fragment>
-      <p className="DocSearch-NewStartScreenHeader">
-        {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-        {'Quick links'}
-      </p>
-      <div className="DocSearch-NewStartScreen">
-        {startScreenOptions.map(({ category, items }) => (
-          <div key={category.name} className="DocSearch-NewStartScreenCategory">
-            <div className="DocSearch-NewStartScreenTitle">{category.name}</div>
-            {items.map(({ name, icon, href }) => (
-              <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
-                {icon}
-                {name}
-              </NextLink>
-            ))}
-          </div>
-        ))}
-      </div>
-    </React.Fragment>
+    <div className="DocSearch-NewStartScreen">
+      {startScreenOptions.map(({ category, items }) => (
+        <div key={category.name} className="DocSearch-NewStartScreenCategory">
+          <div className="DocSearch-NewStartScreenTitle">{category.name}</div>
+          {items.map(({ name, icon, href }) => (
+            <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
+              {icon}
+              {name}
+            </NextLink>
+          ))}
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -526,12 +520,6 @@ export default function AppSearch(props) {
               zIndex: theme.zIndex.tooltip + 100,
               backgroundColor: alpha(theme.palette.grey[700], 0.5),
               backdropFilter: 'blur(2px)',
-            },
-            '& .DocSearch-NewStartScreenHeader': {
-              fontSize: theme.typography.pxToRem(16),
-              fontWeight: theme.typography.fontWeightSemiBold,
-              color: theme.palette.text.secondary,
-              paddingLeft: theme.spacing(2),
             },
             '& .DocSearch-StartScreen': {
               display: 'none',
