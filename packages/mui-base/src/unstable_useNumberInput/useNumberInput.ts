@@ -144,14 +144,11 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     reducer: numberInputReducer as React.Reducer<NumberInputState, NumberInputReducerAction>,
     controlledProps: controlledState,
     initialState,
-    stateComparers: React.useMemo(
-      () => ({
-        // always consider `value` to have changed to make onChange always fire on blur
-        // to be reconsidered!
-        value: () => false,
-      }),
-      [],
-    ),
+    stateComparers: {
+      // always consider `value` to have changed to make onChange always fire on blur
+      // to be reconsidered!
+      value: () => false,
+    },
     onStateChange: handleStateChange,
     actionContext: React.useMemo(() => numberInputActionContext, [numberInputActionContext]),
     componentName,
