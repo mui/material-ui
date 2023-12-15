@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles';
 import { grey, red } from '@mui/material/colors';
 
 const albumTheme = createTheme({
-  palette: {
+    palette: {
     primary: {
       light: '#000000',
       main: '#000000',
@@ -28,7 +28,8 @@ const albumTheme = createTheme({
       dark: '#00FF6F',
     },
     background: {
-      default: '#F7F8FA',
+      default: '#fff',
+      paper: '#FBFCFE',
     },
   },
   typography: {
@@ -62,9 +63,73 @@ const albumTheme = createTheme({
     MuiLink: {
         defaultProps: {
             underline: 'none',
-          },
-      },
+        },
     },
+    MuiAccordion: {
+        defaultProps: {
+            disableGutters: true,
+            elevation: 0,
+          },
+          styleOverrides: {
+            root: {
+                border: '1px solid divider',
+                '&:not(:last-child)': {
+                  borderBottom: 0,
+                },
+                '&:before': {
+                  display: 'none',
+                },
+            },
+          },
+    },
+    MuiAccordionSummary: {
+          styleOverrides: {
+            root: ({ theme }) => ({
+                backgroundColor: 'rgba(0, 0, 0, .03)',
+                '& .MuiAccordionSummary-content': {
+                    marginLeft: theme.spacing(2),
+              },
+            }),
+          },
+    },
+    MuiTextField: {
+        styleOverrides: {
+        root: {
+          '& label.Mui-focused': {
+            color: 'white',
+          },
+          '& .MuiInputBase-input': {
+            color: 'white',
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'rgba(255, 255, 255, 0.2)',
+            },
+            '&:hover fieldset': {
+              borderColor: 'white',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'white',
+            },
+          },
+          '& .MuiInputLabel-root': {
+            color: 'white',
+          },
+          '& .MuiOutlinedInput-input:-webkit-autofill': {
+            '-webkit-box-shadow': '0 0 0 100px rgba(255, 255, 255, 0.2) inset',
+          },
+        },
+        },
+      },
+    MuiAccordionDetails: {
+          styleOverrides: {
+            root: ({ theme }) => ({
+                padding: theme.spacing(3),
+                borderTop: '1px solid rgba(0, 0, 0, .125)',
+            }),
+          },
+    },
+    },   
 });
 
 const fontHeader = {

@@ -5,8 +5,9 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
+import Masonry from '@mui/lab/Masonry';
+import { useMediaQuery } from '@mui/material';
 
 const userTestimonials = [
   {
@@ -15,6 +16,27 @@ const userTestimonials = [
     occupation: 'Senior engineer',
     testimonial:
       'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur',
+  },
+  {
+    avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />,
+    name: 'Travis Howard',
+    occupation: 'Lead product designer',
+    testimonial:
+      'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi.',
+  },
+  {
+    avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />,
+    name: 'Cindy Baker',
+    occupation: 'CTO',
+    testimonial:
+      'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. ',
+  },
+  {
+    avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />,
+    name: 'Remy Sharp',
+    occupation: 'Senior engineer',
+    testimonial:
+      'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur',
   },
   {
     avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />,
@@ -33,6 +55,9 @@ const userTestimonials = [
 ];
 
 export default function Testimonials() {
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
+  const columns = isSmallScreen ? 1 : 3;
+
   return (
     <Box>
       <Container
@@ -40,12 +65,10 @@ export default function Testimonials() {
           position: 'relative',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-start',
-          pt: 10,
-          pb: 20,
+          alignItems: 'center',
         }}
       >
-        <Box sx={{ width: '40%', mb: 8 }}>
+        <Box sx={{ width: '60%', mb: 8, textAlign: 'center' }}>
           <Typography component="h2" variant="h4" color="text.primary" gutterBottom>
             Testimonials
           </Typography>
@@ -54,12 +77,7 @@ export default function Testimonials() {
             Aliquam in hendrerit urna.
           </Typography>
         </Box>
-        <Stack
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
-        >
+        <Masonry columns={columns} spacing={2}>
           {userTestimonials.map((testimonial, index) => (
             <Card key={index}>
               <CardContent>
@@ -74,7 +92,7 @@ export default function Testimonials() {
               />
             </Card>
           ))}
-        </Stack>
+        </Masonry>
       </Container>
     </Box>
   );

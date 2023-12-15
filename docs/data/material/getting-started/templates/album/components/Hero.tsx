@@ -4,6 +4,9 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
+import Link from '@mui/material/Link';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
 
 export default function ProductHero() {
   return (
@@ -13,71 +16,80 @@ export default function ProductHero() {
         backgroundImage: `url("https://source.unsplash.com/random?wallpapers")`,
         backgroundSize: 'cover',
         color: 'white',
-        height: '85vh',
+        height: '80vh',
       }}
     >
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'flex-end',
+          justifyContent: 'center',
           gap: 10,
-          top: 'inherit',
           width: '100%',
-          height: '85vh',
-          minHeight: 500,
-          maxHeight: 1300,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          height: '80vh',
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
           backdropFilter: 'blur(40px)',
           alignItems: 'center',
         }}
       >
-        <Stack
-          direction="column"
-          spacing={2}
-          justifyContent="center"
-          sx={{ zIndex: 1, maxWidth: '50%' }}
-        >
-          <Chip
-            size="small"
-            variant="outlined"
-            label="Product highlight"
-            sx={{ alignSelf: 'center', color: 'inherit' }}
-          />
-          <Typography
-            component="h1"
-            variant="h2"
-            align="center"
-            color="inherit"
-            gutterBottom
-          >
-            Main header
-          </Typography>
-          <Typography variant="body1" align="center" color="inherit" paragraph>
-            Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi.
-            Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis
-            ligula consectetur
-          </Typography>
-          <Stack sx={{ pt: 4 }} direction="row" spacing={2} justifyContent="center">
-            <Button variant="contained">Main action</Button>
-            <Button variant="outlined" color="inherit">
-              Secondary action
-            </Button>
-          </Stack>
-        </Stack>
-        <Box
-          sx={{
-            zIndex: 1,
-            width: '80%',
-            backgroundImage: `url("https://mui.com/static/joy-ui/overview/order-dashboard.png")`,
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            opacity: 0.9,
-            minHeight: 600,
-            maxHeight: 1300,
-            mb: 4,
-          }}
-        />
+        <Grid container justifyContent="center">
+          <Grid item xs={12} sm={10} md={8} lg={6} xl={4}>
+            <Stack
+              direction="column"
+              spacing={2}
+              justifyContent="center"
+              sx={{ zIndex: 1 }}
+            >
+              <Chip
+                size="small"
+                variant="outlined"
+                label="New Arrival"
+                sx={{ alignSelf: 'center', color: 'inherit' }}
+              />
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="inherit"
+                gutterBottom
+              >
+                Latest Products
+              </Typography>
+              <Typography variant="body1" align="center" color="inherit" paragraph>
+                Discover our newest collection of high-quality products. From
+                electronics to fashion, we have something for everyone.
+              </Typography>
+              <Stack
+                direction="row"
+                spacing={1}
+                justifyContent="center"
+                sx={{ pt: 2 }}
+              >
+                <TextField
+                  id="outlined-basic"
+                  hiddenLabel
+                  size="small"
+                  variant="outlined"
+                  placeholder="Your email address"
+                />
+                <Button variant="contained">Start using</Button>
+              </Stack>
+              <Typography variant="caption" align="center" color="inherit" paragraph>
+                By clicking "Explore Now," you agree to our{' '}
+                <span>
+                  <Link
+                    href="#"
+                    underline="hover"
+                    color="inherit"
+                    sx={{ fontWeight: 600 }}
+                  >
+                    Terms & Conditions
+                  </Link>
+                </span>
+              </Typography>
+            </Stack>
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );

@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
@@ -42,10 +43,10 @@ export default function Features() {
   };
 
   return (
-    <div>
-      <Box>
-        <Container sx={{ display: 'flex', py: 10, gap: 4 }}>
-          <Box>
+    <Box>
+      <Container>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6}>
             <Box sx={{ mb: 4 }}>
               <Typography
                 component="h2"
@@ -75,9 +76,8 @@ export default function Features() {
                   onClick={() => handleItemClick(index)}
                   sx={{
                     backgroundColor:
-                      selectedItemIndex === index
-                        ? 'rgba(0,0,0,0.1)'
-                        : 'transparent',
+                      selectedItemIndex === index ? '#F0F4F8' : 'transparent',
+                    borderColor: selectedItemIndex === index ? '#CDD7E1' : '#F0F4F8',
                     width: '100%',
                   }}
                 >
@@ -139,18 +139,22 @@ export default function Features() {
                 </Card>
               ))}
             </Stack>
-          </Box>
-          <Box
-            sx={{
-              backgroundImage: items[selectedItemIndex].image,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              width: '80%',
-              borderRadius: '8px',
-            }}
-          />
-        </Container>
-      </Box>
-    </div>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                backgroundImage: items[selectedItemIndex].image,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                borderRadius: '8px',
+                height: '100%',
+                minHeight: '400px',
+                marginBottom: '16px',
+              }}
+            />
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 }

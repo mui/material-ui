@@ -6,9 +6,11 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Grid from '@mui/material/Grid';
-import StarIcon from '@mui/icons-material/StarBorder';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { yellow } from '@mui/material/colors';
+
+import StarIcon from '@mui/icons-material/Star';
 
 const tiers = [
   {
@@ -59,33 +61,20 @@ export default function Pricing() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          py: 10,
         }}
       >
-        <Box sx={{ width: '40%', mb: 8 }}>
-          <Typography
-            component="h2"
-            variant="h4"
-            align="center"
-            color="text.primary"
-            gutterBottom
-          >
+        <Box sx={{ width: '60%', mb: 8, textAlign: 'center' }}>
+          <Typography component="h2" variant="h4" color="text.primary" gutterBottom>
             Pricing
           </Typography>
-          <Typography
-            variant="body1"
-            align="center"
-            color="text.secondary"
-            component="p"
-          >
+          <Typography variant="body1" color="text.secondary" component="p">
             Quickly build an effective pricing table for your potential customers
             with this layout. It&apos;s built with default MUI components with little
             customization.
           </Typography>
         </Box>
-        <Grid container spacing={5} alignItems="flex-end">
+        <Grid container spacing={3} alignItems="flex-end">
           {tiers.map((tier) => (
-            // Enterprise card is full width at sm breakpoint
             <Grid
               item
               key={tier.title}
@@ -98,14 +87,18 @@ export default function Pricing() {
                   title={tier.title}
                   subheader={tier.subheader}
                   titleTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'Pro' ? <StarIcon /> : null}
+                  action={
+                    tier.title === 'Pro' ? (
+                      <StarIcon sx={{ color: yellow[800] }} />
+                    ) : null
+                  }
                   subheaderTypographyProps={{
                     align: 'center',
                   }}
                   sx={{
                     backgroundColor: (theme) =>
                       theme.palette.mode === 'light'
-                        ? theme.palette.grey[200]
+                        ? '#F0F4F8'
                         : theme.palette.grey[700],
                   }}
                 />
@@ -119,24 +112,18 @@ export default function Pricing() {
                     }}
                   >
                     <Typography component="h2" variant="h3" color="text.primary">
-                      ${tier.price}
+                      ${tier.price}{' '}
                     </Typography>
                     <Typography variant="h6" color="text.secondary">
                       /mo
                     </Typography>
                   </Box>
-                  <ul>
-                    {tier.description.map((line) => (
-                      <Typography
-                        component="li"
-                        variant="subtitle1"
-                        align="center"
-                        key={line}
-                      >
-                        {line}
-                      </Typography>
-                    ))}
-                  </ul>
+
+                  {tier.description.map((line) => (
+                    <Typography variant="subtitle2" align="center" key={line}>
+                      {line}
+                    </Typography>
+                  ))}
                 </CardContent>
                 <CardActions>
                   <Button

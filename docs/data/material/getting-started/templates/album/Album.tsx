@@ -14,6 +14,7 @@ import Highlights from './components/Highlights';
 import Pricing from './components/Pricing';
 import Features from './components/Features';
 import Testimonials from './components/Testimonials';
+import FAQ from './components/FAQ';
 
 function Copyright() {
   return (
@@ -28,7 +29,7 @@ function Copyright() {
   );
 }
 
-// const defaultTheme = createTheme();
+// const albumTheme = createTheme();
 
 export default function Album() {
   return (
@@ -36,27 +37,35 @@ export default function Album() {
       <CssBaseline />
       <AppBar />
       <Hero />
-      <LogoCollection />
-      <Features />
-      <Testimonials />
-      <Highlights />
-      <Pricing />
-
-      <Box sx={{ bgcolor: 'rgba(0,0,0,0.1)', p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        >
-          Something here to give the footer a purpose!
-        </Typography>
-        <Copyright />
+      <Box
+        sx={{
+          bgcolor: albumTheme.palette.background.default,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 24,
+        }}
+      >
+        <LogoCollection />
+        <Features />
+        <Testimonials />
+        <Highlights />
+        <Pricing />
+        <FAQ />
+        <Box sx={{ bgcolor: 'rgba(0,0,0,0.1)', p: 6 }} component="footer">
+          <Typography variant="h6" align="center" gutterBottom>
+            Footer
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            align="center"
+            color="text.secondary"
+            component="p"
+          >
+            Something here to give the footer a purpose!
+          </Typography>
+          <Copyright />
+        </Box>
       </Box>
-      {/* End footer */}
     </ThemeProvider>
   );
 }
