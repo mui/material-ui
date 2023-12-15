@@ -112,21 +112,21 @@ describe('<FormControl />', () => {
     });
 
     it('should inherit htmlFor from FormControl if htmlFor is undefined', () => {
-      const { container } = render(
+      const { getByText } = render(
         <FormControl>
-          <FormLabel htmlFor={undefined} />
+          <FormLabel htmlFor={undefined}>label</FormLabel>
         </FormControl>,
       );
-      expect(container.firstChild?.firstChild).to.have.attribute('for');
+      expect(getByText('label')).to.have.attribute('for');
     });
 
     it('should inherit id from FormControl if id is undefined', () => {
-      const { container } = render(
+      const { getByText } = render(
         <FormControl>
-          <FormLabel id={undefined} />
+          <FormLabel id={undefined}>label</FormLabel>
         </FormControl>,
       );
-      expect(container.firstChild?.firstChild).to.have.attribute('id');
+      expect(getByText('label')).to.have.attribute('id');
     });
   });
 
