@@ -142,10 +142,8 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     NumberInputActionContext
   >({
     reducer: numberInputReducer as React.Reducer<NumberInputState, NumberInputReducerAction>,
-    actionContext: React.useMemo(() => numberInputActionContext, [numberInputActionContext]),
-    initialState,
     controlledProps: controlledState,
-    onStateChange: handleStateChange,
+    initialState,
     stateComparers: React.useMemo(
       () => ({
         // always consider `value` to have changed to make onChange always fire on blur
@@ -153,6 +151,8 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       }),
       [],
     ),
+    onStateChange: handleStateChange,
+    actionContext: React.useMemo(() => numberInputActionContext, [numberInputActionContext]),
     componentName,
   });
 
@@ -455,9 +455,9 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     getDecrementButtonProps,
     getRootProps,
     required: requiredProp,
-    value: focused ? inputValue : value,
+    value,
+    inputValue,
     isIncrementDisabled,
     isDecrementDisabled,
-    inputValue,
   };
 }

@@ -117,7 +117,7 @@
       "required": true
     },
     "value": {
-      "type": { "name": "number | null | string", "description": "number | null | string" },
+      "type": { "name": "number | null", "description": "number | null" },
       "required": true
     }
   },

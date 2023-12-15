@@ -247,7 +247,7 @@ export interface UseNumberInputReturnValue {
   /**
    * The clamped `value` of the `input` element.
    */
-  value: number | null | string;
+  value: number | null;
   /**
    * The dirty `value` of the `input` element when it is in focus.
    */
