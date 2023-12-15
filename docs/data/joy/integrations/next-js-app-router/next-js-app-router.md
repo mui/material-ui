@@ -38,12 +38,12 @@ export default function RootLayout(props) {
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry options={{ key: 'joy' }}>
+        <AppRouterCacheProvider options={{ key: 'joy' }}>
           <CssVarsProvider theme={theme}>
           {/* the custom theme is optional */}
           <CssBaseline />
           {children}
-        </ThemeRegistry>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
