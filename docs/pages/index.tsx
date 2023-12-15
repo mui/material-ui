@@ -24,7 +24,7 @@ export default function Home() {
         description="MUI offers a comprehensive suite of free UI tools to help you ship new features faster.
         Start with Material UI, our fully-loaded component library, or bring your own design
         system to our production-ready components."
-        card="/static/social-previews/home-preview.png"
+        card="/static/social-previews/home-preview.jpg"
       >
         <script
           type="application/ld+json"
