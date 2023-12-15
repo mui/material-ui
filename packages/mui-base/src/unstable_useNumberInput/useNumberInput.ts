@@ -92,7 +92,6 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
 
   const handleStateChange: StateChangeCallback<NumberInputState> = React.useCallback(
     (event, field, fieldValue, reason) => {
-      // console.log('stateChange', field, fieldValue, reason);
       if (field === 'value' && typeof fieldValue !== 'string') {
         switch (reason) {
           // only a blur event will dispatch `numberInput:clamp`
@@ -149,7 +148,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     onStateChange: handleStateChange,
     stateComparers: React.useMemo(
       () => ({
-        // temporary hack to fix firing custom onChange when the input is blurred
+        // always consider `value` to have changed to make onChange always fire on blur
         value: () => false,
       }),
       [],
@@ -445,10 +444,6 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
       onClick: handleStep('down'),
     };
   };
-
-  // console.log(
-  //   `value: ${value} (${typeof value}), inputValue: ${inputValue} (${typeof inputValue})`,
-  // );
 
   return {
     disabled: disabledProp,

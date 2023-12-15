@@ -7,7 +7,6 @@ import {
 import { NumberInputActionTypes } from './numberInputAction.types';
 import { clamp, isNumber } from './utils';
 
-// extracted from handleValueChange
 function getClampedValues(rawValue: number | null, context: NumberInputActionContext) {
   const { min, max, step } = context;
 
