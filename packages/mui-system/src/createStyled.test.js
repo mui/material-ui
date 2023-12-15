@@ -481,6 +481,38 @@ describe('createStyled', () => {
       expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
     });
 
+    it('should accept variants in function style arg with props usage', () => {
+      const styled = createStyled({
+        defaultTheme: {
+          colors: { blue: 'rgb(0, 0, 255)', red: 'rgb(255, 0, 0)', green: 'rgb(0, 255, 0)' },
+        },
+      });
+
+      const Test = styled('div')(({ theme, color }) => ({
+        variants: [
+          {
+            props: (props) => props.color !== 'blue',
+            style: {
+              backgroundColor: theme.colors[color],
+            },
+          },
+        ],
+      }));
+
+      const { getByTestId } = render(
+        <React.Fragment>
+          <Test data-testid="red" color="red">
+            Filled
+          </Test>
+          <Test data-testid="green" color="green">
+            Text
+          </Test>
+        </React.Fragment>,
+      );
+      expect(getByTestId('green')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 255, 0)' });
+      expect(getByTestId('red')).toHaveComputedStyle({ backgroundColor: 'rgb(255, 0, 0)' });
+    });
+
     it('should accept variants in arrays', () => {
       const styled = createStyled({ defaultTheme: { colors: { blue: 'rgb(0, 0, 255)' } } });
 
