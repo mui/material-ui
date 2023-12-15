@@ -110,6 +110,24 @@ describe('<FormControl />', () => {
 
       expect(getByRole('textbox')).to.have.attribute('required');
     });
+
+    it('should inherit htmlFor from FormControl if htmlFor is undefined', () => {
+      const { container } = render(
+        <FormControl>
+          <FormLabel htmlFor={undefined} />
+        </FormControl>,
+      );
+      expect(container.firstChild?.firstChild).to.have.attribute('for');
+    });
+
+    it('should inherit id from FormControl if id is undefined', () => {
+      const { container } = render(
+        <FormControl>
+          <FormLabel id={undefined} />
+        </FormControl>,
+      );
+      expect(container.firstChild?.firstChild).to.have.attribute('id');
+    });
   });
 
   describe('Textarea', () => {

@@ -65,10 +65,10 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   const {
     children,
     component = 'label',
-    slots = {},
-    slotProps = {},
     htmlFor,
     id,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -86,14 +86,12 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     component,
     slots,
     slotProps,
-    ...(htmlFor !== undefined && { htmlFor }),
-    ...(id !== undefined && { id }),
   };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
-      htmlFor: formControl?.htmlFor,
-      id: formControl?.labelId,
+      htmlFor: htmlFor ?? formControl?.htmlFor,
+      id: id ?? formControl?.labelId,
     },
     ref,
     className: classes.root,

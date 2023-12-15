@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import { describeConformance, createRenderer } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import FormLabel, { formLabelClasses as classes } from '@mui/joy/FormLabel';
-import FormControl from '@mui/joy/FormControl';
 
 describe('Joy <FormLabel />', () => {
   const { render } = createRenderer();
@@ -35,23 +34,5 @@ describe('Joy <FormLabel />', () => {
   it('should accept htmlFor', () => {
     const { container } = render(<FormLabel htmlFor="input" className="foo-bar" />);
     expect(container.firstChild).to.have.attribute('for', 'input');
-  });
-
-  it('should inherit htmlFor from FormControl if htmlFor is undefined', () => {
-    const { container } = render(
-      <FormControl>
-        <FormLabel htmlFor={undefined} />
-      </FormControl>,
-    );
-    expect(container.firstChild?.firstChild).to.have.attribute('for');
-  });
-
-  it('should inherit id from FormControl if id is undefined', () => {
-    const { container } = render(
-      <FormControl>
-        <FormLabel id={undefined} />
-      </FormControl>,
-    );
-    expect(container.firstChild?.firstChild).to.have.attribute('id');
   });
 });
