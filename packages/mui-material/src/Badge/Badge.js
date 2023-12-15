@@ -65,7 +65,7 @@ const BadgeBadge = styled('span', {
       ownerState.invisible && styles.invisible,
     ];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -88,15 +88,15 @@ const BadgeBadge = styled('span', {
     duration: theme.transitions.duration.enteringScreen,
   }),
   variants: [
-    {
-      props: ({ ownerState }) => ownerState.color !== 'default',
+    ...['primary', 'secondary', 'error', 'info', 'success', 'warning'].map((color) => ({
+      props: { color },
       style: {
-        backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
-        color: (theme.vars || theme).palette[ownerState.color].contrastText,
+        backgroundColor: (theme.vars || theme).palette[color].main,
+        color: (theme.vars || theme).palette[color].contrastText,
       },
-    },
+    })),
     {
-      props: ({ ownerState }) => ownerState.variant === 'dot',
+      props: { variant: 'dot' },
       style: {
         borderRadius: RADIUS_DOT,
         height: RADIUS_DOT * 2,
@@ -225,7 +225,7 @@ const BadgeBadge = styled('span', {
       },
     },
     {
-      props: ({ ownerState }) => ownerState.invisible,
+      props: { invisible: true },
       style: {
         transition: theme.transitions.create('transform', {
           easing: theme.transitions.easing.easeInOut,
