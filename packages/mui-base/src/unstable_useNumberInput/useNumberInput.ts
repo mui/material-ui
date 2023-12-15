@@ -4,6 +4,8 @@ import MuiError from '@mui-internal/babel-macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import { useControllableReducer } from '../utils/useControllableReducer';
+import { StateChangeCallback } from '../utils/useControllableReducer.types';
 import { EventHandlers } from '../utils/types';
 import { FormControlState, useFormControlContext } from '../FormControl';
 import {
@@ -18,12 +20,9 @@ import {
   NumberInputActionContext,
   NumberInputReducerAction,
 } from './useNumberInput.types';
-import { isNumber } from './utils';
-
-import { numberInputReducer } from './numberInputReducer';
-import { useControllableReducer } from '../utils/useControllableReducer';
-import { StateChangeCallback } from '../utils/useControllableReducer.types';
 import { NumberInputActionTypes, NumberInputAction } from './numberInputAction.types';
+import { numberInputReducer } from './numberInputReducer';
+import { isNumber } from './utils';
 
 const STEP_KEYS = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown'];
 
