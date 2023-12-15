@@ -23,86 +23,33 @@ For more details, see [this explanation](https://github.com/reactwg/server-compo
 
 ## Using Joy UI with the App Router
 
-To set up Joy UI, create a custom `ThemeRegistry` component that combines the Emotion `CacheProvider`, Joy UI's `CssVarsProvider` and the `useServerInsertedHTML` hook from `next/navigation` as follows:
+To set up Joy UI, import the `AppRouterCacheProvider` from our [Next.js integration package](/material-ui/guides/nextjs/) and wrap all elements under the <body> with it:
 
 ```tsx
-// app/ThemeRegistry.tsx
+// app/layout.tsx
 'use client';
-import createCache from '@emotion/cache';
-import { useServerInsertedHTML } from 'next/navigation';
-import { CacheProvider } from '@emotion/react';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'; // or `v14-appRouter` if you are using Next.js v14
 import { CssVarsProvider } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import theme from '/path/to/custom/theme'; // OPTIONAL
 
-// This implementation is from emotion-js
-// https://github.com/emotion-js/emotion/issues/2928#issuecomment-1319747902
-export default function ThemeRegistry(props) {
-  const { options, children } = props;
-
-  const [{ cache, flush }] = React.useState(() => {
-    const cache = createCache(options);
-    cache.compat = true;
-    const prevInsert = cache.insert;
-    let inserted: string[] = [];
-    cache.insert = (...args) => {
-      const serialized = args[1];
-      if (cache.inserted[serialized.name] === undefined) {
-        inserted.push(serialized.name);
-      }
-      return prevInsert(...args);
-    };
-    const flush = () => {
-      const prevInserted = inserted;
-      inserted = [];
-      return prevInserted;
-    };
-    return { cache, flush };
-  });
-
-  useServerInsertedHTML(() => {
-    const names = flush();
-    if (names.length === 0) {
-      return null;
-    }
-    let styles = '';
-    for (const name of names) {
-      styles += cache.inserted[name];
-    }
-    return (
-      <style
-        key={cache.key}
-        data-emotion={`${cache.key} ${names.join(' ')}`}
-        dangerouslySetInnerHTML={{
-          __html: styles,
-        }}
-      />
-    );
-  });
-
-  return (
-    <CacheProvider value={cache}>
-      <CssVarsProvider theme={theme}>
-        {/* the custom theme is optional */}
-        <CssBaseline />
-        {children}
-      </CssVarsProvider>
-    </CacheProvider>
-  );
-}
-
-// app/layout.tsx
 export default function RootLayout(props) {
   const { children } = props;
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry options={{ key: 'joy' }}>{children}</ThemeRegistry>
+        <ThemeRegistry options={{ key: 'joy' }}>
+          <CssVarsProvider theme={theme}>
+          {/* the custom theme is optional */}
+          <CssBaseline />
+          {children}
+        </ThemeRegistry>
       </body>
     </html>
   );
 }
 ```
+Please refer to this page to learn about theme customization.
 
 ## Props serialization
 
