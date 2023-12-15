@@ -50,6 +50,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
 
   const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     onItemsChange,
+    componentName: 'Menu',
   });
 
   const anchor = anchorProp ?? triggerElement;

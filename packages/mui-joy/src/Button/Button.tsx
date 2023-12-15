@@ -11,6 +11,7 @@ import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
+import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const {
@@ -212,6 +213,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ...other
   } = props;
   const buttonGroup = React.useContext(ButtonGroupContext);
+  const toggleButtonGroup = React.useContext(ToggleButtonGroupContext);
 
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
@@ -256,6 +258,38 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    let onClick = props.onClick;
+    if (typeof slotProps.root === 'function') {
+      onClick = slotProps.root(ownerState).onClick;
+    } else if (slotProps.root) {
+      onClick = slotProps.root.onClick;
+    }
+
+    onClick?.(event);
+
+    if (toggleButtonGroup) {
+      toggleButtonGroup.onClick?.(event, props.value);
+    }
+  };
+
+  let ariaPressed = props['aria-pressed'];
+
+  if (typeof slotProps.root === 'function') {
+    ariaPressed = slotProps.root(ownerState)['aria-pressed'];
+  } else if (slotProps.root) {
+    ariaPressed = slotProps.root['aria-pressed'];
+  }
+
+  if (toggleButtonGroup?.value) {
+    if (Array.isArray(toggleButtonGroup.value)) {
+      ariaPressed = toggleButtonGroup.value.indexOf(props.value as string) !== -1;
+    } else {
+      ariaPressed = toggleButtonGroup.value === props.value;
+    }
+  }
+
   const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
@@ -265,6 +299,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     externalForwardedProps,
     getSlotProps: getRootProps,
     ownerState,
+    additionalProps: {
+      onClick: handleClick,
+      'aria-pressed': ariaPressed,
+    },
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
@@ -383,6 +421,10 @@ Button.propTypes /* remove-proptypes */ = {
    */
   loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
   /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
    * The size of the component.
    * @default 'md'
    */
@@ -426,6 +468,14 @@ Button.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.number,
+  /**
+   * @ignore
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'

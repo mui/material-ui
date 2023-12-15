@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-next",
-  "version": "6.0.0-alpha.108",
+  "version": "6.0.0-alpha.113",
   "private": false,
   "author": "MUI Team",
   "description": "v6-alpha: React components that implement Google's Material Design",
@@ -24,7 +24,7 @@
   "homepage": "https://mui.com/material-ui/",
   "funding": {
     "type": "opencollective",
-    "url": "https://opencollective.com/mui"
+    "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
     "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
@@ -36,36 +36,37 @@
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material-next/**/*.test.{js,ts,tsx}'",
-    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
+    "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.2",
+    "@babel/runtime": "^7.23.5",
     "@mui/base": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@types/react-transition-group": "^4.4.8",
+    "@types/react-transition-group": "^4.4.9",
     "clsx": "^2.0.0",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
+    "@emotion/react": "^11.5.0",
     "@mui-internal/test-utils": "workspace:^",
     "@testing-library/user-event": "^14.5.1",
-    "@types/chai": "^4.3.9",
-    "@types/prop-types": "^15.7.9",
-    "@types/react": "^18.2.33",
-    "@types/react-dom": "^18.2.14",
+    "@types/chai": "^4.3.11",
+    "@types/prop-types": "^15.7.11",
+    "@types/react": "^18.2.42",
+    "@types/react-dom": "^18.2.17",
     "@types/react-is": "^18.2.3",
     "@types/sinon": "^10.0.20",
     "chai": "^4.3.10",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0",
+    "react-router-dom": "^6.20.1",
     "sinon": "^15.2.0"
   },
   "peerDependencies": {

@@ -151,7 +151,7 @@ const NumberInput = React.forwardRef(function NumberInput(
   const inputProps: WithOptionalOwnerState<NumberInputInputSlotProps> = useSlotProps({
     elementType: Input,
     getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsForwardedToInputSlot }),
+      getInputProps({ ...propsForwardedToInputSlot, ...otherHandlers }),
     externalSlotProps: slotProps.input,
     ownerState,
     className: classes.input,
@@ -307,7 +307,7 @@ NumberInput.propTypes /* remove-proptypes */ = {
   /**
    * The current value. Use when the component is controlled.
    */
-  value: PropTypes.any,
+  value: PropTypes.number,
 } as any;
 
 export { NumberInput };

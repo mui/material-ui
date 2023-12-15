@@ -168,7 +168,6 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
     disableGutters = false,
     focusVisibleClassName,
     role = 'menuitem',
-    tabIndex: tabIndexProp,
     className,
     disabled: disabledProp,
     label: labelProp,
@@ -217,11 +216,6 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
 
   const classes = useUtilityClasses(props);
 
-  let tabIndex;
-  if (!props.disabled) {
-    tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1;
-  }
-
   const Root = /* slots.root ?? */ MenuItemRoot;
   const rootProps = useSlotProps({
     elementType: Root,
@@ -231,7 +225,6 @@ const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends Re
     externalForwardedProps: other,
     additionalProps: {
       role,
-      tabIndex,
       component,
       focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),
       classes,
@@ -325,10 +318,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * @default 0
-   */
-  tabIndex: PropTypes.number,
 } as any;
 
 export default MenuItem;

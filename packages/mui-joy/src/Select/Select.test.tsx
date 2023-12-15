@@ -673,5 +673,28 @@ describe('Joy <Select />', () => {
 
       expect(getByRole('combobox')).to.have.text('One, Two');
     });
+
+    it('should render placeholder when options are not selected', () => {
+      const { getByRole } = render(
+        <Select multiple defaultValue={[]} placeholder="hello">
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('hello');
+    });
+
+    it('renders the selected values inplace of placeholder', () => {
+      const { getByRole } = render(
+        <Select multiple defaultValue={[1, 2]} placeholder="hello">
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One, Two');
+      expect(getByRole('combobox')).not.to.have.text('hello');
+    });
   });
 });

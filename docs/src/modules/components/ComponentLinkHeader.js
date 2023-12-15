@@ -140,40 +140,44 @@ export default function ComponentLinkHeader(props) {
               label="Figma"
             />
           </li>
-          <li>
-            <Chip
-              clickable
-              role={undefined}
-              component="a"
-              size="small"
-              variant="outlined"
-              rel="nofollow"
-              href="https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
-              icon={<AdobeXDIcon />}
-              data-ga-event-category="ComponentLinkHeader"
-              data-ga-event-action="click"
-              data-ga-event-label="Adobe XD"
-              data-ga-event-split="0.1"
-              label="Adobe"
-            />
-          </li>
-          <li>
-            <Chip
-              clickable
-              role={undefined}
-              component="a"
-              size="small"
-              variant="outlined"
-              rel="nofollow"
-              href="https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
-              icon={<SketchIcon />}
-              data-ga-event-category="ComponentLinkHeader"
-              data-ga-event-action="click"
-              data-ga-event-label="Sketch"
-              data-ga-event-split="0.1"
-              label="Sketch"
-            />
-          </li>
+          {packageName !== '@mui/joy' ? (
+            <li>
+              <Chip
+                clickable
+                role={undefined}
+                component="a"
+                size="small"
+                variant="outlined"
+                rel="nofollow"
+                href="https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+                icon={<AdobeXDIcon />}
+                data-ga-event-category="ComponentLinkHeader"
+                data-ga-event-action="click"
+                data-ga-event-label="Adobe XD"
+                data-ga-event-split="0.1"
+                label="Adobe"
+              />
+            </li>
+          ) : null}
+          {packageName !== '@mui/joy' ? (
+            <li>
+              <Chip
+                clickable
+                role={undefined}
+                component="a"
+                size="small"
+                variant="outlined"
+                rel="nofollow"
+                href="https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+                icon={<SketchIcon />}
+                data-ga-event-category="ComponentLinkHeader"
+                data-ga-event-action="click"
+                data-ga-event-label="Sketch"
+                data-ga-event-split="0.1"
+                label="Sketch"
+              />
+            </li>
+          ) : null}
         </React.Fragment>
       ) : null}
     </Root>

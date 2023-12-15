@@ -59,6 +59,10 @@ import { SheetOwnerState } from '@mui/joy/Sheet';
 import { SliderOwnerState } from '@mui/joy/Slider';
 import { SnackbarOwnerState } from '@mui/joy/Snackbar';
 import { StackProps } from '@mui/joy/Stack';
+import { StepperOwnerState } from '@mui/joy/Stepper';
+import { StepOwnerState } from '@mui/joy/Step';
+import { StepButtonOwnerState } from '@mui/joy/StepButton';
+import { StepIndicatorOwnerState } from '@mui/joy/StepIndicator';
 import { extendTheme } from '@mui/joy/styles';
 import { SvgIconOwnerState } from '@mui/joy/SvgIcon';
 import { SwitchOwnerState } from '@mui/joy/Switch';
@@ -1133,6 +1137,50 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<StackProps & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyStepper: {
+      defaultProps: {
+        orientation: 'vertical',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<StepperOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyStep: {
+      defaultProps: {
+        orientation: 'vertical',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<StepOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyStepButton: {
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<StepButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyStepIndicator: {
+      defaultProps: {
+        color: 'primary',
+        variant: 'outlined',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<StepIndicatorOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
           return {};
         },
       },

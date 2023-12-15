@@ -94,6 +94,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/joy-ui/react-drawer', newFeature: true },
           { pathname: '/joy-ui/react-link' },
           { pathname: '/joy-ui/react-menu' },
+          { pathname: '/joy-ui/react-stepper', newFeature: true },
           { pathname: '/joy-ui/react-tabs' },
         ],
       },

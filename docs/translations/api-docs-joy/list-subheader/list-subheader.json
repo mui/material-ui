@@ -21,26 +21,25 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "sticky": {
-      "description": "Class name applied to {{nodeName}}, {{conditions}}.",
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "if sticky={true}"
+      "conditions": "color inversion is triggered"
     },
-    "colorPrimary": {
+    "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
+      "conditions": "<code>color=\"danger\"</code>"
     },
     "colorNeutral": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"neutral\"</code>"
     },
-    "colorDanger": {
+    "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"danger\"</code>"
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -52,10 +51,15 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+    "sticky": {
+      "description": "Class name applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
+      "conditions": "if sticky={true}"
+    },
+    "variantOutlined": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantPlain": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -66,11 +70,6 @@
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"soft\"</code>"
-    },
-    "variantOutlined": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantSolid": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",

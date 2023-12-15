@@ -30,7 +30,7 @@ const CardActionsRoot = styled('div', {
   alignItems: 'center',
   padding: 8,
   ...(!ownerState.disableSpacing && {
-    '& > :not(:first-of-type)': {
+    '& > :not(style) ~ :not(style)': {
       marginLeft: 8,
     },
   }),

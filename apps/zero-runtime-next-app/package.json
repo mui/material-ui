@@ -13,7 +13,7 @@
     "@mui/material": "workspace:../../packages/mui-material/build",
     "@mui/utils": "workspace:../../packages/mui-utils/build",
     "@mui/zero-runtime": "workspace:*",
-    "next": "13.4.19",
+    "next": "13.5.6",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -21,8 +21,8 @@
     "@mui/zero-tag-processor": "workspace:*",
     "@mui/zero-next-plugin": "workspace:*",
     "@types/node": "20.5.7",
-    "@types/react": "18.2.33",
-    "@types/react-dom": "18.2.14",
-    "typescript": "5.1.6"
+    "@types/react": "18.2.42",
+    "@types/react-dom": "18.2.17",
+    "typescript": "5.3.2"
   }
 }

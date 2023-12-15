@@ -310,7 +310,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const useRadioProps = {
     checked: radioChecked,
     defaultChecked,
-    disabled: disabledProp ?? formControl?.disabled,
+    disabled: inProps.disabled || formControl?.disabled || disabledProp,
     onBlur,
     onChange,
     onFocus,
