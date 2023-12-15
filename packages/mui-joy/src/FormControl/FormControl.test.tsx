@@ -110,24 +110,6 @@ describe('<FormControl />', () => {
 
       expect(getByRole('textbox')).to.have.attribute('required');
     });
-
-    it('should inherit htmlFor from FormControl if htmlFor is undefined', () => {
-      const { getByText } = render(
-        <FormControl>
-          <FormLabel htmlFor={undefined}>label</FormLabel>
-        </FormControl>,
-      );
-      expect(getByText('label')).to.have.attribute('for');
-    });
-
-    it('should inherit id from FormControl if id is undefined', () => {
-      const { getByText } = render(
-        <FormControl>
-          <FormLabel id={undefined}>label</FormLabel>
-        </FormControl>,
-      );
-      expect(getByText('label')).to.have.attribute('id');
-    });
   });
 
   describe('Textarea', () => {
@@ -522,5 +504,23 @@ describe('<FormControl />', () => {
 
       expect(getByRole('combobox')).to.have.attribute('disabled');
     });
+  });
+
+  it('should inherit htmlFor from FormControl if htmlFor is undefined', () => {
+    const { getByText } = render(
+      <FormControl>
+        <FormLabel htmlFor={undefined}>label</FormLabel>
+      </FormControl>,
+    );
+    expect(getByText('label')).to.have.attribute('for');
+  });
+
+  it('should inherit id from FormControl if id is undefined', () => {
+    const { getByText } = render(
+      <FormControl>
+        <FormLabel id={undefined}>label</FormLabel>
+      </FormControl>,
+    );
+    expect(getByText('label')).to.have.attribute('id');
   });
 });
