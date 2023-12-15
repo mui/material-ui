@@ -137,6 +137,29 @@ describe('useNumberInput', () => {
       expect(handleChange.callCount).to.equal(1);
     });
 
+    it('should call onChange when the input is blurred even if the value did not change', async () => {
+      const handleChange = spy();
+      function NumberInput(props: { defaultValue: number }) {
+        const { getInputProps } = useNumberInput({ ...props, onChange: handleChange });
+
+        return <input data-testid="test-input" {...getInputProps()} />;
+      }
+
+      render(<NumberInput defaultValue={10} />);
+
+      const input = screen.getByTestId('test-input') as HTMLInputElement;
+
+      await userEvent.click(input);
+      await userEvent.keyboard('1');
+      expect(input.value).to.equal('101');
+
+      await userEvent.keyboard('[Backspace]');
+      expect(input.value).to.equal('10');
+
+      await userEvent.keyboard('[Tab]');
+      expect(handleChange.callCount).to.equal(1);
+    });
+
     it('should call onChange with a value within max', async () => {
       const handleChange = spy();
       function NumberInput() {

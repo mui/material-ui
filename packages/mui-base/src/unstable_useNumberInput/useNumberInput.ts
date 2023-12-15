@@ -147,6 +147,7 @@ export function useNumberInput(parameters: UseNumberInputParameters): UseNumberI
     stateComparers: React.useMemo(
       () => ({
         // always consider `value` to have changed to make onChange always fire on blur
+        // to be reconsidered!
         value: () => false,
       }),
       [],
