@@ -23,7 +23,7 @@ For more details, see [this explanation](https://github.com/reactwg/server-compo
 
 ## Using Joy UI with the App Router
 
-To set up Joy UI, import the `AppRouterCacheProvider` from our [Next.js integration package](/material-ui/guides/nextjs/) and wrap all elements under the <body> with it:
+To set up Joy UI, import the `AppRouterCacheProvider` from [Next.js integration package](/material-ui/guides/nextjs/) and wrap all elements under the <body> with it:
 
 ```tsx
 // app/layout.tsx
