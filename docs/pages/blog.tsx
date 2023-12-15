@@ -259,6 +259,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       <Head
         title="Blog - MUI"
         description="Follow the MUI blog to learn about new product features, latest advancements in UI development, and business initiatives."
+        card="/static/social-previews/blog-preview.jpg"
         disableAlternateLocale
       />
       <AppHeader />
