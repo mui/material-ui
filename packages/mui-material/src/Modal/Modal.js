@@ -89,6 +89,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
+    mountNode,
     onBackdropClick,
     onClose,
     onTransitionEnter,
@@ -196,7 +197,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   }
 
   return (
-    <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
+    <Portal ref={portalRef} container={mountNode ?? container} disablePortal={disablePortal}>
       {/*
        * Marking an element with the role presentation indicates to assistive technology
        * that this element should be ignored; it exists to support the web application and
@@ -356,6 +357,10 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default false
    */
   keepMounted: PropTypes.bool,
+  mountNode: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    HTMLElementType,
+    PropTypes.func,
+  ]),
   /**
    * Callback fired when the backdrop is clicked.
    * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
