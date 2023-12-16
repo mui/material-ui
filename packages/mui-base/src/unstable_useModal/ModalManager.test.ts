@@ -143,7 +143,7 @@ describe('ModalManager', () => {
       expect(fixedNode.style.paddingRight).to.equal('14px');
     });
 
-    it('should handle the scroll on custom scroll target', function test() {
+    it('should not handle the scroll with custom scroll lock container', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // jsdom cannot emulate scrollbar, we'll test this in real browser.
         this.skip();

@@ -113,7 +113,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock,
     hideBackdrop,
     keepMounted,
-    scrollLockContainer,
   };
 
   const { getRootProps, getBackdropProps, rootRef, portalRef, isTopModal } = useModal({
