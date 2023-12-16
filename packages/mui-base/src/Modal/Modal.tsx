@@ -52,7 +52,6 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     children,
     closeAfterTransition = false,
     container,
-    scrollLockContainer,
     disableAutoFocus = false,
     disableEnforceFocus = false,
     disableEscapeKeyDown = false,
@@ -67,6 +66,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     open,
     onTransitionEnter,
     onTransitionExited,
+    scrollLockContainer,
     slotProps = {},
     slots = {},
     ...other
