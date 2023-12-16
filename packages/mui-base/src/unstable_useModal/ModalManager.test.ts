@@ -190,11 +190,7 @@ describe('ModalManager', () => {
       document.body.removeChild(container2);
     });
 
-    it('should restore styles correctly if none existed before', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // jsdom cannot emulate scrollbar, we'll test this in real browser.
-        this.skip();
-      }
+    it('should restore styles correctly if none existed before', () => {
       const modal = getDummyModal();
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
