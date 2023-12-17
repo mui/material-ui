@@ -234,9 +234,12 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     ownerState,
   });
 
-  return (
-    <TypographyNestedContext.Provider value>
-      <SlotRoot {...rootProps}>
+  const renderResult = (() => {
+    if (rootProps.dangerouslySetInnerHTML) {
+      return undefined;
+    }
+    return (
+      <>
         {startDecorator && (
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
@@ -247,7 +250,13 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
             })
           : children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
-      </SlotRoot>
+      </>
+    );
+  })();
+
+  return (
+    <TypographyNestedContext.Provider value>
+      <SlotRoot {...rootProps}>{renderResult}</SlotRoot>
     </TypographyNestedContext.Provider>
   );
 }) as OverridableComponent<TypographyTypeMap>;
