@@ -1,16 +1,15 @@
 'use client';
 import * as React from 'react';
-import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
-import isValueSelected from './isValueSelected';
 import toggleButtonGroupClasses, {
   getToggleButtonGroupUtilityClass,
 } from './toggleButtonGroupClasses';
+import ToggleButtonGroupContext from './ToggleButtonGroupContext';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, fullWidth, disabled } = ownerState;
@@ -106,31 +105,60 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
   const ownerState = { ...props, disabled, fullWidth, orientation, size };
   const classes = useUtilityClasses(ownerState);
 
-  const handleChange = (event, buttonValue) => {
-    if (!onChange) {
-      return;
-    }
+  const handleChange = React.useCallback(
+    (event, buttonValue) => {
+      if (!onChange) {
+        return;
+      }
 
-    const index = value && value.indexOf(buttonValue);
-    let newValue;
+      const index = value && value.indexOf(buttonValue);
+      let newValue;
 
-    if (value && index >= 0) {
-      newValue = value.slice();
-      newValue.splice(index, 1);
-    } else {
-      newValue = value ? value.concat(buttonValue) : [buttonValue];
-    }
+      if (value && index >= 0) {
+        newValue = value.slice();
+        newValue.splice(index, 1);
+      } else {
+        newValue = value ? value.concat(buttonValue) : [buttonValue];
+      }
 
-    onChange(event, newValue);
-  };
+      onChange(event, newValue);
+    },
+    [onChange, value],
+  );
 
-  const handleExclusiveChange = (event, buttonValue) => {
-    if (!onChange) {
-      return;
-    }
+  const handleExclusiveChange = React.useCallback(
+    (event, buttonValue) => {
+      if (!onChange) {
+        return;
+      }
 
-    onChange(event, value === buttonValue ? null : buttonValue);
-  };
+      onChange(event, value === buttonValue ? null : buttonValue);
+    },
+    [onChange, value],
+  );
+
+  const context = React.useMemo(
+    () => ({
+      className: classes.grouped,
+      onChange: exclusive ? handleExclusiveChange : handleChange,
+      value,
+      size,
+      fullWidth,
+      color,
+      disabled,
+    }),
+    [
+      classes.grouped,
+      exclusive,
+      handleExclusiveChange,
+      handleChange,
+      value,
+      size,
+      fullWidth,
+      color,
+      disabled,
+    ],
+  );
 
   return (
     <ToggleButtonGroupRoot
@@ -140,35 +168,9 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
       ownerState={ownerState}
       {...other}
     >
-      {React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-
-        if (process.env.NODE_ENV !== 'production') {
-          if (isFragment(child)) {
-            console.error(
-              [
-                "MUI: The ToggleButtonGroup component doesn't accept a Fragment as a child.",
-                'Consider providing an array instead.',
-              ].join('\n'),
-            );
-          }
-        }
-
-        return React.cloneElement(child, {
-          className: clsx(classes.grouped, child.props.className),
-          onChange: exclusive ? handleExclusiveChange : handleChange,
-          selected:
-            child.props.selected === undefined
-              ? isValueSelected(child.props.value, value)
-              : child.props.selected,
-          size: child.props.size || size,
-          fullWidth,
-          color: child.props.color || color,
-          disabled: child.props.disabled || disabled,
-        });
-      })}
+      <ToggleButtonGroupContext.Provider value={context}>
+        {children}
+      </ToggleButtonGroupContext.Provider>
     </ToggleButtonGroupRoot>
   );
 });
