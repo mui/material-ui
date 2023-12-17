@@ -18,10 +18,7 @@ export interface LabelDisplayedRowsArgs {
 /**
  * This type is kept for compatibility. Use `TablePaginationOwnProps` instead.
  */
-export type TablePaginationBaseProps = Omit<
-  TableCellProps,
-  'classes' | 'component' | 'children' | 'variant'
->;
+export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component' | 'children'>;
 
 export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   /**
@@ -177,7 +174,6 @@ export interface TablePaginationTypeMap<AdditionalProps, RootComponent extends R
  * - [TablePagination API](https://mui.com/material-ui/api/table-pagination/)
  * - inherits [TableCell API](https://mui.com/material-ui/api/table-cell/)
  */
-
 declare const TablePagination: OverridableComponent<
   TablePaginationTypeMap<{}, React.JSXElementConstructor<TablePaginationBaseProps>>
 >;
