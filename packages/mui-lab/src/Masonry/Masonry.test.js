@@ -376,29 +376,26 @@ describe('<Masonry />', () => {
         // only run on browser
         this.skip();
       }
+
+      const spacingProp = 1;
       const firstChildHeight = 20;
       const secondChildHeight = 10;
       const thirdChildHeight = 10;
 
       const { getByTestId } = render(
-        <Masonry columns={2} sequential>
-          <div style={{ height: `${firstChildHeight}px` }} data-testid="child1" />
-          <div style={{ height: `${secondChildHeight}px` }} data-testid="child2" />
-          <div style={{ height: `${thirdChildHeight}px` }} data-testid="child3" />
+        <Masonry columns={2} spacing={spacingProp} sequential data-testid="container">
+          <div style={{ height: `${firstChildHeight}px` }} />
+          <div style={{ height: `${secondChildHeight}px` }} />
+          <div style={{ height: `${thirdChildHeight}px` }} />
         </Masonry>,
       );
 
-      expect(getByTestId('child1')).toHaveComputedStyle({
-        order: '1',
-      });
+      const masonry = getByTestId('container');
+      const topAndBottomMargin = parseToNumber(defaultTheme.spacing(spacingProp)) * 2;
 
-      expect(getByTestId('child2')).toHaveComputedStyle({
-        order: '2',
-      });
-
-      expect(getByTestId('child3')).toHaveComputedStyle({
-        order: '1',
-      });
+      expect(window.getComputedStyle(masonry).height).to.equal(
+        `${firstChildHeight + thirdChildHeight + topAndBottomMargin}px`,
+      );
     });
   });
 });
