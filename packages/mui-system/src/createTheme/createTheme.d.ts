@@ -30,6 +30,7 @@ export interface Theme {
   palette: Record<string, any> & { mode: 'light' | 'dark' };
   shadows?: unknown;
   spacing: Spacing;
+  spacingSize: string;
   transitions?: unknown;
   components?: Record<string, any>;
   mixins?: unknown;
