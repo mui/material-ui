@@ -537,7 +537,7 @@ export default function AppSearch(props) {
             '& .DocSearch-NewStartScreenTitle': {
               display: 'flex',
               alignItems: 'center',
-              padding: theme.spacing(0, 3, 1.5, 2),
+              padding: theme.spacing(2, 3, 1.5, 2),
               fontSize: theme.typography.pxToRem(11),
               fontWeight: theme.typography.fontWeightBold,
               textTransform: 'uppercase',
