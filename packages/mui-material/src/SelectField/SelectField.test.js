@@ -47,7 +47,6 @@ describe('<SelectField />', () => {
       );
     });
 
-    // TODO: support slots.input.root
     it('should forward the fullWidth prop to Input', () => {
       const { getByTestId } = render(
         <SelectField
@@ -55,6 +54,21 @@ describe('<SelectField />', () => {
           value="10"
           fullWidth
           InputProps={{ 'data-testid': 'mui-input-base-root' }}
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+        </SelectField>,
+      );
+
+      expect(getByTestId('mui-input-base-root')).to.have.class(inputBaseClasses.fullWidth);
+    });
+
+    it('slotProps: should forward the fullWidth prop to Input', () => {
+      const { getByTestId } = render(
+        <SelectField
+          variant="standard"
+          value="10"
+          fullWidth
+          slotProps={{ input: { root: { 'data-testid': 'mui-input-base-root' } } }}
         >
           <MenuItem value={10}>Ten</MenuItem>
         </SelectField>,
@@ -75,12 +89,26 @@ describe('<SelectField />', () => {
       expect(getByRole('combobox')).toHaveAccessibleName('Foo bar');
     });
 
-    // TODO: support slots.inputLabel.root
     it('should apply the className to the label', () => {
       const { container } = render(
         <SelectField
           label="Foo bar"
           InputLabelProps={{ className: 'foo' }}
+          variant="standard"
+          value="10"
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+        </SelectField>,
+      );
+
+      expect(container.querySelector('label')).to.have.class('foo');
+    });
+
+    it('slotProps: should apply the className to the label', () => {
+      const { container } = render(
+        <SelectField
+          label="Foo bar"
+          slotProps={{ inputLabel: { root: { className: 'foo' } } }}
           variant="standard"
           value="10"
         >
@@ -105,7 +133,6 @@ describe('<SelectField />', () => {
   });
 
   describe('with a helper text', () => {
-    // TODO: support slots.formHelperText.root
     it('should apply the className to the FormHelperText', () => {
       const { getDescriptionOf, getByRole } = render(
         <SelectField
@@ -121,7 +148,21 @@ describe('<SelectField />', () => {
       expect(getDescriptionOf(getByRole('combobox'))).to.have.class('foo');
     });
 
-    // TODO: support slots.formHelperText.root
+    it('slotProps: should apply the className to the FormHelperText', () => {
+      const { getDescriptionOf, getByRole } = render(
+        <SelectField
+          helperText="Foo bar"
+          slotProps={{ formHelperText: { root: { className: 'foo' } } }}
+          variant="standard"
+          value="10"
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+        </SelectField>,
+      );
+
+      expect(getDescriptionOf(getByRole('combobox'))).to.have.class('foo');
+    });
+
     it('has an accessible description', () => {
       const { getByRole } = render(
         <SelectField
@@ -136,10 +177,24 @@ describe('<SelectField />', () => {
 
       expect(getByRole('combobox')).toHaveAccessibleDescription('Foo bar');
     });
+
+    it('slotProps: has an accessible description', () => {
+      const { getByRole } = render(
+        <SelectField
+          helperText="Foo bar"
+          slotProps={{ formHelperText: { root: { className: 'foo' } } }}
+          variant="standard"
+          value="10"
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+        </SelectField>,
+      );
+
+      expect(getByRole('combobox')).toHaveAccessibleDescription('Foo bar');
+    });
   });
 
   describe('with an outline', () => {
-    // TODO: support slots.input.root
     it('should set outline props', () => {
       const { container, getAllByTestId } = render(
         <SelectField
@@ -158,7 +213,24 @@ describe('<SelectField />', () => {
       expect(notch).to.have.text('label\u2009*');
     });
 
-    // TODO: support slots.inputLabel.root
+    it('slotProps: should set outline props', () => {
+      const { container, getAllByTestId } = render(
+        <SelectField
+          slotProps={{ input: { root: { classes: { notchedOutline: 'notch' } } } }}
+          label={<div data-testid="label">label</div>}
+          required
+          value="10"
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+        </SelectField>,
+      );
+
+      const [, fakeLabel] = getAllByTestId('label');
+      const notch = container.querySelector('.notch legend');
+      expect(notch).to.contain(fakeLabel);
+      expect(notch).to.have.text('label\u2009*');
+    });
+
     it('should set shrink prop on outline from label', () => {
       const { container } = render(
         <SelectField InputLabelProps={{ shrink: true }} classes={{}} value="10">
@@ -170,7 +242,19 @@ describe('<SelectField />', () => {
         outlinedInputClasses.notchedOutline,
       );
     });
-    // TODO: support slots.input.root
+
+    it('slotProps: should set shrink prop on outline from label', () => {
+      const { container } = render(
+        <SelectField slotProps={{ inputLabel: { root: { shrink: true } } }} classes={{}} value="10">
+          <MenuItem value={10}>Ten</MenuItem>
+        </SelectField>,
+      );
+
+      expect(container.querySelector('fieldset')).to.have.class(
+        outlinedInputClasses.notchedOutline,
+      );
+    });
+
     it('should render `0` label properly', () => {
       const { container } = render(
         <SelectField
@@ -186,7 +270,23 @@ describe('<SelectField />', () => {
       const notch = container.querySelector('.notch legend');
       expect(notch).to.have.text('0\u2009*');
     });
-    // TODO: support slots.input.root
+
+    it('slotProps: should render `0` label properly', () => {
+      const { container } = render(
+        <SelectField
+          slotProps={{ input: { root: { classes: { notchedOutline: 'notch' } } } }}
+          label={0}
+          required
+          value="10"
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+        </SelectField>,
+      );
+
+      const notch = container.querySelector('.notch legend');
+      expect(notch).to.have.text('0\u2009*');
+    });
+
     it('should not set padding for empty, null or undefined label props', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
@@ -205,9 +305,27 @@ describe('<SelectField />', () => {
         expect(container1.querySelector('span')).toHaveComputedStyle(spanStyle);
       });
     });
+
+    it('slotProps: should not set padding for empty, null or undefined label props', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const spanStyle = { paddingLeft: '0px', paddingRight: '0px' };
+      ['', undefined, null].forEach((prop) => {
+        const { container: container1 } = render(
+          <SelectField
+            slotProps={{ input: { root: { classes: { notchedOutline: 'notch' } } } }}
+            label={prop}
+            value="10"
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+          </SelectField>,
+        );
+        expect(container1.querySelector('span')).toHaveComputedStyle(spanStyle);
+      });
+    });
   });
 
-  // TODO: support slots.input.root
   describe('prop: InputProps', () => {
     it('should apply additional props to the Input component', () => {
       const { getByTestId } = render(
@@ -218,10 +336,23 @@ describe('<SelectField />', () => {
 
       expect(getByTestId('InputComponent')).not.to.equal(null);
     });
+
+    it('slotProps: should apply additional props to the Input component', () => {
+      const { getByTestId } = render(
+        <SelectField
+          slotProps={{ input: { root: { 'data-testid': 'InputComponent' } } }}
+          variant="standard"
+          value="10"
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+        </SelectField>,
+      );
+
+      expect(getByTestId('InputComponent')).not.to.equal(null);
+    });
   });
 
   describe('prop: select', () => {
-    // TODO: support slots.select.root
     it('can render a <select /> when `native`', () => {
       const currencies = [
         { value: 'USD', label: '$' },
@@ -242,10 +373,46 @@ describe('<SelectField />', () => {
       expect(select).not.to.equal(null);
       expect(select.options).to.have.lengthOf(2);
     });
-    // TODO: support slots.select.root
+
+    it('slotProps: can render a <select /> when `native`', () => {
+      const currencies = [
+        { value: 'USD', label: '$' },
+        { value: 'BTC', label: '฿' },
+      ];
+
+      const { container } = render(
+        <SelectField slotProps={{ select: { root: { native: true } } }} variant="standard">
+          {currencies.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </SelectField>,
+      );
+
+      const select = container.querySelector('select');
+      expect(select).not.to.equal(null);
+      expect(select.options).to.have.lengthOf(2);
+    });
+
     it('associates the label with the <select /> when `native={true}`', () => {
       const { getByRole } = render(
         <SelectField label="Currency:" SelectProps={{ native: true }} value="$" variant="standard">
+          <option value="dollar">$</option>
+        </SelectField>,
+      );
+
+      expect(getByRole('combobox', { name: 'Currency:' })).to.have.property('value', 'dollar');
+    });
+
+    it('slotProps: associates the label with the <select /> when `native={true}`', () => {
+      const { getByRole } = render(
+        <SelectField
+          label="Currency:"
+          slotProps={{ select: { root: { native: true } } }}
+          value="$"
+          variant="standard"
+        >
           <option value="dollar">$</option>
         </SelectField>,
       );
@@ -297,11 +464,11 @@ describe('<SelectField />', () => {
         </SelectField>,
       );
 
-      const input = getByRole('textbox');
+      const combobox = getByRole('combobox');
 
       const root = getByTestId('root');
 
-      fireEvent.click(input);
+      fireEvent.click(combobox);
 
       expect(handleClick.callCount).to.equal(1);
       // return value is event.currentTarget

@@ -51,13 +51,13 @@ const SelectField = React.forwardRef(function SelectField(inProps, ref) {
     defaultValue,
     disabled = false,
     error = false,
-    FormHelperTextProps,
+    FormHelperTextProps: FormHelperTextPropsFromProps,
     fullWidth = false,
     helperText,
     id: idOverride,
-    InputLabelProps,
-    inputProps,
-    InputProps,
+    InputLabelProps: InputLabelPropsFromProps,
+    inputProps: inputPropsFromProps,
+    InputProps: InputPropsFromProps,
     inputRef,
     label,
     maxRows,
@@ -70,10 +70,13 @@ const SelectField = React.forwardRef(function SelectField(inProps, ref) {
     placeholder,
     required = false,
     rows,
-    SelectProps,
+    SelectProps: SelectPropsFromProps,
     type,
     value,
     variant = 'outlined',
+    // slots = {},
+    // eslint-disable-next-line react/prop-types
+    slotProps = {},
     ...other
   } = props;
 
@@ -100,6 +103,8 @@ const SelectField = React.forwardRef(function SelectField(inProps, ref) {
 
   const InputMore = {};
 
+  const InputLabelProps = slotProps.inputLabel?.root ?? InputLabelPropsFromProps;
+
   if (variant === 'outlined') {
     if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
       InputMore.notched = InputLabelProps.shrink;
@@ -107,11 +112,16 @@ const SelectField = React.forwardRef(function SelectField(inProps, ref) {
     InputMore.label = label;
   }
 
+  const SelectProps = slotProps.select?.root ?? SelectPropsFromProps;
+
   // unset defaults from textbox inputs
-  if (!SelectProps || !SelectProps.native) {
+  if (!SelectPropsFromProps || !SelectPropsFromProps.native) {
     InputMore.id = undefined;
   }
   InputMore['aria-describedby'] = undefined;
+
+  const InputProps = slotProps.input?.root ?? InputPropsFromProps;
+  const inputProps = slotProps.input?.input ?? inputPropsFromProps;
 
   const id = useId(idOverride);
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
@@ -142,6 +152,8 @@ const SelectField = React.forwardRef(function SelectField(inProps, ref) {
       {...InputProps}
     />
   );
+
+  const FormHelperTextProps = slotProps.formHelperText?.root ?? FormHelperTextPropsFromProps;
 
   return (
     <SelectFieldRoot // slots.root
