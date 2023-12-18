@@ -187,7 +187,9 @@ declare module '@mui/material/Button' {
 
 {{"demo": "GlobalThemeVariants.js"}}
 
-The variant's props property can be defined in a form of a callback too. This is useful if you want to apply some styles if you need to use a negation in the condition, for e.g. apply some styles if some property does not have some value.
+The variant `props` can also be defined as a callback. 
+This is useful if you want to apply styles when using negation in the condition.
+In other words, applying a different style if a particular property doesn't have a specific value.
 
 :::info
 This feature is available from version 5.15.0.
