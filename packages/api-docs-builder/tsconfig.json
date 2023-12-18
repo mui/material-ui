@@ -12,10 +12,7 @@
     "module": "CommonJS",
     "moduleResolution": "node",
     "strict": true,
-    "baseUrl": "./",
-    "paths": {
-      "react-docgen": ["./react-docgen.d.ts"]
-    }
+    "baseUrl": "./"
   },
   "include": ["./**/*.ts", "./**/*.js"],
   "exclude": ["node_modules"]

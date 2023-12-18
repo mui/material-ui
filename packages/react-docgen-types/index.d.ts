@@ -4,6 +4,7 @@ declare module 'react-docgen' {
   import { NodePath as AstTypesNodePath } from 'ast-types/lib/node-path';
 
   export type Node = namedTypes.Node;
+  type ASTNode = namedTypes.ASTNode;
 
   // sound wrapper around `NodePath` from `ast-types` i.e. no `any`
   export type NodePath<SpecificNode extends Node = Node, Value = unknown> = AstTypesNodePath<
@@ -166,7 +167,7 @@ declare module 'react-docgen' {
 
   export type PropType =
     | AllLiteralPropType
-    | StringLiteralType
+    | StringLiteralTypePropType
     | TypeApplicationPropType
     | UnionPropType;
 

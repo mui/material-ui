@@ -323,6 +323,9 @@ importers:
       ts-node:
         specifier: ^10.9.1
         version: 10.9.1(@types/node@18.19.3)(typescript@5.3.2)
+      tsconfig-paths:
+        specifier: ^4.2.0
+        version: 4.2.0
       typescript:
         specifier: ^5.3.2
         version: 5.3.2
@@ -972,6 +975,9 @@ importers:
       '@types/node':
         specifier: ^18.19.3
         version: 18.19.3
+      '@types/react-docgen':
+        specifier: workspace:*
+        version: link:../react-docgen-types
       '@types/sinon':
         specifier: ^10.0.20
         version: 10.0.20
@@ -2088,6 +2094,12 @@ importers:
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
+
+  packages/react-docgen-types:
+    devDependencies:
+      ast-types:
+        specifier: 0.14.2
+        version: 0.14.2
 
   packages/rsc-builder:
     dependencies:
@@ -16549,7 +16561,7 @@ packages:
       strong-log-transformer: 2.1.0
       tar-stream: 2.2.0
       tmp: 0.2.1
-      tsconfig-paths: 4.1.2
+      tsconfig-paths: 4.2.0
       tslib: 2.6.1
       v8-compile-cache: 2.3.0
       yargs: 17.7.2
@@ -20268,8 +20280,8 @@ packages:
       strip-bom: 3.0.0
     dev: true
 
-  /tsconfig-paths@4.1.2:
-    resolution: {integrity: sha512-uhxiMgnXQp1IR622dUXI+9Ehnws7i/y6xvpZB9IbUVOPy0muvdvgXeZOn88UcGPiT98Vp3rJPTa8bFoalZ3Qhw==}
+  /tsconfig-paths@4.2.0:
+    resolution: {integrity: sha512-NoZ4roiN7LnbKn9QqE1amc9DJfzvZXxF4xDavcOWt1BPkdx+m+0gJuPM+S0vCe7zTJMYUP0R8pO2XMr+Y8oLIg==}
     engines: {node: '>=6'}
     dependencies:
       json5: 2.2.3
