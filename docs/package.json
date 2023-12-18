@@ -112,7 +112,7 @@
     "stylis": "4.2.0",
     "stylis-plugin-rtl": "^2.1.1",
     "use-count-up": "^3.0.1",
-    "webpack-bundle-analyzer": "^4.9.1"
+    "webpack-bundle-analyzer": "^4.10.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "^7.23.3",
