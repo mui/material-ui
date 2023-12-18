@@ -48,7 +48,7 @@ export default function ProductHero() {
               />
               <Typography
                 component="h1"
-                variant="h2"
+                variant="h1"
                 align="center"
                 color="inherit"
                 gutterBottom

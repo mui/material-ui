@@ -4,6 +4,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import ToggleColorMode from './ToggleColorMode';
 
 import LanguageIcon from '@mui/icons-material/Language';
 
@@ -36,6 +37,7 @@ function AppAppBar() {
             Sign up
           </Button>
           <Button color="primary">Sign in</Button>
+          <ToggleColorMode />
         </Toolbar>
       </AppBar>
     </div>

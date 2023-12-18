@@ -1,12 +1,13 @@
 import { createTheme } from '@mui/material/styles';
 import { grey, red } from '@mui/material/colors';
 
-const albumTheme = createTheme({
+const theme = createTheme({
     palette: {
+    mode: 'light',
     primary: {
-      light: '#000000',
-      main: '#000000',
-      dark: '#000000',
+        light: '#4393E4',
+        main: '#0B6BCB',
+        dark: '#185EA5',
     },
     secondary: {
       light: '#00FF6F',
@@ -52,9 +53,11 @@ const albumTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: ({ ownerState }) => ({
+            boxShadow:'none',
+            borderRadius:'8px',
             ...(ownerState.variant === 'outlined' && {
                 border:'1px solid',
-                borderColor:'rgba(0,0,0,0.1)',
+                borderColor:'#C7DFF7',
               }),
               textTransform: 'none',
           }),
@@ -94,15 +97,17 @@ const albumTheme = createTheme({
     },
     MuiTextField: {
         styleOverrides: {
-        root: {
+        root: {            
           '& label.Mui-focused': {
             color: 'white',
           },
           '& .MuiInputBase-input': {
+            
             color: 'white',
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
+            borderRadius:'8px',
               borderColor: 'rgba(255, 255, 255, 0.2)',
             },
             '&:hover fieldset': {
@@ -132,70 +137,86 @@ const albumTheme = createTheme({
     },   
 });
 
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+      primary: {
+        light: '#4393E4',
+        main: '#0B6BCB',
+        dark: '#185EA5',
+      },
+      background: {
+        default: '#000',
+        paper: '#171A1C',
+      },
+    },
+  });
+
 const fontHeader = {
-  color: albumTheme.palette.text.primary,
-  fontWeight: albumTheme.typography.fontWeightMedium,
+  color: theme.palette.text.primary,
+  fontWeight: theme.typography.fontWeightMedium,
   fontFamily: "'Inter', sans-serif",
 };
 
-const theme = {
-  ...albumTheme,
+const albumTheme = {
+  ...theme,
+  ...darkTheme,
   palette: {
-    ...albumTheme.palette,
+    ...theme.palette,
     background: {
-      ...albumTheme.palette.background,
-      default: albumTheme.palette.common.white,
+      ...theme.palette.background,
+      default: theme.palette.common.white,
       placeholder: grey[200],
     },
   },
   typography: {
-    ...albumTheme.typography,
+    ...theme.typography,
     fontHeader,
     h1: {
-      ...albumTheme.typography.h1,
+      ...theme.typography.h1,
       ...fontHeader,
       letterSpacing: 0,
       fontSize: 60,
     },
     h2: {
-      ...albumTheme.typography.h2,
+      ...theme.typography.h2,
       ...fontHeader,
       fontSize: 48,
     },
     h3: {
-      ...albumTheme.typography.h3,
+      ...theme.typography.h3,
       ...fontHeader,
       fontSize: 42,
     },
     h4: {
-      ...albumTheme.typography.h4,
+      ...theme.typography.h4,
       ...fontHeader,
       fontSize: 36,
     },
     h5: {
-      ...albumTheme.typography.h5,
+      ...theme.typography.h5,
       fontSize: 20,
-      fontWeight: albumTheme.typography.fontWeightLight,
+      fontWeight: theme.typography.fontWeightLight,
     },
     h6: {
-      ...albumTheme.typography.h6,
+      ...theme.typography.h6,
       ...fontHeader,
       fontSize: 18,
     },
     subtitle1: {
-      ...albumTheme.typography.subtitle1,
+      ...theme.typography.subtitle1,
       fontSize: 18,
     },
     body1: {
-      ...albumTheme.typography.body2,
-      fontWeight: albumTheme.typography.fontWeightRegular,
+      ...theme.typography.body2,
+      fontWeight: theme.typography.fontWeightRegular,
       fontSize: 16,
     },
     body2: {
-      ...albumTheme.typography.body1,
+      ...theme.typography.body1,
       fontSize: 14,
     },
   },
 };
 
-export default theme;
+export default albumTheme;
