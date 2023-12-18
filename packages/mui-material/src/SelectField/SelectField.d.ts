@@ -11,6 +11,7 @@ import { OutlinedInputProps } from '../OutlinedInput';
 import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
 import { Theme } from '../styles';
+import { TextFieldVariants } from '../TextField';
 import { SelectFieldClasses } from './selectFieldClasses';
 
 export interface SelectFieldPropsColorOverrides {}
@@ -246,8 +247,6 @@ export interface OutlinedSelectFieldProps extends BaseSelectFieldProps {
    */
   InputProps?: Partial<OutlinedInputProps>;
 }
-
-export type TextFieldVariants = 'outlined' | 'standard' | 'filled';
 
 export type SelectFieldProps<Variant extends TextFieldVariants = TextFieldVariants> =
   Variant extends 'filled'
