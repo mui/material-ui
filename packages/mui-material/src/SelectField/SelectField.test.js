@@ -6,8 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
-import { textFieldClasses as classes } from '@mui/material/TextField';
-import SelectField from '@mui/material/SelectField';
+import SelectField, { selectFieldClasses as classes } from '@mui/material/SelectField';
 
 describe('<SelectField />', () => {
   const { render } = createRenderer();

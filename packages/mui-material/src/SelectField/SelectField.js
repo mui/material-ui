@@ -13,7 +13,7 @@ import InputLabel from '../InputLabel';
 import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
-import { getTextFieldUtilityClass } from '../TextField/textFieldClasses';
+import { getSelectFieldUtilityClass } from './selectFieldClasses';
 
 const variantComponent = {
   standard: Input,
@@ -28,7 +28,7 @@ const useUtilityClasses = (ownerState) => {
     root: ['root'],
   };
 
-  return composeClasses(slots, getTextFieldUtilityClass, classes);
+  return composeClasses(slots, getSelectFieldUtilityClass, classes);
 };
 
 const SelectFieldRoot = styled(FormControl, {
