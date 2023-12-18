@@ -26,6 +26,7 @@ async function run(argv) {
     .sync(globPattern, {
       cwd: workspaceRoot,
       ignore,
+      followSymbolicLinks: false,
     })
     .filter((relativeFile) => {
       return /\.test\.(js|ts|tsx)$/.test(relativeFile);
