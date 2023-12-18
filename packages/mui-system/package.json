@@ -52,6 +52,7 @@
   "devDependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui-internal/babel-macros": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
@@ -88,8 +89,7 @@
   "sideEffects": false,
   "publishConfig": {
     "access": "public",
-    "directory": "build",
-    "linkDirectory": false
+    "directory": "build"
   },
   "engines": {
     "node": ">=12.0.0"

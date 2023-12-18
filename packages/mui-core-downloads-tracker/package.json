@@ -27,7 +27,6 @@
   },
   "publishConfig": {
     "access": "public",
-    "directory": "build",
-    "linkDirectory": false
+    "directory": "build"
   }
 }

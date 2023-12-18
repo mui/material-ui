@@ -54,6 +54,7 @@
   },
   "devDependencies": {
     "@emotion/react": "^11.5.0",
+    "@mui-internal/babel-macros": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",
     "@testing-library/user-event": "^14.5.1",
     "@types/chai": "^4.3.11",
@@ -90,8 +91,7 @@
   "sideEffects": false,
   "publishConfig": {
     "access": "public",
-    "directory": "build",
-    "linkDirectory": false
+    "directory": "build"
   },
   "engines": {
     "node": ">=12.0.0"

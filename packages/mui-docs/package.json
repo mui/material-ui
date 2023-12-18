@@ -56,8 +56,7 @@
   },
   "publishConfig": {
     "access": "public",
-    "directory": "build",
-    "linkDirectory": false
+    "directory": "build"
   },
   "engines": {
     "node": ">=12.0.0"

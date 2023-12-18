@@ -56,6 +56,7 @@
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
+    "@mui-internal/babel-macros": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",
     "@mui/icons-material": "workspace:^",
     "@mui/lab": "workspace:*",
@@ -108,8 +109,7 @@
   "sideEffects": false,
   "publishConfig": {
     "access": "public",
-    "directory": "build",
-    "linkDirectory": false
+    "directory": "build"
   },
   "engines": {
     "node": ">=12.0.0"
