@@ -22,13 +22,6 @@
     "InputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "label": { "type": { "name": "node" } },
-    "margin": {
-      "type": {
-        "name": "enum",
-        "description": "'dense'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
-      },
-      "default": "'none'"
-    },
     "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "multiline": { "type": { "name": "bool" }, "default": "false" },
@@ -47,6 +40,13 @@
         "name": "union",
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       }
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ formHelperText?: { root?: object }, input?: { input?: object, root?: object }, inputLabel?: { root?: object }, root?: object, select?: { listbox?: object, popper?: object, root?: object } }"
+      },
+      "default": "{}"
     },
     "sx": {
       "type": {

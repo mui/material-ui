@@ -352,6 +352,7 @@ SelectField.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * slotProps
+   * @default {}
    */
   slotProps: PropTypes.shape({
     formHelperText: PropTypes.shape({

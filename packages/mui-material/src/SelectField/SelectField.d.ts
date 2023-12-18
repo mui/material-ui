@@ -161,6 +161,7 @@ export interface BaseSelectFieldProps
   value?: unknown;
   /**
    * slotProps
+   * @default {}
    */
   slotProps?: {
     root?: Record<string, unknown>;

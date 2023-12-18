@@ -37,9 +37,6 @@
     },
     "inputRef": { "description": "Pass a ref to the <code>input</code> element." },
     "label": { "description": "The label content." },
-    "margin": {
-      "description": "If <code>dense</code> or <code>normal</code>, will adjust vertical spacing of this and contained components."
-    },
     "maxRows": {
       "description": "Maximum number of rows to display when multiline option is set to true."
     },
@@ -70,6 +67,7 @@
       "description": "Props applied to the <a href=\"/material-ui/api/select/\"><code>Select</code></a> element."
     },
     "size": { "description": "The size of the component." },
+    "slotProps": { "description": "slotProps" },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
