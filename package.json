@@ -162,7 +162,7 @@
     "stylelint-config-standard": "^34.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^5.3.9",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "webpack": "^5.88.2",
     "webpack-bundle-analyzer": "^4.10.1",
