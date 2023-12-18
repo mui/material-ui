@@ -158,6 +158,27 @@ export interface BaseSelectFieldProps
    * The value of the `input` element, required for a controlled component.
    */
   value?: unknown;
+  /**
+   * slotProps
+   */
+  slotProps?: {
+    root?: Record<string, unknown>;
+    inputLabel?: {
+      root?: Record<string, unknown>;
+    };
+    select?: {
+      root?: Record<string, unknown>;
+      listbox?: Record<string, unknown>;
+      popper?: Record<string, unknown>;
+    };
+    input?: {
+      root?: Record<string, unknown>;
+      input?: Record<string, unknown>;
+    };
+    formHelperText?: {
+      root?: Record<string, unknown>;
+    };
+  };
 }
 
 export interface StandardSelectFieldProps extends BaseSelectFieldProps {

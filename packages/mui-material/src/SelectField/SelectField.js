@@ -351,6 +351,27 @@ SelectField.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * slotProps
+   */
+  slotProps: PropTypes.shape({
+    formHelperText: PropTypes.shape({
+      root: PropTypes.object,
+    }),
+    input: PropTypes.shape({
+      input: PropTypes.object,
+      root: PropTypes.object,
+    }),
+    inputLabel: PropTypes.shape({
+      root: PropTypes.object,
+    }),
+    root: PropTypes.object,
+    select: PropTypes.shape({
+      listbox: PropTypes.object,
+      popper: PropTypes.object,
+      root: PropTypes.object,
+    }),
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
