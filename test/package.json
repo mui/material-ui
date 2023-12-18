@@ -25,7 +25,7 @@
     "docs": "^5.0.0",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
-    "html-webpack-plugin": "^5.5.3",
+    "html-webpack-plugin": "^5.5.4",
     "lodash": "^4.17.21",
     "playwright": "^1.40.1",
     "prop-types": "^15.8.1",
