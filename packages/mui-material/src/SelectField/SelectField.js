@@ -75,7 +75,6 @@ const SelectField = React.forwardRef(function SelectField(inProps, ref) {
     value,
     variant = 'outlined',
     // slots = {},
-    // eslint-disable-next-line react/prop-types
     slotProps = {},
     ...other
   } = props;
