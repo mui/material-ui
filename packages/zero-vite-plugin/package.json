@@ -48,7 +48,7 @@
     "@types/babel__core": "^7.20.5",
     "@types/chai": "^4.3.11",
     "chai": "^4.3.10",
-    "vite": "^4.4.11"
+    "vite": "^4.5.1"
   },
   "peerDependencies": {
     "vite": "^4.0.0"

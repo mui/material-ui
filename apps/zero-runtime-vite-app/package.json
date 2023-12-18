@@ -27,7 +27,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "^22.1.0",
     "local-library": "file:../local-library",
-    "vite": "4.4.12",
+    "vite": "4.5.1",
     "vitest": "^0.34.6",
     "typescript": "5.3.2"
   },
