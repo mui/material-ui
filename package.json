@@ -165,7 +165,7 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.3.2",
     "webpack": "^5.88.2",
-    "webpack-bundle-analyzer": "^4.9.1",
+    "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
     "yargs": "^17.7.2",
     "yarn-deduplicate": "^6.0.2"
