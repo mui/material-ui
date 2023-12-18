@@ -1,5 +1,4 @@
 // Mandatory to map so that the imports translate to cjs files
-// eslint-disable-next-line import/no-unresolved
 const { createTheme } = require('@mui/material/node/styles');
 
 const theme = createTheme();
