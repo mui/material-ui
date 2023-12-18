@@ -40,6 +40,41 @@ const theme = createTheme({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
   },
+  
+});
+
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+      primary: {
+        light: '#4393E4',
+        main: '#0B6BCB',
+        dark: '#185EA5',
+      },
+      background: {
+        default: '#000',
+        paper: '#171A1C',
+      },
+    },
+  });
+
+const fontHeader = {
+  color: theme.palette.text.primary,
+  fontWeight: theme.typography.fontWeightMedium,
+  fontFamily: "'Inter', sans-serif",
+};
+
+const albumTheme = {
+  ...theme,
+  ...darkTheme,
+  palette: {
+    ...theme.palette,
+    background: {
+      ...theme.palette.background,
+      default: theme.palette.common.white,
+      placeholder: grey[200],
+    },
+  },
   components: {
     MuiCard: {
       styleOverrides: {
@@ -52,7 +87,7 @@ const theme = createTheme({
     },
     MuiButton: {
       styleOverrides: {
-        root: ({ ownerState }) => ({
+        root: ({ ownerState }: { ownerState: { variant: string } }) => ({
             boxShadow:'none',
             borderRadius:'8px',
             ...(ownerState.variant === 'outlined' && {
@@ -87,12 +122,12 @@ const theme = createTheme({
     },
     MuiAccordionSummary: {
           styleOverrides: {
-            root: ({ theme }) => ({
+            root: {
                 backgroundColor: 'rgba(0, 0, 0, .03)',
                 '& .MuiAccordionSummary-content': {
                     marginLeft: theme.spacing(2),
               },
-            }),
+            },
           },
     },
     MuiTextField: {
@@ -128,47 +163,13 @@ const theme = createTheme({
       },
     MuiAccordionDetails: {
           styleOverrides: {
-            root: ({ theme }) => ({
+            root:{ 
                 padding: theme.spacing(3),
                 borderTop: '1px solid rgba(0, 0, 0, .125)',
-            }),
+            },
           },
     },
-    },   
-});
-
-const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-      primary: {
-        light: '#4393E4',
-        main: '#0B6BCB',
-        dark: '#185EA5',
-      },
-      background: {
-        default: '#000',
-        paper: '#171A1C',
-      },
-    },
-  });
-
-const fontHeader = {
-  color: theme.palette.text.primary,
-  fontWeight: theme.typography.fontWeightMedium,
-  fontFamily: "'Inter', sans-serif",
-};
-
-const albumTheme = {
-  ...theme,
-  ...darkTheme,
-  palette: {
-    ...theme.palette,
-    background: {
-      ...theme.palette.background,
-      default: theme.palette.common.white,
-      placeholder: grey[200],
-    },
-  },
+    }, 
   typography: {
     ...theme.typography,
     fontHeader,

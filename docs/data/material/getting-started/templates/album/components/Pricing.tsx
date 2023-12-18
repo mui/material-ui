@@ -4,13 +4,14 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { yellow } from '@mui/material/colors';
+import { yellow, green } from '@mui/material/colors';
 
-import StarIcon from '@mui/icons-material/Star';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
+import Chip from '@mui/material/Chip';
 
 const tiers = [
   {
@@ -26,8 +27,8 @@ const tiers = [
     buttonVariant: 'outlined',
   },
   {
-    title: 'Pro',
-    subheader: 'Most popular',
+    title: 'Professional',
+    subheader: 'Best choice',
     price: '15',
     description: [
       '20 users included',
@@ -73,56 +74,59 @@ export default function Pricing() {
             customization.
           </Typography>
         </Box>
-        <Grid container spacing={3} alignItems="flex-end">
+        <Grid container spacing={3} alignItems="center" justifyContent="center">
           {tiers.map((tier) => (
             <Grid
               item
               key={tier.title}
               xs={12}
               sm={tier.title === 'Enterprise' ? 12 : 6}
-              md={4}
+              md={3}
             >
               <Card>
-                <CardHeader
-                  title={tier.title}
-                  subheader={tier.subheader}
-                  titleTypographyProps={{ align: 'center' }}
-                  action={
-                    tier.title === 'Pro' ? (
-                      <StarIcon sx={{ color: yellow[800] }} />
-                    ) : null
-                  }
-                  subheaderTypographyProps={{
-                    align: 'center',
-                  }}
+                <CardContent
                   sx={{
-                    backgroundColor: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? '#F0F4F8'
-                        : theme.palette.grey[700],
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
                   }}
-                />
-                <CardContent>
+                >
+                  {tier.title === 'Professional' && (
+                    <Chip
+                      icon={<AutoAwesomeIcon />}
+                      label={tier.subheader}
+                      size="small"
+                      sx={{ alignSelf: 'center', mb: 1 }}
+                    />
+                  )}
                   <Box
                     sx={{
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'baseline',
-                      mb: 2,
+                      my: 1,
                     }}
                   >
-                    <Typography component="h2" variant="h3" color="text.primary">
-                      ${tier.price}{' '}
+                    <Typography component="h2" variant="h4" color="text.primary">
+                      ${tier.price}
                     </Typography>
                     <Typography variant="h6" color="text.secondary">
                       /mo
                     </Typography>
                   </Box>
-
+                  <Typography variant="h6" align="center" gutterBottom>
+                    {tier.title}
+                  </Typography>
                   {tier.description.map((line) => (
-                    <Typography variant="subtitle2" align="center" key={line}>
-                      {line}
-                    </Typography>
+                    <Box
+                      key={line}
+                      sx={{ display: 'flex', gap: 1, p: 1, alignItems: 'center' }}
+                    >
+                      <CheckCircleTwoToneIcon sx={{ color: green[400] }} />
+                      <Typography variant="subtitle2" color="text.secondary">
+                        {line}
+                      </Typography>
+                    </Box>
                   ))}
                 </CardContent>
                 <CardActions>

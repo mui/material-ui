@@ -1,4 +1,3 @@
-// Album.js
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -14,6 +13,7 @@ import Pricing from './components/Pricing';
 import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
+
 import albumTheme from './albumTheme';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
@@ -65,6 +65,7 @@ export default function Album() {
             display: 'flex',
             flexDirection: 'column',
             gap: 24,
+            bgcolor: 'background.default',
           }}
         >
           <LogoCollection />
@@ -73,7 +74,7 @@ export default function Album() {
           <Highlights />
           <Pricing />
           <FAQ />
-          <Box sx={{ bgcolor: 'rgba(0,0,0,0.1)', p: 6 }} component="footer">
+          <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
             <Typography variant="h6" align="center" gutterBottom>
               Footer
             </Typography>
