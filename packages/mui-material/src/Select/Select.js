@@ -91,7 +91,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
       {React.cloneElement(InputComponent, {
         // Most of the logic is implemented in `SelectInput`.
         // The `Select` component is a simple API wrapper to expose something better to play with.
-        inputComponent,
+        inputComponent, // this is passed to InputBase as the the equivalent of the `component` prop
         inputProps: {
           children,
           error: fcs.error,

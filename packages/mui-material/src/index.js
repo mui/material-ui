@@ -278,6 +278,9 @@ export * from './ScopedCssBaseline';
 export { default as Select } from './Select';
 export * from './Select';
 
+export { default as SelectField } from './SelectField';
+export * from './SelectField';
+
 export { default as Skeleton } from './Skeleton';
 export * from './Skeleton';
 
