@@ -573,6 +573,7 @@ export default function Careers() {
       <Head
         title="Careers - MUI"
         description="Interested in joining MUI? Learn about the roles we're hiring for."
+        card="/static/social-previews/careers-preview.jpg"
       />
       <AppHeaderBanner />
       <AppHeader />

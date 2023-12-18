@@ -143,6 +143,14 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
     select?: Partial<SelectProps>;
   };
   /**
+   * The components used for each slot inside the TablePagination.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    actions?: TablePaginationActionsProps['slots'];
+  };
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
