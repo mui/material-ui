@@ -87,6 +87,7 @@ module.exports = [
   { pathname: '/material-ui/api/rating' },
   { pathname: '/material-ui/api/scoped-css-baseline' },
   { pathname: '/material-ui/api/select' },
+  { pathname: '/material-ui/api/select-field' },
   { pathname: '/material-ui/api/skeleton' },
   { pathname: '/material-ui/api/slide' },
   { pathname: '/material-ui/api/slider' },

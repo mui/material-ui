@@ -289,11 +289,6 @@ SelectField.propTypes /* remove-proptypes */ = {
    */
   label: PropTypes.node,
   /**
-   * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
-   * @default 'none'
-   */
-  margin: PropTypes.oneOf(['dense', 'none', 'normal']),
-  /**
    * Maximum number of rows to display when multiline option is set to true.
    */
   maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

@@ -237,6 +237,15 @@ export type SelectFieldProps<Variant extends TextFieldVariants = TextFieldVarian
 
 /**
  * The `SelectField` is extracted out of `<TextField select />`
+ *
+ * Demos:
+ *
+ * - [Text Field](https://mui.com/material-ui/react-text-field/)
+ *
+ * API:
+ *
+ * - [SelectField API](https://mui.com/material-ui/api/select-field/)
+ * - inherits [FormControl API](https://mui.com/material-ui/api/form-control/)
  */
 export default function SelectField<Variant extends TextFieldVariants>(
   props: {
