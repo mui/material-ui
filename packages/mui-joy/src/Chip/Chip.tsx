@@ -132,6 +132,7 @@ const ChipLabel = styled('span', {
   order: 1,
   minInlineSize: 0,
   flexGrow: 1,
+  whiteSpace: 'normal',
   ...(ownerState.clickable && {
     zIndex: 1,
     pointerEvents: 'none',
