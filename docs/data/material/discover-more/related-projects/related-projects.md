@@ -55,7 +55,7 @@ Feel free to submit a pull request!
 
 ### Rich text
 
-- [mui-tiptap](https://github.com/sjdemartini/mui-tiptap): A customizable Material UI styled WYSIWYG rich text editor, using [Tiptap](https://tiptap.dev/).
+- [mui-tiptap](https://github.com/sjdemartini/mui-tiptap): A customizable Material UI-styled WYSIWYG (What You See Is What You Get) rich text editor, using [Tiptap](https://tiptap.dev/).
 
 ### Sparkline
 
