@@ -536,8 +536,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
     moveCount.current = 0;
     const doc = ownerDocument(sliderRef.current);
-    doc.addEventListener('touchmove', handleTouchMove);
-    doc.addEventListener('touchend', handleTouchEnd);
+    doc.addEventListener('touchmove', handleTouchMove, { passive: true });
+    doc.addEventListener('touchend', handleTouchEnd, { passive: true });
   });
 
   const stopListening = React.useCallback(() => {
@@ -550,15 +550,11 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   React.useEffect(() => {
     const { current: slider } = sliderRef;
-    slider!.addEventListener('touchstart', handleTouchStart, {
-      passive: doesSupportTouchActionNone(),
-    });
+    slider!.addEventListener('touchstart', handleTouchStart);
 
     return () => {
       // @ts-ignore
-      slider!.removeEventListener('touchstart', handleTouchStart, {
-        passive: doesSupportTouchActionNone(),
-      });
+      slider!.removeEventListener('touchstart', handleTouchStart);
 
       stopListening();
     };
@@ -602,7 +598,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
       moveCount.current = 0;
       const doc = ownerDocument(sliderRef.current);
-      doc.addEventListener('mousemove', handleTouchMove);
+      doc.addEventListener('mousemove', handleTouchMove, { passive: true });
       doc.addEventListener('mouseup', handleTouchEnd);
     };
 
