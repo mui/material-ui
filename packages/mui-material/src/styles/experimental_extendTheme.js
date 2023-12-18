@@ -9,6 +9,7 @@ import {
   unstable_defaultSxConfig as defaultSxConfig,
   unstable_styleFunctionSx as styleFunctionSx,
   unstable_prepareCssVars as prepareCssVars,
+  createSpacing,
 } from '@mui/system';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
@@ -396,6 +397,12 @@ export default function extendTheme(options = {}, ...args) {
       theme: this,
     });
   };
+  if (!input.spacing || typeof input.spacing === 'number') {
+    theme.spacing = createSpacing(
+      input.spacing,
+      (factor) => `calc(${factor} * ${getCssVar('spacingSize')})`,
+    );
+  }
 
   return theme;
 }
