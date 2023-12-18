@@ -67,7 +67,9 @@
       "description": "Props applied to the <a href=\"/material-ui/api/select/\"><code>Select</code></a> element."
     },
     "size": { "description": "The size of the component." },
-    "slotProps": { "description": "slotProps" },
+    "slotProps": {
+      "description": "The extra props for the slot components. You can override the existing props or add new ones."
+    },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },

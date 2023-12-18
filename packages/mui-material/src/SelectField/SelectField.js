@@ -351,7 +351,9 @@ SelectField.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * slotProps
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -367,8 +369,6 @@ SelectField.propTypes /* remove-proptypes */ = {
     }),
     root: PropTypes.object,
     select: PropTypes.shape({
-      listbox: PropTypes.object,
-      popper: PropTypes.object,
       root: PropTypes.object,
     }),
   }),

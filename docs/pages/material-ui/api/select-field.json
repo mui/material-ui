@@ -44,7 +44,7 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ formHelperText?: { root?: object }, input?: { input?: object, root?: object }, inputLabel?: { root?: object }, root?: object, select?: { listbox?: object, popper?: object, root?: object } }"
+        "description": "{ formHelperText?: { root?: object }, input?: { input?: object, root?: object }, inputLabel?: { root?: object }, root?: object, select?: { root?: object } }"
       },
       "default": "{}"
     },

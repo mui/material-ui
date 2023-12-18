@@ -159,28 +159,6 @@ export interface BaseSelectFieldProps
    * The value of the `input` element, required for a controlled component.
    */
   value?: unknown;
-  /**
-   * slotProps
-   * @default {}
-   */
-  slotProps?: {
-    root?: Record<string, unknown>;
-    inputLabel?: {
-      root?: Record<string, unknown>;
-    };
-    select?: {
-      root?: Record<string, unknown>;
-      listbox?: Record<string, unknown>;
-      popper?: Record<string, unknown>;
-    };
-    input?: {
-      root?: Record<string, unknown>;
-      input?: Record<string, unknown>;
-    };
-    formHelperText?: {
-      root?: Record<string, unknown>;
-    };
-  };
 }
 
 export interface StandardSelectFieldProps extends BaseSelectFieldProps {
@@ -203,6 +181,30 @@ export interface StandardSelectFieldProps extends BaseSelectFieldProps {
    * component depending on the `variant` prop value.
    */
   InputProps?: Partial<StandardInputProps>;
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    root?: Partial<BaseSelectFieldProps>;
+    inputLabel?: {
+      root?: Partial<InputLabelProps>;
+    };
+    select?: {
+      root?: Partial<SelectProps>;
+      // listbox?: Record<string, unknown>;
+      // popper?: Record<string, unknown>;
+    };
+    input?: {
+      root?: Partial<StandardInputProps>;
+      input?: InputBaseProps['inputProps'];
+    };
+    formHelperText?: {
+      root?: Partial<FormHelperTextProps>;
+    };
+  };
 }
 
 export interface FilledSelectFieldProps extends BaseSelectFieldProps {
@@ -225,6 +227,30 @@ export interface FilledSelectFieldProps extends BaseSelectFieldProps {
    * component depending on the `variant` prop value.
    */
   InputProps?: Partial<FilledInputProps>;
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    root?: Partial<BaseSelectFieldProps>;
+    inputLabel?: {
+      root?: Partial<InputLabelProps>;
+    };
+    select?: {
+      root?: Partial<SelectProps>;
+      // listbox?: Record<string, unknown>;
+      // popper?: Record<string, unknown>;
+    };
+    input?: {
+      root?: Partial<FilledInputProps>;
+      input?: InputBaseProps['inputProps'];
+    };
+    formHelperText?: {
+      root?: Partial<FormHelperTextProps>;
+    };
+  };
 }
 
 export interface OutlinedSelectFieldProps extends BaseSelectFieldProps {
@@ -247,6 +273,30 @@ export interface OutlinedSelectFieldProps extends BaseSelectFieldProps {
    * component depending on the `variant` prop value.
    */
   InputProps?: Partial<OutlinedInputProps>;
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    root?: Partial<BaseSelectFieldProps>;
+    inputLabel?: {
+      root?: Partial<InputLabelProps>;
+    };
+    select?: {
+      root?: Partial<SelectProps>;
+      // listbox?: Record<string, unknown>;
+      // popper?: Record<string, unknown>;
+    };
+    input?: {
+      root?: Partial<OutlinedInputProps>;
+      input?: InputBaseProps['inputProps'];
+    };
+    formHelperText?: {
+      root?: Partial<FormHelperTextProps>;
+    };
+  };
 }
 
 export type SelectFieldProps<Variant extends TextFieldVariants = TextFieldVariants> =
