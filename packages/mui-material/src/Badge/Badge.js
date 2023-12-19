@@ -88,13 +88,19 @@ const BadgeBadge = styled('span', {
     duration: theme.transitions.duration.enteringScreen,
   }),
   variants: [
-    ...['primary', 'secondary', 'error', 'info', 'success', 'warning'].map((color) => ({
-      props: { color },
-      style: {
-        backgroundColor: (theme.vars || theme).palette[color].main,
-        color: (theme.vars || theme).palette[color].contrastText,
-      },
-    })),
+    ...Object.keys((theme.vars ?? theme).palette)
+      .filter(
+        (key) =>
+          (theme.vars ?? theme).palette[key].main &&
+          (theme.vars ?? theme).palette[key].contrastText,
+      )
+      .map((color) => ({
+        props: { color },
+        style: {
+          backgroundColor: (theme.vars || theme).palette[color].main,
+          color: (theme.vars || theme).palette[color].contrastText,
+        },
+      })),
     {
       props: { variant: 'dot' },
       style: {
