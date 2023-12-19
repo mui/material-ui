@@ -1,11 +1,11 @@
-// ToggleColorMode.js
 import React from 'react';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
-import { ColorModeContext } from '../Album'; // Corrected import
+import { ColorModeContext } from '../Album';
+
+import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
+import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 
 function ToggleColorMode() {
   const theme = useTheme();
@@ -13,9 +13,17 @@ function ToggleColorMode() {
 
   return (
     <Box>
-      <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode}>
-        {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-      </IconButton>
+      <Button
+        variant="outlined"
+        onClick={colorMode.toggleColorMode}
+        sx={{ minWidth: '36px', px: 0, ml: 1 }}
+      >
+        {theme.palette.mode === 'dark' ? (
+          <WbSunnyRoundedIcon />
+        ) : (
+          <ModeNightRoundedIcon />
+        )}
+      </Button>
     </Box>
   );
 }

@@ -29,14 +29,17 @@ export default function FAQ() {
         <Typography
           component="h2"
           variant="h4"
-          align="center"
           color="text.primary"
           gutterBottom
-          sx={{ mb: 8 }}
+          sx={{
+            width: { sm: '100%', md: '60%' },
+            mb: 8,
+            textAlign: { sm: 'left', md: 'center' },
+          }}
         >
-          FAQ
+          Frequently asked questions
         </Typography>
-        <Box sx={{ width: '100%', maxWidth: '800px' }}>
+        <Box sx={{ width: '100%' }}>
           <Accordion
             expanded={expanded === 'panel1'}
             onChange={handleChange('panel1')}

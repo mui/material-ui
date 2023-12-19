@@ -68,13 +68,20 @@ export default function Testimonials() {
           alignItems: 'center',
         }}
       >
-        <Box sx={{ width: '60%', mb: 8, textAlign: 'center' }}>
+        <Box
+          sx={{
+            width: { sm: '100%', md: '60%' },
+            mb: 8,
+            textAlign: { sm: 'left', md: 'center' },
+          }}
+        >
           <Typography component="h2" variant="h4" color="text.primary" gutterBottom>
             Testimonials
           </Typography>
           <Typography variant="body1" color="text.secondary" component="p">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit. Ut et massa mi.
-            Aliquam in hendrerit urna.
+            Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi.
+            Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis
+            ligula consectetur
           </Typography>
         </Box>
         <Masonry columns={columns} spacing={2}>

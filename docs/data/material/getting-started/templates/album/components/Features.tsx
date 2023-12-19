@@ -8,28 +8,31 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
+import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
+import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
 
 const items = [
   {
-    icon: <AcUnitIcon />,
-    title: 'Item 1 Title',
-    description: 'Item 1 Description',
+    icon: <ViewQuiltRoundedIcon />,
+    title: 'Dashboard',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi.',
     image:
       'url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
   },
   {
-    icon: <AcUnitIcon />,
-    title: 'Item 2 Title',
-    description: 'Item 2 Description',
+    icon: <EdgesensorHighRoundedIcon />,
+    title: 'Mobile integration',
+    description: 'Aliquam in hendrerit urna.',
     image:
       'url("https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?q=80&w=3602&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
   },
   {
-    icon: <AcUnitIcon />,
-    title: 'Item 3 Title',
-    description: 'Item 3 Description',
+    icon: <DevicesRoundedIcon />,
+    title: 'Available in all platforms',
+    description: 'Pellentesque sit amet sapien fringilla, mattis ligula consectetur',
     image:
       'url("https://images.unsplash.com/photo-1597740985671-2a8a3b80502e?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
   },
@@ -93,7 +96,7 @@ export default function Features() {
                       width: '100%',
                     }}
                   >
-                    <span>{icon}</span>
+                    <Box sx={{ opacity: '50%' }}>{icon}</Box>
                     <span>
                       <Typography
                         component="span"
@@ -129,7 +132,7 @@ export default function Features() {
                         }}
                       >
                         <span>Learn more</span>
-                        <ArrowRightIcon
+                        <ChevronRightRoundedIcon
                           fontSize="small"
                           sx={{ mt: '1px', ml: '2px' }}
                         />

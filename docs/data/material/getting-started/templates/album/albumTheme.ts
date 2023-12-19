@@ -89,7 +89,8 @@ const albumTheme = {
       styleOverrides: {
         root: ({ ownerState }: { ownerState: { variant: string } }) => ({
             boxShadow:'none',
-            borderRadius:'8px',
+            borderRadius:'8px',            
+
             ...(ownerState.variant === 'outlined' && {
                 border:'1px solid',
                 borderColor:'#C7DFF7',
@@ -105,31 +106,31 @@ const albumTheme = {
     },
     MuiAccordion: {
         defaultProps: {
-            disableGutters: true,
-            elevation: 0,
+            elevation: 0,            
           },
           styleOverrides: {
             root: {
-                border: '1px solid divider',
-                '&:not(:last-child)': {
-                  borderBottom: 0,
-                },
-                '&:before': {
-                  display: 'none',
-                },
+                backgroundColor:'#fff',
             },
           },
     },
     MuiAccordionSummary: {
           styleOverrides: {
             root: {
-                backgroundColor: 'rgba(0, 0, 0, .03)',
                 '& .MuiAccordionSummary-content': {
                     marginLeft: theme.spacing(2),
               },
             },
           },
     },
+    MuiAccordionDetails: {
+        styleOverrides: {
+          root:{ 
+              padding: theme.spacing(3),
+              borderTop: '1px solid rgba(0, 0, 0, .125)',
+          },
+        },
+  },
     MuiTextField: {
         styleOverrides: {
         root: {            
@@ -137,12 +138,12 @@ const albumTheme = {
             color: 'white',
           },
           '& .MuiInputBase-input': {
-            
+            fontSize: '14px',
             color: 'white',
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-            borderRadius:'8px',
+              borderRadius:'8px',
               borderColor: 'rgba(255, 255, 255, 0.2)',
             },
             '&:hover fieldset': {
@@ -154,6 +155,7 @@ const albumTheme = {
           },
           '& .MuiInputLabel-root': {
             color: 'white',
+            fontSize: '14px',
           },
           '& .MuiOutlinedInput-input:-webkit-autofill': {
             '-webkit-box-shadow': '0 0 0 100px rgba(255, 255, 255, 0.2) inset',
@@ -161,14 +163,6 @@ const albumTheme = {
         },
         },
       },
-    MuiAccordionDetails: {
-          styleOverrides: {
-            root:{ 
-                padding: theme.spacing(3),
-                borderTop: '1px solid rgba(0, 0, 0, .125)',
-            },
-          },
-    },
     }, 
   typography: {
     ...theme.typography,

@@ -22,7 +22,7 @@ const LogoCollection = () => {
     <Box sx={{ mt: 10, textAlign: 'center' }}>
       <Typography
         component="h2"
-        variant="h6"
+        variant="subtitle1"
         align="center"
         color="text.secondary"
         gutterBottom

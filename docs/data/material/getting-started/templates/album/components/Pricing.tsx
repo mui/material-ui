@@ -7,6 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 import { yellow, green } from '@mui/material/colors';
 
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
@@ -64,7 +65,13 @@ export default function Pricing() {
           alignItems: 'center',
         }}
       >
-        <Box sx={{ width: '60%', mb: 8, textAlign: 'center' }}>
+        <Box
+          sx={{
+            width: { sm: '100%', md: '60%' },
+            mb: 8,
+            textAlign: { sm: 'left', md: 'center' },
+          }}
+        >
           <Typography component="h2" variant="h4" color="text.primary" gutterBottom>
             Pricing
           </Typography>
@@ -81,42 +88,39 @@ export default function Pricing() {
               key={tier.title}
               xs={12}
               sm={tier.title === 'Enterprise' ? 12 : 6}
-              md={3}
+              md={4}
             >
               <Card>
-                <CardContent
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {tier.title === 'Professional' && (
-                    <Chip
-                      icon={<AutoAwesomeIcon />}
-                      label={tier.subheader}
-                      size="small"
-                      sx={{ alignSelf: 'center', mb: 1 }}
-                    />
-                  )}
+                <CardContent>
+                  <Box
+                    sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}
+                  >
+                    <Typography variant="h6" gutterBottom>
+                      {tier.title}
+                    </Typography>
+                    {tier.title === 'Professional' && (
+                      <Chip
+                        icon={<AutoAwesomeIcon />}
+                        label={tier.subheader}
+                        size="small"
+                        sx={{ alignSelf: 'center', mb: 1 }}
+                      />
+                    )}
+                  </Box>
                   <Box
                     sx={{
                       display: 'flex',
-                      justifyContent: 'center',
                       alignItems: 'baseline',
-                      my: 1,
                     }}
                   >
-                    <Typography component="h2" variant="h4" color="text.primary">
+                    <Typography component="h2" variant="h2" color="text.primary">
                       ${tier.price}
                     </Typography>
                     <Typography variant="h6" color="text.secondary">
-                      /mo
+                      &nbsp; per month
                     </Typography>
                   </Box>
-                  <Typography variant="h6" align="center" gutterBottom>
-                    {tier.title}
-                  </Typography>
+                  <Divider sx={{ my: 2 }} />
                   {tier.description.map((line) => (
                     <Box
                       key={line}

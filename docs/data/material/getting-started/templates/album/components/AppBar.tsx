@@ -33,10 +33,12 @@ function AppAppBar() {
               Acme company
             </Typography>
           </Box>
-          <Button color="primary" variant="outlined" sx={{ mr: 2 }}>
+          <Button color="primary" variant="contained" sx={{ mr: 1 }}>
             Sign up
           </Button>
-          <Button color="primary">Sign in</Button>
+          <Button color="primary" variant="outlined">
+            Sign in
+          </Button>
           <ToggleColorMode />
         </Toolbar>
       </AppBar>

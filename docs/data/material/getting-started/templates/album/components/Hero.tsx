@@ -7,6 +7,7 @@ import Chip from '@mui/material/Chip';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
+import { grey } from '@mui/material/colors';
 
 export default function ProductHero() {
   return (
@@ -16,7 +17,7 @@ export default function ProductHero() {
         backgroundImage: `url("https://source.unsplash.com/random?wallpapers")`,
         backgroundSize: 'cover',
         color: 'white',
-        height: '80vh',
+        height: '60vh',
       }}
     >
       <Box
@@ -26,7 +27,7 @@ export default function ProductHero() {
           justifyContent: 'center',
           gap: 10,
           width: '100%',
-          height: '80vh',
+          height: '60vh',
           backgroundColor: 'rgba(0, 0, 0, 0.7)',
           backdropFilter: 'blur(40px)',
           alignItems: 'center',
@@ -42,9 +43,10 @@ export default function ProductHero() {
             >
               <Chip
                 size="small"
-                variant="outlined"
+                variant="filled"
                 label="New Arrival"
-                sx={{ alignSelf: 'center', color: 'inherit' }}
+                color="secondary"
+                sx={{ alignSelf: 'center', fontWeight: '600' }}
               />
               <Typography
                 component="h1"
@@ -53,7 +55,7 @@ export default function ProductHero() {
                 color="inherit"
                 gutterBottom
               >
-                Latest Products
+                Latest products
               </Typography>
               <Typography variant="body1" align="center" color="inherit" paragraph>
                 Discover our newest collection of high-quality products. From
@@ -71,16 +73,22 @@ export default function ProductHero() {
                   size="small"
                   variant="outlined"
                   placeholder="Your email address"
+                  sx={{ minWidth: '45%' }}
                 />
                 <Button variant="contained">Start using</Button>
               </Stack>
-              <Typography variant="caption" align="center" color="inherit" paragraph>
-                By clicking "Explore Now," you agree to our{' '}
+              <Typography
+                variant="caption"
+                align="center"
+                color={grey[600]}
+                paragraph
+              >
+                By clicking "Start using" you agree to our{' '}
                 <span>
                   <Link
                     href="#"
                     underline="hover"
-                    color="inherit"
+                    color="primary"
                     sx={{ fontWeight: 600 }}
                   >
                     Terms & Conditions
