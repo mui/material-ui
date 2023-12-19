@@ -144,6 +144,16 @@ module.exports = function getBabelConfig(api) {
           ],
         ],
       },
+      rollup: {
+        plugins: [
+          [
+            'babel-plugin-module-resolver',
+            {
+              alias: defaultAlias,
+            },
+          ],
+        ],
+      },
       legacy: {
         plugins: [
           // IE11 support
