@@ -3,6 +3,7 @@ title: Material UI v6 and beyond
 description: What are the most exciting changes coming in Material UI v6? Read all about it here!
 date: 2023-12-19T00:00:00.000Z
 authors: ['mnajdova']
+card: true
 tags: ['MUI Core', 'News']
 ---
 
