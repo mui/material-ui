@@ -10,7 +10,7 @@ import {
 } from '@mui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import { isFilled, isAdornedStart } from '../InputBase/utils';
+import { isFilled, isAdornedStart, isAdornedEnd } from '../InputBase/utils';
 import FormControlContext from './FormControlContext';
 import { FormControlTypeMap, FormControlOwnerState, FormControlProps } from './FormControl.types';
 import { getFormControlUtilityClasses } from './formControlClasses';
@@ -128,6 +128,28 @@ const FormControl = React.forwardRef(function FormControl<
     return initialAdornedStart;
   });
 
+  const [adornedEnd, setAdornedEnd] = React.useState(() => {
+    let initialAdornedEnd = false;
+
+    if (children) {
+      React.Children.forEach(children, (child) => {
+        if (!isMuiElement(child, ['Input', 'Select'])) {
+          return;
+        }
+
+        const input =
+          React.isValidElement(child) && isMuiElement(child, ['Select'])
+            ? child.props.input
+            : child;
+
+        if (input && isAdornedEnd(input.props)) {
+          initialAdornedEnd = true;
+        }
+      });
+    }
+    return initialAdornedEnd;
+  });
+
   const [filled, setFilled] = React.useState(() => {
     // We need to iterate through the children and find the Input in order
     // to fully support server-side rendering.
@@ -202,6 +224,8 @@ const FormControl = React.forwardRef(function FormControl<
     return {
       adornedStart,
       setAdornedStart,
+      adornedEnd,
+      setAdornedEnd,
       color,
       disabled,
       error,
@@ -228,6 +252,7 @@ const FormControl = React.forwardRef(function FormControl<
     };
   }, [
     adornedStart,
+    adornedEnd,
     color,
     disabled,
     error,

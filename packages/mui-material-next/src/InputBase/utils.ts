@@ -34,3 +34,14 @@ export function isAdornedStart(obj: any) {
   // TODO: integrate with form control
   return obj.startAdornment;
 }
+
+// Determine if an Input has an endAdornment.
+// It's corresponding to the right with LTR.
+//
+// @param obj
+// @returns {boolean} False when no end adornment.
+//                    True when adorned at the end.
+export function isAdornedEnd(obj: any) {
+  // TODO: integrate with form control
+  return obj.endAdornment;
+}

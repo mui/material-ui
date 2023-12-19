@@ -266,6 +266,28 @@ describe('<FormControl />', () => {
       );
       expect(readContext.args[0][0]).to.have.property('adornedStart', true);
     });
+
+    it('should not be adornedEnd with an startAdornment', () => {
+      const readContext = spy();
+      render(
+        <FormControl>
+          <FilledInput startAdornment={<div />} />
+          <TestComponent contextCallback={readContext} />
+        </FormControl>,
+      );
+      expect(readContext.args[0][0]).to.have.property('adornedEnd', false);
+    });
+
+    it('should be adornedEnd with a endAdornment', () => {
+      const readContext = spy();
+      render(
+        <FormControl>
+          <FilledInput endAdornment={<div />} />
+          <TestComponent contextCallback={readContext} />
+        </FormControl>,
+      );
+      expect(readContext.args[0][0]).to.have.property('adornedEnd', true);
+    });
   });
 
   // TODO v6: needs material-next/Select + FormControl integrated

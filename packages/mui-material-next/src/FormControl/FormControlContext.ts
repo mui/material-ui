@@ -14,6 +14,7 @@ type ContextFromPropsKey =
 
 export interface FormControlContextValue extends Pick<FormControlProps, ContextFromPropsKey> {
   adornedStart: boolean;
+  adornedEnd: boolean;
   filled: boolean;
   focused: boolean;
   onBlur: (event?: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
@@ -22,6 +23,7 @@ export interface FormControlContextValue extends Pick<FormControlProps, ContextF
   onFilled: () => void;
   registerEffect: undefined | (() => () => void);
   setAdornedStart: React.Dispatch<React.SetStateAction<boolean>>;
+  setAdornedEnd: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 /**
