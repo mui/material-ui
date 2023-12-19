@@ -11,17 +11,17 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.15.1`
 
-- &#8203;<!-- 13 -->[material-ui][CardActions][DialogActions] Apply margin for all children except for 1st child (#40168) @sai6855
-- &#8203;<!-- 03 -->[material-ui][TablePagination] Add ability to change icons in TablePaginationActions using `slots` and `slotProps` (#33797) @pratikkarad
+- &#8203;<!-- 13 -->[CardActions][DialogActions] Apply margin for all children except for 1st child (#40168) @sai6855
+- &#8203;<!-- 03 -->[TablePagination] Add ability to change icons in TablePaginationActions using `slots` and `slotProps` (#33797) @pratikkarad
 
 ### `@mui/joy@5.0.0-beta.19`
 
-- &#8203;<!-- 05 -->[joy-ui][FormControl] Fix issue with the conditional setting of `htmlFor` and `id` attributes not functioning properly for form labels (#40180) @ReaZzy
-- &#8203;<!-- 04 -->[joy-ui] Address TypeScript issue with custom zIndex not functioning (#40133) @qiweiii
+- &#8203;<!-- 05 -->[FormControl] Fix issue with the conditional setting of `htmlFor` and `id` attributes not functioning properly for form labels (#40180) @ReaZzy
+- &#8203;<!-- 04 -->[typescript] Address TypeScript issue with custom zIndex not functioning (#40133) @qiweiii
 
 ### `@mui/styled-engine-sc@6.0.0-alpha.9`
 
-- &#8203;<!-- 02 -->[styled-engine-sc] Fix `theme` being of type any (#40200) @mnajdova
+- &#8203;<!-- 02 -->[typescript] Fix `theme` being of type any (#40200) @mnajdova
 
 ### Docs
 
