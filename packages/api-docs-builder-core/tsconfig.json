@@ -12,7 +12,10 @@
     "module": "CommonJS",
     "moduleResolution": "node",
     "strict": true,
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "@mui/utils": ["../mui-utils/src"]
+    }
   },
   "include": ["./**/*.ts", "./**/*.js"],
   "exclude": ["node_modules"]
