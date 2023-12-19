@@ -6,6 +6,8 @@ authors: ['mnajdova']
 tags: ['MUI Core', 'News']
 ---
 
+<img alt="A summary about the major changes coming in Material UI v6 and v7" src="/static/blog/2023-material-ui-v6-and-beyond/post-header.jpg" width="1200" height="840" loading="lazy" />
+
 ## Material UI v6 and beyond
 
 As we approach the end of 2023, we are busy with planning our main focus areas for the upcoming year.
