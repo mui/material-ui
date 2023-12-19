@@ -6,13 +6,14 @@
 
 _Dec 18, 2023_
 
-A big thanks to the 13 contributors who made this release possible.
+A big thanks to the 15 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.15.1`
 
 - &#8203;<!-- 13 -->[CardActions][DialogActions] Apply margin for all children except for 1st child (#40168) @sai6855
 - &#8203;<!-- 03 -->[TablePagination] Add ability to change icons in TablePaginationActions using `slots` and `slotProps` (#33797) @pratikkarad
+- &#8203;<!-- 13 -->[CssVarsProvider] Fix HSL breaking button styles (#39869) @gitstart
 
 ### `@mui/joy@5.0.0-beta.19`
 
@@ -27,6 +28,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 - &#8203;<!-- 09 -->[joy-ui] Fix typo in the CSS baseline page (#40222) @possibilities
 - &#8203;<!-- 08 -->[joy-ui] Document missing Autocomplete props (#39979) @ZeeshanTamboli
+- &#8203;<!-- 10 -->[joy-ui] Fix typo about Typography levels (#40230) @zanivan
 - &#8203;<!-- 07 -->[material-ui] Update the related projects page to list `mui-tiptap` for rich text (#40216) @sjdemartini
 - &#8203;<!-- 06 -->[material-ui] Fix typo in the Next.js integration page (#40209) @s8990
 
@@ -38,7 +40,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 10 -->[docs-infra] Uplift the Algolia search modal design (#40186) @danilo-leal
 - &#8203;<!-- 01 -->[website] Update product descriptions and social preview images (#32181) @danilo-leal
 
-All contributors of this release in alphabetical order: @danilo-leal, @MBilalShafi, @mbrookes, @mnajdova, @oliviertassinari, @possibilities, @pratikkarad, @qiweiii, @ReaZzy, @s8990, @sai6855, @sjdemartini, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @danilo-leal, @gitstart, @MBilalShafi, @mbrookes, @mnajdova, @oliviertassinari, @possibilities, @pratikkarad, @qiweiii, @ReaZzy, @s8990, @sai6855, @sjdemartini, @zanivan, @ZeeshanTamboli
 
 ## 5.15.0
 
