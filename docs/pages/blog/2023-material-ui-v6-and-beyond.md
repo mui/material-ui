@@ -6,30 +6,41 @@ authors: ['mnajdova']
 tags: ['MUI Core', 'News']
 ---
 
-<img alt="A summary about the major changes coming in Material UI v6 and v7" src="/static/blog/2023-material-ui-v6-and-beyond/post-header.jpg" width="1200" height="840" loading="lazy" />
+As we approach the end of 2023, we're heads down working on very exciting projects for the future of Material UI in the next year.
+Here's what you can expect:
 
-## Material UI v6 and beyond
+<img alt="A summary about the major changes coming in Material UI v6 and v7" src="/static/blog/2023-material-ui-v6-and-beyond/post-header.jpg" width="1200" height="600" loading="lazy" />
 
-As we approach the end of 2023, we are busy with planning our main focus areas for the upcoming year.
-We're currently engaged in various exciting projects, and this blog post will be your go-to source for the key updates set to enhance the Material UI library.
+## Two major releases
 
-One of the significant changes on our agenda for the upcoming year involves transitioning to our zero-runtime CSS-in-JS library.
-The decision to move away from Emotion primarily stems from two factors: ensuring compatibility with React Server Components and enhancing runtime performance.
-Another noteworthy change on the horizon is design-related, as we are set to upgrade our components to use Material You, the latest iteration of Google's Material Design system.
+One of the biggest lessons we learned during the v4 to v5 cycle is that smaller, less breaking major releases are the way to go.
+Many developers pointed out how frustrated they were to migrate to the newest version back then, and we definitely want to make it easier this time around, particularly because we'll launch **two major** versions in 2024!
+That means you can expect more gradual updates, and here's what we're planning for them:
 
-Taking into consideration the lessons learned from the v4 to v5 migration, during which numerous unrelated breaking changes were introduced, making the migration process complex, we have chosen a different approach this time.
-We have opted for a more gradual update strategy by dividing the upcoming year's changes into two separate releases:
+### Material UI v6
 
-- v6, which is planned to go stable in Q2 2024, with primary focus on implementing changes to the styling engine.
-  The plan is to transition all components to utilize the new zero-runtime CSS-in-JS library.
-  Simultaneously, we aim to provide flexibility for a more gradual upgrade by allowing users to incrementally remove Emotion from their projects.
-  Althoug we kept the smooth tranisition in mind when designing the API, we anticipate some adjustments in style definitions.
-  This is the key reason behind our decision to enable both styling engines to coexist.
-  Initial performance tests conducted on a few components indicate promising improvements ranging from 15 to 20%.
-- v7 on the other hand, will have a focus centered around enhancing the design of the library.
-  The pivotal change entails updating the design systems accompanied by several other design improvements that we have grouped together for a more streamlined upgrade experience centered on design improvements.
-  The groundwork for this initiative has already commenced, and you can track the progress on this [issue](https://github.com/mui/material-ui/issues/29345).
-  The tentative release date for this version is set for Q4 2024.
+With the stable version planned for Q2 of 2024, the primary focus of this version is releasing a new, zero runtime, CSS-in-JS styling engine, which will enable compatibility with React Server Components and add significant performance improvements!
+We're building it so that the upgrade will be opt-in, which means you won't need to commit to it immediately.
 
-We trust that you share in our enthusiasm for the forthcoming changes.
-Wishing you a wonderful holiday season and a Happy New Year!
+image here
+
+### Material UI v7
+
+Tentatively planned for Q4 of 2024, that's when you should expect to see native support for Material 3, Google's latest Material Design update, as well as many other design improvements across the component suite.
+
+image here
+
+## A sharper focus
+
+To pull these releases off, the Core team's attention, within the style library space, is fully focused on Material UI.
+Therefore, you shouldn't expect any new features or components for Joy UI in the meantime.
+But that doesn't mean we aren't cooking up interesting things regarding that!
+Expect to hear more about it towards the end of Q2 of 2024.
+
+## Follow along and contribute
+
+We've consolidated the v6 changes in [this GitHub issue](https://github.com/mui/material-ui/issues/30660), so you can chime in and participate in the discussions!
+You can also always check the public Material UI roadmap to see the planned releases from a high-level and their respective umbrella issues.
+
+We hope you're as excited as we are about these changes!
+Have a wonderful holiday season and a Happy New Year! 🎉
