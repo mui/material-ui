@@ -4,7 +4,7 @@
 
 <!-- generated comparing v5.15.0..master -->
 
-_Dec 18, 2023_
+_Dec 19, 2023_
 
 A big thanks to the 15 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
