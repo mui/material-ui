@@ -7,14 +7,15 @@ import Chip from '@mui/material/Chip';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-import { grey } from '@mui/material/colors';
+import { grey, lightBlue } from '@mui/material/colors';
+import CelebrationRoundedIcon from '@mui/icons-material/CelebrationRounded';
 
 export default function ProductHero() {
   return (
     <Box
       sx={{
         width: '100%',
-        backgroundImage: `url("https://source.unsplash.com/random?wallpapers")`,
+        backgroundImage: `url("https://images.unsplash.com/photo-1638272181967-7d3772a91265?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
         backgroundSize: 'cover',
         color: 'white',
         height: '60vh',
@@ -28,8 +29,8 @@ export default function ProductHero() {
           gap: 10,
           width: '100%',
           height: '60vh',
-          backgroundColor: 'rgba(0, 0, 0, 0.7)',
-          backdropFilter: 'blur(40px)',
+          backgroundColor: 'rgba(0, 0, 0, 0.6)',
+          backdropFilter: 'blur(32px)',
           alignItems: 'center',
         }}
       >
@@ -44,8 +45,9 @@ export default function ProductHero() {
               <Chip
                 size="small"
                 variant="filled"
-                label="New Arrival"
+                label="New arrivals"
                 color="secondary"
+                icon={<CelebrationRoundedIcon />}
                 sx={{ alignSelf: 'center', fontWeight: '600' }}
               />
               <Typography
@@ -80,7 +82,7 @@ export default function ProductHero() {
               <Typography
                 variant="caption"
                 align="center"
-                color={grey[600]}
+                color={grey[500]}
                 paragraph
               >
                 By clicking "Start using" you agree to our{' '}
@@ -88,7 +90,7 @@ export default function ProductHero() {
                   <Link
                     href="#"
                     underline="hover"
-                    color="primary"
+                    color={lightBlue[400]}
                     sx={{ fontWeight: 600 }}
                   >
                     Terms & Conditions
