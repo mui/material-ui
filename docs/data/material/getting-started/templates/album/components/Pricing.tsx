@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
-import { yellow, green } from '@mui/material/colors';
+import { blueGrey, green, lightBlue } from '@mui/material/colors';
 
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
@@ -90,7 +90,15 @@ export default function Pricing() {
               sm={tier.title === 'Enterprise' ? 12 : 6}
               md={4}
             >
-              <Card>
+              <Card
+                sx={{
+                  border: tier.title === 'Professional' ? '1px solid #C7DFF7' : '',
+                  boxShadow:
+                    tier.title === 'Professional'
+                      ? '0 2px 16px rgba(199, 223, 247, 1)'
+                      : 'none',
+                }}
+              >
                 <CardContent>
                   <Box
                     sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}
@@ -103,7 +111,14 @@ export default function Pricing() {
                         icon={<AutoAwesomeIcon />}
                         label={tier.subheader}
                         size="small"
-                        sx={{ alignSelf: 'center', mb: 1 }}
+                        sx={{
+                          alignSelf: 'center',
+                          mb: 1,
+                          backgroundColor: lightBlue[50],
+                          fontWeight: '600',
+                          '& .MuiChip-label': { color: lightBlue[900] },
+                          '& .MuiChip-icon': { color: lightBlue[800] },
+                        }}
                       />
                     )}
                   </Box>

@@ -2,12 +2,12 @@ import { createTheme } from '@mui/material/styles';
 import { grey, red } from '@mui/material/colors';
 
 const theme = createTheme({
-    palette: {
+  palette: {
     mode: 'light',
     primary: {
-        light: '#4393E4',
-        main: '#0B6BCB',
-        dark: '#185EA5',
+      light: '#4393E4',
+      main: '#0B6BCB',
+      dark: '#185EA5',
     },
     secondary: {
       light: '#00FF6F',
@@ -40,23 +40,22 @@ const theme = createTheme({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
   },
-  
 });
 
 const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-      primary: {
-        light: '#4393E4',
-        main: '#0B6BCB',
-        dark: '#185EA5',
-      },
-      background: {
-        default: '#000',
-        paper: '#171A1C',
-      },
+  palette: {
+    mode: 'dark',
+    primary: {
+      light: '#4393E4',
+      main: '#0B6BCB',
+      dark: '#185EA5',
     },
-  });
+    background: {
+      default: '#000',
+      paper: '#171A1C',
+    },
+  },
+});
 
 const fontHeader = {
   color: theme.palette.text.primary,
@@ -80,7 +79,7 @@ const albumTheme = {
       styleOverrides: {
         root: {
           boxShadow: 'none',
-          border:'1px solid rgba(0,0,0,0.1)',
+          border: '1px solid rgba(0,0,0,0.1)',
           borderRadius: '8px',
         },
       },
@@ -88,52 +87,54 @@ const albumTheme = {
     MuiButton: {
       styleOverrides: {
         root: ({ ownerState }: { ownerState: { variant: string } }) => ({
-            boxShadow:'none',
-            borderRadius:'8px',            
+          boxShadow: 'none',
+          borderRadius: '8px',
 
-            ...(ownerState.variant === 'outlined' && {
-                border:'1px solid',
-                borderColor:'#C7DFF7',
-              }),
-              textTransform: 'none',
+          ...(ownerState.variant === 'outlined' && {
+            border: '1px solid',
+            borderColor: '#C7DFF7',
           }),
+          textTransform: 'none',
+        }),
       },
     },
     MuiLink: {
-        defaultProps: {
-            underline: 'none',
-        },
+      defaultProps: {
+        underline: 'none',
+      },
     },
     MuiAccordion: {
-        defaultProps: {
-            elevation: 0,            
-          },
-          styleOverrides: {
-            root: {
-                backgroundColor:'#fff',
-            },
-          },
-    },
-    MuiAccordionSummary: {
-          styleOverrides: {
-            root: {
-                '& .MuiAccordionSummary-content': {
-                    marginLeft: theme.spacing(2),
-              },
-            },
-          },
-    },
-    MuiAccordionDetails: {
-        styleOverrides: {
-          root:{ 
-              padding: theme.spacing(3),
-              borderTop: '1px solid rgba(0, 0, 0, .125)',
+      defaultProps: {
+        elevation: 0,
+        disableGutters: true,
+      },
+      styleOverrides: {
+        root: {
+          backgroundColor: '',
+          border: '1px solid',
+          borderColor: grey[200],
+          ':before': {
+            backgroundColor: 'transparent',
           },
         },
-  },
+      },
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          ml: '20px',
+          border: 'none',
+        },
+      },
+    },
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: { mt: 2, border: 'none' },
+      },
+    },
     MuiTextField: {
-        styleOverrides: {
-        root: {            
+      styleOverrides: {
+        root: {
           '& label.Mui-focused': {
             color: 'white',
           },
@@ -143,7 +144,7 @@ const albumTheme = {
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderRadius:'8px',
+              borderRadius: '8px',
               borderColor: 'rgba(255, 255, 255, 0.2)',
             },
             '&:hover fieldset': {
@@ -161,9 +162,9 @@ const albumTheme = {
             '-webkit-box-shadow': '0 0 0 100px rgba(255, 255, 255, 0.2) inset',
           },
         },
-        },
       },
-    }, 
+    },
+  },
   typography: {
     ...theme.typography,
     fontHeader,

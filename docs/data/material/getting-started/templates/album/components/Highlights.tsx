@@ -60,7 +60,7 @@ export default function Highlights() {
           position: 'relative',
           display: 'flex',
           flexDirection: 'column',
-          py: 10,
+          py: 12,
         }}
       >
         <Box sx={{ width: { sm: '100%', md: '60%' }, mb: 4 }}>

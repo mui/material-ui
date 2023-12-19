@@ -49,7 +49,7 @@ export default function FAQ() {
               aria-controls="panel1d-content"
               id="panel1d-header"
             >
-              <Typography variant="body1">Collapsible Group Item #1</Typography>
+              <Typography variant="subtitle2">Collapsible Group Item #1</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="body2">
@@ -69,7 +69,7 @@ export default function FAQ() {
               aria-controls="panel2d-content"
               id="panel2d-header"
             >
-              <Typography variant="body1">Collapsible Group Item #2</Typography>
+              <Typography variant="subtitle2">Collapsible Group Item #2</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="body2">
@@ -89,7 +89,7 @@ export default function FAQ() {
               aria-controls="panel3d-content"
               id="panel3d-header"
             >
-              <Typography variant="body1">Collapsible Group Item #3</Typography>
+              <Typography variant="subtitle2">Collapsible Group Item #3</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="body2">
@@ -109,7 +109,7 @@ export default function FAQ() {
               aria-controls="panel3d-content"
               id="panel3d-header"
             >
-              <Typography variant="body1">Collapsible Group Item #4</Typography>
+              <Typography variant="subtitle2">Collapsible Group Item #4</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="body2">
