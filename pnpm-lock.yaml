@@ -1152,9 +1152,6 @@ importers:
       '@mui/base':
         specifier: workspace:*
         version: link:build
-      '@mui/material':
-        specifier: workspace:^
-        version: link:../mui-material/build
       '@testing-library/react':
         specifier: ^14.1.2
         version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
