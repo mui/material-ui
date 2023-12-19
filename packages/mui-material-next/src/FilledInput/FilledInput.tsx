@@ -62,7 +62,8 @@ const FilledInputRoot = styled(InputBaseRoot, {
     '--md-comp-filled-input-hover-active-indicator-color': tokens.sys.color.onSurface,
     '--md-comp-filled-input-hover-state-layer-opacity': tokens.sys.state.hover.stateLayerOpacity,
     position: 'relative',
-    backgroundColor: 'var(--md-comp-filled-input-container-color)',
+    // backgroundColor: 'var(--md-comp-filled-input-container-color)',
+    backgroundColor: 'rgba(50,50,50,0.1)',
     borderTopLeftRadius: tokens.shape.borderRadius,
     borderTopRightRadius: tokens.shape.borderRadius,
     transition: theme.transitions.create('background-color', {

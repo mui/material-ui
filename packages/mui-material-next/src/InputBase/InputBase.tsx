@@ -240,6 +240,7 @@ export const InputBaseInput = styled('input', {
       // Improve type search style.
       MozAppearance: 'textfield',
     }),
+    backgroundColor: 'rgba(0,255,0,0.5)',
   };
 });
 

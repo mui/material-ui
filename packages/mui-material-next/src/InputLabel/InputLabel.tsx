@@ -88,6 +88,14 @@ const InputLabelRoot = styled(FormLabel, {
     pointerEvents: 'none',
     transform: 'translate(16px, 16px) scale(1)',
     maxWidth: 'calc(100% - 24px)',
+    ...(ownerState.formControl?.adornedStart && {
+      paddingLeft: '40px',
+      maxWidth: 'calc(100% - 24px - 40px)', // offset the additional paddingLeft
+      transform: 'translate(11px, 16px) scale(1)',
+      ...(ownerState.shrink && {
+        transform: 'translate(12px, 4px) scale(0.75)',
+      }),
+    }),
     ...(ownerState.size === 'small' && {
       transform: 'translate(12px, 13px) scale(1)',
     }),
@@ -95,10 +103,16 @@ const InputLabelRoot = styled(FormLabel, {
       userSelect: 'none',
       pointerEvents: 'auto',
       transform: 'translate(16px, 7px) scale(0.75)',
-      maxWidth: 'calc(133% - 24px)',
       ...(ownerState.size === 'small' && {
-        transform: 'translate(12px, 4px) scale(0.75)',
+        transform: 'translate(16px, 4px) scale(0.75)',
       }),
+      ...(ownerState.formControl?.adornedStart && {
+        transform: 'translate(14px, 7px) scale(0.75)',
+        ...(ownerState.size === 'small' && {
+          transform: 'translate(22px, 4px) scale(0.75)',
+        }),
+      }),
+      maxWidth: 'calc(133% - 24px)',
     }),
   }),
   ...(ownerState.variant === 'outlined' && {
@@ -142,7 +156,7 @@ const InputLabel = React.forwardRef(function InputLabel<
 
   let shrink = shrinkProp;
   if (typeof shrink === 'undefined' && muiFormControl) {
-    shrink = muiFormControl.filled || muiFormControl.focused || muiFormControl.adornedStart;
+    shrink = muiFormControl.filled || muiFormControl.focused;
   }
 
   const ownerState: InputLabelOwnerState = {

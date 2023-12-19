@@ -63,7 +63,7 @@ const InputAdornmentRoot = styled('div', {
     // }),
     ...(ownerState.position === 'start' && {
       // Styles applied to the root element if `position="start"`.
-      marginRight: 8,
+      marginRight: 16,
     }),
     ...(ownerState.position === 'end' && {
       // Styles applied to the root element if `position="end"`.
@@ -73,6 +73,7 @@ const InputAdornmentRoot = styled('div', {
       // Styles applied to the root element if `disablePointerEvents={true}`.
       pointerEvents: 'none',
     }),
+    backgroundColor: 'rgba(0,0,255,0.5)',
   };
 });
 
