@@ -81,6 +81,10 @@ export default function Features() {
                     backgroundColor:
                       selectedItemIndex === index ? '#F0F4F8' : 'transparent',
                     borderColor: selectedItemIndex === index ? '#CDD7E1' : '#F0F4F8',
+                    '&:hover': {
+                      borderColor: '#C7DFF7',
+                      boxShadow: '0 2px 16px rgba(199, 223, 247, 0.5)',
+                    },
                     width: '100%',
                   }}
                 >
