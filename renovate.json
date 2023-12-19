@@ -111,6 +111,12 @@
       "matchPackageNames": ["lerna"],
       "description": "Limited at 7.2.0 until https://github.com/mui/material-ui/issues/40025 is fixed",
       "allowedVersions": "<=7.2.0"
+    },
+    {
+      "groupName": "CircleCI docker image",
+      "matchPackageNames": ["cimg/node"],
+      "allowedVersions": "<= 18.18",
+      "description": "ts-node throws an error in newer Node versions: https://github.com/TypeStrong/ts-node/issues/2094"
     }
   ],
   "postUpdateOptions": ["yarnDedupeHighest"],
