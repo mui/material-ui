@@ -1,5 +1,47 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.15.1
+
+<!-- generated comparing v5.15.0..master -->
+
+_Dec 19, 2023_
+
+A big thanks to the 15 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.15.1`
+
+- &#8203;<!-- 13 -->[CardActions][DialogActions] Apply margin for all children except for 1st child (#40168) @sai6855
+- &#8203;<!-- 03 -->[TablePagination] Add ability to change icons in TablePaginationActions using `slots` and `slotProps` (#33797) @pratikkarad
+- &#8203;<!-- 13 -->[CssVarsProvider] Fix HSL breaking button styles (#39869) @gitstart
+
+### `@mui/joy@5.0.0-beta.19`
+
+- &#8203;<!-- 05 -->[FormControl] Fix issue with the conditional setting of `htmlFor` and `id` attributes not functioning properly for form labels (#40180) @ReaZzy
+- &#8203;<!-- 04 -->[typescript] Address TypeScript issue with custom zIndex not functioning (#40133) @qiweiii
+
+### `@mui/styled-engine-sc@6.0.0-alpha.9`
+
+- &#8203;<!-- 02 -->[typescript] Fix `theme` being of type any (#40200) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 09 -->[joy-ui] Fix typo in the CSS baseline page (#40222) @possibilities
+- &#8203;<!-- 08 -->[joy-ui] Document missing Autocomplete props (#39979) @ZeeshanTamboli
+- &#8203;<!-- 10 -->[joy-ui] Fix typo about Typography levels (#40230) @zanivan
+- &#8203;<!-- 07 -->[material-ui] Update the related projects page to list `mui-tiptap` for rich text (#40216) @sjdemartini
+- &#8203;<!-- 06 -->[material-ui] Fix typo in the Next.js integration page (#40209) @s8990
+
+### Core
+
+- &#8203;<!-- 14 -->[blog] Fix access to Notion without an account @oliviertassinari
+- &#8203;<!-- 12 -->[core] Update workflows and issue templates to reflect the updated label (#40197) @MBilalShafi
+- &#8203;<!-- 11 -->[docs] Replace Twitter with X (#40193) @mbrookes
+- &#8203;<!-- 10 -->[docs-infra] Uplift the Algolia search modal design (#40186) @danilo-leal
+- &#8203;<!-- 01 -->[website] Update product descriptions and social preview images (#32181) @danilo-leal
+
+All contributors of this release in alphabetical order: @danilo-leal, @gitstart, @MBilalShafi, @mbrookes, @mnajdova, @oliviertassinari, @possibilities, @pratikkarad, @qiweiii, @ReaZzy, @s8990, @sai6855, @sjdemartini, @zanivan, @ZeeshanTamboli
+
 ## 5.15.0
 
 <!-- generated comparing v5.14.20..master -->

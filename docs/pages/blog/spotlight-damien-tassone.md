@@ -17,4 +17,4 @@ Right from the start, Damien has made fast and significant progress. He has been
 
 The enterprise team will continue developing the data grid component, and progressively extend to new advanced components as we grow the team. Here's a quick view of [the enterprise roadmap](https://github.com/mui/mui-x/projects/1).
 
-You can follow Damien on [Twitter](https://twitter.com/madKakoO).
+You can follow Damien on [X](https://twitter.com/madKakoO).

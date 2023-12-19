@@ -61,7 +61,8 @@
   },
   "albumDescr": "A responsive album / gallery page layout with a hero unit and footer.",
   "albumTitle": "Album",
-  "algoliaSearch": "Search",
+  "searchButton": "Search…",
+  "algoliaSearch": "What are you looking for?",
   "appFrame": {
     "changeLanguage": "Change language",
     "github": "GitHub repository",

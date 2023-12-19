@@ -263,7 +263,7 @@ module.exports = {
       rules: {
         'material-ui/no-hardcoded-labels': [
           'error',
-          { allow: ['MUI', 'Twitter', 'GitHub', 'Stack Overflow'] },
+          { allow: ['MUI', 'X', 'GitHub', 'Stack Overflow'] },
         ],
       },
     },

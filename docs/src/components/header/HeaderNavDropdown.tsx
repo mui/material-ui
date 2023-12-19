@@ -62,12 +62,12 @@ const PRODUCTS = [
   },
   {
     name: 'MUI X',
-    description: 'Advanced and powerful components for complex use-cases.',
+    description: 'Advanced and powerful components for complex use cases.',
     href: ROUTES.productAdvanced,
   },
   {
     name: 'Templates',
-    description: 'Fully built, out-of-the-box, templates for your application.',
+    description: 'Fully built Material UI templates for your application.',
     href: ROUTES.productTemplates,
   },
   {
@@ -86,7 +86,7 @@ const PRODUCTS = [
 const DOCS = [
   {
     name: 'Material UI',
-    description: "React components that implement Google's Material Design.",
+    description: `A meticulous React implementation of Google's Material Design.`,
     href: ROUTES.materialDocs,
   },
   {

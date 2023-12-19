@@ -106,7 +106,7 @@ The CSS [`color-scheme`](https://web.dev/articles/color-scheme) is applied by de
 
 ### CssBaseline
 
-To custom the styles produced by the `CssBaseline` component, append the `GlobalStyles` next to it:
+To customize the styles produced by the `CssBaseline` component, append the `GlobalStyles` next to it:
 
 ```js
 import { CssVarsProvider } from '@mui/joy/styles';
