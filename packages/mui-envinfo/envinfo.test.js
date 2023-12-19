@@ -6,6 +6,8 @@ const isRunningOnWindows = process.platform === 'win32';
 
 describe('@mui/envinfo', () => {
   const packagePath = __dirname;
+  const testProjectPath = path.resolve(packagePath, 'test');
+
   before(function beforeHook() {
     // only run in node
     if (!/jsdom/.test(window.navigator.userAgent)) {
@@ -18,16 +20,23 @@ describe('@mui/envinfo', () => {
       cwd: packagePath,
       stdio: 'pipe',
     });
+
+    execFileSync('npm', ['install'], {
+      cwd: testProjectPath,
+      stdio: 'pipe',
+    });
   });
 
   function execEnvinfo(args) {
     const buildPath = path.resolve(packagePath, 'build');
+
     return execFileSync(
       isRunningOnWindows ? 'npx.cmd' : 'npx',
       ['--package', buildPath, 'envinfo', ...args],
       {
         encoding: 'utf8',
         stdio: 'pipe',
+        cwd: testProjectPath,
       },
     );
   }
@@ -52,6 +61,11 @@ describe('@mui/envinfo', () => {
     expect(envinfo).to.have.nested.property('npmPackages.@mui/material');
     expect(envinfo).to.have.nested.property('npmPackages.@mui/joy');
     expect(envinfo).to.have.nested.property('npmPackages.@mui/utils');
+    // Other libraries
+    expect(envinfo).to.have.nested.property('npmPackages.react');
+    expect(envinfo).to.have.nested.property('npmPackages.react-dom');
     expect(envinfo).to.have.nested.property('npmPackages.@types/react');
+    expect(envinfo).to.have.nested.property('npmPackages.@emotion/react');
+    expect(envinfo).to.have.nested.property('npmPackages.@emotion/styled');
   });
 });
