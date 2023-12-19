@@ -6,7 +6,7 @@
 
 This section walks through the Material UI integration with the Next.js [App Router](https://nextjs.org/docs/app), an evolution of the [Pages Router](#pages-router), and, currently, the recommended way of building new Next.js applications starting from version 13.
 
-### Intalling the dependencies
+### Installing the dependencies
 
 Start by ensuring that you already have `@mui/material` and `next` installed.
 Then, run one of the following commands to install the dependencies:

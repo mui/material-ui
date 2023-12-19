@@ -10,6 +10,12 @@ import TablePagination, { tablePaginationClasses as classes } from '@mui/materia
 import { inputClasses } from '@mui/material/Input';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { filledInputClasses } from '@mui/material/FilledInput';
+import IconButton, { iconButtonClasses } from '@mui/material/IconButton';
+import { svgIconClasses } from '@mui/material/SvgIcon';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import KeyboardDoubleArrowLeftRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftRounded';
+import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
 
 describe('<TablePagination />', () => {
   const noop = () => {};
@@ -629,6 +635,44 @@ describe('<TablePagination />', () => {
           expect(nextButton).to.have.property('disabled', slotPropsDisabled);
         });
       });
+
+      it('should pass props to button icons', () => {
+        const { getByTestId } = render(
+          <table>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  count={1}
+                  page={0}
+                  onPageChange={noop}
+                  onRowsPerPageChange={noop}
+                  rowsPerPage={10}
+                  showFirstButton
+                  showLastButton
+                  slotProps={{
+                    actions: {
+                      firstButtonIcon: {
+                        fontSize: 'small',
+                      },
+                      lastButtonIcon: {
+                        fontSize: 'large',
+                      },
+                      previousButtonIcon: {
+                        fontSize: 'inherit',
+                      },
+                    },
+                  }}
+                />
+              </TableRow>
+            </TableFooter>
+          </table>,
+        );
+
+        expect(getByTestId('FirstPageIcon')).to.have.class(svgIconClasses.fontSizeSmall);
+        expect(getByTestId('LastPageIcon')).to.have.class(svgIconClasses.fontSizeLarge);
+        expect(getByTestId('KeyboardArrowLeftIcon')).to.have.class(svgIconClasses.fontSizeInherit);
+        expect(getByTestId('KeyboardArrowRightIcon')).to.have.class(svgIconClasses.fontSizeMedium);
+      });
     });
 
     describe('select', () => {
@@ -658,6 +702,88 @@ describe('<TablePagination />', () => {
         expect(slotPropsDisabled).not.to.equal(SelectPropsDisabled);
         expect(combobox.parentElement).not.to.have.class(inputClasses.disabled);
       });
+    });
+  });
+
+  describe('prop: slots', () => {
+    it('should render custom action buttons', () => {
+      function CustomIconButton(props) {
+        const { children, ...other } = props;
+        return (
+          <IconButton {...other} color="secondary">
+            {children}
+          </IconButton>
+        );
+      }
+
+      const { getByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={1}
+                page={0}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
+                rowsPerPage={10}
+                showFirstButton
+                showLastButton
+                slots={{
+                  actions: {
+                    firstButton: CustomIconButton,
+                    lastButton: CustomIconButton,
+                    nextButton: CustomIconButton,
+                    previousButton: CustomIconButton,
+                  },
+                }}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      const firstButton = getByRole('button', { name: 'Go to first page' });
+      const lastButton = getByRole('button', { name: 'Go to last page' });
+      const nextButton = getByRole('button', { name: 'Go to next page' });
+      const previousButton = getByRole('button', { name: 'Go to previous page' });
+
+      expect(firstButton).to.have.class(iconButtonClasses.colorSecondary);
+      expect(lastButton).to.have.class(iconButtonClasses.colorSecondary);
+      expect(nextButton).to.have.class(iconButtonClasses.colorSecondary);
+      expect(previousButton).to.have.class(iconButtonClasses.colorSecondary);
+    });
+
+    it('should render custom action button icons', () => {
+      const { getByTestId } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={1}
+                page={0}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
+                rowsPerPage={10}
+                showFirstButton
+                showLastButton
+                slots={{
+                  actions: {
+                    firstButtonIcon: KeyboardDoubleArrowLeftRoundedIcon,
+                    lastButtonIcon: KeyboardDoubleArrowRightRoundedIcon,
+                    previousButtonIcon: ArrowBackIcon,
+                    nextButtonIcon: ArrowForwardIcon,
+                  },
+                }}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      expect(getByTestId('KeyboardDoubleArrowLeftRoundedIcon')).not.to.equal(null);
+      expect(getByTestId('KeyboardDoubleArrowRightRoundedIcon')).not.to.equal(null);
+      expect(getByTestId('ArrowBackIcon')).not.to.equal(null);
+      expect(getByTestId('ArrowForwardIcon')).not.to.equal(null);
     });
   });
 
