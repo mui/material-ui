@@ -1281,13 +1281,16 @@ importers:
       '@babel/runtime':
         specifier: ^7.23.5
         version: 7.23.6
-      '@mui/material':
-        specifier: ^5.0.0
-        version: link:../mui-material/build
     devDependencies:
+      '@mui/icons-material':
+        specifier: workspace:*
+        version: link:build
       '@mui/internal-waterfall':
         specifier: workspace:^
         version: link:../waterfall
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../mui-material/build
       '@types/chai':
         specifier: ^4.3.11
         version: 4.3.11
