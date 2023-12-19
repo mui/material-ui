@@ -399,6 +399,9 @@ importers:
       '@mui/zero-runtime':
         specifier: workspace:*
         version: link:../../packages/zero-runtime/build
+      '@mui/zero-tag-processor':
+        specifier: workspace:*
+        version: link:../../packages/zero-tag-processor/build
       react:
         specifier: ^18.2.0
         version: 18.2.0

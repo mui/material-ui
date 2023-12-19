@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@mui/zero-runtime": "workspace:*",
+    "@mui/zero-tag-processor": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
