@@ -197,10 +197,10 @@ describe('<Button />', () => {
           Hello World
         </Button>,
       );
-      const button = container.firstChild;
-      expect(button.tagName).to.equal('BUTTON');
-      expect(button).to.have.attribute('disabled');
-      expect(button).to.not.have.attribute('aria-disabled');
+
+      expect((container.firstChild as HTMLElement).tagName).to.equal('BUTTON');
+      expect(container.firstChild).to.have.attribute('disabled');
+      expect(container.firstChild).to.not.have.attribute('aria-disabled');
     });
 
     it('alternate tag', () => {
@@ -209,10 +209,10 @@ describe('<Button />', () => {
           Hello World
         </Button>,
       );
-      const button = container.firstChild;
-      expect(button.tagName).to.equal('SPAN');
-      expect(button).to.not.have.attribute('disabled');
-      expect(button).to.have.attribute('aria-disabled');
+
+      expect((container.firstChild as HTMLElement).tagName).to.equal('SPAN');
+      expect(container.firstChild).to.not.have.attribute('disabled');
+      expect(container.firstChild).to.have.attribute('aria-disabled');
     });
 
     it('tag does not match with hostElementName', () => {
@@ -222,7 +222,7 @@ describe('<Button />', () => {
             Hello World
           </Button>,
         );
-      }).toWarnDev('expected: span, actual BUTTON');
+      }).toErrorDev('expected: span, actual BUTTON');
     });
   });
 });

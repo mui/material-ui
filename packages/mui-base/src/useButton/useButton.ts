@@ -61,7 +61,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (hostElementNameProp && hostElementName !== hostElementNameProp.toUpperCase()) {
-        console.warn(`expected: ${hostElementNameProp}, actual ${hostElementName}`);
+        console.error(`expected: ${hostElementNameProp}, actual ${hostElementName}`);
       }
     }, [hostElementNameProp, hostElementName]);
   }
