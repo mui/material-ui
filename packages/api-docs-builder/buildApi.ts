@@ -1,7 +1,6 @@
 import { mkdirSync } from 'fs';
 import path from 'path';
 import * as fse from 'fs-extra';
-import kebabCase from 'lodash/kebabCase';
 import findComponents from './utils/findComponents';
 import findHooks from './utils/findHooks';
 import { writePrettifiedFile } from './buildApiUtils';
@@ -16,29 +15,41 @@ import {
 } from './utils/createTypeScriptProject';
 import { ProjectSettings } from './ProjectSettings';
 
-const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
-
 async function removeOutdatedApiDocsTranslations(
   components: readonly ComponentReactApi[],
+  apiDocsTranslationsDirectories: string[],
 ): Promise<void> {
   const componentDirectories = new Set<string>();
-  const files = await fse.readdir(apiDocsTranslationsDirectory);
+  const projectFiles = await Promise.all(
+    apiDocsTranslationsDirectories.map(async (directory) => ({
+      directory: path.resolve(directory),
+      files: await fse.readdir(directory),
+    })),
+  );
+
   await Promise.all(
-    files.map(async (filename) => {
-      const filepath = path.join(apiDocsTranslationsDirectory, filename);
-      const stats = await fse.stat(filepath);
-      if (stats.isDirectory()) {
-        componentDirectories.add(filepath);
+    projectFiles.map(async ({ directory, files }) => {
+      for (let i = 0; i < files.length; i += 1) {
+        const filename = files[i];
+        const filepath = path.join(directory, filename);
+        const stats = await fse.stat(filepath);
+        if (stats.isDirectory()) {
+          componentDirectories.add(filepath);
+        }
       }
     }),
   );
 
   const currentComponentDirectories = new Set(
-    components.map((component) => {
-      return component.apiDocsTranslationFolder
-        ? component.apiDocsTranslationFolder
-        : path.resolve(apiDocsTranslationsDirectory, kebabCase(component.name));
-    }),
+    components
+      .map((component) => {
+        if (component.apiDocsTranslationFolder) {
+          return path.resolve(component.apiDocsTranslationFolder);
+        }
+        console.warn(`Component ${component.name} did not generate an API translation file.`);
+        return null;
+      })
+      .filter((filename): filename is string => filename !== null),
   );
 
   const outdatedComponentDirectories = new Set(componentDirectories);
@@ -82,7 +93,10 @@ export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp
         return build.value;
       });
 
-    await removeOutdatedApiDocsTranslations(componentApis);
+    const apiTranslationFolders = projectsSettings.map(
+      (setting) => setting.translationPagesDirectory,
+    );
+    await removeOutdatedApiDocsTranslations(componentApis, apiTranslationFolders);
   }
 }
 

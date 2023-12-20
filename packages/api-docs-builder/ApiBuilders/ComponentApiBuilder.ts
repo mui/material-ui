@@ -23,6 +23,7 @@ import createDescribeableProp, {
 import generatePropDescription from '../utils/generatePropDescription';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
+import generateApiTranslations from 'utils/generateApiTranslation';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;
@@ -87,7 +88,7 @@ export interface ReactApi extends ReactDocgenApi {
     slotDescriptions?: { [key: string]: string };
   };
   /**
-   * The folder used to stor API translation
+   * The folder used to store the API translation.
    */
   apiDocsTranslationFolder?: string;
 }
@@ -345,48 +346,6 @@ function extractClassConditions(descriptions: any) {
   });
   return classConditions;
 }
-
-const generateApiTranslations = (
-  outputDirectory: string,
-  reactApi: ReactApi,
-  languages: string[],
-) => {
-  const componentName = reactApi.name;
-  const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(componentName));
-  function resolveApiDocsTranslationsComponentLanguagePath(
-    language: (typeof languages)[0],
-  ): string {
-    const languageSuffix = language === 'en' ? '' : `-${language}`;
-
-    return path.join(apiDocsTranslationPath, `${kebabCase(componentName)}${languageSuffix}.json`);
-  }
-
-  mkdirSync(apiDocsTranslationPath, {
-    mode: 0o777,
-    recursive: true,
-  });
-  reactApi.apiDocsTranslationFolder = apiDocsTranslationPath;
-
-  writePrettifiedFile(
-    resolveApiDocsTranslationsComponentLanguagePath('en'),
-    JSON.stringify(reactApi.translations),
-  );
-
-  languages.forEach((language) => {
-    if (language !== 'en') {
-      try {
-        writePrettifiedFile(
-          resolveApiDocsTranslationsComponentLanguagePath(language),
-          JSON.stringify(reactApi.translations),
-          undefined,
-          { flag: 'wx' },
-        );
-      } catch (error) {
-        // File exists
-      }
-    }
-  });
-};
 
 const generateApiPage = (
   apiPagesDirectory: string,
