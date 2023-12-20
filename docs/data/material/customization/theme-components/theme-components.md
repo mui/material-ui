@@ -187,7 +187,7 @@ declare module '@mui/material/Button' {
 
 {{"demo": "GlobalThemeVariants.js"}}
 
-The variant `props` can also be defined as a callback. 
+The variant `props` can also be defined as a callback.
 This is useful if you want to apply styles when using negation in the condition.
 In other words, applying a different style if a particular property doesn't have a specific value.
 
