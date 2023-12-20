@@ -95,7 +95,7 @@ const spacingKeys = [...marginKeys, ...paddingKeys];
 export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
   const themeSpacing = getPath(theme, themeKey, false) ?? defaultValue;
 
-  if (typeof themeSpacing === 'number') {
+  if (typeof themeSpacing === 'number' || typeof themeSpacing === 'string') {
     return (abs) => {
       if (typeof abs === 'string') {
         return abs;
@@ -107,6 +107,10 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
             `MUI: Expected ${propName} argument to be a number or a string, got ${abs}.`,
           );
         }
+      }
+
+      if (typeof themeSpacing === 'string') {
+        return `calc(${abs} * ${themeSpacing})`;
       }
       return themeSpacing * abs;
     };

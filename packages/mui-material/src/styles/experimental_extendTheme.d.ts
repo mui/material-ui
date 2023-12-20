@@ -313,6 +313,7 @@ export interface ThemeVars {
   overlays: Overlays;
   shadows: Shadows;
   shape: Theme['shape'];
+  spacing: string;
   zIndex: ZIndex;
 }
 

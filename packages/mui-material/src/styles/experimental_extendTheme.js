@@ -58,6 +58,16 @@ function setColorChannel(obj, key) {
   }
 }
 
+function getSpacingVal(spacingInput) {
+  if (typeof spacingInput === 'number') {
+    return `${spacingInput}px`;
+  }
+  if (typeof spacingInput === 'string') {
+    return spacingInput;
+  }
+  return '8px';
+}
+
 const silent = (fn) => {
   try {
     return fn();
@@ -394,7 +404,16 @@ export default function extendTheme(options = {}, ...args) {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
   };
-  const { vars: themeVars, generateCssVars } = prepareCssVars(theme, parserConfig);
+  const { vars: themeVars, generateCssVars } = prepareCssVars(
+    { ...theme, spacing: getSpacingVal(input.spacing) },
+    parserConfig,
+  );
+  if (!input.spacing || typeof input.spacing === 'number' || typeof input.spacing === 'string') {
+    theme.spacing = createSpacing(
+      input.spacing,
+      (factor) => `calc(${factor} * ${theme.vars.spacing})`,
+    );
+  }
   theme.vars = themeVars;
   theme.generateCssVars = generateCssVars;
 
@@ -409,12 +428,6 @@ export default function extendTheme(options = {}, ...args) {
       theme: this,
     });
   };
-  if (!input.spacing || typeof input.spacing === 'number') {
-    theme.spacing = createSpacing(
-      input.spacing,
-      (factor) => `calc(${factor} * ${getCssVar('spacingSize')})`,
-    );
-  }
 
   return theme;
 }

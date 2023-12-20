@@ -2,6 +2,7 @@ import { createUnarySpacing } from '../spacing';
 
 export type SpacingOptions =
   | number
+  | string
   | Spacing
   | ((abs: number) => number | string)
   | ((abs: number | string) => number | string)

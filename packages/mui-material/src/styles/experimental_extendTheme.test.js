@@ -357,6 +357,26 @@ describe('experimental_extendTheme', () => {
     });
   });
 
+  describe('spacing', () => {
+    it('produce spacing token by default', () => {
+      const theme = extendTheme();
+      expect(theme.vars.spacing).to.equal('var(--mui-spacing, 8px)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 8px))');
+    });
+
+    it('turn number to pixel', () => {
+      const theme = extendTheme({ spacing: 4 });
+      expect(theme.vars.spacing).to.equal('var(--mui-spacing, 4px)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 4px))');
+    });
+
+    it('can be customized as a string', () => {
+      const theme = extendTheme({ spacing: '0.5rem' });
+      expect(theme.vars.spacing).to.equal('var(--mui-spacing, 0.5rem)');
+      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 0.5rem))');
+    });
+  });
+
   it('shallow merges multiple arguments', () => {
     const theme = extendTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
     expect(theme.foo).to.equal('I am foo');

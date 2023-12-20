@@ -54,24 +54,6 @@ describe('createTheme', () => {
     },
   });
 
-  describe('spacing size', () => {
-    it('should have 8px by default', () => {
-      expect(createTheme().spacingSize).to.equal('8px');
-    });
-
-    it('should return the size of the spacing(1)', () => {
-      expect(theme.spacingSize).to.equal('10px');
-    });
-
-    it('should use the first index if spacing is an array', () => {
-      expect(
-        createTheme({
-          spacing: [2, 4, 8],
-        }).spacingSize,
-      ).to.equal('2px');
-    });
-  });
-
   describe('system', () => {
     it('resolves system when used inside styled()', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {

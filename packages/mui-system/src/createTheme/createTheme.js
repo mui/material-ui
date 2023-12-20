@@ -24,7 +24,6 @@ function createTheme(options = {}, ...args) {
       components: {}, // Inject component definitions.
       palette: { mode: 'light', ...paletteInput },
       spacing,
-      spacingSize: Array.isArray(spacingInput) ? spacing(0) : spacing(1),
       shape: { ...shape, ...shapeInput },
     },
     other,
