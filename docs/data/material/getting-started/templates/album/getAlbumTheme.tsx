@@ -1,5 +1,6 @@
 import { red } from '@mui/material/colors';
 import { PaletteMode } from '@mui/material';
+import { alpha } from '@mui/material';
 
 export const brandColor = {
   50: '#EDF5FD',
@@ -170,7 +171,23 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
             ({
               boxShadow: 'none',
               borderRadius: '8px',
+              ...(ownerState.variant === 'contained' && {
+                boxShadow: `inset 0px 1px 1px ${
+                  brandColor[400]
+                }, inset 0px -2px 1px ${brandColor[600]}, 0px 0px 0px 1px ${alpha(
+                  brandColor[500],
+                  0.5,
+                )}, 0px 2px 4px rgba(0, 0, 0, 0.1)`,
+                '&:hover': {
+                  backgroundColor: brandColor[600],
+                  boxShadow: '0px 0px 0px 1px rgba(38, 38, 38, 1)',
+                },
+              }),
               ...(ownerState.variant === 'outlined' && {
+                backgroundColor:
+                  mode === 'light'
+                    ? alpha(brandColor[300], 0.1)
+                    : alpha(brandColor[600], 0.1),
                 border: '1px solid',
                 borderColor: mode === 'light' ? brandColor[300] : brandColor[700],
                 color: mode === 'light' ? brandColor[500] : brandColor[300],
