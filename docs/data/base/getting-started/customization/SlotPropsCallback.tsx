@@ -18,12 +18,12 @@ const css = `
     background: #007FFF;
   }
 
-  .my-switch.focused .MuiSwitch-thumb {
+  .my-switch.focused .baseui-Switch-thumb {
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
   }
 
-  .my-switch .MuiSwitch-thumb {
+  .my-switch .baseui-Switch-thumb {
     display: block;
     width: 14px;
     height: 14px;
@@ -35,13 +35,13 @@ const css = `
     transition: all 200ms ease;
   }
 
-  .my-switch.on .MuiSwitch-thumb {
+  .my-switch.on .baseui-Switch-thumb {
     left: 14px;
     top: 3px;
     background-color: #FFF;
   }
 
-  .my-switch .MuiSwitch-input {
+  .my-switch .baseui-Switch-input {
     cursor: inherit;
     position: absolute;
     width: 100%;

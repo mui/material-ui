@@ -165,18 +165,18 @@ const StyledOption = styled('li')(
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.Mui-focused,
-  &.Mui-focusVisible {
+  &.baseui--focused,
+  &.baseui--focusVisible {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.Mui-focusVisible {
+  &.baseui--focusVisible {
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
-  &[aria-selected=true].Mui-focused,
-  &[aria-selected=true].Mui-focusVisible {
+  &[aria-selected=true].baseui--focused,
+  &[aria-selected=true].baseui--focusVisible {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }

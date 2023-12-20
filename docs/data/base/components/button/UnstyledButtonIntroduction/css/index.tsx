@@ -73,16 +73,16 @@ function Styles() {
   .IntroductionButton:hover {
     background-color: ${cyan[600]};
   }
-  .IntroductionButton.Mui-active {
+  .IntroductionButton.baseui--active {
     background-color: ${cyan[700]};
     box-shadow: none;
     transform: scale(0.99);
   }
-  .IntroductionButton.Mui-focusVisible {
+  .IntroductionButton.baseui--focusVisible {
     box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
     outline: none;
   }
-  .IntroductionButton.Mui-disabled {
+  .IntroductionButton.baseui--disabled {
     background-color: ${isDarkMode ? grey[700] : grey[200]};
     color: ${isDarkMode ? grey[200] : grey[700]};
     border: 0;

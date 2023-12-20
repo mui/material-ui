@@ -53,15 +53,15 @@ The Table Pagination component is composed of a root `<td>` that houses up to te
 - actions
 
 ```html
-<td class="MuiTablePagination-root">
-  <div class="MuiTablePagination-toolbar">
-    <div class="MuiTablePagination-spacer"></div>
-    <p class="MuiTablePagination-selectLabel" id="mui-48">Rows per page:</p>
-    <select class="MuiTablePagination-select">
-      <option class="MuiTablePagination-menuItem">All</option>
+<td class="baseui-TablePagination">
+  <div class="baseui-TablePagination-toolbar">
+    <div class="baseui-TablePagination-spacer"></div>
+    <p class="baseui-TablePagination-selectLabel" id="mui-48">Rows per page:</p>
+    <select class="baseui-TablePagination-select">
+      <option class="baseui-TablePagination-menuItem">All</option>
     </select>
-    <p class="MuiTablePagination-displayedRows">1–5 of 13</p>
-    <div class="MuiTablePagination-actions">
+    <p class="baseui-TablePagination-displayedRows">1–5 of 13</p>
+    <div class="baseui-TablePagination-actions">
       <button disabled="" aria-label="Go to first page" title="Go to first page">
         <span>|⇽</span>
       </button>

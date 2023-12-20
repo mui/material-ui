@@ -32,10 +32,10 @@ import { Switch } from '@mui/base/Switch';
 The Switch component is composed of a root `<span>` that houses three interior slots—a track, a thumb, and an input:
 
 ```html
-<span class="MuiSwitch-root">
-  <span class="MuiSwitch-track"></span>
-  <span class="MuiSwitch-thumb"></span>
-  <input type="checkbox" class="MuiSwitch-input" />
+<span class="baseui-Switch">
+  <span class="baseui-Switch-track"></span>
+  <span class="baseui-Switch-thumb"></span>
+  <input type="checkbox" class="baseui-Switch-input" />
 </span>
 ```
 

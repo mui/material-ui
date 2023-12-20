@@ -39,7 +39,7 @@ const Backdrop = React.forwardRef((props, ref) => {
   const { open, className, ...other } = props;
   return (
     <div
-      className={clsx({ 'MuiBackdrop-open': open }, className)}
+      className={clsx({ 'baseui-Backdrop-open': open }, className)}
       ref={ref}
       {...other}
     />
@@ -84,7 +84,7 @@ const Modal = styled(BaseModal)(`
   align-items: center;
   justify-content: center;
 
-  &.MuiModal-hidden {
+  &.baseui-Modal-hidden {
     visibility: hidden;
   }
 `);
