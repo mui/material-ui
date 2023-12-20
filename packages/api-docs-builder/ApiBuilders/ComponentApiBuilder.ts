@@ -86,6 +86,10 @@ export interface ReactApi extends ReactDocgenApi {
     classDescriptions: { [key: string]: { description: string; conditions?: string } };
     slotDescriptions?: { [key: string]: string };
   };
+  /**
+   * The folder used to stor API translation
+   */
+  apiDocsTranslationFolder?: string;
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
@@ -361,6 +365,7 @@ const generateApiTranslations = (
     mode: 0o777,
     recursive: true,
   });
+  reactApi.apiDocsTranslationFolder = apiDocsTranslationPath;
 
   writePrettifiedFile(
     resolveApiDocsTranslationsComponentLanguagePath('en'),

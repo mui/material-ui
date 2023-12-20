@@ -35,7 +35,9 @@ async function removeOutdatedApiDocsTranslations(
 
   const currentComponentDirectories = new Set(
     components.map((component) => {
-      return path.resolve(apiDocsTranslationsDirectory, kebabCase(component.name));
+      return component.apiDocsTranslationFolder
+        ? component.apiDocsTranslationFolder
+        : path.resolve(apiDocsTranslationsDirectory, kebabCase(component.name));
     }),
   );
 
