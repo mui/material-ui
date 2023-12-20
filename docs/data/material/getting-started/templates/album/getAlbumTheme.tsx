@@ -1,5 +1,57 @@
-import { grey, red } from '@mui/material/colors';
+import { red } from '@mui/material/colors';
 import { PaletteMode } from '@mui/material';
+
+export const brandColor = {
+  50: '#EDF5FD',
+  100: '#E3EFFB',
+  200: '#C7DFF7',
+  300: '#97C3F0',
+  400: '#4393E4',
+  500: '#0B6BCB',
+  600: '#185EA5',
+  700: '#0E3862',
+  800: '#0A2744',
+  900: '#051423',
+};
+
+export const secondaryColor = {
+  50: '#F8EDFF',
+  100: '#EEDCFF',
+  200: '#D9B9FF',
+  300: '#C496FF',
+  400: '#AC76F0',
+  500: '#915CD4',
+  600: '#7742B8',
+  700: '#5E269F',
+  800: '#460085',
+  900: '#2A0054',
+};
+
+export const greyColor = {
+  50: '#FBFCFE',
+  100: '#F0F4F8',
+  200: '#DDE7EE',
+  300: '#CDD7E1',
+  400: '#9FA6AD',
+  500: '#636B74',
+  600: '#555E68',
+  700: '#32383E',
+  800: '#171A1C',
+  900: '#0B0D0E',
+};
+
+export const successColor = {
+  50: '#F6FEF6',
+  100: '#E3FBE3',
+  200: '#C7F7C7',
+  300: '#A1E8A1',
+  400: '#51BC51',
+  500: '#1F7A1F',
+  600: '#136C13',
+  700: '#0A470A',
+  800: '#042F04',
+  900: '#021D02',
+};
 
 const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
@@ -7,14 +59,14 @@ const getDesignTokens = (mode: PaletteMode) => ({
     ...(mode === 'light'
       ? {
           primary: {
-            light: '#4393E4',
-            main: '#0B6BCB',
-            dark: '#185EA5',
+            light: brandColor[300],
+            main: brandColor[500],
+            dark: brandColor[800],
           },
           secondary: {
-            light: '#00FF6F',
-            main: '#00FF6F',
-            dark: '#00FF6F',
+            light: secondaryColor[300],
+            main: secondaryColor[500],
+            dark: secondaryColor[800],
           },
           warning: {
             main: '#F7B538',
@@ -26,29 +78,29 @@ const getDesignTokens = (mode: PaletteMode) => ({
             dark: red[700],
           },
           success: {
-            light: '#00FF6F',
-            main: '#00FF6F',
-            dark: '#00FF6F',
+            light: successColor[300],
+            main: successColor[400],
+            dark: successColor[800],
           },
           background: {
             default: '#fff',
-            paper: '#FBFCFE',
+            paper: greyColor[50],
           },
           text: {
-            primary: grey[900],
-            secondary: grey[800],
+            primary: greyColor[900],
+            secondary: greyColor[700],
           },
         }
       : {
           primary: {
-            light: '#314A7D',
-            main: '#0B6BCB',
-            dark: '#0D4781',
+            light: brandColor[400],
+            main: brandColor[500],
+            dark: brandColor[800],
           },
           secondary: {
-            light: '#007F3F',
-            main: '#007F3F',
-            dark: '#007F3F',
+            light: secondaryColor[400],
+            main: secondaryColor[500],
+            dark: secondaryColor[900],
           },
           warning: {
             main: '#F7B538',
@@ -60,17 +112,17 @@ const getDesignTokens = (mode: PaletteMode) => ({
             dark: '#B22A2A',
           },
           success: {
-            light: '#007F3F',
-            main: '#007F3F',
-            dark: '#007F3F',
+            light: successColor[400],
+            main: successColor[500],
+            dark: successColor[700],
           },
           background: {
-            default: '#121212',
-            paper: '#1E1E1E',
+            default: greyColor[900],
+            paper: greyColor[800],
           },
           text: {
             primary: '#fff',
-            secondary: grey[500],
+            secondary: greyColor[300],
           },
         }),
   },
@@ -105,6 +157,7 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
       MuiCard: {
         styleOverrides: {
           root: {
+            backgroundColor: mode === 'light' ? greyColor[50] : greyColor[900],
             boxShadow: 'none',
             border: '1px solid rgba(0,0,0,0.1)',
             borderRadius: '8px',
@@ -117,10 +170,10 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
             ({
               boxShadow: 'none',
               borderRadius: '8px',
-
               ...(ownerState.variant === 'outlined' && {
                 border: '1px solid',
-                borderColor: '#C7DFF7',
+                borderColor: mode === 'light' ? brandColor[300] : brandColor[700],
+                color: mode === 'light' ? brandColor[500] : brandColor[300],
               }),
               textTransform: 'none',
             } as const),
@@ -130,6 +183,14 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
         defaultProps: {
           underline: 'none',
         },
+        styleOverrides: {
+          root: ({ ownerState }: { ownerState: { color?: string } }) =>
+            ({
+              ...(ownerState.color === 'primary' && {
+                color: brandColor[500],
+              }),
+            } as const),
+        },
       },
       MuiAccordion: {
         defaultProps: {
@@ -138,9 +199,9 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
         },
         styleOverrides: {
           root: {
-            backgroundColor: '',
+            backgroundColor: mode === 'light' ? '#fff' : greyColor[900],
             border: '1px solid',
-            borderColor: grey[200],
+            borderColor: mode === 'light' ? greyColor[100] : greyColor[800],
             ':before': {
               backgroundColor: 'transparent',
             },
@@ -150,14 +211,13 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
       MuiAccordionSummary: {
         styleOverrides: {
           root: {
-            ml: '20px',
             border: 'none',
           },
         },
       },
       MuiAccordionDetails: {
         styleOverrides: {
-          root: { mt: 2, border: 'none' },
+          root: { mb: 20, border: 'none' },
         },
       },
       MuiTextField: {
@@ -233,6 +293,7 @@ export default function getAlbumTheme(mode: 'light' | 'dark') {
       },
       body2: {
         fontSize: 14,
+        color: mode === 'light' ? greyColor[700] : greyColor[300],
       },
     },
   } as const;

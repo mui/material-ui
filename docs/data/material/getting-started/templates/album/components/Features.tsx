@@ -8,6 +8,8 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
+import { greyColor, brandColor } from '../getAlbumTheme';
+
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
 import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
@@ -78,12 +80,31 @@ export default function Features() {
                   component={Button}
                   onClick={() => handleItemClick(index)}
                   sx={{
-                    backgroundColor:
-                      selectedItemIndex === index ? '#F0F4F8' : 'transparent',
-                    borderColor: selectedItemIndex === index ? '#CDD7E1' : '#F0F4F8',
+                    backgroundColor: (theme) =>
+                      theme.palette.mode === 'light'
+                        ? selectedItemIndex === index
+                          ? greyColor[100]
+                          : 'transparent'
+                        : selectedItemIndex === index
+                        ? greyColor[800]
+                        : 'transparent',
+                    borderColor: (theme) =>
+                      theme.palette.mode === 'light'
+                        ? selectedItemIndex === index
+                          ? greyColor[300]
+                          : greyColor[200]
+                        : selectedItemIndex === index
+                        ? greyColor[700]
+                        : greyColor[800],
                     '&:hover': {
-                      borderColor: '#C7DFF7',
-                      boxShadow: '0 2px 16px rgba(199, 223, 247, 0.5)',
+                      borderColor: (theme) =>
+                        theme.palette.mode === 'light'
+                          ? brandColor[300]
+                          : brandColor[700],
+                      boxShadow: (theme) =>
+                        theme.palette.mode === 'light'
+                          ? `0 0 24px ${brandColor[100]}`
+                          : `0 0 24px ${brandColor[800]}`,
                     },
                     width: '100%',
                   }}

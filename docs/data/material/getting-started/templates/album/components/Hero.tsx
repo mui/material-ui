@@ -90,7 +90,7 @@ export default function ProductHero() {
                   <Link
                     href="#"
                     underline="hover"
-                    color={lightBlue[400]}
+                    color="primary.light"
                     sx={{ fontWeight: 600 }}
                   >
                     Terms & Conditions

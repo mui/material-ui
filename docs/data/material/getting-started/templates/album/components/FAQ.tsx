@@ -52,7 +52,11 @@ export default function FAQ() {
               <Typography variant="subtitle2">Collapsible Group Item #1</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography
+                variant="body2"
+                gutterBottom
+                sx={{ maxWidth: { sm: '100%', md: '60%' } }}
+              >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                 malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
                 dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
@@ -72,7 +76,11 @@ export default function FAQ() {
               <Typography variant="subtitle2">Collapsible Group Item #2</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography
+                variant="body2"
+                gutterBottom
+                sx={{ maxWidth: { sm: '100%', md: '60%' } }}
+              >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                 malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
                 dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
@@ -92,7 +100,11 @@ export default function FAQ() {
               <Typography variant="subtitle2">Collapsible Group Item #3</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography
+                variant="body2"
+                gutterBottom
+                sx={{ maxWidth: { sm: '100%', md: '60%' } }}
+              >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                 malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
                 dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
@@ -112,7 +124,11 @@ export default function FAQ() {
               <Typography variant="subtitle2">Collapsible Group Item #4</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography
+                variant="body2"
+                gutterBottom
+                sx={{ maxWidth: { sm: '100%', md: '60%' } }}
+              >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                 malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
                 dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada

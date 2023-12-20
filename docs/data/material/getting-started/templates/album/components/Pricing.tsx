@@ -8,7 +8,9 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
-import { blueGrey, green, lightBlue } from '@mui/material/colors';
+import { alpha } from '@mui/system';
+
+import { brandColor } from '../getAlbumTheme';
 
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
@@ -92,10 +94,23 @@ export default function Pricing() {
             >
               <Card
                 sx={{
-                  border: tier.title === 'Professional' ? '1px solid #C7DFF7' : '',
-                  boxShadow:
+                  border: (theme) =>
                     tier.title === 'Professional'
-                      ? '0 2px 16px rgba(199, 223, 247, 1)'
+                      ? theme.palette.mode === 'light'
+                        ? `1px solid ${brandColor[200]}`
+                        : `1px solid ${brandColor[700]}`
+                      : '',
+                  bgcolor: (theme) =>
+                    tier.title === 'Professional'
+                      ? theme.palette.mode === 'light'
+                        ? alpha(brandColor[100], 0.5)
+                        : alpha(brandColor[900], 0.7)
+                      : '',
+                  boxShadow: (theme) =>
+                    tier.title === 'Professional'
+                      ? theme.palette.mode === 'light'
+                        ? `0 0 24px ${brandColor[100]}`
+                        : `0 0 24px ${brandColor[800]}`
                       : 'none',
                 }}
               >
@@ -114,10 +129,23 @@ export default function Pricing() {
                         sx={{
                           alignSelf: 'center',
                           mb: 1,
-                          backgroundColor: lightBlue[50],
+                          backgroundColor: (theme) =>
+                            theme.palette.mode === 'light'
+                              ? brandColor[100]
+                              : brandColor[800],
                           fontWeight: '600',
-                          '& .MuiChip-label': { color: lightBlue[900] },
-                          '& .MuiChip-icon': { color: lightBlue[800] },
+                          '& .MuiChip-label': {
+                            color: (theme) =>
+                              theme.palette.mode === 'light'
+                                ? brandColor[500]
+                                : brandColor[400],
+                          },
+                          '& .MuiChip-icon': {
+                            color: (theme) =>
+                              theme.palette.mode === 'light'
+                                ? brandColor[500]
+                                : brandColor[400],
+                          },
                         }}
                       />
                     )}
@@ -141,7 +169,11 @@ export default function Pricing() {
                       key={line}
                       sx={{ display: 'flex', gap: 1, p: 1, alignItems: 'center' }}
                     >
-                      <CheckCircleTwoToneIcon sx={{ color: green[400] }} />
+                      <CheckCircleTwoToneIcon
+                        sx={{
+                          color: 'success.main',
+                        }}
+                      />
                       <Typography variant="subtitle2" color="text.secondary">
                         {line}
                       </Typography>

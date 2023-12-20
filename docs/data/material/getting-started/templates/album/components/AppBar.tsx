@@ -11,16 +11,14 @@ import LanguageIcon from '@mui/icons-material/Language';
 function AppAppBar() {
   return (
     <div>
-      <AppBar
-        position="fixed"
-        sx={{
-          borderBottom: 1,
-          borderColor: 'divider',
-          backgroundColor: 'Background',
-          boxShadow: 'none',
-        }}
-      >
-        <Toolbar>
+      <AppBar position="fixed" sx={{ boxShadow: 0 }}>
+        <Toolbar
+          sx={{
+            borderBottom: 1,
+            borderColor: 'divider',
+            backgroundColor: 'background.default',
+          }}
+        >
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
             <LanguageIcon color="primary" sx={{ mr: 2 }} />
             <Typography

@@ -98,7 +98,7 @@ export default function Highlights() {
                     {item.title}
                   </Typography>
                 </Box>
-                <Typography variant="body1" color="inherit" sx={{ opacity: '70%' }}>
+                <Typography variant="body2" color="inherit" sx={{ opacity: '70%' }}>
                   {item.description}
                 </Typography>
               </Stack>
