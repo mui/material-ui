@@ -2,7 +2,9 @@
 
 <p class="description">Every Material UI component available so far.</p>
 
-While we strive to follow the Material Design guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, nor every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
+Material UI aims to provide building blocks for developers to create great user interfaces using the Material Design guidelines as a reference, which we strive to follow where practical.
+That doesn't mean we support every component or every feature.
+We often apply common sense and the latest around web development wherever their guidelines are missing or contradictory.
 
 ## Inputs
 
