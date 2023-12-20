@@ -1,28 +1,28 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { useTheme } from '@mui/material/styles';
 import { ColorModeContext } from '../Album';
 
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 
 function ToggleColorMode() {
-  const theme = useTheme();
-  const colorMode = React.useContext(ColorModeContext);
+  const contextValue = React.useContext(ColorModeContext);
+
+  if (!contextValue) {
+    throw new Error('ColorModeContext value is undefined');
+  }
+
+  const { mode, toggleColorMode } = contextValue;
 
   return (
     <Box>
       <Button
         variant="outlined"
-        onClick={colorMode.toggleColorMode}
+        onClick={toggleColorMode}
         sx={{ minWidth: '36px', px: 0, ml: 1 }}
       >
-        {theme.palette.mode === 'dark' ? (
-          <WbSunnyRoundedIcon />
-        ) : (
-          <ModeNightRoundedIcon />
-        )}
+        {mode === 'dark' ? <WbSunnyRoundedIcon /> : <ModeNightRoundedIcon />}
       </Button>
     </Box>
   );

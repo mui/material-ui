@@ -14,10 +14,9 @@ import Pricing from './components/Pricing';
 import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
+import { createContext, useState } from 'react';
 
-import albumTheme from './albumTheme';
-
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+import getAlbumTheme from './albumTheme';
 
 function Copyright() {
   return (
@@ -31,29 +30,26 @@ function Copyright() {
     </Typography>
   );
 }
-export { ColorModeContext };
+
+interface ColorMode {
+  mode: 'light' | 'dark';
+  toggleColorMode: () => void;
+}
+
+export const ColorModeContext = createContext<ColorMode | undefined>(undefined);
 
 export default function Album() {
-  const [mode, setMode] = React.useState<'light' | 'dark'>('light');
-  const colorMode = React.useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-      },
-    }),
-    [],
-  );
+  const [colorMode, setColorMode] = useState<ColorMode>({
+    mode: 'light',
+    toggleColorMode: () => {
+      setColorMode((prevMode) => ({
+        mode: prevMode.mode === 'light' ? 'dark' : 'light',
+        toggleColorMode: prevMode.toggleColorMode,
+      }));
+    },
+  });
 
-  const theme = React.useMemo(
-    () => ({
-      ...albumTheme,
-      palette: {
-        ...albumTheme.palette,
-        mode,
-      },
-    }),
-    [mode],
-  );
+  const theme = React.useMemo(() => getAlbumTheme(colorMode.mode), [colorMode.mode]);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
