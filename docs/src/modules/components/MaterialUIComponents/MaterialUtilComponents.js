@@ -16,52 +16,52 @@ const utilComponents = [
   {
     title: 'Click-Away Listener',
     link: '/material-ui/react-click-away-listener/',
-    icon: <HighlightAltRoundedIcon />,
+    icon: <HighlightAltRoundedIcon color="primary" />,
   },
   {
     title: 'CSS Baseline',
     link: '/material-ui/react-css-baseline/',
-    icon: <CssRoundedIcon />,
+    icon: <CssRoundedIcon color="primary" />,
   },
   {
     title: 'Modal',
     link: '/material-ui/react-Modal/',
-    icon: <PictureInPictureRoundedIcon />,
+    icon: <PictureInPictureRoundedIcon color="primary" />,
   },
   {
     title: 'No SSR',
     link: '/material-ui/react-no-ssr/',
-    icon: <DnsRoundedIcon />,
+    icon: <DnsRoundedIcon color="primary" />,
   },
   {
     title: 'Popover',
     link: '/material-ui/react-popover/',
-    icon: <MenuOpenRoundedIcon />,
+    icon: <MenuOpenRoundedIcon color="primary" />,
   },
   {
     title: 'Popper',
     link: '/material-ui/react-popper/',
-    icon: <FlipToFrontRoundedIcon />,
+    icon: <FlipToFrontRoundedIcon color="primary" />,
   },
   {
     title: 'Portal',
     link: '/material-ui/react-portal/',
-    icon: <MoveUpRoundedIcon />,
+    icon: <MoveUpRoundedIcon color="primary" />,
   },
   {
     title: 'Textarea Autosize',
     link: '/material-ui/react-textarea-autosize/',
-    icon: <TextFieldsRoundedIcon />,
+    icon: <TextFieldsRoundedIcon color="primary" />,
   },
   {
     title: 'Transitions',
     link: '/material-ui/react-transitions/',
-    icon: <ZoomOutMapRoundedIcon />,
+    icon: <ZoomOutMapRoundedIcon color="primary" />,
   },
   {
     title: 'useMediaQuery',
     link: '/material-ui/react-use-media-query/',
-    icon: <DevicesOtherRoundedIcon />,
+    icon: <DevicesOtherRoundedIcon color="primary" />,
   },
 ];
 
