@@ -1,7 +1,7 @@
 ---
 title: The road to Material UI v6 and beyond
 description: We're tightening up the Material UI release schedule and shipping two major versions in 2024. Here's what to expect.
-date: 2023-12-19T00:00:00.000Z
+date: 2023-12-23T00:00:00.000Z
 authors: ['mnajdova', 'danilo-leal']
 card: true
 tags: ['MUI Core', 'News']
@@ -26,14 +26,38 @@ Here's what we're planning for each:
 With the stable version planned for Q2 of 2024, the primary focus of Material UI v6 is releasing a new [zero-runtime CSS-in-JS styling engine](https://github.com/mui/material-ui/issues/38137), which will pave the way for compatibility with React Server Components and add significant performance improvements.
 We're building it so that the upgrade will be opt-in, which means you won't need to commit to it immediately.
 
-image here
+As a taste of the performance upgrade, here are some early Lighthouse metrics with a couple of primary components running on an M1 MacBook Pro with 16 GB of RAM:
+
+| Total Blocking Time (TBT) in milliseconds (ms) | Emotion | Zero-runtime |
+| :--------------------------------------------- | ------: | -----------: |
+| Case #1: 1,000 Buttons                         |  223.33 |          100 |
+| Case #2: 1,000 Outlined inputs                 |  583.33 |         3.33 |
 
 ### Material UI v7
 
 Material UI v7 is tentatively planned for Q4 of 2024.
 That's when you can expect to see native support for [Material 3](https://m3.material.io/), Google's latest Material Design update, as well as many other design improvements across the component suite.
 
-image here
+<img alt="Side-to-side comparison of a Card component using Material Design 2 and 3, respectively." src="/static/blog/2023-material-ui-v6-and-beyond/m2-m3.jpg" width="1200" height="600" loading="lazy" />
+
+In fact, the work for this version has already started!
+See which components are already available using the experimental `@mui/material-next` package, that supports the Material 3 specs, by visiting the newly released All Components page.
+
+:::
+**WIP note, to be deleted**: The above-mentioned page is going to be added on a separate PR. I'll remove this comment before publish this post.
+:::
+
+```diff
+- import Button from '@mui/material/Button';
++ import Button from '@mui/material-next/Button';
+```
+
+## From design to development
+
+In addition to what you'll get from the React library, we've also been working on a Figma plug-in to help bridge the gap between designers and developers.
+We're getting super close to a first release, and it is, for now, custom-tailored to work nicely along the [Material UI Design Kits](/material-ui/getting-started/design-resources/).
+
+We're calling it MUI Connect, which will enable you to customize Material UI components on Figma and export them to code directly, making collaboration with developers using the React library a much smoother process.
 
 ## A sharper focus
 
