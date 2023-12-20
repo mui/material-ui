@@ -70,7 +70,7 @@ const variantsResolver = (props, styles, variants) => {
     variants.forEach((variant) => {
       let isMatch = true;
       if (typeof variant.props === 'function') {
-        const propsToCheck = deepmerge(props, ownerState);
+        const propsToCheck = { ...props, ...ownerState };
         isMatch = variant.props(propsToCheck);
       } else {
         Object.keys(variant.props).forEach((key) => {
