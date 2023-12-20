@@ -66,10 +66,12 @@ export default function ComponentShowcaseCard({
         <Typography component="h2" variant="body2" fontWeight="semiBold">
           {name}
         </Typography>
-        {md1 && <Chip label="MD1" size="small" variant="outlined" color="primary" />}
-        {md2 && <Chip label="MD2" size="small" variant="outlined" color="primary" />}
-        {md3 && <Chip label="MD3" size="small" variant="outlined" color="primary" />}
-        {noGuidelines && <Chip label="No guidelines" size="small" variant="outlined" />}
+        <Stack direction="row" spacing={0.5} useFlexGap>
+          {md1 && <Chip label="MD1" size="small" variant="outlined" color="primary" />}
+          {md2 && <Chip label="MD2" size="small" variant="outlined" color="primary" />}
+          {md3 && <Chip label="MD3" size="small" variant="outlined" color="success" />}
+          {noGuidelines && <Chip label="No guidelines" size="small" variant="outlined" />}
+        </Stack>
       </Stack>
     </Card>
   );

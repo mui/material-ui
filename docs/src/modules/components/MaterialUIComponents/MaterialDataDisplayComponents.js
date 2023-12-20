@@ -20,8 +20,8 @@ const dataDisplayComponents = [
     link: '/material-ui/react-badge/',
     md1: false,
     md2: false,
-    md3: false,
-    noGuidelines: true,
+    md3: true,
+    noGuidelines: false,
   },
   {
     name: 'Chip',
@@ -30,7 +30,7 @@ const dataDisplayComponents = [
     link: '/material-ui/react-chip/',
     md1: false,
     md2: true,
-    md3: false,
+    md3: true,
     noGuidelines: false,
   },
   {
@@ -40,7 +40,7 @@ const dataDisplayComponents = [
     link: '/material-ui/react-divider/',
     md1: false,
     md2: true,
-    md3: false,
+    md3: true,
     noGuidelines: false,
   },
   {
