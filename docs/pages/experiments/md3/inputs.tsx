@@ -8,7 +8,13 @@ import {
   FormHelperText as Md2FormHelperText,
 } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { FilledInput, FormControl, InputLabel, FormHelperText } from '@mui/material-next';
+import {
+  FilledInput,
+  FormControl,
+  InputLabel,
+  FormHelperText,
+  InputAdornment,
+} from '@mui/material-next';
 import { CssVarsProvider, extendTheme } from '@mui/material-next/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
@@ -32,16 +38,28 @@ export default function MaterialYouInputs() {
             <ModeSwitcher />
           </Stack>
 
-          <Stack display="inline-flex" direction="row" gap={4} mb={8}>
+          <Stack display="inline-flex" direction="row" gap={4} mb={4}>
             <FormControl color="primary" variant="filled">
               <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
               <FilledInput
                 id="md3-primary-adornment"
-                defaultValue="WIP primary adornment"
+                defaultValue=""
                 startAdornment={
-                  <Md2InputAdornment position="start">
+                  <InputAdornment position="start">
                     <SearchIcon />
-                  </Md2InputAdornment>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControl color="primary" variant="filled">
+              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <FilledInput
+                id="md3-primary-adornment"
+                defaultValue=""
+                endAdornment={
+                  <InputAdornment position="end">
+                    <SearchIcon />
+                  </InputAdornment>
                 }
               />
             </FormControl>
@@ -49,16 +67,146 @@ export default function MaterialYouInputs() {
               <InputLabel htmlFor="md3-secondary-adornment">WIP Secondary adornments</InputLabel>
               <FilledInput
                 id="md3-secondary-adornment"
-                defaultValue="WIP secondary adornment"
                 startAdornment={
-                  <Md2InputAdornment position="start">
+                  <InputAdornment position="start">
                     <SearchIcon />
-                  </Md2InputAdornment>
+                  </InputAdornment>
                 }
                 endAdornment={
-                  <Md2InputAdornment position="end">
+                  <InputAdornment position="end">
                     <HighlightOffIcon />
-                  </Md2InputAdornment>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </Stack>
+
+          <Stack display="inline-flex" direction="row" gap={4} mb={4}>
+            <FormControl size="small" color="primary" variant="filled">
+              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <FilledInput
+                id="md3-primary-adornment"
+                defaultValue=""
+                startAdornment={
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControl size="small" color="primary" variant="filled">
+              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <FilledInput
+                id="md3-primary-adornment"
+                defaultValue=""
+                endAdornment={
+                  <InputAdornment position="end">
+                    <SearchIcon />
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControl size="small" color="secondary" variant="filled">
+              <InputLabel htmlFor="md3-secondary-adornment">WIP Secondary adornments</InputLabel>
+              <FilledInput
+                id="md3-secondary-adornment"
+                startAdornment={
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                }
+                endAdornment={
+                  <InputAdornment position="end">
+                    <HighlightOffIcon />
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </Stack>
+
+          <Stack display="inline-flex" direction="row" gap={4} mb={4}>
+            <FormControl color="primary" variant="filled">
+              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <FilledInput
+                id="md3-primary-adornment"
+                defaultValue=""
+                startAdornment={
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControl color="primary" variant="filled">
+              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <FilledInput
+                id="md3-primary-adornment"
+                defaultValue=""
+                endAdornment={
+                  <InputAdornment position="end">
+                    <SearchIcon />
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControl color="secondary" variant="filled">
+              <InputLabel htmlFor="md3-secondary-adornment">WIP Secondary adornments</InputLabel>
+              <FilledInput
+                id="md3-secondary-adornment"
+                defaultValue=""
+                startAdornment={
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                }
+                endAdornment={
+                  <InputAdornment position="end">
+                    <HighlightOffIcon />
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </Stack>
+
+          <Stack display="inline-flex" direction="row" gap={4} mb={4}>
+            <FormControl size="small" color="primary" variant="filled">
+              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <FilledInput
+                id="md3-primary-adornment"
+                defaultValue="WIP primary adornment"
+                startAdornment={
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControl size="small" color="primary" variant="filled">
+              <InputLabel htmlFor="md3-primary-adornment">WIP Primary adornments</InputLabel>
+              <FilledInput
+                id="md3-primary-adornment"
+                defaultValue="WIP primary adornment"
+                endAdornment={
+                  <InputAdornment position="end">
+                    <SearchIcon />
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControl size="small" color="secondary" variant="filled">
+              <InputLabel htmlFor="md3-secondary-adornment">WIP Secondary adornments</InputLabel>
+              <FilledInput
+                id="md3-secondary-adornment"
+                defaultValue="WIP secondary adornment"
+                startAdornment={
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                }
+                endAdornment={
+                  <InputAdornment position="end">
+                    <HighlightOffIcon />
+                  </InputAdornment>
                 }
               />
             </FormControl>
