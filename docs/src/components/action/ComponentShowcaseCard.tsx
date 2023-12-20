@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
 import Link from 'docs/src/modules/components/Link';
 
 interface Props {
@@ -10,9 +12,22 @@ interface Props {
   link: string;
   srcLight: string;
   srcDark: string;
+  md1?: React.ReactNode;
+  md2?: React.ReactNode;
+  md3?: React.ReactNode;
+  noGuidelines?: React.ReactNode;
 }
 
-export default function ComponentShowcaseCard({ link, srcLight, srcDark, name }: Props) {
+export default function ComponentShowcaseCard({
+  link,
+  srcLight,
+  srcDark,
+  name,
+  md1,
+  md2,
+  md3,
+  noGuidelines,
+}: Props) {
   return (
     <Card
       component={Link}
@@ -53,9 +68,15 @@ export default function ComponentShowcaseCard({ link, srcLight, srcDark, name }:
           }),
         })}
       />
-      <Typography component="h2" variant="body2" fontWeight="semiBold" sx={{ px: 2, py: 1.5 }}>
-        {name}
-      </Typography>
+      <Stack direction="row" justifyContent="space-between" sx={{ px: 2, py: 1.5 }}>
+        <Typography component="h2" variant="body2" fontWeight="semiBold">
+          {name}
+        </Typography>
+        {md1 && <Chip label="MD1" size="small" variant="outlined" color="primary" />}
+        {md2 && <Chip label="MD2" size="small" variant="outlined" color="primary" />}
+        {md3 && <Chip label="MD3" size="small" variant="outlined" color="primary" />}
+        {noGuidelines && <Chip label="No guidelines" size="small" variant="outlined" />}
+      </Stack>
     </Card>
   );
 }
