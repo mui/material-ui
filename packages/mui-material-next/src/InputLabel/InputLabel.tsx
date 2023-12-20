@@ -89,30 +89,47 @@ const InputLabelRoot = styled(FormLabel, {
     transform: 'translate(16px, 16px) scale(1)',
     maxWidth: 'calc(100% - 24px)',
     ...(ownerState.formControl?.adornedStart && {
-      paddingLeft: '40px',
-      maxWidth: 'calc(100% - 24px - 40px)', // offset the additional paddingLeft
-      transform: 'translate(11px, 16px) scale(1)',
+      maxWidth: 'calc(100% - 24px - 40px)', // offset the additional translateX of 40px of the startAdornment
+      ...(ownerState.formControl?.adornedEnd && {
+        maxWidth: 'calc(100% - 24px - 40px - 32px - 8px)', // offset the additional size of the endAdornment
+      }),
+      transform: 'translate(52px, 16px) scale(1)',
       ...(ownerState.shrink && {
         transform: 'translate(12px, 4px) scale(0.75)',
       }),
     }),
+
+    ...(ownerState.formControl?.adornedEnd &&
+      !ownerState.formControl?.adornedStart && {
+        maxWidth: 'calc(100% - 24px - 40px)',
+      }),
+
     ...(ownerState.size === 'small' && {
       transform: 'translate(12px, 13px) scale(1)',
+      ...(ownerState.formControl?.adornedStart && {
+        transform: 'translate(52px, 13px) scale(1)',
+      }),
     }),
+
     ...(ownerState.shrink && {
       userSelect: 'none',
       pointerEvents: 'auto',
       transform: 'translate(16px, 7px) scale(0.75)',
+      maxWidth: 'calc(133% - 24px)',
       ...(ownerState.size === 'small' && {
         transform: 'translate(16px, 4px) scale(0.75)',
       }),
       ...(ownerState.formControl?.adornedStart && {
-        transform: 'translate(14px, 7px) scale(0.75)',
+        transform: 'translate(52px, 7px) scale(0.75)',
         ...(ownerState.size === 'small' && {
-          transform: 'translate(22px, 4px) scale(0.75)',
+          transform: 'translate(52px, 4px) scale(0.75)',
         }),
+        // when there are both start and end adornments, this can prevent the
+        // label from overlapping with the endAdornment when it's in the middle of the shrink transition
+        // ...(ownerState.formControl?.adornedEnd && {
+        //   maxWidth: 'calc(133% - 140px)',
+        // }),
       }),
-      maxWidth: 'calc(133% - 24px)',
     }),
   }),
   ...(ownerState.variant === 'outlined' && {

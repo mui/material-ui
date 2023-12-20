@@ -67,7 +67,7 @@ const InputAdornmentRoot = styled('div', {
     }),
     ...(ownerState.position === 'end' && {
       // Styles applied to the root element if `position="end"`.
-      marginLeft: 8,
+      marginLeft: 16,
     }),
     ...(ownerState.disablePointerEvents === true && {
       // Styles applied to the root element if `disablePointerEvents={true}`.
