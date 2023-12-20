@@ -29,7 +29,7 @@ With a CSS transition, you can smoothly change CSS property values.
 The CSS Transition component works by adding specified class names when an element should be visible and hidden; it's up to you to define any transitions for these classes.
 
 The following example defines the `open` and `close` classes, and sets the CSS Transition component to apply them accordingly:
-Since the `close` class has multiple transitions with different durations (`transform` transitions for 400ms, and `opacity` and `filter` transitions for 200ms), you must let the transition component know which property takes the longest to finish. 
+Since the `close` class has multiple transitions with different durations (`transform` transitions for 400ms, and `opacity` and `filter` transitions for 200ms), you must let the transition component know which property takes the longest to finish.
 The `lastTransitionedPropertyOnExit` serves exactly this purpose.
 
 {{"demo": "CssTransitionComponent.js"}}
