@@ -16,7 +16,7 @@ const inputComponents = [
   {
     name: 'Button',
     srcLight: '/static/material-ui/react-components/button-light.png',
-    srcDark: '/static/material-ui/react-components/badge-dark.png',
+    srcDark: '/static/material-ui/react-components/button-dark.png',
     link: '/material-ui/react-button/',
     md1: false,
     md2: true,
@@ -26,7 +26,7 @@ const inputComponents = [
   {
     name: 'Button Group',
     srcLight: '/static/material-ui/react-components/button-group-light.png',
-    srcDark: '/static/material-ui/react-components/button-dark.png',
+    srcDark: '/static/material-ui/react-components/button-group-dark.png',
     link: '/material-ui/react-button-group/',
     md1: false,
     md2: false,
@@ -36,7 +36,7 @@ const inputComponents = [
   {
     name: 'Checkbox',
     srcLight: '/static/material-ui/react-components/checkbox-light.png',
-    srcDark: '/static/material-ui/react-components/button-dark.png',
+    srcDark: '/static/material-ui/react-components/checkbox-dark.png',
     link: '/material-ui/react-checkbox/',
     md1: false,
     md2: true,
@@ -46,7 +46,7 @@ const inputComponents = [
   {
     name: 'Floating Action Button',
     srcLight: '/static/material-ui/react-components/fab-light.png',
-    srcDark: '/static/material-ui/react-components/button-dark.png',
+    srcDark: '/static/material-ui/react-components/fab-dark.png',
     link: '/material-ui/react-floating-action-button/',
     md1: false,
     md2: true,
@@ -56,7 +56,7 @@ const inputComponents = [
   {
     name: 'Radio Group',
     srcLight: '/static/material-ui/react-components/radio-group-light.png',
-    srcDark: '/static/material-ui/react-components/button-dark.png',
+    srcDark: '/static/material-ui/react-components/radio-group-dark.png',
     link: '/material-ui/react-radio-group/',
     md1: false,
     md2: true,
@@ -66,7 +66,7 @@ const inputComponents = [
   {
     name: 'Rating',
     srcLight: '/static/material-ui/react-components/rating-light.png',
-    srcDark: '/static/material-ui/react-components/button-dark.png',
+    srcDark: '/static/material-ui/react-components/rating-dark.png',
     link: '/material-ui/react-rating/',
     md1: false,
     md2: false,
@@ -76,7 +76,7 @@ const inputComponents = [
   {
     name: 'Select',
     srcLight: '/static/material-ui/react-components/select-light.png',
-    srcDark: '/static/material-ui/react-components/button-dark.png',
+    srcDark: '/static/material-ui/react-components/select-dark.png',
     link: '/material-ui/react-select/',
     md1: false,
     md2: true,
@@ -86,7 +86,7 @@ const inputComponents = [
   {
     name: 'Slider',
     srcLight: '/static/material-ui/react-components/slider-light.png',
-    srcDark: '/static/material-ui/react-components/button-dark.png',
+    srcDark: '/static/material-ui/react-components/slider-dark.png',
     link: '/material-ui/react-slider/',
     md1: false,
     md2: true,
@@ -96,7 +96,7 @@ const inputComponents = [
   {
     name: 'Switch',
     srcLight: '/static/material-ui/react-components/switch-light.png',
-    srcDark: '/static/material-ui/react-components/button-dark.png',
+    srcDark: '/static/material-ui/react-components/switch-dark.png',
     link: '/material-ui/react-switch/',
     md1: false,
     md2: true,
@@ -106,7 +106,7 @@ const inputComponents = [
   {
     name: 'Text Field',
     srcLight: '/static/material-ui/react-components/text-field-light.png',
-    srcDark: '/static/material-ui/react-components/button-dark.png',
+    srcDark: '/static/material-ui/react-components/text-field-dark.png',
     link: '/material-ui/react-text-field/',
     md1: false,
     md2: true,
@@ -116,7 +116,7 @@ const inputComponents = [
   {
     name: 'Transfer List',
     srcLight: '/static/material-ui/react-components/transfer-list-light.png',
-    srcDark: '/static/material-ui/react-components/button-dark.png',
+    srcDark: '/static/material-ui/react-components/transfer-list-dark.png',
     link: '/material-ui/react-transfer-list/',
     md1: false,
     md2: false,
@@ -126,7 +126,7 @@ const inputComponents = [
   {
     name: 'Toggle Button',
     srcLight: '/static/material-ui/react-components/toggle-button-light.png',
-    srcDark: '/static/material-ui/react-components/button-dark.png',
+    srcDark: '/static/material-ui/react-components/toggle-button-dark.png',
     link: '/material-ui/react-toggle-button/',
     md1: false,
     md2: false,

@@ -27,3 +27,11 @@ While we strive to follow the Material Design guidelines where practical (applyi
 ## Layout
 
 {{"component": "modules/components/MaterialUIComponents/MaterialLayoutComponents.js"}}
+
+## Lab
+
+{{"component": "modules/components/MaterialUIComponents/MaterialLabComponents.js"}}
+
+## Utils
+
+{{"component": "modules/components/MaterialUIComponents/MaterialUtilComponents.js"}}

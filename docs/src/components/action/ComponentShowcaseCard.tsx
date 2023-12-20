@@ -41,8 +41,8 @@ export default function ComponentShowcaseCard({
         borderRadius: 1,
         borderColor: 'divider',
         ...theme.applyDarkStyles({
-          backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.3)}`,
-          borderColor: 'divider',
+          backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.1)}`,
+          borderColor: 'primaryDark.700',
         }),
       })}
     >
@@ -52,19 +52,13 @@ export default function ComponentShowcaseCard({
         image={srcLight}
         sx={(theme) => ({
           aspectRatio: '16 / 9',
-          background: `linear-gradient(180deg, ${alpha(
-            theme.palette.grey[50],
-            0.5,
-          )} 20%, #FFF 100%)`,
+          background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
           borderBottom: '1px solid',
           borderColor: 'divider',
           ...theme.applyDarkStyles({
             content: `url(${srcDark})`,
-            background: `linear-gradient(180deg, ${alpha(
-              theme.palette.primaryDark[800],
-              0.5,
-            )} 20%, ${theme.palette.primaryDark[900]} 100%)`,
-            borderColor: 'divider',
+            background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+            borderColor: 'primaryDark.700',
           }),
         })}
       />
