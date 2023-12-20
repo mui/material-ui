@@ -15,7 +15,9 @@ hooks: useTransitionTrigger, useTransitionStateManager
 
 Base UI offers higher-level components and low-level hooks that can be used to add animations to components as they enter and exit the screen.
 
+:::info
 The [Popup](/base-ui/react-popup/) is currently the only component that supports this API; [Select](/base-ui/react-select/) and [Menu](/base-ui/react-menu/) support will be added next.
+:::
 
 ## Components
 
