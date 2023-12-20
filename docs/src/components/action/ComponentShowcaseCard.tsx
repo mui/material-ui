@@ -70,7 +70,9 @@ export default function ComponentShowcaseCard({
           {md1 && <Chip label="MD1" size="small" variant="outlined" color="primary" />}
           {md2 && <Chip label="MD2" size="small" variant="outlined" color="primary" />}
           {md3 && <Chip label="MD3" size="small" variant="outlined" color="success" />}
-          {noGuidelines && <Chip label="No guidelines" size="small" variant="outlined" />}
+          {noGuidelines && (
+            <Chip label="No guidelines" size="small" variant="outlined" color="info" />
+          )}
         </Stack>
       </Stack>
     </Card>
