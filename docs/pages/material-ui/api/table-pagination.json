@@ -60,7 +60,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ actions?: { firstButton?: object, lastButton?: object, nextButton?: object, previousButton?: object }, select?: object }"
+        "description": "{ actions?: { firstButton?: object, firstButtonIcon?: object, lastButton?: object, lastButtonIcon?: object, nextButton?: object, nextButtonIcon?: object, previousButton?: object, previousButtonIcon?: object }, select?: object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ actions?: { firstButton?: elementType, firstButtonIcon?: elementType, lastButton?: elementType, lastButtonIcon?: elementType, nextButton?: elementType, nextButtonIcon?: elementType, previousButton?: elementType, previousButtonIcon?: elementType } }"
       },
       "default": "{}"
     },

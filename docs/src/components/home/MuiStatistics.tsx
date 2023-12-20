@@ -7,7 +7,7 @@ const data = [
   { title: '4M', metadata: 'Weekly downloads on npm' },
   { title: '87k', metadata: 'Stars on GitHub' },
   { title: '2.7k', metadata: 'Open-source contributors' },
-  { title: '18.4k', metadata: 'Followers on Twitter' },
+  { title: '18.4k', metadata: 'Followers on X' },
 ];
 
 export default function MuiStatistics() {

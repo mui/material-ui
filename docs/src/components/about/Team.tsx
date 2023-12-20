@@ -10,7 +10,7 @@ import Paper, { PaperProps } from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import XIcon from '@mui/icons-material/X';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Link from 'docs/src/modules/components/Link';
@@ -155,13 +155,13 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
           )}
           {props.twitter && (
             <IconButton
-              aria-label={`${props.name} Twitter profile`}
+              aria-label={`${props.name} X profile`}
               component="a"
               href={`https://twitter.com/${props.twitter}`}
               target="_blank"
               rel="noreferrer noopener"
             >
-              <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
+              <XIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
           )}
           {props.linkedin && (

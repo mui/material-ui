@@ -113,7 +113,7 @@ Replace `Welcome!` inside your Sheet component with this `<div>`:
 
 :::success
 Try changing the values for the `level` and `component` props to see how they affect the typographic values and the elements rendered.
-(Note that while `level` only accepts the 13 values listed above, you can pass any HTML tag to `component`, as well as custom React components.)
+(Note that while `level` only accepts the 11 values listed above, you can pass any HTML tag to `component`, as well as custom React components.)
 :::
 
 ## Add text field for user inputs

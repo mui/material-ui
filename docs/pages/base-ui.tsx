@@ -16,10 +16,10 @@ export default function Core() {
   return (
     <BrandingCssVarsProvider>
       <Head
-        title="Base UI: Ship accessible & sleek components"
+        title="Base UI: Unstyled React components and low-level hooks."
         description={`Base UI is a library of headless ("unstyled") React UI components and low-level hooks.
         You can style them with any CSS solutions like PostCSS or Tailwind CSS.`}
-        card="/static/blog/introducing-base-ui/card.png"
+        card="/static/social-previews/baseui-preview.jpg"
       >
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
