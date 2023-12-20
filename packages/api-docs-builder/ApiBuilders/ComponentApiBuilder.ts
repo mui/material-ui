@@ -23,7 +23,7 @@ import createDescribeableProp, {
 import generatePropDescription from '../utils/generatePropDescription';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
-import generateApiTranslations from 'utils/generateApiTranslation';
+import generateApiTranslations from '../utils/generateApiTranslation';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;

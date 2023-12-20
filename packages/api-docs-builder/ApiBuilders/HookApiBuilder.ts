@@ -20,7 +20,7 @@ import {
   writePrettifiedFile,
 } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import generateApiTranslations from 'utils/generateApiTranslation';
+import generateApiTranslations from '../utils/generateApiTranslation';
 
 interface ParsedProperty {
   name: string;
